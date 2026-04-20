@@ -170,21 +170,35 @@ BALANCE_ASSETS = [
     {"name": "Khác",                               "pct":  0.3, "color": "#94a3b8", "note": ""},
 ]
 
-# ─── 6-period historical scales (FY2019..FY2024) ─────────────────────
-BS_SCALES = [0.60, 0.68, 0.77, 0.85, 0.93, 1.00]  # balance-sheet growth
-IS_SCALES = [0.55, 0.65, 0.72, 0.85, 0.93, 1.00]  # revenue/expense growth
-BS_PERIODS = ["FY2019","FY2020","FY2021","FY2022","FY2023","FY2024"]
+# ─── 8-period historical scales ─────────────────────
+# ANNUAL: FY2017..FY2024 (8 years)
+BS_SCALES_ANNUAL   = [0.46, 0.52, 0.58, 0.65, 0.73, 0.83, 0.92, 1.00]   # ~11% CAGR
+IS_SCALES_ANNUAL   = [0.38, 0.45, 0.52, 0.62, 0.72, 0.83, 0.92, 1.00]   # ~15% CAGR
+BS_PERIODS_ANNUAL  = ["FY2017","FY2018","FY2019","FY2020","FY2021","FY2022","FY2023","FY2024"]
+
+# QUARTERLY: Q2/2024..Q1/2026 (8 quarters); latest at Q1/2026
+# BS (end-of-period): scale relative to FY2024 closing (1.00). Grows ~1.5%/Q.
+BS_SCALES_QUARTER  = [0.96, 0.98, 1.00, 1.015, 1.03, 1.045, 1.06, 1.075]
+# IS (single-quarter P&L): ~25% of annual × slight growth QoQ
+IS_SCALES_QUARTER  = [0.235, 0.240, 0.248, 0.250, 0.256, 0.258, 0.262, 0.265]
+BS_PERIODS_QUARTER = ["Q2/2024","Q3/2024","Q4/2024","Q1/2025","Q2/2025","Q3/2025","Q4/2025","Q1/2026"]
+
+# Default (annual) — kept for legacy usage
+BS_SCALES = BS_SCALES_ANNUAL
+IS_SCALES = IS_SCALES_ANNUAL
+BS_PERIODS = BS_PERIODS_ANNUAL
 
 def _mk_history_abs(value, scales):
     return [round(value * s) for s in scales]
 
 def _mk_history_pct(pct, scales):
-    """Slight drift around the base pct (±6% noise to show mix shifts)."""
+    """Slight drift around the base pct to show mix shifts."""
     import random
     random.seed(hash(str(pct)) & 0xffff)
-    noise = [1 + (i/5 - 0.5)*0.10 for i in range(len(scales))]
-    vals = [round(pct * noise[i], 2) for i in range(len(scales))]
-    vals[-1] = pct  # anchor FY2024 to exact value
+    n = len(scales)
+    noise = [1 + (i/(n-1) - 0.5)*0.10 for i in range(n)]
+    vals = [round(pct * noise[i], 2) for i in range(n)]
+    vals[-1] = pct
     return vals
 
 
@@ -264,30 +278,71 @@ def _attach_bs_meta(items, bd_map):
         it["breakdown"] = bd_map.get(it["name"])
     return items
 
-def _add_hist_abs(items):
-    for it in items: it["history"] = _mk_history_abs(it["value"], BS_SCALES)
-    return items
+BS_ITEM_BREAKDOWN_MAP_ASSETS = {
+    "Cho vay khách hàng (ròng)":      "loans",
+    "Chứng khoán đầu tư (AFS + HTM)": "inv_sec",
+    "Tiền gửi & cho vay TCTD khác":   "interbank_asset",
+    "Tiền gửi tại NHNN":               "at_sbv",
+}
+BS_ITEM_BREAKDOWN_MAP_LEQ = {
+    "Tiền gửi khách hàng":            "cust_dep",
+    "Phát hành GTCG (TP, CD)":        "gtcg",
+    "Tiền gửi & vay TCTD khác":      "interbank_liab",
+    "Vốn điều lệ":                     "charter_capital",
+}
 
-BS_ASSETS_FULL = _add_hist_abs(_attach_bs_meta(
-    [dict(x) for x in BALANCE_ASSETS],
-    {
-        "Cho vay khách hàng (ròng)":      "loans",
-        "Chứng khoán đầu tư (AFS + HTM)": "inv_sec",
-        "Tiền gửi & cho vay TCTD khác":   "interbank_asset",
-        "Tiền gửi tại NHNN":               "at_sbv",
-    }
-))
-BS_LEQ_FULL = _add_hist_abs(_attach_bs_meta(
-    [dict(x) for x in BALANCE_LIAB_EQUITY],
-    {
-        "Tiền gửi khách hàng":            "cust_dep",
-        "Phát hành GTCG (TP, CD)":        "gtcg",
-        "Tiền gửi & vay TCTD khác":      "interbank_liab",
-        "Vốn điều lệ":                     "charter_capital",
-    }
-))
-for _it in IS_LINE_ITEMS:
-    _it["history"] = _mk_history_abs(_it["value"], IS_SCALES)
+def _build_statements(period: str):
+    """Build BS + IS sets for 'year' or 'quarter' view."""
+    is_q = period == "quarter"
+    bs_scales = BS_SCALES_QUARTER  if is_q else BS_SCALES_ANNUAL
+    is_scales = IS_SCALES_QUARTER  if is_q else IS_SCALES_ANNUAL
+    periods   = BS_PERIODS_QUARTER if is_q else BS_PERIODS_ANNUAL
+    latest_bs_mult = bs_scales[-1]   # scale for latest-period value
+    latest_is_mult = is_scales[-1]
+
+    def mk_bs(src, bd_map):
+        out = []
+        for base in src:
+            it = dict(base)
+            it["value"] = round(SYS_TOTAL_ASSETS * it["pct"] / 100 * latest_bs_mult)
+            it["history"] = [round(SYS_TOTAL_ASSETS * it["pct"] / 100 * s) for s in bs_scales]
+            it["breakdown"] = bd_map.get(it["name"])
+            out.append(it)
+        return out
+
+    bs_assets = mk_bs(BALANCE_ASSETS,       BS_ITEM_BREAKDOWN_MAP_ASSETS)
+    bs_leq    = mk_bs(BALANCE_LIAB_EQUITY,  BS_ITEM_BREAKDOWN_MAP_LEQ)
+
+    # IS — build from scratch using helper values
+    def is_item(key, name, mult_of_nii, section, level, breakdown=None, subtotal=False, is_subtotal_val=None):
+        v = round(SYS_NII * mult_of_nii * latest_is_mult) if is_subtotal_val is None else round(is_subtotal_val * latest_is_mult)
+        hist = [round((SYS_NII * mult_of_nii if is_subtotal_val is None else is_subtotal_val) * s) for s in is_scales]
+        return {"key": key, "name": name, "value": v, "history": hist, "section": section, "level": level, "subtotal": subtotal, "breakdown": breakdown}
+
+    is_list = [
+        is_item("int_inc",   "Thu nhập lãi & thu nhập tương tự",  3.5,   "revenue", 1, "int_inc"),
+        {"key":"int_exp","name":"Chi trả lãi & chi phí tương tự","value": -round(SYS_NII*2.5*latest_is_mult), "history":[-round(SYS_NII*2.5*s) for s in is_scales],"section":"revenue","level":1,"breakdown":"int_exp"},
+        {"key":"nii","name":"Thu nhập lãi thuần (NII)","value":round(SYS_NII*latest_is_mult),"history":[round(SYS_NII*s) for s in is_scales],"section":"revenue","level":0,"subtotal":True,"breakdown":None},
+        is_item("fee_inc",   "Thu nhập từ phí & dịch vụ",          0.17,  "revenue", 1, "fee_inc"),
+        is_item("fx_trading","Lãi/lỗ từ kinh doanh ngoại hối",    0.045, "revenue", 1),
+        is_item("trade_sec", "Lãi/lỗ từ CK kinh doanh",             0.015, "revenue", 1),
+        is_item("inv_sec",   "Lãi/lỗ từ CK đầu tư",                  0.025, "revenue", 1),
+        is_item("other_inc", "Thu nhập hoạt động khác",             0.045, "revenue", 1, "other_inc"),
+        {"key":"toi","name":"Tổng thu nhập hoạt động (TOI)","value":round(SYS_TOI*latest_is_mult),"history":[round(SYS_TOI*s) for s in is_scales],"section":"revenue","level":0,"subtotal":True,"breakdown":None},
+        {"key":"opex","name":"Chi phí hoạt động","value":-round(SYS_OPEX*latest_is_mult),"history":[-round(SYS_OPEX*s) for s in is_scales],"section":"cost","level":1,"breakdown":"opex"},
+        {"key":"prepro","name":"LN thuần trước DPRR (Pre-provision)","value":round(SYS_PRE_PROVISION*latest_is_mult),"history":[round(SYS_PRE_PROVISION*s) for s in is_scales],"section":"cost","level":0,"subtotal":True,"breakdown":None},
+        {"key":"provisions","name":"Chi phí dự phòng rủi ro tín dụng","value":-round(SYS_PROVISIONS*latest_is_mult),"history":[-round(SYS_PROVISIONS*s) for s in is_scales],"section":"cost","level":1,"breakdown":"provisions"},
+        {"key":"pbt","name":"Lợi nhuận trước thuế (PBT)","value":round(SYS_PBT*latest_is_mult),"history":[round(SYS_PBT*s) for s in is_scales],"section":"profit","level":0,"subtotal":True,"breakdown":None},
+        {"key":"tax","name":"Chi phí thuế TNDN","value":-round(SYS_TAX*latest_is_mult),"history":[-round(SYS_TAX*s) for s in is_scales],"section":"profit","level":1,"breakdown":None},
+        {"key":"npat","name":"Lợi nhuận sau thuế (NPAT)","value":round(SYS_NPAT*latest_is_mult),"history":[round(SYS_NPAT*s) for s in is_scales],"section":"profit","level":0,"subtotal":True,"breakdown":None},
+    ]
+    return {"bs_assets": bs_assets, "bs_leq": bs_leq, "is_list": is_list, "periods": periods}
+
+# Legacy (annual) assignment for backward-compat endpoints
+_annual_stmt = _build_statements("year")
+BS_ASSETS_FULL = _annual_stmt["bs_assets"]
+BS_LEQ_FULL    = _annual_stmt["bs_leq"]
+IS_LINE_ITEMS  = _annual_stmt["is_list"]
 
 # ─── Line-item breakdowns (accessed by clicking a BS/IS row) ───────────
 LINE_ITEM_BREAKDOWNS = {
@@ -445,16 +500,56 @@ LINE_ITEM_BREAKDOWNS = {
 }
 
 
-# Attach history to every breakdown row (pct drift over 6 periods)
+def _attach_pct_history(rows, scales):
+    """Return copies of rows with a fresh 'history' array based on scales."""
+    out = []
+    for r in rows:
+        c = dict(r)
+        c["history"] = _mk_history_pct(c["pct"], scales)
+        out.append(c)
+    return out
+
+def _build_breakdowns(period: str):
+    """Build lending/funding/BS/IS breakdowns for 'year' or 'quarter'."""
+    is_q = period == "quarter"
+    scales  = BS_SCALES_QUARTER  if is_q else BS_SCALES_ANNUAL
+    periods = BS_PERIODS_QUARTER if is_q else BS_PERIODS_ANNUAL
+    def rebuild(cat):
+        return {tab: _attach_pct_history(rows, scales) for tab, rows in cat.items()}
+    lending = {
+        "sector":   _attach_pct_history(LENDING_BY_SECTOR, scales),
+        "tenor":    _attach_pct_history(LENDING_BY_TENOR, scales),
+        "customer": _attach_pct_history(LENDING_BY_CUSTOMER, scales),
+        "currency": _attach_pct_history(LENDING_BY_CURRENCY, scales),
+    }
+    funding = {
+        "source":   _attach_pct_history(FUNDING_BY_SOURCE, scales),
+        "tenor":    _attach_pct_history(FUNDING_BY_TENOR, scales),
+        "customer": _attach_pct_history(FUNDING_BY_CUSTOMER, scales),
+        "currency": _attach_pct_history(FUNDING_BY_CURRENCY, scales),
+    }
+    # Line-item drill-downs
+    li = {}
+    for k, bd in LINE_ITEM_BREAKDOWNS.items():
+        tabs = []
+        for tab in bd["tabs"]:
+            tabs.append({"label": tab["label"], "rows": _attach_pct_history(tab["rows"], scales)})
+        li[k] = {"title": bd["title"], "tabs": tabs}
+    return {"lending": lending, "funding": funding, "line_items": li, "periods": periods}
+
+# Legacy attach (annual) so initial page load still has data even before endpoint fetch
 for _k, _bd in LINE_ITEM_BREAKDOWNS.items():
     for _tab in _bd["tabs"]:
         for _r in _tab["rows"]:
-            _r["history"] = _mk_history_pct(_r["pct"], BS_SCALES)
-# Also attach to lending/funding breakdowns shown on the breakdown section
+            _r["history"] = _mk_history_pct(_r["pct"], BS_SCALES_ANNUAL)
 for _col in (LENDING_BY_SECTOR, LENDING_BY_TENOR, LENDING_BY_CUSTOMER, LENDING_BY_CURRENCY,
              FUNDING_BY_SOURCE, FUNDING_BY_TENOR, FUNDING_BY_CUSTOMER, FUNDING_BY_CURRENCY):
     for _r in _col:
-        _r["history"] = _mk_history_pct(_r["pct"], BS_SCALES)
+        _r["history"] = _mk_history_pct(_r["pct"], BS_SCALES_ANNUAL)
+
+# Pre-compute both period versions at startup
+_BREAKDOWN_CACHE = {"year": _build_breakdowns("year"), "quarter": _build_breakdowns("quarter")}
+_STATEMENTS_CACHE = {"year": _build_statements("year"), "quarter": _build_statements("quarter")}
 
 
 VN_BANK_ENTITIES: dict[str, list[dict]] = {
@@ -661,10 +756,11 @@ def _build_histories():
     # ----- ANNUAL: 6 years back from FY2024 -----
     # Vietnamese banking growth pattern 2019-2024: assets ~12% CAGR, NPL rose 2020-21 (COVID)
     # then eased, ROE dipped 2021-22 then recovered. NIM compressed post-2022.
-    ANNUAL_PERIODS = ["FY2019","FY2020","FY2021","FY2022","FY2023","FY2024"]
-    # Per-period multipliers/deltas vs. FY2024 (last entry is FY2024 = base)
-    ANNUAL_SCALE = [0.58, 0.64, 0.73, 0.82, 0.91, 1.00]
+    ANNUAL_PERIODS = ["FY2017","FY2018","FY2019","FY2020","FY2021","FY2022","FY2023","FY2024"]
+    ANNUAL_SCALE = [0.46, 0.52, 0.58, 0.64, 0.73, 0.82, 0.91, 1.00]
     ANNUAL_DELTA = [
+        {"nim":+0.25,"roa":+0.05,"roe":+0.5,"cir": 0,"npl":-0.20,"car":-1.0,"ldr":-4,"ccov":+20},  # FY2017
+        {"nim":+0.28,"roa":+0.08,"roe":+0.8,"cir":-0.5,"npl":-0.18,"car":-0.9,"ldr":-3.5,"ccov":+18},  # FY2018
         {"nim":+0.30,"roa":+0.10,"roe":+1.0,"cir":-1,"npl":-0.15,"car":-0.8,"ldr":-3,"ccov":+15},  # FY2019
         {"nim":+0.20,"roa":-0.05,"roe":-0.5,"cir":+1,"npl":+0.25,"car":-0.6,"ldr":-2,"ccov":+10},  # FY2020
         {"nim":+0.15,"roa":-0.15,"roe":-2.0,"cir":+2,"npl":+0.35,"car":-0.4,"ldr": 0,"ccov": -5},  # FY2021
@@ -723,11 +819,11 @@ def _build_histories():
     quarterly = {}
     for sym, fy in VN_BANK_FUNDAMENTALS.items():
         # Annual: 6 years oldest→newest
-        yearly[sym] = [snap(fy, ANNUAL_SCALE[i], ANNUAL_DELTA[i], ANNUAL_PERIODS[i]) for i in range(6)]
-        # Quarterly: last 6 ending at this bank's latest reported quarter
+        yearly[sym] = [snap(fy, ANNUAL_SCALE[i], ANNUAL_DELTA[i], ANNUAL_PERIODS[i]) for i in range(len(ANNUAL_PERIODS))]
+        # Quarterly: last 8 ending at this bank's latest reported quarter
         end = bank_q_end.get(sym, MID_END)
         end_idx = Q_ALL.index(end)
-        start_idx = max(0, end_idx - 5)
+        start_idx = max(0, end_idx - 7)
         q_slice = Q_ALL[start_idx: end_idx + 1]
         quarterly[sym] = [snap(fy, Q_IDX_SCALE[q], Q_DELTA[q], q) for q in q_slice]
     return yearly, quarterly
@@ -892,9 +988,12 @@ def api_banks(period: str = "year"):
 
 
 @app.get("/api/banks/statements")
-def api_banks_statements():
-    """System-aggregate Balance Sheet + Income Statement (17 banks, FY2024)."""
+def api_banks_statements(period: str = "year"):
+    """System-aggregate Balance Sheet + Income Statement. period=year|quarter"""
+    s = _STATEMENTS_CACHE.get(period) or _STATEMENTS_CACHE["year"]
+    latest_period = s["periods"][-1]
     return JSONResponse({
+        "period": period,
         "totals": {
             "assets":   SYS_TOTAL_ASSETS,
             "equity":   SYS_TOTAL_EQUITY,
@@ -906,46 +1005,36 @@ def api_banks_statements():
             "bank_count": len(VN_BANK_FUNDAMENTALS),
         },
         "balance_sheet": {
-            "assets":     BS_ASSETS_FULL,
-            "liab_equity": BS_LEQ_FULL,
+            "assets":     s["bs_assets"],
+            "liab_equity": s["bs_leq"],
         },
-        "income_statement": IS_LINE_ITEMS,
-        "periods": BS_PERIODS,
-        "as_of": "FY2024 hợp nhất 17 NHTM niêm yết",
+        "income_statement": s["is_list"],
+        "periods": s["periods"],
+        "as_of": f"{latest_period} hợp nhất 17 NHTM niêm yết" + (" (ước tính 1 quý)" if period=="quarter" else ""),
     })
 
 
 @app.get("/api/banks/lineitem/{key}")
-def api_banks_lineitem(key: str):
-    """Breakdown for a specific BS/IS line item (by key)."""
-    bd = LINE_ITEM_BREAKDOWNS.get(key)
+def api_banks_lineitem(key: str, period: str = "year"):
+    """Breakdown for a specific BS/IS line item. period=year|quarter"""
+    bd_map = _BREAKDOWN_CACHE.get(period) or _BREAKDOWN_CACHE["year"]
+    bd = bd_map["line_items"].get(key)
     if not bd:
         return JSONResponse({"error": "no breakdown"}, status_code=404)
-    return JSONResponse({"key": key, **bd})
+    return JSONResponse({"key": key, **bd, "periods": bd_map["periods"]})
 
 
 @app.get("/api/banks/breakdown")
-def api_banks_breakdown():
-    """System-wide lending and funding breakdowns (FY2024)."""
+def api_banks_breakdown(period: str = "year"):
+    """System-wide lending and funding breakdowns. period=year|quarter"""
+    bd = _BREAKDOWN_CACHE.get(period) or _BREAKDOWN_CACHE["year"]
+    latest = bd["periods"][-1]
     return JSONResponse({
-        "lending": {
-            "sector":   LENDING_BY_SECTOR,
-            "tenor":    LENDING_BY_TENOR,
-            "customer": LENDING_BY_CUSTOMER,
-            "currency": LENDING_BY_CURRENCY,
-        },
-        "funding": {
-            "source":   FUNDING_BY_SOURCE,
-            "tenor":    FUNDING_BY_TENOR,
-            "customer": FUNDING_BY_CUSTOMER,
-            "currency": FUNDING_BY_CURRENCY,
-        },
-        "balance_sheet": {
-            "assets":        BALANCE_ASSETS,
-            "liab_equity":   BALANCE_LIAB_EQUITY,
-        },
-        "periods": BS_PERIODS,
-        "as_of": "FY2024 — hệ thống ngân hàng VN (tổng hợp SBV + top-20 NH)",
+        "period":   period,
+        "lending":  bd["lending"],
+        "funding":  bd["funding"],
+        "periods":  bd["periods"],
+        "as_of":    f"{latest} — hệ thống ngân hàng VN",
     })
 
 

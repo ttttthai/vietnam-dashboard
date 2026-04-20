@@ -645,7 +645,7 @@
           <!-- Industry aggregates — 10 indicators × 6 periods -->
           <div class="bk-card">
             <div class="bk-card-hdr">
-              <span>📊 Chỉ số toàn ngành (17 NHTM niêm yết) — 6 kỳ gần nhất</span>
+              <span>📊 Chỉ số toàn ngành (17 NHTM niêm yết) — 8 kỳ gần nhất</span>
               <span style="font-size:10px;color:var(--text2);font-weight:400">Quy mô: tổng · Tỷ lệ: TB có trọng số</span>
             </div>
             <div class="bk-card-body">
@@ -656,7 +656,7 @@
           <!-- Full Balance Sheet + Income Statement -->
           <div class="bk-card">
             <div class="bk-card-hdr">
-              <span>📋 Báo cáo tài chính hợp nhất 17 NHTM — FY2024</span>
+              <span>📋 Báo cáo tài chính hợp nhất 17 NHTM — <span id="bk-bs-period">FY2024</span></span>
               <span style="font-size:10px;color:var(--text2);font-weight:400">Click khoản mục để xem cơ cấu chi tiết</span>
             </div>
             <div class="bk-card-body">
@@ -680,7 +680,7 @@
           <!-- Income Statement -->
           <div class="bk-card">
             <div class="bk-card-hdr">
-              <span>💵 Báo cáo kết quả kinh doanh — FY2024 (tỷ VND)</span>
+              <span>💵 Báo cáo kết quả kinh doanh — <span id="bk-is-period">FY2024</span> (tỷ VND)</span>
               <span style="font-size:10px;color:var(--text2);font-weight:400">Click khoản mục để xem cơ cấu</span>
             </div>
             <div class="bk-card-body">
@@ -691,7 +691,7 @@
           <!-- Lending & Funding breakdowns -->
           <div class="bk-card">
             <div class="bk-card-hdr">
-              <span>🧮 Cơ cấu dư nợ & nguồn vốn — Hệ thống NH Việt Nam · FY2024</span>
+              <span>🧮 Cơ cấu dư nợ & nguồn vốn — Hệ thống NH Việt Nam · <span id="bk-bd-period">FY2024</span></span>
             </div>
             <div class="bk-card-body">
               <div class="bk-break-grid">
@@ -2310,6 +2310,8 @@ let bkSortKey = 'assets', bkSortDir = -1;
 
 const BANK_COLORS = ['#00d4ff','#f97316','#22c55e','#a855f7','#ef4444','#fbbf24','#3b82f6'];
 
+const BANK_BREAKDOWN_CACHE  = { year: null, quarter: null };
+const BANK_STATEMENTS_CACHE = { year: null, quarter: null };
 let BANK_BREAKDOWN = null;
 let BANK_STATEMENTS = null;
 async function loadBanks() {
@@ -2321,18 +2323,20 @@ async function loadBanks() {
       BANK_DATA[bkPeriod] = d;
     } catch(e) { BANK_DATA[bkPeriod] = {rows: [], period_summary: {}}; }
   }
-  if (!BANK_BREAKDOWN) {
+  if (!BANK_BREAKDOWN_CACHE[bkPeriod]) {
     try {
-      const r = await fetch('/api/banks/breakdown');
-      BANK_BREAKDOWN = await r.json();
-    } catch(e) { BANK_BREAKDOWN = null; }
+      const r = await fetch('/api/banks/breakdown?period=' + bkPeriod);
+      BANK_BREAKDOWN_CACHE[bkPeriod] = await r.json();
+    } catch(e) { BANK_BREAKDOWN_CACHE[bkPeriod] = null; }
   }
-  if (!BANK_STATEMENTS) {
+  BANK_BREAKDOWN = BANK_BREAKDOWN_CACHE[bkPeriod];
+  if (!BANK_STATEMENTS_CACHE[bkPeriod]) {
     try {
-      const r = await fetch('/api/banks/statements');
-      BANK_STATEMENTS = await r.json();
-    } catch(e) { BANK_STATEMENTS = null; }
+      const r = await fetch('/api/banks/statements?period=' + bkPeriod);
+      BANK_STATEMENTS_CACHE[bkPeriod] = await r.json();
+    } catch(e) { BANK_STATEMENTS_CACHE[bkPeriod] = null; }
   }
+  BANK_STATEMENTS = BANK_STATEMENTS_CACHE[bkPeriod];
   renderBanks();
   renderBreakdowns();
   renderStatements();
@@ -2341,6 +2345,10 @@ async function loadBanks() {
 function renderStatements() {
   if (!BANK_STATEMENTS) return;
   const S = BANK_STATEMENTS;
+  const latest = S.periods[S.periods.length-1];
+  const bsP = document.getElementById('bk-bs-period'); if (bsP) bsP.textContent = latest;
+  const isP = document.getElementById('bk-is-period'); if (isP) isP.textContent = latest;
+  const bdP = document.getElementById('bk-bd-period'); if (bdP) bdP.textContent = latest;
   // BS already rendered via drawDonut + drawBSList; swap lists to the statement version
   drawDonut('bk-bs-assets-donut', S.balance_sheet.assets, 'Tài sản');
   drawBSListClickable('bk-bs-assets-list', S.balance_sheet.assets);
@@ -2413,7 +2421,7 @@ function drawBSListClickable(containerId, items) {
           ${d.note ? `<div class="bk-bs-note">${d.note}</div>` : ''}
           <div class="bk-bs-bar-wrap"><div class="bk-bs-bar" style="width:${pctBarW.toFixed(1)}%;background:${d.color}"></div></div>
         </div>
-        <div class="bk-inline-chart" title="6 kỳ gần nhất">${bars}</div>
+        <div class="bk-inline-chart" title="8 kỳ gần nhất">${bars}</div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:1px">
           <span class="bk-bs-pct" style="color:${d.color};background:${d.color}22">${fmtVndTy(d.value)}</span>
           <span style="font-size:9px;color:var(--text3);font-variant-numeric:tabular-nums">${d.pct.toFixed(1)}%</span>
@@ -2865,7 +2873,7 @@ async function openLineItemBreakdown(key) {
   body.innerHTML = '<div class="bkm-empty">Đang tải dữ liệu…</div>';
   overlay.classList.add('open');
   try {
-    const r = await fetch('/api/banks/lineitem/' + encodeURIComponent(key));
+    const r = await fetch('/api/banks/lineitem/' + encodeURIComponent(key) + '?period=' + bkPeriod);
     const d = await r.json();
     if (!r.ok || d.error) { body.innerHTML = '<div class="bkm-empty">Không có cơ cấu chi tiết cho khoản mục này.</div>'; title.textContent = '—'; return; }
     lineItemCurrent = d;
@@ -2916,7 +2924,7 @@ function renderLineItemModal() {
         <div class="bkm-entity-name">${row.name}</div>
         <div style="height:3px;background:rgba(42,58,85,0.4);border-radius:2px;margin-top:4px;overflow:hidden"><div style="height:100%;width:${barW}%;background:${row.color};border-radius:2px"></div></div>
       </div>
-      <div class="bkm-entity-chart" title="6 kỳ gần nhất">${bars}</div>
+      <div class="bkm-entity-chart" title="8 kỳ gần nhất">${bars}</div>
       <span class="bkm-entity-pct" style="color:${row.color};background:${row.color}22">${row.pct.toFixed(1)}%</span>
     </div>`;
   });
