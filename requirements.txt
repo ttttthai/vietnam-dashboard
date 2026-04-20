@@ -1,4 +1,7 @@
 fastapi>=0.110
 uvicorn[standard]>=0.27
-vnstock>=3.0
 apscheduler>=3.10
+# vnstock is optional — heavy deps (pandas, seaborn, matplotlib) may exceed
+# Render free-tier build limits. Server falls back to static data if absent.
+# Uncomment to enable live VN-Index/HNX-Index + bank prices:
+# vnstock>=3.0

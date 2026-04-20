@@ -34,6 +34,16 @@ from fastapi.staticfiles import StaticFiles
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger("vn-dashboard")
 
+# vnstock is heavy (pandas, matplotlib, seaborn). If it's missing or fails to
+# import, we still serve the dashboard — just without live VN-Index/prices.
+VNSTOCK_AVAILABLE = False
+try:
+    import vnstock  # noqa: F401
+    VNSTOCK_AVAILABLE = True
+    log.info("vnstock available")
+except Exception as _e:
+    log.warning("vnstock not available (%s) — live equity data disabled", _e)
+
 ROOT = Path(__file__).parent
 HTML_FILE = ROOT / "vietnam_dashboard.html"
 
@@ -667,6 +677,8 @@ VN_BANK_ENTITIES: dict[str, list[dict]] = {
 # ─── vnstock fetchers (each isolated so one failure doesn't kill the rest) ─
 def fetch_indices() -> dict[str, Any]:
     """VN-Index + HNX-Index latest close."""
+    if not VNSTOCK_AVAILABLE:
+        return {}
     try:
         from vnstock import Vnstock
         out = {}
@@ -858,6 +870,17 @@ def fetch_banks(period: str = "year") -> dict[str, Any]:
     rows = []
     today = datetime.now().strftime("%Y-%m-%d")
     start = (datetime.now().replace(day=1)).strftime("%Y-%m-%d")
+    if not VNSTOCK_AVAILABLE:
+        for sym in VN_BANK_FUNDAMENTALS:
+            row = _build_bank_row(sym, period)
+            row["price"] = row["chg_pct"] = row["volume"] = None
+            rows.append(row)
+        rows.sort(key=lambda r: r.get("assets") or 0, reverse=True)
+        label_counts: dict[str, int] = {}
+        for r in rows:
+            lbl = r.get("period_label", "")
+            label_counts[lbl] = label_counts.get(lbl, 0) + 1
+        return {"period": period, "period_summary": label_counts, "count": len(rows), "rows": rows}
     try:
         from vnstock.explorer.vci import Quote
         for sym in VN_BANK_FUNDAMENTALS:
