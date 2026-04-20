@@ -1,0 +1,3545 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vietnam 34-Province Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #111827;
+    --bg3: #1a2235;
+    --border: #2a3a55;
+    --accent: #00d4ff;
+    --accent2: #4ade80;
+    --accent3: #f59e0b;
+    --accent4: #f87171;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --tab-active: #00d4ff;
+    --shadow: 0 4px 24px rgba(0,0,0,0.5);
+    --r1: #ef4444; --r2: #f97316; --r3: #eab308;
+    --r4: #22c55e; --r5: #3b82f6; --r6: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; }
+  #shell { display: flex; flex-direction: column; width: 100vw; height: 100vh; overflow: hidden; }
+  #header { background: linear-gradient(90deg, #0a0e1a 0%, #111827 50%, #0a0e1a 100%); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+  #header h1 { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 1px; white-space: nowrap; }
+  #header .sub { font-size: 11px; color: var(--text2); }
+  .hbadge { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; font-size: 11px; color: var(--text2); white-space: nowrap; }
+  /* ── 3-panel layout ────────────────────────────────────────── */
+  #main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+  #top-panel { display: flex; flex-direction: column; flex-shrink: 0; height: 36vh; min-height: 176px; background: var(--bg2); border-bottom: 1px solid var(--border); }
+  #top-panel-header { display: flex; align-items: center; gap: 0; flex-shrink: 0; border-bottom: 1px solid var(--border); background: var(--bg3); }
+  .col-label { font-size: 10px; font-weight: 700; color: var(--text2); padding: 4px 10px; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid var(--border); white-space: nowrap; }
+  #top-row { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; }
+  #panel-map { flex: 1; min-width: 0; display: flex; flex-direction: column; background: var(--bg); border-right: 1px solid var(--border); overflow: hidden; }
+  #map-wrap { flex: 1; overflow: hidden; position: relative; min-height: 0; min-width: 0; }
+  #map-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  /* Floating legend overlay */
+  #map-legend { position: absolute; top: 50%; left: 8px; transform: translateY(-50%); z-index: 10; display: flex; flex-direction: column; gap: 0; }
+  #map-legend-header { display: flex; align-items: center; gap: 6px; background: rgba(10,14,26,0.88); border: 1px solid var(--border); border-radius: 6px 6px 0 0; padding: 4px 8px; backdrop-filter: blur(4px); }
+  #legend-sel-label { font-size: 11px; font-weight: 700; color: var(--accent); flex: 1; }
+  #legend-toggle { background: none; border: none; color: var(--text2); cursor: pointer; font-size: 13px; padding: 0 2px; line-height: 1; }
+  #legend-toggle:hover { color: var(--accent); }
+  #legend-dropdown { display: flex; flex-direction: column; background: rgba(10,14,26,0.88); border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; backdrop-filter: blur(4px); overflow: hidden; }
+  #legend-dropdown.legend-closed { display: none; }
+  #legend-dropdown .rg-btn { padding: 4px 8px; font-size: 11px; gap: 5px; }
+  #legend-dropdown .rg-btn:hover { background: rgba(255,255,255,0.06); }
+  #legend-dropdown .rg-btn.active { background: rgba(0,212,255,0.12); color: var(--accent); }
+  #legend-dropdown .rg-dot { width: 8px; height: 8px; }
+  /* Other panels */
+  #vdivider { width: 5px; background: var(--bg3); cursor: col-resize; flex-shrink: 0; transition: background 0.2s; }
+  #vdivider:hover { background: var(--accent); }
+  #panel-top-right { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; background: var(--bg2); }
+  #hdivider { height: 4px; background: var(--border); flex-shrink: 0; cursor: default; }
+  #panel-bottom { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-height: 0; background: var(--bg2); border-top: 1px solid var(--border); }
+  .rg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .rg-btn { display: flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 4px; cursor: pointer; transition: background 0.15s; border: none; background: none; color: var(--text); width: 100%; text-align: left; font-size: 12px; }
+  .rg-btn:hover { background: var(--bg3); }
+  .rg-btn.active { background: rgba(0,212,255,0.1); color: var(--accent); }
+  #province-tooltip { position: fixed; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; pointer-events: none; z-index: 999; display: none; font-size: 12px; box-shadow: var(--shadow); max-width: 200px; }
+  .panel-inner { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+  #panel-bottom .panel-inner { overflow-y: auto; }
+  .tab-row { display: flex; border-bottom: 1px solid var(--border); background: var(--bg2); flex-shrink: 0; }
+  .tab-btn { padding: 8px 16px; cursor: pointer; border: none; background: none; color: var(--text2); font-size: 12px; font-weight: 600; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--tab-active); border-bottom-color: var(--tab-active); }
+  .panel { display: none; padding: 10px; }
+  .panel.active { display: flex; flex-direction: column; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* Demo tab */
+  .demo-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .demo-title { font-size: 14px; font-weight: 700; color: var(--text); }
+  .ctrl-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .play-btn { background: var(--accent); border: none; color: #000; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; transition: background 0.2s; }
+  .play-btn:hover { background: #00b8d9; }
+  input[type=range] { flex: 1; min-width: 80px; accent-color: var(--accent); cursor: pointer; }
+  .yr-label { font-size: 13px; font-weight: 700; color: var(--accent); min-width: 36px; }
+  .forecast-badge { background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; font-size: 10px; padding: 1px 6px; border-radius: 3px; }
+  .quality-badge { font-size: 10px; padding: 1px 6px; border-radius: 3px; font-weight: 700; }
+  .badge-A { background: rgba(74,222,128,0.2); border: 1px solid #4ade80; color: #4ade80; }
+  .badge-E { background: rgba(251,191,36,0.2); border: 1px solid #fbbf24; color: #fbbf24; }
+  .badge-F { background: rgba(168,85,247,0.2); border: 1px solid #a855f7; color: #a855f7; }
+  #demo-svg-wrap { flex: 1; min-height: 0; overflow: hidden; }
+  #demo-svg { width: 100%; height: 100%; display: block; }
+  #stu-svg-wrap { flex: 1; min-height: 0; overflow: hidden; }
+  #stu-svg { width: 100%; height: 100%; display: block; }
+  .top-tab-btn { background: none; border: none; border-bottom: 2px solid transparent; color: var(--text2); font-size: 11px; font-weight: 600; padding: 0 10px; height: 100%; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
+  .top-tab-btn:hover { color: var(--text); }
+  .top-tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  /* Top-right panel: shared timeline + stacked charts */
+  .top-ctrl-bar { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-bottom: 1px solid var(--border); flex-shrink: 0; background: var(--bg2); }
+  #top-charts-wrap { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+  .top-chart-half { display: flex; flex-direction: column; flex: 1; min-height: 0; padding: 4px 8px 4px; }
+  .top-chart-label { font-size: 10px; font-weight: 700; color: var(--text2); flex-shrink: 0; margin-bottom: 2px; }
+  .top-chart-divider { height: 1px; background: var(--border); flex-shrink: 0; }
+
+  /* Econ panel grid — card 1 full width, rest 2-per-row */
+  #panel-econ { display: none; padding: 10px; }
+  #panel-econ.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 10px; align-content: start; }
+  @media (max-width: 900px) {
+    #panel-econ.active { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); }
+  }
+  .econ-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; flex-shrink: 0; min-width: 0; }
+  .econ-card.full-width { grid-column: 1 / -1; }
+  .econ-card-header { padding: 7px 12px; background: var(--bg3); border-bottom: 1px solid var(--border); font-size: 12px; font-weight: 700; }
+  .econ-card-body { padding: 6px 8px; }
+  .econ-card-header { padding: 6px 10px; background: linear-gradient(90deg, var(--bg3), var(--bg2)); border-bottom: 1px solid var(--border); font-size: 11px; font-weight: 700; letter-spacing: 0.3px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 4px; margin-bottom: 6px; }
+  .kpi-tile { background: var(--bg3); border-radius: 4px; padding: 4px 6px; border: 1px solid var(--border); transition: background 0.15s; }
+  .kpi-tile:hover { background: #1e293b; }
+  .kpi-tile .kpi-label { font-size: 8px; color: var(--text2); margin-bottom: 1px; text-transform: uppercase; letter-spacing: 0.2px; line-height: 1.25; }
+  .kpi-tile .kpi-val { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.1px; }
+  .card-ctrl { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+  .chart-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 200px; }
+  .chart-single { height: 180px; }
+  .chart-wrap { position: relative; height: 170px; }
+  .chart-wrap-sm { position: relative; height: 155px; }
+  .chart-abs { position: absolute; inset: 0; }
+  .live-badge { font-size: 10px; color: #4ade80; font-weight: 700; }
+  .pn-label { font-size: 10px; color: #a855f7; }
+
+  /* Banks tab */
+  #panel-banks { display: none; padding: 10px; }
+  #panel-banks.active { display: flex; flex-direction: column; gap: 10px; }
+  .bk-toprow { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
+  .bk-kpi { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .bk-kpi .lbl { font-size: 9px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.4px; }
+  .bk-kpi .val { font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 0.2px; line-height: 1.1; }
+  .bk-kpi .sub { font-size: 10px; color: var(--text2); }
+  .bk-kpi .bk-chart { height: 36px !important; margin-top: 2px; }
+  .bk-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .bk-card-hdr { padding: 6px 10px; background: linear-gradient(90deg, var(--bg3), var(--bg2)); border-bottom: 1px solid var(--border); font-size: 11px; font-weight: 700; letter-spacing: 0.3px; display: flex; align-items: center; justify-content: space-between; }
+  .bk-card-body { padding: 8px 10px; }
+  .bk-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+  .bk-chart { height: 210px; width: 100%; }
+  .bk-chart svg { width: 100%; height: 100%; display: block; }
+  /* Banks panel in bottom; fluid under ~900 px */
+  @media (max-width: 900px) {
+    .bk-toprow { grid-template-columns: 1fr 1fr; }
+    .bk-charts { grid-template-columns: 1fr; }
+    table.bk-table { font-size: 10px; }
+    table.bk-table td, table.bk-table th { padding: 4px 5px; }
+  }
+  @media (max-width: 560px) {
+    .bk-toprow { grid-template-columns: 1fr; }
+  }
+  .bk-table-wrap { overflow-x: auto; max-height: 420px; overflow-y: auto; }
+  table.bk-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  table.bk-table th { position: sticky; top: 0; background: var(--bg3); color: var(--text2); font-weight: 700; text-transform: uppercase; font-size: 9px; letter-spacing: 0.3px; padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; z-index: 2; }
+  table.bk-table th:first-child, table.bk-table th:nth-child(2) { text-align: left; }
+  table.bk-table th:hover { color: var(--accent); }
+  table.bk-table td { padding: 5px 8px; text-align: right; border-bottom: 1px solid rgba(42,58,85,0.35); font-variant-numeric: tabular-nums; }
+  table.bk-table td:first-child { font-weight: 700; color: var(--accent); text-align: left; }
+  table.bk-table td:nth-child(2) { text-align: left; color: var(--text); }
+  table.bk-table tr:hover td { background: rgba(0,212,255,0.05); }
+  .bk-type-socb { color: #60a5fa; }
+  .bk-type-jscb { color: #a78bfa; }
+  .bk-chg-pos { color: #4ade80; }
+  .bk-chg-neg { color: #f87171; }
+  .bk-footer { font-size: 10px; color: var(--text3); padding: 4px 8px; }
+
+  /* Lending / Funding breakdown layout */
+  .bk-break-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .bk-break-col { display: flex; flex-direction: column; gap: 6px; }
+  .bk-break-header { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 4px; border-bottom: 2px solid currentColor; margin-bottom: 4px; }
+  .bk-break-sub { font-size: 10px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.3px; margin-top: 6px; margin-bottom: 2px; }
+  .bk-donut { height: 250px; }
+  .bk-hstack { height: 38px; }
+  /* Full balance-sheet layout */
+  .bk-bs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .bk-bs-side { display: flex; flex-direction: column; gap: 6px; }
+  .bk-bs-list { display: flex; flex-direction: column; gap: 3px; }
+  .bk-bs-group { font-size: 9px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.4px; padding: 4px 0 2px; border-bottom: 1px dashed var(--border); margin-top: 4px; }
+  .bk-bs-row { display: grid; grid-template-columns: 8px 1fr 56px auto; gap: 8px; align-items: center; padding: 3px 6px; background: var(--bg2); border-radius: 4px; border: 1px solid var(--border); transition: background 0.15s; cursor: default; }
+  .bk-bs-row:hover { background: #1e293b; border-color: var(--accent); }
+  .bk-bs-dot { width: 8px; height: 8px; border-radius: 2px; }
+  .bk-bs-name { font-size: 11px; color: var(--text); font-weight: 600; line-height: 1.3; }
+  .bk-bs-note { font-size: 9px; color: var(--text3); margin-top: 1px; }
+  .bk-bs-bar-wrap { grid-column: 2 / 3; height: 3px; background: rgba(42,58,85,0.4); border-radius: 2px; overflow: hidden; margin-top: 3px; }
+  .bk-bs-bar { height: 100%; border-radius: 2px; }
+  .bk-bs-pct { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; padding: 2px 6px; border-radius: 3px; }
+  .bk-inline-chart { height: 22px; width: 100%; }
+  .bk-inline-chart svg { display: block; width: 100%; height: 100%; }
+  .bkm-entity-chart { height: 20px; width: 80px; }
+  .bkm-entity-chart svg { display: block; width: 100%; height: 100%; }
+  @media (max-width: 900px) {
+    .bk-bs-grid { grid-template-columns: 1fr; }
+  }
+  /* Income Statement list */
+  .bk-is-list { display: flex; flex-direction: column; gap: 2px; }
+  .bk-is-row { display: grid; grid-template-columns: 1fr 70px auto auto; gap: 10px; align-items: center; padding: 5px 10px; border-bottom: 1px solid rgba(42,58,85,0.4); font-size: 12px; }
+  .bk-is-row.subtotal { font-weight: 700; background: var(--bg2); border-radius: 4px; border: 1px solid var(--border); margin: 2px 0; }
+  .bk-is-row.level-1 { padding-left: 24px; font-size: 11px; color: var(--text2); }
+  .bk-is-row.clickable { cursor: pointer; transition: background 0.15s; }
+  .bk-is-row.clickable:hover { background: rgba(0,212,255,0.08); }
+  .bk-is-row.clickable .bk-is-name::after { content: ' ▸'; color: var(--accent); font-size: 10px; opacity: 0.6; }
+  .bk-is-value { font-variant-numeric: tabular-nums; font-weight: 700; }
+  .bk-is-pct { font-variant-numeric: tabular-nums; font-size: 10px; color: var(--text3); min-width: 42px; text-align: right; }
+  .bk-is-row.revenue .bk-is-value { color: #22c55e; }
+  .bk-is-row.cost .bk-is-value    { color: #ef4444; }
+  .bk-is-row.profit.subtotal .bk-is-value { color: #00d4ff; font-size: 14px; }
+  /* Rows that are clickable in BS list */
+  .bk-bs-row.clickable { cursor: pointer; }
+  .bk-bs-row.clickable .bk-bs-name::after { content: ' ▸'; color: var(--accent); font-size: 10px; opacity: 0.6; margin-left: 4px; }
+  @media (max-width: 900px) {
+    .bk-break-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Entity modal */
+  table.bk-table td.bk-sym-cell { cursor: pointer; transition: background 0.15s; }
+  table.bk-table td.bk-sym-cell:hover { background: rgba(0,212,255,0.15); text-decoration: underline; }
+  #bk-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
+  #bk-modal-overlay.open { display: flex; }
+  #bk-modal { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; max-width: 680px; width: 100%; max-height: 85vh; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.6); display: flex; flex-direction: column; }
+  .bkm-hdr { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: linear-gradient(90deg, var(--bg3), var(--bg2)); border-bottom: 1px solid var(--border); }
+  .bkm-title { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.3px; }
+  .bkm-title small { font-size: 11px; color: var(--text2); font-weight: 400; margin-left: 6px; }
+  .bkm-close { background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+  .bkm-close:hover { background: var(--border); color: var(--accent); }
+  .bkm-body { padding: 14px 18px; overflow-y: auto; flex: 1; }
+  .bkm-section { margin-bottom: 14px; }
+  .bkm-section-title { font-size: 10px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .bkm-section-title .chip { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 1px 8px; font-size: 10px; color: var(--text2); text-transform: none; letter-spacing: 0; }
+  .bkm-entity { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; padding: 8px 10px; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 5px; transition: border-color 0.15s; }
+  .bkm-entity:hover { border-color: var(--accent); }
+  .bkm-entity-name { font-size: 12px; font-weight: 700; color: var(--text); }
+  .bkm-entity-role { font-size: 10px; color: var(--text2); margin-top: 2px; }
+  .bkm-entity-pct { font-size: 11px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; padding: 2px 8px; background: rgba(0,212,255,0.1); border-radius: 4px; }
+  .bkm-entity-type { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.3px; }
+  .bkm-type-SUB { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid #16a34a; }
+  .bkm-type-JV  { background: rgba(249,115,22,0.15); color: #fb923c; border: 1px solid #ea580c; }
+  .bkm-type-AFF { background: rgba(168,85,247,0.15); color: #c4b5fd; border: 1px solid #7c3aed; }
+  .bkm-empty { color: var(--text3); font-size: 11px; font-style: italic; padding: 20px; text-align: center; }
+  @media (max-width: 560px) {
+    .bkm-entity { grid-template-columns: 1fr; }
+    .bkm-entity-pct, .bkm-entity-type { justify-self: start; }
+  }
+
+  /* Correlation tab */
+  #bubble-wrap { height: 340px; position: relative; flex-shrink: 0; }
+  #bubble-svg { width: 100%; height: 100%; }
+  .axis-sel { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+  .axis-sel label { font-size: 11px; color: var(--text2); }
+  .axis-sel select { background: var(--bg3); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 3px 6px; font-size: 11px; }
+  .scatter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .scatter-item { height: 160px; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 4px; }
+  .scatter-item .s-title { font-size: 10px; color: var(--text2); margin-bottom: 2px; padding: 0 4px; }
+  .s-svg { width: 100%; height: calc(100% - 16px); }
+  #corr-region-label { color: var(--accent); font-weight: 700; }
+  .tenor-btns { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 6px; }
+  .tenor-btn, .tenor-btn-bond { background: var(--bg3); border: 1px solid var(--border); color: var(--text2); border-radius: 3px; padding: 3px 8px; font-size: 11px; cursor: pointer; transition: all 0.15s; }
+  .tenor-btn.active, .tenor-btn-bond.active { background: rgba(0,212,255,0.15); border-color: var(--accent); color: var(--accent); }
+
+  /* ── GDP panel (middle of top row) ───────────────────────────────── */
+  #vdivider2 { width: 5px; background: var(--bg3); cursor: col-resize; flex-shrink: 0; transition: background 0.2s; }
+  #vdivider2:hover { background: var(--accent); }
+  #panel-gdp { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; background: var(--bg2); border-right: 1px solid var(--border); }
+  #gdp-inner { display: flex; flex-direction: column; flex: 1; min-height: 0; padding: 4px 4px; gap: 2px; overflow: hidden; }
+  #gdp-title-row { display: flex; align-items: center; gap: 4px; flex-shrink: 0; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+  #gdp-title { font-size: 11px; font-weight: 700; color: var(--accent); }
+  #gdp-year-lbl { font-size: 11px; font-weight: 700; color: var(--text); margin-left: auto; }
+  
+  
+  #gdp-legend { display: flex; flex-direction: column; gap: 0; flex: 1; min-height: 0; overflow: hidden; padding: 1px 0; }
+  .gdp-leg-row { display: flex; align-items: center; gap: 5px; cursor: pointer; border-radius: 3px; padding: 2px 4px; transition: background 0.15s; }
+  .gdp-leg-row:hover { background: rgba(255,255,255,0.06); }
+  .gdp-leg-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+  .gdp-leg-name { font-size: 9.5px; color: var(--text2); flex: 1; }
+  .gdp-leg-pct { font-size: 9.5px; font-weight: 700; color: var(--text); min-width: 30px; text-align: right; }
+  /* Sector header rows */
+  .gdp-sec-row { display: flex; flex-direction: column; padding: 1px 4px; flex: 1; max-height: 44px; gap: 1px; justify-content: center; }
+  .gdp-sec-name-row { display: flex; align-items: center; gap: 3px; flex: 0 0 auto; }
+  .gdp-sec-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+  .gdp-sec-name { font-size: 8px; font-weight: 700; color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+  .gdp-sec-bar-row { display: flex; align-items: center; gap: 3px; padding-left: 10px; flex: 0 0 auto; }
+  .gdp-sec-bar-wrap { flex: 1; height: 8px; background: var(--bg3); border-radius: 3px; overflow: hidden; min-width: 0; }
+  .gdp-sec-bar { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+  .gdp-sec-pct { font-size: 8px; font-weight: 700; min-width: 26px; text-align: right; flex-shrink: 0; }
+  /* Sub-sector rows */
+  .gdp-sub-row { display: flex; flex-direction: row; align-items: center; padding: 0 4px; gap: 3px; flex: 1; min-height: 8px; max-height: 20px; }
+  .gdp-sub-dot { width: 5px; height: 5px; border-radius: 1px; flex-shrink: 0; display:inline-block; }
+  .gdp-sub-name { font-size: 7px; color: var(--text2); width: 78px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1; }
+  .gdp-sub-bar-row { display: none; }
+  .gdp-sub-bar-wrap { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; min-width: 0; }
+  .gdp-sub-bar { height: 100%; border-radius: 3px; transition: width 0.35s ease; }
+  .gdp-sub-pct { font-size: 7px; color: var(--text2); min-width: 22px; text-align: right; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div id="shell">
+  <div id="header">
+    <h1>🗺 VIETNAM DASHBOARD</h1>
+    <span class="sub">34 tỉnh sau hợp nhất 2025</span>
+    <span class="hbadge">137 KB</span>
+    <span class="hbadge">34 Tỉnh</span>
+    <span class="hbadge">2010–2029</span>
+    <span id="fx-live-badge" class="live-badge" style="margin-left:auto"></span>
+    <span id="bond-live-badge" class="live-badge" style="margin-left:4px"></span>
+    <button id="top-collapse" title="Thu/mở panel trên" style="margin-left:8px;background:var(--bg3);border:1px solid var(--border);color:var(--accent);border-radius:4px;padding:2px 10px;cursor:pointer;font-weight:700;font-size:12px">▲</button>
+  </div>
+  <div id="main">
+    <!-- ── Top row ─────────────────────────────────────────────────── -->
+    <!-- Unified top panel -->
+    <div id="top-panel">
+    <!-- Shared column header -->
+    <div id="top-panel-header">
+      <span class="col-label" style="flex:1;min-width:0">🗺 Bản đồ 34 tỉnh · <span id="legend-sel-label" style="color:var(--accent)">Cả nước</span></span>
+      <span class="col-label" style="flex:1;min-width:0;display:flex;align-items:center;gap:0;padding:0 0 0 8px;">
+        <span style="font-size:10px;font-weight:700;color:var(--text2);white-space:nowrap;margin-right:4px">📊 GDP</span>
+        <button class="play-btn" id="play-gdp" style="width:20px;height:20px;font-size:9px;margin-right:4px;flex-shrink:0">▶</button>
+        <span class="yr-label" id="gdp-year-lbl" style="font-size:11px;min-width:28px;flex-shrink:0">2024</span>
+        <span id="gdp-forecast-badge" style="font-size:9px;color:var(--accent3);margin-right:4px;flex-shrink:0"></span>
+        <input type="range" id="gdp-slider" min="0" max="45" value="24" style="flex:1;min-width:0;accent-color:var(--accent);margin:0 6px">
+      </span>
+      <span class="col-label" style="flex:1;border-right:none;display:flex;align-items:center;gap:0;padding:0">
+        <button class="top-tab-btn active" id="ttab-demo" onclick="switchTopTab('demo')">👥 Dân số</button>
+        <button class="top-tab-btn" id="ttab-stu" onclick="switchTopTab('stu')">🎓 Học sinh</button>
+        <span style="flex:1"></span>
+        <button class="play-btn" id="play-top" style="width:20px;height:20px;font-size:9px;margin-right:4px">▶</button>
+        <span class="yr-label" id="yr-top" style="font-size:11px">2000</span>
+        <input type="range" id="sl-top" min="0" max="45" value="0" style="width:90px;margin:0 6px;accent-color:var(--accent)">
+        <span id="top-forecast-badge" style="margin-right:6px"></span>
+      </span>
+    </div>
+    <div id="top-row">
+
+      <!-- TOP-LEFT: Map panel (fixed) — map fills 100%, legend floats over it -->
+      <div id="panel-map">
+        <!-- Map fills the entire panel -->
+        <div id="map-wrap">
+          <svg id="map-svg"></svg>
+          <!-- Floating legend overlay (region selector only, no title) -->
+          <div id="map-legend">
+            <div id="map-legend-header">
+              <button id="legend-toggle" title="Chọn vùng">☰ Vùng</button>
+            </div>
+            <div id="legend-dropdown" class="legend-open">
+              <button class="rg-btn active" data-type="all" data-key="all"><span class="rg-dot" style="background:#94a3b8"></span>Cả nước</button>
+              <button class="rg-btn" data-type="v" data-key="1"><span class="rg-dot" style="background:var(--r1)"></span>V1 – Trung du & MN Bắc</button>
+              <button class="rg-btn" data-type="v" data-key="2"><span class="rg-dot" style="background:var(--r2)"></span>V2 – Đồng bằng S.Hồng</button>
+              <button class="rg-btn" data-type="v" data-key="3"><span class="rg-dot" style="background:var(--r3)"></span>V3 – Bắc Trung Bộ</button>
+              <button class="rg-btn" data-type="v" data-key="4"><span class="rg-dot" style="background:var(--r4)"></span>V4 – Nam TB & Tây Nguyên</button>
+              <button class="rg-btn" data-type="v" data-key="5"><span class="rg-dot" style="background:var(--r5)"></span>V5 – Đông Nam Bộ</button>
+              <button class="rg-btn" data-type="v" data-key="6"><span class="rg-dot" style="background:var(--r6)"></span>V6 – Đồng bằng S.CL</button>
+            </div>
+          </div>
+        </div>
+      </div><!-- /panel-map -->
+
+      <!-- Vertical drag divider: map ↔ GDP -->
+      <div id="vdivider"></div>
+
+      <!-- GDP COMPOSITION panel (middle) -->
+      <div id="panel-gdp">
+        <div id="gdp-inner">
+          <!-- Top section: 4 sector summary bars -->
+          <div id="gdp-sectors" style="flex:0 0 30%;min-height:0;display:flex;flex-direction:column;padding:2px 0 2px;border-bottom:1px solid var(--border);"></div>
+          <!-- Bottom section: sub-sector detail -->
+          <div id="gdp-legend" style="flex:1;min-height:0;overflow:hidden;padding:1px 0;display:flex;flex-direction:column;"></div>
+        </div>
+      </div><!-- /panel-gdp -->
+
+      <!-- Vertical drag divider: GDP ↔ demographic -->
+      <div id="vdivider2"></div>
+
+      <!-- TOP-RIGHT: Dân số / Học sinh tabs -->
+      <div id="panel-top-right">
+        <div class="panel-inner">
+          <div id="top-tab-content" style="display:flex;flex-direction:column;flex:1;min-height:0;">
+            <!-- Demo panel -->
+            <div id="ttab-panel-demo" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:4px 8px;">
+              <div class="top-chart-label">Tháp dân số · <span id="demo-prov-name">Cả nước</span></div>
+              <div id="demo-svg-wrap"><svg id="demo-svg" preserveAspectRatio="none"></svg></div>
+            </div>
+            <!-- Student panel (hidden by default) -->
+            <div id="ttab-panel-stu" style="display:none;flex-direction:column;flex:1;min-height:0;padding:4px 8px;">
+              <div class="top-chart-label">Học sinh · <span id="stu-prov-name">Cả nước</span></div>
+              <div id="stu-svg-wrap"><svg id="stu-svg" preserveAspectRatio="none"></svg></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /panel-top-right -->
+    </div><!-- /top-row -->
+    </div><!-- /top-panel -->
+
+    <!-- Horizontal drag divider -->
+    <div id="hdivider"></div>
+
+    <!-- BOTTOM PANEL: Kinh tế + Tương quan -->
+    <div id="panel-bottom">
+      <div class="panel-inner">
+        <div class="tab-row" id="tabs-bottom">
+          <button class="tab-btn active" data-tab="econ" data-panel="bottom">Kinh tế</button>
+          <button class="tab-btn" data-tab="corr" data-panel="bottom">Tương quan</button>
+          <button class="tab-btn" data-tab="banks" data-panel="bottom">Hệ thống Ngân hàng</button>
+        </div>
+        <!-- Panel: Economy -->
+        <div id="panel-econ" class="panel active">
+          <!-- Card 1: GDP & GRDP — full width -->
+          <div class="econ-card full-width">
+            <div class="econ-card-header">📊 GDP & GRDP</div>
+            <div class="econ-card-body">
+              <div class="card-ctrl">
+                <button class="play-btn" id="pb-card-grdp">▶</button>
+                <span class="yr-label" id="yr-card-grdp">2010</span>
+                <input type="range" id="sl-card-grdp" min="0" max="19" value="0">
+                <span class="quality-badge badge-A" id="qb-card-grdp">A</span>
+                <span class="pn-label" id="pn-card-grdp"></span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">GDP/đầu người (danh nghĩa)</div><div class="kpi-val" id="kpi-gdppc">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">GDP/đầu người (thực 2010)</div><div class="kpi-val" id="kpi-gdppc-real">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">GRDP (tỷ VND)</div><div class="kpi-val" id="kpi-grdp">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tăng trưởng %</div><div class="kpi-val" id="kpi-growth">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Thu nhập BQ (tr.VND)</div><div class="kpi-val" id="kpi-income">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">CPI YoY %</div><div class="kpi-val" id="kpi-cpi-grdp">—</div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;height:160px;">
+                <div id="ecb-gdppc" style="height:100%;min-height:0;"></div>
+                <div id="ecb-income-card" style="height:100%;min-height:0;"></div>
+                <div id="ecb-cpi-card" style="height:100%;min-height:0;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="econ-card">
+            <div class="econ-card-header">📈 Lãi suất & Trái phiếu</div>
+            <div class="econ-card-body">
+              <div class="card-ctrl">
+                <button class="play-btn" id="pb-card-rates">▶</button>
+                <span class="yr-label" id="yr-card-rates">2010</span>
+                <input type="range" id="sl-card-rates" min="0" max="16" value="0">
+                <span class="quality-badge badge-A" id="qb-card-rates">A</span>
+              </div>
+              <!-- Rate card tabs -->
+              <div style="display:flex;gap:0;margin-bottom:4px;border-bottom:1px solid var(--border);">
+                <button class="rates-tab-btn active" id="rtab-rate" onclick="switchRatesTab('rate')" style="background:none;border:none;border-bottom:2px solid var(--accent);color:var(--accent);font-size:11px;font-weight:700;padding:2px 10px;cursor:pointer;">Lãi suất</button>
+                <button class="rates-tab-btn" id="rtab-bond" onclick="switchRatesTab('bond')" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--text2);font-size:11px;font-weight:700;padding:2px 10px;cursor:pointer;">Trái phiếu</button>
+              </div>
+              <!-- Lãi suất tab -->
+              <div id="rates-panel-rate">
+                <div style="display:flex;gap:4px;margin-bottom:4px;">
+                  <button class="view-btn active" id="rate-view-annual" onclick="setRatesView('annual')" style="background:rgba(0,212,255,0.15);border:1px solid var(--accent);color:var(--accent);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Năm</button>
+                  <button class="view-btn" id="rate-view-monthly" onclick="setRatesView('monthly')" style="background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Tháng (24T)</button>
+                </div>
+                <div class="kpi-grid">
+                  <div class="kpi-tile"><div class="kpi-label" id="kpi-depo-lbl">Tiền gửi 12T Big 4 (%/năm)</div><div class="kpi-val" id="kpi-depo">—</div></div>
+                  <div class="kpi-tile"><div class="kpi-label" id="kpi-depo-nhtmcp-lbl">Tiền gửi 12T NHTMCP (%/năm)</div><div class="kpi-val" id="kpi-depo-nhtmcp">—</div></div>
+                  <div class="kpi-tile"><div class="kpi-label" id="kpi-lend-lbl">Cho vay 12T (%/năm)</div><div class="kpi-val" id="kpi-lend">—</div></div>
+                </div>
+                <div class="tenor-btns" id="tenor-btns">
+                  <button class="tenor-btn" data-tenor="0">1T</button>
+                  <button class="tenor-btn" data-tenor="1">3T</button>
+                  <button class="tenor-btn" data-tenor="2">6T</button>
+                  <button class="tenor-btn active" data-tenor="3">12T</button>
+                  <button class="tenor-btn" data-tenor="4">3N</button>
+                  <button class="tenor-btn" data-tenor="5">5N</button>
+                  <button class="tenor-btn" data-tenor="6">10N</button>
+                </div>
+                <div id="ecb-rates" style="height:130px;width:100%;"></div>
+              </div>
+              <!-- Trái phiếu tab (hidden) -->
+              <div id="rates-panel-bond" style="display:none;">
+                <div style="display:flex;gap:4px;margin-bottom:4px;">
+                  <button class="view-btn active" id="bond-view-annual" onclick="setBondView('annual')" style="background:rgba(0,212,255,0.15);border:1px solid var(--accent);color:var(--accent);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Năm</button>
+                  <button class="view-btn" id="bond-view-monthly" onclick="setBondView('monthly')" style="background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Tháng (24T)</button>
+                </div>
+                <div class="kpi-grid">
+                  <div class="kpi-tile"><div class="kpi-label">Lãi suất TCV (%)</div><div class="kpi-val" id="kpi-policy">—</div></div>
+                  <div class="kpi-tile"><div class="kpi-label" id="kpi-bond-lbl">TP Chính phủ 12T</div><div class="kpi-val" id="kpi-bond">—</div></div>
+                </div>
+                <div class="tenor-btns" id="tenor-btns-bond">
+                  <button class="tenor-btn-bond" data-tenor="0">1T</button>
+                  <button class="tenor-btn-bond" data-tenor="1">3T</button>
+                  <button class="tenor-btn-bond" data-tenor="2">6T</button>
+                  <button class="tenor-btn-bond active" data-tenor="3">12T</button>
+                  <button class="tenor-btn-bond" data-tenor="4">3N</button>
+                  <button class="tenor-btn-bond" data-tenor="5">5N</button>
+                  <button class="tenor-btn-bond" data-tenor="6">10N</button>
+                </div>
+                <div id="ecb-bonds" style="height:130px;width:100%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card: Budget -->
+          <div class="econ-card">
+            <div class="econ-card-header">🏛 Ngân sách & Đầu tư</div>
+            <div class="econ-card-body">
+              <div class="card-ctrl">
+                <button class="play-btn" id="pb-card-budget">▶</button>
+                <span class="yr-label" id="yr-card-budget">2010</span>
+                <input type="range" id="sl-card-budget" min="0" max="19" value="0">
+                <span class="quality-badge badge-A" id="qb-card-budget">A</span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">Thu ngân sách</div><div class="kpi-val" id="kpi-tax">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Chi ngân sách ĐP</div><div class="kpi-val" id="kpi-spend">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tỷ lệ thu/GRDP</div><div class="kpi-val" id="kpi-taxratio">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Thặng dư/Thâm hụt</div><div class="kpi-val" id="kpi-surplus">—</div></div>
+              </div>
+              <div id="ecb-budget" style="height:160px;width:100%;"></div>
+            </div>
+          </div>
+          <!-- Card 3: FDI -->
+          <div class="econ-card">
+            <div class="econ-card-header">🌐 FDI & Thương mại</div>
+            <div class="econ-card-body">
+              <div class="card-ctrl">
+                <button class="play-btn" id="pb-card-fdi">▶</button>
+                <span class="yr-label" id="yr-card-fdi">2010</span>
+                <input type="range" id="sl-card-fdi" min="0" max="19" value="0">
+                <span class="quality-badge badge-A" id="qb-card-fdi">A</span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">FDI đăng ký (triệu USD)</div><div class="kpi-val" id="kpi-fdi-reg">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">FDI thực hiện (triệu USD)</div><div class="kpi-val" id="kpi-fdi-dis">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Kim ngạch XK</div><div class="kpi-val" id="kpi-export">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Kim ngạch NK</div><div class="kpi-val" id="kpi-import">—</div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;height:160px;"><div id="ecb-fdi" style="height:100%;min-height:0;"></div><div id="ecb-trade" style="height:100%;min-height:0;"></div></div>
+            </div>
+          </div>
+          <!-- Card 4: Labour -->
+          <div class="econ-card">
+            <div class="econ-card-header">👷 Lao động & Doanh nghiệp</div>
+            <div class="econ-card-body">
+              <div class="card-ctrl">
+                <button class="play-btn" id="pb-card-labour">▶</button>
+                <span class="yr-label" id="yr-card-labour">2010</span>
+                <input type="range" id="sl-card-labour" min="0" max="19" value="0">
+                <span class="quality-badge badge-A" id="qb-card-labour">A</span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">Thất nghiệp %</div><div class="kpi-val" id="kpi-unemp">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">DN hoạt động</div><div class="kpi-val" id="kpi-biz">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Chỉ số PCI</div><div class="kpi-val" id="kpi-pci">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">IIP Công nghiệp</div><div class="kpi-val" id="kpi-iip">—</div></div>
+              </div>
+              <div id="ecb-labour" style="height:160px;width:100%;"></div>
+            </div>
+          </div>
+          <!-- Card 5: Rates -->
+          <!-- Card: Macro/FX -->
+          <div class="econ-card">
+            <div class="econ-card-header">💱 Tỷ giá & Vĩ mô</div>
+            <div class="econ-card-body">
+              <div class="card-ctrl">
+                <button class="play-btn" id="pb-card-macro">▶</button>
+                <span class="yr-label" id="yr-card-macro">2010</span>
+                <input type="range" id="sl-card-macro" min="0" max="19" value="0">
+                <span class="quality-badge badge-A" id="qb-card-macro">A</span>
+              </div>
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">USD/VND</div><div class="kpi-val" id="kpi-fx">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Thay đổi YoY</div><div class="kpi-val" id="kpi-fx-chg">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">CPI YoY %</div><div class="kpi-val" id="kpi-cpi">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Dự trữ ngoại hối (tỷ USD)</div><div class="kpi-val" id="kpi-reserves">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">M2 (nghìn tỷ VND)</div><div class="kpi-val" id="kpi-m2">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">M1</div><div class="kpi-val" id="kpi-m1">—</div></div>
+              </div>
+              <div id="ecb-macro" style="height:140px;width:100%;"></div>
+            </div>
+          </div>
+        </div><!-- /panel-econ -->
+        <!-- Panel: Correlation -->
+        <div id="panel-corr" class="panel">
+          <div class="demo-header">
+            <span class="demo-title">Tương quan: <span id="corr-region-label">Cả nước</span></span>
+          </div>
+          <div class="axis-sel">
+            <label>Trục X:</label>
+            <select id="bub-x">
+              <option value="gdppc">GDP/đầu người</option>
+              <option value="grdp">GRDP</option>
+              <option value="fdiReg">FDI đăng ký</option>
+              <option value="exportVal">Xuất khẩu</option>
+              <option value="unemp">Thất nghiệp %</option>
+              <option value="biz">Doanh nghiệp</option>
+              <option value="tax">Thu ngân sách</option>
+              <option value="income">Thu nhập BQ</option>
+              <option value="invest">Đầu tư</option>
+              <option value="pop">Dân số</option>
+            </select>
+            <label>Trục Y:</label>
+            <select id="bub-y">
+              <option value="grdp">GRDP</option>
+              <option value="gdppc" selected>GDP/đầu người</option>
+              <option value="fdiReg">FDI đăng ký</option>
+              <option value="exportVal">Xuất khẩu</option>
+              <option value="unemp">Thất nghiệp %</option>
+              <option value="biz">Doanh nghiệp</option>
+              <option value="tax">Thu ngân sách</option>
+              <option value="income">Thu nhập BQ</option>
+              <option value="invest">Đầu tư</option>
+              <option value="pop">Dân số</option>
+            </select>
+            <label>Kích thước:</label>
+            <select id="bub-sz">
+              <option value="pop">Dân số</option>
+              <option value="grdp">GRDP</option>
+              <option value="fdiReg">FDI</option>
+            </select>
+          </div>
+          <div class="ctrl-row" style="margin-bottom:8px">
+            <button class="play-btn" id="play-corr">▶</button>
+            <span class="yr-label" id="yr-corr">2010</span>
+            <input type="range" id="sl-corr" min="0" max="19" value="0">
+          </div>
+          <div id="bubble-wrap">
+            <svg id="bubble-svg" preserveAspectRatio="none"></svg>
+          </div>
+          <div class="scatter-grid">
+            <div class="scatter-item">
+              <div class="s-title">FDI đăng ký → Kim ngạch XK</div>
+              <svg class="s-svg" id="sc-fdi-xk"></svg>
+            </div>
+            <div class="scatter-item">
+              <div class="s-title">GRDP → Thu ngân sách</div>
+              <svg class="s-svg" id="sc-grdp-tax"></svg>
+            </div>
+            <div class="scatter-item">
+              <div class="s-title">GDP/đầu người → Thu nhập lao động</div>
+              <svg class="s-svg" id="sc-gdppc-inc"></svg>
+            </div>
+            <div class="scatter-item">
+              <div class="s-title">Tăng trưởng GRDP → Doanh nghiệp</div>
+              <svg class="s-svg" id="sc-growth-biz"></svg>
+            </div>
+          </div>
+        </div><!-- /panel-corr -->
+
+        <!-- Panel: Banking System -->
+        <div id="panel-banks" class="panel">
+          <!-- Industry aggregates — 10 indicators × 6 periods -->
+          <div class="bk-card">
+            <div class="bk-card-hdr">
+              <span>📊 Chỉ số toàn ngành (17 NHTM niêm yết) — 6 kỳ gần nhất</span>
+              <span style="font-size:10px;color:var(--text2);font-weight:400">Quy mô: tổng · Tỷ lệ: TB có trọng số</span>
+            </div>
+            <div class="bk-card-body">
+              <div class="bk-toprow" id="bk-indicators"></div>
+            </div>
+          </div>
+
+          <!-- Full Balance Sheet + Income Statement -->
+          <div class="bk-card">
+            <div class="bk-card-hdr">
+              <span>📋 Báo cáo tài chính hợp nhất 17 NHTM — FY2024</span>
+              <span style="font-size:10px;color:var(--text2);font-weight:400">Click khoản mục để xem cơ cấu chi tiết</span>
+            </div>
+            <div class="bk-card-body">
+              <div class="bk-bs-grid">
+                <div class="bk-bs-side">
+                  <div class="bk-break-header" style="color:#3b82f6">🏦 TÀI SẢN (ASSETS)</div>
+                  <div class="bk-chart bk-donut" id="bk-bs-assets-donut"></div>
+                  <div class="bk-break-sub" style="margin-top:10px">CHI TIẾT TỪNG KHOẢN MỤC (tỷ VND)</div>
+                  <div class="bk-bs-list" id="bk-bs-assets-list"></div>
+                </div>
+                <div class="bk-bs-side">
+                  <div class="bk-break-header" style="color:#22c55e">⚖️ NỢ PHẢI TRẢ & VỐN CSH</div>
+                  <div class="bk-chart bk-donut" id="bk-bs-leq-donut"></div>
+                  <div class="bk-break-sub" style="margin-top:10px">CHI TIẾT TỪNG KHOẢN MỤC (tỷ VND)</div>
+                  <div class="bk-bs-list" id="bk-bs-leq-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Income Statement -->
+          <div class="bk-card">
+            <div class="bk-card-hdr">
+              <span>💵 Báo cáo kết quả kinh doanh — FY2024 (tỷ VND)</span>
+              <span style="font-size:10px;color:var(--text2);font-weight:400">Click khoản mục để xem cơ cấu</span>
+            </div>
+            <div class="bk-card-body">
+              <div class="bk-is-list" id="bk-is-list"></div>
+            </div>
+          </div>
+
+          <!-- Lending & Funding breakdowns -->
+          <div class="bk-card">
+            <div class="bk-card-hdr">
+              <span>🧮 Cơ cấu dư nợ & nguồn vốn — Hệ thống NH Việt Nam · FY2024</span>
+            </div>
+            <div class="bk-card-body">
+              <div class="bk-break-grid">
+                <div class="bk-break-col">
+                  <div class="bk-break-header" style="color:#22c55e">📈 DƯ NỢ (Cho vay)</div>
+                  <div class="bk-break-sub">Theo ngành kinh tế</div>
+                  <div class="bk-chart bk-donut" id="bk-lend-sector"></div>
+                  <div class="bk-break-sub">Theo kỳ hạn</div>
+                  <div class="bk-chart bk-hstack" id="bk-lend-tenor"></div>
+                  <div class="bk-break-sub">Theo đối tượng khách hàng</div>
+                  <div class="bk-chart bk-hstack" id="bk-lend-customer"></div>
+                  <div class="bk-break-sub">Theo đồng tiền</div>
+                  <div class="bk-chart bk-hstack" id="bk-lend-currency"></div>
+                </div>
+                <div class="bk-break-col">
+                  <div class="bk-break-header" style="color:#3b82f6">💰 NGUỒN VỐN (Huy động)</div>
+                  <div class="bk-break-sub">Theo nguồn huy động</div>
+                  <div class="bk-chart bk-donut" id="bk-fund-source"></div>
+                  <div class="bk-break-sub">Theo kỳ hạn</div>
+                  <div class="bk-chart bk-hstack" id="bk-fund-tenor"></div>
+                  <div class="bk-break-sub">Theo đối tượng khách hàng</div>
+                  <div class="bk-chart bk-hstack" id="bk-fund-customer"></div>
+                  <div class="bk-break-sub">Theo đồng tiền</div>
+                  <div class="bk-chart bk-hstack" id="bk-fund-currency"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Period toggle -->
+          <div class="bk-card">
+            <div class="bk-card-hdr">
+              <span>⏱ Kỳ báo cáo</span>
+              <div style="display:flex;gap:4px">
+                <button id="bk-per-year" class="bk-per-btn" data-per="year" style="background:rgba(0,212,255,0.15);border:1px solid var(--accent);color:var(--accent);border-radius:4px;padding:3px 12px;font-size:10px;cursor:pointer;font-weight:700">Năm (FY2024)</button>
+                <button id="bk-per-quarter" class="bk-per-btn" data-per="quarter" style="background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:4px;padding:3px 12px;font-size:10px;cursor:pointer;font-weight:700">Quý mới nhất</button>
+              </div>
+            </div>
+            <div class="bk-card-body" id="bk-period-summary" style="padding:4px 10px;font-size:10px;color:var(--text2)">—</div>
+          </div>
+
+          <!-- League table -->
+          <div class="bk-card">
+            <div class="bk-card-hdr">
+              <span>📑 Bảng xếp hạng 17 NHTM niêm yết · <span id="bk-table-title">FY2024</span></span>
+              <span style="font-size:10px;color:var(--text2);font-weight:400">Click tiêu đề để sắp xếp</span>
+            </div>
+            <div class="bk-table-wrap">
+              <table class="bk-table" id="bk-table">
+                <thead>
+                  <tr>
+                    <th data-k="symbol">Mã</th>
+                    <th data-k="name">Ngân hàng</th>
+                    <th data-k="price">Giá</th>
+                    <th data-k="chg_pct">%Δ</th>
+                    <th data-k="assets">Tài sản</th>
+                    <th data-k="equity">VCSH</th>
+                    <th data-k="deposits">Tiền gửi</th>
+                    <th data-k="loans">Cho vay</th>
+                    <th data-k="nim" title="Net Interest Margin">NIM%</th>
+                    <th data-k="roa" title="Return on Assets">ROA%</th>
+                    <th data-k="roe" title="Return on Equity">ROE%</th>
+                    <th data-k="cir" title="Cost-to-Income Ratio">CIR%</th>
+                    <th data-k="npl" title="Non-Performing Loan ratio">NPL%</th>
+                    <th data-k="car" title="Capital Adequacy Ratio (Basel III)">CAR%</th>
+                    <th data-k="ldr" title="Loan-to-Deposit Ratio">LDR%</th>
+                    <th data-k="ccov" title="Loan-Loss Coverage = Provisions/NPL">LLR%</th>
+                  </tr>
+                </thead>
+                <tbody id="bk-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="bk-footer">
+            <b style="color:var(--accent2)">Cơ sở: Riêng lẻ (ngân hàng mẹ, không hợp nhất)</b> — loại trừ công ty con
+            (CTTC tiêu dùng, CTCK, bảo hiểm, cho thuê tài chính). Chênh lệch lớn nhất ở VPB (không gồm FE Credit),
+            MBB (MCredit), HDB (HD Saison), SHB (SHBFinance), TCB (TCBS).
+            <br>Nguồn: BCTC riêng lẻ FY2024 (TT49/VAS 25) · Giá trực tiếp qua vnstock API (15:30 hàng ngày).
+            NIM = Biên lãi ròng · ROA = LN/Tài sản · ROE = LN/VCSH · CIR = Chi phí/Thu nhập ·
+            NPL = Nợ xấu/Dư nợ · CAR = Basel III · LDR = Cho vay/Tiền gửi · LLR = Dự phòng/Nợ xấu.
+          </div>
+        </div><!-- /panel-banks -->
+      </div><!-- /panel-inner bottom -->
+    </div><!-- /panel-bottom -->
+  </div><!-- /main -->
+</div><!-- /shell -->
+<div id="province-tooltip"></div>
+
+<!-- Bank entities modal -->
+<div id="bk-modal-overlay">
+  <div id="bk-modal" role="dialog" aria-modal="true">
+    <div class="bkm-hdr">
+      <div class="bkm-title" id="bkm-title">—</div>
+      <button class="bkm-close" id="bkm-close" aria-label="Đóng">×</button>
+    </div>
+    <div class="bkm-body" id="bkm-body">—</div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA SECTION
+// ============================================================
+const VCOL = [
+  '#64748b', // 0 = unselected/all
+  '#06b6d4', // 1 = V1 Trung du & MN phía Bắc — cyan
+  '#22c55e', // 2 = V2 Đồng bằng sông Hồng — green
+  '#3b82f6', // 3 = V3 Bắc Trung Bộ — blue
+  '#f43f5e', // 4 = V4 Duyên hải Nam TB & TN — pink
+  '#f97316', // 5 = V5 Đông Nam Bộ — orange
+  '#eab308', // 6 = V6 Đồng bằng sông CL — yellow
+];
+
+// 34 Post-merger provinces — official per Nghị quyết 202/2025/QH15 & bản đồ chính thức
+const PROVS = [
+  {id:1,  n:'Tuyên Quang',       v:1, pop:1865000, old:[], econ:{grdp2010:15000,pop2010:1450000,grdpG:0.065,tax2010:1800,fdiReg2010:80,fdiDis2010:30,export2010:0.15}},
+  {id:2,  n:'Cao Bằng',          v:1, pop:560000,  old:[], econ:{grdp2010:8000, pop2010:520000, grdpG:0.062,tax2010:700, fdiReg2010:30, fdiDis2010:12, export2010:0.08}},
+  {id:3,  n:'Lai Châu',          v:1, pop:490000,  old:[], econ:{grdp2010:5000, pop2010:450000, grdpG:0.060,tax2010:400, fdiReg2010:20, fdiDis2010:8,  export2010:0.03}},
+  {id:4,  n:'Lào Cai',           v:1, pop:1778000, old:[], econ:{grdp2010:19000,pop2010:1450000,grdpG:0.070,tax2010:2800,fdiReg2010:250,fdiDis2010:100,export2010:0.35}},
+  {id:5,  n:'Thái Nguyên',       v:1, pop:1799000, old:[], econ:{grdp2010:22000,pop2010:1550000,grdpG:0.072,tax2010:3200,fdiReg2010:350,fdiDis2010:150,export2010:0.5}},
+  {id:6,  n:'Điện Biên',         v:1, pop:700000,  old:[], econ:{grdp2010:6000, pop2010:650000, grdpG:0.061,tax2010:500, fdiReg2010:25, fdiDis2010:10, export2010:0.03}},
+  {id:7,  n:'Lạng Sơn',          v:1, pop:830000,  old:[], econ:{grdp2010:9000, pop2010:780000, grdpG:0.064,tax2010:1000,fdiReg2010:60, fdiDis2010:25, export2010:0.15}},
+  {id:8,  n:'Sơn La',            v:1, pop:1400000, old:[], econ:{grdp2010:12000,pop2010:1250000,grdpG:0.066,tax2010:1200,fdiReg2010:50, fdiDis2010:20, export2010:0.08}},
+  {id:9,  n:'Phú Thọ',           v:1, pop:4022000, old:[], econ:{grdp2010:55000,pop2010:3500000,grdpG:0.075,tax2010:7000,fdiReg2010:600,fdiDis2010:250,export2010:0.9}},
+  {id:10, n:'Bắc Ninh',          v:2, pop:3619000, old:[], econ:{grdp2010:72000,pop2010:2800000,grdpG:0.095,tax2010:10000,fdiReg2010:4500,fdiDis2010:2000,export2010:4.2}},
+  {id:11, n:'Quảng Ninh',        v:2, pop:1380000, old:[], econ:{grdp2010:85000,pop2010:1150000,grdpG:0.080,tax2010:15000,fdiReg2010:1800,fdiDis2010:700,export2010:1.8}},
+  {id:12, n:'Hà Nội',            v:2, pop:9200000, old:[], econ:{grdp2010:550000,pop2010:6450000,grdpG:0.085,tax2010:85000,fdiReg2010:2800,fdiDis2010:1200,export2010:3.8}},
+  {id:13, n:'Hải Phòng',         v:2, pop:4500000, old:[], econ:{grdp2010:120000,pop2010:3800000,grdpG:0.082,tax2010:18000,fdiReg2010:2200,fdiDis2010:900,export2010:2.5}},
+  {id:14, n:'Hưng Yên',          v:2, pop:3400000, old:[], econ:{grdp2010:50000,pop2010:3200000,grdpG:0.071,tax2010:7500,fdiReg2010:500,fdiDis2010:200,export2010:0.7}},
+  {id:15, n:'Ninh Bình',         v:2, pop:4100000, old:[], econ:{grdp2010:58000,pop2010:3900000,grdpG:0.072,tax2010:8000,fdiReg2010:600,fdiDis2010:280,export2010:0.9}},
+  {id:16, n:'Thanh Hóa',         v:3, pop:3700000, old:[], econ:{grdp2010:65000,pop2010:3500000,grdpG:0.075,tax2010:9000,fdiReg2010:900,fdiDis2010:400,export2010:1.1}},
+  {id:17, n:'Nghệ An',           v:3, pop:3400000, old:[], econ:{grdp2010:45000,pop2010:3200000,grdpG:0.072,tax2010:5500,fdiReg2010:800,fdiDis2010:350,export2010:0.65}},
+  {id:18, n:'Hà Tĩnh',           v:3, pop:1300000, old:[], econ:{grdp2010:18000,pop2010:1200000,grdpG:0.070,tax2010:2200,fdiReg2010:400,fdiDis2010:160,export2010:0.3}},
+  {id:19, n:'Quảng Trị',         v:3, pop:1700000, old:[], econ:{grdp2010:20000,pop2010:1600000,grdpG:0.069,tax2010:2800,fdiReg2010:200,fdiDis2010:80,export2010:0.28}},
+  {id:20, n:'Huế',               v:3, pop:1300000, old:[], econ:{grdp2010:28000,pop2010:1150000,grdpG:0.074,tax2010:4000,fdiReg2010:500,fdiDis2010:200,export2010:0.5}},
+  {id:21, n:'Đà Nẵng',           v:4, pop:2700000, old:[], econ:{grdp2010:75000,pop2010:2200000,grdpG:0.079,tax2010:11000,fdiReg2010:1500,fdiDis2010:600,export2010:1.4}},
+  {id:22, n:'Quảng Ngãi',        v:4, pop:2900000, old:[], econ:{grdp2010:55000,pop2010:2700000,grdpG:0.074,tax2010:8500,fdiReg2010:800,fdiDis2010:350,export2010:1.0}},
+  {id:23, n:'Gia Lai',           v:4, pop:2300000, old:[], econ:{grdp2010:42000,pop2010:2200000,grdpG:0.071,tax2010:6000,fdiReg2010:500,fdiDis2010:200,export2010:0.7}},
+  {id:24, n:'Đắk Lắk',          v:4, pop:2700000, old:[], econ:{grdp2010:35000,pop2010:2400000,grdpG:0.068,tax2010:4200,fdiReg2010:200,fdiDis2010:80,export2010:0.6}},
+  {id:25, n:'Khánh Hòa',         v:4, pop:1600000, old:[], econ:{grdp2010:38000,pop2010:1400000,grdpG:0.074,tax2010:5500,fdiReg2010:500,fdiDis2010:200,export2010:0.8}},
+  {id:26, n:'Lâm Đồng',          v:4, pop:2800000, old:[], econ:{grdp2010:55000,pop2010:2600000,grdpG:0.074,tax2010:8000,fdiReg2010:700,fdiDis2010:300,export2010:1.0}},
+  {id:27, n:'Đồng Nai',          v:5, pop:4200000, old:[], econ:{grdp2010:165000,pop2010:3200000,grdpG:0.085,tax2010:25000,fdiReg2010:3200,fdiDis2010:1400,export2010:4.8}},
+  {id:28, n:'Tây Ninh',          v:5, pop:2800000, old:[], econ:{grdp2010:55000,pop2010:2600000,grdpG:0.077,tax2010:7500,fdiReg2010:800,fdiDis2010:350,export2010:1.1}},
+  {id:29, n:'TP. Hồ Chí Minh',  v:5, pop:14000000,old:[], econ:{grdp2010:930000,pop2010:9100000,grdpG:0.089,tax2010:160000,fdiReg2010:9800,fdiDis2010:4200,export2010:14.0}},
+  {id:30, n:'Đồng Tháp',         v:6, pop:3600000, old:[], econ:{grdp2010:55000,pop2010:3500000,grdpG:0.068,tax2010:6800,fdiReg2010:250,fdiDis2010:100,export2010:0.85}},
+  {id:31, n:'An Giang',          v:6, pop:4000000, old:[], econ:{grdp2010:58000,pop2010:3800000,grdpG:0.068,tax2010:6500,fdiReg2010:300,fdiDis2010:120,export2010:0.9}},
+  {id:32, n:'Vĩnh Long',         v:6, pop:3100000, old:[], econ:{grdp2010:42000,pop2010:3000000,grdpG:0.069,tax2010:5500,fdiReg2010:300,fdiDis2010:120,export2010:0.65}},
+  {id:33, n:'Cần Thơ',           v:6, pop:3500000, old:[], econ:{grdp2010:65000,pop2010:3200000,grdpG:0.074,tax2010:9000,fdiReg2010:450,fdiDis2010:180,export2010:1.0}},
+  {id:34, n:'Cà Mau',            v:6, pop:1800000, old:[], econ:{grdp2010:28000,pop2010:1700000,grdpG:0.067,tax2010:3500,fdiReg2010:150,fdiDis2010:60,export2010:0.5}},
+];
+
+// Macro arrays (2010-2029, index 0=2010)
+const SBV_POLICY=[9,9,8,7,6.5,6.5,6.5,6.25,6,5.5,4.5,4,4,4.5,4.5,4.5,4.25,4,4,4];
+const RATE_DEPO=[11,11,9,7,6.5,6,6,6,5.5,5,4,3.8,4,4.5,4.5,4.5,4.25,4,4,4.5]; // 12T reference
+const RATE_LEND=[13,13,11,10,9,9,8.5,8.5,8,7.5,7,6.5,7,8,8,7.5,7.5,7.5,7.5,7.5];   // BQ reference
+// Per-tenor deposit rates (2010-2029): [1T,3T,6T,12T,3N,5N,10N]
+// Big 4 deposit rates per tenor (verified from SBV/VnExpress/VietnamPlus)
+// Tenors: 0=1T, 1=3T, 2=6T, 3=12T, 4=3N, 5=5N, 6=10N
+const RATE_DEPO_T=[
+  [10.0,11.5, 7.5, 5.0, 4.2, 4.5, 4.5, 4.8, 4.5, 4.0, 2.8, 2.5, 5.0, 2.5, 1.9, 2.5, 2.8, 3.0, 3.2, 3.5],  // 1T Big4
+  [10.5,12.0, 8.0, 5.5, 4.5, 5.0, 5.0, 5.3, 5.0, 4.5, 3.0, 2.8, 5.5, 2.8, 2.2, 2.8, 3.2, 3.5, 3.7, 4.0],  // 3T
+  [11.0,12.5, 9.0, 6.5, 5.5, 5.5, 5.5, 5.8, 5.5, 5.0, 3.5, 3.5, 7.0, 4.0, 3.2, 3.8, 4.2, 4.5, 4.7, 5.0],  // 6T
+  [11.5,13.0, 9.5, 7.0, 6.0, 6.0, 6.5, 6.5, 6.2, 5.5, 5.0, 5.0, 8.5, 5.0, 4.7, 5.2, 5.5, 5.8, 6.0, 6.3],  // 12T
+  [12.0,13.5,10.0, 7.5, 6.5, 6.5, 7.0, 7.0, 6.8, 6.0, 5.5, 5.3, 8.8, 5.3, 5.0, 5.5, 5.8, 6.0, 6.2, 6.5],  // 3N
+  [12.5,14.0,10.5, 8.0, 7.0, 7.0, 7.5, 7.5, 7.2, 6.5, 6.0, 5.8, 9.0, 5.5, 5.2, 5.7, 6.0, 6.3, 6.5, 6.8],  // 5N
+  [13.0,14.5,11.0, 8.5, 7.5, 7.5, 8.0, 8.0, 7.8, 7.0, 6.5, 6.2, 9.5, 6.0, 5.8, 6.2, 6.5, 6.8, 7.0, 7.3],  // 10N
+];
+// Spreads — applied to Big4 deposit to derive NHTMCP deposit & lending
+// Realistic Vietnamese market: NHTMCP pays ~0.5-1.2% above Big4; lending is 3-4.5% above Big4 deposit
+const _NHTMCP_SPREAD = [0.6, 0.7, 0.8, 0.9, 1.0, 1.0, 1.0]; // per tenor 1T..10N
+const _LEND_SPREAD   = [3.0, 3.2, 3.5, 3.8, 4.0, 4.3, 4.5];
+const RATE_DEPO_NHTMCP = [0,1,2,3,4,5,6].map(t =>
+  RATE_DEPO_T[t].map(v => +(v + _NHTMCP_SPREAD[t]).toFixed(2))
+);
+// Monthly rate data (Jan 2023 – Dec 2024, 24 months)
+// Verified from SBV/VnExpress/VietnamPlus sources
+const RATE_MONTHS = ['T1/23','T2/23','T3/23','T4/23','T5/23','T6/23','T7/23','T8/23','T9/23','T10/23','T11/23','T12/23','T1/24','T2/24','T3/24','T4/24','T5/24','T6/24','T7/24','T8/24','T9/24','T10/24','T11/24','T12/24'];
+// Per-tenor monthly Big4 deposit rates (index: tenor 0-6)
+const RATE_DEPO_T_MO = [
+  [4.5,3.8,3.2,2.8,2.5,2.4,2.4,2.4,2.4,2.4,2.4,2.4, 1.7,1.7,1.7,1.7,1.6,1.6,1.6,1.6,1.6,1.8,2.0,2.2], // 1T
+  [5.0,4.2,3.8,3.3,3.0,2.8,2.8,2.7,2.7,2.7,2.7,2.7, 2.2,2.2,2.2,2.2,2.0,2.0,2.0,2.0,2.0,2.2,2.4,2.5], // 3T
+  [7.0,6.5,6.0,5.5,5.0,4.5,4.0,3.8,3.8,3.7,3.7,3.7, 3.2,3.0,3.0,3.0,2.9,2.9,2.9,2.9,2.9,3.2,3.5,3.7], // 6T
+  [8.2,8.0,7.5,7.0,6.5,6.0,5.5,5.3,5.2,5.0,4.9,4.8, 4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.7,4.8,4.9,5.2], // 12T
+  [8.5,8.3,7.8,7.3,6.8,6.3,5.8,5.6,5.5,5.3,5.2,5.1, 5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.0,5.1,5.2,5.5], // 3N
+  [8.8,8.6,8.1,7.6,7.1,6.6,6.1,5.9,5.8,5.6,5.5,5.4, 5.2,5.2,5.2,5.2,5.2,5.2,5.2,5.2,5.2,5.3,5.5,5.7], // 5N
+  [9.2,9.0,8.5,8.0,7.5,7.0,6.5,6.3,6.2,6.0,5.9,5.8, 5.8,5.8,5.8,5.8,5.8,5.8,5.8,5.8,5.8,5.9,6.0,6.2], // 10N
+];
+// Monthly NHTMCP & Lending — derived from Big4 using same spread logic as annual
+const RATE_DEPO_NHTMCP_MO = [0,1,2,3,4,5,6].map(t =>
+  RATE_DEPO_T_MO[t].map(v => +(v + _NHTMCP_SPREAD[t]).toFixed(2))
+);
+const RATE_LEND_T_MO = [0,1,2,3,4,5,6].map(t =>
+  RATE_DEPO_T_MO[t].map(v => +(v + _LEND_SPREAD[t]).toFixed(2))
+);
+const SBV_POLICY_MO = [6.0,6.0,6.0,5.5,5.0,4.5,4.5,4.5,4.5,4.5,4.5,4.5, 4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.5];
+
+// Lending rates (annual) derived from Big4 deposit + per-tenor spread
+const RATE_LEND_T = [0,1,2,3,4,5,6].map(t =>
+  RATE_DEPO_T[t].map(v => +(v + _LEND_SPREAD[t]).toFixed(2))
+);
+const FX_USD=[19495,20668,20828,21036,21148,21890,22159,22697,23127,23200,23208,23155,23400,24260,25450,25450,25800,26200,26800,27500,28000];
+const CPI_YOY=[9.19,18.58,9.09,6.59,4.09,0.63,2.66,3.53,3.54,2.79,3.22,1.84,3.22,3.25,3.63,3.63,3.5,3.3,3.2,3.0];
+const FX_RESERVES=[12.4,13.5,12.4,26,35.9,28.2,36.9,49.1,63.4,79.5,95.4,109.4,89.1,102,98,103,107,110,113,115];
+const M0=[420,500,580,640,680,720,780,850,920,980,1050,1120,1180,1240,1310,1380,1450,1520,1600,1690];
+const M1=[1100,1350,1580,1800,2000,2150,2400,2700,3050,3400,3800,4200,4500,4900,5350,5800,6300,6800,7400,8000];
+const M2=[4400,5100,5900,6700,7600,8500,9600,10900,12400,13900,15600,17600,19100,20500,22000,23600,25400,27300,29400,32000];
+const BK_ASSETS=[4000,4700,5500,6300,7100,7900,9000,10300,11800,13500,15500,17600,19000,20500,22200,23900,25800,27800,30000,32500];
+const BK_DEPOSITS=[3200,3750,4350,5000,5650,6300,7200,8200,9400,10800,12400,14100,15300,16500,18000,19400,21000,22700,24500,26800];
+const BK_CREDIT=[3000,3500,4100,4700,5400,6000,6900,7900,9100,10500,12100,13800,14800,16000,17500,19000,20600,22200,24000,26000];
+const REAL_GDP_IDX=[100,107,113.5,120.8,128.6,136.5,145.6,156,167.5,179.5,192.5,205.5,213.5,222.5,238,255,273,292,309.3,309.3];
+const CPI_IDX_2010=[100,118.6,130.3,139,144.7,145.6,149.5,154.7,160.2,164.7,170,171.8,176.3,181.9,188.5,196.5,203.5,210,216.7,223.1];
+const SECTOR_AGRI=[18.9,18.1,17.7,17.5,17.7,17.0,16.3,15.8,15.3,14.7,14.1,13.5,12.4,11.8,11.3,11.0,10.5,10.0,9.5,8.9];
+const SECTOR_IND=[32.1,32.2,33.6,33.2,33.2,33.3,32.7,33.3,34.3,34.5,33.7,33.4,38.3,37.9,38.0,38.3,38.5,38.7,38.8,38.9];
+const SECTOR_SVC=[36.7,36.7,36.6,37.5,37.8,39.7,40.9,41.3,41.2,41.7,41.6,41.6,41.7,42.2,42.3,42.4,42.7,43.0,43.2,43.3];
+const BOND_TENORS=['1T','3T','6T','12T','3N','5N','10N'];
+const BOND_SPREAD=[-1.5,-1,-0.5,0,1,1.8,2.5];
+const HNX_YIELD_STATIC={0:2.05,1:2.52,2:3.01,3:3.48,4:4.03,5:4.35,6:4.62};
+
+// ============================================================
+// PROVINCE LOOKUP
+// ============================================================
+// ── Exact hc-key → province id map (from live topo debug output) ──
+// ─── Province lookup ─────────────────────────────────────────
+const PROV_BY_ID = {};
+PROVS.forEach(p => { PROV_BY_ID[p.id] = p; });
+
+// ============================================================
+// STATE
+// ============================================================
+let selKey = 'all', selType = 'all';
+let curYi  = 0;   // demo timeline 0-45 (2000-2045)
+let curYi2 = 0;   // student timeline 0-19 (2010-2029)
+let curYi3 = 0;   // econ timeline 0-19
+let animYi = 0;   // corr bubble
+let econReady     = false;
+let corrTimer     = null;
+let cardTimers    = {};
+let selectedTenor = 3;
+let liveUSDVND    = null, liveBondYields = null;
+
+function getYear(yi, base=2010) { return base + yi; }
+function getQuality(yi) { return yi<=13?'A':(yi===14?'E':'F'); }
+// Rates card: only actual/estimate, no forecast. Actual through 2024, estimate 2025-current.
+const RATES_MAX_YI = 16; // 2010 + 16 = 2026 (current year)
+function getRatesQuality(yi) { return yi<=14?'A':'E'; }
+
+function getProvList() {
+  if (selType==='all') return PROVS;
+  if (selType==='v')   return PROVS.filter(p => p.v === parseInt(selKey));
+  if (selType==='p')   return PROVS.filter(p => p.id === parseInt(selKey));
+  return PROVS;
+}
+
+function fmtNum(n, d=0) {
+  if (!isFinite(n)||isNaN(n)) return '—';
+  if (Math.abs(n)>=1e12) return (n/1e12).toFixed(1)+'T';
+  if (Math.abs(n)>=1e9)  return (n/1e9).toFixed(1)+'B';
+  if (Math.abs(n)>=1e6)  return (n/1e6).toFixed(1)+'M';
+  if (Math.abs(n)>=1e3)  return (n/1e3).toFixed(d)+'K';
+  return n.toFixed(d);
+}
+function fmtUSD(n) { return '$'+fmtNum(n,0); }
+function fmtVND(n) { if(!isFinite(n)||isNaN(n)) return '—'; return fmtNum(n,0)+' tỷ'; }
+
+function calcEcon(provList, yi) {
+  const rgi = REAL_GDP_IDX[yi]/100;
+  const cpi = CPI_IDX_2010[yi]/100;
+  const fx  = liveUSDVND && yi>=14 ? liveUSDVND : FX_USD[Math.min(yi,19)];
+  let grdpSum=0,popSum=0,taxSum=0,fdiRegSum=0,fdiDisSum=0,exportSum=0;
+  provList.forEach(p => {
+    const b = p.econ;
+    const g = Math.pow(1+b.grdpG, yi);
+    grdpSum   += b.grdp2010   * g;
+    popSum    += b.pop2010    * Math.pow(1.012, yi);
+    taxSum    += b.tax2010    * g * 0.95;
+    fdiRegSum += b.fdiReg2010 * Math.pow(1.09, yi);
+    fdiDisSum += b.fdiDis2010 * Math.pow(1.08, yi);
+    exportSum += b.export2010 * Math.pow(1.10, yi);
+  });
+  const grdpVND   = grdpSum * rgi;
+  const gdpUSD    = popSum>0 ? grdpVND*1e9/fx/popSum : 0;
+  const gdppcReal = popSum>0 ? grdpVND*1e9/(cpi*fx)/popSum*100 : 0;
+  const spend     = taxSum * 0.85;
+  const surplus   = taxSum - spend;
+  const importSum = exportSum * 0.95;
+  const taxRatio  = grdpVND>0 ? (taxSum/grdpVND)*100 : 0;
+  const invest    = grdpVND * 0.33;
+  const income    = gdpUSD  * 0.62;
+  const unemp     = Math.max(1.5, 3.8 - yi*0.05);
+  const biz       = provList.reduce((s,p)=>s+p.econ.tax2010*0.8,0) * Math.pow(1.08,yi) / 5;
+  const pci       = Math.min(70, 55 + yi*0.8);
+  const iip       = 100 * Math.pow(1.07, yi);
+  const growth    = yi>0 ? (grdpVND/(grdpSum*REAL_GDP_IDX[yi-1]/100)-1)*100 : 6.5;
+  return { grdp:grdpVND, gdppc:gdpUSD, gdppcReal, taxSum, spend, surplus, taxRatio,
+    invest, income, fdiReg:fdiRegSum, fdiDis:fdiDisSum, exportVal:exportSum,
+    importVal:importSum, unemp, biz, pci, iip, growth, popSum, fx };
+}
+
+// ─── Exact hc-key → province id — VERIFIED from real topo file ────
+// Source: @highcharts/map-collection@2.3.1/countries/vn/vn-all.topo.json (64 features)
+// Many keys are numeric or counterintuitive — verified by name matching
+const HC_KEY_MAP = {
+  // V1 – Trung du & MN phía Bắc (ids 1-9)
+  'vn-tq':1,  'vn-hg':1,               // 1  Tuyên Quang ← TuyênQuang + HàGiang
+  'vn-cb':2,                            // 2  Cao Bằng
+  'vn-li':3,                            // 3  Lai Châu  (vn-li, NOT vn-la!)
+  'vn-lo':4,  'vn-yb':4,               // 4  Lào Cai   ← LàoCai(vn-lo!) + YênBái
+  'vn-ty':5,                            // 5  Thái Nguyên ← TháiNguyên(vn-ty); BắcKạn has no geometry in topo
+  'vn-db':6,                            // 6  Điện Biên
+  'vn-ls':7,                            // 7  Lạng Sơn
+  'vn-311':8,                           // 8  Sơn La  (vn-311, not vn-sl!)
+  'vn-pt':9, 'vn-vc':9, 'vn-ho':9,    // 9  Phú Thọ ← PhúThọ + VĩnhPhúc + HòaBình(vn-ho!)
+  // V2 – Đồng bằng sông Hồng (ids 10-15)
+  'vn-bg':10, 'vn-bn':10,              // 10 Bắc Ninh ← BắcGiang + BắcNinh
+  'vn-qn':11,                           // 11 Quảng Ninh
+  'vn-318':12,                          // 12 Hà Nội  (vn-318, not vn-hn!)
+  'vn-3623':13,'vn-hd':13,             // 13 Hải Phòng ← HảiPhòng(vn-3623) + HảiDương
+  'vn-tb':14,                           // 14 Hưng Yên ← HưngYên(not in topo) + TháiBình
+  'vn-hm':15, 'vn-nd':15, 'vn-nb':15, // 15 Ninh Bình ← HàNam + NamĐịnh + NinhBình
+  // V3 – Bắc Trung Bộ (ids 16-20)
+  'vn-th':16,                           // 16 Thanh Hóa
+  'vn-na':17,                           // 17 Nghệ An
+  'vn-328':18,                          // 18 Hà Tĩnh  (vn-328, not vn-ht!)
+  'vn-qb':19, 'vn-qt':19,              // 19 Quảng Trị ← QuảngBình + QuảngTrị
+  'vn-tt':20,                           // 20 Huế
+  // V4 – Duyên hải Nam TB & TN (ids 21-26)
+  'vn-da':21, 'vn-300':21,             // 21 Đà Nẵng ← ĐàNẵng + QuảngNam(vn-300)
+  'vn-299':22, 'vn-qg':22,             // 22 Quảng Ngãi ← KonTum(vn-299!) + QuảngNgãi
+  'vn-724':23, 'vn-bd':23,             // 23 Gia Lai ← GiaLai(vn-724!) + BìnhĐịnh
+  'vn-723':24, 'vn-py':24,             // 24 Đắk Lắk ← ĐắkLắk(vn-723!) + PhúYên
+  'vn-kh':25, 'vn-nt':25,             // 25 Khánh Hòa ← KhánhHòa + NinhThuận
+  'vn-6365':26,'vn-ld':26,'vn-bu':26, // 26 Lâm Đồng ← ĐắkNông(vn-6365) + LâmĐồng + BìnhThuận
+  // V5 – Đông Nam Bộ (ids 27-29)
+  'vn-bp':27,                           // 27 Đồng Nai ← BìnhPhước + ĐồngNai(not in topo!)
+  'vn-tn':28, 'vn-la':28,              // 28 Tây Ninh ← TâyNinh + LongAn(vn-la!)
+  'vn-hc':29, 'vn-bi':29, 'vn-bv':29, // 29 TP.HCM ← HCM + BìnhDương + BàRịa
+  // V6 – Đồng bằng sông CL (ids 30-34)
+  'vn-dt':30, 'vn-tg':30,              // 30 Đồng Tháp ← ĐồngTháp + TiềnGiang(vn-tg!)
+  'vn-kg':31, 'vn-ag':31,              // 31 An Giang ← KiênGiang + AnGiang
+  'vn-vl':32, 'vn-tv':32, 'vn-br':32, // 32 Vĩnh Long ← VĩnhLong + TràVinh + BếnTre
+  'vn-333':33,'vn-337':33,'vn-st':33,  // 33 Cần Thơ ← CầnThơ(vn-333!) + HậuGiang(vn-337!) + SócTrăng
+  'vn-bl':34, 'vn-cm':34,              // 34 Cà Mau ← BạcLiêu + CàMau
+  // Region outline polygons — NOT included in province groups (causes border distortion)
+  // Instead, drawn as separate overlay paths with province-matching fill color
+  'vn-307':5,     // Đông Bắc — merge into Thái Nguyên (shares arcs with vn-ty,cb,ls,tq)
+  'vn-317':12,    // Đồng Bằng SH — merge into Hà Nội (shares arcs with 318,hd,bn,hm,tb)
+  'vn-331':27,     // Đông Nam Bộ = old Đồng Nai city area → merge INTO id:27 (Đồng Nai+BìnhPhước)
+  'vn-3655':null,  // Tiny isolated polygon — drawn separately, colored as id:21 (Đà Nẵng)
+};
+
+// Region outline → province id for fill color (drawn as overlay, not merged)
+const REGION_OVERLAY = {
+  'vn-3655': 21,  // tiny isolated polygon, lat:15.95 lon:108.52 → Đà Nẵng coast
+};
+
+
+// Name-fragment fallback (matches current PROVS)
+const NAME_FRAG_MAP = {
+  'tuyen quang':1,'ha giang':1,'cao bang':2,'lai chau':3,
+  'lao cai':4,'yen bai':4,'bac kan':5,'thai nguyen':5,
+  'dien bien':6,'lang son':7,'son la':8,'phu tho':9,'vinh phuc':9,'hoa binh':9,
+  'bac giang':10,'bac ninh':10,'quang ninh':11,'ha noi':12,
+  'hai phong':13,'hai duong':13,'hung yen':14,'thai binh':14,
+  'ha nam':15,'nam dinh':15,'ninh binh':15,
+  'thanh hoa':16,'nghe an':17,'ha tinh':18,
+  'quang binh':19,'quang tri':19,'hue':20,'thua thien':20,
+  'da nang':21,'quang nam':21,'kon tum':22,'quang ngai':22,
+  'gia lai':23,'binh dinh':23,'dak lak':24,'phu yen':24,
+  'khanh hoa':25,'ninh thuan':25,'dak nong':26,'lam dong':26,'binh thuan':26,
+  'binh phuoc':27,'dong nai':27,'tay ninh':28,'long an':28,
+  'ho chi minh':29,'binh duong':29,'ba ria':29,'vung tau':29,
+  'dong thap':30,'tien giang':30,'kien giang':31,'an giang':31,
+  'vinh long':32,'tra vinh':32,'ben tre':32,
+  'can tho':33,'hau giang':33,'soc trang':33,
+  'bac lieu':34,'ca mau':34,
+};
+
+function lookupHcKey(hcKey, featureName) {
+  const k = (hcKey || '').toLowerCase();
+  if (k in HC_KEY_MAP) return HC_KEY_MAP[k]; // returns null for region outlines
+  if (featureName) {
+    const nm = featureName.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z ]/g,'').trim();
+    for (const [frag, pid] of Object.entries(NAME_FRAG_MAP)) {
+      if (nm.includes(frag)) return pid;
+    }
+  }
+  return null;
+}
+
+// ─── MAP ────────────────────────────────────────────────────
+let __mapSvgD3 = null;
+let __map34    = null;  // Array of {pid, feature} — 34 merged province shapes
+let __overlays = [];    // Region outline features drawn as overlay
+
+async function initMap() {
+  const mapEl = document.getElementById('map-svg');
+  const topoUrl = 'https://cdn.jsdelivr.net/npm/@highcharts/map-collection@2.3.1/countries/vn/vn-all.topo.json';
+  let topo;
+  try {
+    topo = await (await fetch(topoUrl)).json();
+  } catch(e) {
+    if (mapEl) mapEl.innerHTML = '<text fill="#94a3b8" x="50%" y="50%" text-anchor="middle" font-size="12">Map unavailable</text>';
+    return;
+  }
+
+  const objKey = Object.keys(topo.objects)[0];
+  const geoms  = topo.objects[objKey].geometries;
+
+
+  // Group old-province geometries by new province id
+  const groups = {}; // pid -> [geometry, ...]
+  const overlayGeoms = []; // region outline geometries drawn separately
+  geoms.forEach(g => {
+    const hk  = (g.properties['hc-key'] || '').toLowerCase();
+    const nm  = g.properties.name || '';
+    // Check if this is a region overlay (null in HC_KEY_MAP)
+    if (hk in HC_KEY_MAP && HC_KEY_MAP[hk] === null) {
+      if (REGION_OVERLAY[hk] !== undefined) overlayGeoms.push({ hk, g });
+      return;
+    }
+    const pid = lookupHcKey(hk, nm);
+    if (!pid) return;
+    if (!groups[pid]) groups[pid] = [];
+    groups[pid].push(g);
+  });
+
+  // Merge each group into one GeoJSON feature using topojson.merge()
+  __map34 = [];
+  for (const [pidStr, gList] of Object.entries(groups)) {
+    const pid = parseInt(pidStr);
+    try {
+      // Build a minimal sub-topology containing only this group's arcs
+      const subTopo = { type:'Topology', arcs: topo.arcs,
+        transform: topo.transform,
+        objects: { g: { type:'GeometryCollection', geometries: gList } } };
+      const merged = topojson.merge(subTopo, gList);
+      __map34.push({ pid, feature: { type:'Feature', geometry: merged, properties: { pid } } });
+    } catch(e) { /* skip on error */ }
+  }
+
+  // Store overlay features for separate rendering
+  __overlays = overlayGeoms.map(({hk, g}) => {
+    const feat = topojson.feature(topo, { type:'GeometryCollection', geometries:[g] });
+    return { hk, pid: REGION_OVERLAY[hk], feature: feat.features[0] };
+  });
+
+  drawMap();
+}
+
+function drawMap() {
+  if (!__map34 || !__map34.length) return;
+  const mapEl = document.getElementById('map-svg');
+  const wrap  = document.getElementById('map-wrap');
+  if (!mapEl || !wrap) return;
+  const rect = wrap.getBoundingClientRect();
+  const W = rect.width  || wrap.offsetWidth  || 290;
+  const H = rect.height || wrap.offsetHeight || 400;
+  if (W < 10 || H < 10) return;
+
+  const fc = { type:'FeatureCollection', features: __map34.map(d => d.feature) };
+
+  // Vietnam is a narrow vertical country — it only fills ~40% of panel width.
+  // Fit to full height, then shift projection to the right half of the panel.
+  const padV = 8;
+  // Fit to a tall narrow slot on the right side of the panel
+  const mapW = Math.min(W, H * 0.55); // Vietnam aspect ratio ~0.45 wide:tall
+  const leftPad = W - mapW;           // push map to right
+  const proj = d3.geoMercator().fitExtent([[leftPad, padV], [W, H - padV]], fc);
+  const path = d3.geoPath().projection(proj);
+
+  const svg = d3.select('#map-svg')
+    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('width', W).attr('height', H)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  svg.selectAll('*').remove();
+
+  function getColor(pid) {
+    const p = PROV_BY_ID[pid];
+    if (!p) return '#2a3a55';
+    if (selType==='all') return VCOL[p.v];
+    if (selType==='v' && p.v===parseInt(selKey)) return VCOL[p.v];
+    if (selType==='p' && p.id===parseInt(selKey)) return VCOL[p.v];
+    return '#1e2d40';
+  }
+
+  svg.selectAll('path')
+    .data(__map34)
+    .enter()
+    .append('path')
+    .attr('d', d => path(d.feature))
+    .attr('fill', d => getColor(d.pid))
+    .attr('stroke', '#0a0e1a')
+    .attr('stroke-width', 0.6)
+    .attr('class', 'prov-path')
+    .style('cursor', 'pointer')
+    .on('mouseover', function(event, d) {
+      d3.select(this).attr('stroke','#00d4ff').attr('stroke-width', 2);
+      const p   = PROV_BY_ID[d.pid];
+      const tip = document.getElementById('province-tooltip');
+      if (p && tip) {
+        const vNames=['','Trung du & MN Bắc','ĐB Sông Hồng','Bắc Trung Bộ','Nam TB & TN','Đông Nam Bộ','ĐB Sông CL'];
+        tip.innerHTML = `<b>${p.n}</b><br><span style="color:${VCOL[p.v]}">${vNames[p.v]||''}</span><br>Dân số: ${fmtNum(p.pop,0)}`;
+        tip.style.display='block';
+        tip.style.left=(event.clientX+12)+'px';
+        tip.style.top =(event.clientY-20)+'px';
+      }
+    })
+    .on('mousemove', function(event) {
+      const tip=document.getElementById('province-tooltip');
+      if (tip) { tip.style.left=(event.clientX+12)+'px'; tip.style.top=(event.clientY-20)+'px'; }
+    })
+    .on('mouseout', function() {
+      d3.select(this).attr('stroke','#0a0e1a').attr('stroke-width', 0.6);
+      const tip=document.getElementById('province-tooltip');
+      if (tip) tip.style.display='none';
+    })
+    .on('click', function(event, d) {
+      const p = PROV_BY_ID[d.pid]; if (!p) return;
+      setSelection('p', String(p.id), p.n);
+    });
+
+  // Draw region outline overlays on top (fill holes without distorting borders)
+  if (__overlays && __overlays.length) {
+    __overlays.forEach(({hk, pid, feature}) => {
+      if (!feature) return;
+      const p = PROV_BY_ID[pid];
+      if (!p) return;
+      const fillColor = (() => {
+        if (selType==='all') return VCOL[p.v];
+        if (selType==='v' && p.v===parseInt(selKey)) return VCOL[p.v];
+        if (selType==='p' && p.id===parseInt(selKey)) return VCOL[p.v];
+        return '#1e2d40';
+      })();
+      svg.append('path')
+        .datum(feature)
+        .attr('d', path)
+        .attr('fill', fillColor)
+        .attr('stroke', '#0a0e1a')
+        .attr('stroke-width', 0.6)
+        .attr('class', 'overlay-path')
+        .attr('data-overlay', hk)
+        .style('pointer-events', 'none'); // overlays don't intercept mouse
+    });
+  }
+
+  __mapSvgD3 = svg;
+}
+
+
+function updateMapColors() {
+  if (!__mapSvgD3) return;
+  __mapSvgD3.selectAll('path.prov-path')
+    .attr('fill', function(d) {
+      const p = PROV_BY_ID[d.pid];
+      if (!p) return '#2a3a55';
+      if (selType==='all') return VCOL[p.v];
+      if (selType==='v' && p.v===parseInt(selKey)) return VCOL[p.v];
+      if (selType==='p' && p.id===parseInt(selKey)) return VCOL[p.v];
+      return '#1e2d40';
+    });
+  // Also recolor overlay paths
+  if (__overlays && __overlays.length) {
+    __overlays.forEach(({hk, pid}) => {
+      const p = PROV_BY_ID[pid];
+      if (!p) return;
+      const fillColor = (() => {
+        if (selType==='all') return VCOL[p.v];
+        if (selType==='v' && p.v===parseInt(selKey)) return VCOL[p.v];
+        if (selType==='p' && p.id===parseInt(selKey)) return VCOL[p.v];
+        return '#1e2d40';
+      })();
+      __mapSvgD3.selectAll(`path.overlay-path[data-overlay="${hk}"]`).attr('fill', fillColor);
+    });
+  }
+}
+
+
+function setSelection(type, key, name) {
+  selType = type; selKey = key;
+  // Update floating legend label
+  const lbl = document.getElementById('legend-sel-label');
+  if (lbl) lbl.textContent = name;
+  document.querySelectorAll('.rg-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.type === type && b.dataset.key === key);
+  });
+  updateMapColors();
+  const _crl=document.getElementById('corr-region-label'); if(_crl) _crl.textContent=name;
+  const _dpn=document.getElementById('demo-prov-name'); if(_dpn) _dpn.textContent=name;
+  const _spn=document.getElementById('stu-prov-name'); if(_spn) _spn.textContent=name;
+  renderDemoPyramid(curYi);
+  renderStudent(curYi2);
+  if (activeBottomTab === 'econ' && econReady) updateSpecialCharts('all', 0);
+  if (activeBottomTab === 'corr') { renderBubble(animYi); updateScatterCharts(); }
+  updateScatterCharts();
+}
+
+// Legend toggle (☰ button collapses/expands the dropdown)
+document.getElementById('legend-toggle').addEventListener('click', () => {
+  const dd = document.getElementById('legend-dropdown');
+  dd.classList.toggle('legend-closed');
+});
+
+// ============================================================
+// DEMOGRAPHIC PYRAMID
+// ============================================================
+const AGE_GROUPS = ['0-4','5-9','10-14','15-19','20-24','25-29','30-34','35-39','40-44','45-49','50-54','55-59','60-64','65-69','70-74','75-79','80+'];
+
+function calcDemo(provList, year) {
+  // Vietnam demographic profile: base distributions for key anchor years
+  // Interpolate/extrapolate smoothly across 2000-2045
+  // Anchor: 2000 (young pyramid), 2020 (transitional), 2045 (aged)
+  const dist2000 = [0.098,0.093,0.088,0.083,0.075,0.068,0.058,0.050,0.042,0.038,0.033,0.028,0.022,0.016,0.011,0.008,0.007];
+  const dist2020 = [0.063,0.063,0.064,0.068,0.073,0.076,0.074,0.070,0.067,0.063,0.058,0.052,0.045,0.038,0.030,0.020,0.015];
+  const dist2045 = [0.038,0.039,0.040,0.042,0.048,0.058,0.065,0.070,0.072,0.068,0.065,0.062,0.058,0.054,0.048,0.038,0.035];
+
+  // Normalise each to sum=1
+  const norm = d => { const s=d.reduce((a,b)=>a+b,0); return d.map(v=>v/s); };
+  const nd0=norm(dist2000), nd20=norm(dist2020), nd45=norm(dist2045);
+
+  // Linear interpolation between anchors
+  let dist;
+  if (year <= 2020) {
+    const t = Math.max(0, Math.min(1, (year - 2000) / 20));
+    dist = nd0.map((v,i) => v*(1-t) + nd20[i]*t);
+  } else {
+    const t = Math.max(0, Math.min(1, (year - 2020) / 25));
+    dist = nd20.map((v,i) => v*(1-t) + nd45[i]*t);
+  }
+
+  // Total population: grow from base using province pop (2025 est.) with year-dependent rate
+  const baseYear = 2025;
+  const baseGrowthRate = year < 2025 ? -0.011 : 0.008; // shrink going back, grow going forward
+  const totalPop = provList.reduce((s, p) => {
+    const yrs = year - baseYear;
+    const rate = year >= baseYear ? 0.008 : 0.011;
+    return s + p.pop * Math.pow(1 + (year >= baseYear ? rate : -rate), Math.abs(yrs));
+  }, 0);
+
+  return AGE_GROUPS.map((ag, i) => {
+    const pop = totalPop * dist[i];
+    // Male ratio: slightly higher for working age, lower for elderly
+    const maleRatio = i < 3 ? 0.515 : i < 10 ? 0.505 : i < 14 ? 0.490 : 0.460;
+    return { ag, popM: pop * maleRatio, popF: pop * (1 - maleRatio) };
+  });
+}
+
+function renderDemoPyramid(yi) {
+  const year = 2000 + yi;
+  const isForecast = year >= 2026;
+  updateTopLabel(curYi);
+  const badge = document.getElementById('top-forecast-badge');
+  if (badge) { badge.textContent = isForecast ? '★ dự báo' : ''; badge.className = isForecast ? 'forecast-badge' : ''; }
+
+  const provList = getProvList();
+  const data = calcDemo(provList, year);
+  const svg = document.getElementById('demo-svg');
+  const wrap = document.getElementById('demo-svg-wrap');
+  const [W, H] = _getCachedSize('demo-svg-wrap', 0, 0);
+  if (W < 10 || H < 10) return;
+  const SVG_W = W, SVG_H = H;
+  svg.setAttribute('viewBox',`0 0 ${SVG_W} ${SVG_H}`);
+  svg.setAttribute('width','100%'); svg.setAttribute('height','100%');
+
+  const MT=20,MB=20,ML=10,MR=10;
+  const IW=SVG_W-ML-MR, IH=SVG_H-MT-MB;
+  const nRows = AGE_GROUPS.length;
+  const ROW_H = IH/nRows;
+  const BAR_H = ROW_H * 0.82;
+  const CENTER_X = SVG_W/2;
+  const CENTER_HALF = 24;
+  const maxPop = Math.max(...data.map(d=>Math.max(d.popM,d.popF)));
+  const halfW = (IW/2 - CENTER_HALF);
+  const scale = halfW / (maxPop*1.05);
+
+  let html = '';
+  // Forecast background
+  if (isForecast) {
+    html += `<rect x="0" y="0" width="${SVG_W}" height="${SVG_H}" fill="rgba(168,85,247,0.04)"/>`;
+  }
+  // Year watermark
+  html += `<text x="${CENTER_X}" y="${SVG_H/2+30}" text-anchor="middle" font-size="${SVG_H*0.35}" fill="rgba(255,255,255,0.03)" font-weight="900">${year}</text>`;
+
+  data.forEach((d,i) => {
+    const y = MT + i*ROW_H + (ROW_H-BAR_H)/2;
+    const barMW = d.popM*scale;
+    const barFW = d.popF*scale;
+    const mx = CENTER_X - CENTER_HALF - barMW;
+    const fx = CENTER_X + CENTER_HALF;
+    const pctM = (d.popM/(d.popM+d.popF)*100).toFixed(1);
+    const pctF = (100-parseFloat(pctM)).toFixed(1);
+
+    const isOdd = i%2===0;
+    // bar bg
+    html += `<rect x="${ML}" y="${y}" width="${IW/2-CENTER_HALF}" height="${BAR_H}" fill="${isOdd?'rgba(59,130,246,0.06)':'rgba(59,130,246,0.03)'}"/>`;
+    html += `<rect x="${CENTER_X+CENTER_HALF}" y="${y}" width="${IW/2-CENTER_HALF}" height="${BAR_H}" fill="${isOdd?'rgba(239,68,68,0.06)':'rgba(239,68,68,0.03)'}"/>`;
+    // male bar
+    html += `<rect x="${mx}" y="${y+1}" width="${barMW}" height="${BAR_H-2}" fill="${isForecast?'rgba(147,197,253,0.7)':'rgba(59,130,246,0.8)'}"/>`;
+    // female bar
+    html += `<rect x="${fx}" y="${y+1}" width="${barFW}" height="${BAR_H-2}" fill="${isForecast?'rgba(252,165,165,0.7)':'rgba(239,68,68,0.75)'}"/>`;
+    // age label centered
+    html += `<text x="${CENTER_X}" y="${y+BAR_H/2+4}" text-anchor="middle" font-size="9" fill="#e2e8f0" font-weight="600" stroke="#0a0e1a" stroke-width="3" paint-order="stroke">${d.ag}</text>`;
+    // pop numbers inside bars
+    if (barMW > 25) {
+      html += `<text x="${mx+barMW-3}" y="${y+BAR_H/2+3}" text-anchor="end" font-size="8" fill="white">${fmtNum(d.popM,0)}</text>`;
+    }
+    if (barFW > 25) {
+      html += `<text x="${fx+3}" y="${y+BAR_H/2+3}" text-anchor="start" font-size="8" fill="white">${fmtNum(d.popF,0)}</text>`;
+    }
+    // pct outside
+    html += `<text x="${mx-2}" y="${y+BAR_H/2+3}" text-anchor="end" font-size="9.5" fill="#94a3b8">${pctM}%</text>`;
+    html += `<text x="${fx+barFW+2}" y="${y+BAR_H/2+3}" text-anchor="start" font-size="9.5" fill="#94a3b8">${pctF}%</text>`;
+  });
+
+  // legend
+  html += `<rect x="${CENTER_X-80}" y="${SVG_H-14}" width="10" height="8" fill="rgba(59,130,246,0.8)"/>`;
+  html += `<text x="${CENTER_X-66}" y="${SVG_H-7}" font-size="9" fill="#94a3b8">Nam (Male)</text>`;
+  html += `<rect x="${CENTER_X+20}" y="${SVG_H-14}" width="10" height="8" fill="rgba(239,68,68,0.75)"/>`;
+  html += `<text x="${CENTER_X+34}" y="${SVG_H-7}" font-size="9" fill="#94a3b8">Nữ (Female)</text>`;
+
+  svg.innerHTML = html;
+}
+
+// ============================================================
+// STUDENT ENROLLMENT
+// ============================================================
+function calcStudent(provList, yi) {
+  const year = 2010 + yi;
+  // Get actual demographic data for this year to derive cohort sizes
+  const demo = calcDemo(provList, year);
+  // demo[1] = 5-9, demo[2] = 10-14, demo[3] = 15-19
+  // Primary (Tiểu học): ages 6-10 ≈ 0.6 of 5-9 cohort + 0.2 of 10-14 cohort
+  // Lower secondary (THCS): ages 11-14 ≈ 0.8 of 10-14 cohort
+  // Upper secondary (THPT): ages 15-17 ≈ 0.6 of 15-19 cohort
+  const cohort_5_9  = demo[1].popM + demo[1].popF;
+  const cohort_10_14 = demo[2].popM + demo[2].popF;
+  const cohort_15_19 = demo[3].popM + demo[3].popF;
+
+  // Enrollment rates rising over time
+  const ep  = Math.min(0.990, 0.960 + yi * 0.0015);  // primary rate
+  const el2 = Math.min(0.960, 0.820 + yi * 0.0070);  // lower sec rate
+  const eu  = Math.min(0.820, 0.580 + yi * 0.0120);  // upper sec rate
+
+  const primary = (cohort_5_9 * 0.8 + cohort_10_14 * 0.2) * ep;
+  const lower   = cohort_10_14 * 0.8 * el2;
+  const upper   = cohort_15_19 * 0.6 * eu;
+
+  return { primary, lower, upper };
+}
+
+function renderStudent(yi) {
+  // year shown in shared label
+  const provList = getProvList();
+  const svg = document.getElementById('stu-svg');
+  const wrap = document.getElementById('stu-svg-wrap');
+  const [W, H] = _getCachedSize('stu-svg-wrap', 0, 0);
+  if (W < 10 || H < 10) return;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', '100%'); svg.setAttribute('height', '100%');
+
+  const MT=28, MB=32, ML=55, MR=16;
+  const IW = W - ML - MR, IH = H - MT - MB;
+  const years = Array.from({length:20}, (_, i) => i);
+  const allData = years.map(i => calcStudent(provList, i));
+
+  // Stacked total = primary + lower + upper
+  const maxVal = Math.max(...allData.map(d => d.primary + d.lower + d.upper)) * 1.08;
+  const bw = IW / 20;
+  const scY = v => MT + IH - (v / maxVal) * IH;
+
+  let html = '';
+
+  // Grid lines
+  for (let g = 0; g <= 4; g++) {
+    const yy = MT + g * IH / 4;
+    html += `<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="#1a2235" stroke-width="1"/>`;
+    html += `<text x="${ML-4}" y="${yy+3}" text-anchor="end" font-size="8" fill="#64748b">${fmtNum(maxVal*(1-g/4),0)}</text>`;
+  }
+  html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1.5"/>`;
+  html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1.5"/>`;
+
+  // Stacked bars — bottom=Tiểu học, middle=THCS, top=THPT
+  allData.forEach((d, i) => {
+    const x = ML + i * bw + bw * 0.1;
+    const bwn = bw * 0.8;
+    const active = i === yi;
+    const op = active ? '1' : '0.55';
+    const bot = MT + IH;
+
+    const ph = Math.max(1, (d.primary / maxVal) * IH);
+    const lh = Math.max(1, (d.lower   / maxVal) * IH);
+    const uh = Math.max(1, (d.upper   / maxVal) * IH);
+
+    // Tiểu học (bottom, amber)
+    html += `<rect x="${x.toFixed(1)}" y="${(bot-ph).toFixed(1)}" width="${bwn.toFixed(1)}" height="${ph.toFixed(1)}" fill="#fbbf24" opacity="${op}"/>`;
+    // THCS (middle, green)
+    html += `<rect x="${x.toFixed(1)}" y="${(bot-ph-lh).toFixed(1)}" width="${bwn.toFixed(1)}" height="${lh.toFixed(1)}" fill="#22c55e" opacity="${op}"/>`;
+    // THPT (top, blue)
+    html += `<rect x="${x.toFixed(1)}" y="${(bot-ph-lh-uh).toFixed(1)}" width="${bwn.toFixed(1)}" height="${uh.toFixed(1)}" fill="#3b82f6" opacity="${op}"/>`;
+
+    // Highlight active year border
+    if (active) {
+      const totalH = ph + lh + uh;
+      html += `<rect x="${x.toFixed(1)}" y="${(bot-totalH).toFixed(1)}" width="${bwn.toFixed(1)}" height="${totalH.toFixed(1)}" fill="none" stroke="#00d4ff" stroke-width="1.2"/>`;
+    }
+
+    if (i % 5 === 0) {
+      html += `<text x="${(x + bwn/2).toFixed(1)}" y="${H-4}" text-anchor="middle" font-size="8" fill="#64748b">${2010+i}</text>`;
+    }
+  });
+
+  // Active year value callout
+  const cur = allData[yi];
+  const ax = ML + yi * bw + bw * 0.5;
+  const total = cur.primary + cur.lower + cur.upper;
+  const topY = scY(total) - 5;
+  html += `<text x="${ax.toFixed(1)}" y="${topY.toFixed(1)}" text-anchor="middle" font-size="8" fill="#00d4ff" font-weight="700">${fmtNum(total,0)}</text>`;
+
+  // Segment labels inside bars if tall enough
+  const bot = MT + IH;
+  const ph = (cur.primary / maxVal) * IH;
+  const lh = (cur.lower   / maxVal) * IH;
+  const uh = (cur.upper   / maxVal) * IH;
+  if (ph > 14) html += `<text x="${ax.toFixed(1)}" y="${(bot - ph/2 + 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="rgba(0,0,0,0.7)" font-weight="700">${fmtNum(cur.primary,0)}</text>`;
+  if (lh > 14) html += `<text x="${ax.toFixed(1)}" y="${(bot - ph - lh/2 + 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="rgba(0,0,0,0.7)" font-weight="700">${fmtNum(cur.lower,0)}</text>`;
+  if (uh > 14) html += `<text x="${ax.toFixed(1)}" y="${(bot - ph - lh - uh/2 + 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="rgba(0,0,0,0.7)" font-weight="700">${fmtNum(cur.upper,0)}</text>`;
+
+  // Legend
+  const lx = ML;
+  html += `<rect x="${lx}" y="5" width="9" height="7" fill="#fbbf24"/><text x="${lx+12}" y="12" font-size="9" fill="#94a3b8">Tiểu học</text>`;
+  html += `<rect x="${lx+68}" y="5" width="9" height="7" fill="#22c55e"/><text x="${lx+80}" y="12" font-size="9" fill="#94a3b8">THCS</text>`;
+  html += `<rect x="${lx+118}" y="5" width="9" height="7" fill="#3b82f6"/><text x="${lx+130}" y="12" font-size="9" fill="#94a3b8">THPT</text>`;
+
+  svg.innerHTML = html;
+}
+
+// ============================================================
+// SPECIAL CHARTS (ECON)
+// ============================================================
+function mkSvg(containerId, W, H) {
+  const el = document.getElementById(containerId);
+  if (!el) return null;
+  el.innerHTML = '';
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '100%');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('preserveAspectRatio', 'none');
+  svg.style.display = 'block';
+  el.appendChild(svg);
+  return svg;
+}
+
+const EC_CHARTS = []; // MUST be empty — all via initSpecialCharts
+let __svgRefs = {};
+
+function initSpecialCharts() {
+  const W=300,H=160,MT=24,MB=26,ML=46,MR=8;
+  const IH=H-MT-MB, IW=W-ML-MR;
+
+  __svgRefs = {};
+  ['ecb-gdppc','ecb-income-card','ecb-cpi-card','ecb-budget','ecb-fdi','ecb-trade','ecb-labour','ecb-rates','ecb-bonds','ecb-macro'].forEach(id=>{
+    __svgRefs[id] = mkSvg(id,W,H);
+  });
+}
+
+function updateSpecialCharts(cardId, yi) {
+  // cardId = specific card ('grdp','budget','fdi','labour','rates','macro')
+  // or null/'all' to update all cards each with their own cardYi
+  if (!econReady) return;
+  // Use fixed logical dimensions — SVG scales via preserveAspectRatio
+  const W=300,H=160,MT=24,MB=26,ML=46,MR=8;
+  const IH=H-MT-MB,IW=W-ML-MR,BCW=IW/20;
+
+  if (!cardId || cardId === 'all') {
+    ['grdp','budget','fdi','labour','rates','macro'].forEach(cid => {
+      updateSpecialCharts(cid, cardYi[cid]);
+    });
+    return;
+  }
+
+  const provList = getProvList();
+  const years = Array.from({length:20},(_,i)=>i);
+  const allEcon = years.map(i => calcEcon(provList, i));
+  const e = allEcon[yi];
+
+  function setKpi(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+
+  function drawBarChart(svgEl, data, colors, labels, lineData, lineColor) {
+    if (!svgEl) return;
+    const nSeries = data.length;
+    const allVals = data.flat().concat(lineData||[]);
+    const maxV = Math.max(...allVals)*1.12 || 1;
+    const scaleY = v => MT+IH-(v/maxV)*IH;
+    const uid = 'c'+Math.random().toString(36).slice(2,7);
+    let defs = '<defs>' + colors.map((c,i)=>`<linearGradient id="${uid}_${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${c}" stop-opacity="0.95"/><stop offset="100%" stop-color="${c}" stop-opacity="0.35"/></linearGradient>`).join('') + '</defs>';
+    let html = defs;
+    for(let g=1;g<=4;g++){
+      const yy=MT+IH*g/4;
+      html+=`<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
+      if (g<4) html+=`<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxV*(1-g/4),0)}</text>`;
+    }
+    html+=`<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+    html+=`<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+    const gw = BCW/nSeries;
+    years.forEach((_, i) => {
+      const isActive = i===yi;
+      data.forEach((series, si) => {
+        const x = ML + i*BCW + si*gw + gw*0.15;
+        const bh = (series[i]/maxV)*IH;
+        const y = MT+IH-bh;
+        const w = gw*0.7;
+        const fill = isActive ? colors[si] : `url(#${uid}_${si})`;
+        html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${fill}" rx="1.5"/>`;
+        if (isActive) html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="2" fill="${colors[si]}" rx="1"/>`;
+      });
+      if (i%3===0) html+=`<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`;
+    });
+    if (yi>=0 && data[0] && typeof data[0][yi] === 'number') {
+      const v = data[0][yi], px = ML+yi*BCW+BCW/2, py = Math.max(MT+10, scaleY(v)-5);
+      html += `<text x="${px.toFixed(1)}" y="${py.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00d4ff">${fmtNum(v,0)}</text>`;
+    }
+    if (lineData && lineData.length===20) {
+      let lPath='';
+      lineData.forEach((v,i)=>{const px=ML+i*BCW+BCW/2,py=scaleY(v);lPath+=(i===0?`M${px},${py}`:`L${px},${py}`);});
+      html+=`<path d="${lPath}" fill="none" stroke="${lineColor||'#f59e0b'}" stroke-width="1.8"/>`;
+      html+=`<circle cx="${ML+yi*BCW+BCW/2}" cy="${scaleY(lineData[yi])}" r="3.5" fill="${lineColor||'#f59e0b'}" stroke="#0a0e1a" stroke-width="1.5"/>`;
+    }
+    if (labels) {
+      let lx=ML;
+      labels.forEach((l,i)=>{
+        html+=`<rect x="${lx}" y="2" width="14" height="4" fill="${colors[i]}" rx="1.5"/>`;
+        html+=`<text x="${lx+18}" y="8" font-size="10" fill="#94a3b8">${l}</text>`;
+        lx += 18 + l.length*5.5 + 8;
+      });
+    }
+    svgEl.innerHTML = html;
+  }
+
+  function drawStackedBar(svgEl, stackedData, colors, labels) {
+    if (!svgEl) return;
+    const maxV = Math.max(...stackedData.map(d=>d.reduce((a,b)=>a+b,0)))*1.08||1;
+    let html='';
+    for(let g=1;g<=4;g++){
+      const yy=MT+IH*g/4;
+      html+=`<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
+      if (g<4) html+=`<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxV*(1-g/4),0)}</text>`;
+    }
+    html+=`<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+    html+=`<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+    stackedData.forEach((stack,i)=>{
+      const isActive=i===yi; let cumY=0;
+      stack.forEach((v,si)=>{
+        const bh=(v/maxV)*IH, y=MT+IH-cumY-bh, x=ML+i*BCW+BCW*0.15, bw=BCW*0.7;
+        const op = isActive ? 1 : 0.65;
+        html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${colors[si]}" opacity="${op}" ${si===stack.length-1?'rx="1.5"':''}/>`;
+        cumY+=bh;
+      });
+      if (isActive) {
+        const total=stack.reduce((a,b)=>a+b,0);
+        const px=ML+i*BCW+BCW/2, py=Math.max(MT+10, MT+IH-(total/maxV)*IH-5);
+        html+=`<text x="${px.toFixed(1)}" y="${py.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00d4ff">${fmtNum(total,0)}</text>`;
+      }
+      if(i%3===0) html+=`<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`;
+    });
+    if(labels){
+      let lx=ML;
+      labels.forEach((l,i)=>{
+        html+=`<rect x="${lx}" y="2" width="14" height="4" fill="${colors[i]}" rx="1.5"/>`;
+        html+=`<text x="${lx+18}" y="8" font-size="10" fill="#94a3b8">${l}</text>`;
+        lx += 18 + l.length*5.5 + 8;
+      });
+    }
+    svgEl.innerHTML=html;
+  }
+
+  if (cardId==='grdp') {
+    // ── Chart 1: GDP thực (bars, tỷ VND) + Tăng trưởng % (line, right axis) ──
+    const gdpRealArr = allEcon.map(ae => ae.grdp); // tỷ VND real
+    const growthArr  = allEcon.map((ae, i) => i === 0 ? 6.5 : ae.growth);
+    if (__svgRefs['ecb-gdppc']) {
+      const maxGDP = Math.max(...gdpRealArr) * 1.15 || 1;
+      const maxG   = Math.max(...growthArr.map(v => Math.abs(v))) * 1.3 || 10;
+      const scBar  = v => MT + IH - (v / maxGDP) * IH; // bar top y
+      const scLine = v => MT + IH * 0.15 + (1 - (v + 2) / (maxG + 2)) * IH * 0.7; // line y (growth)
+      let html = '';
+      // Left axis grid (GDP)
+      for (let g = 1; g <= 3; g++) {
+        const yy = MT + IH * g / 4;
+        html += `<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="rgba(42,58,85,0.35)" stroke-width="1"/>`;
+        html += `<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxGDP*(1-g/4),0)}</text>`;
+      }
+      html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      // GDP thực bars
+      const gUid = 'g'+Math.random().toString(36).slice(2,7);
+      html = `<defs><linearGradient id="${gUid}_b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3b82f6" stop-opacity="0.9"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0.25"/></linearGradient></defs>` + html;
+      gdpRealArr.forEach((v, i) => {
+        const bh = (v / maxGDP) * IH;
+        const bx = ML + i * BCW + BCW * 0.15;
+        const bw = BCW * 0.7;
+        const isAct = i === yi;
+        html += `<rect x="${bx.toFixed(1)}" y="${(MT+IH-bh).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${isAct?'#3b82f6':'url(#'+gUid+'_b)'}" rx="1.5"/>`;
+        if (isAct) html += `<rect x="${bx.toFixed(1)}" y="${(MT+IH-bh).toFixed(1)}" width="${bw.toFixed(1)}" height="2" fill="#60a5fa" rx="1"/>`;
+      });
+      // Active GDP value
+      const vAct = gdpRealArr[yi];
+      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${Math.max(MT+10, scBar(vAct)-5).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#60a5fa">${fmtNum(vAct,0)}</text>`;
+      // Tăng trưởng % line (right axis)
+      let p = ''; growthArr.forEach((v, i) => { const px = ML+i*BCW+BCW/2, py = scLine(v); p += (i===0?`M${px},${py}`:`L${px},${py}`); });
+      html += `<path d="${p}" fill="none" stroke="#f97316" stroke-width="1.8"/>`;
+      html += `<circle cx="${ML+yi*BCW+BCW/2}" cy="${scLine(growthArr[yi])}" r="3.5" fill="#f97316" stroke="#0a0e1a" stroke-width="1.5"/>`;
+      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${(scLine(growthArr[yi])-7).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="700" fill="#f97316">${growthArr[yi].toFixed(1)}%</text>`;
+      // Right axis growth labels
+      html += `<text x="${ML+IW+2}" y="${(scLine(maxG*.7)+3).toFixed(1)}" font-size="9" fill="#f97316">${(maxG*.7).toFixed(0)}%</text>`;
+      html += `<text x="${ML+IW+2}" y="${(scLine(0)+3).toFixed(1)}" font-size="9" fill="#f97316">0%</text>`;
+      years.forEach(i => { if (i%3===0) html += `<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`; });
+      // Legend
+      html += `<rect x="${ML}" y="2" width="14" height="4" fill="#3b82f6" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">GDP thực (tỷ VND)</text>`;
+      html += `<line x1="${ML+108}" y1="5" x2="${ML+122}" y2="5" stroke="#f97316" stroke-width="2.5"/><text x="${ML+126}" y="8" font-size="10" fill="#94a3b8">Tăng trưởng %</text>`;
+      __svgRefs['ecb-gdppc'].innerHTML = html;
+    }
+
+    // ── Chart 2: Thu nhập bình quân line chart ──
+    if (__svgRefs['ecb-income-card']) {
+      const incomeArr = allEcon.map((ae,i) => ae.income * FX_USD[Math.min(i,19)] / 1e6);
+      const maxI = Math.max(...incomeArr) * 1.15 || 1;
+      const scY  = v => MT + IH - (v / maxI) * IH;
+      let html = '';
+      for (let g = 1; g <= 4; g++) {
+        const yy = MT + IH * g / 4;
+        html += `<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
+        if (g<4) html += `<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxI*(1-g/4),0)}</text>`;
+      }
+      html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      // Area fill with gradient
+      const iUid = 'i'+Math.random().toString(36).slice(2,7);
+      html = `<defs><linearGradient id="${iUid}_a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a855f7" stop-opacity="0.5"/><stop offset="100%" stop-color="#a855f7" stop-opacity="0.02"/></linearGradient></defs>` + html;
+      let areaPath = `M${ML},${MT+IH}`;
+      incomeArr.forEach((v, i) => { areaPath += ` L${ML+i*BCW+BCW/2},${scY(v)}`; });
+      areaPath += ` L${ML+19*BCW+BCW/2},${MT+IH} Z`;
+      html += `<path d="${areaPath}" fill="url(#${iUid}_a)"/>`;
+      let p = ''; incomeArr.forEach((v, i) => { const px = ML+i*BCW+BCW/2, py = scY(v); p += (i===0?`M${px},${py}`:`L${px},${py}`); });
+      html += `<path d="${p}" fill="none" stroke="#a855f7" stroke-width="2.2"/>`;
+      html += `<circle cx="${ML+yi*BCW+BCW/2}" cy="${scY(incomeArr[yi])}" r="4" fill="#a855f7" stroke="#0a0e1a" stroke-width="1.5"/>`;
+      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${(scY(incomeArr[yi])-8).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#c4b5fd">${fmtNum(incomeArr[yi],1)}M</text>`;
+      years.forEach(i => { if (i%3===0) html += `<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`; });
+      html += `<rect x="${ML}" y="2" width="14" height="4" fill="#a855f7" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">Thu nhập BQ (tr.VND)</text>`;
+      __svgRefs['ecb-income-card'].innerHTML = html;
+    }
+
+    // ── Chart 3: CPI YoY % bar chart ──
+    if (__svgRefs['ecb-cpi-card']) {
+      const cpiArr = CPI_YOY.slice(0, 20);
+      const maxC = Math.max(...cpiArr) * 1.15 || 20;
+      let html = '';
+      for (let g = 1; g <= 4; g++) {
+        const yy = MT + IH * g / 4;
+        html += `<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
+        if (g<4) html += `<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${(maxC*(1-g/4)).toFixed(1)}%</text>`;
+      }
+      html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      cpiArr.forEach((v, i) => {
+        const bh = (v / maxC) * IH;
+        const bx = ML + i * BCW + BCW * 0.15, bw = BCW * 0.7;
+        const col = v > 8 ? '#ef4444' : v > 4 ? '#f59e0b' : '#22c55e';
+        const isAct = i===yi;
+        html += `<rect x="${bx.toFixed(1)}" y="${(MT+IH-bh).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${col}" opacity="${isAct?1:0.55}" rx="1.5"/>`;
+        if (isAct) html += `<rect x="${bx.toFixed(1)}" y="${(MT+IH-bh).toFixed(1)}" width="${bw.toFixed(1)}" height="2" fill="${col}" rx="1"/>`;
+      });
+      const targetY = MT + IH - (3 / maxC) * IH;
+      html += `<line x1="${ML}" y1="${targetY.toFixed(1)}" x2="${ML+IW}" y2="${targetY.toFixed(1)}" stroke="#06b6d4" stroke-width="1" stroke-dasharray="3,2"/>`;
+      html += `<text x="${ML+IW+2}" y="${(targetY+3).toFixed(1)}" font-size="9" fill="#06b6d4">3%</text>`;
+      // Active value
+      const vC = cpiArr[yi];
+      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${Math.max(MT+10, MT+IH-(vC/maxC)*IH-5).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00d4ff">${vC.toFixed(1)}%</text>`;
+      years.forEach(i => { if (i%3===0) html += `<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`; });
+      html += `<text x="${ML}" y="10" font-size="10" fill="#94a3b8">CPI YoY %</text>`;
+      __svgRefs['ecb-cpi-card'].innerHTML = html;
+    }
+
+    setKpi('kpi-gdppc',      fmtUSD(e.gdppc));
+    setKpi('kpi-gdppc-real', fmtUSD(e.gdppcReal));
+    setKpi('kpi-grdp',       fmtVND(e.grdp));
+    setKpi('kpi-growth',     e.growth.toFixed(1) + '%');
+    setKpi('kpi-income',     fmtNum(e.income * FX_USD[Math.min(yi,19)] / 1e6, 1) + ' tr.VND');
+    setKpi('kpi-cpi-grdp',   (CPI_YOY[yi] ?? '—') + '%');
+  }
+
+  if (cardId==='budget') {
+    drawBarChart(__svgRefs['ecb-budget'],[allEcon.map(ae=>ae.taxSum),allEcon.map(ae=>ae.spend)],['#a855f7','#ef4444'],['Thu','Chi'],allEcon.map(ae=>ae.surplus),'#f59e0b');
+    setKpi('kpi-tax',fmtVND(e.taxSum)); setKpi('kpi-spend',fmtVND(e.spend));
+    setKpi('kpi-taxratio',e.taxRatio.toFixed(1)+'%'); setKpi('kpi-surplus',fmtVND(e.surplus));
+  }
+
+  if (cardId==='fdi') {
+    drawBarChart(__svgRefs['ecb-fdi'],[allEcon.map(ae=>ae.fdiReg)],['#f97316'],['FDI đăng ký']);
+    drawBarChart(__svgRefs['ecb-trade'],[allEcon.map(ae=>ae.exportVal),allEcon.map(ae=>ae.importVal)],['#06b6d4','#f97316'],['XK','NK']);
+    setKpi('kpi-fdi-reg',fmtNum(e.fdiReg,0)+' tr.USD'); setKpi('kpi-fdi-dis',fmtNum(e.fdiDis,0)+' tr.USD');
+    setKpi('kpi-export',fmtNum(e.exportVal,1)+' tỷ USD'); setKpi('kpi-import',fmtNum(e.importVal,1)+' tỷ USD');
+  }
+
+  if (cardId==='labour') {
+    drawBarChart(__svgRefs['ecb-labour'],[allEcon.map(ae=>ae.biz)],['#a855f7'],['Doanh nghiệp']);
+    setKpi('kpi-unemp',e.unemp.toFixed(1)+'%'); setKpi('kpi-biz',fmtNum(e.biz,0));
+    setKpi('kpi-pci',e.pci.toFixed(1)); setKpi('kpi-iip',e.iip.toFixed(0));
+  }
+
+  if (cardId==='rates') {
+    const depoT   = RATE_DEPO_T[selectedTenor][yi];
+    const depoNHT = RATE_DEPO_NHTMCP[selectedTenor][yi];
+    const lendT   = RATE_LEND_T[selectedTenor][yi];
+    const bondYld = SBV_POLICY[yi] + BOND_SPREAD[selectedTenor];
+    const tName   = BOND_TENORS[selectedTenor];
+    // Update KPI labels
+    const depoLbl  = document.getElementById('kpi-depo-lbl');
+    const nhtmcpLbl= document.getElementById('kpi-depo-nhtmcp-lbl');
+    const lendLbl  = document.getElementById('kpi-lend-lbl');
+    if (depoLbl)   depoLbl.textContent   = `Tiền gửi ${tName} Big 4 (%/năm)`;
+    if (nhtmcpLbl) nhtmcpLbl.textContent = `Tiền gửi ${tName} NHTMCP (%/năm)`;
+    if (lendLbl)   lendLbl.textContent   = `Cho vay ${tName} (%/năm)`;
+    const bondLbl = document.getElementById('kpi-bond-lbl');
+    if (bondLbl) bondLbl.textContent = `TP Chính phủ ${tName}`;
+    setKpi('kpi-depo',        depoT.toFixed(1)   + '%');
+    setKpi('kpi-depo-nhtmcp', depoNHT.toFixed(1) + '%');
+    setKpi('kpi-lend',        lendT.toFixed(1)   + '%');
+    setKpi('kpi-policy', SBV_POLICY[yi].toFixed(1) + '%');
+    setKpi('kpi-bond',   bondYld.toFixed(2) + '%');
+
+    // ── Lãi suất chart: Big4 deposit, NHTMCP deposit, lending — 10-pt window ──
+    if (__svgRefs['ecb-rates']) {
+      const isMo   = ratesView === 'monthly';
+      const curIdx = isMo ? ratesCardYiMo : yi;
+      // Annual: cap to RATES_MAX_YI (no forecast). Monthly: full 24 months.
+      const fullD  = isMo ? RATE_DEPO_T_MO[selectedTenor]      : years.slice(0, RATES_MAX_YI+1).map(i => RATE_DEPO_T[selectedTenor][i]);
+      const fullN  = isMo ? RATE_DEPO_NHTMCP_MO[selectedTenor] : years.slice(0, RATES_MAX_YI+1).map(i => RATE_DEPO_NHTMCP[selectedTenor][i]);
+      const fullL  = isMo ? RATE_LEND_T_MO[selectedTenor]      : years.slice(0, RATES_MAX_YI+1).map(i => RATE_LEND_T[selectedTenor][i]);
+      const fullLbls = isMo ? RATE_MONTHS : years.slice(0, RATES_MAX_YI+1).map(i => String(2010+i));
+      const WIN    = fullD.length; // fit chart exactly to data range
+      const end   = Math.min(curIdx + 1, fullD.length);
+      const start = Math.max(0, end - WIN);
+      const depoArr = fullD.slice(start, end);
+      const nhtArr  = fullN.slice(start, end);
+      const lendArr = fullL.slice(start, end);
+      const labels  = fullLbls.slice(start, end);
+      const n   = depoArr.length;
+      const bw2 = IW / WIN; // fixed width per slot so bars don't stretch when < 10
+      const maxR = Math.max(...depoArr, ...nhtArr, ...lendArr) * 1.15 || 1;
+      const scY2 = v => MT + IH - (v / maxR) * IH;
+      let html = '';
+      for (let g = 0; g <= 4; g++) {
+        const yy = MT + IH * g / 4;
+        html += `<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="rgba(42,58,85,0.35)" stroke-width="1"/>`;
+        html += `<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="9" fill="#64748b">${(maxR*(1-g/4)).toFixed(1)}%</text>`;
+      }
+      html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      [['#22c55e',depoArr],['#f59e0b',nhtArr],['#ef4444',lendArr]].forEach(([col,data]) => {
+        let p=''; data.forEach((v,i) => { const px=ML+i*bw2+bw2/2, py=scY2(v); p+=(i===0?`M${px},${py}`:`L${px},${py}`); });
+        html += `<path d="${p}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+      });
+      // Marker at last (current) point with halo
+      const li = n - 1;
+      const lastX = ML+li*bw2+bw2/2;
+      [['#22c55e',depoArr[li]],['#f59e0b',nhtArr[li]],['#ef4444',lendArr[li]]].forEach(([col,v]) => {
+        html += `<circle cx="${lastX.toFixed(1)}" cy="${scY2(v).toFixed(1)}" r="4" fill="${col}" stroke="#0a0e1a" stroke-width="1.5"/>`;
+      });
+      // X labels: every 2-3 ticks for readability
+      const labelStep = n > 15 ? 3 : (n > 8 ? 2 : 1);
+      labels.forEach((lbl,i) => { if (i%labelStep===0 || i===n-1) html += `<text x="${(ML+i*bw2+bw2/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${lbl}</text>`; });
+      // Legend
+      html += `<rect x="${ML}" y="2" width="14" height="4" fill="#22c55e" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">TG Big4 ${tName}</text>`;
+      html += `<rect x="${ML+92}" y="2" width="14" height="4" fill="#f59e0b" rx="1.5"/><text x="${ML+110}" y="8" font-size="10" fill="#94a3b8">TG NHTMCP</text>`;
+      html += `<rect x="${ML+180}" y="2" width="14" height="4" fill="#ef4444" rx="1.5"/><text x="${ML+198}" y="8" font-size="10" fill="#94a3b8">Cho vay</text>`;
+      __svgRefs['ecb-rates'].innerHTML = html;
+    }
+
+    // ── Trái phiếu chart: TCV policy rate + bond yield — 10-pt window ──
+    if (__svgRefs['ecb-bonds']) {
+      const isMo   = bondView === 'monthly';
+      const curIdx = isMo ? ratesCardYiMo : yi;
+      const fullBond   = isMo ? SBV_POLICY_MO.map((p,i) => p + BOND_SPREAD[selectedTenor])
+                               : years.slice(0, RATES_MAX_YI+1).map(i => SBV_POLICY[i] + BOND_SPREAD[selectedTenor]);
+      const fullPolicy = isMo ? SBV_POLICY_MO : years.slice(0, RATES_MAX_YI+1).map(i => SBV_POLICY[i]);
+      const fullLbls   = isMo ? RATE_MONTHS : years.slice(0, RATES_MAX_YI+1).map(i => String(2010+i));
+      const WIN    = fullBond.length;
+      const end   = Math.min(curIdx + 1, fullBond.length);
+      const start = Math.max(0, end - WIN);
+      const bondArr   = fullBond.slice(start, end);
+      const policyArr = fullPolicy.slice(start, end);
+      const labels    = fullLbls.slice(start, end);
+      const n   = bondArr.length;
+      const bw2 = IW / WIN;
+      const maxR = Math.max(...bondArr, ...policyArr) * 1.2 || 1;
+      const scY  = v => MT + IH - (v / maxR) * IH;
+      let html = '';
+      for (let g = 0; g <= 4; g++) {
+        const yy = MT + IH * g / 4;
+        html += `<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="rgba(42,58,85,0.35)" stroke-width="1"/>`;
+        html += `<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="9" fill="#64748b">${(maxR*(1-g/4)).toFixed(1)}%</text>`;
+      }
+      html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+      [['#3b82f6',bondArr],['#ef4444',policyArr]].forEach(([col,data]) => {
+        let p=''; data.forEach((v,i) => { const px=ML+i*bw2+bw2/2, py=scY(v); p+=(i===0?`M${px},${py}`:`L${px},${py}`); });
+        html += `<path d="${p}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+      });
+      const li = n - 1;
+      const lastX = ML+li*bw2+bw2/2;
+      [['#3b82f6',bondArr[li]],['#ef4444',policyArr[li]]].forEach(([col,v]) => {
+        html += `<circle cx="${lastX.toFixed(1)}" cy="${scY(v).toFixed(1)}" r="4" fill="${col}" stroke="#0a0e1a" stroke-width="1.5"/>`;
+      });
+      const labelStep = n > 15 ? 3 : (n > 8 ? 2 : 1);
+      labels.forEach((lbl,i) => { if (i%labelStep===0 || i===n-1) html += `<text x="${(ML+i*bw2+bw2/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${lbl}</text>`; });
+      html += `<rect x="${ML}" y="2" width="14" height="4" fill="#3b82f6" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">TP ${tName}</text>`;
+      html += `<rect x="${ML+64}" y="2" width="14" height="4" fill="#ef4444" rx="1.5"/><text x="${ML+82}" y="8" font-size="10" fill="#94a3b8">LS TCV</text>`;
+      __svgRefs['ecb-bonds'].innerHTML = html;
+    }
+  }
+
+  if (cardId==='macro') {
+    const cpiArr=CPI_YOY.slice(0,20), maxM2=Math.max(...M2)*1.1, maxCpi=Math.max(...cpiArr)*1.2;
+    const mUid='m'+Math.random().toString(36).slice(2,7);
+    let html=`<defs><linearGradient id="${mUid}_b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ec4899" stop-opacity="0.9"/><stop offset="100%" stop-color="#ec4899" stop-opacity="0.25"/></linearGradient></defs>`;
+    for(let g=1;g<=4;g++){const yy=MT+IH*g/4;html+=`<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;if(g<4)html+=`<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxM2*(1-g/4),0)}</text>`;}
+    html+=`<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/><line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+    M2.forEach((v,i)=>{const bh=(v/maxM2)*IH,x=ML+i*BCW+BCW*0.15,y=MT+IH-bh,bw=BCW*0.7,isAct=i===yi;html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${isAct?'#ec4899':'url(#'+mUid+'_b)'}" rx="1.5"/>`;if(isAct)html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="2" fill="#f472b6" rx="1"/>`;});
+    let p='';cpiArr.forEach((v,i)=>{const px=ML+i*BCW+BCW/2,py=MT+IH-(v/maxCpi)*IH;p+=(i===0?`M${px},${py}`:`L${px},${py}`);});
+    html+=`<path d="${p}" fill="none" stroke="#ef4444" stroke-width="1.8"/>`;
+    html+=`<circle cx="${ML+yi*BCW+BCW/2}" cy="${MT+IH-(cpiArr[yi]/maxCpi)*IH}" r="3.5" fill="#ef4444" stroke="#0a0e1a" stroke-width="1.5"/>`;
+    years.forEach(i=>{if(i%3===0)html+=`<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`;});
+    html+=`<rect x="${ML}" y="2" width="14" height="4" fill="#ec4899" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">M2</text><line x1="${ML+44}" y1="4" x2="${ML+58}" y2="4" stroke="#ef4444" stroke-width="2.5"/><text x="${ML+62}" y="8" font-size="10" fill="#94a3b8">CPI %</text>`;
+    if(__svgRefs['ecb-macro'])__svgRefs['ecb-macro'].innerHTML=html;
+    const fxVal=liveUSDVND&&yi>=14?liveUSDVND:FX_USD[Math.min(yi,19)];
+    setKpi('kpi-fx',fmtNum(fxVal,0));
+    setKpi('kpi-fx-chg',(yi>0?((fxVal/FX_USD[Math.min(yi-1,19)])-1)*100:0).toFixed(1)+'%');
+    setKpi('kpi-cpi',CPI_YOY[yi].toFixed(2)+'%'); setKpi('kpi-reserves',FX_RESERVES[Math.min(yi,19)].toFixed(1)+' tỷ');
+    setKpi('kpi-m2',fmtNum(M2[yi],0)); setKpi('kpi-m1',fmtNum(M1[yi],0));
+  }
+
+}
+
+// ============================================================
+// BUBBLE / CORRELATION CHART
+// ============================================================
+function getMetric(p, yi, metric) {
+  const e = calcEcon([p], yi);
+  switch(metric) {
+    case 'gdppc': return e.gdppc;
+    case 'grdp': return e.grdp;
+    case 'fdiReg': return e.fdiReg;
+    case 'exportVal': return e.exportVal;
+    case 'unemp': return e.unemp;
+    case 'biz': return e.biz;
+    case 'tax': return e.taxSum;
+    case 'income': return e.income;
+    case 'invest': return e.invest;
+    case 'pop': return e.popSum;
+    default: return 0;
+  }
+}
+
+function renderBubble(yi) {
+  const _yc=document.getElementById('yr-corr'); if(_yc) _yc.textContent=getYear(yi);
+  const svg = document.getElementById('bubble-svg');
+  const wrap = document.getElementById('bubble-wrap');
+  const W = wrap.clientWidth||600, H = wrap.clientHeight||300;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+
+  const xMetric = document.getElementById('bub-x').value;
+  const yMetric = document.getElementById('bub-y').value;
+  const szMetric = document.getElementById('bub-sz').value;
+
+  const MT=30,MB=30,ML=50,MR=20,IW=W-ML-MR,IH=H-MT-MB;
+
+  // compute all data
+  const pts = PROVS.map(p => ({
+    p, x:getMetric(p,yi,xMetric), y:getMetric(p,yi,yMetric), sz:getMetric(p,yi,szMetric)
+  }));
+  const maxX=Math.max(...pts.map(d=>d.x))*1.1||1;
+  const maxY=Math.max(...pts.map(d=>d.y))*1.1||1;
+  const maxSz=Math.max(...pts.map(d=>d.sz))||1;
+  const scX = v => ML + (v/maxX)*IW;
+  const scY = v => MT + IH - (v/maxY)*IH;
+  const scR = v => Math.sqrt(v/maxSz)*28+5;
+
+  // Ghost trails
+  let html = '';
+  // Year watermark
+  html+=`<text x="${W/2}" y="${H/2+20}" text-anchor="middle" font-size="${H*0.4}" fill="rgba(255,255,255,0.02)" font-weight="900">${2010+yi}</text>`;
+
+  // Grid
+  for(let g=0;g<=4;g++){
+    const yy=MT+g*IH/4;
+    html+=`<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="#1a2235" stroke-width="1"/>`;
+    const val=maxY*(1-g/4);
+    html+=`<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="8" fill="#475569">${fmtNum(val,0)}</text>`;
+  }
+  for(let g=0;g<=4;g++){
+    const xx=ML+g*IW/4;
+    html+=`<line x1="${xx}" y1="${MT}" x2="${xx}" y2="${MT+IH}" stroke="#1a2235" stroke-width="1"/>`;
+    const val=maxX*g/4;
+    html+=`<text x="${xx}" y="${MT+IH+12}" text-anchor="middle" font-size="8" fill="#475569">${fmtNum(val,0)}</text>`;
+  }
+  html+=`<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1.5"/>`;
+  html+=`<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1.5"/>`;
+
+  // Ghost trails (last 5 years)
+  PROVS.forEach(p => {
+    for(let g=1;g<=5&&yi-g>=0;g++){
+      const gx=getMetric(p,yi-g,xMetric), gy=getMetric(p,yi-g,yMetric);
+      const alpha=0.1*(6-g)/5;
+      html+=`<circle cx="${scX(gx)}" cy="${scY(gy)}" r="3" fill="${VCOL[p.v]}" opacity="${alpha}"/>`;
+    }
+  });
+
+  // Bubbles
+  // Sort by sz desc so small ones on top
+  const sorted = [...pts].sort((a,b)=>b.sz-a.sz);
+  sorted.forEach(({p,x,y,sz}) => {
+    const cx=scX(x), cy=scY(y), r=scR(sz);
+    const isForecast=yi>=15;
+    const col=VCOL[p.v];
+    const isSelected=(selType==='p'&&parseInt(selKey)===p.id)||(selType==='v'&&parseInt(selKey)===p.v)||(selType==='all');
+    html+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}" fill="${col}" opacity="${isSelected?0.75:0.25}" ${isForecast?`stroke="${col}" stroke-width="1" stroke-dasharray="3,2"`:''}/>`;
+    if(r>15){
+      html+=`<text x="${cx.toFixed(1)}" y="${(cy+3).toFixed(1)}" text-anchor="middle" font-size="${Math.min(10,r*0.55)}" fill="white" font-weight="600">${p.n.split(' ')[0]}</text>`;
+    }
+  });
+
+  svg.innerHTML = html;
+
+  // Pearson r
+  const xs=pts.map(d=>d.x), ys=pts.map(d=>d.y);
+  const mx=xs.reduce((a,b)=>a+b,0)/xs.length, my=ys.reduce((a,b)=>a+b,0)/ys.length;
+  const num=xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0);
+  const den=Math.sqrt(xs.reduce((s,x)=>s+(x-mx)**2,0)*ys.reduce((s,y)=>s+(y-my)**2,0));
+  const r=den>0?(num/den).toFixed(2):'N/A';
+  const rEl = svg.ownerDocument.createElementNS('http://www.w3.org/2000/svg','text');
+  rEl.setAttribute('x',W-MR-5); rEl.setAttribute('y',MT-5);
+  rEl.setAttribute('text-anchor','end'); rEl.setAttribute('font-size','10');
+  rEl.setAttribute('fill','#94a3b8'); rEl.textContent=`r = ${r}`;
+  svg.appendChild(rEl);
+}
+
+function updateScatterCharts() {
+  const provList = getProvList();
+  const YEARS = Array.from({length:20},(_,i)=>i);
+  const QUALITY_COLS = ['#3b82f6','#f59e0b','#a855f7'];
+  const getQC = yi => yi<=13?QUALITY_COLS[0]:(yi===14?QUALITY_COLS[1]:QUALITY_COLS[2]);
+
+  const presets = [
+    {id:'sc-fdi-xk', xF:e=>e.fdiReg, yF:e=>e.exportVal},
+    {id:'sc-grdp-tax', xF:e=>e.grdp, yF:e=>e.taxSum},
+    {id:'sc-gdppc-inc', xF:e=>e.gdppc, yF:e=>e.income},
+    {id:'sc-growth-biz', xF:e=>e.growth, yF:e=>e.biz},
+  ];
+
+  presets.forEach(({id,xF,yF}) => {
+    const svg = document.getElementById(id);
+    if (!svg) return;
+    const W=svg.clientWidth||200, H=svg.clientHeight||130;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const pts = YEARS.map(yi => {const e=calcEcon(provList,yi);return {xi:xF(e),yi:yF(e),qi:yi};});
+    const maxX=Math.max(...pts.map(p=>p.xi))*1.1||1, maxY=Math.max(...pts.map(p=>p.yi))*1.1||1;
+    const minX=Math.min(...pts.map(p=>p.xi));
+    const MT=8,MB=12,ML=22,MR=6,IW=W-ML-MR,IH=H-MT-MB;
+    const scX=v=>ML+(v-minX)/(maxX-minX+0.001)*IW;
+    const scY=v=>MT+IH-(v/maxY)*IH;
+    let html='';
+    html+=`<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+    html+=`<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+    // path
+    let path='';
+    pts.forEach((pt,i)=>{const px=scX(pt.xi),py=scY(pt.yi);path+=(i===0?`M${px},${py}`:`L${px},${py}`);});
+    html+=`<path d="${path}" fill="none" stroke="#334155" stroke-width="0.8"/>`;
+    // dots
+    pts.forEach(pt=>{
+      html+=`<circle cx="${scX(pt.xi).toFixed(1)}" cy="${scY(pt.yi).toFixed(1)}" r="3" fill="${getQC(pt.qi)}"/>`;
+    });
+    // regression line
+    const n=pts.length;
+    const smx=pts.reduce((s,p)=>s+p.xi,0)/n, smy=pts.reduce((s,p)=>s+p.yi,0)/n;
+    const m=pts.reduce((s,p)=>s+(p.xi-smx)*(p.yi-smy),0)/Math.max(0.001,pts.reduce((s,p)=>s+(p.xi-smx)**2,0));
+    const b=smy-m*smx;
+    const lx1=minX, lx2=maxX*0.98;
+    html+=`<line x1="${scX(lx1).toFixed(1)}" y1="${scY(m*lx1+b).toFixed(1)}" x2="${scX(lx2).toFixed(1)}" y2="${scY(m*lx2+b).toFixed(1)}" stroke="#f59e0b" stroke-width="0.8" stroke-dasharray="3,2"/>`;
+    svg.innerHTML = html;
+  });
+}
+
+// ============================================================
+// PLAY CONTROLS
+// ============================================================
+// Each card has its OWN year index (independent)
+const cardYi = { grdp:0, budget:0, fdi:0, labour:0, rates:0, macro:0 };
+let ratesCardYiMo = 23; // monthly index, default = last month (Dec 2024)
+let cardControlsInited = false;
+
+function syncOneCard(cid, yi) {
+  const sl = document.getElementById(`sl-card-${cid}`);
+  const yr = document.getElementById(`yr-card-${cid}`);
+  const qb = document.getElementById(`qb-card-${cid}`);
+  const pn = document.getElementById(`pn-card-${cid}`);
+  if (sl) sl.value = yi;
+  if (yr) yr.textContent = getYear(yi);
+  const q = cid === 'rates' ? getRatesQuality(yi) : getQuality(yi);
+  if (qb) { qb.textContent = q; qb.className = `quality-badge badge-${q}`; }
+  if (pn) { pn.textContent = (cid !== 'rates' && yi >= 15) ? '★ dự báo' : ''; }
+}
+
+function syncCardControls(yi) {
+  // Sync all cards to the same year (used on initial render)
+  Object.keys(cardYi).forEach(cid => {
+    cardYi[cid] = yi;
+    syncOneCard(cid, yi);
+  });
+}
+
+function initCardControls() {
+  if (cardControlsInited) return; // ← prevent duplicate listeners
+  cardControlsInited = true;
+
+  const CARDS = ['grdp','budget','fdi','labour','rates','macro'];
+  CARDS.forEach(cid => {
+    const sl = document.getElementById(`sl-card-${cid}`);
+    const pb = document.getElementById(`pb-card-${cid}`);
+
+    if (sl) sl.addEventListener('input', () => {
+      if (cardTimers[cid]) { clearInterval(cardTimers[cid]); delete cardTimers[cid]; }
+      const pb2 = document.getElementById(`pb-card-${cid}`);
+      if (pb2) pb2.textContent = '▶';
+      if (cid === 'rates') {
+        const isMo = (activeRatesTab==='rate' ? ratesView : bondView) === 'monthly';
+        if (isMo) {
+          ratesCardYiMo = parseInt(sl.value);
+          const yr = document.getElementById('yr-card-rates');
+          if (yr) yr.textContent = RATE_MONTHS[ratesCardYiMo];
+        } else {
+          cardYi[cid] = parseInt(sl.value);
+          syncOneCard(cid, cardYi[cid]);
+        }
+        updateSpecialCharts(cid, cardYi[cid]);
+      } else {
+        cardYi[cid] = parseInt(sl.value);
+        syncOneCard(cid, cardYi[cid]);
+        updateSpecialCharts(cid, cardYi[cid]);
+      }
+    });
+
+    if (pb) pb.addEventListener('click', () => {
+      if (cardTimers[cid]) {
+        clearInterval(cardTimers[cid]);
+        delete cardTimers[cid];
+        pb.textContent = '▶';
+        return;
+      }
+      pb.textContent = '⏸';
+      if (cid === 'rates') {
+        const isMo = () => (activeRatesTab==='rate' ? ratesView : bondView) === 'monthly';
+        cardTimers[cid] = setInterval(() => {
+          const mo = isMo();
+          const annualMax = RATES_MAX_YI;
+          if (mo) {
+            ratesCardYiMo = (ratesCardYiMo + 1) % 24;
+            const sl2 = document.getElementById('sl-card-rates');
+            const yr  = document.getElementById('yr-card-rates');
+            if (sl2) sl2.value = ratesCardYiMo;
+            if (yr)  yr.textContent = RATE_MONTHS[ratesCardYiMo];
+          } else {
+            cardYi[cid] = (cardYi[cid] + 1) % (annualMax + 1);
+            syncOneCard(cid, cardYi[cid]);
+          }
+          updateSpecialCharts(cid, cardYi[cid]);
+        }, 700);
+      } else {
+        cardTimers[cid] = setInterval(() => {
+          cardYi[cid] = (cardYi[cid] + 1) % 20;
+          syncOneCard(cid, cardYi[cid]);
+          updateSpecialCharts(cid, cardYi[cid]);
+        }, 700);
+      }
+    });
+  });
+}
+
+// ============================================================
+// REFRESH & SWITCH TAB (legacy shim — kept for setSelection compatibility)
+// ============================================================
+function refresh() {
+  renderDemoPyramid(curYi);
+  renderStudent(curYi2);
+  if (activeBottomTab === 'econ' && econReady) updateSpecialCharts('all', 0);
+  if (activeBottomTab === 'corr') { renderBubble(animYi); updateScatterCharts(); }
+}
+
+// ============================================================
+// LIVE DATA FETCH
+// ============================================================
+async function tryLiveFetch() {
+  // Prefer local backend snapshot (vnstock-powered, refreshed daily @15:30)
+  try {
+    const r = await fetch('/api/snapshot');
+    if (r.ok) {
+      const d = await r.json();
+      if (d.fx && d.fx.USD_VND) {
+        liveUSDVND = d.fx.USD_VND;
+        (document.getElementById('fx-live-badge')||{}).textContent='● LIVE FX ('+d.fx.source+')';
+      }
+      if (d.rates && d.rates.sbv_policy) {
+        liveBondYields = d.rates.sbv_policy;
+        (document.getElementById('bond-live-badge')||{}).textContent='● LIVE SBV';
+      }
+      if (d.indices && Object.keys(d.indices).length) {
+        const hdr = document.querySelector('#header');
+        const vn = d.indices.VNINDEX, hnx = d.indices.HNXINDEX;
+        let txt = '';
+        if (vn) txt += ` VN-Index ${vn.close.toFixed(2)}`;
+        if (hnx) txt += ` · HNX ${hnx.close.toFixed(2)}`;
+        if (txt && hdr) {
+          let chip = document.getElementById('indices-chip');
+          if (!chip) {
+            chip = document.createElement('span');
+            chip.id = 'indices-chip';
+            chip.className = 'hbadge';
+            chip.style.color = 'var(--accent2)';
+            hdr.insertBefore(chip, document.getElementById('fx-live-badge'));
+          }
+          chip.textContent = txt.trim();
+        }
+      }
+      if (econReady) updateSpecialCharts('all', 0);
+      return;
+    }
+  } catch(e) { /* fall through to public APIs */ }
+
+  // FX
+  try {
+    const r = await fetch('https://open.er-api.com/v6/latest/USD');
+    const d = await r.json();
+    if (d && d.rates && d.rates.VND) {
+      liveUSDVND = d.rates.VND;
+      (document.getElementById('fx-live-badge')||{}).textContent='● LIVE FX';
+    }
+  } catch(e) {
+    try {
+      const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=VND');
+      const d = await r.json();
+      if (d && d.rates && d.rates.VND) {
+        liveUSDVND = d.rates.VND;
+        (document.getElementById('fx-live-badge')||{}).textContent='● LIVE FX';
+      }
+    } catch(e2) { /* use static */ }
+  }
+
+  // Bond yields
+  try {
+    const r = await fetch('https://api.worldbank.org/v2/country/VN/indicator/FR.INR.LEND?format=json&mrv=1');
+    const d = await r.json();
+    if (d && d[1] && d[1][0] && d[1][0].value) {
+      liveBondYields = d[1][0].value;
+      (document.getElementById('bond-live-badge')||{}).textContent='● LIVE Bond';
+    }
+  } catch(e) { /* use static */ }
+
+  if (econReady) updateSpecialCharts('all', 0);
+}
+
+// ============================================================
+// EVENT WIRING
+// ============================================================
+
+// Top tab row (Dân số / Học sinh) — always visible, independent active state
+let activeBottomTab = 'econ';
+
+
+function switchBottomTab(tab) {
+  activeBottomTab = tab;
+  document.querySelectorAll('#tabs-bottom .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  ['econ','corr','banks'].forEach(t => {
+    const p = document.getElementById(`panel-${t}`);
+    if (!p) return;
+    p.style.display = '';
+    p.classList.toggle('active', t === tab);
+  });
+
+  if (tab === 'econ') {
+    if (!econReady) { econReady = true; }
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      initSpecialCharts();
+      initCardControls();
+      Object.keys(cardYi).forEach(cid => syncOneCard(cid, cardYi[cid]));
+      updateSpecialCharts('all', 0);
+      setTimeout(tryLiveFetch, 300);
+    }));
+  } else if (tab === 'corr') {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      renderBubble(animYi);
+      updateScatterCharts();
+    }));
+  } else if (tab === 'banks') {
+    requestAnimationFrame(() => requestAnimationFrame(loadBanks));
+  }
+}
+
+// ============================================================
+// BANKING SYSTEM TAB
+// ============================================================
+const BANK_DATA = { year: null, quarter: null };
+let bkPeriod  = 'year';          // 'year' | 'quarter'
+let bkSortKey = 'assets', bkSortDir = -1;
+
+const BANK_COLORS = ['#00d4ff','#f97316','#22c55e','#a855f7','#ef4444','#fbbf24','#3b82f6'];
+
+let BANK_BREAKDOWN = null;
+let BANK_STATEMENTS = null;
+async function loadBanks() {
+  const cur = BANK_DATA[bkPeriod];
+  if (!cur) {
+    try {
+      const r = await fetch('/api/banks?period=' + bkPeriod);
+      const d = await r.json();
+      BANK_DATA[bkPeriod] = d;
+    } catch(e) { BANK_DATA[bkPeriod] = {rows: [], period_summary: {}}; }
+  }
+  if (!BANK_BREAKDOWN) {
+    try {
+      const r = await fetch('/api/banks/breakdown');
+      BANK_BREAKDOWN = await r.json();
+    } catch(e) { BANK_BREAKDOWN = null; }
+  }
+  if (!BANK_STATEMENTS) {
+    try {
+      const r = await fetch('/api/banks/statements');
+      BANK_STATEMENTS = await r.json();
+    } catch(e) { BANK_STATEMENTS = null; }
+  }
+  renderBanks();
+  renderBreakdowns();
+  renderStatements();
+}
+
+function renderStatements() {
+  if (!BANK_STATEMENTS) return;
+  const S = BANK_STATEMENTS;
+  // BS already rendered via drawDonut + drawBSList; swap lists to the statement version
+  drawDonut('bk-bs-assets-donut', S.balance_sheet.assets, 'Tài sản');
+  drawBSListClickable('bk-bs-assets-list', S.balance_sheet.assets);
+  drawDonut('bk-bs-leq-donut', S.balance_sheet.liab_equity, 'Nợ & VCSH');
+  drawBSListClickable('bk-bs-leq-list', S.balance_sheet.liab_equity);
+  // Income Statement
+  drawISList('bk-is-list', S.income_statement, S.totals.toi);
+}
+
+// Format VND tỷ
+function fmtVndTy(v) {
+  if (v == null) return '—';
+  const abs = Math.abs(v);
+  if (abs >= 1e6) return (v/1e6).toFixed(2) + 'M';
+  if (abs >= 1e3) return (v/1e3).toFixed(1) + 'K';
+  return Math.round(v).toLocaleString('en-US');
+}
+
+// Inline mini bar chart (inline SVG string, 6 bars showing history)
+function inlineBarsSvg(history, color, periods) {
+  if (!history || !history.length) return '';
+  const abs = history.map(v => Math.abs(v));
+  const mn = Math.min(...abs), mx = Math.max(...abs);
+  const range = mx - mn || mx * 0.15 || 1;
+  const yMin = Math.max(0, mn - range * 0.25);
+  const yMax = mx + range * 0.10;
+  const n = history.length, gap = 1;
+  const W = 56, H = 22; // logical coords scaled by CSS
+  const bw = Math.max(2, (W - gap*(n+1)) / n);
+  let svg = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`;
+  history.forEach((v, i) => {
+    const bh = ((Math.abs(v) - yMin)/(yMax - yMin)) * (H - 2);
+    const x = gap + i*(bw + gap);
+    const y = H - Math.max(1, bh) - 1;
+    const isLast = i === n-1;
+    const lbl = periods ? periods[i] : ('#'+(i+1));
+    const vTxt = typeof v === 'number' ? (Math.abs(v)>=1000 ? (v/1000).toFixed(1)+'K' : v.toFixed(1)) : v;
+    const tipData = `${lbl}|Giá trị: ${vTxt}`;
+    svg += `<rect class="bk-bar" data-tip="${tipData}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${color}" opacity="${isLast ? 1 : 0.5}" rx="1"/>`;
+  });
+  svg += `</svg>`;
+  return svg;
+}
+
+// BS list with VND values + click-to-drill + inline 6-period bars
+function drawBSListClickable(containerId, items) {
+  const el = document.getElementById(containerId);
+  if (!el || !items) return;
+  const mx = Math.max(...items.map(d => d.pct)) || 1;
+  const periods = (BANK_STATEMENTS && BANK_STATEMENTS.periods) || [];
+  const groups = {};
+  items.forEach(d => {
+    const g = d.group || '';
+    if (!groups[g]) groups[g] = [];
+    groups[g].push(d);
+  });
+  let html = '';
+  Object.keys(groups).forEach(g => {
+    if (g) html += `<div class="bk-bs-group">${g}</div>`;
+    groups[g].forEach(d => {
+      const pctBarW = (d.pct / mx) * 100;
+      const hasBd = !!d.breakdown;
+      const clickAttrs = hasBd ? `class="bk-bs-row clickable" data-item="${d.breakdown}"` : `class="bk-bs-row"`;
+      const tipData = `${d.name}|${fmtVndTy(d.value)} tỷ VND · ${d.pct.toFixed(1)}%${d.note ? '|' + d.note : ''}${hasBd ? '|→ Click để xem cơ cấu' : ''}`;
+      const bars = inlineBarsSvg(d.history, d.color, periods);
+      html += `<div ${clickAttrs} data-tip="${tipData}">
+        <span class="bk-bs-dot" style="background:${d.color}"></span>
+        <div>
+          <div class="bk-bs-name">${d.name}</div>
+          ${d.note ? `<div class="bk-bs-note">${d.note}</div>` : ''}
+          <div class="bk-bs-bar-wrap"><div class="bk-bs-bar" style="width:${pctBarW.toFixed(1)}%;background:${d.color}"></div></div>
+        </div>
+        <div class="bk-inline-chart" title="6 kỳ gần nhất">${bars}</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:1px">
+          <span class="bk-bs-pct" style="color:${d.color};background:${d.color}22">${fmtVndTy(d.value)}</span>
+          <span style="font-size:9px;color:var(--text3);font-variant-numeric:tabular-nums">${d.pct.toFixed(1)}%</span>
+        </div>
+      </div>`;
+    });
+  });
+  el.innerHTML = html;
+}
+
+// Income Statement list — hierarchical + inline 6-period bar chart
+function drawISList(containerId, items, toi) {
+  const el = document.getElementById(containerId);
+  if (!el || !items) return;
+  const periods = (BANK_STATEMENTS && BANK_STATEMENTS.periods) || [];
+  let html = '';
+  items.forEach(d => {
+    const pct = toi > 0 ? (Math.abs(d.value)/toi*100) : 0;
+    const hasBd = !!d.breakdown;
+    const clickCls = hasBd ? ' clickable' : '';
+    const levelCls = d.subtotal ? ' subtotal' : (d.level === 1 ? ' level-1' : '');
+    const dataItem = hasBd ? ` data-item="${d.breakdown}"` : '';
+    const tipData = `${d.name}|${fmtVndTy(d.value)} tỷ VND · ${pct.toFixed(1)}% TOI${hasBd ? '|→ Click để xem cơ cấu' : ''}`;
+    const color = d.section === 'cost' ? '#ef4444' : (d.section === 'profit' && d.subtotal ? '#00d4ff' : '#22c55e');
+    const bars = inlineBarsSvg(d.history, color, periods);
+    html += `<div class="bk-is-row ${d.section}${levelCls}${clickCls}"${dataItem} data-tip="${tipData}">
+      <span class="bk-is-name">${d.name}</span>
+      <div class="bk-inline-chart">${bars}</div>
+      <span class="bk-is-value">${d.value >= 0 ? '+' : ''}${fmtVndTy(d.value)}</span>
+      <span class="bk-is-pct">${pct.toFixed(1)}%</span>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderBreakdowns() {
+  if (!BANK_BREAKDOWN) return;
+  const L = BANK_BREAKDOWN.lending, F = BANK_BREAKDOWN.funding, B = BANK_BREAKDOWN.balance_sheet;
+  drawDonut('bk-lend-sector', L.sector, 'Dư nợ theo ngành');
+  drawHStack('bk-lend-tenor',    L.tenor);
+  drawHStack('bk-lend-customer', L.customer);
+  drawHStack('bk-lend-currency', L.currency);
+  drawDonut('bk-fund-source', F.source, 'Huy động theo nguồn');
+  drawHStack('bk-fund-tenor',    F.tenor);
+  drawHStack('bk-fund-customer', F.customer);
+  drawHStack('bk-fund-currency', F.currency);
+  if (B) {
+    drawDonut('bk-bs-assets-donut', B.assets, 'Tài sản');
+    drawBSList('bk-bs-assets-list', B.assets);
+    drawDonut('bk-bs-leq-donut',     B.liab_equity, 'Nợ & VCSH');
+    drawBSList('bk-bs-leq-list',     B.liab_equity);
+  }
+}
+
+// Detailed balance-sheet line-item list with in-row bar
+function drawBSList(containerId, items) {
+  const el = document.getElementById(containerId);
+  if (!el || !items) return;
+  const mx = Math.max(...items.map(d => d.pct)) || 1;
+  // Group by `group` property if present (for L+E), else flat
+  const groups = {};
+  items.forEach(d => {
+    const g = d.group || '';
+    if (!groups[g]) groups[g] = [];
+    groups[g].push(d);
+  });
+  const keys = Object.keys(groups);
+  let html = '';
+  keys.forEach(g => {
+    if (g) html += `<div class="bk-bs-group">${g}</div>`;
+    groups[g].forEach(d => {
+      const pctBarW = (d.pct / mx) * 100;
+      const tipData = `${d.name}|Tỷ trọng: ${d.pct.toFixed(1)}%${d.note ? '|' + d.note : ''}`;
+      html += `<div class="bk-bs-row bk-bar" data-tip="${tipData}">
+        <span class="bk-bs-dot" style="background:${d.color}"></span>
+        <div>
+          <div class="bk-bs-name">${d.name}</div>
+          ${d.note ? `<div class="bk-bs-note">${d.note}</div>` : ''}
+          <div class="bk-bs-bar-wrap"><div class="bk-bs-bar" style="width:${pctBarW.toFixed(1)}%;background:${d.color}"></div></div>
+        </div>
+        <span class="bk-bs-pct" style="color:${d.color};background:${d.color}22">${d.pct.toFixed(1)}%</span>
+      </div>`;
+    });
+  });
+  el.innerHTML = html;
+}
+
+// Donut chart with side legend
+function drawDonut(containerId, data, title) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const rect = el.getBoundingClientRect();
+  const W = rect.width || 320, H = rect.height || 250;
+  if (!data || !data.length) { el.innerHTML = ''; return; }
+  const chartSize = Math.min(W * 0.55, H - 20);
+  const cx = chartSize / 2 + 10;
+  const cy = H / 2;
+  const rOut = chartSize / 2 - 4;
+  const rIn  = rOut * 0.58;
+
+  const total = data.reduce((s, d) => s + d.pct, 0) || 1;
+  let acc = 0;
+  let html = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">`;
+
+  // Arcs
+  data.forEach((d, i) => {
+    const start = (acc / total) * Math.PI * 2 - Math.PI / 2;
+    const end   = ((acc + d.pct) / total) * Math.PI * 2 - Math.PI / 2;
+    acc += d.pct;
+    const large = (end - start) > Math.PI ? 1 : 0;
+    const x1 = cx + rOut * Math.cos(start), y1 = cy + rOut * Math.sin(start);
+    const x2 = cx + rOut * Math.cos(end),   y2 = cy + rOut * Math.sin(end);
+    const x3 = cx + rIn  * Math.cos(end),   y3 = cy + rIn  * Math.sin(end);
+    const x4 = cx + rIn  * Math.cos(start), y4 = cy + rIn  * Math.sin(start);
+    const path = `M${x1.toFixed(1)},${y1.toFixed(1)} A${rOut},${rOut} 0 ${large} 1 ${x2.toFixed(1)},${y2.toFixed(1)} L${x3.toFixed(1)},${y3.toFixed(1)} A${rIn},${rIn} 0 ${large} 0 ${x4.toFixed(1)},${y4.toFixed(1)} Z`;
+    const tipData = `${d.name}|Tỷ trọng: ${d.pct.toFixed(1)}%`;
+    html += `<path class="bk-bar" data-tip="${tipData}" d="${path}" fill="${d.color}" stroke="#0a0e1a" stroke-width="1"/>`;
+  });
+  // Center label
+  html += `<text x="${cx.toFixed(1)}" y="${(cy-4).toFixed(1)}" text-anchor="middle" font-size="10" fill="#64748b">Tổng</text>`;
+  html += `<text x="${cx.toFixed(1)}" y="${(cy+12).toFixed(1)}" text-anchor="middle" font-size="14" font-weight="700" fill="#e2e8f0">100%</text>`;
+
+  // Legend on right
+  const lx = cx + rOut + 20;
+  const maxItems = Math.min(data.length, Math.floor((H - 16) / 16));
+  const topItems = [...data].sort((a,b)=>b.pct-a.pct).slice(0, maxItems);
+  topItems.forEach((d, i) => {
+    const y = 10 + i * 16;
+    html += `<rect x="${lx}" y="${y-6}" width="9" height="9" fill="${d.color}" rx="1.5"/>`;
+    // Truncate name if too long
+    const maxNameW = W - lx - 50;
+    const name = d.name.length > Math.floor(maxNameW/5) ? d.name.substring(0, Math.floor(maxNameW/5)) + '…' : d.name;
+    html += `<text x="${lx+14}" y="${y+2}" font-size="10" fill="#94a3b8">${name}</text>`;
+    html += `<text x="${W-6}" y="${y+2}" text-anchor="end" font-size="10" font-weight="700" fill="${d.color}" font-variant-numeric="tabular-nums">${d.pct.toFixed(1)}%</text>`;
+  });
+  html += `</svg>`;
+  el.innerHTML = html;
+}
+
+// 100% horizontal stacked bar — for 2-5 categories
+function drawHStack(containerId, data) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const rect = el.getBoundingClientRect();
+  const W = rect.width || 400, H = rect.height || 38;
+  if (!data || !data.length) { el.innerHTML = ''; return; }
+  const total = data.reduce((s, d) => s + d.pct, 0) || 1;
+  const barH = 16;
+  const barY = 4;
+  const labelY = barY + barH + 12;
+
+  let html = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" width="100%" height="100%">`;
+  html += `<rect x="0" y="${barY}" width="${W}" height="${barH}" fill="var(--bg3)" rx="3"/>`;
+  let acc = 0;
+  data.forEach((d, i) => {
+    const w = (d.pct / total) * W;
+    const x = (acc / total) * W;
+    acc += d.pct;
+    const tipData = `${d.name}|Tỷ trọng: ${d.pct.toFixed(1)}%`;
+    html += `<rect class="bk-bar" data-tip="${tipData}" x="${x.toFixed(1)}" y="${barY}" width="${Math.max(0.5,w).toFixed(1)}" height="${barH}" fill="${d.color}" rx="${i===0||i===data.length-1?2:0}"/>`;
+    // In-bar % if wide enough
+    if (w > 32) {
+      html += `<text x="${(x+w/2).toFixed(1)}" y="${(barY+barH/2+3).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#0a0e1a" pointer-events="none">${d.pct.toFixed(1)}%</text>`;
+    }
+  });
+  // Legend below
+  const legendParts = data.map(d => ({w: d.name.length*5.5 + 24, d}));
+  const totalW = legendParts.reduce((s,p)=>s+p.w+6, 0);
+  let lx = Math.max(0, (W - totalW) / 2);
+  data.forEach((d, i) => {
+    html += `<rect x="${lx.toFixed(1)}" y="${(labelY-7).toFixed(1)}" width="10" height="4" fill="${d.color}" rx="1.5"/>`;
+    html += `<text x="${(lx+14).toFixed(1)}" y="${labelY.toFixed(1)}" font-size="10" fill="#94a3b8">${d.name}</text>`;
+    lx += legendParts[i].w + 6;
+  });
+  html += `</svg>`;
+  el.innerHTML = html;
+}
+
+function renderBanks() {
+  const data = BANK_DATA[bkPeriod];
+  if (!data) return;
+  const BANK_ROWS = data.rows || [];
+
+  // Period-summary footer (which labels served, with counts)
+  const sumEl = document.getElementById('bk-period-summary');
+  if (sumEl) {
+    const parts = Object.entries(data.period_summary || {}).sort().map(([k,v]) => `<b style="color:var(--accent)">${k}</b>: ${v} NH`);
+    sumEl.innerHTML = parts.length ? 'Dữ liệu dùng: ' + parts.join(' · ') : '—';
+  }
+  const tTitle = document.getElementById('bk-table-title');
+  if (tTitle) tTitle.textContent = bkPeriod === 'quarter' ? 'Quý mới nhất/NH' : 'FY2024';
+
+  // Toggle button styling
+  document.querySelectorAll('.bk-per-btn').forEach(b => {
+    const act = b.dataset.per === bkPeriod;
+    b.style.background = act ? 'rgba(0,212,255,0.15)' : 'var(--bg3)';
+    b.style.borderColor = act ? 'var(--accent)' : 'var(--border)';
+    b.style.color = act ? 'var(--accent)' : 'var(--text2)';
+  });
+
+  // ---- Industry aggregates (10 indicators × 6 periods) ----
+  const refLen = Math.max(...BANK_ROWS.map(r => (r.history||[]).length));
+  const perLabels = [];
+  BANK_ROWS.forEach(r => {
+    (r.history||[]).forEach((h, i) => { if (!perLabels[i] || (h && h.period)) perLabels[i] = h.period; });
+  });
+  // Build per-period aggregates: sums for scale metrics, weighted avgs for ratios
+  const agg = {
+    assets: [], equity: [], loans: [], deposits: [],
+    nim: [], roa: [], roe: [], npl: [], car: [], cir: [], ldr: [], ccov: [],
+  };
+  for (let i = 0; i < refLen; i++) {
+    let sA=0, sE=0, sL=0, sD=0;
+    // Ratio aggregates use weighted avg by assets (or loans for NPL, equity for ROE)
+    let wNIM=0, wROA=0, wROE=0, wNPL=0, wCAR=0, wCIR=0, wLDR=0, wCCOV=0;
+    let tA_nim=0, tA_roa=0, tE=0, tL=0, tA_car=0, tTOI=0, tD_ldr=0, tNPL_abs=0;
+    BANK_ROWS.forEach(r => {
+      const h = (r.history||[])[i];
+      if (!h) return;
+      sA += h.assets||0; sE += h.equity||0; sL += h.loans||0; sD += h.deposits||0;
+      // Weighted avgs
+      if (h.nim != null)  { wNIM += h.nim * h.assets;  tA_nim += h.assets; }
+      if (h.roa != null)  { wROA += h.roa * h.assets;  tA_roa += h.assets; }
+      if (h.roe != null)  { wROE += h.roe * h.equity;  tE     += h.equity; }
+      if (h.npl != null)  { wNPL += h.npl * h.loans;   tL     += h.loans; }
+      if (h.car != null)  { wCAR += h.car * h.assets;  tA_car += h.assets; }
+      if (h.cir != null)  { wCIR += h.cir * h.assets;  tTOI   += h.assets; }
+      if (h.ldr != null)  { wLDR += h.ldr * h.deposits; tD_ldr+= h.deposits; }
+      if (h.ccov != null && h.npl != null) { wCCOV += h.ccov * h.loans * h.npl/100; tNPL_abs += h.loans * h.npl/100; }
+    });
+    agg.assets.push(sA); agg.equity.push(sE); agg.loans.push(sL); agg.deposits.push(sD);
+    agg.nim.push(tA_nim ? wNIM/tA_nim : 0);
+    agg.roa.push(tA_roa ? wROA/tA_roa : 0);
+    agg.roe.push(tE     ? wROE/tE     : 0);
+    agg.npl.push(tL     ? wNPL/tL     : 0);
+    agg.car.push(tA_car ? wCAR/tA_car : 0);
+    agg.cir.push(tTOI   ? wCIR/tTOI   : 0);
+    agg.ldr.push(tD_ldr ? wLDR/tD_ldr : 0);
+    agg.ccov.push(tNPL_abs ? wCCOV/tNPL_abs : 0);
+  }
+  // Render 10 indicator tiles
+  const IND = [
+    {key:'assets',  lbl:'Tổng tài sản',     unit:'K',   fmt:v=>(v/1000).toFixed(0)+'K', color:'#00d4ff', scale:'scale'},
+    {key:'equity',  lbl:'Tổng vốn CSH',      unit:'K',   fmt:v=>(v/1000).toFixed(0)+'K', color:'#22c55e', scale:'scale'},
+    {key:'loans',   lbl:'Tổng dư nợ',        unit:'K',   fmt:v=>(v/1000).toFixed(0)+'K', color:'#3b82f6', scale:'scale'},
+    {key:'deposits',lbl:'Tổng tiền gửi KH', unit:'K',   fmt:v=>(v/1000).toFixed(0)+'K', color:'#06b6d4', scale:'scale'},
+    {key:'nim',     lbl:'NIM (biên lãi)',   unit:'%',   fmt:v=>v.toFixed(2)+'%',         color:'#f59e0b', scale:'ratio'},
+    {key:'roa',     lbl:'ROA',                unit:'%',   fmt:v=>v.toFixed(2)+'%',         color:'#eab308', scale:'ratio'},
+    {key:'roe',     lbl:'ROE',                unit:'%',   fmt:v=>v.toFixed(1)+'%',         color:'#a855f7', scale:'ratio'},
+    {key:'npl',     lbl:'NPL',                unit:'%',   fmt:v=>v.toFixed(2)+'%',         color:'#ef4444', scale:'ratio'},
+    {key:'car',     lbl:'CAR (Basel III)',  unit:'%',   fmt:v=>v.toFixed(1)+'%',         color:'#14b8a6', scale:'ratio'},
+    {key:'cir',     lbl:'CIR',                unit:'%',   fmt:v=>v.toFixed(1)+'%',         color:'#f97316', scale:'ratio'},
+    {key:'ldr',     lbl:'LDR',                unit:'%',   fmt:v=>v.toFixed(0)+'%',         color:'#ec4899', scale:'ratio'},
+    {key:'ccov',    lbl:'LLR Coverage',     unit:'%',   fmt:v=>v.toFixed(0)+'%',         color:'#4ade80', scale:'ratio'},
+  ];
+  const cont = document.getElementById('bk-indicators');
+  if (cont) {
+    cont.innerHTML = IND.map((d, i) => {
+      const series = agg[d.key];
+      const last = series[series.length-1] || 0;
+      return `<div class="bk-kpi"><div class="lbl">${d.lbl}</div><div class="val" style="color:${d.color}">${d.fmt(last)}</div><div class="bk-chart" id="bk-ind-${d.key}" style="height:40px"></div></div>`;
+    }).join('');
+    IND.forEach(d => {
+      drawMiniBars('bk-ind-'+d.key, agg[d.key], perLabels, d.color, d.unit, d.lbl);
+    });
+  }
+
+  // ---- Table (latest snapshot only) ----
+  const rows = [...BANK_ROWS].sort((a,b) => {
+    const av = a[bkSortKey], bv = b[bkSortKey];
+    if (av == null) return 1; if (bv == null) return -1;
+    if (typeof av === 'string') return bkSortDir * av.localeCompare(bv);
+    return bkSortDir * (av - bv);
+  });
+  const tb = document.getElementById('bk-table-body');
+  if (tb) {
+    tb.innerHTML = rows.map(r => {
+      const chgCls = r.chg_pct == null ? '' : (r.chg_pct >= 0 ? 'bk-chg-pos' : 'bk-chg-neg');
+      const typeCls = r.type === 'SOCB' ? 'bk-type-socb' : 'bk-type-jscb';
+      const fmt = (v, d=0) => v == null ? '—' : v.toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
+      const pLab = bkPeriod === 'quarter' ? `<span style="font-size:9px;color:var(--text3);margin-left:4px">${r.period_label||''}</span>` : '';
+      return `<tr>
+        <td class="bk-sym-cell" data-sym="${r.symbol}" title="Click để xem công ty con/liên kết">${r.symbol}${pLab}</td>
+        <td class="${typeCls}">${r.name}</td>
+        <td>${fmt(r.price, 0)}</td>
+        <td class="${chgCls}">${r.chg_pct == null ? '—' : (r.chg_pct >= 0 ? '+' : '') + r.chg_pct.toFixed(2) + '%'}</td>
+        <td>${fmt(r.assets/1000, 0)}K</td>
+        <td>${fmt(r.equity/1000, 0)}K</td>
+        <td>${fmt(r.deposits/1000, 0)}K</td>
+        <td>${fmt(r.loans/1000, 0)}K</td>
+        <td>${fmt(r.nim, 2)}</td>
+        <td>${fmt(r.roa, 2)}</td>
+        <td>${fmt(r.roe, 1)}</td>
+        <td>${fmt(r.cir, 0)}</td>
+        <td>${fmt(r.npl, 2)}</td>
+        <td>${fmt(r.car, 1)}</td>
+        <td>${fmt(r.ldr, 0)}</td>
+        <td>${fmt(r.ccov, 0)}</td>
+      </tr>`;
+    }).join('');
+  }
+
+}
+
+// Mini bar chart inside KPI tile — 6 periods; zoomed y-range to amplify change
+function drawMiniBars(containerId, series, labels, color, unit, metricLabel) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const rect = el.getBoundingClientRect();
+  const W = rect.width || 200, H = rect.height || 40;
+  if (!series.length) { el.innerHTML = ''; return; }
+  const mn = Math.min(...series), mx = Math.max(...series);
+  const range = mx - mn || Math.abs(mx) * 0.2 || 1;
+  const yMin = Math.max(0, mn - range*0.2);
+  const yMax = mx + range*0.2;
+  const n = series.length;
+  const gap = 2;
+  const bw = Math.max(4, (W - gap*(n+1)) / n);
+  const uid = 'mb'+Math.random().toString(36).slice(2,7);
+  let html = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" width="100%" height="100%">`;
+  html += `<defs><linearGradient id="${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${color}" stop-opacity="0.95"/><stop offset="100%" stop-color="${color}" stop-opacity="0.35"/></linearGradient></defs>`;
+  series.forEach((v, i) => {
+    const bh = ((v - yMin)/(yMax - yMin)) * (H - 4);
+    const x = gap + i*(bw + gap);
+    const y = H - Math.max(1, bh) - 1;
+    const isLast = i === n-1;
+    const lbl = (labels && labels[i]) ? labels[i] : ('#'+i);
+    const vTxt = (unit==='%' ? v.toFixed(2) : (v>=1000?(v/1000).toFixed(1)+'K':v.toFixed(0))) + unit;
+    const tipData = `${metricLabel||''} · ${lbl}|Giá trị: ${vTxt}`;
+    html += `<rect class="bk-bar" data-tip="${tipData}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${isLast?color:`url(#${uid})`}" rx="1.5"/>`;
+  });
+  html += `</svg>`;
+  el.innerHTML = html;
+}
+
+// Grouped bar chart for top-5 banks × 6 periods — zoomed y-axis + hover tooltip
+function drawGroupedBars(containerId, topBanks, metricKey, unit) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const rect = el.getBoundingClientRect();
+  const W = rect.width || 260, H = rect.height || 210;
+  const ML=36, MR=10, MT=26, MB=24;
+  const IW = W-ML-MR, IH = H-MT-MB;
+
+  const refBank = topBanks.reduce((best, b) => ((b.history||[]).length > (best.history||[]).length ? b : best), topBanks[0] || {history:[]});
+  const refLabels = (refBank.history||[]).map(h=>h.period);
+  const n = refLabels.length;
+  const k = topBanks.length;
+  if (!n || !k) { el.innerHTML = ''; return; }
+
+  // Zoomed y-scale: range = [minV - 15% pad, maxV + 15% pad]
+  // This exaggerates period-to-period changes instead of compressing against 0.
+  let mn = Infinity, mx = -Infinity;
+  topBanks.forEach(b => (b.history||[]).forEach(h => {
+    const v = metricKey==='assets' ? h.assets/1000 : h[metricKey];
+    if (typeof v === 'number') { if (v<mn) mn=v; if (v>mx) mx=v; }
+  }));
+  if (!isFinite(mn)) { mn=0; mx=1; }
+  const range = mx - mn || Math.abs(mx) * 0.2 || 1;
+  const yMin = Math.max(0, mn - range*0.15);
+  const yMax = mx + range*0.15;
+  const scY = v => MT + IH - ((v - yMin)/(yMax - yMin))*IH;
+
+  const groupW = IW / n;
+  const innerGap = 1;
+  const barW = Math.max(2, (groupW - innerGap*(k+1)) / k - 1);
+
+  const uid = 'gb'+Math.random().toString(36).slice(2,7);
+  let html = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">`;
+  html += '<defs>' + topBanks.map((b,bi) => {
+    const c = BANK_COLORS[bi % BANK_COLORS.length];
+    return `<linearGradient id="${uid}_${bi}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${c}" stop-opacity="0.95"/><stop offset="100%" stop-color="${c}" stop-opacity="0.35"/></linearGradient>`;
+  }).join('') + '</defs>';
+  for (let g=0; g<=4; g++) {
+    const y = MT + IH*g/4;
+    html += `<line x1="${ML}" y1="${y.toFixed(1)}" x2="${ML+IW}" y2="${y.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
+    const v = yMax - (yMax-yMin)*g/4;
+    html += `<text x="${ML-4}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${v.toFixed(unit==='%'?1:0)}</text>`;
+  }
+  html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+  html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+
+  const metricLabel = {assets:'Tài sản', equity:'VCSH', deposits:'Tiền gửi', loans:'Cho vay',
+    nim:'NIM', roa:'ROA', roe:'ROE', cir:'CIR', npl:'NPL', car:'CAR', ldr:'LDR', ccov:'Coverage'}[metricKey] || metricKey;
+
+  refLabels.forEach((lbl, pi) => {
+    const gx = ML + pi*groupW + innerGap;
+    topBanks.forEach((b, bi) => {
+      const h = (b.history||[]).find(x => x.period === lbl);
+      if (!h) return;
+      const v = metricKey==='assets' ? h.assets/1000 : h[metricKey];
+      if (typeof v !== 'number') return;
+      const y = scY(v);
+      const bh = MT + IH - y;
+      const x = gx + bi*(barW + innerGap);
+      const vTxt = v.toFixed(unit==='%'?2:(v>=100?0:2)) + unit;
+      const tipData = `${b.symbol} · ${lbl}|${metricLabel}: ${vTxt}`;
+      html += `<rect class="bk-bar" data-tip="${tipData}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="url(#${uid}_${bi})" rx="1"/>`;
+    });
+    html += `<text x="${(ML + pi*groupW + groupW/2).toFixed(1)}" y="${(H-6).toFixed(1)}" text-anchor="middle" font-size="8.5" fill="#64748b">${lbl}</text>`;
+  });
+
+  let lx = ML;
+  topBanks.forEach((b, bi) => {
+    const col = BANK_COLORS[bi % BANK_COLORS.length];
+    html += `<rect x="${lx}" y="6" width="10" height="4" fill="${col}" rx="1.5"/>`;
+    html += `<text x="${lx+14}" y="12" font-size="9.5" font-weight="700" fill="${col}">${b.symbol}</text>`;
+    lx += 14 + b.symbol.length*6 + 10;
+  });
+  html += `</svg>`;
+  el.innerHTML = html;
+}
+
+// Event handlers
+document.addEventListener('click', e => {
+  const th = e.target.closest('#bk-table th');
+  if (th && th.dataset.k) {
+    const k = th.dataset.k;
+    if (bkSortKey === k) bkSortDir *= -1; else { bkSortKey = k; bkSortDir = -1; }
+    renderBanks();
+    return;
+  }
+  const per = e.target.closest('.bk-per-btn');
+  if (per && per.dataset.per) {
+    bkPeriod = per.dataset.per;
+    loadBanks();
+    return;
+  }
+  const symCell = e.target.closest('.bk-sym-cell');
+  if (symCell && symCell.dataset.sym) {
+    openBankEntities(symCell.dataset.sym);
+    return;
+  }
+  // BS/IS clickable line item
+  const lineItem = e.target.closest('[data-item]');
+  if (lineItem && lineItem.dataset.item) {
+    openLineItemBreakdown(lineItem.dataset.item);
+  }
+});
+
+// Line-item breakdown modal
+let lineItemActiveTab = 0;
+let lineItemCurrent = null;
+async function openLineItemBreakdown(key) {
+  const overlay = document.getElementById('bk-modal-overlay');
+  const title   = document.getElementById('bkm-title');
+  const body    = document.getElementById('bkm-body');
+  title.textContent = 'Đang tải…';
+  body.innerHTML = '<div class="bkm-empty">Đang tải dữ liệu…</div>';
+  overlay.classList.add('open');
+  try {
+    const r = await fetch('/api/banks/lineitem/' + encodeURIComponent(key));
+    const d = await r.json();
+    if (!r.ok || d.error) { body.innerHTML = '<div class="bkm-empty">Không có cơ cấu chi tiết cho khoản mục này.</div>'; title.textContent = '—'; return; }
+    lineItemCurrent = d;
+    lineItemActiveTab = 0;
+    renderLineItemModal();
+  } catch(err) {
+    body.innerHTML = '<div class="bkm-empty">Lỗi: ' + (err.message || err) + '</div>';
+  }
+}
+
+function renderLineItemModal() {
+  if (!lineItemCurrent) return;
+  const d = lineItemCurrent;
+  const title = document.getElementById('bkm-title');
+  const body  = document.getElementById('bkm-body');
+  title.innerHTML = `${d.title} <small>${d.tabs.length} góc nhìn</small>`;
+  const activeTab = d.tabs[lineItemActiveTab] || d.tabs[0];
+  const total = activeTab.rows.reduce((s, r) => s + r.pct, 0) || 100;
+
+  let html = '';
+  // Tab row
+  if (d.tabs.length > 1) {
+    html += `<div style="display:flex;gap:4px;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:0">`;
+    d.tabs.forEach((t, i) => {
+      const isAct = i === lineItemActiveTab;
+      html += `<button class="li-tab-btn" data-tab="${i}" style="background:${isAct?'rgba(0,212,255,0.15)':'transparent'};border:none;border-bottom:2px solid ${isAct?'var(--accent)':'transparent'};color:${isAct?'var(--accent)':'var(--text2)'};padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;border-radius:4px 4px 0 0">${t.label}</button>`;
+    });
+    html += `</div>`;
+  }
+  // Horizontal stacked bar at top
+  html += '<div style="height:28px;margin-bottom:14px;display:flex;border-radius:4px;overflow:hidden;border:1px solid var(--border)">';
+  let acc = 0;
+  activeTab.rows.forEach(row => {
+    const w = (row.pct / total) * 100;
+    acc += row.pct;
+    html += `<div class="bk-bar" data-tip="${row.name}|Tỷ trọng: ${row.pct.toFixed(1)}%" style="width:${w}%;background:${row.color};display:flex;align-items:center;justify-content:center;color:#0a0e1a;font-weight:700;font-size:10px">${w>8?row.pct.toFixed(1)+'%':''}</div>`;
+  });
+  html += '</div>';
+  // Detailed rows with 6-period trend bar chart
+  const mx = Math.max(...activeTab.rows.map(r => r.pct)) || 1;
+  const periods = (BANK_STATEMENTS && BANK_STATEMENTS.periods) || ['','','','','',''];
+  activeTab.rows.forEach(row => {
+    const barW = (row.pct / mx) * 100;
+    const bars = inlineBarsSvg(row.history, row.color, periods);
+    html += `<div class="bkm-entity" style="grid-template-columns:8px 1fr 80px auto">
+      <span style="width:10px;height:10px;background:${row.color};border-radius:2px"></span>
+      <div>
+        <div class="bkm-entity-name">${row.name}</div>
+        <div style="height:3px;background:rgba(42,58,85,0.4);border-radius:2px;margin-top:4px;overflow:hidden"><div style="height:100%;width:${barW}%;background:${row.color};border-radius:2px"></div></div>
+      </div>
+      <div class="bkm-entity-chart" title="6 kỳ gần nhất">${bars}</div>
+      <span class="bkm-entity-pct" style="color:${row.color};background:${row.color}22">${row.pct.toFixed(1)}%</span>
+    </div>`;
+  });
+  body.innerHTML = html;
+}
+
+// Tab switch in line-item modal
+document.addEventListener('click', e => {
+  const tabBtn = e.target.closest('.li-tab-btn');
+  if (!tabBtn) return;
+  lineItemActiveTab = parseInt(tabBtn.dataset.tab) || 0;
+  renderLineItemModal();
+});
+
+// Entities modal
+async function openBankEntities(symbol) {
+  const overlay = document.getElementById('bk-modal-overlay');
+  const title   = document.getElementById('bkm-title');
+  const body    = document.getElementById('bkm-body');
+  title.textContent = symbol + ' · đang tải…';
+  body.innerHTML = '<div class="bkm-empty">Đang tải dữ liệu…</div>';
+  overlay.classList.add('open');
+  try {
+    const r = await fetch('/api/banks/' + encodeURIComponent(symbol) + '/entities');
+    const d = await r.json();
+    if (!r.ok || d.error) { body.innerHTML = '<div class="bkm-empty">Không tìm thấy dữ liệu.</div>'; return; }
+    title.innerHTML = `${d.symbol} — ${d.name} <small>${d.count} công ty liên quan</small>`;
+    const SEC_META = [
+      ['SUB', '🏢 Công ty con (Subsidiaries)', 'sở hữu > 50%'],
+      ['JV',  '🤝 Liên doanh (Joint Ventures)', 'sở hữu 20–50%'],
+      ['AFF', '🔗 Liên kết / Hợp tác (Affiliates)', 'sở hữu < 20% hoặc hợp tác phân phối'],
+    ];
+    const parts = [];
+    SEC_META.forEach(([key, label, sub]) => {
+      const list = (d.groups && d.groups[key]) || [];
+      if (!list.length) return;
+      parts.push(`<div class="bkm-section">
+        <div class="bkm-section-title">${label} <span class="chip">${sub}</span> <span class="chip" style="color:var(--accent)">${list.length}</span></div>
+        ${list.map(e => `
+          <div class="bkm-entity">
+            <div>
+              <div class="bkm-entity-name">${e.name}</div>
+              <div class="bkm-entity-role">${e.role}</div>
+            </div>
+            <span class="bkm-entity-pct">${e.pct > 0 ? e.pct.toFixed(1) + '%' : '—'}</span>
+            <span class="bkm-entity-type bkm-type-${e.type}">${e.type}</span>
+          </div>
+        `).join('')}
+      </div>`);
+    });
+    body.innerHTML = parts.length ? parts.join('') : '<div class="bkm-empty">Không có công ty con/liên kết được công bố.</div>';
+  } catch(err) {
+    body.innerHTML = '<div class="bkm-empty">Lỗi: ' + (err.message || err) + '</div>';
+  }
+}
+
+function closeBankModal() {
+  document.getElementById('bk-modal-overlay').classList.remove('open');
+}
+
+document.addEventListener('click', e => {
+  if (e.target.id === 'bkm-close' || e.target.closest('#bkm-close')) { closeBankModal(); return; }
+  if (e.target.id === 'bk-modal-overlay') { closeBankModal(); }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeBankModal();
+});
+
+// Delegated hover tooltip for all bar charts (data-tip="header|line1|line2...")
+(function initBarTooltip(){
+  const tip = document.getElementById('province-tooltip');
+  if (!tip) return;
+  document.addEventListener('mouseover', e => {
+    const bar = e.target.closest('.bk-bar');
+    if (!bar) return;
+    const raw = bar.getAttribute('data-tip') || '';
+    const parts = raw.split('|');
+    const header = parts.shift() || '';
+    tip.innerHTML = `<b style="color:var(--accent)">${header}</b>` + parts.map(p=>`<br>${p}`).join('');
+    tip.style.display = 'block';
+    bar.setAttribute('data-orig-opacity', bar.getAttribute('opacity') || '1');
+    bar.setAttribute('opacity', '1');
+    bar.style.filter = 'brightness(1.3)';
+  });
+  document.addEventListener('mousemove', e => {
+    const bar = e.target.closest('.bk-bar');
+    if (!bar) return;
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top  = (e.clientY - 12) + 'px';
+  });
+  document.addEventListener('mouseout', e => {
+    const bar = e.target.closest('.bk-bar');
+    if (!bar) return;
+    tip.style.display = 'none';
+    bar.style.filter = '';
+  });
+})();
+
+// Keep legacy activeTab in sync for refresh() compatibility
+function refresh() {
+  renderDemoPyramid(curYi);
+  renderStudent(curYi2);
+  if (activeBottomTab === 'econ' && econReady) updateSpecialCharts('all', 0);
+  if (activeBottomTab === 'corr') { renderBubble(animYi); updateScatterCharts(); }
+}
+
+// Wire bottom tabs
+document.querySelectorAll('#tabs-bottom .tab-btn').forEach(b =>
+  b.addEventListener('click', () => switchBottomTab(b.dataset.tab))
+);
+
+document.querySelectorAll('.rg-btn').forEach(b => b.addEventListener('click', () => {
+  setSelection(b.dataset.type, b.dataset.key, b.textContent.trim());
+  // Collapse the legend dropdown after choosing
+  document.getElementById('legend-dropdown').classList.add('legend-closed');
+}));
+
+// Demo tab controls
+// ── Shared top-panel timeline (Dân số + Học sinh) ────────────
+// Single play button drives both charts simultaneously.
+// Demo range 0-45 (2000-2045), Stu range 0-19 (2010-2029).
+// We use curYi (0-45) as master. Stu maps to curYi-10 (clamped 0-19).
+let activeTopTab = 'demo';
+
+function switchTopTab(tab) {
+  activeTopTab = tab;
+  // Update tab button styles
+  document.getElementById('ttab-demo').classList.toggle('active', tab === 'demo');
+  document.getElementById('ttab-stu').classList.toggle('active', tab === 'stu');
+  // Show/hide panels
+  const demoPanel = document.getElementById('ttab-panel-demo');
+  const stuPanel  = document.getElementById('ttab-panel-stu');
+  if (demoPanel) { demoPanel.style.display = tab === 'demo' ? 'flex' : 'none'; }
+  if (stuPanel)  { stuPanel.style.display  = tab === 'stu'  ? 'flex' : 'none'; }
+  // Render the newly visible chart
+  requestAnimationFrame(() => {
+    if (tab === 'demo') renderDemoPyramid(curYi);
+    else renderStudent(curYi2);
+  });
+}
+
+
+
+function updateTopLabel(yi) {
+  const year = 2000 + yi;
+  const yl = document.getElementById('yr-top');
+  const fb = document.getElementById('top-forecast-badge');
+  if (yl) yl.textContent = year;
+  if (fb) fb.textContent = year > 2024 ? '▶ Dự báo' : '';
+}
+
+function advanceTopTimeline(yi) {
+  curYi  = yi;
+  curYi2 = Math.max(0, Math.min(19, yi - 10));
+  updateTopLabel(yi);
+  if (activeTopTab === 'demo') renderDemoPyramid(curYi);
+  else renderStudent(curYi2);
+  // Sync GDP composition to same year (both share 0=2000..45=2045)
+  if (typeof gdpYi !== 'undefined' && gdpYi !== yi) {
+    gdpYi = yi;
+    const gsl = document.getElementById('gdp-slider');
+    if (gsl) gsl.value = yi;
+    if (typeof drawGdpChart === 'function') drawGdpChart();
+  }
+}
+
+document.getElementById('sl-top').addEventListener('input', e => {
+  advanceTopTimeline(parseInt(e.target.value));
+});
+
+let topTimer = null;
+document.getElementById('play-top').addEventListener('click', () => {
+  const btn = document.getElementById('play-top');
+  const gdpBtn = document.getElementById('play-gdp');
+  if (topTimer) {
+    clearInterval(topTimer); topTimer = null; btn.textContent = '▶';
+    if (gdpTimer) { clearInterval(gdpTimer); gdpTimer = null; if (gdpBtn) gdpBtn.textContent = '▶'; }
+  } else {
+    btn.textContent = '⏸';
+    if (gdpBtn) gdpBtn.textContent = '⏸';
+    topTimer = setInterval(() => {
+      const next = (curYi + 1) % 46;
+      document.getElementById('sl-top').value = next;
+      advanceTopTimeline(next); // syncs GDP too
+    }, 500);
+  }
+});
+
+// Corr tab controls
+document.getElementById('sl-corr').addEventListener('input', e => { animYi = parseInt(e.target.value); renderBubble(animYi); });
+document.getElementById('play-corr').addEventListener('click', () => {
+  if (corrTimer) { clearInterval(corrTimer); corrTimer = null; const _pc=document.getElementById('play-corr'); if(_pc) _pc.textContent='▶'; return; }
+  const _pc2=document.getElementById('play-corr'); if(_pc2) _pc2.textContent='⏸';
+  corrTimer = setInterval(() => { animYi = (animYi + 1) % 20; document.getElementById('sl-corr').value = animYi; renderBubble(animYi); }, 600);
+});
+document.getElementById('bub-x').addEventListener('change', () => renderBubble(animYi));
+document.getElementById('bub-y').addEventListener('change', () => renderBubble(animYi));
+document.getElementById('bub-sz').addEventListener('change', () => renderBubble(animYi));
+
+// Tenor buttons
+let activeRatesTab = 'rate';
+let ratesView = 'annual';  // 'annual' | 'monthly'
+let bondView  = 'annual';
+
+function _styleViewBtn(activeId, inactiveId) {
+  const a = document.getElementById(activeId);
+  const b = document.getElementById(inactiveId);
+  if (a) { a.style.background='rgba(0,212,255,0.15)'; a.style.borderColor='var(--accent)'; a.style.color='var(--accent)'; }
+  if (b) { b.style.background='var(--bg3)'; b.style.borderColor='var(--border)'; b.style.color='var(--text2)'; }
+}
+
+function setRatesView(view) {
+  ratesView = view;
+  _styleViewBtn(view==='annual'?'rate-view-annual':'rate-view-monthly',
+                view==='annual'?'rate-view-monthly':'rate-view-annual');
+  _syncRatesSlider();
+  if (econReady) updateSpecialCharts('rates', cardYi['rates']);
+}
+
+function setBondView(view) {
+  bondView = view;
+  _styleViewBtn(view==='annual'?'bond-view-annual':'bond-view-monthly',
+                view==='annual'?'bond-view-monthly':'bond-view-annual');
+  _syncRatesSlider();
+  if (econReady) updateSpecialCharts('rates', cardYi['rates']);
+}
+
+function _syncRatesSlider() {
+  // Determine which view is active (rate or bond tab)
+  const isMo = (activeRatesTab === 'rate' ? ratesView : bondView) === 'monthly';
+  const sl = document.getElementById('sl-card-rates');
+  const yr = document.getElementById('yr-card-rates');
+  const max = isMo ? 23 : RATES_MAX_YI;
+  const cur = isMo ? ratesCardYiMo : Math.min(cardYi['rates'], RATES_MAX_YI);
+  if (sl) { sl.max = max; sl.value = cur; }
+  if (yr) yr.textContent = isMo ? RATE_MONTHS[cur] : getYear(cur);
+  // Stop any running timer since view changed
+  if (cardTimers['rates']) { clearInterval(cardTimers['rates']); delete cardTimers['rates']; }
+  const pb = document.getElementById('pb-card-rates');
+  if (pb) pb.textContent = '▶';
+}
+
+function switchRatesTab(tab) {
+  activeRatesTab = tab;
+  const ratePanel = document.getElementById('rates-panel-rate');
+  const bondPanel = document.getElementById('rates-panel-bond');
+  const rBtn = document.getElementById('rtab-rate');
+  const bBtn = document.getElementById('rtab-bond');
+  if (ratePanel) ratePanel.style.display = tab === 'rate' ? '' : 'none';
+  if (bondPanel) bondPanel.style.display = tab === 'bond' ? '' : 'none';
+  if (rBtn) { rBtn.style.borderBottomColor = tab==='rate'?'var(--accent)':'transparent'; rBtn.style.color = tab==='rate'?'var(--accent)':'var(--text2)'; }
+  if (bBtn) { bBtn.style.borderBottomColor = tab==='bond'?'var(--accent)':'transparent'; bBtn.style.color = tab==='bond'?'var(--accent)':'var(--text2)'; }
+  _syncRatesSlider();
+  if (econReady) updateSpecialCharts('rates', cardYi['rates']);
+}
+
+document.getElementById('tenor-btns').addEventListener('click', e => {
+  const btn = e.target.closest('.tenor-btn');
+  if (!btn) return;
+  selectedTenor = parseInt(btn.dataset.tenor);
+  document.querySelectorAll('.tenor-btn').forEach(b => b.classList.toggle('active', b === btn));
+  if (econReady) updateSpecialCharts('rates', cardYi['rates']);
+});
+
+document.getElementById('tenor-btns-bond').addEventListener('click', e => {
+  const btn = e.target.closest('.tenor-btn-bond');
+  if (!btn) return;
+  selectedTenor = parseInt(btn.dataset.tenor);
+  document.querySelectorAll('.tenor-btn-bond').forEach(b => b.classList.toggle('active', b === btn));
+  if (econReady) updateSpecialCharts('rates', cardYi['rates']);
+});
+
+// ── Vertical divider (map ↔ top-right) drag ──────────────────
+const vdiv = document.getElementById('vdivider');
+const mapPanel = document.getElementById('panel-map');
+const gdpPanel = document.getElementById('panel-gdp');
+let vDragging = false;
+vdiv.addEventListener('mousedown', e => { vDragging = true; e.preventDefault(); });
+document.addEventListener('mousemove', e => {
+  if (!vDragging) return;
+  const topRow = document.getElementById('top-row');
+  const rect = topRow.getBoundingClientRect();
+  // Keep at least 150px for GDP + 150px for demo panel
+  const gdpW = gdpPanel ? gdpPanel.offsetWidth : 180;
+  const maxW = rect.width - gdpW - 160;
+  const newW = Math.max(100, Math.min(maxW, e.clientX - rect.left));
+  mapPanel.style.width = newW + 'px';
+  redrawMap = drawMap;
+  redrawMap();
+  requestAnimationFrame(() => drawGdpChart());
+});
+document.addEventListener('mouseup', () => { vDragging = false; });
+
+// ── Vertical divider 2 (GDP ↔ top-right) drag ────────────────
+const vdiv2 = document.getElementById('vdivider2');
+let vDragging2 = false;
+vdiv2.addEventListener('mousedown', e => { vDragging2 = true; e.preventDefault(); });
+document.addEventListener('mousemove', e => {
+  if (!vDragging2) return;
+  const topRow = document.getElementById('top-row');
+  const rect = topRow.getBoundingClientRect();
+  const mapW = mapPanel.offsetWidth + 10; // map + 2 dividers
+  const newW = Math.max(150, Math.min(rect.width * 0.40, e.clientX - rect.left - mapW));
+  gdpPanel.style.width = newW + 'px';
+  requestAnimationFrame(() => drawGdpChart());
+});
+document.addEventListener('mouseup', () => { vDragging2 = false; });
+
+// ── Horizontal divider (top row ↔ bottom panel) drag ─────────
+const hdiv = document.getElementById('hdivider');
+const topRow = document.getElementById('top-row');
+const bottomPanel = document.getElementById('panel-bottom');
+let hDragging = false;
+// hdivider drag disabled — top panel height locked at startup size
+
+
+
+// ============================================================
+// GDP COMPOSITION PANEL — Donut Pie Chart
+// ============================================================
+
+// ============================================================
+// GDP COMPOSITION — stacked area chart, no interaction needed
+// ============================================================
+// 2000-2045 (46 years) — matches demographic timeline
+const GDP_YEARS   = [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045];
+const GDP_SECTORS = [
+  {key:'svc', name:'Dịch vụ',            color:'#3b82f6', data:[35.00,35.60,35.50,35.70,36.20,36.80,37.10,37.00,36.40,37.10, 36.94,36.73,36.63,37.48,39.69,39.73,40.92,41.26,41.17,41.64,41.63,40.95,41.33,42.54,42.36,42.75,43.20,43.70,44.20,44.80,45.40,46.10,46.85,47.65,48.45,49.20,49.95,50.65,51.30,51.95,52.55,53.15,53.70,54.20,54.65,55.05]},
+  {key:'ind', name:'Công nghiệp & XD',   color:'#f97316', data:[33.00,33.20,33.50,33.80,34.00,34.20,34.50,34.70,33.50,33.00, 32.13,32.24,33.55,33.19,33.21,33.25,32.72,33.34,34.28,34.49,33.72,37.86,38.17,37.12,37.64,37.65,38.10,38.40,38.60,38.70,38.60,38.30,37.90,37.40,36.85,36.25,35.65,35.10,34.55,34.00,33.50,32.95,32.45,31.95,31.50,31.10]},
+  {key:'agr', name:'Lâm nghiệp & Ngư',   color:'#22c55e', data:[24.50,23.20,23.00,22.50,21.80,21.00,20.40,20.30,22.10,20.90, 18.89,18.13,17.68,17.45,17.70,17.00,16.32,15.34,14.57,13.96,14.85,12.36,11.96,11.96,11.86,11.64,11.35,11.05,10.75,10.45,10.15, 9.85, 9.55, 9.25, 9.00, 8.75, 8.50, 8.30, 8.10, 7.90, 7.70, 7.50, 7.30, 7.15, 7.00, 6.85]},
+  {key:'tax', name:'Thuế & Trợ cấp',     color:'#eab308', data:[ 7.50, 8.00, 8.00, 8.00, 8.00, 8.00, 8.00, 8.00, 8.00, 9.00, 12.04,12.90,12.14,11.88, 9.40,10.02,10.04,10.06,10.00, 9.91, 9.80, 8.83, 8.55, 8.38, 8.14, 7.96, 7.35, 6.85, 6.45, 6.05, 5.85, 5.75, 5.70, 5.70, 5.70, 5.80, 5.90, 5.95, 6.05, 6.15, 6.25, 6.40, 6.55, 6.70, 6.85, 7.00]},
+];
+const GDP_SUBS = {
+  svc:[
+    {name:'Bán buôn & Bán lẻ',       share:0.263, color:'#60a5fa'},
+    {name:'Bất động sản',             share:0.176, color:'#1e40af'},
+    {name:'Tài chính & Ngân hàng',    share:0.127, color:'#3b82f6'},
+    {name:'Vận tải & Kho bãi',        share:0.113, color:'#93c5fd'},
+    {name:'Thông tin & Truyền thông', share:0.075, color:'#1d4ed8'},
+    {name:'Lưu trú & Ăn uống',        share:0.085, color:'#bfdbfe'},
+    {name:'Hành chính & Quốc phòng',  share:0.073, color:'#1e3a8a'},
+    {name:'Dịch vụ khác',             share:0.088, color:'#172554'},
+  ],
+  ind:[
+    {name:'Chế biến & Chế tạo',       share:0.672, color:'#fb923c'},
+    {name:'Xây dựng',                 share:0.156, color:'#fed7aa'},
+    {name:'Điện, Gas & Nước',         share:0.102, color:'#f97316'},
+    {name:'Khai khoáng',              share:0.070, color:'#fdba74'},
+  ],
+  agr:[
+    {name:'Nông nghiệp',              share:0.699, color:'#4ade80'},
+    {name:'Ngư nghiệp',               share:0.196, color:'#86efac'},
+    {name:'Lâm nghiệp',               share:0.105, color:'#22c55e'},
+  ],
+  tax:[
+    {name:'Thuế sản phẩm - trợ cấp',  share:1.000, color:'#fde047'},
+  ],
+};
+
+let gdpYi = 24; // default = 2024 (index 24 in 2000-2045 array)
+
+function drawGdpChart() {
+  const sectors  = document.getElementById('gdp-sectors');
+  const leg      = document.getElementById('gdp-legend');
+  const yl       = document.getElementById('gdp-year-lbl');
+  if (!sectors || !leg) return;
+
+  const yi   = Math.max(0, Math.min(GDP_YEARS.length - 1, gdpYi));
+  const year = GDP_YEARS[yi];
+  const isForecast = year > 2024;
+  if (yl) {
+    yl.textContent = year;
+    yl.style.color = isForecast ? 'var(--accent3)' : 'var(--accent)';
+  }
+  // Show/hide forecast badge next to year label
+  const gdpBadge = document.getElementById('gdp-forecast-badge');
+  if (gdpBadge) { gdpBadge.textContent = isForecast ? '★ dự báo' : ''; }
+
+  // ── TOP SECTION: 4 sectors, bars proportional, sum = 100% ────
+  const total   = GDP_SECTORS.reduce((s, sec) => s + sec.data[yi], 0);
+  const maxSecPct = Math.max(...GDP_SECTORS.map(s => s.data[yi]));
+
+  // Stacked bar — shows true proportions
+  let stackedBar = '<div style="display:flex;height:5px;border-radius:3px;overflow:hidden;margin:0 4px 2px;gap:1px;flex:0 0 auto">';
+  for (const sec of GDP_SECTORS) {
+    const w = (sec.data[yi] / total * 100).toFixed(2);
+    stackedBar += `<div style="width:${w}%;background:${sec.color};transition:width 0.3s"></div>`;
+  }
+  stackedBar += '</div>';
+
+  let topHtml = stackedBar;
+  for (const sec of GDP_SECTORS) {
+    const pct    = sec.data[yi];
+    // Scale bar so largest sector = 100% of bar-wrap width
+    const barPct = (pct / maxSecPct * 100).toFixed(1);
+    topHtml += `<div class="gdp-sec-row">
+      <div class="gdp-sec-name-row">
+        <span class="gdp-sec-dot" style="background:${sec.color}"></span>
+        <span class="gdp-sec-name">${sec.name}</span>
+        <span class="gdp-sec-pct" style="color:${sec.color}">${pct.toFixed(1)}%</span>
+      </div>
+      <div class="gdp-sec-bar-row">
+        <div class="gdp-sec-bar-wrap">
+          <div class="gdp-sec-bar" style="width:${barPct}%;background:${sec.color}"></div>
+        </div>
+      </div>
+    </div>`;
+  }
+  sectors.innerHTML = topHtml;
+
+  // ── BOTTOM SECTION: all 16 sub-sectors as % of total GDP ──────
+  const allSubs = [];
+  for (const sec of GDP_SECTORS) {
+    const secPct = sec.data[yi];
+    const subs   = GDP_SUBS[sec.key] || [];
+    for (const sub of subs) {
+      allSubs.push({ ...sub, actualPct: secPct * sub.share, secColor: sec.color, secName: sec.name });
+    }
+  }
+  const subTotal  = allSubs.reduce((s, x) => s + x.actualPct, 0);
+  const maxSubPct = Math.max(...allSubs.map(x => x.actualPct));
+
+  // Stacked bar for all subs — true proportions
+  let botHtml = '<div style="display:flex;height:4px;border-radius:3px;overflow:hidden;margin:2px 4px 3px;gap:1px">';
+  for (const sub of allSubs) {
+    const w = (sub.actualPct / subTotal * 100).toFixed(2);
+    botHtml += `<div style="width:${w}%;background:${sub.color}" title="${sub.name}"></div>`;
+  }
+  botHtml += '</div>';
+
+  let curSec = null;
+  for (const sub of allSubs) {
+    if (sub.secName !== curSec) {
+      curSec = sub.secName;
+      botHtml += `<div style="font-size:8px;font-weight:700;color:${sub.secColor};padding:1px 4px;border-top:1px solid var(--border);flex:0 0 auto;line-height:1.4">${curSec}</div>`;
+    }
+    const pct    = sub.actualPct;
+    const barPct = (pct / maxSubPct * 100).toFixed(1);
+    botHtml += `<div class="gdp-sub-row" title="${sub.name}">
+      <span class="gdp-sub-dot" style="background:${sub.color}"></span>
+      <span class="gdp-sub-name">${sub.name}</span>
+      <div class="gdp-sub-bar-wrap"><div class="gdp-sub-bar" style="width:${barPct}%;background:${sub.color}"></div></div>
+      <span class="gdp-sub-pct">${pct.toFixed(1)}%</span>
+    </div>`;
+  }
+  leg.innerHTML = botHtml;
+}
+
+let gdpTimer = null;
+
+function initGdpPanel() {
+  const slider  = document.getElementById('gdp-slider');
+  const playBtn = document.getElementById('play-gdp');
+
+  if (slider) {
+    slider.addEventListener('input', e => {
+      const yi = parseInt(e.target.value);
+      gdpYi = yi;
+      drawGdpChart();
+      // Sync top timeline (demo/student) to same year
+      const slTop = document.getElementById('sl-top');
+      if (slTop && parseInt(slTop.value) !== yi) {
+        slTop.value = yi;
+        advanceTopTimeline(yi);
+      }
+    });
+  }
+
+  // GDP play button drives BOTH GDP and top timeline together
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      const topPlay = document.getElementById('play-top');
+      if (gdpTimer) {
+        clearInterval(gdpTimer); gdpTimer = null;
+        playBtn.textContent = '▶';
+        if (topTimer) { clearInterval(topTimer); topTimer = null; if (topPlay) topPlay.textContent = '▶'; }
+      } else {
+        playBtn.textContent = '⏸';
+        if (topPlay) topPlay.textContent = '⏸';
+        gdpTimer = setInterval(() => {
+          const next = (gdpYi + 1) % GDP_YEARS.length;
+          gdpYi = next;
+          if (slider) slider.value = next;
+          const slTop = document.getElementById('sl-top');
+          if (slTop) slTop.value = next;
+          advanceTopTimeline(next); // also calls drawGdpChart
+        }, 500);
+      }
+    });
+  }
+}
+
+
+
+// ── Element size cache — populated by ResizeObserver ─────────
+// Avoids relying on clientWidth/clientHeight which return 0 before first layout
+const _sizeCache = {};
+function _getCachedSize(id, fallbackW, fallbackH) {
+  const c = _sizeCache[id];
+  if (c && c.w > 10 && c.h > 10) return [c.w, c.h];
+  // Try live measurement as backup
+  const el = document.getElementById(id);
+  if (el) {
+    const r = el.getBoundingClientRect();
+    if (r.width > 10) return [r.width, r.height];
+    if (el.offsetWidth > 10) return [el.offsetWidth, el.offsetHeight];
+  }
+  return [fallbackW, fallbackH];
+}
+// ── ResizeObserver ────────────────────────────────────────────
+window.addEventListener('error', e => {
+  if (e.message && e.message.includes('ResizeObserver loop')) { e.stopImmediatePropagation(); e.preventDefault(); }
+});
+
+let _resRaf = null;
+let _resInitDone = false;
+
+let _firstRender = true;
+function reRenderAll() {
+  if (_firstRender) {
+    _firstRender = false;
+    advanceTopTimeline(0);
+    updateTopLabel(0);
+    // Initialize bottom panel charts on first render
+    econReady = true;
+    initSpecialCharts();
+    initCardControls();
+    Object.keys(cardYi).forEach(cid => syncOneCard(cid, cardYi[cid]));
+    setTimeout(tryLiveFetch, 500);
+  }
+  drawMap();
+  drawGdpChart();
+  if (activeTopTab === 'demo') renderDemoPyramid(curYi);
+  else renderStudent(curYi2);
+  if (activeBottomTab === 'econ') updateSpecialCharts('all', 0);
+  if (activeBottomTab === 'corr') { renderBubble(animYi); updateScatterCharts(); }
+}
+
+const resObs = new ResizeObserver((entries) => {
+  // Always update size cache from every entry
+  for (const entry of entries) {
+    const id = entry.target.id;
+    if (id) {
+      _sizeCache[id] = { w: entry.contentRect.width, h: entry.contentRect.height };
+    }
+  }
+
+  const anyReal = entries.some(e => e.contentRect.width > 10 && e.contentRect.height > 10);
+  if (!anyReal) return;
+
+  if (!_resInitDone) {
+    _resInitDone = true;
+    // First real layout measurement — render everything now
+    requestAnimationFrame(() => reRenderAll());
+    return;
+  }
+
+  if (_resRaf) return;
+  _resRaf = requestAnimationFrame(() => { _resRaf = null; reRenderAll(); });
+});
+
+resObs.observe(document.getElementById('demo-svg-wrap'));
+resObs.observe(document.getElementById('stu-svg-wrap'));
+resObs.observe(document.getElementById('map-wrap'));
+resObs.observe(document.getElementById('panel-gdp'));
+resObs.observe(document.getElementById('panel-bottom'));
+
+
+// ============================================================
+// INIT
+// ============================================================
+// ── Top-panel collapse toggle ──────────────────────────────
+(function() {
+  const btn = document.getElementById('top-collapse');
+  if (!btn) return;
+  let collapsed = false;
+  let savedHeight = '';
+  btn.addEventListener('click', () => {
+    const tp = document.getElementById('top-panel');
+    if (!tp) return;
+    collapsed = !collapsed;
+    if (collapsed) {
+      savedHeight = tp.style.height || '';
+      tp.style.height = '0px';
+      tp.style.minHeight = '0px';
+      tp.style.overflow = 'hidden';
+      btn.textContent = '▼';
+      btn.title = 'Mở panel trên';
+    } else {
+      tp.style.height = savedHeight || '36vh';
+      tp.style.minHeight = '176px';
+      tp.style.overflow = '';
+      btn.textContent = '▲';
+      btn.title = 'Thu panel trên';
+      // Re-render after layout settles
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (typeof drawMap === 'function') drawMap();
+        if (typeof drawGdpChart === 'function') drawGdpChart();
+        if (activeTopTab === 'demo') renderDemoPyramid(curYi);
+        else renderStudent(curYi2);
+      }));
+    }
+  });
+})();
+
+function initRender() {
+  initGdpPanel();
+  // Set up tabs — but do NOT render yet (no dimensions available)
+  // switchTopTab just sets display:flex/none, no rendering
+  switchTopTab('demo');
+  switchBottomTab('econ');
+  // ResizeObserver will call reRenderAll() as soon as containers get real dimensions
+  // Map fetch starts here — drawMap() also checks dimensions and bails if zero
+  initMap();
+}
+
+if (document.readyState === 'complete') {
+  requestAnimationFrame(() => setTimeout(initRender, 0));
+} else {
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => setTimeout(initRender, 0));
+  });
+}
+</script>
+</body>
+</html>
