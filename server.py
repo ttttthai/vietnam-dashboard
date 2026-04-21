@@ -202,14 +202,32 @@ def _mk_history_abs(value, scales):
     return [round(value * s) for s in scales]
 
 def _mk_history_pct(pct, scales):
-    """Slight drift around the base pct to show mix shifts."""
-    import random
-    random.seed(hash(str(pct)) & 0xffff)
+    """Backward-compat fallback — slight drift."""
     n = len(scales)
-    noise = [1 + (i/(n-1) - 0.5)*0.10 for i in range(n)]
-    vals = [round(pct * noise[i], 2) for i in range(n)]
-    vals[-1] = pct
-    return vals
+    return [round(pct * (1 + (i/(n-1) - 0.5)*0.10), 2) for i in range(n)]
+
+# ─── Trend shapes for breakdown rows (8 multipliers, final=1.00) ─────
+# Each shape captures a distinct economic narrative observed in VN banking 2017-2024.
+TREND_SHAPES = {
+    "stable":        [1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00],
+    "rising":        [0.68, 0.74, 0.81, 0.86, 0.91, 0.94, 0.97, 1.00],
+    "rising_strong": [0.50, 0.60, 0.72, 0.80, 0.87, 0.92, 0.96, 1.00],
+    "falling":       [1.45, 1.35, 1.25, 1.18, 1.12, 1.08, 1.04, 1.00],
+    "falling_strong":[1.80, 1.60, 1.40, 1.25, 1.15, 1.08, 1.04, 1.00],
+    "covid_dip":     [1.05, 1.02, 0.90, 0.80, 0.85, 0.93, 0.98, 1.00],
+    "covid_rebound": [0.85, 0.88, 1.05, 1.15, 1.10, 1.05, 1.02, 1.00],
+    "bubble_pop":    [0.60, 0.75, 0.95, 1.20, 1.30, 1.15, 1.05, 1.00],  # up then crashed (e.g. corp bonds)
+    "crisis_spike":  [0.55, 0.60, 0.70, 0.95, 1.30, 1.25, 1.10, 1.00],  # NPL spike 2021-22
+    "bancassurance": [0.45, 0.65, 0.95, 1.40, 1.70, 1.45, 1.15, 1.00],  # grew big, regulatory crackdown
+    "casa_cycle":    [0.75, 0.85, 1.15, 1.30, 1.20, 1.05, 1.00, 1.00],
+    "digital_boom":  [0.30, 0.40, 0.55, 0.70, 0.82, 0.90, 0.96, 1.00],
+    "rate_cycle":    [1.10, 1.05, 0.85, 0.80, 1.05, 1.15, 1.05, 1.00],
+    "volatile":      [1.15, 0.85, 1.20, 0.90, 1.10, 0.95, 1.05, 1.00],
+}
+
+def _mk_history_from_trend(pct, trend_key, n=8):
+    shape = TREND_SHAPES.get(trend_key, TREND_SHAPES["stable"])
+    return [round(pct * shape[i], 2) for i in range(n)]
 
 
 # System totals derived from 17 banks (tỷ VND)
@@ -510,12 +528,133 @@ LINE_ITEM_BREAKDOWNS = {
 }
 
 
+# ─── Trend assignments — row name → narrative shape ───────────────────
+# Covers every row across lending, funding, BS and IS line-item breakdowns.
+ROW_TRENDS = {
+    # LENDING_BY_SECTOR
+    "Công nghiệp chế biến, chế tạo":     "rising",
+    "Bán buôn, bán lẻ":                   "stable",
+    "Hoạt động kinh doanh BĐS":           "bubble_pop",
+    "Cho vay tiêu dùng cá nhân":         "rising_strong",
+    "Xây dựng":                            "bubble_pop",
+    "Nông-Lâm-Thủy sản":                   "falling",
+    "Vận tải, kho bãi, viễn thông":      "stable",
+    "SX & phân phối điện, gas":          "rising",
+    "Tài chính, ngân hàng, bảo hiểm":    "stable",
+    "Khai khoáng":                         "falling_strong",
+    "Khác":                                "stable",
+    # LENDING_BY_TENOR
+    "Ngắn hạn (<12T)":                     "stable",
+    "Trung hạn (1–5 năm)":                "falling",
+    "Dài hạn (>5 năm)":                   "rising",
+    # LENDING_BY_CUSTOMER
+    "Doanh nghiệp lớn (Corporate)":       "falling",
+    "SME (DN vừa & nhỏ)":                 "stable",
+    "Cá nhân bán lẻ":                     "rising",
+    # LENDING_BY_CURRENCY
+    "VND":                                 "rising",
+    "Ngoại tệ (USD/EUR)":                 "falling_strong",
+    # NPL GROUPS (in 'loans' drilldown)
+    "Nhóm 1 — Đủ tiêu chuẩn":           "stable",
+    "Nhóm 2 — Cần chú ý":                "crisis_spike",
+    "Nhóm 3 — Dưới tiêu chuẩn":         "crisis_spike",
+    "Nhóm 4 — Nghi ngờ":                  "crisis_spike",
+    "Nhóm 5 — Có khả năng mất vốn":    "crisis_spike",
+    # INV_SEC issuer
+    "Trái phiếu Chính phủ":               "covid_rebound",
+    "Trái phiếu DN phi TCTD":             "bubble_pop",
+    "Trái phiếu TCTD khác":               "stable",
+    "Trái phiếu Chính quyền ĐP":         "rising",
+    "CP & GT có giá khác":                "stable",
+    # INV_SEC intent
+    "Giữ đến ngày đáo hạn (HTM)":       "rising",
+    "Sẵn sàng để bán (AFS)":              "falling",
+    # INTERBANK_ASSET
+    "Tiền gửi thanh toán tại TCTD":      "rising",
+    "Tiền gửi có kỳ hạn tại TCTD":       "stable",
+    "Cho vay TCTD khác":                  "falling",
+    "Dự phòng rủi ro":                    "stable",
+    # AT_SBV
+    "Dự trữ bắt buộc (VND)":              "stable",
+    "Dự trữ bắt buộc (ngoại tệ)":       "falling",
+    "Tiền gửi thanh toán":                "stable",
+    # FUNDING_BY_SOURCE
+    "Tiền gửi khách hàng":                "stable",
+    "Vốn chủ sở hữu":                     "rising",
+    "Phát hành GTCG (TP/CD)":             "rising_strong",
+    "Tiền gửi & vay liên ngân hàng":     "falling",
+    "Vay NHNN (refinancing)":             "rate_cycle",
+    # FUNDING_BY_TENOR
+    "Không kỳ hạn (CASA)":                "casa_cycle",
+    "Trung & dài hạn (>12T)":             "falling",
+    # FUNDING_BY_CUSTOMER
+    "Cá nhân":                             "rising",
+    "Doanh nghiệp & tổ chức":             "falling",
+    "Định chế tài chính":                  "stable",
+    "Ngoại tệ":                            "falling",
+    # CUST_DEP BY TYPE
+    "Tiền gửi tiết kiệm":                 "falling",
+    "Tiền gửi có kỳ hạn khác":           "rising",
+    "Tiền gửi không kỳ hạn (CASA)":       "casa_cycle",
+    "Tiền gửi ký quỹ":                    "stable",
+    # GTCG
+    "Trái phiếu thường":                  "rising",
+    "Chứng chỉ tiền gửi (CD)":            "stable",
+    "Trái phiếu tăng vốn cấp 2":         "rising_strong",
+    "Kỳ phiếu, tín phiếu":                "falling",
+    # INTERBANK_LIAB
+    "Tiền gửi nhận từ TCTD":              "stable",
+    "Vay TCTD khác":                      "rising",
+    "Tiền gửi không kỳ hạn":              "rising",
+    # EQUITY
+    "Vốn điều lệ":                         "falling",
+    "Lợi nhuận chưa phân phối":           "rising_strong",
+    "Quỹ dự trữ":                          "rising",
+    "Thặng dư vốn CP":                    "stable",
+    "Chênh lệch tỷ giá & đánh giá lại":  "volatile",
+    # INT_INC
+    "Lãi từ cho vay khách hàng":          "stable",
+    "Lãi từ chứng khoán đầu tư":          "rising",
+    "Lãi từ tiền gửi & cho vay TCTD":    "stable",
+    "Thu lãi khác":                        "stable",
+    # INT_EXP
+    "Chi trả lãi tiền gửi KH":            "rate_cycle",
+    "Chi trả lãi GTCG đã phát hành":      "rising_strong",
+    "Chi trả lãi TG & vay TCTD":         "stable",
+    "Chi phí lãi khác":                   "stable",
+    # FEE_INC
+    "Dịch vụ thanh toán & ngân quỹ":    "rising",
+    "Dịch vụ bảo hiểm (bancassurance)":  "bancassurance",
+    "Dịch vụ bảo lãnh":                   "stable",
+    "Tư vấn, môi giới đầu tư":           "stable",
+    "Dịch vụ ngân hàng số":               "digital_boom",
+    # OTHER_INC
+    "Thu từ xử lý nợ & thu hồi nợ xấu": "covid_rebound",
+    "Lãi từ góp vốn đầu tư":              "stable",
+    "Thu nhập từ các công cụ phái sinh": "volatile",
+    "Thu bất thường & khác":               "volatile",
+    # OPEX
+    "Chi phí nhân viên":                  "rising",
+    "Chi phí quản lý chung":              "stable",
+    "Khấu hao TSCĐ":                       "stable",
+    "Thuế, phí & lệ phí":                 "stable",
+    "Chi phí tài sản":                     "stable",
+    # PROVISIONS
+    "Dự phòng cụ thể (nợ nhóm 2-5)":   "crisis_spike",
+    "Dự phòng chung (0.75% dư nợ)":     "rising",
+    "Dự phòng cam kết ngoại bảng":       "stable",
+    "Hoàn nhập/điều chỉnh khác":          "volatile",
+}
+
 def _attach_pct_history(rows, scales):
-    """Return copies of rows with a fresh 'history' array based on scales."""
+    """Return copies of rows with a 'history' array based on each row's trend shape."""
+    n = len(scales)
     out = []
     for r in rows:
         c = dict(r)
-        c["history"] = _mk_history_pct(c["pct"], scales)
+        trend = ROW_TRENDS.get(c["name"], "stable")
+        c["history"] = _mk_history_from_trend(c["pct"], trend, n)
+        c["trend"] = trend
         out.append(c)
     return out
 
