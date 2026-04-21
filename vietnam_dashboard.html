@@ -39,7 +39,7 @@
   #panel-bottom .panel-inner:has(#panel-social.active) { overflow: hidden; }
   /* Map/GDP row: top ~58% · Demographics row: bottom ~42% */
   #panel-social #top-row { flex: 3; min-height: 0; }
-  #panel-social #panel-top-right { flex: 2; min-height: 0; display: flex; flex-direction: column; background: var(--bg2); border-top: 1px solid var(--border); overflow: hidden; }
+  #panel-social #panel-top-right { flex: 2; min-height: 0; display: flex; flex-direction: row; background: var(--bg2); border-top: 1px solid var(--border); overflow: hidden; }
   #social-hdivider { height: 4px; background: var(--border); flex-shrink: 0; }
   #demo-header { display: flex; align-items: center; gap: 0; flex-shrink: 0; border-bottom: 1px solid var(--border); background: var(--bg3); padding: 0 6px; min-height: 26px; }
   #top-panel-header { display: flex; align-items: center; gap: 0; flex-shrink: 0; border-bottom: 1px solid var(--border); background: var(--bg3); }
@@ -127,7 +127,7 @@
   .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 4px; margin-bottom: 6px; }
   .kpi-tile { background: var(--bg3); border-radius: 4px; padding: 4px 6px; border: 1px solid var(--border); transition: background 0.15s; }
   .kpi-tile:hover { background: #1e293b; }
-  .kpi-tile .kpi-label { font-size: 8px; color: var(--text2); margin-bottom: 1px; text-transform: uppercase; letter-spacing: 0.2px; line-height: 1.25; }
+  .kpi-tile .kpi-label { font-size:10px; color: var(--text2); margin-bottom: 1px; text-transform: uppercase; letter-spacing: 0.2px; line-height: 1.25; }
   .kpi-tile .kpi-val { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.1px; }
   .card-ctrl { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
   .chart-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 200px; }
@@ -143,7 +143,7 @@
   #panel-banks.active { display: flex; flex-direction: column; gap: 10px; }
   .bk-toprow { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
   .bk-kpi { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; display: flex; flex-direction: column; gap: 2px; }
-  .bk-kpi .lbl { font-size: 9px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.4px; }
+  .bk-kpi .lbl { font-size:10px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.4px; }
   .bk-kpi .val { font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 0.2px; line-height: 1.1; }
   .bk-kpi .sub { font-size: 10px; color: var(--text2); }
   .bk-kpi .bk-chart { height: 36px !important; margin-top: 2px; }
@@ -165,7 +165,7 @@
   }
   .bk-table-wrap { overflow-x: auto; max-height: 420px; overflow-y: auto; }
   table.bk-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-  table.bk-table th { position: sticky; top: 0; background: var(--bg3); color: var(--text2); font-weight: 700; text-transform: uppercase; font-size: 9px; letter-spacing: 0.3px; padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; z-index: 2; }
+  table.bk-table th { position: sticky; top: 0; background: var(--bg3); color: var(--text2); font-weight: 700; text-transform: uppercase; font-size:10px; letter-spacing: 0.3px; padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; z-index: 2; }
   table.bk-table th:first-child, table.bk-table th:nth-child(2) { text-align: left; }
   table.bk-table th:hover { color: var(--accent); }
   table.bk-table td { padding: 5px 8px; text-align: right; border-bottom: 1px solid rgba(42,58,85,0.35); font-variant-numeric: tabular-nums; }
@@ -189,12 +189,12 @@
   .bk-bs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .bk-bs-side { display: flex; flex-direction: column; gap: 6px; }
   .bk-bs-list { display: flex; flex-direction: column; gap: 3px; }
-  .bk-bs-group { font-size: 9px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.4px; padding: 4px 0 2px; border-bottom: 1px dashed var(--border); margin-top: 4px; }
+  .bk-bs-group { font-size:10px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.4px; padding: 4px 0 2px; border-bottom: 1px dashed var(--border); margin-top: 4px; }
   .bk-bs-row { display: grid; grid-template-columns: 8px 1fr 56px auto; gap: 8px; align-items: center; padding: 3px 6px; background: var(--bg2); border-radius: 4px; border: 1px solid var(--border); transition: background 0.15s; cursor: default; }
   .bk-bs-row:hover { background: #1e293b; border-color: var(--accent); }
   .bk-bs-dot { width: 8px; height: 8px; border-radius: 2px; }
   .bk-bs-name { font-size: 11px; color: var(--text); font-weight: 600; line-height: 1.3; }
-  .bk-bs-note { font-size: 9px; color: var(--text3); margin-top: 1px; }
+  .bk-bs-note { font-size:10px; color: var(--text3); margin-top: 1px; }
   .bk-bs-bar-wrap { grid-column: 2 / 3; height: 3px; background: rgba(42,58,85,0.4); border-radius: 2px; overflow: hidden; margin-top: 3px; }
   .bk-bs-bar { height: 100%; border-radius: 2px; }
   .bk-bs-pct { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; padding: 2px 6px; border-radius: 3px; }
@@ -245,7 +245,7 @@
   .bkm-entity-name { font-size: 12px; font-weight: 700; color: var(--text); }
   .bkm-entity-role { font-size: 10px; color: var(--text2); margin-top: 2px; }
   .bkm-entity-pct { font-size: 11px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; padding: 2px 8px; background: rgba(0,212,255,0.1); border-radius: 4px; }
-  .bkm-entity-type { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.3px; }
+  .bkm-entity-type { font-size:10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.3px; }
   .bkm-type-SUB { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid #16a34a; }
   .bkm-type-JV  { background: rgba(249,115,22,0.15); color: #fb923c; border: 1px solid #ea580c; }
   .bkm-type-AFF { background: rgba(168,85,247,0.15); color: #c4b5fd; border: 1px solid #7c3aed; }
@@ -284,25 +284,25 @@
   .gdp-leg-row { display: flex; align-items: center; gap: 5px; cursor: pointer; border-radius: 3px; padding: 2px 4px; transition: background 0.15s; }
   .gdp-leg-row:hover { background: rgba(255,255,255,0.06); }
   .gdp-leg-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-  .gdp-leg-name { font-size: 9.5px; color: var(--text2); flex: 1; }
-  .gdp-leg-pct { font-size: 9.5px; font-weight: 700; color: var(--text); min-width: 30px; text-align: right; }
+  .gdp-leg-name { font-size:10px; color: var(--text2); flex: 1; }
+  .gdp-leg-pct { font-size:10px; font-weight: 700; color: var(--text); min-width: 30px; text-align: right; }
   /* Sector header rows */
   .gdp-sec-row { display: flex; flex-direction: column; padding: 1px 4px; flex: 1; max-height: 44px; gap: 1px; justify-content: center; }
   .gdp-sec-name-row { display: flex; align-items: center; gap: 3px; flex: 0 0 auto; }
   .gdp-sec-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-  .gdp-sec-name { font-size: 8px; font-weight: 700; color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+  .gdp-sec-name { font-size:10px; font-weight: 700; color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
   .gdp-sec-bar-row { display: flex; align-items: center; gap: 3px; padding-left: 10px; flex: 0 0 auto; }
   .gdp-sec-bar-wrap { flex: 1; height: 8px; background: var(--bg3); border-radius: 3px; overflow: hidden; min-width: 0; }
   .gdp-sec-bar { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
-  .gdp-sec-pct { font-size: 8px; font-weight: 700; min-width: 26px; text-align: right; flex-shrink: 0; }
+  .gdp-sec-pct { font-size:10px; font-weight: 700; min-width: 26px; text-align: right; flex-shrink: 0; }
   /* Sub-sector rows */
   .gdp-sub-row { display: flex; flex-direction: row; align-items: center; padding: 0 4px; gap: 3px; flex: 1; min-height: 8px; max-height: 20px; }
   .gdp-sub-dot { width: 5px; height: 5px; border-radius: 1px; flex-shrink: 0; display:inline-block; }
-  .gdp-sub-name { font-size: 7px; color: var(--text2); width: 78px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1; }
+  .gdp-sub-name { font-size:10px; color: var(--text2); width: 78px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1; }
   .gdp-sub-bar-row { display: none; }
   .gdp-sub-bar-wrap { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; min-width: 0; }
   .gdp-sub-bar { height: 100%; border-radius: 3px; transition: width 0.35s ease; }
-  .gdp-sub-pct { font-size: 7px; color: var(--text2); min-width: 22px; text-align: right; flex-shrink: 0; }
+  .gdp-sub-pct { font-size:10px; color: var(--text2); min-width: 22px; text-align: right; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -334,9 +334,9 @@
       <span class="col-label" style="flex:1;min-width:0">🗺 Bản đồ 34 tỉnh · <span id="legend-sel-label" style="color:var(--accent)">Cả nước</span></span>
       <span class="col-label" style="flex:1;min-width:0;display:flex;align-items:center;gap:0;padding:0 0 0 8px;border-right:none;">
         <span style="font-size:10px;font-weight:700;color:var(--text2);white-space:nowrap;margin-right:4px">📊 GDP</span>
-        <button class="play-btn" id="play-gdp" style="width:20px;height:20px;font-size:9px;margin-right:4px;flex-shrink:0">▶</button>
+        <button class="play-btn" id="play-gdp" style="width:20px;height:20px;font-size: 10px;margin-right:4px;flex-shrink:0">▶</button>
         <span class="yr-label" id="gdp-year-lbl" style="font-size:11px;min-width:28px;flex-shrink:0">2024</span>
-        <span id="gdp-forecast-badge" style="font-size:9px;color:var(--accent3);margin-right:4px;flex-shrink:0"></span>
+        <span id="gdp-forecast-badge" style="font-size: 10px;color:var(--accent3);margin-right:4px;flex-shrink:0"></span>
         <input type="range" id="gdp-slider" min="0" max="45" value="24" style="flex:1;min-width:0;accent-color:var(--accent);margin:0 6px">
       </span>
     </div>
@@ -380,30 +380,25 @@
     <!-- Horizontal divider: Map/GDP ↔ Demographics -->
     <div id="social-hdivider"></div>
 
-    <!-- Row 2 header: Dân số / Học sinh tabs + timeline -->
+    <!-- Row 2 header: shared timeline -->
     <div id="demo-header">
-      <button class="top-tab-btn active" id="ttab-demo" onclick="switchTopTab('demo')">👥 Dân số</button>
-      <button class="top-tab-btn" id="ttab-stu" onclick="switchTopTab('stu')">🎓 Học sinh</button>
+      <span class="col-label" style="border-right:none;">👥 Dân số & 🎓 Học sinh</span>
       <span style="flex:1"></span>
-      <button class="play-btn" id="play-top" style="width:20px;height:20px;font-size:9px;margin-right:4px">▶</button>
+      <button class="play-btn" id="play-top" style="width:20px;height:20px;font-size:10px;margin-right:4px">▶</button>
       <span class="yr-label" id="yr-top" style="font-size:11px">2000</span>
-      <input type="range" id="sl-top" min="0" max="45" value="0" style="width:180px;margin:0 6px;accent-color:var(--accent)">
+      <input type="range" id="sl-top" min="0" max="45" value="0" style="width:220px;margin:0 6px;accent-color:var(--accent)">
       <span id="top-forecast-badge" style="margin-right:6px"></span>
     </div>
 
-    <!-- Row 2 body: Demographics / Students (full width) -->
+    <!-- Row 2 body: Demographics & Students side-by-side -->
     <div id="panel-top-right">
-      <div class="panel-inner">
-        <div id="top-tab-content" style="display:flex;flex-direction:column;flex:1;min-height:0;">
-          <div id="ttab-panel-demo" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:4px 8px;">
-            <div class="top-chart-label">Tháp dân số · <span id="demo-prov-name">Cả nước</span></div>
-            <div id="demo-svg-wrap"><svg id="demo-svg" preserveAspectRatio="none"></svg></div>
-          </div>
-          <div id="ttab-panel-stu" style="display:none;flex-direction:column;flex:1;min-height:0;padding:4px 8px;">
-            <div class="top-chart-label">Học sinh · <span id="stu-prov-name">Cả nước</span></div>
-            <div id="stu-svg-wrap"><svg id="stu-svg" preserveAspectRatio="none"></svg></div>
-          </div>
-        </div>
+      <div id="ttab-panel-demo" style="display:flex;flex-direction:column;flex:1;min-height:0;min-width:0;padding:4px 8px;border-right:1px solid var(--border);">
+        <div class="top-chart-label">Tháp dân số · <span id="demo-prov-name">Cả nước</span></div>
+        <div id="demo-svg-wrap"><svg id="demo-svg" preserveAspectRatio="none"></svg></div>
+      </div>
+      <div id="ttab-panel-stu" style="display:flex;flex-direction:column;flex:1;min-height:0;min-width:0;padding:4px 8px;">
+        <div class="top-chart-label">Học sinh · <span id="stu-prov-name">Cả nước</span></div>
+        <div id="stu-svg-wrap"><svg id="stu-svg" preserveAspectRatio="none"></svg></div>
       </div>
     </div><!-- /panel-top-right -->
 
@@ -1399,24 +1394,24 @@ function renderDemoPyramid(yi) {
     // female bar
     html += `<rect x="${fx}" y="${y+1}" width="${barFW}" height="${BAR_H-2}" fill="${isForecast?'rgba(252,165,165,0.7)':'rgba(239,68,68,0.75)'}"/>`;
     // age label centered
-    html += `<text x="${CENTER_X}" y="${y+BAR_H/2+4}" text-anchor="middle" font-size="9" fill="#e2e8f0" font-weight="600" stroke="#0a0e1a" stroke-width="3" paint-order="stroke">${d.ag}</text>`;
+    html += `<text x="${CENTER_X}" y="${y+BAR_H/2+4}" text-anchor="middle" font-size="10" fill="#e2e8f0" font-weight="600" stroke="#0a0e1a" stroke-width="3" paint-order="stroke">${d.ag}</text>`;
     // pop numbers inside bars
     if (barMW > 25) {
-      html += `<text x="${mx+barMW-3}" y="${y+BAR_H/2+3}" text-anchor="end" font-size="8" fill="white">${fmtNum(d.popM,0)}</text>`;
+      html += `<text x="${mx+barMW-3}" y="${y+BAR_H/2+3}" text-anchor="end" font-size="10" fill="white">${fmtNum(d.popM,0)}</text>`;
     }
     if (barFW > 25) {
-      html += `<text x="${fx+3}" y="${y+BAR_H/2+3}" text-anchor="start" font-size="8" fill="white">${fmtNum(d.popF,0)}</text>`;
+      html += `<text x="${fx+3}" y="${y+BAR_H/2+3}" text-anchor="start" font-size="10" fill="white">${fmtNum(d.popF,0)}</text>`;
     }
     // pct outside
-    html += `<text x="${mx-2}" y="${y+BAR_H/2+3}" text-anchor="end" font-size="9.5" fill="#94a3b8">${pctM}%</text>`;
-    html += `<text x="${fx+barFW+2}" y="${y+BAR_H/2+3}" text-anchor="start" font-size="9.5" fill="#94a3b8">${pctF}%</text>`;
+    html += `<text x="${mx-2}" y="${y+BAR_H/2+3}" text-anchor="end" font-size="10" fill="#94a3b8">${pctM}%</text>`;
+    html += `<text x="${fx+barFW+2}" y="${y+BAR_H/2+3}" text-anchor="start" font-size="10" fill="#94a3b8">${pctF}%</text>`;
   });
 
   // legend
   html += `<rect x="${CENTER_X-80}" y="${SVG_H-14}" width="10" height="8" fill="rgba(59,130,246,0.8)"/>`;
-  html += `<text x="${CENTER_X-66}" y="${SVG_H-7}" font-size="9" fill="#94a3b8">Nam (Male)</text>`;
+  html += `<text x="${CENTER_X-66}" y="${SVG_H-7}" font-size="10" fill="#94a3b8">Nam (Male)</text>`;
   html += `<rect x="${CENTER_X+20}" y="${SVG_H-14}" width="10" height="8" fill="rgba(239,68,68,0.75)"/>`;
-  html += `<text x="${CENTER_X+34}" y="${SVG_H-7}" font-size="9" fill="#94a3b8">Nữ (Female)</text>`;
+  html += `<text x="${CENTER_X+34}" y="${SVG_H-7}" font-size="10" fill="#94a3b8">Nữ (Female)</text>`;
 
   svg.innerHTML = html;
 }
@@ -1474,7 +1469,7 @@ function renderStudent(yi) {
   for (let g = 0; g <= 4; g++) {
     const yy = MT + g * IH / 4;
     html += `<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="#1a2235" stroke-width="1"/>`;
-    html += `<text x="${ML-4}" y="${yy+3}" text-anchor="end" font-size="8" fill="#64748b">${fmtNum(maxVal*(1-g/4),0)}</text>`;
+    html += `<text x="${ML-4}" y="${yy+3}" text-anchor="end" font-size="10" fill="#64748b">${fmtNum(maxVal*(1-g/4),0)}</text>`;
   }
   html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1.5"/>`;
   html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1.5"/>`;
@@ -1505,7 +1500,7 @@ function renderStudent(yi) {
     }
 
     if (i % 5 === 0) {
-      html += `<text x="${(x + bwn/2).toFixed(1)}" y="${H-4}" text-anchor="middle" font-size="8" fill="#64748b">${2010+i}</text>`;
+      html += `<text x="${(x + bwn/2).toFixed(1)}" y="${H-4}" text-anchor="middle" font-size="10" fill="#64748b">${2010+i}</text>`;
     }
   });
 
@@ -1514,22 +1509,22 @@ function renderStudent(yi) {
   const ax = ML + yi * bw + bw * 0.5;
   const total = cur.primary + cur.lower + cur.upper;
   const topY = scY(total) - 5;
-  html += `<text x="${ax.toFixed(1)}" y="${topY.toFixed(1)}" text-anchor="middle" font-size="8" fill="#00d4ff" font-weight="700">${fmtNum(total,0)}</text>`;
+  html += `<text x="${ax.toFixed(1)}" y="${topY.toFixed(1)}" text-anchor="middle" font-size="10" fill="#00d4ff" font-weight="700">${fmtNum(total,0)}</text>`;
 
   // Segment labels inside bars if tall enough
   const bot = MT + IH;
   const ph = (cur.primary / maxVal) * IH;
   const lh = (cur.lower   / maxVal) * IH;
   const uh = (cur.upper   / maxVal) * IH;
-  if (ph > 14) html += `<text x="${ax.toFixed(1)}" y="${(bot - ph/2 + 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="rgba(0,0,0,0.7)" font-weight="700">${fmtNum(cur.primary,0)}</text>`;
-  if (lh > 14) html += `<text x="${ax.toFixed(1)}" y="${(bot - ph - lh/2 + 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="rgba(0,0,0,0.7)" font-weight="700">${fmtNum(cur.lower,0)}</text>`;
-  if (uh > 14) html += `<text x="${ax.toFixed(1)}" y="${(bot - ph - lh - uh/2 + 3).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="rgba(0,0,0,0.7)" font-weight="700">${fmtNum(cur.upper,0)}</text>`;
+  if (ph > 14) html += `<text x="${ax.toFixed(1)}" y="${(bot - ph/2 + 3).toFixed(1)}" text-anchor="middle" font-size="10" fill="rgba(0,0,0,0.7)" font-weight="700">${fmtNum(cur.primary,0)}</text>`;
+  if (lh > 14) html += `<text x="${ax.toFixed(1)}" y="${(bot - ph - lh/2 + 3).toFixed(1)}" text-anchor="middle" font-size="10" fill="rgba(0,0,0,0.7)" font-weight="700">${fmtNum(cur.lower,0)}</text>`;
+  if (uh > 14) html += `<text x="${ax.toFixed(1)}" y="${(bot - ph - lh - uh/2 + 3).toFixed(1)}" text-anchor="middle" font-size="10" fill="rgba(0,0,0,0.7)" font-weight="700">${fmtNum(cur.upper,0)}</text>`;
 
   // Legend
   const lx = ML;
-  html += `<rect x="${lx}" y="5" width="9" height="7" fill="#fbbf24"/><text x="${lx+12}" y="12" font-size="9" fill="#94a3b8">Tiểu học</text>`;
-  html += `<rect x="${lx+68}" y="5" width="9" height="7" fill="#22c55e"/><text x="${lx+80}" y="12" font-size="9" fill="#94a3b8">THCS</text>`;
-  html += `<rect x="${lx+118}" y="5" width="9" height="7" fill="#3b82f6"/><text x="${lx+130}" y="12" font-size="9" fill="#94a3b8">THPT</text>`;
+  html += `<rect x="${lx}" y="5" width="9" height="7" fill="#fbbf24"/><text x="${lx+12}" y="12" font-size="10" fill="#94a3b8">Tiểu học</text>`;
+  html += `<rect x="${lx+68}" y="5" width="9" height="7" fill="#22c55e"/><text x="${lx+80}" y="12" font-size="10" fill="#94a3b8">THCS</text>`;
+  html += `<rect x="${lx+118}" y="5" width="9" height="7" fill="#3b82f6"/><text x="${lx+130}" y="12" font-size="10" fill="#94a3b8">THPT</text>`;
 
   svg.innerHTML = html;
 }
@@ -1598,7 +1593,7 @@ function updateSpecialCharts(cardId, yi) {
     for(let g=1;g<=4;g++){
       const yy=MT+IH*g/4;
       html+=`<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
-      if (g<4) html+=`<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxV*(1-g/4),0)}</text>`;
+      if (g<4) html+=`<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${fmtNum(maxV*(1-g/4),0)}</text>`;
     }
     html+=`<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
     html+=`<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
@@ -1614,11 +1609,11 @@ function updateSpecialCharts(cardId, yi) {
         html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${fill}" rx="1.5"/>`;
         if (isActive) html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="2" fill="${colors[si]}" rx="1"/>`;
       });
-      if (i%3===0) html+=`<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`;
+      if (i%3===0) html+=`<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="10" fill="#64748b">${2010+i}</text>`;
     });
     if (yi>=0 && data[0] && typeof data[0][yi] === 'number') {
       const v = data[0][yi], px = ML+yi*BCW+BCW/2, py = Math.max(MT+10, scaleY(v)-5);
-      html += `<text x="${px.toFixed(1)}" y="${py.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00d4ff">${fmtNum(v,0)}</text>`;
+      html += `<text x="${px.toFixed(1)}" y="${py.toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#00d4ff">${fmtNum(v,0)}</text>`;
     }
     if (lineData && lineData.length===20) {
       let lPath='';
@@ -1644,7 +1639,7 @@ function updateSpecialCharts(cardId, yi) {
     for(let g=1;g<=4;g++){
       const yy=MT+IH*g/4;
       html+=`<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
-      if (g<4) html+=`<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxV*(1-g/4),0)}</text>`;
+      if (g<4) html+=`<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${fmtNum(maxV*(1-g/4),0)}</text>`;
     }
     html+=`<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
     html+=`<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
@@ -1659,9 +1654,9 @@ function updateSpecialCharts(cardId, yi) {
       if (isActive) {
         const total=stack.reduce((a,b)=>a+b,0);
         const px=ML+i*BCW+BCW/2, py=Math.max(MT+10, MT+IH-(total/maxV)*IH-5);
-        html+=`<text x="${px.toFixed(1)}" y="${py.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00d4ff">${fmtNum(total,0)}</text>`;
+        html+=`<text x="${px.toFixed(1)}" y="${py.toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#00d4ff">${fmtNum(total,0)}</text>`;
       }
-      if(i%3===0) html+=`<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`;
+      if(i%3===0) html+=`<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="10" fill="#64748b">${2010+i}</text>`;
     });
     if(labels){
       let lx=ML;
@@ -1688,7 +1683,7 @@ function updateSpecialCharts(cardId, yi) {
       for (let g = 1; g <= 3; g++) {
         const yy = MT + IH * g / 4;
         html += `<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="rgba(42,58,85,0.35)" stroke-width="1"/>`;
-        html += `<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxGDP*(1-g/4),0)}</text>`;
+        html += `<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="10" fill="#64748b">${fmtNum(maxGDP*(1-g/4),0)}</text>`;
       }
       html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
       html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
@@ -1705,16 +1700,16 @@ function updateSpecialCharts(cardId, yi) {
       });
       // Active GDP value
       const vAct = gdpRealArr[yi];
-      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${Math.max(MT+10, scBar(vAct)-5).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#60a5fa">${fmtNum(vAct,0)}</text>`;
+      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${Math.max(MT+10, scBar(vAct)-5).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#60a5fa">${fmtNum(vAct,0)}</text>`;
       // Tăng trưởng % line (right axis)
       let p = ''; growthArr.forEach((v, i) => { const px = ML+i*BCW+BCW/2, py = scLine(v); p += (i===0?`M${px},${py}`:`L${px},${py}`); });
       html += `<path d="${p}" fill="none" stroke="#f97316" stroke-width="1.8"/>`;
       html += `<circle cx="${ML+yi*BCW+BCW/2}" cy="${scLine(growthArr[yi])}" r="3.5" fill="#f97316" stroke="#0a0e1a" stroke-width="1.5"/>`;
-      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${(scLine(growthArr[yi])-7).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="700" fill="#f97316">${growthArr[yi].toFixed(1)}%</text>`;
+      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${(scLine(growthArr[yi])-7).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#f97316">${growthArr[yi].toFixed(1)}%</text>`;
       // Right axis growth labels
-      html += `<text x="${ML+IW+2}" y="${(scLine(maxG*.7)+3).toFixed(1)}" font-size="9" fill="#f97316">${(maxG*.7).toFixed(0)}%</text>`;
-      html += `<text x="${ML+IW+2}" y="${(scLine(0)+3).toFixed(1)}" font-size="9" fill="#f97316">0%</text>`;
-      years.forEach(i => { if (i%3===0) html += `<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`; });
+      html += `<text x="${ML+IW+2}" y="${(scLine(maxG*.7)+3).toFixed(1)}" font-size="10" fill="#f97316">${(maxG*.7).toFixed(0)}%</text>`;
+      html += `<text x="${ML+IW+2}" y="${(scLine(0)+3).toFixed(1)}" font-size="10" fill="#f97316">0%</text>`;
+      years.forEach(i => { if (i%3===0) html += `<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="10" fill="#64748b">${2010+i}</text>`; });
       // Legend
       html += `<rect x="${ML}" y="2" width="14" height="4" fill="#3b82f6" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">GDP thực (tỷ VND)</text>`;
       html += `<line x1="${ML+108}" y1="5" x2="${ML+122}" y2="5" stroke="#f97316" stroke-width="2.5"/><text x="${ML+126}" y="8" font-size="10" fill="#94a3b8">Tăng trưởng %</text>`;
@@ -1730,7 +1725,7 @@ function updateSpecialCharts(cardId, yi) {
       for (let g = 1; g <= 4; g++) {
         const yy = MT + IH * g / 4;
         html += `<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
-        if (g<4) html += `<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxI*(1-g/4),0)}</text>`;
+        if (g<4) html += `<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${fmtNum(maxI*(1-g/4),0)}</text>`;
       }
       html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
       html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
@@ -1744,8 +1739,8 @@ function updateSpecialCharts(cardId, yi) {
       let p = ''; incomeArr.forEach((v, i) => { const px = ML+i*BCW+BCW/2, py = scY(v); p += (i===0?`M${px},${py}`:`L${px},${py}`); });
       html += `<path d="${p}" fill="none" stroke="#a855f7" stroke-width="2.2"/>`;
       html += `<circle cx="${ML+yi*BCW+BCW/2}" cy="${scY(incomeArr[yi])}" r="4" fill="#a855f7" stroke="#0a0e1a" stroke-width="1.5"/>`;
-      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${(scY(incomeArr[yi])-8).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#c4b5fd">${fmtNum(incomeArr[yi],1)}M</text>`;
-      years.forEach(i => { if (i%3===0) html += `<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`; });
+      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${(scY(incomeArr[yi])-8).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#c4b5fd">${fmtNum(incomeArr[yi],1)}M</text>`;
+      years.forEach(i => { if (i%3===0) html += `<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="10" fill="#64748b">${2010+i}</text>`; });
       html += `<rect x="${ML}" y="2" width="14" height="4" fill="#a855f7" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">Thu nhập BQ (tr.VND)</text>`;
       __svgRefs['ecb-income-card'].innerHTML = html;
     }
@@ -1758,7 +1753,7 @@ function updateSpecialCharts(cardId, yi) {
       for (let g = 1; g <= 4; g++) {
         const yy = MT + IH * g / 4;
         html += `<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
-        if (g<4) html += `<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${(maxC*(1-g/4)).toFixed(1)}%</text>`;
+        if (g<4) html += `<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${(maxC*(1-g/4)).toFixed(1)}%</text>`;
       }
       html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
       html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
@@ -1772,11 +1767,11 @@ function updateSpecialCharts(cardId, yi) {
       });
       const targetY = MT + IH - (3 / maxC) * IH;
       html += `<line x1="${ML}" y1="${targetY.toFixed(1)}" x2="${ML+IW}" y2="${targetY.toFixed(1)}" stroke="#06b6d4" stroke-width="1" stroke-dasharray="3,2"/>`;
-      html += `<text x="${ML+IW+2}" y="${(targetY+3).toFixed(1)}" font-size="9" fill="#06b6d4">3%</text>`;
+      html += `<text x="${ML+IW+2}" y="${(targetY+3).toFixed(1)}" font-size="10" fill="#06b6d4">3%</text>`;
       // Active value
       const vC = cpiArr[yi];
-      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${Math.max(MT+10, MT+IH-(vC/maxC)*IH-5).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#00d4ff">${vC.toFixed(1)}%</text>`;
-      years.forEach(i => { if (i%3===0) html += `<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`; });
+      html += `<text x="${(ML+yi*BCW+BCW/2).toFixed(1)}" y="${Math.max(MT+10, MT+IH-(vC/maxC)*IH-5).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#00d4ff">${vC.toFixed(1)}%</text>`;
+      years.forEach(i => { if (i%3===0) html += `<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="10" fill="#64748b">${2010+i}</text>`; });
       html += `<text x="${ML}" y="10" font-size="10" fill="#94a3b8">CPI YoY %</text>`;
       __svgRefs['ecb-cpi-card'].innerHTML = html;
     }
@@ -1853,7 +1848,7 @@ function updateSpecialCharts(cardId, yi) {
       for (let g = 0; g <= 4; g++) {
         const yy = MT + IH * g / 4;
         html += `<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="rgba(42,58,85,0.35)" stroke-width="1"/>`;
-        html += `<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="9" fill="#64748b">${(maxR*(1-g/4)).toFixed(1)}%</text>`;
+        html += `<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="10" fill="#64748b">${(maxR*(1-g/4)).toFixed(1)}%</text>`;
       }
       html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
       html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
@@ -1869,7 +1864,7 @@ function updateSpecialCharts(cardId, yi) {
       });
       // X labels: every 2-3 ticks for readability
       const labelStep = n > 15 ? 3 : (n > 8 ? 2 : 1);
-      labels.forEach((lbl,i) => { if (i%labelStep===0 || i===n-1) html += `<text x="${(ML+i*bw2+bw2/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${lbl}</text>`; });
+      labels.forEach((lbl,i) => { if (i%labelStep===0 || i===n-1) html += `<text x="${(ML+i*bw2+bw2/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="10" fill="#64748b">${lbl}</text>`; });
       // Legend
       html += `<rect x="${ML}" y="2" width="14" height="4" fill="#22c55e" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">TG Big4 ${tName}</text>`;
       html += `<rect x="${ML+92}" y="2" width="14" height="4" fill="#f59e0b" rx="1.5"/><text x="${ML+110}" y="8" font-size="10" fill="#94a3b8">TG NHTMCP</text>`;
@@ -1899,7 +1894,7 @@ function updateSpecialCharts(cardId, yi) {
       for (let g = 0; g <= 4; g++) {
         const yy = MT + IH * g / 4;
         html += `<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="rgba(42,58,85,0.35)" stroke-width="1"/>`;
-        html += `<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="9" fill="#64748b">${(maxR*(1-g/4)).toFixed(1)}%</text>`;
+        html += `<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="10" fill="#64748b">${(maxR*(1-g/4)).toFixed(1)}%</text>`;
       }
       html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
       html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
@@ -1913,7 +1908,7 @@ function updateSpecialCharts(cardId, yi) {
         html += `<circle cx="${lastX.toFixed(1)}" cy="${scY(v).toFixed(1)}" r="4" fill="${col}" stroke="#0a0e1a" stroke-width="1.5"/>`;
       });
       const labelStep = n > 15 ? 3 : (n > 8 ? 2 : 1);
-      labels.forEach((lbl,i) => { if (i%labelStep===0 || i===n-1) html += `<text x="${(ML+i*bw2+bw2/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${lbl}</text>`; });
+      labels.forEach((lbl,i) => { if (i%labelStep===0 || i===n-1) html += `<text x="${(ML+i*bw2+bw2/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="10" fill="#64748b">${lbl}</text>`; });
       html += `<rect x="${ML}" y="2" width="14" height="4" fill="#3b82f6" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">TP ${tName}</text>`;
       html += `<rect x="${ML+64}" y="2" width="14" height="4" fill="#ef4444" rx="1.5"/><text x="${ML+82}" y="8" font-size="10" fill="#94a3b8">LS TCV</text>`;
       __svgRefs['ecb-bonds'].innerHTML = html;
@@ -1924,13 +1919,13 @@ function updateSpecialCharts(cardId, yi) {
     const cpiArr=CPI_YOY.slice(0,20), maxM2=Math.max(...M2)*1.1, maxCpi=Math.max(...cpiArr)*1.2;
     const mUid='m'+Math.random().toString(36).slice(2,7);
     let html=`<defs><linearGradient id="${mUid}_b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ec4899" stop-opacity="0.9"/><stop offset="100%" stop-color="#ec4899" stop-opacity="0.25"/></linearGradient></defs>`;
-    for(let g=1;g<=4;g++){const yy=MT+IH*g/4;html+=`<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;if(g<4)html+=`<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${fmtNum(maxM2*(1-g/4),0)}</text>`;}
+    for(let g=1;g<=4;g++){const yy=MT+IH*g/4;html+=`<line x1="${ML}" y1="${yy.toFixed(1)}" x2="${ML+IW}" y2="${yy.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;if(g<4)html+=`<text x="${ML-4}" y="${(yy+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${fmtNum(maxM2*(1-g/4),0)}</text>`;}
     html+=`<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/><line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
     M2.forEach((v,i)=>{const bh=(v/maxM2)*IH,x=ML+i*BCW+BCW*0.15,y=MT+IH-bh,bw=BCW*0.7,isAct=i===yi;html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${isAct?'#ec4899':'url(#'+mUid+'_b)'}" rx="1.5"/>`;if(isAct)html+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="2" fill="#f472b6" rx="1"/>`;});
     let p='';cpiArr.forEach((v,i)=>{const px=ML+i*BCW+BCW/2,py=MT+IH-(v/maxCpi)*IH;p+=(i===0?`M${px},${py}`:`L${px},${py}`);});
     html+=`<path d="${p}" fill="none" stroke="#ef4444" stroke-width="1.8"/>`;
     html+=`<circle cx="${ML+yi*BCW+BCW/2}" cy="${MT+IH-(cpiArr[yi]/maxCpi)*IH}" r="3.5" fill="#ef4444" stroke="#0a0e1a" stroke-width="1.5"/>`;
-    years.forEach(i=>{if(i%3===0)html+=`<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#64748b">${2010+i}</text>`;});
+    years.forEach(i=>{if(i%3===0)html+=`<text x="${(ML+i*BCW+BCW/2).toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="10" fill="#64748b">${2010+i}</text>`;});
     html+=`<rect x="${ML}" y="2" width="14" height="4" fill="#ec4899" rx="1.5"/><text x="${ML+18}" y="8" font-size="10" fill="#94a3b8">M2</text><line x1="${ML+44}" y1="4" x2="${ML+58}" y2="4" stroke="#ef4444" stroke-width="2.5"/><text x="${ML+62}" y="8" font-size="10" fill="#94a3b8">CPI %</text>`;
     if(__svgRefs['ecb-macro'])__svgRefs['ecb-macro'].innerHTML=html;
     const fxVal=liveUSDVND&&yi>=14?liveUSDVND:FX_USD[Math.min(yi,19)];
@@ -1996,13 +1991,13 @@ function renderBubble(yi) {
     const yy=MT+g*IH/4;
     html+=`<line x1="${ML}" y1="${yy}" x2="${ML+IW}" y2="${yy}" stroke="#1a2235" stroke-width="1"/>`;
     const val=maxY*(1-g/4);
-    html+=`<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="8" fill="#475569">${fmtNum(val,0)}</text>`;
+    html+=`<text x="${ML-3}" y="${yy+3}" text-anchor="end" font-size="10" fill="#475569">${fmtNum(val,0)}</text>`;
   }
   for(let g=0;g<=4;g++){
     const xx=ML+g*IW/4;
     html+=`<line x1="${xx}" y1="${MT}" x2="${xx}" y2="${MT+IH}" stroke="#1a2235" stroke-width="1"/>`;
     const val=maxX*g/4;
-    html+=`<text x="${xx}" y="${MT+IH+12}" text-anchor="middle" font-size="8" fill="#475569">${fmtNum(val,0)}</text>`;
+    html+=`<text x="${xx}" y="${MT+IH+12}" text-anchor="middle" font-size="10" fill="#475569">${fmtNum(val,0)}</text>`;
   }
   html+=`<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1.5"/>`;
   html+=`<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1.5"/>`;
@@ -2435,7 +2430,7 @@ function drawBSListClickable(containerId, items) {
         <div class="bk-inline-chart" title="8 kỳ gần nhất">${bars}</div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:1px">
           <span class="bk-bs-pct" style="color:${d.color};background:${d.color}22">${fmtVndTy(d.value)}</span>
-          <span style="font-size:9px;color:var(--text3);font-variant-numeric:tabular-nums">${d.pct.toFixed(1)}%</span>
+          <span style="font-size: 10px;color:var(--text3);font-variant-numeric:tabular-nums">${d.pct.toFixed(1)}%</span>
         </div>
       </div>`;
     });
@@ -2713,7 +2708,7 @@ function renderBanks() {
       const chgCls = r.chg_pct == null ? '' : (r.chg_pct >= 0 ? 'bk-chg-pos' : 'bk-chg-neg');
       const typeCls = r.type === 'SOCB' ? 'bk-type-socb' : 'bk-type-jscb';
       const fmt = (v, d=0) => v == null ? '—' : v.toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
-      const pLab = bkPeriod === 'quarter' ? `<span style="font-size:9px;color:var(--text3);margin-left:4px">${r.period_label||''}</span>` : '';
+      const pLab = bkPeriod === 'quarter' ? `<span style="font-size: 10px;color:var(--text3);margin-left:4px">${r.period_label||''}</span>` : '';
       return `<tr>
         <td class="bk-sym-cell" data-sym="${r.symbol}" title="Click để xem công ty con/liên kết">${r.symbol}${pLab}</td>
         <td class="${typeCls}">${r.name}</td>
@@ -2810,7 +2805,7 @@ function drawGroupedBars(containerId, topBanks, metricKey, unit) {
     const y = MT + IH*g/4;
     html += `<line x1="${ML}" y1="${y.toFixed(1)}" x2="${ML+IW}" y2="${y.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
     const v = yMax - (yMax-yMin)*g/4;
-    html += `<text x="${ML-4}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#64748b">${v.toFixed(unit==='%'?1:0)}</text>`;
+    html += `<text x="${ML-4}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${v.toFixed(unit==='%'?1:0)}</text>`;
   }
   html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
   html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
@@ -2832,14 +2827,14 @@ function drawGroupedBars(containerId, topBanks, metricKey, unit) {
       const tipData = `${b.symbol} · ${lbl}|${metricLabel}: ${vTxt}`;
       html += `<rect class="bk-bar" data-tip="${tipData}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="url(#${uid}_${bi})" rx="1"/>`;
     });
-    html += `<text x="${(ML + pi*groupW + groupW/2).toFixed(1)}" y="${(H-6).toFixed(1)}" text-anchor="middle" font-size="8.5" fill="#64748b">${lbl}</text>`;
+    html += `<text x="${(ML + pi*groupW + groupW/2).toFixed(1)}" y="${(H-6).toFixed(1)}" text-anchor="middle" font-size="10" fill="#64748b">${lbl}</text>`;
   });
 
   let lx = ML;
   topBanks.forEach((b, bi) => {
     const col = BANK_COLORS[bi % BANK_COLORS.length];
     html += `<rect x="${lx}" y="6" width="10" height="4" fill="${col}" rx="1.5"/>`;
-    html += `<text x="${lx+14}" y="12" font-size="9.5" font-weight="700" fill="${col}">${b.symbol}</text>`;
+    html += `<text x="${lx+14}" y="12" font-size="10" font-weight="700" fill="${col}">${b.symbol}</text>`;
     lx += 14 + b.symbol.length*6 + 10;
   });
   html += `</svg>`;
@@ -2932,7 +2927,7 @@ function renderLineItemModal() {
   for (let g = 0; g <= 4; g++) {
     const y = chartPadT + plotH * g / 4;
     html += `<line x1="${chartPadL}" y1="${y.toFixed(1)}" x2="${chartPadL + availW}" y2="${y.toFixed(1)}" stroke="rgba(42,58,85,0.35)" stroke-width="0.5" stroke-dasharray="${g===4?0:'3,2'}"/>`;
-    html += `<text x="${chartPadL-2}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="8.5" fill="#64748b">${(100-g*25)}%</text>`;
+    html += `<text x="${chartPadL-2}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${(100-g*25)}%</text>`;
   }
   // Draw stacked bars per period
   for (let p = 0; p < N; p++) {
@@ -2949,7 +2944,7 @@ function renderLineItemModal() {
       yBot = y;
     });
     // Period label
-    html += `<text x="${(x + barW/2).toFixed(1)}" y="${(chartH - 14).toFixed(1)}" text-anchor="middle" font-size="9" fill="#94a3b8" font-weight="${p===N-1?'700':'400'}">${periods[p]||''}</text>`;
+    html += `<text x="${(x + barW/2).toFixed(1)}" y="${(chartH - 14).toFixed(1)}" text-anchor="middle" font-size="10" fill="#94a3b8" font-weight="${p===N-1?'700':'400'}">${periods[p]||''}</text>`;
     if (p === N-1) {
       html += `<rect x="${x.toFixed(1)}" y="${chartPadT}" width="${barW.toFixed(1)}" height="${plotH}" fill="none" stroke="#00d4ff" stroke-width="1.2" stroke-dasharray="2,2"/>`;
     }
@@ -2971,7 +2966,7 @@ function renderLineItemModal() {
   for (let g = 0; g <= 4; g++) {
     const y = gPadT + gPlotH * g / 4;
     html += `<line x1="${gPadL}" y1="${y.toFixed(1)}" x2="${gPadL + gAvailW}" y2="${y.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="0.5"/>`;
-    if (g < 4) html += `<text x="${gPadL-3}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="8.5" fill="#64748b">${(gMax*(1-g/4)).toFixed(1)}</text>`;
+    if (g < 4) html += `<text x="${gPadL-3}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${(gMax*(1-g/4)).toFixed(1)}</text>`;
   }
   html += `<line x1="${gPadL}" y1="${gPadT}" x2="${gPadL}" y2="${(gPadT+gPlotH).toFixed(1)}" stroke="#2a3a55" stroke-width="0.5"/>`;
   html += `<line x1="${gPadL}" y1="${(gPadT+gPlotH).toFixed(1)}" x2="${(gPadL+gAvailW).toFixed(1)}" y2="${(gPadT+gPlotH).toFixed(1)}" stroke="#2a3a55" stroke-width="0.5"/>`;
@@ -2986,7 +2981,7 @@ function renderLineItemModal() {
       const tipData = `${row.name} · ${periods[p]}|Pct: ${v.toFixed(2)}%`;
       html += `<rect class="bk-bar" data-tip="${tipData}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${gBarW.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${row.color}" rx="0.5"/>`;
     });
-    html += `<text x="${(gx + gGroupW/2).toFixed(1)}" y="${(gChartH - 14).toFixed(1)}" text-anchor="middle" font-size="9" fill="#64748b">${periods[p]||''}</text>`;
+    html += `<text x="${(gx + gGroupW/2).toFixed(1)}" y="${(gChartH - 14).toFixed(1)}" text-anchor="middle" font-size="10" fill="#64748b">${periods[p]||''}</text>`;
   }
   html += `</svg>`;
 
@@ -3135,20 +3130,9 @@ document.querySelectorAll('.rg-btn').forEach(b => b.addEventListener('click', ()
 let activeTopTab = 'demo';
 
 function switchTopTab(tab) {
-  activeTopTab = tab;
-  // Update tab button styles
-  document.getElementById('ttab-demo').classList.toggle('active', tab === 'demo');
-  document.getElementById('ttab-stu').classList.toggle('active', tab === 'stu');
-  // Show/hide panels
-  const demoPanel = document.getElementById('ttab-panel-demo');
-  const stuPanel  = document.getElementById('ttab-panel-stu');
-  if (demoPanel) { demoPanel.style.display = tab === 'demo' ? 'flex' : 'none'; }
-  if (stuPanel)  { stuPanel.style.display  = tab === 'stu'  ? 'flex' : 'none'; }
-  // Render the newly visible chart
-  requestAnimationFrame(() => {
-    if (tab === 'demo') renderDemoPyramid(curYi);
-    else renderStudent(curYi2);
-  });
+  // Tabs removed — both demo and student panels now render side-by-side.
+  activeTopTab = tab || 'demo';
+  requestAnimationFrame(() => { renderDemoPyramid(curYi); renderStudent(curYi2); });
 }
 
 
@@ -3165,9 +3149,8 @@ function advanceTopTimeline(yi) {
   curYi  = yi;
   curYi2 = Math.max(0, Math.min(19, yi - 10));
   updateTopLabel(yi);
-  if (activeTopTab === 'demo') renderDemoPyramid(curYi);
-  else renderStudent(curYi2);
-  // Sync GDP composition to same year (both share 0=2000..45=2045)
+  renderDemoPyramid(curYi);
+  renderStudent(curYi2);
   if (typeof gdpYi !== 'undefined' && gdpYi !== yi) {
     gdpYi = yi;
     const gsl = document.getElementById('gdp-slider');
@@ -3424,7 +3407,7 @@ function drawGdpChart() {
   for (const sub of allSubs) {
     if (sub.secName !== curSec) {
       curSec = sub.secName;
-      botHtml += `<div style="font-size:8px;font-weight:700;color:${sub.secColor};padding:1px 4px;border-top:1px solid var(--border);flex:0 0 auto;line-height:1.4">${curSec}</div>`;
+      botHtml += `<div style="font-size: 10px;font-weight:700;color:${sub.secColor};padding:1px 4px;border-top:1px solid var(--border);flex:0 0 auto;line-height:1.4">${curSec}</div>`;
     }
     const pct    = sub.actualPct;
     const barPct = (pct / maxSubPct * 100).toFixed(1);
@@ -3522,8 +3505,8 @@ function reRenderAll() {
   }
   drawMap();
   drawGdpChart();
-  if (activeTopTab === 'demo') renderDemoPyramid(curYi);
-  else renderStudent(curYi2);
+  renderDemoPyramid(curYi);
+  renderStudent(curYi2);
   if (activeBottomTab === 'econ') updateSpecialCharts('all', 0);
   if (activeBottomTab === 'corr') { renderBubble(animYi); updateScatterCharts(); }
 }
