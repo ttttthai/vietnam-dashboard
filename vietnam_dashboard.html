@@ -37,6 +37,11 @@
   #panel-social { display: none; padding: 0 !important; flex-direction: column; flex: 1; min-height: 0; }
   #panel-social.active { display: flex; }
   #panel-bottom .panel-inner:has(#panel-social.active) { overflow: hidden; }
+  /* Map/GDP row: top ~58% · Demographics row: bottom ~42% */
+  #panel-social #top-row { flex: 3; min-height: 0; }
+  #panel-social #panel-top-right { flex: 2; min-height: 0; display: flex; flex-direction: column; background: var(--bg2); border-top: 1px solid var(--border); overflow: hidden; }
+  #social-hdivider { height: 4px; background: var(--border); flex-shrink: 0; }
+  #demo-header { display: flex; align-items: center; gap: 0; flex-shrink: 0; border-bottom: 1px solid var(--border); background: var(--bg3); padding: 0 6px; min-height: 26px; }
   #top-panel-header { display: flex; align-items: center; gap: 0; flex-shrink: 0; border-bottom: 1px solid var(--border); background: var(--bg3); }
   .col-label { font-size: 10px; font-weight: 700; color: var(--text2); padding: 4px 10px; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid var(--border); white-space: nowrap; }
   #top-row { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; }
@@ -324,24 +329,15 @@
 
         <!-- Panel: Xã hội (Map + GDP composition + Demographics/Students) -->
         <div id="panel-social" class="panel active">
-        <!-- Shared column header -->
+        <!-- Row 1: Map + GDP header -->
         <div id="top-panel-header">
       <span class="col-label" style="flex:1;min-width:0">🗺 Bản đồ 34 tỉnh · <span id="legend-sel-label" style="color:var(--accent)">Cả nước</span></span>
-      <span class="col-label" style="flex:1;min-width:0;display:flex;align-items:center;gap:0;padding:0 0 0 8px;">
+      <span class="col-label" style="flex:1;min-width:0;display:flex;align-items:center;gap:0;padding:0 0 0 8px;border-right:none;">
         <span style="font-size:10px;font-weight:700;color:var(--text2);white-space:nowrap;margin-right:4px">📊 GDP</span>
         <button class="play-btn" id="play-gdp" style="width:20px;height:20px;font-size:9px;margin-right:4px;flex-shrink:0">▶</button>
         <span class="yr-label" id="gdp-year-lbl" style="font-size:11px;min-width:28px;flex-shrink:0">2024</span>
         <span id="gdp-forecast-badge" style="font-size:9px;color:var(--accent3);margin-right:4px;flex-shrink:0"></span>
         <input type="range" id="gdp-slider" min="0" max="45" value="24" style="flex:1;min-width:0;accent-color:var(--accent);margin:0 6px">
-      </span>
-      <span class="col-label" style="flex:1;border-right:none;display:flex;align-items:center;gap:0;padding:0">
-        <button class="top-tab-btn active" id="ttab-demo" onclick="switchTopTab('demo')">👥 Dân số</button>
-        <button class="top-tab-btn" id="ttab-stu" onclick="switchTopTab('stu')">🎓 Học sinh</button>
-        <span style="flex:1"></span>
-        <button class="play-btn" id="play-top" style="width:20px;height:20px;font-size:9px;margin-right:4px">▶</button>
-        <span class="yr-label" id="yr-top" style="font-size:11px">2000</span>
-        <input type="range" id="sl-top" min="0" max="45" value="0" style="width:90px;margin:0 6px;accent-color:var(--accent)">
-        <span id="top-forecast-badge" style="margin-right:6px"></span>
       </span>
     </div>
     <div id="top-row">
@@ -372,37 +368,45 @@
       <!-- Vertical drag divider: map ↔ GDP -->
       <div id="vdivider"></div>
 
-      <!-- GDP COMPOSITION panel (middle) -->
+      <!-- GDP COMPOSITION panel (right of Map) -->
       <div id="panel-gdp">
         <div id="gdp-inner">
-          <!-- Top section: 4 sector summary bars -->
           <div id="gdp-sectors" style="flex:0 0 30%;min-height:0;display:flex;flex-direction:column;padding:2px 0 2px;border-bottom:1px solid var(--border);"></div>
-          <!-- Bottom section: sub-sector detail -->
           <div id="gdp-legend" style="flex:1;min-height:0;overflow:hidden;padding:1px 0;display:flex;flex-direction:column;"></div>
         </div>
       </div><!-- /panel-gdp -->
+    </div><!-- /top-row -->
 
-      <!-- Vertical drag divider: GDP ↔ demographic -->
-      <div id="vdivider2"></div>
+    <!-- Horizontal divider: Map/GDP ↔ Demographics -->
+    <div id="social-hdivider"></div>
 
-      <!-- TOP-RIGHT: Dân số / Học sinh tabs -->
-      <div id="panel-top-right">
-        <div class="panel-inner">
-          <div id="top-tab-content" style="display:flex;flex-direction:column;flex:1;min-height:0;">
-            <!-- Demo panel -->
-            <div id="ttab-panel-demo" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:4px 8px;">
-              <div class="top-chart-label">Tháp dân số · <span id="demo-prov-name">Cả nước</span></div>
-              <div id="demo-svg-wrap"><svg id="demo-svg" preserveAspectRatio="none"></svg></div>
-            </div>
-            <!-- Student panel (hidden by default) -->
-            <div id="ttab-panel-stu" style="display:none;flex-direction:column;flex:1;min-height:0;padding:4px 8px;">
-              <div class="top-chart-label">Học sinh · <span id="stu-prov-name">Cả nước</span></div>
-              <div id="stu-svg-wrap"><svg id="stu-svg" preserveAspectRatio="none"></svg></div>
-            </div>
+    <!-- Row 2 header: Dân số / Học sinh tabs + timeline -->
+    <div id="demo-header">
+      <button class="top-tab-btn active" id="ttab-demo" onclick="switchTopTab('demo')">👥 Dân số</button>
+      <button class="top-tab-btn" id="ttab-stu" onclick="switchTopTab('stu')">🎓 Học sinh</button>
+      <span style="flex:1"></span>
+      <button class="play-btn" id="play-top" style="width:20px;height:20px;font-size:9px;margin-right:4px">▶</button>
+      <span class="yr-label" id="yr-top" style="font-size:11px">2000</span>
+      <input type="range" id="sl-top" min="0" max="45" value="0" style="width:180px;margin:0 6px;accent-color:var(--accent)">
+      <span id="top-forecast-badge" style="margin-right:6px"></span>
+    </div>
+
+    <!-- Row 2 body: Demographics / Students (full width) -->
+    <div id="panel-top-right">
+      <div class="panel-inner">
+        <div id="top-tab-content" style="display:flex;flex-direction:column;flex:1;min-height:0;">
+          <div id="ttab-panel-demo" style="display:flex;flex-direction:column;flex:1;min-height:0;padding:4px 8px;">
+            <div class="top-chart-label">Tháp dân số · <span id="demo-prov-name">Cả nước</span></div>
+            <div id="demo-svg-wrap"><svg id="demo-svg" preserveAspectRatio="none"></svg></div>
+          </div>
+          <div id="ttab-panel-stu" style="display:none;flex-direction:column;flex:1;min-height:0;padding:4px 8px;">
+            <div class="top-chart-label">Học sinh · <span id="stu-prov-name">Cả nước</span></div>
+            <div id="stu-svg-wrap"><svg id="stu-svg" preserveAspectRatio="none"></svg></div>
           </div>
         </div>
-      </div><!-- /panel-top-right -->
-    </div><!-- /top-row -->
+      </div>
+    </div><!-- /panel-top-right -->
+
         </div><!-- /panel-social -->
 
         <!-- Panel: Economy -->
@@ -3299,27 +3303,7 @@ document.addEventListener('mousemove', e => {
 });
 document.addEventListener('mouseup', () => { vDragging = false; });
 
-// ── Vertical divider 2 (GDP ↔ top-right) drag ────────────────
-const vdiv2 = document.getElementById('vdivider2');
-let vDragging2 = false;
-vdiv2.addEventListener('mousedown', e => { vDragging2 = true; e.preventDefault(); });
-document.addEventListener('mousemove', e => {
-  if (!vDragging2) return;
-  const topRow = document.getElementById('top-row');
-  const rect = topRow.getBoundingClientRect();
-  const mapW = mapPanel.offsetWidth + 10; // map + 2 dividers
-  const newW = Math.max(150, Math.min(rect.width * 0.40, e.clientX - rect.left - mapW));
-  gdpPanel.style.width = newW + 'px';
-  requestAnimationFrame(() => drawGdpChart());
-});
-document.addEventListener('mouseup', () => { vDragging2 = false; });
-
-// ── Horizontal divider (top row ↔ bottom panel) drag ─────────
-const hdiv = document.getElementById('hdivider');
-const topRow = document.getElementById('top-row');
-const bottomPanel = document.getElementById('panel-bottom');
-let hDragging = false;
-// hdivider drag disabled — top panel height locked at startup size
+// (vdivider2 and hdivider removed during Xã hội tab refactor)
 
 
 
