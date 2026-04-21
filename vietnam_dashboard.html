@@ -31,9 +31,12 @@
   #header h1 { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 1px; white-space: nowrap; }
   #header .sub { font-size: 11px; color: var(--text2); }
   .hbadge { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; font-size: 11px; color: var(--text2); white-space: nowrap; }
-  /* ── 3-panel layout ────────────────────────────────────────── */
+  /* ── Layout: single bottom-panel holds all tabs including the new "Xã hội" ── */
   #main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
-  #top-panel { display: flex; flex-direction: column; flex-shrink: 0; height: 36vh; min-height: 176px; background: var(--bg2); border-bottom: 1px solid var(--border); }
+  /* "Xã hội" panel reuses the former top-panel header + 3-column row */
+  #panel-social { display: none; padding: 0 !important; flex-direction: column; flex: 1; min-height: 0; }
+  #panel-social.active { display: flex; }
+  #panel-bottom .panel-inner:has(#panel-social.active) { overflow: hidden; }
   #top-panel-header { display: flex; align-items: center; gap: 0; flex-shrink: 0; border-bottom: 1px solid var(--border); background: var(--bg3); }
   .col-label { font-size: 10px; font-weight: 700; color: var(--text2); padding: 4px 10px; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid var(--border); white-space: nowrap; }
   #top-row { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; }
@@ -307,14 +310,22 @@
     <span class="hbadge">2010–2029</span>
     <span id="fx-live-badge" class="live-badge" style="margin-left:auto"></span>
     <span id="bond-live-badge" class="live-badge" style="margin-left:4px"></span>
-    <button id="top-collapse" title="Thu/mở panel trên" style="margin-left:8px;background:var(--bg3);border:1px solid var(--border);color:var(--accent);border-radius:4px;padding:2px 10px;cursor:pointer;font-weight:700;font-size:12px">▲</button>
   </div>
   <div id="main">
-    <!-- ── Top row ─────────────────────────────────────────────────── -->
-    <!-- Unified top panel -->
-    <div id="top-panel">
-    <!-- Shared column header -->
-    <div id="top-panel-header">
+    <!-- BOTTOM PANEL now holds all tabs (Xã hội, Kinh tế, Tương quan, Ngân hàng) -->
+    <div id="panel-bottom">
+      <div class="panel-inner">
+        <div class="tab-row" id="tabs-bottom">
+          <button class="tab-btn active" data-tab="social" data-panel="bottom">Xã hội</button>
+          <button class="tab-btn" data-tab="econ"   data-panel="bottom">Kinh tế</button>
+          <button class="tab-btn" data-tab="corr"   data-panel="bottom">Tương quan</button>
+          <button class="tab-btn" data-tab="banks"  data-panel="bottom">Hệ thống Ngân hàng</button>
+        </div>
+
+        <!-- Panel: Xã hội (Map + GDP composition + Demographics/Students) -->
+        <div id="panel-social" class="panel active">
+        <!-- Shared column header -->
+        <div id="top-panel-header">
       <span class="col-label" style="flex:1;min-width:0">🗺 Bản đồ 34 tỉnh · <span id="legend-sel-label" style="color:var(--accent)">Cả nước</span></span>
       <span class="col-label" style="flex:1;min-width:0;display:flex;align-items:center;gap:0;padding:0 0 0 8px;">
         <span style="font-size:10px;font-weight:700;color:var(--text2);white-space:nowrap;margin-right:4px">📊 GDP</span>
@@ -392,21 +403,10 @@
         </div>
       </div><!-- /panel-top-right -->
     </div><!-- /top-row -->
-    </div><!-- /top-panel -->
+        </div><!-- /panel-social -->
 
-    <!-- Horizontal drag divider -->
-    <div id="hdivider"></div>
-
-    <!-- BOTTOM PANEL: Kinh tế + Tương quan -->
-    <div id="panel-bottom">
-      <div class="panel-inner">
-        <div class="tab-row" id="tabs-bottom">
-          <button class="tab-btn active" data-tab="econ" data-panel="bottom">Kinh tế</button>
-          <button class="tab-btn" data-tab="corr" data-panel="bottom">Tương quan</button>
-          <button class="tab-btn" data-tab="banks" data-panel="bottom">Hệ thống Ngân hàng</button>
-        </div>
         <!-- Panel: Economy -->
-        <div id="panel-econ" class="panel active">
+        <div id="panel-econ" class="panel">
           <!-- Card 1: GDP & GRDP — full width -->
           <div class="econ-card full-width">
             <div class="econ-card-header">📊 GDP & GRDP</div>
@@ -2269,20 +2269,27 @@ async function tryLiveFetch() {
 // ============================================================
 
 // Top tab row (Dân số / Học sinh) — always visible, independent active state
-let activeBottomTab = 'econ';
+let activeBottomTab = 'social';
 
 
 function switchBottomTab(tab) {
   activeBottomTab = tab;
   document.querySelectorAll('#tabs-bottom .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-  ['econ','corr','banks'].forEach(t => {
+  ['social','econ','corr','banks'].forEach(t => {
     const p = document.getElementById(`panel-${t}`);
     if (!p) return;
     p.style.display = '';
     p.classList.toggle('active', t === tab);
   });
 
-  if (tab === 'econ') {
+  if (tab === 'social') {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (typeof drawMap === 'function') drawMap();
+      if (typeof drawGdpChart === 'function') drawGdpChart();
+      if (activeTopTab === 'demo') renderDemoPyramid(curYi);
+      else renderStudent(curYi2);
+    }));
+  } else if (tab === 'econ') {
     if (!econReady) { econReady = true; }
     requestAnimationFrame(() => requestAnimationFrame(() => {
       initSpecialCharts();
@@ -3570,48 +3577,11 @@ resObs.observe(document.getElementById('panel-bottom'));
 // ============================================================
 // INIT
 // ============================================================
-// ── Top-panel collapse toggle ──────────────────────────────
-(function() {
-  const btn = document.getElementById('top-collapse');
-  if (!btn) return;
-  let collapsed = false;
-  let savedHeight = '';
-  btn.addEventListener('click', () => {
-    const tp = document.getElementById('top-panel');
-    if (!tp) return;
-    collapsed = !collapsed;
-    if (collapsed) {
-      savedHeight = tp.style.height || '';
-      tp.style.height = '0px';
-      tp.style.minHeight = '0px';
-      tp.style.overflow = 'hidden';
-      btn.textContent = '▼';
-      btn.title = 'Mở panel trên';
-    } else {
-      tp.style.height = savedHeight || '36vh';
-      tp.style.minHeight = '176px';
-      tp.style.overflow = '';
-      btn.textContent = '▲';
-      btn.title = 'Thu panel trên';
-      // Re-render after layout settles
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        if (typeof drawMap === 'function') drawMap();
-        if (typeof drawGdpChart === 'function') drawGdpChart();
-        if (activeTopTab === 'demo') renderDemoPyramid(curYi);
-        else renderStudent(curYi2);
-      }));
-    }
-  });
-})();
-
 function initRender() {
   initGdpPanel();
-  // Set up tabs — but do NOT render yet (no dimensions available)
-  // switchTopTab just sets display:flex/none, no rendering
   switchTopTab('demo');
-  switchBottomTab('econ');
+  switchBottomTab('social');
   // ResizeObserver will call reRenderAll() as soon as containers get real dimensions
-  // Map fetch starts here — drawMap() also checks dimensions and bails if zero
   initMap();
 }
 
