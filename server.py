@@ -949,13 +949,43 @@ def _build_histories():
         "Q1/2026": {"nim":+0.10,"roa":+0.06,"roe":+0.55,"cir":-0.55,"npl":-0.06,"car":+0.1,"ldr":+0.6,"ccov":+4},
     }
 
-    def snap(fy, scale, delta, period_label):
+    # Per-bank, per-metric variance — deterministic from symbol+metric hash.
+    # Each bank grows its 4 BS line items at slightly different rates so
+    # alert panel can highlight banks where one item moves materially more
+    # than the headline total-assets growth.
+    def _bank_metric_jitter(sym, metric, period_idx):
+        h = hash(sym + metric + str(period_idx)) & 0xffff
+        # ±35% relative spread on the period scale's growth-from-base
+        return 1.0 + ((h / 0xffff) - 0.5) * 0.70
+    def snap(fy, scale, delta, period_label, sym=None, period_idx=None):
+        if sym is None:
+            return {
+                "period":   period_label,
+                "assets":   round(fy["assets"]   * scale),
+                "equity":   round(fy["equity"]   * scale),
+                "deposits": round(fy["deposits"] * scale),
+                "loans":    round(fy["loans"]    * scale),
+                "nim":      round(fy["nim"]  + delta["nim"],  2),
+                "roa":      round(fy["roa"]  + delta["roa"],  2),
+                "roe":      round(fy["roe"]  + delta["roe"],  1),
+                "cir":      round(fy["cir"]  + delta["cir"],  0),
+                "npl":      round(fy["npl"]  + delta["npl"],  2),
+                "car":      round(fy["car"]  + delta["car"],  2),
+                "ldr":      round(fy["ldr"]  + delta["ldr"],  0),
+                "ccov":     round(fy["ccov"] + delta["ccov"], 0),
+            }
+        # Bank-aware path: jitter the *delta from FY2024 base* for each scale metric
+        def _scaled(metric):
+            base = fy[metric]
+            growth_from_base = scale - 1.0
+            jitter = _bank_metric_jitter(sym, metric, period_idx)
+            return round(base * (1.0 + growth_from_base * jitter))
         return {
             "period":   period_label,
-            "assets":   round(fy["assets"]   * scale),
-            "equity":   round(fy["equity"]   * scale),
-            "deposits": round(fy["deposits"] * scale),
-            "loans":    round(fy["loans"]    * scale),
+            "assets":   _scaled("assets"),
+            "equity":   _scaled("equity"),
+            "deposits": _scaled("deposits"),
+            "loans":    _scaled("loans"),
             "nim":      round(fy["nim"]  + delta["nim"],  2),
             "roa":      round(fy["roa"]  + delta["roa"],  2),
             "roe":      round(fy["roe"]  + delta["roe"],  1),
@@ -969,14 +999,14 @@ def _build_histories():
     yearly = {}
     quarterly = {}
     for sym, fy in VN_BANK_FUNDAMENTALS.items():
-        # Annual: 6 years oldest→newest
-        yearly[sym] = [snap(fy, ANNUAL_SCALE[i], ANNUAL_DELTA[i], ANNUAL_PERIODS[i]) for i in range(len(ANNUAL_PERIODS))]
-        # Quarterly: last 8 ending at this bank's latest reported quarter
+        yearly[sym] = [snap(fy, ANNUAL_SCALE[i], ANNUAL_DELTA[i], ANNUAL_PERIODS[i], sym, i)
+                       for i in range(len(ANNUAL_PERIODS))]
         end = bank_q_end.get(sym, MID_END)
         end_idx = Q_ALL.index(end)
         start_idx = max(0, end_idx - 7)
         q_slice = Q_ALL[start_idx: end_idx + 1]
-        quarterly[sym] = [snap(fy, Q_IDX_SCALE[q], Q_DELTA[q], q) for q in q_slice]
+        quarterly[sym] = [snap(fy, Q_IDX_SCALE[q], Q_DELTA[q], q, sym, i)
+                          for i, q in enumerate(q_slice)]
     return yearly, quarterly
 
 VN_BANK_YEARLY_HIST, VN_BANK_QUARTERLY_HIST = _build_histories()

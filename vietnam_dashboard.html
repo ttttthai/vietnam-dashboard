@@ -2774,23 +2774,15 @@ function renderMajorChanges(rows, perLabels) {
   const cur = perLabels[N-1], prev = perLabels[N-2];
   if (lblPer) lblPer.textContent = cur;
 
-  // Metric definitions with period-aware thresholds.
-  // Quarterly drift is much smaller than yearly — pick the right scale.
+  // Balance-sheet line items only (no ratios).
+  // Quarterly drift is much smaller than yearly — pick the right threshold scale.
   const isQ = /^Q/.test(cur);
   const Q = isQ ? 1 : 5;  // multiplier: yearly thresholds are ~5x quarterly
   const METRICS = [
-    { k:'assets',  lbl:'Tổng tài sản',     type:'scale', thr:[1.5*Q, 3.0*Q] },
-    { k:'equity',  lbl:'Vốn chủ sở hữu',   type:'scale', thr:[1.5*Q, 3.5*Q] },
-    { k:'loans',   lbl:'Cho vay khách hàng',type:'scale',thr:[1.5*Q, 3.5*Q] },
-    { k:'deposits',lbl:'Tiền gửi khách hàng',type:'scale',thr:[1.5*Q, 3.0*Q] },
-    { k:'nim',     lbl:'NIM',                type:'ratio', thr:[0.06*Q, 0.15*Q] },
-    { k:'roa',     lbl:'ROA',                type:'ratio', thr:[0.04*Q, 0.10*Q] },
-    { k:'roe',     lbl:'ROE',                type:'ratio', thr:[0.30*Q, 0.80*Q] },
-    { k:'npl',     lbl:'NPL',                type:'ratio', thr:[0.05*Q, 0.15*Q] },
-    { k:'car',     lbl:'CAR',                type:'ratio', thr:[0.06*Q, 0.15*Q] },
-    { k:'cir',     lbl:'CIR',                type:'ratio', thr:[0.40*Q, 1.0*Q] },
-    { k:'ldr',     lbl:'LDR',                type:'ratio', thr:[0.30*Q, 0.80*Q] },
-    { k:'ccov',    lbl:'LLR Coverage',     type:'ratio', thr:[3*Q, 8*Q] },
+    { k:'assets',  lbl:'Tổng tài sản',         type:'scale', thr:[1.5*Q, 3.0*Q] },
+    { k:'equity',  lbl:'Vốn chủ sở hữu',       type:'scale', thr:[1.5*Q, 3.5*Q] },
+    { k:'loans',   lbl:'Cho vay khách hàng',    type:'scale', thr:[1.5*Q, 3.5*Q] },
+    { k:'deposits',lbl:'Tiền gửi khách hàng',  type:'scale', thr:[1.5*Q, 3.0*Q] },
   ];
 
   const alerts = [];
