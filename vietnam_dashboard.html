@@ -178,6 +178,21 @@
   .bk-chg-neg { color: #f87171; }
   .bk-footer { font-size: 10px; color: var(--text3); padding: 4px 8px; }
 
+  /* Major-change alerts strip */
+  .bk-alert-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+  .bk-alert { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto auto; gap: 2px 6px; align-items: center; transition: border-color 0.15s, transform 0.1s; cursor: pointer; }
+  .bk-alert:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .bk-alert .ba-sym { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 0.3px; }
+  .bk-alert .ba-mag { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+  .bk-alert .ba-mag.pos { color: #4ade80; }
+  .bk-alert .ba-mag.neg { color: #f87171; }
+  .bk-alert .ba-metric { font-size: 10px; color: var(--text2); grid-column: 1 / -1; line-height: 1.3; }
+  .bk-alert .ba-detail { font-size: 10px; color: var(--text3); grid-column: 1 / -1; font-variant-numeric: tabular-nums; }
+  .bk-alert.severity-high   { border-left: 3px solid #ef4444; }
+  .bk-alert.severity-medium { border-left: 3px solid #f59e0b; }
+  .bk-alert.severity-low    { border-left: 3px solid #64748b; }
+  .bk-alert-empty { color: var(--text3); font-size: 11px; padding: 12px; text-align: center; font-style: italic; }
+
   /* Lending / Funding breakdown layout */
   .bk-break-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .bk-break-col { display: flex; flex-direction: column; gap: 6px; }
@@ -641,6 +656,17 @@
 
         <!-- Panel: Banking System -->
         <div id="panel-banks" class="panel">
+          <!-- Major changes alert panel -->
+          <div class="bk-card">
+            <div class="bk-card-hdr">
+              <span>🚨 Biến động đáng chú ý — <span id="bk-alert-period">kỳ gần nhất</span> vs kỳ trước</span>
+              <span style="font-size:10px;color:var(--text2);font-weight:400" id="bk-alert-count">—</span>
+            </div>
+            <div class="bk-card-body" style="padding:6px 10px">
+              <div id="bk-alert-strip" class="bk-alert-strip"></div>
+            </div>
+          </div>
+
           <!-- Industry aggregates — 10 indicators × 6 periods -->
           <div class="bk-card">
             <div class="bk-card-hdr">
@@ -2634,6 +2660,9 @@ function renderBanks() {
   BANK_ROWS.forEach(r => {
     (r.history||[]).forEach((h, i) => { if (!perLabels[i] || (h && h.period)) perLabels[i] = h.period; });
   });
+
+  // ---- Major changes alerts (latest vs previous period, per bank) ----
+  renderMajorChanges(BANK_ROWS, perLabels);
   // Build per-period aggregates: sums for scale metrics, weighted avgs for ratios
   const agg = {
     assets: [], equity: [], loans: [], deposits: [],
@@ -2730,6 +2759,103 @@ function renderBanks() {
     }).join('');
   }
 
+}
+
+// ───────── Major-changes alert renderer ─────────
+// Compares each bank's latest period vs previous period across BS line items.
+// Flags changes exceeding metric-specific thresholds, sorts by severity.
+function renderMajorChanges(rows, perLabels) {
+  const strip   = document.getElementById('bk-alert-strip');
+  const lblPer  = document.getElementById('bk-alert-period');
+  const lblCnt  = document.getElementById('bk-alert-count');
+  if (!strip) return;
+  const N = perLabels.length;
+  if (N < 2) { strip.innerHTML = '<div class="bk-alert-empty">Cần ít nhất 2 kỳ để so sánh.</div>'; return; }
+  const cur = perLabels[N-1], prev = perLabels[N-2];
+  if (lblPer) lblPer.textContent = cur;
+
+  // Metric definitions with period-aware thresholds.
+  // Quarterly drift is much smaller than yearly — pick the right scale.
+  const isQ = /^Q/.test(cur);
+  const Q = isQ ? 1 : 5;  // multiplier: yearly thresholds are ~5x quarterly
+  const METRICS = [
+    { k:'assets',  lbl:'Tổng tài sản',     type:'scale', thr:[1.5*Q, 3.0*Q] },
+    { k:'equity',  lbl:'Vốn chủ sở hữu',   type:'scale', thr:[1.5*Q, 3.5*Q] },
+    { k:'loans',   lbl:'Cho vay khách hàng',type:'scale',thr:[1.5*Q, 3.5*Q] },
+    { k:'deposits',lbl:'Tiền gửi khách hàng',type:'scale',thr:[1.5*Q, 3.0*Q] },
+    { k:'nim',     lbl:'NIM',                type:'ratio', thr:[0.06*Q, 0.15*Q] },
+    { k:'roa',     lbl:'ROA',                type:'ratio', thr:[0.04*Q, 0.10*Q] },
+    { k:'roe',     lbl:'ROE',                type:'ratio', thr:[0.30*Q, 0.80*Q] },
+    { k:'npl',     lbl:'NPL',                type:'ratio', thr:[0.05*Q, 0.15*Q] },
+    { k:'car',     lbl:'CAR',                type:'ratio', thr:[0.06*Q, 0.15*Q] },
+    { k:'cir',     lbl:'CIR',                type:'ratio', thr:[0.40*Q, 1.0*Q] },
+    { k:'ldr',     lbl:'LDR',                type:'ratio', thr:[0.30*Q, 0.80*Q] },
+    { k:'ccov',    lbl:'LLR Coverage',     type:'ratio', thr:[3*Q, 8*Q] },
+  ];
+
+  const alerts = [];
+  rows.forEach(r => {
+    const hist = r.history || [];
+    if (hist.length < 2) return;
+    const hCur = hist[hist.length-1], hPrev = hist[hist.length-2];
+    if (!hCur || !hPrev) return;
+    const bankCur = hCur.period, bankPrev = hPrev.period;
+    METRICS.forEach(m => {
+      const a = hCur[m.k], b = hPrev[m.k];
+      if (a == null || b == null) return;
+      let mag, severity, fmt;
+      if (m.type === 'scale') {
+        if (b === 0) return;
+        const pct = (a/b - 1) * 100;
+        if (Math.abs(pct) < m.thr[0]) return;
+        mag = pct;
+        severity = Math.abs(pct) >= m.thr[1] ? 'high' : 'medium';
+        fmt = (mag>0?'+':'') + mag.toFixed(1) + '%';
+      } else {
+        const pp = a - b;
+        if (Math.abs(pp) < m.thr[0]) return;
+        mag = pp;
+        severity = Math.abs(pp) >= m.thr[1] ? 'high' : 'medium';
+        fmt = (mag>0?'+':'') + mag.toFixed(2) + 'pp';
+      }
+      // For NPL & CIR, rising is bad → flip severity color
+      const negativeWhenUp = (m.k === 'npl' || m.k === 'cir');
+      const goodDirection = negativeWhenUp ? mag < 0 : mag > 0;
+      alerts.push({
+        sym: r.symbol, name: r.name, metric: m.lbl, mag, fmt,
+        absMag: Math.abs(mag), severity, type: m.type, key: m.k,
+        cur: a, prev: b, good: goodDirection,
+        periodCur: bankCur, periodPrev: bankPrev
+      });
+    });
+  });
+
+  // Sort by absolute magnitude (scaled by metric threshold so ratios and scales mix fairly)
+  alerts.sort((x, y) => {
+    const sevOrder = { high: 2, medium: 1, low: 0 };
+    if (sevOrder[y.severity] !== sevOrder[x.severity]) return sevOrder[y.severity] - sevOrder[x.severity];
+    return y.absMag - x.absMag;
+  });
+
+  if (lblCnt) lblCnt.textContent = alerts.length === 0 ? '0 cảnh báo' : `${alerts.length} cảnh báo · ${prev} → ${cur}`;
+  if (alerts.length === 0) {
+    strip.innerHTML = `<div class="bk-alert-empty">Không có biến động nào vượt ngưỡng giữa <b>${prev}</b> và <b>${cur}</b>.</div>`;
+    return;
+  }
+
+  // Show top 12
+  const top = alerts.slice(0, 12);
+  strip.innerHTML = top.map(a => {
+    const dirIcon = a.mag > 0 ? '▲' : '▼';
+    const colorCls = a.good ? 'pos' : 'neg';
+    const fmtV = (v) => a.type === 'scale' ? (v >= 1000 ? (v/1000).toFixed(1)+'K' : Math.round(v).toLocaleString('en-US')) : v.toFixed(2)+'%';
+    return `<div class="bk-alert severity-${a.severity}" data-sym="${a.sym}" title="${a.name} · Click để xem công ty con">
+      <span class="ba-sym">${a.sym}</span>
+      <span class="ba-mag ${colorCls}">${dirIcon} ${a.fmt}</span>
+      <span class="ba-metric">${a.metric} <span style="color:var(--text3)">· ${a.periodPrev}→${a.periodCur}</span></span>
+      <span class="ba-detail">${fmtV(a.prev)} → ${fmtV(a.cur)}</span>
+    </div>`;
+  }).join('');
 }
 
 // Mini bar chart inside KPI tile — 6 periods; zoomed y-range to amplify change
@@ -2859,6 +2985,11 @@ document.addEventListener('click', e => {
   const symCell = e.target.closest('.bk-sym-cell');
   if (symCell && symCell.dataset.sym) {
     openBankEntities(symCell.dataset.sym);
+    return;
+  }
+  const alertCard = e.target.closest('.bk-alert');
+  if (alertCard && alertCard.dataset.sym) {
+    openBankEntities(alertCard.dataset.sym);
     return;
   }
   // BS/IS clickable line item
