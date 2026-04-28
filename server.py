@@ -839,11 +839,11 @@ def fetch_indices() -> dict[str, Any]:
                         "volume": float(last.get("volume", 0)),
                         "date": str(last.get("time", "")),
                     }
-            except Exception as e:
-                log.warning("index %s failed: %s", sym, e)
+            except BaseException as e:
+                log.warning("index %s failed: %s", sym, str(e)[:120])
         return out
-    except Exception as e:
-        log.warning("fetch_indices failed: %s", e)
+    except BaseException as e:
+        log.warning("fetch_indices failed: %s", str(e)[:120])
         return {}
 
 
@@ -1050,33 +1050,38 @@ def fetch_banks(period: str = "year") -> dict[str, Any]:
             lbl = r.get("period_label", "")
             label_counts[lbl] = label_counts.get(lbl, 0) + 1
         return {"period": period, "period_summary": label_counts, "count": len(rows), "rows": rows}
+    rate_limit_hit = False
     try:
         from vnstock.explorer.vci import Quote
         for sym in VN_BANK_FUNDAMENTALS:
             price = prev = vol = None
-            try:
-                q = Quote(symbol=sym)
-                df = q.history(start=start, end=today, interval="1D")
-                if df is not None and len(df) >= 1:
-                    price = float(df.iloc[-1]["close"])
-                    vol = float(df.iloc[-1].get("volume", 0))
-                    if len(df) >= 2:
-                        prev = float(df.iloc[-2]["close"])
-            except Exception as e:
-                log.info("bank %s quote failed: %s", sym, e)
-
+            if not rate_limit_hit:
+                try:
+                    q = Quote(symbol=sym)
+                    df = q.history(start=start, end=today, interval="1D")
+                    if df is not None and len(df) >= 1:
+                        price = float(df.iloc[-1]["close"])
+                        vol = float(df.iloc[-1].get("volume", 0))
+                        if len(df) >= 2:
+                            prev = float(df.iloc[-2]["close"])
+                except SystemExit as se:
+                    log.warning("bank %s: vnstock rate limit hit, skipping remaining live prices: %s", sym, str(se)[:80])
+                    rate_limit_hit = True
+                except BaseException as e:
+                    log.info("bank %s quote failed: %s", sym, str(e)[:120])
             row = _build_bank_row(sym, period)
             row["price"] = price
             row["chg_pct"] = (None if (price is None or prev is None or prev == 0)
                               else round((price/prev - 1)*100, 2))
             row["volume"] = vol
             rows.append(row)
-    except Exception as e:
-        log.warning("fetch_banks init failed: %s", e)
+    except BaseException as e:
+        log.warning("fetch_banks init failed: %s", str(e)[:120])
         for sym in VN_BANK_FUNDAMENTALS:
-            row = _build_bank_row(sym, period)
-            row["price"] = row["chg_pct"] = row["volume"] = None
-            rows.append(row)
+            if not any(r["symbol"] == sym for r in rows):
+                row = _build_bank_row(sym, period)
+                row["price"] = row["chg_pct"] = row["volume"] = None
+                rows.append(row)
 
     rows.sort(key=lambda r: r.get("assets") or 0, reverse=True)
     # Summary of which quarter labels were served (for UI footer)
@@ -1098,8 +1103,8 @@ def refresh_snapshot() -> None:
     indices, bonds, fx, rates, banks = {}, {}, {}, {}, {}
     try:
         indices = fetch_indices()
-    except Exception as e:
-        errors.append(f"indices: {e}")
+    except BaseException as e:
+        errors.append(f"indices: {str(e)[:120]}")
     try:
         bonds = fetch_bonds()
     except Exception as e:
@@ -1114,8 +1119,8 @@ def refresh_snapshot() -> None:
         errors.append(f"rates: {e}")
     try:
         banks = {"year": fetch_banks("year"), "quarter": fetch_banks("quarter")}
-    except Exception as e:
-        errors.append(f"banks: {e}")
+    except BaseException as e:
+        errors.append(f"banks: {str(e)[:120]}")
 
     SNAPSHOT.update(
         updated_at=datetime.now(timezone.utc).isoformat(),
@@ -1255,8 +1260,16 @@ def api_bank_entities(symbol: str):
 @app.get("/api/refresh")
 def api_refresh():
     """Manual refresh endpoint."""
-    refresh_snapshot()
-    return JSONResponse({"ok": True, "updated_at": SNAPSHOT["updated_at"]})
+    try:
+        refresh_snapshot()
+    except BaseException as e:
+        return JSONResponse({"ok": False, "error": str(e)[:200], "updated_at": SNAPSHOT.get("updated_at")}, status_code=200)
+    return JSONResponse({
+        "ok": True,
+        "updated_at": SNAPSHOT.get("updated_at"),
+        "errors": SNAPSHOT.get("errors") or [],
+        "live_indices": list((SNAPSHOT.get("indices") or {}).keys()),
+    })
 
 
 # Scheduler: daily at 15:30 Asia/Ho_Chi_Minh
