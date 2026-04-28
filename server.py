@@ -1084,15 +1084,19 @@ def fetch_banks(period: str = "year") -> dict[str, Any]:
                 rows.append(row)
 
     rows.sort(key=lambda r: r.get("assets") or 0, reverse=True)
-    # Summary of which quarter labels were served (for UI footer)
     label_counts: dict[str, int] = {}
+    live_count = 0
     for r in rows:
         lbl = r.get("period_label", "")
         label_counts[lbl] = label_counts.get(lbl, 0) + 1
+        if r.get("price") is not None:
+            live_count += 1
     return {
         "period": period,
         "period_summary": label_counts,
         "count": len(rows),
+        "live_count": live_count,
+        "total_count": len(VN_BANK_FUNDAMENTALS),
         "rows": rows,
     }
 
@@ -1264,11 +1268,18 @@ def api_refresh():
         refresh_snapshot()
     except BaseException as e:
         return JSONResponse({"ok": False, "error": str(e)[:200], "updated_at": SNAPSHOT.get("updated_at")}, status_code=200)
+    banks_year = (SNAPSHOT.get("banks") or {}).get("year") or {}
+    banks_quarter = (SNAPSHOT.get("banks") or {}).get("quarter") or {}
     return JSONResponse({
         "ok": True,
         "updated_at": SNAPSHOT.get("updated_at"),
         "errors": SNAPSHOT.get("errors") or [],
         "live_indices": list((SNAPSHOT.get("indices") or {}).keys()),
+        "indices_total": 2,
+        "fx_source": (SNAPSHOT.get("fx") or {}).get("source"),
+        "banks_live": banks_year.get("live_count", 0),
+        "banks_total": banks_year.get("total_count", len(VN_BANK_FUNDAMENTALS)),
+        "banks_quarter_live": banks_quarter.get("live_count", 0),
     })
 
 

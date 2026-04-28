@@ -2397,15 +2397,23 @@ async function refreshBankData() {
     const r = await fetch('/api/refresh');
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const d = await r.json();
-    // Invalidate caches so next load fetches fresh data
     BANK_DATA.year = null; BANK_DATA.quarter = null;
     BANK_BREAKDOWN_CACHE.year = null; BANK_BREAKDOWN_CACHE.quarter = null;
     BANK_STATEMENTS_CACHE.year = null; BANK_STATEMENTS_CACHE.quarter = null;
     await loadBanks();
     const ts = d.updated_at ? new Date(d.updated_at).toLocaleString('vi-VN') : 'vừa xong';
-    if (status) status.innerHTML = `✅ Đã cập nhật lúc <b style="color:var(--accent2)">${ts}</b>`;
-    btn.textContent = '✅ Hoàn tất';
-    setTimeout(() => { btn.textContent = origLabel; btn.style.opacity = '1'; btn.disabled = false; }, 2000);
+    const banks = `<b style="color:${d.banks_live === d.banks_total ? 'var(--accent2)' : '#f59e0b'}">${d.banks_live}/${d.banks_total}</b>`;
+    const idx   = `<b style="color:${(d.live_indices||[]).length === d.indices_total ? 'var(--accent2)' : '#f59e0b'}">${(d.live_indices||[]).length}/${d.indices_total}</b>`;
+    const fxOk  = d.fx_source ? `<b style="color:var(--accent2)">FX ✓ ${d.fx_source}</b>` : `<b style="color:#f87171">FX ✗</b>`;
+    const errN  = (d.errors||[]).length ? ` · <b style="color:#f59e0b">${d.errors.length} lỗi</b>` : '';
+    if (status) {
+      status.innerHTML = `✅ ${ts} · NH: ${banks} · Chỉ số: ${idx} · ${fxOk}${errN}`;
+      if ((d.errors||[]).length) {
+        status.title = d.errors.join('\n');
+      }
+    }
+    btn.textContent = (d.banks_live === d.banks_total) ? '✅ Hoàn tất' : '⚠️ Một phần';
+    setTimeout(() => { btn.textContent = origLabel; btn.style.opacity = '1'; btn.disabled = false; }, 2500);
   } catch (err) {
     if (status) status.innerHTML = `❌ <span style="color:#f87171">Lỗi: ${err.message || err}</span> — vnstock có thể đang giới hạn tốc độ. Thử lại sau 1 phút.`;
     btn.textContent = '↻ Thử lại';
