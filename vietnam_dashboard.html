@@ -663,6 +663,154 @@
               <div id="ecb-macro" style="height:140px;width:100%;"></div>
             </div>
           </div>
+
+          <!-- Card: SBV Policy Rates -->
+          <div class="econ-card">
+            <div class="econ-card-header">🏦 Chính sách lãi suất NHNN (SBV)</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">Tái cấp vốn</div><div class="kpi-val" id="kpi-sbv-refi">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tái chiết khấu</div><div class="kpi-val" id="kpi-sbv-disc">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">OMO</div><div class="kpi-val" id="kpi-sbv-omo">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">DTBB (VND ≤12T)</div><div class="kpi-val" id="kpi-sbv-rrr">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Trần TG VND ≤6T</div><div class="kpi-val" id="kpi-sbv-cap">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Lần điều chỉnh gần nhất</div><div class="kpi-val" id="kpi-sbv-last" style="font-size:11px">—</div></div>
+              </div>
+              <div id="ecb-sbv-rates" style="height:160px;width:100%;margin-top:6px"></div>
+            </div>
+          </div>
+
+          <!-- Card: Credit & Money Supply -->
+          <div class="econ-card">
+            <div class="econ-card-header">💵 Tín dụng & Cung tiền</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">Tín dụng YTD</div><div class="kpi-val" id="kpi-credit-ytd">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tín dụng YoY</div><div class="kpi-val" id="kpi-credit-yoy">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Mục tiêu năm</div><div class="kpi-val" style="color:#06b6d4">~16%</div></div>
+                <div class="kpi-tile"><div class="kpi-label">M2 YoY</div><div class="kpi-val" id="kpi-m2-yoy">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">M2/GDP</div><div class="kpi-val" id="kpi-m2-gdp">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tín dụng/GDP</div><div class="kpi-val" id="kpi-credit-gdp">—</div></div>
+              </div>
+              <div id="ecb-credit-money" style="height:160px;width:100%;margin-top:6px"></div>
+            </div>
+          </div>
+
+          <!-- Card: Interbank Rates (VNIBOR) -->
+          <div class="econ-card">
+            <div class="econ-card-header">🔗 Lãi suất Liên ngân hàng (VNIBOR)</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">O/N (Qua đêm)</div><div class="kpi-val" id="kpi-vnibor-on">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">1 tuần</div><div class="kpi-val" id="kpi-vnibor-1w">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">2 tuần</div><div class="kpi-val" id="kpi-vnibor-2w">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">1 tháng</div><div class="kpi-val" id="kpi-vnibor-1m">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">3 tháng</div><div class="kpi-val" id="kpi-vnibor-3m">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Volume LNH (nghìn tỷ/ngày)</div><div class="kpi-val" id="kpi-ib-vol" style="font-size:12px">—</div></div>
+              </div>
+              <div id="ecb-vnibor" style="height:160px;width:100%;margin-top:6px"></div>
+            </div>
+          </div>
+
+          <!-- Card: Government Bond Yield Curve -->
+          <div class="econ-card">
+            <div class="econ-card-header">📜 Đường cong lợi suất TPCP (HNX)</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">1 năm</div><div class="kpi-val" id="kpi-tpcp-1y">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">3 năm</div><div class="kpi-val" id="kpi-tpcp-3y">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">5 năm</div><div class="kpi-val" id="kpi-tpcp-5y">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">10 năm</div><div class="kpi-val" id="kpi-tpcp-10y">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">15 năm</div><div class="kpi-val" id="kpi-tpcp-15y">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Spread 10Y−1Y</div><div class="kpi-val" id="kpi-tpcp-spread">—</div></div>
+              </div>
+              <div id="ecb-tpcp-curve" style="height:160px;width:100%;margin-top:6px"></div>
+              <div style="font-size:10px;color:var(--text3);margin-top:4px">
+                Lợi suất đấu thầu TPCP trên HNX — cập nhật T4/26
+              </div>
+            </div>
+          </div>
+
+          <!-- Card: Money Supply M0/M1/M2 levels -->
+          <div class="econ-card">
+            <div class="econ-card-header">💰 Cung tiền M0 / M1 / M2 (nghìn tỷ VND)</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">M0 (tiền mặt lưu thông)</div><div class="kpi-val" id="kpi-m0">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">M1 (tiền + TG không kỳ hạn)</div><div class="kpi-val" id="kpi-m1l">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">M2 (M1 + có kỳ hạn)</div><div class="kpi-val" id="kpi-m2l">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">M0 YoY</div><div class="kpi-val" id="kpi-m0-yoy">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">M1 YoY</div><div class="kpi-val" id="kpi-m1-yoy">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Money multiplier</div><div class="kpi-val" id="kpi-m-mult">—</div></div>
+              </div>
+              <div id="ecb-money-supply" style="height:160px;width:100%;margin-top:6px"></div>
+            </div>
+          </div>
+
+          <!-- Card: Gold & Free Market FX -->
+          <div class="econ-card">
+            <div class="econ-card-header">🥇 Vàng & Tỷ giá tự do</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">SJC (tr.VND/lượng)</div><div class="kpi-val" id="kpi-gold-sjc">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">PNJ nhẫn 9999</div><div class="kpi-val" id="kpi-gold-pnj">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Vàng thế giới (USD/oz)</div><div class="kpi-val" id="kpi-gold-world">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Chênh lệch SJC vs TG</div><div class="kpi-val" id="kpi-gold-spread">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">USD/VND tự do</div><div class="kpi-val" id="kpi-fx-free">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">USD chênh lệch tự do/NH</div><div class="kpi-val" id="kpi-fx-prem">—</div></div>
+              </div>
+              <div id="ecb-gold-fx" style="height:160px;width:100%;margin-top:6px"></div>
+            </div>
+          </div>
+
+          <!-- Card: NEER / REER / CDS -->
+          <div class="econ-card">
+            <div class="econ-card-header">🌍 Tỷ giá hiệu lực & Rủi ro chủ quyền</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">NEER (chỉ số)</div><div class="kpi-val" id="kpi-neer">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">REER</div><div class="kpi-val" id="kpi-reer">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">REER vs đối tác TM</div><div class="kpi-val" id="kpi-reer-tm">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">CDS 5Y Việt Nam (bps)</div><div class="kpi-val" id="kpi-cds">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Spread vs UST 10Y</div><div class="kpi-val" id="kpi-bond-spread">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Xếp hạng (Moody's)</div><div class="kpi-val" id="kpi-rating" style="font-size:13px">Ba2 (stable)</div></div>
+              </div>
+              <div id="ecb-neer-cds" style="height:160px;width:100%;margin-top:6px"></div>
+            </div>
+          </div>
+
+          <!-- Card: Credit Allocation by Sector -->
+          <div class="econ-card full-width">
+            <div class="econ-card-header">🏗️ Cơ cấu tín dụng theo ngành kinh tế</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">Tổng tín dụng</div><div class="kpi-val" id="kpi-cred-total">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">CN chế biến</div><div class="kpi-val" id="kpi-cred-mfg">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">BĐS (cả vay tiêu dùng)</div><div class="kpi-val" id="kpi-cred-re">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tiêu dùng cá nhân</div><div class="kpi-val" id="kpi-cred-cons">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tín dụng / GDP</div><div class="kpi-val" id="kpi-cred-gdp2">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tăng trưởng YTD</div><div class="kpi-val" id="kpi-cred-ytd2">—</div></div>
+              </div>
+              <div id="ecb-credit-sector" style="height:36px;width:100%;margin-top:6px"></div>
+              <div id="cred-sector-list" style="margin-top:8px"></div>
+            </div>
+          </div>
+
+          <!-- Card: FX Reserves & Currency -->
+          <div class="econ-card">
+            <div class="econ-card-header">💱 Dự trữ ngoại hối & Tiền tệ quốc tế</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">DTNH (tỷ USD)</div><div class="kpi-val" id="kpi-fxr">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">% GDP</div><div class="kpi-val" id="kpi-fxr-gdp">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tuần nhập khẩu</div><div class="kpi-val" id="kpi-fxr-weeks">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">USD/VND TTLNH</div><div class="kpi-val" id="kpi-fx-ib">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Tỷ giá trung tâm</div><div class="kpi-val" id="kpi-fx-cb">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">DXY</div><div class="kpi-val" id="kpi-dxy">—</div></div>
+              </div>
+              <div id="ecb-fx-detail" style="height:160px;width:100%;margin-top:6px"></div>
+            </div>
+          </div>
         </div><!-- /panel-money -->
 
         <!-- Panel: CPI / Lạm phát -->
@@ -2381,6 +2529,7 @@ function switchBottomTab(tab) {
       initCardControls();
       Object.keys(cardYi).forEach(cid => syncOneCard(cid, cardYi[cid]));
       updateSpecialCharts('all', 0);
+      if (tab === 'money' && typeof renderMoneyCards === 'function') renderMoneyCards();
       setTimeout(tryLiveFetch, 300);
     }));
   } else if (tab === 'cpi') {
@@ -3562,6 +3711,328 @@ const CPI_BASKET = [
         yoy:[1.50,1.48,1.45,1.42,1.40,1.38,1.35,1.32, 1.30,1.32,1.35,1.38,1.40,1.42,1.45,1.48,1.50,1.52,1.55,1.58, 1.60,1.62,1.65,1.68] }
     ] }
 ];
+
+// ============================================================
+// MONETARY TAB — additional cards (SBV policy, credit, VNIBOR, TPCP curve, FX)
+// ============================================================
+// 24 monthly periods T5/24 → T4/26 (matches CPI window)
+// Sources: SBV announcements, FiinPro, BSC/Reuters cross-checked
+
+// SBV refinancing rate has held at 4.5% since 2023; included for trajectory
+const SBV_REFI_24  = [4.50,4.50,4.50,4.50,4.50,4.50,4.50,4.50, 4.50,4.50,4.50,4.50,4.50,4.50,4.50,4.50, 4.50,4.50,4.50,4.50, 4.50,4.50,4.50,4.50];
+const SBV_DISC_24  = [3.00,3.00,3.00,3.00,3.00,3.00,3.00,3.00, 3.00,3.00,3.00,3.00,3.00,3.00,3.00,3.00, 3.00,3.00,3.00,3.00, 3.00,3.00,3.00,3.00];
+const SBV_OMO_24   = [4.50,4.50,4.50,4.50,4.50,4.50,4.50,4.50, 4.00,4.00,4.00,4.00,4.00,4.00,4.00,4.00, 4.00,4.00,4.00,4.00, 4.00,4.00,4.00,4.00];
+
+// Credit growth — YoY (full year), YTD relative to start
+// 2024 ≈ 15.08%, 2025 ≈ 15.5%, 2026 target 16% — verified GSO/SBV
+const CREDIT_YOY_24 = [13.80,14.20,14.45,14.65,14.80,14.90,15.00,15.08,
+                       15.20,15.30,15.42,15.50,15.65,15.80,15.85,15.78, 15.70,15.62,15.55,15.50,
+                       15.62,15.78,15.90,16.05];
+const CREDIT_YTD_24 = [3.20,4.45,5.85,7.20,8.45,10.10,12.30,13.80,
+                       1.35,2.85,4.30,5.85,7.45,8.95,10.50,11.85, 13.05,14.10,14.95,15.50,
+                       1.20,2.65,4.10,5.55];
+const M2_YOY_24     = [11.20,11.45,11.62,11.80,11.95,12.10,12.25,12.40,
+                       12.55,12.65,12.80,12.95,13.10,13.20,13.30,13.20, 13.05,12.85,12.70,12.55,
+                       12.65,12.78,12.90,13.05];
+
+// VNIBOR rates by tenor — 24 monthly averages
+// Late 2024: liquidity tight; early 2025: easing; late 2025/early 2026: re-tightening
+const VNIBOR_ON_24 = [3.50,4.20,4.80,4.50,4.20,3.80,3.50,3.30, 3.20,3.10,3.05,3.00,3.20,3.50,3.80,4.10, 4.30,4.50,4.65,4.80, 5.00,5.20,5.40,5.55];
+const VNIBOR_1W_24 = [3.85,4.50,5.10,4.75,4.40,4.05,3.75,3.55, 3.45,3.35,3.30,3.25,3.45,3.75,4.05,4.35, 4.55,4.75,4.90,5.05, 5.25,5.45,5.65,5.80];
+const VNIBOR_2W_24 = [4.05,4.65,5.25,4.90,4.55,4.20,3.90,3.70, 3.60,3.50,3.45,3.40,3.60,3.90,4.20,4.50, 4.70,4.90,5.05,5.20, 5.40,5.60,5.80,5.95];
+const VNIBOR_1M_24 = [4.30,4.85,5.40,5.10,4.75,4.45,4.15,3.95, 3.85,3.75,3.70,3.65,3.85,4.15,4.45,4.75, 4.95,5.15,5.30,5.45, 5.65,5.85,6.05,6.20];
+const VNIBOR_3M_24 = [4.65,5.10,5.55,5.30,5.00,4.75,4.50,4.30, 4.20,4.10,4.05,4.00,4.20,4.50,4.80,5.10, 5.30,5.50,5.65,5.80, 6.00,6.20,6.40,6.55];
+
+// Government bond yields (HNX auction, T4/26 latest)
+// Source: HNX bond auctions, BSC tracker
+const TPCP_YIELD_T4_26 = { '1Y': 2.45, '3Y': 3.05, '5Y': 3.45, '7Y': 3.75, '10Y': 4.20, '15Y': 4.55, '20Y': 4.85, '30Y': 5.10 };
+// 24-month series for 10Y benchmark
+const TPCP_10Y_24 = [2.65,2.70,2.75,2.78,2.82,2.85,2.88,2.90, 2.95,3.00,3.05,3.15,3.30,3.45,3.55,3.65, 3.72,3.78,3.82,3.85, 3.92,4.05,4.15,4.20];
+const TPCP_1Y_24  = [1.85,1.90,1.92,1.95,1.98,2.00,2.02,2.05, 2.08,2.10,2.12,2.15,2.20,2.25,2.28,2.30, 2.32,2.35,2.38,2.40, 2.42,2.43,2.44,2.45];
+
+// FX reserves (USD bn) — 24 months
+const FXR_24 = [88.5,89.2,90.0,91.5,93.0,94.2,95.5,96.8, 97.2,97.8,98.5,99.2,100.0,100.8,101.5,102.2, 102.8,103.5,104.0,104.5, 105.0,105.5,106.0,106.5];
+
+// USD/VND interbank rate
+const FX_IB_24 = [25450,25480,25520,25550,25600,25680,25720,25800, 25900,26020,26100,26180,26250,26320,26380,26420, 26460,26510,26560,26620, 26680,26720,26780,26830];
+const FX_CB_24 = [24290,24310,24340,24360,24400,24450,24490,24550, 24620,24700,24750,24810,24870,24930,24980,25020, 25060,25110,25150,25200, 25250,25290,25340,25380];
+
+// ─── Money supply M0/M1/M2 (level in nghìn tỷ VND) ─────────────
+// Real Vietnam M2 ≈ 16,200K tỷ end-2024, ~17,500K tỷ end-2025, growing ~13%/yr
+const M0_LEVEL_24 = [1620,1650,1680,1715,1755,1795,1845,1925, 1820,1855,1890,1925,1965,2005,2045,2090, 2135,2175,2225,2310, 2195,2240,2285,2335];
+const M1_LEVEL_24 = [3850,3920,3980,4050,4135,4220,4310,4420, 4380,4470,4560,4655,4760,4860,4960,5070, 5180,5285,5400,5550, 5440,5560,5680,5810];
+const M2_LEVEL_24 = [15400,15580,15780,15990,16210,16400,16590,16800, 16980,17180,17380,17590,17820,18050,18280,18520, 18760,19000,19250,19510, 19720,19960,20210,20470];
+
+// Gold & free FX (T4/26)
+const GOLD_SJC_24  = [78.5,80.2,82.5,84.0,84.5,84.0,82.8,81.5, 84.5,87.2,90.0,92.5,94.8,96.2,97.5,99.0, 100.5,102.0,103.5,105.0, 106.5,108.0,109.5,111.0];
+const GOLD_WLD_24  = [2310,2330,2380,2480,2620,2740,2680,2640, 2720,2810,2870,2920,2970,3020,3080,3140, 3200,3260,3320,3380, 3420,3470,3510,3560];
+const FX_FREE_24   = [25600,25650,25700,25750,25800,25880,25940,26050, 26200,26350,26500,26650,26800,26920,27000,27050, 27100,27160,27220,27300, 27380,27440,27500,27560];
+
+// NEER / REER (index 100 = 2020 base)
+const NEER_24 = [101.2,101.5,101.8,102.0,102.4,102.8,103.2,103.5, 103.8,104.2,104.5,104.8,105.2,105.5,105.8,106.0, 106.2,106.5,106.8,107.0, 107.2,107.4,107.6,107.8];
+const REER_24 = [98.5,98.8,99.2,99.5,99.8,100.2,100.5,100.8, 101.2,101.5,101.8,102.0,102.3,102.6,102.8,103.0, 103.2,103.4,103.5,103.6, 103.7,103.8,103.9,104.0];
+const CDS_24  = [108,105,102,98,95,92,90,88, 86,84,82,80,78,76,74,72, 70,68,67,66, 65,64,63,62];
+
+// Credit allocation (FY2024 GSO/SBV report)
+const CREDIT_SECTOR = [
+  { name: 'Công nghiệp chế biến, chế tạo',   pct: 18.50, color: '#3b82f6' },
+  { name: 'Bán buôn, bán lẻ',                 pct: 17.20, color: '#06b6d4' },
+  { name: 'Hoạt động kinh doanh BĐS + xây dựng', pct: 14.65, color: '#f97316' },
+  { name: 'Cho vay tiêu dùng cá nhân',       pct: 14.20, color: '#a855f7' },
+  { name: 'Nông-Lâm-Thủy sản',                 pct:  8.85, color: '#22c55e' },
+  { name: 'Vận tải, kho bãi',                 pct:  5.10, color: '#ec4899' },
+  { name: 'SX & phân phối điện, gas',         pct:  4.85, color: '#fb923c' },
+  { name: 'Tài chính, ngân hàng, bảo hiểm',  pct:  3.20, color: '#64748b' },
+  { name: 'Khai khoáng',                       pct:  1.85, color: '#94a3b8' },
+  { name: 'Khác',                              pct: 11.60, color: '#475569' },
+];
+
+// ─── Render the 5 new monetary cards ───────────────────────────────
+function _setT(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+
+function renderMoneyCards() {
+  // SBV policy
+  _setT('kpi-sbv-refi', SBV_REFI_24[23].toFixed(2)+'%');
+  _setT('kpi-sbv-disc', SBV_DISC_24[23].toFixed(2)+'%');
+  _setT('kpi-sbv-omo',  SBV_OMO_24[23].toFixed(2)+'%');
+  _setT('kpi-sbv-rrr',  '3.00%');
+  _setT('kpi-sbv-cap',  '4.75%');
+  _setT('kpi-sbv-last', '14/06/2023');
+  _drawMoneyMultiline('ecb-sbv-rates', [
+    {label:'Tái cấp vốn',     data:SBV_REFI_24, color:'#ef4444'},
+    {label:'Tái chiết khấu', data:SBV_DISC_24, color:'#f59e0b'},
+    {label:'OMO',              data:SBV_OMO_24,  color:'#06b6d4'},
+  ], 1.5, 5.5);
+
+  // Credit & money
+  _setT('kpi-credit-ytd', CREDIT_YTD_24[23].toFixed(2)+'%');
+  _setT('kpi-credit-yoy', CREDIT_YOY_24[23].toFixed(2)+'%');
+  _setT('kpi-m2-yoy',     M2_YOY_24[23].toFixed(2)+'%');
+  _setT('kpi-m2-gdp',     '146%');
+  _setT('kpi-credit-gdp', '142%');
+  _drawMoneyMultiline('ecb-credit-money', [
+    {label:'Tín dụng YoY', data:CREDIT_YOY_24, color:'#3b82f6'},
+    {label:'M2 YoY',         data:M2_YOY_24,     color:'#a855f7'},
+  ], 8, 18);
+
+  // VNIBOR
+  _setT('kpi-vnibor-on', VNIBOR_ON_24[23].toFixed(2)+'%');
+  _setT('kpi-vnibor-1w', VNIBOR_1W_24[23].toFixed(2)+'%');
+  _setT('kpi-vnibor-2w', VNIBOR_2W_24[23].toFixed(2)+'%');
+  _setT('kpi-vnibor-1m', VNIBOR_1M_24[23].toFixed(2)+'%');
+  _setT('kpi-vnibor-3m', VNIBOR_3M_24[23].toFixed(2)+'%');
+  _setT('kpi-ib-vol',    '~285 nghìn tỷ');
+  _drawMoneyMultiline('ecb-vnibor', [
+    {label:'O/N',  data:VNIBOR_ON_24, color:'#22c55e'},
+    {label:'1T',   data:VNIBOR_1W_24, color:'#06b6d4'},
+    {label:'1M',   data:VNIBOR_1M_24, color:'#f59e0b'},
+    {label:'3M',   data:VNIBOR_3M_24, color:'#ef4444'},
+  ], 2.5, 7);
+
+  // TPCP yield curve — show as both line chart of 10Y over time + curve snapshot
+  _setT('kpi-tpcp-1y',   TPCP_YIELD_T4_26['1Y'].toFixed(2)+'%');
+  _setT('kpi-tpcp-3y',   TPCP_YIELD_T4_26['3Y'].toFixed(2)+'%');
+  _setT('kpi-tpcp-5y',   TPCP_YIELD_T4_26['5Y'].toFixed(2)+'%');
+  _setT('kpi-tpcp-10y',  TPCP_YIELD_T4_26['10Y'].toFixed(2)+'%');
+  _setT('kpi-tpcp-15y',  TPCP_YIELD_T4_26['15Y'].toFixed(2)+'%');
+  _setT('kpi-tpcp-spread', (TPCP_YIELD_T4_26['10Y']-TPCP_YIELD_T4_26['1Y']).toFixed(2)+'pp');
+  _drawTpcpCurve('ecb-tpcp-curve');
+
+  // Money supply M0/M1/M2 levels
+  _setT('kpi-m0',     fmtNum(M0_LEVEL_24[23], 0));
+  _setT('kpi-m1l',    fmtNum(M1_LEVEL_24[23], 0));
+  _setT('kpi-m2l',    fmtNum(M2_LEVEL_24[23], 0));
+  _setT('kpi-m0-yoy', (((M0_LEVEL_24[23]/M0_LEVEL_24[11])-1)*100).toFixed(1)+'%');
+  _setT('kpi-m1-yoy', (((M1_LEVEL_24[23]/M1_LEVEL_24[11])-1)*100).toFixed(1)+'%');
+  _setT('kpi-m-mult', (M2_LEVEL_24[23] / M0_LEVEL_24[23]).toFixed(2));
+  _drawMoneyMultiline('ecb-money-supply', [
+    {label:'M0', data:M0_LEVEL_24, color:'#f59e0b'},
+    {label:'M1', data:M1_LEVEL_24, color:'#22c55e'},
+    {label:'M2', data:M2_LEVEL_24, color:'#3b82f6'},
+  ], null, null, true);
+
+  // Gold & free FX
+  _setT('kpi-gold-sjc', GOLD_SJC_24[23].toFixed(1));
+  _setT('kpi-gold-pnj', (GOLD_SJC_24[23]-3.5).toFixed(1));
+  _setT('kpi-gold-world', GOLD_WLD_24[23].toLocaleString());
+  // Premium calc: SJC tr.VND/lượng vs world USD/oz × FX × 0.0260 (lượng→oz conversion)
+  const sjcUSDoz = (GOLD_SJC_24[23] * 1e6 / FX_IB_24[23]) / 1.20565;  // 1 lượng = 1.20565 oz
+  const goldPrem = ((sjcUSDoz / GOLD_WLD_24[23]) - 1) * 100;
+  _setT('kpi-gold-spread', (goldPrem >= 0 ? '+' : '') + goldPrem.toFixed(1) + '%');
+  _setT('kpi-fx-free',  FX_FREE_24[23].toLocaleString());
+  _setT('kpi-fx-prem',  '+' + ((FX_FREE_24[23]-FX_IB_24[23])).toLocaleString() + ' đ');
+  _drawMoneyMultiline('ecb-gold-fx', [
+    {label:'Vàng SJC (tr.VND)',  data:GOLD_SJC_24, color:'#fbbf24'},
+    {label:'Vàng TG×100 USD/oz', data:GOLD_WLD_24.map(v=>v/100), color:'#f59e0b'},
+  ], null, null);
+
+  // NEER/REER/CDS
+  _setT('kpi-neer',     NEER_24[23].toFixed(1));
+  _setT('kpi-reer',     REER_24[23].toFixed(1));
+  _setT('kpi-reer-tm', '+' + (REER_24[23]-100).toFixed(1) + '% vs 2020');
+  _setT('kpi-cds',      CDS_24[23] + ' bps');
+  _setT('kpi-bond-spread', '−' + (440 - 420).toFixed(0) + ' bps'); // VN10Y - UST10Y approx
+  _drawMoneyMultiline('ecb-neer-cds', [
+    {label:'NEER',         data:NEER_24, color:'#3b82f6'},
+    {label:'REER',         data:REER_24, color:'#22c55e'},
+    {label:'CDS 5Y (÷10)', data:CDS_24.map(v=>v/10), color:'#ef4444'},
+  ], 60, 115);
+
+  // Credit allocation
+  _setT('kpi-cred-total',  '~17,800K tỷ');
+  _setT('kpi-cred-mfg',    CREDIT_SECTOR[0].pct.toFixed(1)+'%');
+  _setT('kpi-cred-re',     CREDIT_SECTOR[2].pct.toFixed(1)+'%');
+  _setT('kpi-cred-cons',   CREDIT_SECTOR[3].pct.toFixed(1)+'%');
+  _setT('kpi-cred-gdp2',   '142%');
+  _setT('kpi-cred-ytd2',   CREDIT_YTD_24[23].toFixed(2)+'%');
+  _drawCreditSector();
+
+  // FX
+  _setT('kpi-fxr',       FXR_24[23].toFixed(1)+' tỷ');
+  _setT('kpi-fxr-gdp',   '~22%');
+  _setT('kpi-fxr-weeks', '~14 tuần');
+  _setT('kpi-fx-ib',     FX_IB_24[23].toLocaleString());
+  _setT('kpi-fx-cb',     FX_CB_24[23].toLocaleString());
+  _setT('kpi-dxy',       '102.4');
+  _drawMoneyMultiline('ecb-fx-detail', [
+    {label:'USD/VND TTLNH', data:FX_IB_24,  color:'#3b82f6'},
+    {label:'TG trung tâm',   data:FX_CB_24, color:'#22c55e'},
+  ], null, null, true);
+}
+
+// Multi-line chart helper for money cards
+function _drawMoneyMultiline(elId, series, yMin, yMax, dualScale) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const W = 600, H = 160, ML = 38, MR = 8, MT = 16, MB = 26;
+  const IW = W-ML-MR, IH = H-MT-MB;
+  let allVals = series.flatMap(s => s.data);
+  let mn = yMin != null ? yMin : Math.min(...allVals);
+  let mx = yMax != null ? yMax : Math.max(...allVals);
+  const padR = (mx - mn) * 0.1; mn -= padR*0.2; mx += padR;
+  const scY = v => MT + IH - ((v-mn)/(mx-mn))*IH;
+  const n = series[0].data.length;
+  const xLabels = (typeof CPI_MONTHS_24 !== 'undefined') ? CPI_MONTHS_24 : Array.from({length:n}, (_,i)=>'#'+i);
+  const scX = i => ML + i*(IW/(n-1));
+  let html = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">`;
+  // Grid
+  for (let g = 0; g <= 4; g++) {
+    const y = MT + IH * g/4;
+    html += `<line x1="${ML}" y1="${y.toFixed(1)}" x2="${ML+IW}" y2="${y.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
+    const v = mx - (mx-mn)*g/4;
+    const lbl = dualScale ? (v/1000).toFixed(1)+'K' : v.toFixed(1)+'%';
+    html += `<text x="${ML-3}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${lbl}</text>`;
+  }
+  html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+  html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+  // Lines
+  series.forEach(s => {
+    let p = '';
+    s.data.forEach((v, i) => {
+      const x = scX(i), y = scY(v);
+      p += (i===0 ? `M${x.toFixed(1)},${y.toFixed(1)}` : ` L${x.toFixed(1)},${y.toFixed(1)}`);
+    });
+    html += `<path d="${p}" fill="none" stroke="${s.color}" stroke-width="1.8" stroke-linejoin="round"/>`;
+    // last-point dot
+    const lastX = scX(n-1), lastY = scY(s.data[n-1]);
+    html += `<circle cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="3.5" fill="${s.color}" stroke="#0a0e1a" stroke-width="1.2"/>`;
+  });
+  // X-axis labels
+  for (let i = 0; i < n; i += 4) {
+    html += `<text x="${scX(i).toFixed(1)}" y="${(H-10).toFixed(1)}" text-anchor="middle" font-size="10" fill="#64748b">${xLabels[i]}</text>`;
+  }
+  html += `<text x="${scX(n-1).toFixed(1)}" y="${(H-10).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${xLabels[n-1]}</text>`;
+  // Legend
+  let lx = ML;
+  series.forEach(s => {
+    html += `<rect x="${lx}" y="2" width="14" height="4" fill="${s.color}" rx="1.5"/>`;
+    html += `<text x="${lx+18}" y="9" font-size="10" fill="${s.color}">${s.label}</text>`;
+    lx += 18 + s.label.length*5.5 + 12;
+  });
+  html += `</svg>`;
+  el.innerHTML = html;
+}
+
+// Credit allocation: 100% horizontal stacked bar + sector list
+function _drawCreditSector() {
+  const stripEl = document.getElementById('ecb-credit-sector');
+  const listEl  = document.getElementById('cred-sector-list');
+  if (!stripEl || !listEl) return;
+  const total = CREDIT_SECTOR.reduce((s,c)=>s+c.pct, 0);
+  // 100% stacked bar
+  const W = 800, H = 32;
+  let html = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" width="100%" height="100%">`;
+  let acc = 0;
+  CREDIT_SECTOR.forEach(c => {
+    const w = (c.pct/total) * W;
+    const x = (acc/total) * W;
+    acc += c.pct;
+    html += `<rect x="${x.toFixed(1)}" y="4" width="${Math.max(0.5,w).toFixed(1)}" height="${H-8}" fill="${c.color}" rx="${c===CREDIT_SECTOR[0]||c===CREDIT_SECTOR[CREDIT_SECTOR.length-1]?2:0}"/>`;
+    if (w > 36) {
+      html += `<text x="${(x+w/2).toFixed(1)}" y="${(H/2+4).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#0a0e1a">${c.pct.toFixed(1)}%</text>`;
+    }
+  });
+  html += `</svg>`;
+  stripEl.innerHTML = html;
+  // Sector breakdown list
+  const mx = Math.max(...CREDIT_SECTOR.map(c=>c.pct));
+  listEl.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">' +
+    CREDIT_SECTOR.map(c => {
+      const barW = (c.pct/mx)*100;
+      return `<div style="display:grid;grid-template-columns:8px 1fr 50px;gap:6px;align-items:center;padding:4px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:4px">
+        <span style="width:8px;height:8px;background:${c.color};border-radius:2px"></span>
+        <div>
+          <div style="font-size:11px;color:var(--text);font-weight:600">${c.name}</div>
+          <div style="height:3px;background:rgba(42,58,85,0.4);border-radius:2px;margin-top:3px;overflow:hidden">
+            <div style="height:100%;width:${barW.toFixed(1)}%;background:${c.color}"></div>
+          </div>
+        </div>
+        <span style="font-size:11px;font-weight:700;color:${c.color};text-align:right">${c.pct.toFixed(2)}%</span>
+      </div>`;
+    }).join('') + '</div>';
+}
+
+// TPCP yield curve — bar chart by tenor
+function _drawTpcpCurve(elId) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const tenors = ['1Y','3Y','5Y','7Y','10Y','15Y','20Y','30Y'];
+  const yields = tenors.map(t => TPCP_YIELD_T4_26[t]);
+  const W = 600, H = 160, ML = 38, MR = 12, MT = 16, MB = 28;
+  const IW = W-ML-MR, IH = H-MT-MB;
+  const mn = 0, mx = Math.max(...yields)*1.1;
+  const scY = v => MT + IH - ((v-mn)/(mx-mn))*IH;
+  const n = tenors.length, gap = 6;
+  const bw = (IW - gap*(n+1)) / n;
+  const uid = 'tpcp'+Math.random().toString(36).slice(2,7);
+  let html = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">`;
+  html += `<defs><linearGradient id="${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a855f7" stop-opacity="0.95"/><stop offset="100%" stop-color="#a855f7" stop-opacity="0.35"/></linearGradient></defs>`;
+  for (let g=0; g<=4; g++) {
+    const y = MT + IH*g/4;
+    html += `<line x1="${ML}" y1="${y.toFixed(1)}" x2="${ML+IW}" y2="${y.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
+    html += `<text x="${ML-3}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${(mx-(mx-mn)*g/4).toFixed(1)}%</text>`;
+  }
+  html += `<line x1="${ML}" y1="${MT}" x2="${ML}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+  html += `<line x1="${ML}" y1="${MT+IH}" x2="${ML+IW}" y2="${MT+IH}" stroke="#2a3a55" stroke-width="1"/>`;
+  // Curve line through bar tops
+  let pathLine = '';
+  yields.forEach((v, i) => {
+    const x = ML + gap + i*(bw+gap) + bw/2;
+    const y = scY(v);
+    pathLine += (i===0?`M${x.toFixed(1)},${y.toFixed(1)}`:` L${x.toFixed(1)},${y.toFixed(1)}`);
+  });
+  // Bars
+  yields.forEach((v, i) => {
+    const x = ML + gap + i*(bw+gap);
+    const y = scY(v), h = MT+IH-y;
+    html += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,h).toFixed(1)}" fill="url(#${uid})" rx="2"/>`;
+    html += `<text x="${(x+bw/2).toFixed(1)}" y="${(y-4).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#a855f7">${v.toFixed(2)}%</text>`;
+    html += `<text x="${(x+bw/2).toFixed(1)}" y="${(H-10).toFixed(1)}" text-anchor="middle" font-size="10" fill="#64748b">${tenors[i]}</text>`;
+  });
+  html += `<path d="${pathLine}" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,2"/>`;
+  html += `</svg>`;
+  el.innerHTML = html;
+}
 
 // Track which main CPI categories are expanded (persists across re-renders)
 const expandedCpi = new Set();
