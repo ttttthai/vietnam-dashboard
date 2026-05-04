@@ -60,6 +60,21 @@
   #legend-dropdown .rg-btn:hover { background: rgba(255,255,255,0.06); }
   #legend-dropdown .rg-btn.active { background: rgba(0,212,255,0.12); color: var(--accent); }
   #legend-dropdown .rg-dot { width: 8px; height: 8px; }
+  /* Mobile/narrow viewports — shrink legend so it doesn't cover the map */
+  @media (max-width: 720px) {
+    #map-legend-header { padding: 2px 6px; }
+    #legend-toggle { font-size: 10px; }
+    #legend-dropdown .rg-btn { padding: 2px 5px; font-size: 9px; gap: 3px; }
+    #legend-dropdown .rg-dot { width: 6px; height: 6px; }
+    #legend-sel-label { font-size: 10px; }
+  }
+  @media (max-width: 480px) {
+    #map-legend { left: 4px; }
+    #map-legend-header { padding: 2px 4px; gap: 2px; }
+    #legend-toggle { font-size: 9px; padding: 0; }
+    #legend-dropdown .rg-btn { padding: 1px 4px; font-size: 8.5px; gap: 2px; }
+    #legend-dropdown .rg-dot { width: 5px; height: 5px; }
+  }
   /* Other panels */
   #vdivider { width: 5px; background: var(--bg3); cursor: col-resize; flex-shrink: 0; transition: background 0.2s; }
   #vdivider:hover { background: var(--accent); }
@@ -361,7 +376,7 @@
         <div class="tab-row" id="tabs-bottom">
           <button class="tab-btn active" data-tab="social" data-panel="bottom">Xã hội</button>
           <button class="tab-btn" data-tab="econ"   data-panel="bottom">Kinh tế</button>
-          <button class="tab-btn" data-tab="corr"   data-panel="bottom">Tương quan</button>
+          <button class="tab-btn" data-tab="cpi"    data-panel="bottom">Lạm phát (CPI)</button>
           <button class="tab-btn" data-tab="banks"  data-panel="bottom">Hệ thống Ngân hàng</button>
         </div>
 
@@ -390,7 +405,7 @@
             <div id="map-legend-header">
               <button id="legend-toggle" title="Chọn vùng">☰ Vùng</button>
             </div>
-            <div id="legend-dropdown" class="legend-open">
+            <div id="legend-dropdown">
               <button class="rg-btn active" data-type="all" data-key="all"><span class="rg-dot" style="background:#94a3b8"></span>Cả nước</button>
               <button class="rg-btn" data-type="v" data-key="1"><span class="rg-dot" style="background:var(--r1)"></span>V1 – Trung du & MN Bắc</button>
               <button class="rg-btn" data-type="v" data-key="2"><span class="rg-dot" style="background:var(--r2)"></span>V2 – Đồng bằng S.Hồng</button>
@@ -610,7 +625,10 @@
             </div>
           </div>
 
-          <!-- Card: CPI & basket — 24 months -->
+        </div><!-- /panel-econ -->
+
+        <!-- Panel: CPI / Lạm phát -->
+        <div id="panel-cpi" class="panel">
           <div class="econ-card full-width">
             <div class="econ-card-header">📊 CPI & Cơ cấu rổ tiêu dùng — 24 tháng gần nhất</div>
             <div class="econ-card-body">
@@ -622,81 +640,18 @@
                 <div class="kpi-tile"><div class="kpi-label">Cao nhất 24T</div><div class="kpi-val" id="kpi-cpi-max">—</div></div>
                 <div class="kpi-tile"><div class="kpi-label">Thấp nhất 24T</div><div class="kpi-val" id="kpi-cpi-min">—</div></div>
               </div>
-              <div id="ecb-cpi-monthly" style="height:170px;width:100%;margin-top:4px"></div>
-              <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;margin:14px 0 6px;">📦 Rổ CPI · 11 nhóm hàng (% trọng số · YoY 24 tháng)</div>
+              <div id="ecb-cpi-monthly" style="height:200px;width:100%;margin-top:6px"></div>
+              <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;margin:14px 0 6px;display:flex;align-items:center;gap:8px;">
+                <span>📦 Rổ CPI · 11 nhóm hàng (% trọng số · YoY 24 tháng)</span>
+                <span style="font-weight:400;color:var(--text3);text-transform:none;letter-spacing:0">Click hàng để xem chi tiết · ⬅️ T5/24 → T4/26 ➡️</span>
+              </div>
               <div id="cpi-basket-list" class="cpi-basket-list"></div>
               <div style="font-size:10px;color:var(--text3);margin-top:8px;line-height:1.4">
                 Trọng số rổ CPI 2020 (GSO/Tổng cục Thống kê) — cập nhật 5 năm/lần. CPI tổng hợp = trung bình có trọng số của 11 nhóm.
               </div>
             </div>
           </div>
-        </div><!-- /panel-econ -->
-        <!-- Panel: Correlation -->
-        <div id="panel-corr" class="panel">
-          <div class="demo-header">
-            <span class="demo-title">Tương quan: <span id="corr-region-label">Cả nước</span></span>
-          </div>
-          <div class="axis-sel">
-            <label>Trục X:</label>
-            <select id="bub-x">
-              <option value="gdppc">GDP/đầu người</option>
-              <option value="grdp">GRDP</option>
-              <option value="fdiReg">FDI đăng ký</option>
-              <option value="exportVal">Xuất khẩu</option>
-              <option value="unemp">Thất nghiệp %</option>
-              <option value="biz">Doanh nghiệp</option>
-              <option value="tax">Thu ngân sách</option>
-              <option value="income">Thu nhập BQ</option>
-              <option value="invest">Đầu tư</option>
-              <option value="pop">Dân số</option>
-            </select>
-            <label>Trục Y:</label>
-            <select id="bub-y">
-              <option value="grdp">GRDP</option>
-              <option value="gdppc" selected>GDP/đầu người</option>
-              <option value="fdiReg">FDI đăng ký</option>
-              <option value="exportVal">Xuất khẩu</option>
-              <option value="unemp">Thất nghiệp %</option>
-              <option value="biz">Doanh nghiệp</option>
-              <option value="tax">Thu ngân sách</option>
-              <option value="income">Thu nhập BQ</option>
-              <option value="invest">Đầu tư</option>
-              <option value="pop">Dân số</option>
-            </select>
-            <label>Kích thước:</label>
-            <select id="bub-sz">
-              <option value="pop">Dân số</option>
-              <option value="grdp">GRDP</option>
-              <option value="fdiReg">FDI</option>
-            </select>
-          </div>
-          <div class="ctrl-row" style="margin-bottom:8px">
-            <button class="play-btn" id="play-corr">▶</button>
-            <span class="yr-label" id="yr-corr">2010</span>
-            <input type="range" id="sl-corr" min="0" max="19" value="0">
-          </div>
-          <div id="bubble-wrap">
-            <svg id="bubble-svg" preserveAspectRatio="none"></svg>
-          </div>
-          <div class="scatter-grid">
-            <div class="scatter-item">
-              <div class="s-title">FDI đăng ký → Kim ngạch XK</div>
-              <svg class="s-svg" id="sc-fdi-xk"></svg>
-            </div>
-            <div class="scatter-item">
-              <div class="s-title">GRDP → Thu ngân sách</div>
-              <svg class="s-svg" id="sc-grdp-tax"></svg>
-            </div>
-            <div class="scatter-item">
-              <div class="s-title">GDP/đầu người → Thu nhập lao động</div>
-              <svg class="s-svg" id="sc-gdppc-inc"></svg>
-            </div>
-            <div class="scatter-item">
-              <div class="s-title">Tăng trưởng GRDP → Doanh nghiệp</div>
-              <svg class="s-svg" id="sc-growth-biz"></svg>
-            </div>
-          </div>
-        </div><!-- /panel-corr -->
+        </div><!-- /panel-cpi -->
 
         <!-- Panel: Banking System -->
         <div id="panel-banks" class="panel">
@@ -1366,8 +1321,6 @@ function setSelection(type, key, name) {
   renderDemoPyramid(curYi);
   renderStudent(curYi2);
   if (activeBottomTab === 'econ' && econReady) updateSpecialCharts('all', 0);
-  if (activeBottomTab === 'corr') { renderBubble(animYi); updateScatterCharts(); }
-  updateScatterCharts();
 }
 
 // Legend toggle (☰ button collapses/expands the dropdown)
@@ -1375,6 +1328,10 @@ document.getElementById('legend-toggle').addEventListener('click', () => {
   const dd = document.getElementById('legend-dropdown');
   dd.classList.toggle('legend-closed');
 });
+// On small screens, start with the legend collapsed so it doesn't block the map
+if (window.matchMedia('(max-width: 720px)').matches) {
+  document.getElementById('legend-dropdown').classList.add('legend-closed');
+}
 
 // ============================================================
 // DEMOGRAPHIC PYRAMID
@@ -2013,8 +1970,6 @@ function updateSpecialCharts(cardId, yi) {
     setKpi('kpi-fx-chg',(yi>0?((fxVal/FX_USD[Math.min(yi-1,19)])-1)*100:0).toFixed(1)+'%');
     setKpi('kpi-cpi',CPI_YOY[yi].toFixed(2)+'%'); setKpi('kpi-reserves',FX_RESERVES[Math.min(yi,19)].toFixed(1)+' tỷ');
     setKpi('kpi-m2',fmtNum(M2[yi],0)); setKpi('kpi-m1',fmtNum(M1[yi],0));
-    // CPI card is independent of the Macro slider — render once
-    if (typeof renderCpiCard === 'function') renderCpiCard();
   }
 
 }
@@ -2270,7 +2225,7 @@ function refresh() {
   renderDemoPyramid(curYi);
   renderStudent(curYi2);
   if (activeBottomTab === 'econ' && econReady) updateSpecialCharts('all', 0);
-  if (activeBottomTab === 'corr') { renderBubble(animYi); updateScatterCharts(); }
+  // 'corr' tab removed
 }
 
 // ============================================================
@@ -2356,7 +2311,7 @@ let activeBottomTab = 'social';
 function switchBottomTab(tab) {
   activeBottomTab = tab;
   document.querySelectorAll('#tabs-bottom .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-  ['social','econ','corr','banks'].forEach(t => {
+  ['social','econ','cpi','banks'].forEach(t => {
     const p = document.getElementById(`panel-${t}`);
     if (!p) return;
     p.style.display = '';
@@ -2377,13 +2332,11 @@ function switchBottomTab(tab) {
       initCardControls();
       Object.keys(cardYi).forEach(cid => syncOneCard(cid, cardYi[cid]));
       updateSpecialCharts('all', 0);
-      if (typeof renderCpiCard === 'function') renderCpiCard();
       setTimeout(tryLiveFetch, 300);
     }));
-  } else if (tab === 'corr') {
+  } else if (tab === 'cpi') {
     requestAnimationFrame(() => requestAnimationFrame(() => {
-      renderBubble(animYi);
-      updateScatterCharts();
+      if (typeof renderCpiCard === 'function') renderCpiCard();
     }));
   } else if (tab === 'banks') {
     requestAnimationFrame(() => requestAnimationFrame(loadBanks));
@@ -2493,7 +2446,8 @@ function fmtVndTy(v) {
   return Math.round(v).toLocaleString('en-US');
 }
 
-// Inline mini bar chart (inline SVG string, 6 bars showing history)
+// Inline mini bar chart — bars rendered LEFT (oldest) → RIGHT (newest).
+// `history` array is expected oldest→newest (index 0 = oldest period).
 function inlineBarsSvg(history, color, periods) {
   if (!history || !history.length) return '';
   const abs = history.map(v => Math.abs(v));
@@ -2502,17 +2456,19 @@ function inlineBarsSvg(history, color, periods) {
   const yMin = Math.max(0, mn - range * 0.25);
   const yMax = mx + range * 0.10;
   const n = history.length, gap = 1;
-  const W = 56, H = 22; // logical coords scaled by CSS
+  const W = 56, H = 22;
   const bw = Math.max(2, (W - gap*(n+1)) / n);
   let svg = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`;
   history.forEach((v, i) => {
     const bh = ((Math.abs(v) - yMin)/(yMax - yMin)) * (H - 2);
+    // i=0 → leftmost (oldest), i=n-1 → rightmost (newest)
     const x = gap + i*(bw + gap);
     const y = H - Math.max(1, bh) - 1;
-    const isLast = i === n-1;
+    const isLast = i === n-1;  // newest = solid color
     const lbl = periods ? periods[i] : ('#'+(i+1));
     const vTxt = typeof v === 'number' ? (Math.abs(v)>=1000 ? (v/1000).toFixed(1)+'K' : v.toFixed(1)) : v;
-    const tipData = `${lbl}|Giá trị: ${vTxt}`;
+    const ageHint = i === 0 ? ' (cũ nhất)' : (isLast ? ' (mới nhất)' : '');
+    const tipData = `${lbl}${ageHint}|Giá trị: ${vTxt}`;
     svg += `<rect class="bk-bar" data-tip="${tipData}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,bh).toFixed(1)}" fill="${color}" opacity="${isLast ? 1 : 0.5}" rx="1"/>`;
   });
   svg += `</svg>`;
@@ -3618,7 +3574,7 @@ function refresh() {
   renderDemoPyramid(curYi);
   renderStudent(curYi2);
   if (activeBottomTab === 'econ' && econReady) updateSpecialCharts('all', 0);
-  if (activeBottomTab === 'corr') { renderBubble(animYi); updateScatterCharts(); }
+  // 'corr' tab removed
 }
 
 // Wire bottom tabs
@@ -3692,15 +3648,7 @@ document.getElementById('play-top').addEventListener('click', () => {
 });
 
 // Corr tab controls
-document.getElementById('sl-corr').addEventListener('input', e => { animYi = parseInt(e.target.value); renderBubble(animYi); });
-document.getElementById('play-corr').addEventListener('click', () => {
-  if (corrTimer) { clearInterval(corrTimer); corrTimer = null; const _pc=document.getElementById('play-corr'); if(_pc) _pc.textContent='▶'; return; }
-  const _pc2=document.getElementById('play-corr'); if(_pc2) _pc2.textContent='⏸';
-  corrTimer = setInterval(() => { animYi = (animYi + 1) % 20; document.getElementById('sl-corr').value = animYi; renderBubble(animYi); }, 600);
-});
-document.getElementById('bub-x').addEventListener('change', () => renderBubble(animYi));
-document.getElementById('bub-y').addEventListener('change', () => renderBubble(animYi));
-document.getElementById('bub-sz').addEventListener('change', () => renderBubble(animYi));
+// Correlation tab removed — listeners no longer attached.
 
 // Tenor buttons
 let activeRatesTab = 'rate';
@@ -4018,7 +3966,7 @@ function reRenderAll() {
   renderDemoPyramid(curYi);
   renderStudent(curYi2);
   if (activeBottomTab === 'econ') updateSpecialCharts('all', 0);
-  if (activeBottomTab === 'corr') { renderBubble(animYi); updateScatterCharts(); }
+  // 'corr' tab removed
 }
 
 const resObs = new ResizeObserver((entries) => {
