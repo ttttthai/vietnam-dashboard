@@ -128,10 +128,10 @@
   .top-chart-divider { height: 1px; background: var(--border); flex-shrink: 0; }
 
   /* Econ panel grid — card 1 full width, rest 2-per-row */
-  #panel-econ { display: none; padding: 10px; }
-  #panel-econ.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 10px; align-content: start; }
+  #panel-econ, #panel-money { display: none; padding: 10px; }
+  #panel-econ.active, #panel-money.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 10px; align-content: start; }
   @media (max-width: 900px) {
-    #panel-econ.active { grid-template-columns: 1fr; }
+    #panel-econ.active, #panel-money.active { grid-template-columns: 1fr; }
     .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); }
   }
   .econ-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; flex-shrink: 0; min-width: 0; }
@@ -376,6 +376,7 @@
         <div class="tab-row" id="tabs-bottom">
           <button class="tab-btn active" data-tab="social" data-panel="bottom">Xã hội</button>
           <button class="tab-btn" data-tab="econ"   data-panel="bottom">Kinh tế</button>
+          <button class="tab-btn" data-tab="money"  data-panel="bottom">Tiền tệ</button>
           <button class="tab-btn" data-tab="cpi"    data-panel="bottom">Lạm phát (CPI)</button>
           <button class="tab-btn" data-tab="banks"  data-panel="bottom">Hệ thống Ngân hàng</button>
         </div>
@@ -485,65 +486,6 @@
               </div>
             </div>
           </div>
-          <div class="econ-card">
-            <div class="econ-card-header">📈 Lãi suất & Trái phiếu</div>
-            <div class="econ-card-body">
-              <div class="card-ctrl">
-                <button class="play-btn" id="pb-card-rates">▶</button>
-                <span class="yr-label" id="yr-card-rates">2010</span>
-                <input type="range" id="sl-card-rates" min="0" max="16" value="0">
-                <span class="quality-badge badge-A" id="qb-card-rates">A</span>
-              </div>
-              <!-- Rate card tabs -->
-              <div style="display:flex;gap:0;margin-bottom:4px;border-bottom:1px solid var(--border);">
-                <button class="rates-tab-btn active" id="rtab-rate" onclick="switchRatesTab('rate')" style="background:none;border:none;border-bottom:2px solid var(--accent);color:var(--accent);font-size:11px;font-weight:700;padding:2px 10px;cursor:pointer;">Lãi suất</button>
-                <button class="rates-tab-btn" id="rtab-bond" onclick="switchRatesTab('bond')" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--text2);font-size:11px;font-weight:700;padding:2px 10px;cursor:pointer;">Trái phiếu</button>
-              </div>
-              <!-- Lãi suất tab -->
-              <div id="rates-panel-rate">
-                <div style="display:flex;gap:4px;margin-bottom:4px;">
-                  <button class="view-btn active" id="rate-view-annual" onclick="setRatesView('annual')" style="background:rgba(0,212,255,0.15);border:1px solid var(--accent);color:var(--accent);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Năm</button>
-                  <button class="view-btn" id="rate-view-monthly" onclick="setRatesView('monthly')" style="background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Tháng (24T)</button>
-                </div>
-                <div class="kpi-grid">
-                  <div class="kpi-tile"><div class="kpi-label" id="kpi-depo-lbl">Tiền gửi 12T Big 4 (%/năm)</div><div class="kpi-val" id="kpi-depo">—</div></div>
-                  <div class="kpi-tile"><div class="kpi-label" id="kpi-depo-nhtmcp-lbl">Tiền gửi 12T NHTMCP (%/năm)</div><div class="kpi-val" id="kpi-depo-nhtmcp">—</div></div>
-                  <div class="kpi-tile"><div class="kpi-label" id="kpi-lend-lbl">Cho vay 12T (%/năm)</div><div class="kpi-val" id="kpi-lend">—</div></div>
-                </div>
-                <div class="tenor-btns" id="tenor-btns">
-                  <button class="tenor-btn" data-tenor="0">1T</button>
-                  <button class="tenor-btn" data-tenor="1">3T</button>
-                  <button class="tenor-btn" data-tenor="2">6T</button>
-                  <button class="tenor-btn active" data-tenor="3">12T</button>
-                  <button class="tenor-btn" data-tenor="4">3N</button>
-                  <button class="tenor-btn" data-tenor="5">5N</button>
-                  <button class="tenor-btn" data-tenor="6">10N</button>
-                </div>
-                <div id="ecb-rates" style="height:130px;width:100%;"></div>
-              </div>
-              <!-- Trái phiếu tab (hidden) -->
-              <div id="rates-panel-bond" style="display:none;">
-                <div style="display:flex;gap:4px;margin-bottom:4px;">
-                  <button class="view-btn active" id="bond-view-annual" onclick="setBondView('annual')" style="background:rgba(0,212,255,0.15);border:1px solid var(--accent);color:var(--accent);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Năm</button>
-                  <button class="view-btn" id="bond-view-monthly" onclick="setBondView('monthly')" style="background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Tháng (24T)</button>
-                </div>
-                <div class="kpi-grid">
-                  <div class="kpi-tile"><div class="kpi-label">Lãi suất TCV (%)</div><div class="kpi-val" id="kpi-policy">—</div></div>
-                  <div class="kpi-tile"><div class="kpi-label" id="kpi-bond-lbl">TP Chính phủ 12T</div><div class="kpi-val" id="kpi-bond">—</div></div>
-                </div>
-                <div class="tenor-btns" id="tenor-btns-bond">
-                  <button class="tenor-btn-bond" data-tenor="0">1T</button>
-                  <button class="tenor-btn-bond" data-tenor="1">3T</button>
-                  <button class="tenor-btn-bond" data-tenor="2">6T</button>
-                  <button class="tenor-btn-bond active" data-tenor="3">12T</button>
-                  <button class="tenor-btn-bond" data-tenor="4">3N</button>
-                  <button class="tenor-btn-bond" data-tenor="5">5N</button>
-                  <button class="tenor-btn-bond" data-tenor="6">10N</button>
-                </div>
-                <div id="ecb-bonds" style="height:130px;width:100%;"></div>
-              </div>
-            </div>
-          </div>
 
           <!-- Card: Budget -->
           <div class="econ-card">
@@ -602,8 +544,67 @@
               <div id="ecb-labour" style="height:160px;width:100%;"></div>
             </div>
           </div>
-          <!-- Card 5: Rates -->
-          <!-- Card: Macro/FX -->
+        </div><!-- /panel-econ -->
+
+        <!-- Panel: Tiền tệ (Monetary policy) -->
+        <div id="panel-money" class="panel">
+          <div class="econ-card">
+            <div class="econ-card-header">📈 Lãi suất & Trái phiếu</div>
+            <div class="econ-card-body">
+              <div class="card-ctrl">
+                <button class="play-btn" id="pb-card-rates">▶</button>
+                <span class="yr-label" id="yr-card-rates">2010</span>
+                <input type="range" id="sl-card-rates" min="0" max="16" value="0">
+                <span class="quality-badge badge-A" id="qb-card-rates">A</span>
+              </div>
+              <div style="display:flex;gap:0;margin-bottom:4px;border-bottom:1px solid var(--border);">
+                <button class="rates-tab-btn active" id="rtab-rate" onclick="switchRatesTab('rate')" style="background:none;border:none;border-bottom:2px solid var(--accent);color:var(--accent);font-size:11px;font-weight:700;padding:2px 10px;cursor:pointer;">Lãi suất</button>
+                <button class="rates-tab-btn" id="rtab-bond" onclick="switchRatesTab('bond')" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--text2);font-size:11px;font-weight:700;padding:2px 10px;cursor:pointer;">Trái phiếu</button>
+              </div>
+              <div id="rates-panel-rate">
+                <div style="display:flex;gap:4px;margin-bottom:4px;">
+                  <button class="view-btn active" id="rate-view-annual" onclick="setRatesView('annual')" style="background:rgba(0,212,255,0.15);border:1px solid var(--accent);color:var(--accent);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Năm</button>
+                  <button class="view-btn" id="rate-view-monthly" onclick="setRatesView('monthly')" style="background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Tháng (24T)</button>
+                </div>
+                <div class="kpi-grid">
+                  <div class="kpi-tile"><div class="kpi-label" id="kpi-depo-lbl">Tiền gửi 12T Big 4 (%/năm)</div><div class="kpi-val" id="kpi-depo">—</div></div>
+                  <div class="kpi-tile"><div class="kpi-label" id="kpi-depo-nhtmcp-lbl">Tiền gửi 12T NHTMCP (%/năm)</div><div class="kpi-val" id="kpi-depo-nhtmcp">—</div></div>
+                  <div class="kpi-tile"><div class="kpi-label" id="kpi-lend-lbl">Cho vay 12T (%/năm)</div><div class="kpi-val" id="kpi-lend">—</div></div>
+                </div>
+                <div class="tenor-btns" id="tenor-btns">
+                  <button class="tenor-btn" data-tenor="0">1T</button>
+                  <button class="tenor-btn" data-tenor="1">3T</button>
+                  <button class="tenor-btn" data-tenor="2">6T</button>
+                  <button class="tenor-btn active" data-tenor="3">12T</button>
+                  <button class="tenor-btn" data-tenor="4">3N</button>
+                  <button class="tenor-btn" data-tenor="5">5N</button>
+                  <button class="tenor-btn" data-tenor="6">10N</button>
+                </div>
+                <div id="ecb-rates" style="height:130px;width:100%;"></div>
+              </div>
+              <div id="rates-panel-bond" style="display:none;">
+                <div style="display:flex;gap:4px;margin-bottom:4px;">
+                  <button class="view-btn active" id="bond-view-annual" onclick="setBondView('annual')" style="background:rgba(0,212,255,0.15);border:1px solid var(--accent);color:var(--accent);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Năm</button>
+                  <button class="view-btn" id="bond-view-monthly" onclick="setBondView('monthly')" style="background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:3px;padding:2px 8px;font-size:10px;cursor:pointer;">Tháng (24T)</button>
+                </div>
+                <div class="kpi-grid">
+                  <div class="kpi-tile"><div class="kpi-label">Lãi suất TCV (%)</div><div class="kpi-val" id="kpi-policy">—</div></div>
+                  <div class="kpi-tile"><div class="kpi-label" id="kpi-bond-lbl">TP Chính phủ 12T</div><div class="kpi-val" id="kpi-bond">—</div></div>
+                </div>
+                <div class="tenor-btns" id="tenor-btns-bond">
+                  <button class="tenor-btn-bond" data-tenor="0">1T</button>
+                  <button class="tenor-btn-bond" data-tenor="1">3T</button>
+                  <button class="tenor-btn-bond" data-tenor="2">6T</button>
+                  <button class="tenor-btn-bond active" data-tenor="3">12T</button>
+                  <button class="tenor-btn-bond" data-tenor="4">3N</button>
+                  <button class="tenor-btn-bond" data-tenor="5">5N</button>
+                  <button class="tenor-btn-bond" data-tenor="6">10N</button>
+                </div>
+                <div id="ecb-bonds" style="height:130px;width:100%;"></div>
+              </div>
+            </div>
+          </div>
+
           <div class="econ-card">
             <div class="econ-card-header">💱 Tỷ giá & Vĩ mô</div>
             <div class="econ-card-body">
@@ -624,8 +625,7 @@
               <div id="ecb-macro" style="height:140px;width:100%;"></div>
             </div>
           </div>
-
-        </div><!-- /panel-econ -->
+        </div><!-- /panel-money -->
 
         <!-- Panel: CPI / Lạm phát -->
         <div id="panel-cpi" class="panel">
@@ -2311,7 +2311,7 @@ let activeBottomTab = 'social';
 function switchBottomTab(tab) {
   activeBottomTab = tab;
   document.querySelectorAll('#tabs-bottom .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-  ['social','econ','cpi','banks'].forEach(t => {
+  ['social','econ','money','cpi','banks'].forEach(t => {
     const p = document.getElementById(`panel-${t}`);
     if (!p) return;
     p.style.display = '';
@@ -2325,7 +2325,7 @@ function switchBottomTab(tab) {
       if (activeTopTab === 'demo') renderDemoPyramid(curYi);
       else renderStudent(curYi2);
     }));
-  } else if (tab === 'econ') {
+  } else if (tab === 'econ' || tab === 'money') {
     if (!econReady) { econReady = true; }
     requestAnimationFrame(() => requestAnimationFrame(() => {
       initSpecialCharts();
