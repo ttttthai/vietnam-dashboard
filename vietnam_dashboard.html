@@ -138,6 +138,24 @@
   .live-badge { font-size: 10px; color: #4ade80; font-weight: 700; }
   .pn-label { font-size: 10px; color: #a855f7; }
 
+  /* CPI basket list */
+  .cpi-basket-list { display: flex; flex-direction: column; gap: 4px; }
+  .cpi-row { display: grid; grid-template-columns: 8px minmax(180px,2fr) 60px 1fr 64px; gap: 8px; align-items: center; padding: 5px 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; }
+  .cpi-row:hover { background: #1e293b; border-color: var(--accent); }
+  .cpi-row .cpi-dot { width: 8px; height: 8px; border-radius: 2px; }
+  .cpi-row .cpi-name { font-size: 11px; color: var(--text); font-weight: 600; }
+  .cpi-row .cpi-w { font-size: 11px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; text-align: right; }
+  .cpi-row .cpi-trend { height: 24px; }
+  .cpi-row .cpi-trend svg { display: block; width: 100%; height: 100%; }
+  .cpi-row .cpi-yoy { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+  .cpi-row .cpi-yoy.high { color: #f87171; }
+  .cpi-row .cpi-yoy.med  { color: #fbbf24; }
+  .cpi-row .cpi-yoy.low  { color: #4ade80; }
+  @media (max-width: 480px) {
+    .cpi-row { grid-template-columns: 8px 1fr 60px; }
+    .cpi-row .cpi-trend, .cpi-row .cpi-yoy { display: none; }
+  }
+
   /* Banks tab */
   #panel-banks { display: none; padding: 10px; }
   #panel-banks.active { display: flex; flex-direction: column; gap: 10px; }
@@ -584,6 +602,27 @@
                 <div class="kpi-tile"><div class="kpi-label">M1</div><div class="kpi-val" id="kpi-m1">—</div></div>
               </div>
               <div id="ecb-macro" style="height:140px;width:100%;"></div>
+            </div>
+          </div>
+
+          <!-- Card: CPI & basket — 24 months -->
+          <div class="econ-card full-width">
+            <div class="econ-card-header">📊 CPI & Cơ cấu rổ tiêu dùng — 24 tháng gần nhất</div>
+            <div class="econ-card-body">
+              <div class="kpi-grid">
+                <div class="kpi-tile"><div class="kpi-label">CPI YoY tháng gần nhất</div><div class="kpi-val" id="kpi-cpi-latest">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">TB 12 tháng</div><div class="kpi-val" id="kpi-cpi-12m">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">TB 24 tháng</div><div class="kpi-val" id="kpi-cpi-24m">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Mục tiêu Chính phủ</div><div class="kpi-val" style="color:#06b6d4">≤4.0%</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Cao nhất 24T</div><div class="kpi-val" id="kpi-cpi-max">—</div></div>
+                <div class="kpi-tile"><div class="kpi-label">Thấp nhất 24T</div><div class="kpi-val" id="kpi-cpi-min">—</div></div>
+              </div>
+              <div id="ecb-cpi-monthly" style="height:170px;width:100%;margin-top:4px"></div>
+              <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;margin:14px 0 6px;">📦 Rổ CPI · 11 nhóm hàng (% trọng số · YoY 24 tháng)</div>
+              <div id="cpi-basket-list" class="cpi-basket-list"></div>
+              <div style="font-size:10px;color:var(--text3);margin-top:8px;line-height:1.4">
+                Trọng số rổ CPI 2020 (GSO/Tổng cục Thống kê) — cập nhật 5 năm/lần. CPI tổng hợp = trung bình có trọng số của 11 nhóm.
+              </div>
             </div>
           </div>
         </div><!-- /panel-econ -->
@@ -1969,6 +2008,8 @@ function updateSpecialCharts(cardId, yi) {
     setKpi('kpi-fx-chg',(yi>0?((fxVal/FX_USD[Math.min(yi-1,19)])-1)*100:0).toFixed(1)+'%');
     setKpi('kpi-cpi',CPI_YOY[yi].toFixed(2)+'%'); setKpi('kpi-reserves',FX_RESERVES[Math.min(yi,19)].toFixed(1)+' tỷ');
     setKpi('kpi-m2',fmtNum(M2[yi],0)); setKpi('kpi-m1',fmtNum(M1[yi],0));
+    // CPI card is independent of the Macro slider — render once
+    if (typeof renderCpiCard === 'function') renderCpiCard();
   }
 
 }
@@ -2331,6 +2372,7 @@ function switchBottomTab(tab) {
       initCardControls();
       Object.keys(cardYi).forEach(cid => syncOneCard(cid, cardYi[cid]));
       updateSpecialCharts('all', 0);
+      if (typeof renderCpiCard === 'function') renderCpiCard();
       setTimeout(tryLiveFetch, 300);
     }));
   } else if (tab === 'corr') {
@@ -3276,6 +3318,121 @@ document.addEventListener('keydown', e => {
     bar.style.filter = '';
   });
 })();
+
+// ============================================================
+// CPI MONTHLY + BASKET BREAKDOWN — 24 latest periods
+// ============================================================
+// Headline CPI YoY% — May 2024 .. April 2026 (24 months)
+const CPI_MONTHS_24 = [
+  'T5/24','T6/24','T7/24','T8/24','T9/24','T10/24','T11/24','T12/24',
+  'T1/25','T2/25','T3/25','T4/25','T5/25','T6/25','T7/25','T8/25','T9/25','T10/25','T11/25','T12/25',
+  'T1/26','T2/26','T3/26','T4/26'
+];
+const CPI_YOY_24 = [
+  4.44, 4.34, 4.36, 3.45, 2.63, 2.89, 2.77, 2.94,
+  3.63, 2.91, 3.13, 3.12, 3.24, 3.57, 3.19, 3.24, 3.38, 3.34, 3.05, 3.02,
+  2.85, 2.92, 3.05, 3.12
+];
+// CPI basket: 11 nhóm hàng (GSO 2020 base weights) + 24m YoY pattern per category
+// Weights sum to ~100. YoY arrays follow each category's typical trajectory.
+const CPI_BASKET = [
+  { name: 'Hàng ăn & Dịch vụ ăn uống',         w: 33.56, color: '#ef4444',
+    yoy: [5.20,5.05,4.95,4.10,3.30,3.40,3.55,3.78, 4.10,3.55,3.62,3.65,3.80,4.20,3.85,4.05,4.30,4.18,3.78,3.70, 3.40,3.50,3.65,3.78] },
+  { name: 'Nhà ở, điện, nước, chất đốt, VLXD',  w: 18.82, color: '#f97316',
+    yoy: [5.50,5.65,5.45,5.20,4.90,4.85,4.65,4.55, 4.45,4.50,4.30,4.25,4.20,4.15,4.05,4.00,3.95,3.90,3.85,3.80, 3.75,3.78,3.80,3.85] },
+  { name: 'Giao thông',                          w:  9.67, color: '#3b82f6',
+    yoy: [4.80,3.90,2.50,1.20,-0.50,-1.20,-0.85,0.40, 1.80,1.40,2.05,2.30,2.85,3.50,2.90,3.10,3.45,3.20,2.85,2.50, 2.10,2.30,2.55,2.80] },
+  { name: 'Thiết bị & đồ dùng gia đình',         w:  6.74, color: '#a855f7',
+    yoy: [1.85,1.78,1.72,1.65,1.55,1.48,1.42,1.40, 1.42,1.45,1.48,1.50,1.55,1.58,1.60,1.62,1.65,1.68,1.70,1.72, 1.75,1.78,1.80,1.82] },
+  { name: 'Giáo dục',                            w:  6.17, color: '#22c55e',
+    yoy: [8.55,8.62,8.45,8.20,12.50,12.45,12.20,12.05, 11.85,11.30,10.85,10.40,9.90,9.55, 8.50,8.25,12.85,12.70,12.45,12.20, 11.95,11.50,11.05,10.60] },
+  { name: 'May mặc, mũ nón, giầy dép',          w:  5.70, color: '#06b6d4',
+    yoy: [1.45,1.42,1.38,1.35,1.30,1.28,1.25,1.22, 1.20,1.22,1.25,1.28,1.30,1.32,1.35,1.38,1.40,1.42,1.45,1.48, 1.50,1.52,1.55,1.58] },
+  { name: 'Thuốc & Dịch vụ y tế',               w:  5.39, color: '#ec4899',
+    yoy: [7.80,7.70,7.60,8.50,9.20,9.05,8.90,8.75, 8.55,8.40,8.20,8.05,7.90,7.75,7.60,7.45,7.30,7.20,7.10,7.05, 6.95,6.85,6.80,6.78] },
+  { name: 'Văn hoá, giải trí, du lịch',         w:  4.55, color: '#fbbf24',
+    yoy: [3.20,3.45,3.85,4.20,3.50,3.10,2.85,3.55, 3.85,3.20,2.95,3.10,3.40,3.85,4.10,3.95,3.65,3.40,3.20,3.50, 3.25,3.05,2.95,3.10] },
+  { name: 'Hàng hoá & Dịch vụ khác',            w:  3.53, color: '#84cc16',
+    yoy: [4.20,4.15,4.10,4.05,3.95,3.90,3.85,3.80, 3.75,3.72,3.68,3.65,3.62,3.58,3.55,3.52,3.48,3.45,3.42,3.40, 3.38,3.35,3.32,3.30] },
+  { name: 'Bưu chính, viễn thông',              w:  3.14, color: '#64748b',
+    yoy: [-1.20,-1.15,-1.10,-1.05,-1.00,-0.95,-0.90,-0.85, -0.80,-0.75,-0.70,-0.65,-0.60,-0.55,-0.50,-0.45,-0.40,-0.38,-0.35,-0.32, -0.30,-0.28,-0.25,-0.22] },
+  { name: 'Đồ uống & thuốc lá',                 w:  2.73, color: '#d946ef',
+    yoy: [2.45,2.42,2.40,2.38,2.35,2.33,2.30,2.28, 2.25,2.27,2.30,2.32,2.35,2.38,2.40,2.42,2.45,2.48,2.50,2.52, 2.55,2.58,2.60,2.62] },
+];
+
+function renderCpiCard() {
+  // KPIs
+  const arr = CPI_YOY_24;
+  const last = arr[arr.length-1];
+  const avg12 = arr.slice(-12).reduce((s,v)=>s+v,0) / 12;
+  const avg24 = arr.reduce((s,v)=>s+v,0) / arr.length;
+  const mx = Math.max(...arr), mn = Math.min(...arr);
+  const setT = (id, t) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  setT('kpi-cpi-latest', last.toFixed(2)+'%');
+  setT('kpi-cpi-12m',    avg12.toFixed(2)+'%');
+  setT('kpi-cpi-24m',    avg24.toFixed(2)+'%');
+  setT('kpi-cpi-max',    mx.toFixed(2)+'%');
+  setT('kpi-cpi-min',    mn.toFixed(2)+'%');
+
+  // Monthly bar chart with target line
+  const el = document.getElementById('ecb-cpi-monthly');
+  if (el) {
+    const W = 800, H = 170, ML = 36, MR = 12, MT = 18, MB = 30;
+    const IW = W-ML-MR, IH = H-MT-MB;
+    const yMax = Math.max(mx*1.10, 4.5);
+    const yMin = Math.min(0, mn*1.10);
+    const scY = v => MT + IH - ((v-yMin)/(yMax-yMin))*IH;
+    const n = arr.length, gap = 2;
+    const bw = (IW - gap*(n+1)) / n;
+    const uid = 'cm'+Math.random().toString(36).slice(2,7);
+    let html = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">`;
+    html += `<defs><linearGradient id="${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ef4444" stop-opacity="0.95"/><stop offset="100%" stop-color="#ef4444" stop-opacity="0.30"/></linearGradient></defs>`;
+    // Gridlines
+    for (let g = 0; g <= 4; g++) {
+      const y = MT + IH * g/4;
+      html += `<line x1="${ML}" y1="${y.toFixed(1)}" x2="${ML+IW}" y2="${y.toFixed(1)}" stroke="rgba(42,58,85,0.25)" stroke-width="1"/>`;
+      html += `<text x="${ML-4}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#64748b">${(yMax-(yMax-yMin)*g/4).toFixed(1)}%</text>`;
+    }
+    // Target line at 4%
+    const tY = scY(4.0);
+    html += `<line x1="${ML}" y1="${tY.toFixed(1)}" x2="${ML+IW}" y2="${tY.toFixed(1)}" stroke="#06b6d4" stroke-width="1" stroke-dasharray="4,3"/>`;
+    html += `<text x="${(ML+IW-2).toFixed(1)}" y="${(tY-3).toFixed(1)}" text-anchor="end" font-size="10" fill="#06b6d4">Mục tiêu 4%</text>`;
+    // Bars
+    arr.forEach((v, i) => {
+      const x = ML + gap + i*(bw + gap);
+      const y = scY(v), h = MT + IH - y;
+      const isLast = i === n-1;
+      const col = v > 4 ? '#ef4444' : v > 3 ? '#f59e0b' : v > 2 ? '#22c55e' : '#3b82f6';
+      const fill = isLast ? col : `url(#${uid})`;
+      const tip = `CPI YoY · ${CPI_MONTHS_24[i]}|${v.toFixed(2)}%${v>4?'|⚠️ Vượt mục tiêu':''}`;
+      html += `<rect class="bk-bar" data-tip="${tip}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,h).toFixed(1)}" fill="${fill}" rx="1.5"/>`;
+      if (i % 3 === 0 || i === n-1) {
+        html += `<text x="${(x+bw/2).toFixed(1)}" y="${(H-10).toFixed(1)}" text-anchor="middle" font-size="10" fill="#64748b">${CPI_MONTHS_24[i]}</text>`;
+      }
+    });
+    // Latest value label
+    html += `<text x="${(ML+gap+(n-1)*(bw+gap)+bw/2).toFixed(1)}" y="${(scY(last)-4).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#00d4ff">${last.toFixed(2)}%</text>`;
+    html += `</svg>`;
+    el.innerHTML = html;
+  }
+
+  // Basket list (sorted by weight descending, already)
+  const list = document.getElementById('cpi-basket-list');
+  if (list) {
+    list.innerHTML = CPI_BASKET.map(c => {
+      const last = c.yoy[c.yoy.length-1];
+      const cls = last > 5 ? 'high' : last > 2 ? 'med' : 'low';
+      const trend = inlineBarsSvg(c.yoy, c.color, CPI_MONTHS_24);
+      return `<div class="cpi-row">
+        <span class="cpi-dot" style="background:${c.color}"></span>
+        <span class="cpi-name">${c.name}</span>
+        <span class="cpi-w">${c.w.toFixed(2)}%</span>
+        <span class="cpi-trend">${trend}</span>
+        <span class="cpi-yoy ${cls}">${last >= 0 ? '+' : ''}${last.toFixed(2)}%</span>
+      </div>`;
+    }).join('');
+  }
+}
 
 // Keep legacy activeTab in sync for refresh() compatibility
 function refresh() {
