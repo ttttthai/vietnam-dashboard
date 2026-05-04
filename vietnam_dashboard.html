@@ -303,6 +303,29 @@
   .bkm-type-JV  { background: rgba(249,115,22,0.15); color: #fb923c; border: 1px solid #ea580c; }
   .bkm-type-AFF { background: rgba(168,85,247,0.15); color: #c4b5fd; border: 1px solid #7c3aed; }
   .bkm-empty { color: var(--text3); font-size: 11px; font-style: italic; padding: 20px; text-align: center; }
+
+  /* Log modal */
+  .log-meta { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 11px; }
+  .log-meta b { color: var(--accent); }
+  .log-list { display: flex; flex-direction: column; gap: 3px; }
+  .log-row { display: grid; grid-template-columns: 130px 70px 88px auto 60px; gap: 8px; align-items: center; padding: 6px 10px; background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--border); border-radius: 4px; font-size: 11px; font-variant-numeric: tabular-nums; }
+  .log-row .l-ts { color: var(--text2); font-size: 10px; }
+  .log-row .l-trig { font-weight: 700; font-size: 10px; }
+  .log-row .l-src { font-weight: 700; color: var(--accent); font-size: 10px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .log-row .l-msg { color: var(--text); font-size: 10.5px; line-height: 1.3; }
+  .log-row .l-dur { color: var(--text3); text-align: right; font-size: 10px; }
+  .log-row.l-ok    { border-left-color: #22c55e; }
+  .log-row.l-partial { border-left-color: #f59e0b; }
+  .log-row.l-error { border-left-color: #ef4444; }
+  .log-row.l-empty { border-left-color: #64748b; }
+  .log-row.l-started { border-left-color: #06b6d4; opacity: 0.7; }
+  .log-row .l-trig.t-auto    { color: #4ade80; }
+  .log-row .l-trig.t-manual  { color: #00d4ff; }
+  .log-row .l-trig.t-startup { color: #a855f7; }
+  @media (max-width: 600px) {
+    .log-row { grid-template-columns: 1fr; gap: 2px; padding: 6px 8px; }
+    .log-row .l-dur { text-align: left; }
+  }
   @media (max-width: 560px) {
     .bkm-entity { grid-template-columns: 1fr; }
     .bkm-entity-pct, .bkm-entity-type { justify-self: start; }
@@ -661,6 +684,7 @@
               <span>🔄 Cập nhật dữ liệu vnstock</span>
               <span id="bk-update-status" style="font-size:10px;color:var(--text2);font-weight:400">—</span>
               <span style="flex:1"></span>
+              <button id="bk-log-btn" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:4px;padding:5px 12px;font-size:11px;cursor:pointer;font-weight:700;letter-spacing:0.3px">📋 Nhật ký</button>
               <button id="bk-update-btn" style="background:rgba(0,212,255,0.15);border:1px solid var(--accent);color:var(--accent);border-radius:4px;padding:5px 14px;font-size:11px;cursor:pointer;font-weight:700;letter-spacing:0.3px">↻ Cập nhật ngay</button>
             </div>
           </div>
@@ -2384,6 +2408,56 @@ async function loadBanks() {
   renderStatements();
 }
 
+async function openLogModal() {
+  const overlay = document.getElementById('bk-modal-overlay');
+  const title   = document.getElementById('bkm-title');
+  const body    = document.getElementById('bkm-body');
+  title.textContent = 'Đang tải nhật ký…';
+  body.innerHTML = '<div class="bkm-empty">Đang tải...</div>';
+  overlay.classList.add('open');
+  try {
+    const r = await fetch('/api/logs?limit=200');
+    const d = await r.json();
+    title.innerHTML = `📋 Nhật ký hệ thống <small>${d.count} sự kiện</small>`;
+    const SRC_LBL = {snapshot:'Toàn bộ', indices:'Chỉ số', banks:'Ngân hàng', fx:'Tỷ giá', rates:'Lãi suất', bonds:'Trái phiếu', scheduler:'Scheduler'};
+    const TRIG_LBL = {auto:'TỰ ĐỘNG', manual:'THỦ CÔNG', startup:'KHỞI ĐỘNG'};
+    const fmtTs = ts => new Date(ts).toLocaleString('vi-VN', {hour12:false});
+    const nextRun = d.next_run ? new Date(d.next_run).toLocaleString('vi-VN', {hour12:false}) : '—';
+    let html = `<div class="log-meta">
+      <span>📅 Lịch tự động: <b>${d.schedule || '—'}</b></span>
+      <span>⏭ Lần chạy tới: <b>${nextRun}</b></span>
+      <span>📊 Tổng số sự kiện: <b>${d.count}</b></span>
+    </div>`;
+    html += '<div class="log-list">';
+    if (!d.logs.length) {
+      html += '<div class="bkm-empty">Chưa có sự kiện nào.</div>';
+    } else {
+      d.logs.forEach(l => {
+        const tCls = `t-${l.trigger || 'auto'}`;
+        const sCls = `l-${l.status || 'ok'}`;
+        const dur = l.duration_ms != null ? `${l.duration_ms} ms` : '';
+        const extras = [];
+        if (l.count != null && l.total != null) extras.push(`${l.count}/${l.total}`);
+        if (l.live != null && l.total != null)  extras.push(`${l.live}/${l.total} live`);
+        if (l.errors_count) extras.push(`${l.errors_count} lỗi`);
+        const extraTxt = extras.length ? ` <span style="color:var(--accent);font-size:10px">[${extras.join(' · ')}]</span>` : '';
+        const msg = l.message || (l.status === 'started' ? 'Bắt đầu...' : '');
+        html += `<div class="log-row ${sCls}">
+          <span class="l-ts">${fmtTs(l.ts)}</span>
+          <span class="l-trig ${tCls}">${TRIG_LBL[l.trigger] || l.trigger || ''}</span>
+          <span class="l-src">${SRC_LBL[l.source] || l.source || ''}</span>
+          <span class="l-msg">${msg}${extraTxt}</span>
+          <span class="l-dur">${dur}</span>
+        </div>`;
+      });
+    }
+    html += '</div>';
+    body.innerHTML = html;
+  } catch(err) {
+    body.innerHTML = '<div class="bkm-empty">Lỗi tải nhật ký: ' + (err.message || err) + '</div>';
+  }
+}
+
 async function refreshBankData() {
   const btn    = document.getElementById('bk-update-btn');
   const status = document.getElementById('bk-update-status');
@@ -3036,6 +3110,10 @@ document.addEventListener('click', e => {
   }
   if (e.target.id === 'bk-update-btn') {
     refreshBankData();
+    return;
+  }
+  if (e.target.id === 'bk-log-btn') {
+    openLogModal();
     return;
   }
   // BS/IS clickable line item

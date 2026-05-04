@@ -20,6 +20,8 @@ from __future__ import annotations
 
 import logging
 import os
+import time
+from collections import deque
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -46,6 +48,45 @@ except Exception as _e:
 
 ROOT = Path(__file__).parent
 HTML_FILE = ROOT / "vietnam_dashboard.html"
+
+# ─── Activity log (newest first; ring buffer) ──────────────────────
+REFRESH_LOG: deque = deque(maxlen=400)
+LOG_FILE = ROOT / ".refresh_log.jsonl"
+
+def _log_event(trigger: str, source: str, status: str, **extra) -> None:
+    """Record a refresh-event line. trigger=auto|manual|startup, status=ok|partial|error|started"""
+    entry = {
+        "ts": datetime.now(timezone.utc).isoformat(),
+        "trigger": trigger,
+        "source":  source,
+        "status":  status,
+        **extra,
+    }
+    REFRESH_LOG.appendleft(entry)
+    log.info("[%s/%s/%s] %s", trigger, source, status, {k:v for k,v in extra.items() if k != "message"} or extra.get("message",""))
+    # Best-effort durable append (one JSON line per event)
+    try:
+        import json
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    except Exception:
+        pass
+
+def _load_log_from_disk() -> None:
+    """Load recent log entries on startup so logs survive restarts."""
+    try:
+        import json
+        if not LOG_FILE.exists():
+            return
+        lines = LOG_FILE.read_text(encoding="utf-8").splitlines()
+        for line in lines[-400:]:
+            try:
+                REFRESH_LOG.appendleft(json.loads(line))
+            except Exception:
+                continue
+    except Exception:
+        pass
+
 
 # ─── In-memory snapshot ────────────────────────────────────────────
 SNAPSHOT: dict[str, Any] = {
@@ -1101,41 +1142,92 @@ def fetch_banks(period: str = "year") -> dict[str, Any]:
     }
 
 
-def refresh_snapshot() -> None:
-    log.info("Refreshing snapshot…")
+def refresh_snapshot(trigger: str = "auto") -> None:
+    """Refresh all data sources. trigger='auto'|'manual'|'startup'"""
+    t0 = time.time()
+    _log_event(trigger, "snapshot", "started", message="Bắt đầu cập nhật toàn bộ dữ liệu")
+    log.info("Refreshing snapshot (trigger=%s)…", trigger)
     errors: list[str] = []
     indices, bonds, fx, rates, banks = {}, {}, {}, {}, {}
+
+    # Indices
+    s_t0 = time.time()
     try:
         indices = fetch_indices()
+        ms = int((time.time() - s_t0) * 1000)
+        if indices:
+            _log_event(trigger, "indices", "ok", count=len(indices), total=2, duration_ms=ms,
+                       message=f"VN-Index/HNX-Index ({len(indices)}/2)")
+        else:
+            _log_event(trigger, "indices", "empty", count=0, total=2, duration_ms=ms,
+                       message="Không lấy được dữ liệu chỉ số")
     except BaseException as e:
         errors.append(f"indices: {str(e)[:120]}")
+        _log_event(trigger, "indices", "error", duration_ms=int((time.time()-s_t0)*1000), message=str(e)[:200])
+
+    # Bonds
+    s_t0 = time.time()
     try:
         bonds = fetch_bonds()
+        _log_event(trigger, "bonds", "ok" if bonds else "empty",
+                   duration_ms=int((time.time()-s_t0)*1000),
+                   message="Bond yields" + ("" if bonds else " — vnstock.Bond không khả dụng"))
     except Exception as e:
         errors.append(f"bonds: {e}")
+        _log_event(trigger, "bonds", "error", duration_ms=int((time.time()-s_t0)*1000), message=str(e)[:200])
+
+    # FX
+    s_t0 = time.time()
     try:
         fx = fetch_fx()
+        _log_event(trigger, "fx", "ok" if fx.get("USD_VND") else "empty",
+                   duration_ms=int((time.time()-s_t0)*1000),
+                   source_api=fx.get("source"),
+                   message=f"USD/VND = {fx.get('USD_VND')} từ {fx.get('source')}" if fx.get("USD_VND") else "Không lấy được tỷ giá")
     except Exception as e:
         errors.append(f"fx: {e}")
+        _log_event(trigger, "fx", "error", duration_ms=int((time.time()-s_t0)*1000), message=str(e)[:200])
+
+    # Rates
+    s_t0 = time.time()
     try:
         rates = fetch_rates()
+        _log_event(trigger, "rates", "ok" if rates else "empty",
+                   duration_ms=int((time.time()-s_t0)*1000),
+                   message="SBV policy + deposit rates (manual reference)")
     except Exception as e:
         errors.append(f"rates: {e}")
+        _log_event(trigger, "rates", "error", duration_ms=int((time.time()-s_t0)*1000), message=str(e)[:200])
+
+    # Banks
+    s_t0 = time.time()
     try:
-        banks = {"year": fetch_banks("year"), "quarter": fetch_banks("quarter")}
+        banks_y = fetch_banks("year")
+        banks_q = fetch_banks("quarter")
+        banks = {"year": banks_y, "quarter": banks_q}
+        live = banks_y.get("live_count", 0)
+        total = banks_y.get("total_count", 0)
+        _log_event(trigger, "banks",
+                   "ok" if live == total else ("partial" if live > 0 else "empty"),
+                   live=live, total=total,
+                   duration_ms=int((time.time()-s_t0)*1000),
+                   message=f"Giá NH: {live}/{total} ngân hàng có dữ liệu live")
     except BaseException as e:
         errors.append(f"banks: {str(e)[:120]}")
+        _log_event(trigger, "banks", "error", duration_ms=int((time.time()-s_t0)*1000), message=str(e)[:200])
 
     SNAPSHOT.update(
         updated_at=datetime.now(timezone.utc).isoformat(),
-        indices=indices,
-        bonds=bonds,
-        fx=fx,
-        rates=rates,
-        banks=banks,
+        indices=indices, bonds=bonds, fx=fx, rates=rates, banks=banks,
         errors=errors,
     )
-    log.info("Snapshot refreshed. Errors: %d", len(errors))
+    total_ms = int((time.time() - t0) * 1000)
+    _log_event(trigger, "snapshot",
+               "ok" if not errors else "partial",
+               errors_count=len(errors),
+               duration_ms=total_ms,
+               message=f"Hoàn tất ({total_ms} ms, {len(errors)} lỗi)")
+    log.info("Snapshot refreshed. Errors: %d (took %d ms)", len(errors), total_ms)
 
 
 # ─── FastAPI app ───────────────────────────────────────────────────
@@ -1177,6 +1269,24 @@ def api_fx():
 @app.get("/api/rates")
 def api_rates():
     return JSONResponse(SNAPSHOT.get("rates") or {})
+
+
+@app.get("/api/logs")
+def api_logs(limit: int = 100):
+    """Recent activity log (newest first). limit ≤ 400."""
+    next_run = None
+    try:
+        job = scheduler.get_job("daily-midnight")
+        if job and job.next_run_time:
+            next_run = job.next_run_time.isoformat()
+    except Exception:
+        pass
+    return JSONResponse({
+        "logs":      list(REFRESH_LOG)[: max(1, min(limit, 400))],
+        "count":     len(REFRESH_LOG),
+        "next_run":  next_run,
+        "schedule":  "Hàng ngày · 00:00 Asia/Ho_Chi_Minh",
+    })
 
 
 @app.get("/api/banks")
@@ -1265,8 +1375,9 @@ def api_bank_entities(symbol: str):
 def api_refresh():
     """Manual refresh endpoint."""
     try:
-        refresh_snapshot()
+        refresh_snapshot("manual")
     except BaseException as e:
+        _log_event("manual", "snapshot", "error", message=str(e)[:200])
         return JSONResponse({"ok": False, "error": str(e)[:200], "updated_at": SNAPSHOT.get("updated_at")}, status_code=200)
     banks_year = (SNAPSHOT.get("banks") or {}).get("year") or {}
     banks_quarter = (SNAPSHOT.get("banks") or {}).get("quarter") or {}
@@ -1283,16 +1394,21 @@ def api_refresh():
     })
 
 
-# Scheduler: daily at 15:30 Asia/Ho_Chi_Minh
+# Scheduler: daily at 00:00 Asia/Ho_Chi_Minh (midnight VN time)
 scheduler = BackgroundScheduler(timezone="Asia/Ho_Chi_Minh")
-scheduler.add_job(refresh_snapshot, CronTrigger(hour=15, minute=30))
+scheduler.add_job(lambda: refresh_snapshot("auto"),
+                  CronTrigger(hour=0, minute=0),
+                  id="daily-midnight", replace_existing=True)
 
 
 @app.on_event("startup")
 def on_startup():
-    refresh_snapshot()
+    _load_log_from_disk()
+    _log_event("startup", "scheduler", "started",
+               message="Server khởi động · lịch tự cập nhật 00:00 Asia/Ho_Chi_Minh")
+    refresh_snapshot("startup")
     scheduler.start()
-    log.info("Scheduler started: daily refresh at 15:30 Asia/Ho_Chi_Minh")
+    log.info("Scheduler started: daily auto-refresh at 00:00 Asia/Ho_Chi_Minh")
 
 
 @app.on_event("shutdown")

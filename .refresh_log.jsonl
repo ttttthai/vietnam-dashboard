@@ -1,0 +1,31 @@
+{"ts": "2026-05-04T18:07:58.252825+00:00", "trigger": "auto", "source": "snapshot", "status": "started", "message": "Bắt đầu cập nhật toàn bộ dữ liệu"}
+{"ts": "2026-05-04T18:08:00.814648+00:00", "trigger": "auto", "source": "indices", "status": "ok", "count": 2, "total": 2, "duration_ms": 2561, "message": "VN-Index/HNX-Index (2/2)"}
+{"ts": "2026-05-04T18:08:00.815434+00:00", "trigger": "auto", "source": "bonds", "status": "empty", "duration_ms": 0, "message": "Bond yields — vnstock.Bond không khả dụng"}
+{"ts": "2026-05-04T18:08:01.035913+00:00", "trigger": "auto", "source": "fx", "status": "ok", "duration_ms": 220, "source_api": "er-api.com", "message": "USD/VND = 26256.381278 từ er-api.com"}
+{"ts": "2026-05-04T18:08:01.036485+00:00", "trigger": "auto", "source": "rates", "status": "ok", "duration_ms": 0, "message": "SBV policy + deposit rates (manual reference)"}
+{"ts": "2026-05-04T18:08:09.648688+00:00", "trigger": "auto", "source": "banks", "status": "ok", "live": 17, "total": 17, "duration_ms": 8611, "message": "Giá NH: 17/17 ngân hàng có dữ liệu live"}
+{"ts": "2026-05-04T18:08:09.649617+00:00", "trigger": "auto", "source": "snapshot", "status": "ok", "errors_count": 0, "duration_ms": 11396, "message": "Hoàn tất (11396 ms, 0 lỗi)"}
+{"ts": "2026-05-04T18:08:26.371682+00:00", "trigger": "startup", "source": "scheduler", "status": "started", "message": "Server khởi động · lịch tự cập nhật 00:00 Asia/Ho_Chi_Minh"}
+{"ts": "2026-05-04T18:08:26.371814+00:00", "trigger": "startup", "source": "snapshot", "status": "started", "message": "Bắt đầu cập nhật toàn bộ dữ liệu"}
+{"ts": "2026-05-04T18:08:28.717688+00:00", "trigger": "startup", "source": "indices", "status": "ok", "count": 2, "total": 2, "duration_ms": 2345, "message": "VN-Index/HNX-Index (2/2)"}
+{"ts": "2026-05-04T18:08:28.718282+00:00", "trigger": "startup", "source": "bonds", "status": "empty", "duration_ms": 0, "message": "Bond yields — vnstock.Bond không khả dụng"}
+{"ts": "2026-05-04T18:08:28.914676+00:00", "trigger": "startup", "source": "fx", "status": "ok", "duration_ms": 196, "source_api": "er-api.com", "message": "USD/VND = 26256.381278 từ er-api.com"}
+{"ts": "2026-05-04T18:08:28.915304+00:00", "trigger": "startup", "source": "rates", "status": "ok", "duration_ms": 0, "message": "SBV policy + deposit rates (manual reference)"}
+{"ts": "2026-05-04T18:08:38.459669+00:00", "trigger": "startup", "source": "banks", "status": "ok", "live": 17, "total": 17, "duration_ms": 9544, "message": "Giá NH: 17/17 ngân hàng có dữ liệu live"}
+{"ts": "2026-05-04T18:08:38.459985+00:00", "trigger": "startup", "source": "snapshot", "status": "ok", "errors_count": 0, "duration_ms": 12088, "message": "Hoàn tất (12088 ms, 0 lỗi)"}
+{"ts": "2026-05-04T18:08:40.011782+00:00", "trigger": "startup", "source": "scheduler", "status": "started", "message": "Server khởi động · lịch tự cập nhật 00:00 Asia/Ho_Chi_Minh"}
+{"ts": "2026-05-04T18:08:40.012014+00:00", "trigger": "startup", "source": "snapshot", "status": "started", "message": "Bắt đầu cập nhật toàn bộ dữ liệu"}
+{"ts": "2026-05-04T18:08:42.311856+00:00", "trigger": "startup", "source": "indices", "status": "ok", "count": 2, "total": 2, "duration_ms": 2299, "message": "VN-Index/HNX-Index (2/2)"}
+{"ts": "2026-05-04T18:08:42.312521+00:00", "trigger": "startup", "source": "bonds", "status": "empty", "duration_ms": 0, "message": "Bond yields — vnstock.Bond không khả dụng"}
+{"ts": "2026-05-04T18:08:42.503143+00:00", "trigger": "startup", "source": "fx", "status": "ok", "duration_ms": 190, "source_api": "er-api.com", "message": "USD/VND = 26256.381278 từ er-api.com"}
+{"ts": "2026-05-04T18:08:42.503730+00:00", "trigger": "startup", "source": "rates", "status": "ok", "duration_ms": 0, "message": "SBV policy + deposit rates (manual reference)"}
+{"ts": "2026-05-04T18:08:51.895426+00:00", "trigger": "startup", "source": "banks", "status": "ok", "live": 17, "total": 17, "duration_ms": 9391, "message": "Giá NH: 17/17 ngân hàng có dữ liệu live"}
+{"ts": "2026-05-04T18:08:51.895803+00:00", "trigger": "startup", "source": "snapshot", "status": "ok", "errors_count": 0, "duration_ms": 11883, "message": "Hoàn tất (11883 ms, 0 lỗi)"}
+{"ts": "2026-05-04T18:08:53.639297+00:00", "trigger": "startup", "source": "scheduler", "status": "started", "message": "Server khởi động · lịch tự cập nhật 00:00 Asia/Ho_Chi_Minh"}
+{"ts": "2026-05-04T18:08:53.639503+00:00", "trigger": "startup", "source": "snapshot", "status": "started", "message": "Bắt đầu cập nhật toàn bộ dữ liệu"}
+{"ts": "2026-05-04T18:08:56.091152+00:00", "trigger": "startup", "source": "indices", "status": "ok", "count": 2, "total": 2, "duration_ms": 2451, "message": "VN-Index/HNX-Index (2/2)"}
+{"ts": "2026-05-04T18:08:56.091814+00:00", "trigger": "startup", "source": "bonds", "status": "empty", "duration_ms": 0, "message": "Bond yields — vnstock.Bond không khả dụng"}
+{"ts": "2026-05-04T18:08:56.477034+00:00", "trigger": "startup", "source": "fx", "status": "ok", "duration_ms": 385, "source_api": "er-api.com", "message": "USD/VND = 26256.381278 từ er-api.com"}
+{"ts": "2026-05-04T18:08:56.477264+00:00", "trigger": "startup", "source": "rates", "status": "ok", "duration_ms": 0, "message": "SBV policy + deposit rates (manual reference)"}
+{"ts": "2026-05-04T18:09:05.712010+00:00", "trigger": "startup", "source": "banks", "status": "ok", "live": 17, "total": 17, "duration_ms": 9234, "message": "Giá NH: 17/17 ngân hàng có dữ liệu live"}
+{"ts": "2026-05-04T18:09:05.712304+00:00", "trigger": "startup", "source": "snapshot", "status": "ok", "errors_count": 0, "duration_ms": 12072, "message": "Hoàn tất (12072 ms, 0 lỗi)"}
