@@ -9,8 +9,8 @@
     },
     {
       "name": "vnstock-api",
-      "runtimeExecutable": "uvicorn",
-      "runtimeArgs": ["server:app", "--host", "0.0.0.0", "--port", "8001", "--reload"],
+      "runtimeExecutable": "/Users/hoangthai/vnstock-env/bin/python3",
+      "runtimeArgs": ["-m", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8001", "--reload"],
       "port": 8001
     }
   ]
