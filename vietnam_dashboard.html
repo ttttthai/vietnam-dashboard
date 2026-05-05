@@ -779,23 +779,6 @@
             </div>
           </div>
 
-          <!-- Card: Credit Allocation by Sector -->
-          <div class="econ-card full-width">
-            <div class="econ-card-header">🏗️ Cơ cấu tín dụng theo ngành kinh tế</div>
-            <div class="econ-card-body">
-              <div class="kpi-grid">
-                <div class="kpi-tile"><div class="kpi-label">Tổng tín dụng</div><div class="kpi-val" id="kpi-cred-total">—</div></div>
-                <div class="kpi-tile"><div class="kpi-label">CN chế biến</div><div class="kpi-val" id="kpi-cred-mfg">—</div></div>
-                <div class="kpi-tile"><div class="kpi-label">BĐS (cả vay tiêu dùng)</div><div class="kpi-val" id="kpi-cred-re">—</div></div>
-                <div class="kpi-tile"><div class="kpi-label">Tiêu dùng cá nhân</div><div class="kpi-val" id="kpi-cred-cons">—</div></div>
-                <div class="kpi-tile"><div class="kpi-label">Tín dụng / GDP</div><div class="kpi-val" id="kpi-cred-gdp2">—</div></div>
-                <div class="kpi-tile"><div class="kpi-label">Tăng trưởng YTD</div><div class="kpi-val" id="kpi-cred-ytd2">—</div></div>
-              </div>
-              <div id="ecb-credit-sector" style="height:36px;width:100%;margin-top:6px"></div>
-              <div id="cred-sector-list" style="margin-top:8px"></div>
-            </div>
-          </div>
-
           <!-- Card: FX Reserves & Currency -->
           <div class="econ-card">
             <div class="econ-card-header">💱 Dự trữ ngoại hối & Tiền tệ quốc tế</div>
@@ -3877,15 +3860,6 @@ function renderMoneyCards() {
     {label:'REER',         data:REER_24, color:'#22c55e'},
     {label:'CDS 5Y (÷10)', data:CDS_24.map(v=>v/10), color:'#ef4444'},
   ], 60, 115);
-
-  // Credit allocation
-  _setT('kpi-cred-total',  '~17,800K tỷ');
-  _setT('kpi-cred-mfg',    CREDIT_SECTOR[0].pct.toFixed(1)+'%');
-  _setT('kpi-cred-re',     CREDIT_SECTOR[2].pct.toFixed(1)+'%');
-  _setT('kpi-cred-cons',   CREDIT_SECTOR[3].pct.toFixed(1)+'%');
-  _setT('kpi-cred-gdp2',   '142%');
-  _setT('kpi-cred-ytd2',   CREDIT_YTD_24[23].toFixed(2)+'%');
-  _drawCreditSector();
 
   // FX
   _setT('kpi-fxr',       FXR_24[23].toFixed(1)+' tỷ');
