@@ -27,6 +27,9 @@ Vietnam's main strategic directives that shape the economy and the state, e.g.:
   provincial merger NQ 202/2025/QH15, budget, socio-economic plans, master plans).
 - Government / Prime Minister: Nghị quyết CP action programmes (Chương trình hành động), key
   Nghị định, Quyết định TTg (e.g. Power Development Plan VIII revision), Chỉ thị TTg.
+- Ministries & ministry-level agencies (level `ministry`): Thông tư, Quyết định, Chỉ thị, Kế hoạch hành động
+  of ministries and the State Bank (NHNN) that implement tracked directives (e.g. NHNN Thông tư on LDR/credit,
+  Bộ Tài chính Thông tư, Bộ KH&CN / Bộ Công Thương action plans). Keep only the most material ones (≈2–4 per pillar).
 - **Drafts (dự thảo)** that implement or replace tracked directives and are publicly known:
   draft laws/resolutions on the National Assembly's session agenda (quochoi.vn, duthaoonline.quochoi.vn),
   draft decrees and resolutions published for comment (chinhphu.vn "Lấy ý kiến dự thảo",
@@ -53,6 +56,12 @@ Prefer directives from 2024 onward, plus older ones still in force that newer on
   Đang thực hiện | Đã hoàn thành | Được thay thế | Hết hiệu lực.
 - When a tracked draft is adopted, keep the same `id` if the final number is known (update `ref`,
   `date`, `effective_date`, `stage`), and move draft details into `draft.milestones` history.
+
+## Party vision summary
+Maintain a top-level `vision` object summarising the Party's strategic vision (Đại hội XIV documents and the
+key Politburo resolutions): 3–5 sentence `summary_vi`, `summary_en`, and `themes` — each {"title_vi", "title_en",
+"points_vi": [..], "points_en": [..], "targets": [{"text_vi","text_en","year"}], "refs": [directive ids], "url"}.
+Use only sourced statements (quote targets with their years: 2030, 2045, 2050…).
 
 ## Rules
 1. **Only facts you can source.** Every directive needs its exact number (số hiệu) — for drafts the
@@ -98,7 +107,7 @@ Prefer directives from 2024 onward, plus older ones still in force that newer on
     "ref": "57-NQ/TW",                  // official number; drafts: "Dự thảo Luật …"
     "kind": "Nghị quyết",              // Nghị quyết | Kết luận | Chỉ thị | Quyết định | Nghị định | Luật | Văn kiện
     "issuer": "Bộ Chính trị",           // exact issuer (drafts: the body that will adopt it)
-    "level": "party",                   // party | assembly | government
+    "level": "party",                   // party | assembly | government | ministry
     "date": "2024-12-22",               // approval/issue date; drafts: date of the latest milestone
     "effective_date": "2024-12-22",     // in-force date, or null
     "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",   // optional
@@ -113,6 +122,7 @@ Prefer directives from 2024 onward, plus older ones still in force that newer on
     "source": "tên nguồn",
     "key_points": ["…", "…", "…"],     // 3–5 gạch đầu dòng tiếng Việt, mỗi ý ≤ 160 ký tự
     "key_points_note": "chưa đối chiếu toàn văn",  // optional
+    "ministry": "Ngân hàng Nhà nước",   // only for level = ministry: the issuing ministry/agency
     "draft": {                          // only for stage = draft (kept as history after adoption)
       "process_stage": "Lấy ý kiến nhân dân",   // Đang soạn thảo | Lấy ý kiến | Thẩm định | Trình Chính phủ | Trình Quốc hội | Chờ thông qua
       "drafting_agency": "Bộ Nông nghiệp và Môi trường",
