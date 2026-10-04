@@ -46,6 +46,8 @@ try:
 except Exception as _e:
     log.warning("vnstock not available (%s) — live equity data disabled", _e)
 
+import invest  # noqa: E402  — Đầu tư tab engine (VCI direct, stdlib only)
+
 ROOT = Path(__file__).parent
 HTML_FILE = ROOT / "vietnam_dashboard.html"
 
@@ -855,10 +857,28 @@ VN_BANK_ENTITIES: dict[str, list[dict]] = {
 
 
 # ─── vnstock fetchers (each isolated so one failure doesn't kill the rest) ─
+def _vci_last(sym: str) -> dict | None:
+    """Latest daily bar straight from Vietcap (VCI) — same upstream vnstock used."""
+    h = invest.history(sym, 30)
+    if not h or not h["c"]:
+        return None
+    i = len(h["c"]) - 1
+    return {"close": h["c"][i], "open": h["o"][i], "high": h["h"][i], "low": h["l"][i],
+            "volume": h["v"][i], "date": h["t"][i], "prev_close": h["c"][i - 1] if i else None, "source": "VCI"}
+
+
 def fetch_indices() -> dict[str, Any]:
-    """VN-Index + HNX-Index latest close."""
+    """VN-Index + VN30 latest close (VCI direct; vnstock was quarantined on PyPI 2026-09-24)."""
     if not VNSTOCK_AVAILABLE:
-        return {}
+        out = {}
+        for sym in ("VNINDEX", "VN30"):
+            try:
+                r = _vci_last(sym)
+                if r:
+                    out[sym] = r
+            except Exception as e:
+                log.warning("index %s (VCI) failed: %s", sym, str(e)[:120])
+        return out
     try:
         from vnstock import Vnstock
         out = {}
@@ -1081,16 +1101,26 @@ def fetch_banks(period: str = "year") -> dict[str, Any]:
     today = datetime.now().strftime("%Y-%m-%d")
     start = (datetime.now().replace(day=1)).strftime("%Y-%m-%d")
     if not VNSTOCK_AVAILABLE:
+        live = 0
         for sym in VN_BANK_FUNDAMENTALS:
             row = _build_bank_row(sym, period)
             row["price"] = row["chg_pct"] = row["volume"] = None
+            try:                                   # live price from VCI (cached 30 min in invest.py)
+                r = _vci_last(sym)
+                if r:
+                    row["price"], row["volume"] = r["close"], r["volume"]
+                    row["chg_pct"] = round((r["close"] / r["prev_close"] - 1) * 100, 2) if r["prev_close"] else None
+                    live += 1
+            except Exception as e:
+                log.info("bank %s VCI price failed: %s", sym, str(e)[:80])
             rows.append(row)
         rows.sort(key=lambda r: r.get("assets") or 0, reverse=True)
         label_counts: dict[str, int] = {}
         for r in rows:
             lbl = r.get("period_label", "")
             label_counts[lbl] = label_counts.get(lbl, 0) + 1
-        return {"period": period, "period_summary": label_counts, "count": len(rows), "rows": rows}
+        return {"period": period, "period_summary": label_counts, "count": len(rows), "rows": rows,
+                "live_count": live, "total_count": len(VN_BANK_FUNDAMENTALS), "price_source": "VCI"}
     rate_limit_hit = False
     try:
         from vnstock.explorer.vci import Quote
@@ -1371,6 +1401,75 @@ def api_bank_entities(symbol: str):
     })
 
 
+# ─── Strategic directives (maintained by the "Strategy" agent) ──────
+@app.get("/api/strategy")
+def api_strategy():
+    f = ROOT / "strategy_directives.json"
+    if not f.exists():
+        return JSONResponse({"directives": [], "relations": [], "news": [], "pillars": []})
+    return FileResponse(f, media_type="application/json")
+
+
+# ─── i18n dictionary for the English version ───────────────────────
+@app.get("/api/i18n/{lang}")
+def api_i18n(lang: str):
+    if lang not in ("en",):
+        return JSONResponse({"error": "unsupported language"}, status_code=404)
+    f = ROOT / f"i18n_{lang}.json"
+    if not f.exists():
+        return JSONResponse({"exact": {}, "templates": {}})
+    return FileResponse(f, media_type="application/json")
+
+
+# ─── Đầu tư (investment screening) ─────────────────────────────────
+@app.get("/api/invest/context")
+def api_invest_context():
+    try:
+        mkt = invest.market()
+    except Exception as e:
+        log.warning("invest market failed: %s", e)
+        mkt = {}
+    return JSONResponse({
+        "rules": {"max_symbols": invest.MAX_SYMBOLS, "max_horizon": invest.MAX_HORIZON,
+                  "horizons": invest.HORIZONS, "certainty_target": invest.CERTAINTY_TARGET,
+                  "min_sample": invest.MIN_SAMPLE, "min_volume": invest.MIN_VOLUME,
+                  "min_charter_bn": invest.MIN_CHARTER_BN},
+        "macro": invest.MACRO, "market": mkt,
+        "research": {k: v for k, v in invest.research().items() if k.startswith("_")},
+    })
+
+
+@app.get("/api/invest/screen")
+def api_invest_screen(group: str = "VN30", horizon: int = 63, target: float = 0.0):
+    if group not in ("VN30", "VN100", "HNX30"):
+        return JSONResponse({"error": "group không hợp lệ"}, status_code=400)
+    try:
+        return JSONResponse(invest.screen(group, horizon, target))
+    except Exception as e:
+        return JSONResponse({"error": str(e)[:200]}, status_code=502)
+
+
+@app.get("/api/invest/analyze")
+def api_invest_analyze(symbols: str, horizon: int = 63, target: float = 0.0):
+    syms = [s.strip().upper() for s in symbols.split(",") if s.strip()]
+    syms = list(dict.fromkeys(syms))
+    if not syms:
+        return JSONResponse({"error": "Chưa chọn mã"}, status_code=400)
+    if len(syms) > invest.MAX_SYMBOLS:
+        return JSONResponse({"error": f"Tối đa {invest.MAX_SYMBOLS} mã"}, status_code=400)
+    if any(not s.isalnum() or len(s) > 10 for s in syms):
+        return JSONResponse({"error": "Mã không hợp lệ"}, status_code=400)
+    if horizon > invest.MAX_HORIZON:
+        return JSONResponse({"error": "Thời gian nắm giữ tối đa 3 tháng (63 phiên)"}, status_code=400)
+    out = []
+    for s in syms:
+        try:
+            out.append(invest.analyze(s, horizon, target))
+        except Exception as e:
+            out.append({"symbol": s, "error": str(e)[:200]})
+    return JSONResponse({"horizon": horizon, "target_pct": target, "results": out})
+
+
 @app.get("/api/refresh")
 def api_refresh():
     """Manual refresh endpoint."""
@@ -1386,7 +1485,7 @@ def api_refresh():
         "updated_at": SNAPSHOT.get("updated_at"),
         "errors": SNAPSHOT.get("errors") or [],
         "live_indices": list((SNAPSHOT.get("indices") or {}).keys()),
-        "indices_total": 2,
+        "indices_total": 2,  # VNINDEX + VN30 (VCI)
         "fx_source": (SNAPSHOT.get("fx") or {}).get("source"),
         "banks_live": banks_year.get("live_count", 0),
         "banks_total": banks_year.get("total_count", len(VN_BANK_FUNDAMENTALS)),

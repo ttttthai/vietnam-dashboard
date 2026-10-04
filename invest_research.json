@@ -1,0 +1,1956 @@
+{
+ "_macro": {
+  "as_of": "2026-10-03",
+  "summary": "Tăng trưởng đang tăng tốc (Q1 8,15% → Q2 8,81% → Q3 9,95%), dẫn dắt bởi công nghiệp & xây dựng. Để đạt mục tiêu ≥10% cả năm, Q4 cần ~12,5% (ước tính) — các tổ chức quốc tế dự báo cả năm 7,5–9,5%, thấp hơn mục tiêu.",
+  "compositions": [
+   {
+    "title": "Cơ cấu GDP 9 tháng/2026",
+    "basis": "tỷ trọng trong GDP",
+    "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+    "items": [
+     {
+      "name": "Dịch vụ",
+      "share_pct": 42.97
+     },
+     {
+      "name": "Công nghiệp & xây dựng",
+      "share_pct": 38.35
+     },
+     {
+      "name": "Nông, lâm, thủy sản",
+      "share_pct": 10.65
+     },
+     {
+      "name": "Thuế sản phẩm trừ trợ cấp",
+      "share_pct": 8.03
+     }
+    ]
+   },
+   {
+    "title": "Đóng góp vào tăng trưởng Q3/2026 (GDP +9,95%)",
+    "basis": "% đóng góp · cột giá trị = tăng trưởng ngành",
+    "url": "http://vov.vn/kinh-te/gdp-quy-iii2026-tang-995-cong-nghiep-va-xay-dung-tiep-tuc-dan-dat-tang-truong-post1338138.vov",
+    "items": [
+     {
+      "name": "Công nghiệp & xây dựng",
+      "share_pct": 51.57,
+      "value": "+12,50%"
+     },
+     {
+      "name": "Dịch vụ",
+      "share_pct": 43.29,
+      "value": "+9,54%"
+     },
+     {
+      "name": "Nông, lâm, thủy sản",
+      "share_pct": 5.14,
+      "value": "+4,21%"
+     }
+    ]
+   }
+  ],
+  "drivers": [
+   {
+    "name": "Vốn đầu tư toàn xã hội",
+    "detail": "3.109,6 nghìn tỷ đồng 9T, +15,1%",
+    "direction": "up",
+    "url": "https://www.vietnamplus.vn/tong-von-dau-tu-toan-xa-hoi-trong-9-thang-dat-31096-nghin-ty-dong-post1139834.vnp"
+   },
+   {
+    "name": "Giải ngân đầu tư công",
+    "detail": "643 nghìn tỷ (62,9% kế hoạch), tháng 9 nhanh gấp 1,58 lần tháng 8; còn ~349 nghìn tỷ cho Q4",
+    "direction": "up",
+    "url": "https://baochinhphu.vn/giai-ngan-von-dau-tu-cong-9-thang-nam-2026-mot-so-bo-nganh-dia-phuong-con-cham-102261003011740764.htm"
+   },
+   {
+    "name": "Sản xuất công nghiệp (IIP)",
+    "detail": "9T +12,3% (cao nhất từ 2019), Q3 +14,8%",
+    "direction": "up",
+    "url": "https://www.vietnamplus.vn/san-xuat-cong-nghiep-quy-3-duy-tri-tang-truong-hai-con-so-iip-tang-148-post1139797.vnp"
+   },
+   {
+    "name": "Xuất khẩu",
+    "detail": "434,3 tỷ USD 9T, +24,5%; nhưng nhập khẩu +36,7% → nhập siêu 19,4 tỷ USD",
+    "direction": "mixed",
+    "url": "https://cafebiz.vn/tin-vui-viet-nam-xuat-sieu-tro-lai-sau-9-thang-nhap-sieu-17626100309590373.chn"
+   },
+   {
+    "name": "FDI",
+    "detail": "Đăng ký 50,4 tỷ USD (+76,4%), giải ngân 21,1 tỷ USD (+12,1%)",
+    "direction": "up",
+    "url": "https://vietstock.vn/2026/10/toan-canh-kinh-te-xa-hoi-9-thang-dau-nam-gdp-dat-muc-cao-nhat-trong-nhieu-nam-qua-761-1498675.htm"
+   },
+   {
+    "name": "Tiêu dùng (bán lẻ)",
+    "detail": "5.925,7 nghìn tỷ đồng 9T, +13,4%",
+    "direction": "up",
+    "url": "https://vietstock.vn/2026/10/toan-canh-kinh-te-xa-hoi-9-thang-dau-nam-gdp-dat-muc-cao-nhat-trong-nhieu-nam-qua-761-1498675.htm"
+   },
+   {
+    "name": "PMI sản xuất",
+    "detail": "Tháng 9: 51,9 (tháng 8: 53,3) — vẫn mở rộng nhưng chậm lại",
+    "direction": "mixed",
+    "url": "https://www.vietnamplus.vn/thang-92026-chi-so-pmi-dat-519-diem-nganh-san-xuat-tiep-tuc-duoc-cai-thien-post1139547.vnp"
+   },
+   {
+    "name": "Lạm phát",
+    "detail": "CPI T9 +5,08% YoY, BQ 9T +4,52% — vượt mục tiêu, hạn chế dư địa nới lỏng",
+    "direction": "down",
+    "url": "https://markettimes.vn/cpi-thang-9-2026-tang-0-62-chu-yeu-do-gia-xang-dau-va-hoc-phi-132253.html"
+   }
+  ],
+  "financials": {
+   "unit": "tăng trưởng % so cùng kỳ",
+   "columns": [
+    {
+     "key": "period",
+     "label": "Chỉ tiêu"
+    },
+    {
+     "key": "value",
+     "label": "Tăng trưởng",
+     "dec": 2,
+     "suffix": "%"
+    },
+    {
+     "key": "note",
+     "label": "Ghi chú"
+    }
+   ],
+   "rows": [
+    {
+     "period": "GDP Q1/2026",
+     "value": 8.15
+    },
+    {
+     "period": "GDP Q2/2026",
+     "value": 8.81
+    },
+    {
+     "period": "GDP Q3/2026",
+     "value": 9.95,
+     "url": "https://dantri.com.vn/kinh-doanh/gdp-quy-iii-tang-gan-10-kinh-te-9-thang-tang-901-20261003083120391.htm"
+    },
+    {
+     "period": "GDP 9 tháng",
+     "value": 9.01,
+     "note": "NLTS +4,02% · CN&XD +11,21% · DV +8,69%"
+    },
+    {
+     "period": "Tiêu dùng cuối cùng (9T)",
+     "value": 8.51,
+     "note": "phía cầu"
+    },
+    {
+     "period": "Tích lũy tài sản (9T)",
+     "value": 17.88,
+     "note": "phía cầu"
+    },
+    {
+     "period": "Xuất khẩu HH&DV (9T)",
+     "value": 21.29,
+     "note": "phía cầu"
+    },
+    {
+     "period": "Nhập khẩu HH&DV (9T)",
+     "value": 27.19,
+     "note": "phía cầu"
+    },
+    {
+     "period": "GDP Q4 cần đạt",
+     "value": 12.5,
+     "note": "ước tính để cả năm đạt 10%, giả định Q4 ≈ 28% GDP năm"
+    }
+   ]
+  },
+  "reasoning": {
+   "support": [
+    {
+     "text": "Tăng trưởng tăng tốc qua từng quý; Q3 9,95% là cao nhất nhiều năm, công nghiệp & xây dựng đóng góp 51,6%.",
+     "url": "http://vov.vn/kinh-te/gdp-quy-iii2026-tang-995-cong-nghiep-va-xay-dung-tiep-tuc-dan-dat-tang-truong-post1338138.vov"
+    },
+    {
+     "text": "Còn ~349 nghìn tỷ đầu tư công cần giải ngân trong Q4 (35% kế hoạch trong 3 tháng) — lực đẩy trực tiếp cho xây dựng, vật liệu, thiết bị điện.",
+     "url": "https://baochinhphu.vn/giai-ngan-von-dau-tu-cong-9-thang-nam-2026-mot-so-bo-nganh-dia-phuong-con-cham-102261003011740764.htm"
+    },
+    {
+     "text": "FDI đăng ký +76,4% báo hiệu dòng vốn sản xuất tiếp tục trong 2027.",
+     "url": "https://vietstock.vn/2026/10/toan-canh-kinh-te-xa-hoi-9-thang-dau-nam-gdp-dat-muc-cao-nhat-trong-nhieu-nam-qua-761-1498675.htm"
+    },
+    {
+     "text": "Standard Chartered (29/09) nâng dự báo 2026 lên 9,5%, UOB 8,5%, ADB 7,8% — các tổ chức đều đang điều chỉnh tăng.",
+     "url": "https://dantri.com.vn/kinh-doanh/ngan-hang-anh-singapore-cung-nang-du-bao-tang-truong-gdp-viet-nam-20260929110803273.htm"
+    }
+   ],
+   "risks": [
+    {
+     "text": "Q4 cần ~12,5% để đạt mục tiêu 10% — chưa tổ chức quốc tế nào dự báo cả năm ≥10%.",
+     "url": "https://en.vietnamplus.vn/adb-raises-vietnams-2026-growth-forecast-to-78-post352506.vnp"
+    },
+    {
+     "text": "Lạm phát 5,08% vượt mục tiêu: rủi ro thắt chặt tiền tệ, lãi suất cao hơn.",
+     "url": "https://markettimes.vn/cpi-thang-9-2026-tang-0-62-chu-yeu-do-gia-xang-dau-va-hoc-phi-132253.html"
+    },
+    {
+     "text": "Nhập khẩu tăng nhanh hơn xuất khẩu (+36,7% vs +24,5%) → nhập siêu 19,4 tỷ USD 9T, áp lực tỷ giá.",
+     "url": "https://cafebiz.vn/tin-vui-viet-nam-xuat-sieu-tro-lai-sau-9-thang-nhap-sieu-17626100309590373.chn"
+    },
+    {
+     "text": "PMI giảm từ 53,3 xuống 51,9 trong tháng 9 — đà sản xuất đang chậm lại.",
+     "url": "https://www.vietnamplus.vn/thang-92026-chi-so-pmi-dat-519-diem-nganh-san-xuat-tiep-tuc-duoc-cai-thien-post1139547.vnp"
+    }
+   ]
+  },
+  "forecasts": {
+   "6m": {
+    "note": "Kỳ 6 tháng tới bao trùm phần còn lại của 2026 → dự báo cả năm 2026.",
+    "columns": [
+     {
+      "key": "org",
+      "label": "Tổ chức"
+     },
+     {
+      "key": "date",
+      "label": "Ngày"
+     },
+     {
+      "key": "gdp",
+      "label": "GDP 2026",
+      "dec": 1,
+      "suffix": "%"
+     },
+     {
+      "key": "cpi",
+      "label": "CPI 2026",
+      "dec": 1,
+      "suffix": "%"
+     }
+    ],
+    "items": [
+     {
+      "org": "Chính phủ (mục tiêu)",
+      "date": "2026",
+      "gdp": "≥ 10",
+      "cpi": null,
+      "url": "https://cafef.vn/bo-tai-chinh-neu-giai-phap-bao-dam-tang-truong-hai-con-so-trong-nam-2026-188261003145851188.chn"
+     },
+     {
+      "org": "Standard Chartered",
+      "date": "2026-09-29",
+      "gdp": 9.5,
+      "cpi": null,
+      "url": "https://dantri.com.vn/kinh-doanh/ngan-hang-anh-singapore-cung-nang-du-bao-tang-truong-gdp-viet-nam-20260929110803273.htm"
+     },
+     {
+      "org": "UOB",
+      "date": "2026-09-29",
+      "gdp": 8.5,
+      "cpi": null,
+      "url": "https://dantri.com.vn/kinh-doanh/ngan-hang-anh-singapore-cung-nang-du-bao-tang-truong-gdp-viet-nam-20260929110803273.htm"
+     },
+     {
+      "org": "Citi",
+      "date": "2026-08",
+      "gdp": "~8",
+      "cpi": null,
+      "url": "https://thoibaonganhang.vn/trien-vong-kinh-te-viet-nam-qua-du-bao-cua-cac-to-chuc-quoc-te-188208.html"
+     },
+     {
+      "org": "ADB",
+      "date": "2026-09-23",
+      "gdp": 7.8,
+      "cpi": 4.3,
+      "url": "https://en.vietnamplus.vn/adb-raises-vietnams-2026-growth-forecast-to-78-post352506.vnp"
+     },
+     {
+      "org": "AMRO",
+      "date": "2026-09",
+      "gdp": "~7.5",
+      "cpi": "~4.3",
+      "url": "https://thoibaonganhang.vn/trien-vong-kinh-te-viet-nam-qua-du-bao-cua-cac-to-chuc-quoc-te-188208.html"
+     },
+     {
+      "org": "World Bank (05/2026)",
+      "date": "2026-05-15",
+      "gdp": 6.8,
+      "cpi": 4.2,
+      "url": "https://documents1.worldbank.org/curated/en/099740005122628080/pdf/IDU-2ee874ce-e0c0-462b-9571-99e553ef83c9.pdf"
+     }
+    ]
+   },
+   "12m": {
+    "note": "Kỳ 12 tháng tới chủ yếu rơi vào 2027 → dự báo năm 2027. Ít tổ chức đã công bố số 2027.",
+    "columns": [
+     {
+      "key": "org",
+      "label": "Tổ chức"
+     },
+     {
+      "key": "date",
+      "label": "Ngày"
+     },
+     {
+      "key": "gdp",
+      "label": "GDP 2027",
+      "dec": 1,
+      "suffix": "%"
+     },
+     {
+      "key": "cpi",
+      "label": "CPI 2027",
+      "dec": 1,
+      "suffix": "%"
+     }
+    ],
+    "items": [
+     {
+      "org": "ADB",
+      "date": "2026-09-23",
+      "gdp": 7.6,
+      "cpi": 4.0,
+      "url": "https://en.vietnamplus.vn/adb-raises-vietnams-2026-growth-forecast-to-78-post352506.vnp"
+     },
+     {
+      "org": "World Bank (05/2026)",
+      "date": "2026-05-15",
+      "gdp": 7.1,
+      "cpi": 3.8,
+      "url": "https://documents1.worldbank.org/curated/en/099740005122628080/pdf/IDU-2ee874ce-e0c0-462b-9571-99e553ef83c9.pdf"
+     }
+    ]
+   }
+  }
+ },
+ "_market": {
+  "as_of": "2026-10-03",
+  "summary": "VN-Index giảm 3,47% trong tháng 9 (đóng 1.768,62) dù FTSE chính thức nâng hạng từ 21/09. Khối ngoại bán ròng kỷ lục từ đầu năm, thanh khoản thấp nhất 19 tháng; định giá P/E dự phóng ~12–13x.",
+  "compositions": [
+   {
+    "title": "Cơ cấu vốn hoá theo ngành",
+    "basis": "toàn thị trường (1.069 DN, 10,36 triệu tỷ đồng), 11/08/2026 — không riêng VN-Index",
+    "url": "https://cafef.vn/hon-10-trieu-ty-dong-von-hoa-toan-thi-truong-nganh-bat-dong-san-va-ngan-hang-chiem-qua-nua-188260818070259878.chn",
+    "items": [
+     {
+      "name": "Bất động sản",
+      "share_pct": 27
+     },
+     {
+      "name": "Ngân hàng",
+      "share_pct": 26
+     },
+     {
+      "name": "Thực phẩm & đồ uống",
+      "share_pct": 7
+     },
+     {
+      "name": "Dịch vụ tài chính",
+      "share_pct": 6
+     },
+     {
+      "name": "Hàng & DV công nghiệp",
+      "share_pct": 5,
+      "note": "gồm PVT, GEE"
+     },
+     {
+      "name": "Điện, nước, khí đốt",
+      "share_pct": 5,
+      "note": "gồm POW, GAS"
+     },
+     {
+      "name": "Tài nguyên, XD&VLXD, bán lẻ, viễn thông, du lịch",
+      "share_pct": 15,
+      "note": "mỗi ngành ~3%"
+     },
+     {
+      "name": "Dầu khí, hoá chất, CNTT, khác",
+      "share_pct": 9
+     }
+    ]
+   }
+  ],
+  "drivers": [
+   {
+    "name": "Nâng hạng FTSE",
+    "detail": "Thị trường mới nổi thứ cấp từ 21/09/2026, giải ngân theo 4 đợt: 10% → +20% (22/03/2027) → +35% (21/06/2027) → +35% (20/09/2027)",
+    "direction": "up",
+    "url": "https://theinvestor.vn/ftse-russell-confirms-vietnams-market-status-upgrade-to-secondary-emerging-from-sept-21-d18799.html"
+   },
+   {
+    "name": "Khối ngoại",
+    "detail": "Bán ròng ~95 nghìn tỷ đồng từ đầu năm (kỷ lục, theo VFS); riêng cổ phiếu ngân hàng 37,5 nghìn tỷ",
+    "direction": "down",
+    "url": "https://vneconomy.vn/khoi-ngoai-ban-rong-37500-ty-dong-co-phieu-ngan-hang-tu-dau-nam.htm"
+   },
+   {
+    "name": "Margin",
+    "detail": "Dư nợ kỷ lục ~435 nghìn tỷ cuối Q2/2026 (+43 nghìn tỷ từ đầu năm)",
+    "direction": "mixed",
+    "url": "https://vn.investing.com/news/stock-market-news/du-no-margin-lap-ky-luc-435000-ty-dong-trong-quy-ii2026-2668501"
+   },
+   {
+    "name": "Lợi nhuận Q3",
+    "detail": "SSI: tăng trưởng giảm tốc 54% (Q1) → 48% (Q2) → ~21% (Q3); MBS kỳ vọng +25%",
+    "direction": "mixed",
+    "url": "https://www.dnse.com.vn/senses/tin-tuc/tang-truong-loi-nhuan-doanh-nghiep-niem-yet-quy-iii-du-bao-giam-toc-35287471"
+   },
+   {
+    "name": "Thanh khoản",
+    "detail": "Thấp nhất 19 tháng trong tháng 9/2026",
+    "direction": "down",
+    "url": "https://thuonghieucongluan.com.vn/chuyen-gia-vfs-vn-index-buoc-vao-thang-10-trong-trang-thai-than-trong-a336335.html"
+   }
+  ],
+  "financials": {
+   "unit": "định giá & mốc",
+   "columns": [
+    {
+     "key": "period",
+     "label": "Chỉ tiêu"
+    },
+    {
+     "key": "value",
+     "label": "Giá trị"
+    },
+    {
+     "key": "note",
+     "label": "Ghi chú"
+    }
+   ],
+   "rows": [
+    {
+     "period": "VN-Index cuối T9/2026",
+     "value": "1.768,62",
+     "note": "-63,5 điểm (-3,47%) so tháng 8; đỉnh trong tháng ~1.837 (18/09)",
+     "url": "https://thuonghieucongluan.com.vn/chuyen-gia-vfs-vn-index-buoc-vao-thang-10-trong-trang-thai-than-trong-a336335.html"
+    },
+    {
+     "period": "P/E dự phóng 2026 (SSI)",
+     "value": "~12,2x",
+     "note": "~9,5x nếu loại nhóm Vingroup · 13/08/2026",
+     "url": "https://vietbao.vn/pe-ve-vung-hap-dan-thi-truong-chung-khoan-van-dung-truoc-mot-bai-test-lon-602910.html"
+    },
+    {
+     "period": "P/E dự phóng 2026 (Mirae)",
+     "value": "~13,4x",
+     "note": "13/08/2026"
+    },
+    {
+     "period": "Tăng trưởng EPS 2026 dự báo",
+     "value": "+20% đến +26%",
+     "note": "Vietcap +20%, KBSV +25%, Maybank +26%"
+    }
+   ]
+  },
+  "reasoning": {
+   "support": [
+    {
+     "text": "Nâng hạng FTSE đã có hiệu lực; 3 đợt giải ngân lớn (20–35%) rơi vào T3, T6, T9/2027 — nằm trong khung 6–12 tháng.",
+     "url": "https://theinvestor.vn/ftse-russell-confirms-vietnams-market-status-upgrade-to-secondary-emerging-from-sept-21-d18799.html"
+    },
+    {
+     "text": "Các CTCK dự báo lợi nhuận toàn thị trường 2026 tăng 20–26%, định giá P/E dự phóng ~12–13x thấp hơn trung bình lịch sử.",
+     "url": "https://doanhnhan.baophapluat.vn/vn-index-giu-muc-tieu-2-000-diem-chung-khoan-maybank-du-bao-loi-nhuan-doanh-nghiep-tang-26.html"
+    },
+    {
+     "text": "Đa số mục tiêu cuối 2026 nằm 1.920–2.000 điểm, cao hơn mức hiện tại ~1.738.",
+     "url": "https://stockbiz.vn/tin-tuc/du-bao-vn-index-cuoi-nam-len-1955-diem-vietcap-chi-ten-9-co-phieu-don-dau-song-moi/40524938"
+    }
+   ],
+   "risks": [
+    {
+     "text": "Phần lớn mục tiêu được đặt từ T5–T8, trước đợt giảm tháng 9 — chưa phản ánh dữ liệu mới.",
+     "url": null
+    },
+    {
+     "text": "Khối ngoại bán ròng kỷ lục và thanh khoản thấp nhất 19 tháng; margin ở mức kỷ lục làm tăng rủi ro bán giải chấp.",
+     "url": "https://vneconomy.vn/khoi-ngoai-ban-rong-hon-4700-ty-dong-truc-tiep-qua-khop-lenh-trong-thang-9.htm"
+    },
+    {
+     "text": "VN-Index đang dưới MA200 (theo dữ liệu VCI) — xu hướng trung hạn chưa xác nhận đảo chiều.",
+     "url": null
+    }
+   ]
+  },
+  "forecasts": {
+   "6m": {
+    "targets": [
+     {
+      "org": "Maybank IBG",
+      "date": "2026-08-21",
+      "rating": "cuối 2026",
+      "target": 2000,
+      "url": "https://doanhnhan.baophapluat.vn/vn-index-giu-muc-tieu-2-000-diem-chung-khoan-maybank-du-bao-loi-nhuan-doanh-nghiep-tang-26.html"
+     },
+     {
+      "org": "VNDirect",
+      "date": "2026-06-02",
+      "rating": "cuối 2026",
+      "target": 1970,
+      "url": "https://mekongasean.vn/vndirect-vn-index-se-huong-toi-vung-1970-diem-vao-cuoi-nam-2026-55841.html"
+     },
+     {
+      "org": "Vietcap",
+      "date": "2026-06-18",
+      "rating": "cuối 2026",
+      "target": 1955,
+      "url": "https://stockbiz.vn/tin-tuc/du-bao-vn-index-cuoi-nam-len-1955-diem-vietcap-chi-ten-9-co-phieu-don-dau-song-moi/40524938"
+     },
+     {
+      "org": "KBSV",
+      "date": "2026-07-09",
+      "rating": "cuối 2026",
+      "target": 1950,
+      "url": "https://elibook.vn/2026/07/09/kbsv-nhan-dinh-mat-bang-lai-suat-se-tiep-tuc-neo-cao-trong-quy-3-truoc-khi-giam-dan-tu-dau-quy-4-du-bao-muc-tieu-vn-index-cuoi-nam-2026-o-muc-1950-diem.html/"
+     },
+     {
+      "org": "SSI Research",
+      "date": "2026-06-10",
+      "rating": "H2/2026 cơ sở (tích cực 2.120)",
+      "target": 1920,
+      "url": "https://vietstock.vn/2026/06/vn-index-co-the-cham-den-2120-diem-nua-cuoi-nam-2026-145-1452968.htm"
+     },
+     {
+      "org": "BSC",
+      "date": "2026-05-13",
+      "rating": "cuối 2026 (hạ từ 1.954)",
+      "target": 1750,
+      "url": "https://cafef.vn/them-cong-ty-chung-khoan-ha-du-phong-vn-index-nam-2026-188260512213008592.chn"
+     }
+    ],
+    "events": [
+     {
+      "date": "T10/2026",
+      "event": "VFS: kịch bản tích cực 1.800–1.850, thận trọng 1.680–1.780",
+      "url": "https://thuonghieucongluan.com.vn/chuyen-gia-vfs-vn-index-buoc-vao-thang-10-trong-trang-thai-than-trong-a336335.html"
+     },
+     {
+      "date": "Giữa–cuối T10/2026",
+      "event": "Mùa báo cáo lợi nhuận Q3"
+     },
+     {
+      "date": "22/03/2027",
+      "event": "FTSE giải ngân đợt 2 (+20%)",
+      "url": "https://theinvestor.vn/ftse-russell-confirms-vietnams-market-status-upgrade-to-secondary-emerging-from-sept-21-d18799.html"
+     }
+    ]
+   },
+   "12m": {
+    "targets": [
+     {
+      "org": "Vietcap",
+      "date": "2026-06-18",
+      "rating": "cuối 2027",
+      "target": 2280,
+      "url": "https://stockbiz.vn/tin-tuc/du-bao-vn-index-cuoi-nam-len-1955-diem-vietcap-chi-ten-9-co-phieu-don-dau-song-moi/40524938"
+     },
+     {
+      "org": "Mirae Asset",
+      "date": "2026-03-13",
+      "rating": "2026 (cũ > 6 tháng)",
+      "target": 2300,
+      "url": "https://thoibaotaichinhvietnam.vn/vn-index-duoc-ky-vong-huong-toi-moc-2300-diem-trong-nam-2026-193663.html"
+     }
+    ],
+    "events": [
+     {
+      "date": "21/06/2027",
+      "event": "FTSE giải ngân đợt 3 (+35%)"
+     },
+     {
+      "date": "20/09/2027",
+      "event": "FTSE giải ngân đợt 4 (+35%) — hoàn tất"
+     }
+    ],
+    "note": "Rất ít dự báo VN-Index cho 2027 đã được công bố."
+   }
+  }
+ },
+ "POW": {
+  "as_of": "2026-10-03",
+  "summary": "Lợi nhuận H1/2026 kỷ lục (LNST 5.008 tỷ, +306%) nhờ Nhơn Trạch 3&4 vận hành thương mại từ 01/01/2026 cộng ~2.475 tỷ thu nhập bất thường. Giá hiện tại (~12.700) thấp hơn mọi giá mục tiêu đã công bố (16.000–18.400).",
+  "compositions": [
+   {
+    "title": "Doanh thu H1/2026 theo nhà máy",
+    "basis": "ước tính của công ty, tổng ~33.520 tỷ",
+    "url": "https://mekongasean.vn/pv-power-uoc-lai-truoc-thue-hon-5000-ty-dong-nua-dau-nam-2026-57571.html",
+    "items": [
+     {
+      "name": "Nhơn Trạch 3&4 (LNG, 1.624 MW)",
+      "share_pct": 27.8,
+      "value": "9.317 tỷ",
+      "note": "2.601 triệu kWh (20% sản lượng); H1/2025 chỉ 105 triệu kWh"
+     },
+     {
+      "name": "Vũng Áng 1 (than)",
+      "share_pct": 22.8,
+      "value": "7.640 tỷ",
+      "note": "4.184 triệu kWh (32,1% sản lượng), +13,2%"
+     },
+     {
+      "name": "Cà Mau 1&2 (khí)",
+      "share_pct": 17.9,
+      "value": "6.011 tỷ"
+     },
+     {
+      "name": "Nhơn Trạch 2 (khí, cty con NT2)",
+      "share_pct": 14.8,
+      "value": "4.955 tỷ"
+     },
+     {
+      "name": "Khác: NT1, Hủa Na, Đakđrinh, điện gió, thương mại",
+      "share_pct": 16.7,
+      "note": "phần còn lại — tự tính"
+     }
+    ]
+   }
+  ],
+  "drivers": [
+   {
+    "name": "Nhơn Trạch 3&4",
+    "detail": "Động lực tăng trưởng mới: Q2 phát 1.727 triệu kWh (23,5% tổng); VPBankS kỳ vọng 9–10 tỷ kWh/năm",
+    "direction": "up",
+    "url": "https://nguoiquansat.vn/nhon-trach-3-4-vao-guong-pv-power-pow-duoc-du-bao-lai-ky-luc-gan-6-500-ty-dong-313782.html"
+   },
+   {
+    "name": "Sản lượng hợp đồng (Qc)",
+    "detail": "Qc cho NT3&4 nâng từ 65% lên 75%; KBSV ước ~2.230 tỷ bù Qc năm 2026",
+    "direction": "up",
+    "url": "https://elibook.vn/2026/09/22/pow-khung-gia-dien-khi-mo-loi-dam-phan-phao-cuu-sinh-qc-giu-nhip-tang-truong-2026-2027/"
+   },
+   {
+    "name": "Khung giá điện khí",
+    "detail": "QĐ 1882/QĐ-BCT nâng trần giá phát điện khí 11% lên 3.410,64 đ/kWh",
+    "direction": "up",
+    "url": "https://elibook.vn/2026/09/22/pow-khung-gia-dien-khi-mo-loi-dam-phan-phao-cuu-sinh-qc-giu-nhip-tang-truong-2026-2027/"
+   },
+   {
+    "name": "Nhu cầu & thời tiết",
+    "detail": "Sản lượng điện toàn quốc 8T +9,3%; BSC: El Niño có lợi cho nhiệt điện, sản lượng POW +19% (2026), +9% (2027)",
+    "direction": "up",
+    "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-1-10-mbb-nt2-pow-319455.html"
+   },
+   {
+    "name": "Thu nhập bất thường",
+    "detail": "H1 có 2.475,6 tỷ không thường xuyên; EVN dự kiến trả ~1.600 tỷ bù chênh lệch tỷ giá trong Q3; TCBS dự báo LN 2027 giảm 23,5% khi các khoản này hết",
+    "direction": "mixed",
+    "url": "https://nguoiquansat.vn/nhon-trach-3-4-vao-guong-pv-power-pow-duoc-du-bao-lai-ky-luc-gan-6-500-ty-dong-313782.html"
+   },
+   {
+    "name": "Lãi vay & đòn bẩy",
+    "detail": "Chi phí lãi vay H1 931,9 tỷ (×3,6); nợ vay 38.089 tỷ (+31,9%); tiền & tiền gửi 26.573 tỷ",
+    "direction": "down",
+    "url": "https://cafebiz.vn/pv-power-pow-lap-ky-luc-loi-nhuan-nam-hon-1-ty-usd-tien-va-tien-gui-nhung-van-tang-vay-hang-chuc-nghin-ty-dong-176260805201027446.chn"
+   },
+   {
+    "name": "Bảo dưỡng H2/2026",
+    "detail": "Đại tu Cà Mau 1, Đakđrinh; trung tu Vũng Áng 1; công ty chỉ đặt LNTT H2 ~1.124 tỷ",
+    "direction": "down",
+    "url": "https://vietnambiz.vn/live-dhdcd-pv-power-uoc-lai-1800-ty-sau-5-thang-nghien-cuu-xay-dung-phuong-an-co-phan-hoa-cac-chi-nhanh-2026519165529440.htm"
+   }
+  ],
+  "financials": {
+   "unit": "tỷ đồng",
+   "columns": [
+    {
+     "key": "period",
+     "label": "Kỳ"
+    },
+    {
+     "key": "revenue",
+     "label": "Doanh thu"
+    },
+    {
+     "key": "gm",
+     "label": "Biên LN gộp",
+     "dec": 1,
+     "suffix": "%"
+    },
+    {
+     "key": "npat",
+     "label": "LNST"
+    },
+    {
+     "key": "parent",
+     "label": "LNST cty mẹ"
+    },
+    {
+     "key": "note",
+     "label": "Ghi chú"
+    }
+   ],
+   "rows": [
+    {
+     "period": "FY2024",
+     "revenue": 30306,
+     "gm": 6.6,
+     "npat": 1211,
+     "parent": null,
+     "note": "kiểm toán",
+     "url": "https://www.tinnhanhchungkhoan.vn/loi-nhuan-nam-2024-cua-pv-power-pow-giam-1346-ty-dong-sau-kiem-toan-post366567.html"
+    },
+    {
+     "period": "FY2025",
+     "revenue": 34151,
+     "gm": null,
+     "npat": 2869,
+     "parent": 2341,
+     "note": "LNST mẹ chưa chắc chắn (~2.341–2.430)",
+     "url": "https://www.nguoiduatin.vn/doanh-thu-di-ngang-pv-power-van-dat-ky-luc-loi-nhuan-204260202150351971.htm"
+    },
+    {
+     "period": "Q1/2026",
+     "revenue": 12327,
+     "gm": 14.6,
+     "npat": 1300,
+     "parent": null,
+     "url": "https://kinhtechungkhoan.vn/nhon-trach-3-4-tao-cu-hich-loi-nhuan-co-phieu-pv-power-pow-duoc-nang-ky-vong-1448829.html"
+    },
+    {
+     "period": "Q2/2026",
+     "revenue": 20308,
+     "gm": 23.2,
+     "npat": 3708,
+     "parent": 3519,
+     "note": "gồm ~2.475 tỷ bất thường",
+     "url": "https://mekongasean.vn/chi-sau-6-thang-pv-power-vuot-chi-tieu-loi-nhuan-ca-nam-2026-57934.html"
+    },
+    {
+     "period": "H1/2026",
+     "revenue": 32635,
+     "gm": 20.0,
+     "npat": 5008,
+     "parent": 4719,
+     "note": "LN cốt lõi ~2.741 tỷ (+111%)",
+     "url": "https://nguoiquansat.vn/nhon-trach-3-4-vao-guong-pv-power-pow-duoc-du-bao-lai-ky-luc-gan-6-500-ty-dong-313782.html"
+    }
+   ]
+  },
+  "reasoning": {
+   "support": [
+    {
+     "text": "H1/2026 LNST 5.008 tỷ — đã vượt xa kế hoạch cả năm 1.124 tỷ; kể cả loại bất thường, LN cốt lõi vẫn +111%.",
+     "url": "https://theinvestor.vn/behind-pv-powers-record-profit-in-h1-2026-d19723.html"
+    },
+    {
+     "text": "NT3&4 hoà vốn sớm nhờ cơ chế Qc; đề xuất nâng Qc LNG lên 75% và kéo dài 15 năm giúp ổn định doanh thu.",
+     "url": "https://elibook.vn/2026/08/24/pow-nt34-hoa-von-som-nho-co-che-qc-loi-nhuan-cot-loi-quy-2-tang-gap-doi-con-nghi-dinh-40-van-la-an-so/"
+    },
+    {
+     "text": "Trần giá điện khí tăng 11% (22/09) mở dư địa đàm phán giá cho các nhà máy khí.",
+     "url": "https://elibook.vn/2026/09/22/pow-khung-gia-dien-khi-mo-loi-dam-phan-phao-cuu-sinh-qc-giu-nhip-tang-truong-2026-2027/"
+    },
+    {
+     "text": "Khoản bù tỷ giá ~1.600 tỷ từ EVN dự kiến ghi nhận Q3 — hỗ trợ KQKD công bố cuối T10.",
+     "url": "https://nguoiquansat.vn/nhon-trach-3-4-vao-guong-pv-power-pow-duoc-du-bao-lai-ky-luc-gan-6-500-ty-dong-313782.html"
+    },
+    {
+     "text": "Tất cả 10+ giá mục tiêu công bố (16.000–18.400) cao hơn giá hiện tại; P/E trượt ~6,5x, P/B ~0,94.",
+     "url": "https://simplize.vn/co-phieu/POW"
+    }
+   ],
+   "risks": [
+    {
+     "text": "~44% LNTT Q2 là bất thường, không lặp lại; TCBS dự báo LN 2027 giảm 23,5%.",
+     "url": "https://nguoiquansat.vn/nhon-trach-3-4-vao-guong-pv-power-pow-duoc-du-bao-lai-ky-luc-gan-6-500-ty-dong-313782.html"
+    },
+    {
+     "text": "Phải thu EPTC ~24,8 nghìn tỷ, dự phòng nợ xấu tăng lên 968 tỷ; kỳ thu tiền kéo dài 10 → 69 ngày.",
+     "url": "https://nguoiquansat.vn/pv-power-pow-bat-ngo-bao-lai-ky-luc-5-000-ty-dong-van-con-khoan-no-xau-nghin-ty-voi-cong-ty-mua-ban-dien-307590.html"
+    },
+    {
+     "text": "Giá LNG ~17,1 USD/MMBtu (+40%); Quảng Trạch 1 (than) cạnh tranh từ 2027.",
+     "url": "https://elibook.vn/2026/08/24/pow-nt34-hoa-von-som-nho-co-che-qc-loi-nhuan-cot-loi-quy-2-tang-gap-doi-con-nghi-dinh-40-van-la-an-so/"
+    },
+    {
+     "text": "5 năm liền không chia cổ tức tiền mặt; ưu tiên cổ tức cổ phiếu đến 2030.",
+     "url": "https://mekongasean.vn/pv-power-du-kien-khong-chia-co-tuc-nam-thu-5-lien-tiep-55308.html"
+    }
+   ]
+  },
+  "forecasts": {
+   "6m": {
+    "note": "Dự báo LNST cả năm 2026 (kỳ 6 tháng bao trùm Q3–Q4/2026).",
+    "columns": [
+     {
+      "key": "org",
+      "label": "Tổ chức"
+     },
+     {
+      "key": "date",
+      "label": "Ngày"
+     },
+     {
+      "key": "npat",
+      "label": "LNST mẹ (tỷ)"
+     },
+     {
+      "key": "eps",
+      "label": "EPS"
+     }
+    ],
+    "items": [
+     {
+      "org": "TCBS",
+      "date": "2026-09-02",
+      "npat": 6465,
+      "eps": 2107,
+      "url": "https://nguoiquansat.vn/nhon-trach-3-4-vao-guong-pv-power-pow-duoc-du-bao-lai-ky-luc-gan-6-500-ty-dong-313782.html"
+     },
+     {
+      "org": "SHS",
+      "date": "2026-08-28",
+      "npat": 6023,
+      "eps": 1963,
+      "url": "https://elibook.vn/2026/09/22/pow-khung-gia-dien-khi-mo-loi-dam-phan-phao-cuu-sinh-qc-giu-nhip-tang-truong-2026-2027/"
+     },
+     {
+      "org": "KBSV",
+      "date": "2026-09-15",
+      "npat": 5330,
+      "eps": 1821,
+      "url": "https://elibook.vn/2026/09/22/pow-khung-gia-dien-khi-mo-loi-dam-phan-phao-cuu-sinh-qc-giu-nhip-tang-truong-2026-2027/"
+     }
+    ],
+    "events": [
+     {
+      "date": "~20–30/10/2026",
+      "event": "KQKD Q3/2026 — mùa bảo dưỡng, nhưng có thể ghi nhận ~1.600 tỷ bù tỷ giá"
+     },
+     {
+      "date": "T10–T12/2026",
+      "event": "Đàm phán Qc & giá NT3&4 theo khung giá mới (QĐ 1882)"
+     },
+     {
+      "date": "T1/2027",
+      "event": "KQKD Q4 & cả năm 2026"
+     },
+     {
+      "date": "T3–T4/2027",
+      "event": "ĐHCĐ 2027 — phương án cổ tức (dự kiến cổ phiếu)"
+     }
+    ]
+   },
+   "12m": {
+    "columns": [
+     {
+      "key": "org",
+      "label": "Tổ chức"
+     },
+     {
+      "key": "date",
+      "label": "Ngày"
+     },
+     {
+      "key": "npat",
+      "label": "LNST mẹ (tỷ)"
+     },
+     {
+      "key": "eps",
+      "label": "EPS"
+     }
+    ],
+    "items": [
+     {
+      "org": "TCBS (2027)",
+      "date": "2026-09-02",
+      "npat": 4949,
+      "eps": null,
+      "url": "https://nguoiquansat.vn/nhon-trach-3-4-vao-guong-pv-power-pow-duoc-du-bao-lai-ky-luc-gan-6-500-ty-dong-313782.html"
+     }
+    ],
+    "note": "Giá mục tiêu CTCK thường cho kỳ 12 tháng. Lưu ý: LN 2027 dự báo giảm do hết khoản bất thường.",
+    "targets": [
+     {
+      "org": "VPBankS",
+      "date": "2026-09-30",
+      "rating": "Mua",
+      "target": 17500,
+      "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-1-10-mbb-nt2-pow-319455.html"
+     },
+     {
+      "org": "KBSV",
+      "date": "2026-09-15",
+      "rating": "Mua",
+      "target": 18100,
+      "url": "https://elibook.vn/2026/09/22/pow-khung-gia-dien-khi-mo-loi-dam-phan-phao-cuu-sinh-qc-giu-nhip-tang-truong-2026-2027/"
+     },
+     {
+      "org": "SHS",
+      "date": "2026-08-28",
+      "rating": "Mua",
+      "target": 18000,
+      "url": "https://elibook.vn/2026/09/22/pow-khung-gia-dien-khi-mo-loi-dam-phan-phao-cuu-sinh-qc-giu-nhip-tang-truong-2026-2027/"
+     },
+     {
+      "org": "ACBS",
+      "date": "2026-08-24",
+      "rating": "Mua",
+      "target": 18400,
+      "url": "https://elibook.vn/2026/08/24/pow-nt34-hoa-von-som-nho-co-che-qc-loi-nhuan-cot-loi-quy-2-tang-gap-doi-con-nghi-dinh-40-van-la-an-so/"
+     },
+     {
+      "org": "Vietcap",
+      "date": "2026-08-24",
+      "rating": "Mua",
+      "target": 18000,
+      "url": "https://elibook.vn/2026/08/24/pow-nt34-hoa-von-som-nho-co-che-qc-loi-nhuan-cot-loi-quy-2-tang-gap-doi-con-nghi-dinh-40-van-la-an-so/"
+     },
+     {
+      "org": "VDSC",
+      "date": "2026-08-11",
+      "rating": "Mua",
+      "target": 16600,
+      "url": "https://elibook.vn/2026/09/22/pow-khung-gia-dien-khi-mo-loi-dam-phan-phao-cuu-sinh-qc-giu-nhip-tang-truong-2026-2027/"
+     },
+     {
+      "org": "VNDirect",
+      "date": "~2026-07-05",
+      "rating": "—",
+      "target": 17300,
+      "url": "https://elibook.vn/2026/07/05/pow-viec-nang-san-luong-qc-len-75-se-giup-nhon-trach-34-huong-loi-vndirect-dua-ra-gia-muc-tieu-17300-dong.html/"
+     },
+     {
+      "org": "MBS",
+      "date": "2026-05-27",
+      "rating": "Khả quan",
+      "target": 16700,
+      "url": "https://kinhtechungkhoan.vn/nhon-trach-3-4-tao-cu-hich-loi-nhuan-co-phieu-pv-power-pow-duoc-nang-ky-vong-1448829.html"
+     },
+     {
+      "org": "BSC",
+      "date": "~2026-05-15",
+      "rating": "Mua",
+      "target": 17100,
+      "url": "https://suckhoedoisong.vn/co-phieu-pow-duoc-khuyen-nghi-mua-169260515071917325.htm"
+     },
+     {
+      "org": "SSI",
+      "date": "2026-04-13",
+      "rating": "Khả quan",
+      "target": 16000,
+      "url": "https://finance.vietstock.vn/bao-cao-phan-tich/19764/pow-khuyen-nghi-mua-voi-gia-muc-tieu-16000-dongco-phieu.htm"
+     }
+    ]
+   }
+  }
+ },
+ "PVT": {
+  "as_of": "2026-10-03",
+  "summary": "Lợi nhuận Q2/2026 cao nhất kể từ niêm yết 2007 (678 tỷ, +88%) nhờ giá cước tàu dầu tăng vọt khi eo Hormuz gián đoạn; hợp đồng thuê tàu đáo hạn ký lại cao hơn ~30–35%. Luận điểm phụ thuộc vào việc giá cước duy trì.",
+  "compositions": [
+   {
+    "title": "Doanh thu Q2/2026 theo mảng",
+    "basis": "tổng 5.714 tỷ",
+    "url": "https://mekongasean.vn/van-tai-bien-quy-22026-nguoi-thang-lon-ke-hut-hoi-58346.html",
+    "items": [
+     {
+      "name": "Vận tải biển",
+      "share_pct": 54.1,
+      "value": "3.092 tỷ (+30%)",
+      "note": "biên LN gộp 28,44% (cùng kỳ 20,65%)"
+     },
+     {
+      "name": "Thương mại",
+      "share_pct": 36.0,
+      "value": "2.059 tỷ",
+      "note": "biên LN gộp ~0,3%"
+     },
+     {
+      "name": "Khác (FSO/FPSO, quản lý tàu…)",
+      "share_pct": 9.9,
+      "note": "phần còn lại — tự tính"
+     }
+    ]
+   },
+   {
+    "title": "Đội tàu theo loại (theo số tàu)",
+    "basis": "68 tàu, ~2,1 triệu DWT (T8/2026); số liệu từng loại lấy từ nguồn T3–T9/2026",
+    "url": "https://congthuong.vn/pvtrans-tiep-nhan-them-tau-moi-tang-cuong-nang-luc-van-tai-quoc-te-469752.html",
+    "items": [
+     {
+      "name": "Tàu LPG",
+      "share_pct": 30.9,
+      "value": "21 tàu"
+     },
+     {
+      "name": "Tàu hoá chất",
+      "share_pct": 27.9,
+      "value": "19 tàu"
+     },
+     {
+      "name": "Tàu hàng khô",
+      "share_pct": 22.1,
+      "value": "15 tàu",
+      "note": "chủ yếu Supramax"
+     },
+     {
+      "name": "Tàu sản phẩm dầu",
+      "share_pct": 11.8,
+      "value": "8 tàu"
+     },
+     {
+      "name": "Tàu dầu thô",
+      "share_pct": 5.9,
+      "value": "4 tàu"
+     },
+     {
+      "name": "FSO/FPSO",
+      "share_pct": 1.5,
+      "value": "1"
+     }
+    ]
+   }
+  ],
+  "drivers": [
+   {
+    "name": "Giá cước tàu dầu (Hormuz)",
+    "detail": "Aframax TC ~55.000 USD/ngày (+78%); VLCC lập kỷ lục cuối T9",
+    "direction": "up",
+    "url": "https://nguoiquansat.vn/mot-doanh-nghiep-viet-bat-ngo-an-nen-lam-ra-giua-cang-thang-tai-trung-dong-lai-nam-2026-du-kien-tang-bang-lan-318768.html"
+   },
+   {
+    "name": "Tái ký hợp đồng",
+    "detail": "Hợp đồng thuê định hạn ký lại cao hơn 30–35%; một số hợp đồng dài hạn đáo hạn T10–T11/2026",
+    "direction": "up",
+    "url": "https://suckhoedoisong.vn/co-phieu-pvt-duoc-khuyen-nghi-mua-169260909070407732.htm"
+   },
+   {
+    "name": "Hưởng giá spot qua pool",
+    "detail": "~30% đội tàu dầu hoạt động trong pool quốc tế",
+    "direction": "up",
+    "url": "https://nguoiquansat.vn/chien-luoc-mo-rong-doi-tau-va-tham-gia-lien-minh-quoc-te-cho-qua-ngot-pvtrans-pvt-duoc-du-bao-lai-vuot-2-800-ty-dong-316244.html"
+   },
+   {
+    "name": "Mở rộng đội tàu",
+    "detail": "Kế hoạch đầu tư 2026: 3.858 tỷ; SSI dự kiến 71 tàu (2026), 76 tàu (2027); mục tiêu 100 tàu 2030",
+    "direction": "up",
+    "url": "https://nguoiquansat.vn/chien-luoc-mo-rong-doi-tau-va-tham-gia-lien-minh-quoc-te-cho-qua-ngot-pvtrans-pvt-duoc-du-bao-lai-vuot-2-800-ty-dong-316244.html"
+   },
+   {
+    "name": "Giá tàu cũ cao",
+    "detail": "VLCC +61,3%, Aframax +31,8% YoY — làm chậm tốc độ bổ sung tàu",
+    "direction": "down",
+    "url": "https://nguoiquansat.vn/chien-luoc-mo-rong-doi-tau-va-tham-gia-lien-minh-quoc-te-cho-qua-ngot-pvtrans-pvt-duoc-du-bao-lai-vuot-2-800-ty-dong-316244.html"
+   },
+   {
+    "name": "Giá cước 2027 bình thường hoá",
+    "detail": "Vietcap giả định 2027 cước dầu thô −30%, sản phẩm −41%; BSC giả định chỉ −5 đến −10%",
+    "direction": "down",
+    "url": "https://elibook.vn/2026/09/03/pvt-gia-cuoc-tau-dau-bung-no-nho-hormuz-loi-nhuan-quy-2-lap-ky-luc-nhung-2027-se-ra-sao/"
+   }
+  ],
+  "financials": {
+   "unit": "tỷ đồng",
+   "columns": [
+    {
+     "key": "period",
+     "label": "Kỳ"
+    },
+    {
+     "key": "revenue",
+     "label": "Doanh thu"
+    },
+    {
+     "key": "gm",
+     "label": "Biên LN gộp",
+     "dec": 1,
+     "suffix": "%"
+    },
+    {
+     "key": "npat",
+     "label": "LNST"
+    },
+    {
+     "key": "parent",
+     "label": "LNST cty mẹ"
+    },
+    {
+     "key": "note",
+     "label": "Ghi chú"
+    }
+   ],
+   "rows": [
+    {
+     "period": "FY2024",
+     "revenue": 11812,
+     "gm": null,
+     "npat": 1472,
+     "parent": null,
+     "url": "https://www.tinnhanhchungkhoan.vn/pvtrans-pvt-loi-nhuan-sau-thue-nam-2024-dat-1472-ty-dong-vuot-hon-53-ke-hoach-post362802.html"
+    },
+    {
+     "period": "FY2025",
+     "revenue": "~16.448",
+     "gm": null,
+     "npat": 1329,
+     "parent": "~1.036",
+     "note": "LNST mẹ suy ra từ tăng trưởng dự báo của SSI",
+     "url": "https://doanhnghiephoinhap.vn/doanh-nghiep-dau-khi-boi-thu-nam-2025-lai-nghin-ti-126911.html"
+    },
+    {
+     "period": "Q1/2026",
+     "revenue": 4177,
+     "gm": null,
+     "npat": 387,
+     "parent": 319,
+     "url": "https://diendandoanhnghiep.vn/co-phieu-pvt-buoc-vao-chu-ky-thu-hoach-moi-10179782.html"
+    },
+    {
+     "period": "Q2/2026",
+     "revenue": 5714,
+     "gm": 16.7,
+     "npat": 678,
+     "parent": 553,
+     "note": "kỷ lục từ khi niêm yết",
+     "url": "https://mekongasean.vn/van-tai-bien-quy-22026-nguoi-thang-lon-ke-hut-hoi-58346.html"
+    },
+    {
+     "period": "H1/2026",
+     "revenue": 9892,
+     "gm": null,
+     "npat": 1066,
+     "parent": 871,
+     "note": "nguồn khác: 9.754 / 1.094",
+     "url": "https://suckhoedoisong.vn/co-phieu-pvt-duoc-khuyen-nghi-mua-169260909070407732.htm"
+    }
+   ]
+  },
+  "reasoning": {
+   "support": [
+    {
+     "text": "Q2/2026 lãi kỷ lục; H1 đã đạt ~89% kế hoạch LNST cả năm (1.200 tỷ). Đồng thuận CTCK cho 2026: LNST mẹ 1.548–2.047 tỷ.",
+     "url": "https://mekongasean.vn/van-tai-bien-quy-22026-nguoi-thang-lon-ke-hut-hoi-58346.html"
+    },
+    {
+     "text": "Nhiều hợp đồng dài hạn đáo hạn T10–T11/2026 sẽ được ký lại ở giá cao hơn 30–35% — tác động trực tiếp lên Q4 và 2027.",
+     "url": "https://cafef.vn/pvtrans-mua-them-tau-truoc-khi-cuoc-van-tai-tang-hop-dong-cu-den-han-duoc-ky-lai-gia-cao-hon-khoang-30-188260927091145296.chn"
+    },
+    {
+     "text": "Giá cước VLCC ~723.000 USD/ngày (18/09), +807% YoY — mặt bằng cước toàn ngành ở đỉnh.",
+     "url": "https://cyprus-mail.com/2026/09/29/oil-supertanker-rates-surge-807-per-cent-as-hormuz-disruption-tightens-supply"
+    },
+    {
+     "text": "Được thêm vào FTSE Vietnam All-Share (kỳ T9/2026); là mã duy nhất trong 4 mã đang trên MA200.",
+     "url": "https://thuonghieucongluan.com.vn/pvtrans-lot-ro-ftse-vietnam-all-share-fol-adjusted-cot-moc-moi-tren-hanh-trinh-nang-tam-thuong-hieu-a333203.html"
+    }
+   ],
+   "risks": [
+    {
+     "text": "Ban lãnh đạo: nếu Hormuz bình thường hoá, cước có thể giảm ~30% trong kịch bản cơ sở 2027.",
+     "url": "https://www.tinnhanhchungkhoan.vn/pvtrans-pvt-tinh-hinh-eo-bien-hormuz-tiep-tuc-ho-tro-da-tang-truong-loi-nhuan-nua-cuoi-nam-2026-post395230.html"
+    },
+    {
+     "text": "Mảng thương mại chiếm 36% doanh thu nhưng biên chỉ ~0,3%.",
+     "url": "https://elibook.vn/2026/09/03/pvt-gia-cuoc-tau-dau-bung-no-nho-hormuz-loi-nhuan-quy-2-lap-ky-luc-nhung-2027-se-ra-sao/"
+    },
+    {
+     "text": "Kế hoạch 2026 LNST −10%; giá cổ phiếu biến động mạnh (>32.000 T3 → 18.600 T8).",
+     "url": "https://tuoitre.vn/sep-doanh-nghiep-nhon-nhip-mua-ban-co-phieu-chu-tich-pvtrans-chot-loi-tien-ti-20260307112357276.htm"
+    }
+   ]
+  },
+  "forecasts": {
+   "6m": {
+    "note": "Dự báo LNST mẹ cả năm 2026.",
+    "columns": [
+     {
+      "key": "org",
+      "label": "Tổ chức"
+     },
+     {
+      "key": "date",
+      "label": "Ngày"
+     },
+     {
+      "key": "npat",
+      "label": "LNST mẹ (tỷ)"
+     },
+     {
+      "key": "eps",
+      "label": "EPS"
+     }
+    ],
+    "items": [
+     {
+      "org": "VCBS",
+      "date": "2026-09-27",
+      "npat": 2047,
+      "eps": "~3.970 (tự tính)",
+      "url": "https://bnews.vn/hai-co-phieu-duoc-khuyen-nghi-mua-truoc-phien-29-9/438469.html"
+     },
+     {
+      "org": "SSI",
+      "date": "2026-09-15",
+      "npat": 1678,
+      "eps": "~2.990 (tự tính)",
+      "url": "https://bnews.vn/co-phieu-pvd-va-pvt-goc-nhin-va-gia-muc-tieu-tu-cong-ty-chung-khoan/436780.html"
+     },
+     {
+      "org": "Đồng thuận (elibook)",
+      "date": "2026-09",
+      "npat": "1.548–1.937",
+      "eps": null,
+      "url": "https://elibook.vn/2026/09/03/pvt-gia-cuoc-tau-dau-bung-no-nho-hormuz-loi-nhuan-quy-2-lap-ky-luc-nhung-2027-se-ra-sao/"
+     }
+    ],
+    "events": [
+     {
+      "date": "~20–30/10/2026",
+      "event": "KQKD Q3/2026 — VCBS kỳ vọng DT ~5.613 tỷ, LNST ~614 tỷ"
+     },
+     {
+      "date": "T10–T11/2026",
+      "event": "Một số hợp đồng thuê dài hạn đáo hạn, ký lại giá mới"
+     },
+     {
+      "date": "Q4/2026",
+      "event": "Nhận thêm tàu theo kế hoạch đầu tư 2026"
+     },
+     {
+      "date": "T1/2027",
+      "event": "KQKD Q4 & cả năm 2026"
+     }
+    ]
+   },
+   "12m": {
+    "columns": [
+     {
+      "key": "org",
+      "label": "Tổ chức"
+     },
+     {
+      "key": "date",
+      "label": "Ngày"
+     },
+     {
+      "key": "npat",
+      "label": "LNST mẹ (tỷ)"
+     },
+     {
+      "key": "eps",
+      "label": "EPS"
+     }
+    ],
+    "items": [
+     {
+      "org": "Đồng thuận 2027 (elibook)",
+      "date": "2026-09",
+      "npat": "1.611–1.872",
+      "eps": null,
+      "url": "https://elibook.vn/2026/09/03/pvt-gia-cuoc-tau-dau-bung-no-nho-hormuz-loi-nhuan-quy-2-lap-ky-luc-nhung-2027-se-ra-sao/"
+     }
+    ],
+    "targets": [
+     {
+      "org": "VCBS",
+      "date": "2026-09-24",
+      "rating": "Mua",
+      "target": 30140,
+      "url": "https://vietstock.vn/2026/09/bid-pvt-va-pdr-co-gi-hap-dan-145-1496295.htm"
+     },
+     {
+      "org": "VDSC",
+      "date": "2026-07-08",
+      "rating": "Mua",
+      "target": 28500,
+      "url": "https://nguoiquansat.vn/co-phieu-dang-chu-ngay-9-7-tcb-pvt-acb-302815.html"
+     },
+     {
+      "org": "ACBS",
+      "date": "2026-08-06",
+      "rating": "Mua",
+      "target": 28200,
+      "url": "https://elibook.vn/2026/09/03/pvt-gia-cuoc-tau-dau-bung-no-nho-hormuz-loi-nhuan-quy-2-lap-ky-luc-nhung-2027-se-ra-sao/"
+     },
+     {
+      "org": "BSC",
+      "date": "2026-09-08",
+      "rating": "Mua",
+      "target": 26900,
+      "url": "https://elibook.vn/2026/09/03/pvt-gia-cuoc-tau-dau-bung-no-nho-hormuz-loi-nhuan-quy-2-lap-ky-luc-nhung-2027-se-ra-sao/"
+     },
+     {
+      "org": "SSI",
+      "date": "2026-09-15",
+      "rating": "Khả quan",
+      "target": 25400,
+      "url": "https://bnews.vn/co-phieu-pvd-va-pvt-goc-nhin-va-gia-muc-tieu-tu-cong-ty-chung-khoan/436780.html"
+     },
+     {
+      "org": "Vietcap",
+      "date": "2026-08-13",
+      "rating": "Mua",
+      "target": 25200,
+      "url": "https://elibook.vn/2026/09/03/pvt-gia-cuoc-tau-dau-bung-no-nho-hormuz-loi-nhuan-quy-2-lap-ky-luc-nhung-2027-se-ra-sao/"
+     },
+     {
+      "org": "BVSC",
+      "date": "2026-08",
+      "rating": "Khả quan",
+      "target": 24900,
+      "url": "https://elibook.vn/2026/09/03/pvt-gia-cuoc-tau-dau-bung-no-nho-hormuz-loi-nhuan-quy-2-lap-ky-luc-nhung-2027-se-ra-sao/"
+     },
+     {
+      "org": "VNDirect",
+      "date": "2026-07-31",
+      "rating": "—",
+      "target": 24200,
+      "url": "https://elibook.vn/2026/09/03/pvt-gia-cuoc-tau-dau-bung-no-nho-hormuz-loi-nhuan-quy-2-lap-ky-luc-nhung-2027-se-ra-sao/"
+     }
+    ]
+   }
+  }
+ },
+ "GAS": {
+  "as_of": "2026-10-04",
+  "summary": "Giá bán khí neo theo giá dầu trong khi giá vốn tương đối cố định → Brent ~95–104 USD giúp Q2/2026 lãi kỷ lục (LNTT >7.400 tỷ, biên gộp 18%). 8 tháng đã đạt ~130% kế hoạch lợi nhuận năm. Rủi ro chính: giá dầu đảo chiều và tỷ lệ cổ đông nhỏ chỉ 4,24% (dưới chuẩn 10%).",
+  "compositions": [
+   {
+    "title": "Doanh thu H1/2026 theo sản phẩm",
+    "basis": "doanh thu thuần hợp nhất 81.268 tỷ",
+    "url": "https://nguoiquansat.vn/doanh-thu-khi-tu-nhien-gan-gap-doi-loi-nhuan-cot-loi-pv-gas-tang-59-307618.html",
+    "items": [
+     {
+      "name": "Khí khô + LNG",
+      "share_pct": 58.1,
+      "value": "47.191 tỷ (+94%)"
+     },
+     {
+      "name": "LPG",
+      "share_pct": 37.0,
+      "value": "30.086 tỷ (+5%)"
+     },
+     {
+      "name": "Khác: condensate, vận chuyển khí, CNG…",
+      "share_pct": 4.9,
+      "value": "~3.991 tỷ",
+      "note": "phần còn lại — tự tính"
+     }
+    ]
+   },
+   {
+    "title": "Sản lượng 7 tháng/2026",
+    "basis": "không có cơ cấu khách hàng công bố; PV GAS cấp khí cho 7–15% sản lượng điện và ~70% nguyên liệu đạm",
+    "url": "https://baochinhphu.vn/6-thang-dau-nam-pv-gas-hoan-thanh-ke-hoach-loi-nhuan-va-nop-ngan-sach-cho-ca-nam-102260822144700981.htm",
+    "items": [
+     {
+      "name": "Khí khô",
+      "value": ">4,2 tỷ Sm³",
+      "note": "+17%, 105% kế hoạch"
+     },
+     {
+      "name": "LNG",
+      "value": "~658 triệu Sm³"
+     },
+     {
+      "name": "LPG kinh doanh",
+      "value": "~2,1 triệu tấn (LPG/LNG)"
+     }
+    ]
+   }
+  ],
+  "drivers": [
+   {
+    "name": "Giá dầu (Brent/FO)",
+    "detail": "Giá tham chiếu Q2 +47% YoY; Brent đóng 103,5 USD ngày 30/09 do đàm phán Mỹ–Iran bế tắc",
+    "direction": "up",
+    "url": "https://elibook.vn/2026/09/15/gas-va-bsr-loi-nhuan-thang-hoa-nho-gia-dau-nhung-gia-co-phieu-van-cho-cau-chuyen-xu-ly-von-nha-nuoc-song-79/"
+   },
+   {
+    "name": "Sản lượng khí cho điện",
+    "detail": "Doanh thu khí khô + LNG gần gấp đôi; nhu cầu từ Nhơn Trạch 3&4",
+    "direction": "up",
+    "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-29-9-vsc-pvs-gas-319034.html"
+   },
+   {
+    "name": "Biên lợi nhuận",
+    "detail": "Q4/2025 biên gộp chỉ 9% (từ 16%); Q1/2026 giá vốn +55% > doanh thu +48% — nhạy với chi phí LNG",
+    "direction": "mixed",
+    "url": "https://www.dnse.com.vn/senses/tin-tuc/loi-nhuan-pv-gas-giam-33-trong-quy-iv2025-nam-luong-tien-gan-40000-ty-ong-35188023"
+   },
+   {
+    "name": "Nguồn cung thượng nguồn",
+    "detail": "Sư Tử Trắng GĐ2, Hải Thạch–Mộc Tinh bổ sung nguồn; LNG Thị Vải: Vietcap kỳ vọng LN gấp 3 năm 2027; Sơn Mỹ LNG lùi đến 2031–32",
+    "direction": "mixed",
+    "url": "https://cafef.vn/vietcap-du-phong-loi-nhuan-mot-dai-gia-viet-co-the-dat-hon-13000-ty-dong-nam-2026-188260819222207432.chn"
+   },
+   {
+    "name": "Lô B – Ô Môn",
+    "detail": "Dòng khí đầu tiên chậm nhất Q3/2027 — ngoài khung 6 tháng",
+    "direction": "mixed",
+    "url": "https://baoxaydung.vn/can-tho-dong-khi-lo-b-du-kien-ve-nam-2027-cac-nha-may-o-mon-van-hanh-tu-cuoi-2028-192261001135232459.htm"
+   }
+  ],
+  "financials": {
+   "unit": "tỷ đồng",
+   "columns": [
+    {
+     "key": "period",
+     "label": "Kỳ"
+    },
+    {
+     "key": "revenue",
+     "label": "Doanh thu"
+    },
+    {
+     "key": "gm",
+     "label": "Biên LN gộp",
+     "dec": 1,
+     "suffix": "%"
+    },
+    {
+     "key": "npat",
+     "label": "LNST"
+    },
+    {
+     "key": "parent",
+     "label": "LNST cty mẹ"
+    },
+    {
+     "key": "note",
+     "label": "Ghi chú"
+    }
+   ],
+   "rows": [
+    {
+     "period": "FY2024",
+     "revenue": "~104.000",
+     "gm": null,
+     "npat": 10590,
+     "parent": null,
+     "url": "https://vietstock.vn/2025/01/pv-gas-lap-ky-luc-doanh-thu-nhung-loi-nhuan-di-lui-737-1267218.htm"
+    },
+    {
+     "period": "FY2025",
+     "revenue": 135129,
+     "gm": null,
+     "npat": 11571,
+     "parent": null,
+     "note": "nguồn khác: 11.414; EPS 4.786",
+     "url": "https://www.dnse.com.vn/senses/tin-tuc/loi-nhuan-pv-gas-giam-33-trong-quy-iv2025-nam-luong-tien-gan-40000-ty-ong-35188023"
+    },
+    {
+     "period": "Q1/2026",
+     "revenue": 38019,
+     "gm": 11.9,
+     "npat": 2994,
+     "parent": 2945,
+     "note": "biên & LN mẹ tự tính",
+     "url": "https://kinhtechungkhoan.vn/pv-gas-lai-gan-3-000-ty-dong-trong-quy-i-doanh-thu-ban-khi-tang-manh-so-voi-cung-ky-1443441.html"
+    },
+    {
+     "period": "Q2/2026",
+     "revenue": 43205,
+     "gm": 18.0,
+     "npat": 6021,
+     "parent": 5859,
+     "note": "LNTT >7.400 tỷ — kỷ lục",
+     "url": "https://nguoiquansat.vn/doanh-thu-khi-tu-nhien-gan-gap-doi-loi-nhuan-cot-loi-pv-gas-tang-59-307618.html"
+    },
+    {
+     "period": "H1/2026",
+     "revenue": 81268,
+     "gm": 15.1,
+     "npat": 9015,
+     "parent": 8804,
+     "note": "= kế hoạch cả năm",
+     "url": "https://nguoiquansat.vn/doanh-thu-khi-tu-nhien-gan-gap-doi-loi-nhuan-cot-loi-pv-gas-tang-59-307618.html"
+    },
+    {
+     "period": "8T/2026 (ước)",
+     "revenue": "~108.100",
+     "gm": null,
+     "npat": "~11.700",
+     "parent": null,
+     "note": "LNTT >14.500 tỷ (129% KH)",
+     "url": "https://www.tinnhanhchungkhoan.vn/pv-gas-gas-loi-nhuan-8-thang-dat-hon-14500-ty-dong-chot-quyen-co-tuc-25-va-bau-bo-sung-3-thanh-vien-hdqt-post397608.html"
+    }
+   ]
+  },
+  "reasoning": {
+   "support": [
+    {
+     "text": "8 tháng đã đạt ~130% kế hoạch LNST năm (kế hoạch xây trên giả định giá dầu thấp hơn hiện tại).",
+     "url": "https://cafef.vn/dai-gia-dau-khi-lon-nhat-san-chung-khoan-lai-12000-ty-dong-sau-8-thang-sap-phat-6000-ty-dong-cho-co-dong-188260915115953725.chn"
+    },
+    {
+     "text": "Vietcap dự báo LNST mẹ 2026 ~13.015 tỷ và 2027 ~14.533 tỷ — tiếp tục tăng trưởng năm sau.",
+     "url": "https://cafef.vn/vietcap-du-phong-loi-nhuan-mot-dai-gia-viet-co-the-dat-hon-13000-ty-dong-nam-2026-188260819222207432.chn"
+    },
+    {
+     "text": "Tiền & tiền gửi ngắn hạn ~45.456 tỷ (44% tổng tài sản) — bảng cân đối rất mạnh.",
+     "url": "https://znews.vn/pv-gas-lai-cao-nhat-lich-su-post1674750.html"
+    },
+    {
+     "text": "KBSV (28/09) khuyến nghị MUA, mục tiêu 96.300; P/E 2026 (Vietcap) ~12,7x, thấp hơn 22% trung bình 5 năm.",
+     "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-29-9-vsc-pvs-gas-319034.html"
+    }
+   ],
+   "risks": [
+    {
+     "text": "Tỷ lệ cổ đông nhỏ 4,24% < 10% — không còn đạt điều kiện công ty đại chúng từ 14/08/2026; phương án tăng vốn/thoái vốn chưa có thời điểm.",
+     "url": "https://cafebiz.vn/pv-gas-khong-con-dap-ung-dieu-kien-cong-ty-dai-chung-176260828114013434.chn"
+    },
+    {
+     "text": "Lợi nhuận phụ thuộc giá dầu; nếu căng thẳng Trung Đông hạ nhiệt, biên có thể co lại như Q4/2025 (LN −32%).",
+     "url": "https://elibook.vn/2026/09/15/gas-va-bsr-loi-nhuan-thang-hoa-nho-gia-dau-nhung-gia-co-phieu-van-cho-cau-chuyen-xu-ly-von-nha-nuoc-song-79/"
+    },
+    {
+     "text": "Cổ tức 2.500đ đã chốt quyền 23/09 — người mua bây giờ không nhận.",
+     "url": "https://cafef.vn/pv-gas-sap-tra-hon-6000-ty-dong-co-tuc-giua-luc-vuong-tieu-chuan-cong-ty-dai-chung-188260909151438803.chn"
+    },
+    {
+     "text": "Giá cổ phiếu giảm 44,7% trong 6 tháng đến giữa T9 dù lãi kỷ lục — thị trường chưa định giá theo lợi nhuận.",
+     "url": "https://elibook.vn/2026/09/15/gas-va-bsr-loi-nhuan-thang-hoa-nho-gia-dau-nhung-gia-co-phieu-van-cho-cau-chuyen-xu-ly-von-nha-nuoc-song-79/"
+    }
+   ]
+  },
+  "forecasts": {
+   "6m": {
+    "note": "Dự báo LNST mẹ cả năm 2026.",
+    "columns": [
+     {
+      "key": "org",
+      "label": "Tổ chức"
+     },
+     {
+      "key": "date",
+      "label": "Ngày"
+     },
+     {
+      "key": "npat",
+      "label": "LNST mẹ (tỷ)"
+     },
+     {
+      "key": "eps",
+      "label": "EPS"
+     }
+    ],
+    "items": [
+     {
+      "org": "Vietcap",
+      "date": "2026-08-19",
+      "npat": 13015,
+      "eps": null,
+      "url": "https://cafef.vn/vietcap-du-phong-loi-nhuan-mot-dai-gia-viet-co-the-dat-hon-13000-ty-dong-nam-2026-188260819222207432.chn"
+     },
+     {
+      "org": "KBSV",
+      "date": "2026-09-28",
+      "npat": 12977,
+      "eps": null,
+      "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-29-9-vsc-pvs-gas-319034.html"
+     },
+     {
+      "org": "Kế hoạch công ty",
+      "date": "2026",
+      "npat": 9019,
+      "eps": null,
+      "url": "https://vietnambiz.vn/pv-gas-du-bao-loi-nhuan-giam-hon-20-nam-2026-202632510378278.htm"
+     }
+    ],
+    "events": [
+     {
+      "date": "~cuối T10/2026",
+      "event": "KQKD Q3/2026"
+     },
+     {
+      "date": "20/11/2026",
+      "event": "Thanh toán cổ tức 25% (đã chốt quyền 23/09)"
+     },
+     {
+      "date": "T10/2026–T8/2027",
+      "event": "Khắc phục điều kiện công ty đại chúng: tăng vốn + thoái vốn Nhà nước (chưa công bố quy mô/thời điểm)"
+     },
+     {
+      "date": "~T1/2027",
+      "event": "KQKD 2026, kế hoạch 2027"
+     }
+    ]
+   },
+   "12m": {
+    "columns": [
+     {
+      "key": "org",
+      "label": "Tổ chức"
+     },
+     {
+      "key": "date",
+      "label": "Ngày"
+     },
+     {
+      "key": "npat",
+      "label": "LNST mẹ (tỷ)"
+     },
+     {
+      "key": "eps",
+      "label": "EPS"
+     }
+    ],
+    "items": [
+     {
+      "org": "Vietcap (2027)",
+      "date": "2026-08-19",
+      "npat": 14533,
+      "eps": null,
+      "url": "https://cafef.vn/vietcap-du-phong-loi-nhuan-mot-dai-gia-viet-co-the-dat-hon-13000-ty-dong-nam-2026-188260819222207432.chn"
+     }
+    ],
+    "targets": [
+     {
+      "org": "ACBS",
+      "date": "không rõ",
+      "rating": "Mua",
+      "target": 102800,
+      "url": "https://baomoi.com/tag/c%E1%BB%95-phi%E1%BA%BFu-GAS.epi"
+     },
+     {
+      "org": "KBSV",
+      "date": "2026-09-28",
+      "rating": "Mua",
+      "target": 96300,
+      "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-29-9-vsc-pvs-gas-319034.html"
+     },
+     {
+      "org": "Vietcap",
+      "date": "2026-08-18",
+      "rating": "Mua",
+      "target": 90000,
+      "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-19-8-gas-ctg-vhm-311272.html"
+     },
+     {
+      "org": "BVSC",
+      "date": "2026-08-06",
+      "rating": "Khả quan",
+      "target": 84900,
+      "url": "https://phapluat.suckhoedoisong.vn/nhan-dinh-chung-khoan-ngay-06082026-co-phieu-gas-vpb-va-msb-duoc-khuyen-nghi-tich-cuc-282528.html"
+     },
+     {
+      "org": "SSI",
+      "date": "2026-03-25",
+      "rating": "Trung lập (cũ)",
+      "target": 83400,
+      "url": "https://www.ssi.com.vn/khach-hang-ca-nhan/bao-cao-cong-ty?keyword=GAS&page=1"
+     }
+    ],
+    "events": [
+     {
+      "date": "chậm nhất Q3/2027",
+      "event": "Dòng khí đầu tiên Lô B – Ô Môn",
+      "url": "https://baoxaydung.vn/can-tho-dong-khi-lo-b-du-kien-ve-nam-2027-cac-nha-may-o-mon-van-hanh-tu-cuoi-2028-192261001135232459.htm"
+     }
+    ]
+   }
+  }
+ },
+ "GEE": {
+  "as_of": "2026-10-04",
+  "summary": "Nhà sản xuất dây cáp (CADIVI), máy biến áp (THIBIDI, MEE), thiết bị đo (EMIC) — hưởng lợi từ đầu tư lưới điện (18,1 tỷ USD truyền tải 2026–30) và giá đồng cao. H1/2026 LNST mẹ +31%; kế hoạch 2026 thấp hơn 2025 vì năm trước có lãi thoái vốn bất thường.",
+  "compositions": [
+   {
+    "title": "LNTT 2025 theo công ty con (riêng lẻ)",
+    "basis": "tổng LNTT riêng lẻ các công ty con, chưa hợp nhất (LNTT hợp nhất 4.262 tỷ gồm lãi thoái vốn)",
+    "url": "https://gelex-electric.com/wp-content/uploads/2026/04/VIE-BCTN-2025-GEE.pdf",
+    "items": [
+     {
+      "name": "CADIVI — dây cáp điện (97,1%)",
+      "share_pct": 74.1,
+      "value": "LNTT 2.138 tỷ",
+      "note": "DT 15.697 tỷ"
+     },
+     {
+      "name": "THIBIDI — máy biến áp (98,1%)",
+      "share_pct": 9.0,
+      "value": "LNTT 259 tỷ",
+      "note": "DT 1.461 tỷ"
+     },
+     {
+      "name": "EMIC — thiết bị đo (90%)",
+      "share_pct": 8.6,
+      "value": "LNTT 248 tỷ",
+      "note": "DT 1.170 tỷ"
+     },
+     {
+      "name": "CFT — dây đồng (100%)",
+      "share_pct": 4.1,
+      "value": "LNTT 117 tỷ",
+      "note": "DT 11.772 tỷ, chủ yếu bán đồng cho CADIVI (nội bộ)"
+     },
+     {
+      "name": "HEM — động cơ (76,7%)",
+      "share_pct": 2.9,
+      "value": "LNTT 83 tỷ",
+      "note": "DT 91 tỷ"
+     },
+     {
+      "name": "MEE — máy biến áp truyền tải (80,8%)",
+      "share_pct": 1.5,
+      "value": "LNTT 42 tỷ",
+      "note": "DT 626 tỷ"
+     }
+    ]
+   },
+   {
+    "title": "Doanh thu H1/2026 theo mảng",
+    "basis": "16.621 tỷ",
+    "url": "https://nhipsongkinhdoanh.vn/gelex-electric-bao-lai-945-ty-dong-trong-quy-ii--hoan-thanh-63--ke-hoach-nam-sau-6-thang-30808.htm",
+    "items": [
+     {
+      "name": "Thiết bị điện (cáp, MBA, đo lường, động cơ)",
+      "share_pct": 99.0,
+      "value": "16.463 tỷ"
+     },
+     {
+      "name": "Khác (phát điện, mua bán điện…)",
+      "share_pct": 1.0,
+      "value": "~158 tỷ",
+      "note": "tự tính"
+     }
+    ]
+   }
+  ],
+  "drivers": [
+   {
+    "name": "Đầu tư lưới điện",
+    "detail": "QHĐ8 điều chỉnh: 18,1 tỷ USD cho truyền tải 2026–2030 (~3,6 tỷ USD/năm); EVN khởi công 285, hoàn thành 300 công trình 110–500kV năm 2026",
+    "direction": "up",
+    "url": "https://tapchicongthuong.vn/gelex-electric--gee-lai-nua-dau-nam-tang-28-don-du-dia-tang-truong-lon-535052.htm"
+   },
+   {
+    "name": "Giá đồng",
+    "detail": "Bình quân H1/2026 13.069 USD/t (+31%) đẩy doanh thu; LME lập đỉnh ~14.500–14.779 USD/t T9",
+    "direction": "mixed",
+    "url": "https://vtv.vn/gia-dong-len-muc-cao-ky-luc-100260908155737912.htm"
+   },
+   {
+    "name": "Hạ tầng & trung tâm dữ liệu",
+    "detail": "MBS: hưởng lợi từ lưới điện, sân bay, metro, đường sắt, KCN, data center; doanh thu tăng ~26%/năm 2026–27",
+    "direction": "up",
+    "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-18-9-mbb-gee-hhv-316916.html"
+   },
+   {
+    "name": "Biên & vốn lưu động",
+    "detail": "Biên gộp H1 14,33% (vs 15,84%); tồn kho 6.351 tỷ (+44,7%); phải thu +83,7%; dòng tiền KD −745 tỷ; lãi vay +72,9%",
+    "direction": "down",
+    "url": "https://nguoiquansat.vn/khong-chi-cadivi-dau-la-nhung-dong-co-keo-gelex-electric-gee-lai-1-700-ty-dong-sau-nua-nam-304624.html"
+   },
+   {
+    "name": "Không lặp lại lãi thoái vốn 2025",
+    "detail": "Kế hoạch LNTT 2026: 2.705 tỷ (−36,5%)",
+    "direction": "down",
+    "url": "https://gelex-electric.com/wp-content/uploads/2026/04/VIE-BCTN-2025-GEE.pdf"
+   },
+   {
+    "name": "Giao dịch trong hệ sinh thái GELEX",
+    "detail": "Cho vay GELEX 534 tỷ, GELEX Hạ tầng 677 tỷ, GELEX Đầu tư 1.377 tỷ (30/06/2026)",
+    "direction": "mixed",
+    "url": "https://etime.danviet.vn/gee-hoan-thanh-gan-63-ke-hoach-loi-nhuan-sau-nua-nam-dong-tien-nghin-ty-luan-chuyen-trong-he-sinh-thai-gelex-d1444129.html"
+   }
+  ],
+  "financials": {
+   "unit": "tỷ đồng",
+   "columns": [
+    {
+     "key": "period",
+     "label": "Kỳ"
+    },
+    {
+     "key": "revenue",
+     "label": "Doanh thu"
+    },
+    {
+     "key": "gm",
+     "label": "Biên LN gộp",
+     "dec": 1,
+     "suffix": "%"
+    },
+    {
+     "key": "npat",
+     "label": "LNST"
+    },
+    {
+     "key": "parent",
+     "label": "LNST cty mẹ"
+    },
+    {
+     "key": "note",
+     "label": "Ghi chú"
+    }
+   ],
+   "rows": [
+    {
+     "period": "FY2024",
+     "revenue": 21130,
+     "gm": 14.5,
+     "npat": 1715,
+     "parent": 1588,
+     "url": "https://gelex-electric.com/wp-content/uploads/2026/04/VIE-BCTN-2025-GEE.pdf"
+    },
+    {
+     "period": "FY2025",
+     "revenue": 25463,
+     "gm": 16.0,
+     "npat": 3417,
+     "parent": 3257,
+     "note": "gồm lãi thoái vốn/tái cấu trúc",
+     "url": "https://gelex-electric.com/wp-content/uploads/2026/04/VIE-BCTN-2025-GEE.pdf"
+    },
+    {
+     "period": "Q1/2026",
+     "revenue": 7097,
+     "gm": 14.3,
+     "npat": 606,
+     "parent": 579,
+     "note": "LNST & biên tự tính",
+     "url": "https://cafef.vn/gelex-electric-gee-bao-lai-truoc-thue-755-ty-dong-tang-243-so-voi-cung-ky-188260429113338045.chn"
+    },
+    {
+     "period": "Q2/2026",
+     "revenue": 9524,
+     "gm": 14.35,
+     "npat": 740,
+     "parent": 705,
+     "note": "LNTT 945 (+30,9%)",
+     "url": "https://nhipsongkinhdoanh.vn/gelex-electric-bao-lai-945-ty-dong-trong-quy-ii--hoan-thanh-63--ke-hoach-nam-sau-6-thang-30808.htm"
+    },
+    {
+     "period": "H1/2026",
+     "revenue": 16621,
+     "gm": 14.33,
+     "npat": 1346,
+     "parent": 1284,
+     "note": "63% kế hoạch LNTT",
+     "url": "https://nhipsongkinhdoanh.vn/gelex-electric-bao-lai-945-ty-dong-trong-quy-ii--hoan-thanh-63--ke-hoach-nam-sau-6-thang-30808.htm"
+    },
+    {
+     "period": "Q3/2025 (nền so sánh)",
+     "revenue": null,
+     "gm": null,
+     "npat": null,
+     "parent": null,
+     "note": "LNTT 2.202 tỷ (+317%) nhờ lãi tái cấu trúc — nền rất cao cho Q3/2026",
+     "url": "https://vneconomy.vn/quy-3-lai-ky-luc-gelex-electric-da-ve-dich-chi-tieu-loi-nhuan-nam-2025.htm"
+    }
+   ]
+  },
+  "reasoning": {
+   "support": [
+    {
+     "text": "LNST mẹ H1/2026 +31% với doanh thu +41% — tăng trưởng lõi (không gồm thoái vốn) vẫn mạnh.",
+     "url": "https://cafef.vn/gelex-electric-tang-toc-trong-quy-ii-2026-hoan-thanh-hon-60-ke-hoach-nam-sau-6-thang-188260717111112341.chn"
+    },
+    {
+     "text": "Đầu tư truyền tải ~3,6 tỷ USD/năm đến 2030 là nhu cầu dài hạn cho cáp, MBA, công tơ — đúng mảng chiếm 99% doanh thu GEE.",
+     "url": "https://dantri.com.vn/kinh-doanh/thi-truong-thiet-bi-nang-luong-truoc-co-hoi-don-song-dau-tu-1363-ty-usd-20261002093958340.htm"
+    },
+    {
+     "text": "Công ty thuộc GELEX đăng ký mua 10 triệu cp GEE (29/09–28/10); cổ tức 5% trả 07/10, kế hoạch tổng 30% năm 2026.",
+     "url": "https://www.dnse.com.vn/senses/tin-tuc/cong-ty-chau-cua-gelex-dang-ky-mua-10-trieu-co-phieu-gee-35287196"
+    },
+    {
+     "text": "MBS (17/09) khả quan, mục tiêu 82.200, P/E 2026 ~11,4x. Tương quan thấp với POW/PVT/GAS (0,05–0,25) — đa dạng hoá danh mục.",
+     "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-18-9-mbb-gee-hhv-316916.html"
+    }
+   ],
+   "risks": [
+    {
+     "text": "Q3/2025 LNTT 2.202 tỷ nhờ lãi bất thường → KQKD Q3/2026 (giữa–cuối T10) gần như chắc chắn giảm mạnh so cùng kỳ trên giấy.",
+     "url": "https://vneconomy.vn/quy-3-lai-ky-luc-gelex-electric-da-ve-dich-chi-tieu-loi-nhuan-nam-2025.htm"
+    },
+    {
+     "text": "Giá đồng kỷ lục bào mòn biên gộp; dòng tiền KD âm, tồn kho và phải thu tăng mạnh.",
+     "url": "https://24hmoney.vn/news/gee-lai-vay-bao-mon-loi-nhuan-c30a2816124.html"
+    },
+    {
+     "text": "GEX sở hữu 75,96%; cho vay nghìn tỷ cho các công ty trong hệ sinh thái.",
+     "url": "https://etime.danviet.vn/gee-hoan-thanh-gan-63-ke-hoach-loi-nhuan-sau-nua-nam-dong-tien-nghin-ty-luan-chuyen-trong-he-sinh-thai-gelex-d1444129.html"
+    },
+    {
+     "text": "Biến động rất lớn: giảm ~50% từ đỉnh 52 tuần, độ biến động năm hoá ~60%.",
+     "url": null
+    }
+   ]
+  },
+  "forecasts": {
+   "6m": {
+    "note": "Không tìm thấy dự báo LNST 2026 cụ thể của CTCK; hiển thị kế hoạch công ty.",
+    "columns": [
+     {
+      "key": "org",
+      "label": "Tổ chức"
+     },
+     {
+      "key": "date",
+      "label": "Ngày"
+     },
+     {
+      "key": "npat",
+      "label": "LNST mẹ (tỷ)"
+     },
+     {
+      "key": "eps",
+      "label": "EPS"
+     }
+    ],
+    "items": [
+     {
+      "org": "Kế hoạch công ty (ĐHCĐ)",
+      "date": "2026-04",
+      "npat": 2121,
+      "eps": null,
+      "url": "https://gelex.vn/tin-tuc-su-kien/gelex-electric-dat-muc-tieu-doanh-thu-hon-27-200-ty-dong-tiep-tuc-duy-tri-co-tuc-cao.html"
+     },
+     {
+      "org": "Đã thực hiện H1/2026",
+      "date": "2026-07-17",
+      "npat": 1284,
+      "eps": null,
+      "url": "https://nhipsongkinhdoanh.vn/gelex-electric-bao-lai-945-ty-dong-trong-quy-ii--hoan-thanh-63--ke-hoach-nam-sau-6-thang-30808.htm"
+     }
+    ],
+    "events": [
+     {
+      "date": "07/10/2026",
+      "event": "Trả cổ tức đợt 2 (5%) — đã chốt quyền 18/09"
+     },
+     {
+      "date": "T10/2026",
+      "event": "Lấy ý kiến cổ đông đổi tên thành GELEX Industries, mở rộng sang công nghệ/R&D/dữ liệu",
+      "url": "https://cafef.vn/gelex-electric-xin-y-kien-co-dong-ve-viec-doi-ten-va-mo-rong-nganh-nghe-kinh-doanh-188261003105418572.chn"
+     },
+     {
+      "date": "29/09–28/10/2026",
+      "event": "Công ty thuộc GELEX mua 10 triệu cp GEE"
+     },
+     {
+      "date": "~giữa–cuối T10/2026",
+      "event": "KQKD Q3/2026 (nền cùng kỳ rất cao)"
+     },
+     {
+      "date": "chưa rõ",
+      "event": "~20% cổ tức tiền mặt còn lại của kế hoạch 30%"
+     }
+    ]
+   },
+   "12m": {
+    "note": "Không tìm thấy dự báo lợi nhuận 2027. Mục tiêu VPBankS chỉ thấy trên trang tổng hợp — chưa xác minh.",
+    "targets": [
+     {
+      "org": "VPBankS",
+      "date": "2026-07-06",
+      "rating": "Mua (chưa xác minh)",
+      "target": 121400,
+      "url": "https://24hmoney.vn/stock/GEE"
+     },
+     {
+      "org": "MBS",
+      "date": "2026-09-17",
+      "rating": "Khả quan",
+      "target": 82200,
+      "url": "https://nguoiquansat.vn/co-phieu-dang-chu-y-ngay-18-9-mbb-gee-hhv-316916.html"
+     }
+    ]
+   }
+  }
+ }
+}

@@ -8,3 +8,11 @@ env/
 .env
 *.log
 .refresh_log.jsonl
+# Local backups (large; never commit)
+BACKUP/market.db
+BACKUP/snapshots/
+BACKUP/*.log
+BACKUP/*.jsonl
+BACKUP/manifest.json
+BACKUP/.snooze_until
+BACKUP/*.prev.json

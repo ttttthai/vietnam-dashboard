@@ -30,3 +30,9 @@ Push this repo to GitHub and connect it to Render — `render.yaml` does the res
 - `GET /api/banks/breakdown` — lending/funding breakdowns
 - `GET /api/banks/lineitem/{key}` — per-item drill-down
 - `GET /api/banks/{symbol}/entities` — subsidiaries & affiliates
+- `GET /api/invest/context` — rules, macro context (GDP, public investment, CPI), VN-Index
+- `GET /api/invest/screen?group=VN30&horizon=63&target=0` — rank a basket by the 5 conditions
+- `GET /api/invest/analyze?symbols=HPG,FPT&horizon=63&target=0` — deep dive (max 4 symbols, max 63 sessions)
+
+The "Đầu tư" tab (`invest.py`) reads daily prices directly from Vietcap (VCI) public
+endpoints using only the standard library — vnstock was quarantined on PyPI on 2026-09-24.

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.vietnamdashboard.backup</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/hoangthai/CLAUDECODE/VIETNAM DASHBOARD/BACKUP/ask_and_backup.sh</string>
+  </array>
+  <!-- Checks every day at 10:00; the dialog only appears when the last backup is ≥ 14 days old -->
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+  <key>StandardOutPath</key><string>/Users/hoangthai/CLAUDECODE/VIETNAM DASHBOARD/BACKUP/launchd.log</string>
+  <key>StandardErrorPath</key><string>/Users/hoangthai/CLAUDECODE/VIETNAM DASHBOARD/BACKUP/launchd.log</string>
+</dict>
+</plist>
