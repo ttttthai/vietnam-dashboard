@@ -4899,7 +4899,11 @@ function renderCpiForecast() {
   const mid = a => !a ? null : a[0] != null ? a[0] : (a[1] + a[2]) / 2;
   const TYPE = E ? { intl_org: 'International org.', bank: 'Bank / survey', gov: 'Government / SBV', vn_research: 'Domestic research' } : { intl_org: 'Tổ chức quốc tế', bank: 'Ngân hàng / khảo sát', gov: 'Chính phủ / NHNN', vn_research: 'Nghiên cứu trong nước' };
   const qLow = (L.yoy[0] + L.yoy[1] + L.yoy[2]) / 3;   // Q4 average in our low scenario
-  const rows = CPI_FC_INST.slice().sort((a, b) => b.pub.localeCompare(a.pub)).map(r => {
+  // only reports published in the last 6 months
+  const cut = new Date(); cut.setHours(0, 0, 0, 0); cut.setMonth(cut.getMonth() - 6);
+  const cutS = `${cut.getFullYear()}-${String(cut.getMonth() + 1).padStart(2, '0')}-${String(cut.getDate()).padStart(2, '0')}`;
+  const recentInst = CPI_FC_INST.filter(r => r.pub >= cutS), nOld = CPI_FC_INST.length - recentInst.length;
+  const rows = recentInst.slice().sort((a, b) => b.pub.localeCompare(a.pub)).map(r => {
     const f = mid(r['2026']), q4 = f == null || n9 !== 9 ? null : (12 * f - sum9) / 3, stale = r.pub < '2026-10-03';
     return `<tr><td style="white-space:normal">${r.url ? `<a href="${ciE(r.url)}" target="_blank" rel="noopener">${ciE(r.inst)}</a>` : ciE(r.inst)}</td><td>${TYPE[r.type] || r.type}</td>
       <td class="num">${fcv(r['2026'])}</td><td class="num">${fcv(r['2027'])}</td><td>${pgFmt(r.pub)}</td>
@@ -4920,7 +4924,7 @@ function renderCpiForecast() {
         <div class="iv-sec">${L2('Yếu tố tác động', 'Drivers')}</div>
         <ul class="cpi-fc-drv">${CPI_FC_DRIVERS.map(x => `<li>${arrow(x.dir)} <b>${x.m}</b> ${ciE(E && x.te ? x.te : x.t)} <a href="${ciE(x.u)}" target="_blank" rel="noopener">${L2('nguồn', 'source')}</a></li>`).join('')}</ul>
       </div>
-      <div><div class="iv-sec">${L2('Dự báo của các tổ chức (CPI bình quân năm)', 'Institutional forecasts (annual average CPI)')}</div>
+      <div><div class="iv-sec">${L2('Dự báo của các tổ chức (CPI bình quân năm)', 'Institutional forecasts (annual average CPI)')} <span style="font-weight:400;text-transform:none;letter-spacing:0">· ${L2(`báo cáo công bố trong 6 tháng gần nhất (từ ${pgFmt(cutS)})${nOld ? `, ẩn ${nOld} báo cáo cũ hơn` : ''}`, `reports published in the last 6 months (since ${pgFmt(cutS)})${nOld ? `; ${nOld} older report${nOld > 1 ? 's' : ''} hidden` : ''}`)}</span></div>
         <div class="iv-tablewrap"><table class="iv-table"><thead><tr><th>${L2('Tổ chức', 'Institution')}</th><th>${L2('Loại', 'Type')}</th><th class="num">2026</th><th class="num">2027</th><th>${L2('Công bố', 'Published')}</th><th class="num">${L2('Hàm ý Q4', 'Implied Q4')}</th></tr></thead><tbody>${rows}</tbody></table></div>
       </div>
     </div>
