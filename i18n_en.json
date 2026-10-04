@@ -738,7 +738,7 @@
 "Nâng hạng FTSE": "FTSE upgrade",
 "Nâng hạng FTSE đã có hiệu lực; 3 đợt giải ngân lớn (20–35%) rơi vào T3, T6, T9/2027 — nằm trong khung 6–12 tháng.": "FTSE upgrade is in effect; 3 large inflow tranches (20–35%) fall in T3, T6, T9/2027 — within the 6–12 month window.",
 "Nông nghiệp": "Agriculture",
-"Nông, lâm, thủy sản": "Agriculture, forestry, fisheries",
+"Nông, lâm, thủy sản": "Agriculture, forestry & fishery",
 "Nông-Lâm-Thủy sản": "Agriculture-Forestry-Fisheries",
 "Năm": "Year",
 "Năm (FY2024)": "Year (FY2024)",
@@ -2165,7 +2165,17 @@
 "Mục tiêu 2026 (NQ 244/2025/QH15)": "2026 target (Res. 244/2025/QH15)",
 "~4,5%": "~4.5%",
 "Dự báo:": "Projection:",
-"Dự báo CPI": "CPI projection"
+"Dự báo CPI": "CPI projection",
+"Tổng quan kinh tế – xã hội ·": "Socio-economic overview ·",
+"Dân số & xã hội": "Population & society",
+"mô hình phân bổ · khớp tổng NSO": "model allocation · sums to NSO total",
+"GDP (giá hiện hành)": "GDP (current prices)",
+"GRDP (giá hiện hành)": "GRDP (current prices)",
+"GDP/người": "GDP per capita",
+"GRDP/người": "GRDP per capita",
+"Tăng trưởng GDP": "GDP growth",
+"Tỷ trọng GDP cả nước": "Share of national GDP",
+"Thuế SP": "Product taxes"
 },
 "templates": {
 "{0}{1} điểm %": "{0}{1} pp",
@@ -2462,6 +2472,15 @@
 "Đến {0}": "To {0}",
 "Dự báo CPI YoY · {0}": "CPI y/y projection · {0}",
 "Cơ sở {0}": "Base {0}",
-"Khoảng {0}": "Range {0}"
+"Khoảng {0}": "Range {0}",
+"Kinh tế · GDP {0}": "Economy · GDP {0}",
+"Kinh tế · GRDP {0}": "Economy · GRDP {0}",
+"NSO {0} (ước tính)": "NSO {0} (estimate)",
+"{0} triệu tỷ": "{0} quadrillion VND",
+"≈ {0} tỷ USD": "≈ ${0} bn",
+"{0} tr.đ": "{0} mn VND",
+"≈ {0} USD": "≈ ${0}",
+"{0} · giá so sánh": "{0} · constant prices",
+"tăng trưởng {0}": "growth {0}"
 }
 }
