@@ -6667,7 +6667,12 @@ function pgAge(s) {
   const y = Math.floor(m / 12), r = m % 12; return `${y} năm${r ? ` ${r} tháng` : ''}`;
 }
 function pgShort(d) {
-  if (pgStage(d) === 'draft') { const t = d.ref.replace(/^Dự thảo\s*/i, ''); return 'DT ' + (t.length > 22 ? t.slice(0, 21) + '…' : t); }
+  if (pgStage(d) === 'draft') {
+    let t = d.ref.replace(/^Dự thảo\s*/i, '').replace(/Luật sửa đổi,? bổ sung (một số điều của )?/i, 'sđ ').replace(/^Nghị định/i, 'NĐ').replace(/^Nghị quyết( QH)?/i, 'NQ').replace(/\(sửa đổi\)/i, '(sđ)').replace(/^luật sửa đổi \d+ luật/i, 'Luật sửa nhiều luật');
+    t = t.replace(/^sđ Luật /, 'Luật ').replace(/^sđ /, '');
+    if (t.length > 20) { t = t.slice(0, 20); t = t.slice(0, Math.max(12, t.lastIndexOf(' '))) + '…'; }
+    return 'DT ' + t;
+  }
   const n = (d.ref.match(/\d+/) || [''])[0];
   if (d.level === 'party') {
     if (/Đại hội/.test(d.ref)) return 'ĐH XIV';
@@ -6717,19 +6722,25 @@ const PG_STAGE = { draft: 'Dự thảo', adopted: 'Đã thông qua, chưa có hi
 const pgExpected = d => { const e = d.draft && d.draft.expected; return e && /^\d{4}-\d{2}/.test(e) ? pgDate(e.length === 7 ? e + '-15' : e.slice(0, 10)) : null; };
 function pgVisible(d) { return !PG.off.has(d.pillar) && (!PG.upto || pgDate(d.date) <= PG.upto); }
 function pgGraph() {
-  const D = PG.data, W = 1100, H = 450, LW = 150, OLD = LW + 36, X0 = OLD + 46, MR = 24;
-  const lanes = { party: [10, 175], assembly: [185, 300], government: [310, 445] };
+  const D = PG.data, W = 1100, LW = 150, OLD = LW + 36, X0 = OLD + 46, MR = 130, RH = 21;   // MR leaves room for draft labels
   const t0 = pgDate('2024-07-01').getTime();
   const tExp = Math.max(0, ...D.directives.map(pgExpected).filter(Boolean).map(x => x.getTime()));
   const t1 = Math.max(pgToday().getTime() + 45 * 864e5, tExp + 30 * 864e5);
   const sx = t => X0 + (t - t0) / (t1 - t0) * (W - MR - X0);
-  const pos = {}, rows = { party: [], assembly: [], government: [] };
+  // place nodes on rows inside each lane (avoid overlaps), then size every lane to fit its rows
+  const place = { party: [], assembly: [], government: [] }, pre = [];
   D.directives.filter(pgVisible).sort((a, b) => a.date.localeCompare(b.date)).forEach(d => {
-    const t = pgDate(d.date).getTime(), x = t < t0 ? OLD : sx(t), lv = lanes[d.level] ? d.level : 'government';
-    let r = 0; while (rows[lv].some(p => p.r === r && Math.abs(p.x - x) < 46)) r++;
-    rows[lv].push({ x, r });
-    pos[d.id] = { x, y: Math.min(lanes[lv][0] + 24 + r * 21, lanes[lv][1] - 10), d };
+    const t = pgDate(d.date).getTime(), x = t < t0 ? OLD : sx(t), lv = place[d.level] ? d.level : 'government';
+    const minGap = pgStage(d) === 'draft' ? 120 : 46;
+    let r = 0; while (place[lv].some(p => p.r === r && Math.abs(p.x - x) < Math.max(minGap, p.gap))) r++;
+    place[lv].push({ x, r, gap: minGap }); pre.push({ d, x, r, lv });
   });
+  const laneH = k => Math.max(k === 'party' ? 165 : 115, 34 + (Math.max(-1, ...place[k].map(p => p.r)) + 1) * RH + 10);
+  let y = 10; const lanes = {};
+  ['party', 'assembly', 'government'].forEach(k => { const hh = laneH(k); lanes[k] = [y, y + hh]; y += hh + 10; });
+  const H = y + 10;
+  const pos = {};
+  pre.forEach(({ d, x, r, lv }) => { pos[d.id] = { x, y: lanes[lv][0] + 24 + r * RH, d }; });
   let h = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Bản đồ văn bản chỉ đạo theo thời gian">
     <defs>${Object.entries(PG_REL).map(([k, v]) => `<marker id="pga-${k}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="${v[1]}"/></marker>`).join('')}</defs>`;
   PG_LEVELS.forEach(([k, name, sub], i) => { const [y0, y1] = lanes[k];
