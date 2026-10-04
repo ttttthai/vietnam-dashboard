@@ -2175,7 +2175,8 @@
 "GRDP/người": "GRDP per capita",
 "Tăng trưởng GDP": "GDP growth",
 "Tỷ trọng GDP cả nước": "Share of national GDP",
-"Thuế SP": "Product taxes"
+"Thuế SP": "Product taxes",
+"Tăng trưởng GRDP": "GRDP growth"
 },
 "templates": {
 "{0}{1} điểm %": "{0}{1} pp",
@@ -2190,7 +2191,7 @@
 "{0} không có dữ liệu": "{0} no data",
 "{0} lỗi": "{0} errors",
 "{0} mã · {1} · cập nhật {2}${d.errors.length ?": "{0} tickers · {1} · updated {2}${d.errors.length ?",
-"{0} nghìn tỷ": "{0} trn",
+"{0} nghìn tỷ": "{0} trillion VND",
 "{0} năm · {1}%": "{0} yrs · {1}%",
 "{0} phiên gần nhất: {1} (cao nhất {2}, thấp nhất {3}); 1 tháng {4}, 3 tháng {5}.": "Last {0} sessions: {1} (high {2}, low {3}); 1M {4}, 3M {5}.",
 "{0} sự kiện": "{0} events",
@@ -2481,6 +2482,7 @@
 "{0} tr.đ": "{0} mn VND",
 "≈ {0} USD": "≈ ${0}",
 "{0} · giá so sánh": "{0} · constant prices",
-"tăng trưởng {0}": "growth {0}"
+"tăng trưởng {0}": "growth {0}",
+"{0} · {1} GDP cả nước": "{0} · {1} of national GDP"
 }
 }
