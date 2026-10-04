@@ -1239,10 +1239,6 @@ if (window.APP_LANG === 'en') window.I18N_START();
               <div class="econ-card-body" id="pg-news"></div>
             </div>
           </div>
-          <div class="econ-card full-width">
-            <div class="econ-card-header">Danh mục văn bản</div>
-            <div class="econ-card-body"><div class="iv-tablewrap"><div id="pg-table"></div></div></div>
-          </div>
         </div><!-- /panel-party -->
 
 
@@ -6481,7 +6477,7 @@ async function pgOpen() {
   PG.byId = Object.fromEntries(PG.data.directives.map(d => [d.id, d]));
   PG.pil = Object.fromEntries(PG.data.pillars.map(p => [p.id, p]));
   _setT('pg-asof', `Cập nhật ${pgFmt(PG.data.as_of)} · agent Strategy`);
-  pgKpis(); pgFilters(); pgNews(); pgTable();
+  pgKpis(); pgFilters(); pgNews();
   const labels = [], ends = [];
   for (let d = new Date(2024, 6, 1); d <= pgToday(); d.setMonth(d.getMonth() + 1)) { labels.push(`T${d.getMonth() + 1}/${String(d.getFullYear()).slice(2)}`); ends.push(new Date(d.getFullYear(), d.getMonth() + 1, 0)); }
   addTimeline('pg', document.getElementById('pg-graph').closest('.econ-card-body'), labels, i => { PG.upto = i === labels.length - 1 ? null : ends[i]; pgGraph(); });
@@ -6580,18 +6576,11 @@ function pgShortTitle(x) { const t = x.title || ''; return t.length > 90 ? t.sli
 function pgNews() {
   document.getElementById('pg-news').innerHTML = `<ul class="pg-news">${PG.data.news.slice().sort((a, b) => b.date.localeCompare(a.date)).map(n => `<li><time>${pgFmt(n.date)}</time><a href="${ciE(n.url)}" target="_blank" rel="noopener">${ciE(n.title)}</a><div>${(n.ids || []).filter(i => PG.byId[i]).map(i => `<span class="pg-tag" data-pg-id="${i}">${ciE(PG.byId[i].ref)}</span>`).join('')}</div></li>`).join('')}</ul>`;
 }
-function pgTable() {
-  const rows = PG.data.directives.slice().sort((a, b) => b.date.localeCompare(a.date));
-  const kids = id => PG.data.relations.filter(r => r.to === id).length;
-  document.getElementById('pg-table').innerHTML = `<table class="iv-table"><thead><tr><th>Số hiệu</th><th>Loại · cơ quan</th><th>Ban hành</th><th>Cách đây</th><th>Trụ cột</th><th>Trạng thái</th><th class="num">Văn bản triển khai</th><th>Nội dung</th></tr></thead><tbody>
-    ${rows.map(d => { const p = PG.pil[d.pillar] || {}; return `<tr data-pg-id="${d.id}" style="cursor:pointer"><td><b>${ciE(d.ref)}</b></td><td>${ciE(d.kind)} · ${ciE(d.issuer)}</td><td>${pgFmt(d.date)}</td><td>${pgAge(d.date)}</td>
-      <td><span class="iv-dot" style="background:${p.color}"></span>${ciE(p.name || '')}</td><td>${ciE(d.status || '')}${PG.data.relations.filter(r => r.to === d.id && r.type === 'amends').map(r => PG.byId[r.from]).filter(Boolean).map(x => `<br><span class="pg-repl">→ ${ciE(x.ref)} (${pgFmt(x.date)})</span>`).join('')}</td><td class="num">${kids(d.id) || ''}</td><td style="white-space:normal;min-width:260px">${ciE(d.title)}</td></tr>`; }).join('')}</tbody></table>`;
-}
 document.addEventListener('click', e => {
   const t = e.target.closest && e.target.closest('[data-pg-id], #pg-graph .node, [data-pg-pil]'); if (!t) return;
   if (t.dataset.pgPil) { const k = t.dataset.pgPil; if (k === '__all') PG.off.clear(); else if (k === '__none') PG.data.pillars.forEach(p => PG.off.add(p.id)); else PG.off.has(k) ? PG.off.delete(k) : PG.off.add(k); pgFilters(); pgGraph(); return; }
   pgDetail(t.dataset.pgId || t.dataset.id);
-  if (t.closest('#pg-table, #pg-news')) document.getElementById('pg-graph').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (t.closest('#pg-news')) document.getElementById('pg-graph').scrollIntoView({ behavior: 'smooth', block: 'center' });
 });
 document.addEventListener('click', e => { if (e.target.closest && e.target.closest('#pg-graph') && !e.target.closest('#pg-graph .node')) { PG.sel = null; pgHighlight(null); } });
 document.addEventListener('mouseover', e => { const n = e.target.closest && e.target.closest('#pg-graph .node'); if (n) pgHighlight(n.dataset.id, true); });
