@@ -2144,7 +2144,21 @@
 "Chưa chọn trụ cột nào — bấm “Chọn tất cả” hoặc chọn một trụ cột ở trên.": "No pillar selected — click “Select all” or pick a pillar above.",
 "Được thay thế / sửa đổi bởi:": "Replaced / amended by:",
 "Được thay thế — chưa xác định văn bản thay thế trong dữ liệu": "Replaced — replacing document not identified in the data",
-"Thay thế / sửa đổi:": "Replaces / amends:"
+"Thay thế / sửa đổi:": "Replaces / amends:",
+"có hiệu lực": "in force",
+"đã thông qua, chưa hiệu lực": "adopted, not yet in force",
+"dự thảo (◇ = dự kiến thông qua)": "draft (◇ = expected adoption)",
+"hết hiệu lực / được thay thế": "expired / replaced",
+"Dự thảo": "Draft",
+"Đã thông qua, chưa có hiệu lực": "Adopted, not yet in force",
+"Đang có hiệu lực": "In force",
+"Hết hiệu lực / được thay thế": "Expired / replaced",
+"Tiến trình dự thảo": "Draft progress",
+"Trang lấy ý kiến / hồ sơ dự thảo": "Consultation page / draft file",
+"Dự thảo đang theo dõi": "Drafts tracked",
+"Bấm vào một văn bản trên bản đồ hoặc trong tin tức.": "Click a document on the map or in the news.",
+"hiệu lực từ ngày ký (văn bản của Đảng)": "effective from signing (Party document)",
+"Hết hiệu lực": "Expired"
 },
 "templates": {
 "{0}{1} điểm %": "{0}{1} pp",
@@ -2423,6 +2437,20 @@
 "ban hành {0} (cách đây {1})": "issued {0} ({1} ago)",
 "ban hành {0} — {1}": "issued {0} — {1}",
 "ban hành {0}": "issued {0}",
-"→ {0} ({1})": "→ {0} ({1})"
+"→ {0} ({1})": "→ {0} ({1})",
+"Giai đoạn: {0}": "Stage: {0}",
+"Giai đoạn: {0} ({1})": "Stage: {0} ({1})",
+"Có hiệu lực từ {0}": "In force from {0}",
+"Có hiệu lực từ {0} — {1}": "In force from {0} — {1}",
+"Ngày có hiệu lực: chưa xác định": "In-force date: not determined",
+"Ngày có hiệu lực: chưa xác định — {0}": "In-force date: not determined — {0}",
+"Hết hiệu lực từ {0}": "Expired from {0}",
+"Mốc gần nhất {0}": "Latest milestone {0}",
+"Thông qua / ban hành {0}": "Adopted / issued {0}",
+"Bước hiện tại: {0}": "Current step: {0}",
+"Cơ quan soạn thảo: {0}": "Drafting agency: {0}",
+"Dự kiến thông qua: {0}": "Expected adoption: {0}",
+"{0} đã thông qua, chưa hiệu lực": "{0} adopted, not yet in force",
+"DT {0}": "Draft {0}"
 }
 }
