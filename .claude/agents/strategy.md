@@ -31,10 +31,17 @@ Prefer directives from 2024 onward, plus older ones still in force that newer on
    typed `related` and the source cites the other document.
 3. **Targets:** copy key quantitative targets verbatim-in-meaning with their target year
    (e.g. "kinh tế tư nhân đóng góp 55–58% GDP vào 2030").
-4. **News:** 10–20 most recent items (last ~3 months) about issuance, implementation or results of
+4. **Key points:** every directive — including every newly added one — must have `key_points`:
+   3–5 short Vietnamese bullets (each ≤ 160 characters) summarising the document's main content
+   (what it decides/requires, key mechanisms/policies, scope, deadlines/effective dates), taken from
+   the official text or reputable coverage. Complement `targets` rather than repeating them verbatim.
+   Several documents share a number across Party terms (e.g. 18-NQ/TW of 2017, 2022 and 2026) —
+   check the date. If the full text cannot be verified, give fewer bullets drawn from the summary/
+   source and add `"key_points_note": "chưa đối chiếu toàn văn"`; never invent content.
+5. **News:** 10–20 most recent items (last ~3 months) about issuance, implementation or results of
    tracked directives, each with date, title, URL and the directive ids it concerns.
-5. Keep existing entries unless a source shows they are wrong; update `status` and `as_of`.
-6. Write Vietnamese text for titles/summaries (as in the source). Keep JSON valid (validate with
+6. Keep existing entries unless a source shows they are wrong; update `status` and `as_of`.
+7. Write Vietnamese text for titles/summaries (as in the source). Keep JSON valid (validate with
    `python3 -m json.tool strategy_directives.json`).
 
 ## Schema of strategy_directives.json
@@ -56,7 +63,10 @@ Prefer directives from 2024 onward, plus older ones still in force that newer on
     "targets": [{"text": "…", "year": 2030}],
     "status": "Đang thực hiện",         // Đang thực hiện | Đã hoàn thành | Được thay thế
     "url": "https://…",
-    "source": "tên nguồn"
+    "source": "tên nguồn",
+    "key_points": ["…", "…", "…"],     // 3–5 gạch đầu dòng tiếng Việt, mỗi ý ≤ 160 ký tự: nội dung chính
+                                        // (quyết định/yêu cầu gì, cơ chế, phạm vi, thời hạn); bổ sung cho targets
+    "key_points_note": "chưa đối chiếu toàn văn"  // optional; only when key_points could not be checked against the text
   }],
   "relations": [{"from": "NQ03-CP-2025", "to": "NQ57-TW", "type": "implements", "note": "…", "url": "…"}],
   "news": [{"date": "YYYY-MM-DD", "title": "…", "url": "…", "ids": ["NQ57-TW"]}]
