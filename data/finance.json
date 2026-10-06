@@ -10139,7 +10139,8 @@
    "sbv_constraints_plumbing_analysis": {
     "date": "2026-10-06",
     "verification": "Most pages (vietstock, cafef, thoibaotaichinhvietnam, sbv.gov.vn, thuvienphapluat, IMF, ADB, FRED, World Bank API) were blocked by the egress proxy; all new figures were verified via search-engine excerpts only. Derived values are labelled 'derived' with inputs."
-   }
+   },
+   "alternatives": "see FINSYS.alternatives.series.*.source / points / observations (added 2026-10-06)"
   },
   "other_services_breakdown": {
    "as_of": "2026-10-06",
@@ -11687,6 +11688,774 @@
      "state_owned": false
     }
    ]
+  },
+  "alternatives": {
+   "as_of": "2026-10-06",
+   "note_vi": "Lịch sử mô tả: lợi suất danh nghĩa hằng năm của các nơi người Việt thường để tiền — tiền gửi, vàng miếng SJC, cổ phiếu (VN-Index), USD, căn hộ — so với lạm phát. Không phải khuyến nghị đầu tư. Mỗi chuỗi có định nghĩa và nguồn riêng; không trộn định nghĩa; năm thiếu để null.",
+   "note_en": "Descriptive history: the nominal yearly return of places Vietnamese savers commonly hold money (bank deposits, SJC gold bars, stocks via the VN-Index, US dollars, apartments), set against inflation. This is not investment advice. Each series has its own definition and source; definitions are not mixed, and missing years are null.",
+   "years": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "series": {
+    "deposit_12m": {
+     "label_vi": "Tiết kiệm 12 tháng (Vietcombank, tại quầy)",
+     "label_en": "12-month deposit (Vietcombank, counter)",
+     "unit": "% per year",
+     "values": [
+      null,
+      14.0,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      6.5,
+      6.8,
+      6.8,
+      5.6,
+      5.5,
+      7.4,
+      4.8,
+      4.6
+     ],
+     "definition": "Vietcombank's posted 12-month VND savings rate for individuals at the counter (interest paid at maturity), as in force at the START of each year, i.e. what a saver who locked in a 12-month deposit in early January earned over that calendar year. A Big-4 posted rate, so it understates what smaller banks paid (e.g. MBS private-bank average 5.82% on 15/12/2025 vs VCB 5.2% at the start of 2026). It is not an SBV-published average: no SBV 12-month average series for 2010–2025 was found.",
+     "observations": [
+      null,
+      {
+       "value": 14.0,
+       "observed": "Jan-2011",
+       "url": "https://www.tinnhanhchungkhoan.vn/10-su-kien-tieu-bieu-cua-vietcombank-nam-2011-post33671.html",
+       "note": "14%/yr for 1–12 months, at the 14% deposit-rate ceiling"
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+       "value": 6.5,
+       "observed": "Dec-2017",
+       "url": "https://vietnamfinance.vn/lai-suat-ngan-hang-vietcombank-thang-122017-tang-giam-the-nao-d12859.html",
+       "note": "rate in force at the start of 2018. By March 2018 VCB quoted 6.4% for 12 months (https://vietnamfinance.vn/lai-suat-vietcombank-moi-nhat-thang-32018-co-hap-dan-20180305144739187.htm)"
+      },
+      {
+       "value": 6.8,
+       "observed": "Jan-2019",
+       "url": "https://vietnambiz.vn/lai-suat-ngan-hang-vietcombank-thang-12019-cao-nhat-la-68nam-115745.htm",
+       "note": "raised 6.6→6.8% in Dec-2018"
+      },
+      {
+       "value": 6.8,
+       "observed": "Jan-2020",
+       "url": "https://vietnambiz.vn/lai-suat-ngan-hang-vietcombank-moi-nhat-thang-1-2020-cao-nhat-la-68-nam-20200101151351207.htm"
+      },
+      {
+       "value": 5.6,
+       "observed": "Jan-2021",
+       "url": "https://vietnambiz.vn/lai-suat-ngan-hang-vietcombank-moi-nhat-thang-1-2021-20210102155924454.htm"
+      },
+      {
+       "value": 5.5,
+       "observed": "Jan-2022",
+       "url": "https://vietnambiz.vn/lai-suat-ngan-hang-vietcombank-thang-1-2022-cao-nhat-la-bao-nhieu-2022011209283784.htm",
+       "note": "counter rate; 5.6% online"
+      },
+      {
+       "value": 7.4,
+       "observed": "3/1/2023",
+       "url": "https://vietnambiz.vn/lai-suat-ngan-hang-vietcombank-moi-nhat-thang-12022-202313155749562.htm"
+      },
+      {
+       "value": 4.8,
+       "observed": "Jan-2024 (before the 12/1/2024 cut to 4.7%)",
+       "url": "https://cafef.vn/lai-suat-ngan-hang-vietcombank-thang-1-2024-giam-manh-so-voi-thang-12-2023-188240108103124127.chn"
+      },
+      {
+       "value": 4.6,
+       "observed": "Jan-2025",
+       "url": "https://www.dnse.com.vn/senses/tin-tuc/lai-suat-ngan-hang-vietcombank-moi-nhat-thang-12025-34065700"
+      }
+     ],
+     "gaps": "2010 and 2012–2017 null: no dated Vietcombank 12-month quote found in search excerpts (sbv.gov.vn and bank sites are blocked). Do not fill these from deposit_ifs (different definition).",
+     "source": "Vietcombank rate tables as reported by vietnambiz, vietnamfinance, cafef, dnse, tinnhanhchungkhoan (URLs per observation)",
+     "url": "https://vietnambiz.vn/lai-suat-ngan-hang-vietcombank.html",
+     "verified": "search-engine excerpts, 2026-10-06 (pages blocked by egress proxy)"
+    },
+    "deposit_ifs": {
+     "label_vi": "Lãi suất tiền gửi (IMF IFS)",
+     "label_en": "Deposit rate (IMF IFS)",
+     "unit": "% per year",
+     "values": [
+      11.19,
+      13.99,
+      10.5,
+      7.14,
+      5.76,
+      4.75,
+      5.04,
+      4.81,
+      4.74,
+      4.98,
+      4.12,
+      3.38,
+      3.82,
+      4.78,
+      null,
+      null
+     ],
+     "definition": "World Bank WDI FR.INR.DPST = IMF International Financial Statistics 'deposit interest rate': a representative rate paid by commercial banks on demand, time or savings deposits. Terms vary by country and the maturity is not stated for Vietnam. It runs well below 12-month posted rates (2021: 3.38 vs Vietcombank 12-month 5.6; 2022: 3.82 vs 5.5), so it is NOT a 12-month rate and must not be merged with deposit_12m. Annual value.",
+     "source": "World Bank WDI FR.INR.DPST (IMF IFS), via indexmundi/tradingeconomics excerpts",
+     "url": "https://www.indexmundi.com/facts/vietnam/indicator/FR.INR.DPST",
+     "alt_url": "https://tradingeconomics.com/vietnam/deposit-interest-rate-percent-wb-data.html",
+     "gaps": "2024 and 2025 not published in WDI at this vintage, so null.",
+     "conflict": "theglobaleconomy.com shows a monthly IFS deposit rate peaking at 7.95% in Apr-2023, which is hard to reconcile with the 2023 annual value of 4.78. Probably a different IFS sub-series; not resolved. api.worldbank.org and imf.org are blocked.",
+     "verified": "search-engine excerpts, 2026-10-06; 2022 = 3.82 and 2023 = 4.78 confirmed by the tradingeconomics excerpt"
+    },
+    "gold_sjc": {
+     "label_vi": "Vàng miếng SJC",
+     "label_en": "SJC gold bars",
+     "unit": "% change, year-end to year-end",
+     "values": [
+      35.04,
+      17.89,
+      8.93,
+      -25.02,
+      1.09,
+      -6.74,
+      10.13,
+      1.5,
+      -0.25,
+      16.96,
+      31.23,
+      9.89,
+      8.68,
+      10.45,
+      13.78,
+      81.47
+     ],
+     "level_vnd_per_tael": [
+      36.11,
+      42.57,
+      46.37,
+      34.77,
+      35.15,
+      32.78,
+      36.1,
+      36.64,
+      36.55,
+      42.75,
+      56.1,
+      61.65,
+      67.0,
+      74.0,
+      84.2,
+      152.8
+     ],
+     "level_unit": "million VND per tael (lượng), SJC SELL price at the last session of the year",
+     "base_2009": 26.74,
+     "definition": "Change in the SJC bar sell price between year-end closes. Uses the SJC Saigon (HCMC) quote where reported; otherwise the Hanoi or DOJI quote for SJC bars, as noted per year. The sell price is what a buyer pays; a holder sells back at the lower buy price (spread about 0.1–0.5 m before 2023, 2–3 m from 2023), so realised returns are lower.",
+     "points": {
+      "2009": {
+       "date": "31/12/2009",
+       "quote": "SJC 26.50–26.74 (buy–sell)",
+       "url": "https://www.tierra.vn/tin-tuc/gia-vang-nam-2009-la-bao-nhieu",
+       "note": "jeweller blog, not press; weakest point in the series. Conflict: Dantri/NLD say SJC rose 9.51 m in 2010, implying a base of 26.60 (36.11−9.51); TNCK says 'tăng hơn 36%' (36.11/26.74 = +35.0%, /26.60 = +35.8%). Base date of those press figures not stated."
+      },
+      "2010": {
+       "date": "31/12/2010",
+       "quote": "SJC 36.03–36.11",
+       "url": "https://cafef.vn/tai-chinh-ngan-hang/ngay-cuoi-cung-cua-nam-2010-gia-vang-dao-dong-quanh-muc-361-trieu-dongluong-20101231094328746.chn",
+       "alt_url": "https://dantri.com.vn/kinh-doanh/gia-vang-tang-951-trieu-dongluong-nam-2010-1294100609.htm"
+      },
+      "2011": {
+       "date": "31/12/2011",
+       "quote": "SJC 42.47–42.57 (Phu Quy Hanoi 42.28–42.68)",
+       "url": "https://www.sggp.org.vn/thi-truong-vang-phien-giao-dich-cuoi-nam-2011-cung-khong-du-cau-post64700.html",
+       "alt_url": "https://cand.com.vn/Kinh-te/Thi-truong-ngay-31122011-i193403/"
+      },
+      "2012": {
+       "date": "31/12/2012 (morning)",
+       "quote": "SJC Hanoi 46.23–46.37; '+3.6 m, +8.4% vs end-2011'",
+       "url": "https://hanoimoi.vn/gia-vang-tang-3-7-trieu-dong-luong-trong-nam-2012-327173.html",
+       "note": "Hanoi quote (HCMC close not found). Stated +8.4% implies an end-2011 base ≈42.77, vs 42.57 used here."
+      },
+      "2013": {
+       "date": "31/12/2013",
+       "quote": "SJC HCMC 34.27–34.77 (Hanoi 34.27–34.79); −11.53 m in 2013",
+       "url": "https://www.sggp.org.vn/nam-2013-gia-vang-giam-1153-trieu-dongluong-post68199.html"
+      },
+      "2014": {
+       "date": "31/12/2014 (end of morning)",
+       "quote": "SJC HCMC 34.90–35.15; '+380k vs end-2013'",
+       "url": "https://thoibaotaichinhvietnam.vn/gia-vang-sjc-chot-nam-2014-huong-toi-muc-tang-380-ngan-dongluong-24496.html"
+      },
+      "2015": {
+       "date": "31/12/2015",
+       "quote": "DOJI quote for SJC bars 32.74–32.78; '2.4 m below the 2014 close'",
+       "url": "https://thoibaotaichinhvietnam.vn/dong-cua-phien-cuoi-nam-gia-vang-thap-nhat-5-nam-ty-gia-lai-dung-tran-29537.html",
+       "note": "DOJI's quote for SJC bars (SJC company close not found)."
+      },
+      "2016": {
+       "date": "31/12/2016",
+       "quote": "SJC company final 36.10 sell (DOJI 36.10–36.30); '+3.6 m in 2016'",
+       "url": "https://vneconomy.vn/gia-vang-tang-36-trieu-dongluong-nam-2016.htm",
+       "alt_url": "https://vietnamnet.vn/gia-vang-hom-nay-3112-giam-gia-ket-thuc-nam-2016-349501.html"
+      },
+      "2017": {
+       "date": "30/12/2017 (last session)",
+       "quote": "SJC HCMC 36.14–36.64",
+       "url": "https://dantri.com.vn/kinh-doanh/chot-nam-2017-vang-lap-dinh-gia-moi-20171230133728651.htm"
+      },
+      "2018": {
+       "date": "31/12/2018",
+       "quote": "SJC HCMC 36.33–36.55",
+       "url": "https://tapchicongthuong.vn/thi-truong-vang-tram-lang-trong-phien-cuoi-cung-cua-nam-2018-58919.htm"
+      },
+      "2019": {
+       "date": "31/12/2019",
+       "quote": "SJC HCMC 42.25–42.75; '+6.21 m sell side, +17% in 2019'",
+       "url": "https://hanoimoi.vn/phien-cuoi-nam-2019-gia-vang-tang-vot-huong-toi-moc-43-trieu-dong-luong-525703.html",
+       "alt_url": "https://vov.vn/kinh-te/thi-truong/gia-vang-tiep-tuc-tang-nhe-phien-cuoi-nam-2019-995765.vov"
+      },
+      "2020": {
+       "date": "31/12/2020",
+       "quote": "SJC sell 56.0–56.1 across quotes; Hanoi +13.35 m sell side (+30.7% stated)",
+       "url": "https://thanhnien.vn/gia-vang-hom-nay-31122020-tang-135-trieu-dong-trong-nam-2020-1851024993.htm",
+       "alt_url": "https://www.tinnhanhchungkhoan.vn/gia-vang-hom-nay-ngay-31-trong-nam-2020-gia-vang-tang-hon-13-trieu-dongluong-post258943.html",
+       "note": "Upper end 56.10 used; 56.12 implied by the Hanoi figures."
+      },
+      "2021": {
+       "date": "31/12/2021",
+       "quote": "SJC HCMC 60.95–61.65 (Hanoi 60.85–61.50)",
+       "url": "https://dantri.com.vn/kinh-doanh/gia-vang-bat-ngo-tang-vot-trong-phien-cuoi-nam-2021-20211231065320349.htm",
+       "alt_url": "https://nld.com.vn/kinh-te/gia-vang-hom-nay-31-12-nong-len-truoc-khi-ket-thuc-nam-2021-20211231061609616.htm"
+      },
+      "2022": {
+       "date": "31/12/2022 11:00",
+       "quote": "SJC 66.0–67.0",
+       "url": "https://thanhnien.vn/gia-vang-hom-nay-31122022-tang-them-gan-55-trieu-dong-trong-mot-nam-1851537599.htm"
+      },
+      "2023": {
+       "date": "31/12/2023",
+       "quote": "SJC 71–74; '+7.2 m sell side in 2023' (vs a 66.8 morning quote a year earlier)",
+       "url": "https://thoibaotaichinhvietnam.vn/gia-vang-hom-nay-3112-vang-sjc-chi-con-74-trieu-dongluong-142772.html",
+       "alt_url": "https://thanhnien.vn/gia-vang-hom-nay-31122023-ket-nam-nguoi-mua-vang-nhan-lai-hay-lo-185231231073139172.htm",
+       "note": "Buy–sell spread widened to 3 m (from ~0.8 m), so a holder selling back gained less than the sell-price change."
+      },
+      "2024": {
+       "date": "31/12/2024",
+       "quote": "SJC 82.2–84.2; 'SJC bars +13.78% in 2024' (= 84.2/74.0)",
+       "url": "https://vietnamnet.vn/gia-vang-hom-nay-31-12-2024-gia-vang-sjc-va-vang-nhan-roi-tu-do-2358356.html"
+      },
+      "2025": {
+       "date": "31/12/2025 (afternoon)",
+       "quote": "SJC 150.8–152.8, −1.9 m on the day",
+       "url": "https://vietnamnet.vn/gia-vang-hom-nay-1-1-2026-vang-mieng-sjc-giam-hon-7-trieu-dong-2478048.html",
+       "alt_url": "https://tuoitre.vn/ngay-cuoi-cung-cua-nam-2025-gia-vang-mieng-sjc-giam-them-1-4-trieu-dong-luong-20251231195155842.htm",
+       "note": "Tuoi Tre headline says −1.4 m on the day; another excerpt shows 152.87. Afternoon close 152.8 used."
+      }
+     },
+     "source": "Year-end press quotes of SJC prices (URLs per year). vnstock CommodityPrice.gold_vn (simplize) was blocked by the proxy.",
+     "verified": "search-engine excerpts, 2026-10-06"
+    },
+    "gold_world_vnd": {
+     "label_vi": "Vàng thế giới quy VND",
+     "label_en": "World gold in VND",
+     "unit": "% change, year-end to year-end",
+     "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     "definition": "Planned as LBMA/spot USD/oz × USD/VND, to show the SJC premium. Not built: no verified year-end LBMA series could be reached (LBMA, FRED and vnstock gold_global are blocked; search excerpts gave only scattered figures).",
+     "source": null
+    },
+    "vnindex": {
+     "label_vi": "Cổ phiếu (VN-Index)",
+     "label_en": "Stocks (VN-Index)",
+     "unit": "% change, price index",
+     "values": [
+      -2.04,
+      -27.47,
+      17.69,
+      21.97,
+      8.12,
+      6.12,
+      14.82,
+      48.03,
+      -9.32,
+      7.67,
+      14.87,
+      35.73,
+      -32.78,
+      12.2,
+      12.11,
+      40.87
+     ],
+     "level": [
+      484.7,
+      351.55,
+      413.73,
+      504.63,
+      545.63,
+      579.03,
+      664.87,
+      984.24,
+      892.54,
+      960.99,
+      1103.87,
+      1498.28,
+      1007.09,
+      1129.93,
+      1266.78,
+      1784.49
+     ],
+     "level_dates": [
+      "2010-12-31",
+      "2011-12-30",
+      "2012-12-28",
+      "2013-12-31",
+      "2014-12-31",
+      "2015-12-31",
+      "2016-12-30",
+      "2017-12-29",
+      "2018-12-28",
+      "2019-12-31",
+      "2020-12-31",
+      "2021-12-31",
+      "2022-12-30",
+      "2023-12-29",
+      "2024-12-31",
+      "2025-12-31"
+     ],
+     "base_2009": 494.8,
+     "total_return": null,
+     "total_return_note": "No dividend-inclusive VN-Index series was sourced (HOSE does not publish one in reach, and vnstock gives the price index only). The price index understates the return to holders by the dividend yield; that yield is not sourced here.",
+     "definition": "HOSE VN-Index (cap-weighted price index of all HOSE stocks), daily close on the last trading day of the year.",
+     "source": "vnstock_data Quote(symbol='VNINDEX', source='vci').history(interval='1D'), pulled 2026-10-06 (VND and KBS sources were blocked). Cross-checks: end-2017 984.24, end-2022 1,007.09, end-2024 1,266.78 match widely quoted closes.",
+     "url": "https://trading.vietcap.com.vn",
+     "verified": "vnstock (VCI), 2026-10-06"
+    },
+    "real_estate": {
+     "label_vi": "Căn hộ sơ cấp",
+     "label_en": "New apartments (primary)",
+     "unit": "% change y/y (Q4 vs Q4), average primary asking price",
+     "coverage_note": "No official housing price index covers 2010–2025 (NSO publishes none; MoC's quarterly reports give price levels only from 2024–25). Cities are kept separate and no index is spliced. Asking prices of NEW launches reflect the mix of projects launched each quarter (location, grade), so they are not a constant-quality index of existing homes. Rental yield and transaction costs are excluded.",
+     "hanoi_savills": {
+      "label_vi": "Hà Nội – giá chào bán sơ cấp căn hộ (Savills)",
+      "label_en": "Hanoi – primary apartment asking price (Savills)",
+      "values": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       -12,
+       10,
+       5,
+       3,
+       null,
+       15,
+       12,
+       29,
+       null
+      ],
+      "level": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       "1,240 USD/m²",
+       "1,370 USD/m²",
+       "1,370 USD/m²",
+       "1,412 USD/m²",
+       null,
+       "47 million VND/m²",
+       "58 million VND/m²",
+       "75 million VND/m²",
+       "102 million VND/m²"
+      ],
+      "urls": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       "https://vn.savills.com.vn/insight-and-opinion/savills-news/157924-0/ba%CC%81o-ca%CC%81o-thi%CC%A3-tr%C6%B0%C6%A1%CC%80ng-ba%CC%81t-%C4%91o%CC%A3ng-sa%CC%89n-ha-n%E1%BB%99i-q4-2017",
+       "https://vn.savills.com.vn/insight-and-opinion/savills-news/171306/savills-viet-nam-bao-cao-tinh-hinh-thi-truong-bds-ha-noi-q4-2018",
+       "https://vn.savills.com.vn/research_articles/164027/199202-0",
+       "https://vn.savills.com.vn/research_articles/164027/199202-0",
+       null,
+       "https://thitruongtaichinhtiente.vn/bat-chap-thi-truong-tram-lang-gia-ban-can-ho-so-cap-tai-ha-noi-tang-15-trong-nam-2022-44183.html",
+       "https://baomoi.com/ha-noi-gia-can-ho-tang-20-quy-lien-tiep-rat-hiem-can-duoi-2-ti-dong-c48102695.epi",
+       "https://vn.savills.com.vn/blog/article/220417/vietnam-viet/toan-canh-thi-truong-can-ho-q4-2024.aspx",
+       "https://vtv.vn/trung-binh-102-trieu-dong-m2-gia-can-ho-tai-ha-noi-100260322082236072.htm"
+      ],
+      "definition": "Savills Vietnam quarterly Hanoi report: average primary asking price, Q4 y/y change AS STATED by Savills. Levels were in USD/m² up to 2020 and in million VND/m² from about 2022 (currency switch); the stated y/y is used, not a conversion.",
+      "gaps": "2010–2016 not searched or found; 2021 Q4 y/y not found; 2025 y/y not stated (levels 75 → 102 m VND/m² would imply +36%, which is derived and not stored).",
+      "conflicts": [
+       "Q4-2018 and Q4-2019 levels are both quoted as 1,370 USD/m², yet Q4-2019 is said to be +5% y/y. Possibly a methodology or excerpt error; stated y/y kept.",
+       "Q4-2023: stated +12% y/y, but 58 vs 47 m VND/m² (Q4-2022) implies +23%. Stated value kept and the conflict reported."
+      ],
+      "verified": "search-engine excerpts, 2026-10-06"
+     },
+     "hcmc": {
+      "label_vi": "TP.HCM – giá sơ cấp căn hộ",
+      "label_en": "HCMC – primary apartment price",
+      "values": [
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null,
+       null
+      ],
+      "note": "Left null: the excerpts found were mutually inconsistent and could not be built into one-provider Q4 y/y values. CBRE: Q4-2018 1,709 USD/m²; 2019 1,902 USD/m² ('+10%', but 1,902/1,709 = +11%); Q4-2021 2,306 USD/m² (+6.9% y/y, excl. VAT). Savills: Q4-2023 69 m VND/m²; '2024 ≈84 m, +15%'; '2025 +8%', but another excerpt has Q4-2025 at 67 m VND/m². CBRE and Savills are not mixed.",
+      "urls": [
+       "https://www.cbrevietnam.com/vi-vn/press-releases/cbre-releases-2023-vietnam-real-estate-market-outlook-hcmc",
+       "https://www.brandsvietnam.com/congdong/topic/322588-cbre-cong-bo-tieu-diem-thi-truong-bat-dong-san-tp-hcm-quy-iv-2021",
+       "https://vtcnews.vn/gia-can-ho-tphcm-tang-10-nam-2019-ar521279.html"
+      ]
+     },
+     "moc_2025": {
+      "label_en": "MoC: average primary apartment price, full-year 2025 vs 2024",
+      "hanoi": {
+       "level": "≈100 million VND/m²",
+       "yoy_pct": 40
+      },
+      "hcmc": {
+       "level": "≈111 million VND/m²",
+       "yoy_pct": 23
+      },
+      "period": "FY2025 average vs FY2024 (MoC Q4-2025 housing market report, Jan-2026)",
+      "url": "https://baochinhphu.vn/nguon-cung-tang-gia-nha-chua-giam-102260117005432583.htm",
+      "note": "Different definition (annual average, MoC) from the Savills Q4 y/y. Do not plot on the same line. MoC also reported Hanoi Q2-2025 at 80 m VND/m², +33% y/y (https://moc.gov.vn/vn/tin-tuc/1269/87076/bo-xay-dung-cong-bo-thong-tin-ve-nha-o-va-thi-truong-bat-dong-san-trong-quy-ii-nam-2025.aspx).",
+      "verified": "search-engine excerpt, 2026-10-06"
+     }
+    },
+    "usd": {
+     "label_vi": "Giữ USD",
+     "label_en": "Holding US dollars",
+     "unit": "% change of VND per USD, year-end to year-end",
+     "values": [
+      5.52,
+      10.01,
+      0.0,
+      1.0,
+      1.0,
+      3.03,
+      1.23,
+      1.2,
+      1.78,
+      1.45,
+      -0.1,
+      0.06,
+      2.02,
+      1.08,
+      1.97,
+      3.23
+     ],
+     "level": [
+      18932,
+      20828,
+      20828,
+      21036,
+      21246,
+      21890,
+      22159,
+      22425,
+      22825,
+      23155,
+      23131,
+      23145,
+      23612,
+      23866,
+      24335,
+      25121
+     ],
+     "base_2009": 17941,
+     "definition": "SBV official reference rate at year-end: the interbank average rate (tỷ giá bình quân liên ngân hàng) up to 2015, then the central rate (tỷ giá trung tâm) from 4/1/2016. This is a regime break: 2016 compares the end-2016 central rate with the end-2015 interbank rate, which is how SBV reported the 2016 change (+1.24%). It is not the bank selling rate or the free-market rate a saver actually pays, which ran above it (e.g. Vietcombank sell 26,377 vs central 25,121 at end-2025; see why.series.usdvnd_monthly). Excludes any USD deposit interest.",
+     "points": {
+      "2009": {
+       "rate": "interbank average rate",
+       "url": "https://baochinhphu.vn/nhin-lai-dieu-hanh-ty-gia-giai-doan-2011-2013-102151913.htm",
+       "note": "17,941 quoted for H1-2010 (in force from 26/11/2009). Search excerpt only."
+      },
+      "2010": {
+       "rate": "interbank average rate",
+       "url": "https://tapchinganhang.gov.vn/nhung-ket-qua-ve-dieu-hanh-ty-gia-giai-doan-2011-2015-7357.html",
+       "note": "18,932 not quoted directly in the excerpt; it is consistent with the source's statement that end-2011 (20,828) was +10.01% y/y (20,828/1.1001 = 18,933)."
+      },
+      "2011": {
+       "rate": "interbank average rate",
+       "url": "https://tapchinganhang.gov.vn/nhung-ket-qua-ve-dieu-hanh-ty-gia-giai-doan-2011-2015-7357.html",
+       "note": "'20,828 at end-2011, +10.01% y/y'"
+      },
+      "2012": {
+       "rate": "interbank average rate",
+       "url": "https://baochinhphu.vn/nhin-lai-dieu-hanh-ty-gia-giai-doan-2011-2013-102151913.htm",
+       "note": "kept at 20,828 for 1.5 years until 27/6/2013"
+      },
+      "2013": {
+       "rate": "interbank average rate",
+       "url": "https://baochinhphu.vn/nhin-lai-dieu-hanh-ty-gia-giai-doan-2011-2013-102151913.htm",
+       "note": "raised 1% to 21,036 on 27/6/2013"
+      },
+      "2014": {
+       "rate": "interbank average rate",
+       "url": "https://tapchinganhang.gov.vn/nhung-ket-qua-ve-dieu-hanh-ty-gia-giai-doan-2011-2015-7357.html",
+       "note": "21,246 appears in the excerpt but is mis-dated there ('8/7/2013'); the 1% step to 21,246 was in June 2014. Partly verified."
+      },
+      "2015": {
+       "rate": "interbank average rate (last before the central-rate regime)",
+       "url": "https://tapchinganhang.gov.vn/lua-thu-ty-gia-hoi-doai-nam-2016-7355.html",
+       "note": "21,890 is consistent with the 2016 source: central rate 22,159 at end-2016 was '+1.24% from the beginning of the year' (22,159/1.0124 = 21,887)."
+      },
+      "2016": {
+       "rate": "central rate (from 4/1/2016)",
+       "url": "https://tapchinganhang.gov.vn/lua-thu-ty-gia-hoi-doai-nam-2016-7355.html",
+       "note": "'22,159, +1.24% from start of year'"
+      },
+      "2017": {
+       "rate": "central rate",
+       "url": "https://tapchinganhang.gov.vn/lua-thu-ty-gia-hoi-doai-nam-2016-7355.html",
+       "note": "search excerpt: '22,425 at end-2017, +1.2%'"
+      },
+      "2018": {
+       "rate": "central rate",
+       "url": "https://tapchinganhang.gov.vn/lua-thu-ty-gia-hoi-doai-nam-2016-7355.html",
+       "note": "search excerpt: '22,825, +1.78% vs end-2017'"
+      },
+      "2019": {
+       "rate": "central rate",
+       "url": "https://fili.vn/2020/01/ty-gia-8211-1-nam-nhin-lai-757-722884.htm",
+       "note": "'23,155, +1.4%'"
+      },
+      "2020": {
+       "rate": "central rate",
+       "url": "https://vietstock.vn/2020/12/ty-gia-mot-nam-nhin-lai-757-815658.htm",
+       "note": "'23,131, −0.1% vs end-2019'"
+      },
+      "2021": {
+       "rate": "central rate, 31/12/2021",
+       "url": "https://thoibaotaichinhvietnam.vn/ty-gia-usd-trung-tam-ngay-3112-dung-gia-vietcombank-dieu-chinh-giam-50-dong-98125.html",
+       "note": "23,145, unchanged on the day. One search excerpt gave 24,335 for 31/12/2021, which is actually the end-2024 figure; rejected."
+      },
+      "2022": {
+       "rate": "central rate quoted for 1/1/2023 (= last 2022 fixing)",
+       "url": "https://vietnambiz.vn/bien-dong-ty-gia-nam-2023-va-lua-chon-dieu-hanh-cua-nhnn-202412164441747.htm"
+      },
+      "2023": {
+       "rate": "central rate, 31/12/2023",
+       "url": "https://congthuong.vn/ty-gia-usd-hom-nay-31122023-dong-usd-ket-thuc-nam-giao-dich-toi-te-nhat-295132.html",
+       "note": "'23,866, +1.1% vs end-2022' (23,866/23,612 = +1.08%)"
+      },
+      "2024": {
+       "rate": "central rate, 31/12/2024",
+       "url": "https://thanhnien.vn/gia-usd-hom-nay-31122024-tang-46-trong-ca-nam-185241231080143865.htm",
+       "note": "same as FINSYS.why.series.usdvnd_monthly central 2024-12"
+      },
+      "2025": {
+       "rate": "central rate, 31/12/2025",
+       "url": "https://thanhnien.vn/gia-usd-hom-nay-31122025-tiep-tuc-giam-trong-ngay-cuoi-nam-185251231073926246.htm",
+       "note": "same as usdvnd_monthly central 2025-12; +3.23% vs end-2024, matching the press 'tăng hơn 3,2%'"
+      }
+     },
+     "source": "SBV fixings as reported by tapchinganhang (SBV journal), baochinhphu, thoibaotaichinh, congthuong, vietnambiz, thanhnien (URLs per year)",
+     "verified": "search-engine excerpts, 2026-10-06; 2010 and 2014 levels partly verified (see points)"
+    },
+    "cpi": {
+     "label_vi": "Lạm phát (CPI bình quân)",
+     "label_en": "Inflation (average CPI)",
+     "unit": "% per year, annual average vs previous year",
+     "values": [
+      9.19,
+      18.58,
+      9.21,
+      6.6,
+      4.09,
+      0.63,
+      2.66,
+      3.53,
+      3.54,
+      2.79,
+      3.23,
+      1.84,
+      3.15,
+      3.25,
+      3.63,
+      3.31
+     ],
+     "definition": "NSO annual average CPI, copied from data/economy.json ECON_OFFICIAL.cpi_avg (y0 = 2010). An annual average, whereas the asset series are year-end to year-end; real returns that subtract it are approximate.",
+     "source": "NSO/GSO (copied from ECON_OFFICIAL.cpi_avg, Economy tab)",
+     "url": "https://www.nso.gov.vn"
+    }
+   },
+   "ytd": {
+    "label": "2026 YTD",
+    "as_of": "2026-10-06",
+    "deposit_12m": {
+     "value": 5.2,
+     "unit": "% per year (rate at start of 2026, not a YTD return)",
+     "url": "https://cafef.vn/bien-dong-lai-suat-dau-nam-2026-gui-tiet-kiem-vietcombank-huong-lai-cao-nhat-bao-nhieu-188260106155802149.chn",
+     "note": "Vietcombank 12-month rate early Jan-2026; 5.9% by Oct-2026 (https://vietbao.vn/gui-tiet-kiem-vietcombank-thang-102026-lai-suat-cao-nhat-6nam-609969.html)"
+    },
+    "gold_sjc": {
+     "value": -6.09,
+     "level": 143.5,
+     "date": "2026-10-06 15:03",
+     "quote": "SJC 140.5–143.5",
+     "url": "https://vietnamnet.vn/gia-vang-hom-nay-6-10-2026-don-tin-xau-vang-van-chua-the-but-pha-2561968.html",
+     "unit": "% vs end-2025 sell"
+    },
+    "vnindex": {
+     "value": -1.42,
+     "level": 1759.08,
+     "date": "2026-10-06",
+     "source": "vnstock VCI daily close",
+     "unit": "% vs end-2025"
+    },
+    "usd": {
+     "value": 2.08,
+     "level": 25643,
+     "date": "2026-10-06",
+     "rate": "central rate",
+     "source": "Policy tab (data/policy.json, POLICY note: 'tỷ giá trung tâm 25.643 đ/USD ngày 6/10/2026, tăng ~2,1% so với cuối 2025')",
+     "unit": "% vs end-2025 central"
+    },
+    "cpi": {
+     "value": 4.52,
+     "period": "Jan–Sep 2026 average vs same period 2025",
+     "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+     "source": "NSO via ECON_OFFICIAL.ytd_2026.cpi_avg_9M"
+    },
+    "real_estate": {
+     "value": null,
+     "note": "no Q3-2026 y/y figure sourced for this block"
+    },
+    "deposit_ifs": {
+     "value": null
+    }
+   },
+   "cumulative_note": "'What 100 million VND became' = 100 × Π(1 + r_y/100) over the window, using the annual values above. Derived, not a source figure. Computed only for windows in which every year of that series is sourced: no gap-filling and no mixing of definitions (deposit_12m and deposit_ifs are never chained together). Deposits compound at the start-of-year 12-month rate, i.e. rolled over each January. Taxes, fees, spreads and dividends are excluded. The real value divides by Π(1 + CPI_y/100), which is approximate because CPI is an annual average.",
+   "cumulative_100m": {
+    "2018-2025": {
+     "unit": "million VND, nominal (cpi = price level index, 100 at start)",
+     "values": {
+      "deposit_12m": 159.3,
+      "deposit_ifs": null,
+      "gold_sjc": 417.0,
+      "vnindex": 181.3,
+      "usd": 112.0,
+      "cpi": 127.6,
+      "real_estate_hanoi_savills": null
+     },
+     "derived": true
+    },
+    "2010-2023": {
+     "unit": "million VND, nominal (cpi = price level index, 100 at start)",
+     "values": {
+      "deposit_12m": null,
+      "deposit_ifs": 235.6,
+      "gold_sjc": 276.7,
+      "vnindex": 228.4,
+      "usd": 133.0,
+      "cpi": 200.0,
+      "real_estate_hanoi_savills": null
+     },
+     "derived": true
+    },
+    "2010-2025": {
+     "unit": "million VND, nominal (cpi = price level index, 100 at start)",
+     "values": {
+      "deposit_12m": null,
+      "deposit_ifs": null,
+      "gold_sjc": 571.4,
+      "vnindex": 360.6,
+      "usd": 140.0,
+      "cpi": 214.1,
+      "real_estate_hanoi_savills": null
+     },
+     "derived": true
+    }
+   },
+   "caveats_vi": [
+    "Lợi suất danh nghĩa, trước thuế và phí. Lãi tiền gửi cá nhân hiện không chịu thuế TNCN; cổ tức và chuyển nhượng chứng khoán có thuế (0,1% giá bán, 5% cổ tức) — chưa trừ.",
+    "Bảo hiểm tiền gửi: tối đa 350 triệu đồng/người/tổ chức tín dụng từ 13/7/2026 (Thông tư 05/2026/TT-NHNN), trước đó 125 triệu đồng (QĐ 32/2021/QĐ-TTg). Vàng, cổ phiếu, USD tiền mặt, nhà không được bảo hiểm.",
+    "Vàng miếng: chuỗi dùng giá BÁN; người giữ vàng bán lại ở giá MUA, chênh lệch 2–3 triệu đồng/lượng từ 2023 (trước đó ~0,1–0,5 triệu). Giá SJC chênh rất cao so với vàng thế giới ở một số giai đoạn.",
+    "VN-Index là chỉ số giá, chưa gồm cổ tức; chỉ số có thiên lệch sống sót (cổ phiếu bị huỷ niêm yết rời khỏi rổ). Nhà đầu tư cá nhân hiếm khi nắm giữ đúng rổ chỉ số.",
+    "Căn hộ: giá chào bán sơ cấp (dự án mới mở bán) của Savills, phụ thuộc cơ cấu dự án từng quý; không gồm tiền thuê, phí giao dịch, thuế 2% chuyển nhượng, chi phí bảo trì; thanh khoản thấp và giao dịch lớn, không chia nhỏ được.",
+    "USD: theo tỷ giá chính thức của NHNN (bình quân liên ngân hàng đến 2015, tỷ giá trung tâm từ 2016), không phải giá mua/bán tại ngân hàng hay thị trường tự do; không có lãi tiền gửi USD.",
+    "Lạm phát là CPI bình quân năm, còn tài sản tính cuối năm–cuối năm, nên lợi suất thực chỉ là xấp xỉ.",
+    "Số liệu lịch sử, không phải khuyến nghị đầu tư."
+   ],
+   "caveats_en": [
+    "Returns are nominal, before taxes and fees. Interest on individuals' deposits is currently exempt from personal income tax; stock sales (0.1% of proceeds) and dividends (5%) are taxed, and none of this is deducted.",
+    "Deposit insurance: up to VND 350 million per person per credit institution from 13/7/2026 (Circular 05/2026/TT-NHNN), up from VND 125 million (Decision 32/2021/QĐ-TTg). Gold, stocks, cash dollars and property are not insured.",
+    "SJC gold: the series uses the SELL price; a holder sells back at the BUY price, a spread of VND 2–3 million per tael since 2023 (about 0.1–0.5 million before). In some periods SJC traded at a very large premium to world gold.",
+    "The VN-Index is a price index that excludes dividends, and it has survivorship bias (delisted stocks leave the index). Few individuals hold the index basket.",
+    "Apartments: Savills primary asking prices for new launches, which depend on each quarter's project mix. Rent, transaction fees, the 2% transfer tax and upkeep are excluded. Property is illiquid and lumpy.",
+    "USD: SBV official rate (interbank average to 2015, central rate from 2016), not the bank or free-market rate a saver pays. No interest on USD deposits is included.",
+    "Inflation is the annual average CPI while the asset series run year-end to year-end, so real returns are approximate.",
+    "Descriptive history, not investment advice."
+   ],
+   "sources": {
+    "deposit_12m": "Vietcombank posted rates via press (per observation)",
+    "deposit_ifs": "World Bank WDI FR.INR.DPST (IMF IFS)",
+    "gold_sjc": "year-end press quotes (per year)",
+    "vnindex": "vnstock_data VCI daily history",
+    "real_estate": "Savills Vietnam Hanoi quarterly reports via press; MoC Q4-2025 report",
+    "usd": "SBV reference rates via press (per year)",
+    "cpi": "NSO via ECON_OFFICIAL.cpi_avg",
+    "access": "sbv.gov.vn, imf.org, api.worldbank.org, savills, sjc.com.vn and press sites blocked from the sandbox; verified via search excerpts on 2026-10-06"
+   }
   }
  }
 }
