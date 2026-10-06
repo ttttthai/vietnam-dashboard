@@ -30,6 +30,9 @@ Vietnam's main strategic directives that shape the economy and the state, e.g.:
 - Ministries & ministry-level agencies (level `ministry`): Thông tư, Quyết định, Chỉ thị, Kế hoạch hành động
   of ministries and the State Bank (NHNN) that implement tracked directives (e.g. NHNN Thông tư on LDR/credit,
   Bộ Tài chính Thông tư, Bộ KH&CN / Bộ Công Thương action plans). Keep only the most material ones (≈2–4 per pillar).
+- Local government (level `local`): Nghị quyết HĐND, Quyết định / Kế hoạch / Chỉ thị UBND of provinces and
+  centrally-run cities that implement tracked directives (e.g. Hà Nội, TP Hồ Chí Minh, Đà Nẵng, Hải Phòng, Cần Thơ
+  and large provinces) — keep the most material ones (≈15–25 total), with field `locality` naming the province/city.
 - **Drafts (dự thảo)** that implement or replace tracked directives and are publicly known:
   draft laws/resolutions on the National Assembly's session agenda (quochoi.vn, duthaoonline.quochoi.vn),
   draft decrees and resolutions published for comment (chinhphu.vn "Lấy ý kiến dự thảo",
@@ -107,7 +110,7 @@ Use only sourced statements (quote targets with their years: 2030, 2045, 2050…
     "ref": "57-NQ/TW",                  // official number; drafts: "Dự thảo Luật …"
     "kind": "Nghị quyết",              // Nghị quyết | Kết luận | Chỉ thị | Quyết định | Nghị định | Luật | Văn kiện
     "issuer": "Bộ Chính trị",           // exact issuer (drafts: the body that will adopt it)
-    "level": "party",                   // party | assembly | government | ministry
+    "level": "party",                   // party | assembly | government | ministry | local
     "date": "2024-12-22",               // approval/issue date; drafts: date of the latest milestone
     "effective_date": "2024-12-22",     // in-force date, or null
     "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",   // optional
@@ -123,6 +126,7 @@ Use only sourced statements (quote targets with their years: 2030, 2045, 2050…
     "key_points": ["…", "…", "…"],     // 3–5 gạch đầu dòng tiếng Việt, mỗi ý ≤ 160 ký tự
     "key_points_note": "chưa đối chiếu toàn văn",  // optional
     "ministry": "Ngân hàng Nhà nước",   // only for level = ministry: the issuing ministry/agency
+    "locality": "TP Hồ Chí Minh",       // only for level = local: the province / centrally-run city
     "draft": {                          // only for stage = draft (kept as history after adoption)
       "process_stage": "Lấy ý kiến nhân dân",   // Đang soạn thảo | Lấy ý kiến | Thẩm định | Trình Chính phủ | Trình Quốc hội | Chờ thông qua
       "drafting_agency": "Bộ Nông nghiệp và Môi trường",
