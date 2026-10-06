@@ -1,7 +1,19 @@
 {
  "_meta": {
   "owner": "Society agent",
-  "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing."
+  "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
+  "qc": "QC/freshness run 2026-10-06 (Society agent). Data status as of end-Sep 2026.",
+  "sources": {
+   "POP_SERIES.actual": "NSO PX V02.02 average population (2025 = Sơ bộ) https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.02.px/",
+   "POP_SERIES.nat": "NSO PX V02.02/V02.08/V02.11/V02.15/V02.24, reference year 2024 (population change survey 1/4/2024)",
+   "POP_SERIES.gso": "PROJECTION. GSO/UNFPA Dự báo dân số Việt Nam 2019-2069 (Nov 2020), Biểu A.1, A.3 https://vietnam.unfpa.org/sites/default/files/pub-pdf/sach_dan_so_va_du_bao_dan_so_a4_vn_2106.pdf",
+   "POP_SERIES.un": "PROJECTION. UN WPP 2024 (LocID 704), 1 July https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz ; next WPP postponed to 2027",
+   "SOC_PROV_DATA": "area/pop_nq/merged_from: NQ 202/2025/QH15 https://baochinhphu.vn/nghi-quyet-cua-quoc-hoi-ve-sap-xep-don-vi-hanh-chinh-cap-tinh-102250612191145158.htm (11 non-merged units: NSO 2025 area, NSO 2024 avg pop). pop = NSO 2025p average population; pop_2024 = NSO 2024 average population; urban_pct, sex_ratio (population, not at birth), tfr, cbr, cdr, life_exp = NSO PLV02 back-cast tables for the 34 units, reference 2024. https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/",
+   "SOC_GRDP": "NSO PX PL.V03.01 (growth, constant prices) and PL.V03.02 (GRDP per capita) https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; 2020-2023 official, 2024 Sơ bộ, 2025 Ước tính; press release https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/ . grdp_bn DERIVED = per capita x avg population; grdp_pc_usd DERIVED at NSO-implied national rate (2020 ~23,210; 2024 ~24,166; 2025 ~24,978 VND/USD). structure_2025 from provincial statistics offices (partial). growth_9m.2026 = NSO 9M-2026 estimates (released 3-6 Oct 2026) as reported by press; per-province URL in growth_9m_src; search-excerpt verified only.",
+   "WORLD_RANK": "World Bank WDI API (demographic: tools/build/rank/world_rank.json; GDP: tools/build/grdp/wb_rank.json, July-2026 WDI). religion_unaffiliated: Pew Research Center Global Religious Landscape 2010-2020.",
+   "PROV_PREV": "NSO PLV02 tables, reference 2020 (pop = 2020 average population on 34-unit basis).",
+   "RELIGION": "Census 2019 Biểu 3 and Census 2009 religion table (NSO); btg = Ban Tôn giáo Chính phủ figure as reported by danviet.vn (31-12-2023), unchanged in 2025 statements (27.7m followers, 16 religions, 43 organisations)."
+  }
  },
  "SOC_PROV_DATA": {
   "Tuyên Quang": {
@@ -630,6 +642,19 @@
    "cbr": 13.5,
    "cdr": 5.6,
    "growth_pct": 1.03
+  },
+  "nat_latest": {
+   "year": 2025,
+   "status": "Sơ bộ (preliminary)",
+   "tfr": 1.93,
+   "srb": 110.0,
+   "life_exp": 74.7,
+   "urban_pct": 38.64,
+   "cbr": 13.7,
+   "cdr": 6.1,
+   "growth_pct": 0.99,
+   "note": "NSO, Điều tra biến động dân số 1/4/2025 + dân số trung bình 2025. SRB 110.0 from NSO PX table V02.08; the NSO Jan-2026 press-release excerpt reads 109.0 - unresolved (page not reachable).",
+   "source": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-tinh-hinh-dan-so-lao-dong-viec-lam-quy-iv-va-nam-2025/ ; https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/"
   }
  },
  "SOC_GRDP": {
@@ -664,6 +689,12 @@
     "ind": 27.99,
     "svc": 41.79,
     "tax": 4.45
+   },
+   "growth_9m": {
+    "2026": 8.04
+   },
+   "growth_9m_src": {
+    "2026": "https://baove.congly.vn/tuyen-quang-khoi-du-dia-dich-vu-tang-luc-cho-chang-cuoi-nam-541745.html"
    }
   },
   "Cao Bằng": {
@@ -697,6 +728,12 @@
     "ind": 20.54,
     "svc": 56.17,
     "tax": 3.66
+   },
+   "growth_9m": {
+    "2026": 7.96
+   },
+   "growth_9m_src": {
+    "2026": "https://nhandan.vn/cao-bang-don-luc-hoan-thanh-muc-tieu-tang-truong-nam-2026-post992996.html"
    }
   },
   "Lai Châu": {
@@ -730,6 +767,12 @@
     "ind": 53.64,
     "svc": 30.0,
     "tax": 5.36
+   },
+   "growth_9m": {
+    "2026": 9.62
+   },
+   "growth_9m_src": {
+    "2026": "https://congly.vn/dien-bien-lao-cai-vao-top-10-tang-truong-quy-iii-2026-541897.html"
    }
   },
   "Lào Cai": {
@@ -763,6 +806,12 @@
     "ind": 37.31,
     "svc": 39.16,
     "tax": 7.52
+   },
+   "growth_9m": {
+    "2026": 9.09
+   },
+   "growth_9m_src": {
+    "2026": "https://congluan.vn/lao-cai-tang-truong-grdp-9-thang-dat-909-phan-dau-tang-truong-ca-nam-tren-10-post362711.html"
    }
   },
   "Thái Nguyên": {
@@ -796,6 +845,12 @@
     "ind": 54.1,
     "svc": 31.5,
     "tax": 3.5
+   },
+   "growth_9m": {
+    "2026": 11.24
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Điện Biên": {
@@ -829,6 +884,12 @@
     "ind": 21.73,
     "svc": 59.67,
     "tax": 4.22
+   },
+   "growth_9m": {
+    "2026": null
+   },
+   "growth_9m_src": {
+    "2026": null
    }
   },
   "Lạng Sơn": {
@@ -862,6 +923,12 @@
     "ind": 28.33,
     "svc": 47.24,
     "tax": 4.16
+   },
+   "growth_9m": {
+    "2026": 7.52
+   },
+   "growth_9m_src": {
+    "2026": "https://dantocphattrien.vietnamnet.vn/lang-son-thu-ngan-sach-vuot-moc-21-900-ty-dong-sau-3-quy-79048.html"
    }
   },
   "Sơn La": {
@@ -890,7 +957,13 @@
     "2024": 1330.58,
     "2025": 1341.22
    },
-   "structure_2025": null
+   "structure_2025": null,
+   "growth_9m": {
+    "2026": 5.59
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   }
   },
   "Phú Thọ": {
    "grdp_bn": {
@@ -923,6 +996,12 @@
     "ind": 48.82,
     "svc": 28.24,
     "tax": 11.93
+   },
+   "growth_9m": {
+    "2026": 10.01
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Bắc Ninh": {
@@ -956,6 +1035,12 @@
     "ind": 71.13,
     "svc": 19.41,
     "tax": 2.94
+   },
+   "growth_9m": {
+    "2026": 11.81
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Quảng Ninh": {
@@ -989,6 +1074,12 @@
     "ind": 46.2,
     "svc": 37.8,
     "tax": 11.4
+   },
+   "growth_9m": {
+    "2026": 12.54
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Hà Nội": {
@@ -1022,6 +1113,12 @@
     "ind": 22.25,
     "svc": 66.44,
     "tax": 9.45
+   },
+   "growth_9m": {
+    "2026": 8.85
+   },
+   "growth_9m_src": {
+    "2026": "https://baodautu.vn/grdp-ha-noi-tang-885-trong-9-thang-nam-2026-d710953.html"
    }
   },
   "Hải Phòng": {
@@ -1055,6 +1152,12 @@
     "ind": 53.96,
     "svc": 35.2,
     "tax": 6.29
+   },
+   "growth_9m": {
+    "2026": 12.08
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Hưng Yên": {
@@ -1088,6 +1191,12 @@
     "ind": 53.9,
     "svc": 28.0,
     "tax": null
+   },
+   "growth_9m": {
+    "2026": 11.22
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Ninh Bình": {
@@ -1121,6 +1230,12 @@
     "ind": 47.05,
     "svc": 34.39,
     "tax": 7.52
+   },
+   "growth_9m": {
+    "2026": 11.31
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Thanh Hóa": {
@@ -1154,6 +1269,12 @@
     "ind": 47.94,
     "svc": 32.93,
     "tax": 5.87
+   },
+   "growth_9m": {
+    "2026": 8.54
+   },
+   "growth_9m_src": {
+    "2026": "https://nhandan.vn/quy-iii2026-grdp-cua-thanh-hoa-tang-truong-hon-10-post992529.html"
    }
   },
   "Nghệ An": {
@@ -1187,6 +1308,12 @@
     "ind": 30.89,
     "svc": 43.7,
     "tax": 4.51
+   },
+   "growth_9m": {
+    "2026": 9.75
+   },
+   "growth_9m_src": {
+    "2026": "https://vneconomy.vn/nghe-an-grdp-9-thang-nam-2026-tien-sat-10.htm"
    }
   },
   "Hà Tĩnh": {
@@ -1220,6 +1347,12 @@
     "ind": 40.41,
     "svc": 37.37,
     "tax": 8.84
+   },
+   "growth_9m": {
+    "2026": 12.36
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Quảng Trị": {
@@ -1253,6 +1386,12 @@
     "ind": 29.49,
     "svc": 48.57,
     "tax": 3.82
+   },
+   "growth_9m": {
+    "2026": null
+   },
+   "growth_9m_src": {
+    "2026": null
    }
   },
   "Huế": {
@@ -1281,7 +1420,13 @@
     "2024": 1178.55,
     "2025": 1190.34
    },
-   "structure_2025": null
+   "structure_2025": null,
+   "growth_9m": {
+    "2026": null
+   },
+   "growth_9m_src": {
+    "2026": null
+   }
   },
   "Đà Nẵng": {
    "grdp_bn": {
@@ -1314,6 +1459,12 @@
     "ind": 25.99,
     "svc": 54.89,
     "tax": null
+   },
+   "growth_9m": {
+    "2026": 10.31
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Quảng Ngãi": {
@@ -1347,6 +1498,12 @@
     "ind": 41.13,
     "svc": 29.1,
     "tax": null
+   },
+   "growth_9m": {
+    "2026": 9.16
+   },
+   "growth_9m_src": {
+    "2026": "http://vov.vn/kinh-te/9-thang-grdp-tinh-quang-ngai-tang-916-so-voi-cung-ky-post1338093.vov"
    }
   },
   "Gia Lai": {
@@ -1380,6 +1537,12 @@
     "ind": 28.63,
     "svc": 38.6,
     "tax": 3.93
+   },
+   "growth_9m": {
+    "2026": null
+   },
+   "growth_9m_src": {
+    "2026": null
    }
   },
   "Đắk Lắk": {
@@ -1413,6 +1576,12 @@
     "ind": 17.67,
     "svc": 40.07,
     "tax": 3.79
+   },
+   "growth_9m": {
+    "2026": 8.22
+   },
+   "growth_9m_src": {
+    "2026": "http://vov.vn/kinh-te/dak-lak-tang-truong-9-thang-822-ap-luc-quy-iv-lon-post1337422.vov"
    }
   },
   "Khánh Hòa": {
@@ -1446,6 +1615,12 @@
     "ind": 38.99,
     "svc": 40.07,
     "tax": 7.3
+   },
+   "growth_9m": {
+    "2026": 11.21
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Lâm Đồng": {
@@ -1479,6 +1654,12 @@
     "ind": 20.87,
     "svc": 35.83,
     "tax": 4.71
+   },
+   "growth_9m": {
+    "2026": 8.51
+   },
+   "growth_9m_src": {
+    "2026": "https://thanhnien.vn/lam-dong-tang-toc-quy-4-can-tang-truong-tren-1288-185261002164819471.htm"
    }
   },
   "Đồng Nai": {
@@ -1512,6 +1693,12 @@
     "ind": 54.97,
     "svc": 26.42,
     "tax": 6.48
+   },
+   "growth_9m": {
+    "2026": 10.01
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Tây Ninh": {
@@ -1540,7 +1727,13 @@
     "2024": 2959.01,
     "2025": 2980.28
    },
-   "structure_2025": null
+   "structure_2025": null,
+   "growth_9m": {
+    "2026": 10.3
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   }
   },
   "TP. Hồ Chí Minh": {
    "grdp_bn": {
@@ -1573,6 +1766,12 @@
     "ind": 35.2,
     "svc": 52.2,
     "tax": 10.9
+   },
+   "growth_9m": {
+    "2026": 9.06
+   },
+   "growth_9m_src": {
+    "2026": "https://www.vietnamplus.vn/thanh-pho-ho-chi-minh-no-luc-vuot-kho-gop-phan-vao-tang-truong-chung-ca-nuoc-post1140001.vnp"
    }
   },
   "Đồng Tháp": {
@@ -1606,6 +1805,12 @@
     "ind": 25.48,
     "svc": 34.44,
     "tax": 5.48
+   },
+   "growth_9m": {
+    "2026": 7.44
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "An Giang": {
@@ -1634,7 +1839,13 @@
     "2024": 3679.24,
     "2025": 3694.6
    },
-   "structure_2025": null
+   "structure_2025": null,
+   "growth_9m": {
+    "2026": 9.23
+   },
+   "growth_9m_src": {
+    "2026": "https://mekongasean.vn/kinh-te-an-giang-9-thang-grdp-tang-923-von-dau-tu-hon-80000-ty-dong-60331.html"
+   }
   },
   "Vĩnh Long": {
    "grdp_bn": {
@@ -1667,6 +1878,12 @@
     "ind": 27.54,
     "svc": null,
     "tax": null
+   },
+   "growth_9m": {
+    "2026": 7.32
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   },
   "Cần Thơ": {
@@ -1695,7 +1912,13 @@
     "2024": 3207.08,
     "2025": 3224.94
    },
-   "structure_2025": null
+   "structure_2025": null,
+   "growth_9m": {
+    "2026": 7.89
+   },
+   "growth_9m_src": {
+    "2026": "https://www.vietnamplus.vn/can-tho-ra-soat-dieu-chinh-tang-truong-kinh-te-quy-4-va-nam-2026-post1140343.vnp"
+   }
   },
   "Cà Mau": {
    "grdp_bn": {
@@ -1728,6 +1951,12 @@
     "ind": null,
     "svc": null,
     "tax": null
+   },
+   "growth_9m": {
+    "2026": 7.37
+   },
+   "growth_9m_src": {
+    "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    }
   }
  },
@@ -1958,59 +2187,67 @@
   },
   "g_gdp": {
    "now": {
-    "year": 2024,
-    "value": 476324572783.807,
-    "rank": 32,
-    "of": 200
+    "year": 2025,
+    "value": 514697215165.065,
+    "rank": 31,
+    "of": 186
    },
    "prev": {
-    "year": 2019,
-    "value": 334365270496.667,
-    "rank": 40,
-    "of": 211
-   }
+    "year": 2020,
+    "value": 346615738537.796,
+    "rank": 37,
+    "of": 210
+   },
+   "label": "GDP (current US$)",
+   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)"
   },
   "g_gdp_pc": {
    "now": {
-    "year": 2024,
-    "value": 4716.6599379632,
-    "rank": 130,
-    "of": 200
+    "year": 2025,
+    "value": 5065.99091899299,
+    "rank": 117,
+    "of": 186
    },
    "prev": {
-    "year": 2019,
-    "value": 3440.90025375434,
-    "rank": 151,
-    "of": 211
-   }
+    "year": 2020,
+    "value": 3534.03953482647,
+    "rank": 143,
+    "of": 210
+   },
+   "label": "GDP per capita (current US$)",
+   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)"
   },
   "g_gdp_pc_ppp": {
    "now": {
-    "year": 2024,
-    "value": 16387.9087954113,
-    "rank": 112,
-    "of": 195
+    "year": 2025,
+    "value": 18088.491587163,
+    "rank": 102,
+    "of": 185
    },
    "prev": {
-    "year": 2019,
-    "value": 11029.2732083963,
-    "rank": 122,
+    "year": 2020,
+    "value": 11609.3177276423,
+    "rank": 118,
     "of": 199
-   }
+   },
+   "label": "GDP per capita, PPP (current international $)",
+   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.PP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)"
   },
   "g_growth": {
    "now": {
-    "year": 2024,
-    "value": 7.03955197123018,
-    "rank": 14,
-    "of": 200
+    "year": 2025,
+    "value": 8.01882998978245,
+    "rank": 10,
+    "of": 186
    },
    "prev": {
-    "year": 2019,
-    "value": 7.35926270105006,
-    "rank": 12,
+    "year": 2020,
+    "value": 2.86541320912272,
+    "rank": 16,
     "of": 210
-   }
+   },
+   "label": "GDP growth (annual %)",
+   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.KD.ZG?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)"
   }
  },
  "PROV_PREV": {
@@ -2347,7 +2584,8 @@
      "Tin lành": 734168,
      "Cao Đài": 807915,
      "Phật giáo Hòa Hảo": 1433252,
-     "Hồi giáo": 75268
+     "Hồi giáo": 75268,
+     "Khác": 121460
     }
    },
    "btg": {
