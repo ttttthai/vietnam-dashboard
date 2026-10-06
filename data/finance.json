@@ -11044,6 +11044,453 @@
      "note": "No official credit/GDP target found in QĐ 986, QĐ 1809, QĐ 1413 or NQ 25/2026 excerpts - null."
     }
    ]
+  },
+  "listed_banks_by_sector": {
+   "as_of": "2026-10-06",
+   "period": "2026-06-30 (Q2-2026 interim FS) for all 17 banks; consolidated vs separate basis is mixed/unclear per bank (see banks[].basis)",
+   "sbv_total_bn": 20150411.0,
+   "sbv_total_note": "SBV 'Dư nợ tín dụng đối với nền kinh tế' (all credit institutions, incl. Agribank, foreign banks, finance companies, VBSP-excluded per SBV table) at end-Jun 2026 = FINSYS.sectors.levels.total; the ~20.3 quadrillion figure (Jul-2026: 20,262,110) is the same system-wide series, not joint-stock banks only.",
+   "sum_listed_total_loans_bn": 14054929,
+   "coverage_pct_of_system": 69.8,
+   "coverage_note": "DERIVED: sum of the 17 banks' customer loans / SBV credit to the economy at 30/6/2026. Indicative only: bank figures mix consolidated and separate bases and SBV 'credit' includes corporate bonds held and other credit items, so the ratio is not like-for-like. Agribank (~2.03 quadrillion) is not in the 17.",
+   "sector_coverage_note": "Full FS sector notes ('cho vay khách hàng theo ngành') could not be read for any bank (bank IR sites, vietstock, cafef and FS PDFs blocked). by_sector is null except where a sourced FS line maps one-to-one to an SBV group (BIDV trade; Techcombank construction). Real-estate business lines found for 10 banks sum to 1,095,458 bn (all mapped to other_services) - partial, not a sector total.",
+   "mapping_note_vi": "Ánh xạ ngành VSIC trong thuyết minh BCTC sang 6 nhóm của NHNN (suy luận, NHNN không công bố bảng ánh xạ): A Nông, lâm nghiệp và thủy sản → agriculture_forestry_fisheries; B Khai khoáng, C Công nghiệp chế biến chế tạo, D Sản xuất và phân phối điện/khí đốt, E Cung cấp nước, xử lý rác thải → industry; F Xây dựng → construction; G Bán buôn và bán lẻ, sửa chữa ô tô, mô tô → trade; H Vận tải kho bãi, J Thông tin và truyền thông → transport_telecom; còn lại (I Lưu trú và ăn uống, K Tài chính ngân hàng bảo hiểm, L Kinh doanh bất động sản, M-S dịch vụ chuyên môn, giáo dục, y tế, nghệ thuật..., T Hoạt động làm thuê các công việc trong hộ gia đình, sản xuất sản phẩm vật chất và dịch vụ tự tiêu dùng của hộ gia đình - tức phần lớn cho vay cá nhân/tiêu dùng, U) → other_services.",
+   "mapping_note_en": "Mapping of VSIC sections in bank FS notes to the SBV's six groups (an inference; the SBV publishes no mapping): A Agriculture, forestry, fishing → agriculture_forestry_fisheries; B Mining, C Manufacturing, D Electricity/gas, E Water/waste → industry; F Construction → construction; G Wholesale and retail, motor-vehicle repair → trade; H Transport and storage, J Information and communication → transport_telecom; everything else (I Accommodation and food, K Finance and insurance, L Real-estate business, M-S professional, education, health, arts…, T Activities of households as employers / own-use production - i.e. most personal and consumer lending, U) → other_services.",
+   "context": [
+    {
+     "label": "27 listed banks, customer loans 30/6/2026",
+     "value_bn": 15418000,
+     "note": "+8.88% YTD; snippet, outlet not pinned (NPL roundup articles e.g. https://vietnambiz.vn/no-xau-nganh-ngan-hang-vuot-310000-ty-dong-sau-nua-dau-nam-2026-202687232656327.htm). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "label": "28 domestic commercial banks, customer loans 30/6/2026",
+     "value_bn": null,
+     "note": "'nearly 17 quadrillion', +8% YTD (VietnamNet https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "label": "Real-estate lending at 12 banks, 30/6/2026",
+     "value_bn": 1120000,
+     "note": "'over 1.12 quadrillion' (https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    }
+   ],
+   "banks": [
+    {
+     "ticker": "VCB",
+     "name": "Vietcombank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear (press)",
+     "total_loans_bn": 1728183,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [],
+     "url": "https://nguoiquansat.vn/top-10-ngan-hang-dan-dau-ve-cho-vay-khach-hang-sau-quy-ii-2026-5-nha-bang-vuot-1-trieu-ty-dong-hdbank-dan-dat-tang-truong-308155.html",
+     "note": "Customer loans; VietnamNet gives \"over 1.7 quadrillion\" (+4.65% YTD) - consistent. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "BID",
+     "name": "BIDV",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear (press)",
+     "total_loans_bn": 2467112,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": 548960,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Bán buôn và bán lẻ; sửa chữa ô tô, mô tô, xe máy",
+       "value_bn": 548960,
+       "mapped_to": "trade",
+       "url": "https://nguoiquansat.vn/cho-vay-bidv-tang-nhanh-gap-3-lan-tien-gui-ngan-hang-lam-gi-de-bu-nguon-von-309600.html",
+       "note": "Largest customer group. Outlet not pinned (also seen in vietbao 601182 snippet). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      },
+      {
+       "label_vi": "Công nghiệp chế biến, chế tạo",
+       "value_bn": 396784,
+       "mapped_to": "industry (partial: SBV 'industry' also includes mining, electricity, water)",
+       "url": "https://nguoiquansat.vn/cho-vay-bidv-tang-nhanh-gap-3-lan-tien-gui-ngan-hang-lam-gi-de-bu-nguon-von-309600.html",
+       "note": "'nearly', +13% YTD. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      },
+      {
+       "label_vi": "Dịch vụ (as reported in press; FS line not identified)",
+       "value_bn": 534961,
+       "mapped_to": null,
+       "url": "https://nguoiquansat.vn/cho-vay-bidv-tang-nhanh-gap-3-lan-tien-gui-ngan-hang-lam-gi-de-bu-nguon-von-309600.html",
+       "note": "+20%; ambiguous grouping, not mapped. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://nguoiquansat.vn/top-10-ngan-hang-dan-dau-ve-cho-vay-khach-hang-sau-quy-ii-2026-5-nha-bang-vuot-1-trieu-ty-dong-hdbank-dan-dat-tang-truong-308155.html",
+     "note": "CONFLICT: VietnamNet (https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html) gives 2.41 quadrillion (+5.59% YTD); not reconciled (likely consolidated vs separate). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "CTG",
+     "name": "VietinBank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear (press)",
+     "total_loans_bn": 2059113,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [],
+     "url": "https://nguoiquansat.vn/top-10-ngan-hang-dan-dau-ve-cho-vay-khach-hang-sau-quy-ii-2026-5-nha-bang-vuot-1-trieu-ty-dong-hdbank-dan-dat-tang-truong-308155.html",
+     "note": "CONFLICT: VietnamNet gives 2.04 quadrillion (+5.18% YTD). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "TCB",
+     "name": "Techcombank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "separate (parent) FS",
+     "total_loans_bn": 795813,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": 45100,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Hoạt động kinh doanh bất động sản",
+       "value_bn": 212311,
+       "share_pct": 26.68,
+       "mapped_to": "other_services",
+       "url": "https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html",
+       "note": "212,311/26.68% implies ~795.8k base = separate FS. CONFLICT: another snippet gives 198,854.11 bn = 26.44%. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      },
+      {
+       "label_vi": "Xây dựng",
+       "value_bn": 45100,
+       "mapped_to": "construction",
+       "url": "https://techcombank.com/content/dam/techcombank/public-site/documents/techcombank-vas-bao-cao-tai-chinh-rieng-le-2q26-searchable.pdf",
+       "note": "+72.0% YTD, rounded (45.1 trn). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://techcombank.com/content/dam/techcombank/public-site/documents/techcombank-vas-bao-cao-tai-chinh-rieng-le-2q26-searchable.pdf",
+     "note": "Consolidated customer loans 847,336 per VietnamNet (https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html); separate basis kept because the sector lines are separate-basis. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "MBB",
+     "name": "MB Bank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear (press, rounded)",
+     "total_loans_bn": 1228000,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Hoạt động kinh doanh bất động sản",
+       "value_bn": 167081,
+       "share_pct": 14.25,
+       "mapped_to": "other_services",
+       "url": "https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html",
+       "note": "167,081/14.25% implies ~1.17m base (parent?). CONFLICT: MBS gives RE share 13.6% (from 11.18% end-2025). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "\"1.228 quadrillion\" (rounded). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "VPB",
+     "name": "VPBank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "consolidated (press, rounded)",
+     "total_loans_bn": 1161000,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Hoạt động kinh doanh bất động sản",
+       "value_bn": 286682,
+       "share_pct": 27.17,
+       "mapped_to": "other_services",
+       "url": "https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html",
+       "note": "27.17% implies ~1.055m base = parent FS, not the consolidated total. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "Parent-bank loans ~1.06 quadrillion (+24.6% YTD). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "ACB",
+     "name": "ACB",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear (press)",
+     "total_loans_bn": 745759,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "+8.6% YTD; theleader also 745,759. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "STB",
+     "name": "Sacombank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear",
+     "total_loans_bn": 595103,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "HDB",
+     "name": "HDBank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear (press)",
+     "total_loans_bn": 649803,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Hoạt động kinh doanh bất động sản",
+       "value_bn": 78567,
+       "share_pct": null,
+       "mapped_to": "other_services",
+       "url": "https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html",
+       "note": "Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html",
+     "note": "CONFLICT: VietnamNet \"659 nghìn tỷ\"; 649,803 (+20.5% YTD) kept as the precise figure; outlet not pinned. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "SHB",
+     "name": "SHB",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear",
+     "total_loans_bn": 636617,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Hoạt động kinh doanh bất động sản",
+       "value_bn": 220379,
+       "share_pct": 34.62,
+       "mapped_to": "other_services",
+       "url": "https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html",
+       "note": "Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "CONFLICT: VietnamNet top-10 gives 659,611. 636,617 kept because the RE share (220,379 = 34.62%) implies a ~636.6k base. Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "TPB",
+     "name": "TPBank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear",
+     "total_loans_bn": 332086,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Hoạt động kinh doanh bất động sản",
+       "value_bn": 49822,
+       "share_pct": 14.82,
+       "mapped_to": "other_services",
+       "url": "https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html",
+       "note": "+4.22 pp YTD. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "VIB",
+     "name": "VIB",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear",
+     "total_loans_bn": 392020,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Hoạt động kinh doanh bất động sản",
+       "value_bn": 33300,
+       "share_pct": null,
+       "mapped_to": "other_services",
+       "url": "https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html",
+       "note": "Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "LPB",
+     "name": "LPBank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear",
+     "total_loans_bn": 424149,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Hoạt động kinh doanh bất động sản",
+       "value_bn": 15373,
+       "share_pct": null,
+       "mapped_to": "other_services",
+       "url": "https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html",
+       "note": "Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "MSB",
+     "name": "MSB",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear",
+     "total_loans_bn": 221606,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [
+      {
+       "label_vi": "Hoạt động kinh doanh bất động sản",
+       "value_bn": 31943,
+       "share_pct": null,
+       "mapped_to": "other_services",
+       "url": "https://vietnamnet.vn/1-12-trieu-ty-dong-do-vao-bat-dong-san-8-ngan-hang-tang-ty-trong-cho-vay-2543965.html",
+       "note": "Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+      }
+     ],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "OCB",
+     "name": "OCB",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear",
+     "total_loans_bn": 215783,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "EIB",
+     "name": "Eximbank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear",
+     "total_loans_bn": 186193,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    },
+    {
+     "ticker": "NAB",
+     "name": "Nam A Bank",
+     "period": "2026-06-30 (Q2-2026 interim FS)",
+     "basis": "unclear",
+     "total_loans_bn": 216589,
+     "by_sector": {
+      "agriculture_forestry_fisheries": null,
+      "industry": null,
+      "construction": null,
+      "trade": null,
+      "transport_telecom": null,
+      "other_services": null
+     },
+     "raw": [],
+     "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+    }
+   ]
   }
  }
 }
