@@ -1,0 +1,168 @@
+{
+ "_meta": {
+  "owner": "main session (Flourish)",
+  "as_of": "2026-10-06",
+  "note": "Flourish flagship charts, English only, embedded at the end of each story chapter (chapter = DOM id of the stChap/hero section). Every CSV is regenerated from the data files by tools/build/flourish_export.py (column order is stable so bindings keep working); re-upload after data changes. published reflects flourish_list_visualisations on 2026-10-06: all are drafts until the user publishes them in Flourish, then set published:true and run tools/build/embed_data.py flourish."
+ },
+ "FLOURISH_VIZ": {
+  "lang": "en",
+  "items": [
+   {
+    "id": 30475879,
+    "tab": "econ",
+    "chapter": "st-hero",
+    "title": "Forecasters see Vietnam growing 7–8% in 2026, short of the ≥10% target",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/gdp_growth.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30475879/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30475879/",
+    "edit_url": "https://app.flourish.studio/visualisation/30475879/edit"
+   },
+   {
+    "id": 30476086,
+    "tab": "econ",
+    "chapter": "st-2030",
+    "title": "IMF path reaches 6,323 USD per person in 2030, short of 8,500 target",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/gdp_per_capita.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476086/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476086/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476086/edit"
+   },
+   {
+    "id": 30476088,
+    "tab": "econ",
+    "chapter": "st-cpi",
+    "title": "Forecasters put 2026 inflation at 4.2–4.9%; the target is about 4.5%",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/cpi.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476088/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476088/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476088/edit"
+   },
+   {
+    "id": 30475882,
+    "tab": "social",
+    "chapter": "soc-st-rich",
+    "title": "All 8 southern provinces are below replacement fertility, rich or poor",
+    "template": "scatter",
+    "csv": "data/flourish/provinces_scatter.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30475882/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30475882/",
+    "edit_url": "https://app.flourish.studio/visualisation/30475882/edit"
+   },
+   {
+    "id": 30476092,
+    "tab": "social",
+    "chapter": "soc-st-tfr",
+    "title": "Population passed 100 million in 2023; 2050 projections: 110–115 million",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/population.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476092/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476092/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476092/edit"
+   },
+   {
+    "id": 30476094,
+    "tab": "money",
+    "chapter": "pol-st-hero",
+    "title": "SBV refinancing rate unchanged at 4.5% since June 2023",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/policy_rates.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476094/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476094/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476094/edit"
+   },
+   {
+    "id": 30476096,
+    "tab": "money",
+    "chapter": "pol-st-moves",
+    "title": "Easing moves outnumber tightening about four to one: 120 vs 29",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/policy_moves.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476096/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476096/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476096/edit"
+   },
+   {
+    "id": 30476098,
+    "tab": "banks",
+    "chapter": "fs-st-depth",
+    "title": "Credit outgrew deposits in 9 of the 11 years since 2015",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/credit_deposit_growth.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476098/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476098/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476098/edit"
+   },
+   {
+    "id": 30475880,
+    "tab": "banks",
+    "chapter": "fs-st-flow",
+    "title": "45% of Vietnam's bank credit goes to “other services” — mostly property and consumer loans",
+    "template": "sankey",
+    "csv": "data/flourish/credit_sankey.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30475880/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30475880/",
+    "edit_url": "https://app.flourish.studio/visualisation/30475880/edit"
+   },
+   {
+    "id": 30476097,
+    "tab": "banks",
+    "chapter": "fs-st-2030",
+    "title": "Dashboard scenario: at 15% credit growth, credit hits 178% of GDP by 2030",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/credit_to_gdp.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476097/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476097/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476097/edit"
+   },
+   {
+    "id": 30476099,
+    "tab": "party",
+    "chapter": "pg-st-wave",
+    "title": "Q3 2026 was the busiest quarter, with 27 tracked documents",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/documents_per_quarter.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476099/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476099/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476099/edit"
+   },
+   {
+    "id": 30476100,
+    "tab": "party",
+    "chapter": "pg-st-pipe",
+    "title": "11 of 15 tracked drafts are due at the NA session opening 17 Oct",
+    "template": "gantt",
+    "csv": "data/flourish/drafts_gantt.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476100/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476100/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476100/edit"
+   },
+   {
+    "id": 30476104,
+    "tab": "invest",
+    "chapter": "iv-st-macro",
+    "title": "By 30 Sep, local budgets had disbursed 73.6% of plan; central 44.1%",
+    "template": "line-bar-pie",
+    "csv": "data/flourish/public_investment_9m.csv",
+    "published": false,
+    "embed_url": "https://flo.uri.sh/visualisation/30476104/embed",
+    "public_url": "https://public.flourish.studio/visualisation/30476104/",
+    "edit_url": "https://app.flourish.studio/visualisation/30476104/edit"
+   }
+  ]
+ }
+}
