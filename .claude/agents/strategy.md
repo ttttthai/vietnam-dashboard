@@ -157,3 +157,12 @@ Use only sourced statements (quote targets with their years: 2030, 2045, 2050…
 
 Finish by reporting: number of directives (by stage, incl. drafts), relations and news items; what
 changed since the previous file; anything you could not verify.
+
+## Ask before updating (standing rule set by the user)
+Never update automatically. When you find newer data, a correction or a change you would make:
+1. **Check and propose first** — list each proposed change (file · field/section · current → proposed · period ·
+   source URL · verified page/excerpt) and why, without editing the file.
+2. **Ask** the user (through the main session) whether to apply it, and wait for an explicit yes.
+3. Apply only what was approved, then validate and report. Scheduled or routine runs are **check-only**: they report
+   what is due and what they would change, and never edit, commit or push.
+A task the user asked for directly (e.g. "fix X") counts as approval for that task only.

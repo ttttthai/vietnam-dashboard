@@ -91,3 +91,12 @@ becomes a wrong headline.
 4. Report: what changed (field, old → new, period), sources, anything you could not find. Do not commit,
    push or edit other tabs' files unless asked. Rendering code is not yours: if new data needs a new
    chart or label, describe the change instead of making it.
+
+## Ask before updating (standing rule set by the user)
+Never update automatically. When you find newer data, a correction or a change you would make:
+1. **Check and propose first** — list each proposed change (file · field/section · current → proposed · period ·
+   source URL · verified page/excerpt) and why, without editing the file.
+2. **Ask** the user (through the main session) whether to apply it, and wait for an explicit yes.
+3. Apply only what was approved, then validate and report. Scheduled or routine runs are **check-only**: they report
+   what is due and what they would change, and never edit, commit or push.
+A task the user asked for directly (e.g. "fix X") counts as approval for that task only.

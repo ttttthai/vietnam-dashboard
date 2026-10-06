@@ -57,3 +57,12 @@ open conflicts. Put due items at the top of `update_plan.md`, and make sure `sch
 3. Write the schedule, plan, source log and learnings; apply agent-definition upgrades.
 4. Validate JSON (`python3 -m json.tool`). Report a short summary: stale/due items by agent, inconsistencies found,
    the proposed schedule, and the upgrades made. Do not commit or push.
+
+## Ask before updating (standing rule set by the user)
+Never update automatically. When you find newer data, a correction or a change you would make:
+1. **Check and propose first** — list each proposed change (file · field/section · current → proposed · period ·
+   source URL · verified page/excerpt) and why, without editing the file.
+2. **Ask** the user (through the main session) whether to apply it, and wait for an explicit yes.
+3. Apply only what was approved, then validate and report. Scheduled or routine runs are **check-only**: they report
+   what is due and what they would change, and never edit, commit or push.
+A task the user asked for directly (e.g. "fix X") counts as approval for that task only.
