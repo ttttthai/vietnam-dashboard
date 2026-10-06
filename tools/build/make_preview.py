@@ -8,8 +8,10 @@ Usage:  python3 tools/build/make_preview.py [server_url] [--libs DIR] [--out PAT
   --libs DIR  folder holding d3.min.js, topojson.min.js and vn-all.topo.json (optional; without it the
               page keeps its CDN script tags and the map loads only if the CDN is reachable)
   --out PATH  default vietnam_dashboard_preview.html in the repo root (git-ignored)
+  --artifact PATH  also write a variant for publishing as a claude.ai page: <title> first, no outer
+              document tags (the host adds them), language switch translates in place (?lang= is dropped)
 """
-import json, os, sys, urllib.request
+import json, os, re, sys, urllib.request
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 args = sys.argv[1:]
@@ -56,3 +58,15 @@ i = html.index('<head>') + len('<head>')
 html = html[:i] + shim + html[i:]
 open(out, 'w', encoding='utf-8').write(html)
 print('wrote', out, round(len(html) / 1024 / 1024, 2), 'MB')
+
+if '--artifact' in args:
+    a_out = args[args.index('--artifact') + 1]
+    t = re.sub(r'<title>[^<]*</title>', '', html, count=1)
+    for tag in ('<!DOCTYPE html>', '<html lang="vi">', '<head>', '<body>'): t = t.replace(tag, '', 1)
+    for tag in ('</head>', '</body>', '</html>'):
+        k = t.rfind(tag); t = t[:k] + t[k + len(tag):] if k >= 0 else t
+    t = t.replace("if (/^(https?|file):$/.test(location.protocol)) {", "if (false && /^(https?|file):$/.test(location.protocol)) {   /* published copy: ?lang= is dropped, translate in place */", 1)
+    t = '<title>Vietnam Dashboard</title>\n<style>html,body{background:#faf8f3}</style>\n' + t.lstrip()
+    open(a_out, 'w', encoding='utf-8').write(t)
+    print('wrote', a_out)
+
