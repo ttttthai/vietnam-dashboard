@@ -1191,7 +1191,7 @@
      1820310,
      1770776,
      2057544,
-     2681500,
+     2650100,
      2529467
     ],
     "domestic": [
@@ -1202,7 +1202,7 @@
      1447915,
      1483781,
      1723643,
-     2308400,
+     2279900,
      2199967
     ],
     "crude_oil": [
@@ -1213,7 +1213,7 @@
      78137,
      61971,
      58646,
-     48300,
+     48000,
      43000
     ],
     "import_export": [
@@ -1224,7 +1224,7 @@
      285898,
      219651,
      272006,
-     318800,
+     319800,
      278000
     ],
     "grants": [
@@ -1235,7 +1235,7 @@
      8360,
      5373,
      3249,
-     5900,
+     null,
      8500
     ],
     "vat": [
@@ -1268,7 +1268,7 @@
      162790,
      157034,
      186350,
-     235100,
+     null,
      237037
     ],
     "special_consumption": [
@@ -1290,7 +1290,7 @@
      43067,
      37267,
      40333,
-     42500,
+     null,
      43846
     ],
     "land_use_fees": [
@@ -1301,7 +1301,7 @@
      208458,
      153769,
      232927,
-     498600,
+     null,
      474165
     ],
     "lottery": [
@@ -1312,7 +1312,7 @@
      40596,
      45844,
      49990,
-     57200,
+     null,
      57716
     ],
     "fees_charges": [
@@ -1323,7 +1323,7 @@
      88740,
      79618,
      95870,
-     110300,
+     null,
      110135
     ]
    },
@@ -1336,7 +1336,7 @@
      1750790,
      1936912,
      2148477,
-     3312600,
+     2401500,
      3159106
     ],
     "development_investment": [
@@ -1347,7 +1347,7 @@
      615640,
      723839,
      720862,
-     1039100,
+     732000,
      1120227
     ],
     "recurrent": [
@@ -1358,7 +1358,7 @@
      1034250,
      1117207,
      1320495,
-     1683300,
+     1553000,
      1808996
     ],
     "interest": [
@@ -1369,7 +1369,7 @@
      96084,
      89323,
      102571,
-     108100,
+     109400,
      121131
     ],
     "aid": [
@@ -1403,7 +1403,7 @@
     293313,
     291564,
     323308,
-    429000,
+    462000,
     605800
    ],
    "deficit_pct_gdp": [
@@ -1414,7 +1414,7 @@
     3.07,
     2.83,
     2.8,
-    3.3,
+    3.6,
     4.2
    ],
    "basis": [
@@ -1476,18 +1476,31 @@
     "deficit_note": "\"bội chi khoảng 3,6% GDP, giảm 9.500 tỷ đồng so với dự toán\" (plan deficit 471,500)",
     "source": "https://tapchikinhtetaichinh.vn/boi-chi-ngan-sach-nha-nuoc-nam-2025-uoc-khoang-36-gdp-thap-hon-du-toan-100288.html",
     "alt_urls": "https://vnexpress.net/thu-ngan-sach-2025-dat-ky-luc-2-65-trieu-ty-dong-5002519.html | https://vneconomy.vn/nam-2025-ngan-sach-nha-nuoc-thang-du-hon-248-nghin-ty-dong.htm",
-    "verified": "search-engine excerpts (pages blocked), 2026-10-06"
+    "verified": "search-engine excerpts (MoF/NSO/press pages blocked), re-checked 2026-10-06: totals, domestic, expenditure lines, 3.6% and −9,500 confirmed; oil and import-export confirmed indirectly (vnexpress excerpt: oil >90% of plan, −18% yoy; import-export +~18% yoy, consistent with 48.0 / 319.8 against the 2024 final 58.6 / 272.0)",
+    "deficit": 462000,
+    "deficit_derivation": "462,000 = NA plan deficit 471,500 (NQ dự toán 2025, https://vietstock.vn/2024/11/quoc-hoi-chot-muc-boi-chi-ngan-sachnha-nuoc-nam-2025-la-471500-ty-dong-758-1244968.htm) minus the stated reduction of 9,500 (\"giảm 9.500 tỷ đồng so với dự toán\", local-budget deficit lower). Arithmetic on two published figures, not an estimate; 462,000 / gdp.GDP[2025] 12,847,571 = 3.60% GDP, matching the stated ≈3.6%.",
+    "expenditure_breakdown_note": "Development 732.0 tn (92.6% of plan, +38.3%), recurrent 1,553.0 tn (97.2%, +30.4%), interest 109.4 tn (99%, +1%): MoF figures as carried in the NSO Q4/2025 socio-economic report (05/01/2026). Total − (dev + recurrent + interest) = 7,100 = other lines of the same release (aid, reserve fund, etc. not itemised in excerpts). yoy % compare with 2024 execution at the same point, not with the 2024 final account.",
+    "expenditure_breakdown_url": "https://xaydungchinhsach.chinhphu.vn/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iv-va-nam-2025-119260105155650719.htm",
+    "revenue_breakdown_note": "Domestic 2,279.9 tn (+36.7% vs plan, +33.2% yoy); crude oil ≈48 tn (≈90% of plan, −18% yoy); import-export 319.8 tn (+~18% yoy). Domestic + oil + import-export = 2,647.7; the 2,400 remainder (grants/other) is not itemised in the excerpts and is left null. Sub-lines of domestic revenue (PIT, land-use fees, env. tax, lottery, fees) for FY2025 were not found in the release excerpts and are null. \"Thu từ nhà, đất\" 575.5 tn (+96.4% vs plan) is a broader aggregate than land_use_fees and is not used for that line.",
+    "alt_figure_note": "VnExpress (https://vnexpress.net/thu-ngan-sach-2025-dat-ky-luc-2-65-trieu-ty-dong-5002519.html) quotes spending ≈2.42 million bn (+31.5%); NSO/MoF report figure 2,401.5 tn kept."
    },
    "sources": {
     "2018-2024": "MoF budget final accounts (quyết toán NSNN) — origin per page footnote; not re-verified 2026-10-06",
-    "2025": "UNTRACED: the 2025 column (revenue 2,681,500; expenditure 3,312,600; deficit 429,000 = 3.3% GDP) has no recorded source and could not be matched to any MoF release found on 2026-10-06. MoF Jan-2026 year-end execution gives revenue 2,650,100, expenditure 2,401,500, deficit ≈3.6% GDP (see mof_execution_2025_jan2026). Kept pending owner decision; see qc_note.",
+    "2025": {
+     "v": "MoF year-end execution estimate (Jan-2026), basis estimate: revenue 2,650,100; expenditure 2,401,500; deficit 462,000 = 3.6% GDP; breakdown lines per mof_execution_2025_jan2026; untraceable lines null",
+     "basis": "MoF estimate, Jan-2026",
+     "url": "https://tapchikinhtetaichinh.vn/boi-chi-ngan-sach-nha-nuoc-nam-2025-uoc-khoang-36-gdp-thap-hon-du-toan-100288.html",
+     "alt_urls": "https://vneconomy.vn/nam-2025-ngan-sach-nha-nuoc-thang-du-hon-248-nghin-ty-dong.htm | https://xaydungchinhsach.chinhphu.vn/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iv-va-nam-2025-119260105155650719.htm | https://vnexpress.net/thu-ngan-sach-2025-dat-ky-luc-2-65-trieu-ty-dong-5002519.html",
+     "replaced": "2026-10-06 (owner-approved): untraced column revenue 2,681,500 / domestic 2,308,400 / oil 48,300 / import-export 318,800 / grants 5,900 / PIT 235,100 / env 42,500 / land-use 498,600 / lottery 57,200 / fees 110,300; expenditure 3,312,600 / dev 1,039,100 / recurrent 1,683,300 / interest 108,100; deficit 429,000 = 3.3% GDP",
+     "verified": "search excerpt, 2026-10-06"
+    },
     "2026": {
      "v": "plan: revenue 2,529,467; expenditure 3,159,106; deficit 605,800 = 4.2% GDP",
      "url": "https://thoibaotaichinhvietnam.vn/quoc-hoi-thong-qua-nghi-quyet-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-186851.html",
      "verified": "search excerpt, 2026-10-06"
     }
    },
-   "qc_note": "QC 2026-10-06: (1) 2025 expenditure.total 3,312,600 conflicts with ECON_OFFICIAL.budget_exp_bn[2025] = 2,401,500 (MoF Jan-2026); the 482,100 gap shows up as the \"Khác\" slice of the 2025 spending waffle. (2) deficit ≠ revenue − expenditure in every year (MoF deficit definition excludes/includes items differently from the cash totals); this is expected, not an error. (3) deficit_pct_gdp 2018–2020 (2.80, 2.67, 3.44) match the pre-2019-revision GDP denominator; on the current gdp.GDP series they would be 2.18, 2.10, 2.69. Published ratios kept. (4) MoF has not published the FY2025 final account (quyết toán) as of 2026-10-06, so 2025 stays \"estimate\"."
+   "qc_note": "QC 2026-10-06: (1) 2025 column replaced with the MoF Jan-2026 year-end execution estimate (owner-approved); untraceable sub-lines set to null. The 2025 spending waffle now shows recurrent 1,553.0 (64.7%), development 732.0 (30.5%), interest 109.4 (4.6%) and \"Khác\" 7.1 (0.3%, the un-itemised remainder of the same release, not a plug from another source). Revenue sub-lines PIT/land-use/env/lottery/fees 2025 are null, so the renderer's \"other domestic taxes\" slice equals all domestic revenue (2,279.9) for 2025. (2) The 2025 estimate is cash-basis execution and excludes carry-over spending (chi chuyển nguồn) that the 2018–2024 final accounts include; the 2024→2025 change in the line chart is therefore not like-for-like. (3) deficit ≠ revenue − expenditure in every year (MoF deficit definition); expected. (4) deficit_pct_gdp 2018–2020 (2.80, 2.67, 3.44) match the pre-2019-revision GDP denominator; on the current gdp.GDP series they would be 2.18, 2.10, 2.69. Published ratios kept. (5) FY2025 final account (quyết toán) not yet published as of 2026-10-06 (due NA spring 2027), so 2025 stays \"estimate\"."
   },
   "inv": {
    "years": [
@@ -2027,9 +2040,11 @@
       "url": "https://thoibaotaichinhvietnam.vn/wb-nang-manh-du-bao-tang-truong-cua-viet-nam-nam-2026-204930.html",
       "alt_url": "https://mekongasean.vn/world-bank-nang-du-bao-tang-truong-viet-nam-len-74-60355.html"
      },
-     "method_vi": "Công bố 06/10/2026; 2026 nâng 1,1 điểm % (từ 6,3% tháng 4). 2027–2028 = 7,3% theo Thời báo Tài chính; một bản tóm tắt VnExpress ghi 2027 là 7,4% — chưa đối chiếu được bảng gốc.",
-     "method_en": "Released 06/10/2026; 2026 raised 1.1 pp (from 6.3% in April). 2027–2028 = 7.3% per Thoi bao Tai chinh; a VnExpress summary reads 2027 as 7.4% — original table not checked.",
-     "pub": "2026-10-06"
+     "method_vi": "Công bố 06/10/2026: 2026 là 7,4% (+1,1 điểm % so với 6,3% tháng 4), 2027 và 2028 là 7,3% (kiểm tra lại 06/10/2026; bản VnExpress ghi 2027 = 7,4% không được xác nhận). Hàm ý: với 9 tháng đạt 9,01%, cả năm 7,4% đòi hỏi Q4 chỉ khoảng 3,3% (giả định Q4 ≈ 28% GDP năm) — thấp hơn nhiều Q1–Q3; nhiều khả năng dự báo được chốt trước khi NSO công bố số 9 tháng (03/10/2026).",
+     "method_en": "Released 06/10/2026: 2026 7.4% (+1.1 pp from 6.3% in April), 2027 7.3%, 2028 7.3% (\"giảm nhẹ xuống 7,3% trong hai năm kế tiếp\"), re-checked 2026-10-06; the VnExpress \"2027 = 7.4%\" reading is not supported. Implication: with 9M-2026 actual 9.01%, a 7.4% full year needs Q4 ≈ (7.4 − 9.01×0.72)/0.28 ≈ 3.3% yoy (Q4 ≈ 28% of annual GDP, approximation), far below Q1–Q3 (8.15/8.81/9.95). The forecast was most likely finalised before the NSO 9M release (03/10/2026); treat it as stale against actuals, not as a Q4 call.",
+     "pub": "2026-10-06",
+     "alt_url_2": "https://doanhnghiephoinhap.vn/wb-nang-du-bao-tang-truong-viet-nam-len-74-cao-nhat-khu-vuc-eap-150814.html",
+     "verified": "search-engine excerpts, 2026-10-06 (worldbank.org blocked)"
     },
     "gdp_growth_pct_adb": {
      "years": [
@@ -2712,7 +2727,7 @@
    1820310,
    1770776,
    2057544,
-   2681469
+   2650100
   ],
   "budget_exp_bn": [
    657582,
@@ -2946,7 +2961,7 @@
    23271.21,
    23787.32,
    24164.89,
-   null
+   24976
   ],
   "ytd_2026": {
    "period": "Jan–Sep 2026",
@@ -2980,8 +2995,8 @@
   },
   "sources": {
    "all": "NSO/GSO yearbook & PxWeb, IMF reserves (origin per page comment above ECON_LAST; not re-verified 2026-10-06)",
-   "budget_exp_bn_2025": "2,401,500 = MoF Jan-2026 year-end execution (see ECONFLOW.budget.mof_execution_2025_jan2026)",
-   "gaps": "usd_vnd 2025 and pci_median 2025 null (see usd_vnd_2025 / pci_median_2025). gdp_growth 2023 = 4.98 and 2024 = 7.04 match the revised NSO vintage (https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tai-chinh/104901/so-lieu-tang-truong-gdp-cua-viet-nam-giai-doan-2011-2025); first-release values were 5.05 / 7.09.",
+   "budget_exp_bn_2025": "2,401,500 = MoF Jan-2026 year-end execution estimate (see ECONFLOW.budget.mof_execution_2025_jan2026)",
+   "gaps": "pci_median 2025 null (see pci_median_2025); usd_vnd 2025 filled 2026-10-06 (NSO-implied, see usd_vnd_2025). gdp_growth 2023 = 4.98 and 2024 = 7.04 match the revised NSO vintage (https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tai-chinh/104901/so-lieu-tang-truong-gdp-cua-viet-nam-giai-doan-2011-2025); first-release values were 5.05 / 7.09.",
    "iip_growth_2025": {
     "v": 9.2,
     "old": 9.3,
@@ -3012,10 +3027,18 @@
     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
    },
    "usd_vnd_2025": {
-    "v": null,
-    "note": "Left null. The series matches the NSO/SBV central-rate conversion (2024: 11,511.9 tn VND / 476.3 bn USD ≈ 24,170). No published 2025 average central rate found. Other concepts found: NSO USD price index 2025 avg +3.92% yoy (https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/01/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-muoi-hai-quy-iv-va-nam-2025/); World Bank official rate (period avg) 26,007.4 for 2025 vs 25,052.5 for 2024 via CEIC (https://www.ceicdata.com/en/vietnam/foreign-exchange-rates-annual/official-exchange-rate-period-average-local-currency-to-usd) — a different (market) concept, not spliced."
+    "v": 24976,
+    "old": null,
+    "concept": "NSO-implied annual average rate = gdp_vnd_bn / (gdppc_usd × pop_m), i.e. the rate NSO used to convert 2025 GDP (12,847.6 tn VND ≈ 514 bn USD; per capita 125.5 mn VND = 5,026 USD). Not the SBV central-rate average (no published annual average found).",
+    "check": "Same formula on 2024 gives 24,165.3 vs held 24,164.89, so the series concept matches. Rounding of 5,026 USD (±0.5) gives ±2.5 VND. Society uses 24,978 (aggregate/rounded inputs) — within rounding.",
+    "period": "FY2025, NSO estimate released 05/01/2026",
+    "url": "https://xaydungchinhsach.chinhphu.vn/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iv-va-nam-2025-119260105155650719.htm",
+    "alt_url": "https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tai-chinh/102800/quy-mo-gdp-viet-nam-nam-2025-dat-514-ty-usd",
+    "other_concepts": "World Bank official rate (period avg) 26,007.4 for 2025 via CEIC (https://www.ceicdata.com/en/vietnam/foreign-exchange-rates-annual/official-exchange-rate-period-average-local-currency-to-usd) — different concept, not spliced.",
+    "verified": "search-engine excerpt (NSO page blocked), 2026-10-06"
    },
-   "fx_reserves_2025_note": "fx_reserves_busd 2025 = 85.58 kept (origin as in page comment). A secondary source quotes 83.6 bn USD at end-2025 (https://vietnambusinessinsider.vn/thach-thuc-cho-ngoai-hoi-a52710.html); latest SBV statement: ≈87.6 bn USD at 18/06/2026 (https://vnexpress.net/du-tru-ngoai-hoi-gan-88-ty-usd-5089444.html)."
+   "fx_reserves_2025_note": "fx_reserves_busd 2025 = 85.58 kept (origin as in page comment). A secondary source quotes 83.6 bn USD at end-2025 (https://vietnambusinessinsider.vn/thach-thuc-cho-ngoai-hoi-a52710.html); latest SBV statement: ≈87.6 bn USD at 18/06/2026 (https://vnexpress.net/du-tru-ngoai-hoi-gan-88-ty-usd-5089444.html).",
+   "budget_rev_bn_2025": "2,650,100 = MoF Jan-2026 year-end execution estimate (was 2,681,469, untraced); see ECONFLOW.budget.mof_execution_2025_jan2026"
   }
  },
  "CPI_YOY_24": [
@@ -4412,7 +4435,8 @@
     3.5,
     null,
     null
-   ]
+   ],
+   "vintage": "Viet Nam Economic Update, May 2026 (4.2 / 3.8 / 3.5). A 2026 CPI of 4.2% also appears in search summaries of the 06/10/2026 EAP Update, but the attribution could not be confirmed (the excerpt wording matches the May VEU); row kept on the May vintage. Re-check when the EAP Update tables can be read."
   },
   {
    "inst": "ADB",

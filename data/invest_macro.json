@@ -1,0 +1,56 @@
+{
+ "_meta": {
+  "owner": "Economy agent",
+  "as_of": "2026-10-06",
+  "note": "Drop-in replacement for the MACRO dict hard-coded in invest.py (same keys and structure; extra keys are additive). Values re-checked 2026-10-06 against the latest releases (NSO 9M/Q3-2026 report and Sep-2026 CPI of 03/10/2026; MoF public-investment disbursement to 30/09/2026). All via search-engine excerpts: nso.gov.vn, mof.gov.vn and press pages are blocked from the sandbox. Changes vs invest.py: public_invest.plan_bn 991,931.6 -> 1,022,607 (the 62.9% headline rate is of the full plan; 991,931.6 is the plan excluding the 5% local reserve for the Lao Cai-Hanoi-Hai Phong railway, on which the rate is 64.8%, now in plan_ex_rail_bn / pct_ex_rail); gdp.q4_required_est 12.5 -> 12.6 (same formula, rounded correctly). Refreshed by Economy after each NSO monthly release (next: 03/11/2026)."
+ },
+ "MACRO": {
+  "as_of": "2026-10-06",
+  "gdp": {
+   "q1": 8.15,
+   "q2": 8.81,
+   "q3": 9.95,
+   "ytd9m": 9.01,
+   "target": 10.0,
+   "q4_required_est": 12.6,
+   "q4_required_method": "Approximation, not an official figure: Q4 assumed ≈ 28% of annual real GDP, so required Q4 ≈ (10 − 9.01 × 0.72) / 0.28 = 12.55%. For comparison, the World Bank's 7.4% for 2026 (EAP Update, 06/10/2026) implies Q4 ≈ 3.3% on the same approximation.",
+   "period": "Q1–Q3 2026 and 9M-2026 vs same period 2025, constant prices; NSO estimate released 03/10/2026. Target: NQ 244/2025/QH15 (≥10%).",
+   "source": "Cục Thống kê (NSO), công bố 03/10/2026",
+   "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+   "alt_url": "https://nhandan.vn/tang-truong-gdp-9-thang-nam-2026-dat-901-nho-cac-chinh-sach-thuc-day-kinh-te-post992684.html",
+   "verified": "search-engine excerpt, 2026-10-06; same values as data/economy.json ECONFLOW.gdp.growth_real_pct"
+  },
+  "public_invest": {
+   "plan_bn": 1022607,
+   "disbursed_bn": 642961.6,
+   "pct": 62.9,
+   "pct_yoy_pts": 12.9,
+   "disbursed_yoy_bn": 202559,
+   "sep_vs_aug_speed": 1.58,
+   "plan_ex_rail_bn": 991931.6,
+   "pct_ex_rail": 64.8,
+   "central_bn": 164315.3,
+   "central_pct": 44.1,
+   "local_bn": 478646.3,
+   "local_pct": 73.6,
+   "period": "cumulative to 30/09/2026 (MoF report dated 02/10/2026)",
+   "plan_note": "plan_bn = total 2026 plan assigned by the NA/PM (central 372,380.4 + local 650,226.6); 642,961.6 / 1,022,607 = 62.9%. plan_ex_rail_bn excludes the 5% local reserve (30,675.4) for the Lao Cai–Hanoi–Hai Phong railway; rate 64.8%.",
+   "source": "Bộ Tài chính, lũy kế đến 30/09/2026",
+   "url": "https://baochinhphu.vn/giai-ngan-von-dau-tu-cong-9-thang-nam-2026-mot-so-bo-nganh-dia-phuong-con-cham-102261003011740764.htm",
+   "alt_url": "https://baohaiphong.vn/giai-ngan-dau-tu-cong-dat-gan-643-000-ty-dong-sau-9-thang-554860.html",
+   "verified": "search-engine excerpt, 2026-10-06"
+  },
+  "cpi": {
+   "yoy_sep": 5.08,
+   "avg9m": 4.52,
+   "core9m": 4.26,
+   "target": 4.5,
+   "target_source": "NA 2026 socio-economic plan resolution NQ 244/2025/QH15: CPI ~4.5% — https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm",
+   "period": "CPI Sep-2026 vs Sep-2025 (yoy_sep); Jan–Sep 2026 average vs same period 2025 (avg9m, core9m); NSO release 03/10/2026",
+   "source": "Cục Thống kê (NSO), CPI tháng 9/2026",
+   "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/",
+   "alt_url": "https://markettimes.vn/cpi-thang-9-2026-tang-0-62-chu-yeu-do-gia-xang-dau-va-hoc-phi-132253.html",
+   "verified": "search-engine excerpt, 2026-10-06; same values as data/economy.json CPI_YOY_24 (last) and ECON_OFFICIAL.ytd_2026"
+  }
+ }
+}
