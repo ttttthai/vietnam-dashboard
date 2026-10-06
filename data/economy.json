@@ -1,0 +1,3666 @@
+{
+ "_meta": {
+  "owner": "Economy agent",
+  "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing."
+ },
+ "ECONFLOW": {
+  "gdp": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "C": [
+    3080148.86,
+    3312415.21,
+    3650334.56,
+    4000543.27,
+    4379853.18,
+    4502208.0,
+    4712163.83,
+    5260895.87,
+    5573920.93,
+    6164612.34,
+    6836385.61
+   ],
+   "G": [
+    553131.01,
+    586406.16,
+    637882.65,
+    683093.48,
+    738260.1,
+    762512.3,
+    813531.8,
+    848501.3,
+    909372.0,
+    1017784.0,
+    1204620.31
+   ],
+   "I": [
+    1666877.77,
+    1789073.97,
+    2033264.8,
+    2244260.45,
+    2464759.62,
+    2567421.08,
+    2792006.22,
+    3111599.7,
+    3267875.63,
+    3520402.61,
+    3956426.85
+   ],
+   "GFCF": [
+    1566571.51,
+    1685834.6,
+    1922458.35,
+    2126648.03,
+    2340103.89,
+    2435664.44,
+    2634075.76,
+    2940853.24,
+    3109061.0,
+    3342939.54,
+    3752197.04
+   ],
+   "inventories": [
+    100306.25,
+    103239.37,
+    110806.46,
+    117612.42,
+    124655.73,
+    131756.64,
+    157930.47,
+    170747.0,
+    158815.21,
+    177463.08,
+    204229.81
+   ],
+   "X": [
+    3785661.31,
+    4179207.04,
+    5146055.08,
+    5917275.6,
+    6563265.82,
+    6787981.23,
+    7965513.43,
+    8988297.97,
+    8950407.43,
+    10378434.18,
+    12622020.27
+   ],
+   "M": [
+    3737305.4,
+    4021018.2,
+    4985877.73,
+    5624089.1,
+    6130817.91,
+    6344145.66,
+    7878552.33,
+    8633592.73,
+    8075584.17,
+    9636331.22,
+    11831636.8
+   ],
+   "net_exports": [
+    48355.91,
+    158188.84,
+    160177.35,
+    293186.51,
+    432447.91,
+    443835.56,
+    86961.1,
+    354705.24,
+    874823.26,
+    801814.19,
+    790383.47
+   ],
+   "discrepancy": [
+    -157189.82,
+    -206683.17,
+    -187754.81,
+    -212041.57,
+    -308120.53,
+    -231590.62,
+    82812.66,
+    45669.71,
+    -306933.48,
+    5716.42,
+    59754.98
+   ],
+   "GDP": [
+    5191323.73,
+    5639401.0,
+    6293904.55,
+    7009042.13,
+    7707200.29,
+    8044385.73,
+    8487475.6,
+    9621371.82,
+    10319058.87,
+    11510328.92,
+    12847571.22
+   ],
+   "pct_gdp": {
+    "C": [
+     59.33,
+     58.74,
+     58.0,
+     57.08,
+     56.83,
+     55.97,
+     55.52,
+     54.68,
+     54.02,
+     53.56,
+     53.21
+    ],
+    "G": [
+     10.65,
+     10.4,
+     10.13,
+     9.75,
+     9.58,
+     9.48,
+     9.59,
+     8.82,
+     8.81,
+     8.84,
+     9.38
+    ],
+    "I": [
+     32.11,
+     31.72,
+     32.31,
+     32.02,
+     31.98,
+     31.92,
+     32.9,
+     32.34,
+     31.67,
+     30.58,
+     30.8
+    ],
+    "GFCF": [
+     30.18,
+     29.89,
+     30.54,
+     30.34,
+     30.36,
+     30.28,
+     31.03,
+     30.57,
+     30.13,
+     29.04,
+     29.21
+    ],
+    "inventories": [
+     1.93,
+     1.83,
+     1.76,
+     1.68,
+     1.62,
+     1.64,
+     1.86,
+     1.77,
+     1.54,
+     1.54,
+     1.59
+    ],
+    "X": [
+     72.92,
+     74.11,
+     81.76,
+     84.42,
+     85.16,
+     84.38,
+     93.85,
+     93.42,
+     86.74,
+     90.17,
+     98.24
+    ],
+    "M": [
+     71.99,
+     71.3,
+     79.22,
+     80.24,
+     79.55,
+     78.86,
+     92.83,
+     89.73,
+     78.26,
+     83.72,
+     92.09
+    ],
+    "net_exports": [
+     0.93,
+     2.81,
+     2.54,
+     4.18,
+     5.61,
+     5.52,
+     1.02,
+     3.69,
+     8.48,
+     6.97,
+     6.15
+    ],
+    "discrepancy": [
+     -3.03,
+     -3.66,
+     -2.98,
+     -3.03,
+     -4.0,
+     -2.88,
+     0.98,
+     0.47,
+     -2.97,
+     0.05,
+     0.47
+    ]
+   },
+   "growth_real_pct": {
+    "9M_2026_yoy": {
+     "final_consumption": 8.51,
+     "gross_capital_formation": 17.88,
+     "exports_gs": 21.29,
+     "imports_gs": 27.19,
+     "GDP": 9.01
+    },
+    "Q3_2026_yoy": {
+     "final_consumption": 8.96,
+     "gross_capital_formation": 21.39,
+     "exports_gs": 23.27,
+     "imports_gs": 28.75
+    },
+    "source": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+   },
+   "basis": [
+    "official",
+    "official",
+    "official",
+    "official",
+    "official",
+    "official",
+    "official",
+    "official",
+    "official",
+    "preliminary (Sơ bộ)",
+    "estimate (Ước tính)"
+   ]
+  },
+  "bop": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "s": {
+    "goods_x": [
+     162.017,
+     176.581,
+     215.119,
+     243.697,
+     264.189,
+     282.629,
+     335.916,
+     371.715,
+     354.721,
+     406.529,
+     475.059
+    ],
+    "goods_m": [
+     154.643,
+     165.539,
+     204.273,
+     227.157,
+     242.695,
+     251.921,
+     318.45,
+     342.317,
+     310.693,
+     363.111,
+     433.166
+    ],
+    "services_x": [
+     11.25,
+     12.5,
+     13.07,
+     14.79,
+     16.637,
+     7.6,
+     4.21,
+     13.526,
+     20.265,
+     25.02,
+     30.307
+    ],
+    "services_m": [
+     16.015,
+     16.758,
+     17.1,
+     18.47,
+     18.988,
+     17.887,
+     19.877,
+     27.429,
+     29.092,
+     35.599,
+     40.537
+    ],
+    "primary_income_in": [
+     0.399,
+     0.65,
+     0.745,
+     1.615,
+     2.237,
+     1.428,
+     0.982,
+     2.321,
+     4.551,
+     5.542,
+     5.388
+    ],
+    "primary_income_out": [
+     12.55,
+     14.794,
+     17.738,
+     17.433,
+     17.52,
+     16.245,
+     17.731,
+     22.049,
+     27.014,
+     21.235,
+     19.787
+    ],
+    "secondary_income_in": [
+     8.586,
+     9.125,
+     10.031,
+     10.869,
+     11.609,
+     11.427,
+     13.568,
+     12.287,
+     16.112,
+     17.122,
+     19.766
+    ],
+    "secondary_income_out": [
+     1.085,
+     1.14,
+     1.503,
+     2.012,
+     2.368,
+     1.971,
+     3.246,
+     6.652,
+     3.057,
+     4.093,
+     3.895
+    ],
+    "current_account": [
+     -2.041,
+     0.625,
+     -1.649,
+     5.899,
+     13.101,
+     15.06,
+     -4.628,
+     1.402,
+     25.793,
+     30.175,
+     33.135
+    ],
+    "fdi_in": [
+     11.8,
+     12.6,
+     14.1,
+     15.5,
+     16.12,
+     15.8,
+     15.66,
+     17.9,
+     18.5,
+     20.17,
+     21.99
+    ],
+    "fdi_out": [
+     1.1,
+     1.0,
+     0.48,
+     0.598,
+     0.485,
+     0.38,
+     0.319,
+     2.674,
+     -1.55,
+     0.6,
+     0.7
+    ],
+    "portfolio_in": [
+     -0.065,
+     0.048,
+     2.069,
+     3.021,
+     2.995,
+     -1.26,
+     0.271,
+     1.51,
+     -1.155,
+     -5.65,
+     -4.9
+    ],
+    "portfolio_out": [
+     0.0,
+     -0.18,
+     0.0,
+     0.0,
+     -0.002,
+     -0.004,
+     -0.01,
+     -0.002,
+     0.034,
+     0.063,
+     0.031
+    ],
+    "loans_net": [
+     5.406,
+     2.624,
+     10.831,
+     1.884,
+     5.691,
+     2.359,
+     5.439,
+     6.07,
+     -3.268,
+     -6.131,
+     -5.363
+    ],
+    "loans_net_government": [
+     3.116,
+     2.663,
+     1.976,
+     1.44,
+     0.586,
+     0.188,
+     -0.653,
+     -1.054,
+     -1.334,
+     -1.66,
+     -2.161
+    ],
+    "loans_net_other_sectors": [
+     2.29,
+     -0.039,
+     8.855,
+     0.444,
+     5.105,
+     2.171,
+     6.092,
+     7.124,
+     -1.934,
+     -4.471,
+     -3.202
+    ],
+    "loans_net_other_sectors_longterm": [
+     1.5,
+     0.527,
+     2.419,
+     3.757,
+     4.015,
+     2.167,
+     3.455,
+     3.209,
+     -0.287,
+     -5.066,
+     -4.288
+    ],
+    "loans_net_other_sectors_shortterm": [
+     0.79,
+     -0.566,
+     6.436,
+     -3.313,
+     1.09,
+     0.004,
+     2.637,
+     3.915,
+     -1.647,
+     0.595,
+     1.086
+    ],
+    "currency_deposits_assets": [
+     14.359,
+     5.23,
+     9.556,
+     10.804,
+     8.082,
+     8.447,
+     0.792,
+     13.75,
+     14.171,
+     12.071,
+     20.507
+    ],
+    "currency_deposits_liabilities": [
+     -0.662,
+     1.424,
+     3.111,
+     -0.198,
+     2.841,
+     0.397,
+     8.851,
+     0.325,
+     -4.09,
+     -3.495,
+     6.565
+    ],
+    "other_inv_assets": [
+     14.412,
+     5.149,
+     9.603,
+     11.143,
+     7.79,
+     8.436,
+     0.627,
+     13.663,
+     14.341,
+     12.26,
+     20.971
+    ],
+    "other_inv_liabilities": [
+     4.744,
+     4.048,
+     13.942,
+     1.686,
+     8.532,
+     2.756,
+     15.9,
+     6.395,
+     -7.358,
+     -9.626,
+     1.202
+    ],
+    "errors_omissions": [
+     -4.958,
+     -2.962,
+     -5.835,
+     -8.334,
+     -9.221,
+     -6.912,
+     -11.977,
+     -33.617,
+     -17.347,
+     -31.313,
+     -25.863
+    ],
+    "reserves_change": [
+     -6.032,
+     8.39,
+     12.544,
+     6.031,
+     23.254,
+     16.632,
+     14.29,
+     -22.745,
+     5.608,
+     -9.167,
+     3.862
+    ],
+    "portfolio_net": [
+     -0.065,
+     0.228,
+     2.069,
+     3.021,
+     2.997,
+     -1.256,
+     0.281,
+     1.512,
+     -1.189,
+     -5.713,
+     -4.931
+    ],
+    "other_inv_net": [
+     -9.668,
+     -1.101,
+     4.339,
+     -9.457,
+     0.742,
+     -5.68,
+     15.273,
+     -7.268,
+     -21.699,
+     -21.886,
+     -19.769
+    ],
+    "fdi_net": [
+     10.7,
+     11.6,
+     13.62,
+     14.902,
+     15.635,
+     15.42,
+     15.341,
+     15.226,
+     20.05,
+     19.57,
+     21.29
+    ],
+    "travel_x": [
+     7.35,
+     8.5,
+     8.89,
+     10.08,
+     11.83,
+     3.232,
+     0.149,
+     3.203,
+     9.158,
+     12.23,
+     15.22
+    ],
+    "travel_m": [
+     3.595,
+     4.5,
+     5.04,
+     5.91,
+     6.46,
+     4.61,
+     3.83,
+     6.67,
+     7.825,
+     12.75,
+     15.05
+    ],
+    "transport_x": [
+     2.43,
+     2.448,
+     2.807,
+     4.374,
+     4.469,
+     3.535,
+     3.564,
+     6.35,
+     6.228,
+     6.924,
+     8.4
+    ],
+    "transport_m": [
+     8.05,
+     8.055,
+     7.393,
+     7.49,
+     8.595,
+     9.03,
+     11.705,
+     13.726,
+     12.3,
+     13.894,
+     16.62
+    ],
+    "ip_m": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "comp_emp_in": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "comp_emp_out": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "inv_income_in": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "inv_income_out": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "remit_in": [
+     8.051,
+     8.556,
+     9.406,
+     10.191,
+     10.885,
+     10.715,
+     12.722,
+     13.2,
+     14.0,
+     null,
+     null
+    ],
+    "remit_out": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "sign": "BPM6 (IMF): fdi_in/portfolio_in/loans_net/other_inv_liabilities = net incurrence of liabilities (+ = inflow); fdi_out/portfolio_out/currency_deposits_assets/other_inv_assets = net acquisition of financial assets by residents (+ = outflow); *_net = liabilities - assets (+ = net inflow); reserves_change = net acquisition of reserve assets (+ = reserves rose); errors_omissions as published."
+  },
+  "tour": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    "9M2026"
+   ],
+   "intl_arrivals_thousand": [
+    7943.7,
+    10012.7,
+    12922.2,
+    15497.8,
+    18008.6,
+    3837.3,
+    157.3,
+    3661.2,
+    12602.4,
+    17583.9,
+    21168.3,
+    17700.0
+   ],
+   "travel_receipts_busd": [
+    7.35,
+    8.5,
+    8.89,
+    10.08,
+    11.83,
+    3.232,
+    0.149,
+    3.203,
+    9.158,
+    12.23,
+    15.22,
+    13.06
+   ],
+   "travel_payments_busd": [
+    3.595,
+    4.5,
+    5.04,
+    5.91,
+    6.46,
+    4.61,
+    3.83,
+    6.67,
+    7.825,
+    12.75,
+    15.05,
+    10.85
+   ],
+   "vietnamese_outbound_departures_thousand": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    4300.0
+   ],
+   "total_tourism_revenue_vnat_trn_vnd": [
+    null,
+    null,
+    null,
+    620.0,
+    755.0,
+    312.2,
+    180.0,
+    495.0,
+    678.0,
+    840.0,
+    1000.0,
+    null
+   ]
+  },
+  "remit": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "national_sbv_busd": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    12.5,
+    null,
+    16.0,
+    16.0,
+    null,
+    null
+   ],
+   "national_wb_knomad_busd": [
+    8.051,
+    8.556,
+    9.406,
+    10.191,
+    10.885,
+    10.715,
+    12.722,
+    13.2,
+    14.0,
+    null,
+    null,
+    null
+   ],
+   "national_wb_projection_busd": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    14.5,
+    15.0,
+    null
+   ],
+   "hcmc_busd": [
+    5.5,
+    5.0,
+    5.2,
+    5.0,
+    5.3,
+    6.1,
+    6.6,
+    6.603,
+    9.46,
+    9.547,
+    10.34,
+    null
+   ]
+  },
+  "labour": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "workers_sent": [
+    115980,
+    126289,
+    134751,
+    142860,
+    152530,
+    78641,
+    45058,
+    142779,
+    159986,
+    158588,
+    144345,
+    null
+   ],
+   "remit_statements": [
+    {
+     "year": 2018,
+     "text": "bình quân mỗi năm lao động VN làm việc ở nước ngoài theo hợp đồng gửi về khoảng 3 tỷ USD (Bộ trưởng LĐTBXH Đào Ngọc Dung, QH 20/6/2018)",
+     "url": "https://baodautu.vn/moi-nam-lao-dong-viet-nam-tai-nuoc-ngoai-gui-ve-nuoc-khoang-3-ty-usd-d83574.html"
+    },
+    {
+     "year": 2023,
+     "text": "khoảng 3,5–4 tỷ USD/năm (Thứ trưởng LĐTBXH Nguyễn Bá Hoan, hội thảo 27/12/2023)",
+     "url": "https://dantri.com.vn/lao-dong-viec-lam/nguoi-viet-di-lam-viec-o-nuoc-ngoai-gui-ve-4-ty-usd-kieu-hoi-moi-nam-20231227175509375.htm"
+    },
+    {
+     "year": 2024,
+     "text": "hơn 700.000 lao động... gửi về khoảng 3,5–4 tỷ USD mỗi năm (Bộ LĐTBXH, hội nghị 27/12/2024)",
+     "url": "https://znews.vn/hon-700000-nguoi-viet-dang-lam-viec-o-nuoc-ngoai-gui-ve-4-ty-usdnam-post1520599.html"
+    },
+    {
+     "year": 2025,
+     "text": "người lao động gửi về nước khoảng 6,5–7 tỷ USD mỗi năm (Q. Cục trưởng Cục QLLĐNN, Bộ Nội vụ Vũ Trường Giang, 30/10/2025)",
+     "url": "https://www.vietnamplus.vn/hang-nam-lao-dong-di-lam-viec-o-nuoc-ngoai-gui-ve-nuoc-khoang-65-7-ty-usd-post1073744.vnp"
+    },
+    {
+     "year": 2026,
+     "text": "nguồn kiều hối từ lực lượng này ước đạt 6–7 tỉ USD mỗi năm (Bộ Nội vụ; ~900.000 lao động cuối 2025; báo 8/6/2026)",
+     "url": "https://tuoitre.vn/nld/gan-900000-lao-dong-viet-dang-lam-viec-o-nuoc-nao-196260608211624841.htm"
+    }
+   ]
+  },
+  "budget": {
+   "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "revenue": {
+    "total": [
+     1431662,
+     1553612,
+     1510579,
+     1591411,
+     1820310,
+     1770776,
+     2057544,
+     2681500,
+     2529467
+    ],
+    "domestic": [
+     1155293,
+     1277988,
+     1293728,
+     1313281,
+     1447915,
+     1483781,
+     1723643,
+     2308400,
+     2199967
+    ],
+    "crude_oil": [
+     66048,
+     56251,
+     34598,
+     44638,
+     78137,
+     61971,
+     58646,
+     48300,
+     43000
+    ],
+    "import_export": [
+     202540,
+     214239,
+     177444,
+     216307,
+     285898,
+     219651,
+     272006,
+     318800,
+     278000
+    ],
+    "grants": [
+     7780,
+     5133,
+     4808,
+     17185,
+     8360,
+     5373,
+     3249,
+     5900,
+     8500
+    ],
+    "vat": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "cit": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "pit": [
+     94364,
+     109406,
+     115150,
+     127661,
+     162790,
+     157034,
+     186350,
+     235100,
+     237037
+    ],
+    "special_consumption": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "env_protection": [
+     47050,
+     63075,
+     60631,
+     58592,
+     43067,
+     37267,
+     40333,
+     42500,
+     43846
+    ],
+    "land_use_fees": [
+     147815,
+     153738,
+     172987,
+     185117,
+     208458,
+     153769,
+     232927,
+     498600,
+     474165
+    ],
+    "lottery": [
+     29440,
+     33908,
+     36926,
+     32612,
+     40596,
+     45844,
+     49990,
+     57200,
+     57716
+    ],
+    "fees_charges": [
+     69940,
+     81201,
+     69932,
+     73036,
+     88740,
+     79618,
+     95870,
+     110300,
+     110135
+    ]
+   },
+   "expenditure": {
+    "total": [
+     1435435,
+     1526893,
+     1709524,
+     1708088,
+     1750790,
+     1936912,
+     2148477,
+     3312600,
+     3159106
+    ],
+    "development_investment": [
+     393304,
+     421845,
+     576432,
+     540046,
+     615640,
+     723839,
+     720862,
+     1039100,
+     1120227
+    ],
+    "recurrent": [
+     931859,
+     994582,
+     1013449,
+     1061316,
+     1034250,
+     1117207,
+     1320495,
+     1683300,
+     1808996
+    ],
+    "interest": [
+     106584,
+     107065,
+     106466,
+     101778,
+     96084,
+     89323,
+     102571,
+     108100,
+     121131
+    ],
+    "aid": [
+     1460,
+     1358,
+     1488,
+     1401,
+     1264,
+     1741,
+     1739,
+     null,
+     6300
+    ],
+    "reserve_fund": [
+     298,
+     341,
+     10123,
+     428,
+     1562,
+     3590,
+     1453,
+     null,
+     100
+    ]
+   },
+   "deficit": [
+    153110,
+    161491,
+    216406,
+    214053,
+    293313,
+    291564,
+    323308,
+    429000,
+    605800
+   ],
+   "deficit_pct_gdp": [
+    2.8,
+    2.67,
+    3.44,
+    2.52,
+    3.07,
+    2.83,
+    2.8,
+    3.3,
+    4.2
+   ],
+   "basis": [
+    "final",
+    "final",
+    "final",
+    "final",
+    "final",
+    "final",
+    "final",
+    "estimate",
+    "plan"
+   ]
+  },
+  "inv": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    "9M2026"
+   ],
+   "total": [
+    1756240.0,
+    1926864.0,
+    2186560.0,
+    2426400.0,
+    2670471.0,
+    2803065.0,
+    2896728.0,
+    3222679.0,
+    3435842.0,
+    3702712.0,
+    4150507.0,
+    3109600.0
+   ],
+   "state": [
+    556380.0,
+    587110.0,
+    616459.0,
+    630142.0,
+    643094.0,
+    734735.0,
+    719293.0,
+    832062.0,
+    968187.0,
+    1030281.0,
+    1233578.0,
+    931000.0
+   ],
+   "nonstate": [
+    881760.0,
+    988651.0,
+    1173901.0,
+    1361156.0,
+    1557937.0,
+    1605050.0,
+    1719354.0,
+    1868642.0,
+    1917451.0,
+    2063810.0,
+    2237087.0,
+    1649200.0
+   ],
+   "fdi": [
+    318100.0,
+    351103.0,
+    396200.0,
+    435102.0,
+    469440.0,
+    463280.0,
+    458081.0,
+    521975.0,
+    550204.0,
+    608621.0,
+    679842.0,
+    529400.0
+   ],
+   "growth_9M2026_yoy_pct": {
+    "total": 15.1,
+    "state": 17.3,
+    "nonstate": 14.0,
+    "fdi": 14.5
+   }
+  },
+  "debt": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "debt_service_total": [
+    6.825,
+    7.72,
+    14.39,
+    18.898,
+    17.249,
+    17.112,
+    20.701,
+    26.222,
+    28.626,
+    33.59
+   ],
+   "principal_longterm": [
+    5.023,
+    5.912,
+    11.611,
+    15.225,
+    13.607,
+    14.389,
+    18.779,
+    23.494,
+    22.971,
+    28.734
+   ],
+   "interest_total": [
+    1.802,
+    1.807,
+    2.78,
+    3.673,
+    3.642,
+    2.723,
+    1.922,
+    2.728,
+    5.655,
+    4.856
+   ],
+   "principal_public_ppg": [
+    1.973,
+    2.681,
+    2.65,
+    2.97,
+    3.188,
+    4.116,
+    3.751,
+    3.665,
+    3.605,
+    4.784
+   ],
+   "interest_public_ppg": [
+    0.86,
+    0.98,
+    1.037,
+    1.164,
+    1.257,
+    0.995,
+    0.756,
+    0.739,
+    1.041,
+    1.067
+   ],
+   "debt_stock": [
+    81.825,
+    90.484,
+    109.893,
+    112.622,
+    122.496,
+    129.479,
+    139.853,
+    146.622,
+    141.845,
+    132.907
+   ],
+   "unit": "bn USD",
+   "sources": {
+    "debt_service_total": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.TDS.DECT.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "principal_longterm": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.AMT.DLXF.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "interest_total": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.INT.DECT.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "principal_public_ppg": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.AMT.DPPG.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "interest_public_ppg": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.INT.DPPG.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "debt_stock": "https://api.worldbank.org/v2/country/VNM/indicator/DT.DOD.DECT.CD?format=json"
+   },
+   "note": "IDS 2025+ values are scheduled projections on existing debt and are excluded. TDS = long-term principal + total interest + IMF repurchases/short-term interest.",
+   "mof": {
+    "years": [
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "gross_service_busd": [
+     null,
+     56.33,
+     81.994,
+     97.325,
+     86.48,
+     112.63,
+     131.617,
+     152.054,
+     131.225,
+     138.254,
+     null,
+     null
+    ],
+    "principal_busd": [
+     null,
+     54.759,
+     79.612,
+     93.965,
+     82.956,
+     109.867,
+     129.642,
+     149.196,
+     125.556,
+     133.454,
+     null,
+     null
+    ],
+    "interest_busd": [
+     null,
+     1.571,
+     2.382,
+     3.36,
+     3.524,
+     2.763,
+     1.975,
+     2.858,
+     5.669,
+     4.799,
+     null,
+     null
+    ],
+    "service_pct_exports": [
+     null,
+     3.9,
+     6.1,
+     7.0,
+     5.9,
+     5.7,
+     6.19,
+     6.91,
+     7.68,
+     7.84,
+     null,
+     null
+    ],
+    "service_pct_exports_old_definition": {
+     "2015": {
+      "v": 12.4,
+      "url": "https://www.phs.vn/tin-tuc/nghia-vu-tra-no-nuoc-ngoai-cua-quoc-gia-da-vuot-gioi-han-cho-phep/5204910"
+     },
+     "2016": {
+      "v": 29.7,
+      "url": "https://www.phs.vn/tin-tuc/nghia-vu-tra-no-nuoc-ngoai-cua-quoc-gia-da-vuot-gioi-han-cho-phep/5204910"
+     },
+     "2025": {
+      "v": "khoảng 6–7% (ước, Báo cáo CP trình QH kỳ 10)",
+      "url": "https://vneconomy.vn/no-cong-nam-2025-thap-xa-nguong-tran-nhu-cau-vay-nam-2026-tang-gan-19.htm"
+     }
+    },
+    "government_service_busd": [
+     null,
+     2.111,
+     1.973,
+     2.286,
+     2.556,
+     3.508,
+     3.156,
+     3.412,
+     3.552,
+     4.561,
+     null,
+     null
+    ],
+    "government_principal_busd": [
+     null,
+     1.52,
+     1.336,
+     1.574,
+     1.821,
+     2.786,
+     2.529,
+     2.791,
+     2.729,
+     3.738,
+     null,
+     null
+    ],
+    "government_interest_busd": [
+     null,
+     0.591,
+     0.638,
+     0.712,
+     0.735,
+     0.722,
+     0.627,
+     0.621,
+     0.823,
+     0.823,
+     null,
+     null
+    ],
+    "guaranteed_service_busd": [
+     null,
+     1.601,
+     1.873,
+     2.009,
+     2.075,
+     1.891,
+     1.875,
+     1.571,
+     1.607,
+     1.643,
+     null,
+     null
+    ],
+    "guaranteed_principal_busd": [
+     null,
+     1.259,
+     1.472,
+     1.58,
+     1.604,
+     1.535,
+     1.665,
+     1.275,
+     1.26,
+     1.346,
+     null,
+     null
+    ],
+    "guaranteed_interest_busd": [
+     null,
+     0.342,
+     0.402,
+     0.429,
+     0.471,
+     0.356,
+     0.21,
+     0.296,
+     0.347,
+     0.297,
+     null,
+     null
+    ],
+    "note": "MoF public-debt bulletins, national external debt table 'TỔNG TRẢ NỢ TRONG KỲ' = GROSS repayment incl. rolled-over short-term debt (principal ~93-149 bn/yr): not comparable with WB IDS. Ratio to exports excludes short-term principal (definition change 2021). 2024 preliminary; 2015 and 2025 full-year not found.",
+    "sources": {
+     "ext_debt_service_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14241/document_5_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2020": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "ext_debt_principal_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14241/document_5_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2020": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "ext_debt_interest_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14241/document_5_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2020": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "ext_debt_service_pct_exports": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2020": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "gov_ext_debt_service_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14241/document_5_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2020": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "guaranteed_ext_debt_service_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2020": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     }
+    }
+   }
+  }
+ },
+ "ECON_OFFICIAL": {
+  "y0": 2010,
+  "fdi_reg_musd": [
+   19886.8,
+   15598.1,
+   16348.0,
+   22352.2,
+   21921.7,
+   24115.0,
+   26890.5,
+   37100.6,
+   36368.6,
+   38951.7,
+   31045.3,
+   38854.3,
+   29288.2,
+   39390.3,
+   38226.2,
+   38418.1
+  ],
+  "fdi_dis_musd": [
+   11000.3,
+   11000.1,
+   10046.6,
+   11500.0,
+   12500.0,
+   14500.0,
+   15800.0,
+   17500.0,
+   19100.0,
+   20380.0,
+   19980.0,
+   19740.0,
+   22396.0,
+   23183.0,
+   25351.0,
+   27620.0
+  ],
+  "export_busd": [
+   72.2367,
+   96.9057,
+   114.5292,
+   132.0329,
+   150.2171,
+   162.0167,
+   176.5808,
+   215.1186,
+   243.6968,
+   264.2672,
+   282.6289,
+   336.1668,
+   371.7154,
+   354.721,
+   405.9354,
+   474.9978
+  ],
+  "import_busd": [
+   84.8386,
+   106.7498,
+   113.7804,
+   132.0326,
+   147.8491,
+   165.7759,
+   174.9784,
+   213.2153,
+   237.2416,
+   253.6965,
+   262.791,
+   332.9697,
+   359.7801,
+   326.6069,
+   381.3037,
+   454.9264
+  ],
+  "budget_rev_bn": [
+   599974,
+   721804,
+   734883,
+   828348,
+   877697,
+   1020589,
+   1131498,
+   1293627,
+   1431662,
+   1553611,
+   1510579,
+   1591410.69,
+   1820310,
+   1770776,
+   2057544,
+   2681469
+  ],
+  "budget_exp_bn": [
+   657582,
+   787554,
+   978463,
+   1088153,
+   1103983,
+   1276451,
+   1298290,
+   1355034,
+   1435435,
+   1526893,
+   1709524,
+   1708088,
+   1750790,
+   1936912,
+   2148477,
+   2401500
+  ],
+  "fx_reserves_busd": [
+   12.47,
+   13.54,
+   25.57,
+   25.89,
+   34.19,
+   28.25,
+   36.53,
+   49.08,
+   55.45,
+   78.33,
+   94.83,
+   109.37,
+   86.54,
+   92.24,
+   83.08,
+   85.58
+  ],
+  "gdp_vnd_bn": [
+   2739843,
+   3539881,
+   4073762,
+   4473656,
+   4937032,
+   5191324,
+   5639401,
+   6293905,
+   7009042,
+   7707200,
+   8044386,
+   8487476,
+   9621372,
+   10319059,
+   11510329,
+   12847571
+  ],
+  "gdp_growth": [
+   6.42,
+   6.41,
+   5.5,
+   5.55,
+   6.42,
+   6.99,
+   6.69,
+   6.94,
+   7.47,
+   7.36,
+   2.87,
+   2.55,
+   8.54,
+   4.98,
+   7.04,
+   8.02
+  ],
+  "gdppc_usd": [
+   1683,
+   1951,
+   2185,
+   2360,
+   2546,
+   2596,
+   2735,
+   2956,
+   3251,
+   3465,
+   3552,
+   3720,
+   4155,
+   4323,
+   4700,
+   5026
+  ],
+  "pop_m": [
+   87.0673,
+   88.1458,
+   89.2029,
+   90.1914,
+   91.2038,
+   92.2286,
+   93.2507,
+   94.286,
+   95.3852,
+   96.484,
+   97.5827,
+   98.5044,
+   99.4679,
+   100.3092,
+   101.3438,
+   102.3453
+  ],
+  "income_month_k": [
+   1387,
+   null,
+   2000,
+   null,
+   2637,
+   null,
+   3098,
+   null,
+   3874,
+   4295,
+   4250,
+   4205,
+   4673,
+   4962,
+   5415,
+   6005
+  ],
+  "cpi_avg": [
+   9.19,
+   18.58,
+   9.21,
+   6.6,
+   4.09,
+   0.63,
+   2.66,
+   3.53,
+   3.54,
+   2.79,
+   3.23,
+   1.84,
+   3.15,
+   3.25,
+   3.63,
+   3.31
+  ],
+  "iip_growth": [
+   8.8,
+   7.3,
+   5.8,
+   5.9,
+   7.6,
+   9.8,
+   7.4,
+   11.3,
+   10.1,
+   9.1,
+   3.3,
+   4.7,
+   7.4,
+   1.3,
+   8.2,
+   9.3
+  ],
+  "unemp": [
+   2.88,
+   2.22,
+   1.96,
+   2.18,
+   2.1,
+   2.34,
+   2.29,
+   2.22,
+   2.19,
+   2.17,
+   2.48,
+   3.2,
+   2.34,
+   2.28,
+   2.24,
+   2.21
+  ],
+  "ent_active": [
+   279360,
+   324691,
+   346777,
+   373213,
+   402326,
+   442485,
+   505059,
+   560413,
+   610637,
+   668503,
+   684260,
+   718697,
+   735455,
+   778429,
+   838753,
+   null
+  ],
+  "pci_median": [
+   58.02,
+   59.43,
+   56.5,
+   57.81,
+   58.58,
+   58.47,
+   58.2,
+   62.16,
+   63.23,
+   65.13,
+   63.44,
+   64.74,
+   65.22,
+   66.66,
+   67.67,
+   null
+  ],
+  "usd_vnd": [
+   18612.92,
+   20509.75,
+   20828,
+   20933.42,
+   21148,
+   21697.57,
+   21935.0,
+   22370.09,
+   22602.05,
+   23050.24,
+   23208.37,
+   23159.78,
+   23271.21,
+   23787.32,
+   24164.89,
+   null
+  ]
+ },
+ "CPI_YOY_24": [
+  2.89,
+  2.77,
+  2.94,
+  3.63,
+  2.91,
+  3.13,
+  3.12,
+  3.24,
+  3.57,
+  3.19,
+  3.24,
+  3.38,
+  3.25,
+  3.58,
+  3.48,
+  2.53,
+  3.35,
+  4.65,
+  5.46,
+  5.6,
+  4.69,
+  4.45,
+  4.89,
+  5.08
+ ],
+ "CPI_LATEST": {
+  "month": "T9/26",
+  "mom": 0.62,
+  "ytd": 4.2,
+  "source": {
+   "label": "NSO — Thông cáo báo chí tình hình giá tháng 9/2026 (03/10/2026)",
+   "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/"
+  },
+  "official_from": "T10/24",
+  "groups": [
+   {
+    "name": "Hàng ăn & Dịch vụ ăn uống",
+    "mom": 0.19,
+    "ytd": 2.09
+   },
+   {
+    "name": "Nhà ở, điện, nước, chất đốt, VLXD",
+    "mom": 0.28,
+    "ytd": 6.5
+   },
+   {
+    "name": "Giao thông",
+    "mom": 3.97,
+    "ytd": 12.61
+   },
+   {
+    "name": "Thiết bị & đồ dùng gia đình",
+    "mom": 0.08,
+    "ytd": 2.73
+   },
+   {
+    "name": "Giáo dục",
+    "mom": 1.41,
+    "ytd": 2.35
+   },
+   {
+    "name": "May mặc, mũ nón, giầy dép",
+    "mom": 0.04,
+    "ytd": 1.68
+   },
+   {
+    "name": "Thuốc & Dịch vụ y tế",
+    "mom": 0.24,
+    "ytd": 1.34
+   },
+   {
+    "name": "Văn hoá, giải trí, du lịch",
+    "mom": -0.28,
+    "ytd": 3.46
+   },
+   {
+    "name": "Hàng hoá & Dịch vụ khác",
+    "mom": 0.1,
+    "ytd": 4.86
+   },
+   {
+    "name": "Bưu chính, viễn thông",
+    "mom": -0.14,
+    "ytd": 0.34
+   },
+   {
+    "name": "Đồ uống & thuốc lá",
+    "mom": 0.35,
+    "ytd": 4.03
+   }
+  ],
+  "subs": {
+   "Lương thực (gạo, ngũ cốc, mì)": {
+    "mom": 0.11,
+    "ytd": -0.05,
+    "nso": "Lương thực"
+   },
+   "Ăn uống ngoài gia đình": {
+    "mom": 0.03,
+    "ytd": 6.12,
+    "nso": "Ăn uống ngoài gia đình"
+   },
+   "Tiền thuê nhà": {
+    "mom": 0.1,
+    "ytd": null,
+    "nso": "Nhà ở thuê"
+   },
+   "Sửa chữa & bảo trì nhà ở": {
+    "mom": null,
+    "ytd": null,
+    "nso": "Dịch vụ sửa chữa nhà ở"
+   },
+   "Điện sinh hoạt": {
+    "mom": -0.13,
+    "ytd": null,
+    "nso": "Điện sinh hoạt"
+   },
+   "Nước sinh hoạt": {
+    "mom": null,
+    "ytd": null,
+    "nso": "Nước sinh hoạt"
+   },
+   "Gas & các loại chất đốt khác": {
+    "mom": null,
+    "ytd": null,
+    "nso": "Gas và các loại chất đốt khác"
+   },
+   "Nhiên liệu (xăng, dầu)": {
+    "mom": null,
+    "ytd": null,
+    "nso": "Nhiên liệu"
+   },
+   "Học phí": {
+    "mom": 1.6,
+    "ytd": 2.66,
+    "nso": "Dịch vụ giáo dục"
+   },
+   "Dịch vụ khám chữa bệnh": {
+    "mom": 0.32,
+    "ytd": 1.05,
+    "nso": "Dịch vụ y tế"
+   }
+  }
+ },
+ "CPI_DETAIL": {
+  "T10/24": {
+   "mom": 0.33,
+   "ytd": 2.52,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.55,
+     "ytd": 4.23
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.11,
+     "ytd": 1.93
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.09,
+     "ytd": 0.67
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.11,
+     "ytd": 3.7
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.2,
+     "ytd": 1.23
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.02,
+     "ytd": 3.02
+    },
+    "Giao thông": {
+     "mom": 0.66,
+     "ytd": -1.39
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.05,
+     "ytd": -0.29
+    },
+    "Giáo dục": {
+     "mom": 0.48,
+     "ytd": -1.35
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.09,
+     "ytd": 1.91
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.26,
+     "ytd": 6.35
+    }
+   }
+  },
+  "T11/24": {
+   "mom": 0.13,
+   "ytd": 2.65,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.22,
+     "ytd": 4.01
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.26,
+     "ytd": 2.2
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.21,
+     "ytd": 0.88
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.87,
+     "ytd": 4.6
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.08,
+     "ytd": 1.32
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.05,
+     "ytd": 3.07
+    },
+    "Giao thông": {
+     "mom": -0.07,
+     "ytd": -1.45
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.3,
+     "ytd": -0.59
+    },
+    "Giáo dục": {
+     "mom": 0.11,
+     "ytd": -1.24
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.2,
+     "ytd": 2.11
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.29,
+     "ytd": 6.66
+    }
+   }
+  },
+  "T12/24": {
+   "mom": 0.29,
+   "ytd": 2.94,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.13,
+     "ytd": 3.87
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.2,
+     "ytd": 2.4
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.28,
+     "ytd": 1.16
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.53,
+     "ytd": 5.16
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.17,
+     "ytd": 1.49
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 2.19,
+     "ytd": 5.32
+    },
+    "Giao thông": {
+     "mom": 0.57,
+     "ytd": -0.89
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.03,
+     "ytd": -0.61
+    },
+    "Giáo dục": {
+     "mom": 0.16,
+     "ytd": -1.08
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.2,
+     "ytd": 2.31
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.22,
+     "ytd": 6.89
+    }
+   }
+  },
+  "T1/25": {
+   "mom": 0.98,
+   "ytd": 0.98,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.74,
+     "ytd": 0.74
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.69,
+     "ytd": 0.69
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.38,
+     "ytd": 0.38
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.35,
+     "ytd": 0.35
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.31,
+     "ytd": 0.31
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 9.47,
+     "ytd": 9.47
+    },
+    "Giao thông": {
+     "mom": 0.95,
+     "ytd": 0.95
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.12,
+     "ytd": -0.12
+    },
+    "Giáo dục": {
+     "mom": -0.04,
+     "ytd": -0.04
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.27,
+     "ytd": 0.27
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.51,
+     "ytd": 0.51
+    }
+   }
+  },
+  "T2/25": {
+   "mom": 0.34,
+   "ytd": 1.32,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.43,
+     "ytd": 1.16
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.12,
+     "ytd": 0.81
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": -0.11,
+     "ytd": 0.27
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.55,
+     "ytd": 0.91
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.05,
+     "ytd": 0.36
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.31,
+     "ytd": 9.81
+    },
+    "Giao thông": {
+     "mom": 0.63,
+     "ytd": 1.58
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.03,
+     "ytd": -0.15
+    },
+    "Giáo dục": {
+     "mom": 0.02,
+     "ytd": -0.02
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.17,
+     "ytd": 0.45
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.18,
+     "ytd": 0.69
+    }
+   }
+  },
+  "T3/25": {
+   "mom": -0.03,
+   "ytd": 1.3,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.05,
+     "ytd": 1.11
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": -0.04,
+     "ytd": 0.77
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.05,
+     "ytd": 0.32
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.5,
+     "ytd": 1.42
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.13,
+     "ytd": 0.5
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.13,
+     "ytd": 9.95
+    },
+    "Giao thông": {
+     "mom": -1.41,
+     "ytd": 0.15
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.02,
+     "ytd": -0.14
+    },
+    "Giáo dục": {
+     "mom": 0.02,
+     "ytd": -0.0
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.18,
+     "ytd": 0.63
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.21,
+     "ytd": 0.9
+    }
+   }
+  },
+  "T4/25": {
+   "mom": 0.07,
+   "ytd": 1.37,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.12,
+     "ytd": 1.24
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.11,
+     "ytd": 0.88
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.06,
+     "ytd": 0.38
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.62,
+     "ytd": 2.05
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.1,
+     "ytd": 0.59
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.02,
+     "ytd": 9.97
+    },
+    "Giao thông": {
+     "mom": -1.05,
+     "ytd": -0.9
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.15,
+     "ytd": -0.29
+    },
+    "Giáo dục": {
+     "mom": 0.0,
+     "ytd": 0.0
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.01,
+     "ytd": 0.64
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.15,
+     "ytd": 1.05
+    }
+   }
+  },
+  "T5/25": {
+   "mom": 0.16,
+   "ytd": 1.53,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.03,
+     "ytd": 1.27
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.14,
+     "ytd": 1.02
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.05,
+     "ytd": 0.43
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.73,
+     "ytd": 2.8
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.19,
+     "ytd": 0.79
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.02,
+     "ytd": 10.0
+    },
+    "Giao thông": {
+     "mom": -0.42,
+     "ytd": -1.32
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.21,
+     "ytd": -0.07
+    },
+    "Giáo dục": {
+     "mom": 0.01,
+     "ytd": 0.02
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.28,
+     "ytd": 0.92
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.43,
+     "ytd": 1.48
+    }
+   }
+  },
+  "T6/25": {
+   "mom": 0.48,
+   "ytd": 2.02,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.06,
+     "ytd": 1.32
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.2,
+     "ytd": 1.22
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.09,
+     "ytd": 0.52
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 1.42,
+     "ytd": 4.25
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.13,
+     "ytd": 0.92
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.02,
+     "ytd": 10.02
+    },
+    "Giao thông": {
+     "mom": 1.66,
+     "ytd": 0.31
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.02,
+     "ytd": -0.09
+    },
+    "Giáo dục": {
+     "mom": 0.01,
+     "ytd": 0.03
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.27,
+     "ytd": 1.19
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.09,
+     "ytd": 1.57
+    }
+   }
+  },
+  "T7/25": {
+   "mom": 0.11,
+   "ytd": 2.13,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.18,
+     "ytd": 1.5
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.25,
+     "ytd": 1.48
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.06,
+     "ytd": 0.58
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.36,
+     "ytd": 4.62
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.1,
+     "ytd": 1.02
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.03,
+     "ytd": 10.06
+    },
+    "Giao thông": {
+     "mom": -0.48,
+     "ytd": -0.17
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.15,
+     "ytd": -0.24
+    },
+    "Giáo dục": {
+     "mom": 0.01,
+     "ytd": 0.04
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.2,
+     "ytd": 1.39
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.19,
+     "ytd": 1.76
+    }
+   }
+  },
+  "T8/25": {
+   "mom": 0.05,
+   "ytd": 2.18,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.06,
+     "ytd": 1.44
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.17,
+     "ytd": 1.64
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.17,
+     "ytd": 0.75
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.21,
+     "ytd": 4.84
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.11,
+     "ytd": 1.13
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.03,
+     "ytd": 10.09
+    },
+    "Giao thông": {
+     "mom": -0.11,
+     "ytd": -0.29
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.04,
+     "ytd": -0.28
+    },
+    "Giáo dục": {
+     "mom": 0.21,
+     "ytd": 0.24
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.08,
+     "ytd": 1.48
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.11,
+     "ytd": 1.87
+    }
+   }
+  },
+  "T9/25": {
+   "mom": 0.42,
+   "ytd": 2.61,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.41,
+     "ytd": 1.85
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.12,
+     "ytd": 1.77
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.07,
+     "ytd": 0.82
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.41,
+     "ytd": 5.27
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.1,
+     "ytd": 1.23
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.03,
+     "ytd": 10.13
+    },
+    "Giao thông": {
+     "mom": 0.58,
+     "ytd": 0.29
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.04,
+     "ytd": -0.24
+    },
+    "Giáo dục": {
+     "mom": 2.22,
+     "ytd": 2.47
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": -0.13,
+     "ytd": 1.35
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.22,
+     "ytd": 2.09
+    }
+   }
+  },
+  "T10/25": {
+   "mom": 0.2,
+   "ytd": 2.82,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.59,
+     "ytd": 2.45
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.12,
+     "ytd": 1.89
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.18,
+     "ytd": 1.01
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.01,
+     "ytd": 5.28
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.2,
+     "ytd": 1.44
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.04,
+     "ytd": 10.17
+    },
+    "Giao thông": {
+     "mom": -0.81,
+     "ytd": -0.52
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.03,
+     "ytd": -0.22
+    },
+    "Giáo dục": {
+     "mom": 0.51,
+     "ytd": 2.99
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.06,
+     "ytd": 1.41
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.43,
+     "ytd": 2.53
+    }
+   }
+  },
+  "T11/25": {
+   "mom": 0.45,
+   "ytd": 3.28,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.95,
+     "ytd": 3.42
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.1,
+     "ytd": 1.99
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.12,
+     "ytd": 1.13
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": -0.1,
+     "ytd": 5.17
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.17,
+     "ytd": 1.61
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.06,
+     "ytd": 10.23
+    },
+    "Giao thông": {
+     "mom": 1.07,
+     "ytd": 0.54
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.06,
+     "ytd": -0.28
+    },
+    "Giáo dục": {
+     "mom": 0.05,
+     "ytd": 3.04
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.01,
+     "ytd": 1.43
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.3,
+     "ytd": 2.84
+    }
+   }
+  },
+  "T12/25": {
+   "mom": 0.19,
+   "ytd": 3.48,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.75,
+     "ytd": 4.2
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.06,
+     "ytd": 2.05
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.2,
+     "ytd": 1.33
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.06,
+     "ytd": 5.23
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.16,
+     "ytd": 1.77
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.03,
+     "ytd": 10.27
+    },
+    "Giao thông": {
+     "mom": -1.08,
+     "ytd": -0.55
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.02,
+     "ytd": -0.25
+    },
+    "Giáo dục": {
+     "mom": 0.01,
+     "ytd": 3.05
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": -0.12,
+     "ytd": 1.31
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.19,
+     "ytd": 3.03
+    }
+   }
+  },
+  "T1/26": {
+   "mom": 0.05,
+   "ytd": 0.05,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.2,
+     "ytd": 0.2
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.58,
+     "ytd": 0.58
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.25,
+     "ytd": 0.25
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.7,
+     "ytd": 0.7
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.26,
+     "ytd": 0.26
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.19,
+     "ytd": 0.19
+    },
+    "Giao thông": {
+     "mom": -2.32,
+     "ytd": -2.32
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.15,
+     "ytd": -0.15
+    },
+    "Giáo dục": {
+     "mom": 0.05,
+     "ytd": 0.05
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.07,
+     "ytd": 0.07
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.41,
+     "ytd": 0.41
+    }
+   }
+  },
+  "T2/26": {
+   "mom": 1.14,
+   "ytd": 1.19,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 2.02,
+     "ytd": 2.22
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 1.18,
+     "ytd": 1.77
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.55,
+     "ytd": 0.8
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.56,
+     "ytd": 1.27
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.57,
+     "ytd": 0.82
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.14,
+     "ytd": 0.32
+    },
+    "Giao thông": {
+     "mom": 1.23,
+     "ytd": -1.12
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.01,
+     "ytd": -0.13
+    },
+    "Giáo dục": {
+     "mom": 0.09,
+     "ytd": 0.14
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 1.36,
+     "ytd": 1.44
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 1.3,
+     "ytd": 1.72
+    }
+   }
+  },
+  "T3/26": {
+   "mom": 1.23,
+   "ytd": 2.44,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.59,
+     "ytd": 1.62
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.37,
+     "ytd": 2.14
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.01,
+     "ytd": 0.8
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.77,
+     "ytd": 2.04
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.33,
+     "ytd": 1.16
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.38,
+     "ytd": 0.7
+    },
+    "Giao thông": {
+     "mom": 12.85,
+     "ytd": 11.59
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.18,
+     "ytd": 0.04
+    },
+    "Giáo dục": {
+     "mom": 0.1,
+     "ytd": 0.24
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": -0.05,
+     "ytd": 1.39
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.13,
+     "ytd": 1.86
+    }
+   }
+  },
+  "T4/26": {
+   "mom": 0.84,
+   "ytd": 3.31,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.58,
+     "ytd": 2.22
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.85,
+     "ytd": 3.01
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.52,
+     "ytd": 1.33
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 2.59,
+     "ytd": 4.68
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.78,
+     "ytd": 1.95
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.13,
+     "ytd": 0.83
+    },
+    "Giao thông": {
+     "mom": -0.81,
+     "ytd": 10.69
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.17,
+     "ytd": 0.21
+    },
+    "Giáo dục": {
+     "mom": 0.08,
+     "ytd": 0.32
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.63,
+     "ytd": 2.03
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.64,
+     "ytd": 2.51
+    }
+   }
+  },
+  "T5/26": {
+   "mom": 0.29,
+   "ytd": 3.61,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.14,
+     "ytd": 2.08
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.21,
+     "ytd": 3.23
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.13,
+     "ytd": 1.46
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.96,
+     "ytd": 5.69
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.17,
+     "ytd": 2.13
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.1,
+     "ytd": 0.94
+    },
+    "Giao thông": {
+     "mom": 0.83,
+     "ytd": 11.61
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.04,
+     "ytd": 0.25
+    },
+    "Giáo dục": {
+     "mom": 0.03,
+     "ytd": 0.35
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.48,
+     "ytd": 2.52
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.14,
+     "ytd": 2.65
+    }
+   }
+  },
+  "T6/26": {
+   "mom": -0.39,
+   "ytd": 3.21,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.07,
+     "ytd": 2.0
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.13,
+     "ytd": 3.36
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": -0.09,
+     "ytd": 1.37
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.46,
+     "ytd": 6.17
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.17,
+     "ytd": 2.3
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.03,
+     "ytd": 0.97
+    },
+    "Giao thông": {
+     "mom": -4.85,
+     "ytd": 6.2
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.04,
+     "ytd": 0.29
+    },
+    "Giáo dục": {
+     "mom": 0.01,
+     "ytd": 0.36
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.66,
+     "ytd": 3.19
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": -0.06,
+     "ytd": 2.6
+    }
+   }
+  },
+  "T7/26": {
+   "mom": -0.12,
+   "ytd": 3.08,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.07,
+     "ytd": 1.93
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.18,
+     "ytd": 3.54
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.16,
+     "ytd": 1.53
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": -0.07,
+     "ytd": 6.1
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.14,
+     "ytd": 2.45
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.07,
+     "ytd": 1.05
+    },
+    "Giao thông": {
+     "mom": -2.02,
+     "ytd": 4.05
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.1,
+     "ytd": 0.4
+    },
+    "Giáo dục": {
+     "mom": 0.24,
+     "ytd": 0.6
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.52,
+     "ytd": 3.73
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 1.96,
+     "ytd": 4.61
+    }
+   }
+  },
+  "T8/26": {
+   "mom": 0.47,
+   "ytd": 3.57,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.03,
+     "ytd": 1.9
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.12,
+     "ytd": 3.67
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.11,
+     "ytd": 1.64
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.1,
+     "ytd": 6.21
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.19,
+     "ytd": 2.64
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.05,
+     "ytd": 1.09
+    },
+    "Giao thông": {
+     "mom": 4.09,
+     "ytd": 8.31
+    },
+    "Bưu chính, viễn thông": {
+     "mom": 0.08,
+     "ytd": 0.48
+    },
+    "Giáo dục": {
+     "mom": 0.47,
+     "ytd": 1.07
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": 0.03,
+     "ytd": 3.76
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.15,
+     "ytd": 4.76
+    }
+   }
+  },
+  "T9/26": {
+   "mom": 0.62,
+   "ytd": 4.2,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": 0.19,
+     "ytd": 2.09
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.35,
+     "ytd": 4.03
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": 0.04,
+     "ytd": 1.68
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.28,
+     "ytd": 6.5
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.08,
+     "ytd": 2.73
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.24,
+     "ytd": 1.34
+    },
+    "Giao thông": {
+     "mom": 3.97,
+     "ytd": 12.61
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.14,
+     "ytd": 0.34
+    },
+    "Giáo dục": {
+     "mom": 1.41,
+     "ytd": 2.35
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": -0.28,
+     "ytd": 3.46
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.1,
+     "ytd": 4.86
+    }
+   }
+  }
+ },
+ "CPI_FC_INST": [
+  {
+   "inst": "IMF (WEO Apr-2026)",
+   "type": "intl_org",
+   "pub": "2026-04-14",
+   "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+   "2026": [
+    4.9,
+    null,
+    null
+   ],
+   "2027": [
+    4.6,
+    null,
+    null
+   ],
+   "dec2026": 5.8,
+   "dec2027": 3.8
+  },
+  {
+   "inst": "World Bank",
+   "type": "intl_org",
+   "pub": "2026-05-15",
+   "url": "https://documents1.worldbank.org/curated/en/099740005122628080/pdf/IDU-2ee874ce-e0c0-462b-9571-99e553ef83c9.pdf",
+   "2026": [
+    4.2,
+    null,
+    null
+   ],
+   "2027": [
+    3.8,
+    null,
+    null
+   ],
+   "2028": [
+    3.5,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "ADB",
+   "type": "intl_org",
+   "pub": "2026-09-24",
+   "url": "https://www.adb.org/where-we-work/viet-nam/economy",
+   "2026": [
+    4.3,
+    null,
+    null
+   ],
+   "2027": [
+    4.0,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "AMRO",
+   "type": "intl_org",
+   "pub": "2026-09-26",
+   "url": "https://theinvestor.vn/vietnams-10-gdp-growth-target-faces-rising-macro-financial-constraints-amro-d20101.html",
+   "2026": [
+    4.3,
+    null,
+    null
+   ],
+   "2027": [
+    3.9,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "OECD",
+   "type": "intl_org",
+   "pub": "2026-06-03",
+   "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/06/oecd-economic-outlook-volume-2026-issue-1_8be0dba6/2d1956f0-en.pdf",
+   "2026": [
+    5.2,
+    null,
+    null
+   ],
+   "2027": [
+    4.6,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "HSBC Global Research",
+   "type": "bank",
+   "pub": "2026-06-24",
+   "url": "https://www.hsbc.com.my/content/dam/hsbc/en/docs/wealth-insights/market-outlook/asean-in-focus/asean-in-focus-3q-2026.pdf",
+   "2026": [
+    5.2,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "Standard Chartered",
+   "type": "bank",
+   "pub": "2026-07-20",
+   "url": "https://vietnamnews.vn/economy/1785812/standard-chartered-raises-viet-nam-gdp-growth-forecast-for-2026-as-momentum-strengthens.html",
+   "2026": [
+    4.4,
+    null,
+    null
+   ],
+   "2027": [
+    3.3,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "Bloomberg economist survey (median)",
+   "type": "bank",
+   "pub": "2026-07-09",
+   "url": "https://www.bloomberg.com/news/articles/2026-07-09/vietnam-2026-gdp-seen-at-7-3-cpi-at-4-8-survey",
+   "2026": [
+    4.8,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "National Assembly target (NQ 244/2025/QH15)",
+   "type": "gov",
+   "pub": "2025-11-13",
+   "url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm",
+   "2026": [
+    4.5,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "Ministry of Finance (2 scenarios)",
+   "type": "gov",
+   "pub": "2026-09-04",
+   "url": "https://www.vietnamplus.vn/tap-trung-thuc-hien-tot-viec-kiem-soat-gia-nhung-thang-cuoi-nam-2026-post1134293.vnp",
+   "2026": [
+    null,
+    4.5,
+    5.0
+   ]
+  },
+  {
+   "inst": "State Bank of Vietnam",
+   "type": "gov",
+   "pub": "2026-09-04",
+   "url": "https://www.vietnamplus.vn/tap-trung-thuc-hien-tot-viec-kiem-soat-gia-nhung-thang-cuoi-nam-2026-post1134293.vnp",
+   "2026": [
+    null,
+    4.5,
+    5.0
+   ]
+  },
+  {
+   "inst": "SBV survey of credit institutions (Aug-2026)",
+   "type": "gov",
+   "pub": "2026-09-05",
+   "url": "https://diendandoanhnghiep.vn/kiem-soat-lam-phat-truoc-cac-rui-ro-tiem-an-trong-4-thang-cuoi-nam-10184182.html",
+   "2026": [
+    4.28,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "SBV survey of economic experts (Q3-2026)",
+   "type": "gov",
+   "pub": "2026-09-05",
+   "url": "https://diendandoanhnghiep.vn/kiem-soat-lam-phat-truoc-cac-rui-ro-tiem-an-trong-4-thang-cuoi-nam-10184182.html",
+   "2026": [
+    4.59,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "Institute of Economics & Finance (MoF)",
+   "type": "gov",
+   "pub": "2026-07-09",
+   "url": "https://vietnambiz.vn/chuyen-gia-cpi-binh-quan-ca-nam-2026-se-dao-dong-trong-khoang-43-45-202679111128977.htm",
+   "2026": [
+    null,
+    4.3,
+    4.5
+   ]
+  },
+  {
+   "inst": "BIDV Training & Research (Can Van Luc)",
+   "type": "vn_research",
+   "pub": "2026-07-12",
+   "url": "https://cafef.vn/kinh-te-viet-nam-6-thang-dau-nam-va-du-bao-ca-nam-2026-188260712065356163.chn",
+   "2026": [
+    null,
+    4.3,
+    4.6
+   ]
+  },
+  {
+   "inst": "BIDV Training & Research (Can Van Luc et al.)",
+   "type": "vn_research",
+   "pub": "2026-05-13",
+   "url": "https://tapchikinhtetaichinh.vn/du-bao-lam-phat-viet-nam-2026-trong-boi-canh-cang-thang-dia-chinh-tri-va-rui-ro-lam-phat-toan-cau-156081.html",
+   "2027": [
+    null,
+    3.4,
+    4.0
+   ]
+  },
+  {
+   "inst": "VCBS",
+   "type": "vn_research",
+   "pub": "2026-09-18",
+   "url": "https://vietnamfinance.vn/lai-suat-tang-va-rui-ro-lam-phat-ap-luc-don-len-nhung-thang-cuoi-nam-d150697.html",
+   "2026": [
+    null,
+    4.8,
+    5.1
+   ]
+  },
+  {
+   "inst": "MBS",
+   "type": "vn_research",
+   "pub": "2026-09-18",
+   "url": "https://vietnamfinance.vn/lai-suat-tang-va-rui-ro-lam-phat-ap-luc-don-len-nhung-thang-cuoi-nam-d150697.html",
+   "2026": [
+    null,
+    4.0,
+    4.5
+   ]
+  },
+  {
+   "inst": "VNDirect Research",
+   "type": "vn_research",
+   "pub": "2026-09-20",
+   "url": "https://nguoiquansat.vn/vndirect-research-du-bao-dien-bien-ty-gia-lai-suat-cuoi-nam-2026-317361.html",
+   "2026": [
+    4.5,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "KBSV (base, 70%)",
+   "type": "vn_research",
+   "pub": "2026-06-03",
+   "url": "https://vneconomy.vn/hai-kich-ban-moi-cho-lam-phat-nam-2026-dua-tren-trien-vong-gia-dau.htm",
+   "2026": [
+    4.8,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "KBSV (pessimistic, 30%)",
+   "type": "vn_research",
+   "pub": "2026-06-03",
+   "url": "https://vneconomy.vn/hai-kich-ban-moi-cho-lam-phat-nam-2026-dua-tren-trien-vong-gia-dau.htm",
+   "2026": [
+    5.4,
+    null,
+    null
+   ]
+  },
+  {
+   "inst": "Nguyen Duc Do (economist, ex-Inst. Econ & Finance)",
+   "type": "vn_research",
+   "pub": "2026-09-05",
+   "url": "https://www.dnse.com.vn/senses/tin-tuc/cpi-ap-sat-muc-tieu-45-du-dia-cuoi-nam-con-bao-nhieu-35282676",
+   "2026": [
+    null,
+    4.5,
+    5.0
+   ]
+  },
+  {
+   "inst": "Ngo Tri Long (economist), base",
+   "type": "vn_research",
+   "pub": "2026-07-09",
+   "url": "https://vietnambiz.vn/chuyen-gia-cpi-binh-quan-ca-nam-2026-se-dao-dong-trong-khoang-43-45-202679111128977.htm",
+   "2026": [
+    null,
+    4.4,
+    4.7
+   ]
+  }
+ ]
+}

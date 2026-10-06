@@ -16,7 +16,11 @@ Everything the tab shows is drawn from your file, so you own its correctness:
   Keep every document that matters on it, keep dates/stages current, and make sure every relation
   points at existing ids.
 - **KPI tiles, pillar chips** (each pillar's key Party documents), **document details** (key points,
-  targets, approval/in-force dates, replacement chain) and **news**.
+  targets, approval/in-force dates, replacement chain) and **news** (no longer shown as its own card; the
+  latest item feeds the story's "what to watch" chapter, so keep news dated and current).
+- **Story chapters** at the top of the tab are computed from your file: the 2030 targets (`vision.official.main_targets`),
+  documents per month and per pillar, implementation lags (from `implements` relations and dates) and the draft
+  pipeline (`draft.expected`) — wrong dates or missing relations show up directly in those headlines.
 
 ## What to track
 Vietnam's main strategic directives that shape the economy and the state, e.g.:
