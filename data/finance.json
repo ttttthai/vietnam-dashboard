@@ -1873,7 +1873,7 @@
      8.97
     ]
    },
-   "unit": "VND billion (levels); growth_ytd_pct = % vs end of previous year (SBV); share_of_total_pct computed"
+   "unit": "VND billion (levels); growth = % YTD vs end of previous year (SBV); shares of total computed"
   },
   "flows": {
    "Real estate credit, total (dư nợ tín dụng BĐS)": [
@@ -2146,7 +2146,16 @@
      "d": "2025-11",
      "v": 750000,
      "unit": "VND billion",
-     "u": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html"
+     "u": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html",
+     "note": "SBV, as reported in the 2025 banking review"
+    },
+    {
+     "d": "2026-06",
+     "v": 828000,
+     "unit": "VND billion",
+     "u": "https://baochinhphu.vn/tin-dung-xanh-tang-toc-huong-toi-tang-truong-ben-vung-102260609195721804.htm",
+     "u_alt": "https://vtv.vn/du-no-tin-dung-xanh-dat-quy-mo-828000-ty-dong-100260609175312736.htm",
+     "note": "'about 828,000 bn', 82 credit institutions; stated 9/6/2026 (SBV-GIZ forum). The reference date of the stock is not given in the excerpts, so 2026-06 is the statement month. Agriculture/forestry/fisheries/biodiversity >32%, green energy >30%."
     }
    ],
    "VBSP policy credit (27 programmes)": [
@@ -2172,6 +2181,64 @@
      "unit": "text",
      "u": "https://www.tinnhanhchungkhoan.vn/khong-tinh-du-no-cho-vay-nha-hang-khach-san-khu-du-lich-sinh-thai-nghi-duong-vao-tin-dung-bat-dong-san-post397735.html",
      "n": "SBV letter 8509/NHNN-CSTT to 25 credit institutions: for 1/1-31/12/2026, the increase since end-2025 in lending to restaurants, hotels, tourist/eco/resort areas is not counted in real-estate credit for growth-control purposes. Affects comparability of later 'real-estate credit' figures quoted under the control framework. Search excerpt only."
+    }
+   ],
+   "Credit growth YTD, SBV statements by cut-off date (2026)": [
+    {
+     "d": "2026-06-26",
+     "v": 7.41,
+     "unit": "% YTD",
+     "u": "https://baochinhphu.vn/tin-dung-tang-truong-741-tao-du-dia-cho-tang-truong-kinh-te-102260702120737467.htm",
+     "note": "stated 2/7/2026; also +18.1% y/y"
+    },
+    {
+     "d": "2026-06-29",
+     "v": 7.73,
+     "unit": "% YTD",
+     "u": "https://baomoi.com/den-cuoi-thang-6-du-no-tin-dung-doi-voi-nen-kinh-te-dat-20-03-trieu-ty-dong-tang-7-73-c55533917.epi",
+     "note": "20.03 quadrillion; stated 3/7/2026 (Thoi bao Ngan hang)"
+    },
+    {
+     "d": "2026-06-30",
+     "v": 8.37,
+     "unit": "% YTD",
+     "u": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+     "note": "SBV month-end table (20,150,411 bn); quoted by https://nguoiquansat.vn/hon-20-trieu-ty-dong-tin-dung-dang-chay-vao-linh-vuc-nao-311439.html"
+    },
+    {
+     "d": "2026-07-29",
+     "v": 8.38,
+     "unit": "% YTD",
+     "u": "https://baochinhphu.vn/du-no-tin-dung-tang-838-nhnn-khoi-thong-nguon-von-102260803190033538.htm",
+     "note": "over 20.15 quadrillion; stated 3/8/2026"
+    },
+    {
+     "d": "2026-07-31",
+     "v": 8.97,
+     "unit": "% YTD",
+     "u": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+     "note": "SBV month-end table (20,262,110 bn); press quotes 8.98% (excerpt, outlet not pinned)"
+    },
+    {
+     "d": "2026-08-28",
+     "v": 10.24,
+     "unit": "% YTD",
+     "u": "https://thuonghieucongluan.com.vn/tin-dung-vuot-10-ngan-hang-duoc-mo-them-du-dia-a334713.html",
+     "note": "about 20.5 quadrillion"
+    },
+    {
+     "d": "2026-09-28",
+     "v": 10.89,
+     "unit": "% YTD",
+     "u": "https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm",
+     "note": "NSO Q3 report cut-off"
+    },
+    {
+     "d": "2026-09-30",
+     "v": 11.59,
+     "unit": "% YTD",
+     "u": "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm",
+     "note": "20.75 quadrillion; stated 3/10/2026"
     }
    ]
   },
@@ -3021,7 +3088,7 @@
       "https://thoibaotaichinhvietnam.vn/vis-rating-lo-ngai-thanh-khoan-that-chat-no-xau-tang-khien-ngan-hang-them-ap-luc-198036.html",
       "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
      ],
-     "note": "Industry-weighted CASA (Q4-24/Q4-25 Saigon Times; Q2-25/Q2-26 Yuanta). 2026-Q1 null: only a VIS Rating figure (18.0%, different coverage) exists — see casa_vis_rating. Simple average of 27 banks at 30-Jun-2026 = 14.7% (Wigroup via Cong Thuong), another definition."
+     "note": "Industry-weighted CASA (Q4-24/Q4-25 Saigon Times; Q2-25/Q2-26 Yuanta). 2026-Q1 null: only a VIS Rating figure (18.0%, different coverage) exists — stored as a separate VIS Rating series. Simple average of 27 banks at 30-Jun-2026 = 14.7% (Wigroup via Cong Thuong), another definition."
     },
     "ldr": {
      "periods": [
@@ -3043,7 +3110,7 @@
       "https://thoibaotaichinhvietnam.vn/chenh-lech-tin-dung-huy-dong-len-14-trieu-ty-dong-ap-luc-ldr-bot-cang-khi-tinh-20-tien-gui-kho-bac-197524.html",
       "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
      ],
-     "note": "Simple LDR, sector-wide (loans/customer deposits). 2025-Q2 and 2026-Q2: Yuanta; 2025-Q4 '~110%, highest in a decade' (VinaCapital) — providers differ. 2026-Q1 set to null: the only Q1 figure is MBS's 27-listed-bank ratio (100%), moved to ldr_listed27_mbs. Regulatory LDR (Circular 22 basis) ~88% in Q2-2026 per NSI vs 85% cap (cap rises to 95% from 1/12/2026 under Circular 50/2026)."
+     "note": "Simple LDR, sector-wide (loans/customer deposits). 2025-Q2 and 2026-Q2: Yuanta; 2025-Q4 '~110%, highest in a decade' (VinaCapital) — providers differ. 2026-Q1 set to null: the only Q1 figure is MBS's 27-listed-bank ratio (100%), stored as a separate MBS 27-listed-bank series. Regulatory LDR (Circular 22 basis) ~88% in Q2-2026 per NSI vs 85% cap (cap rises to 95% from 1/12/2026 under Circular 50/2026)."
     },
     "credit_vs_deposit_growth": {
      "dates": [
@@ -3087,7 +3154,17 @@
       "https://docnhanh.vn/kinh-te/lai-suat-huy-dong-vuot-9-ap-luc-von-ngan-hang-tang-tintuc1052480",
       "https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm"
      ],
-     "note": "SBV system data as quoted in press. 22-Aug-2026 figures are VND-only (MoF Deputy Minister Tran Quoc Phuong; deposits briefly exceeded credit). 2024 system deposit growth not found (M2 +9.42% to 25-Dec-2024 is not a deposit measure). 28-Sep-2026 = GSO Q3-2026 socio-economic report (credit +10.89%, mobilisation +9.78%; search excerpt only). SBV's own figure for 30-Sep-2026 is credit +11.59% (monthly.credit_ytd T9/26); SBV did not state a 30-Sep mobilisation figure in the excerpts found. The 3-Sep (9.98%) point is below the SBV 28-Aug figure (10.24%): BVSC/press estimate, cut-offs differ — not reconciled."
+     "note": "SBV system data as quoted in press. 22-Aug-2026 figures are VND-only (MoF Deputy Minister Tran Quoc Phuong at the 3/9/2026 Government press conference: VND mobilisation +8.77% vs VND credit +8.38%; re-verified 2026-10-06, https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html). The 8.38% equals the 29-Jul total-credit figure only by coincidence: it is a different measure (VND only) and date; total credit was +10.24% at 28/8. 2024 system deposit growth not found (M2 +9.42% to 25-Dec-2024 is not a deposit measure). 28-Sep-2026 = GSO Q3-2026 socio-economic report (credit +10.89%, mobilisation +9.78%; search excerpt only). SBV's own figure for 30-Sep-2026 is credit +11.59% (dashboard monthly credit series, T9/26); SBV did not state a 30-Sep mobilisation figure in the excerpts found. The 3-Sep (9.98%) point is below the SBV 28-Aug figure (10.24%): BVSC/press estimate, cut-offs differ — not reconciled.",
+     "src_alt": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      "https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html",
+      null,
+      null
+     ]
     },
     "deposit12m_private_banks_mbs": {
      "dates": [
@@ -3827,7 +3904,7 @@
      "src": [
       "https://thoibaotaichinhvietnam.vn/chenh-lech-tin-dung-huy-dong-len-14-trieu-ty-dong-ap-luc-ldr-bot-cang-khi-tinh-20-tien-gui-kho-bac-197524.html"
      ],
-     "note": "MBS, 27 listed banks (narrower coverage, +2.3pp vs end-2025). Split out of why.series.ldr on 2026-10-06 QC: different definition/coverage from the sector-wide simple LDR."
+     "note": "MBS, 27 listed banks (narrower coverage, +2.3pp vs end-2025). Kept separate from the sector-wide simple LDR (2026-10-06 check): different definition/coverage."
     },
     "casa_vis_rating": {
      "periods": [
@@ -3840,7 +3917,7 @@
      "src": [
       "https://thoibaotaichinhvietnam.vn/vis-rating-lo-ngai-thanh-khoan-that-chat-no-xau-tang-khien-ngan-hang-them-ap-luc-198036.html"
      ],
-     "note": "VIS Rating rated-bank coverage, down 2pp. Split out of why.series.casa on 2026-10-06 QC: different coverage from the industry-weighted series."
+     "note": "VIS Rating rated-bank coverage, down 2pp. Kept separate from the industry-weighted CASA series (2026-10-06 check): different coverage."
     }
    }
   },
@@ -3862,7 +3939,7 @@
      "2025",
      "2026"
     ],
-    "unit": "trillion VND (end-year); fx_reserves_busd in bn USD; reserve_money_yoy_pct in %",
+    "unit": "trillion VND (end-year); FX reserves in bn USD (IMF IL total incl. gold); reserve-money growth in % y/y",
     "series": {
      "nfa": [
       722,
@@ -4092,8 +4169,8 @@
     },
     "series_notes": {
      "nfa": "Net foreign assets of the SBV (IMF Monetary Survey, line 'State Bank of Vietnam (SBV)' under NFA). Latest vintage used per year: 2014 CR19/235; 2015-2018 CR21/42; 2019 CR23/338; 2020-2023 CR24/306 (2021-2023 identical in CR25/283); 2024 CR25/283. Note revisions: 2023 was 2,379 in CR23 projection vs 2,209 actual; 2024 was 2,073 in CR24 (proj) vs 2,034 in CR25.",
-     "fx_reserves_busd": "December value of IMF IL indicator TRGNV_REVS (total reserves incl. gold at national valuation), raw USD/1e9. IMF Art. IV 'gross international reserves (excl. government deposits)' differ slightly - see gross_reserves_imf_art4_busd. 2026 annual null (see monthly_supplement through 2026-07).",
-     "net_claims_govt_sbv": "SBV net claims on government (claims minus central government/State Treasury deposits), from IMF Monetary Survey line 'Net claims on government - SBV'. Negative = government deposits at SBV exceed SBV claims. Gross claims_govt and govt_deposits are not published separately -> null.",
+     "fx_reserves_busd": "IMF International Liquidity (IMF.STA,IL), indicator TRGNV_REVS = total reserves INCLUDING gold, gold at national valuation, USD, end-December value, raw USD/1e9 (api.imf.org SDMX). Not the same as Economy's ECON_OFFICIAL.fx_reserves_busd (83.08 end-2024 / 85.58 end-2025): Dec-2025 TRGNV_REVS 86.945 minus gold RGOLDNV_REVS 1.364 = 85.581, i.e. Economy's figure matches total reserves EXCLUDING gold (same IMF IL data; the WDI 'total reserves minus gold' concept). End-2024 implies gold of ~0.85 bn (83.931 - 83.08), not verified because the monthly gold series here starts 2025-M06. Label the two tabs 'incl. gold' (Finance) vs 'excl. gold' (Economy); do not mix. Foreign-currency reserves alone (RXF11FX_REVS) are lower again (83.619 Dec-2025). IMF Art. IV 'gross international reserves' (excl. government deposits) is a third definition (83.1 end-2024) - see gross_reserves_imf_art4_busd. SBV's own disclosures (e.g. ~87.6 bn at 18/06/2026) follow none of these exactly. 2026 annual null (monthly series runs to 2026-07).",
+     "net_claims_govt_sbv": "SBV net claims on government (claims minus central government/State Treasury deposits), from IMF Monetary Survey line 'Net claims on government - SBV'. Negative = government deposits at SBV exceed SBV claims. Gross claims on government and government deposits are not published separately (null).",
      "currency_outside_banks": "Currency outside banks (IMF Monetary Survey; matches SBV M0 1,425,567/1,630,775 bn for 2023/2024 on TradingEconomics). Same vintages as nfa (2014 CR19; 2015-2018 CR21; 2019 CR23; 2020-2023 CR24/25; 2024 CR25).",
      "reserve_money_yoy_pct": "Reserve money y/y % (IMF memo item). Levels not published by SBV/IMF -> reserve_money null. 2014-2018 CR19/CR21; 2019 CR21; 2020-2023 CR24/CR25; 2024 CR25.",
      "gross_reserves_imf_art4_busd": "IMF Art. IV Table 1/3 'Gross international reserves (excludes government deposits)' (CR25/283).",
@@ -5150,6 +5227,21 @@
      ],
      "imf_mfs_cbs_check": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,MFS_CBS/VNM...?startPeriod=2014 (returns no Vietnam observations)",
      "nsdp": "https://nsdp.nso.gov.vn/index.htm (Central Bank Survey: DSBB metadata only)"
+    },
+    "fx_reserves_definition": {
+     "dataset": "IMF.STA,IL (International Liquidity)",
+     "indicator": "TRGNV_REVS",
+     "concept_en": "Total reserves including gold (gold at national valuation), USD, end of period",
+     "concept_vi": "Tổng dự trữ quốc tế gồm vàng (vàng theo giá quốc gia), USD, cuối kỳ",
+     "components_dec2025_busd": {
+      "total_incl_gold": 86.945,
+      "gold_RGOLDNV_REVS": 1.364,
+      "total_excl_gold_derived": 85.581,
+      "foreign_currency_RXF11FX_REVS": 83.619
+     },
+     "economy_tab_series": "ECON_OFFICIAL.fx_reserves_busd 85.58 (2025) = total excl. gold (matches the derived 85.581)",
+     "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,IL/VNM...?startPeriod=2010",
+     "checked": "2026-10-06"
     }
    },
    "income_statement": {
@@ -9428,26 +9520,30 @@
       "key": "fx_pressure",
       "title_vi": "Áp lực tỷ giá và chênh lệch lãi suất với USD",
       "title_en": "Exchange-rate pressure and the USD rate gap",
-      "text_vi": "Tỷ giá trung tâm tăng từ 25.121 đồng/USD (31/12/2025) lên mức kỷ lục 25.636 đồng (2/10/2026), tức VND mất giá khoảng 2.01% (tính toán), trong khi Fed nâng biên độ lãi suất lên 3,75-4,00% ngày 16/9/2026, chỉ thấp hơn lãi suất OMO/tái cấp vốn 4,5% của NHNN 0,5 điểm %. Hạ lãi suất điều hành sẽ xoá hoặc đảo ngược khoảng chênh này, khuyến khích chuyển sang nắm giữ USD và dòng vốn ra, làm VND yếu đi và đẩy giá hàng nhập khẩu lên (lạm phát nhập khẩu).",
-      "text_en": "The SBV central rate rose from 25,121 VND/USD (31 Dec 2025) to a record 25,636 (2 Oct 2026), a VND depreciation of about 2.01% (derived), while the Fed raised its target range to 3.75-4.00% on 16 Sep 2026, only 0.5 points below the SBV's 4.5% OMO/refinancing rate. Cutting policy rates would erase or invert that gap, encouraging dollarisation and capital outflows that weaken the dong and raise import prices (imported inflation).",
+      "text_vi": "Tỷ giá trung tâm tăng từ 25.121 đồng/USD (31/12/2025) lên mức kỷ lục 25.643 đồng (6/10/2026), tức VND mất giá khoảng 2,04% (tính toán), trong khi Fed nâng biên độ lãi suất lên 3,75-4,00% ngày 16/9/2026, chỉ thấp hơn lãi suất OMO/tái cấp vốn 4,5% của NHNN 0,5 điểm %. Hạ lãi suất điều hành sẽ xoá hoặc đảo ngược khoảng chênh này, khuyến khích chuyển sang nắm giữ USD và dòng vốn ra, làm VND yếu đi và đẩy giá hàng nhập khẩu lên (lạm phát nhập khẩu).",
+      "text_en": "The SBV central rate rose from 25,121 VND/USD (31 Dec 2025) to a record 25,643 (6 Oct 2026), a VND depreciation of about 2.04% (derived), while the Fed raised its target range to 3.75-4.00% on 16 Sep 2026, only 0.5 points below the SBV's 4.5% OMO/refinancing rate. Cutting policy rates would erase or invert that gap, encouraging dollarisation and capital outflows that weaken the dong and raise import prices (imported inflation).",
       "metric": {
-       "value": 2.01,
+       "value": 2.04,
        "unit": "%",
-       "as_of": "2026-10-02",
-       "label_vi": "VND mất giá so với USD theo tỷ giá trung tâm từ 31/12/2025 (tính toán: 1 − 25.121/25.636)",
-       "label_en": "VND depreciation vs USD, central rate since 31 Dec 2025 (derived: 1 − 25,121/25,636)",
+       "as_of": "2026-10-06",
+       "label_vi": "VND mất giá so với USD theo tỷ giá trung tâm từ 31/12/2025 (tính toán: 1 − 25.121/25.643)",
+       "label_en": "VND depreciation vs USD, central rate since 31 Dec 2025 (derived: 1 − 25,121/25,643)",
        "derived": true,
-       "note": "Equivalently USD +2.05% vs VND. Interbank USD/VND was reported −1.7% YTD on 29/9/2026 (thanhnien) - a different rate (market vs central), not merged."
+       "note": "Equivalently USD +2.08% vs VND. Central-rate date = Policy tab's latest (6/10/2026; 25,636 on 2/10). Interbank USD/VND was reported −1.7% YTD on 29/9/2026 (thanhnien) - a different rate (market vs central), not merged."
       },
       "compare": {
        "value": 0.5,
        "unit": "pp",
-       "as_of": "2026-10-02",
+       "as_of": "2026-10-06",
        "label_vi": "Lãi suất OMO/tái cấp vốn NHNN 4,5% trừ trần lãi suất Fed 4,0% (tính toán)",
        "label_en": "SBV OMO/refinancing 4.5% minus Fed funds upper bound 4.0% (derived)",
        "derived": true
       },
       "sources": [
+       {
+        "name": "Doanh nghiệp & Kinh tế xanh - tỷ giá trung tâm 25.643 (6/10/2026), as in the Policy tab",
+        "url": "https://doanhnghiepkinhtexanh.vn/ty-gia-usd-hom-nay-6102026-ty-gia-trung-tam-o-muc-25643-dong-a54268.html"
+       },
        {
         "name": "Thời báo Ngân hàng - tỷ giá trung tâm 25.636 (2/10/2026)",
         "url": "https://thoibaonganhang.vn/sang-210-nhnn-niem-yet-ty-gia-trung-tam-o-muc-25636-dong-188382.html"
@@ -9688,7 +9784,7 @@
       "label_vi": "Tiền mặt lưu thông (tính: 9,98% × M2)",
       "label_en": "Currency in circulation (derived: 9.98% x M2)",
       "url": "https://sbv.gov.vn/vi/tien-mat-luu-thong-tren-tong-phuong-tien-thanh-toan",
-      "note": "DERIVED from SBV cash/M2 9.98% (Jul-2026) x SBV M2 20,455,644 bn (Jul-2026, https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd). SBV publishes only the ratio. IMF 'currency outside banks' (1,631 trn end-2024, balance_sheet) is a different definition."
+      "note": "DERIVED from SBV cash/M2 9.98% (Jul-2026) x SBV M2 20,455,644 bn (Jul-2026, https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd). SBV publishes only the ratio. IMF 'currency outside banks' (1,631 trn end-2024, IMF monetary survey in the SBV balance sheet) is a different definition."
      },
      "gov_bond_issued_2026_ytd": {
       "value": 261108,
@@ -9823,7 +9919,7 @@
       "label_vi": "Dự trữ ngoại hối nhà nước (NHNN công bố)",
       "label_en": "State FX reserves (SBV disclosure)",
       "url": "https://cafef.vn/du-tru-ngoai-hoi-con-876-ty-usd-ngan-hang-nha-nuoc-muon-sua-doi-nhieu-quy-dinh-188260624112155679.chn",
-      "note": "SBV official ~87.6 bn USD on 18/06/2026. IMF IL TRGNV (incl. gold, national valuation) 86.10 bn Jul-2026 / 89.55 Jun-2026 - different definition, see balance_sheet.monthly_supplement. SBV to publish IMF-template reserves data from 2027 (https://vietstock.vn/2026/05/ngan-hang-nha-nuoc-va-bo-tai-chinh-hoa-ky-ra-tuyen-bo-chung-ve-chinh-sach-ty-gia-va-du-tru-ngoai-hoi-757-1448772.htm)."
+      "note": "SBV official ~87.6 bn USD on 18/06/2026. IMF International Liquidity total reserves incl. gold (TRGNV_REVS, national valuation) 86.10 bn Jul-2026 / 89.55 Jun-2026 - different definition (see the IMF monthly reserves series in the SBV balance sheet). SBV to publish IMF-template reserves data from 2027 (https://vietstock.vn/2026/05/ngan-hang-nha-nuoc-va-bo-tai-chinh-hoa-ky-ra-tuyen-bo-chung-ve-chinh-sach-ty-gia-va-du-tru-ngoai-hoi-757-1448772.htm)."
      }
     },
     "flow_notes_vi": [
@@ -9974,7 +10070,61 @@
     "credit Aug-2026 (note)": "Cut-off 28/8/2026, not month-end. Level is SBV's rounded 'khoảng 20,5 triệu tỷ đồng' (+10.24% YTD), not a table value. Cross-check https://diendandoanhnghiep.vn/den-28-8-tin-dung-dat-20-5-trieu-ty-dong-77-3-du-no-vao-san-xuat-kinh-doanh-10184465.html (search excerpt only, re-checked 2026-10-06; page fetch blocked).",
     "credit Sep-2026 (note)": "Cut-off 30/9/2026. Deputy Governor Phạm Thanh Hà, SBV press briefing 3/10/2026: 'khoảng 20,75 triệu tỷ đồng', +11.59% vs end-2025, +16.69% YoY (credit_yoy Sep-2026 is the SBV-stated figure, not computed). Level is rounded. Cross-checks: https://cafef.vn/pho-thong-doc-pham-thanh-ha-tin-dung-den-30-9-dat-2075-trieu-ty-dong-tang-1159-188261003125449749.chn ; https://thitruongtaichinhtiente.vn/tong-du-no-tin-dung-9-thang-dau-nam-2026-dat-20-75-trieu-ty-dong-tang-16-69-so-voi-cung-ky-nam-truoc-86017.html (search excerpts only, 2026-10-06). Conflict, not averaged: GSO Q3 report gives credit +10.89% and mobilisation +9.78% at 28/9/2026 (https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm) — different cut-off date.",
     "m2/deposits Aug-Sep 2026": "Not yet published as of 2026-10-06 (latest SBV month: Jul-2026, deposits 17.46 trillion-bn, +5.72% YTD — cross-check https://www.tinnhanhchungkhoan.vn/tien-gui-cham-moc-175-trieu-ty-dong-ngan-hang-van-loay-hoay-bu-hut-nguon-von-post397946.html, search excerpt). Arrays left null.",
-    "m2_ytd Dec-2025 vs levels": "Methodology break Oct-2025: m2_ytd Dec-2025 (15.7%) is SBV's like-for-like growth; dividing the Dec-2025 level (new method) by the Dec-2024 level (old method) gives 8.5% and is NOT a valid growth rate. Same break affects deposits_residents / deposits_econ_orgs from T10/25 (reclassification) — deposits_ytd left null Oct-Dec 2025."
+    "m2_ytd Dec-2025 vs levels": "Methodology break Oct-2025: m2_ytd Dec-2025 (15.7%) is SBV's like-for-like growth; dividing the Dec-2025 level (new method) by the Dec-2024 level (old method) gives 8.5% and is NOT a valid growth rate. Same break affects deposits_residents / deposits_econ_orgs from T10/25 (reclassification) — deposits_ytd left null Oct-Dec 2025.",
+    "credit month labels Jun/Jul-2026 (check 2026-10-06)": {
+     "finding": "No shift. SBV table rows are month-end: T6/26 = 30/6/2026 (20,150,411 bn, +8.37%), T7/26 = 31/7/2026 (20,262,110 bn, +8.97%). The 7.41% figure was to 26/6 and 7.73% to 29/6 (SBV statements, different cut-offs); the 30/6 quarter-end close is higher. The 29/7 statement (20.15 quadrillion, +8.38%) is a different date that happens to be at the end-June level (credit dipped in early July: 'nearly 20.1 quadrillion' at 13/7). 2026 SBV M2/cash tables carry month-end dates (Date field = 2026-06-30, 2026-07-31); 2025 rows were dated by publication.",
+     "evidence": [
+      {
+       "cut_off": "2026-06-26",
+       "credit_ytd": 7.41,
+       "level": "over 19.97 quadrillion",
+       "stated": "2026-07-02 (SBV Deputy Governor, Government press conference)",
+       "url": "https://baochinhphu.vn/tin-dung-tang-truong-741-tao-du-dia-cho-tang-truong-kinh-te-102260702120737467.htm"
+      },
+      {
+       "cut_off": "2026-06-26",
+       "credit_ytd": 7.41,
+       "url": "https://vietstock.vn/2026/07/den-2606-du-no-tin-dung-toan-he-thong-dat-1997-trieu-ty-dong-tang-741-757-1461401.htm"
+      },
+      {
+       "cut_off": "2026-06-29",
+       "credit_ytd": 7.73,
+       "level": "20.03 quadrillion",
+       "stated": "2026-07-03 (SBV H1 review conference, Deputy Governor Doan Thai Son; Thoi bao Ngan hang)",
+       "url": "https://baomoi.com/den-cuoi-thang-6-du-no-tin-dung-doi-voi-nen-kinh-te-dat-20-03-trieu-ty-dong-tang-7-73-c55533917.epi"
+      },
+      {
+       "cut_off": "2026-06-30",
+       "credit_ytd": 8.37,
+       "level": "over 20.15 quadrillion",
+       "stated": "SBV sector table as quoted by Nguoi Quan Sat (with sector shares)",
+       "url": "https://nguoiquansat.vn/hon-20-trieu-ty-dong-tin-dung-dang-chay-vao-linh-vuc-nao-311439.html"
+      },
+      {
+       "cut_off": "2026-07-13",
+       "credit_ytd": null,
+       "level": "nearly 20.1 quadrillion",
+       "url": "https://baodauthau.vn/den-137-du-no-tin-dung-dat-gan-201-trieu-ty-dong-post203377.html"
+      },
+      {
+       "cut_off": "2026-07-29",
+       "credit_ytd": 8.38,
+       "level": "over 20.15 quadrillion",
+       "stated": "2026-08-03 (Government press conference)",
+       "url": "https://baochinhphu.vn/du-no-tin-dung-tang-838-nhnn-khoi-thong-nguon-von-102260803190033538.htm"
+      },
+      {
+       "cut_off": "2026-07-31",
+       "credit_ytd": 8.98,
+       "level": "nearly 20.3 quadrillion",
+       "stated": "press quoting SBV; search excerpt only, outlet not pinned (matches table T7/26 20,262,110 = +8.97%)",
+       "url": null
+      }
+     ],
+     "note": "Search-excerpt verification only (all hosts blocked). Values unchanged."
+    },
+    "credit Aug-2026 (cut-off)": "T8/26 credit_level/credit_ytd are an SBV statement to 28/8/2026 ('about 20.5 quadrillion', +10.24%), not the month-end table; replace with the SBV Aug table (expected mid-late Oct 2026).",
+    "credit Sep-2026 (cut-off)": "T9/26 = SBV statement to 30/9/2026 (20.75 quadrillion, +11.59%), stated 3/10/2026; level rounded to 20,750,000; not yet the SBV table."
    },
    "sectors": {
     "levels_and_growth": [
@@ -9982,7 +10132,8 @@
      "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10034332&pageSize=200"
     ],
     "share_of_total_pct": "computed from SBV levels",
-    "note": "SBV page publishes Jan-2025..Jul-2026 only. Re-checked 2026-10-06 by search: Aug/Sep-2026 sector tables not yet published (no press citing them). Sub-sector rows are 'trong đó'."
+    "note": "SBV page publishes Jan-2025..Jul-2026 only. Re-checked 2026-10-06 by search: Aug/Sep-2026 sector tables not yet published (no press citing them). Sub-sector rows are 'trong đó'.",
+    "period_dates": "sectors.periods are SBV sector-table month-ends (2026: '2026-06' = 30/6, '2026-07' = 31/7), the same table as monthly.credit_level for Jan-2025..Jul-2026; they differ from SBV press-conference cut-offs (26/6, 29/6, 29/7, 28/8, 30/9). Checked 2026-10-06."
    },
    "sbv_constraints_plumbing_analysis": {
     "date": "2026-10-06",
@@ -10015,7 +10166,7 @@
      "as_of": "2026-06",
      "url": "https://vneconomy.vn/den-cuoi-thang-62026-no-xau-bat-dong-san-tang-105-so-cuoi-nam-ngoai.htm",
      "note": "NHNN, 30/6/2026; 25,5% tổng dư nợ.",
-     "overlaps": "= real-estate business + own-use housing; own-use housing is also inside consumer credit. Scope note: under SBV letter 8509/NHNN-CSTT (Sep-2026) the 2026 increase in hospitality/resort lending is excluded from real-estate credit for growth-control purposes; later 're_total' figures may not be comparable with this Jun-2026 value."
+     "overlaps": "= real-estate business + own-use housing; own-use housing is also inside consumer credit. Scope note: under SBV letter 8509/NHNN-CSTT (Sep-2026) the 2026 increase in hospitality/resort lending is excluded from real-estate credit for growth-control purposes; later total real-estate credit figures may not be comparable with this Jun-2026 value."
     },
     {
      "key": "re_selfuse_share",
@@ -10025,7 +10176,7 @@
      "as_of": "2026-05",
      "url": "https://vneconomy.vn/tin-dung-bat-dong-san-chiem-2573-du-no-nen-kinh-te.htm",
      "note": "NHNN báo cáo 6 tháng 2026; kỳ số liệu ước khoảng cuối T5/2026. QC: the period is inferred (report published with H1 data), not stated by the source. Cross-check at Jun-2026: 1 − 2,519,000/5,146,000 = 51.05% — different period/rounding, not reconciled.",
-     "overlaps": "Cross-check for re_total − re_business."
+     "overlaps": "Cross-check for total real-estate credit minus real-estate business credit."
     },
     {
      "key": "consumer",
@@ -10046,7 +10197,7 @@
      "as_of": "2026-06",
      "url": "https://vnexpress.net/du-no-kinh-doanh-bat-dong-san-vuot-2-5-trieu-ty-dong-5112649.html",
      "note": "Bộ Xây dựng Q2/2026.",
-     "overlaps": "Subset of re_business."
+     "overlaps": "Subset of real-estate business credit."
     },
     {
      "key": "re_b_land_rights",
@@ -10057,7 +10208,7 @@
      "as_of": "2026-06",
      "url": "https://vnexpress.net/du-no-kinh-doanh-bat-dong-san-vuot-2-5-trieu-ty-dong-5112649.html",
      "note": "Bộ Xây dựng Q2/2026.",
-     "overlaps": "Subset of re_business."
+     "overlaps": "Subset of real-estate business credit."
     },
     {
      "key": "re_b_industrial",
@@ -10068,7 +10219,7 @@
      "as_of": "2026-06",
      "url": "https://vnexpress.net/du-no-kinh-doanh-bat-dong-san-vuot-2-5-trieu-ty-dong-5112649.html",
      "note": "Bộ Xây dựng Q2/2026.",
-     "overlaps": "Subset of re_business; may sit under construction."
+     "overlaps": "Subset of real-estate business credit; may sit under construction."
     },
     {
      "key": "re_b_build_resale",
@@ -10079,14 +10230,14 @@
      "as_of": "2026-06",
      "url": "https://danviet.vn/hon-25-trieu-ty-dong-tin-dung-chay-vao-kinh-doanh-bat-dong-san-d1453733.html",
      "note": "Bộ Xây dựng Q2/2026.",
-     "overlaps": "Subset of re_business."
+     "overlaps": "Subset of real-estate business credit."
     }
    ],
    "gaps_vi": "Chưa có số toàn quốc cho tài chính – ngân hàng – bảo hiểm, chứng khoán (tín dụng ngân hàng), lưu trú – ăn uống, giáo dục, y tế; phần này nằm trong 'chưa phân loại'.",
    "gaps_en": "No national figures for finance/insurance, bank credit to securities, hospitality, education or health; they sit in the unclassified remainder.",
    "total_bn": 9158790.0,
    "total_as_of": "2026-07",
-   "residual_note": "Unclassified residual = other-services total (Jul-2026, 9,158,790) − real-estate business (Jun-2026, 2,519,000) − consumer credit incl. own-use housing (Aug-2026, 4,620,000) ≈ 2,019,790 bn VND (≈22%). The three inputs are from three different months; nothing is rescaled, so the residual is indicative only. re_total and re_selfuse_share are stored for cross-checking and are not added (own-use housing sits inside consumer). Not every consumer or real-estate loan is necessarily booked under 'other services' (e.g. industrial-park projects may sit under construction), so the 'known' share is an upper-bound estimate."
+   "residual_note": "Unclassified residual = other-services total (Jul-2026, 9,158,790) − real-estate business (Jun-2026, 2,519,000) − consumer credit incl. own-use housing (Aug-2026, 4,620,000) ≈ 2,019,790 bn VND (≈22%). The three inputs are from three different months; nothing is rescaled, so the residual is indicative only. Total real-estate credit and the own-use housing share are stored for cross-checking and are not added (own-use housing sits inside consumer). Not every consumer or real-estate loan is necessarily booked under 'other services' (e.g. industrial-park projects may sit under construction), so the 'known' share is an upper-bound estimate."
   },
   "analysis": {
    "as_of": "2026-10-06",
@@ -10299,8 +10450,8 @@
       {
        "title_vi": "Phân loại theo ngành của bên vay",
        "title_en": "Classification by borrower industry",
-       "text_vi": "Nhóm 'dịch vụ khác' gom các khoản vay không thuộc nông nghiệp, công nghiệp, xây dựng, thương mại, vận tải; NHNN không công bố danh mục, nên việc gán tiêu dùng và bất động sản vào nhóm này là suy luận (xem other_services_breakdown).",
-       "text_en": "'Other services' gathers loans not classed as agriculture, industry, construction, trade or transport; the SBV publishes no list, so assigning consumer and real-estate lending to it is an inference (see other_services_breakdown).",
+       "text_vi": "Nhóm 'dịch vụ khác' gom các khoản vay không thuộc nông nghiệp, công nghiệp, xây dựng, thương mại, vận tải; NHNN không công bố danh mục, nên việc gán tiêu dùng và bất động sản vào nhóm này là suy luận (xem biểu đồ phân rã nhóm 'dịch vụ khác').",
+       "text_en": "'Other services' gathers loans not classed as agriculture, industry, construction, trade or transport; the SBV publishes no list, so assigning consumer and real-estate lending to it is an inference (see the 'other services' breakdown chart).",
        "weight": "secondary",
        "sources": [
         {
@@ -10398,8 +10549,8 @@
        ]
       }
      ],
-     "caveat_vi": "Chi phí vốn, CASA, NIM là số của nhóm ngân hàng niêm yết theo từng công ty chứng khoán, không phải toàn hệ thống; xem why.series để biết định nghĩa.",
-     "caveat_en": "Cost of funds, CASA and NIM are listed-bank figures from individual brokers, not system-wide; see why.series for definitions.",
+     "caveat_vi": "Chi phí vốn, CASA, NIM là số của nhóm ngân hàng niêm yết theo từng công ty chứng khoán, không phải toàn hệ thống; định nghĩa ghi ở nguồn của từng chỉ số.",
+     "caveat_en": "Cost of funds, CASA and NIM are listed-bank figures from individual brokers, not system-wide; each metric's source note gives its definition.",
      "sources": [
       {
        "name": "Dân Trí 25/9/2026",
@@ -10679,8 +10830,8 @@
   },
   "projections": {
    "as_of": "2026-10-06",
-   "note_vi": "Ba loại: 'official_target' (mục tiêu chính thức), 'institution_forecast' (dự báo của tổ chức, ghi rõ kỳ công bố) và 'scenario' (do nhóm dữ liệu tính, nêu đầu vào và công thức để tái lập). Kịch bản không phải dự báo. Số liệu IMF WEO lấy qua trích đoạn tìm kiếm (trang IMF/FRED bị chặn) và có mâu thuẫn được ghi chú.",
-   "note_en": "Three kinds: 'official_target', 'institution_forecast' (with vintage) and 'scenario' (computed here, with stated inputs and formula so it can be reproduced). Scenarios are not forecasts. IMF WEO values come from search excerpts (IMF/FRED pages blocked) and conflicts are noted.",
+   "note_vi": "Ba loại: mục tiêu chính thức, dự báo của tổ chức (ghi rõ kỳ công bố) và kịch bản (do nhóm dữ liệu tính, nêu đầu vào và công thức để tái lập). Kịch bản không phải dự báo. Số liệu IMF WEO lấy qua trích đoạn tìm kiếm (trang IMF/FRED bị chặn) và có mâu thuẫn được ghi chú.",
+   "note_en": "Three kinds: official targets, institutional forecasts (with vintage) and scenarios (computed here, with stated inputs and formula so they can be reproduced). Scenarios are not forecasts. IMF WEO values come from search excerpts (IMF/FRED pages blocked) and conflicts are noted.",
    "series": {
     "credit_growth_pct": {
      "years": [
@@ -10824,11 +10975,11 @@
      "kind": "scenario",
      "unit": "% of GDP (total credit / nominal GDP)",
      "source": {
-      "name": "Computed: SBV credit end-2025 / NSO GDP 2025, rolled forward with credit_growth_pct and nominal_gdp_growth_pct",
+      "name": "Computed: SBV credit end-2025 / NSO GDP 2025, rolled forward with the credit-growth and nominal-GDP-growth paths above",
       "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
      },
-     "method_vi": "Điểm xuất phát 2025 = 18.594.930 / 12.847.571 tỷ đồng = 144.7% (báo chí: ~146%). Mỗi năm: tỷ lệ_t = tỷ lệ_(t−1) × (1 + tín dụng_t) / (1 + GDP danh nghĩa_t), với tín dụng base/low/high = 15/12/18% và GDP danh nghĩa theo nominal_gdp_growth_pct. Đây là phép số học, không phải dự báo.",
-     "method_en": "Start 2025 = 18,594,930 / 12,847,571 bn VND = 144.7% (press: ~146%). Each year: ratio_t = ratio_(t−1) x (1 + credit_t) / (1 + nominal GDP_t), credit base/low/high = 15/12/18% and nominal GDP from nominal_gdp_growth_pct. Arithmetic, not a forecast."
+     "method_vi": "Điểm xuất phát 2025 = 18.594.930 / 12.847.571 tỷ đồng = 144.7% (báo chí: ~146%). Mỗi năm: tỷ lệ_t = tỷ lệ_(t−1) × (1 + tín dụng_t) / (1 + GDP danh nghĩa_t), với tín dụng base/low/high = 15/12/18% và GDP danh nghĩa theo đường tăng GDP danh nghĩa ở trên. Đây là phép số học, không phải dự báo.",
+     "method_en": "Start 2025 = 18,594,930 / 12,847,571 bn VND = 144.7% (press: ~146%). Each year: ratio(t) = ratio(t−1) x (1 + credit growth in t) / (1 + nominal GDP growth in t), credit base/low/high = 15/12/18% and nominal GDP from the nominal-GDP-growth path above. Arithmetic, not a forecast."
     },
     "npl_pct": {
      "years": [
@@ -10905,8 +11056,35 @@
       "name": "IMF World Economic Outlook, April 2026 (via search excerpts; FRED VNMNGDPRPCPPPT)",
       "url": "https://fred.stlouisfed.org/series/VNMNGDPRPCPPPT"
      },
-     "method_vi": "7,1 (2026), 6,7 (2027), 6,2 (2028), 5,6 (2029), 5,39 (2030). Một trích đoạn gán 5,4 cho 2031 thay vì 2030. Mục tiêu chính thức: bình quân từ 10%/năm 2026-2030.",
-     "method_en": "7.1 (2026), 6.7 (2027), 6.2 (2028), 5.6 (2029), 5.39 (2030). One excerpt attaches 5.4 to 2031 instead of 2030. Official target: average 10%+/yr in 2026-2030."
+     "method_vi": "7,1 (2026), 6,7 (2027), 6,2 (2028), 5,6 (2029), 5,39 (2030). Một trích đoạn gán 5,4 cho 2031 thay vì 2030. Mục tiêu chính thức: bình quân từ 10%/năm 2026-2030. IMF WEO 10/2026 công bố 13/10/2026 sẽ thay chuỗi này. World Bank (EAP 06/10/2026): 7,4% (2026) — xem chuỗi riêng.",
+     "method_en": "7.1 (2026), 6.7 (2027), 6.2 (2028), 5.6 (2029), 5.39 (2030). One excerpt attaches 5.4 to 2031 instead of 2030. Official target: average 10%+/yr in 2026-2030. IMF WEO Oct-2026 (13/10/2026) will replace this series. World Bank (EAP Update 06/10/2026): 7.4% for 2026 — see the separate series."
+    },
+    "real_gdp_growth_pct_wb": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      7.4,
+      7.3,
+      7.3,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% y/y",
+     "source": {
+      "name": "World Bank, East Asia & Pacific Economic Update, October 2026 (06/10/2026), same vintage as the Economy tab",
+      "url": "https://thoibaotaichinhvietnam.vn/wb-nang-manh-du-bao-tang-truong-cua-viet-nam-nam-2026-204930.html",
+      "alt_url": "https://mekongasean.vn/world-bank-nang-du-bao-tang-truong-viet-nam-len-74-60355.html"
+     },
+     "method_vi": "Công bố 06/10/2026; 2026 nâng 1,1 điểm % (từ 6,3%). 2027–2028 = 7,3% theo Thời báo Tài chính; một bản tóm tắt khác ghi 2027 là 7,4% — chưa đối chiếu bảng gốc.",
+     "method_en": "Released 06/10/2026; 2026 raised 1.1 pp (from 6.3%). 2027–2028 = 7.3% per Thoi bao Tai chinh; another summary reads 2027 as 7.4% — original table not checked."
     }
    },
    "targets": [
@@ -11049,13 +11227,13 @@
    "as_of": "2026-10-06",
    "period": "2026-06-30 (Q2-2026 interim FS) for all 17 banks; consolidated vs separate basis is mixed/unclear per bank (see banks[].basis)",
    "sbv_total_bn": 20150411.0,
-   "sbv_total_note": "SBV 'Dư nợ tín dụng đối với nền kinh tế' (all credit institutions, incl. Agribank, foreign banks, finance companies, VBSP-excluded per SBV table) at end-Jun 2026 = the dashboard's data; the ~20.3 quadrillion figure (Jul-2026: 20,262,110) is the same system-wide series, not joint-stock banks only.",
+   "sbv_total_note": "SBV 'Dư nợ tín dụng đối với nền kinh tế' month-end table at 30/6/2026 = 20,150,411 bn (+8.37% YTD), the same date as the banks' Q2 statements (checked 2026-10-06: SBV's 7.41% and 7.73% figures were to 26/6 and 29/6; the 29/7 figure of 20.15 quadrillion is a later date). All credit institutions incl. Agribank, foreign banks and finance companies; not joint-stock banks only. End-July table: 20,262,110.",
    "sum_listed_total_loans_bn": 14054929,
    "coverage_pct_of_system": 69.8,
    "coverage_note": "DERIVED: sum of the 17 banks' customer loans / SBV credit to the economy at 30/6/2026. Indicative only: bank figures mix consolidated and separate bases and SBV 'credit' includes corporate bonds held and other credit items, so the ratio is not like-for-like. Agribank (~2.03 quadrillion) is not in the 17.",
-   "sector_coverage_note": "Full FS sector notes ('cho vay khách hàng theo ngành') could not be read for any bank (bank IR sites, vietstock, cafef and FS PDFs blocked). by_sector is null except where a sourced FS line maps one-to-one to an SBV group (BIDV trade; Techcombank construction). Real-estate business lines found for 10 banks sum to 1,095,458 bn (all mapped to other_services) - partial, not a sector total.",
-   "mapping_note_vi": "Ánh xạ ngành VSIC trong thuyết minh BCTC sang 6 nhóm của NHNN (suy luận, NHNN không công bố bảng ánh xạ): A Nông, lâm nghiệp và thủy sản → agriculture_forestry_fisheries; B Khai khoáng, C Công nghiệp chế biến chế tạo, D Sản xuất và phân phối điện/khí đốt, E Cung cấp nước, xử lý rác thải → industry; F Xây dựng → construction; G Bán buôn và bán lẻ, sửa chữa ô tô, mô tô → trade; H Vận tải kho bãi, J Thông tin và truyền thông → transport_telecom; còn lại (I Lưu trú và ăn uống, K Tài chính ngân hàng bảo hiểm, L Kinh doanh bất động sản, M-S dịch vụ chuyên môn, giáo dục, y tế, nghệ thuật..., T Hoạt động làm thuê các công việc trong hộ gia đình, sản xuất sản phẩm vật chất và dịch vụ tự tiêu dùng của hộ gia đình - tức phần lớn cho vay cá nhân/tiêu dùng, U) → other_services.",
-   "mapping_note_en": "Mapping of VSIC sections in bank FS notes to the SBV's six groups (an inference; the SBV publishes no mapping): A Agriculture, forestry, fishing → agriculture_forestry_fisheries; B Mining, C Manufacturing, D Electricity/gas, E Water/waste → industry; F Construction → construction; G Wholesale and retail, motor-vehicle repair → trade; H Transport and storage, J Information and communication → transport_telecom; everything else (I Accommodation and food, K Finance and insurance, L Real-estate business, M-S professional, education, health, arts…, T Activities of households as employers / own-use production - i.e. most personal and consumer lending, U) → other_services.",
+   "sector_coverage_note": "Full FS sector notes ('cho vay khách hàng theo ngành') could not be read for any bank (bank IR sites, vietstock, cafef and FS PDFs blocked). Per-bank sector splits are empty except where a sourced FS line maps one-to-one to an SBV group (BIDV trade; Techcombank construction). Real-estate business lines found for 10 banks sum to 1,095,458 bn (all counted in 'other services') - partial, not a sector total.",
+   "mapping_note_vi": "Ánh xạ ngành VSIC trong thuyết minh BCTC sang 6 nhóm của NHNN (suy luận, NHNN không công bố bảng ánh xạ): A Nông, lâm nghiệp và thủy sản → 'Nông, lâm nghiệp, thủy sản'; B Khai khoáng, C Công nghiệp chế biến chế tạo, D Sản xuất và phân phối điện/khí đốt, E Cung cấp nước, xử lý rác thải → 'Công nghiệp'; F Xây dựng → 'Xây dựng'; G Bán buôn và bán lẻ, sửa chữa ô tô, mô tô → 'Thương mại'; H Vận tải kho bãi, J Thông tin và truyền thông → 'Vận tải, viễn thông'; còn lại (I Lưu trú và ăn uống, K Tài chính ngân hàng bảo hiểm, L Kinh doanh bất động sản, M-S dịch vụ chuyên môn, giáo dục, y tế, nghệ thuật..., T Hoạt động làm thuê các công việc trong hộ gia đình, sản xuất sản phẩm vật chất và dịch vụ tự tiêu dùng của hộ gia đình - tức phần lớn cho vay cá nhân/tiêu dùng, U) → 'Các hoạt động dịch vụ khác'.",
+   "mapping_note_en": "Mapping of VSIC sections in bank FS notes to the SBV's six groups (an inference; the SBV publishes no mapping): A Agriculture, forestry, fishing → 'Agriculture, forestry, fisheries'; B Mining, C Manufacturing, D Electricity/gas, E Water/waste → 'Industry'; F Construction → 'Construction'; G Wholesale and retail, motor-vehicle repair → 'Trade'; H Transport and storage, J Information and communication → 'Transport, telecom'; everything else (I Accommodation and food, K Finance and insurance, L Real-estate business, M-S professional, education, health, arts…, T Activities of households as employers / own-use production - i.e. most personal and consumer lending, U) → 'Other services'.",
    "context": [
     {
      "label": "27 listed banks, customer loans 30/6/2026",
@@ -11090,7 +11268,8 @@
      },
      "raw": [],
      "url": "https://nguoiquansat.vn/top-10-ngan-hang-dan-dau-ve-cho-vay-khach-hang-sau-quy-ii-2026-5-nha-bang-vuot-1-trieu-ty-dong-hdbank-dan-dat-tang-truong-308155.html",
-     "note": "Customer loans; VietnamNet gives \"over 1.7 quadrillion\" (+4.65% YTD) - consistent. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Customer loans; VietnamNet gives \"over 1.7 quadrillion\" (+4.65% YTD) - consistent. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": true
     },
     {
      "ticker": "BID",
@@ -11130,7 +11309,8 @@
       }
      ],
      "url": "https://nguoiquansat.vn/top-10-ngan-hang-dan-dau-ve-cho-vay-khach-hang-sau-quy-ii-2026-5-nha-bang-vuot-1-trieu-ty-dong-hdbank-dan-dat-tang-truong-308155.html",
-     "note": "CONFLICT: VietnamNet (https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html) gives 2.41 quadrillion (+5.59% YTD); not reconciled (likely consolidated vs separate). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "CONFLICT: VietnamNet (https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html) gives 2.41 quadrillion (+5.59% YTD); not reconciled (likely consolidated vs separate). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": true
     },
     {
      "ticker": "CTG",
@@ -11148,7 +11328,8 @@
      },
      "raw": [],
      "url": "https://nguoiquansat.vn/top-10-ngan-hang-dan-dau-ve-cho-vay-khach-hang-sau-quy-ii-2026-5-nha-bang-vuot-1-trieu-ty-dong-hdbank-dan-dat-tang-truong-308155.html",
-     "note": "CONFLICT: VietnamNet gives 2.04 quadrillion (+5.18% YTD). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "CONFLICT: VietnamNet gives 2.04 quadrillion (+5.18% YTD). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": true
     },
     {
      "ticker": "TCB",
@@ -11182,7 +11363,8 @@
       }
      ],
      "url": "https://techcombank.com/content/dam/techcombank/public-site/documents/techcombank-vas-bao-cao-tai-chinh-rieng-le-2q26-searchable.pdf",
-     "note": "Consolidated customer loans 847,336 per VietnamNet (https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html); separate basis kept because the sector lines are separate-basis. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Consolidated customer loans 847,336 per VietnamNet (https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html); separate basis kept because the sector lines are separate-basis. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "MBB",
@@ -11209,7 +11391,8 @@
       }
      ],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "\"1.228 quadrillion\" (rounded). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "\"1.228 quadrillion\" (rounded). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "VPB",
@@ -11236,7 +11419,8 @@
       }
      ],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "Parent-bank loans ~1.06 quadrillion (+24.6% YTD). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Parent-bank loans ~1.06 quadrillion (+24.6% YTD). Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "ACB",
@@ -11254,7 +11438,8 @@
      },
      "raw": [],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "+8.6% YTD; theleader also 745,759. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "+8.6% YTD; theleader also 745,759. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "STB",
@@ -11272,7 +11457,8 @@
      },
      "raw": [],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "HDB",
@@ -11299,7 +11485,8 @@
       }
      ],
      "url": "https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html",
-     "note": "CONFLICT: VietnamNet \"659 nghìn tỷ\"; 649,803 (+20.5% YTD) kept as the precise figure; outlet not pinned. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "CONFLICT: VietnamNet \"659 nghìn tỷ\"; 649,803 (+20.5% YTD) kept as the precise figure; outlet not pinned. Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "SHB",
@@ -11326,7 +11513,8 @@
       }
      ],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "CONFLICT: VietnamNet top-10 gives 659,611. 636,617 kept because the RE share (220,379 = 34.62%) implies a ~636.6k base. Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "CONFLICT: VietnamNet top-10 gives 659,611. 636,617 kept because the RE share (220,379 = 34.62%) implies a ~636.6k base. Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "TPB",
@@ -11353,7 +11541,8 @@
       }
      ],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "VIB",
@@ -11380,7 +11569,8 @@
       }
      ],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "LPB",
@@ -11407,7 +11597,8 @@
       }
      ],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "MSB",
@@ -11434,7 +11625,8 @@
       }
      ],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "OCB",
@@ -11452,7 +11644,8 @@
      },
      "raw": [],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "EIB",
@@ -11470,7 +11663,8 @@
      },
      "raw": [],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     },
     {
      "ticker": "NAB",
@@ -11488,7 +11682,8 @@
      },
      "raw": [],
      "url": "https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html",
-     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy)."
+     "note": "Outlet not pinned: snippet listed values in million VND without naming the article; candidates https://vietnamnet.vn/ong-lon-vuot-2-trieu-ty-dong-du-no-nha-bang-nao-dung-cuoi-bang-2542487.html and https://nongnghiepmoitruong.vn/ngan-hang-bom-135-trieu-ty-trong-nua-nam-vpbank-bung-217500-ty-sacombank-eximbank-nho-giot-d825189.html Excerpt-only (search snippet 2026-10-06; FS PDFs and news pages blocked by egress proxy).",
+     "state_owned": false
     }
    ]
   }
