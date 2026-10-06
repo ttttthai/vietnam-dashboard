@@ -16,3 +16,6 @@ BACKUP/*.jsonl
 BACKUP/manifest.json
 BACKUP/.snooze_until
 BACKUP/*.prev.json
+
+# generated offline preview (tools/build/make_preview.py)
+vietnam_dashboard_preview.html
