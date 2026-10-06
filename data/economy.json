@@ -323,7 +323,7 @@
     "X_M": "World Bank WDI NE.EXP.GNFS.CN / NE.IMP.GNFS.CN (origin as stated in the page footnote; api.worldbank.org blocked 2026-10-06)",
     "growth_real_pct": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
    },
-   "qc_note": "QC 2026-10-06: 2024 net_exports (801,814.19) ≠ X − M (742,102.96; gap 59,711.23 bn VND). C+I+G+NX+ε = GDP holds with net_exports, so NX/ε are NSO-consistent and X/M (World Bank) are on a different vintage. Not corrected: source not reachable. All other years NX = X − M."
+   "qc_note": "QC 2026-10-06: 2024 net_exports (801,814.19) ≠ X − M (742,102.96; gap 59,711.23 bn VND). C+I+G+NX+ε = GDP holds with net_exports, so NX/ε are NSO-consistent and X/M (World Bank) are on a different vintage. Not corrected: source not reachable. All other years NX = X − M. Re-checked 2026-10-06 (second pass): NSO expenditure-side 2024 levels (X, M of goods & services, current prices) still not retrievable — nso.gov.vn/PxWeb blocked and no press excerpt quotes the levels; only real growth rates (X +15.45%, M +16.10%, first release) were found. Gap left open."
   },
   "bop": {
    "years": [
@@ -839,7 +839,50 @@
    "sources": {
     "2015-2025": "IMF Balance of Payments (BPM6) from SBV data (origin per page footnote; not re-verified 2026-10-06)"
    },
-   "note": "No SBV/IMF quarterly BoP for 2026 was found as of 2026-10-06; the annual structure has no slot for partial years. Latest FX-reserve datapoint found: SBV ≈87.6 bn USD at 18/06/2026 (https://nhadautu.vn/du-tru-ngoai-hoi-viet-nam-gan-88-ty-usd-d105852.html, search excerpt) — not added to the annual ECON_OFFICIAL.fx_reserves_busd series."
+   "note": "2026 quarterly BoP is in bop.quarterly (Q1-2026 from SBV via VnEconomy). Annual arrays end in 2025. Latest FX-reserve datapoint: SBV ≈87.6 bn USD at 18/06/2026 (https://nhadautu.vn/du-tru-ngoai-hoi-viet-nam-gan-88-ty-usd-d105852.html; https://vnexpress.net/du-tru-ngoai-hoi-gan-88-ty-usd-5089444.html) — not added to the annual ECON_OFFICIAL.fx_reserves_busd series.",
+   "quarterly": {
+    "periods": [
+     "Q4-2025",
+     "Q1-2026"
+    ],
+    "unit": "bn USD",
+    "current_account": [
+     7.654,
+     2.716
+    ],
+    "goods_balance": [
+     9.135,
+     2.434
+    ],
+    "secondary_income_net": [
+     null,
+     3.187
+    ],
+    "investment_income_net": [
+     -2.975,
+     -1.231
+    ],
+    "financial_account_net": [
+     7.076,
+     0.893
+    ],
+    "fdi_net": [
+     null,
+     5.38
+    ],
+    "portfolio_net": [
+     null,
+     -2.478
+    ],
+    "overall_balance": [
+     null,
+     -1.078
+    ],
+    "source": "SBV quarterly BoP release for Q1-2026, as reported by VnEconomy",
+    "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm",
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06",
+    "note": "Q1-2026 overall balance −1.078 bn ended three consecutive quarterly surpluses. Q4-2025 values are the comparison figures quoted in the same article. Errors & omissions not quoted (not derived). Q2-2026: only a secondary claim found — \"SBV Q2 BoP shows a current-account deficit of US$11.1bn (~8% of GDP)\" (ASEAN Macro Monitor, https://aseanmacromonitor.substack.com/p/state-of-the-buffers-thin-spreads-to-current-accounts); not confirmed by SBV or Vietnamese press, so not stored."
+   }
   },
   "tour": {
    "years": [
@@ -1044,7 +1087,16 @@
      }
     }
    },
-   "note": "2025 national total left null: the only national figure found is \"over 16 bn USD\" (Foreign Minister, https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html), a lower bound, not an SBV figure. No 9M-2026 national remittance figure was found."
+   "note": "2025 national total left null: no SBV national figure found (re-searched 2026-10-06). Only \"over 16 bn USD\" (Foreign Minister, https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html), a lower bound. No 9M-2026 national or HCMC figure published yet; latest is HCMC H1-2026 (hcmc_H1_2026_busd). A search result quoting \"7.969 bn USD in 9 months\" for HCMC is the 9M-2025 figure (compared with 2024), not 2026.",
+   "hcmc_H1_2026_busd": {
+    "v": 4.037,
+    "period": "Jan–Jun 2026",
+    "yoy_pct": -22.8,
+    "url": "https://vneconomy.vn/kieu-hoi-ve-tp-ho-chi-minh-hon-4-ty-usd-trong-6-thang-dau-nam-2026.htm",
+    "alt_url": "https://www.vietnamplus.vn/luong-kieu-hoi-ve-thanh-pho-ho-chi-minh-giam-gan-23-sau-nua-nam-post1125628.vnp",
+    "outlook": "SBV Region 2 expects 8.6–8.9 bn USD for full-year 2026 (HCMC)",
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
+   }
   },
   "labour": {
    "years": [
@@ -1104,6 +1156,18 @@
    ],
    "sources": {
     "workers_sent": "DOLAB / Department of Overseas Labour (origin per page footnote; not re-verified 2026-10-06). 2026 not yet published."
+   },
+   "ytd_2026": {
+    "period": "Jan–Aug 2026",
+    "workers_sent": 90319,
+    "pct_of_plan": 80.64,
+    "plan_2026": 112000,
+    "yoy_pct": 5.29,
+    "aug_2026": 10901,
+    "top_markets": "Taiwan 39,890; Japan 35,837; Korea 6,133",
+    "url": "https://nhandan.vn/tam-thang-hon-90000-lao-dong-di-lam-viec-o-nuoc-ngoai-theo-hop-dong-post988075.html",
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06",
+    "note": "9M-2026 not yet published (as of 2026-10-06)."
    }
   },
   "budget": {
@@ -1847,6 +1911,715 @@
      }
     }
    }
+  },
+  "projections": {
+   "as_of": "2026-10-06",
+   "note_vi": "Dự báo của các tổ chức (IMF, World Bank, ADB, AMRO) và mục tiêu chính thức cho 2026–2030. Mục tiêu không phải dự báo. Mỗi tổ chức một chuỗi riêng, không lấy trung bình. IMF WEO tháng 10/2026 chưa công bố tại ngày cập nhật. Không có chuỗi \"scenario\" do dashboard tự tính.",
+   "note_en": "Institutional forecasts (IMF, World Bank, ADB, AMRO) and official targets for 2026–2030. Targets are not forecasts. Each institution is a separate series; nothing is averaged. The IMF October 2026 WEO was not yet published at the update date. No dashboard-computed \"scenario\" series are included.",
+   "verified": "All values from search-engine excerpts (imf.org, worldbank.org, nso.gov.vn and press pages blocked by the egress proxy), 2026-10-06. IMF 2027–2030 levels were read from a WEO mirror (statisticsoftheworld.com) and are internally consistent (GDP / GDP per capita imply population 103.1→105.6 mn).",
+   "gaps": "current_account_pct_gdp (IMF values in search excerpts were contradictory), exports_busd (no published level forecast or level target; only the 6–7%/yr growth target), IMF general-government balance/debt by year (only a single-year excerpt).",
+   "series": {
+    "gdp_growth_pct_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+     ],
+     "low": null,
+     "high": null,
+     "kind": "official_target",
+     "unit": "% yoy, real",
+     "source": {
+      "name": "Quốc hội — NQ 25/2026/QH16 (kế hoạch 5 năm 2026–2030); 2026 also NQ 244/2025/QH15",
+      "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html",
+      "alt_url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm"
+     },
+     "method_vi": "Mục tiêu chính thức: tăng trưởng GDP bình quân \"từ 10%/năm trở lên\" giai đoạn 2026–2030; năm 2026 \"từ 10% trở lên\" (NQ 244/2025/QH15). Giá trị là mức sàn, không phải dự báo.",
+     "method_en": "Official target: average GDP growth \"10% a year or more\" over 2026–2030; 2026 \"10% or more\" (NQ 244/2025/QH15). Values are a floor, not a forecast.",
+     "pub": "2026-04-24"
+    },
+    "gdp_growth_pct_imf": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      7.1,
+      6.7,
+      6.2,
+      5.6,
+      5.4
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% yoy, real",
+     "source": {
+      "name": "IMF World Economic Outlook, April 2026 (database)",
+      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+      "retrieved_via": "https://statisticsoftheworld.com/country/vietnam/forecast"
+     },
+     "method_vi": "Dự báo IMF WEO 4/2026 (2031: 5,4%). WEO 7/2026 nâng 2026 lên 7,5% (xem gdp_growth_pct_imf_jul2026). WEO 10/2026 dự kiến công bố giữa tháng 10/2026 — chưa có.",
+     "method_en": "IMF WEO April 2026 (2031: 5.4%). The July 2026 WEO Update raised 2026 to 7.5% (see gdp_growth_pct_imf_jul2026). The October 2026 WEO is due mid-October 2026 and is not yet out.",
+     "pub": "2026-04-14"
+    },
+    "gdp_growth_pct_imf_jul2026": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      7.5,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% yoy, real",
+     "source": {
+      "name": "IMF WEO Update, July 2026 (as reported)",
+      "url": "https://dantri.com.vn/kinh-doanh/imf-nang-du-bao-tang-truong-gdp-viet-nam-len-75-cao-nhat-asean-20260712202724515.htm",
+      "alt_url": "https://baoquocte.vn/imf-viet-nam-tiep-tuc-thuoc-nhom-nen-kinh-te-tang-truong-nhanh-nhat-chau-a-va-dan-dau-asean-418025.html"
+     },
+     "method_vi": "IMF chỉ cập nhật năm 2026 (+0,4 điểm % so với 4/2026).",
+     "method_en": "IMF updated 2026 only (+0.4 pp vs April).",
+     "pub": "2026-07-08"
+    },
+    "gdp_growth_pct_wb": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      7.4,
+      7.3,
+      7.3,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% yoy, real",
+     "source": {
+      "name": "World Bank — East Asia & Pacific Economic Update, October 2026",
+      "url": "https://thoibaotaichinhvietnam.vn/wb-nang-manh-du-bao-tang-truong-cua-viet-nam-nam-2026-204930.html",
+      "alt_url": "https://mekongasean.vn/world-bank-nang-du-bao-tang-truong-viet-nam-len-74-60355.html"
+     },
+     "method_vi": "Công bố 06/10/2026; 2026 nâng 1,1 điểm % (từ 6,3% tháng 4). 2027–2028 = 7,3% theo Thời báo Tài chính; một bản tóm tắt VnExpress ghi 2027 là 7,4% — chưa đối chiếu được bảng gốc.",
+     "method_en": "Released 06/10/2026; 2026 raised 1.1 pp (from 6.3% in April). 2027–2028 = 7.3% per Thoi bao Tai chinh; a VnExpress summary reads 2027 as 7.4% — original table not checked.",
+     "pub": "2026-10-06"
+    },
+    "gdp_growth_pct_adb": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      7.8,
+      7.6,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% yoy, real",
+     "source": {
+      "name": "ADB — Asian Development Outlook, September 2026",
+      "url": "https://en.vietnamplus.vn/adb-raises-vietnams-2026-growth-forecast-to-78-post352506.vnp",
+      "alt_url": "https://en.vneconomy.vn/adb-lifts-vietnams-2026-gdp-to-78.htm"
+     },
+     "method_vi": "ADO 9/2026 (23/09/2026): 2026 nâng từ 7,2% (7/2026), 2027 từ 7,0%.",
+     "method_en": "ADO September 2026 (23/09/2026): 2026 up from 7.2% (July), 2027 up from 7.0%.",
+     "pub": "2026-09-23"
+    },
+    "gdp_growth_pct_amro": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      7.5,
+      7.3,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% yoy, real",
+     "source": {
+      "name": "AMRO — Vietnam update 2026",
+      "url": "https://vietnamnews.vn/economy/1796311/amro-lifts-viet-nam-growth-forecast-to-7-5-per-cent-amid-improving-regional-outlook.html",
+      "alt_url": "https://theinvestor.vn/vietnams-10-gdp-growth-target-faces-rising-macro-financial-constraints-amro-d20101.html"
+     },
+     "method_vi": "AMRO nâng 2026 từ 7,2% (6/2026) lên 7,5%; 2027 từ 7,0% lên 7,3%.",
+     "method_en": "AMRO raised 2026 from 7.2% (June) to 7.5%; 2027 from 7.0% to 7.3%.",
+     "pub": "2026-09-26"
+    },
+    "gdp_usd_bn_imf": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      527.3,
+      557.4,
+      594.8,
+      631.1,
+      667.5
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "bn USD, current prices",
+     "source": {
+      "name": "IMF World Economic Outlook, April 2026 (database)",
+      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+      "retrieved_via": "https://statisticsoftheworld.com/country/vietnam/forecast",
+      "alt_url": "https://vietnamnet.vn/imf-du-bao-viet-nam-dat-quy-mo-kinh-te-668-ty-usd-vao-nam-2030-pre2549997.html"
+     },
+     "method_vi": "IMF WEO 4/2026, GDP danh nghĩa (USD). 2030 ≈ 668 tỷ USD (hạng 34 thế giới) khớp với báo chí trích IMF. Mục tiêu Chính phủ 2030: 780–800 tỷ USD (phát biểu Thủ tướng 2024, không có số văn bản).",
+     "method_en": "IMF WEO April 2026 nominal GDP (USD). 2030 ≈ 668 bn (34th in the world) matches press reports citing the IMF. Government aspiration 780–800 bn USD by 2030 (PM statement 2024, no document number).",
+     "pub": "2026-04-14"
+    },
+    "gdp_per_capita_usd_imf": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      5115,
+      5372,
+      5698,
+      6010,
+      6323
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "USD, current prices",
+     "source": {
+      "name": "IMF World Economic Outlook, April 2026 (database)",
+      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+      "retrieved_via": "https://statisticsoftheworld.com/country/vietnam/forecast",
+      "alt_url": "https://vietnamnet.vn/5-nam-va-8-500-usd-2489647.html"
+     },
+     "method_vi": "IMF WEO 4/2026. So với mục tiêu 8.500 USD năm 2030 (NQ 25/2026/QH16) chênh khoảng 2.200 USD.",
+     "method_en": "IMF WEO April 2026. About 2,200 USD short of the 8,500 USD 2030 target (NQ 25/2026/QH16).",
+     "pub": "2026-04-14"
+    },
+    "gdp_per_capita_usd_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      null,
+      null,
+      null,
+      null,
+      8500
+     ],
+     "low": [
+      5400,
+      null,
+      null,
+      null,
+      null
+     ],
+     "high": [
+      5500,
+      null,
+      null,
+      null,
+      null
+     ],
+     "kind": "official_target",
+     "unit": "USD, current prices",
+     "source": {
+      "name": "NQ 25/2026/QH16 (2030); NQ 244/2025/QH15 (2026: 5,400–5,500)",
+      "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html",
+      "alt_url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm"
+     },
+     "method_vi": "Mục tiêu chính thức: ~8.500 USD năm 2030; năm 2026 khoảng 5.400–5.500 USD (low/high).",
+     "method_en": "Official targets: ~8,500 USD in 2030; 2026 about 5,400–5,500 USD (low/high).",
+     "pub": "2026-04-24"
+    },
+    "cpi_pct_imf": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      4.9,
+      4.6,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% yoy, annual average",
+     "source": {
+      "name": "IMF WEO April 2026, Statistical Appendix Table A7",
+      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf"
+     },
+     "method_vi": "Như CPI_FC_INST. 2028–2030 để trống: một bản sao dữ liệu thứ cấp ghi 3,3% cho 2027–2030, mâu thuẫn với 4,6% của bảng gốc cho 2027 nên không dùng.",
+     "method_en": "As in CPI_FC_INST. 2028–2030 left null: a secondary mirror shows 3.3% for 2027–2030, which conflicts with the 4.6% for 2027 in the IMF table, so it was not used.",
+     "pub": "2026-04-14"
+    },
+    "cpi_pct_wb": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      4.2,
+      3.8,
+      3.5,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% yoy, annual average",
+     "source": {
+      "name": "World Bank — Viet Nam Economic Update, May 2026",
+      "url": "https://documents1.worldbank.org/curated/en/099740005122628080/pdf/IDU-2ee874ce-e0c0-462b-9571-99e553ef83c9.pdf"
+     },
+     "method_vi": "Như CPI_FC_INST. Báo cáo EAP 10/2026 không công bố CPI theo nước (không tìm thấy).",
+     "method_en": "As in CPI_FC_INST. The October 2026 EAP update gives no country CPI (none found).",
+     "pub": "2026-05-15"
+    },
+    "cpi_pct_adb": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      4.3,
+      4.0,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% yoy, annual average",
+     "source": {
+      "name": "ADB — Asian Development Outlook, September 2026",
+      "url": "https://en.vietnamplus.vn/adb-raises-vietnams-2026-growth-forecast-to-78-post352506.vnp"
+     },
+     "method_vi": "Như CPI_FC_INST.",
+     "method_en": "As in CPI_FC_INST.",
+     "pub": "2026-09-23"
+    },
+    "cpi_pct_amro": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      4.3,
+      3.9,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% yoy, annual average",
+     "source": {
+      "name": "AMRO — Vietnam update 2026",
+      "url": "https://vietnamnews.vn/economy/1796311/amro-lifts-viet-nam-growth-forecast-to-7-5-per-cent-amid-improving-regional-outlook.html"
+     },
+     "method_vi": "Như CPI_FC_INST.",
+     "method_en": "As in CPI_FC_INST.",
+     "pub": "2026-09-26"
+    },
+    "cpi_pct_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      4.5,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "official_target",
+     "unit": "% yoy, annual average",
+     "source": {
+      "name": "Quốc hội — NQ 244/2025/QH15 (kế hoạch KT-XH 2026)",
+      "url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm"
+     },
+     "method_vi": "Mục tiêu năm 2026 ~4,5%. Không tìm thấy chỉ tiêu CPI theo năm cho 2027–2030.",
+     "method_en": "2026 target ~4.5%. No annual CPI target for 2027–2030 found.",
+     "pub": "2025-11-13"
+    },
+    "budget_deficit_pct_gdp_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      4.2,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "kind": "official_target",
+     "unit": "% of GDP",
+     "source": {
+      "name": "NQ dự toán NSNN 2026 (2026: 4.2%); NQ 26/2026/QH16 (bình quân 2026–2030 ~5%)",
+      "url": "https://thoibaotaichinhvietnam.vn/quoc-hoi-thong-qua-nghi-quyet-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-186851.html",
+      "alt_url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html"
+     },
+     "method_vi": "Năm 2026 = dự toán Quốc hội (4,2% GDP). Kế hoạch tài chính 5 năm chỉ đặt mức bình quân ~5% GDP (TW ~4,4% + ĐP ~0,6%), không chia theo năm — xem targets.",
+     "method_en": "2026 = National Assembly budget (4.2% of GDP). The 5-year finance plan sets only an average of ~5% of GDP (central ~4.4% + local ~0.6%), not per year — see targets.",
+     "pub": "2025-11-13"
+    },
+    "public_debt_pct_gdp_plan": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": [
+      36,
+      null,
+      null,
+      null,
+      null
+     ],
+     "high": [
+      37,
+      null,
+      null,
+      null,
+      null
+     ],
+     "kind": "official_target",
+     "unit": "% of GDP",
+     "source": {
+      "name": "Government 2026 borrowing plan (public debt 36–37% of GDP end-2026); ceiling from NQ 26/2026/QH16",
+      "url": "https://vietnamnews.vn/economy/1727825/government-plans-38-billion-borrowing-in-2026-or-36-37-of-gdp.html",
+      "alt_url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html"
+     },
+     "method_vi": "Cuối 2026: nợ công 36–37% GDP (low/high), nợ Chính phủ 34–35%, nợ nước ngoài quốc gia 32–33%. Trần nợ công 60% GDP mỗi năm (ngưỡng cảnh báo 50%).",
+     "method_en": "End-2026: public debt 36–37% of GDP (low/high), government debt 34–35%, national external debt 32–33%. Annual public-debt ceiling 60% of GDP (warning 50%).",
+     "pub": "2026-02-27"
+    },
+    "fdi_disbursed_busd_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": [
+      30,
+      30,
+      30,
+      30,
+      30
+     ],
+     "high": [
+      40,
+      40,
+      40,
+      40,
+      40
+     ],
+     "kind": "official_target",
+     "unit": "bn USD per year",
+     "source": {
+      "name": "Bộ Chính trị — Nghị quyết 10-NQ/TW ngày 08/6/2026",
+      "url": "https://xaydungchinhsach.chinhphu.vn/nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-11926061312552157.htm"
+     },
+     "method_vi": "Mục tiêu vốn FDI thực hiện ~30–40 tỷ USD/năm (150–200 tỷ USD cả giai đoạn 2026–2030); vốn đăng ký 40–50 tỷ USD/năm.",
+     "method_en": "Target FDI disbursement ~30–40 bn USD a year (150–200 bn over 2026–2030); registered FDI 40–50 bn USD a year.",
+     "pub": "2026-06-08"
+    }
+   },
+   "targets": [
+    {
+     "key": "gdp_growth_avg_2026_2030",
+     "label_vi": "Tăng trưởng GDP bình quân 2026–2030",
+     "label_en": "Average GDP growth 2026–2030",
+     "value": "≥10",
+     "unit": "%/năm",
+     "year": "2026–2030",
+     "doc": "NQ 25/2026/QH16",
+     "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html"
+    },
+    {
+     "key": "gdp_per_capita_2030",
+     "label_vi": "GDP bình quân đầu người năm 2030",
+     "label_en": "GDP per capita in 2030",
+     "value": 8500,
+     "unit": "USD",
+     "year": 2030,
+     "doc": "NQ 25/2026/QH16 (also 14th Party Congress resolution)",
+     "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html"
+    },
+    {
+     "key": "iip_growth_avg",
+     "label_vi": "Tăng IIP bình quân hằng năm",
+     "label_en": "Average annual industrial production (IIP) growth",
+     "value": "11–12",
+     "unit": "%/năm",
+     "year": "2026–2030",
+     "doc": "NQ 25/2026/QH16",
+     "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html"
+    },
+    {
+     "key": "manufacturing_share_2030",
+     "label_vi": "Tỷ trọng công nghiệp chế biến, chế tạo trong GDP",
+     "label_en": "Manufacturing share of GDP",
+     "value": 28,
+     "unit": "% GDP",
+     "year": 2030,
+     "doc": "NQ 25/2026/QH16",
+     "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html"
+    },
+    {
+     "key": "digital_economy_share_2030",
+     "label_vi": "Tỷ trọng kinh tế số trong GDP",
+     "label_en": "Digital economy share of GDP",
+     "value": 30,
+     "unit": "% GDP",
+     "year": 2030,
+     "doc": "NQ 25/2026/QH16",
+     "url": "https://tapchitoaan.vn/nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-5-nam-2026-203015498.html"
+    },
+    {
+     "key": "localisation_rate_2030",
+     "label_vi": "Tỷ lệ nội địa hoá một số ngành công nghiệp chủ lực",
+     "label_en": "Local-content rate in key industries",
+     "value": "40–45",
+     "unit": "%",
+     "year": 2030,
+     "doc": "NQ 25/2026/QH16",
+     "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html"
+    },
+    {
+     "key": "total_investment_pct_gdp",
+     "label_vi": "Tổng vốn đầu tư toàn xã hội bình quân",
+     "label_en": "Average total social investment",
+     "value": 40,
+     "unit": "% GDP",
+     "year": "2026–2030",
+     "doc": "NQ 27/2026/QH16",
+     "url": "https://luatvietnam.vn/dau-tu/nghi-quyet-27-2026-qh16-ve-ke-hoach-dau-tu-cong-trung-han-2026-2030-434066-d1.html"
+    },
+    {
+     "key": "public_investment_total",
+     "label_vi": "Kế hoạch đầu tư công trung hạn (vốn NSNN)",
+     "label_en": "Medium-term public investment plan (state budget)",
+     "value": 8220000,
+     "unit": "tỷ đồng (bn VND), 5-year total",
+     "year": "2026–2030",
+     "doc": "NQ 27/2026/QH16",
+     "url": "https://luatvietnam.vn/dau-tu/nghi-quyet-27-2026-qh16-ve-ke-hoach-dau-tu-cong-trung-han-2026-2030-434066-d1.html"
+    },
+    {
+     "key": "public_investment_share",
+     "label_vi": "Tỷ trọng đầu tư công trong tổng vốn đầu tư toàn xã hội",
+     "label_en": "Public share of total investment",
+     "value": "20–22",
+     "unit": "%",
+     "year": "2026–2030",
+     "doc": "NQ 27/2026/QH16",
+     "url": "https://luatvietnam.vn/dau-tu/nghi-quyet-27-2026-qh16-ve-ke-hoach-dau-tu-cong-trung-han-2026-2030-434066-d1.html"
+    },
+    {
+     "key": "budget_deficit_avg",
+     "label_vi": "Bội chi NSNN bình quân",
+     "label_en": "Average budget deficit",
+     "value": 5,
+     "unit": "% GDP",
+     "year": "2026–2030",
+     "doc": "NQ 26/2026/QH16",
+     "url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html"
+    },
+    {
+     "key": "budget_revenue_ratio",
+     "label_vi": "Tỷ lệ huy động NSNN bình quân",
+     "label_en": "Average budget revenue",
+     "value": 18,
+     "unit": "% GDP",
+     "year": "2026–2030",
+     "doc": "NQ 26/2026/QH16",
+     "url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html"
+    },
+    {
+     "key": "budget_revenue_total",
+     "label_vi": "Tổng thu NSNN cả giai đoạn",
+     "label_en": "Total budget revenue, 5 years",
+     "value": 16400000,
+     "unit": "tỷ đồng (bn VND)",
+     "year": "2026–2030",
+     "doc": "NQ 26/2026/QH16",
+     "url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html"
+    },
+    {
+     "key": "budget_spending_total",
+     "label_vi": "Tổng chi NSNN cả giai đoạn",
+     "label_en": "Total budget spending, 5 years",
+     "value": 21200000,
+     "unit": "tỷ đồng (bn VND)",
+     "year": "2026–2030",
+     "doc": "NQ 26/2026/QH16",
+     "url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html"
+    },
+    {
+     "key": "dev_investment_share_of_spending",
+     "label_vi": "Tỷ trọng chi đầu tư phát triển trong tổng chi",
+     "label_en": "Capital spending share of total spending",
+     "value": 40,
+     "unit": "%",
+     "year": "2026–2030",
+     "doc": "NQ 26/2026/QH16",
+     "url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html"
+    },
+    {
+     "key": "public_debt_ceiling",
+     "label_vi": "Trần nợ công (ngưỡng cảnh báo 50%)",
+     "label_en": "Public-debt ceiling (warning level 50%)",
+     "value": 60,
+     "unit": "% GDP",
+     "year": "2026–2030",
+     "doc": "NQ 26/2026/QH16",
+     "url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html"
+    },
+    {
+     "key": "fdi_disbursed_total",
+     "label_vi": "Vốn FDI thực hiện cả giai đoạn",
+     "label_en": "FDI disbursed, 5 years",
+     "value": "150–200",
+     "unit": "tỷ USD",
+     "year": "2026–2030",
+     "doc": "Nghị quyết 10-NQ/TW (08/6/2026)",
+     "url": "https://xaydungchinhsach.chinhphu.vn/nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-11926061312552157.htm"
+    },
+    {
+     "key": "fdi_registered_total",
+     "label_vi": "Vốn FDI đăng ký cả giai đoạn",
+     "label_en": "FDI registered, 5 years",
+     "value": "200–300",
+     "unit": "tỷ USD",
+     "year": "2026–2030",
+     "doc": "Nghị quyết 10-NQ/TW (08/6/2026)",
+     "url": "https://xaydungchinhsach.chinhphu.vn/nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-11926061312552157.htm"
+    },
+    {
+     "key": "export_growth_avg",
+     "label_vi": "Tăng trưởng xuất khẩu hàng hoá bình quân",
+     "label_en": "Average goods-export growth",
+     "value": "6–7",
+     "unit": "%/năm",
+     "year": "2021–2030",
+     "doc": "Quyết định 493/QĐ-TTg (19/4/2022), Chiến lược XNK đến 2030",
+     "url": "https://luatvietnam.vn/xuat-nhap-khau/quyet-dinh-493-qd-ttg-2022-chien-luoc-xuat-nhap-khau-hang-hoa-den-nam-2030-219919-d1.html"
+    },
+    {
+     "key": "urbanisation_2030",
+     "label_vi": "Tỷ lệ đô thị hoá",
+     "label_en": "Urbanisation rate",
+     "value": ">50",
+     "unit": "%",
+     "year": 2030,
+     "doc": "Nghị quyết 06-NQ/TW (24/01/2022)",
+     "url": "https://luatvietnam.vn/xay-dung/nghi-quyet-06-nq-tw-cua-bo-chinh-tri-ve-quy-hoach-xay-dung-quan-ly-va-phat-trien-ben-vung-do-thi-viet-nam-den-nam-2030-tam-nhin-den-nam-2045-216381-d1.html"
+    }
+   ]
   }
  },
  "ECON_OFFICIAL": {
@@ -2101,7 +2874,7 @@
    7.4,
    1.3,
    8.2,
-   9.3
+   9.2
   ],
   "unemp": [
    2.88,
@@ -2119,7 +2892,7 @@
    2.34,
    2.28,
    2.24,
-   2.21
+   2.22
   ],
   "ent_active": [
    279360,
@@ -2137,7 +2910,7 @@
    735455,
    778429,
    838753,
-   null
+   859048
   ],
   "pci_median": [
    58.02,
@@ -2192,12 +2965,57 @@
    "core_cpi_avg_9M": 4.26,
    "budget_rev_bn_9M": 2187300,
    "budget_exp_bn_9M": 1873700,
-   "note": "Partial-year values kept out of the annual arrays so 2025 stays the last annual point."
+   "note": "Partial-year values kept out of the annual arrays so 2025 stays the last annual point.",
+   "export_busd_9M": 434.3,
+   "export_yoy_pct_9M": 24.5,
+   "import_busd_9M": 453.72,
+   "import_yoy_pct_9M": 36.7,
+   "trade_balance_busd_9M": -19.42,
+   "trade_balance_busd_Sep": 1.27,
+   "trade_url": "https://vneconomy.vn/xuat-nhap-khau-9-thang-dat-tren-888-ty-usd-tai-lap-trang-thai-xuat-sieu.htm",
+   "unemp_Q3": 2.22,
+   "labour_income_Q3_mn_vnd_month": 9.2,
+   "labour_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-lao-dong-viec-lam-quy-iii-va-9-thang-nam-2026/",
+   "labour_note": "unemp_Q3 = working-age unemployment rate Q3-2026 (same as Q2 and Q3-2025); labour income = average income of employed workers (not ECON_OFFICIAL.income_month_k, which is VHLSS per-capita income)"
   },
   "sources": {
    "all": "NSO/GSO yearbook & PxWeb, IMF reserves (origin per page comment above ECON_LAST; not re-verified 2026-10-06)",
    "budget_exp_bn_2025": "2,401,500 = MoF Jan-2026 year-end execution (see ECONFLOW.budget.mof_execution_2025_jan2026)",
-   "gaps": "ent_active, pci_median and usd_vnd for 2025 are null (not researched this run: web-search budget exhausted)"
+   "gaps": "usd_vnd 2025 and pci_median 2025 null (see usd_vnd_2025 / pci_median_2025). gdp_growth 2023 = 4.98 and 2024 = 7.04 match the revised NSO vintage (https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tai-chinh/104901/so-lieu-tang-truong-gdp-cua-viet-nam-giai-doan-2011-2025); first-release values were 5.05 / 7.09.",
+   "iip_growth_2025": {
+    "v": 9.2,
+    "old": 9.3,
+    "period": "FY2025 vs FY2024 (NSO estimate, 05/01/2026)",
+    "url": "https://vneconomy.vn/san-xuat-cong-nghiep-nam-2025-tang-92-muc-cao-nhat-trong-7-nam-qua.htm",
+    "note": "old 9.3 was the 11-month figure (https://kinhte.congthuong.vn/infographic-11-thang-nam-2025-iip-tang-9-3-duy-tri-da-tang-truong-433969.html)",
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
+   },
+   "unemp_2025": {
+    "v": 2.22,
+    "old": 2.21,
+    "period": "FY2025, working-age unemployment rate (NSO, 05/01/2026); -0.02 pp vs 2024 (2.24)",
+    "url": "https://nhandan.vn/nam-2025-tinh-hinh-that-nghiep-duoc-cai-thien-post935056.html",
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
+   },
+   "ent_active_2025": {
+    "v": 859048,
+    "period": "enterprises operating with business results at 31/12/2025 (Economic Census 2026, preliminary); +2.4% vs 2024",
+    "url": "https://www.vietnamplus.vn/ca-nuoc-co-859048-doanh-nghiep-dang-hoat-dong-san-xuat-kinh-doanh-post1123945.vnp",
+    "alt_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/01/buc-tranh-phat-trien-doanh-nghiep-viet-nam-nam-2025/",
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
+   },
+   "pci_median_2025": {
+    "v": 63.9,
+    "period": "PCI 2025 (VCCI, published 15/05/2026)",
+    "url": "https://vneconomy.vn/vcci-cong-bo-bao-cao-kinh-te-tu-nhan-viet-nam-nam-2025-ra-mat-phien-ban-pci-20-va-bpi.htm",
+    "note": "NOT appended to pci_median: PCI 2025 is the new \"PCI 2.0\" (9 sub-indices, 98 indicators, post-merger 34 provinces), not comparable with the 2010–2024 series; plotting it would show a spurious fall from 67.67.",
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
+   },
+   "usd_vnd_2025": {
+    "v": null,
+    "note": "Left null. The series matches the NSO/SBV central-rate conversion (2024: 11,511.9 tn VND / 476.3 bn USD ≈ 24,170). No published 2025 average central rate found. Other concepts found: NSO USD price index 2025 avg +3.92% yoy (https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/01/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-muoi-hai-quy-iv-va-nam-2025/); World Bank official rate (period avg) 26,007.4 for 2025 vs 25,052.5 for 2024 via CEIC (https://www.ceicdata.com/en/vietnam/foreign-exchange-rates-annual/official-exchange-rate-period-average-local-currency-to-usd) — a different (market) concept, not spliced."
+   },
+   "fx_reserves_2025_note": "fx_reserves_busd 2025 = 85.58 kept (origin as in page comment). A secondary source quotes 83.6 bn USD at end-2025 (https://vietnambusinessinsider.vn/thach-thuc-cho-ngoai-hoi-a52710.html); latest SBV statement: ≈87.6 bn USD at 18/06/2026 (https://vnexpress.net/du-tru-ngoai-hoi-gan-88-ty-usd-5089444.html)."
   }
  },
  "CPI_YOY_24": [
