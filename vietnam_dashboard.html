@@ -763,6 +763,9 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .ec-li { display: grid; grid-template-columns: 1.4fr 1fr 52px; gap: 8px; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
   .ec-li-n span { display: block; font-size: 10.5px; color: var(--text3); } .ec-li-b { height: 8px; background: var(--bg3); border-radius: 3px; } .ec-li-b i { display: block; height: 100%; border-radius: 3px; } .ec-li-v { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
   .ec-net { margin: 10px 0; padding: 8px 10px; background: var(--bg3); border-radius: 4px; font-size: 12.5px; }
+  #dot-tip { position: fixed; z-index: 10000; display: none; max-width: 340px; background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 4px; box-shadow: 0 8px 24px rgba(15,23,42,.16); padding: 8px 10px; font-size: 12px; line-height: 1.45; color: var(--text); pointer-events: none; }
+  #dot-tip .dt-h { font-size: 11.5px; color: var(--text2); margin-bottom: 3px; } #dot-tip .dt-h b { color: var(--text); } #dot-tip .dt-st { color: var(--accent); font-weight: 600; }
+  #dot-tip .dt-t { font-weight: 600; margin-bottom: 3px; } #dot-tip .dt-s { color: var(--text2); }
   /* Financial system tab */
   .fs-nav { display: flex; flex-wrap: wrap; gap: 6px; position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 4px 0; }
   .fs-nav button { background: var(--bg2); border: 1px solid #cbd2db; border-radius: 3px; padding: 4px 12px; font: 600 12px var(--font-ui); color: var(--text2); cursor: pointer; }
@@ -5411,7 +5414,7 @@ function polTimeline(all) {
     const seen = {};
     (ins.history || []).forEach(hh => { const t = +new Date(hh.date); if (!(t >= t0)) return; let x = sx(t); const key = Math.round(x / 6); seen[key] = (seen[key] || 0) + 1; const dy = (seen[key] - 1) * 5 * (seen[key] % 2 ? 1 : -1);
       const c = (POL_DIR[hh.direction] || POL_DIR.neutral)[2];
-      g += `<circle class="pol-dot" data-pol-open="${ins.side}:${ins.id}" cx="${x}" cy="${y + dy}" r="5" fill="${c}" stroke="#fff" stroke-width="1.5"><title>${pgFmt(hh.date)} · ${ciE(polF(ins, 'name'))}${hh.doc ? ' · ' + ciE(hh.doc) : ''}\n${ciE(hh.from || '')}${hh.to ? ' → ' + ciE(hh.to) : ''}\n${ciE(polF(hh, 'note'))}</title></circle>`; }); });
+      g += `<circle class="pol-dot" data-pol-open="${ins.side}:${ins.id}" cx="${x}" cy="${y + dy}" r="5" fill="${c}" stroke="#fff" stroke-width="1.5" data-pol-h="${encodeURIComponent(hh.date + '|' + (hh.doc || ''))}"></circle>`; }); });
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${polT('Dòng thời gian điều chỉnh chính sách', 'Policy moves timeline')}">${g}</svg>`;
 }
 document.addEventListener('click', e => {
@@ -5421,6 +5424,44 @@ document.addEventListener('click', e => {
   if (op) { const [side, id] = op.dataset.polOpen.split(':'); const row = document.getElementById(`pol-d-${side}-${id}`); if (row && row.hidden) polDetail(op.dataset.polOpen); const tr = document.querySelector(`[data-pol-ins="${op.dataset.polOpen}"]`); if (tr) tr.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
   const r = e.target.closest && e.target.closest('.pol-row'); if (r && !e.target.closest('a')) polDetail(r.dataset.polIns);
 });
+
+// ── Hover popup for timeline dots: what the document / policy move is about, in one short sentence ──
+function oneSentence(txt, max = 200) {
+  if (!txt) return '';
+  let t = String(txt).trim(); if (APP_LANG === 'en' && window.I18N) t = window.I18N.tr(t) || t;
+  const first = t.split(/(?<=[.!?;])\s+(?=[A-ZÀ-Ỹ0-9“"(])/u)[0];
+  t = first.length >= 25 ? first : t;
+  return t.length > max ? t.slice(0, t.lastIndexOf(' ', max)).replace(/[,;:–-]\s*$/, '') + '…' : t;
+}
+function dotTipShow(e, html) {
+  let tip = document.getElementById('dot-tip');
+  if (!tip) { tip = document.createElement('div'); tip.id = 'dot-tip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip); }
+  tip.innerHTML = html; tip.style.display = 'block'; dotTipMove(e);
+}
+function dotTipMove(e) {
+  const tip = document.getElementById('dot-tip'); if (!tip || tip.style.display !== 'block') return;
+  const w = tip.offsetWidth, h = tip.offsetHeight, x = e.clientX + 14 + w > innerWidth ? e.clientX - w - 14 : e.clientX + 14, y = e.clientY + 14 + h > innerHeight ? e.clientY - h - 14 : e.clientY + 14;
+  tip.style.left = Math.max(6, x) + 'px'; tip.style.top = Math.max(6, y) + 'px';
+}
+function dotTipHide() { const tip = document.getElementById('dot-tip'); if (tip) tip.style.display = 'none'; }
+document.addEventListener('mouseover', e => {
+  const n = e.target.closest && e.target.closest('#pg-graph .node');
+  if (n && PG.byId && PG.byId[n.dataset.id]) {
+    const d = PG.byId[n.dataset.id], E = APP_LANG === 'en', stg = pgStage(d), tr = x => (E && window.I18N ? window.I18N.tr(x) || x : x);
+    const what = oneSentence(d.summary || (d.key_points || [])[0] || d.title);
+    dotTipShow(e, `<div class="dt-h"><b>${ciE(d.ref)}</b> · ${pgFmt(d.date)} · <span class="dt-st">${ciE(tr(PG_STAGE[stg]))}</span></div><div class="dt-t">${ciE(tr(d.title))}</div><div class="dt-s">${ciE(what)}</div>`);
+    return;
+  }
+  const c = e.target.closest && e.target.closest('.pol-dot');
+  if (c && typeof POLICY !== 'undefined') {
+    const [side, id] = c.dataset.polOpen.split(':'), ins = POLICY[side].instruments.find(x => x.id === id); if (!ins) return;
+    const [date, doc] = decodeURIComponent(c.dataset.polH || '').split('|'), hh = (ins.history || []).find(x => x.date === date && (x.doc || '') === doc) || {};
+    const dir = POL_DIR[hh.direction] || POL_DIR.neutral;
+    dotTipShow(e, `<div class="dt-h"><b>${ciE(polF(ins, 'name'))}</b> · ${pgFmt(date)}${doc ? ` · ${ciE(doc)}` : ''}</div><div class="dt-t"><span class="pol-dir" style="--c:${dir[2]}">${polT(dir[0], dir[1])}</span> ${ciE(hh.from || '')}${hh.to ? ` → <b>${ciE(hh.to)}</b>` : ''}</div><div class="dt-s">${ciE(oneSentence(polF(hh, 'note') || polF(ins, 'why')))}</div>`);
+  }
+});
+document.addEventListener('mousemove', e => { if (e.target.closest && e.target.closest('#pg-graph .node, .pol-dot')) dotTipMove(e); });
+document.addEventListener('mouseout', e => { const n = e.target.closest && e.target.closest('#pg-graph .node, .pol-dot'); if (n && !(e.relatedTarget && n.contains(e.relatedTarget))) dotTipHide(); });
 // ── /POLICY renderer ──
 
 // ── ECONFLOW data (generated by scratchpad/econ/ec_build.py) ──
@@ -7445,7 +7486,7 @@ function pgGraph() {
   Object.values(pos).forEach(({ x, y, d }) => { const ex = pgExpected(d); if (pgStage(d) !== 'draft' || !ex) return; const c = (PG.pil[d.pillar] || {}).color || '#64748b', xe = sx(ex.getTime());
     h += `<line x1="${x}" y1="${y}" x2="${xe}" y2="${y}" stroke="${c}" stroke-width="1.5" stroke-dasharray="2,3"/><path d="M${xe},${y - 5} L${xe + 5},${y} L${xe},${y + 5} L${xe - 5},${y} Z" fill="#fff" stroke="${c}" stroke-width="1.5"><title>Dự kiến thông qua: ${ciE(d.draft.expected)}</title></path>`; });
   Object.values(pos).forEach(({ x, y, d }) => { const c = (PG.pil[d.pillar] || {}).color || '#64748b', sel = PG.sel === d.id, stg = pgStage(d), repl = stg === 'expired', dr = stg === 'draft';
-    h += `<g class="node" data-id="${d.id}" tabindex="0"><title>${ciE(d.ref)} · ${pgFmt(d.date)} (cách đây ${pgAge(d.date)}) · ${PG_STAGE[stg]}${d.effective_date ? ` · hiệu lực ${pgFmt(d.effective_date)}` : ''}\n${ciE(d.title)}</title>
+    h += `<g class="node" data-id="${d.id}" tabindex="0" aria-label="${ciE(d.ref)} · ${ciE(d.title)}">
       <circle cx="${x}" cy="${y}" r="${sel ? 10 : 8}" fill="${repl || dr ? '#ffffff' : c}" stroke="${sel ? '#0f172a' : repl || dr ? c : '#ffffff'}" stroke-width="${sel ? 3 : repl || dr ? 2.5 : 2}" ${dr ? 'stroke-dasharray="3,2"' : ''}/>
       ${stg === 'adopted' ? `<circle cx="${x}" cy="${y}" r="3" fill="#ffffff"/>` : ''}
       <text x="${x + 11}" y="${y + 4}" font-size="11" font-weight="${d.level === 'party' ? 700 : 600}" ${dr ? 'font-style="italic"' : ''} fill="#0f172a" stroke="#ffffff" stroke-width="3" paint-order="stroke">${ciE(pgShort(d))}</text></g>`; });
