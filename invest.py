@@ -1,9 +1,9 @@
 """
 Investment screening engine for the "Đầu tư" tab.
 
-Price data comes straight from Vietcap (VCI) public chart endpoints — the same
-upstream vnstock uses — via the standard library only (vnstock is quarantined
-on PyPI since 2026-09-24).
+Price data: the optional vnstock layer (vnstock_layer.py — sponsor library vnstock_data, used first when it
+imports and a key is configured) and, as the fallback, Vietcap (VCI) public chart endpoints — the same upstream —
+via the standard library only (vnstock is quarantined on PyPI since 2026-09-24).
 
 Design rule: every "certainty" number is an empirical base rate measured on the
 symbol's own history (how often the same setup was followed by a gain over the
@@ -21,6 +21,8 @@ import time
 import urllib.request
 from datetime import date, datetime, timezone
 from typing import Any
+
+import vnstock_layer  # optional; every call returns None when vnstock_data / the key is unavailable
 
 log = logging.getLogger("vn-dashboard.invest")
 
@@ -76,8 +78,16 @@ def _post(url: str, body: dict) -> Any:
 
 
 def history(symbol: str, bars: int = 1500) -> dict[str, list] | None:
-    """Daily OHLCV, oldest first. ~6 years at 1500 bars."""
+    """Daily OHLCV, oldest first. ~6 years at 1500 bars. vnstock layer first, direct VCI fallback;
+    the dict's "source" says which one served it."""
     def load():
+        try:
+            v = vnstock_layer.history(symbol, bars)
+        except Exception as e:                 # the layer never raises, but never let it break the fallback
+            log.info("vnstock history %s: %s", symbol, e)
+            v = None
+        if v and v.get("c"):
+            return {**v, "source": "vnstock_data Quote(VCI)"}
         d = _post(f"{_VCI}/chart/OHLCChart/gap-chart",
                   {"timeFrame": "ONE_DAY", "symbols": [symbol], "to": int(time.time()), "countBack": bars})
         if not d or not d[0].get("c"):
@@ -88,6 +98,7 @@ def history(symbol: str, bars: int = 1500) -> dict[str, list] | None:
             "o": [float(x) for x in r["o"]], "h": [float(x) for x in r["h"]],
             "l": [float(x) for x in r["l"]], "c": [float(x) for x in r["c"]],
             "v": [float(x) for x in r["v"]],
+            "source": "VCI",
         }
     return _cached(f"hist:{symbol}:{bars}", _HIST_TTL, load)
 
@@ -98,7 +109,7 @@ def group_members(group: str) -> list[str]:
 
 
 def listed_shares(symbols: list[str]) -> dict[str, int]:
-    """Listed share count per symbol from the VCI price board (batched, cached 24h)."""
+    """Listed share count per symbol from the price board (vnstock layer first, then VCI direct; batched, cached 24h)."""
     out: dict[str, int] = {}
     missing = []
     with _lock:
@@ -108,6 +119,17 @@ def listed_shares(symbols: list[str]) -> dict[str, int]:
                 out[s] = hit[1]
             else:
                 missing.append(s)
+    if missing:
+        try:
+            vs = vnstock_layer.listed_shares(missing) or {}
+        except Exception as e:
+            log.info("vnstock listed_shares failed: %s", e)
+            vs = {}
+        for s, n in vs.items():
+            out[s] = int(n)
+            with _lock:
+                _cache[f"listed:{s}"] = (time.time(), int(n))
+        missing = [s for s in missing if s not in vs]
     for k in range(0, len(missing), 50):
         try:
             rows = _post(f"{_VCI}/price/symbols/getList", {"symbols": missing[k:k + 50]})
@@ -572,4 +594,4 @@ def market() -> dict:
             "rsi": round(r[last], 1), "ma200": round(ma200[last], 2),
             "ret_3m": round((c[last] / c[last - 63] - 1) * 100, 2),
             "from_52w_high": round((c[last] / max(h["h"][-252:]) - 1) * 100, 2),
-            "spark": c[-120:], "outlook": return_ranges(c)}
+            "spark": c[-120:], "outlook": return_ranges(c), "source": h.get("source")}

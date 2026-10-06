@@ -1,6 +1,7 @@
 """
-Vietnam Dashboard backend — FastAPI. Live market data comes straight from Vietcap (VCI) public endpoints
-(invest.py, stdlib only); vnstock is optional and not installed (quarantined on PyPI 2026-09-24).
+Vietnam Dashboard backend — FastAPI. Live market data: the optional vnstock layer (vnstock_layer.py, sponsor
+library vnstock_data — used first when it imports and a key is configured) with the direct Vietcap (VCI) endpoints
+(invest.py, stdlib only) as the fallback. vnstock is never installed from public PyPI (quarantined 2026-09-24).
 
 Serves (main ones):
   /                     -> vietnam_dashboard.html (static)
@@ -8,7 +9,9 @@ Serves (main ones):
   /api/indices          -> VN-Index, VN30 (VCI)
   /api/fx               -> USD/VND (open.er-api.com, frankfurter fallback)
   /api/rates            -> SBV refinancing/OMO + deposit/lending rates, read from data/policy.json + data/finance.json
-  /api/banks            -> 17 listed banks (reported periods only; ?include_synthetic=1 for the old extrapolated series)
+  /api/banks            -> all listed banks from data/banks_vnstock.json (reported periods only; falls back to the
+                           curated 17-bank FY2024 set when the file is missing; ?include_synthetic=1 old series)
+  /api/banks/universe   -> listed-bank universe with per-bank coverage
   /api/freshness        -> per-series data freshness from data/research/{inventory,release_calendar}.json
   /api/auto             -> World Bank / IMF / FRED snapshots in data/auto/ (POST /api/auto/refresh to re-pull)
 
@@ -41,15 +44,11 @@ from fastapi.staticfiles import StaticFiles
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger("vn-dashboard")
 
-# vnstock is heavy (pandas, matplotlib, seaborn). If it's missing or fails to
-# import, we still serve the dashboard — just without live VN-Index/prices.
-VNSTOCK_AVAILABLE = False
-try:
-    import vnstock  # noqa: F401
-    VNSTOCK_AVAILABLE = True
-    log.info("vnstock available")
-except Exception as _e:
-    log.warning("vnstock not available (%s) — live equity data disabled", _e)
+# Optional vnstock layer (vnstock_data sponsor library + API key). When absent, every vnstock_layer call returns
+# None and invest.py falls back to the direct VCI endpoints. The key is never read or logged here.
+import vnstock_layer  # noqa: E402
+VNSTOCK_AVAILABLE = vnstock_layer.available()   # legacy name; checked again per call (circuit breaker)
+log.info("vnstock layer %s", "active" if VNSTOCK_AVAILABLE else "inactive — direct VCI endpoints")
 
 import invest  # noqa: E402  — Đầu tư tab engine (VCI direct, stdlib only)
 import freshness  # noqa: E402  — /api/freshness (reads data/research)
@@ -886,54 +885,27 @@ VN_BANK_ENTITIES: dict[str, list[dict]] = {
 
 # ─── vnstock fetchers (each isolated so one failure doesn't kill the rest) ─
 def _vci_last(sym: str) -> dict | None:
-    """Latest daily bar straight from Vietcap (VCI) — same upstream vnstock used."""
+    """Latest daily bar via invest.history (vnstock layer first, direct VCI fallback)."""
     h = invest.history(sym, 30)
     if not h or not h["c"]:
         return None
     i = len(h["c"]) - 1
     return {"close": h["c"][i], "open": h["o"][i], "high": h["h"][i], "low": h["l"][i],
-            "volume": h["v"][i], "date": h["t"][i], "prev_close": h["c"][i - 1] if i else None, "source": "VCI"}
+            "volume": h["v"][i], "date": h["t"][i], "prev_close": h["c"][i - 1] if i else None,
+            "source": h.get("source") or "VCI"}
 
 
 def fetch_indices() -> dict[str, Any]:
-    """VN-Index + VN30 latest close (VCI direct; vnstock was quarantined on PyPI 2026-09-24)."""
-    if not VNSTOCK_AVAILABLE:
-        out = {}
-        for sym in ("VNINDEX", "VN30"):
-            try:
-                r = _vci_last(sym)
-                if r:
-                    out[sym] = r
-            except Exception as e:
-                log.warning("index %s (VCI) failed: %s", sym, str(e)[:120])
-        return out
-    try:
-        from vnstock import Vnstock
-        out = {}
-        for sym in ("VNINDEX", "HNXINDEX"):
-            try:
-                stock = Vnstock().stock(symbol=sym, source="VCI")
-                df = stock.quote.history(
-                    start=datetime.now().strftime("%Y-%m-%d"),
-                    end=datetime.now().strftime("%Y-%m-%d"),
-                    interval="1D",
-                )
-                if df is not None and len(df):
-                    last = df.iloc[-1]
-                    out[sym] = {
-                        "close": float(last["close"]),
-                        "open": float(last["open"]),
-                        "high": float(last["high"]),
-                        "low": float(last["low"]),
-                        "volume": float(last.get("volume", 0)),
-                        "date": str(last.get("time", "")),
-                    }
-            except BaseException as e:
-                log.warning("index %s failed: %s", sym, str(e)[:120])
-        return out
-    except BaseException as e:
-        log.warning("fetch_indices failed: %s", str(e)[:120])
-        return {}
+    """VN-Index + VN30 latest close (vnstock layer first, direct VCI fallback)."""
+    out = {}
+    for sym in ("VNINDEX", "VN30"):
+        try:
+            r = _vci_last(sym)
+            if r:
+                out[sym] = r
+        except Exception as e:
+            log.warning("index %s failed: %s", sym, str(e)[:120])
+    return out
 
 
 def fetch_bonds() -> dict[str, Any]:
@@ -1186,14 +1158,78 @@ def _reported_loans() -> dict[str, dict]:
     return out
 
 
-def _build_bank_row(sym: str, period: str, include_synthetic: bool = False,
-                    loans_rep: dict[str, dict] | None = None) -> dict:
-    """One bank's entry: metadata + latest snapshot + history (oldest→newest).
+# ─── Listed-bank universe (data/banks_vnstock.json, built by tools/build/banks_vnstock.py) ──
+# When the file is present it defines the bank list (all listed commercial banks) and supplies reported
+# vnstock periods. Banks without vnstock fundamentals keep the curated FY2024 snapshot above when they are in
+# VN_BANK_FUNDAMENTALS. File missing/invalid → the original 17-bank behaviour.
+BANK_METRICS = ("assets", "equity", "deposits", "loans", "nim", "roa", "roe", "cir", "npl", "car", "ldr", "ccov",
+                "nii", "toi", "pbt", "npat")
+VNSTOCK_FIELD_MAP = {   # banks_vnstock.json field → /api/banks field
+    "total_assets": "assets", "equity": "equity", "customer_deposits": "deposits", "customer_loans": "loans",
+    "nim": "nim", "roa": "roa", "roe": "roe", "cir": "cir", "npl_ratio": "npl", "car": "car", "ldr": "ldr",
+    "llr_coverage": "ccov", "net_interest_income": "nii", "total_operating_income": "toi",
+    "pre_tax_profit": "pbt", "net_profit": "npat",
+}
+CURATED_SOURCE = "server.py VN_BANK_FUNDAMENTALS (curated FY2024 standalone)"
 
-    Default: reported periods only (FY2024). There are no reported quarterly fundamentals yet, so
-    period='quarter' also serves FY2024 (period_label says so). include_synthetic=True restores the old
-    extrapolated series (every entry flagged synthetic true/false).
-    """
+
+def _bank_universe() -> dict[str, dict] | None:
+    """{ticker: bank} from data/banks_vnstock.json, or None when the file is missing/invalid/empty."""
+    if not (DATA_DIR / "banks_vnstock.json").is_file():
+        return None
+    banks = _data_json("banks_vnstock").get("banks")
+    if not isinstance(banks, list):
+        return None
+    out = {b["ticker"]: b for b in banks if isinstance(b, dict) and isinstance(b.get("ticker"), str)}
+    return out or None
+
+
+def _bank_symbols() -> list[str]:
+    u = _bank_universe()
+    return list(u) if u else list(VN_BANK_FUNDAMENTALS)
+
+
+def _period_label(key: str) -> str:
+    """'2025' → 'FY2025'; '2026-Q2' → 'Q2/2026' (the labels the page already uses)."""
+    if "-Q" in key:
+        y, q = key.split("-Q", 1)
+        return f"Q{q}/{y}"
+    return f"FY{key}"
+
+
+def _period_sort(label: str) -> tuple:
+    if label.startswith("FY"):
+        return (int(label[2:6]), 9)
+    if label.startswith("Q") and "/" in label:
+        return (int(label.split("/")[1]), int(label[1]))
+    return (0, 0)
+
+
+def _vnstock_history(b: dict | None, period: str) -> list[dict]:
+    """Reported vnstock periods for one bank in the /api/banks history schema (oldest → newest)."""
+    if not b:
+        return []
+    src = b.get("quarterly" if period == "quarter" else "annual") or {}
+    hist = []
+    for key, p in src.items():
+        if not isinstance(p, dict):
+            continue
+        e = {"period": _period_label(str(key)), **{k: None for k in BANK_METRICS}}
+        for f, k in VNSTOCK_FIELD_MAP.items():
+            v = p.get(f)
+            e[k] = v if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+        if all(e[k] is None for k in BANK_METRICS):
+            continue
+        e.update(synthetic=False, source=p.get("source") or "vnstock_data", basis=p.get("basis"),
+                 fetched_at=p.get("fetched_at"))
+        hist.append(e)
+    return sorted(hist, key=lambda h: _period_sort(h["period"]))
+
+
+def _curated_history(sym: str, period: str, include_synthetic: bool) -> list[dict]:
+    """Original behaviour for the curated 17: reported FY2024 (or the flagged synthetic series)."""
+    if sym not in VN_BANK_FUNDAMENTALS:
+        return []
     meta = VN_BANK_FUNDAMENTALS[sym]
     hist_all = (VN_BANK_QUARTERLY_HIST if period == "quarter" else VN_BANK_YEARLY_HIST).get(sym) or []
     hist = hist_all if include_synthetic else [h for h in hist_all if not h.get("synthetic")]
@@ -1201,104 +1237,103 @@ def _build_bank_row(sym: str, period: str, include_synthetic: bool = False,
         hist = [h for h in VN_BANK_YEARLY_HIST.get(sym, []) if not h.get("synthetic")] or \
                [{"period": REPORTED_BANK_PERIOD, **{k: meta[k] for k in ("assets", "equity", "deposits", "loans", "nim", "roa",
                                                                          "roe", "cir", "npl", "car", "ldr", "ccov")}, "synthetic": False}]
-    latest = hist[-1]
+    return [{**{k: None for k in BANK_METRICS}, **h, "source": CURATED_SOURCE, "basis": BANK_FUNDAMENTALS_BASIS}
+            for h in hist]
+
+
+def _build_bank_row(sym: str, period: str, include_synthetic: bool = False,
+                    loans_rep: dict[str, dict] | None = None, universe: dict[str, dict] | None = None,
+                    quarter_grid: bool = False) -> dict:
+    """One bank's entry: metadata + latest snapshot + history (oldest→newest).
+
+    History = reported vnstock periods from data/banks_vnstock.json when the bank has them; otherwise the curated
+    FY2024 snapshot (17 banks; include_synthetic=True restores their old extrapolated series); otherwise empty.
+    quarter_grid=True (some bank has reported quarters) stops the quarter view falling back to FY2024.
+    Histories are padded to a common period grid later (_align_histories).
+    """
+    u = universe if universe is not None else (_bank_universe() or {})
+    b = u.get(sym)
+    cur = VN_BANK_FUNDAMENTALS.get(sym) or {}
+    hist = _vnstock_history(b, period)
+    if not hist and not (period == "quarter" and quarter_grid):
+        hist = _curated_history(sym, period, include_synthetic)
+    latest = hist[-1] if hist else {k: None for k in BANK_METRICS}
     rep = (loans_rep if loans_rep is not None else _reported_loans()).get(sym)
+    mk = (b or {}).get("market") or {}
+    state_owned = (b or {}).get("state_owned")
     return {
-        "symbol": sym, "name": meta["name"], "type": meta["type"],
-        "period_label": latest["period"],
-        "assets": latest["assets"], "equity": latest["equity"],
-        "deposits": latest["deposits"], "loans": latest["loans"],
-        "nim": latest["nim"], "roa": latest["roa"], "roe": latest["roe"],
-        "cir": latest["cir"], "npl": latest["npl"], "car": latest["car"],
-        "ldr": latest["ldr"], "ccov": latest["ccov"],
+        "symbol": sym, "name": cur.get("name") or (b or {}).get("name") or sym,
+        "type": cur.get("type") or (b or {}).get("type") or ("SOCB" if state_owned else "JSCB"),
+        "exchange": (b or {}).get("exchange"), "organ_name": (b or {}).get("organ_name"),
+        "state_owned": bool(state_owned) if b else cur.get("type") == "SOCB",
+        "period_label": latest.get("period"),
+        **{k: latest.get(k) for k in BANK_METRICS},
         "synthetic": bool(latest.get("synthetic")),
-        "basis": BANK_FUNDAMENTALS_BASIS,
+        "source": latest.get("source"),
+        "basis": latest.get("basis") if latest.get("source") != CURATED_SOURCE else BANK_FUNDAMENTALS_BASIS,
         "history": hist,  # reported snapshots only (or flagged series with include_synthetic)
         # latest reported customer loans (newer than the FY2024 fundamentals), when the Finance agent has it
         "latest_reported_loans": rep,
         "loans_latest_bn": rep["value_bn"] if rep else None,
         "loans_latest_period": rep["period"] if rep else None,
+        "listed_shares": mk.get("listed_shares"),
+        "market_cap_bn": mk.get("market_cap_bn"),
+        "market_date": mk.get("date"),
+        "listing_status": (b or {}).get("listing_status"),
     }
+
+
+def _align_histories(rows: list[dict]) -> list[str]:
+    """Pad every row's history to the union of periods (oldest→newest) so the page can sum by index.
+    Padding entries carry only nulls and missing: true. Returns the period grid."""
+    grid = sorted({h["period"] for r in rows for h in r["history"] if h.get("period")}, key=_period_sort)
+    for r in rows:
+        have = {h["period"]: h for h in r["history"]}
+        r["history"] = [have.get(p) or {"period": p, **{k: None for k in BANK_METRICS}, "synthetic": False,
+                                         "missing": True} for p in grid]
+    return grid
+
+
+def _price_into(row: dict) -> bool:
+    row["price"] = row["chg_pct"] = row["volume"] = None
+    row["price_source"] = None
+    try:                                   # live price (cached 30 min in invest.py)
+        r = _vci_last(row["symbol"])
+    except Exception as e:
+        log.info("bank %s price failed: %s", row["symbol"], str(e)[:80])
+        return False
+    if not r:
+        return False
+    row["price"], row["volume"], row["price_source"] = r["close"], r["volume"], r.get("source")
+    row["chg_pct"] = round((r["close"] / r["prev_close"] - 1) * 100, 2) if r["prev_close"] else None
+    if row.get("listed_shares"):
+        row["market_cap_bn"] = round(r["close"] * row["listed_shares"] / 1e9, 1)
+        row["market_date"] = r.get("date")
+    return True
+
+
+def _bank_rows(period: str, include_synthetic: bool = False) -> list[dict]:
+    universe = _bank_universe() or {}
+    syms = list(universe) or list(VN_BANK_FUNDAMENTALS)
+    loans_rep = _reported_loans()
+    qgrid = period == "quarter" and any(_vnstock_history(universe.get(s), "quarter") for s in syms)
+    return [_build_bank_row(s, period, include_synthetic, loans_rep, universe, qgrid) for s in syms]
 
 
 def fetch_banks(period: str = "year") -> dict[str, Any]:
-    """Merge curated fundamentals (annual or per-bank latest quarter)
-    with live prices from vnstock.
-    """
-    rows = []
-    today = datetime.now().strftime("%Y-%m-%d")
-    start = (datetime.now().replace(day=1)).strftime("%Y-%m-%d")
-    loans_rep = _reported_loans()
-    if not VNSTOCK_AVAILABLE:
-        live = 0
-        for sym in VN_BANK_FUNDAMENTALS:
-            row = _build_bank_row(sym, period, loans_rep=loans_rep)
-            row["price"] = row["chg_pct"] = row["volume"] = None
-            try:                                   # live price from VCI (cached 30 min in invest.py)
-                r = _vci_last(sym)
-                if r:
-                    row["price"], row["volume"] = r["close"], r["volume"]
-                    row["chg_pct"] = round((r["close"] / r["prev_close"] - 1) * 100, 2) if r["prev_close"] else None
-                    live += 1
-            except Exception as e:
-                log.info("bank %s VCI price failed: %s", sym, str(e)[:80])
-            rows.append(row)
-        rows.sort(key=lambda r: r.get("assets") or 0, reverse=True)
-        label_counts: dict[str, int] = {}
-        for r in rows:
-            lbl = r.get("period_label", "")
-            label_counts[lbl] = label_counts.get(lbl, 0) + 1
-        return {"period": period, "period_summary": label_counts, "count": len(rows), "rows": rows,
-                "live_count": live, "total_count": len(VN_BANK_FUNDAMENTALS), "price_source": "VCI"}
-    rate_limit_hit = False
-    try:
-        from vnstock.explorer.vci import Quote
-        for sym in VN_BANK_FUNDAMENTALS:
-            price = prev = vol = None
-            if not rate_limit_hit:
-                try:
-                    q = Quote(symbol=sym)
-                    df = q.history(start=start, end=today, interval="1D")
-                    if df is not None and len(df) >= 1:
-                        price = float(df.iloc[-1]["close"])
-                        vol = float(df.iloc[-1].get("volume", 0))
-                        if len(df) >= 2:
-                            prev = float(df.iloc[-2]["close"])
-                except SystemExit as se:
-                    log.warning("bank %s: vnstock rate limit hit, skipping remaining live prices: %s", sym, str(se)[:80])
-                    rate_limit_hit = True
-                except BaseException as e:
-                    log.info("bank %s quote failed: %s", sym, str(e)[:120])
-            row = _build_bank_row(sym, period, loans_rep=loans_rep)
-            row["price"] = price
-            row["chg_pct"] = (None if (price is None or prev is None or prev == 0)
-                              else round((price/prev - 1)*100, 2))
-            row["volume"] = vol
-            rows.append(row)
-    except BaseException as e:
-        log.warning("fetch_banks init failed: %s", str(e)[:120])
-        for sym in VN_BANK_FUNDAMENTALS:
-            if not any(r["symbol"] == sym for r in rows):
-                row = _build_bank_row(sym, period, loans_rep=loans_rep)
-                row["price"] = row["chg_pct"] = row["volume"] = None
-                rows.append(row)
-
+    """Bank rows (universe from data/banks_vnstock.json, else the curated 17) with live prices
+    (vnstock layer first, direct VCI fallback)."""
+    rows = _bank_rows(period)
+    live = sum(1 for row in rows if _price_into(row))
     rows.sort(key=lambda r: r.get("assets") or 0, reverse=True)
     label_counts: dict[str, int] = {}
-    live_count = 0
     for r in rows:
-        lbl = r.get("period_label", "")
+        lbl = r.get("period_label") or "—"
         label_counts[lbl] = label_counts.get(lbl, 0) + 1
-        if r.get("price") is not None:
-            live_count += 1
-    return {
-        "period": period,
-        "period_summary": label_counts,
-        "count": len(rows),
-        "live_count": live_count,
-        "total_count": len(VN_BANK_FUNDAMENTALS),
-        "rows": rows,
-    }
+    srcs = {r["price_source"] for r in rows if r.get("price_source")}
+    return {"period": period, "period_summary": label_counts, "count": len(rows), "rows": rows,
+            "live_count": live, "total_count": len(rows),
+            "price_source": "/".join(sorted(srcs)) if srcs else ("vnstock_data" if VNSTOCK_AVAILABLE else "VCI")}
 
 
 def refresh_snapshot(trigger: str = "auto") -> None:
@@ -1456,33 +1491,82 @@ PRICE_FIELDS = ("price", "chg_pct", "volume")
 
 @app.get("/api/banks")
 def api_banks(period: str = "year", include_synthetic: bool = False):
-    """?period=year (default) | quarter. Reported periods only; ?include_synthetic=1 adds the extrapolated
-    periods (each history entry carries synthetic: true/false)."""
+    """?period=year (default) | quarter. All listed banks (data/banks_vnstock.json; curated 17 when the file is
+    missing). Reported periods only; ?include_synthetic=1 adds the curated banks' extrapolated periods (each
+    history entry carries synthetic: true/false). Histories are aligned on a common period grid; padding entries
+    are null with missing: true."""
     period = "quarter" if period == "quarter" else "year"
     base = (SNAPSHOT.get("banks") or {}).get(period) or {}
-    loans_rep = _reported_loans()
-    rows = []
-    for r in base.get("rows") or []:
-        if r.get("symbol") not in VN_BANK_FUNDAMENTALS:
-            continue
-        row = _build_bank_row(r["symbol"], period, include_synthetic, loans_rep)   # fundamentals re-read now
-        row.update({k: r.get(k) for k in PRICE_FIELDS})
-        rows.append(row)
+    prices = {r.get("symbol"): r for r in base.get("rows") or []}
+    rows = _bank_rows(period, include_synthetic)                    # fundamentals re-read now
+    for row in rows:
+        p = prices.get(row["symbol"]) or {}
+        row.update({k: p.get(k) for k in PRICE_FIELDS})
+        row["price_source"] = p.get("price_source")
+        if p.get("market_cap_bn") is not None:                      # live price × listed shares
+            row["market_cap_bn"], row["market_date"] = p["market_cap_bn"], p.get("market_date")
+    rows.sort(key=lambda r: r.get("assets") or 0, reverse=True)
+    grid = _align_histories(rows)
     label_counts: dict[str, int] = {}
     for r in rows:
-        label_counts[r["period_label"]] = label_counts.get(r["period_label"], 0) + 1
-    removed = sum(1 for sym in VN_BANK_FUNDAMENTALS
+        lbl = r["period_label"] or "—"
+        label_counts[lbl] = label_counts.get(lbl, 0) + 1
+    vn_backed = {r["symbol"] for r in rows if (r.get("source") or "").startswith("vnstock")}
+    removed = sum(1 for sym in VN_BANK_FUNDAMENTALS if sym in {r["symbol"] for r in rows} and sym not in vn_backed
                   for h in ((VN_BANK_QUARTERLY_HIST if period == "quarter" else VN_BANK_YEARLY_HIST).get(sym) or [])
                   if h.get("synthetic")) if not include_synthetic else 0
+    universe = _bank_universe()
+    um = (_data_json("banks_vnstock").get("_meta") or {}) if universe else {}
     return JSONResponse({
         **{k: v for k, v in base.items() if k != "rows"},
         "period": period, "period_summary": label_counts, "count": len(rows), "rows": rows,
+        "total_count": len(rows),
+        "periods": grid,
         "reported_only": not include_synthetic,
         "synthetic_periods_removed": removed,
-        "fundamentals_basis": BANK_FUNDAMENTALS_BASIS,
-        "quarterly_reported": False,
+        "fundamentals_basis": (f"vnstock_data reported periods for {len(vn_backed)} banks; " if vn_backed else "")
+                              + f"{BANK_FUNDAMENTALS_BASIS} for the rest of the curated 17"
+                              + ("; no fundamentals for the other listed banks" if universe else ""),
+        "quarterly_reported": any((r.get("source") or "").startswith("vnstock") and r["period_label"]
+                                  and r["period_label"].startswith("Q") for r in rows),
         "latest_reported_loans_period": next((r["loans_latest_period"] for r in rows if r.get("loans_latest_period")), None),
+        "universe_source": "data/banks_vnstock.json" if universe else "server.py VN_BANK_FUNDAMENTALS (fallback)",
+        "universe_as_of": um.get("as_of") if universe else None,
+        "vnstock_backed_count": len(vn_backed),
         "note": SYNTHETIC_NOTE,
+    })
+
+
+@app.get("/api/banks/universe")
+def api_banks_universe():
+    """Listed-bank universe with per-bank coverage (which periods/fields have reported data, and from where)."""
+    universe = _bank_universe()
+    um = (_data_json("banks_vnstock").get("_meta") or {}) if universe else {}
+    out = []
+    for sym in (list(universe) if universe else list(VN_BANK_FUNDAMENTALS)):
+        b = (universe or {}).get(sym) or {}
+        cur = VN_BANK_FUNDAMENTALS.get(sym)
+        ann, qtr = _vnstock_history(b, "year"), _vnstock_history(b, "quarter")
+        fields = sorted({k for h in ann + qtr for k in BANK_METRICS if h.get(k) is not None})
+        out.append({
+            "ticker": sym, "name": (cur or {}).get("name") or b.get("name") or sym, "organ_name": b.get("organ_name"),
+            "exchange": b.get("exchange"), "state_owned": b.get("state_owned", (cur or {}).get("type") == "SOCB"),
+            "type": (cur or {}).get("type") or b.get("type"), "listing_status": b.get("listing_status"),
+            "market": b.get("market"),
+            "coverage": {"vnstock_annual": [h["period"] for h in ann], "vnstock_quarterly": [h["period"] for h in qtr],
+                         "vnstock_fields": fields, "curated_fy2024": cur is not None,
+                         "fundamentals": "vnstock" if ann or qtr else ("curated FY2024" if cur else "none")},
+        })
+    return JSONResponse({
+        "source": "data/banks_vnstock.json" if universe else "server.py VN_BANK_FUNDAMENTALS (fallback: file missing)",
+        "meta": {k: um.get(k) for k in ("owner", "as_of", "fetched_at", "source", "note")} if universe else None,
+        "finance_sources": ((um.get("coverage") or {}).get("sources")) if universe else None,
+        "delisted_or_suspended": ((um.get("coverage") or {}).get("delisted_or_suspended")) if universe else None,
+        "count": len(out),
+        "with_vnstock_fundamentals": sum(1 for b in out if b["coverage"]["fundamentals"] == "vnstock"),
+        "with_curated_fy2024": sum(1 for b in out if b["coverage"]["curated_fy2024"]),
+        "banks": out,
+        "vnstock": vnstock_layer.status(),
     })
 
 
@@ -1549,7 +1633,10 @@ def api_bank_entities(symbol: str):
     sym = symbol.upper()
     meta = VN_BANK_FUNDAMENTALS.get(sym)
     if not meta:
-        return JSONResponse({"error": "unknown bank"}, status_code=404)
+        b = (_bank_universe() or {}).get(sym)
+        if not b:
+            return JSONResponse({"error": "unknown bank"}, status_code=404)
+        meta = {"name": b.get("name") or sym, "type": b.get("type") or ("SOCB" if b.get("state_owned") else "JSCB")}
     entities = VN_BANK_ENTITIES.get(sym, [])
     # Group by type for easier UI rendering
     groups: dict[str, list] = {"SUB": [], "JV": [], "AFF": []}
@@ -1724,7 +1811,7 @@ def api_refresh():
         "indices_total": 2,  # VNINDEX + VN30 (VCI)
         "fx_source": (SNAPSHOT.get("fx") or {}).get("source"),
         "banks_live": banks_year.get("live_count", 0),
-        "banks_total": banks_year.get("total_count", len(VN_BANK_FUNDAMENTALS)),
+        "banks_total": banks_year.get("total_count", len(_bank_symbols())),
         "banks_quarter_live": banks_quarter.get("live_count", 0),
     })
 

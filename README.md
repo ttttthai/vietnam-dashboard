@@ -1,12 +1,13 @@
 # Vietnam Dashboard
 
 Interactive dashboard covering Vietnam's 34 post-merger provinces, macro/banking system, policy, strategy
-and investing, plus FY2024 fundamentals for 17 listed commercial banks.
+and investing, plus every listed commercial bank (28 on HOSE / HNX / UPCoM, `data/banks_vnstock.json`).
 
 ## Stack
 
-- **Backend:** FastAPI (`server.py`). Live VN-Index / VN30 / bank prices come straight from Vietcap (VCI)
-  public endpoints via `invest.py` (standard library only); FX from open.er-api.com (frankfurter fallback).
+- **Backend:** FastAPI (`server.py`). Live VN-Index / VN30 / bank prices: the optional vnstock layer
+  (`vnstock_layer.py`) first, then Vietcap (VCI) public endpoints via `invest.py` (standard library only) as the
+  fallback; FX from open.er-api.com (frankfurter fallback).
 - **Frontend:** vanilla HTML + D3 + inline SVG (`vietnam_dashboard.html`), no build step. Tab datasets are
   embedded in the page as constants so it also works from `file://`.
 - **Scheduler:** APScheduler, timezone Asia/Ho_Chi_Minh
@@ -14,8 +15,41 @@ and investing, plus FY2024 fundamentals for 17 listed commercial banks.
   - monthly, **15th 01:00** — public macro APIs (World Bank, IMF, FRED) → `data/auto/` (also on startup when a
     snapshot is missing or older than 31 days; set `AUTO_FETCH_ON_STARTUP=0` to skip)
 
-**vnstock** is *not* installed and not required: it was quarantined on PyPI on 2026-09-24, and its heavy
-dependencies exceed Render's free tier. `server.py` still uses it if present, otherwise the VCI endpoints.
+## vnstock (optional)
+
+The server works without it. When the sponsor library **`vnstock_data`** imports *and* an API key is configured,
+`vnstock_layer.py` is used first for daily prices/volumes (`Quote.history`), listed shares (`Trading.price_board`)
+and — via `tools/build/banks_vnstock.py` — the listed-bank universe and fundamentals; on any failure (or after 3
+consecutive failures, for 15 min) the direct VCI code takes over. Responses carry `source` / `price_source`.
+
+**Never install vnstock, vnai or vnstock_installer from public PyPI** — they were quarantined there on 2026-09-24
+and PyPI hosts a dependency-confusion squatter (`vnstock_installer==99.0.0`). Nothing vnstock-related is in
+`requirements.txt`. Install from the vnstocks sponsor index only, pinned and without dependency resolution, then
+add the ordinary dependencies from PyPI:
+
+```bash
+python3 -m venv /tmp/vnenv && /tmp/vnenv/bin/pip install -U pip setuptools wheel
+# 1) the installer and vnai — vnstocks index ONLY (never --extra-index-url: PyPI's squatter would win), pinned, no deps
+/tmp/vnenv/bin/pip install --no-build-isolation --no-deps --index-url https://vnstocks.com/api/simple \
+    "vnai==2.6.3" "vnstock_installer==3.1.3"
+/tmp/vnenv/bin/pip install requests uv Eel cffi pandas psutil unidecode   # their ordinary deps (PyPI)
+# 2) the sponsor library, fetched by the installer with your key (VNSTOCK_API_KEY or ~/.vnstock/api_key.json)
+/tmp/vnenv/bin/vnstock-cli-installer --list-packages --non-interactive
+/tmp/vnenv/bin/vnstock-cli-installer --packages vnstock_data --venv-path /tmp/vnenv \
+    --python /tmp/vnenv/bin/python --non-interactive
+/tmp/vnenv/bin/pip install -r requirements.txt        # server deps (fastapi, uvicorn, apscheduler…)
+```
+Verified 2026-10-06: installer 3.1.3 (sha256 2eef4b9a…c12e on the vnstocks index), vnstock_data 3.3.1. If an import
+fails on a missing module (e.g. `unidecode`), install that ordinary library from PyPI.
+
+- **Key:** `VNSTOCK_API_KEY` environment variable (on Render: a secret env var) or `~/.vnstock/api_key.json`.
+  The library reads it itself; the server only checks that one of the two exists and never logs it. Never commit it.
+- **Telemetry:** `vnstock_layer.py` forces `VNSTOCK_TELEMETRY=off` before importing the library; set it for any
+  manual run too.
+- **Bank universe:** `VNSTOCK_TELEMETRY=off /tmp/vnenv/bin/python tools/build/banks_vnstock.py` rebuilds
+  `data/banks_vnstock.json` (retries, cache in `/tmp/vnstock_banks_cache`, prints a coverage table). Finance
+  sources (VCI → `iq.vietcap.com.vn`, MAS, KBS, MBK) are pre-flighted; unreachable ones are recorded in
+  `_meta.coverage.sources` and their fields stay null.
 
 ## Run locally
 
@@ -38,9 +72,14 @@ monthly API pulls work there (the agents' sandbox blocks them; the server then k
 - `GET /api/snapshot` — combined snapshot (indices, fx, rates, banks)
 - `GET /api/rates` — SBV refinancing / OMO / rediscount rates and 12-month deposit / average lending rates, each
   with date and source, read from `data/policy.json` and `data/finance.json` (no hard-coded values)
-- `GET /api/banks?period=year|quarter[&include_synthetic=1]` — 17 banks; reported periods only (FY2024) plus
-  `latest_reported_loans` (30/6/2026, from Finance's `listed_banks_by_sector`). `include_synthetic=1` adds the old
-  extrapolated periods, each flagged `synthetic: true`
+- `GET /api/banks?period=year|quarter[&include_synthetic=1]` — every listed bank in `data/banks_vnstock.json`
+  (falls back to the curated 17 when the file is missing). Reported periods only: vnstock periods where the file has
+  them, else the curated FY2024 snapshot (17 banks), else nulls; histories are aligned on `periods` (padding entries
+  are null with `missing: true`). Rows add `exchange`, `organ_name`, `state_owned`, `source`, `nii`, `toi`, `pbt`,
+  `npat`, `listed_shares`, `market_cap_bn`, `price_source`, plus `latest_reported_loans` (30/6/2026, Finance's
+  `listed_banks_by_sector`). `include_synthetic=1` adds the old extrapolated periods, each flagged `synthetic: true`
+- `GET /api/banks/universe` — the listed-bank universe with per-bank coverage, finance-source reachability and the
+  vnstock layer status
 - `GET /api/banks/statements`, `/api/banks/breakdown`, `/api/banks/lineitem/{key}` — system BS / IS and breakdowns
   (`synthetic_history: true`: histories are modelled, not reported)
 - `GET /api/banks/{symbol}/entities` — subsidiaries & affiliates
@@ -70,6 +109,7 @@ Each tab's data lives in one JSON file owned by one agent; top-level keys are th
 | `data/invest_macro.json` | Economy | `MACRO` for the Đầu tư tab, read by `invest.py` at call time (in-file fallback) |
 | `strategy_directives.json` | Strategy | `/api/strategy` |
 | `data/research/*` | Research | inventory, release calendar, source log, plans — ops files, served by `/api/freshness`, not embedded |
+| `data/banks_vnstock.json` | server (vnstock) | `/api/banks`, `/api/banks/universe` (built by `tools/build/banks_vnstock.py`) |
 | `data/auto/*` | server | World Bank / IMF / FRED snapshots for agents to review; agents decide what to copy into their files |
 
 After editing a tab file, embed it into the page:
