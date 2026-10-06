@@ -372,7 +372,7 @@
     "checked": "2026-10-06",
     "detail": "curl: CONNECT 403 from egress proxy; WebFetch: EGRESS_BLOCKED"
    },
-   "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). thanhnien daily FX article gives central/VCB/free rates at month-end.",
+   "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). thanhnien daily FX article gives central/VCB/free rates at month-end. [2026-10-06] For priority series: vietnamplus.vn/en.vietnamplus.vn and thanhnien.vn carry same-day verbatim FIA FDI components and NSO tourism market tables; thanhnien/vneconomy carry SBV Region 2 HCMC remittances.",
    "conflicts_seen": [],
    "last_used": "2026-10-06"
   },
@@ -486,6 +486,69 @@
    "access_tips": "The only working route to Vietnamese sources from the sandbox. Budget is SHARED by all agents and ran out once on 2026-10-06: plan queries, ask for several facts per query, prefer pages that aggregate (NSO quarterly report, SBV press conference coverage).",
    "conflicts_seen": [],
    "last_used": "2026-10-06"
+  },
+  {
+   "host": "fia.mof.gov.vn / investvietnam.vn",
+   "publisher": "Foreign Investment Agency (Cục Đầu tư nước ngoài, MoF)",
+   "what_it_holds": "monthly FDI attraction report: registered by component (new, adjusted, capital contribution & share purchase), disbursed, by partner/sector/province; outward investment",
+   "best_for_agent": "Economy (ECON_OFFICIAL FDI), Investing (macro block mirror), Strategy (NQ 10 targets)",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "not probed this run; every .gov.vn host probed earlier was blocked — assume blocked"
+   },
+   "access_tips": "WebSearch in Vietnamese with 'đăng ký cấp mới điều chỉnh góp vốn mua cổ phần giải ngân' returns all three components and disbursed in one excerpt. Components should sum to the total (check).",
+   "conflicts_seen": [
+    "Annual registered first release vs revised vintage (2023: 36.61 vs 39.39 bn; 2022: 27.72 vs 29.29 bn)"
+   ],
+   "last_used": "2026-10-06",
+   "pages": [
+    {
+     "page": "Tình hình thu hút ĐTNN N tháng",
+     "agents": [
+      "Economy",
+      "Investing"
+     ]
+    }
+   ]
+  },
+  {
+   "host": "SBV Region 2 branch (via thanhnien.vn, vneconomy.vn, tuoitre.vn, en.baochinhphu.vn)",
+   "publisher": "State Bank of Vietnam — Region 2 (HCMC)",
+   "what_it_holds": "quarterly HCMC remittances through credit institutions and economic organisations, by region of origin; full-year outlook",
+   "best_for_agent": "Economy",
+   "reliability": "official (via press)",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": false,
+    "checked": "2026-10-06",
+    "detail": "press hosts blocked; excerpts only"
+   },
+   "access_tips": "Released ~3-4 weeks after quarter end. Query 'kiều hối TP.HCM N tháng 2026'. Beware older-year articles ranking first (e.g. a '9 tháng gần 8 tỷ' piece is 9M-2025, 7.94 bn).",
+   "conflicts_seen": [
+    "Merged-HCMC territory from 01/07/2025 — yoy base to verify"
+   ],
+   "last_used": "2026-10-06",
+   "pages": []
+  },
+  {
+   "host": "vietnamtourism.gov.vn",
+   "publisher": "VNAT (Cục Du lịch Quốc gia Việt Nam)",
+   "what_it_holds": "arrivals by market (republishing NSO), annual tourism revenue, targets",
+   "best_for_agent": "Economy",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "not probed; assume blocked"
+   },
+   "access_tips": "Market growth rates in press mix Q3 and 9M — keep the period explicit; prefer the NSO table.",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06",
+   "pages": []
   }
  ]
 }

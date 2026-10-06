@@ -45,6 +45,23 @@ becomes a wrong headline.
 - Access: nso.gov.vn, mof.gov.vn, sbv.gov.vn, imf.org, api.worldbank.org and all press are blocked from the
   sandbox (curl 403, WebFetch EGRESS_BLOCKED). Verify through WebSearch excerpts, cite the canonical page, mark
   "search-excerpt verified", and batch several facts per query (the search budget is shared by all agents).
+- **Priority watch (user standing task; Research tracks it in `data/research/priority_watch.json`)** — give these
+  series special care in every run:
+  - *FDI registered vs disbursed* (NSO report + Foreign Investment Agency, MoF; both on the 3rd, cumulative YTD).
+    Registered = new projects + adjusted (added) capital + capital contribution & share purchase (M&A); store all three
+    components with the total (they must sum) and disbursed (an estimate, revised next month). One Vietnamese query
+    ("vốn FDI N tháng năm 2026 đăng ký cấp mới điều chỉnh góp vốn mua cổ phần giải ngân") returns all of them.
+    `ECON_OFFICIAL.fdi_reg_musd` ≤2023 is the revised vintage (2023 39,390.3 vs first release 36.61 bn) while 2024–25 are
+    first releases — label vintages. BoP `fdi_in` ≈ 80% of disbursed every year: never call it "disbursement".
+    Provincial FDI (e.g. HCMC 17.2 bn to 19/9/2026) is never added to national totals.
+  - *Remittances*: three definitions — SBV kiều hối (through credit institutions/economic organisations), BoP secondary
+    income credit (all current transfers), World Bank KNOMAD (personal transfers + compensation of employees). Label
+    each; do not substitute one for another. National SBV totals are often only speech numbers ("over 16 bn" 2025) —
+    keep `null` and put the statement in the note. HCMC (SBV Region 2) is quarterly, ~3–4 weeks after quarter end
+    (H1-2026 on 22/07/2026); check that its yoy base covers merged HCMC (from 01/07/2025).
+  - *Tourism*: arrivals monthly with the NSO report; by-market detail (China, Korea, Russia…) via VNAT/press the same
+    day — keep periods explicit (press mixes Q3 and 9M growth). Travel receipts (BoP, USD) ≠ VNAT total tourism revenue
+    (VND, incl. domestic).
 - Known pitfalls: the 2025 budget column (3,312,600 spending; 3.3% deficit) is untraced and conflicts with MoF
   Jan-2026 (2,401,500; ~3.6%) held by Policy and `FIS`; the 2026 CPI target is ~4.5% (NA), not 4.0.
 

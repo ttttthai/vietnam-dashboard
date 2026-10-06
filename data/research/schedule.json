@@ -29,18 +29,20 @@
    "id": "econ-monthly-nso",
    "owner_agent": "Economy",
    "series_ids": [
+    "econ.budget_exec_ytd",
     "econ.cpi_latest",
+    "econ.fdi_registered_disbursed",
     "econ.official_ytd",
     "econ.tourism",
-    "econ.budget_exec_ytd",
     "inv.macro_context",
+    "inv.macro_fdi",
     "page.fis_cards"
    ],
    "rule": "after nso_monthly_report + mof_budget_monthly: 4th of each month (NSO on the 3rd; MoF ~same days)",
    "cron_ict": "20 9 4 * *",
    "window_days": 3,
    "priority": "P1",
-   "reason": "CPI and the YTD block change monthly on a fixed date; checking earlier finds nothing, later leaves the page stale.",
+   "reason": "CPI and the YTD block change monthly on a fixed date; checking earlier finds nothing, later leaves the page stale. Priority watch: FDI (registered by component + disbursed) and tourism (arrivals by market, outbound, travel services) are in the same NSO/FIA release — add them to every run, no extra trigger needed.",
    "runner": "agent run",
    "web_cost": "medium (NSO pages blocked → 3–6 searches)"
   },
@@ -298,6 +300,69 @@
    "reason": "Unowned constants show unsourced/extrapolated numbers (FX reserves 2026–29, OMO 4.0%, credit 2025 15.5%, static deposit rates).",
    "runner": "main session decision + agent runs",
    "web_cost": "low"
+  },
+  {
+   "id": "priority-remit-hcmc",
+   "owner_agent": "Economy",
+   "series_ids": [
+    "econ.remittances"
+   ],
+   "rule": "after remittances_hcmc: 25th of Jan/Apr/Jul/Oct (next 2026-10-25)",
+   "cron_ict": "30 9 25 1,4,7,10 *",
+   "window_days": 5,
+   "priority": "P1 (priority watch #2)",
+   "reason": "HCMC releases ~3-4 weeks after quarter end (observed 22/07/2026, 23/01/2026); the national total has no regular release, so checking it monthly wastes searches — piggy-back one national query on this run.",
+   "runner": "agent run",
+   "web_cost": "low (1-2 searches)",
+   "status": "PROPOSED"
+  },
+  {
+   "id": "priority-bop-quarterly",
+   "owner_agent": "Economy",
+   "series_ids": [
+    "econ.bop",
+    "econ.remittances"
+   ],
+   "rule": "one-shot 2026-10-20 (Q2-2026 overdue), then 20th of Jan/Apr/Jul/Oct until the lag is learned",
+   "cron_ict": "35 9 20 1,4,7,10 *",
+   "window_days": 10,
+   "priority": "P2",
+   "reason": "SBV quarterly BoP is irregular (low-confidence rule); secondary income and BoP FDI are priority-watch inputs. Can share the run with fin-monthly-tables (20th).",
+   "runner": "agent run (merge with fin-monthly-tables day)",
+   "web_cost": "low",
+   "status": "PROPOSED"
+  },
+  {
+   "id": "priority-fdi-news-scan",
+   "owner_agent": "Research",
+   "series_ids": [
+    "econ.fdi_registered_disbursed"
+   ],
+   "rule": "inside research-weekly-audit on Mondays: one search for large FDI registrations / adjustments / withdrawals; writes priority_watch.json news_watch only",
+   "cron_ict": "45 7 * * 1 (same trigger)",
+   "window_days": 7,
+   "priority": "P3",
+   "reason": "Mega-project news is ad hoc and moves monthly registered totals; Research logs it so Economy's monthly run can explain jumps. No data file changes.",
+   "runner": "existing research-weekly-audit routine",
+   "web_cost": "1 search/week",
+   "status": "PROPOSED"
+  },
+  {
+   "id": "priority-annual-remit-tour",
+   "owner_agent": "Economy",
+   "series_ids": [
+    "econ.remittances",
+    "econ.tourism"
+   ],
+   "rule": "merge into econ-annual: Jan (HCMC FY, VNAT FY revenue, national statement) and Dec (KNOMAD/WDI)",
+   "cron_ict": "(econ-annual trigger)",
+   "window_days": 10,
+   "priority": "P2",
+   "reason": "Annual remittance/tourism revenue values only change at these windows.",
+   "runner": "econ-annual",
+   "web_cost": "low",
+   "status": "PROPOSED"
   }
- ]
+ ],
+ "priority_watch_note": "2026-10-06: user standing task — FDI registered vs disbursed, remittances, tourism get special focus. Coverage: monthly via econ-monthly-nso (4th); HCMC remittances via priority-remit-hcmc (25th of quarter-start months); BoP via priority-bop-quarterly; news via research-weekly-audit. All routines are PAUSED (routines.json) until the repo is attached; these are proposals for the main session."
 }

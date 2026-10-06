@@ -1,7 +1,7 @@
 {
  "as_of": "2026-10-06",
  "built_by": "Research agent",
- "note": "Figure families the site shows. latest_period read from the data files on 2026-10-06 (economy.json read while the Economy agent was running; re-read next run). calendar_id links to release_calendar.json.",
+ "note": "Figure families the site shows. latest_period read from the data files on 2026-10-06 (economy.json read while the Economy agent was running; re-read next run). calendar_id links to release_calendar.json. Priority-watch families carry a 'priority_watch' rank (1 FDI, 2 remittances, 3 tourism) — see priority_watch.json.",
  "families": [
   {
    "id": "econ.gdp_levels",
@@ -57,7 +57,8 @@
    "calendar_id": "nso_annual_gdp",
    "last_checked": "2026-10-06",
    "last_changed": null,
-   "note": "ent_active, pci_median, usd_vnd for 2025 are null (gaps)."
+   "note": "ent_active, pci_median, usd_vnd for 2025 are null (gaps). fdi_reg_musd mixes revised vintage (≤2023) with first releases (2024-25): 2023 39,390.3 vs first release 36.61 bn; 2022 29,288.2 vs 27.72.",
+   "priority_watch": 1
   },
   {
    "id": "econ.official_ytd",
@@ -75,7 +76,9 @@
    ],
    "calendar_id": "nso_monthly_report",
    "last_checked": "2026-10-06",
-   "last_changed": null
+   "last_changed": null,
+   "priority_watch": 1,
+   "note": "FDI 9M-2026 matches NSO/FIA 03/10; registered components (new 29.24 / adjusted 14.15 / GVMCP 6.97) not held."
   },
   {
    "id": "econ.cpi_latest",
@@ -125,12 +128,14 @@
    "page_use": "ch.2 BoP sankey, four-flow multiples",
    "unit": "bn USD",
    "frequency": "annual (SBV also quarterly)",
-   "latest_period": "2025",
+   "latest_period": "2025 annual; Q1-2026 quarterly",
    "publisher": "SBV (BPM6) via IMF BOP",
    "source_urls": [],
    "calendar_id": "sbv_bop",
    "last_checked": "2026-10-06",
-   "last_changed": null
+   "last_changed": null,
+   "priority_watch": "1 (FDI) and 2 (secondary income)",
+   "note": "Q2-2026 SBV BoP not found by 2026-10-06. BoP fdi_in is ~80% of NSO disbursed every year 2015-2025 — not an independent check."
   },
   {
    "id": "econ.tourism",
@@ -141,14 +146,17 @@
    "page_use": "ch.2 facts",
    "unit": "thousand arrivals; bn USD",
    "frequency": "monthly (annual array + YTD column)",
-   "latest_period": "9M2026",
+   "latest_period": "9M2026 (Jan-Sep; Sep 1.77 m)",
    "publisher": "NSO",
    "source_urls": [
-    "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+    "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+    "https://www.vietnamplus.vn/du-lich-viet-don-177-trieu-khach-sau-9-thang-thi-truong-nao-dang-tang-toc-post1139852.vnp"
    ],
    "calendar_id": "nso_monthly_report",
    "last_checked": "2026-10-06",
-   "last_changed": null
+   "last_changed": null,
+   "priority_watch": 3,
+   "note": "Priority watch #3. By-market breakdown, 2026 targets (25 m; ~1,125 tn VND) not held. Outbound 9M −21.2% vs Q3 +16.4% to verify."
   },
   {
    "id": "econ.remittances",
@@ -158,14 +166,19 @@
    "json_path": "ECONFLOW.remit",
    "page_use": "ch.2 facts",
    "unit": "bn USD",
-   "frequency": "annual",
-   "latest_period": "2024",
+   "frequency": "annual national; quarterly HCMC (SBV Region 2)",
+   "latest_period": "HCMC H1-2026; national SBV 2024 (2025/2026 null)",
    "publisher": "SBV (HCMC branch, national), WB KNOMAD",
-   "source_urls": [],
-   "calendar_id": "remittances",
+   "source_urls": [
+    "https://vneconomy.vn/kieu-hoi-ve-tp-ho-chi-minh-hon-4-ty-usd-trong-6-thang-dau-nam-2026.htm",
+    "https://en.baochinhphu.vn/hcmc-absorbs-over-1034-billion-of-remittances-in-2025-111260123102358585.htm",
+    "https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html"
+   ],
+   "calendar_id": "remittances_hcmc / remittances / sbv_bop / wb_knomad",
    "last_checked": "2026-10-06",
    "last_changed": null,
-   "note": "2025 national SBV figure null; only \"over 16 bn\" lower bound found."
+   "note": "Priority watch #2. National 2025 only a lower bound ('over 16 bn', Foreign Minister). 2023=2024=16.0 untraced. Three definitions: SBV kiều hối, BoP secondary income, KNOMAD.",
+   "priority_watch": 2
   },
   {
    "id": "econ.labour_export",
@@ -893,6 +906,45 @@
    "calendar_id": null,
    "last_checked": "2026-10-06",
    "last_changed": null
+  },
+  {
+   "id": "econ.fdi_registered_disbursed",
+   "tab": "Kinh tế (+ Party-tab gap chart, Đầu tư macro if added)",
+   "owner_agent": "Economy",
+   "file": "data/economy.json",
+   "json_path": "ECON_OFFICIAL.fdi_reg_musd / fdi_dis_musd; ECON_OFFICIAL.ytd_2026.fdi_*; ECONFLOW.projections.series.fdi_disbursed_busd_target; ECONFLOW.bop.s.fdi_in",
+   "page_use": "hero growth bars context, Party-tab FDI gap chart (ciEconQ 'fdi_reg_musd'), FDI disbursed tile vs NQ 10 target",
+   "unit": "million USD (annual), bn USD (targets)",
+   "frequency": "monthly cumulative (NSO/FIA on the 3rd)",
+   "latest_period": "Jan-Sep 2026",
+   "publisher": "NSO + Foreign Investment Agency (MoF)",
+   "source_urls": [
+    "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+    "https://www.vietnamplus.vn/9-thang-nam-2026-von-dau-tu-nuoc-ngoai-dang-ky-vao-viet-nam-tang-764-post1140075.vnp"
+   ],
+   "calendar_id": "fia_fdi_monthly",
+   "last_checked": "2026-10-06",
+   "last_changed": null,
+   "priority_watch": 1,
+   "note": "Family view across the FDI paths; see data/research/priority_watch.json for the derived disbursed/registered ratio."
+  },
+  {
+   "id": "inv.macro_fdi",
+   "tab": "Đầu tư",
+   "owner_agent": "Investing",
+   "file": "data/invest_macro.json",
+   "json_path": "MACRO.fdi (does not exist yet — proposed)",
+   "page_use": "macro context block (proposal)",
+   "unit": "bn USD",
+   "frequency": "monthly",
+   "latest_period": null,
+   "publisher": "mirror of Economy ECON_OFFICIAL.ytd_2026",
+   "source_urls": [],
+   "calendar_id": "fia_fdi_monthly",
+   "last_checked": "2026-10-06",
+   "last_changed": null,
+   "priority_watch": 1,
+   "note": "Proposed additive key; must equal Economy's values and cite the same release."
   }
  ]
 }

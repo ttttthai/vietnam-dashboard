@@ -1,12 +1,52 @@
 # Update plan
 
-As of 2026-10-06 (Research, first run). Ordered by priority within each owner. Evidence and the "which is
+As of 2026-10-06 (Research, first run; priority-watch pass added the same day). Ordered by priority within each owner. Evidence and the "which is
 right" reasoning are in `consistency_report.md` (refs A#/B#). Release dates come from `release_calendar.json`;
 the proposed recurring jobs are in `schedule.json` (none created — the main session asks the user).
 
 Access note for every agent: no source host is reachable from the sandbox (curl CONNECT 403 and WebFetch
 EGRESS_BLOCKED for nso.gov.vn, sbv.gov.vn, mof.gov.vn, imf.org, api.worldbank.org, all press). Only WebSearch
 works and its budget is shared — plan each run's queries (see `source_log.json`).
+
+## Priority watch (user standing task) — FDI, remittances, tourism
+Full detail, derived ratios, traps and news in `data/research/priority_watch.json` (as of 2026-10-06).
+
+| Rank | Series | Held | Latest published | Status | Next |
+|---|---|---|---|---|---|
+| 1 | FDI registered vs disbursed | 9M-2026 reg 50,360 / dis 21,070 m USD | same, NSO/FIA 03/10/2026 (excerpt) | values current; components + ratio not held | 03/11/2026 |
+| 2 | Remittances | national 2025/2026 null; HCMC 2025 10.34, H1-2026 4.037 | national only "over 16 bn" (speech); HCMC H1 | HCMC 9M due ~20–25/10; SBV BoP Q2-2026 overdue | 20–25/10/2026 |
+| 3 | Tourism | 9M 17,680 k arrivals; Sep 1.77 m | same, NSO 03/10/2026 (excerpt) | current; by-market not held | 03/11/2026 |
+
+Derived (Research, not published): disbursed/registered = **41.8%** 9M-2026 (8M 42.5%; implied 9M-2025 65.8%;
+FY2025 71.9%, FY2024 66.3%, FY2023 58.9%). Sep-2026 alone (9M − 8M): registered 9.73 bn, disbursed 3.82 bn.
+
+### Economy — priority items (do with the 04/11 run unless marked)
+1. **FDI components (additive keys, `ECON_OFFICIAL.ytd_2026`)**: new 29.24 bn (3,108 projects), adjusted 14.15 bn
+   (948 times, +25.1%), capital contribution & share purchase 6.97 bn (+44%); sum = 50.36. Source: NSO 9M report
+   https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/ and
+   https://www.vietnamplus.vn/9-thang-nam-2026-von-dau-tu-nuoc-ngoai-dang-ky-vao-viet-nam-tang-764-post1140075.vnp
+   (excerpt). Keep components every month so the page can show *why* registered jumps (Sep: Can Gio port >4.9 bn).
+2. **FDI vintage label** `ECON_OFFICIAL.fdi_reg_musd`: 2022 29,288.2 and 2023 39,390.3 are the revised vintage;
+   first releases were 27.72 / 36.61 bn (https://taisancong.vn/viet-nam-thu-hut-3661-ty-usd-von-fdi-nam-2023-von-giai-ngan-lap-ky-luc-27805.html);
+   2024–2025 are first releases. Not wrong — add a per-year vintage note in `ECON_OFFICIAL.sources`.
+3. **Remittances**: `ECONFLOW.remit.national_sbv_busd` 2023 = 2024 = 16.0 with no URL — cite or set null.
+   2025 national stays **null** (only "over 16 bn", Foreign Minister,
+   https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html — already in note).
+   Add HCMC quarterly split Q1 2.004 / Q2 2.032 (H1 4.037) to `hcmc_H1_2026_busd` if wanted. **Run ~25/10** for HCMC 9M-2026
+   (9M-2025 comparator: 7.94 bn, +6.3%). Check whether Region 2 figures cover merged HCMC (from 01/07/2025).
+4. **BoP Q2-2026** (`ECONFLOW.bop.quarterly`): overdue; check ~20/10. Do not store the unconfirmed 11.1 bn CA-deficit claim.
+5. **Tourism** (additive, e.g. `ECONFLOW.tour.by_market_9M2026`): China 3.9 m (22.4%), Korea 3.0 m (17.3%), Russia ~1.1 m
+   (+160.6%), Europe +55%; target 25 m (71% reached); 2026 revenue target ~1,125 tn VND. Only store values whose period is
+   unambiguous (several market growth rates in the excerpts mix Q3 and 9M). Add the VNAT 2025 revenue URL
+   (https://vietnamnews.vn/society/1743207/viet-nam-s-international-tourism-sees-best-year-in-2025-with-arrivals-hitting-over-21-million.html)
+   to `tour.sources.total_tourism_revenue_vnat_trn_vnd`. Re-check outbound 9M −21.2% vs Q3 +16.4% against the NSO table.
+6. **Page copy guard** (for Ed via Economy's report): BoP `fdi_in` is ~80% of NSO disbursed every year 2015–2025 — never
+   label BoP FDI as "disbursement"; registered includes M&A (share purchases), so "FDI pledges" ≠ new factories.
+
+### Investing (`data/invest_macro.json`)
+1. Optional additive `MACRO.fdi` block mirroring Economy exactly (9M-2026 reg 50.36 / dis 21.07 bn, yoy, components,
+   period, same NSO URL, `derived_ratio_pct` 41.8 labelled derived). Needs a rendering change in `renderInvStory` (Ed/main
+   session) — describe, do not edit code. Not before Economy has stored the components (one source of truth).
 
 ## Due now / this week
 
@@ -62,6 +102,9 @@ the Policies tab need to read from Policy/Finance data or be removed — Ed owns
 ## Waiting on a release (do not poll before)
 | Release | Expected | Owners |
 |---|---|---|
+| SBV BoP Q2-2026 (overdue) | check 20/10/2026 | Economy (priority #1/#2) |
+| HCMC remittances 9M-2026 (SBV Region 2) | ~20–25/10/2026 | Economy (priority #2) |
+| NSO/FIA Jan–Oct FDI + arrivals | 03/11/2026 | Economy (priority #1/#3), Investing mirror |
 | IMF WEO Oct-2026 | 13/10/2026 | Economy, Finance |
 | Fed FOMC | 28/10 and 09/12/2026 | Finance |
 | NSO Oct report + CPI | 03/11/2026 | Economy (+Policy stance, Investing macro) |
@@ -100,3 +143,10 @@ the Policies tab need to read from Policy/Finance data or be removed — Ed owns
   `FINSYS`, `POLICY` and delete the constants. (b) is preferred — one source per figure.
 - **P-8** `calcEconModel`: use `ECON_OFFICIAL.usd_vnd` per year; use `liveUSDVND` only for the current year.
 - **P-9** README: scheduler time (00:00, not 15:30) and vnstock note.
+- **P-10 Priority-watch schedule (2026-10-06).** All 19 routines are PAUSED until the repo is attached. When re-enabled,
+  the main session may ask the user to add: `priority-remit-hcmc` (25th of Jan/Apr/Jul/Oct, first 25/10/2026) and
+  `priority-bop-quarterly` (one-shot 20/10/2026, then 20th of Jan/Apr/Jul/Oct, can share the fin-monthly-tables run);
+  FDI and tourism need no new trigger (they ride `econ-monthly-nso` on the 4th); the FDI news scan rides
+  `research-weekly-audit`. Details in `schedule.json`.
+- **P-11 Page (Ed).** Show FDI registered by component (stacked new/adjusted/M&A) next to disbursed, and the derived
+  ratio labelled "≈, derived"; once Economy stores the components.

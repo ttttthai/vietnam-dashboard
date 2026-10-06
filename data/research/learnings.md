@@ -58,3 +58,52 @@ All edits keep each file's structure and ownership rules.
 - Re-read `data/economy.json` after the Economy agent's run and re-check A9, A13–A15.
 - Confirm the GRDP Q4 date in Decree 13/2026; confirm SBV table month labels (A6) with Finance's answer.
 - Record the actual IMF WEO release (13/10) and the next NSO release (03/11) as evidence, and adjust confidence.
+
+## 2026-10-06 — priority-watch pass (user standing task: FDI registered vs disbursed, remittances, tourism)
+
+### What I learned (12 web searches, all excerpt-level; no page fetches attempted — hosts blocked as logged above)
+1. **FDI 9M-2026 (NSO/FIA, released 03/10/2026):** registered 50.36 bn (+76.4%) = new 29.24 bn (3,108 projects, ×2.4)
+   + adjusted 14.15 bn (948 times, +25.1%) + capital contribution & share purchase 6.97 bn (+44%) — components sum
+   exactly. Disbursed 21.07 bn (+12.1%, five-year 9M high). 8M: 40.63 / 17.25 bn. Economy's totals match; the
+   components are not held. FIA now publishes with NSO on the 3rd (both under MoF) — new calendar id `fia_fdi_monthly`.
+2. **Derived ratio** (labelled derived in priority_watch.json): disbursed/registered 41.8% (9M-2026) vs implied 65.8%
+   (9M-2025) and 71.9% (FY2025). The 2026 drop is a registration surge (mega-projects: Can Gio port >4.9 bn, AI data
+   centre ~2.1 bn in HCMC), not weak disbursement.
+3. **BoP FDI inflow ≈ 80% of NSO disbursed in every year 2015–2025** — the held BoP series is not an independent
+   cross-check of disbursement (likely SBV estimation method; not confirmed).
+4. **Vintage mix in `ECON_OFFICIAL.fdi_reg_musd`:** 2022/2023 are revised (29,288.2 / 39,390.3) vs first releases
+   27.72 / 36.61 bn; 2024–2025 are first releases. FIA's yoy rates use the revised base.
+5. **Remittances:** still no SBV national figure for 2025 (only "over 16 bn", Foreign Minister) or 2026. HCMC (SBV Region 2):
+   Q1 2.004, Q2 2.032, H1 4.037 bn (−22.8%); FY outlook 8.6–8.9 bn; 9M-2025 comparator 7.94 bn. Release lag ~3–4 weeks after
+   quarter end (22/07/2026, 23/01/2026) → new calendar id `remittances_hcmc`, next ~20–25/10/2026. A "9 tháng gần 8 tỷ"
+   article ranks first in searches but is 9M-2025 — pitfall logged.
+6. **SBV BoP Q2-2026** not found (overdue). Corrected my earlier calendar text that said no 2026 quarterly BoP existed
+   (Q1-2026 is held via VnEconomy).
+7. **Tourism:** 9M 17.68 m (+14.5%), ~71% of 25 m target; China 3.9 m (22.4%), Korea 3.0 m (17.3%), Russia ~1.1 m
+   (+160.6%), Europe +55%; several market growth rates in press mix Q3 and 9M. 2025 revenue >1,000 tn VND, 2026 target
+   ~1,125 tn. NSO 3rd-of-month rule re-confirmed (8M tourism item published Sep-2026; 9M on Sat 03/10); next 03/11 (Tue).
+   Outbound 9M −21.2% vs Q3 +16.4% flagged for checking.
+
+### Files written / changed
+- New `data/research/priority_watch.json` (ranked items, sub-items, derived ratios, traps, conflicts, news_watch).
+- `inventory.json`: `priority_watch` rank on econ.tourism / econ.remittances / econ.bop / econ.official_*; new families
+  `econ.fdi_registered_disbursed`, `inv.macro_fdi` (proposed key).
+- `release_calendar.json`: new `fia_fdi_monthly`, `remittances_hcmc`, `wb_knomad` (low confidence), `vnat_tourism`;
+  evidence added to `nso_monthly_report`, `sbv_bop` (rule rewritten, correction noted), `remittances`.
+- `schedule.json`: FDI/tourism series added to `econ-monthly-nso`; proposed `priority-remit-hcmc`, `priority-bop-quarterly`,
+  `priority-fdi-news-scan` (inside the weekly audit), `priority-annual-remit-tour`; `priority_watch_note` (routines paused).
+- `source_log.json`: new hosts FIA, SBV Region 2 (via press), VNAT; press entry access tip for priority series.
+- `update_plan.md`: priority-watch section at the top; waiting-on-release rows; proposals P-10, P-11.
+
+### Upgrades made (agent definitions)
+- `.claude/agents/economy.md`: new "Priority watch" bullet under Release timing & access (FDI components, vintage and
+  BoP-vs-disbursed traps, provincial FDI; three remittance definitions, speech-number rule, HCMC quarterly lag and merged
+  territory; tourism market periods, receipts vs revenue).
+- `.claude/agents/investing.md`: new section "Sourcing notes for priority series" (mirror Economy's FDI values exactly
+  incl. components, label derived ratio, release on the 3rd; remittance/tourism definitions).
+Both keep their structure and ownership rules.
+
+### Next run should
+- ~25/10: HCMC 9M remittances; 20/10: SBV BoP Q2-2026; 03/11: Jan–Oct FDI components + arrivals — update
+  priority_watch.json `latest_published` and the derived ratio.
+- Verify the merged-HCMC basis of Region 2 remittances, and the outbound-travel sign.

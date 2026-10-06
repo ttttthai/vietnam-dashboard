@@ -26,6 +26,15 @@ rates). The macro block must **agree with those owners' files** — take values 
   (20 sessions), charter capital ≥ **5,000 bn VND**.
 - vnstock is **not** installed and must not be installed; market data comes from the server's sources.
 
+## Sourcing notes for priority series (maintained by Research — see `data/research/priority_watch.json`)
+- FDI is a user priority series (registered vs disbursed). If the macro block carries FDI (proposed additive key
+  `MACRO.fdi`), copy Economy's `ECON_OFFICIAL.ytd_2026` values and URL exactly — registered total and its components
+  (new / adjusted / capital contribution & share purchase), disbursed, yoy, period — and label any
+  disbursed/registered ratio as derived (≈). Registered includes M&A share purchases, so do not describe it as new
+  capacity; disbursed is an estimate revised the following month. Release: NSO/FIA on the 3rd of the following month.
+- Remittances and tourism, if cited in research notes, come from Economy's `ECONFLOW.remit` / `ECONFLOW.tour` with the
+  definition named (SBV kiều hối vs BoP secondary income; arrivals vs receipts).
+
 ## Rules
 1. **No investment advice.** No buy/sell/hold calls, price targets, "undervalued", "should", rankings by
    attractiveness or expected returns. Present facts, dated disclosures, sourced analyst statements attributed by

@@ -15,10 +15,11 @@
     "2027-01-03 (Q4 + full-year 2026 report)"
    ],
    "feeds": [
+    "econ.fdi_registered_disbursed",
     "econ.gdp_growth_quarterly",
+    "econ.investment",
     "econ.official_ytd",
     "econ.tourism",
-    "econ.investment",
     "inv.macro_context",
     "pol.stance"
    ],
@@ -35,11 +36,16 @@
     },
     {
      "rule_source": "https://baochinhphu.vn/chinh-phu-thay-doi-lich-pho-bien-mot-so-thong-tin-thong-ke-quan-trong-102260114171529601.htm"
+    },
+    {
+     "observed": "2026-09 (8M tourism news item)",
+     "what": "NSO 'Khách quốc tế 8 tháng đạt gần 16 triệu' published in Sep-2026",
+     "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/khach-quoc-te-den-viet-nam-8-thang-dat-gan-16-trieu-luot-nguoi-huong-toi-muc-tieu-25-trieu-khach-nam-2026/"
     }
    ],
    "confidence": "high",
    "learned": "2026-10-06",
-   "note": "Agent definitions said \"~6th\" — corrected to the 3rd on 2026-10-06."
+   "note": "Agent definitions said \"~6th\" — corrected to the 3rd on 2026-10-06. Next (Oct report) 03/11/2026 is a Tuesday. Priority watch: FDI and tourism arrive in this release."
   },
   {
    "id": "nso_cpi",
@@ -499,9 +505,11 @@
    "id": "sbv_bop",
    "publisher": "SBV",
    "frequency": "quarterly/annual",
-   "release_rule": "BoP: SBV publishes quarterly BoP irregularly; IMF BOP database carries annual SBV data with ~6-month lag. No 2026 quarterly BoP found by 6 Oct.",
+   "release_rule": "SBV quarterly BoP, irregular; reported in press roughly 2-4 months after quarter end (Q1-2026 found via VnEconomy). IMF BOP carries annual SBV data with ~6-month lag.",
    "next_expected": [
-    "2027-H1 (2026 annual)"
+    "Q2-2026: overdue as of 2026-10-06 — check 2026-10-20",
+    "Q3-2026: ~2026-12/2027-01",
+    "2026 annual: 2027-H1"
    ],
    "feeds": [
     "econ.bop"
@@ -509,16 +517,21 @@
    "evidence": [
     {
      "observed": "economy.json bop.note"
+    },
+    {
+     "observed": "Q1-2026 BoP (date of article not recorded)",
+     "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm"
     }
    ],
    "confidence": "low",
-   "learned": "2026-10-06"
+   "learned": "2026-10-06",
+   "note": "Correction 2026-10-06 (2nd pass): earlier text said no 2026 quarterly BoP found; Q1-2026 is held in economy.json bop.quarterly."
   },
   {
    "id": "remittances",
    "publisher": "SBV HCMC branch; SBV; WB KNOMAD",
    "frequency": "annual",
-   "release_rule": "HCMC remittances announced early January; national figure at SBV year-end briefings (often only \"over X bn\"); KNOMAD June/December.",
+   "release_rule": "National: no regular SBV release; figure appears in year-end SBV briefings or ministers' speeches (2025: 'over 16 bn', Foreign Minister). HCMC: see remittances_hcmc. KNOMAD: see wb_knomad.",
    "next_expected": [
     "2027-01 (2026)"
    ],
@@ -528,6 +541,11 @@
    "evidence": [
     {
      "observed": "economy.json remit.note"
+    },
+    {
+     "observed": "2026 (date not confirmed)",
+     "what": "'over 16 bn' 2025 record (Foreign Minister)",
+     "url": "https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html"
     }
    ],
    "confidence": "medium",
@@ -757,6 +775,116 @@
    ],
    "confidence": "high",
    "learned": "2026-10-06"
+  },
+  {
+   "id": "fia_fdi_monthly",
+   "publisher": "Foreign Investment Agency (Cục Đầu tư nước ngoài, MoF) + NSO",
+   "frequency": "monthly",
+   "release_rule": "Cumulative YTD registered (new / adjusted / capital contribution & share purchase) and disbursed; published with the NSO report on the 3rd of the following month (FIA and NSO are both under MoF since 2025) — FIA copy may appear the same day or a day either side.",
+   "next_expected": [
+    "2026-11-03 (Jan-Oct)",
+    "2026-12-03 (Jan-Nov)",
+    "2027-01-03 (FY2026)"
+   ],
+   "feeds": [
+    "econ.fdi_registered_disbursed",
+    "econ.official_ytd",
+    "econ.official_annual",
+    "inv.macro_fdi"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-10-03",
+     "what": "9M-2026: 50.36 bn registered, 21.07 bn disbursed",
+     "url": "https://dtinews.dantri.com.vn/vietnam-today/foreign-investment-in-vietnam-surpasses-usd-50-billion-20261003221500961.htm"
+    },
+    {
+     "observed": "2026-09 (exact day not recorded)",
+     "what": "8M-2026: 40.63 bn / 17.25 bn",
+     "url": "https://bnews.vn/8-thang-nam-2026-tong-von-dau-tu-nuoc-ngoai-dang-ky-vao-viet-nam-tang-55-4/435478.html"
+    },
+    {
+     "observed": "2026-01 (early)",
+     "what": "FY2025: 38.42 bn / 27.62 bn",
+     "url": "https://vietstock.vn/2026/01/von-fdi-thuc-hien-tai-viet-nam-nam-2025-uoc-dat-2762-ty-usd-cao-nhat-trong-5-nam-qua-768-1388009.htm"
+    }
+   ],
+   "confidence": "high",
+   "learned": "2026-10-06",
+   "priority_watch": 1
+  },
+  {
+   "id": "remittances_hcmc",
+   "publisher": "SBV Region 2 branch (HCMC)",
+   "frequency": "quarterly",
+   "release_rule": "~3-4 weeks after quarter end via press; full-year forecast ~1 Jan, actual ~3rd week of January.",
+   "next_expected": [
+    "2026-10-20..25 (9M-2026)",
+    "2027-01-20..25 (FY2026)"
+   ],
+   "feeds": [
+    "econ.remittances"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-07-22",
+     "what": "H1-2026 4.037 bn (−22.8%)",
+     "url": "https://thanhnien.vn/kieu-hoi-ve-tphcm-giam-23-185260722182013952.htm"
+    },
+    {
+     "observed": "2026-01-23",
+     "what": "FY2025 10.34 bn (+8.3%)",
+     "url": "https://en.baochinhphu.vn/hcmc-absorbs-over-1034-billion-of-remittances-in-2025-111260123102358585.htm"
+    },
+    {
+     "observed": "2026-01-01",
+     "what": "FY2025 estimate ~10.5 bn",
+     "url": "https://nld.com.vn/kieu-hoi-dat-muc-ky-luc-them-nguon-luc-lon-196260101222804058.htm"
+    }
+   ],
+   "confidence": "medium",
+   "learned": "2026-10-06",
+   "priority_watch": 2
+  },
+  {
+   "id": "wb_knomad",
+   "publisher": "World Bank KNOMAD (Migration and Development Brief) / WDI",
+   "frequency": "semiannual",
+   "release_rule": "Brief ~June and ~December; WDI personal remittances updated with WDI July/December.",
+   "next_expected": [
+    "2026-12"
+   ],
+   "feeds": [
+    "econ.remittances"
+   ],
+   "evidence": [],
+   "confidence": "low",
+   "learned": "2026-10-06",
+   "priority_watch": 2,
+   "note": "Rule from prior pattern, no 2026 release date observed this run."
+  },
+  {
+   "id": "vnat_tourism",
+   "publisher": "VNAT (Cục Du lịch Quốc gia) / NSO",
+   "frequency": "monthly (arrivals via NSO); annual revenue",
+   "release_rule": "Arrivals and market breakdown with the NSO report on the 3rd; VNAT republishes same day/next day. Annual revenue and next-year targets at the year-end review (late Dec / Jan).",
+   "next_expected": [
+    "2026-11-03 (Jan-Oct)",
+    "2027-01 (FY2026 revenue)"
+   ],
+   "feeds": [
+    "econ.tourism"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-10-04",
+     "what": "9M-2026 market breakdown in press",
+     "url": "https://thanhnien.vn/viet-nam-don-hon-177-trieu-khach-quoc-te-dat-71-muc-tieu-nam-185261004080017905.htm"
+    }
+   ],
+   "confidence": "high",
+   "learned": "2026-10-06",
+   "priority_watch": 3
   }
  ]
 }

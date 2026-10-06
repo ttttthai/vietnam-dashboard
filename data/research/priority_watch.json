@@ -1,0 +1,489 @@
+{
+ "as_of": "2026-10-06",
+ "built_by": "Research agent",
+ "standing_task": "User: pay special focus (create a priority list) to FDI disbursement vs registered news, remittances, tourism. Kept every run; items ranked.",
+ "verification_legend": {
+  "page": "canonical page read",
+  "excerpt": "value seen in a search-engine excerpt only (all source hosts blocked from the sandbox)",
+  "unverified": "not confirmed this run"
+ },
+ "items": [
+  {
+   "rank": 1,
+   "key": "fdi_registered_vs_disbursed",
+   "why_priority": "Largest gap between headline and reality on the page: registered FDI (pledges, incl. M&A) jumped +76.4% in 9M-2026 while disbursed rose +12.1%; the derived disbursed/registered ratio fell to ~41.8% (implied 9M-2025: ~65.8%; FY2025: 71.9%). Feeds the hero/Party-tab gap chart, the NQ 10-NQ/TW 30-40 bn disbursement target check and BoP FDI.",
+   "owner_agent": "Economy (Investing mirrors in the macro block if added)",
+   "feeds": [
+    "data/economy.json ECON_OFFICIAL.fdi_reg_musd",
+    "ECON_OFFICIAL.fdi_dis_musd",
+    "ECON_OFFICIAL.ytd_2026.fdi_reg_musd_9M / fdi_reg_yoy_pct / fdi_dis_musd_9M / fdi_dis_yoy_pct",
+    "ECONFLOW.bop.s.fdi_in / fdi_net",
+    "ECONFLOW.bop.quarterly.fdi_net",
+    "ECONFLOW.projections.series.fdi_disbursed_busd_target",
+    "data/invest_macro.json MACRO (no FDI key today)"
+   ],
+   "latest_held": {
+    "period": "Jan-Sep 2026",
+    "value": {
+     "registered_musd": 50360.0,
+     "registered_yoy_pct": 76.4,
+     "disbursed_musd": 21070.0,
+     "disbursed_yoy_pct": 12.1
+    },
+    "annual_last": {
+     "period": "2025",
+     "registered_musd": 38418.1,
+     "disbursed_musd": 27620.0
+    }
+   },
+   "latest_published": {
+    "period": "Jan-Sep 2026 (to 30/09/2026)",
+    "value": {
+     "registered_busd": 50.36,
+     "registered_yoy_pct": 76.4,
+     "components": {
+      "new": {
+       "busd": 29.24,
+       "projects": 3108,
+       "note": "x2.4 capital, +6.2% projects yoy"
+      },
+      "adjusted": {
+       "busd": 14.15,
+       "projects_times": 948,
+       "yoy_pct": 25.1
+      },
+      "capital_contribution_share_purchase": {
+       "busd": 6.97,
+       "yoy_pct": 44.0
+      }
+     },
+     "disbursed_busd": 21.07,
+     "disbursed_yoy_pct": 12.1,
+     "top_investor_new": "Singapore 9.26 bn (31.7% of new)",
+     "top_sector_new": "manufacturing 13.38 bn (45.8% of new)"
+    },
+    "source": "NSO 9M report / Foreign Investment Agency (Cục Đầu tư nước ngoài, MoF), released 03/10/2026",
+    "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+    "alt_urls": [
+     "https://www.vietnamplus.vn/9-thang-nam-2026-von-dau-tu-nuoc-ngoai-dang-ky-vao-viet-nam-tang-764-post1140075.vnp",
+     "https://en.vietnamplus.vn/fdi-disbursement-hits-five-year-high-in-nine-months-post353062.vnp",
+     "https://dtinews.dantri.com.vn/vietnam-today/foreign-investment-in-vietnam-surpasses-usd-50-billion-20261003221500961.htm"
+    ],
+    "verified": "excerpt",
+    "check": "components sum 29.24+14.15+6.97 = 50.36 (consistent)"
+   },
+   "previous_published": {
+    "period": "Jan-Aug 2026",
+    "registered_busd": 40.63,
+    "registered_yoy_pct": 55.4,
+    "disbursed_busd": 17.25,
+    "disbursed_yoy_pct": 12.0,
+    "url": "https://bnews.vn/8-thang-nam-2026-tong-von-dau-tu-nuoc-ngoai-dang-ky-vao-viet-nam-tang-55-4/435478.html",
+    "alt_url": "https://tapchikinhtetaichinh.vn/infographic-8-thang-nam-2026-von-dau-tu-truc-tiep-nuoc-ngoai-thuc-hien-tai-viet-nam-dat-17-25-ty-usd-166529.html",
+    "verified": "excerpt"
+   },
+   "derived": {
+    "label": "derived by Research (not published figures)",
+    "disbursed_to_registered_pct": {
+     "2010": 55.3,
+     "2011": 70.5,
+     "2012": 61.5,
+     "2013": 51.4,
+     "2014": 57.0,
+     "2015": 60.1,
+     "2016": 58.8,
+     "2017": 47.2,
+     "2018": 52.5,
+     "2019": 52.3,
+     "2020": 64.4,
+     "2021": 50.8,
+     "2022": 76.5,
+     "2023": 58.9,
+     "2024": 66.3,
+     "2025": 71.9,
+     "9M2026": 41.8,
+     "8M2026": 42.5,
+     "9M2025_implied": 65.8
+    },
+    "method": "fdi_dis_musd / fdi_reg_musd x 100 from ECON_OFFICIAL (annual) and the NSO/FIA YTD totals; 9M2025_implied backs out the 9M-2025 base from the published yoy rates (21.07/1.121 = 18.80; 50.36/1.764 = 28.55).",
+    "sep_2026_month_derived_busd": {
+     "registered": 9.73,
+     "disbursed": 3.82,
+     "method": "9M minus 8M cumulative"
+    },
+    "bop_fdi_in_to_nso_disbursed_pct": "79-81% every year 2015-2025 (e.g. 2025: 21.99 / 27.62 = 79.6%) — so BoP FDI inflow is not an independent check of disbursement (consistent with SBV estimating BoP FDI from realised capital net of domestically funded parts; method not confirmed this run).",
+    "target_check": "NQ 10-NQ/TW: disbursed 30-40 bn/yr; 9M-2026 21.07 bn. 2025 Q4 alone added 27.62 - 9M-2025 (~18.80 implied) ≈ 8.8 bn, so a similar Q4 would leave 2026 near ~30 bn — derived arithmetic only, not a forecast."
+   },
+   "gap_status": "current (values) / due (components and ratio not held)",
+   "release_rhythm": "Monthly, cumulative YTD. NSO socio-economic report on the 3rd of the following month (Decree 13/2026); FIA (now under MoF) publishes the same figures the same day or a day either side. Observed: 9M on 03/10/2026; FY2025 in early Jan-2026. Disbursed is an estimate (ước) revised the next month.",
+   "next_expected": "2026-11-03 (Jan-Oct); 2026-12-03 (Jan-Nov); 2027-01-03 (FY2026)",
+   "best_sources": [
+    {
+     "host": "www.nso.gov.vn",
+     "what": "monthly report section 'Đầu tư' — registered (3 components) and disbursed",
+     "reachable": false
+    },
+    {
+     "host": "fia.mof.gov.vn / investvietnam.vn",
+     "what": "FIA monthly 'Tình hình thu hút ĐTNN' report: by partner, sector, province; adjusted and M&A detail",
+     "reachable": false
+    },
+    {
+     "host": "vietnamplus.vn / en.vietnamplus.vn / bnews.vn / baodautu.vn",
+     "what": "same-day verbatim copies of the FIA release (best excerpts)",
+     "reachable": false
+    },
+    {
+     "host": "WebSearch",
+     "what": "one query in Vietnamese ('vốn FDI N tháng năm 2026 đăng ký cấp mới điều chỉnh góp vốn mua cổ phần giải ngân') returns all components",
+     "reachable": true
+    }
+   ],
+   "definition_traps": [
+    "Registered (tổng vốn đăng ký) = new projects' registered capital + adjusted (added) capital of existing projects + value of capital contributions/share purchases (góp vốn, mua cổ phần, GVMCP). GVMCP is M&A of existing firms; it is not a new plant and need not bring fresh FX (can be a buy-out from residents).",
+    "Disbursed (vốn thực hiện) = capital actually spent by FDI projects in the period, including funds raised domestically; it is an estimate, revised later.",
+    "BoP FDI (SBV, BPM6) ≠ disbursed: liabilities-side inflows only, excludes domestically funded spending; held series is ~80% of disbursed.",
+    "Ratio moves because registration is lumpy (one mega-project, e.g. a 4.9 bn port, moves a month's total) and front-loaded, while disbursement follows construction over 3-5 years; a registration surge lowers the ratio for 1-2 years, then disbursement catches up (2022's ratio 76.5% was a low-registration year).",
+    "Vintage: ECON_OFFICIAL.fdi_reg_musd 2010-2023 carry the revised vintage (e.g. 2023 39,390.3; 2022 29,288.2) while 2024-2025 are first releases; first releases were 36.61 bn (2023) and 27.72 bn (2022). Year-on-year rates published by FIA use the revised base (2024 'down 3%' vs 39.39).",
+    "YTD yoy rates compare with the same period's revised base, so 9M-2025 implied (28.55 bn) may differ from the 9M figure published a year ago.",
+    "Provincial totals (e.g. HCMC 17.2 bn to 19/9) use the province's own cut-off and include domestic-registered capital of FDI firms in some reports — never add them to the national figure."
+   ],
+   "open_conflicts": [
+    {
+     "what": "ECON_OFFICIAL.fdi_reg_musd 2022/2023 vs first-release FIA",
+     "held": "29,288.2 / 39,390.3",
+     "published": "27.72 / 36.61 bn (Jan-2023/Jan-2024 releases)",
+     "url": "https://taisancong.vn/viet-nam-thu-hut-3661-ty-usd-von-fdi-nam-2023-von-giai-ngan-lap-ky-luc-27805.html",
+     "assessment": "Vintage difference, not an error — but the array mixes revised (≤2023) and first-release (2024-25) values without saying so. Economy to label the vintage per year."
+    },
+    {
+     "what": "BoP FDI inflow vs NSO disbursed",
+     "assessment": "Definitional (see traps); page copy must not call BoP FDI 'disbursement'."
+    }
+   ],
+   "news_watch": [
+    {
+     "date": "2026-10-03",
+     "item": "9M-2026: registered 50.36 bn (+76.4%), disbursed 21.07 bn (+12.1%, five-year high for 9M); Singapore largest new-capital investor 9.26 bn",
+     "url": "https://english.vov.vn/en/economy/fdi-tops-us50-billion-in-nine-months-disbursement-hits-five-year-high-post1338239.vov",
+     "verified": "excerpt"
+    },
+    {
+     "date": "2026-10-04",
+     "item": "Real estate drew nearly 7 bn USD registered FDI in 9M-2026; ~1.6 bn disbursed",
+     "url": "https://dtinews.dantri.com.vn/vietnam-today/vietnam-real-estate-draws-nearly-usd-7-billion-in-fdi-in-nine-months-20261004200904681.htm",
+     "alt_url": "https://vietstock.vn/2026/10/bat-dong-san-hut-16-ty-usd-von-fdi-thuc-hien-sau-9-thang-4220-1498663.htm",
+     "verified": "excerpt"
+    },
+    {
+     "date": "2026-09-25",
+     "item": "HCMC registered FDI >17.2 bn to 19/09/2026 (156.6% of the year plan); largest: Can Gio International Transshipment Port (>4.9 bn) and an AI Factory data centre (~2.1 bn, AIC)",
+     "url": "https://news.tuoitre.vn/ho-chi-minh-city-fdi-surpasses-full-year-target-103260925122256548.htm",
+     "alt_urls": [
+      "https://cafef.vn/cang-can-gio-trung-tam-du-lieu-lon-mang-nguon-von-fdi-ky-luc-ve-tphcm-188260925135826932.chn",
+      "https://vir.com.vn/aic-to-build-21bn-ai-data-centre-in-ho-chi-minh-city-150096.html"
+     ],
+     "verified": "excerpt"
+    },
+    {
+     "date": "2026-10 (approx.)",
+     "item": "Vietnam outward investment 9M-2026 'rose sharply' (value in headline not confirmed — do not use)",
+     "url": "https://www.vietnamplus.vn/dau-tu-cua-viet-nam-ra-nuoc-ngoai-trong-9-thang-dat-277-ty-usd-post1140063.vnp",
+     "verified": "unverified"
+    }
+   ]
+  },
+  {
+   "rank": 2,
+   "key": "remittances",
+   "why_priority": "National remittance totals for 2025 and 2026 YTD are still null on the page; the only 2026 numbers are HCMC's, which fell 22.8% in H1 — a material FX-supply signal; three different definitions are in play.",
+   "owner_agent": "Economy",
+   "feeds": [
+    "ECONFLOW.remit.national_sbv_busd",
+    "ECONFLOW.remit.hcmc_busd",
+    "ECONFLOW.remit.hcmc_H1_2026_busd",
+    "ECONFLOW.remit.national_wb_knomad_busd",
+    "ECONFLOW.bop.s.remit_in",
+    "ECONFLOW.bop.s.secondary_income_in",
+    "ECONFLOW.bop.quarterly.secondary_income_net",
+    "ECONFLOW.labour.remit_statements"
+   ],
+   "sub_items": [
+    {
+     "key": "remittances.national_sbv",
+     "latest_held": {
+      "period": "2024",
+      "value": 16.0,
+      "note": "2025 and 2026 null; 2024/2023 16.0 source not traced ('origin per page footnote')"
+     },
+     "latest_published": {
+      "period": "2025",
+      "value": "over 16 bn USD (record)",
+      "source": "Foreign Minister statement, not an SBV release",
+      "url": "https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html",
+      "verified": "excerpt"
+     },
+     "gap_status": "current (no official SBV national 2025 or 2026 figure found, re-searched 2026-10-06) — keep null; lower bound may be stated in note only",
+     "next_expected": "2027-01 (SBV year-end briefing / Tết diaspora event) — national figure is often a speech number"
+    },
+    {
+     "key": "remittances.hcmc_region2",
+     "latest_held": {
+      "period": "2025 / H1-2026",
+      "value": "10.34 bn (+8.3%) / 4.037 bn (−22.8%)"
+     },
+     "latest_published": {
+      "period": "H1-2026 (Q1 2.004; Q2 2.032)",
+      "value": 4.037,
+      "source": "SBV Region 2 branch",
+      "url": "https://vneconomy.vn/kieu-hoi-ve-tp-ho-chi-minh-hon-4-ty-usd-trong-6-thang-dau-nam-2026.htm",
+      "alt_url": "https://thanhnien.vn/kieu-hoi-ve-tphcm-giam-23-185260722182013952.htm",
+      "verified": "excerpt",
+      "outlook": "8.6-8.9 bn full-year 2026 (SBV Region 2 deputy director Trần Thị Ngọc Liên)"
+     },
+     "gap_status": "current; 9M-2026 due ~20-25/10/2026",
+     "release_rhythm": "Quarterly, ~3-4 weeks after quarter end: H1-2026 on 22/07/2026; FY2025 by 23/01/2026 (full-year estimate already ~01/01). 9M-2025 was 7.94 bn (+6.3%).",
+     "next_expected": "2026-10-20..25 (9M-2026)"
+    },
+    {
+     "key": "remittances.bop_secondary_income",
+     "latest_held": {
+      "period": "2025 annual; Q1-2026",
+      "value": "secondary_income_in 19.766 bn (2025); quarterly net 3.187 bn (Q1-2026)"
+     },
+     "latest_published": {
+      "period": "Q1-2026",
+      "value": "net 3.187",
+      "source": "SBV quarterly BoP via VnEconomy",
+      "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm",
+      "verified": "excerpt"
+     },
+     "gap_status": "overdue (Q2-2026 SBV BoP not found by 06/10; only an unconfirmed secondary claim)",
+     "release_rhythm": "SBV quarterly BoP, irregular, roughly 2-4 months after quarter end (low confidence)",
+     "next_expected": "Q2-2026 any time; check 2026-10-20"
+    },
+    {
+     "key": "remittances.wb_knomad",
+     "latest_held": {
+      "period": "2023",
+      "value": 14.0
+     },
+     "latest_published": {
+      "period": "2024-2025",
+      "value": null,
+      "source": "World Bank KNOMAD / WDI BX.TRF.PWKR.CD.DT",
+      "url": null,
+      "verified": "unverified"
+     },
+     "gap_status": "due at WDI/KNOMAD December 2026 update (2024 likely already in WDI — verify from a reachable runner, proposal P-3)",
+     "next_expected": "2026-12"
+    }
+   ],
+   "definition_traps": [
+    "Kiều hối (SBV) = transfers received through credit institutions and licensed economic organisations (cash + bank channels counted by SBV). HCMC numbers say 'qua các tổ chức tín dụng và tổ chức kinh tế' — a channel-based, not a residency-based, measure.",
+    "BoP secondary income (credit) = all current transfers incl. workers' remittances, personal transfers, aid and other transfers; held secondary_income_in 2025 19.77 bn > 'over 16 bn' kiều hối. Compensation of employees sits in primary income, not here.",
+    "World Bank KNOMAD 'remittances' = personal transfers + compensation of employees (BPM6) — a third definition; held remit_in 2015-2023 is this series.",
+    "Labour-export remittances (MoHA/DOLAB 6-7 bn/yr) are a subset estimate, not additive to the total.",
+    "HCMC share 'about 60% of national' is a rule of thumb, not data — do not derive a national total from it.",
+    "HCMC was merged with Bình Dương and Bà Rịa-Vũng Tàu from 01/07/2025; check whether SBV Region 2's 2025-2026 figures and yoy bases cover the merged city (to verify)."
+   ],
+   "open_conflicts": [
+    {
+     "what": "National 2025: 'over 16 bn' (Foreign Minister) vs BoP secondary income credit 19.77 bn (held)",
+     "assessment": "Different definitions (see traps); not a data conflict. Do not average; label each."
+    },
+    {
+     "what": "ECONFLOW.remit.national_sbv_busd 2023 = 2024 = 16.0",
+     "assessment": "Untraced identical values — Economy to cite or null them."
+    },
+    {
+     "what": "Q2-2026 BoP: secondary claim 'current-account deficit 11.1 bn' (ASEAN Macro Monitor)",
+     "assessment": "Unconfirmed; correctly not stored."
+    }
+   ],
+   "news_watch": [
+    {
+     "date": "2026-07-22",
+     "item": "HCMC H1-2026 remittances 4.037 bn, −22.8% yoy; full-year 2026 seen 8.6-8.9 bn (vs 10.34 bn in 2025)",
+     "url": "https://thanhnien.vn/kieu-hoi-ve-tphcm-giam-23-185260722182013952.htm",
+     "verified": "excerpt"
+    },
+    {
+     "date": "2026-01-23",
+     "item": "HCMC 2025 remittances 10.34 bn (+8.3%); Asia 5.06 bn (48.9%)",
+     "url": "https://en.baochinhphu.vn/hcmc-absorbs-over-1034-billion-of-remittances-in-2025-111260123102358585.htm",
+     "verified": "excerpt"
+    },
+    {
+     "date": "2026 (date not confirmed)",
+     "item": "Foreign Minister: remittances a record 'over 16 bn USD' in 2025",
+     "url": "https://vietnamnet.vn/bo-truong-ngoai-giao-kieu-hoi-dat-muc-ky-luc-hon-16-ty-usd-2478212.html",
+     "verified": "excerpt"
+    }
+   ]
+  },
+  {
+   "rank": 3,
+   "key": "tourism",
+   "why_priority": "Fastest-moving services export with a monthly official series; 2026 target 25 m arrivals and ~1,125 tn VND revenue; source-market mix shifting (Russia/Europe up, China/Korea flat) — the page holds only totals.",
+   "owner_agent": "Economy",
+   "feeds": [
+    "ECONFLOW.tour.intl_arrivals_thousand (9M2026 column)",
+    "ECONFLOW.tour.travel_receipts_busd",
+    "ECONFLOW.tour.travel_payments_busd",
+    "ECONFLOW.tour.vietnamese_outbound_departures_thousand",
+    "ECONFLOW.tour.total_tourism_revenue_vnat_trn_vnd",
+    "ECONFLOW.bop.s.travel_x / travel_m"
+   ],
+   "sub_items": [
+    {
+     "key": "tourism.arrivals",
+     "latest_held": {
+      "period": "Jan-Sep 2026",
+      "value": "17,680 thousand (+14.5%); Sep 1.77 m (+16.1% yoy, −11.3% mom)"
+     },
+     "latest_published": {
+      "period": "Jan-Sep 2026",
+      "value": "17.68 m (+14.5%), ~71% of the 25 m target",
+      "source": "NSO 9M report (03/10/2026)",
+      "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+      "alt_url": "https://thanhnien.vn/viet-nam-don-hon-177-trieu-khach-quoc-te-dat-71-muc-tieu-nam-185261004080017905.htm",
+      "verified": "excerpt"
+     },
+     "gap_status": "current",
+     "next_expected": "2026-11-03 (Jan-Oct)"
+    },
+    {
+     "key": "tourism.by_market",
+     "latest_held": {
+      "period": null,
+      "value": null,
+      "note": "not held"
+     },
+     "latest_published": {
+      "period": "Jan-Sep 2026",
+      "value": {
+       "China": "3.9 m (22.4% share)",
+       "Korea": "3.0 m (17.3%)",
+       "Russia": "~1.1 m (+160.6%), 3rd largest; Q3 >391k (+123.2%)",
+       "Europe": "+55%",
+       "note": "excerpt also gives Taiwan >325k (+9.8%), Japan ~233k (+3.7%), US >216k (+24.7%), India ~180k (+7.5%) — period (Q3 vs 9M) ambiguous in the excerpt; China +1.5% / Korea −5.5% growth also ambiguous"
+      },
+      "source": "NSO/VNAT via press",
+      "url": "https://www.vietnamplus.vn/du-lich-viet-don-177-trieu-khach-sau-9-thang-thi-truong-nao-dang-tang-toc-post1139852.vnp",
+      "alt_url": "https://baovanhoa.vn/du-lich/khach-quoc-te-den-viet-nam-9-thang-2026-tang-145-271196.html",
+      "verified": "excerpt"
+     },
+     "gap_status": "due (optional additive key for Economy, e.g. tour.by_market_9M2026, only values with unambiguous period)"
+    },
+    {
+     "key": "tourism.receipts",
+     "latest_held": {
+      "period": "9M2026",
+      "value": "travel services exports 13.06 bn (+17.4%), imports 10.85 bn (−2.2%); VNAT total revenue 2025 1,000 tn VND"
+     },
+     "latest_published": {
+      "period": "2025 / 2026 target",
+      "value": "total tourism revenue >1,000 tn VND (2025; accommodation & catering 843 tn, travel services 93.9 tn); 2026 target ~1,125 tn VND",
+      "source": "VNAT / Vietnam News",
+      "url": "https://vietnamnews.vn/society/1743207/viet-nam-s-international-tourism-sees-best-year-in-2025-with-arrivals-hitting-over-21-million.html",
+      "verified": "excerpt"
+     },
+     "gap_status": "current (2025 total held; source not recorded in file — Economy to add this URL)"
+    },
+    {
+     "key": "tourism.outbound",
+     "latest_held": {
+      "period": "9M2026",
+      "value": "4,300 thousand (−21.2% yoy; Q3 1.6 m +16.4%)"
+     },
+     "latest_published": {
+      "period": "Jan-Sep 2026",
+      "value": "as held",
+      "source": "NSO 9M report (excerpt did not name the page)",
+      "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+      "verified": "excerpt"
+     },
+     "gap_status": "current — but recheck the sign: 9M −21.2% with Q3 +16.4% needs H1 to have fallen ~−35%; confirm from the NSO table"
+    }
+   ],
+   "release_rhythm": "Monthly with the NSO report on the 3rd (Decree 13/2026; observed 03/07 and 03/10/2026, the latter a Saturday; NSO tourism news item for 8M published in Sep-2026). VNAT republishes the NSO figures and adds market detail; annual revenue at the VNAT year-end conference (late Dec/Jan).",
+   "next_expected": "2026-11-03 (Jan-Oct); 2026-12-03; 2027-01-03 (FY2026)",
+   "best_sources": [
+    {
+     "host": "www.nso.gov.vn",
+     "what": "monthly report 'Khách quốc tế' table (by market, by mode), monthly news item",
+     "reachable": false
+    },
+    {
+     "host": "vietnamtourism.gov.vn",
+     "what": "VNAT statistics page and market breakdown",
+     "reachable": false
+    },
+    {
+     "host": "vietnamplus.vn / thanhnien.vn / baovanhoa.vn",
+     "what": "same-day market breakdown copies",
+     "reachable": false
+    }
+   ],
+   "definition_traps": [
+    "Arrivals are visits (lượt), not persons; include overseas Vietnamese with foreign passports.",
+    "Travel receipts (BoP, SBV/NSO services table, USD) ≠ VNAT 'total tourism revenue' (VND, includes domestic tourism).",
+    "Monthly headline yoy vs mom: Sep −11.3% mom is seasonal.",
+    "Market growth figures in press mix Q3 and 9M — keep period explicit."
+   ],
+   "open_conflicts": [
+    {
+     "what": "Outbound 9M −21.2% vs Q3 +16.4%",
+     "assessment": "Possible but unusual; verify against the NSO table before the page uses the yoy."
+    }
+   ],
+   "news_watch": [
+    {
+     "date": "2026-10-04",
+     "item": "17.7 m arrivals 9M-2026, ~71% of the 25 m target; China 3.9 m, Korea 3.0 m",
+     "url": "https://thanhnien.vn/viet-nam-don-hon-177-trieu-khach-quoc-te-dat-71-muc-tieu-nam-185261004080017905.htm",
+     "verified": "excerpt"
+    },
+    {
+     "date": "2026-10-04",
+     "item": "Russia ~1.1 m in 9M (+160.6%), largest European market; Europe +55%",
+     "url": "https://voh.com.vn/kinh-te/khach-quoc-te-den-viet-nam-tang-manh-chau-au-tang-55-671451.html",
+     "verified": "excerpt"
+    },
+    {
+     "date": "2026-09",
+     "item": "NSO: nearly 16 m arrivals in 8M-2026, aiming at 25 m",
+     "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/khach-quoc-te-den-viet-nam-8-thang-dat-gan-16-trieu-luot-nguoi-huong-toi-muc-tieu-25-trieu-khach-nam-2026/",
+     "verified": "excerpt"
+    }
+   ]
+  }
+ ],
+ "summary_table": [
+  {
+   "rank": 1,
+   "key": "fdi_registered_vs_disbursed",
+   "held": "9M-2026 reg 50.36 / dis 21.07 bn",
+   "published": "same (03/10)",
+   "status": "current; components + ratio missing",
+   "next": "2026-11-03"
+  },
+  {
+   "rank": 2,
+   "key": "remittances",
+   "held": "national 2025/2026 null; HCMC H1-2026 4.037",
+   "published": "national only 'over 16 bn' (speech); HCMC H1",
+   "status": "HCMC 9M due ~20-25/10; BoP Q2 overdue",
+   "next": "2026-10-20..25"
+  },
+  {
+   "rank": 3,
+   "key": "tourism",
+   "held": "9M 17.68 m",
+   "published": "same (03/10)",
+   "status": "current; markets not held",
+   "next": "2026-11-03"
+  }
+ ]
+}
