@@ -274,7 +274,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
   /* "Xã hội" panel reuses the former top-panel header + 3-column row */
   #panel-social { display: none; padding: 0 !important; flex-direction: column; flex: 1; min-height: 0; }
   #panel-social.active { display: flex; }
-  #panel-bottom .panel-inner:has(#panel-social.active) { overflow: hidden; }
+  #soc-explore { display: flex; flex-direction: column; flex: none; height: calc(100vh - 120px); min-height: 640px; border-top: 1px solid var(--border); }
+  #panel-social > #soc-story { padding-left: 16px; padding-right: 16px; }
   /* Map/GDP row: top ~58% · Demographics row: bottom ~42% */
   #panel-social #top-row { flex: 3; min-height: 0; }
   #panel-social #panel-top-right { flex: 2; min-height: 0; display: flex; flex-direction: row; background: var(--bg2); border-top: 1px solid var(--border); overflow: hidden; }
@@ -940,6 +941,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
 
         <!-- Panel: Xã hội (Map + GDP composition + Demographics/Students) -->
         <div id="panel-social" class="panel active">
+        <div id="soc-story" class="st-root"></div>
+        <div id="soc-explore">
         <!-- Row 1: Map + GDP header -->
         <div id="top-panel-header">
       <span class="col-label" style="flex:1;min-width:0">Bản đồ 34 tỉnh · <span id="legend-sel-label" style="color:var(--accent)">Cả nước</span></span>
@@ -1006,6 +1009,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
       </div>
     </div><!-- /panel-top-right -->
 
+        </div><!-- /soc-explore -->
         </div><!-- /panel-social -->
 
         <!-- Panel: Economy -->
@@ -3276,6 +3280,7 @@ function switchBottomTab(tab) {
   });
 
   if (tab === 'social') {
+    requestAnimationFrame(() => { try { renderSocStory(); } catch (e) { console.warn('soc story', e); } });
     requestAnimationFrame(() => requestAnimationFrame(() => {
       if (typeof drawMap === 'function') drawMap();
       if (typeof drawGdpChart === 'function') drawGdpChart();
@@ -5844,6 +5849,149 @@ document.addEventListener('mouseover', e => { const k = e.target.closest && e.ta
 document.addEventListener('mousemove', e => { if (e.target.closest && e.target.closest('[data-st-k]')) dotTipMove(e); });
 document.addEventListener('mouseout', e => { if (e.target.closest && e.target.closest('[data-st-k]')) dotTipHide(); });
 // ── /STORY renderer ──
+// ── STORY: Society (same chapter system as the Economy story) ──
+const SOC_RC = [null, ST.blue, ST.orange, ST.aqua, ST.yellow, ST.magenta, ST.violet];
+const socRegName = v => stT(['', 'Trung du & MN phía Bắc', 'ĐB sông Hồng', 'Bắc Trung Bộ', 'DH Nam Trung Bộ & Tây Nguyên', 'Đông Nam Bộ', 'ĐB sông Cửu Long'][v], ['', 'Northern midlands & mountains', 'Red River Delta', 'North Central', 'South Central Coast & Highlands', 'Southeast', 'Mekong Delta'][v]);
+const socRows = key => PROVS.map(p => { const d = SOC_PROV_DATA[p.n] || {}; const v = key === 'density' ? (d.pop && d.area_km2 ? d.pop / d.area_km2 : null) : d[key]; return { n: p.n, r: p.v, v }; }).filter(x => x.v != null && isFinite(x.v));
+function renderSocStory() {
+  const root = document.getElementById('soc-story'); if (!root || typeof POP_SERIES === 'undefined') return;
+  const A = POP_SERIES.actual, y1 = Math.max(...Object.keys(A).map(Number)), pop = A[y1], W = WORLD_RANK, N = POP_SERIES.nat, gp = POP_SERIES.gso.peak || {}, up = POP_SERIES.un.peak || {};
+  let h = `<section class="st-chap st-hero" id="soc-st-hero"><div class="st-kicker">${stT('Xã hội Việt Nam · ', 'Vietnam\'s society · ')}${y1}</div>
+    <div class="st-hero-grid"><div>
+      <div class="st-big">${stN(pop, 1)}<span>${stT(' triệu người', ' million people')}</span></div>
+      <p class="st-dek">${stT(`Đông dân thứ <b>${W.pop.now.rank}</b> thế giới. Dân số vẫn tăng (${stN(N.growth_pct, 2)}%/năm) nhưng chậm dần: theo dự báo trung bình của Cục Thống kê sẽ đạt đỉnh khoảng <b>${stN(gp.pop_m, 1)} triệu</b> vào năm ${gp.year}; Liên Hợp Quốc dự báo đỉnh sớm hơn, năm ${up.year}.`, `The world's <b>${W.pop.now.rank}th</b> most populous country. Still growing (${stN(N.growth_pct, 2)}% a year) but slowing: the NSO medium projection peaks at about <b>${stN(gp.pop_m, 1)} million</b> in ${gp.year}; the UN expects the peak sooner, in ${up.year}.`)}</p>
+    </div><div id="soc-st-pop" class="st-viz"></div></div></section>`;
+  h += stChap('soc-st-tfr', stT('Chương 1 · Sinh ít đi', 'Chapter 1 · Fewer births'),
+    stT('Phụ nữ Việt Nam đã sinh ít hơn mức thay thế — nhất là ở các thành phố lớn', 'Vietnamese women now have fewer children than replacement — above all in the big cities'),
+    stT(`Tổng tỷ suất sinh cả nước ${stN(N.tfr, 2)} con/phụ nữ (${N.year}), dưới mức 2,1 cần để dân số tự duy trì. Mỗi chấm là một tỉnh, thành sau sáp nhập, tô màu theo vùng.`, `The total fertility rate is ${stN(N.tfr, 2)} children per woman (${N.year}), below the 2.1 needed for a population to replace itself. Each dot is one of the 34 merged provinces, coloured by region.`),
+    `<div id="soc-st-strip" class="st-viz"></div><div class="st-sub">${stT('Cùng một đất nước, bốn khác biệt (mỗi chấm một tỉnh)', 'One country, four divides (one dot per province)')}</div><div id="soc-st-mult" class="st-mult"></div>
+     ${stSrc(stT('Nguồn: NSO — Điều tra biến động dân số 1/4/2024, quy đổi về 34 tỉnh, thành; mật độ: dân số trung bình 2025 / diện tích.', 'Source: NSO — Population change survey 1 Apr 2024, mapped to the 34 provinces; density: 2025 average population / area.'))}`);
+  h += stChap('soc-st-age', stT('Chương 2 · Già đi', 'Chapter 2 · Getting older'),
+    stT('Đến năm 2050, gần một phần năm dân số sẽ trên 65 tuổi — gấp đôi hiện nay', 'By 2050 nearly one in five people will be over 65 — twice today\'s share'),
+    stT('Cơ cấu dân số theo ba nhóm tuổi. Thời kỳ "dân số vàng" (nhiều người trong tuổi lao động) đang thu hẹp.', 'Population by three age groups. The "golden population" window — many people of working age — is narrowing.'),
+    `<div id="soc-st-agebar" class="st-viz"></div>${stSrc(stT('Nguồn: 2025 — World Bank (tỷ lệ 65+, tỷ số phụ thuộc; nhóm 0–14 và 15–64 suy ra từ hai chỉ số này); 2050 — NSO, dự báo dân số phương án trung bình.', 'Source: 2025 — World Bank (65+ share, dependency ratio; the 0–14 and 15–64 shares are derived from them); 2050 — NSO medium-variant projection.'))}`);
+  h += stChap('soc-st-rich', stT('Chương 3 · Khoảng cách vùng miền', 'Chapter 3 · The regional gap'),
+    stT('Một người dân ở tỉnh giàu nhất tạo ra giá trị gấp nhiều lần ở tỉnh nghèo nhất', 'A resident of the richest province produces many times more than one in the poorest'),
+    stT('GRDP bình quân đầu người năm 2025 (USD), 34 tỉnh, thành, tô màu theo vùng. Đường đứt nét: bình quân cả nước.', 'GRDP per person in 2025 (USD), 34 provinces, coloured by region. Dashed line: national average.'),
+    `<div id="soc-st-grdp" class="st-viz"></div>${stSrc(stT('Nguồn: NSO và cục thống kê các tỉnh — GRDP 2025 ước tính; bình quân cả nước = GDP 2025 / dân số trung bình, quy đổi theo tỷ giá bình quân năm.', 'Source: NSO and provincial statistics offices — 2025 GRDP estimates; national average = 2025 GDP / average population at the annual average exchange rate.'))}`);
+  h += stChap('soc-st-rank', stT('Chương 4 · Việt Nam trên bản đồ thế giới', 'Chapter 4 · Vietnam among nations'),
+    stT('Top 20 về dân số và tốc độ tăng trưởng — nhưng thứ 130 về thu nhập bình quân', 'Top 20 for population and growth — but 130th for income per person'),
+    stT('Vị trí của Việt Nam trong khoảng 200 quốc gia và vùng lãnh thổ (trái = cao nhất).', 'Vietnam\'s position among roughly 200 countries and territories (left = highest).'),
+    `<div id="soc-st-ranks" class="st-viz"></div>${stSrc(stT('Nguồn: World Bank WDI (năm gần nhất có số liệu, 2023–2025); không có tôn giáo: Pew Research Center 2020.', 'Source: World Bank WDI (latest available year, 2023–2025); religiously unaffiliated: Pew Research Center 2020.'))}`);
+  h += stChap('soc-st-rel', stT('Chương 5 · Tín ngưỡng', 'Chapter 5 · Faith'),
+    stT('Theo Tổng điều tra, cứ 100 người thì chỉ khoảng 14 người khai theo một tôn giáo', 'By census count, only about 14 in 100 people report a religion'),
+    stT('Mỗi ô vuông là 1% dân số (Tổng điều tra 2019). Ban Tôn giáo Chính phủ — tính cả tín đồ được các tổ chức tôn giáo ghi nhận — cho con số cao hơn nhiều.', 'Each square is 1% of the population (2019 census). The Government Committee for Religious Affairs, counting followers registered by religious organisations, reports a much higher figure.'),
+    `<div class="st-waffles" id="soc-st-waf"></div>`);
+  h += stChap('soc-st-map', stT('Chương 6 · Tự khám phá', 'Chapter 6 · Explore'),
+    stT('Bản đồ 34 tỉnh, tháp dân số và học sinh', 'The 34-province map, population pyramid and students'),
+    stT('Bấm một tỉnh hoặc chọn vùng để xem tổng quan kinh tế – xã hội; kéo thanh thời gian để xem tháp dân số (mô hình) và số học sinh qua các năm.', 'Click a province or pick a region for its socio-economic summary; drag the timeline to see the (modelled) pyramid and student numbers over time.'), '');
+  root.innerHTML = h;
+  socStPop(); socStStrip(); socStMult(); socStAge(); socStGrdp(); socStRanks(); socStWaffle();
+  stObserve(root);
+}
+// hero — population 2000–2025 + projections to 2050 (NSO band low–high, NSO medium, UN medium)
+function socStPop() {
+  const el = document.getElementById('soc-st-pop'), A = POP_SERIES.actual, G = POP_SERIES.gso, U = POP_SERIES.un;
+  const W = 560, H = 230, ML = 34, MR = 104, MT = 14, MB = 22, sx = stLin(2000, 2050, ML, W - MR), sy = stLin(75, 120, H - MB, MT);
+  const pts = o => Object.entries(o).map(([y, v]) => [+y, v]).sort((a, b) => a[0] - b[0]);
+  let s = stAxisY(sy, [80, 100, 120], ML, W - MR, v => v + stT(' tr', 'm'));
+  [2000, 2010, 2020, 2030, 2040, 2050].forEach(y => { s += `<text class="st-tick" x="${sx(y)}" y="${H - 6}" text-anchor="middle">${y}</text>`; });
+  const lo = pts(G.low), hi = pts(G.high || G.medium);
+  s += `<path class="st-fade" style="--o:.18;--d:600ms" d="M${hi.map(([y, v]) => `${sx(y)},${sy(v)}`).join(' L')} L${lo.slice().reverse().map(([y, v]) => `${sx(y)},${sy(v)}`).join(' L')} Z" fill="${ST.blue}"/>`;
+  const line = (a, c, w, dash) => `<path class="st-draw" d="M${a.map(([y, v]) => `${sx(y)},${sy(v)}`).join(' L')}" fill="none" stroke="${c}" stroke-width="${w}" ${dash ? `stroke-dasharray="${dash}"` : ''}/>`;
+  const act = pts(A), gm = pts(G.medium), um = pts(U.medium);
+  s += line(act, ST.ink, 2.6) + line([act[act.length - 1], ...gm.filter(p => p[0] > act[act.length - 1][0])], ST.blue, 2, '6,4') + line([act[act.length - 1], ...um.filter(p => p[0] > act[act.length - 1][0])], ST.orange, 2, '5,4');
+  const e1 = gm[gm.length - 1], e2 = um[um.length - 1];
+  s += `<text class="st-lab" x="${W - MR + 6}" y="${sy(e1[1]) - 2}" style="fill:${ST.blue}">NSO ${stN(e1[1], 1)}${stT(' tr', 'm')}</text><text class="st-lab" x="${W - MR + 6}" y="${sy(e2[1]) + 12}" style="fill:${ST.orange}">UN ${stN(e2[1], 1)}${stT(' tr', 'm')}</text>`;
+  const la = act[act.length - 1]; s += stAnn(sx(la[0]), sy(la[1]), sx(la[0]) - 40, sy(108), `${la[0]}: ${stN(la[1], 1)}${stT(' triệu', 'm')}`, 'end');
+  el.innerHTML = stSvg(W, H, s, stT('Dân số 2000–2050', 'Population 2000–2050'));
+}
+// strip plot helper: one dot per province on a horizontal axis, extremes labelled
+function socStripSvg(rows, W, H, x0, x1, lo, hi, fmt, opt = {}) {
+  const sx = stLin(lo, hi, x0, x1), cy = opt.cy || H / 2, r = opt.r || 7;
+  let s = `<line x1="${x0}" x2="${x1}" y1="${cy}" y2="${cy}" stroke="${ST.rule}"/>`;
+  stNice(lo, hi, opt.ticks || 4).filter(t => t >= lo && t <= hi).forEach(t => { s += `<text class="st-tick" x="${sx(t)}" y="${H - 2}" text-anchor="middle">${fmt(t)}</text>`; });
+  const sorted = rows.slice().sort((a, b) => a.v - b.v), placed = [];
+  sorted.forEach((x, i) => { const px = sx(x.v); let k = 0; while (placed.some(p => p.k === k && Math.abs(p.x - px) < r * 1.9)) k++; placed.push({ x: px, k }); const yy = cy + (k % 2 ? 1 : -1) * Math.ceil(k / 2) * r * 1.7;
+    s += `<circle class="st-cell" style="--d:${i * 14}ms" cx="${px}" cy="${yy}" r="${r}" fill="${SOC_RC[x.r]}" stroke="#fff" stroke-width="1" data-st-k="${encodeURIComponent(x.n + '|' + fmt(x.v, true))}"/>`; });
+  const mn = sorted[0], mx = sorted[sorted.length - 1];
+  if (opt.labels !== false) { s += `<text class="st-lab st-b" x="${sx(mn.v)}" y="${cy + (opt.labOff || 34)}" text-anchor="start">${ciE(mn.n)} ${fmt(mn.v, true)}</text><text class="st-lab st-b" x="${sx(mx.v)}" y="${cy - (opt.labOff || 34) + 8}" text-anchor="end">${ciE(mx.n)} ${fmt(mx.v, true)}</text>`; }
+  return { s, sx };
+}
+function socStStrip() {
+  const el = document.getElementById('soc-st-strip'), rows = socRows('tfr'), W = 1000, H = 190, x0 = 40, x1 = W - 40;
+  const { s: s0, sx } = socStripSvg(rows, W, H, x0, x1, 1.2, 3.2, (v, l) => stN(v, l ? 2 : 1), { cy: 92, r: 9, labOff: 52 });
+  let s = `<rect x="${sx(2.1)}" y="20" width="${x1 - sx(2.1)}" height="${H - 46}" fill="${ST.zero}"/>` + s0;
+  s += `<line x1="${sx(2.1)}" x2="${sx(2.1)}" y1="14" y2="${H - 24}" stroke="${ST.ink}" stroke-dasharray="4,3"/><text class="st-lab st-b" x="${sx(2.1) + 6}" y="26">${stT('2,1 = mức sinh thay thế', '2.1 = replacement level')}</text>`;
+  const below = rows.filter(r => r.v < 2.1).length; s += `<text class="st-lab" x="${sx(2.1) - 6}" y="26" text-anchor="end">${stT(`${below}/${rows.length} tỉnh dưới mức thay thế ←`, `← ${below} of ${rows.length} provinces below replacement`)}</text>`;
+  let lx = x0; for (let v = 1; v <= 6; v++) { s += `<circle cx="${lx + 5}" cy="${H - 22 + 30}" r="5" fill="${SOC_RC[v]}"/><text class="st-tick" x="${lx + 14}" y="${H - 18 + 30}">${socRegName(v)}</text>`; lx += 22 + socRegName(v).length * 6.2; }
+  el.innerHTML = stSvg(W, H + 34, s, stT('Tổng tỷ suất sinh theo tỉnh', 'Total fertility rate by province'));
+}
+function socStMult() {
+  const el = document.getElementById('soc-st-mult'), N = POP_SERIES.nat;
+  const M = [['urban_pct', stT('Đô thị hoá (% dân số)', 'Urbanisation (% of people)'), (v, l) => stN(v, l ? 1 : 0) + '%', N.urban_pct, 0, 100],
+    ['life_exp', stT('Tuổi thọ (năm)', 'Life expectancy (years)'), (v, l) => stN(v, l ? 1 : 0), N.life_exp, 68, 78],
+    ['sex_ratio', stT('Nam/100 nữ', 'Men per 100 women'), (v, l) => stN(v, l ? 1 : 0), null, 94, 106],
+    ['density', stT('Mật độ (người/km²)', 'Density (people/km²)'), (v, l) => stN(v, 0), null, 0, 4500]];
+  el.innerHTML = M.map(([k, t, f, nat, lo, hi]) => { const rows = socRows(k), mx = rows.reduce((a, b) => b.v > a.v ? b : a), mn = rows.reduce((a, b) => b.v < a.v ? b : a);
+    const { s } = socStripSvg(rows, 240, 74, 12, 222, lo, Math.max(hi, mx.v), f, { cy: 30, r: 4.5, labels: false, ticks: 2 });
+    return `<div><div class="st-mini-h">${t}</div><div class="st-mini-v">${nat != null ? f(nat, true) : f(mn.v, true) + '–' + f(mx.v, true)}</div>${stSvg(240, 74, s, t)}<div class="st-fact-s">${stT('Cao nhất', 'Highest')}: ${ciE(mx.n)} ${f(mx.v, true)} · ${stT('thấp nhất', 'lowest')}: ${ciE(mn.n)} ${f(mn.v, true)}</div></div>`; }).join('');
+}
+// ch2 — 100% bars: age structure 2025 vs 2050
+function socStAge() {
+  const el = document.getElementById('soc-st-agebar'), W = WORLD_RANK, o25 = W.age65.now.value, wk = 100 / (1 + W.dependency.now.value / 100), y25 = 100 - wk - o25, a50 = POP_SERIES.gso.age_2050;
+  const rows = [[String(W.age65.now.year), [y25, wk, o25]], ['2050', [a50['0-14'], a50['15-64'], a50['65+']]]];
+  const P = [[stT('Trẻ em 0–14', 'Children 0–14'), ST.yellow], [stT('Tuổi lao động 15–64', 'Working age 15–64'), ST.blue], [stT('Người cao tuổi 65+', 'Older people 65+'), ST.red]];
+  const Wd = 1000, ML = 70, MR = 20, RH = 56, H = rows.length * RH + 46, sx = stLin(0, 100, ML, Wd - MR);
+  let s = '';
+  rows.forEach(([yr, a], i) => { const y = 26 + i * RH; let x = ML; s += `<text class="st-lab st-b" x="${ML - 12}" y="${y + 24}" text-anchor="end" style="font-size:15px">${yr}</text>`;
+    a.forEach((v, k) => { const w = sx(v) - ML; s += `<rect class="st-grow-x" style="--d:${i * 200 + k * 90}ms" x="${x}" y="${y}" width="${w - 2}" height="38" fill="${P[k][1]}" rx="2" data-st-k="${encodeURIComponent(P[k][0] + ' · ' + yr + '|' + stN(v, 1) + '%')}"/><text x="${x + 10}" y="${y + 24}" style="font:700 14px var(--font-ui);fill:#fff">${stN(v, 1)}%</text>`; x += w; }); });
+  P.forEach(([n, c], k) => { const x = k === 0 ? ML : k === 1 ? sx(30) : sx(88); s += `<text class="st-lab" x="${x + (k === 2 ? 0 : 4)}" y="16" style="fill:${c};font-weight:700">${n}</text>`; });
+  const x65a = sx(100 - o25), x65b = sx(100 - a50['65+']); s += stAnn(x65b + 30, 26 + RH + 38, x65b - 80, H - 4, stT(`65+ tăng từ ${stN(o25, 1)}% lên ${stN(a50['65+'], 1)}%`, `65+ rises from ${stN(o25, 1)}% to ${stN(a50['65+'], 1)}%`), 'end');
+  el.innerHTML = stSvg(Wd, H, s, stT('Cơ cấu tuổi 2025 và 2050', 'Age structure 2025 and 2050'));
+}
+// ch3 — GRDP per person by province (sorted bars, region colours, national average line)
+function socStGrdp() {
+  const el = document.getElementById('soc-st-grdp'), rows = PROVS.map(p => ({ n: p.n, r: p.v, v: ((SOC_GRDP[p.n] || {}).grdp_pc_usd || {})['2025'] })).filter(x => x.v).sort((a, b) => b.v - a.v);
+  const G = ECONFLOW.gdp, gi = G.years.indexOf(2025), nat = gi >= 0 ? G.GDP[gi] * 1e9 / (FX_USD[15] || 25450) / (POP_SERIES.actual['2025'] * 1e6) : null;
+  const W = 1000, ML = 150, MR = 70, RH = 17, H = rows.length * RH + 30, mx = rows[0].v, sx = stLin(0, mx, ML, W - MR);
+  let s = '';
+  rows.forEach((x, i) => { const y = 6 + i * RH; s += `<text class="st-lab${i < 3 || i > rows.length - 4 ? ' st-b' : ''}" x="${ML - 8}" y="${y + 11}" text-anchor="end" style="font-size:11.5px">${ciE(x.n)}</text><rect class="st-grow-x" style="--d:${i * 18}ms" x="${ML}" y="${y + 1}" width="${sx(x.v) - ML}" height="${RH - 4}" fill="${SOC_RC[x.r]}" rx="2" data-st-k="${encodeURIComponent(x.n + ' · ' + socRegName(x.r) + '|' + stN(x.v, 0) + ' USD')}"/>${i < 3 || i > rows.length - 4 ? `<text class="st-val" x="${sx(x.v) + 6}" y="${y + 11}">${stN(x.v, 0)}</text>` : ''}`; });
+  if (nat) s += `<line x1="${sx(nat)}" x2="${sx(nat)}" y1="0" y2="${H - 20}" stroke="${ST.ink}" stroke-dasharray="5,4"/><text class="st-lab st-b" x="${sx(nat) + 6}" y="${H - 6}">${stT('Cả nước', 'National')} ≈ ${stN(nat, 0)} USD</text>`;
+  const top = rows[0], bot = rows[rows.length - 1];
+  s += stAnn(sx(bot.v) + 44, 6 + (rows.length - 1) * RH + 7, sx(bot.v) + 110, 6 + (rows.length - 1) * RH + 7, stT(`${top.n} gấp ${stN(top.v / bot.v, 1)} lần ${bot.n}`, `${top.n}: ${stN(top.v / bot.v, 1)}× ${bot.n}`));
+  el.innerHTML = stSvg(W, H, s, stT('GRDP bình quân đầu người theo tỉnh', 'GRDP per person by province'));
+}
+// ch4 — rank positions among nations
+function socStRanks() {
+  const el = document.getElementById('soc-st-ranks'), R = WORLD_RANK;
+  const L = [['pop', stT('Dân số', 'Population'), v => stN(v / 1e6, 1) + stT(' triệu', 'm')], ['g_growth', stT('Tăng trưởng GDP', 'GDP growth'), v => stN(v, 1) + '%'], ['g_gdp', stT('Quy mô GDP', 'GDP size'), v => stN(v / 1e9, 0) + stT(' tỷ USD', ' bn USD')], ['density', stT('Mật độ dân số', 'Population density'), v => stN(v, 0) + '/km²'], ['srb', stT('Tỷ số giới tính khi sinh', 'Sex ratio at birth'), v => stN(v * 100, 1) + stT(' bé trai/100 bé gái', ' boys/100 girls')], ['life_exp', stT('Tuổi thọ', 'Life expectancy'), v => stN(v, 1)], ['tfr', stT('Mức sinh', 'Fertility rate'), v => stN(v, 2)], ['g_gdp_pc', stT('GDP bình quân đầu người', 'GDP per person'), v => stN(v, 0) + ' USD'], ['urban', stT('Tỷ lệ đô thị hoá', 'Urbanisation'), v => stN(v, 1) + '%']].filter(x => R[x[0]]);
+  const W = 1000, ML = 230, MR = 200, RH = 32, H = L.length * RH + 30, sx = stLin(0, 1, ML, W - MR);
+  let s = `<text class="st-tick" x="${ML}" y="12">${stT('cao nhất', 'highest')}</text><text class="st-tick" x="${W - MR}" y="12" text-anchor="end">${stT('thấp nhất', 'lowest')}</text>`;
+  L.forEach(([k, n, f], i) => { const o = R[k].now, y = 30 + i * RH, x = sx((o.rank - 1) / (o.of - 1)), top = o.rank <= 20;
+    s += `<text class="st-lab" x="${ML - 12}" y="${y + 4}" text-anchor="end">${n}</text><line x1="${ML}" x2="${W - MR}" y1="${y}" y2="${y}" stroke="${ST.rule}" stroke-width="2"/>`;
+    s += `<circle class="st-cell" style="--d:${i * 80}ms" cx="${x}" cy="${y}" r="8" fill="${top ? ST.blue : o.rank > o.of / 2 ? ST.orange : ST.ink3}" data-st-k="${encodeURIComponent(n + ' (' + o.year + ')|' + f(o.value) + ' · ' + stT('hạng ', 'rank ') + o.rank + '/' + o.of)}"/>`;
+    s += `<text class="st-lab st-b" x="${x}" y="${y - 12}" text-anchor="middle">#${o.rank}</text><text class="st-val" x="${W - MR + 12}" y="${y + 4}">${f(o.value)} <tspan class="st-tick">(${o.year})</tspan></text>`; });
+  const si = L.findIndex(x => x[0] === 'srb'); if (si >= 0) { const o = R.srb.now, y = 30 + si * RH; s += stAnn(sx((o.rank - 1) / (o.of - 1)) + 9, y, sx(0.06), y - 12, stT('thuộc nhóm lệch giới tính khi sinh cao nhất thế giới', 'among the world\'s most skewed sex ratios at birth')); }
+  el.innerHTML = stSvg(W, H, s, stT('Thứ hạng của Việt Nam', 'Vietnam\'s world ranks'));
+}
+// ch5 — religion waffles: census 2019 (share of population) and religious composition of followers
+function socStWaffle() {
+  const el = document.getElementById('soc-st-waf'), N = RELIGION.nat, C = N.c19, B = N.btg || {};
+  const RN = { 'Công giáo': 'Catholic', 'Phật giáo': 'Buddhism', 'Tin lành': 'Protestant', 'Cao Đài': 'Cao Dai', 'Phật giáo Hòa Hảo': 'Hoa Hao Buddhism', 'Hồi giáo': 'Islam', 'Khác': 'Other' }, cols = [ST.blue, ST.orange, ST.aqua, ST.violet, ST.green, ST.magenta, ST.yellow];
+  const by = Object.entries(C.by).sort((a, b) => b[1] - a[1]).map(([k, v], i) => [stT(k, RN[k] || k), v, cols[i % cols.length]]);
+  const waffle = (parts, total) => { const raw = parts.map(p => p[1] / total * 100), base = raw.map(Math.floor); let left = 100 - base.reduce((a, b) => a + b, 0); raw.map((v, i) => [v - base[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (left > 0) { base[i]++; left--; } });
+    const cells = []; base.forEach((n, i) => { for (let k = 0; k < n; k++) cells.push(i); }); const C2 = 22, G2 = 3;
+    const s = cells.map((pi, k) => `<rect class="st-cell" style="--d:${k * 6}ms" x="${(k % 10) * (C2 + G2)}" y="${Math.floor(k / 10) * (C2 + G2)}" width="${C2}" height="${C2}" rx="3" fill="${parts[pi][2]}" data-st-k="${encodeURIComponent(parts[pi][0] + '|' + stN(parts[pi][1] / 1e6, 2) + stT(' triệu người · ', ' million · ') + stN(raw[pi], 1) + '%')}"/>`).join('');
+    return { svg: `<div style="width:250px;max-width:100%;flex:none">${stSvg(250, 250, s, stT('Biểu đồ ô vuông tôn giáo', 'Religion waffle chart'))}</div>`, raw }; };
+  const none = C.pop - C.f, A1 = [[stT('Không khai tôn giáo', 'No religion reported'), none, '#d9d6cd'], ...by], w1 = waffle(A1, C.pop), w2 = waffle(by, C.f);
+  const leg = (parts, raw) => `<ul class="st-leg">${parts.map((p, i) => `<li><i style="background:${p[2]}"></i><b>${stN(raw[i], raw[i] < 10 ? 1 : 0)}%</b> ${ciE(p[0])}</li>`).join('')}</ul>`;
+  el.innerHTML = `<div><div class="st-waf-h">${stT('Toàn dân số', 'Whole population')} <span>· ${stT('Tổng điều tra 2019', '2019 census')}, ${stN(C.pop / 1e6, 1)}${stT(' triệu người', ' million')}</span></div><div class="st-waf-row">${w1.svg}${leg(A1, w1.raw)}</div></div>
+    <div><div class="st-waf-h">${stT('Trong số người có tôn giáo', 'Among those with a religion')} <span>· ${stN(C.f / 1e6, 1)}${stT(' triệu người', ' million')}</span></div><div class="st-waf-row">${w2.svg}${leg(by, w2.raw)}</div>
+    ${B.followers ? `<div class="st-fact" style="margin-top:16px;border-color:${ST.violet}"><div class="st-mini-v">${stN(B.followers / 1e6, 1)}${stT(' triệu', 'm')} · ${B.pct}%</div><div class="st-mini-h">${stT(`tín đồ theo Ban Tôn giáo Chính phủ (${B.date.split('-').reverse().join('/')})`, `followers per the Government Committee for Religious Affairs (${B.date.split('-').reverse().join('/')})`)}</div><div class="st-fact-s">${stT(`${B.religions} tôn giáo, ${B.orgs} tổ chức được công nhận — cách đếm khác Tổng điều tra (tự khai)`, `${B.religions} religions and ${B.orgs} recognised organisations — counted differently from the self-reported census`)}</div></div>` : ''}</div>`;
+}
+// ── /STORY Society ──
+window.addEventListener('load', () => { try { if (activeBottomTab === 'social') renderSocStory(); } catch (e) { console.warn('soc story', e); } });
 
 document.addEventListener('toggle', e => { if (e.target && e.target.id === 'ec-appendix' && e.target.open) requestAnimationFrame(() => { try { renderEconTop(); if (typeof renderCpiCard === 'function') renderCpiCard(); } catch (_) {} window.dispatchEvent(new Event('resize')); }); }, true);
 
