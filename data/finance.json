@@ -9320,6 +9320,60 @@
      "unit": "%",
      "note": "Still 4.5% for 7-91 day tenors",
      "url": "https://vietstock.vn/2026/09/tuan-21-2509-nhnn-dao-chieu-bom-rong-hon-34000-ty-757-1496294.htm"
+    },
+    {
+     "date": "2026-09-21",
+     "period": "day",
+     "item": "fx_swap",
+     "value": 2.0,
+     "unit": "bn USD",
+     "note": "7-day USD/VND swap with CIs: SBV buys USD spot 24,406 / sells 7-day forward 24,412, value date 22/09/2026; maximum 2 bn USD (~48,812 bn VND if fully used). Take-up not disclosed - value is the cap. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy).",
+     "url": "https://cafef.vn/ngan-hang-nha-nuoc-mo-them-kenh-bom-tien-vnd-quy-mo-ho-tro-toi-da-hon-48000-ty-dong-188260921160448929.chn"
+    },
+    {
+     "date": "2026-09-28..2026-10-02",
+     "period": "week",
+     "item": "omo_net_injection",
+     "value": -53475,
+     "unit": "bn VND",
+     "note": "Vietstock weekly: 25,140 injected (7-91 days, 4.5%) vs 78,615 matured on the collateralised-lending channel. Cafef (05/10/2026) also reports net drain >53,000. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy).",
+     "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm"
+    },
+    {
+     "date": "2026-10-02",
+     "period": "point",
+     "item": "omo_outstanding",
+     "value": 133342,
+     "unit": "bn VND",
+     "note": "Vietstock: OMO outstanding at week end. Unlike Vietstock's earlier CAUTION-flagged series, this matches the VBMA basis (VBMA 25/09 186,850 minus net drain 53,475 = 133,375). One search summary gave ~4,058 (unattributed, treated as garbled; not used). Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy).",
+     "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm"
+    },
+    {
+     "date": "2026-10-02",
+     "period": "point",
+     "item": "omo_rate",
+     "value": 4.5,
+     "unit": "%",
+     "note": "OMO (collateralised lending) rate 4.5% for 7-91 day tenors, week 28/09-02/10/2026. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy).",
+     "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm"
+    },
+    {
+     "date": "2026-09-25",
+     "period": "point",
+     "item": "refinancing_rate",
+     "value": 4.5,
+     "unit": "%",
+     "note": "Refinancing rate 4.5% and rediscount rate 3.0% unchanged (Dan Tri 25/09/2026: 'unchanged over the past year'); levels set by Decision 1123/QD-NHNN (16/06/2023, eff. 19/06/2023). Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy).",
+     "url": "https://dantri.com.vn/kinh-doanh/vi-sao-lai-suat-chua-the-ha-nhiet-20260925152734374.htm"
+    },
+    {
+     "date": "2026-06-30",
+     "period": "point",
+     "item": "state_treasury_deposits",
+     "value": 715630,
+     "unit": "bn VND",
+     "note": "KBNN deposits at Big4, Q2-2026 financial statements: VCB 186,327; BIDV 185,944; VietinBank 184,240; Agribank 159,119; +45% vs end-2025. CONFLICT with baodautu entry for the same date ('hon 700,000', VCB 185,255): different line items (total vs term), both kept. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy).",
+     "url": "https://nguoiquansat.vn/kho-bac-nha-nuoc-dang-gui-hon-715-000-ty-dong-tai-4-ngan-hang-thanh-khoan-sap-duoc-bom-manh-311309.html"
     }
    ],
    "notes": [
@@ -9330,7 +9384,489 @@
     "Operations log (436 points from sub-research + 7 added) covers weekly OMO net flow/outstanding Jan-2025 to 25-Sep-2026, SBV bills (issued Jan-Mar 2025 and Jun-Jul 2025; zero outstanding from 28/07/2025, none issued since), FX sales/swaps, RRR, State Treasury deposits at banks. CAUTION flags in notes: Vietstock OMO outstanding after 29/06/2026 looks wrong - prefer VBMA values.",
     "State Treasury deposits reported are at commercial banks (Big4), not at the SBV; deposits at SBV are only visible net in IMF 'net claims on government - SBV'.",
     "SBV surplus remitted to budget: only 2024 (52.741 trn VND) found SBV-only; other years only as combined MoF line incl. SOE dividends/divestment."
-   ]
+   ],
+   "constraints": {
+    "as_of": "2026-10-06",
+    "note": "Why the SBV cannot simply cut policy rates or 'print money'. Each item: two factual sentences, sourced; derived values are labelled. Most pages were verified via search-engine excerpts only (egress proxy blocked direct fetches).",
+    "items": [
+     {
+      "key": "inflation_target",
+      "title_vi": "Lạm phát đã ở sát/trên mục tiêu",
+      "title_en": "Inflation is already at or above target",
+      "text_vi": "Nghị quyết của Quốc hội về kế hoạch phát triển kinh tế - xã hội năm 2026 đặt mục tiêu CPI bình quân khoảng 4,5%; CPI tháng 9/2026 tăng 5,08% so với cùng kỳ và CPI bình quân 9 tháng tăng 4,52% (Cục Thống kê). Nới lỏng tiền tệ thêm khi lạm phát đã chạm ngưỡng mục tiêu sẽ làm tăng tổng cầu và kỳ vọng lạm phát.",
+      "text_en": "The National Assembly's 2026 socio-economic plan resolution targets average CPI inflation of about 4.5%; CPI rose 5.08% year on year in September 2026 and averaged 4.52% over the first nine months (NSO). Further monetary easing with inflation already at the target ceiling would add to demand and to inflation expectations.",
+      "metric": {
+       "value": 4.5,
+       "unit": "%",
+       "as_of": "2026",
+       "label_vi": "Mục tiêu CPI bình quân 2026 (NQ Quốc hội, 13/11/2025)",
+       "label_en": "2026 average CPI target (NA resolution, 13 Nov 2025)"
+      },
+      "compare": {
+       "value": 5.08,
+       "unit": "%",
+       "as_of": "2026-09",
+       "label_vi": "CPI T9/2026 so cùng kỳ (Cục Thống kê)",
+       "label_en": "Sep-2026 CPI, y/y (NSO)"
+      },
+      "sources": [
+       {
+        "name": "Báo Chính phủ - Quốc hội thông qua NQ kế hoạch KT-XH 2026",
+        "url": "https://baochinhphu.vn/quoc-hoi-thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-102251113085124372.htm"
+       },
+       {
+        "name": "Thư viện Pháp luật - CPI bình quân khoảng 4,5% năm 2026",
+        "url": "https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tai-chinh/99700/nam-2026-toc-do-tang-chi-so-gia-tieu-dung-cpi-binh-quan-khoang-4-5"
+       },
+       {
+        "name": "NSO - Thông cáo báo chí giá tháng 9/2026",
+        "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/"
+       }
+      ]
+     },
+     {
+      "key": "fx_pressure",
+      "title_vi": "Áp lực tỷ giá và chênh lệch lãi suất với USD",
+      "title_en": "Exchange-rate pressure and the USD rate gap",
+      "text_vi": "Tỷ giá trung tâm tăng từ 25.121 đồng/USD (31/12/2025) lên mức kỷ lục 25.636 đồng (2/10/2026), tức VND mất giá khoảng 2.01% (tính toán), trong khi Fed nâng biên độ lãi suất lên 3,75-4,00% ngày 16/9/2026, chỉ thấp hơn lãi suất OMO/tái cấp vốn 4,5% của NHNN 0,5 điểm %. Hạ lãi suất điều hành sẽ xoá hoặc đảo ngược khoảng chênh này, khuyến khích chuyển sang nắm giữ USD và dòng vốn ra, làm VND yếu đi và đẩy giá hàng nhập khẩu lên (lạm phát nhập khẩu).",
+      "text_en": "The SBV central rate rose from 25,121 VND/USD (31 Dec 2025) to a record 25,636 (2 Oct 2026), a VND depreciation of about 2.01% (derived), while the Fed raised its target range to 3.75-4.00% on 16 Sep 2026, only 0.5 points below the SBV's 4.5% OMO/refinancing rate. Cutting policy rates would erase or invert that gap, encouraging dollarisation and capital outflows that weaken the dong and raise import prices (imported inflation).",
+      "metric": {
+       "value": 2.01,
+       "unit": "%",
+       "as_of": "2026-10-02",
+       "label_vi": "VND mất giá so với USD theo tỷ giá trung tâm từ 31/12/2025 (tính toán: 1 − 25.121/25.636)",
+       "label_en": "VND depreciation vs USD, central rate since 31 Dec 2025 (derived: 1 − 25,121/25,636)",
+       "derived": true,
+       "note": "Equivalently USD +2.05% vs VND. Interbank USD/VND was reported −1.7% YTD on 29/9/2026 (thanhnien) - a different rate (market vs central), not merged."
+      },
+      "compare": {
+       "value": 0.5,
+       "unit": "pp",
+       "as_of": "2026-10-02",
+       "label_vi": "Lãi suất OMO/tái cấp vốn NHNN 4,5% trừ trần lãi suất Fed 4,0% (tính toán)",
+       "label_en": "SBV OMO/refinancing 4.5% minus Fed funds upper bound 4.0% (derived)",
+       "derived": true
+      },
+      "sources": [
+       {
+        "name": "Thời báo Ngân hàng - tỷ giá trung tâm 25.636 (2/10/2026)",
+        "url": "https://thoibaonganhang.vn/sang-210-nhnn-niem-yet-ty-gia-trung-tam-o-muc-25636-dong-188382.html"
+       },
+       {
+        "name": "Thanh Niên - giá USD 31/12/2025 (tỷ giá trung tâm 25.121)",
+        "url": "https://thanhnien.vn/gia-usd-hom-nay-31122025-tiep-tuc-giam-trong-ngay-cuoi-nam-185251231073926246.htm"
+       },
+       {
+        "name": "Federal Reserve press release 16/9/2026",
+        "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+       },
+       {
+        "name": "Vietstock - OMO 4,5% tuần 28/9-2/10/2026",
+        "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm"
+       },
+       {
+        "name": "VietnamBiz - NHNN nâng lãi suất OMO lên 4,5% (12/2025)",
+        "url": "https://vietnambiz.vn/lan-dau-sau-hon-14-thang-nhnn-nang-lai-suat-omo-len-45nam-20251258115523.htm"
+       }
+      ]
+     },
+     {
+      "key": "reserves_cover",
+      "title_vi": "Dự trữ ngoại hối mỏng",
+      "title_en": "Thin FX reserve buffer",
+      "text_vi": "Theo NHNN, dự trữ ngoại hối nhà nước đạt gần 87,6 tỷ USD ngày 18/6/2026 (đỉnh 111,8 tỷ USD tháng 1/2022); báo chí tính quy mô này tương đương khoảng 1,85 tháng nhập khẩu (nhập khẩu bình quân ~47,2 tỷ USD/tháng nửa đầu 2026). IMF đánh giá dự trữ cuối 2024 (83,1 tỷ USD, 2,5 tháng nhập khẩu dự kiến; 58% thước đo ARA nếu cố định, 99% nếu thả nổi) là 'hơi thấp hơn mức đủ', nên NHNN ít dư địa bán USD để bù cho một đợt hạ lãi suất.",
+      "text_en": "The SBV put state FX reserves at almost 87.6 bn USD on 18 Jun 2026 (peak 111.8 bn in Jan 2022); the press calculates this at about 1.85 months of imports (average imports ~47.2 bn USD/month in H1-2026). The IMF assessed end-2024 reserves (83.1 bn USD, 2.5 months of prospective imports; 58% of its ARA metric under a fixed regime, 99% if floating) as 'moderately below adequacy', leaving the SBV little room to sell dollars to offset a rate cut.",
+      "metric": {
+       "value": 1.85,
+       "unit": "months",
+       "as_of": "2026-06",
+       "label_vi": "Dự trữ / nhập khẩu bình quân tháng H1-2026 (báo chí tính, không phải số NHNN)",
+       "label_en": "Reserves / average monthly imports H1-2026 (press calculation, not an SBV figure)",
+       "note": "Search excerpt did not name the outlet that computed 1.85; other press gives '1.9-2 months'. Attribution uncertain."
+      },
+      "compare": {
+       "value": 3,
+       "unit": "months",
+       "as_of": "rule of thumb",
+       "label_vi": "Ngưỡng tối thiểu 3 tháng nhập khẩu (quy tắc kinh nghiệm báo chí dẫn IMF); IMF dùng thước đo ARA",
+       "label_en": "3-months-of-imports minimum (rule of thumb cited by press as IMF's); IMF itself uses the ARA metric",
+       "note": "IMF CR 25/283: end-2024 = 2.5 months of prospective imports, 58%/99% of ARA (fixed/floating)."
+      },
+      "sources": [
+       {
+        "name": "VnExpress - Dự trữ ngoại hối gần 88 tỷ USD",
+        "url": "https://vnexpress.net/du-tru-ngoai-hoi-gan-88-ty-usd-5089444.html"
+       },
+       {
+        "name": "CafeF - Dự trữ ngoại hối còn 87,6 tỷ USD",
+        "url": "https://cafef.vn/du-tru-ngoai-hoi-con-876-ty-usd-ngan-hang-nha-nuoc-muon-sua-doi-nhieu-quy-dinh-188260624112155679.chn"
+       },
+       {
+        "name": "IMF Country Report 25/283 (2025 Article IV)",
+        "url": "https://www.imf.org/-/media/files/publications/cr/2025/english/1vnmea2025001-source-pdf.pdf"
+       },
+       {
+        "name": "Người Quan Sát - Dự trữ ngoại hối của NHNN: dư địa còn lại",
+        "url": "https://nguoiquansat.vn/du-tru-ngoai-hoi-cua-nhnn-du-dia-con-lai-la-bao-nhieu-183870.html"
+       }
+      ]
+     },
+     {
+      "key": "credit_already_fast",
+      "title_vi": "Tín dụng đã tăng nhanh hơn GDP danh nghĩa",
+      "title_en": "Credit already outgrows nominal GDP",
+      "text_vi": "Đến 30/9/2026 dư nợ tín dụng đạt khoảng 20,75 triệu tỷ đồng, tăng 16,69% so với cùng kỳ (NHNN), trong khi GDP danh nghĩa năm 2025 tăng 11.62% (tính từ số liệu giá hiện hành của Cục Thống kê) và tỷ lệ tín dụng/GDP cuối 2025 khoảng 144.7% (tính toán; báo chí dẫn ~146%). IMF lưu ý tín dụng ở mức 136% GDP năm 2024, khoảng chênh tín dụng/GDP dương và tăng trưởng tín dụng nhanh có thể làm nợ xấu tăng; bơm thêm tiền dễ chảy vào tài sản (bất động sản chiếm 25,5% dư nợ cuối 6/2026) hơn là sản xuất.",
+      "text_en": "Credit reached about VND 20.75 quadrillion on 30 Sep 2026, up 16.69% year on year (SBV), while nominal GDP grew 11.62% in 2025 (derived from NSO current-price GDP) and credit/GDP was about 144.7% at end-2025 (derived; press cites ~146%). The IMF notes credit at 136% of GDP in 2024 with a positive credit-to-GDP gap and warns fast credit growth could raise NPLs; extra liquidity tends to flow into assets (real estate was 25.5% of credit at end-Jun 2026) rather than production.",
+      "metric": {
+       "value": 16.69,
+       "unit": "%",
+       "as_of": "2026-09-30",
+       "label_vi": "Tăng trưởng tín dụng so với cùng kỳ (NHNN, 30/9/2026)",
+       "label_en": "Credit growth, y/y (SBV, 30 Sep 2026)"
+      },
+      "compare": {
+       "value": 11.62,
+       "unit": "%",
+       "as_of": "2025",
+       "label_vi": "Tăng GDP danh nghĩa 2025 (tính: 12.847.571 / 11.510.329 tỷ đồng, Cục Thống kê)",
+       "label_en": "Nominal GDP growth 2025 (derived: 12,847,571 / 11,510,329 bn VND, NSO)",
+       "derived": true,
+       "note": "No 9M-2026 current-price GDP found (NSO page blocked); periods differ (credit y/y Sep-2026 vs GDP 2025)."
+      },
+      "sources": [
+       {
+        "name": "Dân Trí - Dư nợ tín dụng đạt 20,75 triệu tỷ sau 9 tháng",
+        "url": "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm"
+       },
+       {
+        "name": "Thị trường Tài chính Tiền tệ - tín dụng +16,69% svck",
+        "url": "https://thitruongtaichinhtiente.vn/tong-du-no-tin-dung-9-thang-dau-nam-2026-dat-20-75-trieu-ty-dong-tang-16-69-so-voi-cung-ky-nam-truoc-86017.html"
+       },
+       {
+        "name": "IMF Country Report 25/283",
+        "url": "https://www.elibrary.imf.org/view/journals/002/2025/283/article-A001-en.xml"
+       },
+       {
+        "name": "VnEconomy - tín dụng BĐS 30/6/2026",
+        "url": "https://vneconomy.vn/den-cuoi-thang-62026-no-xau-bat-dong-san-tang-105-so-cuoi-nam-ngoai.htm"
+       },
+       {
+        "name": "SBV - Dư nợ tín dụng đối với nền kinh tế",
+        "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
+       }
+      ]
+     },
+     {
+      "key": "no_monetary_financing",
+      "title_vi": "Luật không cho NHNN tài trợ thâm hụt ngân sách lâu dài",
+      "title_en": "The law bars lasting monetary financing of the budget",
+      "text_vi": "Điều 26 Luật Ngân hàng Nhà nước Việt Nam số 46/2010/QH12 chỉ cho phép NHNN tạm ứng cho ngân sách trung ương để xử lý thiếu hụt tạm thời quỹ ngân sách nhà nước theo quyết định của Thủ tướng, và khoản tạm ứng phải hoàn trả trong năm ngân sách, trừ trường hợp đặc biệt do Ủy ban Thường vụ Quốc hội quyết định. Trái phiếu Chính phủ do Kho bạc Nhà nước phát hành qua đấu thầu tại HNX và được nắm giữ chủ yếu bởi khối bảo hiểm (61,6%) và ngân hàng (37,4%) (ADB, cuối 9/2025), còn NHNN chỉ mua bán giấy tờ có giá ngắn hạn với tổ chức tín dụng qua nghiệp vụ thị trường mở.",
+      "text_en": "Article 26 of the Law on the State Bank of Vietnam (No. 46/2010/QH12) only allows the SBV to make temporary advances to the central budget to cover temporary shortfalls of the state budget fund by decision of the Prime Minister, repayable within the budget year except in special cases decided by the NA Standing Committee. Government bonds are issued by the State Treasury through HNX auctions and are held mainly by insurers (61.6%) and banks (37.4%) (ADB, end-Sep 2025), while the SBV only buys and sells short-term papers with credit institutions through open-market operations.",
+      "metric": null,
+      "compare": null,
+      "legal": {
+       "law": "Luật Ngân hàng Nhà nước Việt Nam 46/2010/QH12",
+       "article": "Điều 26 (Tạm ứng cho ngân sách trung ương)",
+       "amendments": "Luật 23/2026/QH16 (thông qua 24/8/2026, hiệu lực 01/12/2026, chưa có hiệu lực tại 06/10/2026) sửa cơ chế tài chính NHNN, trạng thái đầu tư quốc tế, nguyên tắc sử dụng ngoại hối; các tóm tắt báo chí không nêu sửa Điều 26.",
+       "gap": "Article-level text was not fetched (legal databases blocked); no explicit statutory clause 'SBV may not buy government bonds at issuance' was verified - the statement on bond purchases rests on the issuance mechanism and ADB holder data, not on a quoted prohibition. The OMO article number was not verified."
+      },
+      "sources": [
+       {
+        "name": "Thư viện Pháp luật - NHNN tạm ứng cho NSNN (Điều 26 Luật NHNN)",
+        "url": "https://thuvienphapluat.vn/hoi-dap-phap-luat/ngan-hang-nha-nuoc-viet-nam-co-duoc-tam-ung-cho-ngan-sach-nha-nuoc-de-xu-ly-thieu-hut-tam-thoi-khon-138005068.html"
+       },
+       {
+        "name": "Văn bản Chính phủ - Luật 46/2010/QH12",
+        "url": "https://vanban.chinhphu.vn/default.aspx?pageid=27160&docid=96040"
+       },
+       {
+        "name": "Văn bản Chính phủ - Luật 23/2026/QH16",
+        "url": "https://vanban.chinhphu.vn/?classid=1&docid=219491&orggroupid=1&pageid=27160"
+       },
+       {
+        "name": "Doanh nghiệp Hội nhập - Luật 23/2026/QH16 hiệu lực 1/12",
+        "url": "https://doanhnghiephoinhap.vn/luat-so-232026qh16-co-hieu-luc-tu-112-doanh-nghiep-can-luu-y-gi-148620.html"
+       },
+       {
+        "name": "ADB Asia Bond Monitor Mar-2026, Viet Nam",
+        "url": "https://asianbondsonline.adb.org/vietnam/market_summary/vn_market_summary_202603.pdf"
+       }
+      ]
+     },
+     {
+      "key": "weak_pass_through",
+      "title_vi": "Lãi suất điều hành truyền dẫn yếu tới lãi suất huy động",
+      "title_en": "Policy rates pass through weakly to deposit rates",
+      "text_vi": "Lãi suất tái cấp vốn 4,5% và tái chiết khấu 3% giữ nguyên trong năm qua, nhưng lãi suất huy động 12 tháng bình quân nhóm ngân hàng khảo sát lên khoảng 8,4% cuối tháng 8/2026 (+2,59 điểm % từ đầu năm, MBS) vì các ngân hàng cạnh tranh tiền gửi khi tín dụng vượt huy động (LDR giản đơn toàn ngành ~114% quý II/2026, Yuanta) và phải đáp ứng trần LDR (85%, nâng lên 95% theo Thông tư 50/2026 ban hành 30/9/2026). Vốn NHNN qua OMO chỉ kỳ hạn 7-91 ngày và bị giới hạn bởi tài sản cầm cố, nên hạ lãi suất điều hành chủ yếu làm rẻ vốn liên ngân hàng ngắn hạn chứ không thay được tiền gửi dài hạn.",
+      "text_en": "The 4.5% refinancing and 3% rediscount rates have been unchanged for a year, yet the surveyed banks' average 12-month deposit rate rose to about 8.4% at end-Aug 2026 (+2.59 points year to date, MBS) because banks compete for deposits when credit outruns funding (sector simple LDR ~114% in Q2-2026, Yuanta) and must meet the LDR cap (85%, raised to 95% by Circular 50/2026 issued 30 Sep 2026). SBV funding via OMO is only 7-91 days and limited by eligible collateral, so a policy-rate cut mainly cheapens short interbank money rather than replacing long-term deposits.",
+      "metric": {
+       "value": 4.5,
+       "unit": "%",
+       "as_of": "2026-10-02",
+       "label_vi": "Lãi suất OMO / tái cấp vốn NHNN",
+       "label_en": "SBV OMO / refinancing rate"
+      },
+      "compare": {
+       "value": 8.4,
+       "unit": "%",
+       "as_of": "2026-08-31",
+       "label_vi": "Lãi suất huy động 12 tháng bình quân nhóm NH khảo sát (MBS)",
+       "label_en": "Average 12-month deposit rate, surveyed banks (MBS)"
+      },
+      "sources": [
+       {
+        "name": "Dân Trí - Vì sao lãi suất chưa thể hạ nhiệt (25/9/2026)",
+        "url": "https://dantri.com.vn/kinh-doanh/vi-sao-lai-suat-chua-the-ha-nhiet-20260925152734374.htm"
+       },
+       {
+        "name": "Người Quan Sát - MBS lãi suất huy động 12T cuối 8/2026",
+        "url": "https://nguoiquansat.vn/fed-tang-lai-suat-chenh-lech-usd-vnd-thu-hep-lai-suat-viet-nam-se-ra-sao-317285.html"
+       },
+       {
+        "name": "Mekong ASEAN - Yuanta LDR, COF Q2/2026",
+        "url": "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
+       },
+       {
+        "name": "VietnamBiz - Thông tư 50/2026 trần LDR 95%",
+        "url": "https://vietnambiz.vn/nhnn-nang-tran-ty-le-cho-vay-tren-tien-gui-len-95-cong-bo-hai-chi-tieu-quan-ly-thanh-khoan-lcr-va-nsfr-2026101144912870.htm"
+       },
+       {
+        "name": "Vietstock - OMO bị giới hạn tài sản cầm cố (6/2026)",
+        "url": "https://vietstock.vn/2026/06/tuan-01-0506-nhnn-tro-lai-rut-rong-hon-26300-ty-qua-kenh-omo-757-1451646.htm"
+       }
+      ]
+     },
+     {
+      "key": "history_2008_2011",
+      "title_vi": "Bài học 2008 và 2011",
+      "title_en": "The 2008 and 2011 lessons",
+      "text_vi": "Năm 2007 tín dụng tăng trên 50% (khoảng 54% tháng 12/2007) và cung tiền khoảng 46% (IMF), sau đó CPI bình quân năm 2008 tăng 22,97% (Tổng cục Thống kê). Sau giai đoạn nới lỏng 2009-2010, CPI bình quân 2011 tăng 18,58% (đỉnh khoảng 23% so cùng kỳ tháng 8/2011, IMF) và NHNN phải điều chỉnh tỷ giá bình quân liên ngân hàng tăng 9,3% lên 20.693 đồng/USD ngày 11/2/2011, kèm gói thắt chặt Nghị quyết 11.",
+      "text_en": "In 2007 credit grew more than 50% (about 54% in Dec 2007) and broad money about 46% (IMF); average CPI inflation then reached 22.97% in 2008 (GSO). After the 2009-2010 easing, average CPI rose 18.58% in 2011 (peaking near 23% y/y in Aug 2011, IMF) and the SBV raised the interbank average rate by 9.3% to 20,693 VND/USD on 11 Feb 2011, alongside the Resolution 11 tightening package.",
+      "metric": {
+       "value": 22.97,
+       "unit": "%",
+       "as_of": "2008",
+       "label_vi": "CPI bình quân 2008 (TCTK)",
+       "label_en": "Average CPI 2008 (GSO)"
+      },
+      "compare": {
+       "value": 18.58,
+       "unit": "%",
+       "as_of": "2011",
+       "label_vi": "CPI bình quân 2011 (TCTK/NSO)",
+       "label_en": "Average CPI 2011 (GSO/NSO)",
+       "note": "World Bank WDI FP.CPI.TOTL.ZG shows ~18.7 for 2011 (different series); not merged. WB API blocked, not re-verified."
+      },
+      "sources": [
+       {
+        "name": "Tuổi Trẻ - Năm 2008 CPI tăng gần 23%",
+        "url": "https://tuoitre.vn/nam-2008-chi-so-gia-tieu-dung-tang-gan-23-294551.htm"
+       },
+       {
+        "name": "IMF Survey 2008 - Vietnam's new challenges amid signs of overheating",
+        "url": "https://www.imf.org/external/pubs/ft/survey/so/2008/CAR03708A.htm"
+       },
+       {
+        "name": "IMF Country Report 12/165 (2012 Article IV)",
+        "url": "https://www.imf.org/external/pubs/ft/scr/2012/cr12165.pdf"
+       },
+       {
+        "name": "Báo Cần Thơ - tỷ giá BQLNH 20.693 (QĐ 230/QĐ-NHNN)",
+        "url": "https://baocantho.com.vn/dieu-chinh-ty-gia-binh-quan-lien-ngan-hang-len-muc-20-693-vnd-usd-a10048.html"
+       }
+      ]
+     }
+    ]
+   },
+   "plumbing": {
+    "as_of": "2026-10-06",
+    "facts": {
+     "currency_in_circulation": {
+      "value": 2041473,
+      "unit": "bn VND",
+      "as_of": "2026-07",
+      "label_vi": "Tiền mặt lưu thông (tính: 9,98% × M2)",
+      "label_en": "Currency in circulation (derived: 9.98% x M2)",
+      "url": "https://sbv.gov.vn/vi/tien-mat-luu-thong-tren-tong-phuong-tien-thanh-toan",
+      "note": "DERIVED from SBV cash/M2 9.98% (Jul-2026) x SBV M2 20,455,644 bn (Jul-2026, https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd). SBV publishes only the ratio. IMF 'currency outside banks' (1,631 trn end-2024, balance_sheet) is a different definition."
+     },
+     "gov_bond_issued_2026_ytd": {
+      "value": 261108,
+      "unit": "bn VND",
+      "as_of": "2026-09-16",
+      "label_vi": "TPCP KBNN đã phát hành qua HNX từ đầu năm",
+      "label_en": "Government bonds issued by the State Treasury via HNX, YTD",
+      "url": "https://vnexpress.net/kho-bac-tang-toc-huy-dong-trai-phieu-chinh-phu-5120717.html",
+      "note": "~261,108 bn = 52.2% of the 500,000 bn plan by 16/09/2026 (excerpt; attribution between vnexpress and znews https://znews.vn/kho-bac-nha-nuoc-tang-huy-dong-trai-phieu-chinh-phu-post1683585.html not pinned). Firm month-end: 228,921.3 bn to end-Aug (46% of plan; HNX via VietnamPlus https://www.vietnamplus.vn/hnx-huy-dong-27756-ty-dong-qua-dau-thau-trai-phieu-chinh-phu-thang-tam-post1136568.vnp). Another excerpt: 'over 246,700 bn' in early Sep - consistent ordering. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "gov_bond_plan_2026": {
+      "value": 500000,
+      "unit": "bn VND",
+      "as_of": "2026",
+      "label_vi": "Kế hoạch phát hành TPCP 2026 (đợt 1)",
+      "label_en": "2026 government bond issuance plan (tranche 1)",
+      "url": "https://hnx.vn/vi-vn/m-tin-tuc-hnx/Ke%20hoach%20phat%20hanh%20TPCP%20nam%202026-591881-0.html",
+      "note": "State Treasury plan announced via HNX, auctions at HNX, tenors 5-15 years in Q1. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "gov_bond_outstanding": {
+      "value": 2670000,
+      "unit": "bn VND",
+      "as_of": "2026-03",
+      "label_vi": "Quy mô thị trường TPCP",
+      "label_en": "Government bond market size",
+      "url": "https://nhandan.vn/phat-hanh-hon-801-nghin-ty-dong-trai-phieu-chinh-phu-lai-suat-binh-quan-406nam-post955549.html",
+      "note": "~2.67 quadrillion VND = 20.8% of GDP at end-Mar 2026 (MoF/press). VBMA (ASF AGM 2026) cites 104.97 bn USD outstanding in Aug-2026 and ~21% of GDP in Jun-2026 (https://vietstock.vn/2026/10/trai-phieu-chinh-phu-dat-quy-mo-ky-luc-bai-toan-nam-o-nguoi-mua-moi-785-1498149.htm) - different date/unit, not merged. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "gov_bond_holders_banks_pct": {
+      "value": 37.4,
+      "unit": "%",
+      "as_of": "2025-09",
+      "label_vi": "Tỷ trọng TPCP do ngân hàng nắm giữ",
+      "label_en": "Share of LCY government bonds held by banks",
+      "url": "https://asianbondsonline.adb.org/vietnam/market_summary/vn_market_summary_202603.pdf",
+      "note": "ADB Asia Bond Monitor (Mar-2026) Viet Nam summary: banks 37.4% at end-Sep 2025, down from 39.4% a year earlier. Older press figure ~40% (Q3-2024). Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "gov_bond_holders_insurers_pct": {
+      "value": 61.6,
+      "unit": "%",
+      "as_of": "2025-09",
+      "label_vi": "Tỷ trọng TPCP do khối bảo hiểm nắm giữ (gồm BHXH)",
+      "label_en": "Share held by insurers (incl. Vietnam Social Security)",
+      "url": "https://asianbondsonline.adb.org/vietnam/market_summary/vn_market_summary_202603.pdf",
+      "note": "ADB: insurance companies 61.6% at end-Sep 2025 (59.8% a year earlier). Press (Vietstock Oct-2026) says VSS alone holds ~60% of outstanding - different grouping, not merged. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "gov_bond_holders_sbv_pct": {
+      "value": null,
+      "unit": "%",
+      "as_of": null,
+      "label_vi": "Tỷ trọng TPCP do NHNN nắm giữ",
+      "label_en": "Share held by the SBV",
+      "url": null,
+      "note": "Not published; ADB holder breakdown shows banks + insurers ~99% with no SBV line. null."
+     },
+     "treasury_deposits_at_sbv": {
+      "value": null,
+      "unit": "bn VND",
+      "as_of": null,
+      "label_vi": "Tiền gửi KBNN tại NHNN",
+      "label_en": "State Treasury deposits at the SBV",
+      "url": null,
+      "note": "Not published. Only the net figure is visible: IMF 'net claims on government - SBV' = -460 trn VND end-2024 (balance_sheet.series.net_claims_govt_sbv)."
+     },
+     "treasury_deposits_at_banks": {
+      "value": 715630,
+      "unit": "bn VND",
+      "as_of": "2026-06-30",
+      "label_vi": "Tiền gửi KBNN tại 4 NHTM Nhà nước",
+      "label_en": "State Treasury deposits at the four state-owned banks",
+      "url": "https://nguoiquansat.vn/kho-bac-nha-nuoc-dang-gui-hon-715-000-ty-dong-tai-4-ngan-hang-thanh-khoan-sap-duoc-bom-manh-311309.html",
+      "note": "Q2-2026 bank statements (VCB 186,327; BIDV 185,944; VietinBank 184,240; Agribank 159,119). SBV data: 626,700 at all CIs end-Q1 2026, >99% at the Big4 (https://cafef.vn/nam-hon-99-tien-gui-kho-bac-vietcombank-vietinbank-bidv-va-agribank-huong-loi-lon-nhat-tu-quy-dinh-moi-cua-ngan-hang-nha-nuoc-188260518144614405.chn). From 01/08/2026, 50% of KBNN term deposits count in LDR funding. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "big4_credit_share_pct": {
+      "value": 42.3,
+      "unit": "%",
+      "as_of": "2026-03",
+      "label_vi": "Thị phần dư nợ của Agribank, VCB, BIDV, VietinBank",
+      "label_en": "Big-4 state banks' share of system credit",
+      "url": "https://vtv.vn/big-4-ngan-hang-bom-them-1-trieu-ty-dong-vao-nen-kinh-te-100260327132008275.htm",
+      "note": "~8 quadrillion VND, 42.3% of economy-wide credit (VTV, 27/03/2026; Big4 also 46.5% of sector assets at end-2025). CONFLICT: CafeF (24/08/2026) headline 'Big4 chiếm hơn 41% tổng dư nợ' (https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn) - different date/basis, both reported. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "rrr_vnd_short": {
+      "value": 3.0,
+      "unit": "%",
+      "as_of": "2026-02-10",
+      "label_vi": "Dự trữ bắt buộc tiền gửi VND kỳ hạn <12 tháng",
+      "label_en": "Reserve requirement, VND deposits <12 months",
+      "url": "https://vietstock.vn/2026/02/giam-50-du-tru-bat-buoc-cho-4-ngan-hang-757-1403197.htm",
+      "note": "Standard ratio (>=12m: 1%); 50% reduction for 4 banks receiving transferred weak banks. No change found Jul-Oct 2026."
+     },
+     "refinancing_rate": {
+      "value": 4.5,
+      "unit": "%",
+      "as_of": "2026-09-25",
+      "label_vi": "Lãi suất tái cấp vốn",
+      "label_en": "Refinancing rate",
+      "url": "https://dantri.com.vn/kinh-doanh/vi-sao-lai-suat-chua-the-ha-nhiet-20260925152734374.htm",
+      "note": "Unchanged since 19/06/2023 (Decision 1123/QD-NHNN: https://vasep.com.vn/van-ban/cac-co-quan-khac/ngan-hang-nha-nuoc-viet-nam/quyet-dinh-1123-qd-nhnn-lai-suat-tai-cap-von-lai-suat-tai-chiet-khau-lai-suat-cho-vay-qua-dem-trong-thanh-toan-dien-tu-lien-nh-va-cho-vay-bu-dap-thieu-hut-von-trong-thanh-toan-bu-tru-cua-nhnn-viet-nam-doi-voi-tctd-cn-ngan-hang-nuoc-ngoai-2975.html). Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "rediscount_rate": {
+      "value": 3.0,
+      "unit": "%",
+      "as_of": "2026-09-25",
+      "label_vi": "Lãi suất tái chiết khấu",
+      "label_en": "Rediscount rate",
+      "url": "https://dantri.com.vn/kinh-doanh/vi-sao-lai-suat-chua-the-ha-nhiet-20260925152734374.htm",
+      "note": "Unchanged since 19/06/2023 (Decision 1123/QD-NHNN). Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "omo_rate": {
+      "value": 4.5,
+      "unit": "%",
+      "as_of": "2026-10-02",
+      "label_vi": "Lãi suất OMO (cầm cố GTCG, 7-91 ngày)",
+      "label_en": "OMO rate (collateralised, 7-91 days)",
+      "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm",
+      "note": "Raised 4.0 -> 4.5% from 04/12/2025. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "omo_outstanding": {
+      "value": 133342,
+      "unit": "bn VND",
+      "as_of": "2026-10-02",
+      "label_vi": "Dư nợ OMO cuối tuần",
+      "label_en": "OMO outstanding at week end",
+      "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm",
+      "note": "See operations log; VBMA-consistent basis. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+     },
+     "fx_reserves_latest": {
+      "value": 87.6,
+      "unit": "bn USD",
+      "as_of": "2026-06-18",
+      "label_vi": "Dự trữ ngoại hối nhà nước (NHNN công bố)",
+      "label_en": "State FX reserves (SBV disclosure)",
+      "url": "https://cafef.vn/du-tru-ngoai-hoi-con-876-ty-usd-ngan-hang-nha-nuoc-muon-sua-doi-nhieu-quy-dinh-188260624112155679.chn",
+      "note": "SBV official ~87.6 bn USD on 18/06/2026. IMF IL TRGNV (incl. gold, national valuation) 86.10 bn Jul-2026 / 89.55 Jun-2026 - different definition, see balance_sheet.monthly_supplement. SBV to publish IMF-template reserves data from 2027 (https://vietstock.vn/2026/05/ngan-hang-nha-nuoc-va-bo-tai-chinh-hoa-ky-ra-tuyen-bo-chung-ve-chinh-sach-ty-gia-va-du-tru-ngoai-hoi-757-1448772.htm)."
+     }
+    },
+    "flow_notes_vi": [
+     "NHNN ↔ ngân hàng: bơm tiền qua OMO (cầm cố GTCG 7-91 ngày, 4,5%), tái cấp vốn (4,5%), hoán đổi ngoại tệ; hút tiền qua tín phiếu NHNN (không phát hành từ 28/7/2025 theo dữ liệu hiện có) và dự trữ bắt buộc (3% VND <12 tháng).",
+     "Ngoại hối: NHNN bán USD (giao ngay/kỳ hạn) thì hút VND về; mua USD hoặc hoán đổi (mua giao ngay) thì bơm VND ra.",
+     "Kho bạc: thu ngân sách làm tiền rời khỏi ngân hàng về tài khoản KBNN (tại NHNN và 4 NHTM Nhà nước); chi đầu tư công đưa tiền trở lại hệ thống.",
+     "TPCP: KBNN đấu thầu qua HNX, ngân hàng thương mại và bảo hiểm là người mua chính; NHNN không có tỷ trọng nắm giữ được công bố.",
+     "Tạm ứng: NHNN chỉ được tạm ứng cho ngân sách trung ương khi thiếu hụt tạm thời, theo quyết định của Thủ tướng, hoàn trả trong năm (Điều 26 Luật NHNN)."
+    ],
+    "flow_notes_en": [
+     "SBV <-> banks: injects via OMO (collateralised, 7-91 days, 4.5%), refinancing (4.5%) and FX swaps; drains via SBV bills (none issued since 28/07/2025 per this log) and reserve requirements (3% on VND <12m).",
+     "FX: when the SBV sells USD (spot/forward) it absorbs VND; when it buys USD or swaps (buys spot) it injects VND.",
+     "Treasury: tax receipts move money from banks into Treasury accounts (at the SBV and the four state banks); public-investment spending returns it.",
+     "Government bonds: the State Treasury auctions via HNX; commercial banks and insurers are the main buyers; no SBV holding share is published.",
+     "Advances: the SBV may only advance funds to the central budget for temporary shortfalls, by PM decision, repayable within the year (Art. 26, SBV Law)."
+    ],
+    "sources": [
+     {
+      "name": "Vietstock weekly OMO 28/9-2/10/2026",
+      "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm"
+     },
+     {
+      "name": "CafeF swap 21/9/2026",
+      "url": "https://cafef.vn/ngan-hang-nha-nuoc-mo-them-kenh-bom-tien-vnd-quy-mo-ho-tro-toi-da-hon-48000-ty-dong-188260921160448929.chn"
+     },
+     {
+      "name": "Người Quan Sát KBNN Q2/2026",
+      "url": "https://nguoiquansat.vn/kho-bac-nha-nuoc-dang-gui-hon-715-000-ty-dong-tai-4-ngan-hang-thanh-khoan-sap-duoc-bom-manh-311309.html"
+     },
+     {
+      "name": "ADB Asia Bond Monitor Mar-2026",
+      "url": "https://asianbondsonline.adb.org/vietnam/market_summary/vn_market_summary_202603.pdf"
+     },
+     {
+      "name": "VTV Big 4",
+      "url": "https://vtv.vn/big-4-ngan-hang-bom-them-1-trieu-ty-dong-vao-nen-kinh-te-100260327132008275.htm"
+     },
+     {
+      "name": "Dân Trí 25/9/2026",
+      "url": "https://dantri.com.vn/kinh-doanh/vi-sao-lai-suat-chua-the-ha-nhiet-20260925152734374.htm"
+     }
+    ]
+   }
   },
   "sources": {
    "money": {
@@ -9447,6 +9983,10 @@
     ],
     "share_of_total_pct": "computed from SBV levels",
     "note": "SBV page publishes Jan-2025..Jul-2026 only. Re-checked 2026-10-06 by search: Aug/Sep-2026 sector tables not yet published (no press citing them). Sub-sector rows are 'trong đó'."
+   },
+   "sbv_constraints_plumbing_analysis": {
+    "date": "2026-10-06",
+    "verification": "Most pages (vietstock, cafef, thoibaotaichinhvietnam, sbv.gov.vn, thuvienphapluat, IMF, ADB, FRED, World Bank API) were blocked by the egress proxy; all new figures were verified via search-engine excerpts only. Derived values are labelled 'derived' with inputs."
    }
   },
   "other_services_breakdown": {
@@ -9547,6 +10087,963 @@
    "total_bn": 9158790.0,
    "total_as_of": "2026-07",
    "residual_note": "Unclassified residual = other-services total (Jul-2026, 9,158,790) − real-estate business (Jun-2026, 2,519,000) − consumer credit incl. own-use housing (Aug-2026, 4,620,000) ≈ 2,019,790 bn VND (≈22%). The three inputs are from three different months; nothing is rescaled, so the residual is indicative only. re_total and re_selfuse_share are stored for cross-checking and are not added (own-use housing sits inside consumer). Not every consumer or real-estate loan is necessarily booked under 'other services' (e.g. industrial-park projects may sit under construction), so the 'known' share is an upper-bound estimate."
+  },
+  "analysis": {
+   "as_of": "2026-10-06",
+   "method_note_vi": "Mỗi chương: kiểm tra tiền đề bằng dữ liệu trong FINSYS trước, sau đó tổng hợp giải thích từ nguồn (NHNN, IMF, ADB, công ty chứng khoán, tổ chức xếp hạng). Câu có 'theo …' là diễn giải của nguồn đó; con số kèm kỳ số liệu. Không dự báo, không khuyến nghị.",
+   "method_note_en": "Each chapter first checks the premise against FINSYS data, then synthesises sourced explanations (SBV, IMF, ADB, brokers, rating agencies). Sentences with 'according to …' are that source's interpretation; numbers carry their period. No forecasts, no advice.",
+   "chapters": {
+    "hero": {
+     "q_vi": "Vì sao tín dụng tăng nhanh hơn huy động?",
+     "q_en": "Why has credit grown faster than deposits?",
+     "answer_vi": "Tiền đề 'từ 2020' chỉ đúng một phần: theo FINSYS.annual, tín dụng tăng nhanh hơn huy động trong 9/11 năm 2015-2025, trừ 2019 (13,65% so với 14,54%) và 2020 (12,2% so với 13,3%); khoảng chênh mở rộng từ 2021, lớn nhất năm 2022 (14,2% so với 5,99%) và 2024 (15,09% so với 10,66%). Về số dư, theo IMF FSI cho vay của các tổ chức nhận tiền gửi vượt tiền gửi lần đầu năm 2023 (13,30 so với 13,26 triệu tỷ đồng). Nguyên nhân chính là cầu vốn do mục tiêu tăng trưởng cao và chỉ tiêu tín dụng nới rộng, trong khi lãi suất tiền gửi thấp 2023-2024 đẩy tiền của dân sang vàng, chứng khoán, bất động sản.",
+     "answer_en": "The 'since 2020' premise is only partly right: per FINSYS.annual, credit outgrew deposits in 9 of the 11 years 2015-2025, the exceptions being 2019 (13.65% vs 14.54%) and 2020 (12.2% vs 13.3%); the gap widened from 2021 and was largest in 2022 (14.2% vs 5.99%) and 2024 (15.09% vs 10.66%). In levels, IMF FSI loans of deposit takers first exceeded deposits in 2023 (13.30 vs 13.26 quadrillion VND). The main causes are funding demand from high growth targets and expanded credit quotas, while low deposit rates in 2023-2024 pushed household money into gold, stocks and property.",
+     "drivers": [
+      {
+       "title_vi": "Cầu vốn từ mục tiêu tăng trưởng và đầu tư công",
+       "title_en": "Funding demand from growth targets and public investment",
+       "text_vi": "Chính phủ đặt mục tiêu GDP từ 10% trở lên năm 2026 và chỉ tiêu tín dụng khoảng 15%; đến 30/9/2026 tín dụng tăng 16,69% so cùng kỳ. Giải ngân đầu tư công 9 tháng 2026 đạt khoảng 643 nghìn tỷ đồng (62,9% kế hoạch) và các dự án lớn cần vốn đối ứng ngân hàng.",
+       "text_en": "The government targets GDP growth of 10%+ in 2026 with a credit target of about 15%; by 30 Sep 2026 credit was up 16.69% y/y. Public-investment disbursement reached about VND 643 trillion in 9M-2026 (62.9% of plan), and megaprojects need bank co-financing.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "Báo Chính phủ - giải ngân đầu tư công 9T/2026",
+         "url": "https://baochinhphu.vn/giai-ngan-von-dau-tu-cong-9-thang-nam-2026-mot-so-bo-nganh-dia-phuong-con-cham-102261003011740764.htm"
+        },
+        {
+         "name": "VnEconomy - chỉ tiêu tín dụng 2026",
+         "url": "https://vneconomy.vn/nam-2026-tin-dung-du-kien-tang-them-279-trieu-ty-dong-giam-183000-ty-so-voi-2025.htm"
+        },
+        {
+         "name": "Dân Trí - tín dụng 30/9/2026",
+         "url": "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm"
+        }
+       ]
+      },
+      {
+       "title_vi": "Lãi suất tiền gửi thấp làm tiền gửi tăng chậm",
+       "title_en": "Low deposit rates slowed deposit growth",
+       "text_vi": "Lãi suất tiết kiệm 2023-2024 chỉ khoảng 4-5%/năm; theo VPBankS, người dân rút tiền gửi để mua vàng, bất động sản và các kênh sinh lời cao hơn. Đến 27/11/2024 tín dụng tăng 11,5% trong khi huy động chỉ 7,7%.",
+       "text_en": "Savings rates were only about 4-5% in 2023-2024; according to VPBankS, households withdrew deposits to buy gold, property and higher-yield assets. By 27 Nov 2024 credit was up 11.5% YTD against 7.7% for deposits.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "Thời báo Tài chính - chênh lệch tín dụng - huy động",
+         "url": "https://thoibaotaichinhvietnam.vn/chenh-lech-tang-truong-tin-dung-huy-dong-2025-ky-vong-thu-hep-167698.html"
+        },
+        {
+         "name": "Vietstock - Vì sao tiền gửi tăng chậm (5/2026)",
+         "url": "https://vietstock.vn/2026/05/vi-sao-tien-gui-tang-cham-757-1443493.htm"
+        }
+       ]
+      },
+      {
+       "title_vi": "Tiền gửi Kho bạc bị loại khỏi nguồn vốn tính LDR",
+       "title_en": "Treasury deposits removed from LDR funding",
+       "text_vi": "Theo lộ trình Thông tư 26/2022, tiền gửi có kỳ hạn của KBNN được tính 0% vào mẫu số LDR từ 1/1/2026, trong khi KBNN gửi tới 715.630 tỷ đồng tại Big4 cuối quý II/2026; NHNN sau đó nâng tỷ lệ được tính lên 20% (15/5) và 50% (1/8/2026). Tiền ngân sách thặng dư (khoảng 500 nghìn tỷ đồng 5 tháng đầu 2026, VDSC) nằm ở KBNN thay vì quay lại ngân hàng làm hẹp thêm nguồn vốn.",
+       "text_en": "Under the Circular 26/2022 roadmap, Treasury term deposits counted 0% in LDR funding from 1 Jan 2026 while the Treasury held VND 715,630 bn at the Big4 at end-Q2 2026; the SBV then raised the countable share to 20% (15 May) and 50% (1 Aug 2026). Budget surpluses (about VND 500 trn in 5M-2026, VDSC) parked at the Treasury rather than recycled to banks further narrowed funding.",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "VnEconomy - từ 1/8 nới tiền gửi KBNN",
+         "url": "https://vneconomy.vn/tu-18-noi-quy-dinh-tinh-tien-gui-kho-bac-nha-nuoc-ngan-hang-co-them-du-dia-cho-vay.htm"
+        },
+        {
+         "name": "CafeF - KBNN thừa tiền, ngân hàng khát thanh khoản",
+         "url": "https://cafef.vn/kho-bac-nha-nuoc-thua-tien-ngan-hang-khat-thanh-khoan-188260618075717285.chn"
+        },
+        {
+         "name": "Người Quan Sát - KBNN gửi 715.000 tỷ",
+         "url": "https://nguoiquansat.vn/kho-bac-nha-nuoc-dang-gui-hon-715-000-ty-dong-tai-4-ngan-hang-thanh-khoan-sap-duoc-bom-manh-311309.html"
+        }
+       ]
+      },
+      {
+       "title_vi": "Ngân hàng bù đắp bằng giấy tờ có giá và vay liên ngân hàng",
+       "title_en": "Banks fill the gap with paper and interbank money",
+       "text_vi": "Theo IMF (Article IV 2025), tiền gửi tăng chậm khiến ngân hàng chuyển sang nguồn đắt hơn như vay NHNN và phát hành giấy tờ có giá; FiinRatings ước 2025 tín dụng ~19% so với tiền gửi khách hàng ~11,4%. Khoảng chênh tín dụng - huy động ước khoảng 2 triệu tỷ đồng (7/2026).",
+       "text_en": "According to the IMF (2025 Article IV), slower deposits pushed banks to costlier funding such as SBV borrowing and valuable-paper issuance; FiinRatings estimates 2025 credit growth of ~19% vs ~11.4% for customer deposits. The credit-deposit gap was estimated at about VND 2 quadrillion (Jul-2026).",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "IMF Country Report 25/283",
+         "url": "https://www.elibrary.imf.org/view/journals/002/2025/283/article-A001-en.xml"
+        },
+        {
+         "name": "VietnamBiz - FiinRatings tín dụng vượt huy động",
+         "url": "https://vietnambiz.vn/tang-truong-tin-dung-vuot-xa-huy-dong-ap-luc-thanh-khoan-keo-dai-tu-2025-sang-2026-2026420152432400.htm"
+        }
+       ]
+      }
+     ],
+     "caveat_vi": "Tăng trưởng huy động trong FINSYS.annual lấy từ NHNN/báo chí, không phải tăng trưởng của số dư IMF FSI; năm 2025 hai cách tính chênh nhau (15,42% so với 14,71%). M2 có thay đổi phương pháp năm 2025.",
+     "caveat_en": "FINSYS.annual deposit growth comes from SBV/press and is not the growth of the IMF FSI deposit level; for 2025 the two differ (15.42% vs 14.71%). M2 methodology changed in 2025.",
+     "sources": [
+      {
+       "name": "FINSYS.annual (SBV, IMF FSI)",
+       "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014"
+      },
+      {
+       "name": "IMF Country Report 25/283",
+       "url": "https://www.elibrary.imf.org/view/journals/002/2025/283/article-A001-en.xml"
+      }
+     ]
+    },
+    "depth": {
+     "q_vi": "Vì sao tín dụng/GDP vượt 100% và tiếp tục tăng?",
+     "q_en": "Why is credit/GDP above 100% and still rising?",
+     "answer_vi": "Đúng: tín dụng khu vực tư nhân/GDP (World Bank) vượt 100% từ 2017 (103,97%) và lên 124,96% năm 2022; IMF ghi nhận tín dụng 136% GDP năm 2024 và tính toán từ số liệu NHNN/Cục Thống kê cho 144.7% cuối 2025. Nguyên nhân: nền kinh tế dựa vào ngân hàng vì thị trường trái phiếu và cổ phiếu còn nông, tín dụng tăng nhanh hơn GDP danh nghĩa nhiều năm liền (2025: 19% so với 11.62%).",
+     "answer_en": "Yes: World Bank private-credit/GDP passed 100% in 2017 (103.97%) and reached 124.96% in 2022; the IMF puts credit at 136% of GDP in 2024 and SBV/NSO data give 144.7% at end-2025 (derived). The causes: the economy is bank-financed because bond and equity markets are shallow, and credit has outgrown nominal GDP for years (2025: 19% vs 11.62%).",
+     "drivers": [
+      {
+       "title_vi": "Ngân hàng là kênh vốn chủ đạo",
+       "title_en": "Banks are the dominant funding channel",
+       "text_vi": "Theo IMF, tín dụng ở mức 136% GDP năm 2024, cao hơn phần lớn thị trường mới nổi, và khoảng chênh tín dụng/GDP vẫn dương. Trái phiếu doanh nghiệp riêng lẻ chỉ khoảng 1,17 triệu tỷ đồng (9,1% GDP) cuối 3/2026.",
+       "text_en": "According to the IMF, credit was 136% of GDP in 2024, above most emerging markets, and the credit-to-GDP gap remained positive. Private-placement corporate bonds were only about VND 1.17 quadrillion (9.1% of GDP) at end-Mar 2026.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "IMF Country Report 25/283",
+         "url": "https://www.elibrary.imf.org/view/journals/002/2025/283/article-A001-en.xml"
+        },
+        {
+         "name": "Nhân Dân - quy mô thị trường trái phiếu Q1/2026",
+         "url": "https://nhandan.vn/phat-hanh-hon-801-nghin-ty-dong-trai-phieu-chinh-phu-lai-suat-binh-quan-406nam-post955549.html"
+        }
+       ]
+      },
+      {
+       "title_vi": "Tín dụng tăng nhanh hơn GDP danh nghĩa",
+       "title_en": "Credit outgrows nominal GDP",
+       "text_vi": "Tín dụng tăng 19,07% năm 2025 (NHNN) trong khi GDP danh nghĩa tăng 11.62% (tính từ Cục Thống kê), nên tỷ lệ tín dụng/GDP tăng khoảng 10 điểm % trong một năm. Đến 30/9/2026 tín dụng vẫn tăng 16,69% so cùng kỳ.",
+       "text_en": "Credit grew 19.07% in 2025 (SBV) against 11.62% nominal GDP growth (derived from NSO), adding roughly 10 points to credit/GDP in one year. Credit was still up 16.69% y/y on 30 Sep 2026.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "SBV - dư nợ tín dụng",
+         "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
+        },
+        {
+         "name": "Dân Trí - tín dụng 30/9/2026",
+         "url": "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm"
+        }
+       ]
+      },
+      {
+       "title_vi": "Thị trường trái phiếu doanh nghiệp chưa hồi phục đủ",
+       "title_en": "Corporate bond market still narrow",
+       "text_vi": "Sau đổ vỡ 2022, phát hành TPDN 8 tháng 2026 đạt 382,8 nghìn tỷ đồng nhưng 90,9% là ngân hàng và bất động sản (VBMA), nên doanh nghiệp khác vẫn dựa vào vay ngân hàng.",
+       "text_en": "After the 2022 crisis, 8M-2026 corporate bond issuance reached VND 382.8 trn but 90.9% came from banks and real estate (VBMA), so other firms still rely on bank loans.",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "Tạp chí Kinh tế Tài chính - TPDN 8T/2026",
+         "url": "https://tapchikinhtetaichinh.vn/ngan-hang-bat-dong-san-chiem-91-luong-trai-phieu-phat-hanh-167100.html"
+        }
+       ]
+      }
+     ],
+     "caveat_vi": "Các tỷ lệ khác định nghĩa: World Bank 'tín dụng khu vực tư nhân' (đến 2022), IMF 'tín dụng ngân hàng', báo chí 146% (tổng dư nợ/GDP). Không ghép thành một chuỗi.",
+     "caveat_en": "Ratios differ in definition: World Bank 'domestic credit to private sector' (to 2022), IMF 'bank credit', press 146% (total credit/GDP). They are not spliced.",
+     "sources": [
+      {
+       "name": "World Bank WDI FS.AST.PRVT.GD.ZS",
+       "url": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+      },
+      {
+       "name": "IMF Country Report 25/283",
+       "url": "https://www.elibrary.imf.org/view/journals/002/2025/283/article-A001-en.xml"
+      },
+      {
+       "name": "Diễn đàn Doanh nghiệp - tín dụng/GDP ~146%",
+       "url": "https://diendandoanhnghiep.vn/tang-truong-tin-dung-2025-du-kien-19-he-so-tin-dung-tren-gdp-khoang-146-10168295.html"
+      }
+     ]
+    },
+    "flow": {
+     "q_vi": "Vì sao 'các hoạt động dịch vụ khác', bất động sản và tiêu dùng chiếm phần lớn tín dụng?",
+     "q_en": "Why do 'other services', real estate and consumer lending dominate credit?",
+     "answer_vi": "Theo bảng ngành của NHNN, 'các hoạt động dịch vụ khác' chiếm 45.2% dư nợ cuối 7/2026 và tăng 25.8% so cùng kỳ (toàn hệ thống 17.7%). Nhóm này không được NHNN chia nhỏ, nhưng các số liệu riêng cho thấy cho vay tiêu dùng (4,62 triệu tỷ, 22,56% dư nợ, cuối 8/2026) và tín dụng bất động sản (5,146 triệu tỷ, 25,5%, cuối 6/2026) là các cấu phần lớn, có phần chồng lấn (cho vay mua nhà).",
+     "answer_en": "In the SBV sector table, 'other service activities' held 45.2% of credit at end-Jul 2026 and grew 25.8% y/y (system 17.7%). The SBV does not split it, but separate figures show consumer lending (4.62 quadrillion VND, 22.56% of credit, end-Aug 2026) and real-estate credit (5.146 quadrillion, 25.5%, end-Jun 2026) are large components, overlapping via home-purchase loans.",
+     "drivers": [
+      {
+       "title_vi": "Cho vay hộ gia đình và tiêu dùng tăng nhanh",
+       "title_en": "Household and consumer lending growing fast",
+       "text_vi": "Dư nợ cho vay tiêu dùng (gồm thẻ) khoảng 4,62 triệu tỷ đồng cuối 8/2026, tăng 21,75% so cùng kỳ, nhanh hơn tín dụng chung. Phần lớn là cho vay mua nhà tự sử dụng nên cũng nằm trong tín dụng bất động sản.",
+       "text_en": "Consumer lending (incl. cards) was about VND 4.62 quadrillion at end-Aug 2026, up 21.75% y/y, faster than total credit. Much of it is owner-occupied housing, so it is also counted in real-estate credit.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "Tuổi Trẻ - dư nợ tiêu dùng 4,62 triệu tỷ",
+         "url": "https://tuoitre.vn/du-no-cho-vay-tieu-dung-can-moc-462-trieu-ti-dong-100261002183128655.htm"
+        }
+       ]
+      },
+      {
+       "title_vi": "Bất động sản là tài sản thế chấp và cầu vốn chính",
+       "title_en": "Real estate as main collateral and borrower",
+       "text_vi": "Tín dụng bất động sản đạt khoảng 5,146 triệu tỷ đồng (25,5% dư nợ) cuối 6/2026, trong đó kinh doanh bất động sản 2,519 triệu tỷ, tăng 12,71% chỉ trong quý II. Nợ xấu bất động sản tăng 10,5% so cuối 2025.",
+       "text_en": "Real-estate credit was about VND 5.146 quadrillion (25.5% of credit) at end-Jun 2026, of which real-estate business 2.519 quadrillion, up 12.71% in Q2 alone. Real-estate NPLs rose 10.5% vs end-2025.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "VnEconomy - tín dụng/nợ xấu BĐS 30/6/2026",
+         "url": "https://vneconomy.vn/den-cuoi-thang-62026-no-xau-bat-dong-san-tang-105-so-cuoi-nam-ngoai.htm"
+        },
+        {
+         "name": "VnExpress - dư nợ kinh doanh BĐS",
+         "url": "https://vnexpress.net/du-no-kinh-doanh-bat-dong-san-vuot-2-5-trieu-ty-dong-5112649.html"
+        }
+       ]
+      },
+      {
+       "title_vi": "Phân loại theo ngành của bên vay",
+       "title_en": "Classification by borrower industry",
+       "text_vi": "Nhóm 'dịch vụ khác' gom các khoản vay không thuộc nông nghiệp, công nghiệp, xây dựng, thương mại, vận tải; NHNN không công bố danh mục, nên việc gán tiêu dùng và bất động sản vào nhóm này là suy luận (xem other_services_breakdown).",
+       "text_en": "'Other services' gathers loans not classed as agriculture, industry, construction, trade or transport; the SBV publishes no list, so assigning consumer and real-estate lending to it is an inference (see other_services_breakdown).",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "SBV - Dư nợ tín dụng đối với nền kinh tế",
+         "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
+        }
+       ]
+      }
+     ],
+     "caveat_vi": "Các cấu phần có kỳ khác nhau (6/2026, 7/2026, 8/2026) và chồng lấn; không cộng trực tiếp.",
+     "caveat_en": "Components have different periods (Jun/Jul/Aug 2026) and overlap; they are not additive.",
+     "sources": [
+      {
+       "name": "SBV sector table",
+       "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
+      },
+      {
+       "name": "Tuổi Trẻ",
+       "url": "https://tuoitre.vn/du-no-cho-vay-tieu-dung-can-moc-462-trieu-ti-dong-100261002183128655.htm"
+      },
+      {
+       "name": "VnEconomy",
+       "url": "https://vneconomy.vn/den-cuoi-thang-62026-no-xau-bat-dong-san-tang-105-so-cuoi-nam-ngoai.htm"
+      }
+     ]
+    },
+    "why": {
+     "q_vi": "Vì sao lãi suất cho vay không giảm dù NHNN giữ lãi suất điều hành?",
+     "q_en": "Why won't lending rates fall even though policy rates are unchanged?",
+     "answer_vi": "Lãi suất điều hành không tăng (tái cấp vốn 4,5% từ 6/2023; OMO lên 4,5% từ 12/2025), nhưng chi phí vốn thực tế của ngân hàng tăng: lãi suất huy động 12 tháng khoảng 8,4% cuối 8/2026 và chi phí vốn toàn ngành 4,79% quý II/2026. Lãi suất cho vay bình quân 8,4-10,7% (8/2026) phản ánh cuộc đua huy động, thanh khoản căng và áp lực tỷ giá, lạm phát hơn là lãi suất điều hành.",
+     "answer_en": "Policy rates have not risen much (refinancing 4.5% since Jun 2023; OMO up to 4.5% in Dec 2025), but banks' actual funding costs have: the 12-month deposit rate was about 8.4% at end-Aug 2026 and sector cost of funds 4.79% in Q2-2026. Average lending rates of 8.4-10.7% (Aug 2026) reflect the deposit race, tight liquidity, and FX and inflation pressure rather than the policy rate.",
+     "drivers": [
+      {
+       "title_vi": "Cuộc đua huy động do tín dụng vượt tiền gửi",
+       "title_en": "Deposit race as credit outruns deposits",
+       "text_vi": "LDR giản đơn toàn ngành khoảng 114% quý II/2026 (Yuanta); lãi suất 12 tháng nhóm NH tư nhân tăng từ 5,82% (12/2025) lên 8,63% (7/2026) theo MBS.",
+       "text_en": "The sector's simple LDR was about 114% in Q2-2026 (Yuanta); private banks' 12-month rate rose from 5.82% (Dec 2025) to 8.63% (Jul 2026) per MBS.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "Mekong ASEAN - Yuanta",
+         "url": "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
+        },
+        {
+         "name": "Người Quan Sát - MBS",
+         "url": "https://nguoiquansat.vn/fed-tang-lai-suat-chenh-lech-usd-vnd-thu-hep-lai-suat-viet-nam-se-ra-sao-317285.html"
+        }
+       ]
+      },
+      {
+       "title_vi": "Thanh khoản và tỷ giá ràng buộc NHNN",
+       "title_en": "Liquidity and FX constrain the SBV",
+       "text_vi": "Lãi suất qua đêm từng lên 17% (3/2/2026) và dao động 0,5-7% cuối 9/2026; NHNN vừa bơm qua OMO/hoán đổi (tối đa 2 tỷ USD ngày 21/9/2026) vừa phải giữ VND không quá rẻ khi Fed nâng lãi suất lên 3,75-4% (16/9/2026).",
+       "text_en": "Overnight interbank hit 17% (3 Feb 2026) and swung between 0.5% and 7% in late Sep 2026; the SBV injects via OMO/swaps (up to 2 bn USD on 21 Sep 2026) yet must keep VND from becoming too cheap as the Fed raised rates to 3.75-4% (16 Sep 2026).",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "CafeF - hoán đổi 21/9/2026",
+         "url": "https://cafef.vn/ngan-hang-nha-nuoc-mo-them-kenh-bom-tien-vnd-quy-mo-ho-tro-toi-da-hon-48000-ty-dong-188260921160448929.chn"
+        },
+        {
+         "name": "Federal Reserve 16/9/2026",
+         "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+        }
+       ]
+      },
+      {
+       "title_vi": "Lạm phát ~5% đòi hỏi lãi suất thực dương",
+       "title_en": "~5% inflation requires positive real rates",
+       "text_vi": "CPI T9/2026 tăng 5,08% so cùng kỳ; với lãi suất 12 tháng ~8,4-8,6%, lãi suất thực khoảng 3,5 điểm % (tính toán) để giữ người gửi không chuyển sang vàng, bất động sản.",
+       "text_en": "Sep-2026 CPI was +5.08% y/y; with 12-month deposit rates of ~8.4-8.6%, the real rate is about 3.5 points (derived), needed to keep savers from switching to gold or property.",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "NSO - giá T9/2026",
+         "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/"
+        }
+       ]
+      },
+      {
+       "title_vi": "Rủi ro tín dụng và quy định an toàn",
+       "title_en": "Credit risk and prudential rules",
+       "text_vi": "Nợ xấu nội bảng 3,31% (6/2026), nợ xấu rộng 3,77%; trần LDR 85% (lên 95% theo TT 50/2026) và trần vốn ngắn hạn cho vay trung dài hạn khiến ngân hàng phải trả giá cao cho vốn dài hạn.",
+       "text_en": "On-balance NPLs were 3.31% (Jun 2026) and broad NPLs 3.77%; the 85% LDR cap (95% under Circular 50/2026) and the short-for-long funding cap make banks pay up for long-term funds.",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "VnEconomy - nợ xấu 6/2026",
+         "url": "https://vneconomy.vn/den-cuoi-thang-62026-no-xau-bat-dong-san-tang-105-so-cuoi-nam-ngoai.htm"
+        },
+        {
+         "name": "VietnamBiz - TT 50/2026",
+         "url": "https://vietnambiz.vn/nhnn-nang-tran-ty-le-cho-vay-tren-tien-gui-len-95-cong-bo-hai-chi-tieu-quan-ly-thanh-khoan-lcr-va-nsfr-2026101144912870.htm"
+        }
+       ]
+      }
+     ],
+     "caveat_vi": "Chi phí vốn, CASA, NIM là số của nhóm ngân hàng niêm yết theo từng công ty chứng khoán, không phải toàn hệ thống; xem why.series để biết định nghĩa.",
+     "caveat_en": "Cost of funds, CASA and NIM are listed-bank figures from individual brokers, not system-wide; see why.series for definitions.",
+     "sources": [
+      {
+       "name": "Dân Trí 25/9/2026",
+       "url": "https://dantri.com.vn/kinh-doanh/vi-sao-lai-suat-chua-the-ha-nhiet-20260925152734374.htm"
+      },
+      {
+       "name": "Mekong ASEAN - Yuanta",
+       "url": "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
+      }
+     ]
+    },
+    "safe": {
+     "q_vi": "Nợ xấu đang giảm thật hay chỉ được che đi?",
+     "q_en": "Are NPLs really falling, or just hidden?",
+     "answer_vi": "Tỷ lệ nợ xấu nội bảng của NHNN giảm từ 4,1% (quý I/2025) xuống 3,31% (6/2026), chủ yếu vì mẫu số tín dụng tăng nhanh; nợ xấu rộng (gồm VAMC và tiềm ẩn) vẫn 3,77% và nợ xấu bất động sản tăng 10,5% so cuối 2025. Nếu loại 5 ngân hàng yếu kém, tỷ lệ chỉ 1,51%, tức rủi ro tập trung ở nhóm ngân hàng được kiểm soát đặc biệt/chuyển giao bắt buộc.",
+     "answer_en": "The SBV on-balance NPL ratio fell from 4.1% (Q1-2025) to 3.31% (Jun 2026), largely because the credit denominator grew fast; the broad NPL ratio (incl. VAMC and potential NPLs) was still 3.77% and real-estate NPLs rose 10.5% vs end-2025. Excluding the five weak banks the ratio is only 1.51%, so risk is concentrated in the specially controlled/compulsorily transferred banks.",
+     "drivers": [
+      {
+       "title_vi": "Mẫu số tăng nhanh",
+       "title_en": "Fast-growing denominator",
+       "text_vi": "Tín dụng tăng 19,07% năm 2025 và 16,69% so cùng kỳ đến 9/2026, nên tỷ lệ nợ xấu có thể giảm ngay cả khi số dư nợ xấu tăng; NHNN và báo chí ghi nhận nợ xấu tuyệt đối vẫn tăng.",
+       "text_en": "Credit grew 19.07% in 2025 and 16.69% y/y to Sep 2026, so NPL ratios can fall even as NPL stocks rise; SBV/press note absolute NPLs still rising.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "VnEconomy - nợ xấu 6/2026",
+         "url": "https://vneconomy.vn/den-cuoi-thang-62026-no-xau-bat-dong-san-tang-105-so-cuoi-nam-ngoai.htm"
+        },
+        {
+         "name": "SBV - tỷ lệ nợ xấu",
+         "url": "https://sbv.gov.vn/vi/ty-le-no-xau-trong-tong-du-no-tin-dung"
+        }
+       ]
+      },
+      {
+       "title_vi": "Cơ cấu nợ và nợ tiềm ẩn",
+       "title_en": "Restructured and potential NPLs",
+       "text_vi": "Thông tư 02/2023 cho giữ nguyên nhóm nợ khi cơ cấu (hơn 183,5 nghìn tỷ đồng gốc và lãi đến cuối 2023) và hết hiệu lực 31/12/2024; theo IMF, việc gia hạn đã làm 'êm' nợ xấu năm 2024. Tỷ lệ nợ có vấn đề theo VIS Rating khoảng 2,2% quý I/2026.",
+       "text_en": "Circular 02/2023 let banks restructure without downgrading (over VND 183.5 trn of principal and interest by end-2023) and expired on 31 Dec 2024; according to the IMF, its extension cushioned NPLs in 2024. VIS Rating's problem-loan ratio was about 2.2% in Q1-2026.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "CafeF - Thông tư 02 hết hiệu lực",
+         "url": "https://cafef.vn/thong-tu-quan-trong-ve-gian-no-chinh-thuc-het-hieu-luc-no-xau-cac-ngan-hang-co-tang-dot-bien-188250105170112656.chn"
+        },
+        {
+         "name": "IMF Country Report 25/283",
+         "url": "https://www.elibrary.imf.org/view/journals/002/2025/283/article-A001-en.xml"
+        },
+        {
+         "name": "Thời báo Tài chính - VIS Rating",
+         "url": "https://thoibaotaichinhvietnam.vn/vis-rating-lo-ngai-thanh-khoan-that-chat-no-xau-tang-khien-ngan-hang-them-ap-luc-198036.html"
+        }
+       ]
+      },
+      {
+       "title_vi": "Dự phòng thấp so với nợ xấu",
+       "title_en": "Provisions cover only part of NPLs",
+       "text_vi": "Theo IMF FSI, dự phòng/nợ xấu khoảng 66,8% năm 2025 và tỷ lệ nợ xấu theo định nghĩa IMF 4,21%, cao hơn số nội bảng của NHNN; CAR theo IMF FSI 12,06%.",
+       "text_en": "Per IMF FSI, provisions covered about 66.8% of NPLs in 2025 and the IMF-definition NPL ratio was 4.21%, above the SBV on-balance figure; IMF FSI CAR was 12.06%.",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "IMF FSI (FSIC)",
+         "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014"
+        }
+       ]
+      },
+      {
+       "title_vi": "Rủi ro tập trung ở ngân hàng yếu kém",
+       "title_en": "Risk concentrated in weak banks",
+       "text_vi": "Tỷ lệ nợ xấu nội bảng không gồm 5 ngân hàng (MBV, GPBank, VCBNeo, Vikki, SCB) là 1,51% cuối 6/2026; QĐ 1809/QĐ-TTg (18/9/2026) đặt mục tiêu có phương án xử lý các TCTD yếu kém và giữ nợ xấu toàn hệ thống dưới 3% đến 2030.",
+       "text_en": "Excluding five banks (MBV, GPBank, VCBNeo, Vikki, SCB), the on-balance NPL ratio was 1.51% at end-Jun 2026; Decision 1809/QD-TTg (18 Sep 2026) targets resolution plans for weak institutions and system NPLs below 3% by 2030.",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "Báo Đấu thầu - nợ xấu không gồm 5 NH",
+         "url": "https://baodauthau.vn/ty-le-no-xau-giam-nhe-ap-luc-chat-luong-tai-san-van-lon-post207731.html"
+        },
+        {
+         "name": "Người Quan Sát - QĐ 1809/QĐ-TTg",
+         "url": "https://nguoiquansat.vn/nhnn-dat-muc-tieu-den-2030-xu-ly-to-chuc-tin-dung-yeu-kem-mo-rong-cua-von-cho-doanh-nghiep-nho-va-vua-317234.html"
+        }
+       ]
+      }
+     ],
+     "caveat_vi": "Nội bảng (NHNN), rộng (gồm VAMC, tiềm ẩn) và IMF FSI là ba định nghĩa khác nhau; không ghép chuỗi.",
+     "caveat_en": "On-balance (SBV), broad (incl. VAMC and potential) and IMF FSI are three different definitions; not spliced.",
+     "sources": [
+      {
+       "name": "SBV NPL chart",
+       "url": "https://sbv.gov.vn/vi/ty-le-no-xau-trong-tong-du-no-tin-dung"
+      },
+      {
+       "name": "IMF FSI",
+       "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014"
+      },
+      {
+       "name": "VnEconomy",
+       "url": "https://vneconomy.vn/den-cuoi-thang-62026-no-xau-bat-dong-san-tang-105-so-cuoi-nam-ngoai.htm"
+      }
+     ]
+    },
+    "sbv": {
+     "q_vi": "Vì sao dự trữ ngoại hối giảm từ đỉnh 2022 và NHNN can thiệp thế nào?",
+     "q_en": "Why have FX reserves fallen from the 2022 peak, and how does the SBV intervene?",
+     "answer_vi": "Dự trữ (IMF IL) giảm từ 109,96 tỷ USD cuối 2021 xuống 87,13 tỷ cuối 2022 và 83,93 tỷ cuối 2024, rồi nhích lên 86,95 tỷ cuối 2025; NHNN công bố 87,6 tỷ USD ngày 18/6/2026. Các đợt giảm trùng với các lần NHNN bán USD để giữ tỷ giá khi USD mạnh (2022, quý II và tháng 12/2024 theo IMF); từ 2025 NHNN chuyển sang công cụ ít tốn dự trữ hơn như bán kỳ hạn có quyền huỷ và hoán đổi.",
+     "answer_en": "Reserves (IMF IL) fell from 109.96 bn USD at end-2021 to 87.13 bn at end-2022 and 83.93 bn at end-2024, then edged up to 86.95 bn at end-2025; the SBV disclosed 87.6 bn on 18 Jun 2026. The declines coincide with SBV dollar sales to defend the dong when the USD was strong (2022; Q2 and Dec 2024 per the IMF); since 2025 the SBV has shifted to tools that use fewer reserves, such as cancellable forwards and swaps.",
+     "drivers": [
+      {
+       "title_vi": "Bán ngoại tệ giao ngay khi USD mạnh",
+       "title_en": "Spot dollar sales in strong-USD episodes",
+       "text_vi": "Cán cân thanh toán (IMF BPM6) ghi nhận tài sản dự trữ giảm khoảng 22,7 tỷ USD năm 2022 và 9,2 tỷ USD năm 2024; theo IMF, dự trữ giảm còn 83,1 tỷ USD cuối 2024 sau can thiệp giao ngay, nhất là quý II và tháng 12/2024.",
+       "text_en": "The balance of payments (IMF BPM6) shows reserve assets down about 22.7 bn USD in 2022 and 9.2 bn in 2024; according to the IMF, reserves fell to 83.1 bn at end-2024 after spot intervention, especially in Q2 and December 2024.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "IMF Country Report 25/283",
+         "url": "https://www.elibrary.imf.org/view/journals/002/2025/283/article-A001-en.xml"
+        },
+        {
+         "name": "FINSYS.sbv.balance_sheet / economy BoP (IMF)",
+         "url": "https://www.imf.org/-/media/files/publications/cr/2025/english/1vnmea2025001-source-pdf.pdf"
+        }
+       ]
+      },
+      {
+       "title_vi": "Chuyển sang bán kỳ hạn và hoán đổi",
+       "title_en": "Shift to forwards and swaps",
+       "text_vi": "NHNN bán USD kỳ hạn 180 ngày có quyền huỷ ở 26.550 (8 và 10/2025, ước ~2,8-2,9 tỷ USD) và 26.850 (3/2026), và thực hiện hoán đổi (tối đa 2 tỷ USD, 21/9/2026); các hợp đồng có thể huỷ nên dòng USD ra thực tế hạn chế.",
+       "text_en": "The SBV sold 180-day cancellable USD forwards at 26,550 (Aug and Oct 2025, est. ~2.8-2.9 bn USD) and 26,850 (Mar 2026), and ran swaps (up to 2 bn USD, 21 Sep 2026); because forwards can be cancelled, actual USD outflow is limited.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "CafeF - NHNN bán kỳ hạn 2,8 tỷ USD",
+         "url": "https://cafef.vn/chuyen-gia-nhnn-ban-ky-han-28-ty-usd-giup-tri-hoan-ap-luc-ty-gia-va-dam-bao-du-tru-ngoai-hoi-188251017150026283.chn"
+        },
+        {
+         "name": "CafeF - hoán đổi 21/9/2026",
+         "url": "https://cafef.vn/ngan-hang-nha-nuoc-mo-them-kenh-bom-tien-vnd-quy-mo-ho-tro-toi-da-hon-48000-ty-dong-188260921160448929.chn"
+        }
+       ]
+      },
+      {
+       "title_vi": "Thâm hụt thương mại và nhu cầu ngoại tệ",
+       "title_en": "Trade deficit and FX demand",
+       "text_vi": "Hàng hoá chuyển sang nhập siêu 20,5 tỷ USD 7 tháng 2026 (so với xuất siêu cùng kỳ 2025), làm giảm nguồn cung USD để NHNN mua bổ sung dự trữ.",
+       "text_en": "Goods trade swung to a 20.5 bn USD deficit in 7M-2026 (from a surplus a year earlier), reducing the dollar supply the SBV could buy to rebuild reserves.",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "Thị trường Tài chính Tiền tệ - tỷ giá cuối 2026",
+         "url": "https://thitruongtaichinhtiente.vn/ty-gia-va-lai-suat-cuoi-nam-2026-suc-ep-tu-ben-ngoai-va-la-chan-tu-noi-luc-85717.html"
+        }
+       ]
+      },
+      {
+       "title_vi": "Minh bạch dự trữ",
+       "title_en": "Reserve transparency",
+       "text_vi": "NHNN và Bộ Tài chính Hoa Kỳ (5/2026) thống nhất NHNN sẽ công bố mua ngoại tệ ròng (độ trễ 3 tháng) và số liệu dự trữ theo biểu mẫu IMF từ năm 2027; hiện chỉ có các lần công bố rời rạc.",
+       "text_en": "The SBV and the US Treasury agreed (May 2026) that the SBV will publish net FX purchases (3-month lag) and IMF-template reserve data from 2027; for now there are only occasional disclosures.",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "Vietstock - tuyên bố chung NHNN - Bộ Tài chính Hoa Kỳ",
+         "url": "https://vietstock.vn/2026/05/ngan-hang-nha-nuoc-va-bo-tai-chinh-hoa-ky-ra-tuyen-bo-chung-ve-chinh-sach-ty-gia-va-du-tru-ngoai-hoi-757-1448772.htm"
+        }
+       ]
+      }
+     ],
+     "caveat_vi": "IMF IL (gồm vàng, định giá quốc gia), IMF Article IV (dự trữ quốc tế gộp) và số NHNN công bố khác định nghĩa; số tháng nhập khẩu là tính toán của báo chí.",
+     "caveat_en": "IMF IL (incl. gold, national valuation), IMF Article IV gross reserves and SBV disclosures differ in definition; months-of-imports is a press calculation.",
+     "sources": [
+      {
+       "name": "IMF Country Report 25/283",
+       "url": "https://www.elibrary.imf.org/view/journals/002/2025/283/article-A001-en.xml"
+      },
+      {
+       "name": "CafeF - 87,6 tỷ USD",
+       "url": "https://cafef.vn/du-tru-ngoai-hoi-con-876-ty-usd-ngan-hang-nha-nuoc-muon-sua-doi-nhieu-quy-dinh-188260624112155679.chn"
+      }
+     ]
+    },
+    "plumbing": {
+     "q_vi": "Tiền đi qua NHNN như thế nào và vai trò của 4 ngân hàng Nhà nước?",
+     "q_en": "How does money flow through the SBV, and what role do the four state banks play?",
+     "answer_vi": "NHNN điều tiết thanh khoản chủ yếu bằng OMO cầm cố ngắn hạn (4,5%, dư nợ ~133 nghìn tỷ đồng ngày 2/10/2026), hoán đổi và mua bán ngoại tệ, còn tín phiếu chưa được dùng lại từ 7/2025. Agribank, Vietcombank, BIDV, VietinBank nắm khoảng 42,3% dư nợ, 46,5% tổng tài sản và hơn 99% tiền gửi Kho bạc tại TCTD, nên là kênh chính truyền tiền ngân sách và chính sách vào hệ thống.",
+     "answer_en": "The SBV manages liquidity mainly through short collateralised OMO (4.5%, ~VND 133 trn outstanding on 2 Oct 2026), swaps and FX purchases/sales; SBV bills have not been used since Jul 2025. Agribank, Vietcombank, BIDV and VietinBank hold about 42.3% of credit, 46.5% of assets and over 99% of Treasury deposits at credit institutions, making them the main conduit for budget money and policy into the system.",
+     "drivers": [
+      {
+       "title_vi": "OMO là van chính",
+       "title_en": "OMO is the main valve",
+       "text_vi": "Tuần 28/9-2/10/2026 NHNN bơm 25.140 tỷ đồng nhưng 78.615 tỷ đáo hạn, hút ròng 53.475 tỷ; dư nợ OMO giảm về 133.342 tỷ. NHNN điều chỉnh khối lượng hằng ngày theo lãi suất liên ngân hàng (qua đêm từ 7% xuống 1% ngày 21-24/9/2026).",
+       "text_en": "In the week of 28 Sep-2 Oct 2026 the SBV injected VND 25,140 bn while 78,615 bn matured, a net drain of 53,475 bn; OMO outstanding fell to 133,342 bn. It adjusts daily volumes to interbank rates (overnight fell from 7% to 1% on 21-24 Sep 2026).",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "Vietstock - tuần 28/9-2/10",
+         "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm"
+        },
+        {
+         "name": "CafeF - lãi suất liên NH giảm còn 1%",
+         "url": "https://cafef.vn/lai-suat-lien-ngan-hang-giam-con-1-ngan-hang-nha-nuoc-rut-bot-thanh-khoan-ho-tro-188260925104329514.chn"
+        }
+       ]
+      },
+      {
+       "title_vi": "Kho bạc - ngân sách tác động mạnh tới thanh khoản",
+       "title_en": "Treasury flows move liquidity",
+       "text_vi": "Tiền gửi KBNN tại Big4 lên 715.630 tỷ đồng cuối quý II/2026 (+45% so cuối 2025); khi thu ngân sách vượt chi, tiền rời khỏi các ngân hàng khác, và từ 1/8/2026 chỉ 50% tiền gửi có kỳ hạn KBNN được tính vào nguồn vốn LDR.",
+       "text_en": "Treasury deposits at the Big4 rose to VND 715,630 bn at end-Q2 2026 (+45% vs end-2025); when revenue outruns spending, money leaves other banks, and from 1 Aug 2026 only 50% of Treasury term deposits count in LDR funding.",
+       "weight": "main",
+       "sources": [
+        {
+         "name": "Người Quan Sát - KBNN Q2/2026",
+         "url": "https://nguoiquansat.vn/kho-bac-nha-nuoc-dang-gui-hon-715-000-ty-dong-tai-4-ngan-hang-thanh-khoan-sap-duoc-bom-manh-311309.html"
+        },
+        {
+         "name": "VnEconomy - từ 1/8",
+         "url": "https://vneconomy.vn/tu-18-noi-quy-dinh-tinh-tien-gui-kho-bac-nha-nuoc-ngan-hang-co-them-du-dia-cho-vay.htm"
+        }
+       ]
+      },
+      {
+       "title_vi": "Ngân hàng mua TPCP, không phải NHNN",
+       "title_en": "Banks, not the SBV, buy government bonds",
+       "text_vi": "KBNN đã phát hành khoảng 261.108 tỷ đồng TPCP đến 16/9/2026 (52,2% kế hoạch 500.000 tỷ); ngân hàng nắm 37,4% và bảo hiểm 61,6% TPCP (ADB, 9/2025). TPCP ngân hàng nắm giữ có thể dùng làm tài sản cầm cố OMO.",
+       "text_en": "The Treasury had issued about VND 261,108 bn of government bonds by 16 Sep 2026 (52.2% of the 500,000 bn plan); banks hold 37.4% and insurers 61.6% (ADB, Sep 2025). Bonds held by banks can serve as OMO collateral.",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "VnExpress - KBNN tăng tốc huy động TPCP",
+         "url": "https://vnexpress.net/kho-bac-tang-toc-huy-dong-trai-phieu-chinh-phu-5120717.html"
+        },
+        {
+         "name": "ADB Asia Bond Monitor",
+         "url": "https://asianbondsonline.adb.org/vietnam/market_summary/vn_market_summary_202603.pdf"
+        }
+       ]
+      },
+      {
+       "title_vi": "Big4 dẫn dắt mặt bằng lãi suất",
+       "title_en": "Big4 anchor the rate level",
+       "text_vi": "Với 42,3% dư nợ (VTV, 3/2026) và lãi suất huy động 12 tháng tại Vietcombank 5,9% (so với ~8,4% nhóm khảo sát, 8/2026), các NHTM Nhà nước là kênh NHNN dùng để giữ mặt bằng lãi suất và giải ngân chương trình (dự kiến thêm ~1 triệu tỷ đồng năm 2026).",
+       "text_en": "With 42.3% of credit (VTV, Mar 2026) and a 12-month Vietcombank deposit rate of 5.9% (vs ~8.4% for surveyed banks, Aug 2026), the state banks are the channel the SBV uses to anchor rates and disburse programmes (about VND 1 quadrillion of extra lending planned in 2026).",
+       "weight": "secondary",
+       "sources": [
+        {
+         "name": "VTV - Big 4 bơm thêm 1 triệu tỷ",
+         "url": "https://vtv.vn/big-4-ngan-hang-bom-them-1-trieu-ty-dong-vao-nen-kinh-te-100260327132008275.htm"
+        },
+        {
+         "name": "Dân Trí 25/9/2026",
+         "url": "https://dantri.com.vn/kinh-doanh/vi-sao-lai-suat-chua-the-ha-nhiet-20260925152734374.htm"
+        }
+       ]
+      }
+     ],
+     "caveat_vi": "Tiền gửi KBNN tại NHNN và tỷ trọng TPCP NHNN nắm giữ không được công bố. Thị phần Big4 có hai số (42,3% và 'hơn 41%') khác thời điểm.",
+     "caveat_en": "Treasury deposits at the SBV and any SBV government-bond holdings are not published. Big4 share has two figures (42.3% and 'over 41%') at different dates.",
+     "sources": [
+      {
+       "name": "FINSYS.sbv.plumbing",
+       "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm"
+      },
+      {
+       "name": "VTV",
+       "url": "https://vtv.vn/big-4-ngan-hang-bom-them-1-trieu-ty-dong-vao-nen-kinh-te-100260327132008275.htm"
+      },
+      {
+       "name": "ADB",
+       "url": "https://asianbondsonline.adb.org/vietnam/market_summary/vn_market_summary_202603.pdf"
+      }
+     ]
+    }
+   }
+  },
+  "projections": {
+   "as_of": "2026-10-06",
+   "note_vi": "Ba loại: 'official_target' (mục tiêu chính thức), 'institution_forecast' (dự báo của tổ chức, ghi rõ kỳ công bố) và 'scenario' (do nhóm dữ liệu tính, nêu đầu vào và công thức để tái lập). Kịch bản không phải dự báo. Số liệu IMF WEO lấy qua trích đoạn tìm kiếm (trang IMF/FRED bị chặn) và có mâu thuẫn được ghi chú.",
+   "note_en": "Three kinds: 'official_target', 'institution_forecast' (with vintage) and 'scenario' (computed here, with stated inputs and formula so it can be reproduced). Scenarios are not forecasts. IMF WEO values come from search excerpts (IMF/FRED pages blocked) and conflicts are noted.",
+   "series": {
+    "credit_growth_pct": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      15.0,
+      15.0,
+      15.0,
+      15.0,
+      15.0
+     ],
+     "low": [
+      12.0,
+      12.0,
+      12.0,
+      12.0,
+      12.0
+     ],
+     "high": [
+      18.0,
+      18.0,
+      18.0,
+      18.0,
+      18.0
+     ],
+     "kind": "scenario",
+     "unit": "% y/y (end-year)",
+     "source": {
+      "name": "SBV 2026 credit target ~15% (VnEconomy); Fitch 2026 forecast 18% (Bloomberg, 12/11/2025)",
+      "url": "https://vneconomy.vn/nam-2026-tin-dung-du-kien-tang-them-279-trieu-ty-dong-giam-183000-ty-so-voi-2025.htm"
+     },
+     "method_vi": "Giả định: base giữ 15%/năm (chỉ tiêu 2026 của NHNN) cho 2026-2030; high 18%/năm (dự báo 2026 của Fitch, giữ nguyên); low 12%/năm (trung bình 2018-2023 theo FINSYS.annual là 13,6%, low làm tròn thấp hơn). Không có chỉ tiêu tín dụng chính thức sau 2026. Thực tế 30/9/2026: +16,69% svck.",
+     "method_en": "Assumption: base holds 15%/yr (SBV 2026 target) for 2026-2030; high 18%/yr (Fitch 2026 forecast, held flat); low 12%/yr (FINSYS.annual 2018-2023 average is 13.6%; low set below it). No official credit target exists beyond 2026. Actual 30 Sep 2026: +16.69% y/y.",
+     "fitch_url": "https://www.bloomberg.com/news/articles/2025-11-12/vietnam-s-fast-lending-likely-rollback-of-credit-quotas-are-risky-fitch-says"
+    },
+    "deposit_growth_pct": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      11.11,
+      11.11,
+      11.11,
+      11.11,
+      11.11
+     ],
+     "low": [
+      7.57,
+      7.57,
+      7.57,
+      7.57,
+      7.57
+     ],
+     "high": [
+      14.65,
+      14.65,
+      14.65,
+      14.65,
+      14.65
+     ],
+     "kind": "scenario",
+     "unit": "% y/y",
+     "source": {
+      "name": "FINSYS.annual.deposit_growth 2021-2025 (SBV/press)",
+      "url": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd"
+     },
+     "method_vi": "Base = trung bình tăng trưởng huy động 2021-2025 (10.3, 5.99, 13.2, 10.66, 15.42) = 11.11%; low/high = trung bình ∓ 1 độ lệch chuẩn mẫu (3.54).",
+     "method_en": "Base = mean 2021-2025 deposit growth (10.3, 5.99, 13.2, 10.66, 15.42) = 11.11%; low/high = mean ∓ 1 sample standard deviation (3.54)."
+    },
+    "nominal_gdp_growth_pct": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      12.35,
+      10.71,
+      10.02,
+      9.4,
+      9.18
+     ],
+     "low": null,
+     "high": null,
+     "kind": "scenario",
+     "unit": "% y/y",
+     "source": {
+      "name": "IMF WEO Apr-2026 real GDP and CPI (via search excerpts/FRED)",
+      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/statsappendix.pdf"
+     },
+     "method_vi": "IMF chưa có số GDP danh nghĩa bằng VND trong trích đoạn tìm được, nên ước = (1 + tăng GDP thực IMF) × (1 + CPI IMF) − 1, tức dùng CPI làm proxy cho chỉ số giảm phát GDP. GDP thực: 7,1; 6,7; 6,2; 5,6; 5,39. CPI: 4,9; 3,76; 3,6; 3,6; 3,6. Thực tế 9T/2026 tăng thực 9,01% (Cục Thống kê) cao hơn IMF.",
+     "method_en": "No IMF VND nominal GDP was found in excerpts, so = (1 + IMF real GDP growth) x (1 + IMF CPI) − 1, using CPI as a proxy for the GDP deflator. Real GDP: 7.1, 6.7, 6.2, 5.6, 5.39. CPI: 4.9, 3.76, 3.6, 3.6, 3.6. Actual 9M-2026 real growth 9.01% (NSO) is above the IMF path.",
+     "imf_usd_nominal_gdp_bn": {
+      "2026": 527.27,
+      "2028": 594.83,
+      "2029": 631.08,
+      "2030": 667.52,
+      "note": "IMF WEO Apr-2026 current-USD GDP (excerpt); 2027 not found. USD growth below VND proxy implies IMF assumes some VND depreciation - not used in calculations."
+     }
+    },
+    "credit_to_gdp_pct": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      148.1,
+      153.9,
+      160.9,
+      169.1,
+      178.1
+     ],
+     "low": [
+      144.3,
+      146.0,
+      148.6,
+      152.1,
+      156.1
+     ],
+     "high": [
+      152.0,
+      162.0,
+      173.8,
+      187.4,
+      202.6
+     ],
+     "kind": "scenario",
+     "unit": "% of GDP (total credit / nominal GDP)",
+     "source": {
+      "name": "Computed: SBV credit end-2025 / NSO GDP 2025, rolled forward with credit_growth_pct and nominal_gdp_growth_pct",
+      "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
+     },
+     "method_vi": "Điểm xuất phát 2025 = 18.594.930 / 12.847.571 tỷ đồng = 144.7% (báo chí: ~146%). Mỗi năm: tỷ lệ_t = tỷ lệ_(t−1) × (1 + tín dụng_t) / (1 + GDP danh nghĩa_t), với tín dụng base/low/high = 15/12/18% và GDP danh nghĩa theo nominal_gdp_growth_pct. Đây là phép số học, không phải dự báo.",
+     "method_en": "Start 2025 = 18,594,930 / 12,847,571 bn VND = 144.7% (press: ~146%). Each year: ratio_t = ratio_(t−1) x (1 + credit_t) / (1 + nominal GDP_t), credit base/low/high = 15/12/18% and nominal GDP from nominal_gdp_growth_pct. Arithmetic, not a forecast."
+    },
+    "npl_pct": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      null,
+      null,
+      null,
+      null,
+      3.0
+     ],
+     "low": null,
+     "high": null,
+     "kind": "official_target",
+     "unit": "% (ceiling, system NPL ratio)",
+     "source": {
+      "name": "QĐ 1809/QĐ-TTg (18/9/2026): giữ tỷ lệ nợ xấu toàn hệ thống dưới 3% đến 2030",
+      "url": "https://nguoiquansat.vn/nhnn-dat-muc-tieu-den-2030-xu-ly-to-chuc-tin-dung-yeu-kem-mo-rong-cua-von-cho-doanh-nghiep-nho-va-vua-317234.html"
+     },
+     "method_vi": "Mục tiêu là trần 'dưới 3%' đến 2030; không có lộ trình từng năm nên 2026-2029 để null. QĐ 689/QĐ-TTg (2022) đặt mục tiêu nợ xấu rộng (nội bảng + VAMC + tiềm ẩn) dưới 3% cuối 2025, không gồm ngân hàng yếu kém; thực tế 6/2026: nội bảng 3,31%, rộng 3,77%.",
+     "method_en": "Target is a 'below 3%' ceiling by 2030; no annual path, so 2026-2029 are null. Decision 689/QD-TTg (2022) targeted broad NPLs (on-balance + VAMC + potential) below 3% by end-2025 excluding weak banks; actual Jun 2026: on-balance 3.31%, broad 3.77%."
+    },
+    "cpi_pct": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      4.9,
+      3.76,
+      3.6,
+      3.6,
+      3.6
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% (annual average)",
+     "source": {
+      "name": "IMF World Economic Outlook, April 2026 (via search excerpts; FRED VNMPCPIPCPPPT for 2027-2030)",
+      "url": "https://fred.stlouisfed.org/series/VNMPCPIPCPPPT"
+     },
+     "method_vi": "2026 = 4,9 (trích đoạn WEO 4/2026); 2027-2030 = 3,76; 3,6; 3,6; 3,6 (FRED, cập nhật 22/4/2026). MÂU THUẪN: một trích đoạn khác ghi 2027 = 4,6 và FRED ghi 2026 = 5,8 (có thể khác kỳ công bố); không lấy trung bình. Mục tiêu chính thức 2026-2030: CPI bình quân khoảng 4,5% (NQ 25/2026/QH16).",
+     "method_en": "2026 = 4.9 (WEO Apr-2026 excerpt); 2027-2030 = 3.76, 3.6, 3.6, 3.6 (FRED, updated 22 Apr 2026). CONFLICT: another excerpt gives 2027 = 4.6 and FRED shows 2026 = 5.8 (possibly a different vintage); not averaged. Official 2026-2030 target: average CPI about 4.5% (Resolution 25/2026/QH16)."
+    },
+    "real_gdp_growth_pct": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      7.1,
+      6.7,
+      6.2,
+      5.6,
+      5.39
+     ],
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% y/y",
+     "source": {
+      "name": "IMF World Economic Outlook, April 2026 (via search excerpts; FRED VNMNGDPRPCPPPT)",
+      "url": "https://fred.stlouisfed.org/series/VNMNGDPRPCPPPT"
+     },
+     "method_vi": "7,1 (2026), 6,7 (2027), 6,2 (2028), 5,6 (2029), 5,39 (2030). Một trích đoạn gán 5,4 cho 2031 thay vì 2030. Mục tiêu chính thức: bình quân từ 10%/năm 2026-2030.",
+     "method_en": "7.1 (2026), 6.7 (2027), 6.2 (2028), 5.6 (2029), 5.39 (2030). One excerpt attaches 5.4 to 2031 instead of 2030. Official target: average 10%+/yr in 2026-2030."
+    }
+   },
+   "targets": [
+    {
+     "key": "gdp_growth_2026_2030",
+     "label_vi": "Tăng trưởng GDP bình quân 2026-2030",
+     "label_en": "Average GDP growth 2026-2030",
+     "value": 10,
+     "unit": "%/yr (at least)",
+     "year": 2030,
+     "doc": "Nghị quyết 25/2026/QH16 (kế hoạch KT-XH 5 năm 2026-2030)",
+     "url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-5-nam-giai-doan-2026-2030-119260424132329708.htm"
+    },
+    {
+     "key": "gdp_per_capita_2030",
+     "label_vi": "GDP bình quân đầu người 2030",
+     "label_en": "GDP per capita 2030",
+     "value": 8500,
+     "unit": "USD",
+     "year": 2030,
+     "doc": "Nghị quyết 25/2026/QH16",
+     "url": "https://www.vietnamplus.vn/nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-5-nam-2026-2030-post1109158.vnp"
+    },
+    {
+     "key": "cpi_avg_2026_2030",
+     "label_vi": "CPI bình quân 2026-2030",
+     "label_en": "Average CPI 2026-2030",
+     "value": 4.5,
+     "unit": "% (about)",
+     "year": 2030,
+     "doc": "Nghị quyết 25/2026/QH16",
+     "url": "https://www.vietnamplus.vn/nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-5-nam-2026-2030-post1109158.vnp"
+    },
+    {
+     "key": "cpi_2026",
+     "label_vi": "CPI bình quân 2026",
+     "label_en": "Average CPI 2026",
+     "value": 4.5,
+     "unit": "% (about)",
+     "year": 2026,
+     "doc": "NQ Quốc hội về kế hoạch KT-XH 2026 (13/11/2025)",
+     "url": "https://baochinhphu.vn/quoc-hoi-thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-102251113085124372.htm"
+    },
+    {
+     "key": "gdp_growth_2026",
+     "label_vi": "Tăng trưởng GDP 2026",
+     "label_en": "GDP growth 2026",
+     "value": 10,
+     "unit": "% (at least)",
+     "year": 2026,
+     "doc": "NQ Quốc hội về kế hoạch KT-XH 2026",
+     "url": "https://baochinhphu.vn/quoc-hoi-thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-102251113085124372.htm"
+    },
+    {
+     "key": "credit_growth_2026",
+     "label_vi": "Chỉ tiêu tăng trưởng tín dụng 2026 (NHNN)",
+     "label_en": "SBV 2026 credit growth target",
+     "value": 15,
+     "unit": "% (about)",
+     "year": 2026,
+     "doc": "NHNN định hướng điều hành 2026",
+     "url": "https://vneconomy.vn/nam-2026-tin-dung-du-kien-tang-them-279-trieu-ty-dong-giam-183000-ty-so-voi-2025.htm"
+    },
+    {
+     "key": "npl_2030",
+     "label_vi": "Nợ xấu toàn hệ thống đến 2030",
+     "label_en": "System NPL ratio by 2030",
+     "value": 3,
+     "unit": "% (below)",
+     "year": 2030,
+     "doc": "QĐ 1809/QĐ-TTg ngày 18/9/2026",
+     "url": "https://baodauthau.vn/den-2030-hien-dai-hoa-he-thong-ngan-hang-va-mo-rong-tin-dung-cho-doanh-nghiep-post207723.html"
+    },
+    {
+     "key": "npl_broad_2025",
+     "label_vi": "Nợ xấu rộng (nội bảng + VAMC + tiềm ẩn) cuối 2025, không gồm NH yếu kém",
+     "label_en": "Broad NPLs (on-balance + VAMC + potential) end-2025, excl. weak banks",
+     "value": 3,
+     "unit": "% (below)",
+     "year": 2025,
+     "doc": "QĐ 689/QĐ-TTg ngày 08/6/2022",
+     "url": "https://thuvienphapluat.vn/van-ban/Tien-te-Ngan-hang/Quyet-dinh-689-QD-TTg-2022-co-cau-lai-he-thong-to-chuc-tin-dung-gan-voi-xu-ly-no-xau-2021-2025-516244.aspx"
+    },
+    {
+     "key": "npl_qd986",
+     "label_vi": "Nợ xấu nội bảng + đã bán VAMC + đã phân loại (Chiến lược ngành NH)",
+     "label_en": "On-balance + VAMC-sold + classified NPLs (banking strategy)",
+     "value": 3,
+     "unit": "% (below)",
+     "year": 2025,
+     "doc": "QĐ 986/QĐ-TTg ngày 08/8/2018 (đến 2025, định hướng 2030)",
+     "url": "https://thuvienphapluat.vn/van-ban/Tien-te-Ngan-hang/Quyet-dinh-986-QD-TTg-2018-phe-duyet-Chien-luoc-phat-trien-nganh-Ngan-hang-Viet-Nam-2025-2030-390316.aspx",
+     "note": "Exact year attached to this target in QĐ 986 not verified from the text (excerpt only)."
+    },
+    {
+     "key": "cash_to_m2_2025",
+     "label_vi": "Tỷ trọng tiền mặt/tổng phương tiện thanh toán cuối 2025",
+     "label_en": "Cash / M2 by end-2025",
+     "value": 8,
+     "unit": "% (below)",
+     "year": 2025,
+     "doc": "QĐ 986/QĐ-TTg (2018)",
+     "url": "https://tapchinganhang.gov.vn/chien-luoc-phat-trien-nganh-ngan-hang-viet-nam-den-nam-2025-dinh-huong-den-nam-2030-6141.html",
+     "note": "Actual Jul-2026: 9.98% (SBV) - above the 2025 target."
+    },
+    {
+     "key": "fund_nav_2030",
+     "label_vi": "Giá trị tài sản ròng quỹ đầu tư chứng khoán",
+     "label_en": "Securities investment funds' NAV",
+     "value": 5,
+     "unit": "% of GDP",
+     "year": 2030,
+     "doc": "QĐ 1413/QĐ-TTg ngày 27/7/2026 (Đề án cải cách tổng thể thị trường tài chính)",
+     "url": "https://congthuong.vn/phe-duyet-de-an-cai-cach-tong-the-thi-truong-tai-chinh-viet-nam-467050.html"
+    },
+    {
+     "key": "foreign_holdings_2030",
+     "label_vi": "Tài sản nhà đầu tư nước ngoài trên thị trường vốn",
+     "label_en": "Foreign investors' assets on capital markets",
+     "value": 15,
+     "unit": "% of GDP (about)",
+     "year": 2030,
+     "doc": "QĐ 1413/QĐ-TTg ngày 27/7/2026",
+     "url": "https://congthuong.vn/phe-duyet-de-an-cai-cach-tong-the-thi-truong-tai-chinh-viet-nam-467050.html"
+    },
+    {
+     "key": "credit_to_gdp_2030",
+     "label_vi": "Tín dụng/GDP 2030",
+     "label_en": "Credit/GDP 2030",
+     "value": null,
+     "unit": "%",
+     "year": 2030,
+     "doc": null,
+     "url": null,
+     "note": "No official credit/GDP target found in QĐ 986, QĐ 1809, QĐ 1413 or NQ 25/2026 excerpts - null."
+    }
+   ]
   }
  }
 }
