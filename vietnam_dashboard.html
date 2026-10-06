@@ -814,6 +814,47 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-chap.in .st-draw { stroke-dashoffset: 0; transition: stroke-dashoffset 1.6s ease; }
   .st-chap.in .st-draw[stroke-dasharray="5,4"], .st-chap.in .st-draw[stroke-dasharray="6,4"] { stroke-dasharray: 6,4; }
   @media (prefers-reduced-motion: reduce) { .st-chap, .st-chap * { transition: none !important; } }
+  /* dataviz system: sans figures (proportional), recessive hairline grid, ink text, legend above, note below, table twin */
+  .st-big, .st-mini-v { font-family: var(--font-ui) !important; font-variant-numeric: normal; letter-spacing: -.01em; }
+  .st-big { font-weight: 700; } .st-mini-v { font-weight: 650; font-size: 24px; }
+  .st-grid { stroke: #e1e0d9; stroke-width: 1; }
+  .st-base { stroke: #c3c2b7; stroke-width: 1; }
+  .st-tick { font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .st-src { font-size: 12px; }
+  .st-ann path { stroke: #5b6170; stroke-width: .8; } .st-ann circle { fill: #16181d; }
+  .st-ann text { font: 600 12.5px var(--font-ui); fill: #16181d; }
+  .st-ann-sup text { font: 400 11.5px var(--font-ui); fill: #6b7080; } .st-ann-sup circle { fill: #8a8f99; }
+  .st-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 6px 0 8px; font: 500 12px var(--font-ui); color: #16181d; }
+  .st-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .st-legend i { display: inline-block; flex: none; }
+  .st-legend .k-rect { width: 10px; height: 10px; border-radius: 2px; background: var(--c); }
+  .st-legend .k-line { width: 16px; height: 2px; border-radius: 1px; background: var(--c); }
+  .st-legend .k-dash { width: 16px; height: 0; border-top: 2px dashed var(--c); }
+  .st-legend .k-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+  .st-legend .k-ring { width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--c); background: #fff; }
+  .st-legend .k-diamond { width: 9px; height: 9px; background: var(--c); transform: rotate(45deg); }
+  .st-note { font: 400 14px/1.55 var(--font-ui); color: #16181d; margin: 12px 0 0; max-width: 72ch; }
+  .st-note span { display: block; color: #5b6170; }
+  .st-pt { cursor: pointer; } .st-pt:hover circle:last-child, .st-pt:focus circle:last-child { stroke: #16181d; }
+  .st-bar { cursor: pointer; transition: opacity .15s; } .st-bar:hover { opacity: .78; }
+  .st-xh-line { stroke: #16181d; stroke-width: 1; pointer-events: none; }
+  .st-tbl { margin: 8px 0 0; font: 400 12px var(--font-ui); color: #5b6170; }
+  .st-tbl > summary { cursor: pointer; color: #5b6170; font-weight: 500; padding: 2px 0; width: max-content; }
+  .st-tbl > summary:hover { color: #16181d; }
+  .st-tbl-w { max-height: 320px; overflow: auto; margin-top: 6px; border-top: 1px solid #e1e0d9; }
+  .st-tbl table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  .st-tbl th, .st-tbl td { text-align: left; padding: 4px 10px 4px 0; border-bottom: 1px solid #efede7; font-weight: 400; color: #16181d; }
+  .st-tbl thead th { font-weight: 600; color: #5b6170; position: sticky; top: 0; background: #faf8f3; }
+  .st-watch { counter-reset: w; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 6px 0 0; padding: 0; list-style: none; }
+  @media (max-width: 900px) { .st-watch { grid-template-columns: 1fr; } }
+  .st-watch li { border-top: 2px solid #16181d; padding-top: 10px; font: 400 13.5px/1.5 var(--font-ui); color: #5b6170; }
+  .st-watch li b { display: block; font: 650 15px/1.35 var(--font-ui); color: #16181d; margin-bottom: 4px; }
+  .st-watch li time { display: block; font: 600 12px var(--font-ui); color: #c2362f; letter-spacing: .04em; margin-bottom: 4px; }
+  .st-fig { margin: 8px 0 0; } .st-fig svg { display: block; width: 100%; height: auto; color: #16181d; }
+  .st-fig figcaption { font: 400 13px/1.5 var(--font-ui); color: #5b6170; margin-top: 6px; max-width: 80ch; }
+  #dot-tip .dt-v { font: 650 15px var(--font-ui); color: var(--text); } #dot-tip .dt-l { color: var(--text2); font-size: 12px; margin-top: 1px; }
+  #dot-tip .dt-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); margin-top: 3px; } #dot-tip .dt-row b { color: var(--text); font-weight: 650; }
+  #dot-tip .dt-key { width: 12px; height: 2px; border-radius: 1px; flex: none; }
   #ec-appendix { grid-column: 1 / -1; }
   .ec-app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 10px; } @media (max-width: 900px) { .ec-app-grid { grid-template-columns: 1fr; } }
   #ec-cpi { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
@@ -5579,134 +5620,319 @@ function renderEconStory() {
   const pct = k => { const a = (G.pct_gdp || {})[k]; return Array.isArray(a) ? a[gy] : a; };
   const g9 = ((G.growth_real_pct || {})['9M_2026_yoy'] || {});
   const grw = (ECON_OFFICIAL.gdp_growth || []), gdpUsd = G.GDP[gy] * 1e9 / (FX_USD[15] || 25450) / 1e9;
+  const yMax = grw.slice(1, -1).reduce((b, v, i) => v > b.v ? { v, y: 2011 + i } : b, { v: -1, y: 0 });   // fastest earlier year, for the hero comparison
+  const B = ECONFLOW.bop, bi = B.years.length - 1, ca = B.s.current_account[bi], eo = B.s.errors_omissions[bi], res = B.s.reserves_change[bi];
+  const Bu = ECONFLOW.budget, b25 = Bu.years.indexOf(2025), b24 = Bu.years.indexOf(2024), land = Bu.revenue.land_use_fees;
+  const I = ECONFLOW.inv, iL = I.years.indexOf(2025), nsh = I.nonstate[iL] / I.total[iL] * 100;
   let h = '';
   // ── 0. Hero ──
   h += `<section class="st-chap st-hero" id="st-hero"><div class="st-kicker">${stT('Kinh tế Việt Nam · ', 'Vietnam\'s economy · ')}${yr}</div>
     <div class="st-hero-grid"><div>
       <div class="st-big">${stN(G.GDP[gy] / 1e6, 2)}<span>${stT(' triệu tỷ đồng', ' quadrillion VND')}</span></div>
-      <p class="st-dek">${stT(`≈ ${stN(gdpUsd, 0)} tỷ USD — tăng <b>${stN(grw[grw.length - 1], 2)}%</b> năm ${yr}, cao nhất từ 2022. Chín tháng đầu 2026 còn nhanh hơn: <b>+${stN(g9.GDP, 2)}%</b>.`, `≈ ${stN(gdpUsd, 0)} bn USD — up <b>${stN(grw[grw.length - 1], 2)}%</b> in ${yr}, the fastest since 2022. The first nine months of 2026 ran even faster: <b>+${stN(g9.GDP, 2)}%</b>.`)}</p>
-    </div><div id="st-growth" class="st-viz st-viz-s"></div></div></section>`;
+      <p class="st-dek">${stT(`≈ ${stN(gdpUsd, 0)} tỷ USD. GDP tăng <b>${stN(grw[grw.length - 1], 2)}%</b> năm ${yr}; chín tháng đầu 2026 tăng <b>${stN(g9.GDP, 2)}%</b>, so với mức cao nhất 2011–2024 là ${stN(yMax.v, 2)}% (${yMax.y}).`, `≈ ${stN(gdpUsd, 0)} bn USD. GDP grew <b>${stN(grw[grw.length - 1], 2)}%</b> in ${yr}; the first nine months of 2026 grew <b>${stN(g9.GDP, 2)}%</b>, against a 2011–2024 high of ${stN(yMax.v, 2)}% (${yMax.y}).`)}</p>
+    </div><div id="st-growth" class="st-viz"></div></div></section>`;
   // ── 1. GDP formula ──
   h += stChap('st-formula', stT('Chương 1 · Công thức GDP', 'Chapter 1 · The GDP formula'),
-    stT('Hơn một nửa nền kinh tế là chi tiêu của hộ gia đình', 'Over half of the economy is household spending'),
-    stT('GDP = C + I + G + (X − M). Mỗi khối dưới đây có độ rộng đúng bằng tỷ trọng của nó trong GDP.', 'GDP = C + I + G + (X − M). Each block below is drawn to its exact share of GDP.'),
-    `<div id="st-eq" class="st-viz"></div><div class="st-sub">${stT('Hai "gã khổng lồ": xuất khẩu và nhập khẩu, so với cả GDP', 'Two giants: exports and imports, against all of GDP')}</div><div id="st-giants" class="st-viz"></div>
-     <div class="st-sub">${stT('Cơ cấu thay đổi thế nào, 2015–2025 (% GDP)', 'How the mix has shifted, 2015–2025 (% of GDP)')}</div><div id="st-mix" class="st-viz"></div>
+    stT(`Hộ gia đình chi tiêu ${stN(pct('C'), 1)}% GDP, nhiều hơn đầu tư và Nhà nước cộng lại`, `Households spend ${stN(pct('C'), 1)}% of GDP, more than investment and government combined`),
+    stT('GDP = C + I + G + (X − M). Mỗi khối có độ rộng đúng bằng tỷ trọng của nó trong GDP năm ' + yr + '.', 'GDP = C + I + G + (X − M). Each block is drawn to its exact share of GDP in ' + yr + '.'),
+    `<div id="st-eq" class="st-viz"></div>
+     <div class="st-sub">${stT('Xuất khẩu và nhập khẩu, so với cả GDP (%)', 'Exports and imports, against all of GDP (%)')}</div><div id="st-giants" class="st-viz"></div>
+     <div class="st-sub">${stT('Cơ cấu thay đổi thế nào, 2015–2025 (% GDP)', 'How the mix has shifted, 2015–2025 (% of GDP)')}</div><div id="st-mix-leg"></div><div id="st-mix" class="st-viz"></div><div id="st-mix-note"></div>
      ${stSrc(stT('Nguồn: NSO — GDP theo mục đích sử dụng, giá hiện hành (2024 sơ bộ, 2025 ước tính); X, M: World Bank.', 'Source: NSO — GDP by expenditure, current prices (2024 preliminary, 2025 estimate); X, M: World Bank.'))}`);
   // ── 2. Balance of payments ──
   h += stChap('st-bop', stT('Chương 2 · Tiền chảy qua biên giới', 'Chapter 2 · Money across the border'),
-    stT('Việt Nam bán ra thế giới nhiều hơn mua vào — nhưng phần lớn thặng dư lại chảy ngược ra ngoài', 'Vietnam sells the world more than it buys — yet most of the surplus flows back out'),
-    stT('Mỗi dòng có độ dày bằng giá trị (tỷ USD). Bên trái: tiền vào; bên phải: tiền ra; phần còn lại đổ vào dự trữ ngoại hối. Mặc định hiển thị thương mại ở dạng ròng (xuất − nhập) để các dòng nhỏ hơn hiện rõ.', 'Each band is as thick as its value (bn USD). Left: money in; right: money out; what is left lands in FX reserves. Trade is shown net (exports − imports) by default so the smaller flows stay visible.'),
-    `<div class="st-ctrl" id="st-bop-ctrl"></div><div id="st-sankey" class="st-viz"></div>
-     <div class="st-sub">${stT('Bốn dòng quyết định, 2015–2025 (tỷ USD; xanh = vào, đỏ = ra)', 'Four flows that decide it, 2015–2025 (bn USD; blue = in, red = out)')}</div><div id="st-bop-mult" class="st-mult"></div>
+    stT(`Thặng dư vãng lai ${stN(ca, 1)} tỷ USD năm ${B.years[bi]}; dự trữ chỉ tăng ${stN(res, 1)} tỷ`, `A ${stN(ca, 1)} bn USD current-account surplus in ${B.years[bi]}; reserves rose only ${stN(res, 1)} bn`),
+    stT('Mỗi dòng có độ dày bằng giá trị (tỷ USD). Xanh: tiền vào; cam: tiền ra; đen: phần đổ vào dự trữ ngoại hối. Mặc định thương mại hiển thị dạng ròng (xuất − nhập) để các dòng nhỏ hiện rõ.', 'Each band is as thick as its value (bn USD). Blue: money in; orange: money out; black: what lands in FX reserves. Trade is shown net (exports − imports) by default so the smaller flows stay visible.'),
+    `<div class="st-ctrl" id="st-bop-ctrl"></div>${stLegend([{ n: stT('Tiền vào', 'Money in'), c: ST.blue }, { n: stT('Tiền ra', 'Money out'), c: ST.orange }, { n: stT('Dự trữ ngoại hối', 'FX reserves'), c: ST.ink }])}<div id="st-sankey" class="st-viz"></div>
+     ${stNote(stT(`Lỗi và sai sót năm ${B.years[bi]}: ${stN(eo, 1)} tỷ USD, tương đương ${stN(Math.abs(eo) / ca * 100, 0)}% thặng dư vãng lai.`, `Errors and omissions in ${B.years[bi]}: ${stN(eo, 1)} bn USD, equal to ${stN(Math.abs(eo) / ca * 100, 0)}% of the current-account surplus.`), stT('Đây là phần chênh lệch thống kê chưa ghi nhận được, không phải một dòng tiền đã xác định.', 'This is an unrecorded statistical gap, not an identified flow.'))}
+     <div class="st-sub">${stT('Bốn dòng quyết định, 2015–2025 (tỷ USD; xanh = dương, đỏ = âm)', 'Four flows that decide it, 2015–2025 (bn USD; blue = positive, red = negative)')}</div><div id="st-bop-mult" class="st-mult"></div>
      <div id="st-bop-facts" class="st-facts"></div>
      ${stSrc(stT('Nguồn: IMF Balance of Payments (BPM6) theo số NHNN; du lịch: NSO; kiều hối: NHNN/World Bank; lao động: DOLAB. Lợi nhuận FDI chuyển về nước và lãi vay được công bố gộp.', 'Source: IMF Balance of Payments (BPM6) from SBV data; tourism: NSO; remittances: SBV/World Bank; labour: DOLAB. FDI profit repatriation and interest are published combined.'))}`);
   // ── 3. Budget ──
   h += stChap('st-budget', stT('Chương 3 · Ngân sách nhà nước', 'Chapter 3 · The State budget'),
-    stT('Cứ 100 đồng Nhà nước thu về, đến từ đâu và đi về đâu?', 'Of every 100 dong the State collects — where does it come from, and where does it go?'),
+    stT(`Thu ngân sách ${stN(Bu.revenue.total[b25] / 1e3, 0)} nghìn tỷ năm 2025, tăng ${stN((Bu.revenue.total[b25] / Bu.revenue.total[b24] - 1) * 100, 0)}% so với 2024`, `Budget revenue reached ${stN(Bu.revenue.total[b25] / 1e3, 0)} tn VND in 2025, up ${stN((Bu.revenue.total[b25] / Bu.revenue.total[b24] - 1) * 100, 0)}% on 2024`),
     stT('Mỗi ô vuông là 1% tổng thu (trái) hoặc tổng chi (phải).', 'Each square is 1% of total revenue (left) or total spending (right).'),
     `<div class="st-ctrl" id="st-bud-ctrl"></div><div class="st-waffles"><div id="st-waf-in"></div><div id="st-waf-out"></div></div>
-     <div class="st-sub">${stT('Thu, chi và bội chi, 2018–2026 (nghìn tỷ đồng)', 'Revenue, spending and deficit, 2018–2026 (trillion VND)')}</div><div id="st-bud-line" class="st-viz"></div>
-     <div id="st-bud-deep"></div>
+     <div class="st-sub">${stT('Thu, chi và bội chi, 2018–2026 (nghìn tỷ đồng; nét đứt = ước tính/dự toán)', 'Revenue, spending and deficit, 2018–2026 (trillion VND; dashed = estimate/plan)')}</div><div id="st-bud-leg"></div><div id="st-bud-line" class="st-viz"></div>
+     ${stNote(stT(`Tiền sử dụng đất năm 2025 đạt ${stN(land[b25] / 1e3, 0)} nghìn tỷ, gấp ${stN(land[b25] / land[b24], 1)} lần 2024.`, `Land-use fees reached ${stN(land[b25] / 1e3, 0)} tn VND in 2025, ${stN(land[b25] / land[b24], 1)}× the 2024 level.`), stT('Số 2025 là ước tính, chưa quyết toán.', 'The 2025 figure is an estimate, not a final account.'))}
      ${stSrc(stT('Nguồn: Nghị quyết Quốc hội & quyết toán NSNN (Bộ Tài chính); 2018–2024 quyết toán, 2025 ước tính, 2026 dự toán. Bộ Tài chính không tách thuế GTGT, TNDN, TTĐB trong thu nội địa.', 'Source: National Assembly resolutions & MoF budget final accounts; 2018–2024 final, 2025 estimate, 2026 plan. MoF does not split VAT, CIT and excise within domestic revenue.'))}`);
   // ── 4. Investment ──
   h += stChap('st-inv', stT('Chương 4 · Ai đang đầu tư?', 'Chapter 4 · Who is investing?'),
-    stT('Khu vực tư nhân bỏ vốn nhiều nhất — vốn Nhà nước tăng nhanh trở lại', 'The private sector invests the most — state money is picking up again'),
+    stT(`Khu vực ngoài nhà nước bỏ ${stN(nsh, 0)}% vốn đầu tư năm 2025`, `The non-state sector put up ${stN(nsh, 0)}% of 2025 investment`),
     stT('Vốn đầu tư thực hiện toàn xã hội theo nguồn (nghìn tỷ đồng).', 'Realised investment by owner (trillion VND).'),
-    `<div id="st-inv-area" class="st-viz"></div>${stSrc(stT('Nguồn: NSO V04.01; 9T/2026 tăng: Nhà nước +17,3%, ngoài nhà nước +14,0%, FDI +14,5%.', 'Source: NSO V04.01; 9M-2026 growth: state +17.3%, non-state +14.0%, FDI +14.5%.'))}`);
+    `<div id="st-inv-leg"></div><div id="st-inv-area" class="st-viz"></div>
+     ${stNote(stT(`Chín tháng 2026, vốn Nhà nước tăng ${stN((I.growth_9M2026_yoy_pct || {}).state, 1)}%, nhanh hơn ngoài nhà nước (+${stN((I.growth_9M2026_yoy_pct || {}).nonstate, 1)}%) và FDI (+${stN((I.growth_9M2026_yoy_pct || {}).fdi, 1)}%).`, `In 9M 2026 state investment grew ${stN((I.growth_9M2026_yoy_pct || {}).state, 1)}%, faster than non-state (+${stN((I.growth_9M2026_yoy_pct || {}).nonstate, 1)}%) and FDI (+${stN((I.growth_9M2026_yoy_pct || {}).fdi, 1)}%).`), stT('Cột 9T/2026 là số chín tháng, chưa phải cả năm.', 'The 9M-2026 point covers nine months, not a full year.'))}
+     ${stSrc(stT('Nguồn: NSO V04.01.', 'Source: NSO V04.01.'))}`);
   // ── 5. Inflation ──
+  const A = CPI_YOY_24, im = A.indexOf(Math.max(...A));
   h += stChap('st-cpi', stT('Chương 5 · Lạm phát', 'Chapter 5 · Inflation'),
-    stT('Giá cả nóng lên từ tháng 3/2026 — giao thông và nhà ở dẫn đầu', 'Prices heated up from March 2026 — transport and housing led'),
-    stT('Mỗi ô là mức tăng giá so với cùng kỳ năm trước của một nhóm hàng trong một tháng. Đỏ = tăng, xanh = giảm.', 'Each cell is a group\'s year-on-year price change in one month. Red = rising, blue = falling.'),
-    `<div id="st-heat" class="st-viz"></div><div class="st-sub">${stT('CPI chung và dự báo đến T12/2027 (vùng tô = khoảng thấp–cao)', 'Headline CPI and projection to Dec-2027 (band = low–high range)')}</div><div id="st-fan" class="st-viz"></div>
+    stT(`CPI tăng ${stN(A[A.length - 1], 2)}% so với cùng kỳ (${CPI_MONTHS_24[A.length - 1]}), từ ${stN(A[A.length - 13], 2)}% một năm trước`, `CPI rose ${stN(A[A.length - 1], 2)}% year on year (${CPI_MONTHS_24[A.length - 1]}), from ${stN(A[A.length - 13], 2)}% a year earlier`),
+    stT('Mỗi ô là mức tăng giá so với cùng kỳ năm trước của một nhóm hàng trong một tháng. Đỏ = tăng, xanh = giảm, xám = gần 0.', 'Each cell is a group\'s year-on-year price change in one month. Red = rising, blue = falling, grey = near zero.'),
+    `<div id="st-heat" class="st-viz"></div><div class="st-sub">${stT('CPI chung và dự báo đến T12/2027 (vùng tô = khoảng thấp–cao; nét đứt = dự báo)', 'Headline CPI and projection to Dec-2027 (band = low–high range; dashed = projection)')}</div><div id="st-fan-leg"></div><div id="st-fan" class="st-viz"></div>
      ${stSrc(stT('Nguồn: NSO (Biểu 1 – Cả nước); dự báo: ước tính của dashboard từ dự báo các tổ chức và yếu tố giá.', 'Source: NSO (Biểu 1 – Cả nước); projection: dashboard estimate from institutional forecasts and price drivers.'))}`);
+  // ── 6. What to watch (resolution) ──
+  const F = typeof cpiForecast === 'function' ? cpiForecast() : null, jan = F ? F.central.labels.indexOf('T1/27') : -1, vat = typeof POLICY !== 'undefined' ? POLICY.fis.instruments.find(x => x.id === 'vat_cut_2pct') : null;
+  const w = [];
+  if (vat && vat.expires) w.push([pgFmt(vat.expires), stT('Giảm 2 điểm % thuế GTGT hết hạn', 'The 2-point VAT cut expires'), jan >= 0 ? stT(`Dự báo cơ sở của dashboard: CPI tháng 1/2027 ở mức ${stN(F.central.yoy[jan], 1)}%, so với ${stN(F.central.yoy[jan - 1], 1)}% tháng trước đó.`, `Dashboard base case: CPI at ${stN(F.central.yoy[jan], 1)}% in Jan 2027, from ${stN(F.central.yoy[jan - 1], 1)}% the month before.`) : '']);
+  w.push([stT('Năm 2026', '2026'), stT('Bội chi dự toán ' + stN(Bu.deficit_pct_gdp[Bu.years.length - 1], 1) + '% GDP', 'Planned deficit of ' + stN(Bu.deficit_pct_gdp[Bu.years.length - 1], 1) + '% of GDP'), stT(`So với ${stN(Bu.deficit_pct_gdp[b25], 1)}% ước thực hiện 2025; mức thực tế phụ thuộc tốc độ giải ngân đầu tư công.`, `Against an estimated ${stN(Bu.deficit_pct_gdp[b25], 1)}% outturn in 2025; the outcome depends on how fast public investment is disbursed.`)]);
+  w.push([stT('Số liệu BoP 2026', '2026 BoP data'), stT('Khoản lỗi và sai sót', 'Errors and omissions'), stT(`${stN(eo, 1)} tỷ USD năm ${B.years[bi]}; nếu tiếp tục âm lớn, dự trữ ngoại hối khó tăng dù thặng dư thương mại cao.`, `${stN(eo, 1)} bn USD in ${B.years[bi]}; if it stays deeply negative, reserves struggle to rise even with a large trade surplus.`)]);
+  h += stChap('st-watch', stT('Tiếp theo · Điều cần theo dõi', 'Next · What to watch'), stT('Ba mốc sẽ cho biết bức tranh này thay đổi thế nào', 'Three markers that will show how this picture changes'), '',
+    `<ol class="st-watch">${w.map(([t, b, p]) => `<li><time>${t}</time><b>${b}</b>${p}</li>`).join('')}</ol>`);
   root.innerHTML = h;
   stGrowth(); stEquation(); stGiants(); stMix(); stBopControls(); stSankey(); stBopMult(); stBopFacts(); stBudControls(); stWaffles(); stBudLine(); stInvArea(); stHeat(); stFan();
-  if (typeof stBudgetDeep === 'function') stBudgetDeep();
-  stObserve(root);
+  stFinish(root);
 }
 
 // ── chart helpers ──
 const stSvg = (W, H, inner, label) => `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ciE(label || '')}">${inner}</svg>`;
-const stAnn = (x, y, tx, ty, text, anchor = 'start') => `<g class="st-ann"><path d="M${x},${y} L${tx},${ty}"/><circle cx="${x}" cy="${y}" r="2.5"/><text x="${tx + (anchor === 'end' ? -4 : 4)}" y="${ty + 4}" text-anchor="${anchor}">${text}</text></g>`;
+// annotation: primary (ink, bold) locates the headline's evidence; supporting (muted, smaller) is context only
+const stAnn = (x, y, tx, ty, text, anchor = 'start', tier = 'pri') => `<g class="st-ann st-ann-${tier}">${Math.hypot(tx - x, ty - y) > 6 ? `<path d="M${x},${y} L${tx},${ty}"/>` : ''}<circle cx="${x}" cy="${y}" r="2.5"/><text x="${tx + (anchor === 'end' ? -4 : anchor === 'middle' ? 0 : 4)}" y="${ty + 4}" text-anchor="${anchor}">${text}</text></g>`;
 function stAxisY(sy, ticks, x0, x1, fmt) { return ticks.map(t => `<line class="st-grid" x1="${x0}" x2="${x1}" y1="${sy(t)}" y2="${sy(t)}"/><text class="st-tick" x="${x0 - 6}" y="${sy(t) + 4}" text-anchor="end">${fmt(t)}</text>`).join(''); }
 const stNice = (lo, hi, n = 4) => { const span = hi - lo || 1, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0))), step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= step0) || step0; const a = Math.floor(lo / step) * step, out = []; for (let v = a; v <= hi + 1e-9; v += step) out.push(+v.toFixed(10)); return out; };
+// ── STORY core: mark, legend, hover, crosshair, table-view helpers (dataviz skill: thin marks, 4px rounded data-end,
+// 2px surface gap/ring, >=24px hit targets, legend for 2+ series, value-first tooltip, table twin for every chart) ──
+const ST_SURF = '#faf8f3', ST_MUTE = '#c9ccd2', ST_BAR = 24;
+// rounded rectangle with per-corner radius; only the data-end corners are rounded, the baseline stays square
+function stRR(x, y, w, h, r, c) { w = Math.max(0, w); h = Math.max(0, h); r = Math.min(r, w / 2, h / 2); const [tl, tr, br, bl] = c.map(k => k ? r : 0);
+  return `M${x + tl},${y} H${x + w - tr} ${tr ? `Q${x + w},${y} ${x + w},${y + tr}` : ''} V${y + h - br} ${br ? `Q${x + w},${y + h} ${x + w - br},${y + h}` : ''} H${x + bl} ${bl ? `Q${x},${y + h} ${x},${y + h - bl}` : ''} V${y + tl} ${tl ? `Q${x},${y} ${x + tl},${y}` : ''} Z`; }
+const stKey = (label, value) => `data-st-k="${encodeURIComponent(String(label) + '|' + String(value))}"`;
+// vertical bar centred in its slot, width capped at 24px, grows from yBase to yVal; round=false for an interior stacked segment
+function stBarV(cx, slot, yVal, yBase, fill, key, o = {}) { const w = Math.min(ST_BAR, Math.max(2, slot - 4)), up = yVal <= yBase, y = Math.min(yVal, yBase), h = Math.abs(yBase - yVal);
+  const r = o.round === false ? 0 : 4, d = stRR(cx - w / 2, y, w, h, r, up ? [1, 1, 0, 0] : [0, 0, 1, 1]);
+  return `<path class="st-bar ${o.cls ?? 'st-grow'}" style="--d:${o.d || 0}ms;${up ? '' : 'transform-origin:top;'}${o.style || ''}" d="${d}" fill="${fill}"${o.op != null ? ` opacity="${o.op}"` : ''} ${key ? stKey(...key) : ''}/>`; }
+// horizontal bar, thickness capped at 24px, grows from xBase to xVal
+function stBarH(cy, slot, xVal, xBase, fill, key, o = {}) { const h = Math.min(ST_BAR, Math.max(2, slot - 4)), right = xVal >= xBase, x = Math.min(xVal, xBase), w = Math.abs(xVal - xBase);
+  const r = o.round === false ? 0 : 4, d = stRR(x, cy - h / 2, w, h, r, right ? [0, 1, 1, 0] : [1, 0, 0, 1]);
+  return `<path class="st-bar ${o.cls ?? 'st-grow-x'}" style="--d:${o.d || 0}ms;${right ? '' : 'transform-origin:right;'}${o.style || ''}" d="${d}" fill="${fill}"${o.op != null ? ` opacity="${o.op}"` : ''} ${key ? stKey(...key) : ''}/>`; }
+// stacked column: segs = [{v, c, key}] bottom→top (or right for horizontal); 2px surface gap between segments, only the outer end rounded
+function stStackV(cx, slot, sy, segs, o = {}) { let base = 0, s = ''; const vis = segs.filter(g => g.v > 0), last = vis[vis.length - 1];
+  vis.forEach((g, i) => { const y0 = sy(base), y1 = sy(base + g.v), gap = i ? 1 : 0; s += stBarV(cx, slot, y1 + (g === last ? 0 : 1), y0 - gap, g.c, g.key, { round: g === last, d: (o.d || 0) + i * 40 }); base += g.v; }); return s; }
+function stStackH(cy, slot, sx, segs, o = {}) { let base = 0, s = ''; const vis = segs.filter(g => g.v > 0), last = vis[vis.length - 1];
+  vis.forEach((g, i) => { const x0 = sx(base), x1 = sx(base + g.v), gap = i ? 1 : 0; s += stBarH(cy, slot, x1 - (g === last ? 0 : 1), x0 + gap, g.c, g.key, { round: g === last, d: (o.d || 0) + i * 40 }); base += g.v; }); return s; }
+// dot / marker: r >= 4, 2px surface ring, invisible 24px hit area that carries the tooltip
+function stDot(cx, cy, r, fill, key, o = {}) { r = Math.max(4, r);
+  return `<g class="st-pt ${o.cls ?? 'st-cell'}" style="--d:${o.d || 0}ms" ${key ? stKey(...key) : ''}><circle cx="${cx}" cy="${cy}" r="${Math.max(12, r + 2)}" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="${r}" fill="${o.hollow ? ST_SURF : fill}" stroke="${o.hollow ? fill : ST_SURF}" stroke-width="2"${o.dash ? ' stroke-dasharray="3,2"' : ''}/></g>`; }
+// 2px line through points [[x,y],…]; nulls break the line (a gap stays a gap)
+function stLine(pts, c, o = {}) { let d = '', pen = false; pts.forEach(p => { if (!p || p[1] == null || !isFinite(p[1])) { pen = false; return; } d += `${pen ? 'L' : 'M'}${p[0].toFixed(1)},${p[1].toFixed(1)} `; pen = true; });
+  return `<path class="${o.cls ?? 'st-draw'}" d="${d}" fill="none" stroke="${c}" stroke-width="${o.w || 2}" stroke-linejoin="round" stroke-linecap="round"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}${o.op != null ? ` opacity="${o.op}"` : ''}/>`; }
+// legend (always above the chart, same place on every chart): items [{n, c, k:'rect'|'line'|'dash'|'dot'|'ring'}]
+const stLegend = items => `<div class="st-legend">${items.map(i => `<span><i class="k-${i.k || 'rect'}" style="--c:${i.c}"></i>${i.n}</span>`).join('')}</div>`;
+// explainer note under a chart: line 1 = the finding with its anchor, line 2 = one caveat / contrast / consequence
+const stNote = (lead, follow) => `<p class="st-note">${lead}${follow ? `<span>${follow}</span>` : ''}</p>`;
+// tooltip: value leads, label follows; built with textContent (labels are data)
+function stTipKV(e, label, value, rows) {
+  let tip = document.getElementById('dot-tip'); if (!tip) { tip = document.createElement('div'); tip.id = 'dot-tip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip); }
+  tip.textContent = ''; const add = (cls, txt, c) => { const d = document.createElement('div'); d.className = cls; if (c) { const k = document.createElement('i'); k.className = 'dt-key'; k.style.background = c; d.appendChild(k); } d.appendChild(document.createTextNode(txt)); tip.appendChild(d); return d; };
+  if (rows) { add('dt-l', label); rows.forEach(r => { const d = add('dt-row', '', r.c); const b = document.createElement('b'); b.textContent = r.v; d.appendChild(b); d.appendChild(document.createTextNode(' ' + r.n)); }); }
+  else { add('dt-v', value); add('dt-l', label); }
+  tip.style.display = 'block'; dotTipMove(e);
+}
+// crosshair for line charts: a hairline snaps to the nearest x and one tooltip lists every series at that x
+// cfg = {xs:[px], labels:[…], top, bottom, series:[{n, c, v:[…], f}]}; uses d3.pointer/bisectCenter when d3 is loaded
+function stCross(el, cfg) {
+  const svg = el.querySelector('svg'); if (!svg) return; el._stRows = { head: [''].concat(cfg.series.map(s => s.n)), rows: cfg.labels.map((l, i) => [l].concat(cfg.series.map(s => s.v[i] == null ? '—' : s.f(s.v[i])))) };
+  const NS = 'http://www.w3.org/2000/svg', g = document.createElementNS(NS, 'g'), ln = document.createElementNS(NS, 'line'), hit = document.createElementNS(NS, 'rect');
+  const x0 = Math.min(...cfg.xs), x1 = Math.max(...cfg.xs);
+  ln.setAttribute('y1', cfg.top); ln.setAttribute('y2', cfg.bottom); ln.setAttribute('class', 'st-xh-line'); ln.style.display = 'none';
+  hit.setAttribute('x', x0 - 12); hit.setAttribute('y', cfg.top); hit.setAttribute('width', x1 - x0 + 24); hit.setAttribute('height', cfg.bottom - cfg.top); hit.setAttribute('fill', 'transparent'); hit.style.cursor = 'crosshair';
+  g.appendChild(ln); g.appendChild(hit); svg.appendChild(g);
+  const order = cfg.xs.map((x, i) => [x, i]).sort((a, b) => a[0] - b[0]), xsS = order.map(o => o[0]);
+  const near = mx => { const k = window.d3 && d3.bisectCenter ? d3.bisectCenter(xsS, mx) : xsS.reduce((b, x, j) => Math.abs(x - mx) < Math.abs(xsS[b] - mx) ? j : b, 0); return order[Math.max(0, Math.min(order.length - 1, k))][1]; };
+  const move = ev => { const mx = window.d3 && d3.pointer ? d3.pointer(ev, svg)[0] : (() => { const p = svg.createSVGPoint(); p.x = ev.clientX; p.y = ev.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()).x; })();
+    const i = near(mx); ln.setAttribute('x1', cfg.xs[i]); ln.setAttribute('x2', cfg.xs[i]); ln.style.display = '';
+    stTipKV(ev, String(cfg.labels[i]), '', cfg.series.filter(s => s.v[i] != null).map(s => ({ n: s.n, c: s.c, v: s.f(s.v[i]) }))); };
+  hit.addEventListener('pointermove', move); hit.addEventListener('pointerenter', move);
+  hit.addEventListener('pointerleave', () => { ln.style.display = 'none'; dotTipHide(); });
+}
+// table view: every chart gets a collapsed data table built from its marks (or its crosshair rows) - the WCAG twin
+function stTables(root) {
+  root.querySelectorAll('.st-viz, .st-mult, .st-waffles').forEach(el => {
+    if (el.closest('.st-mult') && el !== el.closest('.st-mult')) return;
+    const nx = el.nextElementSibling; if (nx && nx.classList.contains('st-tbl')) nx.remove();
+    let head, rows = [];
+    if (el._stRows) ({ head, rows } = el._stRows);
+    else { const seen = new Set(); el.querySelectorAll('[data-st-k]').forEach(m => { const k = m.dataset.stK; if (seen.has(k)) return; seen.add(k); const p = decodeURIComponent(k).split('|'); rows.push([p[0], p.slice(1).join(' · ')]); }); head = [stT('Mục', 'Item'), stT('Giá trị', 'Value')]; }
+    if (!rows.length) return;
+    const det = document.createElement('details'); det.className = 'st-tbl'; const sm = document.createElement('summary'); sm.textContent = `${stT('Bảng số liệu', 'Data table')} · ${rows.length} ${stT('dòng', 'rows')}`; det.appendChild(sm);
+    const w = document.createElement('div'); w.className = 'st-tbl-w'; const t = document.createElement('table'), tr0 = document.createElement('tr');
+    head.forEach(h => { const th = document.createElement('th'); th.textContent = h; tr0.appendChild(th); }); const th0 = document.createElement('thead'); th0.appendChild(tr0); t.appendChild(th0);
+    const tb = document.createElement('tbody'); rows.forEach(r => { const tr = document.createElement('tr'); r.forEach((c, j) => { const td = document.createElement(j ? 'td' : 'th'); td.textContent = c; tr.appendChild(td); }); tb.appendChild(tr); }); t.appendChild(tb);
+    w.appendChild(t); det.appendChild(w); el.after(det);
+  });
+}
+// finish a story: reveal on scroll + table twins
+function stFinish(root) { stObserve(root); stTables(root); }
 
-// 0 — growth bars 2011–2025 + 9M-2026
+// 0 — growth columns 2011–2025 + 9M-2026; the two latest periods carry the accent, the rest are context
 function stGrowth() {
   const el = document.getElementById('st-growth'), g = ECON_OFFICIAL.gdp_growth || [], yrs = g.map((_, i) => 2010 + i).slice(1), vals = g.slice(1);
   const g9 = ((ECONFLOW.gdp.growth_real_pct || {})['9M_2026_yoy'] || {}).GDP; yrs.push(stT('9T/26', '9M/26')); vals.push(g9);
-  const W = 520, H = 200, ML = 30, MR = 8, MT = 26, MB = 22, sx = i => ML + i * (W - ML - MR) / vals.length, bw = (W - ML - MR) / vals.length - 4, sy = stLin(0, 10, H - MB, MT);
-  let s = stAxisY(sy, [0, 5, 10], ML, W - MR, v => v + '%');
-  vals.forEach((v, i) => { const hi = i >= vals.length - 2, c = hi ? ST.blue : '#b9c7da';
-    s += `<rect class="st-grow" style="--d:${i * 30}ms" x="${sx(i) + 2}" y="${sy(v)}" width="${bw}" height="${sy(0) - sy(v)}" rx="2" fill="${c}"><title>${yrs[i]}: ${stN(v, 2)}%</title></rect>`;
-    if (i % 3 === 0 || hi) s += `<text class="st-tick" x="${sx(i) + 2 + bw / 2}" y="${H - 6}" text-anchor="middle">${String(yrs[i]).replace(/^20/, '')}</text>`; });
-  const i20 = yrs.indexOf(2021), last = vals.length - 1;
-  s += stAnn(sx(i20) + 2 + bw / 2, sy(vals[i20]) - 2, sx(i20) - 30, sy(9.2), `COVID 2021: ${stN(vals[i20], 2)}%`, 'end');
-  s += `<text class="st-lab" x="${sx(last) + bw}" y="${sy(vals[last]) - 6}" text-anchor="end">${stN(vals[last], 2)}%</text>`;
+  const W = 540, H = 210, ML = 30, MR = 30, MT = 24, MB = 22, slot = (W - ML - MR) / vals.length, cx = i => ML + (i + .5) * slot, sy = stLin(0, 10, H - MB, MT);
+  let s = stAxisY(sy, [0, 5, 10], ML, W - MR, v => v + '%') + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  vals.forEach((v, i) => { const hi = i >= vals.length - 2;
+    s += stBarV(cx(i), slot, sy(v), sy(0), hi ? ST.blue : ST_MUTE, [String(yrs[i]), stN(v, 2) + '%'], { d: i * 30 });
+    if (i % 3 === 0 || hi) s += `<text class="st-tick" x="${cx(i)}" y="${H - 6}" text-anchor="middle">${String(yrs[i]).replace(/^20/, '')}</text>`; });
+  const i21 = yrs.indexOf(2021), last = vals.length - 1;
+  s += stAnn(cx(i21), sy(vals[i21]) - 3, cx(i21) - 24, sy(8.6), `2021: ${stN(vals[i21], 2)}%`, 'end', 'sup');
+  s += `<text class="st-lab st-b" x="${cx(last)}" y="${sy(vals[last]) - 7}" text-anchor="middle">${stN(vals[last], 2)}%</text>`;
   el.innerHTML = stSvg(W, H, s, stT('Tăng trưởng GDP 2011–2026', 'GDP growth 2011–2026'));
 }
-
-// 1a — the equation as one proportional bar
+// 1a — the equation as one proportional bar (part-to-whole; 2px surface gaps between blocks)
 function stEquation() {
   const el = document.getElementById('st-eq'), G = ECONFLOW.gdp, gy = G.years.length - 1, pct = k => { const a = G.pct_gdp[k]; return Array.isArray(a) ? a[gy] : a; };
-  const parts = [['C', stT('Hộ gia đình tiêu dùng', 'Household consumption'), pct('C'), ST.blue, G.C[gy]], ['I', stT('Đầu tư', 'Investment'), pct('I'), ST.orange, G.I[gy]], ['G', stT('Nhà nước chi tiêu', 'Government'), pct('G'), ST.violet, G.G[gy]], ['X−M', stT('Xuất khẩu ròng', 'Net exports'), pct('net_exports'), ST.aqua, G.net_exports[gy]], ['ε', stT('sai số', 'discrepancy'), pct('discrepancy'), ST.ink3, G.discrepancy[gy]]];
-  const W = 1000, H = 158, x0 = 10, x1 = W - 10, tot = parts.reduce((t, p) => t + p[2], 0), sc = (x1 - x0) / tot;
+  const parts = [['C', stT('Hộ gia đình tiêu dùng', 'Household consumption'), pct('C'), ST.blue, G.C[gy]], ['I', stT('Đầu tư', 'Investment'), pct('I'), ST.orange, G.I[gy]], ['G', stT('Nhà nước chi tiêu', 'Government'), pct('G'), ST.aqua, G.G[gy]], ['X−M', stT('Xuất khẩu ròng', 'Net exports'), pct('net_exports'), ST.yellow, G.net_exports[gy]], ['ε', stT('sai số thống kê', 'statistical discrepancy'), pct('discrepancy'), ST_MUTE, G.discrepancy[gy]]];
+  const W = 1000, H = 176, x0 = 10, x1 = W - 10, tot = parts.reduce((t, p) => t + p[2], 0), sc = (x1 - x0) / tot;
   let x = x0, s = '';
-  parts.forEach(([sym, name, p, c, v], i) => { const w = p * sc;
-    s += `<g class="st-grow-x" style="--d:${i * 120}ms"><rect x="${x}" y="40" width="${Math.max(1, w - 2)}" height="64" fill="${c}" rx="3"/>`;
-    if (w > 70) s += `<text x="${x + 10}" y="72" class="st-eq-sym">${sym}</text><text x="${x + 10}" y="94" class="st-eq-val">${stN(p, 1)}%</text>`;
-    s += `</g>`;
+  parts.forEach(([sym, name, p, c, v], i) => { const w = p * sc, dark = c === ST.blue || c === ST.orange;
+    s += `<path class="st-bar st-grow-x" style="--d:${i * 120}ms" d="${stRR(x, 40, Math.max(1, w - 2), 64, 4, [i === 0, i === parts.length - 1, i === parts.length - 1, i === 0])}" fill="${c}" ${stKey(sym + ' · ' + name, stN(p, 1) + '% GDP · ' + stN(v / 1e3, 0) + stT(' nghìn tỷ', ' tn VND'))}/>`;
+    if (w > 70) s += `<text x="${x + 10}" y="${72}" class="st-eq-sym" style="fill:${dark ? '#fff' : '#16181d'}">${sym}</text><text x="${x + 10}" y="${94}" class="st-eq-val" style="fill:${dark ? '#fff' : '#16181d'}">${stN(p, 1)}%</text>`;
     if (w > 70) s += `<text class="st-lab" x="${x + 10}" y="28">${name}</text><text class="st-tick" x="${x + 10}" y="124">${stN(v / 1e3, 0)} ${stT('nghìn tỷ', 'tn')}</text>`;
-    else s += stAnn(x + w / 2, 104, x + w / 2 - 40, i === parts.length - 1 ? 150 : 130, `${sym} ${name} ${stN(p, 1)}%`, 'end');
+    else s += stAnn(x + w / 2, 104, x + w / 2 - 40, i === parts.length - 1 ? 166 : 148, `${sym} ${name} ${stN(p, 1)}%`, 'end', 'sup');
     x += w; });
   el.innerHTML = stSvg(W, H, s, 'GDP = C + I + G + (X − M)');
 }
-
-// 1b — exports and imports against GDP
+// 1b — exports and imports against GDP (3 bars, 24px)
 function stGiants() {
   const el = document.getElementById('st-giants'), G = ECONFLOW.gdp, gy = G.years.length - 1, pct = k => { const a = G.pct_gdp[k]; return Array.isArray(a) ? a[gy] : a; };
-  const W = 1000, H = 156, x0 = 140, x1 = W - 60, sx = stLin(0, 100, x0, x1), rows = [[stT('GDP', 'GDP'), 100, ST.ink], [stT('Xuất khẩu (X)', 'Exports (X)'), pct('X'), ST.blue], [stT('Nhập khẩu (M)', 'Imports (M)'), pct('M'), ST.red]];
-  let s = '';
-  rows.forEach(([n, v, c], i) => { const y = 14 + i * 36;
-    s += `<text class="st-lab" x="${x0 - 10}" y="${y + 17}" text-anchor="end">${n}</text><rect class="st-grow-x" style="--d:${i * 150}ms" x="${x0}" y="${y}" width="${sx(v) - x0}" height="24" rx="3" fill="${c}" opacity="${i ? 0.9 : 0.18}"/><text class="st-val" x="${sx(v) + 6}" y="${y + 17}">${stN(v, 0)}%</text>`; });
+  const W = 1000, H = 150, x0 = 140, x1 = W - 60, sx = stLin(0, 100, x0, x1), rows = [[stT('GDP', 'GDP'), 100, ST_MUTE], [stT('Xuất khẩu (X)', 'Exports (X)'), pct('X'), ST.blue], [stT('Nhập khẩu (M)', 'Imports (M)'), pct('M'), ST.orange]];
+  let s = `<line class="st-base" x1="${x0}" x2="${x0}" y1="4" y2="${3 * 34 + 4}"/>`;
+  rows.forEach(([n, v, c], i) => { const y = 20 + i * 34;
+    s += `<text class="st-lab" x="${x0 - 10}" y="${y + 4}" text-anchor="end">${n}</text>` + stBarH(y, 30, sx(v), x0, c, [n, stN(v, 1) + '% GDP'], { d: i * 150 }) + `<text class="st-val" x="${sx(v) + 6}" y="${y + 4}">${stN(v, 0)}%</text>`; });
   const xm = sx(pct('M')), xx = sx(pct('X'));
-  s += `<path d="M${xm},${116} L${xm},${122} L${xx},${122} L${xx},${116}" fill="none" stroke="${ST.aqua}" stroke-width="2"/><line x1="${xm}" x2="${xm}" y1="86" y2="116" stroke="${ST.aqua}" stroke-dasharray="2,2"/><line x1="${xx}" x2="${xx}" y1="74" y2="116" stroke="${ST.aqua}" stroke-dasharray="2,2"/>` + stAnn((xm + xx) / 2, 122, (xm + xx) / 2 - 120, 142, stT(`Chênh lệch chỉ ${stN(pct('net_exports'), 1)}% GDP — đó là "X − M" trong công thức`, `The gap is only ${stN(pct('net_exports'), 1)}% of GDP — that is the "X − M" in the formula`), 'end');
+  s += `<path d="M${xm},${116} L${xm},${122} L${xx},${122} L${xx},${116}" fill="none" stroke="#16181d" stroke-width="1"/>` + stAnn((xm + xx) / 2, 122, (xm + xx) / 2 - 120, 140, stT(`Chênh lệch ${stN(pct('net_exports'), 1)}% GDP = "X − M"`, `Gap of ${stN(pct('net_exports'), 1)}% of GDP = "X − M"`), 'end');
   el.innerHTML = stSvg(W, H, s, stT('Xuất nhập khẩu so với GDP', 'Exports and imports vs GDP'));
 }
-
-// 1c — mix over time (lines, direct labels)
+// 1c — mix over time: 4 lines, legend above, end labels in ink, crosshair
 function stMix() {
   const el = document.getElementById('st-mix'), G = ECONFLOW.gdp, yrs = G.years, P = k => G[k].map((v, i) => v == null ? null : v / G.GDP[i] * 100);
-  const S = [['C', stT('Hộ gia đình', 'Households'), ST.blue], ['I', stT('Đầu tư', 'Investment'), ST.orange], ['G', stT('Nhà nước', 'Government'), ST.violet], ['net_exports', 'X − M', ST.aqua]];
-  const W = 1000, H = 240, ML = 40, MR = 120, MT = 14, MB = 24, sx = stLin(yrs[0], yrs[yrs.length - 1], ML, W - MR), sy = stLin(-5, 70, H - MB, MT);
+  const S = [['C', stT('Hộ gia đình (C)', 'Households (C)'), ST.blue], ['I', stT('Đầu tư (I)', 'Investment (I)'), ST.orange], ['G', stT('Nhà nước (G)', 'Government (G)'), ST.aqua], ['net_exports', stT('Xuất khẩu ròng (X − M)', 'Net exports (X − M)'), ST.yellow]];
+  document.getElementById('st-mix-leg').innerHTML = stLegend(S.map(([, n, c]) => ({ n, c, k: 'line' })));
+  const W = 1000, H = 240, ML = 40, MR = 170, MT = 14, MB = 24, sx = stLin(yrs[0], yrs[yrs.length - 1], ML, W - MR), sy = stLin(-5, 70, H - MB, MT);
   let s = stAxisY(sy, [0, 20, 40, 60], ML, W - MR, v => v + '%');
   yrs.forEach((y, i) => { if (i % 2 === 0 || i === yrs.length - 1) s += `<text class="st-tick" x="${sx(y)}" y="${H - 6}" text-anchor="middle">${y}</text>`; });
   const ends = [];
-  S.forEach(([k, n, c]) => { const d = P(k), pts = d.map((v, i) => v == null ? null : `${sx(yrs[i])},${sy(v)}`).filter(Boolean).join(' L');
-    s += `<path class="st-draw" d="M${pts}" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>`;
-    ends.push({ y: sy(d[d.length - 1]), t: `${n} ${stN(d[d.length - 1], 1)}%` }); });
-  ends.sort((a, b) => a.y - b.y).forEach((e, i, a) => { if (i && e.y - a[i - 1].y < 14) e.y = a[i - 1].y + 14; s += `<text class="st-lab" x="${W - MR + 8}" y="${e.y + 4}">${e.t}</text>`; });
-  const i21 = yrs.indexOf(2021); if (i21 >= 0) s += stAnn(sx(2021), sy(P('net_exports')[i21]), sx(2021) + 30, sy(18), stT('2021: nhập khẩu tăng vọt, xuất khẩu ròng gần 0', '2021: imports surge, net exports near zero'));
+  S.forEach(([k, n, c]) => { const d = P(k); s += stLine(d.map((v, i) => [sx(yrs[i]), v == null ? null : sy(v)]), c); s += stDot(sx(yrs[yrs.length - 1]), sy(d[d.length - 1]), 4, c, null, { cls: 'st-fade' }); ends.push({ y: sy(d[d.length - 1]), y0: sy(d[d.length - 1]), t: `${n.replace(/ \(.*\)/, '')} ${stN(d[d.length - 1], 1)}%` }); });
+  ends.sort((a, b) => a.y - b.y).forEach((e, i, a) => { if (i && e.y - a[i - 1].y < 14) e.y = a[i - 1].y + 14; if (Math.abs(e.y - e.y0) > 2) s += `<path d="M${W - MR + 6},${e.y0} L${W - MR + 12},${e.y}" stroke="#8a8f99" fill="none"/>`; s += `<text class="st-lab" x="${W - MR + 14}" y="${e.y + 4}">${e.t}</text>`; });
+  const i21 = yrs.indexOf(2021), n21 = P('net_exports')[i21]; if (i21 >= 0) s += stAnn(sx(2021), sy(n21), sx(2021) + 30, sy(18), stT(`2021: xuất khẩu ròng ${stN(n21, 1)}% GDP`, `2021: net exports ${stN(n21, 1)}% of GDP`), 'start', 'sup');
   el.innerHTML = stSvg(W, H, s, stT('Cơ cấu GDP theo thời gian', 'GDP mix over time'));
+  stCross(el, { xs: yrs.map(sx), labels: yrs, top: MT, bottom: H - MB, series: S.map(([k, n, c]) => ({ n, c, v: P(k), f: v => stN(v, 1) + '%' })) });
+  const c0 = P('C')[0], c1 = P('C')[yrs.length - 1];
+  document.getElementById('st-mix-note').innerHTML = stNote(stT(`Tỷ trọng tiêu dùng hộ gia đình giảm từ ${stN(c0, 1)}% (${yrs[0]}) xuống ${stN(c1, 1)}% (${yrs[yrs.length - 1]}).`, `The household share fell from ${stN(c0, 1)}% (${yrs[0]}) to ${stN(c1, 1)}% (${yrs[yrs.length - 1]}).`), stT('GDP vẫn tăng; đây là tỷ trọng, không phải mức chi tiêu tuyệt đối.', 'GDP still grew; this is a share, not the level of spending.'));
 }
 
-// 2 — balance of payments sankey
+// 2 — balance of payments sankey: colour by direction (in = blue, out = orange, reserves = ink), not one hue per flow
 function stBopItems(yi) {
-  const S = ECONFLOW.bop.s, v = k => (S[k] || [])[yi] || 0;
+  const S = ECONFLOW.bop.s, v = k => (S[k] || [])[yi] || 0, Cin = ST.blue, Cout = ST.orange;
   const cdA = v('currency_deposits_assets'), cdL = v('currency_deposits_liabilities'), loans = v('loans_net'), oth = v('other_inv_net') - (loans + cdL - cdA), pf = v('portfolio_net'), eo = v('errors_omissions'), res = v('reserves_change');
   const IN = [], OUT = [];
-  if (stBopGross) { IN.push([stT('Xuất khẩu hàng hoá', 'Goods exports'), v('goods_x'), ST.blue], [stT('Xuất khẩu dịch vụ (du lịch, vận tải…)', 'Services exports (tourism, transport…)'), v('services_x'), ST.aqua]); OUT.push([stT('Nhập khẩu hàng hoá', 'Goods imports'), v('goods_m'), ST.red], [stT('Nhập khẩu dịch vụ (vận tải, du lịch ra nước ngoài…)', 'Services imports (freight, travel abroad…)'), v('services_m'), ST.orange]); }
-  else { const gN = v('goods_x') - v('goods_m'), sN = v('services_x') - v('services_m'); (gN >= 0 ? IN : OUT).push([gN >= 0 ? stT('Thặng dư thương mại hàng hoá', 'Goods trade surplus') : stT('Thâm hụt thương mại hàng hoá', 'Goods trade deficit'), Math.abs(gN), gN >= 0 ? ST.blue : ST.red]); (sN >= 0 ? IN : OUT).push([sN >= 0 ? stT('Thặng dư dịch vụ', 'Services surplus') : stT('Thâm hụt dịch vụ (vận tải, bảo hiểm, du lịch)', 'Services deficit (freight, insurance, travel)'), Math.abs(sN), ST.orange]); }
-  IN.push([stT('FDI vào Việt Nam', 'FDI into Vietnam'), v('fdi_in'), ST.violet], [stT('Kiều hối & chuyển giao nhận về', 'Remittances & transfers in'), v('secondary_income_in'), ST.green], [stT('Thu nhập nhận về', 'Income received'), v('primary_income_in'), ST.yellow], [stT('Tiền gửi của người nước ngoài', 'Non-resident deposits'), cdL, ST.magenta]);
-  OUT.push([stT('Lợi nhuận FDI & lãi vay chuyển ra', 'FDI profits & interest paid out'), v('primary_income_out'), ST.violet], [stT('Ngoại tệ, tiền gửi chuyển ra/giữ ngoài', 'FX cash & deposits moved out'), cdA, ST.magenta], [stT('Chuyển giao trả ra', 'Transfers paid out'), v('secondary_income_out'), ST.yellow], [stT('Đầu tư ra nước ngoài', 'Outward investment'), v('fdi_out'), ST.aqua]);
-  const flip = (val, a, b, c) => { if (Math.abs(val) < 0.05) return; (val >= 0 ? IN : OUT).push([val >= 0 ? a : b, Math.abs(val), c]); };
-  flip(pf, stT('Vốn gián tiếp vào', 'Portfolio inflows'), stT('Khối ngoại rút vốn', 'Foreign portfolio exit'), ST.blue);
-  flip(loans, stT('Vay nước ngoài ròng', 'Net foreign borrowing'), stT('Trả nợ nước ngoài ròng', 'Net debt repayment'), ST.green);
-  flip(oth, stT('Đầu tư khác vào', 'Other investment in'), stT('Đầu tư khác ra', 'Other investment out'), ST.ink3);
-  flip(eo, stT('Lỗi & sai sót (vào)', 'Errors & omissions (in)'), stT('Lỗi & sai sót: thất thoát chưa ghi nhận', 'Errors & omissions: unrecorded outflow'), '#9aa0aa');
+  if (stBopGross) { IN.push([stT('Xuất khẩu hàng hoá', 'Goods exports'), v('goods_x'), Cin], [stT('Xuất khẩu dịch vụ (du lịch, vận tải…)', 'Services exports (tourism, transport…)'), v('services_x'), Cin]); OUT.push([stT('Nhập khẩu hàng hoá', 'Goods imports'), v('goods_m'), Cout], [stT('Nhập khẩu dịch vụ (vận tải, du lịch ra nước ngoài…)', 'Services imports (freight, travel abroad…)'), v('services_m'), Cout]); }
+  else { const gN = v('goods_x') - v('goods_m'), sN = v('services_x') - v('services_m'); (gN >= 0 ? IN : OUT).push([gN >= 0 ? stT('Thặng dư thương mại hàng hoá', 'Goods trade surplus') : stT('Thâm hụt thương mại hàng hoá', 'Goods trade deficit'), Math.abs(gN), gN >= 0 ? Cin : Cout]); (sN >= 0 ? IN : OUT).push([sN >= 0 ? stT('Thặng dư dịch vụ', 'Services surplus') : stT('Thâm hụt dịch vụ (vận tải, bảo hiểm, du lịch)', 'Services deficit (freight, insurance, travel)'), Math.abs(sN), sN >= 0 ? Cin : Cout]); }
+  IN.push([stT('FDI vào Việt Nam', 'FDI into Vietnam'), v('fdi_in'), Cin], [stT('Kiều hối & chuyển giao nhận về', 'Remittances & transfers in'), v('secondary_income_in'), Cin], [stT('Thu nhập nhận về', 'Income received'), v('primary_income_in'), Cin], [stT('Tiền gửi của người nước ngoài', 'Non-resident deposits'), cdL, Cin]);
+  OUT.push([stT('Lợi nhuận FDI & lãi vay chuyển ra', 'FDI profits & interest paid out'), v('primary_income_out'), Cout], [stT('Ngoại tệ, tiền gửi chuyển ra/giữ ngoài', 'FX cash & deposits moved out'), cdA, Cout], [stT('Chuyển giao trả ra', 'Transfers paid out'), v('secondary_income_out'), Cout], [stT('Đầu tư ra nước ngoài', 'Outward investment'), v('fdi_out'), Cout]);
+  const flip = (val, a, b) => { if (Math.abs(val) < 0.05) return; (val >= 0 ? IN : OUT).push([val >= 0 ? a : b, Math.abs(val), val >= 0 ? Cin : Cout]); };
+  flip(pf, stT('Vốn gián tiếp vào', 'Portfolio inflows'), stT('Khối ngoại rút vốn', 'Foreign portfolio exit'));
+  flip(loans, stT('Vay nước ngoài ròng', 'Net foreign borrowing'), stT('Trả nợ nước ngoài ròng', 'Net debt repayment'));
+  flip(oth, stT('Đầu tư khác vào', 'Other investment in'), stT('Đầu tư khác ra', 'Other investment out'));
+  flip(eo, stT('Lỗi & sai sót (vào)', 'Errors & omissions (in)'), stT('Lỗi & sai sót: chênh lệch chưa ghi nhận', 'Errors & omissions: unrecorded gap'));
   if (res >= 0) OUT.push([stT('→ Tăng dự trữ ngoại hối', '→ Added to FX reserves'), res, ST.ink]); else IN.push([stT('← Rút dự trữ ngoại hối', '← Drawn from FX reserves'), -res, ST.ink]);
   return { IN: IN.filter(x => x[1] > 0.05).sort((a, b) => b[1] - a[1]), OUT: OUT.filter(x => x[1] > 0.05).sort((a, b) => b[1] - a[1]), res, ca: v('current_account') };
+}
+function stBopMult() {
+  const S = ECONFLOW.bop.s, ys = ECONFLOW.bop.years, cur = stBopYear ?? ys[ys.length - 1], ci = ys.indexOf(cur);
+  const M = [['current_account', stT('Cán cân vãng lai', 'Current account')], ['fdi_net', stT('FDI ròng', 'Net FDI')], ['errors_omissions', stT('Lỗi & sai sót', 'Errors & omissions')], ['reserves_change', stT('Thay đổi dự trữ', 'Reserves change')]];
+  const mx = Math.max(...M.flatMap(([k]) => (S[k] || []).map(v => Math.abs(v || 0)))) || 1;   // one shared scale so the four panels compare
+  document.getElementById('st-bop-mult').innerHTML = M.map(([k, n]) => { const d = S[k] || [], W = 240, H = 110, z = 56, sh = 46 / mx, slot = W / d.length;
+    const bars = d.map((v, i) => v == null ? '' : stBarV((i + .5) * slot, slot, z - v * sh, z, v >= 0 ? ST.blue : ST.red, [n + ' · ' + ys[i], stN(v, 1) + stT(' tỷ USD', ' bn USD')], { op: ys[i] === cur ? 1 : 0.4, d: i * 30 })).join('');
+    return `<div class="st-mini"><div class="st-mini-h">${n}</div><div class="st-mini-v">${stN(d[ci], 1)}</div>${stSvg(W, H, `<line class="st-base" x1="0" x2="${W}" y1="${z}" y2="${z}"/>${bars}<text class="st-tick" x="0" y="${H - 4}">${ys[0]}</text><text class="st-tick" x="${W}" y="${H - 4}" text-anchor="end">${ys[ys.length - 1]}</text>`, n)}<div class="st-fact-s">${stT('tỷ USD, năm ', 'bn USD, ')}${cur}</div></div>`; }).join('');
+}
+function stBopFacts() {
+  const T = ECONFLOW.tour, R = ECONFLOW.remit, L = ECONFLOW.labour, ti = T.years.length - 1;
+  const spark = (arr, name, f) => { const a = (arr || []).map(v => typeof v === 'number' ? v : null), mx = Math.max(...a.filter(v => v != null)), W = 160, H = 40, sx = i => 4 + i / (a.length - 1) * (W - 8), sy = v => H - 6 - v / mx * (H - 12), li = a.map(v => v != null).lastIndexOf(true);
+    return stSvg(W, H, stLine(a.map((v, i) => [sx(i), v == null ? null : sy(v)]), ST.blue) + stDot(sx(li), sy(a[li]), 4, ST.blue, [name, f(a[li])]), name); };
+  const remit = R.national_wb_knomad_busd.map((v, i) => v ?? R.national_sbv_busd[i] ?? R.national_wb_projection_busd[i]);
+  document.getElementById('st-bop-facts').innerHTML = [
+    [stT('Kiều hối', 'Remittances'), `${stN(remit.filter(v => v != null).slice(-1)[0], 1)} ${stT('tỷ USD', 'bn USD')}`, stT('2015 → 2025 (NHNN/WB)', '2015 → 2025 (SBV/WB)'), spark(remit, stT('Kiều hối', 'Remittances'), v => stN(v, 1) + stT(' tỷ USD', ' bn USD'))],
+    [stT('Lao động đi làm ở nước ngoài', 'Workers sent abroad'), stN(L.workers_sent.filter(v => v != null).slice(-1)[0], 0), stT('người, 2025', 'people, 2025'), spark(L.workers_sent, stT('Lao động đi làm ở nước ngoài', 'Workers sent abroad'), v => stN(v, 0))],
+    [stT('Khách quốc tế 9T/2026', 'Foreign visitors 9M-2026'), `${stN(T.intl_arrivals_thousand[ti] / 1e3, 1)} ${stT('triệu', 'mn')}`, stT(`người Việt đi nước ngoài ${stN(T.vietnamese_outbound_departures_thousand[ti] / 1e3, 1)} triệu`, `Vietnamese outbound ${stN(T.vietnamese_outbound_departures_thousand[ti] / 1e3, 1)} mn`), spark(T.intl_arrivals_thousand.slice(0, -1), stT('Khách quốc tế (nghìn)', 'Foreign visitors (thousand)'), v => stN(v, 0))],
+  ].map(([h4, v, sub, sp]) => `<div class="st-fact"><div class="st-mini-h">${h4}</div><div class="st-mini-v">${v}</div>${sp}<div class="st-fact-s">${sub}</div></div>`).join('');
+}
+
+// 3 — budget waffles (categorical slots in fixed order; "other" muted) + line chart
+function stBudgetParts(yi) {
+  const B = ECONFLOW.budget, R = B.revenue, X = B.expenditure, g = (o, k) => (o[k] || [])[yi] || 0;
+  const known = ['pit', 'land_use_fees', 'env_protection', 'lottery', 'fees_charges'].reduce((t, k) => t + g(R, k), 0);
+  const IN = [[stT('Thuế khác trong nước (GTGT, TNDN…)', 'Other domestic taxes (VAT, CIT…)'), g(R, 'domestic') - known, ST.blue], [stT('Tiền sử dụng đất', 'Land-use fees'), g(R, 'land_use_fees'), ST.orange], [stT('Xuất nhập khẩu', 'Import-export'), g(R, 'import_export'), ST.aqua], [stT('Thuế TNCN', 'Personal income tax'), g(R, 'pit'), ST.yellow], [stT('Phí, lệ phí, xổ số, BVMT', 'Fees, lottery, env. tax'), g(R, 'fees_charges') + g(R, 'lottery') + g(R, 'env_protection'), ST.magenta], [stT('Dầu thô', 'Crude oil'), g(R, 'crude_oil'), ST.green], [stT('Viện trợ', 'Grants'), g(R, 'grants'), ST.violet]];
+  const knownX = ['development_investment', 'recurrent', 'interest'].reduce((t, k) => t + g(X, k), 0);
+  const OUT = [[stT('Chi thường xuyên (lương, an sinh, y tế, giáo dục…)', 'Recurrent (salaries, social, health, education…)'), g(X, 'recurrent'), ST.blue], [stT('Đầu tư phát triển', 'Development investment'), g(X, 'development_investment'), ST.orange], [stT('Trả lãi vay', 'Interest'), g(X, 'interest'), ST.aqua], [stT('Khác (dự phòng, viện trợ, chi từ tăng thu…)', 'Other (reserve, aid, overrun-funded…)'), Math.max(0, g(X, 'total') - knownX), ST_MUTE]];
+  return { IN: IN.filter(x => x[1] > 0), OUT: OUT.filter(x => x[1] > 0), rev: g(R, 'total'), exp: g(X, 'total'), def: (B.deficit || [])[yi], basis: (B.basis || [])[yi] };
+}
+function stWaffle(el, parts, total, title) {
+  const cnt = parts.map(p => p[1] / total * 100), fl = cnt.map(Math.floor); let rem = 100 - fl.reduce((t, v) => t + v, 0);
+  cnt.map((v, i) => [v - fl[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rem > 0) { fl[i]++; rem--; } });
+  const cells = []; fl.forEach((n, i) => { for (let k = 0; k < n; k++) cells.push(i); });
+  const C = 22, G2 = 3, W = 10 * (C + G2), H = 10 * (C + G2);
+  const s = cells.map((pi, k) => { const r = Math.floor(k / 10), c = k % 10; return `<rect class="st-cell" style="--d:${k * 6}ms" x="${c * (C + G2)}" y="${r * (C + G2)}" width="${C}" height="${C}" rx="3" fill="${parts[pi][2]}" ${stKey(parts[pi][0], stN(parts[pi][1] / 1e3, 0) + ' ' + stT('nghìn tỷ', 'tn VND') + ' · ' + stN(cnt[pi], 1) + '%')}/>`; }).join('');
+  el.innerHTML = `<div class="st-waf-h">${title}</div><div class="st-waf-row"><div style="width:${W}px;max-width:100%;flex:none">${stSvg(W, H, s, title.replace(/<[^>]+>/g, ''))}</div><ul class="st-leg">${parts.map((p, i) => `<li><i style="background:${p[2]}"></i><b>${fl[i] || '<1'}</b> ${p[0]}</li>`).join('')}</ul></div>`;
+}
+function stBudLine() {
+  const el = document.getElementById('st-bud-line'), B = ECONFLOW.budget, ys = B.years, t = a => (a || []).map(v => v == null ? null : v / 1e3);
+  const rev = t(B.revenue.total), exp = t(B.expenditure.total), def = t(B.deficit), dev = t(B.expenditure.development_investment), fin = ys.map((_, i) => B.basis[i] === 'final'), lf = fin.lastIndexOf(true);
+  const S = [[stT('Thu', 'Revenue'), rev, ST.blue], [stT('Chi', 'Spending'), exp, ST.orange], [stT('Chi đầu tư phát triển', 'Development spending'), dev, ST.aqua]];
+  document.getElementById('st-bud-leg').innerHTML = stLegend(S.map(([n, , c]) => ({ n, c, k: 'line' })).concat([{ n: stT('Bội chi', 'Deficit'), c: ST.yellow }, { n: stT('Ước tính / dự toán', 'Estimate / plan'), c: '#5b6170', k: 'dash' }]));
+  const W = 1000, H = 260, ML = 50, MR = 200, MT = 14, MB = 26, slot = (W - ML - MR) / ys.length, sx = stLin(ys[0], ys[ys.length - 1], ML, W - MR), sy = stLin(0, 3500, H - MB, MT);
+  let s = stAxisY(sy, [0, 1000, 2000, 3000], ML, W - MR, v => stN(v, 0)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  ys.forEach((y, i) => { s += `<text class="st-tick" x="${sx(y)}" y="${H - 6}" text-anchor="middle">${y}${fin[i] ? '' : '*'}</text>`; if (def[i] != null) s += stBarV(sx(y), Math.min(slot, 22), sy(def[i]), sy(0), ST.yellow, [stT('Bội chi ', 'Deficit ') + y, stN(def[i], 0) + stT(' nghìn tỷ', ' tn VND')], { d: i * 50, op: fin[i] ? 1 : 0.55 }); });
+  S.forEach(([n, d, c]) => { s += stLine(d.map((v, i) => i <= lf ? [sx(ys[i]), v == null ? null : sy(v)] : null), c) + stLine(d.map((v, i) => i >= lf ? [sx(ys[i]), v == null ? null : sy(v)] : null), c, { dash: '5,4' }); });
+  const L = ys.length - 1, ends = S.map(([n, d]) => ({ y: sy(d[L]), y0: sy(d[L]), t: `${n} ${stN(d[L], 0)}` }));
+  ends.sort((a, b) => a.y - b.y).forEach((e, i, a) => { if (i && e.y - a[i - 1].y < 14) e.y = a[i - 1].y + 14; s += `<text class="st-lab" x="${W - MR + 8}" y="${e.y + 4}">${e.t}</text>`; });
+  el.innerHTML = stSvg(W, H, s, stT('Thu chi ngân sách', 'Budget revenue and spending'));
+  stCross(el, { xs: ys.map(sx), labels: ys.map((y, i) => y + (fin[i] ? '' : ' (' + (B.basis[i] === 'plan' ? stT('dự toán', 'plan') : stT('ước tính', 'estimate')) + ')')), top: MT, bottom: H - MB, series: S.concat([[stT('Bội chi', 'Deficit'), def, ST.yellow]]).map(([n, d, c]) => ({ n, c, v: d, f: v => stN(v, 0) + stT(' nghìn tỷ', ' tn') })) });
+}
+// 4 — investment by owner (stacked area, 2px surface seams, crosshair)
+function stInvArea() {
+  const el = document.getElementById('st-inv-area'), I = ECONFLOW.inv, ys = I.years.filter(y => typeof y === 'number'), n = ys.length;
+  const S = [['nonstate', stT('Ngoài nhà nước', 'Non-state'), ST.blue], ['state', stT('Nhà nước', 'State'), ST.orange], ['fdi', 'FDI', ST.aqua]];
+  document.getElementById('st-inv-leg').innerHTML = stLegend(S.map(([, nm, c]) => ({ n: nm, c })));
+  const val = (k, i) => (I[k] || [])[i] / 1e3 || 0, tot = i => S.reduce((t, s) => t + val(s[0], i), 0), mx = Math.max(...ys.map((_, i) => tot(i)));
+  const W = 1000, H = 260, ML = 50, MR = 160, MT = 14, MB = 26, sx = stLin(ys[0], ys[n - 1], ML, W - MR), sy = stLin(0, mx * 1.08, H - MB, MT);
+  let s = stAxisY(sy, stNice(0, mx, 4).filter(v => v <= mx * 1.08), ML, W - MR, v => stN(v, 0)), base = ys.map(() => 0);
+  S.forEach(([k, nm, c], si) => { const top = ys.map((_, i) => base[i] + val(k, i));
+    s += `<path class="st-fade" style="--d:${si * 150}ms;--o:.9" d="M${ys.map((y, i) => `${sx(y)},${sy(top[i])}`).join(' L')} L${ys.map((y, i) => `${sx(y)},${sy(base[i])}`).reverse().join(' L')} Z" fill="${c}" stroke="${ST_SURF}" stroke-width="2" stroke-linejoin="round"/>`;
+    const mid = (top[n - 1] + base[n - 1]) / 2; s += `<text class="st-lab" x="${W - MR + 8}" y="${sy(mid) + 4}">${nm} ${stN(val(k, n - 1) / tot(n - 1) * 100, 0)}%</text>`;
+    base = top; });
+  ys.forEach((y, i) => { if (i % 2 === 0 || i === n - 1) s += `<text class="st-tick" x="${sx(y)}" y="${H - 6}" text-anchor="middle">${y}</text>`; });
+  el.innerHTML = stSvg(W, H, s, stT('Vốn đầu tư theo nguồn', 'Investment by owner'));
+  stCross(el, { xs: ys.map(sx), labels: ys, top: MT, bottom: H - MB, series: S.map(([k, nm, c]) => ({ n: nm, c, v: ys.map((_, i) => val(k, i)), f: v => stN(v, 0) + stT(' nghìn tỷ', ' tn') })) });
+}
+// 5 — CPI heat strip (diverging blue↔red, grey midpoint) + fan chart
+function stHeat() {
+  const el = document.getElementById('st-heat'), M = CPI_MONTHS_24, trg = x => (APP_LANG === 'en' && window.I18N ? window.I18N.tr(x) || x : x), rows = [[stT('CPI chung', 'Headline CPI'), CPI_YOY_24]].concat(CPI_BASKET.map(g => [trg(g.name), g.yoy]).sort((a, b) => (b[1][b[1].length - 1] ?? -99) - (a[1][a[1].length - 1] ?? -99)));
+  const W = 1000, LW = 310, CW = (W - LW - 50) / M.length, RH = 20, H = rows.length * (RH + 2) + 36;
+  const col = v => { if (v == null) return '#f3f2ee'; const a = Math.min(1, Math.abs(v) / 8); const mix = (c1, c2, t) => '#' + [0, 2, 4].map(k => Math.round(parseInt(c1.slice(k + 1, k + 3), 16) * (1 - t) + parseInt(c2.slice(k + 1, k + 3), 16) * t).toString(16).padStart(2, '0')).join(''); return v >= 0 ? mix('#f0efec', '#c2362f', a) : mix('#f0efec', '#1c5cab', a); };
+  let s = '';
+  rows.forEach(([n, a], r) => { const y = r * (RH + 2) + (r ? 8 : 0);
+    s += `<text class="st-lab${r === 0 ? ' st-b' : ''}" x="${LW - 8}" y="${y + 14}" text-anchor="end">${ciE(n)}</text>`;
+    a.forEach((v, i) => { s += `<rect class="st-cell" style="--d:${(r + i) * 8}ms" x="${LW + i * CW}" y="${y}" width="${CW - 2}" height="${RH}" rx="2" fill="${col(v)}" ${stKey(n + ' · ' + M[i], v == null ? '—' : stN(v, 2) + '%')}/>`; });
+    const lv = a[a.length - 1]; s += `<text class="st-val" x="${LW + M.length * CW + 6}" y="${y + 14}">${lv == null ? '—' : stN(lv, 1) + '%'}</text>`; });
+  M.forEach((m, i) => { if (i % 3 === 0 || i === M.length - 1) s += `<text class="st-tick" x="${LW + i * CW + CW / 2}" y="${H - 8}" text-anchor="middle">${m}</text>`; });
+  el.innerHTML = stSvg(W, H, s, stT('Bản đồ nhiệt lạm phát theo nhóm', 'Inflation heat map by group'));
+}
+function stFan() {
+  const el = document.getElementById('st-fan'); if (typeof cpiForecast !== 'function') return;
+  const F = cpiForecast(), A = CPI_YOY_24, L = CPI_MONTHS_24.concat(F.central.labels), n = L.length, na = A.length;
+  document.getElementById('st-fan-leg').innerHTML = stLegend([{ n: stT('CPI thực tế', 'Actual CPI'), c: ST.ink, k: 'line' }, { n: stT('Dự báo cơ sở', 'Base-case projection'), c: ST.orange, k: 'dash' }, { n: stT('Khoảng thấp–cao', 'Low–high range'), c: 'rgba(235,104,52,.25)' }]);
+  const W = 1000, H = 250, ML = 40, MR = 110, MT = 16, MB = 26, sx = i => ML + i / (n - 1) * (W - ML - MR), sy = stLin(0, 8, H - MB, MT);
+  let s = stAxisY(sy, [0, 2, 4, 6, 8], ML, W - MR, v => v + '%');
+  s += `<line x1="${ML}" x2="${W - MR}" y1="${sy(4.5)}" y2="${sy(4.5)}" stroke="#5b6170" stroke-dasharray="2,3"/><text class="st-tick" x="${ML + 4}" y="${sy(4.5) - 5}">${stT('mục tiêu 2026 ~4,5%', '2026 target ~4.5%')}</text>`;
+  const lo = [A[na - 1], ...F.low.yoy], hi = [A[na - 1], ...F.high.yoy], ce = [A[na - 1], ...F.central.yoy];
+  s += `<path class="st-fade" style="--o:.18" d="M${hi.map((v, i) => `${sx(na - 1 + i)},${sy(v)}`).join(' L')} L${lo.map((v, i) => `${sx(na - 1 + i)},${sy(v)}`).reverse().join(' L')} Z" fill="${ST.orange}"/>`;
+  s += stLine(A.map((v, i) => [sx(i), sy(v)]), ST.ink) + stLine(ce.map((v, i) => [sx(na - 1 + i), sy(v)]), ST.orange, { dash: '6,4' });
+  L.forEach((m, i) => { if (i % 4 === 0 || i === n - 1) s += `<text class="st-tick" x="${sx(i)}" y="${H - 6}" text-anchor="middle">${m}</text>`; });
+  s += `<text class="st-lab" x="${W - MR + 8}" y="${sy(ce[ce.length - 1]) + 4}">${stT('Cơ sở', 'Base')} ${stN(ce[ce.length - 1], 1)}%</text>`;
+  const im = A.indexOf(Math.max(...A)); s += stAnn(sx(im), sy(A[im]), sx(im) - 50, sy(7.4), `${CPI_MONTHS_24[im]}: ${stN(A[im], 2)}%`, 'end', 'sup');
+  const j = F.central.labels.indexOf('T1/27'); if (j >= 0) s += stAnn(sx(na + j), sy(F.central.yoy[j]), sx(na + j) + 20, sy(7.2), stT(`T1/27: ${stN(F.central.yoy[j], 1)}% (hết giảm thuế GTGT)`, `Jan-27: ${stN(F.central.yoy[j], 1)}% (VAT cut expires)`));
+  el.innerHTML = stSvg(W, H, s, stT('CPI và dự báo', 'CPI and projection'));
+  stCross(el, { xs: L.map((_, i) => sx(i)), labels: L, top: MT, bottom: H - MB, series: [{ n: stT('Thực tế', 'Actual'), c: ST.ink, v: L.map((_, i) => i < na ? A[i] : null), f: v => stN(v, 2) + '%' }, { n: stT('Dự báo cơ sở', 'Base case'), c: ST.orange, v: L.map((_, i) => i >= na ? F.central.yoy[i - na] : null), f: v => stN(v, 2) + '%' }, { n: stT('Thấp', 'Low'), c: '#d9a58c', v: L.map((_, i) => i >= na ? F.low.yoy[i - na] : null), f: v => stN(v, 2) + '%' }, { n: stT('Cao', 'High'), c: '#d9a58c', v: L.map((_, i) => i >= na ? F.high.yoy[i - na] : null), f: v => stN(v, 2) + '%' }] });
 }
 function stBopControls() {
   const ys = ECONFLOW.bop.years, cur = stBopYear ?? ys[ys.length - 1];
@@ -5731,110 +5957,14 @@ function stSankey() {
   s += `<text class="st-tick" x="${xL}" y="12" text-anchor="end">${stT('TIỀN VÀO', 'MONEY IN')} · ${stN(sIn, 0)}</text><text class="st-tick" x="${xR + nw}" y="12">${stT('TIỀN RA', 'MONEY OUT')} · ${stN(sOut, 0)} ${stT('tỷ USD', 'bn USD')}</text>`;
   el.innerHTML = stSvg(W, H, s, stT('Dòng tiền vào ra Việt Nam', 'Money flows in and out of Vietnam'));
 }
-function stBopMult() {
-  const S = ECONFLOW.bop.s, ys = ECONFLOW.bop.years, cur = stBopYear ?? ys[ys.length - 1];
-  const M = [['current_account', stT('Cán cân vãng lai', 'Current account')], ['fdi_net', stT('FDI ròng', 'Net FDI')], ['errors_omissions', stT('Lỗi & sai sót (thất thoát)', 'Errors & omissions (leakage)')], ['reserves_change', stT('Thay đổi dự trữ', 'Reserves change')]];
-  document.getElementById('st-bop-mult').innerHTML = M.map(([k, n]) => { const d = S[k] || [], mx = Math.max(...d.map(v => Math.abs(v || 0))) || 1, W = 240, H = 110, z = 60, sh = 46 / mx, bw = W / d.length;
-    const bars = d.map((v, i) => v == null ? '' : `<rect x="${i * bw + 1}" y="${v >= 0 ? z - v * sh : z}" width="${bw - 2}" height="${Math.max(1, Math.abs(v) * sh)}" rx="1.5" fill="${v >= 0 ? ST.blue : ST.red}" opacity="${ys[i] === cur ? 1 : 0.45}"><title>${ys[i]}: ${stN(v, 1)}</title></rect>`).join('');
-    const ci = ys.indexOf(cur);
-    return `<div class="st-mini"><div class="st-mini-h">${n}</div><div class="st-mini-v">${stN(d[ci], 1)}</div><svg viewBox="0 0 ${W} ${H}" width="100%"><line x1="0" x2="${W}" y1="${z}" y2="${z}" stroke="${ST.rule}"/>${bars}<text class="st-tick" x="0" y="${H - 4}">${ys[0]}</text><text class="st-tick" x="${W}" y="${H - 4}" text-anchor="end">${ys[ys.length - 1]}</text></svg></div>`; }).join('');
-}
-function stBopFacts() {
-  const T = ECONFLOW.tour, R = ECONFLOW.remit, L = ECONFLOW.labour, ti = T.years.length - 1;
-  const spark = (arr, c) => { const a = (arr || []).map(v => typeof v === 'number' ? v : null), mx = Math.max(...a.filter(v => v != null)), W = 160, H = 36; let p = ''; a.forEach((v, i) => { if (v == null) return; p += `${p ? 'L' : 'M'}${(i / (a.length - 1) * W).toFixed(1)},${(H - 2 - v / mx * (H - 6)).toFixed(1)}`; }); return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="36"><path d="${p}" fill="none" stroke="${c}" stroke-width="2"/></svg>`; };
-  const remit = R.national_wb_knomad_busd.map((v, i) => v ?? R.national_sbv_busd[i] ?? R.national_wb_projection_busd[i]);
-  document.getElementById('st-bop-facts').innerHTML = [
-    [stT('Kiều hối', 'Remittances'), `${stN(remit.filter(v => v != null).slice(-1)[0], 1)} ${stT('tỷ USD', 'bn USD')}`, stT('2015 → 2025 (NHNN/WB)', '2015 → 2025 (SBV/WB)'), spark(remit, ST.green)],
-    [stT('Lao động đi làm ở nước ngoài', 'Workers sent abroad'), stN(L.workers_sent.filter(v => v != null).slice(-1)[0], 0), stT('người, 2025 · gửi về ~6,5–7 tỷ USD/năm', 'in 2025 · send home ~6.5–7 bn USD a year'), spark(L.workers_sent, ST.violet)],
-    [stT('Khách quốc tế 9T/2026', 'Foreign visitors 9M-2026'), `${stN(T.intl_arrivals_thousand[ti] / 1e3, 1)} ${stT('triệu', 'mn')}`, stT(`người Việt đi nước ngoài ${stN(T.vietnamese_outbound_departures_thousand[ti] / 1e3, 1)} triệu`, `Vietnamese outbound ${stN(T.vietnamese_outbound_departures_thousand[ti] / 1e3, 1)} mn`), spark(T.intl_arrivals_thousand.slice(0, -1), ST.aqua)],
-  ].map(([h4, v, sub, sp]) => `<div class="st-fact"><div class="st-mini-h">${h4}</div><div class="st-mini-v">${v}</div>${sp}<div class="st-fact-s">${sub}</div></div>`).join('');
-}
-
-// 3 — budget waffles + line
-function stBudgetParts(yi) {
-  const B = ECONFLOW.budget, R = B.revenue, X = B.expenditure, g = (o, k) => (o[k] || [])[yi] || 0;
-  const known = ['pit', 'land_use_fees', 'env_protection', 'lottery', 'fees_charges'].reduce((t, k) => t + g(R, k), 0);
-  const IN = [[stT('Thuế khác trong nước (GTGT, TNDN…)', 'Other domestic taxes (VAT, CIT…)'), g(R, 'domestic') - known, ST.blue], [stT('Tiền sử dụng đất', 'Land-use fees'), g(R, 'land_use_fees'), ST.orange], [stT('Xuất nhập khẩu', 'Import-export'), g(R, 'import_export'), ST.aqua], [stT('Thuế TNCN', 'Personal income tax'), g(R, 'pit'), ST.violet], [stT('Phí, lệ phí, xổ số, BVMT', 'Fees, lottery, env. tax'), g(R, 'fees_charges') + g(R, 'lottery') + g(R, 'env_protection'), ST.yellow], [stT('Dầu thô', 'Crude oil'), g(R, 'crude_oil'), ST.ink3], [stT('Viện trợ', 'Grants'), g(R, 'grants'), ST.green]];
-  const knownX = ['development_investment', 'recurrent', 'interest'].reduce((t, k) => t + g(X, k), 0);
-  const OUT = [[stT('Chi thường xuyên (lương, an sinh, y tế, giáo dục…)', 'Recurrent (salaries, social, health, education…)'), g(X, 'recurrent'), ST.violet], [stT('Đầu tư phát triển', 'Development investment'), g(X, 'development_investment'), ST.orange], [stT('Trả lãi vay', 'Interest'), g(X, 'interest'), ST.red], [stT('Khác (dự phòng, viện trợ, chi từ tăng thu…)', 'Other (reserve, aid, overrun-funded…)'), Math.max(0, g(X, 'total') - knownX), ST.ink3]];
-  return { IN: IN.filter(x => x[1] > 0), OUT: OUT.filter(x => x[1] > 0), rev: g(R, 'total'), exp: g(X, 'total'), def: (B.deficit || [])[yi], basis: (B.basis || [])[yi] };
-}
 function stBudControls() {
   const ys = ECONFLOW.budget.years, cur = stBudYear ?? 2025;
   document.getElementById('st-bud-ctrl').innerHTML = ys.map(y => `<button type="button" data-st-bud="${y}" class="${y === cur ? 'on' : ''}">${y}</button>`).join('');
-}
-function stWaffle(el, parts, total, title, color0) {
-  const cnt = parts.map(p => p[1] / total * 100), fl = cnt.map(Math.floor); let rem = 100 - fl.reduce((t, v) => t + v, 0);
-  cnt.map((v, i) => [v - fl[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rem > 0) { fl[i]++; rem--; } });
-  const cells = []; fl.forEach((n, i) => { for (let k = 0; k < n; k++) cells.push(i); });
-  const C = 22, G2 = 3, W = 10 * (C + G2), H = 10 * (C + G2);
-  let s = cells.map((pi, k) => { const r = Math.floor(k / 10), c = k % 10; return `<rect class="st-cell" style="--d:${k * 6}ms" x="${c * (C + G2)}" y="${r * (C + G2)}" width="${C}" height="${C}" rx="3" fill="${parts[pi][2]}" data-st-k="${encodeURIComponent(parts[pi][0] + '|' + stN(parts[pi][1] / 1e3, 0) + ' ' + stT('nghìn tỷ', 'tn VND') + ' · ' + stN(cnt[pi], 1) + '%')}"/>`; }).join('');
-  el.innerHTML = `<div class="st-waf-h">${title}</div><div class="st-waf-row"><svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%">${s}</svg><ul class="st-leg">${parts.map((p, i) => `<li><i style="background:${p[2]}"></i><b>${fl[i] || '<1'}</b> ${p[0]}</li>`).join('')}</ul></div>`;
 }
 function stWaffles() {
   const ys = ECONFLOW.budget.years, yi = ys.indexOf(stBudYear ?? 2025), P = stBudgetParts(yi), bl = { final: stT('quyết toán', 'final'), estimate: stT('ước tính', 'estimate'), plan: stT('dự toán', 'plan') }[P.basis] || '';
   stWaffle(document.getElementById('st-waf-in'), P.IN, P.rev, `${stT('Thu', 'Revenue')} ${stN(P.rev / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')} <span>(${bl})</span>`);
   stWaffle(document.getElementById('st-waf-out'), P.OUT, P.exp, `${stT('Chi', 'Spending')} ${stN(P.exp / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')} · ${stT('bội chi', 'deficit')} ${stN((P.def || 0) / 1e3, 0)}`);
-}
-function stBudLine() {
-  const el = document.getElementById('st-bud-line'), B = ECONFLOW.budget, ys = B.years, t = a => (a || []).map(v => v == null ? null : v / 1e3);
-  const rev = t(B.revenue.total), exp = t(B.expenditure.total), def = t(B.deficit), dev = t(B.expenditure.development_investment);
-  const W = 1000, H = 260, ML = 50, MR = 150, MT = 14, MB = 26, sx = stLin(ys[0], ys[ys.length - 1], ML, W - MR), sy = stLin(0, 3500, H - MB, MT);
-  let s = stAxisY(sy, [0, 1000, 2000, 3000], ML, W - MR, v => stN(v, 0));
-  ys.forEach((y, i) => { s += `<text class="st-tick" x="${sx(y)}" y="${H - 6}" text-anchor="middle">${y}</text>`; if (def[i] != null) s += `<rect class="st-grow" style="--d:${i * 50}ms" x="${sx(y) - 9}" y="${sy(def[i])}" width="18" height="${sy(0) - sy(def[i])}" rx="2" fill="${ST.yellow}"><title>${y}: ${stT('bội chi', 'deficit')} ${stN(def[i], 0)}</title></rect>`; });
-  const line = (d, c, w, dash) => `<path class="st-draw" d="M${d.map((v, i) => v == null ? null : `${sx(ys[i])},${sy(v)}`).filter(Boolean).join(' L')}" fill="none" stroke="${c}" stroke-width="${w}" ${dash ? 'stroke-dasharray="5,4"' : ''}/>`;
-  s += line(rev, ST.aqua, 2.5) + line(exp, ST.red, 2.5) + line(dev, ST.orange, 2, 1);
-  const L = ys.length - 1, lab = (d, n, dy = 0) => `<text class="st-lab" x="${W - MR + 8}" y="${sy(d[L]) + 4 + dy}">${n} ${stN(d[L], 0)}</text>`;
-  s += lab(rev, stT('Thu', 'Revenue'), 0) + lab(exp, stT('Chi', 'Spending'), -10) + lab(dev, stT('Đầu tư PT', 'Dev. invest.'), 0) + `<text class="st-lab" x="${W - MR + 8}" y="${sy(def[L]) + 4}">${stT('Bội chi', 'Deficit')} ${stN(def[L], 0)}</text>`;
-  const i25 = ys.indexOf(2025); if (i25 >= 0) s += stAnn(sx(2025), sy(rev[i25]), sx(2025) - 60, sy(3300), stT('2025: thu vượt mạnh nhờ tiền đất', '2025: revenue surged on land fees'), 'end');
-  el.innerHTML = stSvg(W, H, s, stT('Thu chi ngân sách', 'Budget revenue and spending'));
-}
-
-// 4 — investment by owner (stacked area)
-function stInvArea() {
-  const el = document.getElementById('st-inv-area'), I = ECONFLOW.inv, ys = I.years.filter(y => typeof y === 'number'), n = ys.length;
-  const S = [['nonstate', stT('Ngoài nhà nước', 'Non-state'), ST.blue], ['state', stT('Nhà nước', 'State'), ST.red], ['fdi', 'FDI', ST.yellow]];
-  const val = (k, i) => (I[k] || [])[i] / 1e3 || 0, tot = i => S.reduce((t, s) => t + val(s[0], i), 0), mx = Math.max(...ys.map((_, i) => tot(i)));
-  const W = 1000, H = 260, ML = 50, MR = 150, MT = 14, MB = 26, sx = stLin(ys[0], ys[n - 1], ML, W - MR), sy = stLin(0, mx * 1.08, H - MB, MT);
-  let s = stAxisY(sy, stNice(0, mx, 4).filter(v => v <= mx * 1.08), ML, W - MR, v => stN(v, 0)), base = ys.map(() => 0);
-  S.forEach(([k, nm, c], si) => { const top = ys.map((_, i) => base[i] + val(k, i));
-    const d = `M${ys.map((y, i) => `${sx(y)},${sy(top[i])}`).join(' L')} L${ys.map((y, i) => `${sx(y)},${sy(base[i])}`).reverse().join(' L')} Z`;
-    s += `<path class="st-fade" style="--d:${si * 150}ms" d="${d}" fill="${c}" opacity=".85" stroke="${ST.paper}" stroke-width="1.5"/>`;
-    const mid = (top[n - 1] + base[n - 1]) / 2; s += `<text class="st-lab" x="${W - MR + 8}" y="${sy(mid) + 4}">${nm} ${stN(val(k, n - 1) / tot(n - 1) * 100, 0)}%</text>`;
-    base = top; });
-  ys.forEach((y, i) => { if (i % 2 === 0 || i === n - 1) s += `<text class="st-tick" x="${sx(y)}" y="${H - 6}" text-anchor="middle">${y}</text>`; });
-  el.innerHTML = stSvg(W, H, s, stT('Vốn đầu tư theo nguồn', 'Investment by owner'));
-}
-
-// 5 — CPI heat strip + fan chart
-function stHeat() {
-  const el = document.getElementById('st-heat'), M = CPI_MONTHS_24, trg = x => (APP_LANG === 'en' && window.I18N ? window.I18N.tr(x) || x : x), rows = [[stT('CPI chung', 'Headline CPI'), CPI_YOY_24]].concat(CPI_BASKET.map(g => [trg(g.name), g.yoy]).sort((a, b) => (b[1][b[1].length - 1] ?? -99) - (a[1][a[1].length - 1] ?? -99)));
-  const W = 1000, LW = 310, CW = (W - LW - 50) / M.length, RH = 20, H = rows.length * (RH + 2) + 36;
-  const col = v => { if (v == null) return '#f3f2ee'; const a = Math.min(1, Math.abs(v) / 8); const mix = (c1, c2, t) => '#' + [0, 2, 4].map(k => Math.round(parseInt(c1.slice(k + 1, k + 3), 16) * (1 - t) + parseInt(c2.slice(k + 1, k + 3), 16) * t).toString(16).padStart(2, '0')).join(''); return v >= 0 ? mix('#efede7', '#c2362f', a) : mix('#efede7', '#1c5cab', a); };
-  let s = '';
-  rows.forEach(([n, a], r) => { const y = r * (RH + 2) + (r ? 8 : 0), last = r === 0;
-    s += `<text class="st-lab${last ? ' st-b' : ''}" x="${LW - 8}" y="${y + 14}" text-anchor="end">${ciE(n)}</text>`;
-    a.forEach((v, i) => { s += `<rect class="st-cell" style="--d:${(r + i) * 8}ms" x="${LW + i * CW}" y="${y}" width="${CW - 1.5}" height="${RH}" rx="2" fill="${col(v)}" data-st-k="${encodeURIComponent(n + ' · ' + M[i] + '|' + (v == null ? '—' : stN(v, 2) + '%'))}"/>`; });
-    const lv = a[a.length - 1]; s += `<text class="st-val" x="${LW + M.length * CW + 6}" y="${y + 14}">${lv == null ? '—' : stN(lv, 1) + '%'}</text>`; });
-  M.forEach((m, i) => { if (i % 3 === 0 || i === M.length - 1) s += `<text class="st-tick" x="${LW + i * CW + CW / 2}" y="${H - 8}" text-anchor="middle">${m}</text>`; });
-  el.innerHTML = stSvg(W, H, s, stT('Bản đồ nhiệt lạm phát theo nhóm', 'Inflation heat map by group'));
-}
-function stFan() {
-  const el = document.getElementById('st-fan'); if (typeof cpiForecast !== 'function') return;
-  const F = cpiForecast(), A = CPI_YOY_24, L = CPI_MONTHS_24.concat(F.central.labels), n = L.length, na = A.length;
-  const W = 1000, H = 250, ML = 40, MR = 110, MT = 16, MB = 26, sx = i => ML + i / (n - 1) * (W - ML - MR), sy = stLin(0, 8, H - MB, MT);
-  let s = stAxisY(sy, [0, 2, 4, 6, 8], ML, W - MR, v => v + '%');
-  s += `<rect x="${sx(na - 1)}" y="${MT}" width="${W - MR - sx(na - 1)}" height="${H - MT - MB}" fill="#f1efe8"/>`;
-  s += `<line x1="${ML}" x2="${W - MR}" y1="${sy(4.5)}" y2="${sy(4.5)}" stroke="${ST.green}" stroke-dasharray="4,3"/><text class="st-tick" x="${ML + 4}" y="${sy(4.5) - 5}">${stT('mục tiêu 2026 ~4,5%', '2026 target ~4.5%')}</text>`;
-  const lo = [A[na - 1], ...F.low.yoy], hi = [A[na - 1], ...F.high.yoy], ce = [A[na - 1], ...F.central.yoy];
-  s += `<path class="st-fade" style="--o:.2" d="M${hi.map((v, i) => `${sx(na - 1 + i)},${sy(v)}`).join(' L')} L${lo.map((v, i) => `${sx(na - 1 + i)},${sy(v)}`).reverse().join(' L')} Z" fill="${ST.orange}" opacity=".18"/>`;
-  s += `<path class="st-draw" d="M${A.map((v, i) => `${sx(i)},${sy(v)}`).join(' L')}" fill="none" stroke="${ST.ink}" stroke-width="2.5"/>`;
-  s += `<path class="st-draw" d="M${ce.map((v, i) => `${sx(na - 1 + i)},${sy(v)}`).join(' L')}" fill="none" stroke="${ST.orange}" stroke-width="2.5" stroke-dasharray="6,4"/>`;
-  L.forEach((m, i) => { if (i % 4 === 0 || i === n - 1) s += `<text class="st-tick" x="${sx(i)}" y="${H - 6}" text-anchor="middle">${m}</text>`; });
-  s += `<text class="st-lab" x="${W - MR + 8}" y="${sy(ce[ce.length - 1]) + 4}">${stT('Cơ sở', 'Base')} ${stN(ce[ce.length - 1], 1)}%</text>`;
-  const im = A.indexOf(Math.max(...A)); s += stAnn(sx(im), sy(A[im]), sx(im) - 50, sy(7.4), `${CPI_MONTHS_24[im]}: ${stN(A[im], 2)}%`, 'end');
-  s += stAnn(sx(na + 3), sy(F.central.yoy[3]), sx(na + 3) + 20, sy(7.2), stT('T1/27: hết giảm thuế GTGT', 'Jan-27: VAT cut expires'));
-  el.innerHTML = stSvg(W, H, s, stT('CPI và dự báo', 'CPI and projection'));
 }
 
 // interactions
@@ -5849,7 +5979,7 @@ document.addEventListener('click', e => {
   const d = e.target.closest && e.target.closest('[data-st-bud]');
   if (d) { stBudYear = +d.dataset.stBud; stBudControls(); stWaffles(); if (typeof stBudgetDeep === 'function') stBudgetDeep(); }
 });
-document.addEventListener('mouseover', e => { const k = e.target.closest && e.target.closest('[data-st-k]'); if (!k) return; const [a, b] = decodeURIComponent(k.dataset.stK).split('|'); stTip(e, `<div class="dt-t">${ciE(a)}</div><div class="dt-s">${ciE(isNaN(+b) ? b : stN(+b, 1) + stT(' tỷ USD', ' bn USD'))}</div>`); });
+document.addEventListener('mouseover', e => { const k = e.target.closest && e.target.closest('[data-st-k]'); if (!k) return; const p = decodeURIComponent(k.dataset.stK).split('|'), b = p.slice(1).join(' · '); stTipKV(e, p[0], isNaN(+b) || b === '' ? b : stN(+b, 1) + stT(' tỷ USD', ' bn USD')); });
 document.addEventListener('mousemove', e => { if (e.target.closest && e.target.closest('[data-st-k]')) dotTipMove(e); });
 document.addEventListener('mouseout', e => { if (e.target.closest && e.target.closest('[data-st-k]')) dotTipHide(); });
 // ── /STORY renderer ──
@@ -8419,174 +8549,210 @@ document.addEventListener('mouseover', e => { const n = e.target.closest && e.ta
 document.addEventListener('mouseout', e => { const n = e.target.closest && e.target.closest('#pg-graph .node'); if (n && !(e.relatedTarget && n.contains(e.relatedTarget))) pgHighlight(PG.sel); });
 
 // ── STORY: Party & Government (same chapter system as the Economy story) ──
-const PG_LVC = { party: ST.red, assembly: ST.blue, government: ST.aqua, ministry: ST.yellow, local: ST.violet };
+// Level colours follow the fixed categorical order and the entity everywhere on this tab. On the dot strip (all-pairs
+// form) only three hues are used: Party, National Assembly, Government; ministries and localities fold into grey.
+const PG_LVC = { party: ST.blue, assembly: ST.orange, government: ST.aqua, ministry: ST.yellow, local: ST.magenta };
+const PG_LV = ['party', 'assembly', 'government', 'ministry', 'local'];
 const pgLvName = k => ({ party: stT('Đảng', 'Party'), assembly: stT('Quốc hội', 'National Assembly'), government: stT('Chính phủ', 'Government'), ministry: stT('Bộ, ngành', 'Ministries'), local: stT('Địa phương', 'Local government') })[k] || k;
 const pgPilName = p => { const N = { khcn: 'Science, tech, innovation & digital', tunhan: 'Private & state sectors', hoinhap: 'International integration', phapluat: 'Institutions, law & land', bomay: 'Leaner state & 2-tier local gov.', nangluong: 'Energy, sea & green growth', 'giaoduc-yte': 'Education, health, culture & society', 'kinhte-vimo': 'Growth model & macro plan', 'dautu-cong': 'Public investment & budget' }; return stT(p.name, N[p.id] || p.name); };
-function renderPartyStory() {
-  const root = document.getElementById('pg-story'); if (!root || !PG.data) return;
-  const D = PG.data.directives, O = (PG.data.vision || {}).official || {}, grw = ECON_OFFICIAL.gdp_growth || [];
-  const g5 = grw.slice(-5), avg5 = g5.reduce((a, b) => a + b, 0) / (g5.length || 1);
-  const g9 = ((ECONFLOW.gdp.growth_real_pct || {})['9M_2026_yoy'] || {}).GDP;
-  const nT = (O.main_targets || []).length, drafts = D.filter(d => pgStage(d) === 'draft'), nSes = drafts.filter(d => /Kỳ họp thứ 2/.test((d.draft || {}).expected || '')).length;
-  let h = `<section class="st-chap st-hero" id="pg-st-hero"><div class="st-kicker">${stT('Đảng & Chính phủ · Đại hội XIV · 2026–2030', 'Party & Government · 14th Congress · 2026–2030')}</div>
-    <div class="st-hero-grid"><div>
-      <div class="st-big">≥10%<span>${stT(' tăng trưởng/năm', ' growth a year')}</span></div>
-      <p class="st-dek">${stT(`Mục tiêu Đại hội XIV đặt ra cho 2026–2030: nhanh hơn bất kỳ năm nào của thập kỷ qua. Bình quân 2021–2025 là <b>${stN(avg5, 1)}%</b>; chín tháng đầu 2026 đạt <b>${stN(g9, 2)}%</b>. Đích đến: thu nhập trung bình cao vào 2030, nước phát triển thu nhập cao vào 2045.`, `The 14th Party Congress target for 2026–2030 is faster than any year of the past decade. 2021–2025 averaged <b>${stN(avg5, 1)}%</b>; the first nine months of 2026 reached <b>${stN(g9, 2)}%</b>. The goal: upper-middle income by 2030, a developed high-income country by 2045.`)}</p>
-    </div><div id="pg-st-growth" class="st-viz"></div></div></section>`;
-  h += stChap('pg-st-gap', stT('Chương 1 · Mục tiêu và hiện tại', 'Chapter 1 · Targets vs today'),
-    stT('Khoảng cách lớn nhất: tăng trưởng và đầu tư — thu ngân sách thì đã vượt mục tiêu', 'The biggest gaps are growth and investment — budget revenue already beats its target'),
-    stT(`Nghị quyết Đại hội XIV có ${nT} chỉ tiêu chủ yếu đến 2030. Dưới đây là những chỉ tiêu dashboard có số liệu hiện tại để so sánh: chấm tròn = năm 2025, vạch = mục tiêu 2030.`, `The 14th Congress resolution has ${nT} main targets for 2030. Below are those the dashboard can compare with current data: dot = 2025, bar = 2030 target.`),
-    `<div id="pg-st-dumb" class="st-viz"></div><div class="st-sub">${stT(`Toàn bộ ${nT} chỉ tiêu, theo nhóm`, `All ${nT} targets, by group`)}</div><div id="pg-st-tgts" class="st-facts"></div>
-     ${stSrc(stT('Nguồn: Nghị quyết Đại hội XIV (23/01/2026); số liệu 2025: NSO (GDP theo mục đích sử dụng, vốn đầu tư thực hiện), Bộ Tài chính (ngân sách, 2025 ước tính).', 'Source: 14th Party Congress resolution (23 Jan 2026); 2025 data: NSO (GDP by expenditure, realised investment), MoF (budget, 2025 estimate).'))}`);
-  h += stChap('pg-st-wave', stT('Chương 2 · Làn sóng văn bản', 'Chapter 2 · A wave of documents'),
-    stT('Từ cuối 2024, Đảng và Nhà nước ban hành văn bản chiến lược với nhịp độ chưa từng có', 'Since late 2024, the Party and State have issued strategic documents at an unprecedented pace'),
-    stT(`Dashboard theo dõi ${D.length} văn bản chỉ đạo. Mỗi cột là số văn bản ban hành (hoặc dự thảo có mốc mới) trong một tháng, tô màu theo cấp ban hành.`, `The dashboard tracks ${D.length} directives. Each column counts documents issued (or drafts reaching a new milestone) in one month, coloured by issuing level.`),
-    `<div id="pg-st-bars" class="st-viz"></div><div class="st-sub">${stT('Mỗi cấp một nhịp: số văn bản theo quý', 'Each level has its own rhythm: documents per quarter')}</div><div id="pg-st-mult" class="st-mult" style="grid-template-columns:repeat(5,1fr)"></div>
-     ${stSrc(stT('Nguồn: agent Strategy tổng hợp từ tulieuvankien.dangcongsan.vn, quochoi.vn, chinhphu.vn, vbpl.vn và cổng thông tin các bộ, địa phương. Danh sách là các văn bản trọng yếu được chọn, không phải toàn bộ văn bản ban hành.', 'Source: Strategy agent, compiled from tulieuvankien.dangcongsan.vn, quochoi.vn, chinhphu.vn, vbpl.vn and ministry/local portals. A curated set of key documents, not every document issued.'))}`);
-  h += stChap('pg-st-pil', stT('Chương 3 · Ưu tiên', 'Chapter 3 · Priorities'),
-    stT('Khoa học – công nghệ và thể chế chiếm nhiều văn bản nhất', 'Science & technology and institutions get the most documents'),
-    stT('Số văn bản theo trụ cột chính sách (cách nhóm của dashboard), chia theo cấp ban hành.', 'Documents per policy pillar (the dashboard\'s grouping), split by issuing level.'),
-    `<div id="pg-st-pilbars" class="st-viz"></div>`);
-  h += stChap('pg-st-chain', stT('Chương 4 · Từ nghị quyết đến hành động', 'Chapter 4 · From resolution to action'),
-    stT('Một nghị quyết của Bộ Chính trị kéo theo cả chuỗi luật, nghị định và kế hoạch', 'One Politburo resolution sets off a chain of laws, decrees and plans'),
-    stT('Mỗi hàng là một nghị quyết, kết luận của Đảng (◆). Mỗi chấm là một văn bản triển khai nó (trực tiếp hoặc gián tiếp), đặt theo ngày ban hành và tô màu theo cấp.', 'Each row is a Party resolution or conclusion (◆). Each dot is a document implementing it (directly or down the chain), placed by issue date and coloured by level.'),
-    `<div id="pg-st-rows" class="st-viz"></div><div id="pg-st-facts" class="st-facts"></div>`);
-  h += stChap('pg-st-pipe', stT('Chương 5 · Đang chờ thông qua', 'Chapter 5 · In the pipeline'),
-    stT(`${drafts.length} dự thảo đang được theo dõi — ${nSes} trong số đó trình Quốc hội tại kỳ họp tháng 10–11/2026`, `${drafts.length} drafts are being tracked — ${nSes} of them go to the National Assembly session in Oct–Nov 2026`),
-    stT('Mỗi thanh nối mốc gần nhất của dự thảo với thời điểm dự kiến thông qua (◇).', 'Each bar links a draft\'s latest milestone to its expected adoption date (◇).'),
-    `<div id="pg-st-drafts" class="st-viz"></div>`);
-  h += stChap('pg-st-map', stT('Chương 6 · Tự khám phá', 'Chapter 6 · Explore'),
-    stT('Bản đồ đầy đủ: mọi văn bản, mọi liên kết', 'The full map: every document, every link'),
-    stT('Lọc theo trụ cột, kéo thanh thời gian, rê chuột vào một văn bản để thấy chuỗi triển khai, bấm để đọc chi tiết.', 'Filter by pillar, drag the timeline, hover a document to see its chain, click to read the details.'), '');
-  root.innerHTML = h;
-  pgStGrowth(avg5, g9); pgStDumb(); pgStTargets(); pgStBars(); pgStMult(); pgStPillars(); pgStRows(); pgStDrafts();
-  stObserve(root);
-}
-// hero — growth bars 2016–2025 + 9M-2026 against the ≥10% target
-function pgStGrowth(avg5, g9) {
-  const el = document.getElementById('pg-st-growth'), g = ECON_OFFICIAL.gdp_growth || [], n = g.length, vals = g.slice(n - 10).concat([g9]), yrs = vals.map((_, i) => i < 10 ? String(2010 + n - 10 + i) : stT('9T/26', '9M/26'));
-  const W = 560, H = 210, ML = 30, MR = 112, MT = 20, MB = 22, bw = (W - ML - MR) / vals.length, sy = stLin(0, 11, H - MB, MT);
-  let s = stAxisY(sy, [0, 5, 10], ML, W - MR, v => v + '%');
-  vals.forEach((v, i) => { s += `<rect class="st-grow" style="--d:${i * 40}ms" x="${ML + i * bw + 2}" y="${sy(v)}" width="${bw - 4}" height="${sy(0) - sy(v)}" rx="2" fill="${i === vals.length - 1 ? ST.blue : '#b9c7da'}" data-st-k="${encodeURIComponent(yrs[i] + '|' + stN(v, 2) + '%')}"/>`;
-    if (i % 2 === 1 || i === vals.length - 1) s += `<text class="st-tick" x="${ML + i * bw + bw / 2}" y="${H - 6}" text-anchor="middle">${yrs[i].replace(/^20/, '')}</text>`; });
-  s += `<line x1="${ML}" x2="${W - MR}" y1="${sy(10)}" y2="${sy(10)}" stroke="${ST.red}" stroke-width="2" stroke-dasharray="6,4" class="st-draw"/><text class="st-lab st-b" x="${W - MR + 6}" y="${sy(10) + 4}" fill="${ST.red}" style="fill:${ST.red}">${stT('Mục tiêu ≥10%', 'Target ≥10%')}</text>`;
-  s += `<line x1="${ML + 5 * bw}" x2="${ML + 10 * bw}" y1="${sy(avg5)}" y2="${sy(avg5)}" stroke="${ST.ink}" stroke-width="1.2"/><text class="st-lab" x="${W - MR + 6}" y="${sy(avg5) + 4}">${stT('BQ 21–25', 'Avg 21–25')} ${stN(avg5, 1)}%</text>`;
-  el.innerHTML = stSvg(W, H, s, stT('Tăng trưởng GDP so với mục tiêu 10%', 'GDP growth vs the 10% target'));
-}
-// ch1 — dumbbell: 2025 actual vs 2030 target (all in %), only where the dashboard has a current value
-function pgStDumb() {
-  const el = document.getElementById('pg-st-dumb'), G = ECONFLOW.gdp, gi = G.years.indexOf(2025), B = ECONFLOW.budget, bi = B.years.indexOf(2025), I = ECONFLOW.inv, ii = I.years.indexOf(2025), grw = ECON_OFFICIAL.gdp_growth || [];
-  const avg5 = grw.slice(-5).reduce((a, b) => a + b, 0) / 5, gdp = G.GDP[gi];
-  const rows = [
-    [stT('Tăng trưởng GDP (%/năm, BQ 2021–25)', 'GDP growth (% a year, avg 2021–25)'), avg5, 10, null, '≥'],
+const pgMed = a => { const s = a.slice().sort((x, y) => x - y), n = s.length; return n ? (n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2) : null; };
+const pgExpectedS = d => pgExpected(d) || (/Kỳ họp thứ 2/.test((d.draft || {}).expected || '') ? pgDate('2026-11-20') : null);   // "Kỳ họp thứ 2" = the Oct–Nov 2026 NA session, closing 20/11
+const pgMonths = () => { const out = []; for (let d = new Date(2024, 6, 1); d <= pgToday(); d.setMonth(d.getMonth() + 1)) out.push([d.getFullYear(), d.getMonth()]); return out; };
+const pgMLab = ([y, m]) => stT(`T${m + 1}/${y}`, `${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][m]} ${y}`);
+// rows of the 2030 targets the dashboard can compare with 2025 data: [name, now, target lo, target hi, op]
+function pgGapRows() {
+  const G = ECONFLOW.gdp, gi = G.years.indexOf(2025), B = ECONFLOW.budget, bi = B.years.indexOf(2025), I = ECONFLOW.inv, ii = I.years.indexOf(2025), grw = ECON_OFFICIAL.gdp_growth || [], gdp = G.GDP[gi];
+  return [
+    [stT('Tăng trưởng GDP (%/năm, BQ 2021–25)', 'GDP growth (% a year, avg 2021–25)'), grw.slice(-5).reduce((a, b) => a + b, 0) / 5, 10, null, '≥'],
     [stT('Tổng vốn đầu tư toàn xã hội (% GDP)', 'Total social investment (% of GDP)'), ii >= 0 && gi >= 0 ? I.total[ii] / gdp * 100 : null, 40, null, '≈'],
     [stT('Tích luỹ tài sản (% GDP)', 'Gross capital formation (% of GDP)'), G.pct_gdp.I[gi], 35, 36, ''],
     [stT('Tiêu dùng cuối cùng (% GDP)', 'Final consumption (% of GDP)'), G.pct_gdp.C[gi] + G.pct_gdp.G[gi], 61, 62, ''],
     [stT('Thu ngân sách (% GDP)', 'Budget revenue (% of GDP)'), bi >= 0 && gi >= 0 ? (B.revenue.total || B.revenue)[bi] / gdp * 100 : null, 18, null, '≈'],
     [stT('Bội chi ngân sách (% GDP)', 'Budget deficit (% of GDP)'), bi >= 0 ? B.deficit_pct_gdp[bi] : null, 5, null, '≈']
-  ].filter(r => r[1] != null && isFinite(r[1]));
-  const W = 1000, RH = 44, ML = 300, MR = 40, H = rows.length * RH + 30, sx = stLin(0, 70, ML, W - MR);
+  ].filter(r => r[1] != null && isFinite(r[1])).map(([n, v, t0, t1, op]) => ({ n, v, t0, t1, op, mid: t1 ? (t0 + t1) / 2 : t0, gap: (t1 ? (t0 + t1) / 2 : t0) - v }));
+}
+// implementation hops: for every "implements" relation, the lag from the parent document to the implementing one
+function pgHops() {
+  const by = PG.byId, H = {};
+  PG.data.relations.forEach(r => { if (r.type !== 'implements') return; const a = by[r.from], b = by[r.to]; if (!a || !b || a.level === b.level) return; const k = b.level + '>' + a.level, lag = (pgDate(a.date) - pgDate(b.date)) / 864e5; if (lag < 0) return; (H[k] = H[k] || []).push(lag); });
+  return Object.entries(H).map(([k, a]) => ({ from: k.split('>')[0], to: k.split('>')[1], n: a.length, med: pgMed(a) })).sort((x, y) => y.n - x.n);
+}
+function renderPartyStory() {
+  const root = document.getElementById('pg-story'); if (!root || !PG.data) return;
+  const D = PG.data.directives, O = (PG.data.vision || {}).official || {}, grw = ECON_OFFICIAL.gdp_growth || [];
+  const avg5 = grw.slice(-5).reduce((a, b) => a + b, 0) / 5, g9 = ((ECONFLOW.gdp.growth_real_pct || {})['9M_2026_yoy'] || {}).GDP;
+  const nT = (O.main_targets || []).length, drafts = D.filter(d => pgStage(d) === 'draft'), nSes = drafts.filter(d => /Kỳ họp thứ 2/.test((d.draft || {}).expected || '')).length;
+  const gaps = pgGapRows(), behind = gaps.filter(r => r.gap > 0).sort((a, b) => b.gap - a.gap), ahead = gaps.filter(r => r.gap < 0 && r.op === '≈' && /Thu|revenue/i.test(r.n));
+  const M = pgMonths(), cntM = M.map(([y, m]) => D.filter(d => +d.date.slice(0, 4) === y && +d.date.slice(5, 7) === m + 1).length), mx = Math.max(...cntM), mxI = cntM.indexOf(mx), since = D.filter(d => d.date >= '2024-07-01').length;
+  const pil = PG.data.pillars.map(p => ({ p, n: D.filter(d => d.pillar === p.id).length })).sort((a, b) => b.n - a.n);
+  const hops = pgHops(), pg = hops.find(h => h.from === 'party' && h.to === 'government'), pa = hops.find(h => h.from === 'party' && h.to === 'assembly');
+  let h = `<section class="st-chap st-hero" id="pg-st-hero"><div class="st-kicker">${stT('Đảng & Chính phủ · Đại hội XIV · 2026–2030', 'Party & Government · 14th Congress · 2026–2030')}</div>
+    <div class="st-hero-grid"><div>
+      <div class="st-big">≥10%<span>${stT(' tăng trưởng/năm', ' growth a year')}</span></div>
+      <p class="st-dek">${stT(`Mục tiêu Đại hội XIV cho 2026–2030. Bình quân 2021–2025 là <b>${stN(avg5, 1)}%</b>; chín tháng đầu 2026 đạt <b>${stN(g9, 2)}%</b>. Đích đến: thu nhập trung bình cao vào 2030, nước phát triển thu nhập cao vào 2045.`, `The 14th Congress target for 2026–2030. 2021–2025 averaged <b>${stN(avg5, 1)}%</b>; the first nine months of 2026 reached <b>${stN(g9, 2)}%</b>. The goal: upper-middle income by 2030, a developed high-income country by 2045.`)}</p>
+    </div><div id="pg-st-growth" class="st-viz"></div></div></section>`;
+  const inv = gaps.find(r => /toàn xã hội|social investment/i.test(r.n)), rev = gaps.find(r => /Thu ngân|revenue/i.test(r.n));
+  h += stChap('pg-st-gap', stT('Chương 1 · Mục tiêu và hiện tại', 'Chapter 1 · Targets vs today'),
+    inv && rev ? stT(`Đầu tư toàn xã hội còn thiếu ${stN(inv.gap, 1)} điểm % GDP; thu ngân sách đã vượt mục tiêu ${stN(-rev.gap, 1)} điểm`, `Total investment is ${stN(inv.gap, 1)} points of GDP short; budget revenue is ${stN(-rev.gap, 1)} points above target`) : stT('Mục tiêu 2030 và số liệu 2025', '2030 targets and 2025 data'),
+    stT(`Nghị quyết Đại hội XIV có ${nT} chỉ tiêu chủ yếu đến 2030; ${gaps.length} chỉ tiêu dưới đây có số liệu 2025 để so sánh.`, `The 14th Congress resolution has ${nT} main targets for 2030; the ${gaps.length} below have 2025 data to compare.`),
+    `${stLegend([{ n: stT('Năm 2025, chưa đạt mục tiêu', '2025, short of target'), c: ST.red, k: 'dot' }, { n: stT('Năm 2025, đã đạt/vượt', '2025, at or past target'), c: ST.blue, k: 'dot' }, { n: stT('Mục tiêu 2030', '2030 target'), c: ST.ink }])}<div id="pg-st-dumb" class="st-viz"></div>
+     ${behind[0] ? stNote(stT(`Khoảng cách lớn nhất: ${behind[0].n.replace(/ \(.*\)/, '').toLowerCase()} (${stN(behind[0].v, 1)}% so với mục tiêu ${behind[0].op}${stN(behind[0].mid, 0)}%).`, `Largest gap: ${behind[0].n.replace(/ \(.*\)/, '').toLowerCase()} (${stN(behind[0].v, 1)}% against a target of ${behind[0].op}${stN(behind[0].mid, 0)}%).`), stT('Mục tiêu là bình quân 5 năm 2026–2030, nên một năm vượt hoặc hụt chưa quyết định kết quả.', 'Most targets are 2026–2030 averages, so a single year above or below does not settle them.')) : ''}
+     <div class="st-sub">${stT(`Toàn bộ ${nT} chỉ tiêu, theo nhóm`, `All ${nT} targets, by group`)}</div><div id="pg-st-tgts" class="st-facts"></div>
+     ${stSrc(stT('Nguồn: Nghị quyết Đại hội XIV (23/01/2026); số liệu 2025: NSO (GDP theo mục đích sử dụng, vốn đầu tư thực hiện), Bộ Tài chính (ngân sách, 2025 ước tính).', 'Source: 14th Party Congress resolution (23 Jan 2026); 2025 data: NSO (GDP by expenditure, realised investment), MoF (budget, 2025 estimate).'))}`);
+  h += stChap('pg-st-wave', stT('Chương 2 · Làn sóng văn bản', 'Chapter 2 · A wave of documents'),
+    stT(`${since} văn bản từ T7/2024; tháng nhiều nhất là ${pgMLab(M[mxI])} với ${mx} văn bản`, `${since} documents since Jul 2024; the busiest month was ${pgMLab(M[mxI])} with ${mx}`),
+    stT(`Mỗi cột là số văn bản ban hành (hoặc dự thảo có mốc mới) trong một tháng, theo cấp ban hành. Dashboard theo dõi ${D.length} văn bản trọng yếu được chọn, không phải toàn bộ văn bản.`, `Each column counts documents issued (or drafts reaching a new milestone) in one month, by issuing level. The dashboard tracks ${D.length} selected key documents, not every document issued.`),
+    `${stLegend(PG_LV.map(l => ({ n: pgLvName(l), c: PG_LVC[l] })))}<div id="pg-st-bars" class="st-viz"></div><div class="st-sub">${stT('Mỗi cấp một nhịp: số văn bản theo quý', 'Each level has its own rhythm: documents per quarter')}</div><div id="pg-st-mult" class="st-mult" style="grid-template-columns:repeat(5,1fr)"></div>
+     ${stSrc(stT('Nguồn: agent Strategy tổng hợp từ tulieuvankien.dangcongsan.vn, quochoi.vn, chinhphu.vn, vbpl.vn và cổng thông tin các bộ, địa phương.', 'Source: Strategy agent, compiled from tulieuvankien.dangcongsan.vn, quochoi.vn, chinhphu.vn, vbpl.vn and ministry/local portals.'))}`);
+  h += stChap('pg-st-pil', stT('Chương 3 · Ưu tiên', 'Chapter 3 · Priorities'),
+    stT(`${pgPilName(pil[0].p)}: ${pil[0].n} văn bản, nhiều nhất trong ${pil.length} trụ cột`, `${pgPilName(pil[0].p)}: ${pil[0].n} documents, the most of ${pil.length} pillars`),
+    stT('Số văn bản theo trụ cột chính sách (cách nhóm của dashboard), chia theo cấp ban hành.', 'Documents per policy pillar (the dashboard\'s grouping), split by issuing level.'),
+    `${stLegend(PG_LV.map(l => ({ n: pgLvName(l), c: PG_LVC[l] })))}<div id="pg-st-pilbars" class="st-viz"></div>`);
+  h += stChap('pg-st-chain', stT('Chương 4 · Từ nghị quyết đến hành động', 'Chapter 4 · From resolution to action'),
+    pg && pa ? stT(`Chính phủ triển khai nghị quyết của Đảng sau trung vị ${stN(pg.med, 0)} ngày; Quốc hội sau ${stN(pa.med, 0)} ngày`, `The Government acts on a Party resolution after a median ${stN(pg.med, 0)} days; the National Assembly after ${stN(pa.med, 0)}`) : stT('Từ nghị quyết đến hành động', 'From resolution to action'),
+    stT('Mỗi mũi tên là một kiểu liên kết "triển khai" trong dữ liệu: số văn bản và thời gian trung vị từ văn bản cấp trên đến văn bản triển khai.', 'Each arrow is one kind of "implements" link in the data: the number of documents and the median time from the parent document to the implementing one.'),
+    `<div id="pg-st-flow"></div><div class="st-sub">${stT('Từng nghị quyết: văn bản triển khai theo thời gian', 'Resolution by resolution: implementing documents over time')}</div>${stLegend([{ n: stT('Văn bản của Đảng', 'Party document'), c: PG_LVC.party, k: 'diamond' }, { n: pgLvName('assembly'), c: PG_LVC.assembly, k: 'dot' }, { n: pgLvName('government'), c: PG_LVC.government, k: 'dot' }, { n: stT('Bộ, ngành & địa phương', 'Ministries & localities'), c: ST_MUTE, k: 'dot' }, { n: stT('Dự thảo', 'Draft'), c: '#5b6170', k: 'ring' }])}<div id="pg-st-rows" class="st-viz"></div><div id="pg-st-facts" class="st-facts"></div>`);
+  h += stChap('pg-st-pipe', stT('Chương 5 · Đang chờ thông qua', 'Chapter 5 · In the pipeline'),
+    stT(`${drafts.length} dự thảo đang theo dõi; ${nSes} trình kỳ họp Quốc hội 17/10–20/11/2026`, `${drafts.length} drafts tracked; ${nSes} go to the 17 Oct–20 Nov 2026 National Assembly session`),
+    stT('Mỗi thanh nối mốc gần nhất của dự thảo với thời điểm dự kiến thông qua (◇).', 'Each bar links a draft\'s latest milestone to its expected adoption date (◇).'),
+    `${stLegend([{ n: pgLvName('assembly'), c: PG_LVC.assembly, k: 'dot' }, { n: pgLvName('government'), c: PG_LVC.government, k: 'dot' }])}<div id="pg-st-drafts" class="st-viz"></div>`);
+  // what to watch — computed from the data
+  const nx = drafts.map(d => ({ d, ex: pgExpected(d) })).filter(x => x.ex && x.ex > pgToday()).sort((a, b) => a.ex - b.ex)[0], news = PG.data.news.slice().sort((a, b) => b.date.localeCompare(a.date))[0];
+  const w = [[stT('17/10 – 20/11/2026', '17 Oct – 20 Nov 2026'), stT(`Kỳ họp thứ 2, Quốc hội khoá XVI`, '2nd session of the 16th National Assembly'), stT(`${nSes} dự thảo trong danh sách theo dõi dự kiến được xem xét, gồm: `, `${nSes} tracked drafts are due for consideration, including: `) + drafts.filter(d => /Kỳ họp thứ 2/.test((d.draft || {}).expected || '')).slice(0, 3).map(d => ciE(d.ref.replace(/^Dự thảo\s*/i, ''))).join('; ') + '.']];
+  if (news) w.push([pgFmt(news.date), stT('Mới nhất', 'Latest'), ciE(news.title)]);
+  if (nx) w.push([nx.ex.getMonth() + 1 + '/' + nx.ex.getFullYear(), stT('Mốc dự thảo kế tiếp ngoài kỳ họp', 'Next draft milestone outside the session'), ciE(nx.d.ref.replace(/^Dự thảo\s*/i, '')) + (nx.d.draft.expected ? ` · ${ciE(nx.d.draft.expected)}` : '')]);
+  h += stChap('pg-st-watch', stT('Tiếp theo · Điều cần theo dõi', 'Next · What to watch'), stT('Ba mốc kế tiếp trong dữ liệu', 'The next three markers in the data'), '', `<ol class="st-watch">${w.map(([t, b, p]) => `<li><time>${t}</time><b>${b}</b>${p}</li>`).join('')}</ol>`);
+  h += stChap('pg-st-map', stT('Tự khám phá', 'Explore'), stT('Bản đồ đầy đủ: mọi văn bản, mọi liên kết', 'The full map: every document, every link'),
+    stT('Lọc theo trụ cột, kéo thanh thời gian, rê chuột vào một văn bản để thấy chuỗi triển khai, bấm để đọc chi tiết.', 'Filter by pillar, drag the timeline, hover a document to see its chain, click to read the details.'), '');
+  root.innerHTML = h;
+  pgStGrowth(avg5, g9); pgStDumb(gaps); pgStTargets(); pgStBars(M); pgStMult(); pgStPillars(); pgStFlow(hops); pgStRows(); pgStDrafts();
+  stFinish(root);
+}
+// hero — growth columns 2016–2025 + 9M-2026 against the ≥10% target (reference line in ink, label in ink)
+function pgStGrowth(avg5, g9) {
+  const el = document.getElementById('pg-st-growth'), g = ECON_OFFICIAL.gdp_growth || [], n = g.length, vals = g.slice(n - 10).concat([g9]), yrs = vals.map((_, i) => i < 10 ? String(2010 + n - 10 + i) : stT('9T/26', '9M/26'));
+  const W = 560, H = 210, ML = 30, MR = 112, MT = 20, MB = 22, slot = (W - ML - MR) / vals.length, cx = i => ML + (i + .5) * slot, sy = stLin(0, 11, H - MB, MT);
+  let s = stAxisY(sy, [0, 5, 10], ML, W - MR, v => v + '%') + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  vals.forEach((v, i) => { s += stBarV(cx(i), slot, sy(v), sy(0), i === vals.length - 1 ? ST.blue : ST_MUTE, [yrs[i], stN(v, 2) + '%'], { d: i * 40 });
+    if (i % 2 === 1 || i === vals.length - 1) s += `<text class="st-tick" x="${cx(i)}" y="${H - 6}" text-anchor="middle">${yrs[i].replace(/^20/, '')}</text>`; });
+  s += `<line x1="${ML}" x2="${W - MR}" y1="${sy(10)}" y2="${sy(10)}" stroke="${ST.ink}" stroke-width="1.5" stroke-dasharray="6,4"/><text class="st-lab st-b" x="${W - MR + 6}" y="${sy(10) + 4}">${stT('Mục tiêu ≥10%', 'Target ≥10%')}</text>`;
+  s += `<line x1="${cx(5) - slot / 2}" x2="${cx(9) + slot / 2}" y1="${sy(avg5)}" y2="${sy(avg5)}" stroke="#5b6170" stroke-width="1"/><text class="st-lab" x="${W - MR + 6}" y="${sy(avg5) + 4}">${stT('BQ 21–25', 'Avg 21–25')} ${stN(avg5, 1)}%</text>`;
+  el.innerHTML = stSvg(W, H, s, stT('Tăng trưởng GDP so với mục tiêu 10%', 'GDP growth vs the 10% target'));
+}
+// ch1 — dumbbell: 2025 (dot; red = short of target, blue = at or past it) → 2030 target (ink bar)
+function pgStDumb(rows) {
+  const el = document.getElementById('pg-st-dumb'), W = 1000, RH = 44, ML = 300, MR = 40, H = rows.length * RH + 30, sx = stLin(0, 70, ML, W - MR);
   let s = '';
   [0, 10, 20, 30, 40, 50, 60, 70].forEach(t => { s += `<line class="st-grid" x1="${sx(t)}" x2="${sx(t)}" y1="10" y2="${H - 18}"/><text class="st-tick" x="${sx(t)}" y="${H - 4}" text-anchor="middle">${t}%</text>`; });
-  rows.forEach(([n, v, t0, t1, op], i) => { const y = 24 + i * RH, xa = sx(v), xt = sx(t1 ? (t0 + t1) / 2 : t0), c = xt > xa ? ST.orange : ST.blue;
-    s += `<text class="st-lab" x="${ML - 14}" y="${y + 4}" text-anchor="end">${n}</text>`;
-    s += `<line class="st-grow-x" style="--d:${i * 90}ms" x1="${Math.min(xa, xt)}" x2="${Math.max(xa, xt)}" y1="${y}" y2="${y}" stroke="${c}" stroke-width="4" opacity=".35"/>`;
-    s += t1 ? `<rect x="${sx(t0)}" y="${y - 8}" width="${Math.max(3, sx(t1) - sx(t0))}" height="16" fill="${ST.ink}" rx="2"/>` : `<rect x="${xt - 1.5}" y="${y - 8}" width="3" height="16" fill="${ST.ink}"/>`;
-    s += `<circle cx="${xa}" cy="${y}" r="7" fill="${c}" stroke="#fff" stroke-width="2" data-st-k="${encodeURIComponent(n + '|' + stT('2025: ', '2025: ') + stN(v, 1) + '% · ' + stT('mục tiêu 2030: ', '2030 target: ') + op + stN(t0, 0) + (t1 ? '–' + stN(t1, 0) : '') + '%')}"/>`;
-    const right = xt > xa; s += `<text class="st-val" x="${right ? xa - 12 : xa + 12}" y="${y + 4}" text-anchor="${right ? 'end' : 'start'}">${stN(v, 1)}%</text><text class="st-val" x="${right ? Math.max(xt, sx(t1 || t0)) + 10 : Math.min(xt, sx(t0)) - 10}" y="${y + 4}" text-anchor="${right ? 'start' : 'end'}" style="fill:${ST.ink}">${op}${stN(t0, 0)}${t1 ? '–' + stN(t1, 0) : ''}%</text>`; });
-  const ri = rows.findIndex(r => /đầu tư toàn xã hội|social investment/i.test(r[0]));
-  if (ri >= 0) { const y = 24 + ri * RH, x = (sx(rows[ri][1]) + sx(40)) / 2; s += stAnn(x, y - 3, x + 40, y - 18 < 10 ? 10 : y - 18, stT(`thiếu ~${stN(40 - rows[ri][1], 0)} điểm % GDP mỗi năm`, `a gap of ~${stN(40 - rows[ri][1], 0)} points of GDP a year`)); }
+  rows.forEach((r, i) => { const y = 24 + i * RH, xa = sx(r.v), xt = sx(r.mid), short = r.gap > 0, c = short ? ST.red : ST.blue;
+    s += `<text class="st-lab" x="${ML - 14}" y="${y + 4}" text-anchor="end">${r.n}</text>`;
+    s += `<line class="st-grow-x" style="--d:${i * 90}ms" x1="${Math.min(xa, xt)}" x2="${Math.max(xa, xt)}" y1="${y}" y2="${y}" stroke="${c}" stroke-width="2" opacity=".5"/>`;
+    s += r.t1 ? `<path d="${stRR(sx(r.t0), y - 8, Math.max(3, sx(r.t1) - sx(r.t0)), 16, 2, [1, 1, 1, 1])}" fill="${ST.ink}"/>` : `<rect x="${xt - 1.5}" y="${y - 8}" width="3" height="16" fill="${ST.ink}"/>`;
+    s += stDot(xa, y, 6, c, [r.n, '2025: ' + stN(r.v, 1) + '% · ' + stT('mục tiêu 2030: ', '2030 target: ') + r.op + stN(r.t0, 0) + (r.t1 ? '–' + stN(r.t1, 0) : '') + '%'], { d: i * 90 });
+    const right = xt > xa; s += `<text class="st-val" x="${right ? xa - 12 : xa + 12}" y="${y + 4}" text-anchor="${right ? 'end' : 'start'}">${stN(r.v, 1)}%</text><text class="st-val" x="${right ? sx(r.t1 || r.t0) + 10 : sx(r.t0) - 10}" y="${y + 4}" text-anchor="${right ? 'start' : 'end'}" style="fill:${ST.ink}">${r.op}${stN(r.t0, 0)}${r.t1 ? '–' + stN(r.t1, 0) : ''}%</text>`; });
   el.innerHTML = stSvg(W, H, s, stT('Hiện tại so với mục tiêu 2030', 'Today vs 2030 targets'));
 }
 function pgStTargets() {
   const el = document.getElementById('pg-st-tgts'), O = (PG.data.vision || {}).official || {}, E = APP_LANG === 'en';
-  const GL = [['economy', stT('Kinh tế', 'Economy'), ST.blue], ['society', stT('Xã hội', 'Society'), ST.orange], ['environment', stT('Môi trường', 'Environment'), ST.green]];
-  el.innerHTML = GL.map(([g, n, c]) => { const a = (O.main_targets || []).filter(x => (x.group || 'economy') === g); return a.length ? `<div class="st-fact" style="border-color:${c}"><div class="st-mini-h">${n}</div><div class="st-mini-v">${a.length}</div><ul style="margin:4px 0 0 16px;padding:0;font:400 12px/1.45 var(--font-ui);color:#5b6170">${a.map(x => `<li>${ciE((E && x.en) || x.vi)}</li>`).join('')}</ul></div>` : ''; }).join('');
+  const GL = [['economy', stT('Kinh tế', 'Economy')], ['society', stT('Xã hội', 'Society')], ['environment', stT('Môi trường', 'Environment')]];
+  el.innerHTML = GL.map(([g, n]) => { const a = (O.main_targets || []).filter(x => (x.group || 'economy') === g); return a.length ? `<div class="st-fact"><div class="st-mini-h">${n}</div><div class="st-mini-v">${a.length}</div><ul style="margin:4px 0 0 16px;padding:0;font:400 12.5px/1.5 var(--font-ui);color:#5b6170">${a.map(x => `<li>${ciE((E && x.en) || x.vi)}</li>`).join('')}</ul></div>` : ''; }).join('');
 }
-const pgMonths = () => { const out = []; for (let d = new Date(2024, 6, 1); d <= pgToday(); d.setMonth(d.getMonth() + 1)) out.push([d.getFullYear(), d.getMonth()]); return out; };
-// ch2 — stacked monthly columns by level
-function pgStBars() {
-  const el = document.getElementById('pg-st-bars'), M = pgMonths(), LV = ['party', 'assembly', 'government', 'ministry', 'local'], D = PG.data.directives;
-  const cnt = M.map(([y, m]) => Object.fromEntries(LV.map(l => [l, D.filter(d => d.level === l && +d.date.slice(0, 4) === y && +d.date.slice(5, 7) === m + 1).length])));
-  const tot = cnt.map(c => LV.reduce((a, l) => a + c[l], 0)), mx = Math.max(...tot), early = D.filter(d => d.date < '2024-07-01').length;
-  const W = 1000, H = 330, ML = 30, MR = 20, MT = 30, MB = 56, bw = (W - ML - MR) / M.length, sy = stLin(0, Math.ceil(mx / 5) * 5, H - MB, MT);
-  let s = stAxisY(sy, stNice(0, mx, 3), ML, W - MR, v => v);
-  cnt.forEach((c, i) => { let y0 = sy(0); LV.forEach(l => { if (!c[l]) return; const hh = sy(0) - sy(c[l]);
-      s += `<rect class="st-grow" style="--d:${i * 25}ms" x="${ML + i * bw + 1.5}" y="${y0 - hh}" width="${bw - 3}" height="${hh}" fill="${PG_LVC[l]}" data-st-k="${encodeURIComponent(pgLvName(l) + ' · ' + (M[i][1] + 1) + '/' + M[i][0] + '|' + c[l] + stT(' văn bản', ' documents'))}"/>`; y0 -= hh; });
-    if (M[i][1] % 3 === 0) s += `<text class="st-tick" x="${ML + i * bw + bw / 2}" y="${H - 38}" text-anchor="middle" style="${M[i][1] === 0 ? 'font-weight:700;fill:#16181d' : ''}">${stT('T', '')}${M[i][1] + 1}/${String(M[i][0]).slice(2)}</text>`; });
-  const xi = (y, m) => M.findIndex(a => a[0] === y && a[1] === m), cx = i => ML + i * bw + bw / 2;
-  const iC = xi(2026, 0); if (iC >= 0) s += stAnn(cx(iC), sy(tot[iC]) - 3, cx(iC) - 50, MT - 4, stT('T1/2026: Đại hội XIV', 'Jan 2026: 14th Congress'), 'end');
-  const iP = tot.indexOf(mx); if (iP >= 0 && iP !== iC) s += stAnn(cx(iP), sy(mx) - 3, cx(iP) - 30, MT - 4, stT(`Tháng nhiều nhất: ${mx} văn bản`, `Busiest month: ${mx} documents`), 'end');
-  const iN = xi(2024, 11); if (iN >= 0) s += stAnn(cx(iN), sy(tot[iN]) - 3, cx(iN) + 20, sy(mx * .72), stT('T12/2024: NQ 57 về khoa học, công nghệ', 'Dec 2024: Resolution 57 on science & tech'));
-  let lx = ML; const ly = H - 8; LV.forEach(l => { s += `<rect x="${lx}" y="${ly - 9}" width="10" height="10" rx="2" fill="${PG_LVC[l]}"/><text class="st-lab" x="${lx + 15}" y="${ly}">${pgLvName(l)}</text>`; lx += 34 + pgLvName(l).length * 7; });
-  if (early) s += `<text class="st-tick" x="${lx + 10}" y="${ly}">${stT(`+${early} văn bản trước 7/2024`, `+${early} documents before Jul 2024`)}</text>`;
+// ch2 — stacked monthly columns by level (2px surface gaps, only the top segment rounded)
+function pgStBars(M) {
+  const el = document.getElementById('pg-st-bars'), D = PG.data.directives;
+  const cnt = M.map(([y, m]) => Object.fromEntries(PG_LV.map(l => [l, D.filter(d => d.level === l && +d.date.slice(0, 4) === y && +d.date.slice(5, 7) === m + 1).length])));
+  const tot = cnt.map(c => PG_LV.reduce((a, l) => a + c[l], 0)), mx = Math.max(...tot), early = D.filter(d => d.date < '2024-07-01').length;
+  const W = 1000, H = 300, ML = 30, MR = 20, MT = 30, MB = 26, slot = (W - ML - MR) / M.length, cx = i => ML + (i + .5) * slot, sy = stLin(0, Math.ceil(mx / 5) * 5, H - MB, MT);
+  let s = stAxisY(sy, stNice(0, mx, 3), ML, W - MR, v => v) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  cnt.forEach((c, i) => { s += stStackV(cx(i), slot, sy, PG_LV.map(l => ({ v: c[l], c: PG_LVC[l], key: [pgLvName(l) + ' · ' + pgMLab(M[i]), c[l] + stT(' văn bản', ' documents')] })), { d: i * 25 });
+    if (M[i][1] % 3 === 0) s += `<text class="st-tick" x="${cx(i)}" y="${H - 8}" text-anchor="middle" style="${M[i][1] === 0 ? 'font-weight:700;fill:#16181d' : ''}">${stT('T', '')}${M[i][1] + 1}/${String(M[i][0]).slice(2)}</text>`; });
+  const xi = (y, m) => M.findIndex(a => a[0] === y && a[1] === m);
+  const iP = tot.indexOf(mx); if (iP >= 0) s += stAnn(cx(iP), sy(mx) - 3, cx(iP) - 30, MT - 6, stT(`${pgMLab(M[iP])}: ${mx} văn bản`, `${pgMLab(M[iP])}: ${mx} documents`), 'end');
+  const iC = xi(2026, 0); if (iC >= 0 && iC !== iP) s += stAnn(cx(iC), sy(tot[iC]) - 3, cx(iC) - 40, sy(mx * .8), stT('T1/2026: Đại hội XIV', 'Jan 2026: 14th Congress'), 'end', 'sup');
+  const iN = xi(2024, 11); if (iN >= 0) s += stAnn(cx(iN), sy(tot[iN]) - 3, cx(iN) + 20, sy(mx * .72), stT('T12/2024: NQ 57 về khoa học, công nghệ', 'Dec 2024: Resolution 57 on science & tech'), 'start', 'sup');
+  if (early) s += `<text class="st-tick" x="${ML + 4}" y="${MT - 14}">${stT(`+${early} văn bản trước 7/2024 không hiển thị`, `+${early} documents before Jul 2024 not shown`)}</text>`;
   el.innerHTML = stSvg(W, H, s, stT('Số văn bản theo tháng và cấp ban hành', 'Documents per month by level'));
 }
-// ch2 — small multiples: one per level, documents per quarter
+// ch2 — small multiples per level, one shared scale, colour follows the level
 function pgStMult() {
   const el = document.getElementById('pg-st-mult'), D = PG.data.directives, Q = []; for (let y = 2024, q = 2; y < 2027; q++) { if (q > 3) { q = 0; y++; } if (new Date(y, q * 3, 1) > pgToday()) break; Q.push([y, q]); }
-  const all = ['party', 'assembly', 'government', 'ministry', 'local'].map(l => [l, Q.map(([y, q]) => D.filter(d => d.level === l && +d.date.slice(0, 4) === y && Math.floor((+d.date.slice(5, 7) - 1) / 3) === q).length)]);
+  const all = PG_LV.map(l => [l, Q.map(([y, q]) => D.filter(d => d.level === l && +d.date.slice(0, 4) === y && Math.floor((+d.date.slice(5, 7) - 1) / 3) === q).length)]);
   const mx = Math.max(1, ...all.flatMap(a => a[1]));
-  el.innerHTML = all.map(([l, a]) => { const W = 200, H = 70, bw = W / a.length, sy = stLin(0, mx, H - 14, 4);
-    const s = a.map((v, i) => `<rect class="st-grow" style="--d:${i * 40}ms" x="${i * bw + 1}" y="${sy(v)}" width="${bw - 2}" height="${sy(0) - sy(v)}" fill="${PG_LVC[l]}" data-st-k="${encodeURIComponent(pgLvName(l) + ' · Q' + (Q[i][1] + 1) + '/' + Q[i][0] + '|' + v + stT(' văn bản', ' documents'))}"/>`).join('') + `<text class="st-tick" x="0" y="${H}">Q${Q[0][1] + 1}/${String(Q[0][0]).slice(2)}</text><text class="st-tick" x="${W}" y="${H}" text-anchor="end">Q${Q[Q.length - 1][1] + 1}/${String(Q[Q.length - 1][0]).slice(2)}</text>`;
+  el.innerHTML = all.map(([l, a]) => { const W = 200, H = 74, slot = W / a.length, sy = stLin(0, mx, H - 16, 4);
+    const s = `<line class="st-base" x1="0" x2="${W}" y1="${sy(0)}" y2="${sy(0)}"/>` + a.map((v, i) => v ? stBarV((i + .5) * slot, slot, sy(v), sy(0), PG_LVC[l], [pgLvName(l) + ' · Q' + (Q[i][1] + 1) + '/' + Q[i][0], v + stT(' văn bản', ' documents')], { d: i * 40 }) : '').join('') + `<text class="st-tick" x="0" y="${H}">Q${Q[0][1] + 1}/${String(Q[0][0]).slice(2)}</text><text class="st-tick" x="${W}" y="${H}" text-anchor="end">Q${Q[Q.length - 1][1] + 1}/${String(Q[Q.length - 1][0]).slice(2)}</text>`;
     return `<div><div class="st-mini-h">${pgLvName(l)}</div><div class="st-mini-v">${D.filter(d => d.level === l).length}</div>${stSvg(W, H, s, pgLvName(l))}</div>`; }).join('');
 }
-// ch3 — documents per pillar, stacked by level, direct labels
+// ch3 — documents per pillar, stacked by level, sorted by total
 function pgStPillars() {
-  const el = document.getElementById('pg-st-pilbars'), D = PG.data.directives, LV = ['party', 'assembly', 'government', 'ministry', 'local'];
-  const P = PG.data.pillars.map(p => ({ p, c: Object.fromEntries(LV.map(l => [l, D.filter(d => d.pillar === p.id && d.level === l).length])), n: D.filter(d => d.pillar === p.id).length })).sort((a, b) => b.n - a.n);
-  const mx = Math.max(...P.map(x => x.n)), W = 1000, RH = 30, ML = 340, MR = 60, H = P.length * RH + 34, sx = stLin(0, mx, ML, W - MR);
-  let s = '';
-  P.forEach(({ p, c, n }, i) => { const y = 8 + i * RH; let x = ML;
-    s += `<text class="st-lab${i < 2 ? ' st-b' : ''}" x="${ML - 12}" y="${y + 15}" text-anchor="end">${ciE(pgPilName(p))}</text>`;
-    LV.forEach((l, k) => { if (!c[l]) return; const w = sx(c[l]) - ML; s += `<rect class="st-grow-x" style="--d:${i * 60 + k * 40}ms" x="${x}" y="${y}" width="${Math.max(1, w - 1.5)}" height="20" fill="${PG_LVC[l]}" data-st-k="${encodeURIComponent(pgPilName(p) + ' · ' + pgLvName(l) + '|' + c[l] + stT(' văn bản', ' documents'))}"/>`; if (w > 18) s += `<text x="${x + w / 2}" y="${y + 14}" text-anchor="middle" style="font:600 10.5px var(--font-ui);fill:#fff">${c[l]}</text>`; x += w; });
-    s += `<text class="st-val" x="${x + 8}" y="${y + 15}">${n}</text>`; });
-  let lx = ML; const ly = H - 8; LV.forEach(l => { s += `<rect x="${lx}" y="${ly - 9}" width="10" height="10" rx="2" fill="${PG_LVC[l]}"/><text class="st-lab" x="${lx + 15}" y="${ly}">${pgLvName(l)}</text>`; lx += 30 + pgLvName(l).length * 7; });
+  const el = document.getElementById('pg-st-pilbars'), D = PG.data.directives;
+  const P = PG.data.pillars.map(p => ({ p, c: Object.fromEntries(PG_LV.map(l => [l, D.filter(d => d.pillar === p.id && d.level === l).length])), n: D.filter(d => d.pillar === p.id).length })).sort((a, b) => b.n - a.n);
+  const mx = Math.max(...P.map(x => x.n)), W = 1000, RH = 30, ML = 340, MR = 60, H = P.length * RH + 8, sx = stLin(0, mx, ML, W - MR);
+  let s = `<line class="st-base" x1="${ML}" x2="${ML}" y1="0" y2="${H}"/>`;
+  P.forEach(({ p, c, n }, i) => { const y = 4 + i * RH + RH / 2;
+    s += `<text class="st-lab${i === 0 ? ' st-b' : ''}" x="${ML - 12}" y="${y + 4}" text-anchor="end">${ciE(pgPilName(p))}</text>`;
+    s += stStackH(y, RH, sx, PG_LV.map(l => ({ v: c[l], c: PG_LVC[l], key: [pgPilName(p) + ' · ' + pgLvName(l), c[l] + stT(' văn bản', ' documents')] })), { d: i * 60 });
+    s += `<text class="st-val" x="${sx(n) + 8}" y="${y + 4}">${n}</text>`; });
   el.innerHTML = stSvg(W, H, s, stT('Văn bản theo trụ cột', 'Documents by pillar'));
 }
-// ch4 — implementation rows: each Party document and every document downstream of it (implements/amends, transitively)
+// ch4 — mechanism diagram: who implements whom, with counts and median lags on the arrows (inline SVG, currentColor)
+function pgStFlow(hops) {
+  const el = document.getElementById('pg-st-flow'), keep = hops.filter(h => h.n >= 5);
+  const P = { party: [110, 150], assembly: [500, 70], government: [500, 230], ministry: [890, 70], local: [890, 230] }, BW = 150, BH = 46;
+  const LP = { 'assembly>ministry': [760, 62, 'middle'], 'government>local': [760, 222, 'middle'], 'assembly>local': [628, 112, 'start'], 'government>ministry': [628, 196, 'start'] };   // crossing pair: labels sit near their source so they never overlap
+  const mx = Math.max(...keep.map(h => h.n)), edge = (h, i) => { const [x1, y1] = P[h.from], [x2, y2] = P[h.to], w = 1 + h.n / mx * 3, lab = `${h.n} · ${stN(h.med, 0)} ${stT('ngày', 'days')}`, lp = LP[h.from + '>' + h.to];
+    let d, lx, ly;
+    if (h.from === 'party' && (h.to === 'ministry' || h.to === 'local')) { const top = h.to === 'ministry', yb = top ? 16 : 300; d = `M${x1},${y1 + (top ? -BH / 2 : BH / 2)} L${x1},${yb} L${x2},${yb} L${x2},${y2 + (top ? -BH / 2 : BH / 2) + (top ? -2 : 2)}`; lx = 700; ly = yb + (top ? -4 : 14); }
+    else if (h.from === h.to) return '';
+    else { const sx1 = x1 + BW / 2, sx2 = x2 - BW / 2 - 4; d = `M${sx1},${y1} C${(sx1 + sx2) / 2},${y1} ${(sx1 + sx2) / 2},${y2} ${sx2},${y2}`; lx = (sx1 + sx2) / 2; ly = (y1 + y2) / 2 + (y1 === y2 ? -8 : y1 < y2 ? -6 : 14); if (h.from === 'assembly' && h.to === 'local') ly += 18; if (h.from === 'government' && h.to === 'ministry') ly -= 18; }
+    if (lp) [lx, ly] = lp;
+    return `<path d="${d}" fill="none" stroke="currentColor" stroke-width="${w.toFixed(1)}" marker-end="url(#pgfa)" opacity=".75"/><text x="${lx}" y="${ly}" text-anchor="${lp ? lp[2] : 'middle'}" font-size="12" fill="currentColor" stroke="${ST_SURF}" stroke-width="4" paint-order="stroke">${lab}</text>`; };
+  let s = `<defs><marker id="pgfa" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="currentColor"/></marker></defs>`;
+  s += keep.map(edge).join('');
+  Object.entries(P).forEach(([k, [x, y]]) => { const n = PG.data.directives.filter(d => d.level === k).length; s += `<rect x="${x - BW / 2}" y="${y - BH / 2}" width="${BW}" height="${BH}" rx="6" fill="${ST_SURF}" stroke="currentColor" stroke-width="1.2"/><rect x="${x - BW / 2}" y="${y - BH / 2}" width="5" height="${BH}" rx="2" fill="${PG_LVC[k]}"/><text x="${x}" y="${y - 2}" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">${pgLvName(k)}</text><text x="${x}" y="${y + 14}" text-anchor="middle" font-size="11.5" fill="currentColor" opacity=".65">${n} ${stT('văn bản', 'documents')}</text>`; });
+  const fg = hops.find(h => h.from === 'party' && h.to === 'government'), fa = hops.find(h => h.from === 'party' && h.to === 'assembly'), cap = fg && fa ? stT(`Chính phủ thường ra nghị quyết, chương trình hành động trong vài tuần (trung vị ${stN(fg.med, 0)} ngày); luật và nghị quyết của Quốc hội cần một kỳ họp nên chậm hơn (trung vị ${stN(fa.med, 0)} ngày). Nhãn mũi tên: số văn bản · thời gian trung vị. Chỉ hiển thị các liên kết có từ 5 văn bản trở lên; độ dày mũi tên theo số văn bản.`, `The Government usually issues its action programme within weeks (median ${stN(fg.med, 0)} days); laws and NA resolutions need a session, so they come later (median ${stN(fa.med, 0)} days). Arrow labels: documents · median time. Only links with 5 or more documents are shown; arrow width follows the count.`) : '';
+  el.innerHTML = `<figure class="st-fig"><svg viewBox="0 0 1000 320" role="img" aria-label="${ciE(cap)}">${s}</svg><figcaption>${cap}</figcaption></figure>`;
+}
+// ch4 — implementation rows: each Party document and every document downstream of it (all-pairs form → 3 hues + grey)
 function pgStRows() {
-  const el = document.getElementById('pg-st-rows'), D = PG.data, by = PG.byId;
+  const el = document.getElementById('pg-st-rows'), D = PG.data, by = PG.byId, col = l => l === 'assembly' || l === 'government' ? PG_LVC[l] : ST_MUTE;
   const down = id => { const out = new Set(), q = [id]; while (q.length) { const c = q.shift(); D.relations.forEach(r => { if (r.to === c && r.type !== 'related' && !out.has(r.from) && r.from !== id) { out.add(r.from); q.push(r.from); } }); } return [...out].map(k => by[k]).filter(Boolean); };
   const rows = D.directives.filter(d => d.level === 'party' && d.date >= '2024-07-01').map(d => ({ d, k: down(d.id) })).filter(r => r.k.length).sort((a, b) => b.k.length - a.k.length).slice(0, 10);
   if (!rows.length) { el.innerHTML = ''; return; }
-  const t0 = pgDate('2024-10-01').getTime(), t1 = pgToday().getTime() + 120 * 864e5, W = 1000, ML = 210, MR = 40, RH = 34, H = rows.length * RH + 30, sx = t => ML + (Math.max(t, t0) - t0) / (t1 - t0) * (W - ML - MR);
+  const t0 = pgDate('2024-10-01').getTime(), t1 = pgToday().getTime() + 120 * 864e5, W = 1000, ML = 210, MR = 40, RH = 36, H = rows.length * RH + 30, sx = t => ML + (Math.max(t, t0) - t0) / (t1 - t0) * (W - ML - MR);
   let s = '';
   for (let d = new Date(2024, 9, 1); d.getTime() < t1; d.setMonth(d.getMonth() + 3)) { const x = sx(d.getTime()); s += `<line class="st-grid" x1="${x}" x2="${x}" y1="4" y2="${H - 20}"/><text class="st-tick" x="${x}" y="${H - 4}" text-anchor="middle">${stT('T', '')}${d.getMonth() + 1}/${String(d.getFullYear()).slice(2)}</text>`; }
-  const tx = sx(pgToday().getTime()); s += `<line x1="${tx}" x2="${tx}" y1="0" y2="${H - 20}" stroke="${ST.red}" stroke-width="1.2"/><text class="st-tick" x="${tx + 4}" y="10" style="fill:${ST.red}">${stT('hôm nay', 'today')}</text>`;
+  const tx = sx(pgToday().getTime()); s += `<line x1="${tx}" x2="${tx}" y1="0" y2="${H - 20}" stroke="${ST.ink}" stroke-width="1"/><text class="st-tick" x="${tx + 4}" y="10">${stT('hôm nay', 'today')}</text>`;
   const lags = [];
-  rows.forEach(({ d, k }, i) => { const y = 14 + i * RH, x0 = sx(pgDate(d.date).getTime()), xs = k.map(x => sx(pgDate(x.date).getTime()));
+  rows.forEach(({ d, k }, i) => { const y = 16 + i * RH, x0 = sx(pgDate(d.date).getTime()), xs = k.map(x => sx(pgDate(x.date).getTime()));
     s += `<text class="st-lab st-b" x="${ML - 12}" y="${y + 4}" text-anchor="end">${ciE(pgShort(d))} <tspan class="st-tick">· ${k.length}</tspan></text>`;
-    s += `<line class="st-grow-x" style="--d:${i * 70}ms" x1="${x0}" x2="${Math.max(x0, ...xs)}" y1="${y}" y2="${y}" stroke="${ST.rule}" stroke-width="2"/>`;
-    s += `<path d="M${x0},${y - 7} L${x0 + 7},${y} L${x0},${y + 7} L${x0 - 7},${y} Z" fill="${ST.red}" data-st-k="${encodeURIComponent(d.ref + '|' + pgFmt(d.date) + ' · ' + pgShortTitle(d))}"/>`;
+    s += `<line class="st-grow-x" style="--d:${i * 70}ms" x1="${x0}" x2="${Math.max(x0, ...xs)}" y1="${y}" y2="${y}" stroke="#e1e0d9" stroke-width="2"/>`;
+    s += `<g ${stKey(d.ref, pgFmt(d.date) + ' · ' + pgShortTitle(d))}><circle cx="${x0}" cy="${y}" r="12" fill="transparent"/><path d="M${x0},${y - 7} L${x0 + 7},${y} L${x0},${y + 7} L${x0 - 7},${y} Z" fill="${PG_LVC.party}" stroke="${ST_SURF}" stroke-width="2"/></g>`;
     const gv = k.filter(x => x.level !== 'party').map(x => (pgDate(x.date) - pgDate(d.date)) / 864e5).filter(v => v >= 0); if (gv.length) lags.push(Math.min(...gv));
-    k.slice().sort((a, b) => a.date.localeCompare(b.date)).forEach((x, j) => { const xx = sx(pgDate(x.date).getTime()), dr = pgStage(x) === 'draft';
-      s += `<circle class="st-cell" style="--d:${i * 70 + j * 30}ms" cx="${xx}" cy="${y + ((j % 3) - 1) * 6}" r="5" fill="${dr ? '#fff' : PG_LVC[x.level] || ST.ink3}" stroke="${dr ? PG_LVC[x.level] : '#fff'}" stroke-width="${dr ? 2 : 1}" data-st-k="${encodeURIComponent(x.ref + ' · ' + pgLvName(x.level) + '|' + pgFmt(x.date) + ' · ' + pgShortTitle(x))}"/>`; }); });
+    k.slice().sort((a, b) => a.date.localeCompare(b.date)).forEach((x, j) => { const dr = pgStage(x) === 'draft';
+      s += stDot(sx(pgDate(x.date).getTime()), y + ((j % 3) - 1) * 7, 4.5, col(x.level), [x.ref + ' · ' + pgLvName(x.level), pgFmt(x.date) + ' · ' + pgShortTitle(x)], { hollow: dr, d: i * 70 + j * 30 }); }); });
   el.innerHTML = stSvg(W, H, s, stT('Chuỗi triển khai nghị quyết', 'Implementation chains'));
-  lags.sort((a, b) => a - b); const med = lags.length ? lags[Math.floor(lags.length / 2)] : null, top = rows[0];
-  const fact = (v, t, sub, c) => `<div class="st-fact" style="border-color:${c}"><div class="st-mini-v">${v}</div><div class="st-mini-h">${t}</div><div class="st-fact-s">${sub}</div></div>`;
-  document.getElementById('pg-st-facts').innerHTML = fact(med == null ? '—' : stN(med, 0) + stT(' ngày', ' days'), stT('Thời gian trung vị đến văn bản Nhà nước đầu tiên', 'Median time to the first State document'), stT('từ ngày Đảng ban hành đến khi Quốc hội, Chính phủ hoặc bộ ngành có văn bản triển khai đầu tiên', 'from the Party\'s issue date to the first implementing law, decree or ministry document'), ST.red)
-    + fact(top.k.length, stT(`văn bản triển khai ${pgShort(top.d)}`, `documents implement ${pgShort(top.d)}`), ciE(pgShortTitle(top.d)), PG_LVC.government)
-    + fact(D.relations.length, stT('liên kết triển khai được ghi nhận', 'implementation links recorded'), stT('triển khai, sửa đổi/thay thế và liên quan', 'implements, amends/replaces and related'), PG_LVC.assembly);
+  const med = pgMed(lags), top = rows[0];
+  const fact = (v, t, sub) => `<div class="st-fact"><div class="st-mini-v">${v}</div><div class="st-mini-h">${t}</div><div class="st-fact-s">${sub}</div></div>`;
+  document.getElementById('pg-st-facts').innerHTML = fact(med == null ? '—' : stN(med, 0) + stT(' ngày', ' days'), stT('Trung vị đến văn bản Nhà nước đầu tiên', 'Median time to the first State document'), stT(`trên ${lags.length} nghị quyết, kết luận ở trên`, `across the ${lags.length} resolutions above`))
+    + fact(top.k.length, stT(`văn bản triển khai ${pgShort(top.d)}`, `documents implement ${pgShort(top.d)}`), ciE(pgShortTitle(top.d)))
+    + fact(D.relations.length, stT('liên kết được ghi nhận', 'links recorded'), stT('triển khai, sửa đổi/thay thế và liên quan', 'implements, amends/replaces and related'));
 }
-// ch5 — drafts: latest milestone → expected adoption ("Kỳ họp thứ 2" = the Oct–Nov 2026 NA session, closing 20/11)
-const pgExpectedS = d => pgExpected(d) || (/Kỳ họp thứ 2/.test((d.draft || {}).expected || '') ? pgDate('2026-11-20') : null);
+// ch5 — drafts: latest milestone → expected adoption
 function pgStDrafts() {
   const el = document.getElementById('pg-st-drafts'), A = PG.data.directives.filter(d => pgStage(d) === 'draft').map(d => ({ d, ex: pgExpectedS(d) })).sort((a, b) => (a.ex ? a.ex.getTime() : 9e15) - (b.ex ? b.ex.getTime() : 9e15) || a.d.date.localeCompare(b.d.date));
   if (!A.length) { el.innerHTML = ''; return; }
   const t0 = pgDate('2026-09-01').getTime(), t1 = Math.max(pgDate('2027-01-15').getTime(), ...A.map(a => a.ex ? a.ex.getTime() + 20 * 864e5 : 0));
-  const W = 1000, ML = 420, MR = 30, RH = 24, H = A.length * RH + 40, sx = t => ML + (t - t0) / (t1 - t0) * (W - ML - MR), y0 = 26;
+  const W = 1000, ML = 420, MR = 30, RH = 26, H = A.length * RH + 40, sx = t => ML + (t - t0) / (t1 - t0) * (W - ML - MR), y0 = 28;
   let s = '';
   for (let d = new Date(2026, 8, 1); d.getTime() < t1; d.setMonth(d.getMonth() + 1)) { const x = sx(d.getTime()); s += `<line class="st-grid" x1="${x}" x2="${x}" y1="${y0 - 10}" y2="${H - 18}"/><text class="st-tick" x="${x + 3}" y="${H - 4}">${stT('T', '')}${d.getMonth() + 1}/${String(d.getFullYear()).slice(2)}</text>`; }
   const ss = sx(pgDate('2026-10-17').getTime()), se = sx(pgDate('2026-11-20').getTime());
-  s += `<rect x="${ss}" y="${y0 - 12}" width="${se - ss}" height="${H - y0 - 6}" fill="${ST.blue}" opacity=".08"/><text class="st-lab st-b" x="${ss + 4}" y="${y0 - 16}" style="fill:${ST.blue}">${stT('Kỳ họp thứ 2, QH khóa XVI (17/10–20/11)', '2nd session, 16th National Assembly (17 Oct–20 Nov)')}</text>`;
-  const tx = sx(pgToday().getTime()); s += `<line x1="${tx}" x2="${tx}" y1="${y0 - 12}" y2="${H - 18}" stroke="${ST.red}" stroke-width="1.2"/>`;
-  A.forEach(({ d, ex }, i) => { const y = y0 + i * RH, xa = sx(pgDate(d.date).getTime()), c = PG_LVC[d.level] || ST.ink3, t = d.ref.replace(/^Dự thảo\s*/i, '');
-    s += `<text class="st-lab" x="${ML - 12}" y="${y + 4}" text-anchor="end" data-st-k="${encodeURIComponent(d.ref + '|' + ((d.draft || {}).expected || stT('chưa rõ thời điểm thông qua', 'adoption date not set')))}">${ciE(t.length > 62 ? t.slice(0, 60) + '…' : t)}</text>`;
-    if (ex) { const xe = sx(ex.getTime()); s += `<line class="st-grow-x" style="--d:${i * 50}ms" x1="${xa}" x2="${xe}" y1="${y}" y2="${y}" stroke="${c}" stroke-width="3" opacity=".5"/><path d="M${xe},${y - 6} L${xe + 6},${y} L${xe},${y + 6} L${xe - 6},${y} Z" fill="#fff" stroke="${c}" stroke-width="2"/>`; }
-    else s += `<text class="st-tick" x="${xa + 10}" y="${y + 4}">${stT('chưa có lịch thông qua', 'no adoption date yet')}</text>`;
-    s += `<circle cx="${xa}" cy="${y}" r="4.5" fill="${c}" data-st-k="${encodeURIComponent(t + '|' + stT('mốc gần nhất ', 'latest milestone ') + pgFmt(d.date) + ((d.draft || {}).process_stage ? ' · ' + d.draft.process_stage : ''))}"/>`; });
-  let lx = 0; ['assembly', 'government'].forEach(l => { s += `<circle cx="${lx + 5}" cy="${8}" r="4.5" fill="${PG_LVC[l]}"/><text class="st-tick" x="${lx + 14}" y="${12}">${pgLvName(l)}</text>`; lx += 120; });
+  s += `<rect x="${ss}" y="${y0 - 12}" width="${se - ss}" height="${H - y0 - 6}" fill="#f0efec"/><text class="st-lab st-b" x="${ss + 4}" y="${y0 - 16}">${stT('Kỳ họp thứ 2, QH khóa XVI (17/10–20/11)', '2nd session, 16th NA (17 Oct–20 Nov)')}</text>`;
+  const tx = sx(pgToday().getTime()); s += `<line x1="${tx}" x2="${tx}" y1="${y0 - 12}" y2="${H - 18}" stroke="${ST.ink}" stroke-width="1"/>`;
+  A.forEach(({ d, ex }, i) => { const y = y0 + i * RH, xa = sx(pgDate(d.date).getTime()), c = PG_LVC[d.level] || ST_MUTE, t = d.ref.replace(/^Dự thảo\s*/i, '');
+    s += `<text class="st-lab" x="${ML - 12}" y="${y + 4}" text-anchor="end" ${stKey(d.ref, (d.draft || {}).expected || stT('chưa rõ thời điểm thông qua', 'adoption date not set'))}>${ciE(t.length > 62 ? t.slice(0, 60) + '…' : t)}</text>`;
+    if (ex) { const xe = sx(ex.getTime()); s += `<line class="st-grow-x" style="--d:${i * 50}ms" x1="${xa}" x2="${xe}" y1="${y}" y2="${y}" stroke="${c}" stroke-width="2" opacity=".6"/><path d="M${xe},${y - 6} L${xe + 6},${y} L${xe},${y + 6} L${xe - 6},${y} Z" fill="${ST_SURF}" stroke="${c}" stroke-width="2"/>`; }
+    else s += `<text class="st-tick" x="${xa + 12}" y="${y + 4}">${stT('chưa có lịch thông qua', 'no adoption date yet')}</text>`;
+    s += stDot(xa, y, 4.5, c, [t, stT('mốc gần nhất ', 'latest milestone ') + pgFmt(d.date) + ((d.draft || {}).process_stage ? ' · ' + d.draft.process_stage : '')]); });
   el.innerHTML = stSvg(W, H, s, stT('Dự thảo và thời điểm dự kiến thông qua', 'Drafts and expected adoption'));
 }
 // ── /STORY Party ──
