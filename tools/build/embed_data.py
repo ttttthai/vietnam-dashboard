@@ -34,6 +34,9 @@ def dump(v):   # one line, same style as the page
 
 def main():
     args = sys.argv[1:]
+    if any(a in ('-h', '--help') for a in args): print(__doc__); return
+    bad = [a for a in args if (a.startswith('-') and a not in ('--check', '--extract')) or (not a.startswith('-') and a not in OWNERS)]
+    if bad: raise SystemExit(f'unknown argument(s): {bad}; use one of {list(OWNERS)}, --check, --extract, --help')
     html = open(PAGE, encoding='utf-8').read()
     if '--extract' in args:
         os.makedirs(DATA, exist_ok=True)
