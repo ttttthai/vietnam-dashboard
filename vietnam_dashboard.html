@@ -845,6 +845,20 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-tbl table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
   .st-tbl th, .st-tbl td { text-align: left; padding: 4px 10px 4px 0; border-bottom: 1px solid #efede7; font-weight: 400; color: #16181d; }
   .st-tbl thead th { font-weight: 600; color: #5b6170; position: sticky; top: 0; background: #faf8f3; }
+  .st-eqn { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; margin: 4px 0 6px; }
+  .st-eqo { align-self: center; font: 600 22px var(--font-ui); color: #5b6170; }
+  .st-eqt { flex: 1 1 130px; min-width: 120px; background: #fff; border: 1px solid #e1e0d9; border-top: 3px solid var(--c, #16181d); border-radius: 4px; padding: 10px 12px 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
+  .st-eqt:hover { border-color: #16181d; border-top-color: var(--c, #16181d); }
+  .st-eqt-gdp { flex: 1.3 1 160px; background: #16181d; border-color: #16181d; color: #fff; }
+  .st-eqt-gdp .st-eqt-n, .st-eqt-gdp .st-eqt-p { color: #c9ccd2; } .st-eqt-gdp .st-eqt-sym, .st-eqt-gdp .st-eqt-v { color: #fff; }
+  .st-eqt-s { flex: .6 1 96px; min-width: 96px; }
+  .st-eqt-sym { font: 700 24px/1.1 var(--font-ui); color: #16181d; }
+  .st-eqt-n { font: 400 12px/1.35 var(--font-ui); color: #5b6170; min-height: 2.7em; }
+  .st-eqt-v { font: 650 15px var(--font-ui); color: #16181d; }
+  .st-eqt-p { font: 500 12px var(--font-ui); color: #5b6170; font-variant-numeric: tabular-nums; }
+  .st-eqt-bar { height: 4px; background: #efede7; border-radius: 2px; margin-top: 6px; overflow: hidden; } .st-eqt-bar i { display: block; height: 100%; background: var(--c); border-radius: 2px; }
+  .st-eqt-sub { font: 400 11.5px var(--font-ui); color: #8a8f99; margin-top: 2px; }
+  @media (max-width: 700px) { .st-eqo { font-size: 18px; } .st-eqt { flex-basis: 40%; } }
   .st-watch { counter-reset: w; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 6px 0 0; padding: 0; list-style: none; }
   @media (max-width: 900px) { .st-watch { grid-template-columns: 1fr; } }
   .st-watch li { border-top: 2px solid #16181d; padding-top: 10px; font: 400 13.5px/1.5 var(--font-ui); color: #5b6170; }
@@ -5634,7 +5648,7 @@ function renderEconStory() {
   // ── 1. GDP formula ──
   h += stChap('st-formula', stT('Chương 1 · Công thức GDP', 'Chapter 1 · The GDP formula'),
     stT(`Hộ gia đình chi tiêu ${stN(pct('C'), 1)}% GDP, nhiều hơn đầu tư và Nhà nước cộng lại`, `Households spend ${stN(pct('C'), 1)}% of GDP, more than investment and government combined`),
-    stT('GDP = C + I + G + (X − M). Mỗi khối có độ rộng đúng bằng tỷ trọng của nó trong GDP năm ' + yr + '.', 'GDP = C + I + G + (X − M). Each block is drawn to its exact share of GDP in ' + yr + '.'),
+    stT('GDP = C + I + G + (X − M), năm ' + yr + ' theo giá hiện hành. Thanh màu dưới mỗi khối là tỷ trọng của nó trong GDP.', 'GDP = C + I + G + (X − M), ' + yr + ' at current prices. The bar under each block is its share of GDP.'),
     `<div id="st-eq" class="st-viz"></div>
      <div class="st-sub">${stT('Xuất khẩu và nhập khẩu, so với cả GDP (%)', 'Exports and imports, against all of GDP (%)')}</div><div id="st-giants" class="st-viz"></div>
      <div class="st-sub">${stT('Cơ cấu thay đổi thế nào, 2015–2025 (% GDP)', 'How the mix has shifted, 2015–2025 (% of GDP)')}</div><div id="st-mix-leg"></div><div id="st-mix" class="st-viz"></div><div id="st-mix-note"></div>
@@ -5777,19 +5791,21 @@ function stGrowth() {
   s += `<text class="st-lab st-b" x="${cx(last)}" y="${sy(vals[last]) - 7}" text-anchor="middle">${stN(vals[last], 2)}%</text>`;
   el.innerHTML = stSvg(W, H, s, stT('Tăng trưởng GDP 2011–2026', 'GDP growth 2011–2026'));
 }
-// 1a — the equation as one proportional bar (part-to-whole; 2px surface gaps between blocks)
+// 1a — the equation as separate blocks with operators (GDP = C + I + G + (X − M) + ε); each block carries its
+// series colour as a top rule and a share bar drawn to its % of GDP, so the blocks stay comparable
 function stEquation() {
   const el = document.getElementById('st-eq'), G = ECONFLOW.gdp, gy = G.years.length - 1, pct = k => { const a = G.pct_gdp[k]; return Array.isArray(a) ? a[gy] : a; };
-  const parts = [['C', stT('Hộ gia đình tiêu dùng', 'Household consumption'), pct('C'), ST.blue, G.C[gy]], ['I', stT('Đầu tư', 'Investment'), pct('I'), ST.orange, G.I[gy]], ['G', stT('Nhà nước chi tiêu', 'Government'), pct('G'), ST.aqua, G.G[gy]], ['X−M', stT('Xuất khẩu ròng', 'Net exports'), pct('net_exports'), ST.yellow, G.net_exports[gy]], ['ε', stT('sai số thống kê', 'statistical discrepancy'), pct('discrepancy'), ST_MUTE, G.discrepancy[gy]]];
-  const W = 1000, H = 176, x0 = 10, x1 = W - 10, tot = parts.reduce((t, p) => t + p[2], 0), sc = (x1 - x0) / tot;
-  let x = x0, s = '';
-  parts.forEach(([sym, name, p, c, v], i) => { const w = p * sc, dark = c === ST.blue || c === ST.orange;
-    s += `<path class="st-bar st-grow-x" style="--d:${i * 120}ms" d="${stRR(x, 40, Math.max(1, w - 2), 64, 4, [i === 0, i === parts.length - 1, i === parts.length - 1, i === 0])}" fill="${c}" ${stKey(sym + ' · ' + name, stN(p, 1) + '% GDP · ' + stN(v / 1e3, 0) + stT(' nghìn tỷ', ' tn VND'))}/>`;
-    if (w > 70) s += `<text x="${x + 10}" y="${72}" class="st-eq-sym" style="fill:${dark ? '#fff' : '#16181d'}">${sym}</text><text x="${x + 10}" y="${94}" class="st-eq-val" style="fill:${dark ? '#fff' : '#16181d'}">${stN(p, 1)}%</text>`;
-    if (w > 70) s += `<text class="st-lab" x="${x + 10}" y="28">${name}</text><text class="st-tick" x="${x + 10}" y="124">${stN(v / 1e3, 0)} ${stT('nghìn tỷ', 'tn')}</text>`;
-    else s += stAnn(x + w / 2, 104, x + w / 2 - 40, i === parts.length - 1 ? 166 : 148, `${sym} ${name} ${stN(p, 1)}%`, 'end', 'sup');
-    x += w; });
-  el.innerHTML = stSvg(W, H, s, 'GDP = C + I + G + (X − M)');
+  const gr = (G.growth_real_pct || {})['9M_2026_yoy'] || {}, tn = v => stN(v / 1e3, 0) + stT(' nghìn tỷ', ' tn VND');
+  const T = [['C', stT('Tiêu dùng hộ gia đình', 'Household consumption'), 'C', ST.blue, ''],
+    ['I', stT('Đầu tư (tích luỹ tài sản)', 'Investment (capital formation)'), 'I', ST.orange, stT(`9T/2026 +${stN(gr.gross_capital_formation, 1)}%`, `9M-2026 +${stN(gr.gross_capital_formation, 1)}%`)],
+    ['G', stT('Chi tiêu của Nhà nước', 'Government consumption'), 'G', ST.aqua, ''],
+    ['(X − M)', stT('Xuất khẩu ròng', 'Net exports'), 'net_exports', ST.yellow, `X ${stN(pct('X'), 0)}% · M ${stN(pct('M'), 0)}% GDP`],
+    ['ε', stT('Sai số thống kê', 'Statistical discrepancy'), 'discrepancy', ST_MUTE, '']];
+  const block = ([sym, name, k, c, sub], i) => { const p = pct(k), v = G[k][gy];
+    return `<div class="st-eqt${k === 'discrepancy' ? ' st-eqt-s' : ''} st-fade" style="--c:${c};--d:${i * 90}ms" ${stKey(sym + ' · ' + name, tn(v) + ' · ' + stN(p, 1) + '% GDP')}><div class="st-eqt-sym">${sym}</div><div class="st-eqt-n">${name}</div><div class="st-eqt-v">${tn(v)}</div><div class="st-eqt-p">${stN(p, 1)}% GDP</div><div class="st-eqt-bar"><i style="width:${Math.max(1, Math.min(100, Math.abs(p)))}%"></i></div>${sub ? `<div class="st-eqt-sub">${sub}</div>` : ''}</div>`; };
+  el.innerHTML = `<div class="st-eqn" role="group" aria-label="GDP = C + I + G + (X − M) + ε">
+    <div class="st-eqt st-eqt-gdp st-fade" style="--d:0ms" ${stKey('GDP · ' + stT('Tổng sản phẩm trong nước', 'Gross domestic product'), tn(G.GDP[gy]))}><div class="st-eqt-sym">GDP</div><div class="st-eqt-n">${stT('Tổng sản phẩm trong nước', 'Gross domestic product')}</div><div class="st-eqt-v">${tn(G.GDP[gy])}</div><div class="st-eqt-p">${stT('tăng 9T/2026', '9M-2026 growth')} ${stN(gr.GDP, 2)}%</div></div>
+    <div class="st-eqo">=</div>${T.map((t, i) => (i ? `<div class="st-eqo">+</div>` : '') + block(t, i + 1)).join('')}</div>`;
 }
 // 1b — exports and imports against GDP (3 bars, 24px)
 function stGiants() {
