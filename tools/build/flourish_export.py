@@ -1,23 +1,16 @@
 """Export the datasets behind the dashboard's Flourish charts as CSV (one file per visualisation).
 
-Flourish visualisations (created 2026-10-06 via the Flourish connector; publish them in Flourish to embed):
-  30475879  GDP growth 2011–2030: actuals, forecasts, target   (line-bar-pie)
-  30475880  Where bank credit goes (latest SBV sector month)    (sankey)
-  30475882  34 provinces: income vs fertility                   (scatter)
-  30476086  GDP per capita 2010–2030: NSO, IMF path, target    (line-bar-pie)
-  30476088  CPI 2015–2028: NSO, institution forecasts, target  (line-bar-pie)
-  30476092  Population 2000–2050: NSO, GSO/UNFPA, UN WPP       (line-bar-pie)
-  30476094  SBV policy rates 2023–2026 (step lines)            (line-bar-pie)
-  30476096  Policy moves per quarter: easing vs tightening     (line-bar-pie, column stacked)
-  30476097  Total credit / GDP: actual + dashboard scenario    (line-bar-pie)
-  30476098  Credit vs deposit growth 2015–2025                 (line-bar-pie)
-  30476099  Tracked documents per quarter by issuing level     (line-bar-pie, column stacked)
-  30476100  Drafts in the pipeline: first → latest milestone   (gantt)
-  30476104  Public investment disbursed 9M-2026, central/local (line-bar-pie, bar)
+Flourish visualisations (created 2026-10-06 via the Flourish connector; publish them in Flourish to embed).
+On the page (data/flourish.json, after the 2026-10-06 chart audit, data/research/chart_audit.md):
+  30475882  34 provinces: GRDP per person vs GRDP growth, 2020 → 2024 → 2025 (scatter, time slider)
+  30476438  GDP by economic activity, % of GDP at current prices, 2010–2025       (bar chart race)
+Retired from the page (duplicate a native chart; drafts stay in the Flourish account, ids in _meta.retired):
+  30475879 30475880 30476086 30476088 30476092 30476094 30476096 30476097 30476098 30476099 30476100 30476104
+  Their export blocks (#1, #2, #4–#13) are kept so the CSVs stay reproducible if anyone reuses the drafts elsewhere.
 Registry of all charts (tab, story chapter, URLs): data/flourish.json.
 
 Usage:  python3 tools/build/flourish_export.py [out_dir]   (default: data/flourish/)
-Then upload each CSV to its visualisation (Flourish connector: flourish_update_visualisation_data,
+Then upload each CSV (30476438 also takes gdp_by_activity_race_captions.csv as its "captions" dataset) to its visualisation (Flourish connector: flourish_update_visualisation_data,
 or the Data tab in the Flourish editor). Column order must stay the same so the bindings keep working.
 """
 import csv, json, os, re, sys
@@ -65,17 +58,26 @@ for n, v, note in [('Real-estate business', reb, f"MoC, {it['re_business']['as_o
     rows.append(['Other services', n, round(v / 1000, 1), f'{v / os_ * 100:.0f}% of other services · {note}'])
 write('credit_sankey.csv', ['Source', 'Target', 'Value (tn VND)', 'Note'], rows)
 
-# 3 · Provinces scatter: GRDP per capita (USD) vs fertility, region from the page's PROVS list
+# 3 · Provinces scatter with a time slider (30475882): one row per province × year, years 2020, 2024, 2025.
+# Only metrics that exist for every slider year (SOC_GRDP): GRDP per person in USD (x), real GRDP growth % (y),
+# average population (size). Fertility is NOT on the slider: TFR exists for 2020 (PROV_PREV) and 2024 (SOC_PROV_DATA)
+# only, so it would have no 2025 frame. Region (colour + filter) from the page's PROVS list.
 html = open(os.path.join(ROOT, 'vietnam_dashboard.html'), encoding='utf-8').read()
 reg = {m.group(1): int(m.group(2)) for m in re.finditer(r"n:'([^']+)',\s*v:(\d)", html)}
 RN = ['', 'Northern midlands & mountains', 'Red River Delta', 'North Central', 'South Central Coast & Central Highlands', 'Southeast', 'Mekong Delta']
 G, D, rows = S['SOC_GRDP'], S['SOC_PROV_DATA'], []
-for p, d in D.items():
-    g = G.get(p, {})
-    rows.append([p, (g.get('grdp_pc_usd') or {}).get('2025'), d.get('tfr'), RN[reg[p]] if reg.get(p) else '',
-                 round(d['pop'] / 1e6, 2), (g.get('growth') or {}).get('2025'), d.get('urban_pct')])
-write('provinces_scatter.csv', ['Province', 'GRDP per capita 2025 (USD)', 'Fertility rate 2024 (children per woman)', 'Region',
-                                'Population 2025 (m)', 'GRDP growth 2025 (%)', 'Urban share (%)'], rows)
+SC_YEARS = ['2020', '2024', '2025']
+SC_STATUS = {'2020': 'official', '2024': 'preliminary', '2025': 'estimate'}
+for y in SC_YEARS:
+    for p in D:
+        g = G[p]
+        rows.append([p, y, g['grdp_pc_usd'][y], g['growth'][y], round(g['pop_avg_thousand'][y] / 1000, 2),
+                     RN[reg[p]] if reg.get(p) else '', g['grdp_pc_mvnd'][y], SC_STATUS[y]])
+write('provinces_scatter.csv', ['Province', 'Year', 'GRDP per person (USD)', 'Real GRDP growth (%)', 'Average population (m)',
+                                'Region', 'GRDP per person (million VND)', 'NSO status'], rows)
+for y in SC_YEARS:   # numbers behind the title/subtitle (printed so the text can be re-checked after a data update)
+    v = sorted(((G[p]['grdp_pc_usd'][y], p) for p in D), reverse=True)
+    print(f'  scatter {y}: richest {v[0][1]} {v[0][0]}, poorest {v[-1][1]} {v[-1][0]}, ratio {v[0][0] / v[-1][0]:.1f}x')
 
 # ── Flagship charts added 2026-10-06 (one block per visualisation; ids in data/flourish.json) ──
 import datetime as _dt
@@ -176,3 +178,41 @@ pi = MAC['public_invest']
 rows = [['Central budget', pi['central_pct'], round(pi['central_bn'] / 1000, 1)], ['Local budgets', pi['local_pct'], round(pi['local_bn'] / 1000, 1)],
         ['Total', pi['pct'], round(pi['disbursed_bn'] / 1000, 1)]]
 write('public_investment_9m.csv', ['Budget', 'Disbursed (% of 2026 plan)', 'Disbursed (tn VND)'], rows)
+
+# 14 · GDP by economic activity, % of GDP at current prices, 2010–2025 (bar chart race). Source: the page's
+# GDP_SUB_OFFICIAL (NSO PxWeb V03.04-05, revised 2021 vintage; 2024 preliminary, 2025 estimate) for the 19 non-farm
+# activities, plus agriculture, forestry & fishing as one bar from GDP_SECTORS 'agr' 2010–2025 (NSO V03.02; not split at
+# current prices). Taxes less subsidies on products (~8% of GDP) is not an activity, so the bars sum to ~92%, not 100%.
+# Category = the page's three sector groups (colours = the page's GDP_SECTORS colours).
+GSO = json.loads(re.search(r'const GDP_SUB_OFFICIAL = (\{.*?\});', html).group(1).replace('y0:', '"y0":').replace('data:', '"data":'))
+GY = json.loads(re.search(r'const GDP_YEARS\s*=\s*(\[[^\]]*\])', html).group(1))
+AGR = json.loads(re.search(r"\{key:'agr'[^}]*?data:(\[[^\]]*\])", html).group(1))
+AN = [('mining', 'Mining & quarrying', 'Industry & construction'), ('manufacturing', 'Manufacturing', 'Industry & construction'),
+      ('electricity_gas', 'Electricity & gas', 'Industry & construction'), ('water_waste', 'Water supply & waste', 'Industry & construction'),
+      ('construction', 'Construction', 'Industry & construction'), ('wholesale_retail', 'Wholesale & retail trade', 'Services'),
+      ('transport_storage', 'Transport & storage', 'Services'), ('accommodation_food', 'Hotels & restaurants', 'Services'),
+      ('ict', 'Information & communications', 'Services'), ('finance_insurance', 'Finance, banking & insurance', 'Services'),
+      ('real_estate', 'Real estate', 'Services'), ('professional_science_tech', 'Professional, science & tech', 'Services'),
+      ('admin_support', 'Administrative & support', 'Services'), ('public_admin_defence', 'Public admin, defence & social security', 'Services'),
+      ('education', 'Education & training', 'Services'), ('health_social', 'Health & social work', 'Services'),
+      ('arts_entertainment', 'Arts & entertainment', 'Services'), ('other_services', 'Other services', 'Services'),
+      ('households_employers', 'Households as employers', 'Services')]
+y0, n = GSO['y0'], len(GSO['data']['manufacturing'])
+yrs = list(range(y0, y0 + n))
+assert set(GSO['data']) == {k for k, _, _ in AN}, 'GDP_SUB_OFFICIAL keys changed'
+rows = [[nm, cat] + GSO['data'][k] for k, nm, cat in AN]
+rows.append(['Agriculture, forestry & fishing', 'Agriculture, forestry & fishing'] + [AGR[GY.index(y)] for y in yrs])
+write('gdp_by_activity_race.csv', ['Activity', 'Sector group'] + [str(y) for y in yrs], rows)
+rk = lambda j: {r[0]: i + 1 for i, r in enumerate(sorted(rows, key=lambda r: -r[2 + j]))}
+r0, r1 = rk(0), rk(n - 1)
+for r in sorted(rows, key=lambda r: r1[r[0]]):   # rank and share at both ends (numbers behind the title)
+    print(f'  race {r[0]}: #{r0[r[0]]} {r[2]}% ({yrs[0]}) -> #{r1[r[0]]} {r[-1]}% ({yrs[-1]})')
+# 14b · Captions for the race (second Flourish dataset "captions"); every number computed from the rows above
+R = {r[0]: dict(zip(yrs, r[2:])) for r in rows}
+from decimal import Decimal, ROUND_HALF_UP
+f1 = lambda v: str(Decimal(str(v)).quantize(Decimal('0.1'), ROUND_HALF_UP))   # half-up, so 4.25 → 4.3
+caps = [[2010, 2014, f"2010: manufacturing {f1(R['Manufacturing'][2010])}% of GDP, agriculture {f1(R['Agriculture, forestry & fishing'][2010])}%, mining {f1(R['Mining & quarrying'][2010])}% (#{r0['Mining & quarrying']})"],
+        [2015, 2019, f"Mining falls from {f1(R['Mining & quarrying'][2014])}% of GDP in 2014 to {f1(R['Mining & quarrying'][2015])}% in 2015"],
+        [2020, 2022, f"COVID: hotels & restaurants drop from {f1(R['Hotels & restaurants'][2019])}% (2019) to {f1(R['Hotels & restaurants'][2021])}% (2021); health peaks at {f1(R['Health & social work'][2021])}%"],
+        [2024, '', f"2024 preliminary, 2025 estimate. Manufacturing {f1(R['Manufacturing'][2025])}%, mining #{r1['Mining & quarrying']} at {f1(R['Mining & quarrying'][2025])}%"]]
+write('gdp_by_activity_race_captions.csv', ['From', 'To', 'Caption'], caps)
