@@ -103,5 +103,5 @@
    "rule": "00:00 nightly (server.py APScheduler)"
   }
  ],
- "status": "PAUSED 2026-10-06: all 19 routines disabled at the user's request until the repository is attached to the routines (claude.ai Routines settings) — test runs could not push (403). Re-enable after attaching."
+ "status": "PAUSED 2026-10-06: all 19 routines disabled at the user's request until the repository is attached to the routines (claude.ai Routines settings) — test runs could not push (403). Re-enable after attaching. User rule (2026-10-06): agents must ask before updating. Before any routine is re-enabled, its prompt must be rewritten to check-only (report what is due and the proposed changes; no edits, commits or pushes)."
 }
