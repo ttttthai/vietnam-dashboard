@@ -31,6 +31,18 @@ Headlines and notes are computed from your numbers.
   aggregates; record year and denominator). UN World Population Prospects for `un`.
 - Government Committee for Religious Affairs (btgcp.gov.vn) for follower counts.
 
+## Release timing & access (maintained by Research — see `data/research/release_calendar.json`)
+- Provincial GRDP is now published on the **29th of the last month of each quarter** (Decree 13/2026/NĐ-CP),
+  before national GDP on the 3rd; provinces repeat it at their own briefings. Confirm the Q4/annual date
+  (29 Dec) against the decree text.
+- Population: the 1 April survey's headline figures (average population, TFR, SRB, e0, preliminary) come
+  with the January annual report; full tables mid-year. Census every 10 years (next 1/4/2029).
+- World Bank WDI updates ~1 July and in December; UN WPP 2026 is postponed to 2027. Nothing in this tab
+  needs a monthly check.
+- Access: nso.gov.vn, pxweb, api.worldbank.org, population.un.org are blocked from the sandbox; rank
+  recomputation from the WDI API needs a reachable runner (proposed server job). Label world-rank values as
+  World Bank (population 101.6 m, GDP per capita 5,066 USD for 2025) — they differ from NSO (102.3 m; 5,026 USD).
+
 ## Rules
 1. **Only sourced figures**, each with its reference year and URL (store in a `source`/`note` field
    where the structure has one, or report it). Never estimate a province's value from neighbours or

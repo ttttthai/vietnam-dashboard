@@ -1,0 +1,303 @@
+{
+ "as_of": "2026-10-06",
+ "built_by": "Research agent",
+ "status": "PROPOSED — no routine has been created; the main session asks the user before creating any.",
+ "cron_note": "cron_ict fields are minute hour day month weekday in Asia/Ho_Chi_Minh (use CRON_TZ=Asia/Ho_Chi_Minh). Minutes are off the hour to avoid :00 congestion.",
+ "principles": [
+  "Run after the publisher’s release, not on a fixed fast poll.",
+  "Annual series are checked only in their release window.",
+  "Daily market data stays on the server scheduler.",
+  "Merge jobs that read the same release (NSO monthly + MoF budget; SBV tables + VBMA/Vietcap monthly).",
+  "Because nearly every source host is blocked from the sandbox, every agent run budgets web searches; server-side fetches (Render) are preferred where an API exists."
+ ],
+ "jobs": [
+  {
+   "id": "server-market-daily",
+   "owner_agent": "server (automatic)",
+   "series_ids": [
+    "inv.market_daily"
+   ],
+   "rule": "existing nightly refresh_snapshot",
+   "cron_ict": "0 0 * * *",
+   "window_days": 0,
+   "priority": "P1",
+   "reason": "Prices change every session; already automatic; no agent needed.",
+   "runner": "server (exists)",
+   "web_cost": "none"
+  },
+  {
+   "id": "econ-monthly-nso",
+   "owner_agent": "Economy",
+   "series_ids": [
+    "econ.cpi_latest",
+    "econ.official_ytd",
+    "econ.tourism",
+    "econ.budget_exec_ytd",
+    "inv.macro_context",
+    "page.fis_cards"
+   ],
+   "rule": "after nso_monthly_report + mof_budget_monthly: 4th of each month (NSO on the 3rd; MoF ~same days)",
+   "cron_ict": "20 9 4 * *",
+   "window_days": 3,
+   "priority": "P1",
+   "reason": "CPI and the YTD block change monthly on a fixed date; checking earlier finds nothing, later leaves the page stale.",
+   "runner": "agent run",
+   "web_cost": "medium (NSO pages blocked → 3–6 searches)"
+  },
+  {
+   "id": "econ-quarterly-gdp",
+   "owner_agent": "Economy",
+   "series_ids": [
+    "econ.gdp_growth_quarterly",
+    "econ.investment"
+   ],
+   "rule": "same run as econ-monthly-nso in Jan/Apr/Jul/Oct",
+   "cron_ict": "20 9 4 1,4,7,10 *",
+   "window_days": 3,
+   "priority": "P1",
+   "reason": "GDP and investment by owner are quarterly with the monthly report.",
+   "runner": "agent run (merged with econ-monthly-nso)",
+   "web_cost": "low extra"
+  },
+  {
+   "id": "econ-annual",
+   "owner_agent": "Economy",
+   "series_ids": [
+    "econ.gdp_levels",
+    "econ.official_annual",
+    "econ.bop",
+    "econ.remittances",
+    "econ.labour_export",
+    "econ.budget_annual",
+    "econ.external_debt"
+   ],
+   "rule": "after nso_annual_gdp (4–10 Jan), after NSO yearbook (check 1 Jul and 1 Aug), after NA final-account vote, after WB IDS (mid Dec)",
+   "cron_ict": "20 9 5 1,7,8,12 *",
+   "window_days": 7,
+   "priority": "P2",
+   "reason": "Annual series cannot change between these windows — polling monthly wastes the search budget.",
+   "runner": "agent run",
+   "web_cost": "medium"
+  },
+  {
+   "id": "forecast-vintages",
+   "owner_agent": "Economy + Finance",
+   "series_ids": [
+    "econ.cpi_forecasts",
+    "fin.projections"
+   ],
+   "rule": "after imf_weo (+2 days: 2026-10-15), wb_eap_update (now, Oct-6), adb_ado (Apr/Jul/Sep/Dec), oecd_eo (Jun/Dec), amro",
+   "cron_ict": "one-shot 2026-10-15 09:10; then 15 Apr/Jul/Oct/Dec",
+   "window_days": 5,
+   "priority": "P1",
+   "reason": "IMF Oct-2026 WEO (13 Oct) and WB EAP (6 Oct) supersede the Apr/May vintages used in CPI_FC_INST and FINSYS.projections; Economy and Finance must use the same vintage.",
+   "runner": "agent run (both agents, same day)",
+   "web_cost": "low (2–4 searches)"
+  },
+  {
+   "id": "fin-monthly-credit",
+   "owner_agent": "Finance",
+   "series_ids": [
+    "fin.monthly_credit",
+    "pol.mon_prudential_credit"
+   ],
+   "rule": "after sbv_credit_total: 5th of each month",
+   "cron_ict": "40 9 5 * *",
+   "window_days": 3,
+   "priority": "P1",
+   "reason": "SBV states credit growth at the start of each month; Policy credit_growth_target current text quotes it.",
+   "runner": "agent run",
+   "web_cost": "low"
+  },
+  {
+   "id": "fin-monthly-tables",
+   "owner_agent": "Finance",
+   "series_ids": [
+    "fin.monthly_money",
+    "fin.sectors",
+    "fin.flows_re_bonds_margin",
+    "fin.why_market"
+   ],
+   "rule": "after sbv_money_tables / sbv_credit_sector (~2-month lag) and VBMA/Vietcap monthly reports: 20th of each month",
+   "cron_ict": "40 9 20 * *",
+   "window_days": 5,
+   "priority": "P2",
+   "reason": "M2/deposits and sector tables lag ~2 months; checking on the 20th catches both the SBV tables and the mid-month bond/money-market reports in one run.",
+   "runner": "agent run",
+   "web_cost": "medium"
+  },
+  {
+   "id": "fin-quarterly",
+   "owner_agent": "Finance",
+   "series_ids": [
+    "fin.ratios_sbv",
+    "fin.why_bank_metrics",
+    "fin.listed_banks",
+    "fin.sbv_reserves"
+   ],
+   "rule": "after bank_fs_quarterly (1 Feb/May/Aug/Nov) and sbv_prudential (~15 Mar/Jun/Sep/Dec)",
+   "cron_ict": "40 9 1 2,5,8,11 *; 40 9 15 3,6,9,12 *",
+   "window_days": 7,
+   "priority": "P2",
+   "reason": "Bank FS and SBV prudential tables are quarterly with known lags.",
+   "runner": "agent run",
+   "web_cost": "medium (PDFs needed)"
+  },
+  {
+   "id": "fin-fomc",
+   "owner_agent": "Finance",
+   "series_ids": [
+    "fin.why_market"
+   ],
+   "rule": "day after FOMC: 2026-10-29, 2026-12-10",
+   "cron_ict": "one-shot",
+   "window_days": 1,
+   "priority": "P3",
+   "reason": "Fed upper bound feeds the SBV-vs-Fed gap in the constraints and drivers.",
+   "runner": "agent run (or server, see proposal P-4)",
+   "web_cost": "very low"
+  },
+  {
+   "id": "policy-weekly",
+   "owner_agent": "Policy",
+   "series_ids": [
+    "pol.mon_rates",
+    "pol.mon_prudential_credit",
+    "pol.fis_instruments",
+    "pol.news",
+    "pol.stance",
+    "pol.central_rate"
+   ],
+   "rule": "weekly Monday; extra runs on 2026-11-21 (NA session close) and 2026-12-15 (year-end expiries: VAT 8%, fuel tax/duty, fees end 31/12/2026)",
+   "cron_ict": "50 8 * * 1",
+   "window_days": 7,
+   "priority": "P1",
+   "reason": "Policy moves are ad hoc and the news list must stay within 3 months; the expiry cliff on 31/12 makes December critical.",
+   "runner": "agent run",
+   "web_cost": "medium"
+  },
+  {
+   "id": "strategy-weekly",
+   "owner_agent": "Strategy",
+   "series_ids": [
+    "str.directives",
+    "str.drafts",
+    "str.news"
+   ],
+   "rule": "weekly Monday; twice weekly (Mon, Thu) during NA session 17/10–20/11/2026; re-derive stages on 1st of each month (effective dates passing)",
+   "cron_ict": "55 8 * * 1",
+   "window_days": 7,
+   "priority": "P1",
+   "reason": "11 tracked drafts are due for a vote at this session; stage changes are date-driven.",
+   "runner": "agent run",
+   "web_cost": "medium"
+  },
+  {
+   "id": "society-annual",
+   "owner_agent": "Society",
+   "series_ids": [
+    "soc.pop_actual",
+    "soc.pop_nat_latest",
+    "soc.province_demo"
+   ],
+   "rule": "after nso_population: 2027-01-06 and after the full survey tables (check 2027-07-01)",
+   "cron_ict": "10 10 6 1,7 *",
+   "window_days": 10,
+   "priority": "P2",
+   "reason": "Demographics are annual; nothing to update between January and mid-year.",
+   "runner": "agent run",
+   "web_cost": "low"
+  },
+  {
+   "id": "society-grdp",
+   "owner_agent": "Society",
+   "series_ids": [
+    "soc.grdp"
+   ],
+   "rule": "after nso_grdp: 30th of Mar/Jun/Sep/Dec (+ provincial 3rd-of-month briefings)",
+   "cron_ict": "10 10 30 3,6,9,12 *",
+   "window_days": 5,
+   "priority": "P2",
+   "reason": "Provincial GRDP now comes on the 29th of the quarter’s last month (Decree 13/2026).",
+   "runner": "agent run",
+   "web_cost": "medium"
+  },
+  {
+   "id": "society-ranks",
+   "owner_agent": "Society",
+   "series_ids": [
+    "soc.world_rank"
+   ],
+   "rule": "after wb_wdi: 2026-12-20 and 2027-07-05",
+   "cron_ict": "10 10 20 12 *; 10 10 5 7 *",
+   "window_days": 10,
+   "priority": "P3",
+   "reason": "WDI changes twice a year; ranks are recomputed from the API (blocked here — needs a reachable runner).",
+   "runner": "agent run or server (P-3)",
+   "web_cost": "low"
+  },
+  {
+   "id": "society-projections",
+   "owner_agent": "Society",
+   "series_ids": [
+    "soc.projections"
+   ],
+   "rule": "after un_wpp 2027 release (check quarterly in 2027)",
+   "cron_ict": "quarterly 2027",
+   "window_days": 30,
+   "priority": "P4",
+   "reason": "WPP 2026 postponed to 2027.",
+   "runner": "agent run",
+   "web_cost": "very low"
+  },
+  {
+   "id": "ed-watch-dates",
+   "owner_agent": "Ed",
+   "series_ids": [
+    "pol.news",
+    "str.news",
+    "page.*"
+   ],
+   "rule": "after any embed run; and on the 1st of each month check that every \"what to watch\" date is in the future",
+   "cron_ict": "0 9 1 * *",
+   "window_days": 2,
+   "priority": "P3",
+   "reason": "Watch lists are computed, but past-dated items and legacy hard-coded KPI strings need an editor’s eye.",
+   "runner": "agent run",
+   "web_cost": "none"
+  },
+  {
+   "id": "research-weekly-audit",
+   "owner_agent": "Research",
+   "series_ids": [
+    "*"
+   ],
+   "rule": "weekly Monday 07:45, local only (no web): rerun cross-tab checks and the due list; monthly on the 6th with a reachability probe and a few release-calendar confirmations",
+   "cron_ict": "45 7 * * 1; 15 10 6 * *",
+   "window_days": 1,
+   "priority": "P2",
+   "reason": "Keeps consistency and staleness visible at near-zero web cost.",
+   "runner": "agent run (or server, see proposal P-1)",
+   "web_cost": "none weekly; 2–4 searches monthly"
+  },
+  {
+   "id": "legacy-constants-fix",
+   "owner_agent": "Economy + Finance + Policy (+ Ed for code)",
+   "series_ids": [
+    "page.legacy_macro_card",
+    "page.legacy_rates_24m",
+    "page.money_card_kpis",
+    "inv.server_rates",
+    "inv.bank_fundamentals",
+    "inv.macro_context"
+   ],
+   "rule": "one-off, as soon as approved",
+   "cron_ict": "one-shot",
+   "window_days": 14,
+   "priority": "P1",
+   "reason": "Unowned constants show unsourced/extrapolated numbers (FX reserves 2026–29, OMO 4.0%, credit 2025 15.5%, static deposit rates).",
+   "runner": "main session decision + agent runs",
+   "web_cost": "low"
+  }
+ ]
+}

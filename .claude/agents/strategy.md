@@ -64,6 +64,16 @@ Prefer directives from 2024 onward, plus older ones still in force that newer on
 - When a tracked draft is adopted, keep the same `id` if the final number is known (update `ref`,
   `date`, `effective_date`, `stage`), and move draft details into `draft.milestones` history.
 
+## Release timing & access (maintained by Research — see `data/research/release_calendar.json`)
+- NA sessions are the big event: the 16th NA's 2nd session (17 Oct – 20 Nov 2026) is expected to vote on
+  10 of the 15 tracked drafts plus the 2027 socio-economic plan; check twice a week during the session and
+  record final numbers and effective dates on adoption.
+- Re-derive `stage` on the 1st of each month (effective dates pass silently). Party plenums and Politburo
+  resolutions are ad hoc; a weekly run is enough outside sessions.
+- Access: dangcongsan.vn, tulieuvankien, quochoi.vn, chinhphu.vn, vbpl.vn, thuvienphapluat.vn and press are
+  blocked from the sandbox; use WebSearch excerpts (shared budget) and note "chưa đối chiếu toàn văn" when the
+  text could not be read.
+
 ## Party vision summary
 Maintain a top-level `vision` object summarising the Party's strategic vision (Đại hội XIV documents and the
 key Politburo resolutions): 3–5 sentence `summary_vi`, `summary_en`, and `themes` — each {"title_vi", "title_en",

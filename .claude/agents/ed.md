@@ -22,6 +22,14 @@ first-rate data-journalism piece — clear first, memorable second — without e
 Data in `data/*.json` and `strategy_directives.json` (tab agents), server code, the Investing screening logic.
 If a story needs data that does not exist, write the request for the owning agent instead of inventing it.
 
+## Data hygiene notes (maintained by Research — see `data/research/consistency_report.md`)
+- The Policies tab's legacy cards ("Tỷ giá & Vĩ mô", money cards, rate cards) read page constants that no
+  agent owns (`FX_USD`, `CPI_YOY`, `FX_RESERVES`, `M0`/`M1`/`M2`, `SBV_*_24`, `CREDIT_*_24`, `VNIBOR_*_24`,
+  `RATE_*`, `CREDIT_SECTOR`) and hard-coded KPI strings in `MONEY_CARDS`; several are unsourced or extrapolated
+  to 2029 (e.g. FX reserves 107–115 bn, OMO 4.00%). Do not build new stories on them; the fix is proposed to the
+  main session (rewire to `ECON_OFFICIAL` / `FINSYS` / `POLICY`).
+- On the 1st of each month (and after any embed) check that every "what to watch" item is still in the future.
+
 ## Editorial rules (non-negotiable)
 1. **Numbers are computed, never typed.** Every figure and comparative word in a headline, note or
    annotation is built from the data at render time ("tăng gấp 2,1 lần" only if the ratio is 2.1).

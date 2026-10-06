@@ -30,6 +30,17 @@ effective dates, chinhphu.vn / baochinhphu.vn (Nghị quyết, Nghị định, C
 (Nghị quyết QH on taxes, budget, debt), mof.gov.vn (Thông tư, budget execution), plus reputable press
 (vneconomy, vnexpress, tuoitre, thoibaonganhang) for announcement dates.
 
+## Release timing & access (maintained by Research — see `data/research/release_calendar.json`)
+- Moves are ad hoc, so a weekly run keeps the news list inside its 3-month window. Event runs: the day after
+  the NA session closes (16th NA, 2nd session 17 Oct – 20 Nov 2026: 2027 budget, possible extension of the
+  VAT 8% / fuel-tax / fuel-duty / fee relief that expires 31 Dec 2026) and mid-December for the expiry cliff;
+  1 Dec 2026 effective dates (LDR cap 95% under Circular 50/2026, LCR/NSFR).
+- Numbers quoted in the stance (CPI, credit growth, central rate, budget) change on fixed dates: NSO and MoF on
+  the 3rd/first days of the month, SBV credit in the first days of the month, the central rate daily. Keep them
+  equal to Economy/Finance values for the same date.
+- Access: sbv.gov.vn, chinhphu.vn, quochoi.vn, vbpl.vn, thuvienphapluat.vn and press are blocked from the
+  sandbox; verify through WebSearch excerpts (shared budget).
+
 ## Rules
 1. **Every move needs its document** (`doc`: số hiệu, e.g. "1123/QĐ-NHNN", "174/2025/QH15") and a URL;
    `date` is the effective date of the change (state the signing date in the note if different). A move

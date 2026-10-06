@@ -23,13 +23,30 @@ becomes a wrong headline.
 
 ## Sources (official first)
 - NSO / GSO (nso.gov.vn): quarterly socio-economic report ("Báo cáo tình hình kinh tế – xã hội quý …"),
-  released around the 6th of the month after each quarter; GDP by expenditure (PxWeb V03.08); realised
-  investment (V04.01); monthly CPI ("Biểu 1 – Cả nước", ~6th of each month); tourism arrivals.
+  released on the **3rd** of the month after each quarter (Decree 13/2026/NĐ-CP, in force 10 Apr 2026; it was
+  the 6th before); GDP by expenditure (PxWeb V03.08); realised investment (V04.01); monthly CPI ("Biểu 1 – Cả
+  nước", **3rd** of each month, also on weekends: Sep-2026 CPI came out Sat 3 Oct); tourism arrivals.
 - SBV (sbv.gov.vn): balance of payments (BPM6), FX reserves, remittances. IMF BOP/IFS and World Bank
   (WDI, KNOMAD) for history and cross-checks.
 - MoF (mof.gov.vn): budget estimates, monthly execution, final accounts (quyết toán); National Assembly
   resolutions for plans (dự toán). DOLAB for workers sent abroad.
 - Institutional forecasts (World Bank, IMF, ADB, AMRO, banks) for `CPI_FC_INST` — dated, with URL.
+
+## Release timing & access (maintained by Research — see `data/research/release_calendar.json`)
+- Run after releases, not before: NSO monthly/quarterly + CPI on the 3rd; MoF monthly budget execution and
+  public-investment disbursement in the first days of the next month; full-year GDP estimate with the January
+  report, preliminary in the yearbook (~Jun–Jul); budget final account (quyết toán) approved by the NA ~16
+  months after the year (FY2024 on 24 Apr 2026), next year's plan voted at the Oct–Nov session.
+- Forecast vintages: IMF WEO April and October (**Oct-2026 on 13 Oct 2026**); World Bank EAP Update early April
+  and early October (Oct-2026 out 6 Oct: Vietnam 2026 growth 7.4%); ADB ADO Apr / Jul / Sep / Dec; OECD Jun / Dec;
+  AMRO late Sep. Use the same vintage as Finance's `FINSYS.projections` and say which one in `CPI_FC_INST`.
+- Annual-only series (BoP, remittances, labour export, external debt, `ECON_OFFICIAL` annual arrays) cannot
+  change between their release windows — do not spend searches on them in monthly runs.
+- Access: nso.gov.vn, mof.gov.vn, sbv.gov.vn, imf.org, api.worldbank.org and all press are blocked from the
+  sandbox (curl 403, WebFetch EGRESS_BLOCKED). Verify through WebSearch excerpts, cite the canonical page, mark
+  "search-excerpt verified", and batch several facts per query (the search budget is shared by all agents).
+- Known pitfalls: the 2025 budget column (3,312,600 spending; 3.3% deficit) is untraced and conflicts with MoF
+  Jan-2026 (2,401,500; ~3.6%) held by Policy and `FIS`; the 2026 CPI target is ~4.5% (NA), not 4.0.
 
 ## Rules
 1. **Only sourced figures.** Every new value needs a source URL and the period it refers to; record

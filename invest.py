@@ -175,7 +175,7 @@ MACRO = {
         "url": "https://baochinhphu.vn/giai-ngan-von-dau-tu-cong-9-thang-nam-2026-mot-so-bo-nganh-dia-phuong-con-cham-102261003011740764.htm",
     },
     "cpi": {
-        "yoy_sep": 5.08, "avg9m": 4.52, "core9m": 4.26, "target": 4.0,
+        "yoy_sep": 5.08, "avg9m": 4.52, "core9m": 4.26, "target": 4.5,   # NA 2026 socio-economic resolution: CPI ~4.5% (baochinhphu 13/11/2025)
         "source": "Cục Thống kê (NSO), CPI tháng 9/2026",
         "url": "https://markettimes.vn/cpi-thang-9-2026-tang-0-62-chu-yeu-do-gia-xang-dau-va-hoc-phi-132253.html",
     },

@@ -1,0 +1,491 @@
+{
+ "as_of": "2026-10-06",
+ "built_by": "Research agent",
+ "append_only": "Add new hosts and new observations with dates; never delete history — mark superseded entries.",
+ "probe": {
+  "date": "2026-10-06",
+  "method": "curl -m 8 via HTTPS_PROXY (80 URLs) + WebFetch spot checks (nso.gov.vn, sbv.gov.vn, imf.org, api.worldbank.org, vnexpress.net, vietnamplus.vn, en.wikipedia.org)",
+  "result": "Every data/press host refused (CONNECT 403 / EGRESS_BLOCKED). Reachable: pypi.org, registry.npmjs.org, api.github.com, raw.githubusercontent.com only. WebSearch works."
+ },
+ "sources": [
+  {
+   "host": "www.nso.gov.vn",
+   "publisher": "NSO (Cục Thống kê)",
+   "what_it_holds": "monthly/quarterly socio-economic reports (3rd of month), CPI press releases + \"Biểu 1\" spreadsheets, labour, population press releases",
+   "best_for_agent": "Economy, Society, Policy (stance), Finance (CPI/GDP quotes)",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": false,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy; WebFetch: EGRESS_BLOCKED"
+   },
+   "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). URL patterns: /bai-top/YYYY/MM/bao-cao-tinh-hinh-kinh-te-xa-hoi-…, /tin-tuc-thong-ke/YYYY/MM/thong-cao-bao-chi-…, /du-lieu-va-so-lieu-thong-ke/…; PDFs under /wp-content/uploads/YYYY/MM/. Release day is the 3rd (Decree 13/2026), even on Saturdays.",
+   "conflicts_seen": [
+    "NSO credit +10.89% to 28/9 vs SBV +11.59% to 30/9 (cut-off dates differ)"
+   ],
+   "last_used": "2026-10-06",
+   "pages": [
+    {
+     "page": "Báo cáo tình hình KT-XH (monthly/quarterly)",
+     "agents": [
+      "Economy",
+      "Policy",
+      "Finance"
+     ]
+    },
+    {
+     "page": "Thông cáo báo chí tình hình giá",
+     "agents": [
+      "Economy"
+     ]
+    },
+    {
+     "page": "Thông cáo dân số, lao động, việc làm",
+     "agents": [
+      "Society",
+      "Economy"
+     ]
+    }
+   ]
+  },
+  {
+   "host": "pxweb.nso.gov.vn",
+   "publisher": "NSO",
+   "what_it_holds": "PxWeb tables: V03.08 GDP by expenditure, V04.01 investment, V02.* population, PL.V03 GRDP, PLV02 provincial demographics",
+   "best_for_agent": "Economy, Society",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; tables refresh with the yearbook (~Jun–Jul). Ask for PX table numbers in search queries.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "*.nso.gov.vn (provincial, e.g. thongkedaklak.nso.gov.vn)",
+   "publisher": "Provincial statistics offices",
+   "what_it_holds": "provincial GRDP and socio-economic briefings",
+   "best_for_agent": "Society",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": null,
+    "checked": null
+   },
+   "access_tips": "Not probed; provincial subdomains of nso.gov.vn — assume blocked like the parent.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "sbv.gov.vn / www.sbv.gov.vn",
+   "publisher": "State Bank of Vietnam",
+   "what_it_holds": "credit by sector, M2, deposits, cash/M2, prudential ratios, NPL charts, decisions/circulars, central rate, press releases; Liferay JSON at /o/article/v1.0/articles",
+   "best_for_agent": "Finance (tables), Policy (decisions, rates), Economy (BoP, reserves)",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": false,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy; WebFetch: EGRESS_BLOCKED"
+   },
+   "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). Tables lag ~2 months (credit by sector, M2). The Liferay articles endpoint gives structured table content when reachable.",
+   "conflicts_seen": [
+    "Finance monthly credit T6/26 level 20,150,411 (8.37%) equals the SBV figure the press dates \"29/7\" (8.38%); SBV end-June figure was 7.41% — label shift suspected"
+   ],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "mof.gov.vn",
+   "publisher": "Ministry of Finance",
+   "what_it_holds": "monthly budget execution, public-investment disbursement, final accounts, debt bulletins",
+   "best_for_agent": "Economy (budget), Policy (fiscal stance, public investment)",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; MoF figures reach press within a day (vietstock, vietnamplus, baochinhphu).",
+   "conflicts_seen": [
+    "2025 budget: economy.json 2025 column (rev 2,681,500; exp 3,312,600; 3.3% GDP) untraced vs MoF Jan-2026 (rev 2,650,100; exp 2,401,500; ~3.6%)"
+   ],
+   "last_used": null
+  },
+  {
+   "host": "hnx.vn",
+   "publisher": "Hanoi Stock Exchange",
+   "what_it_holds": "G-bond auctions (weekly), bond market statistics",
+   "best_for_agent": "Policy (gov_bond_issuance), Finance",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; use press or VBMA summaries.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "vbma.org.vn / www.fiingroup.vn",
+   "publisher": "VBMA / FiinGroup",
+   "what_it_holds": "corporate-bond issuance and outstanding (monthly)",
+   "best_for_agent": "Finance",
+   "reliability": "institution",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; monthly reports ~10–20th; FiinGroup report URLs are stable: /vi/bao-cao-thi-truong-trai-phieu-doanh-nghiep-thang-MYYYY.html.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "chinhphu.vn / baochinhphu.vn / xaydungchinhsach.chinhphu.vn",
+   "publisher": "Government portal",
+   "what_it_holds": "resolutions, decrees, PM decisions, government meeting conclusions, statistical calendar decree news",
+   "best_for_agent": "Policy, Strategy",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). baochinhphu reports SBV/MoF numbers the same day — good fallback for both.",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "quochoi.vn / duthaoonline.quochoi.vn",
+   "publisher": "National Assembly",
+   "what_it_holds": "session agendas, laws, NA resolutions, drafts for comment",
+   "best_for_agent": "Strategy (drafts), Policy (tax/budget laws), Economy (plans)",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked. Session 17/10–20/11/2026.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "vbpl.vn / thuvienphapluat.vn / luatvietnam.vn",
+   "publisher": "Legal databases",
+   "what_it_holds": "document numbers, effective dates, in-force status",
+   "best_for_agent": "Policy, Strategy",
+   "reliability": "official (vbpl) / aggregator",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; search excerpts usually show \"Ngày hiệu lực\" and số hiệu.",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "tulieuvankien.dangcongsan.vn / dangcongsan.vn / nhandan.vn",
+   "publisher": "Party portals",
+   "what_it_holds": "Party resolutions, conclusions, congress documents",
+   "best_for_agent": "Strategy",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "www.imf.org / api.imf.org / data.imf.org",
+   "publisher": "IMF",
+   "what_it_holds": "WEO (Apr/Oct), DataMapper API, Article IV, FSI (FSIC), IFS/IL reserves",
+   "best_for_agent": "Economy (CPI_FC_INST), Finance (projections, FSI, reserves)",
+   "reliability": "institution",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": false,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy; WebFetch: EGRESS_BLOCKED"
+   },
+   "access_tips": "Blocked (curl + WebFetch). Search excerpts quote WEO tables poorly — FRED mirrors (VNMNGDPRPCPPPT) were used but fred.stlouisfed.org is blocked too. Prefer a server-side DataMapper pull (proposal P-3).",
+   "conflicts_seen": [
+    "Finance: one excerpt attached 5.4% to 2031 instead of 2030 (WEO Apr-2026)"
+   ],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "api.worldbank.org / www.worldbank.org / documents1.worldbank.org",
+   "publisher": "World Bank",
+   "what_it_holds": "WDI API (ranks, GDP USD), EAP Update (Apr/Oct), Taking Stock, IDS",
+   "best_for_agent": "Society (WORLD_RANK), Economy (X/M, debt, forecasts), Finance (credit/GDP)",
+   "reliability": "institution",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": false,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy; WebFetch: EGRESS_BLOCKED"
+   },
+   "access_tips": "Blocked. WDI API is ideal for a server job (JSON, lastupdated field).",
+   "conflicts_seen": [
+    "WB GDP per capita 2025 5,066 USD vs NSO 5,026 USD (different FX and population bases) — both valid, label the source"
+   ],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "www.adb.org",
+   "publisher": "ADB",
+   "what_it_holds": "ADO forecasts (Apr/Jul/Sep/Dec)",
+   "best_for_agent": "Economy",
+   "reliability": "institution",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; country page /where-we-work/viet-nam/economy carries the latest numbers.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "amro-asia.org",
+   "publisher": "AMRO",
+   "what_it_holds": "annual consultation report, AREO",
+   "best_for_agent": "Economy, Finance",
+   "reliability": "institution",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; press (theinvestor.vn) reports same day.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "www.oecd.org",
+   "publisher": "OECD",
+   "what_it_holds": "Economic Outlook (Jun/Dec)",
+   "best_for_agent": "Economy",
+   "reliability": "institution",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "population.un.org",
+   "publisher": "UN DESA",
+   "what_it_holds": "WPP data files (CSV)",
+   "best_for_agent": "Society",
+   "reliability": "institution",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; WPP 2026 postponed to 2027.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "fred.stlouisfed.org / api.stlouisfed.org / www.federalreserve.gov",
+   "publisher": "Fed / St Louis Fed",
+   "what_it_holds": "Fed funds target, FOMC statements, IMF WEO mirrors",
+   "best_for_agent": "Finance",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; FOMC press-release URL pattern monetaryYYYYMMDDa.htm is stable.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "open.er-api.com / api.frankfurter.app",
+   "publisher": "FX APIs",
+   "what_it_holds": "USD/VND market mid-rate for the server",
+   "best_for_agent": "server",
+   "reliability": "aggregator",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked from the sandbox (server log: \"Không lấy được tỷ giá\"); works only where egress is open (Render). This is a market mid-rate, not the SBV central rate.",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "trading.vietcap.com.vn",
+   "publisher": "Vietcap (VCI)",
+   "what_it_holds": "daily prices for VN-Index, VN30, stocks (invest.py)",
+   "best_for_agent": "server (Investing)",
+   "reliability": "aggregator",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked (proxy log 16:27 403); server falls back to empty indices in this sandbox.",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "vnexpress.net / tuoitre.vn / thanhnien.vn / dantri.com.vn / vietnamnet.vn / vietnamplus.vn",
+   "publisher": "Major press",
+   "what_it_holds": "same-day coverage of NSO/SBV/MoF releases, FX daily (thanhnien \"giá USD hôm nay\")",
+   "best_for_agent": "all tab agents (dates, quotes)",
+   "reliability": "press",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": false,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy; WebFetch: EGRESS_BLOCKED"
+   },
+   "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). thanhnien daily FX article gives central/VCB/free rates at month-end.",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "vneconomy.vn / cafef.vn / vietstock.vn / static1.vietstock.vn / vietnambiz.vn / baodautu.vn / nhadautu.vn / theleader.vn / mekongasean.vn / nguoiquansat.vn / markettimes.vn",
+   "publisher": "Business press",
+   "what_it_holds": "bank metrics, bonds, margin, analyst forecasts; vietstock edocs hosts broker PDFs (Vietcap bond/money reports)",
+   "best_for_agent": "Finance, Economy (forecasts), Investing",
+   "reliability": "press",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). Broker PDFs on static1.vietstock.vn are the only route to Vietcap money-market averages.",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "thoibaonganhang.vn / tapchinganhang.gov.vn / thitruongtaichinhtiente.vn",
+   "publisher": "SBV-affiliated press",
+   "what_it_holds": "SBV statements, credit by sector commentary, credit growth with SBV cut-offs",
+   "best_for_agent": "Finance, Policy",
+   "reliability": "press (SBV-affiliated)",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). thitruongtaichinhtiente.vn carries the SBV month figures (e.g. 9M 20.75 tn, +16.69% y/y).",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "thoibaotaichinhvietnam.vn / tapchikinhtetaichinh.vn",
+   "publisher": "MoF-affiliated press",
+   "what_it_holds": "budget, plans, bank liquidity commentary",
+   "best_for_agent": "Economy, Policy, Finance",
+   "reliability": "press (MoF-affiliated)",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\").",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "btgcp.gov.vn / danviet.vn",
+   "publisher": "Government Committee for Religious Affairs / press",
+   "what_it_holds": "follower counts",
+   "best_for_agent": "Society",
+   "reliability": "official / press",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; figure unchanged since 31-12-2023 statement.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "www.vietcombank.com.vn / portal.vietcombank.com.vn and other bank IR sites",
+   "publisher": "Banks",
+   "what_it_holds": "FS PDFs, deposit rate tables",
+   "best_for_agent": "Finance",
+   "reliability": "official (issuer)",
+   "reachable_from_sandbox": {
+    "curl": false,
+    "webfetch": null,
+    "checked": "2026-10-06",
+    "detail": "curl: CONNECT 403 from egress proxy"
+   },
+   "access_tips": "Blocked; notes to FS (loans by sector) only in PDFs.",
+   "conflicts_seen": [],
+   "last_used": null
+  },
+  {
+   "host": "pypi.org / registry.npmjs.org / api.github.com / raw.githubusercontent.com",
+   "publisher": "package registries / GitHub",
+   "what_it_holds": "none for data (tools only)",
+   "best_for_agent": "all (tooling)",
+   "reliability": "n/a",
+   "reachable_from_sandbox": {
+    "curl": true,
+    "webfetch": null,
+    "checked": "2026-10-06"
+   },
+   "access_tips": "The only hosts reachable by curl; do not install vnstock (quarantined on PyPI 2026-09-24).",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06"
+  },
+  {
+   "host": "WebSearch (search-engine excerpts)",
+   "publisher": "search engine",
+   "what_it_holds": "snippets of every blocked page above",
+   "best_for_agent": "all",
+   "reliability": "mixed — depends on cited page",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": null,
+    "search": true,
+    "checked": "2026-10-06"
+   },
+   "access_tips": "The only working route to Vietnamese sources from the sandbox. Budget is SHARED by all agents and ran out once on 2026-10-06: plan queries, ask for several facts per query, prefer pages that aggregate (NSO quarterly report, SBV press conference coverage).",
+   "conflicts_seen": [],
+   "last_used": "2026-10-06"
+  }
+ ]
+}
