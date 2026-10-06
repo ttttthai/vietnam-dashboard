@@ -9751,7 +9751,7 @@
       "label_vi": "Tiền gửi KBNN tại NHNN",
       "label_en": "State Treasury deposits at the SBV",
       "url": null,
-      "note": "Not published. Only the net figure is visible: IMF 'net claims on government - SBV' = -460 trn VND end-2024 (balance_sheet.series.net_claims_govt_sbv)."
+      "note": "Not published. Only the net figure is visible: IMF 'net claims on government - SBV' = -460 trn VND end-2024 (IMF)."
      },
      "treasury_deposits_at_banks": {
       "value": 715630,
@@ -10090,14 +10090,14 @@
   },
   "analysis": {
    "as_of": "2026-10-06",
-   "method_note_vi": "Mỗi chương: kiểm tra tiền đề bằng dữ liệu trong FINSYS trước, sau đó tổng hợp giải thích từ nguồn (NHNN, IMF, ADB, công ty chứng khoán, tổ chức xếp hạng). Câu có 'theo …' là diễn giải của nguồn đó; con số kèm kỳ số liệu. Không dự báo, không khuyến nghị.",
-   "method_note_en": "Each chapter first checks the premise against FINSYS data, then synthesises sourced explanations (SBV, IMF, ADB, brokers, rating agencies). Sentences with 'according to …' are that source's interpretation; numbers carry their period. No forecasts, no advice.",
+   "method_note_vi": "Mỗi chương: kiểm tra tiền đề bằng dữ liệu trong dữ liệu của dashboard trước, sau đó tổng hợp giải thích từ nguồn (NHNN, IMF, ADB, công ty chứng khoán, tổ chức xếp hạng). Câu có 'theo …' là diễn giải của nguồn đó; con số kèm kỳ số liệu. Không dự báo, không khuyến nghị.",
+   "method_note_en": "Each chapter first checks the premise against the dashboard's data, then synthesises sourced explanations (SBV, IMF, ADB, brokers, rating agencies). Sentences with 'according to …' are that source's interpretation; numbers carry their period. No forecasts, no advice.",
    "chapters": {
     "hero": {
      "q_vi": "Vì sao tín dụng tăng nhanh hơn huy động?",
      "q_en": "Why has credit grown faster than deposits?",
-     "answer_vi": "Tiền đề 'từ 2020' chỉ đúng một phần: theo FINSYS.annual, tín dụng tăng nhanh hơn huy động trong 9/11 năm 2015-2025, trừ 2019 (13,65% so với 14,54%) và 2020 (12,2% so với 13,3%); khoảng chênh mở rộng từ 2021, lớn nhất năm 2022 (14,2% so với 5,99%) và 2024 (15,09% so với 10,66%). Về số dư, theo IMF FSI cho vay của các tổ chức nhận tiền gửi vượt tiền gửi lần đầu năm 2023 (13,30 so với 13,26 triệu tỷ đồng). Nguyên nhân chính là cầu vốn do mục tiêu tăng trưởng cao và chỉ tiêu tín dụng nới rộng, trong khi lãi suất tiền gửi thấp 2023-2024 đẩy tiền của dân sang vàng, chứng khoán, bất động sản.",
-     "answer_en": "The 'since 2020' premise is only partly right: per FINSYS.annual, credit outgrew deposits in 9 of the 11 years 2015-2025, the exceptions being 2019 (13.65% vs 14.54%) and 2020 (12.2% vs 13.3%); the gap widened from 2021 and was largest in 2022 (14.2% vs 5.99%) and 2024 (15.09% vs 10.66%). In levels, IMF FSI loans of deposit takers first exceeded deposits in 2023 (13.30 vs 13.26 quadrillion VND). The main causes are funding demand from high growth targets and expanded credit quotas, while low deposit rates in 2023-2024 pushed household money into gold, stocks and property.",
+     "answer_vi": "Tiền đề 'từ 2020' chỉ đúng một phần: theo dữ liệu của dashboard, tín dụng tăng nhanh hơn huy động trong 9/11 năm 2015-2025, trừ 2019 (13,65% so với 14,54%) và 2020 (12,2% so với 13,3%); khoảng chênh mở rộng từ 2021, lớn nhất năm 2022 (14,2% so với 5,99%) và 2024 (15,09% so với 10,66%). Về số dư, theo IMF FSI cho vay của các tổ chức nhận tiền gửi vượt tiền gửi lần đầu năm 2023 (13,30 so với 13,26 triệu tỷ đồng). Nguyên nhân chính là cầu vốn do mục tiêu tăng trưởng cao và chỉ tiêu tín dụng nới rộng, trong khi lãi suất tiền gửi thấp 2023-2024 đẩy tiền của dân sang vàng, chứng khoán, bất động sản.",
+     "answer_en": "The 'since 2020' premise is only partly right: per the dashboard's data, credit outgrew deposits in 9 of the 11 years 2015-2025, the exceptions being 2019 (13.65% vs 14.54%) and 2020 (12.2% vs 13.3%); the gap widened from 2021 and was largest in 2022 (14.2% vs 5.99%) and 2024 (15.09% vs 10.66%). In levels, IMF FSI loans of deposit takers first exceeded deposits in 2023 (13.30 vs 13.26 quadrillion VND). The main causes are funding demand from high growth targets and expanded credit quotas, while low deposit rates in 2023-2024 pushed household money into gold, stocks and property.",
      "drivers": [
       {
        "title_vi": "Cầu vốn từ mục tiêu tăng trưởng và đầu tư công",
@@ -10176,11 +10176,11 @@
        ]
       }
      ],
-     "caveat_vi": "Tăng trưởng huy động trong FINSYS.annual lấy từ NHNN/báo chí, không phải tăng trưởng của số dư IMF FSI; năm 2025 hai cách tính chênh nhau (15,42% so với 14,71%). M2 có thay đổi phương pháp năm 2025.",
-     "caveat_en": "FINSYS.annual deposit growth comes from SBV/press and is not the growth of the IMF FSI deposit level; for 2025 the two differ (15.42% vs 14.71%). M2 methodology changed in 2025.",
+     "caveat_vi": "Tăng trưởng huy động trong dữ liệu của dashboard lấy từ NHNN/báo chí, không phải tăng trưởng của số dư IMF FSI; năm 2025 hai cách tính chênh nhau (15,42% so với 14,71%). M2 có thay đổi phương pháp năm 2025.",
+     "caveat_en": "the dashboard's data deposit growth comes from SBV/press and is not the growth of the IMF FSI deposit level; for 2025 the two differ (15.42% vs 14.71%). M2 methodology changed in 2025.",
      "sources": [
       {
-       "name": "FINSYS.annual (SBV, IMF FSI)",
+       "name": "SBV; IMF FSI (annual series)",
        "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014"
       },
       {
@@ -10521,7 +10521,7 @@
          "url": "https://www.elibrary.imf.org/view/journals/002/2025/283/article-A001-en.xml"
         },
         {
-         "name": "FINSYS.sbv.balance_sheet / economy BoP (IMF)",
+         "name": "IMF (SBV balance sheet; balance of payments)",
          "url": "https://www.imf.org/-/media/files/publications/cr/2025/english/1vnmea2025001-source-pdf.pdf"
         }
        ]
@@ -10662,7 +10662,7 @@
      "caveat_en": "Treasury deposits at the SBV and any SBV government-bond holdings are not published. Big4 share has two figures (42.3% and 'over 41%') at different dates.",
      "sources": [
       {
-       "name": "FINSYS.sbv.plumbing",
+       "name": "SBV, VBMA, State Treasury (compiled facts)",
        "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm"
       },
       {
@@ -10717,8 +10717,8 @@
       "name": "SBV 2026 credit target ~15% (VnEconomy); Fitch 2026 forecast 18% (Bloomberg, 12/11/2025)",
       "url": "https://vneconomy.vn/nam-2026-tin-dung-du-kien-tang-them-279-trieu-ty-dong-giam-183000-ty-so-voi-2025.htm"
      },
-     "method_vi": "Giả định: base giữ 15%/năm (chỉ tiêu 2026 của NHNN) cho 2026-2030; high 18%/năm (dự báo 2026 của Fitch, giữ nguyên); low 12%/năm (trung bình 2018-2023 theo FINSYS.annual là 13,6%, low làm tròn thấp hơn). Không có chỉ tiêu tín dụng chính thức sau 2026. Thực tế 30/9/2026: +16,69% svck.",
-     "method_en": "Assumption: base holds 15%/yr (SBV 2026 target) for 2026-2030; high 18%/yr (Fitch 2026 forecast, held flat); low 12%/yr (FINSYS.annual 2018-2023 average is 13.6%; low set below it). No official credit target exists beyond 2026. Actual 30 Sep 2026: +16.69% y/y.",
+     "method_vi": "Giả định: base giữ 15%/năm (chỉ tiêu 2026 của NHNN) cho 2026-2030; high 18%/năm (dự báo 2026 của Fitch, giữ nguyên); low 12%/năm (trung bình 2018-2023 theo dữ liệu của dashboard là 13,6%, low làm tròn thấp hơn). Không có chỉ tiêu tín dụng chính thức sau 2026. Thực tế 30/9/2026: +16,69% svck.",
+     "method_en": "Assumption: base holds 15%/yr (SBV 2026 target) for 2026-2030; high 18%/yr (Fitch 2026 forecast, held flat); low 12%/yr (the dashboard's data 2018-2023 average is 13.6%; low set below it). No official credit target exists beyond 2026. Actual 30 Sep 2026: +16.69% y/y.",
      "fitch_url": "https://www.bloomberg.com/news/articles/2025-11-12/vietnam-s-fast-lending-likely-rollback-of-credit-quotas-are-risky-fitch-says"
     },
     "deposit_growth_pct": {
@@ -10753,7 +10753,7 @@
      "kind": "scenario",
      "unit": "% y/y",
      "source": {
-      "name": "FINSYS.annual.deposit_growth 2021-2025 (SBV/press)",
+      "name": "SBV / press: deposit growth 2021–2025",
       "url": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd"
      },
      "method_vi": "Base = trung bình tăng trưởng huy động 2021-2025 (10.3, 5.99, 13.2, 10.66, 15.42) = 11.11%; low/high = trung bình ∓ 1 độ lệch chuẩn mẫu (3.54).",
@@ -11049,7 +11049,7 @@
    "as_of": "2026-10-06",
    "period": "2026-06-30 (Q2-2026 interim FS) for all 17 banks; consolidated vs separate basis is mixed/unclear per bank (see banks[].basis)",
    "sbv_total_bn": 20150411.0,
-   "sbv_total_note": "SBV 'Dư nợ tín dụng đối với nền kinh tế' (all credit institutions, incl. Agribank, foreign banks, finance companies, VBSP-excluded per SBV table) at end-Jun 2026 = FINSYS.sectors.levels.total; the ~20.3 quadrillion figure (Jul-2026: 20,262,110) is the same system-wide series, not joint-stock banks only.",
+   "sbv_total_note": "SBV 'Dư nợ tín dụng đối với nền kinh tế' (all credit institutions, incl. Agribank, foreign banks, finance companies, VBSP-excluded per SBV table) at end-Jun 2026 = the dashboard's data; the ~20.3 quadrillion figure (Jul-2026: 20,262,110) is the same system-wide series, not joint-stock banks only.",
    "sum_listed_total_loans_bn": 14054929,
    "coverage_pct_of_system": 69.8,
    "coverage_note": "DERIVED: sum of the 17 banks' customer loans / SBV credit to the economy at 30/6/2026. Indicative only: bank figures mix consolidated and separate bases and SBV 'credit' includes corporate bonds held and other credit items, so the ratio is not like-for-like. Agribank (~2.03 quadrillion) is not in the 17.",
