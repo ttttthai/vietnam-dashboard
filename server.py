@@ -1,25 +1,30 @@
 """
-Vietnam Dashboard backend — FastAPI wrapper around vnstock.
+Vietnam Dashboard backend — FastAPI. Live market data comes straight from Vietcap (VCI) public endpoints
+(invest.py, stdlib only); vnstock is optional and not installed (quarantined on PyPI 2026-09-24).
 
-Serves:
+Serves (main ones):
   /                     -> vietnam_dashboard.html (static)
-  /api/snapshot         -> combined JSON: indices, bonds, fx, rates
-  /api/indices          -> VN-Index, HNX-Index
-  /api/bonds            -> Government bond yields by tenor
-  /api/fx               -> USD/VND
-  /api/rates            -> SBV policy + deposit rates
+  /api/snapshot         -> combined JSON: indices, bonds, fx, rates, banks
+  /api/indices          -> VN-Index, VN30 (VCI)
+  /api/fx               -> USD/VND (open.er-api.com, frankfurter fallback)
+  /api/rates            -> SBV refinancing/OMO + deposit/lending rates, read from data/policy.json + data/finance.json
+  /api/banks            -> 17 listed banks (reported periods only; ?include_synthetic=1 for the old extrapolated series)
+  /api/freshness        -> per-series data freshness from data/research/{inventory,release_calendar}.json
+  /api/auto             -> World Bank / IMF / FRED snapshots in data/auto/ (POST /api/auto/refresh to re-pull)
 
-Data is refreshed:
-  - Once on startup
-  - Daily at 15:30 Asia/Ho_Chi_Minh (after market close)
+Scheduler (APScheduler, Asia/Ho_Chi_Minh):
+  - daily 00:00 — market snapshot refresh (also once on startup)
+  - monthly, 15th 01:00 — public macro APIs → data/auto/*.json (also on startup if a snapshot is missing/old)
 
 Run:
   uvicorn server:app --host 0.0.0.0 --port 8001 --reload
 """
 from __future__ import annotations
 
+import json
 import logging
 import os
+import threading
 import time
 from collections import deque
 from datetime import datetime, timezone
@@ -47,9 +52,32 @@ except Exception as _e:
     log.warning("vnstock not available (%s) — live equity data disabled", _e)
 
 import invest  # noqa: E402  — Đầu tư tab engine (VCI direct, stdlib only)
+import freshness  # noqa: E402  — /api/freshness (reads data/research)
+import auto_sources  # noqa: E402  — monthly World Bank / IMF / FRED pulls → data/auto
 
 ROOT = Path(__file__).parent
 HTML_FILE = ROOT / "vietnam_dashboard.html"
+DATA_DIR = ROOT / "data"
+
+# ─── Agent-owned data files (read-only here; reloaded when they change) ──
+_DATA_CACHE: dict[str, tuple[float, dict]] = {}
+
+
+def _data_json(name: str) -> dict:
+    """data/<name>.json as a dict ({} if missing/invalid). The server never writes these files."""
+    path = DATA_DIR / f"{name}.json"
+    try:
+        m = path.stat().st_mtime
+        hit = _DATA_CACHE.get(name)
+        if hit and hit[0] == m:
+            return hit[1]
+        d = json.loads(path.read_text(encoding="utf-8"))
+        d = d if isinstance(d, dict) else {}
+        _DATA_CACHE[name] = (m, d)
+        return d
+    except Exception as e:
+        log.warning("data/%s.json unavailable: %s", name, str(e)[:120])
+        return {}
 
 # ─── Activity log (newest first; ring buffer) ──────────────────────
 REFRESH_LOG: deque = deque(maxlen=400)
@@ -947,20 +975,85 @@ def fetch_fx() -> dict[str, Any]:
     return {}
 
 
-def fetch_rates() -> dict[str, Any]:
-    """SBV policy rate + big-4 deposit rates — no stable vnstock endpoint.
-    Return manual reference values that a user can override via config."""
-    # Most recent public SBV reference rates (refresh on schedule — placeholder).
+def _policy_instrument(iid: str) -> dict | None:
+    """One rate instrument from data/policy.json (POLICY.mon.instruments[id=iid]) with its date and source."""
+    instr = ((_data_json("policy").get("POLICY") or {}).get("mon") or {}).get("instruments") or []
+    x = next((i for i in instr if isinstance(i, dict) and i.get("id") == iid), None)
+    if not x or not isinstance(x.get("current_value"), (int, float)):
+        return None
+    hist = [h for h in (x.get("history") or []) if isinstance(h, dict)]
+    last = hist[-1] if hist else {}
+    ser = x.get("series") or {}
     return {
-        "sbv_policy": 4.50,
-        "deposit_big4_12M": 4.70,
-        "deposit_nhtmcp_12M": 5.20,
-        "lending_12M": 7.50,
-        "source": "manual-reference (update server.py fetch_rates for live source)",
+        "value": x["current_value"], "unit": x.get("unit") or "%",
+        "effective": x.get("effective"),
+        "checked": (ser.get("dates") or [None])[-1],          # last date of the Policy agent's step series
+        "label_vi": x.get("name_vi"), "label_en": x.get("name_en"),
+        "current_en": x.get("current_en"),
+        "source_doc": last.get("doc"), "source_url": last.get("url"),
+        "source": f"data/policy.json POLICY.mon.instruments[{iid}] (Policy agent)",
+    }
+
+
+def _num_range(v: Any) -> tuple[float | None, float | None]:
+    """6.65 → (6.65, 6.65); "~6.65 (avg)" → (6.65, 6.65); "8.4–10.7" → (8.4, 10.7); otherwise (None, None)."""
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return float(v), float(v)
+    import re
+    nums = [float(n) for n in re.findall(r"\d+(?:\.\d+)?", str(v or ""))]
+    if not nums:
+        return None, None
+    return (nums[0], nums[1]) if len(nums) >= 2 and re.search(r"\d\s*[–-]\s*\d", str(v)) else (nums[0], nums[0])
+
+
+def _finance_series(key: str) -> dict | None:
+    """Latest point of data/finance.json FINSYS.why.series.<key> with its date and source."""
+    s = (((_data_json("finance").get("FINSYS") or {}).get("why") or {}).get("series") or {}).get(key)
+    if not isinstance(s, dict) or not s.get("values"):
+        return None
+    vals, dates = s["values"], s.get("dates") or []
+    i = len(vals) - 1
+    pick = lambda k: (s.get(k)[i] if isinstance(s.get(k), list) and len(s.get(k)) > i else s.get(k))
+    lo, hi = _num_range(vals[i])
+    return {
+        "value": lo if lo == hi else None, "low": lo, "high": hi, "value_text": str(vals[i]),
+        "unit": s.get("unit"), "date": dates[i] if i < len(dates) else None,
+        "article_date": pick("article_dates"), "source_url": pick("src"), "note": s.get("note"),
+        "source": f"data/finance.json FINSYS.why.series.{key} (Finance agent)",
+    }
+
+
+def fetch_rates() -> dict[str, Any]:
+    """SBV policy rates and market deposit/lending rates — read from the agents' data files so the server
+    never contradicts the Policy / Finance tabs (no hard-coded values). Each item carries its date and source."""
+    refi = _policy_instrument("refinancing_rate")
+    omo = _policy_instrument("omo_rate")
+    redisc = _policy_instrument("rediscount_rate")
+    dep = _finance_series("deposit12m_private_banks_mbs")
+    lend = _finance_series("avg_lending_rate_sbv")
+    missing = [n for n, v in (("refinancing_rate", refi), ("omo_rate", omo),
+                              ("deposit12m_private_banks_mbs", dep), ("avg_lending_rate_sbv", lend)) if v is None]
+    dates = [d for d in ((refi or {}).get("checked"), (omo or {}).get("checked"), (dep or {}).get("date"), (lend or {}).get("date")) if d]
+    return {
+        # legacy keys (numbers or null) — the page reads sbv_policy
+        "sbv_policy": (refi or {}).get("value"),
+        "deposit_big4_12M": None,                    # not tracked as a series in the data files
+        "deposit_nhtmcp_12M": (dep or {}).get("value"),
+        "lending_12M": (lend or {}).get("value"),    # null when the source gives a range (see lending_avg.low/high)
+        # dated, sourced items
+        "refinancing": refi, "omo": omo, "rediscount": redisc,
+        "deposit_12m_private_banks": dep, "lending_avg": lend,
+        "as_of": max(dates) if dates else None,
+        "missing": missing,
+        "source": "data/policy.json (Policy agent) + data/finance.json (Finance agent)",
     }
 
 
 # ─── Multi-period histories per bank ────────────────────────────────
+# REPORTED: only FY2024 (VN_BANK_FUNDAMENTALS). All other periods built below are SYNTHETIC (flagged
+# synthetic=True) and are dropped from /api/banks unless ?include_synthetic=1 is passed.
+REPORTED_BANK_PERIOD = "FY2024"
+BANK_FUNDAMENTALS_BASIS = "FY2024 standalone (parent-bank) disclosures, curated in server.py"
 # Annual 6-year series FY2019..FY2024 and quarterly up to 6 recent quarters
 # (per-bank latest varies: Q1/2026 for early reporters, Q4/2025 or Q3/2025 for laggards).
 # Values derived from FY2024 with realistic back-extrapolation.
@@ -1057,30 +1150,59 @@ def _build_histories():
             "ccov":     round(fy["ccov"] + delta["ccov"], 0),
         }
 
+    # Only FY2024 (scale 1.00, zero delta) equals the curated reported figures; every other period is a
+    # back-/forward-extrapolation (scale factors + per-bank jitter) and is flagged synthetic=True.
     yearly = {}
     quarterly = {}
     for sym, fy in VN_BANK_FUNDAMENTALS.items():
-        yearly[sym] = [snap(fy, ANNUAL_SCALE[i], ANNUAL_DELTA[i], ANNUAL_PERIODS[i], sym, i)
+        yearly[sym] = [{**snap(fy, ANNUAL_SCALE[i], ANNUAL_DELTA[i], ANNUAL_PERIODS[i], sym, i),
+                        "synthetic": ANNUAL_PERIODS[i] != REPORTED_BANK_PERIOD}
                        for i in range(len(ANNUAL_PERIODS))]
         end = bank_q_end.get(sym, MID_END)
         end_idx = Q_ALL.index(end)
         start_idx = max(0, end_idx - 7)
         q_slice = Q_ALL[start_idx: end_idx + 1]
-        quarterly[sym] = [snap(fy, Q_IDX_SCALE[q], Q_DELTA[q], q, sym, i)
+        quarterly[sym] = [{**snap(fy, Q_IDX_SCALE[q], Q_DELTA[q], q, sym, i), "synthetic": True}
                           for i, q in enumerate(q_slice)]
     return yearly, quarterly
 
 VN_BANK_YEARLY_HIST, VN_BANK_QUARTERLY_HIST = _build_histories()
 
 
-def _build_bank_row(sym: str, period: str) -> dict:
-    """Build one bank's entry: metadata + latest snapshot + 6-period history.
-    period='year'    → 6-year history FY2019..FY2024
-    period='quarter' → up to 6 quarters (per-bank latest available, oldest→newest)
+def _reported_loans() -> dict[str, dict]:
+    """Latest reported customer loans per bank from data/finance.json FINSYS.listed_banks_by_sector (Finance agent)."""
+    lb = (_data_json("finance").get("FINSYS") or {}).get("listed_banks_by_sector") or {}
+    out = {}
+    for b in lb.get("banks") or []:
+        if not isinstance(b, dict) or not b.get("ticker"):
+            continue
+        v = b.get("total_loans_bn")
+        if not isinstance(v, (int, float)) or isinstance(v, bool):
+            continue
+        per = str(b.get("period") or lb.get("period") or "")
+        out[b["ticker"]] = {"value_bn": v, "period": per[:10] if per[:4].isdigit() else per, "period_label": per,
+                            "basis": b.get("basis"), "url": b.get("url"),
+                            "source": "data/finance.json FINSYS.listed_banks_by_sector (Finance agent)"}
+    return out
+
+
+def _build_bank_row(sym: str, period: str, include_synthetic: bool = False,
+                    loans_rep: dict[str, dict] | None = None) -> dict:
+    """One bank's entry: metadata + latest snapshot + history (oldest→newest).
+
+    Default: reported periods only (FY2024). There are no reported quarterly fundamentals yet, so
+    period='quarter' also serves FY2024 (period_label says so). include_synthetic=True restores the old
+    extrapolated series (every entry flagged synthetic true/false).
     """
     meta = VN_BANK_FUNDAMENTALS[sym]
-    hist = (VN_BANK_QUARTERLY_HIST if period == "quarter" else VN_BANK_YEARLY_HIST).get(sym) or []
-    latest = hist[-1] if hist else {"period": "FY2024", **meta}
+    hist_all = (VN_BANK_QUARTERLY_HIST if period == "quarter" else VN_BANK_YEARLY_HIST).get(sym) or []
+    hist = hist_all if include_synthetic else [h for h in hist_all if not h.get("synthetic")]
+    if not hist:   # quarter view without synthetic periods → latest reported (FY2024)
+        hist = [h for h in VN_BANK_YEARLY_HIST.get(sym, []) if not h.get("synthetic")] or \
+               [{"period": REPORTED_BANK_PERIOD, **{k: meta[k] for k in ("assets", "equity", "deposits", "loans", "nim", "roa",
+                                                                         "roe", "cir", "npl", "car", "ldr", "ccov")}, "synthetic": False}]
+    latest = hist[-1]
+    rep = (loans_rep if loans_rep is not None else _reported_loans()).get(sym)
     return {
         "symbol": sym, "name": meta["name"], "type": meta["type"],
         "period_label": latest["period"],
@@ -1089,7 +1211,13 @@ def _build_bank_row(sym: str, period: str) -> dict:
         "nim": latest["nim"], "roa": latest["roa"], "roe": latest["roe"],
         "cir": latest["cir"], "npl": latest["npl"], "car": latest["car"],
         "ldr": latest["ldr"], "ccov": latest["ccov"],
-        "history": hist,  # array of 6 (or fewer) snapshots oldest→newest
+        "synthetic": bool(latest.get("synthetic")),
+        "basis": BANK_FUNDAMENTALS_BASIS,
+        "history": hist,  # reported snapshots only (or flagged series with include_synthetic)
+        # latest reported customer loans (newer than the FY2024 fundamentals), when the Finance agent has it
+        "latest_reported_loans": rep,
+        "loans_latest_bn": rep["value_bn"] if rep else None,
+        "loans_latest_period": rep["period"] if rep else None,
     }
 
 
@@ -1100,10 +1228,11 @@ def fetch_banks(period: str = "year") -> dict[str, Any]:
     rows = []
     today = datetime.now().strftime("%Y-%m-%d")
     start = (datetime.now().replace(day=1)).strftime("%Y-%m-%d")
+    loans_rep = _reported_loans()
     if not VNSTOCK_AVAILABLE:
         live = 0
         for sym in VN_BANK_FUNDAMENTALS:
-            row = _build_bank_row(sym, period)
+            row = _build_bank_row(sym, period, loans_rep=loans_rep)
             row["price"] = row["chg_pct"] = row["volume"] = None
             try:                                   # live price from VCI (cached 30 min in invest.py)
                 r = _vci_last(sym)
@@ -1140,7 +1269,7 @@ def fetch_banks(period: str = "year") -> dict[str, Any]:
                     rate_limit_hit = True
                 except BaseException as e:
                     log.info("bank %s quote failed: %s", sym, str(e)[:120])
-            row = _build_bank_row(sym, period)
+            row = _build_bank_row(sym, period, loans_rep=loans_rep)
             row["price"] = price
             row["chg_pct"] = (None if (price is None or prev is None or prev == 0)
                               else round((price/prev - 1)*100, 2))
@@ -1150,7 +1279,7 @@ def fetch_banks(period: str = "year") -> dict[str, Any]:
         log.warning("fetch_banks init failed: %s", str(e)[:120])
         for sym in VN_BANK_FUNDAMENTALS:
             if not any(r["symbol"] == sym for r in rows):
-                row = _build_bank_row(sym, period)
+                row = _build_bank_row(sym, period, loans_rep=loans_rep)
                 row["price"] = row["chg_pct"] = row["volume"] = None
                 rows.append(row)
 
@@ -1224,7 +1353,7 @@ def refresh_snapshot(trigger: str = "auto") -> None:
         rates = fetch_rates()
         _log_event(trigger, "rates", "ok" if rates else "empty",
                    duration_ms=int((time.time()-s_t0)*1000),
-                   message="SBV policy + deposit rates (manual reference)")
+                   message=("Lãi suất từ data/policy.json + data/finance.json" + (f" — thiếu {', '.join(rates['missing'])}" if rates.get("missing") else "")))
     except Exception as e:
         errors.append(f"rates: {e}")
         _log_event(trigger, "rates", "error", duration_ms=int((time.time()-s_t0)*1000), message=str(e)[:200])
@@ -1278,7 +1407,7 @@ def root():
 
 @app.get("/api/snapshot")
 def api_snapshot():
-    return JSONResponse(SNAPSHOT)
+    return JSONResponse({**SNAPSHOT, "rates": fetch_rates()})   # rates re-read from the agents' data files
 
 
 @app.get("/api/indices")
@@ -1298,7 +1427,7 @@ def api_fx():
 
 @app.get("/api/rates")
 def api_rates():
-    return JSONResponse(SNAPSHOT.get("rates") or {})
+    return JSONResponse(fetch_rates())
 
 
 @app.get("/api/logs")
@@ -1316,16 +1445,45 @@ def api_logs(limit: int = 100):
         "count":     len(REFRESH_LOG),
         "next_run":  next_run,
         "schedule":  "Hàng ngày · 00:00 Asia/Ho_Chi_Minh",
+        "schedule_auto": AUTO_SCHEDULE,
     })
 
 
+SYNTHETIC_NOTE = ("Bank histories other than FY2024 were extrapolated in server.py (scale factors + per-bank jitter), "
+                  "not reported figures; they are omitted unless include_synthetic=1, and flagged synthetic=true then.")
+PRICE_FIELDS = ("price", "chg_pct", "volume")
+
+
 @app.get("/api/banks")
-def api_banks(period: str = "year"):
-    """?period=year (default) or ?period=quarter"""
-    banks_all = SNAPSHOT.get("banks") or {}
-    if period == "quarter":
-        return JSONResponse(banks_all.get("quarter") or {})
-    return JSONResponse(banks_all.get("year") or {})
+def api_banks(period: str = "year", include_synthetic: bool = False):
+    """?period=year (default) | quarter. Reported periods only; ?include_synthetic=1 adds the extrapolated
+    periods (each history entry carries synthetic: true/false)."""
+    period = "quarter" if period == "quarter" else "year"
+    base = (SNAPSHOT.get("banks") or {}).get(period) or {}
+    loans_rep = _reported_loans()
+    rows = []
+    for r in base.get("rows") or []:
+        if r.get("symbol") not in VN_BANK_FUNDAMENTALS:
+            continue
+        row = _build_bank_row(r["symbol"], period, include_synthetic, loans_rep)   # fundamentals re-read now
+        row.update({k: r.get(k) for k in PRICE_FIELDS})
+        rows.append(row)
+    label_counts: dict[str, int] = {}
+    for r in rows:
+        label_counts[r["period_label"]] = label_counts.get(r["period_label"], 0) + 1
+    removed = sum(1 for sym in VN_BANK_FUNDAMENTALS
+                  for h in ((VN_BANK_QUARTERLY_HIST if period == "quarter" else VN_BANK_YEARLY_HIST).get(sym) or [])
+                  if h.get("synthetic")) if not include_synthetic else 0
+    return JSONResponse({
+        **{k: v for k, v in base.items() if k != "rows"},
+        "period": period, "period_summary": label_counts, "count": len(rows), "rows": rows,
+        "reported_only": not include_synthetic,
+        "synthetic_periods_removed": removed,
+        "fundamentals_basis": BANK_FUNDAMENTALS_BASIS,
+        "quarterly_reported": False,
+        "latest_reported_loans_period": next((r["loans_latest_period"] for r in rows if r.get("loans_latest_period")), None),
+        "note": SYNTHETIC_NOTE,
+    })
 
 
 @app.get("/api/banks/statements")
@@ -1352,6 +1510,9 @@ def api_banks_statements(period: str = "year"):
         "income_statement": s["is_list"],
         "periods": s["periods"],
         "as_of": f"{latest_period} hợp nhất 17 NHTM niêm yết" + (" (ước tính 1 quý)" if period=="quarter" else ""),
+        "synthetic_history": True,
+        "history_note": "System aggregate derived from 17 banks' FY2024 totals × fixed ratios; every period's history "
+                        "(and the quarterly view) is a modelled scale-factor series, not reported data.",
     })
 
 
@@ -1362,7 +1523,8 @@ def api_banks_lineitem(key: str, period: str = "year"):
     bd = bd_map["line_items"].get(key)
     if not bd:
         return JSONResponse({"error": "no breakdown"}, status_code=404)
-    return JSONResponse({"key": key, **bd, "periods": bd_map["periods"]})
+    return JSONResponse({"key": key, **bd, "periods": bd_map["periods"], "synthetic_history": True,
+                         "history_note": "Shares are FY2024 system estimates; histories follow modelled trend shapes, not reported data."})
 
 
 @app.get("/api/banks/breakdown")
@@ -1376,6 +1538,8 @@ def api_banks_breakdown(period: str = "year"):
         "funding":  bd["funding"],
         "periods":  bd["periods"],
         "as_of":    f"{latest} — hệ thống ngân hàng VN",
+        "synthetic_history": True,
+        "history_note": "Shares are FY2024 system estimates; histories follow modelled trend shapes, not reported data.",
     })
 
 
@@ -1434,7 +1598,7 @@ def api_invest_context():
                   "horizons": invest.HORIZONS, "certainty_target": invest.CERTAINTY_TARGET,
                   "min_sample": invest.MIN_SAMPLE, "min_volume": invest.MIN_VOLUME,
                   "min_charter_bn": invest.MIN_CHARTER_BN},
-        "macro": invest.MACRO, "market": mkt,
+        "macro": invest.macro(), "market": mkt,
         "research": {k: v for k, v in invest.research().items() if k.startswith("_")},
     })
 
@@ -1476,6 +1640,72 @@ def api_invest_analyze(symbols: str, horizon: int = 63, target: float = 0.0):
     return JSONResponse({"horizon": horizon, "target_pct": target, "results": out})
 
 
+# ─── Data freshness (P-1) ──────────────────────────────────────────
+@app.get("/api/freshness")
+def api_freshness(tab: str | None = None, status: str | None = None):
+    """Per-series freshness from data/research/{inventory,release_calendar}.json, against today (Asia/Ho_Chi_Minh).
+    Optional filters: ?tab=<inventory tab name>, ?status=fresh|due|overdue|waiting (filter the series list only)."""
+    srv = None
+    try:
+        if SNAPSHOT.get("updated_at"):
+            srv = datetime.fromisoformat(SNAPSHOT["updated_at"]).astimezone(freshness.TZ).date()
+    except Exception:
+        pass
+    return JSONResponse(freshness.report(DATA_DIR / "research", server_last_refresh=srv, tab=tab, status=status))
+
+
+# ─── Public macro APIs → data/auto (P-3/P-4) ───────────────────────
+_AUTO_LOCK = threading.Lock()
+AUTO_SCHEDULE = "Hàng tháng · ngày 15, 01:00 Asia/Ho_Chi_Minh"
+
+
+def run_auto_sources(trigger: str = "auto", names: list[str] | None = None) -> dict:
+    """Pull World Bank / IMF / FRED into data/auto/*.json. Never raises; one run at a time."""
+    if not _AUTO_LOCK.acquire(blocking=False):
+        return {"_busy": {"status": "error", "error": "an auto-source run is already in progress"}}
+    try:
+        _log_event(trigger, "auto", "started", message="World Bank / IMF / FRED → data/auto")
+        return auto_sources.run(names, log_event=_log_event, trigger=trigger)
+    except BaseException as e:
+        _log_event(trigger, "auto", "error", message=str(e)[:200])
+        return {"_run": {"status": "error", "error": str(e)[:200]}}
+    finally:
+        _AUTO_LOCK.release()
+
+
+@app.get("/api/auto")
+def api_auto(source: str | None = None):
+    """Latest snapshots in data/auto/ with fetch status. ?source=world_bank|imf_datamapper|fed_funds"""
+    if source and source not in auto_sources.SOURCES:
+        return JSONResponse({"error": "unknown source", "sources": list(auto_sources.SOURCES)}, status_code=404)
+    names = [source] if source else list(auto_sources.SOURCES)
+    status = auto_sources.read_status()
+    next_run = None
+    try:
+        job = scheduler.get_job("monthly-auto")
+        if job and job.next_run_time:
+            next_run = job.next_run_time.isoformat()
+    except Exception:
+        pass
+    return JSONResponse({
+        "dir": "data/auto",
+        "schedule": AUTO_SCHEDULE,
+        "next_run": next_run,
+        "running": _AUTO_LOCK.locked(),
+        "sources": {n: {"status": status.get(n), "snapshot": auto_sources.read_snapshot(n)} for n in names},
+        "note": "Server-fetched raw snapshots for the tab agents to review; the page's figures come from data/<tab>.json.",
+    })
+
+
+@app.post("/api/auto/refresh")
+def api_auto_refresh(source: str | None = None):
+    """Manual re-pull of the public macro APIs (all, or ?source=...). Same pattern as /api/refresh."""
+    if source and source not in auto_sources.SOURCES:
+        return JSONResponse({"ok": False, "error": "unknown source", "sources": list(auto_sources.SOURCES)}, status_code=400)
+    res = run_auto_sources("manual", [source] if source else None)
+    return JSONResponse({"ok": all((r or {}).get("status") != "error" for r in res.values()), "results": res})
+
+
 @app.get("/api/refresh")
 def api_refresh():
     """Manual refresh endpoint."""
@@ -1500,10 +1730,16 @@ def api_refresh():
 
 
 # Scheduler: daily at 00:00 Asia/Ho_Chi_Minh (midnight VN time)
-scheduler = BackgroundScheduler(timezone="Asia/Ho_Chi_Minh")
+# CronTrigger defaults to the *system* timezone in APScheduler 3 (UTC on Render), so pass it explicitly.
+VN_TZ = "Asia/Ho_Chi_Minh"
+scheduler = BackgroundScheduler(timezone=VN_TZ)
 scheduler.add_job(lambda: refresh_snapshot("auto"),
-                  CronTrigger(hour=0, minute=0),
+                  CronTrigger(hour=0, minute=0, timezone=VN_TZ),
                   id="daily-midnight", replace_existing=True)
+# Monthly: public macro APIs (World Bank WDI, IMF DataMapper, FRED) → data/auto/*.json
+scheduler.add_job(lambda: run_auto_sources("auto"),
+                  CronTrigger(day=15, hour=1, minute=0, timezone=VN_TZ),
+                  id="monthly-auto", replace_existing=True)
 
 
 @app.on_event("startup")
@@ -1513,7 +1749,11 @@ def on_startup():
                message="Server khởi động · lịch tự cập nhật 00:00 Asia/Ho_Chi_Minh")
     refresh_snapshot("startup")
     scheduler.start()
-    log.info("Scheduler started: daily auto-refresh at 00:00 Asia/Ho_Chi_Minh")
+    log.info("Scheduler started: daily auto-refresh at 00:00, macro APIs monthly (15th 01:00) Asia/Ho_Chi_Minh")
+    # Back-fill data/auto when a snapshot is missing or > 31 days old (e.g. fresh Render disk); background, non-blocking
+    stale = auto_sources.stale_sources()
+    if stale and os.environ.get("AUTO_FETCH_ON_STARTUP", "1") != "0":
+        threading.Thread(target=run_auto_sources, args=("startup", stale), daemon=True).start()
 
 
 @app.on_event("shutdown")

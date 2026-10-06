@@ -1,0 +1,206 @@
+[
+ {
+  "page": 1,
+  "pages": 1,
+  "per_page": "400",
+  "total": 7
+ },
+ [
+  {
+   "id": "EAS",
+   "iso2Code": "Z4",
+   "name": "East Asia & Pacific",
+   "region": {
+    "id": "NA",
+    "iso2code": "",
+    "value": ""
+   },
+   "adminregion": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "incomeLevel": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "lendingType": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "capitalCity": "",
+   "longitude": "",
+   "latitude": ""
+  },
+  {
+   "id": "USA",
+   "iso2Code": "US",
+   "name": "United States",
+   "region": {
+    "id": "NAC",
+    "iso2code": "",
+    "value": ""
+   },
+   "adminregion": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "incomeLevel": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "lendingType": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "capitalCity": "",
+   "longitude": "",
+   "latitude": ""
+  },
+  {
+   "id": "CHN",
+   "iso2Code": "CN",
+   "name": "China",
+   "region": {
+    "id": "EAS",
+    "iso2code": "",
+    "value": ""
+   },
+   "adminregion": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "incomeLevel": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "lendingType": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "capitalCity": "",
+   "longitude": "",
+   "latitude": ""
+  },
+  {
+   "id": "THA",
+   "iso2Code": "TH",
+   "name": "Thailand",
+   "region": {
+    "id": "EAS",
+    "iso2code": "",
+    "value": ""
+   },
+   "adminregion": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "incomeLevel": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "lendingType": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "capitalCity": "",
+   "longitude": "",
+   "latitude": ""
+  },
+  {
+   "id": "VNM",
+   "iso2Code": "VN",
+   "name": "Viet Nam",
+   "region": {
+    "id": "EAS",
+    "iso2code": "",
+    "value": ""
+   },
+   "adminregion": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "incomeLevel": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "lendingType": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "capitalCity": "",
+   "longitude": "",
+   "latitude": ""
+  },
+  {
+   "id": "LAO",
+   "iso2Code": "LA",
+   "name": "Lao PDR",
+   "region": {
+    "id": "EAS",
+    "iso2code": "",
+    "value": ""
+   },
+   "adminregion": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "incomeLevel": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "lendingType": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "capitalCity": "",
+   "longitude": "",
+   "latitude": ""
+  },
+  {
+   "id": "PRK",
+   "iso2Code": "KP",
+   "name": "Korea, Dem. People's Rep.",
+   "region": {
+    "id": "EAS",
+    "iso2code": "",
+    "value": ""
+   },
+   "adminregion": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "incomeLevel": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "lendingType": {
+    "id": "",
+    "iso2code": "",
+    "value": ""
+   },
+   "capitalCity": "",
+   "longitude": "",
+   "latitude": ""
+  }
+ ]
+]

@@ -158,8 +158,16 @@ PUBLIC_INVEST_ICB = {"2300", "1700", "2700"}
 # Sectors most sensitive to an accelerating GDP / credit cycle
 GROWTH_ICB = {"8300", "8700", "8600", "5300", "3500", "3700", "2700", "9500"}
 
-# ─── Macro context (hand-entered, sourced, as of 2026-10-03) ───────
-MACRO = {
+# ─── Macro context ─────────────────────────────────────────────────
+# Owned by the Economy agent in data/invest_macro.json (key "MACRO", same structure as below), read at call
+# time (reloads when the file changes). The dict below is only the fallback when that file is missing or
+# invalid — hand-entered, sourced, as of 2026-10-03. CPI target 4.5% (NA 2026 socio-economic resolution).
+_MACRO_FILE = __import__("pathlib").Path(__file__).with_name("data") / "invest_macro.json"
+_MACRO_REQUIRED = {"gdp": ("ytd9m", "target", "q4_required_est"), "public_invest": ("plan_bn", "disbursed_bn"),
+                   "cpi": ("target",)}
+_macro_cache: dict = {"mtime": None, "data": None, "error": None}
+
+_MACRO_FALLBACK = {
     "as_of": "2026-10-03",
     "gdp": {
         "q1": 8.15, "q2": 8.81, "q3": 9.95, "ytd9m": 9.01, "target": 10.0,
@@ -180,6 +188,51 @@ MACRO = {
         "url": "https://markettimes.vn/cpi-thang-9-2026-tang-0-62-chu-yeu-do-gia-xang-dau-va-hoc-phi-132253.html",
     },
 }
+
+
+def _macro_valid(m: Any) -> str | None:
+    """None if m has the fields analyze() reads, else a short reason."""
+    if not isinstance(m, dict):
+        return "MACRO is not an object"
+    for sec, keys in _MACRO_REQUIRED.items():
+        if not isinstance(m.get(sec), dict):
+            return f"MACRO.{sec} missing"
+        for k in keys:
+            if not isinstance(m[sec].get(k), (int, float)) or isinstance(m[sec].get(k), bool):
+                return f"MACRO.{sec}.{k} missing or not a number"
+    return None
+
+
+def macro() -> dict:
+    """Current macro context: data/invest_macro.json["MACRO"] if present and valid, else the in-file fallback.
+    The returned dict carries "_loaded_from" (file path or "invest.py fallback") and, on fallback, "_fallback_reason"."""
+    try:
+        m = _MACRO_FILE.stat().st_mtime
+    except OSError:
+        return {**_MACRO_FALLBACK, "_loaded_from": "invest.py fallback", "_fallback_reason": "data/invest_macro.json not found"}
+    if m != _macro_cache["mtime"]:
+        _macro_cache.update(mtime=m, data=None, error=None)
+        try:
+            d = json.loads(_MACRO_FILE.read_text(encoding="utf-8"))
+            mac = d.get("MACRO") if isinstance(d, dict) else None
+            err = _macro_valid(mac)
+            if err:
+                _macro_cache["error"] = err
+            else:
+                _macro_cache["data"] = mac
+        except Exception as e:
+            _macro_cache["error"] = f"unreadable: {str(e)[:120]}"
+        if _macro_cache["error"]:
+            log.warning("data/invest_macro.json ignored (%s) — using invest.py fallback", _macro_cache["error"])
+    if _macro_cache["data"] is not None:
+        return {**_macro_cache["data"], "_loaded_from": "data/invest_macro.json"}
+    return {**_MACRO_FALLBACK, "_loaded_from": "invest.py fallback", "_fallback_reason": _macro_cache["error"]}
+
+
+def __getattr__(name: str):          # backward compat: `invest.MACRO` keeps working and is always current
+    if name == "MACRO":
+        return macro()
+    raise AttributeError(name)
 
 
 # ─── Indicators ────────────────────────────────────────────────────
@@ -363,7 +416,8 @@ def analyze(symbol: str, horizon: int = 63, target_pct: float = 0.0, detail: boo
     ev_base.pop("events", None)
 
     # ── 4/5. Macro themes (qualitative, sector-linked) ──
-    pi = MACRO["public_invest"]
+    M = macro()
+    pi = M["public_invest"]
     theme_public = icb in PUBLIC_INVEST_ICB
     theme_growth = icb in GROWTH_ICB
 
@@ -399,7 +453,7 @@ def analyze(symbol: str, horizon: int = 63, target_pct: float = 0.0, detail: boo
          "evidence": None},
         {"key": "growth", "label": "Tăng trưởng còn dư địa",
          "state": "pass" if theme_growth else "partial",
-         "value": (f"9T: {MACRO['gdp']['ytd9m']}% vs mục tiêu ≥{MACRO['gdp']['target']:.0f}% → Q4 cần ~{MACRO['gdp']['q4_required_est']}% (ước tính)"
+         "value": (f"9T: {M['gdp']['ytd9m']}% vs mục tiêu ≥{M['gdp']['target']:.0f}% → Q4 cần ~{M['gdp']['q4_required_est']}% (ước tính)"
                    + (" · ngành nhạy với chu kỳ tăng trưởng" if theme_growth else " · ngành ít nhạy")),
          "evidence": None},
     ]
