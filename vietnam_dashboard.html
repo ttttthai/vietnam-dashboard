@@ -1159,6 +1159,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
 
         <!-- Panel: Tiền tệ (Monetary policy) -->
         <div id="panel-money" class="panel">
+          <div id="pol-story" class="st-root"></div>
           <div id="pol-root" class="full-width"></div>
           <details id="pol-appendix" class="fs-appendix full-width">
           <summary>Phụ lục: biểu đồ số liệu tiền tệ & tài khoá (lãi suất, tín dụng, tỷ giá, ngân sách, đầu tư công, TPCP, nợ công)</summary>
@@ -5449,6 +5450,7 @@ function renderPolicy() {
   h += `<div class="econ-card full-width" id="pol-news"><div class="econ-card-header">${polT('Tin chính sách mới nhất', 'Latest policy news')}</div><div class="econ-card-body"><ul class="pg-news">${news.map(n => `<li><time>${pgFmt(n.date)}</time><span class="pol-side ${n.side}">${n.side === 'mon' ? polT('Tiền tệ', 'Monetary') : polT('Tài khoá', 'Fiscal')}</span> <a href="${ciE(n.url)}" target="_blank" rel="noopener">${ciE(polF(n, 'title'))}</a><div>${(n.instrument_ids || []).map(id => `<span class="pg-tag" data-pol-open="${n.side}:${id}">${ciE(insName(n.side, id))}</span>`).join('')}</div></li>`).join('')}</ul></div></div>`;
   root.innerHTML = h;
   polTimeline(all);
+  try { renderPolStory(); } catch (e) { console.warn('policy story', e); }
 }
 
 function polDetail(key) {
@@ -5991,6 +5993,111 @@ function socStWaffle() {
     ${B.followers ? `<div class="st-fact" style="margin-top:16px;border-color:${ST.violet}"><div class="st-mini-v">${stN(B.followers / 1e6, 1)}${stT(' triệu', 'm')} · ${B.pct}%</div><div class="st-mini-h">${stT(`tín đồ theo Ban Tôn giáo Chính phủ (${B.date.split('-').reverse().join('/')})`, `followers per the Government Committee for Religious Affairs (${B.date.split('-').reverse().join('/')})`)}</div><div class="st-fact-s">${stT(`${B.religions} tôn giáo, ${B.orgs} tổ chức được công nhận — cách đếm khác Tổng điều tra (tự khai)`, `${B.religions} religions and ${B.orgs} recognised organisations — counted differently from the self-reported census`)}</div></div>` : ''}</div>`;
 }
 // ── /STORY Society ──
+// ── STORY: Policies (same chapter system as the Economy story) ──
+const polIns = (side, id) => POLICY[side].instruments.find(x => x.id === id);
+const polSer = ins => { const s = ins && ins.series; return s && s.dates ? s.dates.map((d, i) => [d, s.values[i]]).filter(p => p[1] != null) : []; };
+const polDS = s => { const [y, m, d] = s.split('-'); return stT(`${+d}/${+m}/${y}`, `${+d} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m - 1]} ${y}`); };
+function renderPolStory() {
+  const root = document.getElementById('pol-story'); if (!root || typeof POLICY === 'undefined') return;
+  const P = POLICY, ref = polIns('mon', 'refinancing_rate'), since = (ref.effective || '2023-06-19'), months = Math.round((pgToday() - pgDate(since)) / 864e5 / 30.44);
+  const H = [...P.mon.instruments.map(i => ({ i, side: 'mon' })), ...P.fis.instruments.map(i => ({ i, side: 'fis' }))].flatMap(o => (o.i.history || []).map(h => ({ ...h, side: o.side, ins: o.i })));
+  const nE = H.filter(h => h.direction === 'easing').length, nT = H.filter(h => h.direction === 'tightening').length;
+  const exp = [...P.mon.instruments, ...P.fis.instruments].filter(i => i.expires && i.expires >= pgToday().toISOString().slice(0, 10)), exp26 = exp.filter(i => i.expires === '2026-12-31').length;
+  let h = `<section class="st-chap st-hero" id="pol-st-hero"><div class="st-kicker">${stT('Chính sách tiền tệ & tài khoá · cập nhật ', 'Monetary & fiscal policy · as of ')}${polDS(P.mon.as_of)}</div>
+    <div class="st-hero-grid"><div>
+      <div class="st-big">${stN(ref.current_value, 1)}%<span>${stT(' lãi suất tái cấp vốn', ' refinancing rate')}</span></div>
+      <p class="st-dek">${stT(`Không đổi suốt <b>${months} tháng</b>, từ ${polDS(since)}. NHNN không hạ lãi suất điều hành nữa mà nới các giới hạn an toàn, bơm tín dụng ưu đãi và "vận động" ngân hàng giảm lãi suất; Chính phủ thì giảm thuế, phí và đẩy mạnh đầu tư công.`, `Unchanged for <b>${months} months</b>, since ${polDS(since)}. Rather than cut policy rates again, the SBV loosens prudential limits, channels subsidised credit and leans on banks to cut rates; the Government cuts taxes and fees and pushes public investment.`)}</p>
+    </div><div id="pol-st-rates" class="st-viz"></div></div></section>`;
+  h += stChap('pol-st-moves', stT('Chương 1 · Nới hay thắt?', 'Chapter 1 · Easing or tightening?'),
+    stT(`Cứ một lần thắt chặt thì có hơn ${Math.floor(nE / Math.max(1, nT))} lần nới lỏng`, `For every tightening move there were more than ${Math.floor(nE / Math.max(1, nT))} easing moves`),
+    stT(`Mỗi cột là số lần điều chỉnh trong một quý (${H.length} lần từ 2023). Phía trên: nới lỏng; phía dưới: thắt chặt. Xanh = tiền tệ, cam = tài khoá.`, `Each column counts policy moves in one quarter (${H.length} since 2023). Above the line: easing; below: tightening. Blue = monetary, orange = fiscal.`),
+    `<div id="pol-st-div" class="st-viz"></div><div class="st-sub">${stT('Cán cân theo nhóm công cụ (số lần nới lỏng trừ thắt chặt)', 'Net balance by instrument group (easing minus tightening moves)')}</div><div id="pol-st-grp" class="st-viz"></div>
+     ${stSrc(stT('Nguồn: dashboard tổng hợp từ văn bản NHNN, Chính phủ, Quốc hội, Bộ Tài chính (mỗi lần điều chỉnh có số hiệu văn bản và đường dẫn trong phần khám phá bên dưới). "Trung tính" không được tính.', 'Source: dashboard registry compiled from SBV, Government, National Assembly and MoF documents (each move carries its document number and link in the explore section below). "Neutral" moves are not counted.'))}`);
+  h += stChap('pol-st-cliff', stT('Chương 2 · Vách đá cuối năm', 'Chapter 2 · The year-end cliff'),
+    stT(`${exp26} chính sách cùng hết hạn ngày 31/12/2026 — trong đó có giảm thuế GTGT và thuế xăng dầu`, `${exp26} policy settings expire on 31 Dec 2026 — including the VAT cut and fuel-tax relief`),
+    stT('Mỗi chấm là một ngày hết hạn, độ lớn theo số chính sách hết hiệu lực vào ngày đó. Nếu không gia hạn, giá xăng dầu và thuế GTGT sẽ tăng trở lại từ 1/1/2027.', 'Each dot is an expiry date, sized by how many measures lapse that day. Without an extension, fuel taxes and VAT go back up on 1 Jan 2027.'),
+    `<div id="pol-st-exp" class="st-viz"></div>`);
+  h += stChap('pol-st-steps', stT('Chương 3 · Các nút vặn', 'Chapter 3 · The dials'),
+    stT('Những công cụ thật sự đã dịch chuyển', 'The dials that actually moved'),
+    stT('Mỗi biểu đồ là mức cài đặt của một công cụ qua thời gian (dạng bậc thang: giá trị giữ nguyên đến lần điều chỉnh kế tiếp). Mỗi biểu đồ có thang đo riêng.', 'Each chart is one instrument\'s setting over time (step line: the value holds until the next change). Each chart has its own scale.'),
+    `<div id="pol-st-mult" class="st-mult"></div>`);
+  h += stChap('pol-st-explore', stT('Chương 4 · Tự khám phá', 'Chapter 4 · Explore'),
+    stT(`Toàn bộ ${P.mon.instruments.length + P.fis.instruments.length} công cụ và ${H.length} lần điều chỉnh`, `All ${P.mon.instruments.length + P.fis.instruments.length} instruments and ${H.length} moves`),
+    stT('Định hướng hiện nay, dòng thời gian, bảng công cụ (bấm một dòng để xem lịch sử và văn bản) và tin chính sách mới nhất.', 'Current stance, timeline, the instrument tables (click a row for its history and documents) and the latest policy news.'), '');
+  root.innerHTML = h;
+  polStRates(); polStDiv(H); polStGroups(H); polStExpiry(exp); polStMult();
+  stObserve(root);
+}
+// hero — the rate corridor (all %, one axis): refinancing, OMO, overnight, rediscount, deposit cap 1–6m, priority lending cap
+function polStRates() {
+  const el = document.getElementById('pol-st-rates'), L = [['overnight_rate', stT('Qua đêm', 'Overnight'), ST.ink3], ['refinancing_rate', stT('Tái cấp vốn', 'Refinancing'), ST.blue], ['deposit_cap_1_6m', stT('Trần huy động 1–6T', 'Deposit cap 1–6m'), ST.orange], ['omo_rate', 'OMO', ST.aqua], ['lending_cap_priority', stT('Trần cho vay ưu tiên', 'Priority lending cap'), ST.violet], ['rediscount_rate', stT('Tái chiết khấu', 'Rediscount'), ST.yellow]].map(([id, n, c]) => ({ n, c, p: polSer(polIns('mon', id)) })).filter(x => x.p.length);
+  const t0 = +pgDate('2023-01-01'), t1 = +pgToday(), W = 600, Hh = 230, ML = 30, MR = 160, MT = 12, MB = 22, sx = t => ML + (t - t0) / (t1 - t0) * (W - ML - MR), sy = stLin(2, 8.5, Hh - MB, MT);
+  let s = stAxisY(sy, [2, 4, 6, 8], ML, W - MR, v => v + '%');
+  [2023, 2024, 2025, 2026].forEach(y => { s += `<text class="st-tick" x="${sx(+pgDate(y + '-01-01'))}" y="${Hh - 6}" text-anchor="middle">${y}</text>`; });
+  const ends = [];
+  L.forEach(({ n, c, p }) => { let d = `M${sx(Math.max(t0, +pgDate(p[0][0])))},${sy(p[0][1])}`; p.slice(1).forEach(([dt, v]) => { d += ` H${sx(Math.max(t0, +pgDate(dt)))} V${sy(v)}`; }); d += ` H${sx(t1)}`;
+    s += `<path class="st-draw" d="${d}" fill="none" stroke="${c}" stroke-width="${c === ST.blue ? 3 : 2}"/>`; ends.push({ y: sy(p[p.length - 1][1]), t: `${n} ${stN(p[p.length - 1][1], 2).replace(/[,.]00$/, '')}%`, c }); });
+  ends.sort((a, b) => a.y - b.y).forEach((e, i, a) => { if (i && e.y - a[i - 1].y < 13) e.y = a[i - 1].y + 13; s += `<text class="st-lab" x="${W - MR + 6}" y="${e.y + 4}" style="fill:${e.c};font-weight:600">${e.t}</text>`; });
+  const xc = sx(+pgDate('2023-06-19')); s += stAnn(xc, sy(4.5), xc + 50, sy(7.6), stT('19/6/2023: lần hạ cuối cùng', '19 Jun 2023: the last cut'));
+  el.innerHTML = stSvg(W, Hh, s, stT('Hành lang lãi suất điều hành', 'Policy rate corridor'));
+}
+// ch1 — diverging quarterly bars
+function polStDiv(H) {
+  const el = document.getElementById('pol-st-div'), Q = []; for (let y = 2023; y <= 2026; y++) for (let q = 0; q < 4; q++) Q.push([y, q]);
+  const qi = d => Q.findIndex(([y, q]) => +d.slice(0, 4) === y && Math.floor((+d.slice(5, 7) - 1) / 3) === q);
+  const c = Q.map(() => ({ mE: 0, fE: 0, mT: 0, fT: 0 })); H.forEach(h => { const k = qi(h.date); if (k < 0 || h.direction === 'neutral') return; c[k][(h.side === 'mon' ? 'm' : 'f') + (h.direction === 'easing' ? 'E' : 'T')]++; });
+  const up = Math.max(...c.map(x => x.mE + x.fE)), dn = Math.max(...c.map(x => x.mT + x.fT)), W = 1000, Hh = 300, ML = 36, MR = 20, MT = 20, MB = 30;
+  const sy = stLin(-Math.max(4, dn), Math.max(4, up), Hh - MB, MT), bw = (W - ML - MR) / Q.length, z = sy(0);
+  let s = stAxisY(sy, stNice(-dn, up, 5).filter(v => v >= -Math.max(4, dn) && v <= Math.max(4, up)), ML, W - MR, v => Math.abs(v));
+  s += `<line x1="${ML}" x2="${W - MR}" y1="${z}" y2="${z}" stroke="${ST.ink}"/>`;
+  c.forEach((x, i) => { const X = ML + i * bw + 3, w = bw - 6, lab = `Q${Q[i][1] + 1}/${Q[i][0]}`;
+    const seg = (v, y0, dirUp, col, n) => { if (!v) return ''; const hh = Math.abs(sy(v) - z); return `<rect class="st-grow" style="--d:${i * 40}ms;transform-origin:${dirUp ? 'bottom' : 'top'}" x="${X}" y="${dirUp ? y0 - hh : y0}" width="${w}" height="${hh}" fill="${col}" data-st-k="${encodeURIComponent(lab + ' · ' + n + '|' + v + stT(' lần', ' moves'))}"/>`; };
+    const hm = Math.abs(sy(x.mE) - z), ht = Math.abs(sy(x.mT) - z);
+    s += seg(x.mE, z, true, ST.blue, stT('tiền tệ, nới lỏng', 'monetary easing')) + seg(x.fE, z - hm, true, ST.orange, stT('tài khoá, nới lỏng', 'fiscal easing')) + seg(x.mT, z, false, ST.blue, stT('tiền tệ, thắt chặt', 'monetary tightening')) + seg(x.fT, z + ht, false, ST.orange, stT('tài khoá, thắt chặt', 'fiscal tightening'));
+    s += `<text class="st-tick" x="${X + w / 2}" y="${Hh - 10}" text-anchor="middle" style="${Q[i][1] === 0 ? 'font-weight:700;fill:#16181d' : ''}">${Q[i][1] === 0 ? Q[i][0] : 'Q' + (Q[i][1] + 1)}</text>`; });
+  s += `<text class="st-lab st-b" x="${ML + 6}" y="${MT + 2}">▲ ${stT('nới lỏng', 'easing')}</text><text class="st-lab st-b" x="${ML + 6}" y="${Hh - MB - 4}">▼ ${stT('thắt chặt', 'tightening')}</text>`;
+  const best = c.map((x, i) => [x.mE + x.fE, i]).sort((a, b) => b[0] - a[0])[0]; if (best) { const X = ML + best[1] * bw + bw / 2; s += stAnn(X, sy(best[0]) - 2, X - 40, MT + 6, stT(`Q${Q[best[1]][1] + 1}/${Q[best[1]][0]}: ${best[0]} lần nới lỏng`, `Q${Q[best[1]][1] + 1} ${Q[best[1]][0]}: ${best[0]} easing moves`), 'end'); }
+  let lx = ML + 110; [[ST.blue, stT('Tiền tệ (NHNN)', 'Monetary (SBV)')], [ST.orange, stT('Tài khoá', 'Fiscal')]].forEach(([col, n]) => { s += `<rect x="${lx}" y="${MT - 7}" width="10" height="10" rx="2" fill="${col}"/><text class="st-lab" x="${lx + 15}" y="${MT + 2}">${n}</text>`; lx += 125; });
+  el.innerHTML = stSvg(W, Hh, s, stT('Số lần nới lỏng và thắt chặt theo quý', 'Easing and tightening moves per quarter'));
+}
+function polStGroups(H) {
+  const el = document.getElementById('pol-st-grp'), G = {}; H.forEach(h => { const k = h.side + ':' + h.ins.group; G[k] = G[k] || { side: h.side, g: h.ins.group, e: 0, t: 0 }; if (h.direction === 'easing') G[k].e++; else if (h.direction === 'tightening') G[k].t++; });
+  const rows = Object.values(G).map(x => ({ ...x, n: x.e - x.t })).sort((a, b) => b.n - a.n), mx = Math.max(...rows.map(r => Math.max(r.e, r.t))), W = 1000, RH = 24, ML = 290, H2 = rows.length * RH + 10, mid = 640, sx = stLin(0, mx, 0, 300);
+  let s = `<line x1="${mid}" x2="${mid}" y1="0" y2="${H2}" stroke="${ST.ink}"/>`;
+  rows.forEach((r, i) => { const y = 4 + i * RH, nm = polT(...(POL_GROUPS[r.g] || [r.g, r.g]));
+    s += `<text class="st-lab" x="${ML}" y="${y + 13}" text-anchor="end">${ciE(nm)} <tspan class="st-tick">${r.side === 'mon' ? stT('· tiền tệ', '· monetary') : stT('· tài khoá', '· fiscal')}</tspan></text>`;
+    if (r.t) s += `<rect class="st-grow-x" style="--d:${i * 40}ms;transform-origin:right" x="${mid - sx(r.t)}" y="${y + 2}" width="${sx(r.t)}" height="15" fill="${ST.red}" rx="2" data-st-k="${encodeURIComponent(nm + '|' + r.t + stT(' lần thắt chặt', ' tightening moves'))}"/><text class="st-val" x="${mid - sx(r.t) - 5}" y="${y + 14}" text-anchor="end">${r.t}</text>`;
+    if (r.e) s += `<rect class="st-grow-x" style="--d:${i * 40}ms" x="${mid}" y="${y + 2}" width="${sx(r.e)}" height="15" fill="${ST.aqua}" rx="2" data-st-k="${encodeURIComponent(nm + '|' + r.e + stT(' lần nới lỏng', ' easing moves'))}"/><text class="st-val" x="${mid + sx(r.e) + 5}" y="${y + 14}">${r.e}</text>`; });
+  s += `<text class="st-lab st-b" x="${mid - 8}" y="${H2 + 14}" text-anchor="end" style="fill:${ST.red}">← ${stT('thắt chặt', 'tightening')}</text><text class="st-lab st-b" x="${mid + 8}" y="${H2 + 14}" style="fill:#0f7a55">${stT('nới lỏng', 'easing')} →</text>`;
+  el.innerHTML = stSvg(W, H2 + 20, s, stT('Cán cân theo nhóm công cụ', 'Balance by instrument group'));
+}
+// ch2 — expiry timeline (dots sized by number of measures) + one card per expiry date
+function polStExpiry(exp) {
+  const el = document.getElementById('pol-st-exp'); if (!exp.length) { el.innerHTML = ''; return; }
+  const t0 = +pgToday() - 30 * 864e5, t1 = +pgDate('2031-03-01'), W = 1000, ML = 30, MR = 30, sx = t => ML + Math.pow((t - t0) / (t1 - t0), 0.55) * (W - ML - MR);   // compressed scale: near dates get more room
+  const by = {}; exp.forEach(i => (by[i.expires] = by[i.expires] || []).push(i));
+  const dates = Object.keys(by).sort(), Hh = 92, cy = 46;
+  let s = `<line x1="${ML}" x2="${W - MR}" y1="${cy}" y2="${cy}" stroke="${ST.ink}"/>`;
+  [2027, 2028, 2029, 2030, 2031].forEach(y => { const x = sx(+pgDate(y + '-01-01')); s += `<line x1="${x}" x2="${x}" y1="${cy - 5}" y2="${cy + 5}" stroke="${ST.ink}"/><text class="st-tick" x="${x}" y="${cy + 32}" text-anchor="middle">${y}</text>`; });
+  const tx = sx(+pgToday()); s += `<circle cx="${tx}" cy="${cy}" r="4" fill="${ST.red}"/><text class="st-tick" x="${tx}" y="${cy + 32}" text-anchor="middle" style="fill:${ST.red}">${stT('hôm nay', 'today')}</text>`;
+  dates.forEach((d, k) => { const x = sx(+pgDate(d)), n = by[d].length, r = 5 + Math.sqrt(n) * 4, c = n > 2 ? ST.orange : ST.blue;
+    s += `<circle class="st-cell" style="--d:${k * 90}ms" cx="${x}" cy="${cy}" r="${r}" fill="${c}" stroke="#fff" stroke-width="2" data-st-k="${encodeURIComponent(polDS(d) + '|' + n + stT(' biện pháp hết hạn', ' measures expire'))}"/><text class="st-lab st-b" x="${x}" y="${cy - r - 6}" text-anchor="middle" style="fill:${c}">${n}</text>`; });
+  const cards = dates.map(d => { const n = by[d].length, c = n > 2 ? ST.orange : ST.blue;
+    return `<div class="st-fact" style="border-color:${c}"><div class="st-mini-v" style="color:${c};font-size:20px">${polDS(d)}</div><ul style="margin:4px 0 0 16px;padding:0;font:400 12px/1.5 var(--font-ui);color:#5b6170">${by[d].map(i => `<li data-st-k="${encodeURIComponent(polF(i, 'name') + '|' + oneSentence(polF(i, 'current'), 160))}"><b style="color:#16181d">${ciE(polF(i, 'name'))}</b></li>`).join('')}</ul></div>`; }).join('');
+  el.innerHTML = stSvg(W, Hh, s, stT('Các chính sách hết hạn', 'Measures by expiry date')) + `<div class="st-facts" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">${cards}</div>`;
+}
+// ch3 — small multiples of step series
+function polStMult() {
+  const el = document.getElementById('pol-st-mult');
+  const L = [['mon', 'central_rate', v => stN(v, 0)], ['mon', 'treasury_deposits_ldr', v => stN(v, 0) + '%'], ['mon', 'credit_growth_target', v => stN(v, 1) + '%'], ['mon', 'social_housing_pkg', v => stN(v, 1) + '%'], ['fis', 'vat_cut_2pct', v => stN(v, 0) + '%'], ['fis', 'ept_fuel', v => stN(v, 0)], ['fis', 'budget_deficit_target', v => stN(v, 1) + '%'], ['fis', 'base_salary', v => stN(v / 1e6, 2) + stT(' tr', 'm')]]
+    .map(([side, id, f], k) => ({ ins: polIns(side, id), f, c: side === 'mon' ? ST.blue : ST.orange, k })).filter(x => x.ins && polSer(x.ins).length >= 2);
+  el.innerHTML = L.map(({ ins, f, c, k }) => { const p = polSer(ins), W = 240, H = 90, vs = p.map(x => x[1]), lo = Math.min(...vs), hi = Math.max(...vs), pad = (hi - lo) * 0.2 || Math.abs(hi) * 0.1 || 1;
+    const t0 = +pgDate(p[0][0]), t1 = Math.max(+pgDate(p[p.length - 1][0]), +pgToday()), sx = t => 4 + (t - t0) / (t1 - t0 || 1) * (W - 8), sy = stLin(lo - pad, hi + pad, H - 18, 8);
+    let d = `M${sx(t0)},${sy(p[0][1])}`; p.slice(1).forEach(([dt, v]) => { d += ` H${sx(+pgDate(dt))} V${sy(v)}`; }); d += ` H${sx(t1)}`;
+    const s = `<path class="st-draw" d="${d}" fill="none" stroke="${c}" stroke-width="2.2"/>` + p.map(([dt, v], j) => `<circle class="st-cell" style="--d:${j * 80}ms" cx="${sx(+pgDate(dt))}" cy="${sy(v)}" r="3.5" fill="${c}" data-st-k="${encodeURIComponent(polF(ins, 'name') + '|' + polDS(dt) + ': ' + f(v))}"/>`).join('') + `<text class="st-tick" x="4" y="${H}">${p[0][0].slice(0, 4)}</text><text class="st-tick" x="${W - 4}" y="${H}" text-anchor="end">${stT('nay', 'now')}</text>`;
+    const nm = (ins.series && (polE() ? ins.series.label_en : ins.series.label_vi)) || (polE() ? ins.series_label_en : ins.series_label_vi) || polF(ins, 'name'); return `<div><div class="st-mini-h">${ciE(nm.length > 44 ? nm.slice(0, 42) + '…' : nm)}</div><div class="st-mini-v" style="color:${c}">${f(p[p.length - 1][1])}</div>${stSvg(W, H, s, nm)}<div class="st-fact-s">${stT('từ', 'from')} ${f(p[0][1])} (${p[0][0].slice(0, 4)})</div></div>`; }).join('');
+}
+// ── /STORY Policies ──
 window.addEventListener('load', () => { try { if (activeBottomTab === 'social') renderSocStory(); } catch (e) { console.warn('soc story', e); } });
 
 document.addEventListener('toggle', e => { if (e.target && e.target.id === 'ec-appendix' && e.target.open) requestAnimationFrame(() => { try { renderEconTop(); if (typeof renderCpiCard === 'function') renderCpiCard(); } catch (_) {} window.dispatchEvent(new Event('resize')); }); }, true);
