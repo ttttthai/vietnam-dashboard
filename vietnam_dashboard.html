@@ -1459,6 +1459,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
 
         <!-- Panel: Đầu tư (investment screening) -->
         <div id="panel-invest" class="panel">
+          <div id="iv-story" class="st-root"></div>
           <div class="econ-card full-width">
             <div class="econ-card-header iv-hdr">
               <span>Đầu tư — Sàng lọc cơ hội đa góc nhìn</span>
@@ -6242,6 +6243,92 @@ function fsStRes() {
   el.innerHTML = stSvg(W, H, s, stT('Dự trữ ngoại hối', 'FX reserves'));
 }
 // ── /STORY Financial system ──
+// ── STORY: Investing (same chapter system; descriptive only — sourced research, never a recommendation) ──
+const ivTr = x => (APP_LANG === 'en' && window.I18N && x) ? (window.I18N.tr(x) || x) : (x || '');
+const ivVnNum = v => typeof v === 'number' ? v : +String(v || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.');
+let IV_RES = null;
+async function renderInvStory() {
+  const root = document.getElementById('iv-story'); if (!root) return;
+  if (!IV_RES) { try { const r = await fetch('/api/invest/research', { cache: 'no-store' }); if (r.ok) IV_RES = await r.json(); } catch (e) { /* offline preview */ } }
+  if (!IV_RES || !IV_RES._macro) { root.innerHTML = ''; return; }
+  const R = IV_RES, Mm = R._macro, Mk = R._market, syms = Object.keys(R).filter(k => !k.startsWith('_')).slice(0, IV_MAX);
+  const row = (o, re) => ((o.financials || {}).rows || []).find(x => re.test(x.period)) || {};
+  const q4 = row(Mm, /Q4/).value, g9 = row(Mm, /9 tháng/).value, close = ivVnNum(row(Mk, /VN-Index/).value);
+  const tg = ((Mk.forecasts || {})['6m'] || {}).targets || [], tv = tg.map(t => t.target).filter(Number.isFinite);
+  let h = `<section class="st-chap st-hero" id="iv-st-hero"><div class="st-kicker">${stT('Đầu tư · khung sàng lọc — không phải khuyến nghị', 'Investing · a screening frame — not a recommendation')}</div>
+    <div class="st-hero-grid"><div>
+      <div class="st-big">${IV_MAX}<span>${stT(' mã · nắm giữ tối đa 3 tháng', ' stocks · held 3 months at most')}</span></div>
+      <p class="st-dek">${stT(`Mỗi mã phải có khối lượng khớp ≥ <b>100.000 cp/phiên</b> và vốn điều lệ ≥ <b>5.000 tỷ</b>; một tín hiệu chỉ được tính khi trong lịch sử của chính mã đó nó đúng ít nhất <b>80%</b> số lần. Trang này trình bày bối cảnh và các luận điểm đã công bố, cả ủng hộ lẫn rủi ro — quyết định là của bạn.`, `Each stock needs matched volume of at least <b>100,000 shares a session</b> and charter capital of at least <b>VND 5,000 bn</b>; a signal only counts if it was right at least <b>80%</b> of the time in that stock's own history. This page lays out the backdrop and the published arguments, for and against — the decision is yours.`)}</p>
+    </div><div id="iv-st-gdp" class="st-viz"></div></div></section>`;
+  h += stChap('iv-st-macro', stT('Chương 1 · Bối cảnh vĩ mô', 'Chapter 1 · The macro backdrop'),
+    q4 ? stT(`Tăng trưởng đang tăng tốc — nhưng quý 4 phải đạt ~${stN(q4, 1)}% mới chạm mục tiêu 10%`, `Growth is accelerating — but Q4 must hit ~${stN(q4, 1)}% to reach the 10% target`) : stT('Tăng trưởng đang tăng tốc', 'Growth is accelerating'),
+    stT(`Chín tháng đầu 2026 GDP tăng ${stN(g9, 2)}%. Phía cầu: tăng so cùng kỳ của từng thành phần.`, `GDP grew ${stN(g9, 2)}% in the first nine months of 2026. Demand side: year-on-year growth of each component.`),
+    `<div id="iv-st-demand" class="st-viz"></div><div id="iv-st-mreason" class="st-waffles"></div>`);
+  h += stChap('iv-st-market', stT('Chương 2 · Thị trường chung', 'Chapter 2 · The market'),
+    close && tv.length ? stT(`Các tổ chức dự báo VN-Index cuối năm ${stN(Math.min(...tv), 0)}–${stN(Math.max(...tv), 0)} điểm; chỉ số đóng tháng 9 ở ${stN(close, 0)}`, `Institutions forecast a year-end VN-Index of ${stN(Math.min(...tv), 0)}–${stN(Math.max(...tv), 0)}; the index closed September at ${stN(close, 0)}`) : stT('Thị trường chung', 'The market'),
+    stT('Mỗi chấm là một dự báo đã công bố (kèm ngày công bố). Lưu ý: phần lớn được đưa ra trước đợt giảm tháng 9.', 'Each dot is a published forecast (with its date). Note: most were made before the September decline.'),
+    `<div id="iv-st-vni" class="st-viz"></div><div id="iv-st-kreason" class="st-waffles"></div>`);
+  h += stChap('iv-st-stocks', stT('Chương 3 · Bốn mã đang theo dõi', 'Chapter 3 · The four stocks on the watchlist'),
+    stT('Bốn mã, bốn câu chuyện khác nhau — mỗi mã đều có rủi ro riêng', 'Four stocks, four different stories — each with its own risks'),
+    stT('Mỗi biểu đồ là các giá mục tiêu 12 tháng do công ty chứng khoán công bố (chấm), thang đo riêng từng mã; vạch đỏ là giá hiện tại khi đã chạy phân tích ở phần dưới. Số luận điểm ủng hộ và rủi ro được liệt kê đầy đủ, có nguồn.', 'Each chart shows the 12-month target prices published by brokers (dots), on each stock\'s own scale; the red mark is the current price once the analysis below has run. Supporting points and risks are listed in full, with sources.'),
+    `<div id="iv-st-cards" class="st-mult" style="grid-template-columns:repeat(2,1fr)"></div>${stSrc(stT('Nguồn: tổng hợp có trích dẫn từ báo cáo CTCK và báo chí (invest_research.json). Giá mục tiêu là ý kiến của bên công bố, không phải dự báo của dashboard. Không phải khuyến nghị đầu tư.', 'Source: sourced compilation of broker reports and press (invest_research.json). Target prices are the publishers\' opinions, not dashboard forecasts. Not investment advice.'))}`);
+  h += stChap('iv-st-explore', stT('Chương 4 · Công cụ sàng lọc', 'Chapter 4 · The screening tool'),
+    stT('Kiểm tra từng tín hiệu với dữ liệu giá của chính mã đó', 'Test each signal against the stock\'s own price history'),
+    stT('Chọn tối đa 4 mã, thời gian nắm giữ và ngưỡng "thắng"; hệ thống đếm tỷ lệ số lần tín hiệu (RSI quá bán, hai đáy, chu kỳ cuối năm, đầu tư công, tăng trưởng) cho kết quả đạt mục tiêu.', 'Pick up to 4 stocks, a holding period and a "win" threshold; the tool counts how often each signal (RSI oversold, double bottom, year-end cycle, public investment, growth) delivered.'), '');
+  root.innerHTML = h;
+  ivStGdp(Mm); ivStDemand(Mm); ivStReason('iv-st-mreason', Mm); ivStVni(close, tg); ivStReason('iv-st-kreason', Mk); ivStCards(syms);
+  stObserve(root);
+}
+function ivStGdp(M) {
+  const el = document.getElementById('iv-st-gdp'), rows = (M.financials.rows || []).filter(r => /^GDP Q\d/.test(r.period));
+  const W = 520, H = 220, ML = 30, MR = 10, MT = 26, MB = 24, bw = (W - ML - MR) / Math.max(4, rows.length), sy = stLin(0, 14, H - MB, MT);
+  let s = stAxisY(sy, [0, 5, 10], ML, W - MR, v => v + '%');
+  s += `<line x1="${ML}" x2="${W - MR}" y1="${sy(10)}" y2="${sy(10)}" stroke="${ST.red}" stroke-dasharray="6,4"/><text class="st-lab st-b" x="${ML + 4}" y="${sy(10) - 6}" style="fill:${ST.red}">${stT('mục tiêu 10%', '10% target')}</text>`;
+  rows.forEach((r, i) => { const need = /cần/.test(r.period) || /Q4/.test(r.period), x = ML + i * bw + 10, w = bw - 20, lab = r.period.replace('GDP ', '').replace(' cần đạt', '').replace('/2026', '');
+    s += need ? `<rect x="${x}" y="${sy(r.value)}" width="${w}" height="${sy(0) - sy(r.value)}" fill="none" stroke="${ST.ink}" stroke-width="1.5" stroke-dasharray="5,4" rx="2"/>` : `<rect class="st-grow" style="--d:${i * 120}ms" x="${x}" y="${sy(r.value)}" width="${w}" height="${sy(0) - sy(r.value)}" fill="${i === rows.length - 2 ? ST.blue : '#b9c7da'}" rx="2" data-st-k="${encodeURIComponent(r.period + '|' + stN(r.value, 2) + '%')}"/>`;
+    s += `<text class="st-lab st-b" x="${x + w / 2}" y="${Math.abs(sy(r.value) - sy(10)) < 14 && !need ? sy(r.value) + 16 : sy(r.value) - 6}" text-anchor="middle" style="${Math.abs(sy(r.value) - sy(10)) < 14 && !need ? 'fill:#fff' : ''}">${need ? '~' : ''}${stN(r.value, need ? 1 : 2)}%</text><text class="st-tick" x="${x + w / 2}" y="${H - 8}" text-anchor="middle">${need ? stT('Q4 cần', 'Q4 needed') : lab}</text>`; });
+  el.innerHTML = stSvg(W, H, s, stT('Tăng trưởng GDP theo quý 2026', 'GDP growth by quarter, 2026'));
+}
+function ivStDemand(M) {
+  const el = document.getElementById('iv-st-demand'), N = { 'Tiêu dùng cuối cùng': ['Final consumption', ST.blue], 'Tích lũy tài sản': ['Capital formation', ST.orange], 'Xuất khẩu HH&DV': ['Exports', ST.aqua], 'Nhập khẩu HH&DV': ['Imports', ST.red] };
+  const rows = (M.financials.rows || []).map(r => { const k = Object.keys(N).find(n => r.period.startsWith(n)); return k ? { n: stT(k, N[k][0]), c: N[k][1], v: r.value } : null; }).filter(Boolean);
+  if (!rows.length) { el.innerHTML = ''; return; }
+  const W = 1000, RH = 34, ML = 200, H = rows.length * RH + 10, mx = Math.max(...rows.map(r => r.v)), sx = stLin(0, mx, ML, W - 80);
+  el.innerHTML = stSvg(W, H, rows.map((r, i) => { const y = 4 + i * RH; return `<text class="st-lab" x="${ML - 10}" y="${y + 17}" text-anchor="end">${r.n}</text><rect class="st-grow-x" style="--d:${i * 90}ms" x="${ML}" y="${y + 4}" width="${sx(r.v) - ML}" height="20" fill="${r.c}" rx="2" data-st-k="${encodeURIComponent(r.n + ' · 9M 2026|+' + stN(r.v, 2) + '%')}"/><text class="st-val" x="${sx(r.v) + 6}" y="${y + 18}">+${stN(r.v, 2)}%</text>`; }).join(''), stT('Tăng trưởng phía cầu 9T/2026', 'Demand-side growth, 9M 2026'));
+}
+function ivStReason(id, o) {
+  const R = o.reasoning || {}, li = a => `<ul style="margin:6px 0 0 16px;padding:0;font:400 12.5px/1.5 var(--font-ui);color:#5b6170">${(a || []).map(x => `<li>${ciE(ivTr(x.text))}${x.url ? ` <a class="fs-src" href="${ciE(x.url)}" target="_blank" rel="noopener">${stT('nguồn', 'source')}</a>` : ''}</li>`).join('')}</ul>`;
+  document.getElementById(id).innerHTML = `<div class="st-fact" style="border-color:${ST.aqua};margin-top:18px"><div class="st-mini-h" style="color:#0f7a55">${stT('Ủng hộ', 'In favour')} (${(R.support || []).length})</div>${li(R.support)}</div><div class="st-fact" style="border-color:${ST.red};margin-top:18px"><div class="st-mini-h" style="color:#b42318">${stT('Rủi ro', 'Risks')} (${(R.risks || []).length})</div>${li(R.risks)}</div>`;
+}
+function ivStVni(close, tg) {
+  const el = document.getElementById('iv-st-vni'), T = tg.filter(t => Number.isFinite(t.target)); if (!T.length) { el.innerHTML = ''; return; }
+  const vs = T.map(t => t.target).concat(close ? [close] : []), lo = Math.floor(Math.min(...vs) / 50) * 50 - 50, hi = Math.ceil(Math.max(...vs) / 50) * 50 + 50;
+  const W = 1000, H = 170, ML = 30, MR = 30, sx = stLin(lo, hi, ML, W - MR), cy = 76;
+  let s = `<line x1="${ML}" x2="${W - MR}" y1="${cy}" y2="${cy}" stroke="${ST.rule}" stroke-width="2"/>`;
+  stNice(lo, hi, 6).filter(t => t >= lo && t <= hi).forEach(t => { s += `<text class="st-tick" x="${sx(t)}" y="${H - 4}" text-anchor="middle">${stN(t, 0)}</text>`; });
+  if (close) s += `<line x1="${sx(close)}" x2="${sx(close)}" y1="${cy - 30}" y2="${cy + 30}" stroke="${ST.red}" stroke-width="2.5"/><text class="st-lab st-b" x="${sx(close)}" y="${cy - 36}" text-anchor="middle" style="fill:${ST.red}">${stT('cuối T9', 'end-Sep')} ${stN(close, 0)}</text>`;
+  const lv = [cy - 16, cy + 24, cy - 32, cy + 40], used = [];   // label slots above/below the line; pick the first that doesn't collide
+  T.sort((a, b) => a.target - b.target).forEach((t, i) => { const x = sx(t.target), lab = `${t.org} ${stN(t.target, 0)}`, w = lab.length * 6.6; let k = 0; while (k < 3 && used.some(u => u.k === k && Math.abs(u.x - x) < (u.w + w) / 2 + 6)) k++; used.push({ k, x, w });
+    s += `<circle class="st-cell" style="--d:${i * 70}ms" cx="${x}" cy="${cy}" r="8" fill="${ST.blue}" stroke="#fff" stroke-width="2" data-st-k="${encodeURIComponent(t.org + ' · ' + ivTr(t.rating || '') + '|' + stN(t.target, 0) + ' · ' + (t.date || ''))}"/>${k > 1 ? `<line x1="${x}" x2="${x}" y1="${cy + (k === 2 ? -9 : 9)}" y2="${lv[k] + (k === 2 ? 4 : -12)}" stroke="${ST.ink3}"/>` : ''}<text class="st-lab" x="${x}" y="${lv[k]}" text-anchor="middle">${ciE(lab)}</text>`; });
+  el.innerHTML = stSvg(W, H, s, stT('Dự báo VN-Index cuối năm', 'Year-end VN-Index forecasts'));
+}
+function ivStCards(syms) {
+  const el = document.getElementById('iv-st-cards'), price = sym => ((IV.results || []).find(r => r.symbol === sym && !r.error) || {}).price;
+  el.innerHTML = syms.map((sym, k) => { const o = IV_RES[sym], T = (((o.forecasts || {})['12m'] || {}).targets || []).filter(t => Number.isFinite(t.target)), p = price(sym), c = [ST.blue, ST.orange, ST.aqua, ST.violet][k % 4];
+    let svg = '';
+    if (T.length) { const vs = T.map(t => t.target).concat(p ? [p] : []), lo = Math.min(...vs) * 0.92, hi = Math.max(...vs) * 1.05, W = 480, H = 74, sx = stLin(lo, hi, 10, W - 10), cy = 30;
+      let s = `<line x1="10" x2="${W - 10}" y1="${cy}" y2="${cy}" stroke="${ST.rule}" stroke-width="2"/>`;
+      const placed = []; T.slice().sort((a, b) => a.target - b.target).forEach((t, j) => { const x = sx(t.target); let r = 0; while (placed.some(q => q.r === r && Math.abs(q.x - x) < 12)) r++; placed.push({ x, r }); s += `<circle class="st-cell" style="--d:${j * 50}ms" cx="${x}" cy="${cy - r * 11}" r="6" fill="${c}" stroke="#fff" stroke-width="1.5" data-st-k="${encodeURIComponent(sym + ' · ' + t.org + ' · ' + ivTr(t.rating || '') + '|' + stN(t.target, 0) + ' đ · ' + (t.date || ''))}"/>`; });
+      const mn = Math.min(...T.map(t => t.target)), mxv = Math.max(...T.map(t => t.target)); s += `<text class="st-tick" x="${sx(mn)}" y="${cy + 24}" text-anchor="middle">${stN(mn, 0)}</text>${mxv !== mn ? `<text class="st-tick" x="${sx(mxv)}" y="${cy + 24}" text-anchor="middle">${stN(mxv, 0)}</text>` : ''}`;
+      if (p) s += `<line x1="${sx(p)}" x2="${sx(p)}" y1="${cy - 16}" y2="${cy + 14}" stroke="${ST.red}" stroke-width="2.5"/><text class="st-lab st-b" x="${sx(p)}" y="${cy + 38}" text-anchor="middle" style="fill:${ST.red}">${stT('giá', 'price')} ${stN(p, 0)}</text>`;
+      svg = stSvg(W, H, s, sym); }
+    const R = o.reasoning || {}, ul = (a, col) => `<ul style="margin:4px 0 0 16px;padding:0;font:400 12px/1.45 var(--font-ui);color:#5b6170">${(a || []).map(x => `<li>${ciE(ivTr(x.text))}${x.url ? ` <a class="fs-src" href="${ciE(x.url)}" target="_blank" rel="noopener">${stT('nguồn', 'source')}</a>` : ''}</li>`).join('')}</ul>`;
+    return `<div class="st-fact" style="border-color:${c}"><div style="display:flex;align-items:baseline;gap:10px"><div class="st-mini-v" style="color:${c}">${ciE(sym)}</div><div class="st-fact-s">${stT('cập nhật', 'as of')} ${polDS(o.as_of)} · ${T.length} ${stT('giá mục tiêu', 'targets')}</div></div>
+      <p style="font:400 13px/1.5 var(--font-ui);color:#16181d;margin:4px 0 6px">${ciE(ivTr(o.summary))}</p>${svg}
+      <details class="fs-drv" style="margin-top:8px"><summary><b style="color:#0f7a55">${stT('Ủng hộ', 'In favour')} ${(R.support || []).length}</b> · <b style="color:#b42318">${stT('Rủi ro', 'Risks')} ${(R.risks || []).length}</b></summary>
+      <div class="st-mini-h" style="margin-top:6px;color:#0f7a55">${stT('Ủng hộ', 'In favour')}</div>${ul(R.support)}<div class="st-mini-h" style="margin-top:6px;color:#b42318">${stT('Rủi ro', 'Risks')}</div>${ul(R.risks)}</details></div>`; }).join('');
+}
+// ── /STORY Investing ──
 window.addEventListener('load', () => { try { if (activeBottomTab === 'social') renderSocStory(); } catch (e) { console.warn('soc story', e); } });
 
 document.addEventListener('toggle', e => { if (e.target && e.target.id === 'ec-appendix' && e.target.open) requestAnimationFrame(() => { try { renderEconTop(); if (typeof renderCpiCard === 'function') renderCpiCard(); } catch (_) {} window.dispatchEvent(new Event('resize')); }); }, true);
@@ -7160,6 +7247,7 @@ function ivOpen() {
     if (IV.selected.length) ivAnalyze();
   }
   ivRenderChips();
+  renderInvStory();
 }
 
 async function ivLoadContext() {
@@ -7308,6 +7396,7 @@ async function ivAnalyze() {
     const bad = d.results.filter(x => x.error);
     ivMsg(bad.length ? bad.map(x => `${ivEsc(x.symbol)}: ${ivEsc(x.error)}`).join(' · ') : '', !!bad.length);
     ivRenderCompare(); ivRenderDetails();
+    if (IV_RES && document.getElementById('iv-st-cards')) ivStCards(Object.keys(IV_RES).filter(k => !k.startsWith('_')).slice(0, IV_MAX));
   } catch (e) {
     ivMsg('Lỗi phân tích: ' + ivEsc(e.message), true);
   }

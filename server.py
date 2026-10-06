@@ -1439,6 +1439,12 @@ def api_invest_context():
     })
 
 
+@app.get("/api/invest/research")
+def api_invest_research():
+    """Hand-curated, sourced research notes (invest_research.json) for the Đầu tư story."""
+    return JSONResponse(invest.research())
+
+
 @app.get("/api/invest/screen")
 def api_invest_screen(group: str = "VN30", horizon: int = 63, target: float = 0.0):
     if group not in ("VN30", "VN100", "HNX30"):
