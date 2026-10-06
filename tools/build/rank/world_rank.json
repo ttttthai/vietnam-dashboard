@@ -1,0 +1,288 @@
+{
+ "pop": {
+  "indicator": "SP.POP.TOTL",
+  "label": "Population, total",
+  "direction": "desc",
+  "now": {
+   "year": 2025,
+   "value": 101598527,
+   "rank": 16,
+   "of": 217,
+   "rank_all": 16,
+   "of_all": 217
+  },
+  "prev": {
+   "year": 2020,
+   "value": 98079191,
+   "rank": 15,
+   "of": 217,
+   "rank_all": 15,
+   "of_all": 217
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&per_page=20000&date=2020:2025",
+  "wpp2024_check": {
+   "source": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+   "2025": {
+    "value_thousands": 101598.527,
+    "rank": 16,
+    "of": 237
+   },
+   "2020": {
+    "value_thousands": 98079.191,
+    "rank": 15,
+    "of": 237
+   }
+  }
+ },
+ "area": {
+  "indicator": "AG.SRF.TOTL.K2",
+  "label": "Surface area (sq. km)",
+  "direction": "desc",
+  "now": {
+   "year": 2023,
+   "value": 331338.31,
+   "rank": 67,
+   "of": 215,
+   "rank_all": 67,
+   "of_all": 215
+  },
+  "prev": {
+   "year": 2018,
+   "value": 331240,
+   "rank": 67,
+   "of": 215,
+   "rank_all": 67,
+   "of_all": 216
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/AG.SRF.TOTL.K2?format=json&per_page=20000&date=2018:2023",
+  "note": "Surface area (AG.SRF.TOTL.K2). Land area AG.LND.TOTL.K2: 313,429 km2, rank 68/215 (2023) and 68/215 (2018). WB area series ends 2023."
+ },
+ "density": {
+  "indicator": "EN.POP.DNST",
+  "label": "Population density (people per sq. km of land area)",
+  "direction": "desc",
+  "now": {
+   "year": 2023,
+   "value": 320.1752,
+   "rank": 37,
+   "of": 215,
+   "rank_all": 37,
+   "of_all": 215
+  },
+  "prev": {
+   "year": 2018,
+   "value": 307.0466,
+   "rank": 36,
+   "of": 215,
+   "rank_all": 37,
+   "of_all": 216
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/EN.POP.DNST?format=json&per_page=20000&date=2018:2023",
+  "note": "Rank among sovereign+territory WB economies; includes micro-states (Macao, Monaco, Singapore...). WB series ends 2023."
+ },
+ "urban": {
+  "indicator": "SP.URB.TOTL.IN.ZS",
+  "label": "Urban population (% of total population)",
+  "direction": "desc",
+  "now": {
+   "year": 2025,
+   "value": 38.8299,
+   "rank": 176,
+   "of": 217,
+   "rank_all": 176,
+   "of_all": 217
+  },
+  "prev": {
+   "year": 2020,
+   "value": 35.5707,
+   "rank": 179,
+   "of": 217,
+   "rank_all": 179,
+   "of_all": 217
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/SP.URB.TOTL.IN.ZS?format=json&per_page=20000&date=2020:2025"
+ },
+ "tfr": {
+  "indicator": "SP.DYN.TFRT.IN",
+  "label": "Fertility rate, total (births per woman)",
+  "direction": "desc",
+  "now": {
+   "year": 2024,
+   "value": 1.895,
+   "rank": 109,
+   "of": 217,
+   "rank_all": 109,
+   "of_all": 217
+  },
+  "prev": {
+   "year": 2019,
+   "value": 1.943,
+   "rank": 118,
+   "of": 217,
+   "rank_all": 118,
+   "of_all": 217
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/SP.DYN.TFRT.IN?format=json&per_page=20000&date=2019:2024",
+  "note": "direction desc: rank 1 = highest fertility."
+ },
+ "life_exp": {
+  "indicator": "SP.DYN.LE00.IN",
+  "label": "Life expectancy at birth, total (years)",
+  "direction": "desc",
+  "now": {
+   "year": 2024,
+   "value": 74.736,
+   "rank": 108,
+   "of": 217,
+   "rank_all": 108,
+   "of_all": 217
+  },
+  "prev": {
+   "year": 2019,
+   "value": 74.211,
+   "rank": 108,
+   "of": 217,
+   "rank_all": 108,
+   "of_all": 217
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/SP.DYN.LE00.IN?format=json&per_page=20000&date=2019:2024"
+ },
+ "cbr": {
+  "indicator": "SP.DYN.CBRT.IN",
+  "label": "Birth rate, crude (per 1,000 people)",
+  "direction": "desc",
+  "now": {
+   "year": 2024,
+   "value": 13.423,
+   "rank": 108,
+   "of": 217,
+   "rank_all": 108,
+   "of_all": 217
+  },
+  "prev": {
+   "year": 2019,
+   "value": 15.513,
+   "rank": 110,
+   "of": 217,
+   "rank_all": 110,
+   "of_all": 217
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/SP.DYN.CBRT.IN?format=json&per_page=20000&date=2019:2024"
+ },
+ "cdr": {
+  "indicator": "SP.DYN.CDRT.IN",
+  "label": "Death rate, crude (per 1,000 people)",
+  "direction": "desc",
+  "now": {
+   "year": 2024,
+   "value": 6.646,
+   "rank": 133,
+   "of": 217,
+   "rank_all": 133,
+   "of_all": 217
+  },
+  "prev": {
+   "year": 2019,
+   "value": 6.3,
+   "rank": 150,
+   "of": 217,
+   "rank_all": 150,
+   "of_all": 217
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/SP.DYN.CDRT.IN?format=json&per_page=20000&date=2019:2024",
+  "note": "direction desc: rank 1 = highest death rate."
+ },
+ "srb": {
+  "indicator": "SP.POP.BRTH.MF",
+  "label": "Sex ratio at birth (male births per female births)",
+  "direction": "desc",
+  "now": {
+   "year": 2024,
+   "value": 1.106,
+   "rank": 4,
+   "of": 217,
+   "rank_all": 4,
+   "of_all": 217
+  },
+  "prev": {
+   "year": 2019,
+   "value": 1.115,
+   "rank": 5,
+   "of": 217,
+   "rank_all": 5,
+   "of_all": 217
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.BRTH.MF?format=json&per_page=20000&date=2019:2024",
+  "note": "WB value = male births per female birth. UN WPP 2024 SRB: 110.3 (2025) rank 4/237; 112.1 (2020) rank 4/237."
+ },
+ "age65": {
+  "indicator": "SP.POP.65UP.TO.ZS",
+  "label": "Population ages 65 and above (% of total population)",
+  "direction": "desc",
+  "now": {
+   "year": 2025,
+   "value": 9.4945,
+   "rank": 104,
+   "of": 217,
+   "rank_all": 104,
+   "of_all": 217
+  },
+  "prev": {
+   "year": 2020,
+   "value": 7.5672,
+   "rank": 106,
+   "of": 217,
+   "rank_all": 106,
+   "of_all": 217
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.65UP.TO.ZS?format=json&per_page=20000&date=2020:2025"
+ },
+ "dependency": {
+  "indicator": "SP.POP.DPND",
+  "label": "Age dependency ratio (% of working-age population)",
+  "direction": "desc",
+  "now": {
+   "year": 2025,
+   "value": 47.8209,
+   "rank": 164,
+   "of": 217,
+   "rank_all": 164,
+   "of_all": 217
+  },
+  "prev": {
+   "year": 2020,
+   "value": 46.9641,
+   "rank": 167,
+   "of": 217,
+   "rank_all": 167,
+   "of_all": 217
+  },
+  "source": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.DPND?format=json&per_page=20000&date=2020:2025"
+ },
+ "religion_unaffiliated": {
+  "indicator": "Pew Religiously_unaffiliated (% of population)",
+  "label": "Religiously unaffiliated share (Pew Research Center, Global Religious Landscape 2010-2020)",
+  "direction": "desc",
+  "now": {
+   "year": 2020,
+   "value": 67.67,
+   "rank": 5,
+   "of": 201
+  },
+  "prev": {
+   "year": 2010,
+   "value": 62.14,
+   "rank": 6,
+   "of": 201
+  },
+  "note": "Pew has only 2010 and 2020 (10-yr gap, not 5). 2020 top: China 89.6, North Korea 72.9, Czech Rep. 72.8, Hong Kong 71.4, Vietnam 67.7, Macao 67.6. Vietnam 2020 also: Buddhists 23.0%, Christians 8.3%, other religions 0.9%.",
+  "source": "https://www.pewresearch.org/religion/feature/religious-composition-by-country-2010-2020/",
+  "data_file": "https://www.pewresearch.org/wp-content/uploads/sites/20/2025/06/Religious-Composition-2010-2020-dataset.zip",
+  "report": "https://www.pewresearch.org/religion/2025/06/09/how-the-global-religious-landscape-changed-from-2010-to-2020/"
+ },
+ "_meta": {
+  "universe": "World Bank economies with region.id != 'NA' (217); rank = 1 + count strictly greater (competition ranking); 'rank'/'of' = universe of countries with values in both years; 'rank_all'/'of_all' = all countries with data in that year",
+  "retrieved": "2026-10-05",
+  "wb_lastupdated": "2026-07-13"
+ }
+}

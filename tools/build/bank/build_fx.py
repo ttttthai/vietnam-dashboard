@@ -1,0 +1,109 @@
+import json
+TN="https://thanhnien.vn/"
+rows = [
+# month, central,(cdate,curl), vcb,(vdate,vurl), dxy,(ddate,durl), free_sell,(fdate,furl)
+("2024-10",24243,("2024-10-31",TN+"gia-usd-hom-nay-31102024-ngan-hang-giam-gia-nhung-van-o-muc-kich-tran-185241031085152817.htm"),25455,None,104.1,None,25760,None),
+("2024-11",24251,("2024-11-29",TN+"gia-usd-hom-nay-29112024-do-la-trong-ngan-hang-va-tu-do-dong-loat-giam-185241129082931341.htm"),25463,("2024-11-30",TN+"gia-usd-hom-nay-30112024-do-tu-do-tiep-tuc-giam-185241130084058821.htm"),105.78,"v",25730,"v"),
+("2024-12",24335,("2024-12-31",TN+"gia-usd-hom-nay-31122024-tang-46-trong-ca-nam-185241231080143865.htm"),25551,None,107.86,None,25850,None),
+("2025-01",24325,("2025-01-24",TN+"gia-usd-hom-nay-2412025-do-tu-do-giam-sau-185250124083601503.htm"),25320,None,108.14,None,25550,None),
+("2025-02",24726,("2025-02-28",TN+"gia-usd-hom-nay-2822025-tang-vot-185250228085135206.htm"),25745,None,107.3,None,None,None),
+("2025-03",24837,("2025-03-31",TN+"gia-usd-hom-nay-3132025-do-tu-do-giu-da-tang-185250331075527242.htm"),25760,None,103.84,None,25960,None),
+("2025-04",24956,("2025-04-29",TN+"gia-usd-hom-nay-2942025-do-tu-do-tang-ky-luc-vuot-26500-dong-185250429074710318.htm"),26180,None,99.04,None,26520,None),
+("2025-05",24978,("2025-05-30",TN+"gia-usd-hom-nay-3052025-ngan-hang-tang-len-muc-cao-moi-185250530084419471.htm"),26190,None,99.22,None,None,None),
+("2025-06",25052,("2025-06-30",TN+"gia-usd-hom-nay-3062025-do-tu-do-neo-sat-26500-dong-185250630082821382.htm"),26270,None,96.83,None,26480,None),
+("2025-07",25240,("2025-07-31",TN+"gia-usd-hom-nay-3172025-ty-gia-trung-tam-len-muc-cao-ky-luc-185250731084307259.htm"),26380,None,99.77,None,None,None),
+("2025-08",25240,("2025-08-29",TN+"gia-usd-hom-nay-2982025-ngan-hang-giam-manh-185250829083336242.htm"),26502,None,97.9,None,26800,("2025-08-30",TN+"gia-usd-hom-nay-3082025-do-tu-do-tiep-tuc-tang-1852508300841357.htm")),
+("2025-09",25187,("2025-09-30",TN+"gia-usd-hom-nay-3092025-tiep-tuc-giam-nguoc-chieu-euro-bang-anh-185250930074756675.htm"),26446,None,98.0,None,26620,None),
+("2025-10",25093,("2025-10-31",TN+"gia-usd-hom-nay-31102025-tiep-tuc-tang-khien-eur-bang-anh-di-xuong-18525103108255216.htm"),26347,None,99.52,None,27790,None),
+("2025-11",25155,("2025-11-28","https://vov.vn/thi-truong/ty-gia/ty-gia-usd-hom-nay-112-ty-gia-trung-tam-tang-len-moc-25156-dongusd-post1249760.vov"),26412,("2025-11-30",TN+"gia-usd-hom-nay-30112025-cung-euro-bang-anh-dong-loat-di-len-185251130082225644.htm"),99.48,"v",27550,"v"),
+("2025-12",25121,("2025-12-31",TN+"gia-usd-hom-nay-31122025-tiep-tuc-giam-trong-ngay-cuoi-nam-185251231073926246.htm"),26377,None,98.22,None,27020,None),
+("2026-01",25074,("2026-01-30",TN+"gia-usd-hom-nay-3012026-do-my-cung-eur-bang-anh-giam-18526013007500989.htm"),26180,None,96.18,None,None,None),
+("2026-02",25051,("2026-02-27","https://www.vietnam.vn/en/ty-gia-usd-hom-nay-27-2-2026-cho-den-giam-sau"),26230,("2026-02-28",TN+"gia-usd-hom-nay-2822026-giam-sau-185260228083023358.htm"),97.64,"v",26527,"c"),
+("2026-03",25102,("2026-03-31",TN+"gia-usd-hom-nay-3132026-ngan-hang-van-ban-ra-kich-tran-185260331082436066.htm"),26357,None,100.35,None,27090,None),
+("2026-04",25111,("2026-04-29","https://congthuong.vn/ty-gia-usd-ngay-29-4-2026-cho-den-vuot-26-700-dong-454329.html"),26368,("2026-04-30",TN+"gia-usd-hom-nay-3042026-do-la-my-tang-manh-eur-bang-anh-giam-185260430074408068.htm"),98.97,"v",26737,"c"),
+("2026-05",25139,("2026-05-29",TN+"gia-usd-hom-nay-2952026-ngan-hang-giam-chieu-mua-tang-chieu-ban-ra-185260529083851361.htm"),26395,None,99.0,None,26474,("2026-05-29","https://vietbao.vn/ty-gia-usd-hom-nay-2952026-usd-mat-gia-manh-593556.html")),
+("2026-06",25206,("2026-06-30",TN+"gia-usd-hom-nay-3062026-do-tu-do-quay-dau-giam-185260630084138243.htm"),26466,None,101.27,None,26640,None),
+("2026-07",25338,("2026-07-31","http://vov.vn/thi-truong/ty-gia-usd-hom-nay-317-ty-gia-trung-tam-tang-len-25338-dongusd-post1319875.vov"),26470,("2026-07-31",TN+"gia-usd-hom-nay-3172026-ngan-hang-giam-manh-185260731085753387.htm"),99.97,"v",26280,"c"),
+("2026-08",25610,("2026-08-31","https://doanhnghiephoinhap.vn/ty-gia-usd-hom-nay-3182026-dong-usd-tang-gan-09-147640.html"),26260,("2026-08-29",TN+"gia-usd-hom-nay-2982026-ngan-hang-giam-manh-230-dong-usd-trong-thang-185260829082601335.htm"),99.68,"v",None,None),
+("2026-09",25627,("2026-09-30",TN+"gia-usd-hom-nay-3092026-quay-dau-giam-trong-khi-euro-va-yen-nhat-cung-tang-18526093008115231.htm"),26160,None,101.36,None,25980,None),
+]
+FED={
+ "2024-09-18":("https://www.federalreserve.gov/newsevents/pressreleases/monetary20240918a.htm",5.00,"cut 50bp to 4.75-5.00%"),
+ "2024-11-07":("https://www.federalreserve.gov/newsevents/pressreleases/monetary20241107a.htm",4.75,"cut 25bp to 4.50-4.75%"),
+ "2024-12-18":("https://www.federalreserve.gov/newsevents/pressreleases/monetary20241218a.htm",4.50,"cut 25bp to 4.25-4.50%"),
+ "2025-09-17":("https://www.federalreserve.gov/newsevents/pressreleases/monetary20250917a.htm",4.25,"cut 25bp to 4.00-4.25%"),
+ "2025-10-29":("https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",4.00,"cut 25bp to 3.75-4.00%"),
+ "2025-12-10":("https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",3.75,"cut 25bp to 3.50-3.75%"),
+ "2026-09-16":("https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",4.00,"hike 25bp to 3.75-4.00% (12-0)"),
+}
+fed_keys=sorted(FED)
+out={"months":[],"central":[],"vcb_sell":[],"free_sell":[],"fed_upper":[],"dxy":[],
+     "urls":{"central":[],"vcb_sell":[],"free_sell":[],"fed_upper":[],"dxy":[]},
+     "dates":{"central":[],"vcb_sell":[],"free_sell":[],"fed_upper":[],"dxy":[]}}
+for m,c,(cd,cu),v,vs,d,ds,f,fs in rows:
+    out["months"].append(m)
+    out["central"].append(c); out["urls"]["central"].append(cu); out["dates"]["central"].append(cd)
+    vd,vu=(vs if isinstance(vs,tuple) else (cd,cu))
+    out["vcb_sell"].append(v); out["urls"]["vcb_sell"].append(vu); out["dates"]["vcb_sell"].append(vd)
+    dd,du=((vd,vu) if ds=="v" else (cd,cu))
+    out["dxy"].append(d); out["urls"]["dxy"].append(du if d is not None else None); out["dates"]["dxy"].append(dd if d is not None else None)
+    if f is None:
+        out["free_sell"].append(None); out["urls"]["free_sell"].append(None); out["dates"]["free_sell"].append(None)
+    else:
+        if isinstance(fs,tuple): fd,fu=fs
+        elif fs=="v": fd,fu=vd,vu
+        else: fd,fu=cd,cu
+        out["free_sell"].append(f); out["urls"]["free_sell"].append(fu); out["dates"]["free_sell"].append(fd)
+    # fed: last decision on/before month end
+    me=m+"-31"
+    k=[x for x in fed_keys if x<=me][-1]
+    out["fed_upper"].append(FED[k][1]); out["urls"]["fed_upper"].append(FED[k][0]); out["dates"]["fed_upper"].append(k)
+out["notes"]={
+ "central":"SBV central rate (ty gia trung tam) VND/USD as reported in Vietnamese daily FX articles on/near last business day of month. 2026-04 value from congthuong article published 04:40 on 29/4/2026 (likely the 28/4 fixing). 2026-08 from doanhnghiephoinhap 07:00 31/8/2026 ('unchanged'). 2025-01 uses 24/1/2025 (last session before Tet; markets closed 25/1-2/2/2025). 2024-11 from 29/11/2024.",
+ "vcb_sell":"Vietcombank USD selling rate (VND), morning quote in the cited article.",
+ "free_sell":"Free/black-market USD selling rate (VND) as reported; extra series, nulls where article did not report it.",
+ "fed_upper":"Upper bound of FOMC target range in force at month-end; URL/date = Fed press release of the decision that set it. Holds verified directly: 2026-01-28, 2026-07-29 press releases; other 2025/2026 holds (2025: Jan 29, Mar 19, May 7, Jun 18, Jul 30; 2026: Mar 18, Apr 29, Jun 17) per secondary sources/meeting calendar, range unchanged.",
+ "dxy":"USD-Index as quoted in the same Vietnamese morning article (typically reflects the prior US session close, so approx. month-end). Alt for 2026-07: vov.vn 31/7/2026 quotes 100.20. True 30/9/2026 close: 101.46 per thanhnien 1/10/2026 article.",
+ "band":"SBV spot band +/-5% around central rate since 17/10/2022 (Decision 1747/QD-NHNN)."
+}
+out["ytd"]=[
+ {"period":"2024","text":"Central rate +2% in 2024; commercial-bank USD +1,131 VND (+4.6%); DXY +6.6%","date":"2024-12-31","url":TN+"gia-usd-hom-nay-31122024-tang-46-trong-ca-nam-185241231080143865.htm"},
+ {"period":"2025","text":"Central rate +794 VND to 25,121 (+3.2%) in 2025; commercial-bank USD up ~3.2%","date":"2026-01-01","url":TN+"gia-usd-hom-nay-112026-tang-32-trong-nam-2025-185260101083650774.htm"},
+ {"period":"2026 YTD to 28/2","text":"Bank USD -147 VND (-0.55%) since start of 2026","date":"2026-02-28","url":TN+"gia-usd-hom-nay-2822026-giam-sau-185260228083023358.htm"},
+ {"period":"2026 YTD to 7/8","text":"Central rate +340 VND (+1.35%) YTD; ~+460 VND (+1.83%) from mid-April low","date":"2026-08-07","url":TN+"gia-usd-hom-nay-782026-ty-gia-trung-tam-tang-manh-185260807084003454.htm"},
+ {"period":"2026 YTD to ~12/9","text":"Interbank 25,915 (-1.85% YTD); bank USD -267 VND YTD; central 25,596 (12/9)","date":"2026-09-13","url":TN+"vi-sao-gia-usd-giam-manh-185260913212236073.htm"},
+ {"period":"2026 YTD to 29/9","text":"Interbank 25,970, USD -1.7% YTD (-220 VND) on interbank market","date":"2026-09-30","url":TN+"gia-vang-usd-lai-suat-cung-ha-185260929225520444.htm"},
+ {"period":"2026 YTD to 30/9 (computed)","text":"Central 25,121 -> 25,627 = +2.0%; VCB sell 26,377 -> 26,160 = -0.8% (computed from series)","date":"2026-09-30","url":None}
+]
+out["reserves"]=[
+ {"date":"2026-03-25","text":"FX reserves ~2 months of imports (cited in analysis of SBV forward sales)","url":"https://vietstock.vn/2026/03/nhnn-tung-don-can-thiep-ty-gia-phat-tin-hieu-on-dinh-vnd-757-1416142.htm"},
+ {"date":"2026-06-24","text":"SBV: reserves ~87.6 bn USD (peak ~112 bn Jan-2022; 86.7 bn end-2022)","url":"https://vnexpress.net/du-tru-ngoai-hoi-gan-88-ty-usd-5089444.html"},
+ {"date":"2026-08-03","text":"Reserves ~87.6 bn USD = ~1.85 months of imports (H1-2026 imports ~47.2 bn/month), below IMF 3-3.5 months; Jul-2025 ~80.3 bn = 2.2 months","url":"https://vietstock.vn/2026/08/cau-truc-nghia-vu-ngoai-te-nua-cuoi-2026-va-gioi-han-du-dia-dieu-hanh-ty-gia-757-1475665.htm"}
+]
+out["events"]=[
+ {"date":"2022-10-17","text":"SBV widens USD/VND spot band from +/-3% to +/-5% (Decision 1747/QD-NHNN)","url":"https://vietnambiz.vn/nhnn-noi-bien-do-ty-gia-giao-ngay-usdvnd-len-5-20221017101034502.htm"},
+ {"date":"2024-09-18","text":"Fed cuts 50bp to 4.75-5.00%","url":FED["2024-09-18"][0]},
+ {"date":"2024-11-07","text":"Fed cuts 25bp to 4.50-4.75%","url":FED["2024-11-07"][0]},
+ {"date":"2024-12-18","text":"Fed cuts 25bp to 4.25-4.50%","url":FED["2024-12-18"][0]},
+ {"date":"2025-02-28","text":"Central rate +401 VND (+1.6%) in Feb-2025 alone, to 24,726","url":TN+"gia-usd-hom-nay-2822025-tang-vot-185250228085135206.htm"},
+ {"date":"2025-04-29","text":"Free-market USD record 26,520 (sell) while DXY ~99","url":TN+"gia-usd-hom-nay-2942025-do-tu-do-tang-ky-luc-vuot-26500-dong-185250429074710318.htm"},
+ {"date":"2025-08-22","text":"Central rate record 25,298; SBV announces 180-day cancellable forward USD sales","url":"https://www.dnse.com.vn/senses/tin-tuc/ngan-hang-nha-nuoc-tung-on-ban-usd-ky-han-lieu-thuoc-ha-nhiet-cho-ty-gia-35118009"},
+ {"date":"2025-08-25","text":"SBV forward sales 25-26/8/2025, 180-day cancellable, at 26,550 VND/USD to banks with short FX positions (~1.5 bn USD per MBS)","url":"https://baodautu.vn/ngan-hang-nha-nuoc-ban-ngoai-te-co-ky-han-can-thiep-thi-truong-tu-tuan-sau-cho-phep-huy-ngang-d368448.html"},
+ {"date":"2025-09-17","text":"Fed cuts 25bp to 4.00-4.25%","url":FED["2025-09-17"][0]},
+ {"date":"2025-10-01","text":"SBV second forward sale at 26,550 VND/USD (180-day, cancellable)","url":"https://www.dnse.com.vn/senses/tin-tuc/ty-gia-neo-cao-ngan-hang-nha-nuoc-tiep-tuc-ban-usd-can-thiep-35148109"},
+ {"date":"2025-10-22","text":"SBV third forward sale in two months at 26,550 VND/USD, ~1.5 bn USD","url":"https://www.dnse.com.vn/senses/tin-tuc/ty-gia-neo-cao-ngan-hang-nha-nuoc-tiep-tuc-ban-usd-can-thiep-35148109"},
+ {"date":"2025-10-29","text":"Fed cuts 25bp to 3.75-4.00%","url":FED["2025-10-29"][0]},
+ {"date":"2025-12-10","text":"Fed cuts 25bp to 3.50-3.75%","url":FED["2025-12-10"][0]},
+ {"date":"2026-01-28","text":"Fed holds at 3.50-3.75% (first of five 2026 holds through 29/7)","url":"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm"},
+ {"date":"2026-03-24","text":"SBV sells 180-day cancellable USD forwards at 26,850 VND/USD; 2.69 bn USD by 16:30; spot 26,351 vs ceiling 26,364; free market 27,930-27,980","url":"https://bbw.vn/ti-gia-bat-tang-ngan-hang-nha-nuoc-ban-ngoai-te-ky-han-56835.html"},
+ {"date":"2026-03-31","text":"Banks still selling USD at ceiling (VCB 26,357 = central 25,102 +5%)","url":TN+"gia-usd-hom-nay-3132026-ngan-hang-van-ban-ra-kich-tran-185260331082436066.htm"},
+ {"date":"2026-07-27","text":"Bank USD selling >26,500, near ceiling 26,523 (central 25,293)","url":"https://vietstock.vn/2026/08/cau-truc-nghia-vu-ngoai-te-nua-cuoi-2026-va-gioi-han-du-dia-dieu-hanh-ty-gia-757-1475665.htm"},
+ {"date":"2026-07-29","text":"Fed holds at 3.50-3.75%","url":"https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm"},
+ {"date":"2026-08-07","text":"SBV raises central rate +30 VND to 25,463 (largest in months); central keeps rising to ~25,611 by 28/8 while bank USD falls 230 VND (-0.86%) in Aug","url":TN+"gia-usd-hom-nay-782026-ty-gia-trung-tam-tang-manh-185260807084003454.htm"},
+ {"date":"2026-09-13","text":"USD falls on abundant FX supply: FDI disbursed 17.25 bn USD in 8M (+12%), registered 40.63 bn (+55.4%); interbank 25,915 (-1.85% YTD)","url":TN+"vi-sao-gia-usd-giam-manh-185260913212236073.htm"},
+ {"date":"2026-09-16","text":"Fed hikes 25bp to 3.75-4.00% (12-0), first hike since 2023","url":FED["2026-09-16"][0]},
+ {"date":"2026-09-29","text":"SBV resumes FX swaps: 2 bn USD, 7-day","url":TN+"gia-vang-usd-lai-suat-cung-ha-185260929225520444.htm"}
+]
+out["gaps"]=["free_sell null: 2025-02, 2025-05, 2025-07, 2026-01, 2026-08",
+ "No evidence found of SBV forward sales in late-Aug-2026: the 25-26/8 forward sales at 26,550 were in 2025 (baodautu 23/8/2025, thoibaotaichinhvietnam 29/8/2025). In Aug-2026 bank USD fell 230 VND; MUFG 8/9/2026 notes SBV gradually raising the fixing, no forward sales mentioned."]
+json.dump(out,open("fx_series.json","w"),ensure_ascii=False,indent=1)

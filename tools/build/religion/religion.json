@@ -1,0 +1,4221 @@
+{
+ "meta": {
+  "generated": "2026-10-05",
+  "units": 34,
+  "note": "Provincial religion data are census (self-declared) counts on old 63-province boundaries aggregated to the 34 units of NQ 202/2025/QH15 via demo.json merged_from. pct = % of total population; pct_followers = % of religious followers."
+ },
+ "national": {
+  "census2019": {
+   "date": "2019-04-01",
+   "population": 96208984,
+   "followers": 13162879,
+   "followers_pct": 13.68,
+   "no_religion": 83046105,
+   "no_religion_pct": 86.32,
+   "n_religions_listed": 16,
+   "by_religion": {
+    "Công giáo": {
+     "n": 5866169,
+     "pct_pop": 6.097,
+     "pct_followers": 44.57
+    },
+    "Phật giáo": {
+     "n": 4606543,
+     "pct_pop": 4.788,
+     "pct_followers": 35.0
+    },
+    "Tin lành": {
+     "n": 960558,
+     "pct_pop": 0.998,
+     "pct_followers": 7.3
+    },
+    "Cao Đài": {
+     "n": 556234,
+     "pct_pop": 0.578,
+     "pct_followers": 4.23
+    },
+    "Phật giáo Hòa Hảo": {
+     "n": 983079,
+     "pct_pop": 1.022,
+     "pct_followers": 7.47
+    },
+    "Hồi giáo": {
+     "n": 70934,
+     "pct_pop": 0.074,
+     "pct_followers": 0.54
+    }
+   },
+   "others": {
+    "n": 119362,
+    "pct_pop": 0.124,
+    "pct_followers": 0.91,
+    "detail": {
+     "Tôn giáo Baha'i": 2153,
+     "Tịnh độ Cư sỹ Phật hội Việt Nam": 2306,
+     "Đạo Tứ Ân Hiếu nghĩa": 30416,
+     "Bửu Sơn Kỳ Hương": 2975,
+     "Giáo hội Phật đường Nam Tông Minh Sư đạo": 260,
+     "Hội thánh Minh Lý đạo - Tam Tông Miếu": 193,
+     "Chăm Bà la môn": 64547,
+     "Giáo hội Các thành hữu Ngày sau của Chúa Giê su Ky tô Việt Nam (Mormon)": 4281,
+     "Phật giáo Hiếu Nghĩa Tà Lơn": 401,
+     "Giáo hội Cơ đốc Phục lâm Việt Nam": 11830
+    }
+   },
+   "urban_rural_note": "Biểu 3 also splits urban/rural and sex (not reproduced).",
+   "source": "GSO, Kết quả toàn bộ Tổng điều tra dân số và nhà ở năm 2019, Biểu 3 (p.210)",
+   "url": "https://www.nso.gov.vn/wp-content/uploads/2019/12/Ket-qua-toan-bo-Tong-dieu-tra-dan-so-va-nha-o-2019.pdf",
+   "press_summary": "GSO: 16 religions; 13.2 million followers = 13.7% of population; Catholics 5.9m (44.6% of followers, 6.1% of pop.), Buddhists 4.6m (35.0%, 4.8%).",
+   "press_url": "https://www.nso.gov.vn/wp-content/uploads/2019/12/TDT-Dan-so-2019-1.pdf"
+  },
+  "census2009": {
+   "date": "2009-04-01",
+   "population": 85846997,
+   "followers": 15651467,
+   "followers_pct": 18.23,
+   "no_religion_derived": 70195530,
+   "n_religions_listed": 13,
+   "by_religion": {
+    "Công giáo": {
+     "n": 5677086,
+     "pct_pop": 6.613,
+     "pct_followers": 36.27
+    },
+    "Phật giáo": {
+     "n": 6802318,
+     "pct_pop": 7.924,
+     "pct_followers": 43.46
+    },
+    "Tin lành": {
+     "n": 734168,
+     "pct_pop": 0.855,
+     "pct_followers": 4.69
+    },
+    "Cao Đài": {
+     "n": 807915,
+     "pct_pop": 0.941,
+     "pct_followers": 5.16
+    },
+    "Phật giáo Hòa Hảo": {
+     "n": 1433252,
+     "pct_pop": 1.67,
+     "pct_followers": 9.16
+    },
+    "Hồi giáo": {
+     "n": 75268,
+     "pct_pop": 0.088,
+     "pct_followers": 0.48
+    }
+   },
+   "others": {
+    "n": 121460,
+    "detail": {
+     "Minh Sư Đạo": 709,
+     "Minh Lý Đạo": 366,
+     "Tịnh độ Cư sĩ Phật hội Việt Nam": 11093,
+     "Đạo Tứ Ân Hiếu Nghĩa": 41280,
+     "Bửu Sơn Kỳ Hương": 10824,
+     "Baha'i": 731,
+     "Bà La Môn": 56427,
+     "Không xác định": 30
+    }
+   },
+   "source": "GSO, Tổng điều tra dân số và nhà ở Việt Nam năm 2009: Kết quả toàn bộ, Biểu 7 (p.281); population from Biểu 1",
+   "url": "https://www.nso.gov.vn/wp-content/uploads/2019/03/KQ-toan-bo.pdf",
+   "note": "Biểu 7 total 15,651,467 includes 30 'không xác định tôn giáo'. GSO 2009 press release instead says 15.672 million followers (+932 thousand vs 1999) — small unexplained gap vs the table.",
+   "press_url": "https://www.nso.gov.vn/su-kien/2019/03/thong-cao-bao-chi-tong-dieu-tra-dan-so-va-nha-o-nam-2009-cong-bo-ket-qua-dieu-tra-toan-bo/"
+  },
+  "change_2009_2019": {
+   "Công giáo": {
+    "n_2009": 5677086,
+    "n_2019": 5866169,
+    "diff": 189083,
+    "pct_change": 3.3
+   },
+   "Phật giáo": {
+    "n_2009": 6802318,
+    "n_2019": 4606543,
+    "diff": -2195775,
+    "pct_change": -32.3
+   },
+   "Tin lành": {
+    "n_2009": 734168,
+    "n_2019": 960558,
+    "diff": 226390,
+    "pct_change": 30.8
+   },
+   "Cao Đài": {
+    "n_2009": 807915,
+    "n_2019": 556234,
+    "diff": -251681,
+    "pct_change": -31.2
+   },
+   "Phật giáo Hòa Hảo": {
+    "n_2009": 1433252,
+    "n_2019": 983079,
+    "diff": -450173,
+    "pct_change": -31.4
+   },
+   "Hồi giáo": {
+    "n_2009": 75268,
+    "n_2019": 70934,
+    "diff": -4334,
+    "pct_change": -5.8
+   },
+   "_total_followers": {
+    "n_2009": 15651467,
+    "n_2019": 13162879,
+    "diff": -2488588,
+    "pct_change": -15.9,
+    "share_pop_2009": 18.23,
+    "share_pop_2019": 13.68
+   }
+  },
+  "btgcp": {
+   "latest": {
+    "date": "2023-12-31",
+    "religions": 16,
+    "organizations": 43,
+    "followers": 27700000,
+    "followers_text": "trên 27,7 triệu tín đồ",
+    "followers_pct": 27,
+    "followers_pct_text": "chiếm trên 27% dân số",
+    "dignitaries_chuc_sac": 54500,
+    "officials_chuc_viec": 145000,
+    "places_of_worship": 29890,
+    "belief_facilities": 51000,
+    "population_with_belief_or_religion_pct_text": "hơn 95% dân số theo tín ngưỡng và tôn giáo",
+    "stated_by": "Trưởng Ban Tôn giáo Chính phủ Vũ Hoài Bắc, hội nghị Ban Tuyên giáo TƯ 15/8/2024",
+    "url": "https://danviet.vn/truong-ban-ton-giao-chinh-phu-con-tinh-trang-loi-dung-tin-nguong-ton-giao-de-chong-pha-kich-dong-20240815140750165.htm",
+    "url_alt": "https://vietnamnet.vn/viet-nam-co-16-ton-giao-va-gan-28-trieu-tin-do-2424794.html",
+    "note": "figures are rounded (\"khoảng 54.500 chức sắc, gần 145.000 chức việc, 29.890 cơ sở thờ tự, khoảng 51.000 cơ sở tín ngưỡng\")"
+   },
+   "mid_2025": {
+    "date": "2025-07 (article dated 30/07/2025; \"tính đến giữa năm 2025\")",
+    "religions": 16,
+    "organizations": 43,
+    "followers_text": "gần 28 triệu tín đồ",
+    "dignitaries_text": "hơn 54 nghìn chức sắc, nhà tu hành",
+    "places_of_worship_text": "hàng vạn cơ sở thờ tự",
+    "population_with_belief_or_religion_pct_text": "95%",
+    "source": "Bộ Dân tộc và Tôn giáo (cema.gov.vn), \"Hành trình 70 năm Ban Tôn giáo Chính phủ\"",
+    "url": "http://www.cema.gov.vn/hanh-trinh-70-nam-ban-ton-giao-chinh-phu.htm"
+   },
+   "white_paper_2023": {
+    "title": "Sách trắng \"Tôn giáo và chính sách tôn giáo ở Việt Nam\" (Ban Tôn giáo Chính phủ, ra mắt 09/3/2023)",
+    "date": "2021-12-31",
+    "religions": 16,
+    "organizations_recognized": 36,
+    "organizations_registered": "04 tổ chức + 01 pháp môn tu hành (được cấp chứng nhận đăng ký hoạt động)",
+    "followers": 26500000,
+    "followers_text": "trên 26,5 triệu tín đồ",
+    "followers_pct": 27,
+    "dignitaries_chuc_sac": 54000,
+    "officials_chuc_viec": 135000,
+    "places_of_worship": 29658,
+    "by_religion_dec2021": {
+     "Phật giáo": {
+      "followers_text": "khoảng 14 triệu tín đồ đã quy y",
+      "monks_nuns": 54169,
+      "places_of_worship": 18544
+     },
+     "Công giáo": {
+      "followers_text": "trên 7 triệu tín đồ, khoảng 7% dân số",
+      "bishops": 46,
+      "priests_text": "hơn 5 nghìn linh mục"
+     },
+     "Tin lành": {
+      "followers_text": "hơn 1,2 triệu",
+      "dignitaries_text": "hơn 2.300 chức sắc",
+      "places_of_worship_text": "gần 900"
+     },
+     "Cao Đài": {
+      "followers_text": "hơn 1,2 triệu",
+      "dignitaries_text": "hơn 13 nghìn chức sắc",
+      "places_text": "1.300 cơ sở tôn giáo, 38 tỉnh/thành"
+     },
+     "Phật giáo Hòa Hảo": {
+      "followers_text": "hơn 1,5 triệu",
+      "officials_text": "4 nghìn chức việc",
+      "places_of_worship": 50
+     },
+     "Hồi giáo": {
+      "followers_text": "hơn 80 nghìn (Islam ~30 nghìn, Bàni ~50 nghìn)",
+      "places_of_worship": 89
+     },
+     "Baha'i": {
+      "followers_text": "khoảng 7 nghìn, 45 tỉnh/thành"
+     }
+    },
+    "url": "https://cms.btgcp.gov.vn/upload/documents/25_08_2023/-2023-08-25-18-52-04.pdf",
+    "news_url": "https://baotintuc.vn/thoi-su/ra-mat-sach-trang-ton-giao-va-chinh-sach-ton-giao-o-viet-nam-20230309104943196.htm"
+   },
+   "url": "https://danviet.vn/truong-ban-ton-giao-chinh-phu-con-tinh-trang-loi-dung-tin-nguong-ton-giao-de-chong-pha-kich-dong-20240815140750165.htm",
+   "date": "2023-12-31"
+  },
+  "census_vs_btgcp": {
+   "census2019_followers": 13162879,
+   "btgcp_followers_2021": 26500000,
+   "btgcp_followers_2023": 27700000,
+   "ratio_btgcp2023_to_census": 2.1,
+   "buddhists_census2019": 4606543,
+   "buddhists_white_paper_2021_text": "khoảng 14 triệu tín đồ đã quy y",
+   "catholics_census2019": 5866169,
+   "catholics_white_paper_2021_text": "trên 7 triệu",
+   "explanation": "Neither GSO nor Ban Tôn giáo publishes an official reconciliation. Definitional basis visible in the sources: (1) the census records each person's self-declared answer to the question '[TÊN] có theo đạo, tôn giáo nào không? Nếu có: đạo, tôn giáo gì?' (2009 census questionnaire, printed in the 2009 Kết quả toàn bộ appendix); people who practise ancestor worship/folk belief or attend pagodas but do not declare a religion are counted as 'không theo tôn giáo'. (2) Ban Tôn giáo figures are administrative counts compiled from the religious organisations themselves, e.g. the White Paper counts Buddhists as 'khoảng 14 triệu tín đồ đã quy y' (people who took refuge) reported by the Vietnam Buddhist Sangha. The gap is largest for Buddhism (4.6m vs ~14m); Catholic (5.9m vs >7m), Hòa Hảo (1.0m vs >1.5m) and Cao Đài (0.56m vs >1.2m) gaps are smaller. Buddhist press (Giác Ngộ, 21/12/2019) reported that clergy/officials attributed the low census figure to reluctance to declare religion ('tâm lý ngại khai yếu tố tôn giáo') — an opinion, not an official methodology note.",
+   "urls": [
+    "https://cms.btgcp.gov.vn/upload/documents/25_08_2023/-2023-08-25-18-52-04.pdf",
+    "https://www.nso.gov.vn/wp-content/uploads/2019/03/KQ-toan-bo.pdf",
+    "https://giacngo.vn/so-nguoi-theo-phat-giao-con-46-trieu-dung-thu-hai-o-viet-nam-post49910.html"
+   ]
+  }
+ },
+ "provinces": {
+  "Tuyên Quang": {
+   "merged_from": [
+    "Hà Giang",
+    "Tuyên Quang"
+   ],
+   "pop2019": 1639490,
+   "followers": 50389,
+   "followers_pct": 3.07,
+   "no_religion": 1589101,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Hà Giang",
+    "Tuyên Quang"
+   ],
+   "census2009": {
+    "pop": 1449358,
+    "followers": 45517,
+    "followers_pct": 3.14,
+    "by_religion": {
+     "Công giáo": {
+      "n": 23172,
+      "pct": 1.6,
+      "pct_followers": 50.91
+     },
+     "Phật giáo": {
+      "n": 2524,
+      "pct": 0.17,
+      "pct_followers": 5.55
+     },
+     "Tin lành": {
+      "n": 19764,
+      "pct": 1.36,
+      "pct_followers": 43.42
+     },
+     "Cao Đài": {
+      "n": 7,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 9,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Hồi giáo": {
+      "n": 39,
+      "pct": 0.0,
+      "pct_followers": 0.09
+     },
+     "Khác": {
+      "n": 2,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Cao Bằng": {
+   "merged_from": [
+    "Cao Bằng"
+   ],
+   "pop2019": 530341,
+   "followers": 23880,
+   "followers_pct": 4.5,
+   "no_religion": 506461,
+   "by_religion": {
+    "Công giáo": {
+     "n": 1340,
+     "pct": 0.25,
+     "pct_followers": 5.61
+    },
+    "Phật giáo": {
+     "n": 79,
+     "pct": 0.01,
+     "pct_followers": 0.33
+    },
+    "Tin lành": {
+     "n": 22457,
+     "pct": 4.23,
+     "pct_followers": 94.04
+    },
+    "Cao Đài": {
+     "n": 2,
+     "pct": 0.0,
+     "pct_followers": 0.01
+    },
+    "Phật giáo Hòa Hảo": {
+     "n": 1,
+     "pct": 0.0,
+     "pct_followers": 0.0
+    },
+    "Hồi giáo": {
+     "n": 0,
+     "pct": 0.0,
+     "pct_followers": 0.0
+    },
+    "Khác": {
+     "n": 1,
+     "pct": 0.0,
+     "pct_followers": 0.0
+    }
+   },
+   "by_religion_year": 2019,
+   "largest_religion": "Tin lành",
+   "census2009": {
+    "pop": 507183,
+    "followers": 11134,
+    "followers_pct": 2.2,
+    "by_religion": {
+     "Công giáo": {
+      "n": 1274,
+      "pct": 0.25,
+      "pct_followers": 11.44
+     },
+     "Phật giáo": {
+      "n": 197,
+      "pct": 0.04,
+      "pct_followers": 1.77
+     },
+     "Tin lành": {
+      "n": 9649,
+      "pct": 1.9,
+      "pct_followers": 86.66
+     },
+     "Cao Đài": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Hồi giáo": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Khác": {
+      "n": 11,
+      "pct": 0.0,
+      "pct_followers": 0.1
+     }
+    }
+   }
+  },
+  "Lai Châu": {
+   "merged_from": [
+    "Lai Châu"
+   ],
+   "pop2019": 460196,
+   "followers": 39583,
+   "followers_pct": 8.6,
+   "no_religion": 420613,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Lai Châu"
+   ],
+   "census2009": {
+    "pop": 370502,
+    "followers": 27593,
+    "followers_pct": 7.45,
+    "by_religion": {
+     "Công giáo": {
+      "n": 1209,
+      "pct": 0.33,
+      "pct_followers": 4.38
+     },
+     "Phật giáo": {
+      "n": 70,
+      "pct": 0.02,
+      "pct_followers": 0.25
+     },
+     "Tin lành": {
+      "n": 26305,
+      "pct": 7.1,
+      "pct_followers": 95.33
+     },
+     "Cao Đài": {
+      "n": 0,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 2,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Hồi giáo": {
+      "n": 7,
+      "pct": 0.0,
+      "pct_followers": 0.03
+     },
+     "Khác": {
+      "n": 0,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Lào Cai": {
+   "merged_from": [
+    "Yên Bái",
+    "Lào Cai"
+   ],
+   "pop2019": 1551450,
+   "followers": 85539,
+   "followers_pct": 5.51,
+   "no_religion": 1465911,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Yên Bái",
+    "Lào Cai"
+   ],
+   "census2009": {
+    "pop": 1354992,
+    "followers": 68911,
+    "followers_pct": 5.09,
+    "by_religion": {
+     "Công giáo": {
+      "n": 53227,
+      "pct": 3.93,
+      "pct_followers": 77.24
+     },
+     "Phật giáo": {
+      "n": 2631,
+      "pct": 0.19,
+      "pct_followers": 3.82
+     },
+     "Tin lành": {
+      "n": 13030,
+      "pct": 0.96,
+      "pct_followers": 18.91
+     },
+     "Cao Đài": {
+      "n": 6,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 13,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Khác": {
+      "n": 3,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Thái Nguyên": {
+   "merged_from": [
+    "Bắc Kạn",
+    "Thái Nguyên"
+   ],
+   "pop2019": 1600656,
+   "followers": 51124,
+   "followers_pct": 3.19,
+   "no_religion": 1549532,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Bắc Kạn",
+    "Thái Nguyên"
+   ],
+   "census2009": {
+    "pop": 1416942,
+    "followers": 46488,
+    "followers_pct": 3.28,
+    "by_religion": {
+     "Công giáo": {
+      "n": 25762,
+      "pct": 1.82,
+      "pct_followers": 55.42
+     },
+     "Phật giáo": {
+      "n": 3168,
+      "pct": 0.22,
+      "pct_followers": 6.81
+     },
+     "Tin lành": {
+      "n": 17530,
+      "pct": 1.24,
+      "pct_followers": 37.71
+     },
+     "Cao Đài": {
+      "n": 0,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 10,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Khác": {
+      "n": 17,
+      "pct": 0.0,
+      "pct_followers": 0.04
+     }
+    }
+   }
+  },
+  "Điện Biên": {
+   "merged_from": [
+    "Điện Biên"
+   ],
+   "pop2019": 598856,
+   "followers": 59384,
+   "followers_pct": 9.92,
+   "no_religion": 539472,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Điện Biên"
+   ],
+   "census2009": {
+    "pop": 490306,
+    "followers": 37952,
+    "followers_pct": 7.74,
+    "by_religion": {
+     "Công giáo": {
+      "n": 1174,
+      "pct": 0.24,
+      "pct_followers": 3.09
+     },
+     "Phật giáo": {
+      "n": 73,
+      "pct": 0.01,
+      "pct_followers": 0.19
+     },
+     "Tin lành": {
+      "n": 36702,
+      "pct": 7.49,
+      "pct_followers": 96.71
+     },
+     "Cao Đài": {
+      "n": 2,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 0,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 0,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Khác": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Lạng Sơn": {
+   "merged_from": [
+    "Lạng Sơn"
+   ],
+   "pop2019": 781655,
+   "followers": 4778,
+   "followers_pct": 0.61,
+   "no_religion": 776877,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Lạng Sơn"
+   ],
+   "census2009": {
+    "pop": 732515,
+    "followers": 4821,
+    "followers_pct": 0.66,
+    "by_religion": {
+     "Công giáo": {
+      "n": 2609,
+      "pct": 0.36,
+      "pct_followers": 54.12
+     },
+     "Phật giáo": {
+      "n": 380,
+      "pct": 0.05,
+      "pct_followers": 7.88
+     },
+     "Tin lành": {
+      "n": 1815,
+      "pct": 0.25,
+      "pct_followers": 37.65
+     },
+     "Cao Đài": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 2,
+      "pct": 0.0,
+      "pct_followers": 0.04
+     },
+     "Hồi giáo": {
+      "n": 5,
+      "pct": 0.0,
+      "pct_followers": 0.1
+     },
+     "Khác": {
+      "n": 9,
+      "pct": 0.0,
+      "pct_followers": 0.19
+     }
+    }
+   }
+  },
+  "Sơn La": {
+   "merged_from": [
+    "Sơn La"
+   ],
+   "pop2019": 1248415,
+   "followers": 18022,
+   "followers_pct": 1.44,
+   "no_religion": 1230393,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Sơn La"
+   ],
+   "census2009": {
+    "pop": 1076055,
+    "followers": 4470,
+    "followers_pct": 0.42,
+    "by_religion": {
+     "Công giáo": {
+      "n": 1833,
+      "pct": 0.17,
+      "pct_followers": 41.01
+     },
+     "Phật giáo": {
+      "n": 750,
+      "pct": 0.07,
+      "pct_followers": 16.78
+     },
+     "Tin lành": {
+      "n": 1840,
+      "pct": 0.17,
+      "pct_followers": 41.16
+     },
+     "Cao Đài": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 3,
+      "pct": 0.0,
+      "pct_followers": 0.07
+     },
+     "Hồi giáo": {
+      "n": 42,
+      "pct": 0.0,
+      "pct_followers": 0.94
+     },
+     "Khác": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     }
+    }
+   }
+  },
+  "Phú Thọ": {
+   "merged_from": [
+    "Vĩnh Phúc",
+    "Hòa Bình",
+    "Phú Thọ"
+   ],
+   "pop2019": 3469011,
+   "followers": 180714,
+   "followers_pct": 5.21,
+   "no_religion": 3288297,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Vĩnh Phúc",
+    "Hòa Bình",
+    "Phú Thọ"
+   ],
+   "census2009": {
+    "pop": 3101392,
+    "followers": 156094,
+    "followers_pct": 5.03,
+    "by_religion": {
+     "Công giáo": {
+      "n": 136771,
+      "pct": 4.41,
+      "pct_followers": 87.62
+     },
+     "Phật giáo": {
+      "n": 19089,
+      "pct": 0.62,
+      "pct_followers": 12.23
+     },
+     "Tin lành": {
+      "n": 160,
+      "pct": 0.01,
+      "pct_followers": 0.1
+     },
+     "Cao Đài": {
+      "n": 5,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 7,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 58,
+      "pct": 0.0,
+      "pct_followers": 0.04
+     },
+     "Khác": {
+      "n": 4,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Bắc Ninh": {
+   "merged_from": [
+    "Bắc Giang",
+    "Bắc Ninh"
+   ],
+   "pop2019": 3172790,
+   "followers": 43224,
+   "followers_pct": 1.36,
+   "no_religion": 3129566,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Bắc Giang",
+    "Bắc Ninh"
+   ],
+   "census2009": {
+    "pop": 2578603,
+    "followers": 39968,
+    "followers_pct": 1.55,
+    "by_religion": {
+     "Công giáo": {
+      "n": 34907,
+      "pct": 1.35,
+      "pct_followers": 87.34
+     },
+     "Phật giáo": {
+      "n": 4996,
+      "pct": 0.19,
+      "pct_followers": 12.5
+     },
+     "Tin lành": {
+      "n": 33,
+      "pct": 0.0,
+      "pct_followers": 0.08
+     },
+     "Cao Đài": {
+      "n": 5,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 8,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Hồi giáo": {
+      "n": 15,
+      "pct": 0.0,
+      "pct_followers": 0.04
+     },
+     "Khác": {
+      "n": 4,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     }
+    }
+   }
+  },
+  "Quảng Ninh": {
+   "merged_from": [
+    "Quảng Ninh"
+   ],
+   "pop2019": 1320324,
+   "followers": 17654,
+   "followers_pct": 1.34,
+   "no_religion": 1302670,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Quảng Ninh"
+   ],
+   "census2009": {
+    "pop": 1144988,
+    "followers": 23540,
+    "followers_pct": 2.06,
+    "by_religion": {
+     "Công giáo": {
+      "n": 19872,
+      "pct": 1.74,
+      "pct_followers": 84.42
+     },
+     "Phật giáo": {
+      "n": 3302,
+      "pct": 0.29,
+      "pct_followers": 14.03
+     },
+     "Tin lành": {
+      "n": 271,
+      "pct": 0.02,
+      "pct_followers": 1.15
+     },
+     "Cao Đài": {
+      "n": 87,
+      "pct": 0.01,
+      "pct_followers": 0.37
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 0,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 7,
+      "pct": 0.0,
+      "pct_followers": 0.03
+     },
+     "Khác": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Hà Nội": {
+   "merged_from": [
+    "Hà Nội"
+   ],
+   "pop2019": 8053663,
+   "followers": 202526,
+   "followers_pct": 2.51,
+   "no_religion": 7851137,
+   "by_religion": {
+    "Công giáo": {
+     "n": 167973,
+     "pct": 2.09,
+     "pct_followers": 82.94
+    },
+    "Phật giáo": {
+     "n": 32219,
+     "pct": 0.4,
+     "pct_followers": 15.91
+    },
+    "Tin lành": {
+     "n": 1685,
+     "pct": 0.02,
+     "pct_followers": 0.83
+    },
+    "Cao Đài": {
+     "n": 193,
+     "pct": 0.0,
+     "pct_followers": 0.1
+    },
+    "Phật giáo Hòa Hảo": {
+     "n": 20,
+     "pct": 0.0,
+     "pct_followers": 0.01
+    },
+    "Hồi giáo": {
+     "n": 48,
+     "pct": 0.0,
+     "pct_followers": 0.02
+    },
+    "Khác": {
+     "n": 388,
+     "pct": 0.0,
+     "pct_followers": 0.19
+    }
+   },
+   "by_religion_year": 2019,
+   "largest_religion": "Công giáo",
+   "census2009": {
+    "pop": 6451909,
+    "followers": 257027,
+    "followers_pct": 3.98,
+    "by_religion": {
+     "Công giáo": {
+      "n": 155768,
+      "pct": 2.41,
+      "pct_followers": 60.6
+     },
+     "Phật giáo": {
+      "n": 99398,
+      "pct": 1.54,
+      "pct_followers": 38.67
+     },
+     "Tin lành": {
+      "n": 1269,
+      "pct": 0.02,
+      "pct_followers": 0.49
+     },
+     "Cao Đài": {
+      "n": 410,
+      "pct": 0.01,
+      "pct_followers": 0.16
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 13,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Hồi giáo": {
+      "n": 125,
+      "pct": 0.0,
+      "pct_followers": 0.05
+     },
+     "Khác": {
+      "n": 44,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     }
+    }
+   }
+  },
+  "Hải Phòng": {
+   "merged_from": [
+    "Hải Phòng",
+    "Hải Dương"
+   ],
+   "pop2019": 3920768,
+   "followers": 68483,
+   "followers_pct": 1.75,
+   "no_religion": 3852285,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Hải Phòng",
+    "Hải Dương"
+   ],
+   "census2009": {
+    "pop": 3542232,
+    "followers": 107697,
+    "followers_pct": 3.04,
+    "by_religion": {
+     "Công giáo": {
+      "n": 66217,
+      "pct": 1.87,
+      "pct_followers": 61.48
+     },
+     "Phật giáo": {
+      "n": 40356,
+      "pct": 1.14,
+      "pct_followers": 37.47
+     },
+     "Tin lành": {
+      "n": 1072,
+      "pct": 0.03,
+      "pct_followers": 1.0
+     },
+     "Cao Đài": {
+      "n": 13,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 12,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Hồi giáo": {
+      "n": 25,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Khác": {
+      "n": 2,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Hưng Yên": {
+   "merged_from": [
+    "Thái Bình",
+    "Hưng Yên"
+   ],
+   "pop2019": 3113178,
+   "followers": 146091,
+   "followers_pct": 4.69,
+   "no_religion": 2967087,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Thái Bình",
+    "Hưng Yên"
+   ],
+   "census2009": {
+    "pop": 2909745,
+    "followers": 176514,
+    "followers_pct": 6.07,
+    "by_religion": {
+     "Công giáo": {
+      "n": 114177,
+      "pct": 3.92,
+      "pct_followers": 64.68
+     },
+     "Phật giáo": {
+      "n": 61970,
+      "pct": 2.13,
+      "pct_followers": 35.11
+     },
+     "Tin lành": {
+      "n": 357,
+      "pct": 0.01,
+      "pct_followers": 0.2
+     },
+     "Cao Đài": {
+      "n": 2,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 1,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 3,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Khác": {
+      "n": 4,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Ninh Bình": {
+   "merged_from": [
+    "Hà Nam",
+    "Nam Định",
+    "Ninh Bình"
+   ],
+   "pop2019": 3615680,
+   "followers": 663753,
+   "followers_pct": 18.36,
+   "no_religion": 2951927,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Hà Nam",
+    "Nam Định",
+    "Ninh Bình"
+   ],
+   "census2009": {
+    "pop": 3511155,
+    "followers": 724182,
+    "followers_pct": 20.63,
+    "by_religion": {
+     "Công giáo": {
+      "n": 597100,
+      "pct": 17.01,
+      "pct_followers": 82.45
+     },
+     "Phật giáo": {
+      "n": 126507,
+      "pct": 3.6,
+      "pct_followers": 17.47
+     },
+     "Tin lành": {
+      "n": 554,
+      "pct": 0.02,
+      "pct_followers": 0.08
+     },
+     "Cao Đài": {
+      "n": 4,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 3,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 6,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Khác": {
+      "n": 8,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Thanh Hóa": {
+   "merged_from": [
+    "Thanh Hóa"
+   ],
+   "pop2019": 3640128,
+   "followers": 133114,
+   "followers_pct": 3.66,
+   "no_religion": 3507014,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Thanh Hóa"
+   ],
+   "census2009": {
+    "pop": 3400595,
+    "followers": 128593,
+    "followers_pct": 3.78,
+    "by_religion": {
+     "Công giáo": {
+      "n": 122793,
+      "pct": 3.61,
+      "pct_followers": 95.49
+     },
+     "Phật giáo": {
+      "n": 1337,
+      "pct": 0.04,
+      "pct_followers": 1.04
+     },
+     "Tin lành": {
+      "n": 4324,
+      "pct": 0.13,
+      "pct_followers": 3.36
+     },
+     "Cao Đài": {
+      "n": 23,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 4,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 95,
+      "pct": 0.0,
+      "pct_followers": 0.07
+     },
+     "Khác": {
+      "n": 17,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     }
+    }
+   }
+  },
+  "Nghệ An": {
+   "merged_from": [
+    "Nghệ An"
+   ],
+   "pop2019": 3327791,
+   "followers": 273598,
+   "followers_pct": 8.22,
+   "no_religion": 3054193,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Nghệ An"
+   ],
+   "census2009": {
+    "pop": 2912041,
+    "followers": 233984,
+    "followers_pct": 8.04,
+    "by_religion": {
+     "Công giáo": {
+      "n": 232906,
+      "pct": 8.0,
+      "pct_followers": 99.54
+     },
+     "Phật giáo": {
+      "n": 989,
+      "pct": 0.03,
+      "pct_followers": 0.42
+     },
+     "Tin lành": {
+      "n": 58,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Cao Đài": {
+      "n": 3,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 3,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 12,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Khác": {
+      "n": 13,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     }
+    }
+   }
+  },
+  "Hà Tĩnh": {
+   "merged_from": [
+    "Hà Tĩnh"
+   ],
+   "pop2019": 1288866,
+   "followers": 146413,
+   "followers_pct": 11.36,
+   "no_religion": 1142453,
+   "by_religion": {
+    "Công giáo": {
+     "n": 145577,
+     "pct": 11.29,
+     "pct_followers": 99.43
+    },
+    "Phật giáo": {
+     "n": 784,
+     "pct": 0.06,
+     "pct_followers": 0.54
+    },
+    "Tin lành": {
+     "n": 41,
+     "pct": 0.0,
+     "pct_followers": 0.03
+    },
+    "Cao Đài": {
+     "n": 2,
+     "pct": 0.0,
+     "pct_followers": 0.0
+    },
+    "Phật giáo Hòa Hảo": {
+     "n": 3,
+     "pct": 0.0,
+     "pct_followers": 0.0
+    },
+    "Hồi giáo": {
+     "n": 3,
+     "pct": 0.0,
+     "pct_followers": 0.0
+    },
+    "Khác": {
+     "n": 3,
+     "pct": 0.0,
+     "pct_followers": 0.0
+    }
+   },
+   "by_religion_year": 2019,
+   "largest_religion": "Công giáo",
+   "census2009": {
+    "pop": 1227038,
+    "followers": 132961,
+    "followers_pct": 10.84,
+    "by_religion": {
+     "Công giáo": {
+      "n": 131972,
+      "pct": 10.76,
+      "pct_followers": 99.26
+     },
+     "Phật giáo": {
+      "n": 935,
+      "pct": 0.08,
+      "pct_followers": 0.7
+     },
+     "Tin lành": {
+      "n": 18,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Cao Đài": {
+      "n": 0,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 7,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Hồi giáo": {
+      "n": 6,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Khác": {
+      "n": 23,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     }
+    }
+   }
+  },
+  "Quảng Trị": {
+   "merged_from": [
+    "Quảng Bình",
+    "Quảng Trị"
+   ],
+   "pop2019": 1527805,
+   "followers": 140329,
+   "followers_pct": 9.19,
+   "no_religion": 1387476,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Quảng Bình",
+    "Quảng Trị"
+   ],
+   "census2009": {
+    "pop": 1443217,
+    "followers": 147163,
+    "followers_pct": 10.2,
+    "by_religion": {
+     "Công giáo": {
+      "n": 101242,
+      "pct": 7.02,
+      "pct_followers": 68.8
+     },
+     "Phật giáo": {
+      "n": 42511,
+      "pct": 2.95,
+      "pct_followers": 28.89
+     },
+     "Tin lành": {
+      "n": 3394,
+      "pct": 0.24,
+      "pct_followers": 2.31
+     },
+     "Cao Đài": {
+      "n": 3,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 2,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Hồi giáo": {
+      "n": 3,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Khác": {
+      "n": 8,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     }
+    }
+   }
+  },
+  "Huế": {
+   "merged_from": [
+    "Huế"
+   ],
+   "pop2019": 1128620,
+   "followers": 234481,
+   "followers_pct": 20.78,
+   "no_religion": 894139,
+   "by_religion": {
+    "Công giáo": {
+     "n": 42477,
+     "pct": 3.76,
+     "pct_followers": 18.12
+    },
+    "Phật giáo": {
+     "n": 191594,
+     "pct": 16.98,
+     "pct_followers": 81.71
+    },
+    "Tin lành": {
+     "n": 235,
+     "pct": 0.02,
+     "pct_followers": 0.1
+    },
+    "Cao Đài": {
+     "n": 121,
+     "pct": 0.01,
+     "pct_followers": 0.05
+    },
+    "Phật giáo Hòa Hảo": {
+     "n": 33,
+     "pct": 0.0,
+     "pct_followers": 0.01
+    },
+    "Hồi giáo": {
+     "n": 5,
+     "pct": 0.0,
+     "pct_followers": 0.0
+    },
+    "Khác": {
+     "n": 16,
+     "pct": 0.0,
+     "pct_followers": 0.01
+    }
+   },
+   "by_religion_year": 2019,
+   "largest_religion": "Phật giáo",
+   "census2009": {
+    "pop": 1087420,
+    "followers": 299429,
+    "followers_pct": 27.54,
+    "by_religion": {
+     "Công giáo": {
+      "n": 48395,
+      "pct": 4.45,
+      "pct_followers": 16.16
+     },
+     "Phật giáo": {
+      "n": 250537,
+      "pct": 23.04,
+      "pct_followers": 83.67
+     },
+     "Tin lành": {
+      "n": 268,
+      "pct": 0.02,
+      "pct_followers": 0.09
+     },
+     "Cao Đài": {
+      "n": 193,
+      "pct": 0.02,
+      "pct_followers": 0.06
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 18,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Hồi giáo": {
+      "n": 6,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Khác": {
+      "n": 12,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     }
+    }
+   }
+  },
+  "Đà Nẵng": {
+   "merged_from": [
+    "Đà Nẵng",
+    "Quảng Nam"
+   ],
+   "pop2019": 2630122,
+   "followers": 195843,
+   "followers_pct": 7.45,
+   "no_religion": 2434279,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Đà Nẵng",
+    "Quảng Nam"
+   ],
+   "census2009": {
+    "pop": 2309754,
+    "followers": 259005,
+    "followers_pct": 11.21,
+    "by_religion": {
+     "Công giáo": {
+      "n": 60655,
+      "pct": 2.63,
+      "pct_followers": 23.42
+     },
+     "Phật giáo": {
+      "n": 172446,
+      "pct": 7.47,
+      "pct_followers": 66.58
+     },
+     "Tin lành": {
+      "n": 15460,
+      "pct": 0.67,
+      "pct_followers": 5.97
+     },
+     "Cao Đài": {
+      "n": 10219,
+      "pct": 0.44,
+      "pct_followers": 3.95
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 42,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Hồi giáo": {
+      "n": 24,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Khác": {
+      "n": 159,
+      "pct": 0.01,
+      "pct_followers": 0.06
+     }
+    }
+   }
+  },
+  "Quảng Ngãi": {
+   "merged_from": [
+    "Kon Tum",
+    "Quảng Ngãi"
+   ],
+   "pop2019": 1772135,
+   "followers": 240261,
+   "followers_pct": 13.56,
+   "no_religion": 1531874,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Kon Tum",
+    "Quảng Ngãi"
+   ],
+   "census2009": {
+    "pop": 1646906,
+    "followers": 216197,
+    "followers_pct": 13.13,
+    "by_religion": {
+     "Công giáo": {
+      "n": 140688,
+      "pct": 8.54,
+      "pct_followers": 65.07
+     },
+     "Phật giáo": {
+      "n": 47296,
+      "pct": 2.87,
+      "pct_followers": 21.88
+     },
+     "Tin lành": {
+      "n": 24768,
+      "pct": 1.5,
+      "pct_followers": 11.46
+     },
+     "Cao Đài": {
+      "n": 3399,
+      "pct": 0.21,
+      "pct_followers": 1.57
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 17,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Hồi giáo": {
+      "n": 4,
+      "pct": 0.0,
+      "pct_followers": 0.0
+     },
+     "Khác": {
+      "n": 25,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     }
+    }
+   }
+  },
+  "Gia Lai": {
+   "merged_from": [
+    "Bình Định",
+    "Gia Lai"
+   ],
+   "pop2019": 3000765,
+   "followers": 478503,
+   "followers_pct": 15.95,
+   "no_religion": 2522262,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Bình Định",
+    "Gia Lai"
+   ],
+   "census2009": {
+    "pop": 2760877,
+    "followers": 453487,
+    "followers_pct": 16.43,
+    "by_religion": {
+     "Công giáo": {
+      "n": 148338,
+      "pct": 5.37,
+      "pct_followers": 32.71
+     },
+     "Phật giáo": {
+      "n": 177324,
+      "pct": 6.42,
+      "pct_followers": 39.1
+     },
+     "Tin lành": {
+      "n": 111435,
+      "pct": 4.04,
+      "pct_followers": 24.57
+     },
+     "Cao Đài": {
+      "n": 16089,
+      "pct": 0.58,
+      "pct_followers": 3.55
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 135,
+      "pct": 0.0,
+      "pct_followers": 0.03
+     },
+     "Hồi giáo": {
+      "n": 23,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     },
+     "Khác": {
+      "n": 143,
+      "pct": 0.01,
+      "pct_followers": 0.03
+     }
+    }
+   }
+  },
+  "Khánh Hòa": {
+   "merged_from": [
+    "Ninh Thuận",
+    "Khánh Hòa"
+   ],
+   "pop2019": 1821574,
+   "followers": 385914,
+   "followers_pct": 21.19,
+   "no_religion": 1435660,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Ninh Thuận",
+    "Khánh Hòa"
+   ],
+   "census2009": {
+    "pop": 1722597,
+    "followers": 478163,
+    "followers_pct": 27.76,
+    "by_religion": {
+     "Công giáo": {
+      "n": 167406,
+      "pct": 9.72,
+      "pct_followers": 35.01
+     },
+     "Phật giáo": {
+      "n": 214172,
+      "pct": 12.43,
+      "pct_followers": 44.79
+     },
+     "Tin lành": {
+      "n": 21296,
+      "pct": 1.24,
+      "pct_followers": 4.45
+     },
+     "Cao Đài": {
+      "n": 8603,
+      "pct": 0.5,
+      "pct_followers": 1.8
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 285,
+      "pct": 0.02,
+      "pct_followers": 0.06
+     },
+     "Hồi giáo": {
+      "n": 25607,
+      "pct": 1.49,
+      "pct_followers": 5.36
+     },
+     "Khác": {
+      "n": 40794,
+      "pct": 2.37,
+      "pct_followers": 8.53
+     }
+    }
+   }
+  },
+  "Đắk Lắk": {
+   "merged_from": [
+    "Phú Yên",
+    "Đắk Lắk"
+   ],
+   "pop2019": 2742286,
+   "followers": 500976,
+   "followers_pct": 18.27,
+   "no_religion": 2241310,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Phú Yên",
+    "Đắk Lắk"
+   ],
+   "census2009": {
+    "pop": 2595855,
+    "followers": 505722,
+    "followers_pct": 19.48,
+    "by_religion": {
+     "Công giáo": {
+      "n": 185171,
+      "pct": 7.13,
+      "pct_followers": 36.62
+     },
+     "Phật giáo": {
+      "n": 162084,
+      "pct": 6.24,
+      "pct_followers": 32.05
+     },
+     "Tin lành": {
+      "n": 152454,
+      "pct": 5.87,
+      "pct_followers": 30.15
+     },
+     "Cao Đài": {
+      "n": 5578,
+      "pct": 0.21,
+      "pct_followers": 1.1
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 275,
+      "pct": 0.01,
+      "pct_followers": 0.05
+     },
+     "Hồi giáo": {
+      "n": 85,
+      "pct": 0.0,
+      "pct_followers": 0.02
+     },
+     "Khác": {
+      "n": 75,
+      "pct": 0.0,
+      "pct_followers": 0.01
+     }
+    }
+   }
+  },
+  "Lâm Đồng": {
+   "merged_from": [
+    "Đắk Nông",
+    "Bình Thuận",
+    "Lâm Đồng"
+   ],
+   "pop2019": 3149882,
+   "followers": 1086478,
+   "followers_pct": 34.49,
+   "no_religion": 2063404,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Đắk Nông",
+    "Bình Thuận",
+    "Lâm Đồng"
+   ],
+   "census2009": {
+    "pop": 2843989,
+    "followers": 1084756,
+    "followers_pct": 38.14,
+    "by_religion": {
+     "Công giáo": {
+      "n": 547334,
+      "pct": 19.25,
+      "pct_followers": 50.46
+     },
+     "Phật giáo": {
+      "n": 348273,
+      "pct": 12.25,
+      "pct_followers": 32.11
+     },
+     "Tin lành": {
+      "n": 139225,
+      "pct": 4.9,
+      "pct_followers": 12.83
+     },
+     "Cao Đài": {
+      "n": 15350,
+      "pct": 0.54,
+      "pct_followers": 1.42
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 290,
+      "pct": 0.01,
+      "pct_followers": 0.03
+     },
+     "Hồi giáo": {
+      "n": 18872,
+      "pct": 0.66,
+      "pct_followers": 1.74
+     },
+     "Khác": {
+      "n": 15412,
+      "pct": 0.54,
+      "pct_followers": 1.42
+     }
+    }
+   }
+  },
+  "Đồng Nai": {
+   "merged_from": [
+    "Bình Phước",
+    "Đồng Nai"
+   ],
+   "pop2019": 4091786,
+   "followers": 1382758,
+   "followers_pct": 33.79,
+   "no_religion": 2709028,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Bình Phước"
+   ],
+   "census2009": {
+    "pop": 3359752,
+    "followers": 1397132,
+    "followers_pct": 41.58,
+    "by_religion": {
+     "Công giáo": {
+      "n": 885361,
+      "pct": 26.35,
+      "pct_followers": 63.37
+     },
+     "Phật giáo": {
+      "n": 425464,
+      "pct": 12.66,
+      "pct_followers": 30.45
+     },
+     "Tin lành": {
+      "n": 63673,
+      "pct": 1.9,
+      "pct_followers": 4.56
+     },
+     "Cao Đài": {
+      "n": 17070,
+      "pct": 0.51,
+      "pct_followers": 1.22
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 1859,
+      "pct": 0.06,
+      "pct_followers": 0.13
+     },
+     "Hồi giáo": {
+      "n": 3349,
+      "pct": 0.1,
+      "pct_followers": 0.24
+     },
+     "Khác": {
+      "n": 356,
+      "pct": 0.01,
+      "pct_followers": 0.03
+     }
+    }
+   }
+  },
+  "TP Hồ Chí Minh": {
+   "merged_from": [
+    "TP Hồ Chí Minh",
+    "Bà Rịa - Vũng Tàu",
+    "Bình Dương"
+   ],
+   "pop2019": 12567956,
+   "followers": 2257788,
+   "followers_pct": 17.96,
+   "no_religion": 10310168,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "TP Hồ Chí Minh",
+    "Bà Rịa - Vũng Tàu",
+    "Bình Dương"
+   ],
+   "census2009": {
+    "pop": 9641096,
+    "followers": 2596854,
+    "followers_pct": 26.94,
+    "by_religion": {
+     "Công giáo": {
+      "n": 1049461,
+      "pct": 10.89,
+      "pct_followers": 40.41
+     },
+     "Phật giáo": {
+      "n": 1438734,
+      "pct": 14.92,
+      "pct_followers": 55.4
+     },
+     "Tin lành": {
+      "n": 33055,
+      "pct": 0.34,
+      "pct_followers": 1.27
+     },
+     "Cao Đài": {
+      "n": 46546,
+      "pct": 0.48,
+      "pct_followers": 1.79
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 15981,
+      "pct": 0.17,
+      "pct_followers": 0.62
+     },
+     "Hồi giáo": {
+      "n": 7494,
+      "pct": 0.08,
+      "pct_followers": 0.29
+     },
+     "Khác": {
+      "n": 5583,
+      "pct": 0.06,
+      "pct_followers": 0.21
+     }
+    }
+   }
+  },
+  "Tây Ninh": {
+   "merged_from": [
+    "Long An",
+    "Tây Ninh"
+   ],
+   "pop2019": 2857712,
+   "followers": 525460,
+   "followers_pct": 18.39,
+   "no_religion": 2332252,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Long An",
+    "Tây Ninh"
+   ],
+   "census2009": {
+    "pop": 2502579,
+    "followers": 719371,
+    "followers_pct": 28.75,
+    "by_religion": {
+     "Công giáo": {
+      "n": 63842,
+      "pct": 2.55,
+      "pct_followers": 8.87
+     },
+     "Phật giáo": {
+      "n": 220792,
+      "pct": 8.82,
+      "pct_followers": 30.69
+     },
+     "Tin lành": {
+      "n": 4164,
+      "pct": 0.17,
+      "pct_followers": 0.58
+     },
+     "Cao Đài": {
+      "n": 424170,
+      "pct": 16.95,
+      "pct_followers": 58.96
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 2457,
+      "pct": 0.1,
+      "pct_followers": 0.34
+     },
+     "Hồi giáo": {
+      "n": 3567,
+      "pct": 0.14,
+      "pct_followers": 0.5
+     },
+     "Khác": {
+      "n": 379,
+      "pct": 0.02,
+      "pct_followers": 0.05
+     }
+    }
+   }
+  },
+  "Đồng Tháp": {
+   "merged_from": [
+    "Tiền Giang",
+    "Đồng Tháp"
+   ],
+   "pop2019": 3363689,
+   "followers": 391668,
+   "followers_pct": 11.64,
+   "no_religion": 2972021,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Tiền Giang",
+    "Đồng Tháp"
+   ],
+   "census2009": {
+    "pop": 3338738,
+    "followers": 744395,
+    "followers_pct": 22.3,
+    "by_religion": {
+     "Công giáo": {
+      "n": 79243,
+      "pct": 2.37,
+      "pct_followers": 10.65
+     },
+     "Phật giáo": {
+      "n": 372557,
+      "pct": 11.16,
+      "pct_followers": 50.05
+     },
+     "Tin lành": {
+      "n": 8342,
+      "pct": 0.25,
+      "pct_followers": 1.12
+     },
+     "Cao Đài": {
+      "n": 83169,
+      "pct": 2.49,
+      "pct_followers": 11.17
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 197367,
+      "pct": 5.91,
+      "pct_followers": 26.51
+     },
+     "Hồi giáo": {
+      "n": 245,
+      "pct": 0.01,
+      "pct_followers": 0.03
+     },
+     "Khác": {
+      "n": 3472,
+      "pct": 0.1,
+      "pct_followers": 0.47
+     }
+    }
+   }
+  },
+  "An Giang": {
+   "merged_from": [
+    "Kiên Giang",
+    "An Giang"
+   ],
+   "pop2019": 3631419,
+   "followers": 1787537,
+   "followers_pct": 49.22,
+   "no_religion": 1843882,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Kiên Giang",
+    "An Giang"
+   ],
+   "census2009": {
+    "pop": 3830957,
+    "followers": 2483515,
+    "followers_pct": 64.83,
+    "by_religion": {
+     "Công giáo": {
+      "n": 152715,
+      "pct": 3.99,
+      "pct_followers": 6.15
+     },
+     "Phật giáo": {
+      "n": 1231212,
+      "pct": 32.14,
+      "pct_followers": 49.58
+     },
+     "Tin lành": {
+      "n": 4161,
+      "pct": 0.11,
+      "pct_followers": 0.17
+     },
+     "Cao Đài": {
+      "n": 86602,
+      "pct": 2.26,
+      "pct_followers": 3.49
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 948449,
+      "pct": 24.76,
+      "pct_followers": 38.19
+     },
+     "Hồi giáo": {
+      "n": 14800,
+      "pct": 0.39,
+      "pct_followers": 0.6
+     },
+     "Khác": {
+      "n": 45576,
+      "pct": 1.19,
+      "pct_followers": 1.84
+     }
+    }
+   }
+  },
+  "Vĩnh Long": {
+   "merged_from": [
+    "Bến Tre",
+    "Trà Vinh",
+    "Vĩnh Long"
+   ],
+   "pop2019": 3320422,
+   "followers": 747927,
+   "followers_pct": 22.53,
+   "no_religion": 2572495,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Bến Tre",
+    "Trà Vinh",
+    "Vĩnh Long"
+   ],
+   "census2009": {
+    "pop": 3283665,
+    "followers": 1012544,
+    "followers_pct": 30.84,
+    "by_religion": {
+     "Công giáo": {
+      "n": 141780,
+      "pct": 4.32,
+      "pct_followers": 14.0
+     },
+     "Phật giáo": {
+      "n": 762839,
+      "pct": 23.23,
+      "pct_followers": 75.34
+     },
+     "Tin lành": {
+      "n": 8548,
+      "pct": 0.26,
+      "pct_followers": 0.84
+     },
+     "Cao Đài": {
+      "n": 59485,
+      "pct": 1.81,
+      "pct_followers": 5.87
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 36661,
+      "pct": 1.12,
+      "pct_followers": 3.62
+     },
+     "Hồi giáo": {
+      "n": 312,
+      "pct": 0.01,
+      "pct_followers": 0.03
+     },
+     "Khác": {
+      "n": 2919,
+      "pct": 0.09,
+      "pct_followers": 0.29
+     }
+    }
+   }
+  },
+  "Cần Thơ": {
+   "merged_from": [
+    "Cần Thơ",
+    "Sóc Trăng",
+    "Hậu Giang"
+   ],
+   "pop2019": 3167841,
+   "followers": 546473,
+   "followers_pct": 17.25,
+   "no_religion": 2621368,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Cần Thơ",
+    "Sóc Trăng",
+    "Hậu Giang"
+   ],
+   "census2009": {
+    "pop": 3238588,
+    "followers": 918326,
+    "followers_pct": 28.36,
+    "by_religion": {
+     "Công giáo": {
+      "n": 146386,
+      "pct": 4.52,
+      "pct_followers": 15.94
+     },
+     "Phật giáo": {
+      "n": 508149,
+      "pct": 15.69,
+      "pct_followers": 55.33
+     },
+     "Tin lành": {
+      "n": 6922,
+      "pct": 0.21,
+      "pct_followers": 0.75
+     },
+     "Cao Đài": {
+      "n": 23037,
+      "pct": 0.71,
+      "pct_followers": 2.51
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 228707,
+      "pct": 7.06,
+      "pct_followers": 24.9
+     },
+     "Hồi giáo": {
+      "n": 285,
+      "pct": 0.01,
+      "pct_followers": 0.03
+     },
+     "Khác": {
+      "n": 4840,
+      "pct": 0.15,
+      "pct_followers": 0.53
+     }
+    }
+   }
+  },
+  "Cà Mau": {
+   "merged_from": [
+    "Bạc Liêu",
+    "Cà Mau"
+   ],
+   "pop2019": 2101712,
+   "followers": 52214,
+   "followers_pct": 2.48,
+   "no_religion": 2049498,
+   "by_religion": null,
+   "by_religion_missing_2019": [
+    "Bạc Liêu",
+    "Cà Mau"
+   ],
+   "census2009": {
+    "pop": 2063456,
+    "followers": 107962,
+    "followers_pct": 5.23,
+    "by_religion": {
+     "Công giáo": {
+      "n": 36326,
+      "pct": 1.76,
+      "pct_followers": 33.65
+     },
+     "Phật giáo": {
+      "n": 59256,
+      "pct": 2.87,
+      "pct_followers": 54.89
+     },
+     "Tin lành": {
+      "n": 2252,
+      "pct": 0.11,
+      "pct_followers": 2.09
+     },
+     "Cao Đài": {
+      "n": 7832,
+      "pct": 0.38,
+      "pct_followers": 7.25
+     },
+     "Phật giáo Hòa Hảo": {
+      "n": 630,
+      "pct": 0.03,
+      "pct_followers": 0.58
+     },
+     "Hồi giáo": {
+      "n": 123,
+      "pct": 0.01,
+      "pct_followers": 0.11
+     },
+     "Khác": {
+      "n": 1543,
+      "pct": 0.07,
+      "pct_followers": 1.43
+     }
+    }
+   }
+  }
+ },
+ "old63": {
+  "Hà Nội": {
+   "code": 1,
+   "pop2019": 8053663,
+   "followers2019": 202526,
+   "followers_pct2019": 2.51,
+   "religions2019": {
+    "Phật giáo": 32219,
+    "Công giáo": 167973,
+    "Tin lành": 1685,
+    "Cao Đài": 193,
+    "Phật giáo Hòa Hảo": 20,
+    "Hồi giáo": 48,
+    "Tôn giáo Baha'i": 148,
+    "Tịnh độ Cư sỹ Phật hội Việt Nam": 3,
+    "Đạo Tứ Ân Hiếu nghĩa": 7,
+    "Bửu Sơn Kỳ Hương": 1,
+    "Giáo hội Phật đường Nam Tông Minh Sư đạo": 9,
+    "Hội thánh Minh lý đạo - Tam Tông Miếu": 1,
+    "Chăm Bà la môn": 5,
+    "Giáo hội Các thành hữu Ngày sau của Chúa Giê su Ky tô (Mormon)": 201,
+    "Phật giáo Hiếu Nghĩa Tà Lơn (Cấp đăng ký hoạt động)": 4,
+    "Giáo hội Cơ đốc Phục lâm Việt Nam": 9
+   },
+   "source2019": "https://web.archive.org/web/20220709082901id_/http://thongkehanoi.gov.vn/uploads/files/source/2020/Ket%20qua%20tong%20dieu%20tra%20dan%20so%20va%20nha%20o/Sach%20full/Bi%E1%BB%83u%201%20-%2010.pdf",
+   "pop2009": 6451909,
+   "followers2009": 257027,
+   "religions2009": {
+    "Phật giáo": 99398,
+    "Công giáo": 155768,
+    "Phật giáo Hòa Hảo": 13,
+    "Hồi giáo": 125,
+    "Cao Đài": 410,
+    "Minh Sư Đạo": 4,
+    "Minh Lý Đạo": 8,
+    "Tin lành": 1269,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 2,
+    "Baha'i": 25,
+    "Không xác định": 5
+   }
+  },
+  "Hà Giang": {
+   "code": 2,
+   "pop2019": 854679,
+   "followers2019": 19871,
+   "followers_pct2019": 2.32,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 724537,
+   "followers2009": 13900,
+   "religions2009": {
+    "Phật giáo": 182,
+    "Công giáo": 1067,
+    "Phật giáo Hòa Hảo": 3,
+    "Hồi giáo": 26,
+    "Cao Đài": 3,
+    "Minh Lý Đạo": 1,
+    "Tin lành": 12617,
+    "Không xác định": 1
+   }
+  },
+  "Cao Bằng": {
+   "code": 4,
+   "pop2019": 530341,
+   "followers2019": 23880,
+   "followers_pct2019": 4.5,
+   "religions2019": {
+    "Phật giáo": 79,
+    "Công giáo": 1340,
+    "Tin lành": 22457,
+    "Cao Đài": 2,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 0,
+    "Giáo hội Các thành hữu Ngày sau của Chúa Giê su Ky tô Việt Nam (Mormon)": 1
+   },
+   "source2019": "https://web.archive.org/web/20220627140439id_/https://thongkecaobang.gso.gov.vn/Upload/Ketquadieutra/SACH%20KET%20QUA%20TDT%20DS%202019_%20CAO%20BANG.pdf",
+   "pop2009": 507183,
+   "followers2009": 11134,
+   "religions2009": {
+    "Phật giáo": 197,
+    "Công giáo": 1274,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 1,
+    "Cao Đài": 1,
+    "Tin lành": 9649,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 11
+   }
+  },
+  "Bắc Kạn": {
+   "code": 6,
+   "pop2019": 313905,
+   "followers2019": 17371,
+   "followers_pct2019": 5.53,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 293826,
+   "followers2009": 13565,
+   "religions2009": {
+    "Phật giáo": 153,
+    "Công giáo": 332,
+    "Tin lành": 13077,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 3
+   }
+  },
+  "Tuyên Quang": {
+   "code": 8,
+   "pop2019": 784811,
+   "followers2019": 30518,
+   "followers_pct2019": 3.89,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 724821,
+   "followers2009": 31617,
+   "religions2009": {
+    "Phật giáo": 2342,
+    "Công giáo": 22105,
+    "Phật giáo Hòa Hảo": 6,
+    "Hồi giáo": 13,
+    "Cao Đài": 4,
+    "Tin lành": 7147
+   }
+  },
+  "Lào Cai": {
+   "code": 10,
+   "pop2019": 730420,
+   "followers2019": 32739,
+   "followers_pct2019": 4.48,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 614595,
+   "followers2009": 19287,
+   "religions2009": {
+    "Phật giáo": 733,
+    "Công giáo": 5946,
+    "Hồi giáo": 12,
+    "Cao Đài": 3,
+    "Minh Lý Đạo": 1,
+    "Tin lành": 12591,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1
+   }
+  },
+  "Điện Biên": {
+   "code": 11,
+   "pop2019": 598856,
+   "followers2019": 59384,
+   "followers_pct2019": 9.92,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 490306,
+   "followers2009": 37952,
+   "religions2009": {
+    "Phật giáo": 73,
+    "Công giáo": 1174,
+    "Cao Đài": 2,
+    "Tin lành": 36702,
+    "Bửu Sơn Kỳ Hương": 1
+   }
+  },
+  "Lai Châu": {
+   "code": 12,
+   "pop2019": 460196,
+   "followers2019": 39583,
+   "followers_pct2019": 8.6,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 370502,
+   "followers2009": 27593,
+   "religions2009": {
+    "Phật giáo": 70,
+    "Công giáo": 1209,
+    "Phật giáo Hòa Hảo": 2,
+    "Hồi giáo": 7,
+    "Tin lành": 26305
+   }
+  },
+  "Sơn La": {
+   "code": 14,
+   "pop2019": 1248415,
+   "followers2019": 18022,
+   "followers_pct2019": 1.44,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1076055,
+   "followers2009": 4470,
+   "religions2009": {
+    "Phật giáo": 750,
+    "Công giáo": 1833,
+    "Phật giáo Hòa Hảo": 3,
+    "Hồi giáo": 42,
+    "Cao Đài": 1,
+    "Minh Sư Đạo": 1,
+    "Tin lành": 1840
+   }
+  },
+  "Yên Bái": {
+   "code": 15,
+   "pop2019": 821030,
+   "followers2019": 52800,
+   "followers_pct2019": 6.43,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 740397,
+   "followers2009": 49624,
+   "religions2009": {
+    "Phật giáo": 1898,
+    "Công giáo": 47281,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 1,
+    "Cao Đài": 3,
+    "Tin lành": 439,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1
+   }
+  },
+  "Hòa Bình": {
+   "code": 17,
+   "pop2019": 854131,
+   "followers2019": 10513,
+   "followers_pct2019": 1.23,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 785217,
+   "followers2009": 12860,
+   "religions2009": {
+    "Phật giáo": 1987,
+    "Công giáo": 10817,
+    "Phật giáo Hòa Hảo": 5,
+    "Hồi giáo": 25,
+    "Cao Đài": 2,
+    "Tin lành": 23,
+    "Bửu Sơn Kỳ Hương": 1
+   }
+  },
+  "Thái Nguyên": {
+   "code": 19,
+   "pop2019": 1286751,
+   "followers2019": 33753,
+   "followers_pct2019": 2.62,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1123116,
+   "followers2009": 32923,
+   "religions2009": {
+    "Phật giáo": 3015,
+    "Công giáo": 25430,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 10,
+    "Minh Sư Đạo": 6,
+    "Minh Lý Đạo": 7,
+    "Tin lành": 4453,
+    "Baha'i": 1
+   }
+  },
+  "Lạng Sơn": {
+   "code": 20,
+   "pop2019": 781655,
+   "followers2019": 4778,
+   "followers_pct2019": 0.61,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 732515,
+   "followers2009": 4821,
+   "religions2009": {
+    "Phật giáo": 380,
+    "Công giáo": 2609,
+    "Phật giáo Hòa Hảo": 2,
+    "Hồi giáo": 5,
+    "Cao Đài": 1,
+    "Minh Lý Đạo": 6,
+    "Tin lành": 1815,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 3
+   }
+  },
+  "Quảng Ninh": {
+   "code": 22,
+   "pop2019": 1320324,
+   "followers2019": 17654,
+   "followers_pct2019": 1.34,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1144988,
+   "followers2009": 23540,
+   "religions2009": {
+    "Phật giáo": 3302,
+    "Công giáo": 19872,
+    "Hồi giáo": 7,
+    "Cao Đài": 87,
+    "Tin lành": 271,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1
+   }
+  },
+  "Bắc Giang": {
+   "code": 24,
+   "pop2019": 1803950,
+   "followers2019": 25312,
+   "followers_pct2019": 1.4,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1554131,
+   "followers2009": 23606,
+   "religions2009": {
+    "Phật giáo": 1252,
+    "Công giáo": 22317,
+    "Phật giáo Hòa Hảo": 5,
+    "Hồi giáo": 10,
+    "Cao Đài": 3,
+    "Minh Lý Đạo": 2,
+    "Tin lành": 16,
+    "Bửu Sơn Kỳ Hương": 1
+   }
+  },
+  "Phú Thọ": {
+   "code": 25,
+   "pop2019": 1463726,
+   "followers2019": 145952,
+   "followers_pct2019": 9.97,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1316389,
+   "followers2009": 120119,
+   "religions2009": {
+    "Phật giáo": 12944,
+    "Công giáo": 107044,
+    "Phật giáo Hòa Hảo": 2,
+    "Hồi giáo": 31,
+    "Cao Đài": 3,
+    "Tin lành": 92,
+    "Đạo Tứ Ân Hiếu Nghĩa": 1,
+    "Baha'i": 1,
+    "Bà La Môn": 1
+   }
+  },
+  "Vĩnh Phúc": {
+   "code": 26,
+   "pop2019": 1151154,
+   "followers2019": 24249,
+   "followers_pct2019": 2.11,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 999786,
+   "followers2009": 23115,
+   "religions2009": {
+    "Phật giáo": 4158,
+    "Công giáo": 18910,
+    "Hồi giáo": 2,
+    "Tin lành": 45
+   }
+  },
+  "Bắc Ninh": {
+   "code": 27,
+   "pop2019": 1368840,
+   "followers2019": 17912,
+   "followers_pct2019": 1.31,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1024472,
+   "followers2009": 16362,
+   "religions2009": {
+    "Phật giáo": 3744,
+    "Công giáo": 12590,
+    "Phật giáo Hòa Hảo": 3,
+    "Hồi giáo": 5,
+    "Cao Đài": 2,
+    "Minh Lý Đạo": 1,
+    "Tin lành": 17
+   }
+  },
+  "Hải Dương": {
+   "code": 30,
+   "pop2019": 1892254,
+   "followers2019": 32574,
+   "followers_pct2019": 1.72,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1705059,
+   "followers2009": 50392,
+   "religions2009": {
+    "Phật giáo": 20646,
+    "Công giáo": 29603,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 7,
+    "Cao Đài": 1,
+    "Tin lành": 134
+   }
+  },
+  "Hải Phòng": {
+   "code": 31,
+   "pop2019": 2028514,
+   "followers2019": 35909,
+   "followers_pct2019": 1.77,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1837173,
+   "followers2009": 57305,
+   "religions2009": {
+    "Phật giáo": 19710,
+    "Công giáo": 36614,
+    "Phật giáo Hòa Hảo": 11,
+    "Hồi giáo": 18,
+    "Cao Đài": 12,
+    "Tin lành": 938,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1,
+    "Bà La Môn": 1
+   }
+  },
+  "Hưng Yên": {
+   "code": 33,
+   "pop2019": 1252731,
+   "followers2019": 26619,
+   "followers_pct2019": 2.12,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1127903,
+   "followers2009": 26119,
+   "religions2009": {
+    "Phật giáo": 10454,
+    "Công giáo": 15587,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 3,
+    "Tin lành": 72,
+    "Không xác định": 2
+   }
+  },
+  "Thái Bình": {
+   "code": 34,
+   "pop2019": 1860447,
+   "followers2019": 119472,
+   "followers_pct2019": 6.42,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1781842,
+   "followers2009": 150395,
+   "religions2009": {
+    "Phật giáo": 51516,
+    "Công giáo": 98590,
+    "Cao Đài": 2,
+    "Tin lành": 285,
+    "Bửu Sơn Kỳ Hương": 1,
+    "Không xác định": 1
+   }
+  },
+  "Hà Nam": {
+   "code": 35,
+   "pop2019": 852800,
+   "followers2019": 110380,
+   "followers_pct2019": 12.94,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 784045,
+   "followers2009": 149109,
+   "religions2009": {
+    "Phật giáo": 56407,
+    "Công giáo": 92615,
+    "Phật giáo Hòa Hảo": 2,
+    "Cao Đài": 1,
+    "Minh Lý Đạo": 3,
+    "Tin lành": 79,
+    "Đạo Tứ Ân Hiếu Nghĩa": 2
+   }
+  },
+  "Nam Định": {
+   "code": 36,
+   "pop2019": 1780393,
+   "followers2019": 391252,
+   "followers_pct2019": 21.98,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1828111,
+   "followers2009": 425111,
+   "religions2009": {
+    "Phật giáo": 54840,
+    "Công giáo": 369793,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 3,
+    "Cao Đài": 1,
+    "Minh Lý Đạo": 1,
+    "Tin lành": 470,
+    "Đạo Tứ Ân Hiếu Nghĩa": 1,
+    "Bửu Sơn Kỳ Hương": 1
+   }
+  },
+  "Ninh Bình": {
+   "code": 37,
+   "pop2019": 982487,
+   "followers2019": 162121,
+   "followers_pct2019": 16.5,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 898999,
+   "followers2009": 149962,
+   "religions2009": {
+    "Phật giáo": 15260,
+    "Công giáo": 134692,
+    "Hồi giáo": 3,
+    "Cao Đài": 2,
+    "Tin lành": 5
+   }
+  },
+  "Thanh Hóa": {
+   "code": 38,
+   "pop2019": 3640128,
+   "followers2019": 133114,
+   "followers_pct2019": 3.66,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 3400595,
+   "followers2009": 128593,
+   "religions2009": {
+    "Phật giáo": 1337,
+    "Công giáo": 122793,
+    "Phật giáo Hòa Hảo": 4,
+    "Hồi giáo": 95,
+    "Cao Đài": 23,
+    "Minh Sư Đạo": 14,
+    "Minh Lý Đạo": 1,
+    "Tin lành": 4324,
+    "Đạo Tứ Ân Hiếu Nghĩa": 2
+   }
+  },
+  "Nghệ An": {
+   "code": 40,
+   "pop2019": 3327791,
+   "followers2019": 273598,
+   "followers_pct2019": 8.22,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 2912041,
+   "followers2009": 233984,
+   "religions2009": {
+    "Phật giáo": 989,
+    "Công giáo": 232906,
+    "Phật giáo Hòa Hảo": 3,
+    "Hồi giáo": 12,
+    "Cao Đài": 3,
+    "Minh Sư Đạo": 2,
+    "Minh Lý Đạo": 5,
+    "Tin lành": 58,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 3,
+    "Đạo Tứ Ân Hiếu Nghĩa": 1,
+    "Baha'i": 2
+   }
+  },
+  "Hà Tĩnh": {
+   "code": 42,
+   "pop2019": 1288866,
+   "followers2019": 146413,
+   "followers_pct2019": 11.36,
+   "religions2019": {
+    "Phật giáo": 784,
+    "Công giáo": 145577,
+    "Tin lành": 41,
+    "Cao Đài": 2,
+    "Phật giáo Hòa Hảo": 3,
+    "Hồi giáo": 3,
+    "Tôn giáo Baha'i": 1,
+    "Chăm Bà la môn": 1,
+    "Giáo hội Các thành hữu Ngày sau của Chúa Giê su Ky tô Việt Nam (Mormon)": 1
+   },
+   "source2019": "https://thongkehatinh.nso.gov.vn/storage/manager/an_pham/XJdVcsX-3d38c850-41e1-468f-8854-dc6e4d2cefbd.pdf",
+   "pop2009": 1227038,
+   "followers2009": 132961,
+   "religions2009": {
+    "Phật giáo": 935,
+    "Công giáo": 131972,
+    "Phật giáo Hòa Hảo": 7,
+    "Hồi giáo": 6,
+    "Minh Lý Đạo": 4,
+    "Tin lành": 18,
+    "Đạo Tứ Ân Hiếu Nghĩa": 1,
+    "Bửu Sơn Kỳ Hương": 5,
+    "Không xác định": 13
+   }
+  },
+  "Quảng Bình": {
+   "code": 44,
+   "pop2019": 895430,
+   "followers2019": 98382,
+   "followers_pct2019": 10.99,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 844893,
+   "followers2009": 92149,
+   "religions2009": {
+    "Phật giáo": 521,
+    "Công giáo": 91608,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 2,
+    "Cao Đài": 1,
+    "Tin lành": 16
+   }
+  },
+  "Quảng Trị": {
+   "code": 45,
+   "pop2019": 632375,
+   "followers2019": 41947,
+   "followers_pct2019": 6.63,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 598324,
+   "followers2009": 55014,
+   "religions2009": {
+    "Phật giáo": 41990,
+    "Công giáo": 9634,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 1,
+    "Cao Đài": 2,
+    "Tin lành": 3378,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 5,
+    "Đạo Tứ Ân Hiếu Nghĩa": 1,
+    "Baha'i": 2
+   }
+  },
+  "Huế": {
+   "code": 46,
+   "pop2019": 1128620,
+   "followers2019": 234481,
+   "followers_pct2019": 20.78,
+   "religions2019": {
+    "Phật giáo": 191594,
+    "Công giáo": 42477,
+    "Tin lành": 235,
+    "Cao Đài": 121,
+    "Phật giáo Hòa Hảo": 33,
+    "Hồi giáo": 5,
+    "Tôn giáo Baha'i": 10,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1,
+    "Chăm Bà la môn": 5
+   },
+   "source2019": "https://docs.google.com/document/d/1UNcU0AfibV3Et75L4KXw-dlaKakv5ZT3/edit (linked from https://thongkehue.nso.gov.vn/bao-cao-so-lieu-thong-ke/D%C3%A2n-s%E1%BB%91-v%C3%A0-Lao-%C4%91%E1%BB%99ng/5)",
+   "pop2009": 1087420,
+   "followers2009": 299429,
+   "religions2009": {
+    "Phật giáo": 250537,
+    "Công giáo": 48395,
+    "Phật giáo Hòa Hảo": 18,
+    "Hồi giáo": 6,
+    "Cao Đài": 193,
+    "Minh Sư Đạo": 6,
+    "Tin lành": 268,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 2,
+    "Baha'i": 2,
+    "Bà La Môn": 2
+   }
+  },
+  "Đà Nẵng": {
+   "code": 48,
+   "pop2019": 1134310,
+   "followers2019": 140686,
+   "followers_pct2019": 12.4,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 887435,
+   "followers2009": 164195,
+   "religions2009": {
+    "Phật giáo": 117274,
+    "Công giáo": 39802,
+    "Phật giáo Hòa Hảo": 25,
+    "Hồi giáo": 19,
+    "Cao Đài": 3249,
+    "Minh Sư Đạo": 53,
+    "Tin lành": 3730,
+    "Baha'i": 34,
+    "Bà La Môn": 9
+   }
+  },
+  "Quảng Nam": {
+   "code": 49,
+   "pop2019": 1495812,
+   "followers2019": 55157,
+   "followers_pct2019": 3.69,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1422319,
+   "followers2009": 94810,
+   "religions2009": {
+    "Phật giáo": 55172,
+    "Công giáo": 20853,
+    "Phật giáo Hòa Hảo": 17,
+    "Hồi giáo": 5,
+    "Cao Đài": 6970,
+    "Minh Sư Đạo": 13,
+    "Minh Lý Đạo": 2,
+    "Tin lành": 11730,
+    "Bửu Sơn Kỳ Hương": 1,
+    "Baha'i": 36,
+    "Bà La Môn": 7,
+    "Không xác định": 4
+   }
+  },
+  "Quảng Ngãi": {
+   "code": 51,
+   "pop2019": 1231697,
+   "followers2019": 30013,
+   "followers_pct2019": 2.44,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1216773,
+   "followers2009": 42604,
+   "religions2009": {
+    "Phật giáo": 22284,
+    "Công giáo": 6376,
+    "Phật giáo Hòa Hảo": 3,
+    "Hồi giáo": 3,
+    "Cao Đài": 2900,
+    "Tin lành": 11032,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 2,
+    "Bửu Sơn Kỳ Hương": 1,
+    "Baha'i": 1,
+    "Bà La Môn": 2
+   }
+  },
+  "Bình Định": {
+   "code": 52,
+   "pop2019": 1486918,
+   "followers2019": 93717,
+   "followers_pct2019": 6.3,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1486465,
+   "followers2009": 141215,
+   "religions2009": {
+    "Phật giáo": 93110,
+    "Công giáo": 33516,
+    "Phật giáo Hòa Hảo": 94,
+    "Hồi giáo": 19,
+    "Cao Đài": 13118,
+    "Minh Lý Đạo": 1,
+    "Tin lành": 1321,
+    "Baha'i": 26,
+    "Bà La Môn": 10
+   }
+  },
+  "Phú Yên": {
+   "code": 54,
+   "pop2019": 872964,
+   "followers2019": 35230,
+   "followers_pct2019": 4.04,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 862231,
+   "followers2009": 54994,
+   "religions2009": {
+    "Phật giáo": 36386,
+    "Công giáo": 13510,
+    "Phật giáo Hòa Hảo": 113,
+    "Hồi giáo": 20,
+    "Cao Đài": 2006,
+    "Tin lành": 2928,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 10,
+    "Baha'i": 8,
+    "Bà La Môn": 13
+   }
+  },
+  "Khánh Hòa": {
+   "code": 56,
+   "pop2019": 1231107,
+   "followers2019": 224652,
+   "followers_pct2019": 18.25,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1157604,
+   "followers2009": 293586,
+   "religions2009": {
+    "Phật giáo": 170980,
+    "Công giáo": 101616,
+    "Phật giáo Hòa Hảo": 284,
+    "Hồi giáo": 94,
+    "Cao Đài": 6819,
+    "Minh Sư Đạo": 12,
+    "Tin lành": 13726,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 17,
+    "Baha'i": 13,
+    "Bà La Môn": 25
+   }
+  },
+  "Ninh Thuận": {
+   "code": 58,
+   "pop2019": 590467,
+   "followers2019": 161262,
+   "followers_pct2019": 27.31,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 564993,
+   "followers2009": 184577,
+   "religions2009": {
+    "Phật giáo": 43192,
+    "Công giáo": 65790,
+    "Phật giáo Hòa Hảo": 1,
+    "Hồi giáo": 25513,
+    "Cao Đài": 1784,
+    "Minh Sư Đạo": 5,
+    "Tin lành": 7570,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1,
+    "Baha'i": 26,
+    "Bà La Môn": 40695
+   }
+  },
+  "Bình Thuận": {
+   "code": 60,
+   "pop2019": 1230808,
+   "followers2019": 272138,
+   "followers_pct2019": 22.11,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1167023,
+   "followers2009": 314062,
+   "religions2009": {
+    "Phật giáo": 128968,
+    "Công giáo": 143137,
+    "Phật giáo Hòa Hảo": 90,
+    "Hồi giáo": 18779,
+    "Cao Đài": 2403,
+    "Minh Sư Đạo": 17,
+    "Minh Lý Đạo": 3,
+    "Tin lành": 5489,
+    "Đạo Tứ Ân Hiếu Nghĩa": 13,
+    "Bửu Sơn Kỳ Hương": 6,
+    "Baha'i": 63,
+    "Bà La Môn": 15094
+   }
+  },
+  "Kon Tum": {
+   "code": 62,
+   "pop2019": 540438,
+   "followers2019": 210248,
+   "followers_pct2019": 38.9,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 430133,
+   "followers2009": 173593,
+   "religions2009": {
+    "Phật giáo": 25012,
+    "Công giáo": 134312,
+    "Phật giáo Hòa Hảo": 14,
+    "Hồi giáo": 1,
+    "Cao Đài": 499,
+    "Tin lành": 13736,
+    "Đạo Tứ Ân Hiếu Nghĩa": 4,
+    "Baha'i": 15
+   }
+  },
+  "Gia Lai": {
+   "code": 64,
+   "pop2019": 1513847,
+   "followers2019": 384786,
+   "followers_pct2019": 25.42,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1274412,
+   "followers2009": 312272,
+   "religions2009": {
+    "Phật giáo": 84214,
+    "Công giáo": 114822,
+    "Phật giáo Hòa Hảo": 41,
+    "Hồi giáo": 4,
+    "Cao Đài": 2971,
+    "Minh Lý Đạo": 18,
+    "Tin lành": 110114,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 5,
+    "Đạo Tứ Ân Hiếu Nghĩa": 23,
+    "Baha'i": 59,
+    "Không xác định": 1
+   }
+  },
+  "Đắk Lắk": {
+   "code": 66,
+   "pop2019": 1869322,
+   "followers2019": 465746,
+   "followers_pct2019": 24.92,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1733624,
+   "followers2009": 450728,
+   "religions2009": {
+    "Phật giáo": 125698,
+    "Công giáo": 171661,
+    "Phật giáo Hòa Hảo": 162,
+    "Hồi giáo": 65,
+    "Cao Đài": 3572,
+    "Minh Sư Đạo": 1,
+    "Minh Lý Đạo": 1,
+    "Tin lành": 149526,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 3,
+    "Đạo Tứ Ân Hiếu Nghĩa": 1,
+    "Bửu Sơn Kỳ Hương": 23,
+    "Baha'i": 2,
+    "Bà La Môn": 13
+   }
+  },
+  "Đắk Nông": {
+   "code": 67,
+   "pop2019": 622168,
+   "followers2019": 216859,
+   "followers_pct2019": 34.86,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 489392,
+   "followers2009": 171233,
+   "religions2009": {
+    "Phật giáo": 20050,
+    "Công giáo": 100436,
+    "Phật giáo Hòa Hảo": 97,
+    "Hồi giáo": 18,
+    "Cao Đài": 341,
+    "Minh Sư Đạo": 1,
+    "Minh Lý Đạo": 70,
+    "Tin lành": 50194,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 6,
+    "Đạo Tứ Ân Hiếu Nghĩa": 9,
+    "Baha'i": 7,
+    "Bà La Môn": 4
+   }
+  },
+  "Lâm Đồng": {
+   "code": 68,
+   "pop2019": 1296906,
+   "followers2019": 597481,
+   "followers_pct2019": 46.07,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1187574,
+   "followers2009": 599461,
+   "religions2009": {
+    "Phật giáo": 199255,
+    "Công giáo": 303761,
+    "Phật giáo Hòa Hảo": 103,
+    "Hồi giáo": 75,
+    "Cao Đài": 12606,
+    "Minh Sư Đạo": 11,
+    "Minh Lý Đạo": 3,
+    "Tin lành": 83542,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1,
+    "Đạo Tứ Ân Hiếu Nghĩa": 27,
+    "Baha'i": 5,
+    "Bà La Môn": 72
+   }
+  },
+  "Bình Phước": {
+   "code": 70,
+   "pop2019": 994679,
+   "followers2019": 203680,
+   "followers_pct2019": 20.48,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 873598,
+   "followers2009": 229585,
+   "religions2009": {
+    "Phật giáo": 85841,
+    "Công giáo": 87659,
+    "Phật giáo Hòa Hảo": 345,
+    "Hồi giáo": 481,
+    "Cao Đài": 3092,
+    "Minh Sư Đạo": 5,
+    "Minh Lý Đạo": 10,
+    "Tin lành": 52096,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 5,
+    "Đạo Tứ Ân Hiếu Nghĩa": 15,
+    "Bửu Sơn Kỳ Hương": 2,
+    "Baha'i": 25,
+    "Bà La Môn": 9
+   }
+  },
+  "Tây Ninh": {
+   "code": 72,
+   "pop2019": 1169165,
+   "followers2019": 412482,
+   "followers_pct2019": 35.28,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1066513,
+   "followers2009": 512372,
+   "religions2009": {
+    "Phật giáo": 95674,
+    "Công giáo": 32682,
+    "Phật giáo Hòa Hảo": 236,
+    "Hồi giáo": 3337,
+    "Cao Đài": 379752,
+    "Minh Sư Đạo": 4,
+    "Tin lành": 684,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 2,
+    "Bà La Môn": 1
+   }
+  },
+  "Bình Dương": {
+   "code": 74,
+   "pop2019": 2426561,
+   "followers2019": 195765,
+   "followers_pct2019": 8.07,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1481550,
+   "followers2009": 154278,
+   "religions2009": {
+    "Phật giáo": 57904,
+    "Công giáo": 76833,
+    "Phật giáo Hòa Hảo": 10619,
+    "Hồi giáo": 745,
+    "Cao Đài": 5962,
+    "Minh Sư Đạo": 12,
+    "Minh Lý Đạo": 13,
+    "Tin lành": 1962,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 85,
+    "Đạo Tứ Ân Hiếu Nghĩa": 110,
+    "Bửu Sơn Kỳ Hương": 7,
+    "Baha'i": 6,
+    "Bà La Môn": 20
+   }
+  },
+  "Đồng Nai": {
+   "code": 75,
+   "pop2019": 3097107,
+   "followers2019": 1179078,
+   "followers_pct2019": 38.07,
+   "religions2019": {
+    "Phật giáo": 273603,
+    "Công giáo": 872341,
+    "Tin lành": 13120,
+    "Cao Đài": 9558,
+    "Phật giáo Hòa Hảo": 4061,
+    "Hồi giáo": 3466,
+    "Tôn giáo Baha'i": 692,
+    "Tịnh độ Cư sỹ Phật hội Việt Nam": 11,
+    "Đạo Tứ Ân Hiếu nghĩa": 69,
+    "Bửu Sơn Kỳ Hương": 3,
+    "Giáo hội Phật đường Nam Tông Minh Sư đạo": 16,
+    "Hội Thánh Minh Lý đạo - Tam Tông Miếu": 2,
+    "Chăm Bà la môn": 1967,
+    "Giáo hội Các thành hữu Ngày sau của Chúa Giê su Ky tô Việt Nam (Mormon)": 78,
+    "Phật giáo Hiếu Nghĩa Tà Lơn": 9,
+    "Giáo hội Cơ đốc Phục lâm Việt Nam": 82
+   },
+   "source2019": "https://thongke.dongnai.gov.vn/KetQuaDieuTra/DongNai_Ket%20qua%20TDT_2019.pdf",
+   "pop2009": 2486154,
+   "followers2009": 1167547,
+   "religions2009": {
+    "Phật giáo": 339623,
+    "Công giáo": 797702,
+    "Phật giáo Hòa Hảo": 1514,
+    "Hồi giáo": 2868,
+    "Cao Đài": 13978,
+    "Minh Sư Đạo": 39,
+    "Minh Lý Đạo": 12,
+    "Tin lành": 11577,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 118,
+    "Đạo Tứ Ân Hiếu Nghĩa": 36,
+    "Bửu Sơn Kỳ Hương": 2,
+    "Baha'i": 63,
+    "Bà La Môn": 15
+   }
+  },
+  "Bà Rịa - Vũng Tàu": {
+   "code": 77,
+   "pop2019": 1148313,
+   "followers2019": 390702,
+   "followers_pct2019": 34.02,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 996682,
+   "followers2009": 459528,
+   "religions2009": {
+    "Phật giáo": 215900,
+    "Công giáo": 227345,
+    "Phật giáo Hòa Hảo": 468,
+    "Hồi giáo": 169,
+    "Cao Đài": 8951,
+    "Minh Sư Đạo": 12,
+    "Minh Lý Đạo": 2,
+    "Tin lành": 4077,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1168,
+    "Đạo Tứ Ân Hiếu Nghĩa": 4,
+    "Bửu Sơn Kỳ Hương": 1424,
+    "Baha'i": 5,
+    "Bà La Môn": 3
+   }
+  },
+  "TP Hồ Chí Minh": {
+   "code": 79,
+   "pop2019": 8993082,
+   "followers2019": 1671321,
+   "followers_pct2019": 18.58,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 7162864,
+   "followers2009": 1983048,
+   "religions2009": {
+    "Phật giáo": 1164930,
+    "Công giáo": 745283,
+    "Phật giáo Hòa Hảo": 4894,
+    "Hồi giáo": 6580,
+    "Cao Đài": 31633,
+    "Minh Sư Đạo": 283,
+    "Minh Lý Đạo": 67,
+    "Tin lành": 27016,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1387,
+    "Đạo Tứ Ân Hiếu Nghĩa": 298,
+    "Bửu Sơn Kỳ Hương": 89,
+    "Baha'i": 192,
+    "Bà La Môn": 395,
+    "Không xác định": 1
+   }
+  },
+  "Long An": {
+   "code": 80,
+   "pop2019": 1688547,
+   "followers2019": 112978,
+   "followers_pct2019": 6.69,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1436066,
+   "followers2009": 206999,
+   "religions2009": {
+    "Phật giáo": 125118,
+    "Công giáo": 31160,
+    "Phật giáo Hòa Hảo": 2221,
+    "Hồi giáo": 230,
+    "Cao Đài": 44418,
+    "Minh Sư Đạo": 38,
+    "Minh Lý Đạo": 38,
+    "Tin lành": 3480,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 242,
+    "Đạo Tứ Ân Hiếu Nghĩa": 11,
+    "Bửu Sơn Kỳ Hương": 43
+   }
+  },
+  "Tiền Giang": {
+   "code": 82,
+   "pop2019": 1764185,
+   "followers2019": 128352,
+   "followers_pct2019": 7.28,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1672271,
+   "followers2009": 185332,
+   "religions2009": {
+    "Phật giáo": 107960,
+    "Công giáo": 38270,
+    "Phật giáo Hòa Hảo": 1224,
+    "Hồi giáo": 119,
+    "Cao Đài": 32311,
+    "Minh Sư Đạo": 15,
+    "Minh Lý Đạo": 15,
+    "Tin lành": 4418,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 431,
+    "Đạo Tứ Ân Hiếu Nghĩa": 543,
+    "Bửu Sơn Kỳ Hương": 26
+   }
+  },
+  "Bến Tre": {
+   "code": 83,
+   "pop2019": 1288463,
+   "followers2019": 140004,
+   "followers_pct2019": 10.87,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1255946,
+   "followers2009": 197001,
+   "religions2009": {
+    "Phật giáo": 108329,
+    "Công giáo": 53405,
+    "Phật giáo Hòa Hảo": 1598,
+    "Hồi giáo": 61,
+    "Cao Đài": 28986,
+    "Minh Sư Đạo": 12,
+    "Minh Lý Đạo": 24,
+    "Tin lành": 4273,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 191,
+    "Đạo Tứ Ân Hiếu Nghĩa": 115,
+    "Bửu Sơn Kỳ Hương": 4,
+    "Baha'i": 3
+   }
+  },
+  "Trà Vinh": {
+   "code": 84,
+   "pop2019": 1009168,
+   "followers2019": 460718,
+   "followers_pct2019": 45.65,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1003012,
+   "followers2009": 569999,
+   "religions2009": {
+    "Phật giáo": 498930,
+    "Công giáo": 54370,
+    "Phật giáo Hòa Hảo": 142,
+    "Hồi giáo": 195,
+    "Cao Đài": 15366,
+    "Minh Sư Đạo": 7,
+    "Minh Lý Đạo": 1,
+    "Tin lành": 634,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 318,
+    "Đạo Tứ Ân Hiếu Nghĩa": 16,
+    "Bửu Sơn Kỳ Hương": 19,
+    "Baha'i": 1
+   }
+  },
+  "Vĩnh Long": {
+   "code": 86,
+   "pop2019": 1022791,
+   "followers2019": 147205,
+   "followers_pct2019": 14.39,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1024707,
+   "followers2009": 245544,
+   "religions2009": {
+    "Phật giáo": 155580,
+    "Công giáo": 34005,
+    "Phật giáo Hòa Hảo": 34921,
+    "Hồi giáo": 56,
+    "Cao Đài": 15133,
+    "Minh Sư Đạo": 22,
+    "Tin lành": 3641,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1842,
+    "Đạo Tứ Ân Hiếu Nghĩa": 327,
+    "Bửu Sơn Kỳ Hương": 16,
+    "Bà La Môn": 1
+   }
+  },
+  "Đồng Tháp": {
+   "code": 87,
+   "pop2019": 1599504,
+   "followers2019": 263316,
+   "followers_pct2019": 16.46,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1666467,
+   "followers2009": 559063,
+   "religions2009": {
+    "Phật giáo": 264597,
+    "Công giáo": 40973,
+    "Phật giáo Hòa Hảo": 196143,
+    "Hồi giáo": 126,
+    "Cao Đài": 50858,
+    "Minh Sư Đạo": 9,
+    "Minh Lý Đạo": 6,
+    "Tin lành": 3924,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 727,
+    "Đạo Tứ Ân Hiếu Nghĩa": 953,
+    "Bửu Sơn Kỳ Hương": 746,
+    "Baha'i": 1
+   }
+  },
+  "An Giang": {
+   "code": 89,
+   "pop2019": 1908352,
+   "followers2019": 1570662,
+   "followers_pct2019": 82.3,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 2142709,
+   "followers2009": 2025015,
+   "religions2009": {
+    "Phật giáo": 894335,
+    "Công giáo": 62130,
+    "Phật giáo Hòa Hảo": 936974,
+    "Hồi giáo": 14381,
+    "Cao Đài": 72210,
+    "Minh Sư Đạo": 22,
+    "Minh Lý Đạo": 26,
+    "Tin lành": 1510,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 321,
+    "Đạo Tứ Ân Hiếu Nghĩa": 34821,
+    "Bửu Sơn Kỳ Hương": 8253,
+    "Baha'i": 2,
+    "Bà La Môn": 30
+   }
+  },
+  "Kiên Giang": {
+   "code": 91,
+   "pop2019": 1723067,
+   "followers2019": 216875,
+   "followers_pct2019": 12.59,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1688248,
+   "followers2009": 458500,
+   "religions2009": {
+    "Phật giáo": 336877,
+    "Công giáo": 90585,
+    "Phật giáo Hòa Hảo": 11475,
+    "Hồi giáo": 419,
+    "Cao Đài": 14392,
+    "Minh Sư Đạo": 26,
+    "Tin lành": 2651,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 218,
+    "Đạo Tứ Ân Hiếu Nghĩa": 1791,
+    "Bửu Sơn Kỳ Hương": 22,
+    "Baha'i": 39,
+    "Bà La Môn": 3,
+    "Không xác định": 2
+   }
+  },
+  "Cần Thơ": {
+   "code": 92,
+   "pop2019": 1235171,
+   "followers2019": 308440,
+   "followers_pct2019": 24.97,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1188435,
+   "followers2009": 464799,
+   "religions2009": {
+    "Phật giáo": 150060,
+    "Công giáo": 68257,
+    "Phật giáo Hòa Hảo": 227117,
+    "Hồi giáo": 138,
+    "Cao Đài": 13241,
+    "Minh Sư Đạo": 11,
+    "Minh Lý Đạo": 5,
+    "Tin lành": 3638,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 709,
+    "Đạo Tứ Ân Hiếu Nghĩa": 1440,
+    "Bửu Sơn Kỳ Hương": 123,
+    "Baha'i": 59,
+    "Bà La Môn": 1
+   }
+  },
+  "Hậu Giang": {
+   "code": 93,
+   "pop2019": 733017,
+   "followers2019": 36213,
+   "followers_pct2019": 4.94,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 757300,
+   "followers2009": 62530,
+   "religions2009": {
+    "Phật giáo": 25697,
+    "Công giáo": 26675,
+    "Phật giáo Hòa Hảo": 1335,
+    "Hồi giáo": 48,
+    "Cao Đài": 5138,
+    "Minh Sư Đạo": 13,
+    "Minh Lý Đạo": 1,
+    "Tin lành": 1625,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1315,
+    "Đạo Tứ Ân Hiếu Nghĩa": 682,
+    "Bà La Môn": 1
+   }
+  },
+  "Sóc Trăng": {
+   "code": 94,
+   "pop2019": 1199653,
+   "followers2019": 201820,
+   "followers_pct2019": 16.82,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1292853,
+   "followers2009": 390997,
+   "religions2009": {
+    "Phật giáo": 332392,
+    "Công giáo": 51454,
+    "Phật giáo Hòa Hảo": 255,
+    "Hồi giáo": 99,
+    "Cao Đài": 4658,
+    "Minh Sư Đạo": 2,
+    "Minh Lý Đạo": 8,
+    "Tin lành": 1659,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 468,
+    "Bửu Sơn Kỳ Hương": 2
+   }
+  },
+  "Bạc Liêu": {
+   "code": 95,
+   "pop2019": 907236,
+   "followers2019": 25858,
+   "followers_pct2019": 2.85,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 856518,
+   "followers2009": 55063,
+   "religions2009": {
+    "Phật giáo": 38439,
+    "Công giáo": 13433,
+    "Phật giáo Hòa Hảo": 39,
+    "Hồi giáo": 14,
+    "Cao Đài": 2144,
+    "Minh Sư Đạo": 15,
+    "Tin lành": 618,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 354,
+    "Bửu Sơn Kỳ Hương": 2,
+    "Baha'i": 5
+   }
+  },
+  "Cà Mau": {
+   "code": 96,
+   "pop2019": 1194476,
+   "followers2019": 26356,
+   "followers_pct2019": 2.21,
+   "religions2019": null,
+   "source2019": null,
+   "pop2009": 1206938,
+   "followers2009": 52899,
+   "religions2009": {
+    "Phật giáo": 20817,
+    "Công giáo": 22893,
+    "Phật giáo Hòa Hảo": 591,
+    "Hồi giáo": 109,
+    "Cao Đài": 5688,
+    "Minh Sư Đạo": 16,
+    "Tin lành": 1634,
+    "Tịnh độ Cư sĩ Phật hội Việt Nam": 1114,
+    "Đạo Tứ Ân Hiếu Nghĩa": 32,
+    "Bửu Sơn Kỳ Hương": 3,
+    "Baha'i": 2
+   }
+  }
+ },
+ "prov_2020": {
+  "Tuyên Quang": {
+   "pop": 1663140,
+   "pop_male": 838870,
+   "pop_female": 824270,
+   "urban_pct": 14.88,
+   "tfr": 2.58,
+   "cbr": 18.79,
+   "cdr": 7.22,
+   "life_exp": 70.5,
+   "sex_ratio": 101.77,
+   "area_km2_2025": 13796
+  },
+  "Cao Bằng": {
+   "pop": 533090,
+   "pop_male": 267010,
+   "pop_female": 266070,
+   "urban_pct": 25.51,
+   "tfr": 2.42,
+   "cbr": 16.2,
+   "cdr": 10.31,
+   "life_exp": 70.6,
+   "sex_ratio": 100.35,
+   "area_km2_2025": 6702
+  },
+  "Lai Châu": {
+   "pop": 469810,
+   "pop_male": 238420,
+   "pop_female": 231390,
+   "urban_pct": 17.5,
+   "tfr": 2.63,
+   "cbr": 21.4,
+   "cdr": 6.95,
+   "life_exp": 66.7,
+   "sex_ratio": 103.04,
+   "area_km2_2025": 9069
+  },
+  "Lào Cai": {
+   "pop": 1577940,
+   "pop_male": 799200,
+   "pop_female": 778740,
+   "urban_pct": 23.37,
+   "tfr": 2.59,
+   "cbr": 19.71,
+   "cdr": 5.98,
+   "life_exp": 69.4,
+   "sex_ratio": 102.63,
+   "area_km2_2025": 13255
+  },
+  "Thái Nguyên": {
+   "pop": 1624330,
+   "pop_male": 799950,
+   "pop_female": 824380,
+   "urban_pct": 30.24,
+   "tfr": 2.13,
+   "cbr": 15.46,
+   "cdr": 6.75,
+   "life_exp": 73.2,
+   "sex_ratio": 97.04,
+   "area_km2_2025": 8375
+  },
+  "Điện Biên": {
+   "pop": 613480,
+   "pop_male": 311460,
+   "pop_female": 302020,
+   "urban_pct": 15.19,
+   "tfr": 2.66,
+   "cbr": 21.5,
+   "cdr": 6.76,
+   "life_exp": 68.4,
+   "sex_ratio": 103.13,
+   "area_km2_2025": 9548
+  },
+  "Lạng Sơn": {
+   "pop": 788710,
+   "pop_male": 403410,
+   "pop_female": 385300,
+   "urban_pct": 23.04,
+   "tfr": 2.19,
+   "cbr": 15.2,
+   "cdr": 8.51,
+   "life_exp": 72.4,
+   "sex_ratio": 104.7,
+   "area_km2_2025": 8307
+  },
+  "Sơn La": {
+   "pop": 1270560,
+   "pop_male": 644480,
+   "pop_female": 626070,
+   "urban_pct": 13.86,
+   "tfr": 2.36,
+   "cbr": 19,
+   "cdr": 6.45,
+   "life_exp": 71,
+   "sex_ratio": 102.94,
+   "area_km2_2025": 14109
+  },
+  "Phú Thọ": {
+   "pop": 3514330,
+   "pop_male": 1752080,
+   "pop_female": 1762260,
+   "urban_pct": 23.85,
+   "tfr": 2.33,
+   "cbr": 15.95,
+   "cdr": 6.73,
+   "life_exp": 73.4,
+   "sex_ratio": 99.42,
+   "area_km2_2025": 9347
+  },
+  "Bắc Ninh": {
+   "pop": 3260750,
+   "pop_male": 1624470,
+   "pop_female": 1636280,
+   "urban_pct": 23.94,
+   "tfr": 2.51,
+   "cbr": 20.37,
+   "cdr": 5.75,
+   "life_exp": 73.7,
+   "sex_ratio": 99.28,
+   "area_km2_2025": 4713.75
+  },
+  "Quảng Ninh": {
+   "pop": 1337610,
+   "pop_male": 679580,
+   "pop_female": 658030,
+   "urban_pct": 67.37,
+   "tfr": 2.22,
+   "cbr": 15.9,
+   "cdr": 5.27,
+   "life_exp": 73.4,
+   "sex_ratio": 103.27,
+   "area_km2_2025": 6231.27
+  },
+  "Hà Nội": {
+   "pop": 8246540,
+   "pop_male": 4083480,
+   "pop_female": 4163060,
+   "urban_pct": 49.25,
+   "tfr": 2.25,
+   "cbr": 17.9,
+   "cdr": 5.43,
+   "life_exp": 75.5,
+   "sex_ratio": 98.09,
+   "area_km2_2025": 3359.84
+  },
+  "Hải Phòng": {
+   "pop": 3970270,
+   "pop_male": 1972120,
+   "pop_female": 1998150,
+   "urban_pct": 38.68,
+   "tfr": 2.44,
+   "cbr": 17.69,
+   "cdr": 6.73,
+   "life_exp": 74.7,
+   "sex_ratio": 98.7,
+   "area_km2_2025": 3184.49
+  },
+  "Hưng Yên": {
+   "pop": 3139330,
+   "pop_male": 1547800,
+   "pop_female": 1591530,
+   "urban_pct": 13.67,
+   "tfr": 2.53,
+   "cbr": 16.12,
+   "cdr": 6.75,
+   "life_exp": 74.8,
+   "sex_ratio": 97.25,
+   "area_km2_2025": 2637.84
+  },
+  "Ninh Bình": {
+   "pop": 3636090,
+   "pop_male": 1792880,
+   "pop_female": 1843200,
+   "urban_pct": 22.34,
+   "tfr": 2.53,
+   "cbr": 16.21,
+   "cdr": 7.09,
+   "life_exp": 74.5,
+   "sex_ratio": 97.27,
+   "area_km2_2025": 3946.06
+  },
+  "Thanh Hóa": {
+   "pop": 3664940,
+   "pop_male": 1821480,
+   "pop_female": 1843470,
+   "urban_pct": 23.28,
+   "tfr": 2.51,
+   "cbr": 16.9,
+   "cdr": 7.45,
+   "life_exp": 73.4,
+   "sex_ratio": 98.81,
+   "area_km2_2025": 11111.16
+  },
+  "Nghệ An": {
+   "pop": 3365200,
+   "pop_male": 1684950,
+   "pop_female": 1680240,
+   "urban_pct": 15.5,
+   "tfr": 2.68,
+   "cbr": 20.1,
+   "cdr": 6.71,
+   "life_exp": 73.1,
+   "sex_ratio": 100.28,
+   "area_km2_2025": 16486.08
+  },
+  "Hà Tĩnh": {
+   "pop": 1296620,
+   "pop_male": 642160,
+   "pop_female": 654460,
+   "urban_pct": 22.19,
+   "tfr": 2.73,
+   "cbr": 17,
+   "cdr": 7.38,
+   "life_exp": 72.6,
+   "sex_ratio": 98.12,
+   "area_km2_2025": 5994.31
+  },
+  "Quảng Trị": {
+   "pop": 1539370,
+   "pop_male": 768860,
+   "pop_female": 770510,
+   "urban_pct": 26.89,
+   "tfr": 2.43,
+   "cbr": 17.04,
+   "cdr": 6.55,
+   "life_exp": 70.6,
+   "sex_ratio": 99.79,
+   "area_km2_2025": 12686.76
+  },
+  "Huế": {
+   "pop": 1133590,
+   "pop_male": 561240,
+   "pop_female": 572350,
+   "urban_pct": 49.61,
+   "tfr": 2.29,
+   "cbr": 17.2,
+   "cdr": 6.41,
+   "life_exp": 71.7,
+   "sex_ratio": 98.06,
+   "area_km2_2025": 4947.11
+  },
+  "Đà Nẵng": {
+   "pop": 2674520,
+   "pop_male": 1318920,
+   "pop_female": 1355600,
+   "urban_pct": 52.97,
+   "tfr": 2.14,
+   "cbr": 17.43,
+   "cdr": 5.96,
+   "life_exp": 74.8,
+   "sex_ratio": 97.29,
+   "area_km2_2025": 11870.34
+  },
+  "Quảng Ngãi": {
+   "pop": 1789040,
+   "pop_male": 888660,
+   "pop_female": 900380,
+   "urban_pct": 24.71,
+   "tfr": 2.33,
+   "cbr": 17.37,
+   "cdr": 5.86,
+   "life_exp": 70.2,
+   "sex_ratio": 98.7,
+   "area_km2_2025": 14825.97
+  },
+  "Gia Lai": {
+   "pop": 3029730,
+   "pop_male": 1505900,
+   "pop_female": 1523830,
+   "urban_pct": 34.56,
+   "tfr": 2.43,
+   "cbr": 18,
+   "cdr": 6.03,
+   "life_exp": 71.9,
+   "sex_ratio": 98.82,
+   "area_km2_2025": 21580.88
+  },
+  "Khánh Hòa": {
+   "pop": 1834080,
+   "pop_male": 917580,
+   "pop_female": 916500,
+   "urban_pct": 40.1,
+   "tfr": 2.06,
+   "cbr": 16.21,
+   "cdr": 5.85,
+   "life_exp": 73.2,
+   "sex_ratio": 100.12,
+   "area_km2_2025": 8706.75
+  },
+  "Đắk Lắk": {
+   "pop": 2761230,
+   "pop_male": 1391920,
+   "pop_female": 1369310,
+   "urban_pct": 27.25,
+   "tfr": 2.33,
+   "cbr": 17.38,
+   "cdr": 5.32,
+   "life_exp": 73.2,
+   "sex_ratio": 101.65,
+   "area_km2_2025": 18099.8
+  },
+  "Lâm Đồng": {
+   "pop": 3186950,
+   "pop_male": 1609370,
+   "pop_female": 1577580,
+   "urban_pct": 34.01,
+   "tfr": 2.3,
+   "cbr": 17.43,
+   "cdr": 5.14,
+   "life_exp": 71.8,
+   "sex_ratio": 102.02,
+   "area_km2_2025": 24239.1
+  },
+  "Đồng Nai": {
+   "pop": 4188480,
+   "pop_male": 2122760,
+   "pop_female": 2065720,
+   "urban_pct": 39.39,
+   "tfr": 2.09,
+   "cbr": 17.86,
+   "cdr": 4.61,
+   "life_exp": 75.2,
+   "sex_ratio": 102.76,
+   "area_km2_2025": 12737.18
+  },
+  "TP Hồ Chí Minh": {
+   "pop": 12976090,
+   "pop_male": 6425980,
+   "pop_female": 6550100,
+   "urban_pct": 78.15,
+   "tfr": 1.63,
+   "cbr": 15.83,
+   "cdr": 4.27,
+   "life_exp": 76.4,
+   "sex_ratio": 98.11,
+   "area_km2_2025": 6796.91
+  },
+  "Tây Ninh": {
+   "pop": 2891990,
+   "pop_male": 1444960,
+   "pop_female": 1447030,
+   "urban_pct": 23.98,
+   "tfr": 1.74,
+   "cbr": 13.36,
+   "cdr": 6.26,
+   "life_exp": 75.2,
+   "sex_ratio": 99.86,
+   "area_km2_2025": 8524.4
+  },
+  "Đồng Tháp": {
+   "pop": 3372560,
+   "pop_male": 1668120,
+   "pop_female": 1704440,
+   "urban_pct": 16.55,
+   "tfr": 1.87,
+   "cbr": 12.97,
+   "cdr": 7.11,
+   "life_exp": 75.6,
+   "sex_ratio": 97.87,
+   "area_km2_2025": 5938.56
+  },
+  "An Giang": {
+   "pop": 3633400,
+   "pop_male": 1822140,
+   "pop_female": 1811260,
+   "urban_pct": 30.09,
+   "tfr": 1.99,
+   "cbr": 13.68,
+   "cdr": 7.9,
+   "life_exp": 74.1,
+   "sex_ratio": 100.6,
+   "area_km2_2025": 9893.92
+  },
+  "Vĩnh Long": {
+   "pop": 3325310,
+   "pop_male": 1633940,
+   "pop_female": 1691370,
+   "urban_pct": 16.08,
+   "tfr": 1.85,
+   "cbr": 12.17,
+   "cdr": 7.4,
+   "life_exp": 75.4,
+   "sex_ratio": 96.6,
+   "area_km2_2025": 6875.86
+  },
+  "Cần Thơ": {
+   "pop": 3166250,
+   "pop_male": 1579440,
+   "pop_female": 1586810,
+   "urban_pct": 46.1,
+   "tfr": 1.79,
+   "cbr": 12.79,
+   "cdr": 5.76,
+   "life_exp": 75.3,
+   "sex_ratio": 99.54,
+   "area_km2_2025": 6360.98
+  },
+  "Cà Mau": {
+   "pop": 2107370,
+   "pop_male": 1061810,
+   "pop_female": 1045570,
+   "urban_pct": 24.9,
+   "tfr": 1.77,
+   "cbr": 12.86,
+   "cdr": 5.55,
+   "life_exp": 75,
+   "sex_ratio": 101.55,
+   "area_km2_2025": 7887.28
+  }
+ },
+ "prov_2020_national": {
+  "pop": 97582690,
+  "pop_male": 48625390,
+  "pop_female": 48957300,
+  "urban_pct": 36.8,
+  "tfr": 2.12,
+  "cbr": 16.3,
+  "cdr": 6.06,
+  "life_exp": 73.7,
+  "sex_ratio": 99.32,
+  "area_km2_2025": 332144.37
+ },
+ "sources": {
+  "census2019_national": "https://www.nso.gov.vn/wp-content/uploads/2019/12/Ket-qua-toan-bo-Tong-dieu-tra-dan-so-va-nha-o-2019.pdf",
+  "census2019_major_findings": "https://www.nso.gov.vn/wp-content/uploads/2019/12/TDT-Dan-so-2019-1.pdf",
+  "census2019_province_totals": {
+   "dataset": "https://data.vietnam.opendevelopmentmekong.net/dataset/population-by-religion-in-vietnam-in-2019",
+   "xlsx": "https://data.vietnam.opendevelopmentmekong.net/vi/dataset/830ab51d-9d87-4dc5-a74f-f327d2ead6e8/resource/06e21f6d-2c26-4ad3-b8f6-2869d444d1a6/download/religion-followers-by-province.xlsx",
+   "note": "Open Development Mekong re-publication of GSO 2019 census province totals (total, no religion, followers). Verified: 63-province sums equal GSO national totals exactly (96,208,984; 83,046,105; 13,162,879)."
+  },
+  "census2019_province_by_religion": {
+   "Cao Bằng": {
+    "url": "https://web.archive.org/web/20220627140439id_/https://thongkecaobang.gso.gov.vn/Upload/Ketquadieutra/SACH%20KET%20QUA%20TDT%20DS%202019_%20CAO%20BANG.pdf",
+    "table": "Biểu 7: Dân số theo tôn giáo, thành thị, nông thôn, giới tính và đơn vị hành chính, 01/4/2019 (book p.102), row 'TOÀN TỈNH'"
+   },
+   "Huế": {
+    "url": "https://docs.google.com/document/d/1UNcU0AfibV3Et75L4KXw-dlaKakv5ZT3/edit (linked from https://thongkehue.nso.gov.vn/bao-cao-so-lieu-thong-ke/D%C3%A2n-s%E1%BB%91-v%C3%A0-Lao-%C4%91%E1%BB%99ng/5)",
+    "table": "Biểu 1.3: Cơ cấu dân số theo tôn giáo (Toàn tỉnh row, Chung column), Kết quả TĐT DS&NO 2019 tỉnh Thừa Thiên Huế"
+   },
+   "Hà Nội": {
+    "url": "https://web.archive.org/web/20220709082901id_/http://thongkehanoi.gov.vn/uploads/files/source/2020/Ket%20qua%20tong%20dieu%20tra%20dan%20so%20va%20nha%20o/Sach%20full/Bi%E1%BB%83u%201%20-%2010.pdf",
+    "table": "Biểu 3. Dân số phân theo tôn giáo, thành thị, nông thôn, giới tính, 01/4/2019 (book p.188-189; PDF 'Biểu 1 - 10' p.29), row 'Toàn Thành phố'"
+   },
+   "Hà Tĩnh": {
+    "url": "https://thongkehatinh.nso.gov.vn/storage/manager/an_pham/XJdVcsX-3d38c850-41e1-468f-8854-dc6e4d2cefbd.pdf",
+    "table": "Biểu 4. Dân số chia theo tôn giáo, thành thị, nông thôn, giới tính và đơn vị hành chính cấp huyện, 01/4/2019 (TOÀN TỈNH row, Tổng số/Chung), pp.154-155"
+   },
+   "Đồng Nai": {
+    "url": "https://thongke.dongnai.gov.vn/KetQuaDieuTra/DongNai_Ket%20qua%20TDT_2019.pdf",
+    "table": "Biểu 3, p.127 (TOÀN TỈNH row)"
+   }
+  },
+  "census2009": "https://www.nso.gov.vn/wp-content/uploads/2019/03/KQ-toan-bo.pdf",
+  "census2009_press": "https://www.nso.gov.vn/su-kien/2019/03/thong-cao-bao-chi-tong-dieu-tra-dan-so-va-nha-o-nam-2009-cong-bo-ket-qua-dieu-tra-toan-bo/",
+  "btgcp_2023": "https://danviet.vn/truong-ban-ton-giao-chinh-phu-con-tinh-trang-loi-dung-tin-nguong-ton-giao-de-chong-pha-kich-dong-20240815140750165.htm",
+  "btgcp_2023_alt": "https://vietnamnet.vn/viet-nam-co-16-ton-giao-va-gan-28-trieu-tin-do-2424794.html",
+  "btgcp_mid2025": "http://www.cema.gov.vn/hanh-trinh-70-nam-ban-ton-giao-chinh-phu.htm",
+  "white_paper": "https://cms.btgcp.gov.vn/upload/documents/25_08_2023/-2023-08-25-18-52-04.pdf",
+  "white_paper_news": "https://baotintuc.vn/thoi-su/ra-mat-sach-trang-ton-giao-va-chinh-sach-ton-giao-o-viet-nam-20230309104943196.htm",
+  "prov_2020": {
+   "base": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/",
+   "tables": {
+    "pop_urban_sex": "PL.V02.02-04",
+    "sex_ratio": "PL.V02.05",
+    "cbr_cdr": "PL.V02.07-09",
+    "tfr": "PL.V02.10",
+    "life_exp": "PL.V02.17",
+    "area_2025": "PL.V02.01"
+   },
+   "note": "NSO PxWeb tables for the 34 new units start in 2020 — no 2019 values published. pop = average population 2020 (persons, from thousands). urban_pct = urban/total average population 2020. sex_ratio = males per 100 females (population). Area is only published for 2025 (area_km2_2025)."
+  }
+ }
+}

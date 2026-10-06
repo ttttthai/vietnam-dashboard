@@ -1,0 +1,3513 @@
+{
+ "gdp_exp": {
+  "years": [
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "C": [
+   3080148.86,
+   3312415.21,
+   3650334.56,
+   4000543.27,
+   4379853.18,
+   4502208.0,
+   4712163.83,
+   5260895.87,
+   5573920.93,
+   6164612.34,
+   6836385.61
+  ],
+  "G": [
+   553131.01,
+   586406.16,
+   637882.65,
+   683093.48,
+   738260.1,
+   762512.3,
+   813531.8,
+   848501.3,
+   909372.0,
+   1017784.0,
+   1204620.31
+  ],
+  "final_consumption": [
+   3633279.88,
+   3898821.37,
+   4288217.21,
+   4683636.75,
+   5118113.29,
+   5264719.7,
+   5525695.62,
+   6109397.17,
+   6483293.45,
+   7182395.69,
+   8041005.91
+  ],
+  "I": [
+   1666877.77,
+   1789073.97,
+   2033264.8,
+   2244260.45,
+   2464759.62,
+   2567421.08,
+   2792006.22,
+   3111599.7,
+   3267875.63,
+   3520402.61,
+   3956426.85
+  ],
+  "GFCF": [
+   1566571.51,
+   1685834.6,
+   1922458.35,
+   2126648.03,
+   2340103.89,
+   2435664.44,
+   2634075.76,
+   2940853.24,
+   3109061.0,
+   3342939.54,
+   3752197.04
+  ],
+  "inventories": [
+   100306.25,
+   103239.37,
+   110806.46,
+   117612.42,
+   124655.73,
+   131756.64,
+   157930.47,
+   170747.0,
+   158815.21,
+   177463.08,
+   204229.81
+  ],
+  "X": [
+   3785661.31,
+   4179207.04,
+   5146055.08,
+   5917275.6,
+   6563265.82,
+   6787981.23,
+   7965513.43,
+   8988297.97,
+   8950407.43,
+   10378434.18,
+   12622020.27
+  ],
+  "M": [
+   3737305.4,
+   4021018.2,
+   4985877.73,
+   5624089.1,
+   6130817.91,
+   6344145.66,
+   7878552.33,
+   8633592.73,
+   8075584.17,
+   9636331.22,
+   11831636.8
+  ],
+  "net_exports": [
+   48355.91,
+   158188.84,
+   160177.35,
+   293186.51,
+   432447.91,
+   443835.56,
+   86961.1,
+   354705.24,
+   874823.26,
+   801814.19,
+   790383.47
+  ],
+  "discrepancy": [
+   -157189.82,
+   -206683.17,
+   -187754.81,
+   -212041.57,
+   -308120.53,
+   -231590.62,
+   82812.66,
+   45669.71,
+   -306933.48,
+   5716.42,
+   59754.98
+  ],
+  "GDP": [
+   5191323.73,
+   5639401.0,
+   6293904.55,
+   7009042.13,
+   7707200.29,
+   8044385.73,
+   8487475.6,
+   9621371.82,
+   10319058.87,
+   11510328.92,
+   12847571.22
+  ],
+  "pct_gdp": {
+   "C": [
+    59.33,
+    58.74,
+    58.0,
+    57.08,
+    56.83,
+    55.97,
+    55.52,
+    54.68,
+    54.02,
+    53.56,
+    53.21
+   ],
+   "G": [
+    10.65,
+    10.4,
+    10.13,
+    9.75,
+    9.58,
+    9.48,
+    9.59,
+    8.82,
+    8.81,
+    8.84,
+    9.38
+   ],
+   "I": [
+    32.11,
+    31.72,
+    32.31,
+    32.02,
+    31.98,
+    31.92,
+    32.9,
+    32.34,
+    31.67,
+    30.58,
+    30.8
+   ],
+   "GFCF": [
+    30.18,
+    29.89,
+    30.54,
+    30.34,
+    30.36,
+    30.28,
+    31.03,
+    30.57,
+    30.13,
+    29.04,
+    29.21
+   ],
+   "inventories": [
+    1.93,
+    1.83,
+    1.76,
+    1.68,
+    1.62,
+    1.64,
+    1.86,
+    1.77,
+    1.54,
+    1.54,
+    1.59
+   ],
+   "X": [
+    72.92,
+    74.11,
+    81.76,
+    84.42,
+    85.16,
+    84.38,
+    93.85,
+    93.42,
+    86.74,
+    90.17,
+    98.24
+   ],
+   "M": [
+    71.99,
+    71.3,
+    79.22,
+    80.24,
+    79.55,
+    78.86,
+    92.83,
+    89.73,
+    78.26,
+    83.72,
+    92.09
+   ],
+   "net_exports": [
+    0.93,
+    2.81,
+    2.54,
+    4.18,
+    5.61,
+    5.52,
+    1.02,
+    3.69,
+    8.48,
+    6.97,
+    6.15
+   ],
+   "discrepancy": [
+    -3.03,
+    -3.66,
+    -2.98,
+    -3.03,
+    -4.0,
+    -2.88,
+    0.98,
+    0.47,
+    -2.97,
+    0.05,
+    0.47
+   ]
+  },
+  "basis": [
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "preliminary (Sơ bộ)",
+   "estimate (Ước tính)"
+  ],
+  "unit": "bn VND (tỷ đồng), current prices",
+  "growth_real_pct": {
+   "9M_2026_yoy": {
+    "final_consumption": 8.51,
+    "gross_capital_formation": 17.88,
+    "exports_gs": 21.29,
+    "imports_gs": 27.19,
+    "GDP": 9.01
+   },
+   "Q3_2026_yoy": {
+    "final_consumption": 8.96,
+    "gross_capital_formation": 21.39,
+    "exports_gs": 23.27,
+    "imports_gs": 28.75
+   },
+   "source": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+  },
+  "sources": {
+   "C,G,final_consumption,I,GFCF,inventories,net_exports,discrepancy,GDP": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.08.px/ (NSO PxWeb V03.08 Sử dụng GDP theo giá hiện hành, updated 15/08/2026)",
+   "X": "https://api.worldbank.org/v2/country/VNM/indicator/NE.EXP.GNFS.CN?format=json (World Bank WDI, reproduces NSO national accounts; LCU/1e9)",
+   "M": "https://api.worldbank.org/v2/country/VNM/indicator/NE.IMP.GNFS.CN?format=json (World Bank WDI; LCU/1e9)",
+   "pct_gdp": "derived: component / GDP x 100 (NSO V03.08 also publishes the same structure %)",
+   "growth_real_pct": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+  },
+  "qa": {
+   "X_minus_M_minus_NSO_net_exports_bn": {
+    "2015": -0.0,
+    "2016": -0.0,
+    "2017": 0.0,
+    "2018": -0.0,
+    "2019": -0.0,
+    "2020": 0.0,
+    "2021": -0.0,
+    "2022": 0.0,
+    "2023": 0.0,
+    "2024": -59711.2,
+    "2025": -0.0
+   },
+   "note": "X and M (World Bank WDI) reproduce NSO exactly for 2015-2023 and 2025; for 2024 WDI holds an older vintage (X-M = 742,103 vs NSO revised net exports 801,814; WDI discrepancy 65,428 vs NSO 5,716). Use net_exports/discrepancy (NSO) for the identity; 2024 X and M are flagged."
+  },
+  "flags": {
+   "X": {
+    "2024": "older vintage than NSO V03.08"
+   },
+   "M": {
+    "2024": "older vintage than NSO V03.08"
+   }
+  }
+ },
+ "invest_by_owner": {
+  "years": [
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   "9M2026"
+  ],
+  "total": [
+   1756240.0,
+   1926864.0,
+   2186560.0,
+   2426400.0,
+   2670471.0,
+   2803065.0,
+   2896728.0,
+   3222679.0,
+   3435842.0,
+   3702712.0,
+   4150507.0,
+   3109600.0
+  ],
+  "state": [
+   556380.0,
+   587110.0,
+   616459.0,
+   630142.0,
+   643094.0,
+   734735.0,
+   719293.0,
+   832062.0,
+   968187.0,
+   1030281.0,
+   1233578.0,
+   931000.0
+  ],
+  "nonstate": [
+   881760.0,
+   988651.0,
+   1173901.0,
+   1361156.0,
+   1557937.0,
+   1605050.0,
+   1719354.0,
+   1868642.0,
+   1917451.0,
+   2063810.0,
+   2237087.0,
+   1649200.0
+  ],
+  "fdi": [
+   318100.0,
+   351103.0,
+   396200.0,
+   435102.0,
+   469440.0,
+   463280.0,
+   458081.0,
+   521975.0,
+   550204.0,
+   608621.0,
+   679842.0,
+   529400.0
+  ],
+  "state_of_which_public_investment": [
+   290178.0,
+   309033.0,
+   316496.0,
+   364399.0,
+   380913.0,
+   503417.0,
+   450372.0,
+   524260.0,
+   640109.8,
+   672031.0,
+   850687.0,
+   null
+  ],
+  "state_of_which_soe_and_other": [
+   266202.0,
+   278077.0,
+   299963.0,
+   265743.0,
+   262181.0,
+   233192.0,
+   268921.0,
+   307802.0,
+   328077.0,
+   358250.0,
+   382891.0,
+   null
+  ],
+  "basis": [
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "preliminary (Sơ bộ)",
+   "estimate 9M (ước tính, rounded to 0.1 trillion)"
+  ],
+  "growth_9M2026_yoy_pct": {
+   "total": 15.1,
+   "state": 17.3,
+   "nonstate": 14.0,
+   "fdi": 14.5
+  },
+  "unit": "bn VND (tỷ đồng), current prices — vốn đầu tư thực hiện toàn xã hội (realised social investment; NOT the same concept as GFCF)",
+  "sources": {
+   "total,state,nonstate,fdi 2015-2025": "https://pxweb.nso.gov.vn/pxweb/vi/%c4%90%e1%ba%a7u%20t%c6%b0%20v%c3%a0%20x%c3%a2y%20d%e1%bb%b1ng/%c4%90%e1%ba%a7u%20t%c6%b0%20v%c3%a0%20x%c3%a2y%20d%e1%bb%b1ng/V04.01.px/ (NSO PxWeb V04.01)",
+   "state split public/SOE 2015-2025": "https://pxweb.nso.gov.vn/pxweb/vi/%c4%90%e1%ba%a7u%20t%c6%b0%20v%c3%a0%20x%c3%a2y%20d%e1%bb%b1ng/%c4%90%e1%ba%a7u%20t%c6%b0%20v%c3%a0%20x%c3%a2y%20d%e1%bb%b1ng/V04.08.px/ (NSO PxWeb V04.08; note 2020 state total 736,609 here vs 734,735 in V04.01)",
+   "9M2026": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+  }
+ },
+ "bop": {
+  "years": [
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "series": {
+   "goods_x": [
+    162.017,
+    176.581,
+    215.119,
+    243.697,
+    264.189,
+    282.629,
+    335.916,
+    371.715,
+    354.721,
+    406.529,
+    475.059
+   ],
+   "goods_m": [
+    154.643,
+    165.539,
+    204.273,
+    227.157,
+    242.695,
+    251.921,
+    318.45,
+    342.317,
+    310.693,
+    363.111,
+    433.166
+   ],
+   "services_x": [
+    11.25,
+    12.5,
+    13.07,
+    14.79,
+    16.637,
+    7.6,
+    4.21,
+    13.526,
+    20.265,
+    25.02,
+    30.307
+   ],
+   "services_m": [
+    16.015,
+    16.758,
+    17.1,
+    18.47,
+    18.988,
+    17.887,
+    19.877,
+    27.429,
+    29.092,
+    35.599,
+    40.537
+   ],
+   "primary_income_in": [
+    0.399,
+    0.65,
+    0.745,
+    1.615,
+    2.237,
+    1.428,
+    0.982,
+    2.321,
+    4.551,
+    5.542,
+    5.388
+   ],
+   "primary_income_out": [
+    12.55,
+    14.794,
+    17.738,
+    17.433,
+    17.52,
+    16.245,
+    17.731,
+    22.049,
+    27.014,
+    21.235,
+    19.787
+   ],
+   "secondary_income_in": [
+    8.586,
+    9.125,
+    10.031,
+    10.869,
+    11.609,
+    11.427,
+    13.568,
+    12.287,
+    16.112,
+    17.122,
+    19.766
+   ],
+   "secondary_income_out": [
+    1.085,
+    1.14,
+    1.503,
+    2.012,
+    2.368,
+    1.971,
+    3.246,
+    6.652,
+    3.057,
+    4.093,
+    3.895
+   ],
+   "current_account": [
+    -2.041,
+    0.625,
+    -1.649,
+    5.899,
+    13.101,
+    15.06,
+    -4.628,
+    1.402,
+    25.793,
+    30.175,
+    33.135
+   ],
+   "fdi_in": [
+    11.8,
+    12.6,
+    14.1,
+    15.5,
+    16.12,
+    15.8,
+    15.66,
+    17.9,
+    18.5,
+    20.17,
+    21.99
+   ],
+   "fdi_out": [
+    1.1,
+    1.0,
+    0.48,
+    0.598,
+    0.485,
+    0.38,
+    0.319,
+    2.674,
+    -1.55,
+    0.6,
+    0.7
+   ],
+   "portfolio_in": [
+    -0.065,
+    0.048,
+    2.069,
+    3.021,
+    2.995,
+    -1.26,
+    0.271,
+    1.51,
+    -1.155,
+    -5.65,
+    -4.9
+   ],
+   "portfolio_out": [
+    0.0,
+    -0.18,
+    0.0,
+    0.0,
+    -0.002,
+    -0.004,
+    -0.01,
+    -0.002,
+    0.034,
+    0.063,
+    0.031
+   ],
+   "loans_net": [
+    5.406,
+    2.624,
+    10.831,
+    1.884,
+    5.691,
+    2.359,
+    5.439,
+    6.07,
+    -3.268,
+    -6.131,
+    -5.363
+   ],
+   "loans_net_government": [
+    3.116,
+    2.663,
+    1.976,
+    1.44,
+    0.586,
+    0.188,
+    -0.653,
+    -1.054,
+    -1.334,
+    -1.66,
+    -2.161
+   ],
+   "loans_net_other_sectors": [
+    2.29,
+    -0.039,
+    8.855,
+    0.444,
+    5.105,
+    2.171,
+    6.092,
+    7.124,
+    -1.934,
+    -4.471,
+    -3.202
+   ],
+   "loans_net_other_sectors_longterm": [
+    1.5,
+    0.527,
+    2.419,
+    3.757,
+    4.015,
+    2.167,
+    3.455,
+    3.209,
+    -0.287,
+    -5.066,
+    -4.288
+   ],
+   "loans_net_other_sectors_shortterm": [
+    0.79,
+    -0.566,
+    6.436,
+    -3.313,
+    1.09,
+    0.004,
+    2.637,
+    3.915,
+    -1.647,
+    0.595,
+    1.086
+   ],
+   "currency_deposits_assets": [
+    14.359,
+    5.23,
+    9.556,
+    10.804,
+    8.082,
+    8.447,
+    0.792,
+    13.75,
+    14.171,
+    12.071,
+    20.507
+   ],
+   "currency_deposits_liabilities": [
+    -0.662,
+    1.424,
+    3.111,
+    -0.198,
+    2.841,
+    0.397,
+    8.851,
+    0.325,
+    -4.09,
+    -3.495,
+    6.565
+   ],
+   "other_inv_assets": [
+    14.412,
+    5.149,
+    9.603,
+    11.143,
+    7.79,
+    8.436,
+    0.627,
+    13.663,
+    14.341,
+    12.26,
+    20.971
+   ],
+   "other_inv_liabilities": [
+    4.744,
+    4.048,
+    13.942,
+    1.686,
+    8.532,
+    2.756,
+    15.9,
+    6.395,
+    -7.358,
+    -9.626,
+    1.202
+   ],
+   "errors_omissions": [
+    -4.958,
+    -2.962,
+    -5.835,
+    -8.334,
+    -9.221,
+    -6.912,
+    -11.977,
+    -33.617,
+    -17.347,
+    -31.313,
+    -25.863
+   ],
+   "reserves_change": [
+    -6.032,
+    8.39,
+    12.544,
+    6.031,
+    23.254,
+    16.632,
+    14.29,
+    -22.745,
+    5.608,
+    -9.167,
+    3.862
+   ],
+   "portfolio_net": [
+    -0.065,
+    0.228,
+    2.069,
+    3.021,
+    2.997,
+    -1.256,
+    0.281,
+    1.512,
+    -1.189,
+    -5.713,
+    -4.931
+   ],
+   "other_inv_net": [
+    -9.668,
+    -1.101,
+    4.339,
+    -9.457,
+    0.742,
+    -5.68,
+    15.273,
+    -7.268,
+    -21.699,
+    -21.886,
+    -19.769
+   ],
+   "fdi_net": [
+    10.7,
+    11.6,
+    13.62,
+    14.902,
+    15.635,
+    15.42,
+    15.341,
+    15.226,
+    20.05,
+    19.57,
+    21.29
+   ],
+   "travel_x": [
+    7.35,
+    8.5,
+    8.89,
+    10.08,
+    11.83,
+    3.232,
+    0.149,
+    3.203,
+    9.158,
+    12.23,
+    15.22
+   ],
+   "travel_m": [
+    3.595,
+    4.5,
+    5.04,
+    5.91,
+    6.46,
+    4.61,
+    3.83,
+    6.67,
+    7.825,
+    12.75,
+    15.05
+   ],
+   "transport_x": [
+    2.43,
+    2.448,
+    2.807,
+    4.374,
+    4.469,
+    3.535,
+    3.564,
+    6.35,
+    6.228,
+    6.924,
+    8.4
+   ],
+   "transport_m": [
+    8.05,
+    8.055,
+    7.393,
+    7.49,
+    8.595,
+    9.03,
+    11.705,
+    13.726,
+    12.3,
+    13.894,
+    16.62
+   ],
+   "ip_m": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "comp_emp_in": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "comp_emp_out": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "inv_income_in": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "inv_income_out": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "remit_in": [
+    8.051,
+    8.556,
+    9.406,
+    10.191,
+    10.885,
+    10.715,
+    12.722,
+    13.2,
+    14.0,
+    null,
+    null
+   ],
+   "remit_out": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "quarterly": {
+   "periods": [
+    "2025-Q1",
+    "2025-Q2",
+    "2025-Q3",
+    "2025-Q4",
+    "2026-Q1"
+   ],
+   "series": {
+    "goods_x": [
+     103.232,
+     116.988,
+     128.521,
+     126.318,
+     122.928
+    ],
+    "goods_m": [
+     94.876,
+     107.203,
+     113.904,
+     117.183,
+     120.494
+    ],
+    "services_x": [
+     7.633,
+     6.835,
+     7.579,
+     8.26,
+     9.101
+    ],
+    "services_m": [
+     9.214,
+     10.113,
+     10.663,
+     10.547,
+     10.775
+    ],
+    "primary_income_in": [
+     1.256,
+     1.32,
+     1.405,
+     1.407,
+     1.294
+    ],
+    "primary_income_out": [
+     6.943,
+     4.702,
+     3.76,
+     4.382,
+     2.525
+    ],
+    "secondary_income_in": [
+     4.794,
+     5.279,
+     4.892,
+     4.801,
+     4.017
+    ],
+    "secondary_income_out": [
+     1.054,
+     0.91,
+     0.911,
+     1.02,
+     0.83
+    ],
+    "current_account": [
+     4.828,
+     7.494,
+     13.159,
+     7.654,
+     2.716
+    ],
+    "fdi_in": [
+     3.95,
+     5.4,
+     5.6,
+     7.04,
+     4.34
+    ],
+    "fdi_out": [
+     0.155,
+     0.175,
+     0.18,
+     0.19,
+     0.16
+    ],
+    "portfolio_in": [
+     -0.992,
+     -0.714,
+     -2.366,
+     -0.828,
+     -1.413
+    ],
+    "portfolio_out": [
+     -0.081,
+     -0.022,
+     0.112,
+     0.022,
+     -0.014
+    ],
+    "loans_net": [
+     -1.518,
+     -2.271,
+     -1.339,
+     -0.235,
+     0.534
+    ],
+    "loans_net_government": [
+     -0.415,
+     -0.38,
+     -0.249,
+     -1.117,
+     -0.538
+    ],
+    "loans_net_other_sectors": [
+     -1.103,
+     -1.891,
+     -1.09,
+     0.882,
+     1.072
+    ],
+    "loans_net_other_sectors_longterm": [
+     -1.401,
+     -1.06,
+     -1.559,
+     -0.268,
+     0.158
+    ],
+    "loans_net_other_sectors_shortterm": [
+     0.298,
+     -0.831,
+     0.469,
+     1.15,
+     0.914
+    ],
+    "currency_deposits_assets": [
+     3.803,
+     10.219,
+     4.267,
+     2.218,
+     2.898
+    ],
+    "currency_deposits_liabilities": [
+     -1.148,
+     1.626,
+     2.076,
+     4.011,
+     0.145
+    ],
+    "other_inv_assets": [
+     5.105,
+     9.308,
+     3.858,
+     2.7,
+     2.567
+    ],
+    "other_inv_liabilities": [
+     -2.666,
+     -0.645,
+     0.737,
+     3.776,
+     0.679
+    ],
+    "errors_omissions": [
+     -1.622,
+     -0.586,
+     -11.28,
+     -12.375,
+     -4.687
+    ],
+    "reserves_change": [
+     -1.681,
+     1.488,
+     1.7,
+     2.355,
+     -1.078
+    ],
+    "portfolio_net": [
+     -0.911,
+     -0.692,
+     -2.478,
+     -0.85,
+     -1.399
+    ],
+    "other_inv_net": [
+     -7.771,
+     -9.953,
+     -3.121,
+     1.076,
+     -1.888
+    ],
+    "fdi_net": [
+     3.795,
+     5.225,
+     5.42,
+     6.85,
+     4.18
+    ]
+   },
+   "source": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,BOP/VNM?startPeriod=2014 (IMF BOP dataset, FREQUENCY=Q; latest quarter available 2026-Q1)"
+  },
+  "services_by_type_nso": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "unit": "bn USD",
+   "source": "https://pxweb.nso.gov.vn/pxweb/vi/Xu%e1%ba%a5t%20nh%e1%ba%adp%20kh%e1%ba%a9u/Xu%e1%ba%a5t%20nh%e1%ba%adp%20kh%e1%ba%a9u/V09.15.px/ (NSO PxWeb V09.15 Xuất khẩu, nhập khẩu dịch vụ; 2025 = Sơ bộ)",
+   "note": "NSO trade-in-services statistics; totals differ from SBV/IMF BOP services (e.g. 2018 exports 18.06 vs BOP 14.79).",
+   "travel_x": [
+    7.35,
+    8.5,
+    8.89,
+    10.08,
+    11.83,
+    3.232,
+    0.149,
+    3.203,
+    9.158,
+    12.23,
+    15.22
+   ],
+   "travel_m": [
+    3.595,
+    4.5,
+    5.04,
+    5.91,
+    6.46,
+    4.61,
+    3.83,
+    6.67,
+    7.825,
+    12.75,
+    15.05
+   ],
+   "transport_x": [
+    2.43,
+    2.448,
+    2.807,
+    4.374,
+    4.469,
+    3.535,
+    3.564,
+    6.35,
+    6.228,
+    6.924,
+    8.4
+   ],
+   "transport_m": [
+    8.05,
+    8.055,
+    7.393,
+    7.49,
+    8.595,
+    9.03,
+    11.705,
+    13.726,
+    12.3,
+    13.894,
+    16.62
+   ],
+   "insurance_x": [
+    0.055,
+    0.056,
+    0.057,
+    0.063,
+    0.084,
+    0.07,
+    0.069,
+    0.078,
+    0.109,
+    0.11,
+    0.12
+   ],
+   "insurance_m": [
+    1.015,
+    0.8,
+    0.67,
+    0.58,
+    0.46,
+    0.918,
+    0.882,
+    0.9,
+    0.845,
+    0.94,
+    1.122
+   ],
+   "financial_x": [
+    0.107,
+    0.115,
+    0.115,
+    0.208,
+    0.22,
+    0.087,
+    0.111,
+    0.114,
+    0.26,
+    0.54,
+    0.63
+   ],
+   "financial_m": [
+    0.219,
+    0.14,
+    0.219,
+    0.191,
+    0.309,
+    0.176,
+    0.109,
+    0.216,
+    0.343,
+    0.549,
+    0.61
+   ],
+   "telecom_postal_x": [
+    0.164,
+    0.163,
+    0.145,
+    0.139,
+    0.236,
+    0.192,
+    0.458,
+    0.453,
+    0.476,
+    0.517,
+    0.534
+   ],
+   "telecom_postal_m": [
+    0.127,
+    0.132,
+    0.136,
+    0.147,
+    0.207,
+    0.25,
+    0.427,
+    0.376,
+    0.38,
+    0.488,
+    0.526
+   ],
+   "government_x": [
+    0.142,
+    0.15,
+    0.162,
+    0.171,
+    0.179,
+    0.177,
+    0.175,
+    0.18,
+    0.206,
+    0.221,
+    0.228
+   ],
+   "government_m": [
+    0.2,
+    0.202,
+    0.206,
+    0.213,
+    0.218,
+    0.192,
+    0.192,
+    0.202,
+    0.224,
+    0.246,
+    0.252
+   ],
+   "other_x": [
+    2.332,
+    2.529,
+    2.702,
+    3.025,
+    3.404,
+    2.55,
+    3.231,
+    4.046,
+    4.95,
+    4.958,
+    5.18
+   ],
+   "other_m": [
+    3.497,
+    3.971,
+    5.02,
+    5.817,
+    5.119,
+    5.131,
+    6.037,
+    6.3,
+    6.5,
+    6.1,
+    6.42
+   ],
+   "total_x": [
+    12.58,
+    13.961,
+    14.878,
+    18.06,
+    20.422,
+    9.843,
+    7.757,
+    14.424,
+    21.387,
+    25.5,
+    30.312
+   ],
+   "total_m": [
+    16.703,
+    17.8,
+    18.684,
+    20.348,
+    21.368,
+    20.307,
+    23.182,
+    28.39,
+    28.417,
+    34.967,
+    40.6
+   ]
+  },
+  "services_9M2026": {
+   "services_x": 26.1,
+   "services_m": 34.31,
+   "travel_x": 13.06,
+   "transport_x": 7.81,
+   "transport_m": 16.4,
+   "travel_m": 10.85,
+   "freight_insurance_on_imports_m": 14.39,
+   "source": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+  },
+  "customs_trade": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    "9M2026"
+   ],
+   "exports": [
+    162.017,
+    176.581,
+    215.119,
+    243.697,
+    264.267,
+    282.629,
+    336.167,
+    371.715,
+    354.721,
+    405.935,
+    474.998,
+    434.3
+   ],
+   "imports": [
+    165.776,
+    174.978,
+    213.215,
+    237.242,
+    253.696,
+    262.791,
+    332.97,
+    359.78,
+    326.607,
+    381.304,
+    454.926,
+    453.72
+   ],
+   "balance": [
+    -3.759,
+    1.602,
+    1.903,
+    6.455,
+    10.571,
+    19.838,
+    3.197,
+    11.935,
+    28.114,
+    24.632,
+    20.071,
+    -19.42
+   ],
+   "unit": "bn USD",
+   "source": "https://pxweb.nso.gov.vn/pxweb/vi/Xu%e1%ba%a5t%20nh%e1%ba%adp%20kh%e1%ba%a9u/Xu%e1%ba%a5t%20nh%e1%ba%adp%20kh%e1%ba%a9u/V09.01.px/ (NSO PxWeb V09.01, customs basis); 9M2026: https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+  },
+  "sbv_nso_v0320": {
+   "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "unit": "bn USD",
+   "source": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.20.px/ (NSO PxWeb V03.20 Cán cân thanh toán quốc tế, compiled by SBV; 2025 = Sơ bộ)",
+   "sign_note": "Financial account here uses SBV presentation: positive = net inflow; reserve assets negative = increase.",
+   "current_account": [
+    5.769,
+    12.475,
+    15.06,
+    -8.15,
+    1.404,
+    27.59,
+    30.385,
+    33.135
+   ],
+   "goods_x": [
+    243.697,
+    264.267,
+    282.629,
+    336.167,
+    371.715,
+    354.721,
+    405.935,
+    475.059
+   ],
+   "goods_m": [
+    227.157,
+    243.295,
+    251.921,
+    320.495,
+    342.315,
+    310.693,
+    362.703,
+    433.166
+   ],
+   "services_x": [
+    14.775,
+    20.422,
+    7.6,
+    5.262,
+    13.526,
+    21.387,
+    25.498,
+    30.307
+   ],
+   "services_m": [
+    18.585,
+    21.367,
+    17.887,
+    20.657,
+    27.429,
+    28.417,
+    35.557,
+    40.537
+   ],
+   "income_in": [
+    1.615,
+    2.237,
+    1.428,
+    0.982,
+    2.321,
+    4.551,
+    5.542,
+    5.388
+   ],
+   "income_out": [
+    17.433,
+    19.032,
+    16.245,
+    19.731,
+    22.049,
+    27.014,
+    21.235,
+    19.787
+   ],
+   "transfers_in": [
+    10.869,
+    11.609,
+    11.427,
+    13.568,
+    12.287,
+    16.112,
+    16.998,
+    19.766
+   ],
+   "transfers_out": [
+    2.012,
+    2.366,
+    1.971,
+    3.246,
+    6.652,
+    3.057,
+    4.093,
+    3.895
+   ],
+   "financial_account": [
+    8.466,
+    18.971,
+    8.485,
+    30.837,
+    9.47,
+    -2.838,
+    -7.909,
+    -3.41
+   ],
+   "fdi_in": [
+    15.5,
+    16.12,
+    15.8,
+    15.66,
+    17.9,
+    18.5,
+    20.17,
+    21.99
+   ],
+   "fdi_out": [
+    -0.598,
+    -0.45,
+    -0.38,
+    -0.377,
+    -2.674,
+    1.55,
+    -0.48,
+    -0.7
+   ],
+   "portfolio_net": [
+    3.021,
+    2.998,
+    -1.256,
+    0.281,
+    1.512,
+    -1.189,
+    -5.713,
+    -4.931
+   ],
+   "currency_deposits_assets": [
+    -10.804,
+    -8.081,
+    -8.447,
+    -0.792,
+    -13.75,
+    -14.171,
+    -12.071,
+    -20.507
+   ],
+   "loans_net": [
+    1.884,
+    5.217,
+    2.36,
+    5.439,
+    6.07,
+    -3.268,
+    -6.131,
+    -5.363
+   ],
+   "other_inv_net": [
+    -9.457,
+    0.303,
+    -5.679,
+    15.273,
+    -7.268,
+    -21.699,
+    -21.886,
+    -19.769
+   ],
+   "errors_omissions": [
+    -8.204,
+    -8.192,
+    -6.913,
+    -8.398,
+    -33.619,
+    -19.144,
+    -31.643,
+    -25.863
+   ],
+   "overall_balance": [
+    6.031,
+    23.254,
+    16.632,
+    14.29,
+    -22.745,
+    5.608,
+    -9.167,
+    3.862
+   ],
+   "reserve_assets": [
+    -6.031,
+    -23.254,
+    -16.632,
+    -14.29,
+    22.745,
+    -5.608,
+    9.167,
+    -3.862
+   ]
+  },
+  "external_debt_service": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "debt_service_total": [
+    6.825,
+    7.72,
+    14.39,
+    18.898,
+    17.249,
+    17.112,
+    20.701,
+    26.222,
+    28.626,
+    33.59
+   ],
+   "principal_longterm": [
+    5.023,
+    5.912,
+    11.611,
+    15.225,
+    13.607,
+    14.389,
+    18.779,
+    23.494,
+    22.971,
+    28.734
+   ],
+   "interest_total": [
+    1.802,
+    1.807,
+    2.78,
+    3.673,
+    3.642,
+    2.723,
+    1.922,
+    2.728,
+    5.655,
+    4.856
+   ],
+   "principal_public_ppg": [
+    1.973,
+    2.681,
+    2.65,
+    2.97,
+    3.188,
+    4.116,
+    3.751,
+    3.665,
+    3.605,
+    4.784
+   ],
+   "interest_public_ppg": [
+    0.86,
+    0.98,
+    1.037,
+    1.164,
+    1.257,
+    0.995,
+    0.756,
+    0.739,
+    1.041,
+    1.067
+   ],
+   "debt_stock": [
+    81.825,
+    90.484,
+    109.893,
+    112.622,
+    122.496,
+    129.479,
+    139.853,
+    146.622,
+    141.845,
+    132.907
+   ],
+   "unit": "bn USD",
+   "sources": {
+    "debt_service_total": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.TDS.DECT.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "principal_longterm": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.AMT.DLXF.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "interest_total": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.INT.DECT.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "principal_public_ppg": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.AMT.DPPG.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "interest_public_ppg": "https://api.worldbank.org/v2/sources/6/country/VNM/series/DT.INT.DPPG.CD/counterpart-area/WLD/time/all?format=json (World Bank International Debt Statistics, updated 2025-12-03)",
+    "debt_stock": "https://api.worldbank.org/v2/country/VNM/indicator/DT.DOD.DECT.CD?format=json"
+   },
+   "note": "IDS 2025+ values are scheduled projections on existing debt and are excluded. TDS = long-term principal + total interest + IMF repurchases/short-term interest.",
+   "mof": {
+    "years": [
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "gross_service_busd": [
+     null,
+     56.33,
+     81.994,
+     97.325,
+     86.48,
+     112.63,
+     131.617,
+     152.054,
+     131.225,
+     138.254,
+     null,
+     null
+    ],
+    "principal_busd": [
+     null,
+     54.759,
+     79.612,
+     93.965,
+     82.956,
+     109.867,
+     129.642,
+     149.196,
+     125.556,
+     133.454,
+     null,
+     null
+    ],
+    "interest_busd": [
+     null,
+     1.571,
+     2.382,
+     3.36,
+     3.524,
+     2.763,
+     1.975,
+     2.858,
+     5.669,
+     4.799,
+     null,
+     null
+    ],
+    "service_pct_exports": [
+     null,
+     3.9,
+     6.1,
+     7.0,
+     5.9,
+     5.7,
+     6.19,
+     6.91,
+     7.68,
+     7.84,
+     null,
+     null
+    ],
+    "service_pct_exports_old_definition": {
+     "2015": {
+      "v": 12.4,
+      "url": "https://www.phs.vn/tin-tuc/nghia-vu-tra-no-nuoc-ngoai-cua-quoc-gia-da-vuot-gioi-han-cho-phep/5204910"
+     },
+     "2016": {
+      "v": 29.7,
+      "url": "https://www.phs.vn/tin-tuc/nghia-vu-tra-no-nuoc-ngoai-cua-quoc-gia-da-vuot-gioi-han-cho-phep/5204910"
+     },
+     "2025": {
+      "v": "khoảng 6–7% (ước, Báo cáo CP trình QH kỳ 10)",
+      "url": "https://vneconomy.vn/no-cong-nam-2025-thap-xa-nguong-tran-nhu-cau-vay-nam-2026-tang-gan-19.htm"
+     }
+    },
+    "government_service_busd": [
+     null,
+     2.111,
+     1.973,
+     2.286,
+     2.556,
+     3.508,
+     3.156,
+     3.412,
+     3.552,
+     4.561,
+     null,
+     null
+    ],
+    "government_principal_busd": [
+     null,
+     1.52,
+     1.336,
+     1.574,
+     1.821,
+     2.786,
+     2.529,
+     2.791,
+     2.729,
+     3.738,
+     null,
+     null
+    ],
+    "government_interest_busd": [
+     null,
+     0.591,
+     0.638,
+     0.712,
+     0.735,
+     0.722,
+     0.627,
+     0.621,
+     0.823,
+     0.823,
+     null,
+     null
+    ],
+    "guaranteed_service_busd": [
+     null,
+     1.601,
+     1.873,
+     2.009,
+     2.075,
+     1.891,
+     1.875,
+     1.571,
+     1.607,
+     1.643,
+     null,
+     null
+    ],
+    "guaranteed_principal_busd": [
+     null,
+     1.259,
+     1.472,
+     1.58,
+     1.604,
+     1.535,
+     1.665,
+     1.275,
+     1.26,
+     1.346,
+     null,
+     null
+    ],
+    "guaranteed_interest_busd": [
+     null,
+     0.342,
+     0.402,
+     0.429,
+     0.471,
+     0.356,
+     0.21,
+     0.296,
+     0.347,
+     0.297,
+     null,
+     null
+    ],
+    "note": "MoF public-debt bulletins, national external debt table 'TỔNG TRẢ NỢ TRONG KỲ' = GROSS repayment incl. rolled-over short-term debt (principal ~93-149 bn/yr): not comparable with WB IDS. Ratio to exports excludes short-term principal (definition change 2021). 2024 preliminary; 2015 and 2025 full-year not found.",
+    "sources": {
+     "ext_debt_service_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14241/document_5_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2020": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "ext_debt_principal_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14241/document_5_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2020": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "ext_debt_interest_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14241/document_5_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2020": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "ext_debt_service_pct_exports": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2020": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "gov_ext_debt_service_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14241/document_5_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2020": "https://static1.vietstock.vn/edocs/14237/document_2_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     },
+     "guaranteed_ext_debt_service_busd": {
+      "2016": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2017": "http://static1.vietstock.vn/edocs/14239/document_4_.pdf",
+      "2018": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2019": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2020": "http://static1.vietstock.vn/edocs/14236/document_1_.pdf",
+      "2021": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2022": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2023": "https://finance.vietstock.vn/downloadedoc/18952",
+      "2024": "https://finance.vietstock.vn/downloadedoc/18952"
+     }
+    }
+   }
+  },
+  "oda_grants": {
+   "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "grants_excl_tc_busd": [
+    0.451,
+    0.398,
+    0.437,
+    0.426,
+    0.348,
+    0.494,
+    0.578,
+    0.482,
+    0.526
+   ],
+   "source": "https://api.worldbank.org/v2/country/VNM/indicator/BX.GRT.EXTA.CD.WD?format=json (OECD-DAC grants excl. technical cooperation, via WDI)"
+  },
+  "unit": "bn USD",
+  "sign_convention": "BPM6 (IMF): fdi_in/portfolio_in/loans_net/other_inv_liabilities = net incurrence of liabilities (+ = inflow); fdi_out/portfolio_out/currency_deposits_assets/other_inv_assets = net acquisition of financial assets by residents (+ = outflow); *_net = liabilities - assets (+ = net inflow); reserves_change = net acquisition of reserve assets (+ = reserves rose); errors_omissions as published.",
+  "sources": {
+   "goods_x,goods_m,services_x,services_m,primary_income_*,secondary_income_*,current_account,fdi_*,portfolio_*,loans_*,currency_deposits_*,other_inv_*,errors_omissions,reserves_change": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,BOP/VNM?startPeriod=2014 (IMF BOP dataset v21, BPM6, FREQUENCY=A, updated 2026-10-01)",
+   "travel_x,travel_m,transport_x,transport_m": "https://pxweb.nso.gov.vn/pxweb/vi/Xu%e1%ba%a5t%20nh%e1%ba%adp%20kh%e1%ba%a9u/Xu%e1%ba%a5t%20nh%e1%ba%adp%20kh%e1%ba%a9u/V09.15.px/ (NSO services trade statistics, not SBV BOP)",
+   "ip_m,comp_emp_*,inv_income_*": "not published: Vietnam reports primary income only as a total in BOP (IMF BOP has no IN1 breakdown; WB BM.GSR.ROYL.CD empty for VNM)",
+   "remit_in,remit_out": "IMF BOP has secondary income totals only; see remittances block",
+   "remit_in": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM (World Bank/KNOMAD remittance inflows, current vintage; 2024-2025 actuals not available -> null; see remittances block for SBV and HCMC figures)",
+   "remit_out": "not published as a separate series (IMF BOP gives secondary_income_out total only)"
+  }
+ },
+ "tourism": {
+  "years": [
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   "9M2026"
+  ],
+  "intl_arrivals_thousand": [
+   7943.7,
+   10012.7,
+   12922.2,
+   15497.8,
+   18008.6,
+   3837.3,
+   157.3,
+   3661.2,
+   12602.4,
+   17583.9,
+   21168.3,
+   17700.0
+  ],
+  "arrivals_by_air_thousand": [
+   6271.3,
+   8260.6,
+   10910.3,
+   12485.0,
+   14377.5,
+   3083.2,
+   111.1,
+   3277.2,
+   10950.5,
+   14844.1,
+   17840.1,
+   14700.0
+  ],
+  "arrivals_by_road_thousand": [
+   1502.6,
+   1467.3,
+   1753.0,
+   2797.5,
+   3367.0,
+   609.4,
+   45.6,
+   380.9,
+   1525.8,
+   2491.7,
+   3054.2,
+   2700.0
+  ],
+  "arrivals_by_sea_thousand": [
+   169.8,
+   284.8,
+   258.9,
+   215.3,
+   264.1,
+   144.7,
+   0.6,
+   3.1,
+   126.1,
+   248.1,
+   274.0,
+   243.4
+  ],
+  "travel_receipts_busd": [
+   7.35,
+   8.5,
+   8.89,
+   10.08,
+   11.83,
+   3.232,
+   0.149,
+   3.203,
+   9.158,
+   12.23,
+   15.22,
+   13.06
+  ],
+  "travel_payments_busd": [
+   3.595,
+   4.5,
+   5.04,
+   5.91,
+   6.46,
+   4.61,
+   3.83,
+   6.67,
+   7.825,
+   12.75,
+   15.05,
+   10.85
+  ],
+  "vietnamese_outbound_departures_thousand": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   4300.0
+  ],
+  "outbound_tourists_served_by_travel_agencies_thousand": [
+   493.0,
+   588.8,
+   698.3,
+   777.9,
+   844.8,
+   88.0,
+   2.3,
+   199.2,
+   489.4,
+   862.0,
+   927.5,
+   null
+  ],
+  "accommodation_revenue_bn_vnd": [
+   44711.5,
+   48524.6,
+   54383.3,
+   59202.2,
+   67019.3,
+   38604.6,
+   23690.4,
+   57696.7,
+   76921.5,
+   90344.3,
+   103091.4,
+   null
+  ],
+  "travel_agency_revenue_bn_vnd": [
+   30444.1,
+   32530.3,
+   36111.8,
+   40371.2,
+   44669.9,
+   16492.0,
+   8998.8,
+   43505.5,
+   64035.8,
+   76990.3,
+   93857.3,
+   null
+  ],
+  "total_tourism_revenue_vnat_trn_vnd": [
+   null,
+   null,
+   null,
+   620.0,
+   755.0,
+   312.2,
+   180.0,
+   495.0,
+   678.0,
+   840.0,
+   1000.0,
+   null
+  ],
+  "basis": [
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "official",
+   "preliminary",
+   "9M estimate"
+  ],
+  "sources": {
+   "intl_arrivals_thousand, arrivals_by_*": "https://pxweb.nso.gov.vn/pxweb/vi/Du%20l%e1%bb%8bch/Du%20l%e1%bb%8bch/V10.04.px/ (NSO PxWeb V10.04); 9M2026: https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+   "travel_receipts_busd, travel_payments_busd": "https://pxweb.nso.gov.vn/pxweb/vi/Xu%e1%ba%a5t%20nh%e1%ba%adp%20kh%e1%ba%a9u/Xu%e1%ba%a5t%20nh%e1%ba%adp%20kh%e1%ba%a9u/V09.15.px/ (NSO services trade, Dịch vụ du lịch); identical to WB ST.INT.RCPT.CD/ST.INT.XPND.CD 2015-2020 except 2020 payments; 9M2026: https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+   "vietnamese_outbound_departures_thousand": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/ (lượt người Việt Nam xuất cảnh, 9M2026 only)",
+   "outbound_tourists_served_by_travel_agencies_thousand, accommodation_revenue, travel_agency_revenue": "https://pxweb.nso.gov.vn/pxweb/vi/Du%20l%e1%bb%8bch/Du%20l%e1%bb%8bch/V10.01.px/ (NSO PxWeb V10.01)",
+   "total_tourism_revenue_vnat_trn_vnd": {
+    "2018": "https://vneconomy.vn/tong-thu-tu-khach-du-lich-nam-2018-dat-hon-620000-ty-dong.htm ('hơn 620.000 tỷ đồng')",
+    "2019": "https://images.vietnamtourism.gov.vn/vn/dmdocuments/2021/bao_cao_thuong_nien_2019_final.pdf (VNAT Annual Report 2019: 755 nghìn tỷ, of which international 421, domestic 334)",
+    "2020": "https://tuoitre.vn/saigontimes/tong-thu-tu-khach-du-lich-cua-viet-nam-giam-575-000-ti-dong-sau-hai-nam-dich-106410249.htm",
+    "2021": "https://tuoitre.vn/saigontimes/tong-thu-tu-khach-du-lich-cua-viet-nam-giam-575-000-ti-dong-sau-hai-nam-dich-106410249.htm ('khoảng 180.000 tỉ')",
+    "2022,2023,2024": "https://thongke.tourism.vn/index.php/news/items/298 (VNAT statistics portal)",
+    "2025": "https://nhandan.vn/nam-2025-danh-dau-su-tang-truong-vuot-bac-cua-du-lich-viet-nam-post933648.html ('hơn 1 triệu tỷ đồng' — lower bound, preliminary)"
+   }
+  },
+  "notes": [
+   "VNAT total tourism revenue (tổng thu từ khách du lịch) includes domestic tourists; not comparable with BOP travel receipts.",
+   "2015-2017 VNAT totals not verified from an official source -> null."
+  ]
+ },
+ "remittances": {
+  "years": [
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "national_sbv_busd": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   12.5,
+   null,
+   16.0,
+   16.0,
+   null,
+   null
+  ],
+  "national_wb_knomad_busd": [
+   8.051,
+   8.556,
+   9.406,
+   10.191,
+   10.885,
+   10.715,
+   12.722,
+   13.2,
+   14.0,
+   null,
+   null,
+   null
+  ],
+  "national_wb_projection_busd": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   14.5,
+   15.0,
+   null
+  ],
+  "national_wb_older_vintage_press": {
+   "2015": {
+    "v": 12.25,
+    "url": "https://www.sggp.org.vn/viet-nam-nhan-1225-ty-usd-kieu-hoi-trong-nam-2015-post217503.html"
+   },
+   "2017": {
+    "v": 13.8,
+    "url": "https://www.voatiengviet.com/a/ngan-hang-the-gioi-tinh-khong-kieu-hoi-viet-nam/5079584.html"
+   },
+   "2018": {
+    "v": 15.9,
+    "url": "https://www.voatiengviet.com/a/ngan-hang-the-gioi-tinh-khong-kieu-hoi-viet-nam/5079584.html"
+   },
+   "2019": {
+    "v": 16.7,
+    "url": "https://vietnamplus.vn/nam-2019-luong-kieu-hoi-ve-viet-nam-uoc-dat-167-ty-usd/615187.vnp"
+   },
+   "2021": {
+    "v": 18.1,
+    "url": "https://vneconomy.vn/nam-2021-kieu-hoi-ve-viet-nam-uoc-tinh-khoang-12-5-ty-usd.htm"
+   },
+   "2022": {
+    "v": 19.0,
+    "url": "https://vnexpress.net/hon-190-ty-usd-kieu-hoi-ve-viet-nam-trong-30-nam-4694419.html"
+   }
+  },
+  "hcmc_busd": [
+   5.5,
+   5.0,
+   5.2,
+   5.0,
+   5.3,
+   6.1,
+   6.6,
+   6.603,
+   9.46,
+   9.547,
+   10.34,
+   null
+  ],
+  "partial_2026": {
+   "remit_hcmc_q1_2026_busd": {
+    "v": 2.004,
+    "url": "https://nhipsongkinhdoanh.vn/quy-i-2026--kieu-hoi-ve-tp--ho-chi-minh-dat-hon-2-004-ty-usd-27808.htm"
+   },
+   "remit_hcmc_h1_2026_busd": {
+    "v": 4.037,
+    "yoy_pct": -22.8,
+    "q2_2026": 2.032,
+    "url": "https://tphcm.chinhphu.vn/kieu-hoi-ve-tphcm-dat-hon-4-ty-usd-trong-nua-dau-nam-2026-101260722183446092.htm"
+   },
+   "remit_hcmc_2026_forecast_busd": {
+    "v": "8,6–8,9 (NHNN KV2 forecast)",
+    "url": "https://tphcm.chinhphu.vn/kieu-hoi-ve-tphcm-dat-hon-4-ty-usd-trong-nua-dau-nam-2026-101260722183446092.htm"
+   },
+   "remit_hcmc_9m_2026_busd": null,
+   "workers_sent_8m_2026": {
+    "v": 90319,
+    "plan_2026": 112000,
+    "pct_plan": 80.64,
+    "yoy_pct": 5.29,
+    "aug_2026": 10901,
+    "url": "https://nhandan.vn/tam-thang-hon-90000-lao-dong-di-lam-viec-o-nuoc-ngoai-theo-hop-dong-post988075.html"
+   },
+   "ext_debt_h1_2025_mof": {
+    "total_service_busd": 82.247,
+    "principal_busd": 80.461,
+    "interest_busd": 1.786,
+    "gov_ext_service_busd": 1.502,
+    "guaranteed_ext_service_busd": 0.716,
+    "url": "https://finance.vietstock.vn/downloadedoc/18952"
+   },
+   "remit_hcmc_h1_2025_busd": {
+    "v": 5.23,
+    "url": "https://tienphong.vn/thay-gi-tu-dong-kieu-hoi-cao-ky-luc-chay-ve-viet-nam-post1774379.tpo"
+   },
+   "remit_hcmc_9m_2025_busd": {
+    "v": 7.969,
+    "url": "https://thitruongtaichinhtiente.vn/thay-gi-tu-con-so-gan-8-ty-usd-kieu-hoi-ve-tp-ho-chi-minh-trong-9-thang-dau-nam-73298.html"
+   }
+  },
+  "unit": "bn USD",
+  "sources": {
+   "remit_sbv_busd": {
+    "2021": "https://vneconomy.vn/nam-2021-kieu-hoi-ve-viet-nam-uoc-tinh-khoang-12-5-ty-usd.htm",
+    "2023": "https://vnexpress.net/kieu-hoi-ve-viet-nam-dat-ky-luc-16-ty-usd-4706903.html",
+    "2024": "https://tienphong.vn/thay-gi-tu-dong-kieu-hoi-cao-ky-luc-chay-ve-viet-nam-post1774379.tpo"
+   },
+   "remit_wb_busd": {
+    "2015": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM",
+    "2016": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM",
+    "2017": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM",
+    "2018": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM",
+    "2019": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM",
+    "2020": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM",
+    "2021": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM",
+    "2022": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM",
+    "2023": "https://data360api.worldbank.org/data360/data?DATABASE_ID=WB_KNOMAD&INDICATOR=WB_KNOMAD_MRI&REF_AREA=VNM"
+   },
+   "remit_wb_projection_busd": {
+    "2024": "https://documents1.worldbank.org/curated/en/099714008132436612/pdf/IDU1a9cf73b51fcad1425a1a0dd1cc8f2f3331ce.pdf",
+    "2025": "https://documents1.worldbank.org/curated/en/099714008132436612/pdf/IDU1a9cf73b51fcad1425a1a0dd1cc8f2f3331ce.pdf"
+   },
+   "remit_hcmc_busd": {
+    "2015": "https://vietstock.vn/2015/12/nam-2015-kieu-hoi-ve-tphcm-uoc-dat-55-ty-usd-758-450118.htm",
+    "2016": "http://cafef.vn/tai-sao-kieu-hoi-nam-2016-khong-nhu-du-uoc-20161208162421819.chn",
+    "2017": "https://tuoitre.vn/5-2-ti-usd-kieu-hoi-ve-tp-hcm-trong-nam-2017-20171222194404624.htm",
+    "2018": "https://vneconomy.vn/nam-2018-5-ty-usd-kieu-hoi-do-ve-tphcm.htm",
+    "2019": "https://vov.vn/kinh-te/53-ty-usd-kieu-hoi-ve-tphcm-nam-2019-998239.vov",
+    "2020": "https://tuoitre.vn/kieu-hoi-tphcm-bat-ngo-lap-ky-luc-ca-nam-2020-dat-61-ti-usd-giap-tet-tang-manh-20210210084031875.htm",
+    "2021": "https://baodautu.vn/kieu-hoi-ve-tphcm-dat-khoang-66-ty-usd-trong-nam-2021-d159978.html",
+    "2022": "https://vnexpress.net/kieu-hoi-ve-tp-hcm-dat-hon-6-6-ty-usd-4563095.html",
+    "2023": "https://www.sggp.org.vn/nan-dong-kieu-hoi-vao-ha-tang-bai-3-kieu-hoi-chay-ve-dau-post735715.html",
+    "2024": "https://ttbc-hcm.gov.vn/luong-kieu-hoi-ve-tphcm-nam-2024-dat-hon-95-ty-usd-48262.html",
+    "2025": "https://tphcm.chinhphu.vn/kieu-hoi-ve-tphcm-dat-hon-1034-ty-usd-nam-2025-10126012222501171.htm"
+   }
+  },
+  "notes": [
+   "remit_sbv: only years with an explicit SBV (NHNN) nationwide statement. 2021=12.5 (SBV official, vs WB 18.1, vneconomy 29/12/2021); 2023≈16 (+32% y/y, SBV Vụ Quản lý ngoại hối, Đào Xuân Tuấn); 2024≈16 (reported as SBV, tienphong; other outlets e.g. vtv/baodautu report 16 unattributed). 2015–2020, 2022, 2025 null: SBV published no clear nationwide total (2016: SBV-HCMC deputy director estimated ~9 bn nationwide as of 11/2016 — cafef; vtcnews 9/2019 cites 2016=11.88 unattributed). 2022 implied ~12.1 from the 2023 +32% statement but not stated, so null. 2025 nationwide not published; press only says HCMC >60% of national total.",
+   "remit_wb: current World Bank/KNOMAD vintage (Data360 WB_KNOMAD_MRI, 'Remittance inflows (US$ million)'), fetched 2026-10-05; values for 2015–2021 are heavily revised DOWN versus earlier WB press estimates (e.g. 2019 16.7, 2021 18.1, 2022 19.0 in older vintage — see remit_wb_older_vintage_press). WB notes Vietnam has BPM5->BPM6 data gaps and uses estimates. WDI BX.TRF.PWKR.CD.DT is empty for VNM 2005+ (confirmed). 2024/2025 only WB projections from Migration & Development Brief 40 (June 2024): 14.5 and 15.0; MDB 39 (Dec 2023) projected 2024 at 14.6. No WB actual for 2024/2025 found (KNOMAD briefs discontinued).",
+   "remit_hcmc: SBV HCMC branch (from 7/2025: SBV Region 2 branch, covering the merged HCMC incl. former Bình Dương & Bà Rịa–Vũng Tàu) year-end figures as published (often 'ước' estimates in Dec/Jan). 2016=~5.0 is a 12/2016 projection (cafef); 2017=5.2 article says +4.5% vs 2016. 2021=6.6 (estimate, 12/2021), but the 1/2023 report says 2022=6.603 was -6.7% y/y, implying a revised 2021 ≈7.08 (not stated directly, not used). 2024 = 9.547 (press also rounds to 9.55/9.6). 2025=10.34 (+8.3%); earlier 12/2025 estimate was 10.5."
+  ]
+ },
+ "labour_export": {
+  "years": [
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "workers_sent": [
+   115980,
+   126289,
+   134751,
+   142860,
+   152530,
+   78641,
+   45058,
+   142779,
+   159986,
+   158588,
+   144345,
+   null
+  ],
+  "remit_est_busd": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "remit_statements": [
+   {
+    "year": 2018,
+    "text": "bình quân mỗi năm lao động VN làm việc ở nước ngoài theo hợp đồng gửi về khoảng 3 tỷ USD (Bộ trưởng LĐTBXH Đào Ngọc Dung, QH 20/6/2018)",
+    "url": "https://baodautu.vn/moi-nam-lao-dong-viet-nam-tai-nuoc-ngoai-gui-ve-nuoc-khoang-3-ty-usd-d83574.html"
+   },
+   {
+    "year": 2023,
+    "text": "khoảng 3,5–4 tỷ USD/năm (Thứ trưởng LĐTBXH Nguyễn Bá Hoan, hội thảo 27/12/2023)",
+    "url": "https://dantri.com.vn/lao-dong-viec-lam/nguoi-viet-di-lam-viec-o-nuoc-ngoai-gui-ve-4-ty-usd-kieu-hoi-moi-nam-20231227175509375.htm"
+   },
+   {
+    "year": 2024,
+    "text": "hơn 700.000 lao động... gửi về khoảng 3,5–4 tỷ USD mỗi năm (Bộ LĐTBXH, hội nghị 27/12/2024)",
+    "url": "https://znews.vn/hon-700000-nguoi-viet-dang-lam-viec-o-nuoc-ngoai-gui-ve-4-ty-usdnam-post1520599.html"
+   },
+   {
+    "year": 2025,
+    "text": "người lao động gửi về nước khoảng 6,5–7 tỷ USD mỗi năm (Q. Cục trưởng Cục QLLĐNN, Bộ Nội vụ Vũ Trường Giang, 30/10/2025)",
+    "url": "https://www.vietnamplus.vn/hang-nam-lao-dong-di-lam-viec-o-nuoc-ngoai-gui-ve-nuoc-khoang-65-7-ty-usd-post1073744.vnp"
+   },
+   {
+    "year": 2026,
+    "text": "nguồn kiều hối từ lực lượng này ước đạt 6–7 tỉ USD mỗi năm (Bộ Nội vụ; ~900.000 lao động cuối 2025; báo 8/6/2026)",
+    "url": "https://tuoitre.vn/nld/gan-900000-lao-dong-viet-dang-lam-viec-o-nuoc-nao-196260608211624841.htm"
+   }
+  ],
+  "workers_stock_statements": {
+   "2018": {
+    "n": 500000,
+    "text": "khoảng 500.000 lao động VN làm việc ở nước ngoài (Bộ trưởng Đào Ngọc Dung, chất vấn QH 6/2018)",
+    "url": "https://baodautu.vn/moi-nam-lao-dong-viet-nam-tai-nuoc-ngoai-gui-ve-nuoc-khoang-3-ty-usd-d83574.html"
+   },
+   "2023": {
+    "n": 650000,
+    "text": "khoảng 650.000 lao động VN đang làm việc tại 40 quốc gia/vùng lãnh thổ (DOLAB, 10/2023)",
+    "url": "https://vov.vn/xa-hoi/650000-lao-dong-viet-nam-dang-lam-viec-o-nuoc-ngoai-post1055715.vov"
+   },
+   "2024": {
+    "n": 700000,
+    "text": "hơn 700.000 lao động VN đang làm việc ở nước ngoài theo hợp đồng (Bộ LĐTBXH, 27/12/2024)",
+    "url": "https://znews.vn/hon-700000-nguoi-viet-dang-lam-viec-o-nuoc-ngoai-gui-ve-4-ty-usdnam-post1520599.html"
+   },
+   "2025": {
+    "n": 900000,
+    "text": "gần 900.000 lao động VN đang làm việc ở nước ngoài tính đến cuối 2025 (Bộ Nội vụ; báo 6/2026). Oct-2025 statement: ~860.000 (vneconomy 31/10/2025)",
+    "url": "https://tuoitre.vn/nld/gan-900000-lao-dong-viet-dang-lam-viec-o-nuoc-nao-196260608211624841.htm"
+   }
+  },
+  "partial_2026": {
+   "workers_sent_8M2026": 90319,
+   "plan_2026": 112000
+  },
+  "sources": {
+   "workers_sent": {
+    "2015": "https://www.vietnamplus.vn/xuat-khau-lao-dong-vuot-muc-100000-nguoi-trong-6-nam-lien-tiep/616366.vnp",
+    "2016": "https://www.vietnamplus.vn/xuat-khau-lao-dong-vuot-muc-100000-nguoi-trong-6-nam-lien-tiep/616366.vnp",
+    "2017": "https://www.vietnamplus.vn/xuat-khau-lao-dong-vuot-muc-100000-nguoi-trong-6-nam-lien-tiep/616366.vnp",
+    "2018": "https://www.vietnamplus.vn/xuat-khau-lao-dong-vuot-muc-100000-nguoi-trong-6-nam-lien-tiep/616366.vnp",
+    "2019": "https://vi.wikipedia.org/wiki/Xu%E1%BA%A5t_kh%E1%BA%A9u_lao_%C4%91%E1%BB%99ng_Vi%E1%BB%87t_Nam",
+    "2020": "https://vneconomy.vn/lao-dong-di-lam-viec-o-nuoc-ngoai-giam-manh-trong-nam-2021.htm",
+    "2021": "https://vneconomy.vn/lao-dong-di-lam-viec-o-nuoc-ngoai-giam-manh-trong-nam-2021.htm",
+    "2022": "https://baochinhphu.vn/xuat-khau-lao-dong-phuc-hoi-manh-me-dua-hon-142000-nguoi-di-lam-viec-102230106165036477.htm",
+    "2023": "https://nhandan.vn/nam-2023-gan-160-nghin-lao-dong-viet-nam-di-lam-viec-o-nuoc-ngoai-post791359.html",
+    "2024": "https://nhandan.vn/nam-2024-hon-158-nghin-lao-dong-di-lam-viec-o-nuoc-ngoai-post857345.html",
+    "2025": "https://dantri.com.vn/lao-dong-viec-lam/hon-144000-lao-dong-ra-nuoc-ngoai-huong-toi-thi-truong-thu-nhap-cao-20251226225850596.htm"
+   }
+  },
+  "notes": [
+   "remit_est_busd left null: DOLAB/MOLISA/MoHA only state ranges (3-3.5 bn in 2018, 3.5-4 bn in 2023-24, 6.5-7 bn in Oct 2025), see remit_statements.",
+   "workers_sent: DOLAB (Cục QLLĐNN, MOLISA; from 3/2025 Bộ Nội vụ). 2015–2018 from vietnamplus 2/1/2020 table. 2019: 152,530 final (vi.wikipedia; VOV 10/2023 says 'gần 153.000'); the 2/1/2020 preliminary figure was 147,387. 2020=78,641; 2021=45,058; 2022=142,779; 2023=159,986; 2024=158,588; 2025=144,345 (111% of 130k plan). 2026 plan 112,000; 8M/2026 = 90,319.",
+   "workers_stock: stated approximations only (not series). vietnamplus 30/10/2025 also mentions ~636,000 workers sent in 2021–2025 (cumulative flow vs 500k plan), not a stock.",
+   "worker_remit_statements: kept verbatim ranges; officially quoted figures jumped from 3.5–4 bn (MOLISA, 12/2023 and 12/2024) to 6.5–7 bn (MoHA, 10/2025)."
+  ]
+ },
+ "budget": {
+  "years": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "basis": [
+   "final",
+   "final",
+   "final",
+   "final",
+   "final",
+   "final",
+   "final",
+   "estimate",
+   "plan"
+  ],
+  "unit": "bn VND",
+  "revenue": {
+   "total": [
+    1431662,
+    1553612,
+    1510579,
+    1591411,
+    1820310,
+    1770776,
+    2057544,
+    2681500,
+    2529467
+   ],
+   "domestic": [
+    1155293,
+    1277988,
+    1293728,
+    1313281,
+    1447915,
+    1483781,
+    1723643,
+    2308400,
+    2199967
+   ],
+   "crude_oil": [
+    66048,
+    56251,
+    34598,
+    44638,
+    78137,
+    61971,
+    58646,
+    48300,
+    43000
+   ],
+   "import_export": [
+    202540,
+    214239,
+    177444,
+    216307,
+    285898,
+    219651,
+    272006,
+    318800,
+    278000
+   ],
+   "grants": [
+    7780,
+    5133,
+    4808,
+    17185,
+    8360,
+    5373,
+    3249,
+    5900,
+    8500
+   ],
+   "vat": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "cit": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "pit": [
+    94364,
+    109406,
+    115150,
+    127661,
+    162790,
+    157034,
+    186350,
+    235100,
+    237037
+   ],
+   "special_consumption": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "env_protection": [
+    47050,
+    63075,
+    60631,
+    58592,
+    43067,
+    37267,
+    40333,
+    42500,
+    43846
+   ],
+   "land_use_fees": [
+    147815,
+    153738,
+    172987,
+    185117,
+    208458,
+    153769,
+    232927,
+    498600,
+    474165
+   ],
+   "lottery": [
+    29440,
+    33908,
+    36926,
+    32612,
+    40596,
+    45844,
+    49990,
+    57200,
+    57716
+   ],
+   "fees_charges": [
+    69940,
+    81201,
+    69932,
+    73036,
+    88740,
+    79618,
+    95870,
+    110300,
+    110135
+   ]
+  },
+  "expenditure": {
+   "total": [
+    1435435,
+    1526893,
+    1709524,
+    1708088,
+    1750790,
+    1936912,
+    2148477,
+    3312600,
+    3159106
+   ],
+   "development_investment": [
+    393304,
+    421845,
+    576432,
+    540046,
+    615640,
+    723839,
+    720862,
+    1039100,
+    1120227
+   ],
+   "recurrent": [
+    931859,
+    994582,
+    1013449,
+    1061316,
+    1034250,
+    1117207,
+    1320495,
+    1683300,
+    1808996
+   ],
+   "interest": [
+    106584,
+    107065,
+    106466,
+    101778,
+    96084,
+    89323,
+    102571,
+    108100,
+    121131
+   ],
+   "aid": [
+    1460,
+    1358,
+    1488,
+    1401,
+    1264,
+    1741,
+    1739,
+    null,
+    6300
+   ],
+   "reserve_fund": [
+    298,
+    341,
+    10123,
+    428,
+    1562,
+    3590,
+    1453,
+    null,
+    100
+   ]
+  },
+  "principal_repayment": [
+   137157,
+   188214,
+   222312,
+   241874,
+   195093,
+   219061,
+   288892,
+   null,
+   379984
+  ],
+  "deficit": [
+   153110,
+   161491,
+   216406,
+   214053,
+   293313,
+   291564,
+   323308,
+   429000,
+   605800
+  ],
+  "deficit_pct_gdp": [
+   2.8,
+   2.67,
+   3.44,
+   2.52,
+   3.07,
+   2.83,
+   2.8,
+   3.3,
+   4.2
+  ],
+  "total_borrowing": [
+   284806,
+   345311,
+   436060,
+   455927,
+   488406,
+   482625,
+   611200,
+   null,
+   985784
+  ],
+  "extra": {
+   "revenue_land_house_total": [
+    180779,
+    193337,
+    212970,
+    228275,
+    255386,
+    202468,
+    293931,
+    null,
+    550778
+   ],
+   "revenue_soe_sector": [
+    153323,
+    165055,
+    148183,
+    163896,
+    174448,
+    179278,
+    180215,
+    null,
+    194417
+   ],
+   "revenue_fdi_sector": [
+    190309,
+    212199,
+    209090,
+    217259,
+    243447,
+    238795,
+    260871,
+    null,
+    321418
+   ],
+   "revenue_non_state_sector": [
+    209624,
+    238228,
+    247134,
+    289878,
+    307613,
+    335317,
+    391948,
+    null,
+    503754
+   ],
+   "revenue_import_export_gross": [
+    314324,
+    347282,
+    314463,
+    377105,
+    436627,
+    368593,
+    427433,
+    469500,
+    451000
+   ],
+   "revenue_vat_on_imports": [
+    227006,
+    248634,
+    235825,
+    287118,
+    322336,
+    281220,
+    329857,
+    null,
+    351773
+   ],
+   "revenue_sct_on_imports": [
+    22353,
+    33795,
+    23627,
+    28845,
+    38720,
+    32953,
+    36161,
+    null,
+    37352
+   ],
+   "vat_refunds": [
+    -111783,
+    -133043,
+    -137019,
+    -160798,
+    -150729,
+    -148942,
+    -155427,
+    -150700,
+    -173000
+   ],
+   "expenditure_national_reserves": [
+    1932,
+    1702,
+    null,
+    null,
+    1990,
+    1212,
+    1357,
+    null,
+    1950
+   ],
+   "expenditure_contingency_plan_only": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    100402
+   ],
+   "carryover_revenue_from_prior_year": [
+    326379,
+    434357,
+    592649,
+    643406,
+    776351,
+    1144686,
+    1239242,
+    null,
+    null
+   ],
+   "total_revenue_resources_incl_carryover": [
+    1880029,
+    2139639,
+    2279735,
+    2387906,
+    2713787,
+    3023547,
+    3402379,
+    null,
+    null
+   ],
+   "carryover_expenditure_to_next_year": [
+    434357,
+    592649,
+    643406,
+    776351,
+    1146676,
+    1239242,
+    1439178,
+    null,
+    null
+   ]
+  },
+  "nso_yearbook_breakdown": {
+   "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "basis": [
+    "final (yearbook)",
+    "final (yearbook)",
+    "final (yearbook)",
+    "final (yearbook)",
+    "final (yearbook)",
+    "final (yearbook)",
+    "final (yearbook)",
+    "estimate (Ước tính 2025)"
+   ],
+   "unit": "bn VND",
+   "revenue": {
+    "total": [
+     1431662.0,
+     1553611.0,
+     1510579.0,
+     1591410.69,
+     1820310.0,
+     1770776.0,
+     2057544.0,
+     2681469.0
+    ],
+    "domestic_excl_oil": [
+     1155293.0,
+     1277988.0,
+     1293729.0,
+     1313281.0,
+     1447915.0,
+     1483781.0,
+     1723643.0,
+     2308437.0
+    ],
+    "from_soes": [
+     153324.0,
+     165055.0,
+     148183.0,
+     163896.17,
+     174448.0,
+     179278.0,
+     180215.0,
+     192061.0
+    ],
+    "from_fdi_enterprises": [
+     190309.0,
+     212199.0,
+     209090.0,
+     217259.02,
+     243447.0,
+     238795.0,
+     260871.0,
+     323862.0
+    ],
+    "from_private_sector": [
+     209624.0,
+     238228.0,
+     247134.0,
+     289878.28,
+     307613.0,
+     335317.0,
+     391948.0,
+     502615.0
+    ],
+    "pit": [
+     94364.0,
+     109406.0,
+     115150.0,
+     127660.56,
+     162790.0,
+     157034.0,
+     186350.0,
+     235080.0
+    ],
+    "env_protection_tax": [
+     47050.0,
+     63075.0,
+     60631.0,
+     58592.11,
+     43067.0,
+     37267.0,
+     40333.0,
+     42486.0
+    ],
+    "fees_charges": [
+     69940.0,
+     81201.0,
+     69932.0,
+     73036.04,
+     88740.0,
+     79618.0,
+     95870.0,
+     110271.0
+    ],
+    "of_which_registration_fee": [
+     32409.0,
+     40190.0,
+     34823.0,
+     38165.85,
+     47654.0,
+     34646.0,
+     41875.0,
+     51559.0
+    ],
+    "land_house_revenues": [
+     180779.0,
+     193337.0,
+     212970.0,
+     228275.35,
+     255386.0,
+     202468.0,
+     293931.0,
+     579943.0
+    ],
+    "other_domestic": [
+     209903.0,
+     215488.0,
+     230639.0,
+     154683.46,
+     172424.0,
+     254004.0,
+     274125.0,
+     322119.0
+    ],
+    "crude_oil": [
+     66049.0,
+     56251.0,
+     34598.0,
+     44637.57,
+     78137.0,
+     61971.0,
+     58646.0,
+     48304.0
+    ],
+    "import_export_balance": [
+     202540.0,
+     214239.0,
+     177444.0,
+     216307.13,
+     285898.0,
+     219651.0,
+     272006.0,
+     318783.0
+    ],
+    "import_export_gross": [
+     314323.0,
+     347282.0,
+     314463.0,
+     377105.37,
+     436627.0,
+     368593.0,
+     427433.0,
+     469499.0
+    ],
+    "vat_refunds": [
+     -111783.0,
+     -133043.0,
+     -137019.0,
+     -160798.24,
+     -150729.0,
+     -148942.0,
+     -155427.0,
+     -150716.0
+    ],
+    "grants": [
+     7780.0,
+     5133.0,
+     4808.0,
+     17184.98,
+     8360.0,
+     5373.0,
+     3249.0,
+     5945.0
+    ]
+   },
+   "expenditure": {
+    "total_excl_principal": [
+     1435435.0,
+     1526893.0,
+     1709524.0,
+     1708088.0,
+     1750790.0,
+     1936912.0,
+     2148477.0,
+     3312560.0
+    ],
+    "development_investment": [
+     393304.0,
+     421845.0,
+     576432.0,
+     540046.06,
+     615640.0,
+     723839.0,
+     720862.0,
+     1039053.0
+    ],
+    "socio_economic_recurrent_incl_interest": [
+     931859.0,
+     994582.0,
+     1013449.0,
+     1061316.48,
+     1034250.0,
+     1117207.0,
+     1320495.0,
+     1683253.0
+    ],
+    "education_training": [
+     220436.0,
+     237767.0,
+     241927.0,
+     237338.8,
+     247939.0,
+     275673.0,
+     339930.0,
+     409062.0
+    ],
+    "science_technology": [
+     11111.0,
+     12426.0,
+     11886.0,
+     10294.5,
+     10513.0,
+     9902.0,
+     9671.0,
+     16972.0
+    ],
+    "reserve_fund": [
+     298.0,
+     341.0,
+     10123.0,
+     428.09,
+     1562.0,
+     3590.0,
+     1453.0,
+     100.0
+    ]
+   },
+   "sources": {
+    "revenue": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.13-14.px/ (NSO PxWeb V03.13-14 Thu ngân sách Nhà nước; adjusted per 2015 Budget Law, incl. lottery, excl. carried-over revenue)",
+    "expenditure": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.16.px/ (NSO PxWeb V03.16 Chi ngân sách Nhà nước; incl. government-bond-financed spending, excl. principal repayment)"
+   }
+  },
+  "growth_9M2026": {
+   "revenue_9M_bn": 2187300.0,
+   "revenue_9M_pct_of_plan": 86.5,
+   "revenue_yoy_pct": 12.1,
+   "domestic_revenue_9M_bn": 1880300.0,
+   "expenditure_9M_bn": 1873700.0,
+   "expenditure_9M_pct_of_plan": 59.3,
+   "expenditure_yoy_pct": 14.5,
+   "source": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+  },
+  "sources": {
+   "revenue.total": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "revenue.domestic": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "revenue.crude_oil": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "revenue.import_export": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "revenue.grants": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "revenue.pit": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "revenue.env_protection": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "revenue.land_use_fees": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "revenue.lottery": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "revenue.fees_charges": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "expenditure.total": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "expenditure.development_investment": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "expenditure.recurrent": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "expenditure.interest": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "expenditure.aid": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "expenditure.reserve_fund": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "principal_repayment": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "deficit": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "deficit_pct_gdp": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "total_borrowing": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "extra.*": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2025": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65 (MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", published 13/04/2026; figures given in nghìn tỷ, 1 decimal)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "extra.expenditure_national_reserves": {
+    "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+    "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+    "2022": "https://static3.luatvietnam.vn/uploaded/others/2024/07/23/phu_luc_2307134036.pdf (NQ 132/2024/QH15 Phụ lục I)",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/223-qh15.signed.pdf (NQ 223/2025/QH15 Phụ lục I)",
+    "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+    "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+   },
+   "cross_checks": {
+    "2019": "https://thoibaotaichinhvietnam.vn/nam-2019-chi-ngan-sach-dat-935-du-toan-51121.html (Govt QT2019 report: ĐTPT 420,779.784 / recurrent 995,647.182 bn before NA reclassification of 1,065 bn; NA appendix used)",
+    "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf vs NQ 132/2024/QH15 appendix — identical",
+    "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/223-qh15.signed.pdf (NQ 223/2025/QH15) — identical to QĐ 2557/QĐ-BTC",
+    "2024": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=66 (MoF thuyết minh QT 2024, published 22/05/2026) — identical to NQ 21/2026/QH16"
+   }
+  },
+  "notes": [
+   "Units: billion VND (tỷ đồng). 2018 and 2019 source tables are in million VND (triệu đồng) and were rounded to the nearest billion.",
+   "2018–2024 = final accounts (quyết toán). 2018: NQ 114/2020/QH14 appendices; 2019: NQ 22/2021/QH15 appendices; 2020–2023: MoF công khai quyết toán decisions (QĐ 1420/QĐ-BTC 2022, 1518/QĐ-BTC 2023, 1686/QĐ-BTC 2024, 2557/QĐ-BTC 2025; Biểu 26/27-CK-NSNN); 2024: NQ 21/2026/QH16 (24/4/2026) Phụ lục I (Mẫu biểu 58) & II (59), matching MoF thuyết minh published 22/5/2026.",
+   "revenue.total = 'Thu NSNN' (domestic + crude oil + import-export balance + grants) and EXCLUDES carried-over revenue (thu chuyển nguồn), prior-year local surplus (kết dư) and drawdowns from the financial reserve fund. The NA-resolution headline 'tổng số thu cân đối NSNN' INCLUDES those items — it is stored in extra.total_revenue_resources_incl_carryover (e.g. 2023: 3,023,547 vs 1,770,776).",
+   "expenditure.total = 'Chi NSNN' (excludes chi chuyển nguồn sang năm sau). The NA headline 'tổng số chi cân đối NSNN' includes carry-over spending (extra.carryover_expenditure_to_next_year). Principal repayment (chi trả nợ gốc) is financing, outside expenditure.total.",
+   "Expenditure components listed (development_investment, interest, aid, recurrent, reserve_fund) do not include 'chi dự trữ quốc gia' (national reserves), stored separately in extra.expenditure_national_reserves. MoF Biểu 26 for 2020–2023 omits that line; for 2022 (1,990) and 2023 (1,212) it was taken from the NA resolution appendices. For 2020 and 2021 it was not read from a source; the residual (Chi NSNN minus listed components) is 1,566 (2020) and 3,119 (2021) and is presumably national reserves — left null.",
+   "Recurrent spending includes wage-reform outlays allocated to sectors. Contingency (dự phòng) appears only in plans (2026: 100,402); in final accounts it is spent within the sectoral lines.",
+   "Deficit (bội chi NSNN) is the official figure: total spending incl. carry-over minus total resources excl. local-budget surplus. It is NOT equal to revenue.total minus expenditure.total.",
+   "deficit_pct_gdp uses the GDP stated in each source: 2018 (GDP 5,542,300), 2019 (6,037,348) and 2020 (6,293,145) use pre-2021-revaluation GDP; 2021 onward use revalued GDP (2023: 10,320,300; 2024: 11,511,867). Ratios for 2018–2020 are therefore not comparable to 2021+ (revaluation raised GDP by roughly a quarter).",
+   "total_borrowing = tổng mức vay của NSNN (deficit financing + borrowing for principal repayment). 2018 and 2019 differ from deficit+principal because some local principal was repaid from surpluses; 2023 deficit excludes 28,000 bn carried over from 2022 to repay principal (per QĐ 2557 note).",
+   "2019: the NA reclassified 2,240.21 bn of MoF recurrent budget to development investment; NA appendix figures (ĐTPT 421,845; recurrent 994,582) are used rather than the Government report (420,780 / 995,647).",
+   "2025 = MoF supplementary assessment of 2025 execution ('Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025', ckns.mof.gov.vn, 13/04/2026), not final accounts; values were given in nghìn tỷ with one decimal (precision ±50 bn). Final accounts for 2025 are not yet approved as of Oct 2026.",
+   "2025 expenditure.total (3,312,600) is MoF's 'tổng chi NSNN ước' and INCLUDES ~714.6k bn of spending authorised from 2025 revenue overruns plus ~63.2k bn from wage-reform savings, much of it likely to be carried over; within-budget execution was ~2,534,800. Components given: ĐTPT 1,039,100 (1,184,600 if spending funded by 2021–2024 central revenue overruns carried into 2025 is included), interest 108,100, recurrent 1,683,300; aid, reserve fund, principal repayment and total borrowing for 2025 were not reported (null). For reference the 2025 plan (NQ 159/2024/QH15 and borrowing plan) had central borrowing of 804,242 and principal repayment of 361,142 — not used.",
+   "2025 grants (5,900) = amount recorded into the budget so far. 2025 land/house total not reported; land-use fees (498,600) and land rent (75,600) were.",
+   "2026 = plan (dự toán) from NQ 245/2025/QH15 (13/11/2025). expenditure.total 3,159,106 includes contingency 100,402 and 23,839 from local wage-reform carryover (revenue side shows this separately, outside revenue.total). total_borrowing 985,784 = 'tổng mức vay' (606,139 for deficit + 379,645 for principal).",
+   "Tax-by-type: Vietnamese budget tables report domestic revenue by ownership sector (SOE / FDI / non-state, stored in extra) with VAT, CIT and SCT on domestic production embedded inside those sector lines, so revenue.vat, revenue.cit and revenue.special_consumption are null for every year (no official national split found). VAT and SCT on imports are in extra.revenue_vat_on_imports / extra.revenue_sct_on_imports. PIT, environmental protection tax (domestic only; import BVMT is in the import-export block), fees & charges, land-use fees, and lottery are reported directly.",
+   "fees_charges = 'Các loại phí, lệ phí' (includes registration fee lệ phí trước bạ). land_use_fees = 'Thu tiền sử dụng đất' only; extra.revenue_land_house_total adds land/house taxes, land rent and state-housing sales."
+  ]
+ },
+ "notes": [
+  "All values copied from official tables/releases or computed only by unit conversion/ratios (pct_gdp, *_net = liabilities - assets); null = not published/not found.",
+  "GDP by expenditure: NSO PxWeb V03.08 (updated 15/08/2026); 2024 = Sơ bộ, 2025 = Ước tính. NSO publishes only net exports; gross X and M from World Bank WDI (which reproduces NSO).",
+  "invest_by_owner is NSO 'vốn đầu tư thực hiện toàn xã hội' (realised investment, incl. non-GFCF items) — larger than GFCF; do not mix with gdp_exp.I.",
+  "BOP: IMF BOP (BPM6) annual 2015-2025 and quarterly 2025Q1-2026Q1 (2026Q2 not yet published by IMF/SBV as of 2026-10-05). IMF matches SBV/NSO V03.20 for 2025 and most years; 2021 differs (revisions) — see bop.sbv_nso_v0320.",
+  "Vietnam BOP reports primary income only as a total (mostly FDI profits/interest paid abroad); compensation of employees and investment income splits, and charges for IP, are not published -> null.",
+  "currency_deposits_assets (residents' net acquisition of foreign currency & deposits, incl. household FX/cash holdings) is the main 'leakage' item (12-21 bn USD/yr 2022-2025), alongside large negative errors_omissions.",
+  "Gross loan drawdowns vs principal repayments are not published in the IMF BOP; loans_net is net incurrence. MoF gross debt-service and WB IDS principal/interest are in bop.external_debt_service.",
+  "Travel/transport by type come from NSO trade-in-services statistics (V09.15), whose totals differ from BOP services.",
+  "Budget: 2018-2024 final accounts (quyết toán), 2025 MoF estimate (Apr 2026), 2026 plan (NQ 245/2025/QH15). VAT/CIT/special-consumption national splits are not published (revenue reported by ownership sector) -> null."
+ ],
+ "meta": {
+  "compiled": "2026-10-05",
+  "builder": "build_part1.py + build_nsobudget.py + merge.py"
+ }
+}

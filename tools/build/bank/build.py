@@ -1,0 +1,140 @@
+import json
+WG="https://cdn02.wigroup.vn/baocaophantich/"
+VS="https://static1.vietstock.vn/edocs/"
+VC={ # Vietcap 'Báo cáo Trái phiếu Tiền tệ' monthly reports
+ '2024-10':(WG+"19106_Vietcap_2024-11-13.pdf","2024-11-07"),
+ '2024-11':(WG+"19357_Vietcap_2024-12-10.pdf","2024-12-06"),
+ '2024-12':(WG+"19582_Vietcap_2025-01-09.pdf","2025-01-08"),
+ '2025-01':(WG+"19685_Vietcap_2025-02-10.pdf","2025-02-07"),
+ '2025-03':(WG+"20195_Vietcap_2025-04-10.pdf","2025-04-08"),
+ '2025-04':(WG+"20331_Vietcap_2025-05-13.pdf","2025-05-09"),
+ '2025-05':(WG+"20528_Vietcap_2025-06-10.pdf","2025-06-06"),
+ '2025-06':(WG+"20711_Vietcap_2025-07-08.pdf","2025-07-07"),
+ '2025-07':(WG+"20882_Vietcap_2025-08-11.pdf","2025-08-07"),
+ '2025-08':(WG+"21224_Vietcap_2025-09-12.pdf","2025-09-09"),
+ '2025-09':(WG+"21393_Vietcap_2025-10-09.pdf","2025-10-07"),
+ '2025-10':(WG+"21568_Vietcap_2025-11-10.pdf","2025-11-07"),
+ '2025-12':(VS+"18563/Bond_Vietcap_20260113.pdf","2026-01-09"),
+ '2026-01':(WG+"22135_Vietcap_2026-02-10.pdf","2026-02-06"),
+ '2026-02':(VS+"19581/BCtraiphieu2_2026.pdf","2026-03-06"),
+ '2026-03':(VS+"19721/BCtraiphieu3_2026.pdf","2026-04-07"),
+ '2026-04':(VS+"20327/BCtraiphieu4_2026.pdf","2026-05-13"),
+ '2026-05':(VS+"20740/BCtraiphieu5_2026.pdf","2026-06-10"),
+ '2026-06':(VS+"21111/BCtraiphieu_20260713.pdf","2026-07-10"),
+ '2026-07':(VS+"21615/BCtraiphieu7_2026.pdf","2026-08-12"),
+ '2026-08':(VS+"22150/BCtraiphieu8_2026.pdf","2026-09-14"),
+}
+rows=[
+# month, value, type, note, url, date, omo
+('2024-10',3.40,'month_end',"Vietcap/Bloomberg ON on 31/10/2024 = 3.40% (Vietcap Oct-2024 bond-money report; no monthly average published). Alt: SBV month-end 3.54% (VBMA Oct-2024 report); VnEconomy/Vietcap 'cuối tháng 10' 3.4%. Intra-month: 2.7% on 18/10, 4.3% on 28/10.",
+ VC['2024-10'][0],VC['2024-10'][1],
+ "Net ABSORPTION ~124k bn VND via bills+OMO (Vietcap). SBV resumed SBV-bill (tín phiếu) issuance 18/10: 89.2k bn VND (14 & 28-day) during 18-31/10; OMO lending 50k bn vs 84.6k bn maturing."),
+('2024-11',3.27,'month_end',"Vietcap/Bloomberg ON on 29/11/2024 = 3.27% (no monthly avg). Peak 5.5-5.8% early/mid-Nov (MBS: 19-month high 5.5% on 4/11). Alt: SBV 29/11 = 3.11% (VBMA Nov-2024 report); MBS 3.3%; VnEconomy 3.2%.",
+ VC['2024-11'][0],VC['2024-11'][1],
+ "Net INJECTION 87.1k bn VND via bills+OMO: OMO lending 315k bn vs 297k maturing; SBV bills issued 21.4k bn vs 90.5k bn maturing (Vietcap; also VnEconomy 11/12/2024)."),
+('2024-12',3.63,'month_end',"Vietcap/Bloomberg ON on 31/12/2024 = 3.63% (no monthly avg). Intra-month 4.0% early Dec -> 2.4% (19/12) -> ~4.0% last week. Alt: MBS 3.6% end-2024; SBV month-end 4.04% (VBMA Dec-2024 report).",
+ VC['2024-12'][0],VC['2024-12'][1],
+ "Net INJECTION only 2.3k bn VND (Vietcap): repo lending 174k bn vs 141k maturing; SBV bills issued 124k bn vs 93k maturing. ~106k bn net injected 23-31/12. (MBS: bills 123.7k bn, OMO 172k bn, net +12.8k bn)."),
+('2025-01',4.60,'month_end',"Vietcap/Bloomberg ON on 24/01/2025 (last working day before Tet) = 4.60% (no monthly avg). MBS: 4.0% early Jan, 3.6% on 23/1, 4.6% from 24/1. Alt: SBV month-end 3.92% (VBMA Jan-2025 report).",
+ VC['2025-01'][0],VC['2025-01'][1],
+ "Net INJECTION 67.5k bn VND (Vietcap & MBS): repo lending 234k bn vs 187k maturing; SBV bills issued 163k bn vs 183k maturing (MBS: bills 162.5k, OMO 233.6k)."),
+('2025-02',4.3,'avg',"Monthly average 4.3% (range 3.7-5.5%), month-end 4.6% - per Vietcap report as quoted by DNSE/VnEconomy 13/03/2025. Vietcap 28/02/2025 close 4.60%; SBV month-end 4.59% (VBMA).",
+ "https://www.dnse.com.vn/senses/tin-tuc/nhnn-co-the-giam-lai-suat-omo-de-ha-lai-suat-lien-ngan-hang-trong-thang-3-35003891","2025-03-13",
+ "Net ABSORPTION 41.1k bn VND: OMO lending 286k bn vs 351k maturing; SBV bills issued 64k bn vs 88k maturing (DNSE 13/03/2025; Vietcap Mar-2025 report)."),
+('2025-03',4.09,'avg',"Vietcap monthly average 4.09% (stated in Apr-2025 report; Mar-2025 report gave 4.1%). Month-end 31/03/2025 = 4.60%. Low 3.53% on 28/3 (VPBankS via DNSE).",
+ VC['2025-04'][0],VC['2025-04'][1],
+ "Net INJECTION 30.9k bn VND: repo lending 253k bn vs 229k maturing; SBV bills only 2k bn issued (issuance halted from 04/03) vs 8k bn maturing (Vietcap Mar-2025 report)."),
+('2025-04',3.76,'avg',"Vietcap monthly average 3.76%. Month-end 29/04/2025 = 3.83%. Low ~2.2-2.46% on 25/4 (MBS; Vietstock). SBV month-end 2.54% (VBMA).",
+ VC['2025-04'][0],VC['2025-04'][1],
+ "Net ABSORPTION 22.2k bn VND: repo lending 220k bn vs 242k maturing; no SBV bills issued in April (Vietcap; VBMA)."),
+('2025-05',3.81,'avg',"Vietcap: ON 'trung bình 3,81% trong phần lớn tháng 5' (average over most of May, excludes final days); month-end 30/05/2025 = 2.93%. MBS: ~4% most of May, 3.1% at month-end.",
+ VC['2025-05'][0],VC['2025-05'][1],
+ "Net ABSORPTION 21.4k bn VND: repo lending 101k bn vs 122.4k maturing; no SBV bills (Vietcap; MBS)."),
+('2025-06',6.95,'month_end',"Vietcap/Bloomberg ON close 30/06/2025 = 6.95% (quarter-end spike; >10% intraday). No monthly avg; first half ~3%, low 1.3% on 23/6 (1.62% on 24/6 per Vietstock). SBV month-end 6.45% (VBMA).",
+ VC['2025-06'][0],VC['2025-06'][1],
+ "Net INJECTION 70.8k bn VND: repo 140.1k bn vs 46.9k maturing; SBV bills RESUMED 24-26/6: 22.5k bn issued (first since 4/3/2025) (Vietcap)."),
+('2025-07',3.07,'month_end',"Vietcap/Bloomberg ON 31/07/2025 = 3.07% (no monthly avg). Path: 3.53% (2/7) -> 6.18% (25/7) -> 3.07%. SBV month-end 3.35% (VBMA).",
+ VC['2025-07'][0],VC['2025-07'][1],
+ "Net INJECTION 85.6k bn VND: repo 426.4k bn vs 363.3k maturing; SBV bills issued 45.8k bn vs 68.3k maturing (Vietcap)."),
+('2025-08',4.46,'avg',"Vietcap monthly average 4.46% (stated in Sep-2025 report). Month-end 31/08/2025 = 3.80% (MBS also 3.8%). Peak 6.1-6.4% on 7-8/8; low 1.6% on 28/8.",
+ VC['2025-09'][0],VC['2025-09'][1],
+ "Net ABSORPTION 25.2k bn VND: repo 360.9k bn vs 386.1k maturing; no SBV bills (Vietcap Aug-2025 report; MBS)."),
+('2025-09',4.08,'avg',"Vietcap monthly average 4.08% (Oct-2025 report rounds to 4.1%). Month-end 30/9/2025 = 4.73% (MBS 4.7%). Low 3.2% on 29/9.",
+ VC['2025-09'][0],VC['2025-09'][1],
+ "Net INJECTION 3.9k bn VND: repo 277k bn vs 273k maturing (Vietcap). MBS: ~63.7k bn net injected 24-30/9."),
+('2025-10',4.8,'avg',"Vietcap monthly average 4.8%. Month-end 31/10/2025 = 4.30%. Avg 5.7% during 22-28/10.",
+ VC['2025-10'][0],VC['2025-10'][1],
+ "Net INJECTION 40.2k bn VND: OMO lending ~290k bn vs ~250k repo maturing (Vietcap)."),
+('2025-11',5.25,'avg',"Vietcap monthly average 5.25% (stated in Dec-2025 report). Month-end 28/11/2025 = 5.17%. SBV month-end 5.4% (VBMA). ~7.5% reached early Dec (MBS).",
+ VC['2025-12'][0],VC['2025-12'][1],
+ "Net INJECTION ~106k bn VND via OMO (Vietcap Dec-2025 report); VNDirect: 84.5k bn. No SBV bills."),
+('2025-12',6.0,'avg',"Vietcap monthly average 6.0%. Month-end 31/12/2025 = 8.15% (Vietcap/Bloomberg; MBS 8.45% record; SBV ~8.7% on 31/12 vs ~1.8% on 30/12). ON anchored 7-7.5% from early Dec (MBS); 7.08% on 12/12 (Vietstock).",
+ VC['2025-12'][0],VC['2025-12'][1],
+ "Net INJECTION 78.5k bn VND: OMO 369.8k bn vs 291.3k maturing (Vietcap; MBS same). Record OMO outstanding 410.2k bn end-Dec; SBV also activated FX swaps. No SBV bills."),
+('2026-01',4.2,'avg',"Vietcap monthly average 4.2%. Month-end 30/1/2026 = 5.40%. MBS: ~4% in first half of Jan.",
+ VC['2026-01'][0],VC['2026-01'][1],
+ "Net ABSORPTION 89.1k bn VND: OMO 154.7k bn vs 243.8k maturing; OMO outstanding 410.2k -> 321.1k bn (Vietcap)."),
+('2026-02',7.0,'avg',"Vietcap monthly average 7.0% (stated in Mar-2026 report). Record spike: SBV 17% on 3/2/2026 (Vietcap 17.3%; MBS 17.25%; Bloomberg intraday ~20%); avg 10.8% over 2-6/2, ~6.0% pre-Tet week, 4.3% last week. Month-end 27/2/2026 = 4.60% (MBS 2.5%).",
+ VC['2026-03'][0],VC['2026-03'][1],
+ "Net INJECTION 83.6k bn VND: OMO 309.2k bn vs 225.6k maturing; 159.2k bn net injected in 1st week of Feb + 2.0bn USD FX swaps on 4/2 & 6/2 (Vietcap Feb-2026 report)."),
+('2026-03',6.0,'avg',"Vietcap monthly average 6.0%. Path (SBV-based reports): 10.93% on 3/3 (10.5% early month), 3.7% on 16/3, 9.3% on 30/3 (DNSE/MBS). Vietcap/Bloomberg close 31/3/2026 = 6.55%.",
+ VC['2026-03'][0],VC['2026-03'][1],
+ "Net ABSORPTION 114.5k bn VND: OMO 491.3k bn vs 605.8k maturing (Vietcap; DNSE 114.6k). No SBV bills (VBMA)."),
+('2026-04',5.62,'avg',"Vietcap monthly average 5.62% (May-2026 report; Apr-2026 report said 5.6%). Month-end 29/4/2026 = 6.27% (MBS 6.3%). Low 3.7% on 24/4 (MBS).",
+ VC['2026-05'][0],VC['2026-05'][1],
+ "Net INJECTION 19.5k bn VND: OMO 350.1k bn vs 330.6k maturing (Vietcap Apr-2026 report; MBS). No SBV bills."),
+('2026-05',6.21,'avg',"Vietcap monthly average 6.21% (Jun-2026 report rounds to 6.2%). Month-end 29/5/2026 = 7.03% (SBV 6.97% per VBMA; ~8% late May per Vietstock).",
+ VC['2026-05'][0],VC['2026-05'][1],
+ "Net INJECTION 22.7k bn VND: OMO 250.5k bn vs 227.8k maturing (Vietcap). Vietstock: SBV re-injected 30.7k bn in last week of May after 2 weeks of net absorption."),
+('2026-06',5.0,'avg',"Vietcap monthly average 5.0%. Spike to ~11% (10.66%) on 1/6 (SBV), low 2.85% (MBS); month-end 30/6/2026 = 7.25% (quarter-end; up to 20% intraday).",
+ VC['2026-06'][0],VC['2026-06'][1],
+ "Net ABSORPTION 86.9k bn VND: OMO 214.0k bn vs 300.9k maturing (Vietcap)."),
+('2026-07',3.95,'avg',"Vietcap monthly average 3.95% (Aug-2026 report; Jul-2026 report: 'gần 4,0%'). From 5.8% early month to 2.2% (28/7, SBV) and 0.5-0.7% on 30/7 (Bloomberg 0.5%; SBV 0.7%); month-end 31/7/2026 = 6.50%.",
+ VC['2026-08'][0],VC['2026-08'][1],
+ "Net ABSORPTION 72.8k bn VND: OMO 105.9k bn vs 178.8k maturing; OMO outstanding down to 172.5k bn (Vietcap)."),
+('2026-08',4.37,'avg',"Vietcap monthly average 4.37%. Month-end 28/8/2026 = 7.07% (MBS 7%); low 1.2% on 27/8 (MBS).",
+ VC['2026-08'][0],VC['2026-08'][1],
+ "Net INJECTION 64.7k bn VND: OMO 232.7k bn vs 168.0k maturing (Vietcap). 202.4k bn OMO maturing in Sep flagged."),
+('2026-09',7.0,'month_end',"No monthly average published yet (Vietcap Sep report due ~mid-Oct). SBV-published ON: 7.0% on 21-23/9, 0.2% on 29/9 (lowest since early 2024), 7.0% on 30/9 (month-end).",
+ "https://cafef.vn/lai-suat-lien-ngan-hang-tang-gap-35-lan-chi-sau-mot-dem-nhnn-chuyen-sang-trang-thai-bom-thanh-khoan-188261001102404093.chn","2026-10-01",
+ "Monthly total not found. Late Sep: 6 consecutive sessions of net ABSORPTION totalling ~60k bn VND, then net INJECTION ~10.0k bn on 30/9 (CafeF 01/10/2026). No SBV bills reported."),
+]
+months=[r[0] for r in rows]
+exp=[]
+y,m=2024,10
+for _ in range(24):
+    exp.append(f"{y}-{m:02d}"); m+=1
+    if m==13: y+=1; m=1
+assert months==exp, months
+out={"months":months,"values":[r[1] for r in rows],"types":[r[2] for r in rows],"notes":[r[3] for r in rows],
+     "urls":[r[4] for r in rows],"dates":[r[5] for r in rows],"omo_notes":[r[6] for r in rows],
+     "meta":{"unit":"% per annum","series":"VND overnight interbank rate","method":"Monthly average where a broker report states it (mainly Vietcap 'Báo cáo Trái phiếu Tiền tệ', computed on Bloomberg daily ON); otherwise month-end close from Vietcap/Bloomberg table (ON column). SBV-published (VBMA) and MBS month-end alternatives are given in notes. OMO figures in bn VND (tỷ đồng); 'k bn' = nghìn tỷ.","dates_are":"report/article publication date (YYYY-MM-DD)"}}
+MBS={
+ '2024-11':("https://static1.vietstock.vn/edocs/Files/2024/12/12/bao-cao-thi-truong-tien-te_20241212113318.pdf","2024-12-09",5.0,"nhóm NHTM (commercial-bank group, ex-SOCB; SOCB separate)",25346,24251),
+ '2024-12':(VS+"Files/2025/01/20/bao-cao-thi-truong-tien-te-rui-ro-ty-gia-van-la-moi-lo-ngai-lon-trong-nam-2025_20250120102823.pdf","2025-01-09",5.1,"nhóm NHTM (SOCB 4.7%)",25485,24335),
+ '2025-01':(VS+"Files/2025/02/11/bao-cao-thi-truong-tien-te-thang-01-2025-van-con-tiem-an-rui-ro-ty-gia_20250211154024.pdf","2025-02-07",5.1,"nhóm NHTM",25082,24325),
+ '2025-04':("https://www.mbs.com.vn/files/uploads/2025/05/bc_tttiente_20250506.pdf","2025-05-06",4.93,"nhóm NHTM (SOCB 4.7%)",25994,24956),
+ '2025-05':(VS+"Files/2025/06/14/bao-cao-thi-truong-tien-te-con-sot-ty-gia-chua-ha-nhiet_20250614091214.pdf","2025-06-09",4.89,"nhóm NHTM (SOCB 4.7%)",26008,24978),
+ '2025-08':("https://www.mbs.com.vn/files/uploads/2025/09/BC_TTTiente_20250912-1.pdf","2025-09-12",4.89,"nhóm NHTM tư nhân (private banks)",26345,25240),
+ '2025-09':("https://www.mbs.com.vn/files/uploads/2025/10/BC_TTTiente_20251003.pdf","2025-10-03",4.78,"các NHTM (all commercial banks; private 4.89%, SOCB 4.7%)",26426,25187),
+ '2025-11':(VS+"18298/MBS_20251210.pdf","2025-12-10",5.0,"các NHTM (all; private 5.32%, SOCB 4.7%)",26365,25155),
+ '2025-12':("https://www.mbs.com.vn/files/uploads/2026/01/BC_TTTiente_20260119.pdf","2026-01-19",5.7,"các NHTM (all)",26297,25121),
+ '2026-01':("https://www.mbs.com.vn/files/uploads/2026/01/BC_TTTiente_20260119.pdf","2026-01-19",5.8,"các NHTM (all) - MID-January value, not month-end",26270,25131),
+ '2026-02':(VS+"19197/BC_TTTiente_20260303.pdf","2026-03-03",5.9,"các NHTM (all)",26058,25044),
+ '2026-03':(VS+"19657/BC_TTTiente_20260401.pdf","2026-04-01",8.07,"các NHTM (all)",26345,25102),
+ '2026-04':("https://www.mbs.com.vn/files/uploads/2026/05/BC_TTTiente_20260506-1.pdf","2026-05-06",8.31,"các NHTM (all)",26350,25113),
+ '2026-05':(VS+"20595/BC_TTTiente_20260603.pdf","2026-06-03",8.35,"các NHTM (all)",26313,25139),
+ '2026-06':(VS+"21051/BC_TTTiente_20260703.pdf","2026-07-03",8.4,"các NHTM (all)",26310,25206),
+ '2026-07':(VS+"21515/BC_TTTiente_20260810.pdf","2026-08-10",8.63,"các NHTM (all)",26293,25338),
+ '2026-08':(VS+"22035/BC_TTTiente_20260908.pdf","2026-09-08",8.4,"các NHTM (all)",26083,25610),
+}
+d={"months":months,"values":[],"group":[],"urls":[],"dates":[],"fx_interbank_eom":[],"fx_central":[],
+   "notes":"MBS Research 'BÁO CÁO THỊ TRƯỜNG TIỀN TỆ': average 12M deposit rate (%/yr) at month-end, as stated; group wording quoted. fx_interbank_eom = month-end interbank USD/VND; fx_central = SBV central rate as stated (2026-01 values are mid-January; 2026-08 central 25,610 is as printed by MBS ('+1% m/m', '+0.9% YTD') and looks inconsistent with Jul 25,338 - verify). Months with null: MBS report for that month not located (MBS site rate-limits; Oct-2024, Feb/Mar/Jun/Jul/Oct-2025, Sep-2026 not found/not yet published)."}
+for mo in months:
+    r=MBS.get(mo)
+    d["values"].append(r[2] if r else None); d["group"].append(r[3] if r else None)
+    d["urls"].append(r[0] if r else None); d["dates"].append(r[1] if r else None)
+    d["fx_interbank_eom"].append(r[4] if r else None); d["fx_central"].append(r[5] if r else None)
+out["deposit12m_mbs"]=d
+json.dump(out,open('interbank_series.json','w'),ensure_ascii=False,indent=1)
+for r in rows: print(r[0],r[1],r[2],r[5])

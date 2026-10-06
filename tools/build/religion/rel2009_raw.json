@@ -1,0 +1,986 @@
+{
+ "TOÀN QUỐC": {
+  "rel": {
+   "Phật giáo": 6802318,
+   "Công giáo": 5677086,
+   "Phật giáo Hòa Hảo": 1433252,
+   "Hồi giáo": 75268,
+   "Cao Đài": 807915,
+   "Minh Sư Đạo": 709,
+   "Minh Lý Đạo": 366,
+   "Tin lành": 734168,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 11093,
+   "Đạo Tứ Ân Hiếu Nghĩa": 41280,
+   "Bửu Sơn Kỳ Hương": 10824,
+   "Baha'i": 731,
+   "Bà La Môn": 56427,
+   "Không xác định": 30
+  },
+  "total": 15651467
+ },
+ "HÀ NỘI": {
+  "code": "1",
+  "total": 257027,
+  "rel": {
+   "Phật giáo": 99398,
+   "Công giáo": 155768,
+   "Phật giáo Hòa Hảo": 13,
+   "Hồi giáo": 125,
+   "Cao Đài": 410,
+   "Minh Sư Đạo": 4,
+   "Minh Lý Đạo": 8,
+   "Tin lành": 1269,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 2,
+   "Baha'i": 25,
+   "Không xác định": 5
+  }
+ },
+ "HÀ GIANG": {
+  "code": "2",
+  "total": 13900,
+  "rel": {
+   "Phật giáo": 182,
+   "Công giáo": 1067,
+   "Phật giáo Hòa Hảo": 3,
+   "Hồi giáo": 26,
+   "Cao Đài": 3,
+   "Minh Lý Đạo": 1,
+   "Tin lành": 12617,
+   "Không xác định": 1
+  }
+ },
+ "CAO BẰNG": {
+  "code": "4",
+  "total": 11134,
+  "rel": {
+   "Phật giáo": 197,
+   "Công giáo": 1274,
+   "Phật giáo Hòa Hảo": 1,
+   "Hồi giáo": 1,
+   "Cao Đài": 1,
+   "Tin lành": 9649,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 11
+  }
+ },
+ "BẮC KẠN": {
+  "code": "6",
+  "total": 13565,
+  "rel": {
+   "Phật giáo": 153,
+   "Công giáo": 332,
+   "Tin lành": 13077,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 3
+  }
+ },
+ "TUYÊN QUANG": {
+  "code": "8",
+  "total": 31617,
+  "rel": {
+   "Phật giáo": 2342,
+   "Công giáo": 22105,
+   "Phật giáo Hòa Hảo": 6,
+   "Hồi giáo": 13,
+   "Cao Đài": 4,
+   "Tin lành": 7147
+  }
+ },
+ "LÀO CAI": {
+  "code": "10",
+  "total": 19287,
+  "rel": {
+   "Phật giáo": 733,
+   "Công giáo": 5946,
+   "Hồi giáo": 12,
+   "Cao Đài": 3,
+   "Minh Lý Đạo": 1,
+   "Tin lành": 12591,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1
+  }
+ },
+ "ĐIỆN BIÊN": {
+  "code": "11",
+  "total": 37952,
+  "rel": {
+   "Phật giáo": 73,
+   "Công giáo": 1174,
+   "Cao Đài": 2,
+   "Tin lành": 36702,
+   "Bửu Sơn Kỳ Hương": 1
+  }
+ },
+ "LAI CHÂU": {
+  "code": "12",
+  "total": 27593,
+  "rel": {
+   "Phật giáo": 70,
+   "Công giáo": 1209,
+   "Phật giáo Hòa Hảo": 2,
+   "Hồi giáo": 7,
+   "Tin lành": 26305
+  }
+ },
+ "SƠN LA": {
+  "code": "14",
+  "total": 4470,
+  "rel": {
+   "Phật giáo": 750,
+   "Công giáo": 1833,
+   "Phật giáo Hòa Hảo": 3,
+   "Hồi giáo": 42,
+   "Cao Đài": 1,
+   "Minh Sư Đạo": 1,
+   "Tin lành": 1840
+  }
+ },
+ "YÊN BÁI": {
+  "code": "15",
+  "total": 49624,
+  "rel": {
+   "Phật giáo": 1898,
+   "Công giáo": 47281,
+   "Phật giáo Hòa Hảo": 1,
+   "Hồi giáo": 1,
+   "Cao Đài": 3,
+   "Tin lành": 439,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1
+  }
+ },
+ "HÒA BÌNH": {
+  "code": "17",
+  "total": 12860,
+  "rel": {
+   "Phật giáo": 1987,
+   "Công giáo": 10817,
+   "Phật giáo Hòa Hảo": 5,
+   "Hồi giáo": 25,
+   "Cao Đài": 2,
+   "Tin lành": 23,
+   "Bửu Sơn Kỳ Hương": 1
+  }
+ },
+ "THÁI NGUYÊN": {
+  "code": "19",
+  "total": 32923,
+  "rel": {
+   "Phật giáo": 3015,
+   "Công giáo": 25430,
+   "Phật giáo Hòa Hảo": 1,
+   "Hồi giáo": 10,
+   "Minh Sư Đạo": 6,
+   "Minh Lý Đạo": 7,
+   "Tin lành": 4453,
+   "Baha'i": 1
+  }
+ },
+ "LẠNG SƠN": {
+  "code": "20",
+  "total": 4821,
+  "rel": {
+   "Phật giáo": 380,
+   "Công giáo": 2609,
+   "Phật giáo Hòa Hảo": 2,
+   "Hồi giáo": 5,
+   "Cao Đài": 1,
+   "Minh Lý Đạo": 6,
+   "Tin lành": 1815,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 3
+  }
+ },
+ "QUẢNG NINH": {
+  "code": "22",
+  "total": 23540,
+  "rel": {
+   "Phật giáo": 3302,
+   "Công giáo": 19872,
+   "Hồi giáo": 7,
+   "Cao Đài": 87,
+   "Tin lành": 271,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1
+  }
+ },
+ "BẮC GIANG": {
+  "code": "24",
+  "total": 23606,
+  "rel": {
+   "Phật giáo": 1252,
+   "Công giáo": 22317,
+   "Phật giáo Hòa Hảo": 5,
+   "Hồi giáo": 10,
+   "Cao Đài": 3,
+   "Minh Lý Đạo": 2,
+   "Tin lành": 16,
+   "Bửu Sơn Kỳ Hương": 1
+  }
+ },
+ "PHÚ THỌ": {
+  "code": "25",
+  "total": 120119,
+  "rel": {
+   "Phật giáo": 12944,
+   "Công giáo": 107044,
+   "Phật giáo Hòa Hảo": 2,
+   "Hồi giáo": 31,
+   "Cao Đài": 3,
+   "Tin lành": 92,
+   "Đạo Tứ Ân Hiếu Nghĩa": 1,
+   "Baha'i": 1,
+   "Bà La Môn": 1
+  }
+ },
+ "VĨNH PHÚC": {
+  "code": "26",
+  "total": 23115,
+  "rel": {
+   "Phật giáo": 4158,
+   "Công giáo": 18910,
+   "Hồi giáo": 2,
+   "Tin lành": 45
+  }
+ },
+ "BẮC NINH": {
+  "code": "27",
+  "total": 16362,
+  "rel": {
+   "Phật giáo": 3744,
+   "Công giáo": 12590,
+   "Phật giáo Hòa Hảo": 3,
+   "Hồi giáo": 5,
+   "Cao Đài": 2,
+   "Minh Lý Đạo": 1,
+   "Tin lành": 17
+  }
+ },
+ "HẢI DƯƠNG": {
+  "code": "30",
+  "total": 50392,
+  "rel": {
+   "Phật giáo": 20646,
+   "Công giáo": 29603,
+   "Phật giáo Hòa Hảo": 1,
+   "Hồi giáo": 7,
+   "Cao Đài": 1,
+   "Tin lành": 134
+  }
+ },
+ "HẢI PHÒNG": {
+  "code": "31",
+  "total": 57305,
+  "rel": {
+   "Phật giáo": 19710,
+   "Công giáo": 36614,
+   "Phật giáo Hòa Hảo": 11,
+   "Hồi giáo": 18,
+   "Cao Đài": 12,
+   "Tin lành": 938,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1,
+   "Bà La Môn": 1
+  }
+ },
+ "HƯNG YÊN": {
+  "code": "33",
+  "total": 26119,
+  "rel": {
+   "Phật giáo": 10454,
+   "Công giáo": 15587,
+   "Phật giáo Hòa Hảo": 1,
+   "Hồi giáo": 3,
+   "Tin lành": 72,
+   "Không xác định": 2
+  }
+ },
+ "THÁI BÌNH": {
+  "code": "34",
+  "total": 150395,
+  "rel": {
+   "Phật giáo": 51516,
+   "Công giáo": 98590,
+   "Cao Đài": 2,
+   "Tin lành": 285,
+   "Bửu Sơn Kỳ Hương": 1,
+   "Không xác định": 1
+  }
+ },
+ "HÀ NAM": {
+  "code": "35",
+  "total": 149109,
+  "rel": {
+   "Phật giáo": 56407,
+   "Công giáo": 92615,
+   "Phật giáo Hòa Hảo": 2,
+   "Cao Đài": 1,
+   "Minh Lý Đạo": 3,
+   "Tin lành": 79,
+   "Đạo Tứ Ân Hiếu Nghĩa": 2
+  }
+ },
+ "NAM ĐỊNH": {
+  "code": "36",
+  "total": 425111,
+  "rel": {
+   "Phật giáo": 54840,
+   "Công giáo": 369793,
+   "Phật giáo Hòa Hảo": 1,
+   "Hồi giáo": 3,
+   "Cao Đài": 1,
+   "Minh Lý Đạo": 1,
+   "Tin lành": 470,
+   "Đạo Tứ Ân Hiếu Nghĩa": 1,
+   "Bửu Sơn Kỳ Hương": 1
+  }
+ },
+ "NINH BÌNH": {
+  "code": "37",
+  "total": 149962,
+  "rel": {
+   "Phật giáo": 15260,
+   "Công giáo": 134692,
+   "Hồi giáo": 3,
+   "Cao Đài": 2,
+   "Tin lành": 5
+  }
+ },
+ "THANH HÓA": {
+  "code": "38",
+  "total": 128593,
+  "rel": {
+   "Phật giáo": 1337,
+   "Công giáo": 122793,
+   "Phật giáo Hòa Hảo": 4,
+   "Hồi giáo": 95,
+   "Cao Đài": 23,
+   "Minh Sư Đạo": 14,
+   "Minh Lý Đạo": 1,
+   "Tin lành": 4324,
+   "Đạo Tứ Ân Hiếu Nghĩa": 2
+  }
+ },
+ "NGHỆ AN": {
+  "code": "40",
+  "total": 233984,
+  "rel": {
+   "Phật giáo": 989,
+   "Công giáo": 232906,
+   "Phật giáo Hòa Hảo": 3,
+   "Hồi giáo": 12,
+   "Cao Đài": 3,
+   "Minh Sư Đạo": 2,
+   "Minh Lý Đạo": 5,
+   "Tin lành": 58,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 3,
+   "Đạo Tứ Ân Hiếu Nghĩa": 1,
+   "Baha'i": 2
+  }
+ },
+ "HÀ TĨNH": {
+  "code": "42",
+  "total": 132961,
+  "rel": {
+   "Phật giáo": 935,
+   "Công giáo": 131972,
+   "Phật giáo Hòa Hảo": 7,
+   "Hồi giáo": 6,
+   "Minh Lý Đạo": 4,
+   "Tin lành": 18,
+   "Đạo Tứ Ân Hiếu Nghĩa": 1,
+   "Bửu Sơn Kỳ Hương": 5,
+   "Không xác định": 13
+  }
+ },
+ "QUẢNG BÌNH": {
+  "code": "44",
+  "total": 92149,
+  "rel": {
+   "Phật giáo": 521,
+   "Công giáo": 91608,
+   "Phật giáo Hòa Hảo": 1,
+   "Hồi giáo": 2,
+   "Cao Đài": 1,
+   "Tin lành": 16
+  }
+ },
+ "QUẢNG TRỊ": {
+  "code": "45",
+  "total": 55014,
+  "rel": {
+   "Phật giáo": 41990,
+   "Công giáo": 9634,
+   "Phật giáo Hòa Hảo": 1,
+   "Hồi giáo": 1,
+   "Cao Đài": 2,
+   "Tin lành": 3378,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 5,
+   "Đạo Tứ Ân Hiếu Nghĩa": 1,
+   "Baha'i": 2
+  }
+ },
+ "THỪA THIÊN HUẾ": {
+  "code": "46",
+  "total": 299429,
+  "rel": {
+   "Phật giáo": 250537,
+   "Công giáo": 48395,
+   "Phật giáo Hòa Hảo": 18,
+   "Hồi giáo": 6,
+   "Cao Đài": 193,
+   "Minh Sư Đạo": 6,
+   "Tin lành": 268,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 2,
+   "Baha'i": 2,
+   "Bà La Môn": 2
+  }
+ },
+ "ĐÀ NẴNG": {
+  "code": "48",
+  "total": 164195,
+  "rel": {
+   "Phật giáo": 117274,
+   "Công giáo": 39802,
+   "Phật giáo Hòa Hảo": 25,
+   "Hồi giáo": 19,
+   "Cao Đài": 3249,
+   "Minh Sư Đạo": 53,
+   "Tin lành": 3730,
+   "Baha'i": 34,
+   "Bà La Môn": 9
+  }
+ },
+ "QUẢNG NAM": {
+  "code": "49",
+  "total": 94810,
+  "rel": {
+   "Phật giáo": 55172,
+   "Công giáo": 20853,
+   "Phật giáo Hòa Hảo": 17,
+   "Hồi giáo": 5,
+   "Cao Đài": 6970,
+   "Minh Sư Đạo": 13,
+   "Minh Lý Đạo": 2,
+   "Tin lành": 11730,
+   "Bửu Sơn Kỳ Hương": 1,
+   "Baha'i": 36,
+   "Bà La Môn": 7,
+   "Không xác định": 4
+  }
+ },
+ "QUẢNG NGÃI": {
+  "code": "51",
+  "total": 42604,
+  "rel": {
+   "Phật giáo": 22284,
+   "Công giáo": 6376,
+   "Phật giáo Hòa Hảo": 3,
+   "Hồi giáo": 3,
+   "Cao Đài": 2900,
+   "Tin lành": 11032,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 2,
+   "Bửu Sơn Kỳ Hương": 1,
+   "Baha'i": 1,
+   "Bà La Môn": 2
+  }
+ },
+ "BÌNH ĐỊNH": {
+  "code": "52",
+  "total": 141215,
+  "rel": {
+   "Phật giáo": 93110,
+   "Công giáo": 33516,
+   "Phật giáo Hòa Hảo": 94,
+   "Hồi giáo": 19,
+   "Cao Đài": 13118,
+   "Minh Lý Đạo": 1,
+   "Tin lành": 1321,
+   "Baha'i": 26,
+   "Bà La Môn": 10
+  }
+ },
+ "PHÚ YÊN": {
+  "code": "54",
+  "total": 54994,
+  "rel": {
+   "Phật giáo": 36386,
+   "Công giáo": 13510,
+   "Phật giáo Hòa Hảo": 113,
+   "Hồi giáo": 20,
+   "Cao Đài": 2006,
+   "Tin lành": 2928,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 10,
+   "Baha'i": 8,
+   "Bà La Môn": 13
+  }
+ },
+ "KHÁNH HÒA": {
+  "code": "56",
+  "total": 293586,
+  "rel": {
+   "Phật giáo": 170980,
+   "Công giáo": 101616,
+   "Phật giáo Hòa Hảo": 284,
+   "Hồi giáo": 94,
+   "Cao Đài": 6819,
+   "Minh Sư Đạo": 12,
+   "Tin lành": 13726,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 17,
+   "Baha'i": 13,
+   "Bà La Môn": 25
+  }
+ },
+ "NINH THUẬN": {
+  "code": "58",
+  "total": 184577,
+  "rel": {
+   "Phật giáo": 43192,
+   "Công giáo": 65790,
+   "Phật giáo Hòa Hảo": 1,
+   "Hồi giáo": 25513,
+   "Cao Đài": 1784,
+   "Minh Sư Đạo": 5,
+   "Tin lành": 7570,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1,
+   "Baha'i": 26,
+   "Bà La Môn": 40695
+  }
+ },
+ "BÌNH THUẬN": {
+  "code": "60",
+  "total": 314062,
+  "rel": {
+   "Phật giáo": 128968,
+   "Công giáo": 143137,
+   "Phật giáo Hòa Hảo": 90,
+   "Hồi giáo": 18779,
+   "Cao Đài": 2403,
+   "Minh Sư Đạo": 17,
+   "Minh Lý Đạo": 3,
+   "Tin lành": 5489,
+   "Đạo Tứ Ân Hiếu Nghĩa": 13,
+   "Bửu Sơn Kỳ Hương": 6,
+   "Baha'i": 63,
+   "Bà La Môn": 15094
+  }
+ },
+ "KON TUM": {
+  "code": "62",
+  "total": 173593,
+  "rel": {
+   "Phật giáo": 25012,
+   "Công giáo": 134312,
+   "Phật giáo Hòa Hảo": 14,
+   "Hồi giáo": 1,
+   "Cao Đài": 499,
+   "Tin lành": 13736,
+   "Đạo Tứ Ân Hiếu Nghĩa": 4,
+   "Baha'i": 15
+  }
+ },
+ "GIA LAI": {
+  "code": "64",
+  "total": 312272,
+  "rel": {
+   "Phật giáo": 84214,
+   "Công giáo": 114822,
+   "Phật giáo Hòa Hảo": 41,
+   "Hồi giáo": 4,
+   "Cao Đài": 2971,
+   "Minh Lý Đạo": 18,
+   "Tin lành": 110114,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 5,
+   "Đạo Tứ Ân Hiếu Nghĩa": 23,
+   "Baha'i": 59,
+   "Không xác định": 1
+  }
+ },
+ "ĐẮK LẮK": {
+  "code": "66",
+  "total": 450728,
+  "rel": {
+   "Phật giáo": 125698,
+   "Công giáo": 171661,
+   "Phật giáo Hòa Hảo": 162,
+   "Hồi giáo": 65,
+   "Cao Đài": 3572,
+   "Minh Sư Đạo": 1,
+   "Minh Lý Đạo": 1,
+   "Tin lành": 149526,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 3,
+   "Đạo Tứ Ân Hiếu Nghĩa": 1,
+   "Bửu Sơn Kỳ Hương": 23,
+   "Baha'i": 2,
+   "Bà La Môn": 13
+  }
+ },
+ "ĐẮK NÔNG": {
+  "code": "67",
+  "total": 171233,
+  "rel": {
+   "Phật giáo": 20050,
+   "Công giáo": 100436,
+   "Phật giáo Hòa Hảo": 97,
+   "Hồi giáo": 18,
+   "Cao Đài": 341,
+   "Minh Sư Đạo": 1,
+   "Minh Lý Đạo": 70,
+   "Tin lành": 50194,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 6,
+   "Đạo Tứ Ân Hiếu Nghĩa": 9,
+   "Baha'i": 7,
+   "Bà La Môn": 4
+  }
+ },
+ "LÂM ĐỒNG": {
+  "code": "68",
+  "total": 599461,
+  "rel": {
+   "Phật giáo": 199255,
+   "Công giáo": 303761,
+   "Phật giáo Hòa Hảo": 103,
+   "Hồi giáo": 75,
+   "Cao Đài": 12606,
+   "Minh Sư Đạo": 11,
+   "Minh Lý Đạo": 3,
+   "Tin lành": 83542,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1,
+   "Đạo Tứ Ân Hiếu Nghĩa": 27,
+   "Baha'i": 5,
+   "Bà La Môn": 72
+  }
+ },
+ "BÌNH PHƯỚC": {
+  "code": "70",
+  "total": 229585,
+  "rel": {
+   "Phật giáo": 85841,
+   "Công giáo": 87659,
+   "Phật giáo Hòa Hảo": 345,
+   "Hồi giáo": 481,
+   "Cao Đài": 3092,
+   "Minh Sư Đạo": 5,
+   "Minh Lý Đạo": 10,
+   "Tin lành": 52096,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 5,
+   "Đạo Tứ Ân Hiếu Nghĩa": 15,
+   "Bửu Sơn Kỳ Hương": 2,
+   "Baha'i": 25,
+   "Bà La Môn": 9
+  }
+ },
+ "TÂY NINH": {
+  "code": "72",
+  "total": 512372,
+  "rel": {
+   "Phật giáo": 95674,
+   "Công giáo": 32682,
+   "Phật giáo Hòa Hảo": 236,
+   "Hồi giáo": 3337,
+   "Cao Đài": 379752,
+   "Minh Sư Đạo": 4,
+   "Tin lành": 684,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 2,
+   "Bà La Môn": 1
+  }
+ },
+ "BÌNH DƯƠNG": {
+  "code": "74",
+  "total": 154278,
+  "rel": {
+   "Phật giáo": 57904,
+   "Công giáo": 76833,
+   "Phật giáo Hòa Hảo": 10619,
+   "Hồi giáo": 745,
+   "Cao Đài": 5962,
+   "Minh Sư Đạo": 12,
+   "Minh Lý Đạo": 13,
+   "Tin lành": 1962,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 85,
+   "Đạo Tứ Ân Hiếu Nghĩa": 110,
+   "Bửu Sơn Kỳ Hương": 7,
+   "Baha'i": 6,
+   "Bà La Môn": 20
+  }
+ },
+ "ĐỒNG NAI": {
+  "code": "75",
+  "total": 1167547,
+  "rel": {
+   "Phật giáo": 339623,
+   "Công giáo": 797702,
+   "Phật giáo Hòa Hảo": 1514,
+   "Hồi giáo": 2868,
+   "Cao Đài": 13978,
+   "Minh Sư Đạo": 39,
+   "Minh Lý Đạo": 12,
+   "Tin lành": 11577,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 118,
+   "Đạo Tứ Ân Hiếu Nghĩa": 36,
+   "Bửu Sơn Kỳ Hương": 2,
+   "Baha'i": 63,
+   "Bà La Môn": 15
+  }
+ },
+ "BÀ RỊA": {
+  "code": "77",
+  "total": 0,
+  "rel": {
+   "Phật giáo": 215900,
+   "Công giáo": 227345,
+   "Phật giáo Hòa Hảo": 468,
+   "Hồi giáo": 169,
+   "Cao Đài": 8951,
+   "Minh Sư Đạo": 12,
+   "Minh Lý Đạo": 2,
+   "Tin lành": 4077,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1168,
+   "Đạo Tứ Ân Hiếu Nghĩa": 4,
+   "Bửu Sơn Kỳ Hương": 1424,
+   "Baha'i": 5,
+   "Bà La Môn": 3
+  }
+ },
+ "THÀNH PHỐ HỒ CHÍ MINH": {
+  "code": "79",
+  "total": 1983048,
+  "rel": {
+   "Phật giáo": 1164930,
+   "Công giáo": 745283,
+   "Phật giáo Hòa Hảo": 4894,
+   "Hồi giáo": 6580,
+   "Cao Đài": 31633,
+   "Minh Sư Đạo": 283,
+   "Minh Lý Đạo": 67,
+   "Tin lành": 27016,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1387,
+   "Đạo Tứ Ân Hiếu Nghĩa": 298,
+   "Bửu Sơn Kỳ Hương": 89,
+   "Baha'i": 192,
+   "Bà La Môn": 395,
+   "Không xác định": 1
+  }
+ },
+ "LONG AN": {
+  "code": "80",
+  "total": 206999,
+  "rel": {
+   "Phật giáo": 125118,
+   "Công giáo": 31160,
+   "Phật giáo Hòa Hảo": 2221,
+   "Hồi giáo": 230,
+   "Cao Đài": 44418,
+   "Minh Sư Đạo": 38,
+   "Minh Lý Đạo": 38,
+   "Tin lành": 3480,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 242,
+   "Đạo Tứ Ân Hiếu Nghĩa": 11,
+   "Bửu Sơn Kỳ Hương": 43
+  }
+ },
+ "TIỀN GIANG": {
+  "code": "82",
+  "total": 185332,
+  "rel": {
+   "Phật giáo": 107960,
+   "Công giáo": 38270,
+   "Phật giáo Hòa Hảo": 1224,
+   "Hồi giáo": 119,
+   "Cao Đài": 32311,
+   "Minh Sư Đạo": 15,
+   "Minh Lý Đạo": 15,
+   "Tin lành": 4418,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 431,
+   "Đạo Tứ Ân Hiếu Nghĩa": 543,
+   "Bửu Sơn Kỳ Hương": 26
+  }
+ },
+ "BẾN TRE": {
+  "code": "83",
+  "total": 197001,
+  "rel": {
+   "Phật giáo": 108329,
+   "Công giáo": 53405,
+   "Phật giáo Hòa Hảo": 1598,
+   "Hồi giáo": 61,
+   "Cao Đài": 28986,
+   "Minh Sư Đạo": 12,
+   "Minh Lý Đạo": 24,
+   "Tin lành": 4273,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 191,
+   "Đạo Tứ Ân Hiếu Nghĩa": 115,
+   "Bửu Sơn Kỳ Hương": 4,
+   "Baha'i": 3
+  }
+ },
+ "TRÀ VINH": {
+  "code": "84",
+  "total": 569999,
+  "rel": {
+   "Phật giáo": 498930,
+   "Công giáo": 54370,
+   "Phật giáo Hòa Hảo": 142,
+   "Hồi giáo": 195,
+   "Cao Đài": 15366,
+   "Minh Sư Đạo": 7,
+   "Minh Lý Đạo": 1,
+   "Tin lành": 634,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 318,
+   "Đạo Tứ Ân Hiếu Nghĩa": 16,
+   "Bửu Sơn Kỳ Hương": 19,
+   "Baha'i": 1
+  }
+ },
+ "VĨNH LONG": {
+  "code": "86",
+  "total": 245544,
+  "rel": {
+   "Phật giáo": 155580,
+   "Công giáo": 34005,
+   "Phật giáo Hòa Hảo": 34921,
+   "Hồi giáo": 56,
+   "Cao Đài": 15133,
+   "Minh Sư Đạo": 22,
+   "Tin lành": 3641,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1842,
+   "Đạo Tứ Ân Hiếu Nghĩa": 327,
+   "Bửu Sơn Kỳ Hương": 16,
+   "Bà La Môn": 1
+  }
+ },
+ "ĐỒNG THÁP": {
+  "code": "87",
+  "total": 559063,
+  "rel": {
+   "Phật giáo": 264597,
+   "Công giáo": 40973,
+   "Phật giáo Hòa Hảo": 196143,
+   "Hồi giáo": 126,
+   "Cao Đài": 50858,
+   "Minh Sư Đạo": 9,
+   "Minh Lý Đạo": 6,
+   "Tin lành": 3924,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 727,
+   "Đạo Tứ Ân Hiếu Nghĩa": 953,
+   "Bửu Sơn Kỳ Hương": 746,
+   "Baha'i": 1
+  }
+ },
+ "AN GIANG": {
+  "code": "89",
+  "total": 2025015,
+  "rel": {
+   "Phật giáo": 894335,
+   "Công giáo": 62130,
+   "Phật giáo Hòa Hảo": 936974,
+   "Hồi giáo": 14381,
+   "Cao Đài": 72210,
+   "Minh Sư Đạo": 22,
+   "Minh Lý Đạo": 26,
+   "Tin lành": 1510,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 321,
+   "Đạo Tứ Ân Hiếu Nghĩa": 34821,
+   "Bửu Sơn Kỳ Hương": 8253,
+   "Baha'i": 2,
+   "Bà La Môn": 30
+  }
+ },
+ "KIÊN GIANG": {
+  "code": "91",
+  "total": 458500,
+  "rel": {
+   "Phật giáo": 336877,
+   "Công giáo": 90585,
+   "Phật giáo Hòa Hảo": 11475,
+   "Hồi giáo": 419,
+   "Cao Đài": 14392,
+   "Minh Sư Đạo": 26,
+   "Tin lành": 2651,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 218,
+   "Đạo Tứ Ân Hiếu Nghĩa": 1791,
+   "Bửu Sơn Kỳ Hương": 22,
+   "Baha'i": 39,
+   "Bà La Môn": 3,
+   "Không xác định": 2
+  }
+ },
+ "CẦN THƠ": {
+  "code": "92",
+  "total": 464799,
+  "rel": {
+   "Phật giáo": 150060,
+   "Công giáo": 68257,
+   "Phật giáo Hòa Hảo": 227117,
+   "Hồi giáo": 138,
+   "Cao Đài": 13241,
+   "Minh Sư Đạo": 11,
+   "Minh Lý Đạo": 5,
+   "Tin lành": 3638,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 709,
+   "Đạo Tứ Ân Hiếu Nghĩa": 1440,
+   "Bửu Sơn Kỳ Hương": 123,
+   "Baha'i": 59,
+   "Bà La Môn": 1
+  }
+ },
+ "HẬU GIANG": {
+  "code": "93",
+  "total": 62530,
+  "rel": {
+   "Phật giáo": 25697,
+   "Công giáo": 26675,
+   "Phật giáo Hòa Hảo": 1335,
+   "Hồi giáo": 48,
+   "Cao Đài": 5138,
+   "Minh Sư Đạo": 13,
+   "Minh Lý Đạo": 1,
+   "Tin lành": 1625,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1315,
+   "Đạo Tứ Ân Hiếu Nghĩa": 682,
+   "Bà La Môn": 1
+  }
+ },
+ "SÓC TRĂNG": {
+  "code": "94",
+  "total": 390997,
+  "rel": {
+   "Phật giáo": 332392,
+   "Công giáo": 51454,
+   "Phật giáo Hòa Hảo": 255,
+   "Hồi giáo": 99,
+   "Cao Đài": 4658,
+   "Minh Sư Đạo": 2,
+   "Minh Lý Đạo": 8,
+   "Tin lành": 1659,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 468,
+   "Bửu Sơn Kỳ Hương": 2
+  }
+ },
+ "BẠC LIÊU": {
+  "code": "95",
+  "total": 55063,
+  "rel": {
+   "Phật giáo": 38439,
+   "Công giáo": 13433,
+   "Phật giáo Hòa Hảo": 39,
+   "Hồi giáo": 14,
+   "Cao Đài": 2144,
+   "Minh Sư Đạo": 15,
+   "Tin lành": 618,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 354,
+   "Bửu Sơn Kỳ Hương": 2,
+   "Baha'i": 5
+  }
+ },
+ "CÀ MAU": {
+  "code": "96",
+  "total": 52899,
+  "rel": {
+   "Phật giáo": 20817,
+   "Công giáo": 22893,
+   "Phật giáo Hòa Hảo": 591,
+   "Hồi giáo": 109,
+   "Cao Đài": 5688,
+   "Minh Sư Đạo": 16,
+   "Tin lành": 1634,
+   "Tịnh độ Cư sĩ Phật hội Việt Nam": 1114,
+   "Đạo Tứ Ân Hiếu Nghĩa": 32,
+   "Bửu Sơn Kỳ Hương": 3,
+   "Baha'i": 2
+  }
+ }
+}

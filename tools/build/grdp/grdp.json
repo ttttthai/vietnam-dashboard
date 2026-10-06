@@ -1,0 +1,2474 @@
+{
+ "provinces": {
+  "Tuyên Quang": {
+   "grdp_bn": {
+    "2020": 60439,
+    "2024": 83704,
+    "2025": 95471
+   },
+   "growth": {
+    "2020": 4.5,
+    "2024": 7.26,
+    "2025": 6.4
+   },
+   "grdp_pc_mvnd": {
+    "2020": 36.34,
+    "2024": 48.34,
+    "2025": 54.61
+   },
+   "grdp_pc_usd": {
+    "2020": 1566,
+    "2024": 2000,
+    "2025": 2186
+   },
+   "pop_avg_thousand": {
+    "2020": 1663.14,
+    "2024": 1731.66,
+    "2025": 1748.25
+   },
+   "growth_series": {
+    "2020": 4.5,
+    "2021": 6.37,
+    "2022": 7.49,
+    "2023": 4.62,
+    "2024": 7.26,
+    "2025": 6.4
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 36.34,
+    "2021": 37.63,
+    "2022": 41.59,
+    "2023": 43.74,
+    "2024": 48.34,
+    "2025": 54.61
+   },
+   "merged_from": [
+    "Hà Giang",
+    "Tuyên Quang"
+   ],
+   "structure_2025": {
+    "agri": 25.77,
+    "ind": 27.99,
+    "svc": 41.79,
+    "tax": 4.45
+   },
+   "structure_source": "https://thongketuyenquang.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/47",
+   "structure_note": "Thống kê tỉnh Tuyên Quang, 'Tình hình kinh tế - xã hội năm 2025 tỉnh Tuyên Quang' (31/12/2025): GRDP growth 6,40% (2010 prices); quy mô GRDP giá hiện hành ước 95.634,3 tỷ đồng. Published by post-merger provincial stats office (page text does not explicitly mention Hà Giang). No per-capita figure. A search-engine summary also cited 8,01% growth / 106.338 tỷ but this was not verified on any page and is not used.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 95634.3,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Cao Bằng": {
+   "grdp_bn": {
+    "2020": 19090,
+    "2024": 24711,
+    "2025": 27914
+   },
+   "growth": {
+    "2020": 6.02,
+    "2024": 6.14,
+    "2025": 7.22
+   },
+   "grdp_pc_mvnd": {
+    "2020": 35.81,
+    "2024": 44.25,
+    "2025": 49.59
+   },
+   "grdp_pc_usd": {
+    "2020": 1543,
+    "2024": 1831,
+    "2025": 1985
+   },
+   "pop_avg_thousand": {
+    "2020": 533.09,
+    "2024": 558.46,
+    "2025": 562.93
+   },
+   "growth_series": {
+    "2020": 6.02,
+    "2021": -0.62,
+    "2022": 4.46,
+    "2023": 4.52,
+    "2024": 6.14,
+    "2025": 7.22
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 35.81,
+    "2021": 35.85,
+    "2022": 38.71,
+    "2023": 40.98,
+    "2024": 44.25,
+    "2025": 49.59
+   },
+   "merged_from": [
+    "Cao Bằng"
+   ],
+   "structure_2025": {
+    "agri": 19.63,
+    "ind": 20.54,
+    "svc": 56.17,
+    "tax": 3.66
+   },
+   "structure_source": "https://thongkecaobang.nso.gov.vn/bao-cao-tinh-hinh-kinh-te-xa-hoi-nam/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-12-va-ca-nam-2025-tinh-cao-bang-1416.html",
+   "structure_note": "Thống kê tỉnh Cao Bằng, 'Báo cáo tình hình kinh tế - xã hội tháng 12 và cả năm 2025' (02/01/2026): GRDP +7,22%; GRDP giá hiện hành ước 27.935 tỷ đồng; bình quân đầu người 49,62 triệu đồng. Cao Bằng unmerged.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 27935,
+    "grdp_pc_mvnd_2025": 49.62,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Lai Châu": {
+   "grdp_bn": {
+    "2020": 20357,
+    "2024": 29917,
+    "2025": 39807
+   },
+   "growth": {
+    "2020": 8.19,
+    "2024": 10.56,
+    "2025": 7.52
+   },
+   "grdp_pc_mvnd": {
+    "2020": 43.33,
+    "2024": 60.38,
+    "2025": 79.43
+   },
+   "grdp_pc_usd": {
+    "2020": 1867,
+    "2024": 2499,
+    "2025": 3180
+   },
+   "pop_avg_thousand": {
+    "2020": 469.81,
+    "2024": 495.47,
+    "2025": 501.16
+   },
+   "growth_series": {
+    "2020": 8.19,
+    "2021": 4.2,
+    "2022": 8.24,
+    "2023": -3.41,
+    "2024": 10.56,
+    "2025": 7.52
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 43.33,
+    "2021": 44.66,
+    "2022": 49.62,
+    "2023": 50.8,
+    "2024": 60.38,
+    "2025": 79.43
+   },
+   "merged_from": [
+    "Lai Châu"
+   ],
+   "structure_2025": {
+    "agri": 11.0,
+    "ind": 53.64,
+    "svc": 30.0,
+    "tax": 5.36
+   },
+   "structure_source": "https://thongkelaichau.nso.gov.vn/storage/manager/report_ktxh/bowZu9t-85d11631-3cf4-44e4-a1fd-a6f1abc03be6.pdf",
+   "structure_note": "Thống kê tỉnh Lai Châu, Báo cáo 01/BC-TKT 'tình hình KT-XH tháng 12 và năm 2025' (02/01/2026), PDF: GRDP +7,52%; giá hiện hành 39.974.321 triệu đồng; bình quân đầu người 79,8 triệu đồng. Structure from annexed table (bowZu9t PDF text + Hn8wxtf data annex). Report page: https://thongkelaichau.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/10041",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 39974.321,
+    "grdp_pc_mvnd_2025": 79.8,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Lào Cai": {
+   "grdp_bn": {
+    "2020": 86874,
+    "2024": 121485,
+    "2025": 141887
+   },
+   "growth": {
+    "2020": 4.06,
+    "2024": 7.53,
+    "2025": 8.14
+   },
+   "grdp_pc_mvnd": {
+    "2020": 55.06,
+    "2024": 73.33,
+    "2025": 84.68
+   },
+   "grdp_pc_usd": {
+    "2020": 2372,
+    "2024": 3035,
+    "2025": 3390
+   },
+   "pop_avg_thousand": {
+    "2020": 1577.94,
+    "2024": 1656.59,
+    "2025": 1675.67
+   },
+   "growth_series": {
+    "2020": 4.06,
+    "2021": 5.27,
+    "2022": 8.37,
+    "2023": 4.94,
+    "2024": 7.53,
+    "2025": 8.14
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 55.06,
+    "2021": 57.71,
+    "2022": 64.58,
+    "2023": 66.9,
+    "2024": 73.33,
+    "2025": 84.68
+   },
+   "merged_from": [
+    "Yên Bái",
+    "Lào Cai"
+   ],
+   "structure_2025": {
+    "agri": 16.0,
+    "ind": 37.31,
+    "svc": 39.16,
+    "tax": 7.52
+   },
+   "structure_source": "https://baolaocai.vn/lao-cai-tang-truong-kinh-te-grdp-nam-2025-uoc-dat-85-post888455.html",
+   "structure_note": "Báo Lào Cai, 08/12/2025 (early full-year estimate, pre-final): GRDP 2025 ước +8,5%; structure as quoted (agri given as 16%). Merged province (Yên Bái + Lào Cai). Provincial stats-office year-end report not accessible; GRDP size and per capita not found (only plan targets of 83,9–85 triệu đồng per capita, not recorded).",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": null,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Thái Nguyên": {
+   "grdp_bn": {
+    "2020": 136366,
+    "2024": 175090,
+    "2025": 192385
+   },
+   "growth": {
+    "2020": 3.44,
+    "2024": 3.77,
+    "2025": 6.33
+   },
+   "grdp_pc_mvnd": {
+    "2020": 83.95,
+    "2024": 103.33,
+    "2025": 112.4
+   },
+   "grdp_pc_usd": {
+    "2020": 3617,
+    "2024": 4276,
+    "2025": 4500
+   },
+   "pop_avg_thousand": {
+    "2020": 1624.33,
+    "2024": 1694.51,
+    "2025": 1711.58
+   },
+   "growth_series": {
+    "2020": 3.44,
+    "2021": 6.06,
+    "2022": 5.41,
+    "2023": 1.79,
+    "2024": 3.77,
+    "2025": 6.33
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 83.95,
+    "2021": 88.66,
+    "2022": 96.21,
+    "2023": 99.03,
+    "2024": 103.33,
+    "2025": 112.4
+   },
+   "merged_from": [
+    "Bắc Kạn",
+    "Thái Nguyên"
+   ],
+   "structure_2025": {
+    "agri": 10.9,
+    "ind": 54.1,
+    "svc": 31.5,
+    "tax": 3.5
+   },
+   "structure_source": "https://thongkethainguyen.nso.gov.vn/storage/manager/report_ktxh/LbBabTs-59a521ea-4844-424a-9111-429be26d583d.pdf",
+   "structure_note": "Thống kê tỉnh Thái Nguyên, 'Báo cáo Tình hình KT-XH tháng 12, quý IV và năm 2025' (05/01/2026), signed PDF: GRDP +6,33%; 'khu vực công nghiệp' 54,1% (= CN-XD; riêng công nghiệp 48%); 2024 structure 11,6/53,2/31,1/4,1. Per capita 114,1 triệu đồng ≈ 4.318 USD. GRDP size at current prices not stated. Merged province (Bắc Kạn + Thái Nguyên). Report page: https://thongkethainguyen.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/10019",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": null,
+    "grdp_pc_mvnd_2025": 114.1,
+    "grdp_pc_usd_2025": 4318
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Điện Biên": {
+   "grdp_bn": {
+    "2020": 20302,
+    "2024": 31348,
+    "2025": 35631
+   },
+   "growth": {
+    "2020": 2.49,
+    "2024": 8.57,
+    "2025": 7.34
+   },
+   "grdp_pc_mvnd": {
+    "2020": 33.09,
+    "2024": 47.74,
+    "2025": 53.39
+   },
+   "grdp_pc_usd": {
+    "2020": 1426,
+    "2024": 1975,
+    "2025": 2137
+   },
+   "pop_avg_thousand": {
+    "2020": 613.48,
+    "2024": 656.71,
+    "2025": 667.42
+   },
+   "growth_series": {
+    "2020": 2.49,
+    "2021": 6.65,
+    "2022": 10.05,
+    "2023": 9.15,
+    "2024": 8.57,
+    "2025": 7.34
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 33.09,
+    "2021": 35.3,
+    "2022": 39.5,
+    "2023": 43.19,
+    "2024": 47.74,
+    "2025": 53.39
+   },
+   "merged_from": [
+    "Điện Biên"
+   ],
+   "structure_2025": {
+    "agri": 14.38,
+    "ind": 21.73,
+    "svc": 59.67,
+    "tax": 4.22
+   },
+   "structure_source": "https://thongkedienbien.nso.gov.vn/thong-tin-kinh-te-xa-hoi/tinh-hinh-kinh-te-xa-hoi-tinh-dien-bien-thang-12-va-nam-2025-612.html",
+   "structure_note": "Thống kê tỉnh Điện Biên, 'Tình hình KT-XH tỉnh Điện Biên tháng 12 và năm 2025': GRDP +7,34% (17.547,78 tỷ, 2010 prices); giá hiện hành 35.657,32 tỷ đồng (+13,69%); per capita 'gần 54 triệu/người/năm' (approximate).",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 35657.32,
+    "grdp_pc_mvnd_2025": 54,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Lạng Sơn": {
+   "grdp_bn": {
+    "2020": 34887,
+    "2024": 50764,
+    "2025": 58223
+   },
+   "growth": {
+    "2020": 3.9,
+    "2024": 5.67,
+    "2025": 8.06
+   },
+   "grdp_pc_mvnd": {
+    "2020": 44.23,
+    "2024": 62.36,
+    "2025": 70.95
+   },
+   "grdp_pc_usd": {
+    "2020": 1906,
+    "2024": 2581,
+    "2025": 2841
+   },
+   "pop_avg_thousand": {
+    "2020": 788.71,
+    "2024": 813.99,
+    "2025": 820.63
+   },
+   "growth_series": {
+    "2020": 3.9,
+    "2021": 6.75,
+    "2022": 6.63,
+    "2023": 6.84,
+    "2024": 5.67,
+    "2025": 8.06
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 44.23,
+    "2021": 47.17,
+    "2022": 50.98,
+    "2023": 57.83,
+    "2024": 62.36,
+    "2025": 70.95
+   },
+   "merged_from": [
+    "Lạng Sơn"
+   ],
+   "structure_2025": {
+    "agri": 20.28,
+    "ind": 28.33,
+    "svc": 47.24,
+    "tax": 4.16
+   },
+   "structure_source": "https://phunuvietnam.vn/lang-son-dat-muc-tieu-but-pha-grdp-2025-uoc-tang-806-dung-thu-3-vung-trung-du-va-mien-nui-phia-bac-238251210145310039.htm",
+   "structure_note": "Press (Phụ nữ Việt Nam, 10/12/2025) quoting UBND tỉnh KT-XH report to HĐND kỳ họp 44 (09/12/2025): GRDP ước +8,06%; per capita ước 71 triệu đồng. Early estimate; stats office site (thongkelangson.nso.gov.vn) returned 503. GRDP size not found.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": null,
+    "grdp_pc_mvnd_2025": 71,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Sơn La": {
+   "grdp_bn": {
+    "2020": 55040,
+    "2024": 76353,
+    "2025": 95738
+   },
+   "growth": {
+    "2020": 7.21,
+    "2024": 6.24,
+    "2025": 8.03
+   },
+   "grdp_pc_mvnd": {
+    "2020": 43.32,
+    "2024": 57.38,
+    "2025": 71.38
+   },
+   "grdp_pc_usd": {
+    "2020": 1866,
+    "2024": 2375,
+    "2025": 2858
+   },
+   "pop_avg_thousand": {
+    "2020": 1270.56,
+    "2024": 1330.58,
+    "2025": 1341.22
+   },
+   "growth_series": {
+    "2020": 7.21,
+    "2021": 2.72,
+    "2022": 7.85,
+    "2023": 0.51,
+    "2024": 6.24,
+    "2025": 8.03
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 43.32,
+    "2021": 44.25,
+    "2022": 48.84,
+    "2023": 50.84,
+    "2024": 57.38,
+    "2025": 71.38
+   },
+   "merged_from": [
+    "Sơn La"
+   ],
+   "structure_2025": null,
+   "structure_note": "Dân Việt, 27/01/2026: GRDP (giá so sánh) 38.992 tỷ đồng, +8,03%; per capita 71,6 triệu đồng (+14 triệu vs 2024). Actual 2025 structure not found: figures 23/29/42/6 seen in search results are plan targets and 25,0/26,5/41,7/6,7 could not be traced to a verifiable page — not recorded. Stats office report not accessible.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": null,
+    "grdp_pc_mvnd_2025": 71.6,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Phú Thọ": {
+   "grdp_bn": {
+    "2020": 248899,
+    "2024": 356722,
+    "2025": 412151
+   },
+   "growth": {
+    "2020": 3.08,
+    "2024": 9.27,
+    "2025": 10.52
+   },
+   "grdp_pc_mvnd": {
+    "2020": 70.82,
+    "2024": 97.37,
+    "2025": 111.35
+   },
+   "grdp_pc_usd": {
+    "2020": 3051,
+    "2024": 4029,
+    "2025": 4458
+   },
+   "pop_avg_thousand": {
+    "2020": 3514.33,
+    "2024": 3663.67,
+    "2025": 3701.53
+   },
+   "growth_series": {
+    "2020": 3.08,
+    "2021": 6.87,
+    "2022": 9.39,
+    "2023": 3.54,
+    "2024": 9.27,
+    "2025": 10.52
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 70.82,
+    "2021": 75.41,
+    "2022": 84.32,
+    "2023": 87.81,
+    "2024": 97.37,
+    "2025": 111.35
+   },
+   "merged_from": [
+    "Vĩnh Phúc",
+    "Hòa Bình",
+    "Phú Thọ"
+   ],
+   "structure_2025": {
+    "agri": 11.01,
+    "ind": 48.82,
+    "svc": 28.24,
+    "tax": 11.93
+   },
+   "structure_source": "https://thongkephutho.nso.gov.vn/storage/manager/report_ktxh/SC3j41K-7aabb9c5-c410-4170-9f67-98ed226dae39.pdf",
+   "structure_note": "Thống kê tỉnh Phú Thọ, Báo cáo 616 'tình hình KT-XH tháng 12 và năm 2025' (05/01/2026), PDF annex table: GRDP +10,52%; giá hiện hành 412.401 tỷ đồng (agri 45.409; CN-XD 201.338; DV 116.463; thuế 49.190), 6th/34. Merged province (Vĩnh Phúc + Hòa Bình + Phú Thọ). No per capita stated. Report page: https://thongkephutho.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/20081",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 412401,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Bắc Ninh": {
+   "grdp_bn": {
+    "2020": 329876,
+    "2024": 460316,
+    "2025": 522116
+   },
+   "growth": {
+    "2020": 7.15,
+    "2024": 10.32,
+    "2025": 10.27
+   },
+   "grdp_pc_mvnd": {
+    "2020": 101.17,
+    "2024": 131.17,
+    "2025": 146.15
+   },
+   "grdp_pc_usd": {
+    "2020": 4359,
+    "2024": 5428,
+    "2025": 5852
+   },
+   "pop_avg_thousand": {
+    "2020": 3260.75,
+    "2024": 3509.19,
+    "2025": 3572.35
+   },
+   "growth_series": {
+    "2020": 7.15,
+    "2021": 8.01,
+    "2022": 11.07,
+    "2023": 4.98,
+    "2024": 10.32,
+    "2025": 10.27
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 101.17,
+    "2021": 108.61,
+    "2022": 120.6,
+    "2023": 122.91,
+    "2024": 131.17,
+    "2025": 146.15
+   },
+   "merged_from": [
+    "Bắc Giang",
+    "Bắc Ninh"
+   ],
+   "structure_2025": {
+    "agri": 6.52,
+    "ind": 71.13,
+    "svc": 19.41,
+    "tax": 2.94
+   },
+   "structure_source": "https://thongkebacninh.nso.gov.vn/storage/manager/report_ktxh/YcwmA69-6854c961-292d-4057-961a-f49bb8d0cee5.pdf",
+   "structure_note": "Thống kê tỉnh Bắc Ninh, Báo cáo số 03/BC-CTK ngày 05/01/2026 (tháng 12 và cả năm 2025), biểu số liệu GRDP (merged Bắc Giang+Bắc Ninh): current-price GRDP 522,618.4 tỷ; growth 10.27%. Per capita 'hơn 5,8 nghìn USD' (lower bound) is from provincial press conference reported by baobacninhtv.vn (https://baobacninhtv.vn/tinh-hinh-kinh-te-xa-hoi-tinh-bac-ninh-nam-2025-nhieu-chi-tieu-trong-nhom-dan-dau-ca-nuoc-postid436365.bbg). Report page: https://thongkebacninh.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/10022",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 522618.4,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": 5800
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Quảng Ninh": {
+   "grdp_bn": {
+    "2020": 208137,
+    "2024": 326930,
+    "2025": 368707
+   },
+   "growth": {
+    "2020": 8.04,
+    "2024": 8.26,
+    "2025": 11.89
+   },
+   "grdp_pc_mvnd": {
+    "2020": 155.6,
+    "2024": 234.1,
+    "2025": 261.2
+   },
+   "grdp_pc_usd": {
+    "2020": 6704,
+    "2024": 9687,
+    "2025": 10458
+   },
+   "pop_avg_thousand": {
+    "2020": 1337.61,
+    "2024": 1396.52,
+    "2025": 1411.58
+   },
+   "growth_series": {
+    "2020": 8.04,
+    "2021": 9.5,
+    "2022": 9.52,
+    "2023": 9.26,
+    "2024": 8.26,
+    "2025": 11.89
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 155.6,
+    "2021": 170.19,
+    "2022": 195.27,
+    "2023": 213.15,
+    "2024": 234.1,
+    "2025": 261.2
+   },
+   "merged_from": [
+    "Quảng Ninh"
+   ],
+   "structure_2025": {
+    "agri": 4.6,
+    "ind": 46.2,
+    "svc": 37.8,
+    "tax": 11.4
+   },
+   "structure_source": "https://tapchikinhtetaichinh.vn/but-pha-kinh-te-quang-ninh-nam-2025-dong-luc-vung-chac-tao-da-cho-nhiem-ky-moi-140107.html",
+   "structure_note": "Structure and '368,4 nghìn tỷ' (current prices) from Tạp chí Kinh tế Tài chính; exact 368,445 tỷ and per capita 10,402 USD from Thời báo Tài chính VN (https://thoibaotaichinhvietnam.vn/quang-ninh-tang-truong-kinh-te-an-tuong-trong-nam-2025-190171.html). Growth 11.89% (1st nationally). Stats office report page (thongkequangninh.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/33) exists but body/attachment not machine-readable.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 368445,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": 10402
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Hà Nội": {
+   "grdp_bn": {
+    "2020": 1017595,
+    "2024": 1420313,
+    "2025": 1588060
+   },
+   "growth": {
+    "2020": 4.11,
+    "2024": 6.54,
+    "2025": 8.16
+   },
+   "grdp_pc_mvnd": {
+    "2020": 123.4,
+    "2024": 162.92,
+    "2025": 179.29
+   },
+   "grdp_pc_usd": {
+    "2020": 5317,
+    "2024": 6742,
+    "2025": 7178
+   },
+   "pop_avg_thousand": {
+    "2020": 8246.54,
+    "2024": 8717.63,
+    "2025": 8857.53
+   },
+   "growth_series": {
+    "2020": 4.11,
+    "2021": 2.94,
+    "2022": 8.96,
+    "2023": 6.21,
+    "2024": 6.54,
+    "2025": 8.16
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 123.4,
+    "2021": 128.33,
+    "2022": 141.12,
+    "2023": 149.69,
+    "2024": 162.92,
+    "2025": 179.29
+   },
+   "merged_from": [
+    "Hà Nội"
+   ],
+   "structure_2025": {
+    "agri": 1.86,
+    "ind": 22.25,
+    "svc": 66.44,
+    "tax": 9.45
+   },
+   "structure_source": "https://thongkehanoi.nso.gov.vn/storage/manager/report_ktxh/IYPlsKq-7ba92ea3-3a4b-4388-a594-9b9b99e3c238.pdf",
+   "structure_note": "Thống kê TP Hà Nội, Báo cáo số 295/BC-TKT ngày 31/12/2025 (quý IV và năm 2025): current-price GRDP 1,587,379 tỷ (biểu GRDP), growth 8.16%, per capita 179.2 triệu đồng; text mentions scale ~63 tỷ USD. Report page: https://thongkehanoi.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/137",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 1587379,
+    "grdp_pc_mvnd_2025": 179.2,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Hải Phòng": {
+   "grdp_bn": {
+    "2020": 406063,
+    "2024": 648266,
+    "2025": 734519
+   },
+   "growth": {
+    "2020": 8.09,
+    "2024": 10.5,
+    "2025": 11.81
+   },
+   "grdp_pc_mvnd": {
+    "2020": 102.28,
+    "2024": 158.01,
+    "2025": 177.0
+   },
+   "grdp_pc_usd": {
+    "2020": 4407,
+    "2024": 6538,
+    "2025": 7086
+   },
+   "pop_avg_thousand": {
+    "2020": 3970.27,
+    "2024": 4102.75,
+    "2025": 4149.87
+   },
+   "growth_series": {
+    "2020": 8.09,
+    "2021": 11.54,
+    "2022": 10.08,
+    "2023": 8.46,
+    "2024": 10.5,
+    "2025": 11.81
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 102.28,
+    "2021": 115.46,
+    "2022": 131.11,
+    "2023": 141.61,
+    "2024": 158.01,
+    "2025": 177.0
+   },
+   "merged_from": [
+    "Hải Phòng",
+    "Hải Dương"
+   ],
+   "structure_2025": {
+    "agri": 4.55,
+    "ind": 53.96,
+    "svc": 35.2,
+    "tax": 6.29
+   },
+   "structure_source": "https://thongkehaiphong.gov.vn/thong-tin-kinh-te-xa-hoi/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-nam-2025-thanh-pho-hai-phong-674.html",
+   "structure_note": "Thống kê TP Hải Phòng, Thông cáo báo chí KT-XH năm 2025 (merged HP+Hải Dương): current-price GRDP 734,420 tỷ (~29.3 tỷ USD), growth 11.81%. Per capita 194.5 triệu đồng from Thương hiệu & Công luận report of the Thống kê HP press conference 06/01/2026 (https://thuonghieucongluan.com.vn/hai-phong-cong-bo-so-lieu-thong-ke-kinh-te-xa-hoi-nam-2025-a298961.html). NB: some search snippets circulate a different structure (5.89/52.04/36.78/5.29) not found on any fetched page — ignore.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 734420,
+    "grdp_pc_mvnd_2025": 194.5,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Hưng Yên": {
+   "grdp_bn": {
+    "2020": 189904,
+    "2024": 285491,
+    "2025": 319824
+   },
+   "growth": {
+    "2020": 3.93,
+    "2024": 6.96,
+    "2025": 8.78
+   },
+   "grdp_pc_mvnd": {
+    "2020": 60.49,
+    "2024": 88.98,
+    "2025": 98.86
+   },
+   "grdp_pc_usd": {
+    "2020": 2606,
+    "2024": 3682,
+    "2025": 3958
+   },
+   "pop_avg_thousand": {
+    "2020": 3139.33,
+    "2024": 3208.44,
+    "2025": 3235.17
+   },
+   "growth_series": {
+    "2020": 3.93,
+    "2021": 8.01,
+    "2022": 11.69,
+    "2023": 7.74,
+    "2024": 6.96,
+    "2025": 8.78
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 60.49,
+    "2021": 66.42,
+    "2022": 75.97,
+    "2023": 81.91,
+    "2024": 88.98,
+    "2025": 98.86
+   },
+   "merged_from": [
+    "Thái Bình",
+    "Hưng Yên"
+   ],
+   "structure_2025": {
+    "agri": 12.3,
+    "ind": 53.9,
+    "svc": 28.0,
+    "tax": null
+   },
+   "structure_source": "https://congthuong.vn/nam-2026-hung-yen-phan-dau-tang-truong-kinh-te-hai-con-so-438094.html",
+   "structure_note": "Thống kê tỉnh Hưng Yên has not posted a Dec/full-year 2025 report (site lists up to Nov 2025 and Jan 2026). Rounded structure (ind 53.9, svc 28, agri 12.3; tax not stated, implied ~5.8) and per capita 99 triệu are from the provincial HĐND session 08/12/2025 as reported by Công Thương. That article also gives GRDP '166.106 tỷ đồng' without price basis — far below per capita × population, so likely constant 2010 prices; not recorded. Alt: provincial planning summary (Dec 2025) projects 2025 structure agri 12.34 / ind 53.88 / svc 27.96 and per capita 101.7 triệu.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": null,
+    "grdp_pc_mvnd_2025": 99,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Ninh Bình": {
+   "grdp_bn": {
+    "2020": 203044,
+    "2024": 301534,
+    "2025": 342779
+   },
+   "growth": {
+    "2020": 6.28,
+    "2024": 9.49,
+    "2025": 10.65
+   },
+   "grdp_pc_mvnd": {
+    "2020": 55.84,
+    "2024": 78.96,
+    "2025": 89.18
+   },
+   "grdp_pc_usd": {
+    "2020": 2406,
+    "2024": 3267,
+    "2025": 3570
+   },
+   "pop_avg_thousand": {
+    "2020": 3636.09,
+    "2024": 3818.76,
+    "2025": 3843.77
+   },
+   "growth_series": {
+    "2020": 6.28,
+    "2021": 6.45,
+    "2022": 8.54,
+    "2023": 5.98,
+    "2024": 9.49,
+    "2025": 10.65
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 55.84,
+    "2021": 59.03,
+    "2022": 65.31,
+    "2023": 70.4,
+    "2024": 78.96,
+    "2025": 89.18
+   },
+   "merged_from": [
+    "Hà Nam",
+    "Nam Định",
+    "Ninh Bình"
+   ],
+   "structure_2025": {
+    "agri": 11.04,
+    "ind": 47.05,
+    "svc": 34.39,
+    "tax": 7.52
+   },
+   "structure_source": "https://thongkeninhbinh.nso.gov.vn/storage/manager/report_ktxh/P0SmR2D-a3758241-3549-451a-8f7a-648e17d3b720.pdf",
+   "structure_note": "Thống kê tỉnh Ninh Bình, Báo cáo số 01/BC-TKT ngày 02/01/2026 (tháng 12 và năm 2025), merged Hà Nam+Nam Định+Ninh Bình: current-price GRDP 342,812 tỷ; growth 10.65%. Per capita 89.2 triệu (+13%) from Nhân Dân report of Thống kê Ninh Bình press conference (https://nhandan.vn/ninh-binh-tang-truong-grdp-xep-thu-3-ca-nuoc-post935069.html); that article's '187.794 tỷ' is the constant-2010-price figure. Report page: https://thongkeninhbinh.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/10",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 342812,
+    "grdp_pc_mvnd_2025": 89.2,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Thanh Hóa": {
+   "grdp_bn": {
+    "2020": 187876,
+    "2024": 306098,
+    "2025": 333754
+   },
+   "growth": {
+    "2020": 5.06,
+    "2024": 10.49,
+    "2025": 8.27
+   },
+   "grdp_pc_mvnd": {
+    "2020": 51.26,
+    "2024": 81.32,
+    "2025": 88.49
+   },
+   "grdp_pc_usd": {
+    "2020": 2209,
+    "2024": 3365,
+    "2025": 3543
+   },
+   "pop_avg_thousand": {
+    "2020": 3664.94,
+    "2024": 3764.24,
+    "2025": 3771.77
+   },
+   "growth_series": {
+    "2020": 5.06,
+    "2021": 9.67,
+    "2022": 11.53,
+    "2023": 5.38,
+    "2024": 10.49,
+    "2025": 8.27
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 51.26,
+    "2021": 57.6,
+    "2022": 69.08,
+    "2023": 72.62,
+    "2024": 81.32,
+    "2025": 88.49
+   },
+   "merged_from": [
+    "Thanh Hóa"
+   ],
+   "structure_2025": {
+    "agri": 13.25,
+    "ind": 47.94,
+    "svc": 32.93,
+    "tax": 5.87
+   },
+   "structure_source": "https://thongkethanhhoa.nso.gov.vn/storage/manager/report_ktxh/gRsPREz-35248ec0-b772-4388-a23b-ed00c9689ff1.pdf",
+   "structure_note": "Thống kê tỉnh Thanh Hóa, 'Tình hình KT-XH tỉnh Thanh Hóa năm 2025' (text PDF: structure, per capita 88.45 tr = 3,435 USD, growth 8.27%) + biểu GRDP giá hiện hành (333,616,853 triệu đồng). Province-government figures differ (press: 349,309 or 357,760 tỷ; 3,750 USD; growth 8.36%) — stats office figures used. Text PDF: https://thongkethanhhoa.nso.gov.vn/storage/manager/report_ktxh/l1C9xyp-1669ccf1-a105-435c-8736-f3db6680686c.pdf",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 333616.9,
+    "grdp_pc_mvnd_2025": 88.45,
+    "grdp_pc_usd_2025": 3435
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Nghệ An": {
+   "grdp_bn": {
+    "2020": 144902,
+    "2024": 210932,
+    "2025": 236488
+   },
+   "growth": {
+    "2020": 4.44,
+    "2024": 8.36,
+    "2025": 8.44
+   },
+   "grdp_pc_mvnd": {
+    "2020": 43.06,
+    "2024": 60.75,
+    "2025": 67.61
+   },
+   "grdp_pc_usd": {
+    "2020": 1855,
+    "2024": 2514,
+    "2025": 2707
+   },
+   "pop_avg_thousand": {
+    "2020": 3365.2,
+    "2024": 3472.29,
+    "2025": 3497.75
+   },
+   "growth_series": {
+    "2020": 4.44,
+    "2021": 6.31,
+    "2022": 9.36,
+    "2023": 4.83,
+    "2024": 8.36,
+    "2025": 8.44
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 43.06,
+    "2021": 46.21,
+    "2022": 51.2,
+    "2023": 54.94,
+    "2024": 60.75,
+    "2025": 67.61
+   },
+   "merged_from": [
+    "Nghệ An"
+   ],
+   "structure_2025": {
+    "agri": 20.9,
+    "ind": 30.89,
+    "svc": 43.7,
+    "tax": 4.51
+   },
+   "structure_source": "https://datafiles.nghean.gov.vn/nan-ubnd/1/quantritintuc20261/NgheAn_01_KTXH_2025.pdf",
+   "structure_note": "Thống kê tỉnh Nghệ An, 'Tình hình KT-XH tháng 12 và năm 2025': current-price GRDP 236,517.8 tỷ (~9.4 tỷ USD); per capita 68 triệu = 2,689 USD. Unit unchanged by merger.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 236517.8,
+    "grdp_pc_mvnd_2025": 68,
+    "grdp_pc_usd_2025": 2689
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Hà Tĩnh": {
+   "grdp_bn": {
+    "2020": 82405,
+    "2024": 110126,
+    "2025": 120845
+   },
+   "growth": {
+    "2020": 2.85,
+    "2024": 7.14,
+    "2025": 8.78
+   },
+   "grdp_pc_mvnd": {
+    "2020": 63.55,
+    "2024": 82.81,
+    "2025": 90.51
+   },
+   "grdp_pc_usd": {
+    "2020": 2738,
+    "2024": 3427,
+    "2025": 3624
+   },
+   "pop_avg_thousand": {
+    "2020": 1296.62,
+    "2024": 1329.83,
+    "2025": 1335.14
+   },
+   "growth_series": {
+    "2020": 2.85,
+    "2021": 6.11,
+    "2022": 1.33,
+    "2023": 8.19,
+    "2024": 7.14,
+    "2025": 8.78
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 63.55,
+    "2021": 68.9,
+    "2022": 71.89,
+    "2023": 76.5,
+    "2024": 82.81,
+    "2025": 90.51
+   },
+   "merged_from": [
+    "Hà Tĩnh"
+   ],
+   "structure_2025": {
+    "agri": 13.38,
+    "ind": 40.41,
+    "svc": 37.37,
+    "tax": 8.84
+   },
+   "structure_source": "https://thongkehatinh.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/133",
+   "structure_note": "Thống kê tỉnh Hà Tĩnh, Báo cáo số 166/BC-TKT ngày 31/12/2025 (quý IV và cả năm 2025): current-price GRDP 120,811 tỷ; growth 8.78%. Per capita not stated in report (101 triệu found only as a target). Biểu số liệu PDF: https://thongkehatinh.nso.gov.vn/storage/manager/report_ktxh/k7hovrM-143075f9-8d36-4bbb-9eb1-88b4a0c14587.pdf",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 120811,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Quảng Trị": {
+   "grdp_bn": {
+    "2020": 75461,
+    "2024": 110628,
+    "2025": 123401
+   },
+   "growth": {
+    "2020": 3.42,
+    "2024": 6.33,
+    "2025": 8.0
+   },
+   "grdp_pc_mvnd": {
+    "2020": 49.02,
+    "2024": 69.84,
+    "2025": 77.41
+   },
+   "grdp_pc_usd": {
+    "2020": 2112,
+    "2024": 2890,
+    "2025": 3099
+   },
+   "pop_avg_thousand": {
+    "2020": 1539.37,
+    "2024": 1583.97,
+    "2025": 1594.13
+   },
+   "growth_series": {
+    "2020": 3.42,
+    "2021": 5.3,
+    "2022": 7.28,
+    "2023": 6.52,
+    "2024": 6.33,
+    "2025": 8.0
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 49.02,
+    "2021": 52.87,
+    "2022": 59.66,
+    "2023": 64.11,
+    "2024": 69.84,
+    "2025": 77.41
+   },
+   "merged_from": [
+    "Quảng Bình",
+    "Quảng Trị"
+   ],
+   "structure_2025": {
+    "agri": 18.12,
+    "ind": 29.49,
+    "svc": 48.57,
+    "tax": 3.82
+   },
+   "structure_source": "https://thongkequangtri.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/10",
+   "structure_note": "Thống kê tỉnh Quảng Trị, Báo cáo KT-XH quý IV và năm 2025 (merged unit). GRDP growth 8.00%. Current-price GRDP scale not stated on the page (may be in attached PDF 'Quang Tri - KT - XH thang 12 va nam 2025.pdf').",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": null,
+    "grdp_pc_mvnd_2025": 79.1,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Huế": {
+   "grdp_bn": {
+    "2020": 55052,
+    "2024": 79814,
+    "2025": 89600
+   },
+   "growth": {
+    "2020": 2.04,
+    "2024": 7.19,
+    "2025": 8.5
+   },
+   "grdp_pc_mvnd": {
+    "2020": 48.56,
+    "2024": 67.72,
+    "2025": 75.27
+   },
+   "grdp_pc_usd": {
+    "2020": 2092,
+    "2024": 2802,
+    "2025": 3014
+   },
+   "pop_avg_thousand": {
+    "2020": 1133.59,
+    "2024": 1178.55,
+    "2025": 1190.34
+   },
+   "growth_series": {
+    "2020": 2.04,
+    "2021": 4.24,
+    "2022": 8.4,
+    "2023": 6.52,
+    "2024": 7.19,
+    "2025": 8.5
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 48.56,
+    "2021": 50.83,
+    "2022": 56.8,
+    "2023": 62.01,
+    "2024": 67.72,
+    "2025": 75.27
+   },
+   "merged_from": [
+    "Huế"
+   ],
+   "structure_2025": null,
+   "structure_note": "Press (Mekong ASEAN, 21/01/2026): 'Quy mô kinh tế tính theo giá hiện hành đạt 89.591 tỷ đồng'; growth ~9%. Full-year 2025 structure not found on a verifiable page (a search snippet claimed services 53.9% but unverified). thongkehue.nso.gov.vn H1-2026 report gives H1-2025 comparison shares agri 9.79 / ind 29.68 / svc 51.74 (6-month, not full year). Huế was not merged, so old=new boundaries.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 89591,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Đà Nẵng": {
+   "grdp_bn": {
+    "2020": 202360,
+    "2024": 280540,
+    "2025": 316054
+   },
+   "growth": {
+    "2020": -4.61,
+    "2024": 7.58,
+    "2025": 9.18
+   },
+   "grdp_pc_mvnd": {
+    "2020": 75.66,
+    "2024": 99.48,
+    "2025": 110.65
+   },
+   "grdp_pc_usd": {
+    "2020": 3260,
+    "2024": 4117,
+    "2025": 4430
+   },
+   "pop_avg_thousand": {
+    "2020": 2674.52,
+    "2024": 2819.94,
+    "2025": 2856.38
+   },
+   "growth_series": {
+    "2020": -4.61,
+    "2021": 3.15,
+    "2022": 12.07,
+    "2023": -2.3,
+    "2024": 7.58,
+    "2025": 9.18
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 75.66,
+    "2021": 78.87,
+    "2022": 89.45,
+    "2023": 90.57,
+    "2024": 99.48,
+    "2025": 110.65
+   },
+   "merged_from": [
+    "Đà Nẵng",
+    "Quảng Nam"
+   ],
+   "structure_2025": {
+    "agri": 6.86,
+    "ind": 25.99,
+    "svc": 54.89,
+    "tax": null
+   },
+   "structure_source": "https://vietnamnet.vn/kinh-te-da-nang-but-pha-sau-dai-dich-grdp-nam-2025-dat-9-18-2478759.html",
+   "structure_note": "Structure from VietNamNet (Thống kê TP Đà Nẵng press conference 31/12/2025); tax share not stated (residual = 12.26%, derived, not recorded). GRDP 316.1 nghìn tỷ and per capita 'trên 110 triệu đồng/người, tương đương 4.287 USD/người' from danang.gov.vn: https://danang.gov.vn/vi/w/grdp-da-nang-nam-2025-dat-918-cao-nhat-giai-doan-20212025 . Growth 9.18%. Merged unit (incl. Quảng Nam).",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 316100,
+    "grdp_pc_mvnd_2025": 110,
+    "grdp_pc_usd_2025": 4287
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Quảng Ngãi": {
+   "grdp_bn": {
+    "2020": 109595,
+    "2024": 172151,
+    "2025": 191614
+   },
+   "growth": {
+    "2020": 1.02,
+    "2024": 5.04,
+    "2025": 10.02
+   },
+   "grdp_pc_mvnd": {
+    "2020": 61.26,
+    "2024": 92.47,
+    "2025": 101.85
+   },
+   "grdp_pc_usd": {
+    "2020": 2639,
+    "2024": 3826,
+    "2025": 4078
+   },
+   "pop_avg_thousand": {
+    "2020": 1789.04,
+    "2024": 1861.72,
+    "2025": 1881.24
+   },
+   "growth_series": {
+    "2020": 1.02,
+    "2021": 6.86,
+    "2022": 8.95,
+    "2023": 5.2,
+    "2024": 5.04,
+    "2025": 10.02
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 61.26,
+    "2021": 70.91,
+    "2022": 85.07,
+    "2023": 87.42,
+    "2024": 92.47,
+    "2025": 101.85
+   },
+   "merged_from": [
+    "Kon Tum",
+    "Quảng Ngãi"
+   ],
+   "structure_2025": {
+    "agri": 17.2,
+    "ind": 41.13,
+    "svc": 29.1,
+    "tax": null
+   },
+   "structure_source": "https://thongke.quangngai.gov.vn/tin-tuc/thong-tin-kinh-te-xa-hoi/tang-truong-kinh-te-tinh-quang-ngai-nam-2025-thuoc-top-6-ca-nuoc-va-cao-nhat-trong-vong-5-nam-qua.html",
+   "structure_note": "Thống kê tỉnh Quảng Ngãi (merged unit). Current-price GRDP 191,612.3 tỷ; NLTS 32,956.9 tỷ (17.20%), CNXD 78,818.3 tỷ (41.13%; công nghiệp 34.97%), dịch vụ 55,757.7 tỷ (29.10%). Tax share not stated (residual 24,079.4 tỷ = 12.57%, derived, not recorded). Constant-2010 GRDP 92,348.1 tỷ, +10.02%. Per capita not stated.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 191612.3,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Gia Lai": {
+   "grdp_bn": {
+    "2020": 155065,
+    "2024": 238477,
+    "2025": 270640
+   },
+   "growth": {
+    "2020": 3.79,
+    "2024": 5.49,
+    "2025": 7.2
+   },
+   "grdp_pc_mvnd": {
+    "2020": 51.18,
+    "2024": 75.63,
+    "2025": 85.04
+   },
+   "grdp_pc_usd": {
+    "2020": 2205,
+    "2024": 3129,
+    "2025": 3405
+   },
+   "pop_avg_thousand": {
+    "2020": 3029.73,
+    "2024": 3153.35,
+    "2025": 3182.65
+   },
+   "growth_series": {
+    "2020": 3.79,
+    "2021": 6.59,
+    "2022": 7.32,
+    "2023": 5.24,
+    "2024": 5.49,
+    "2025": 7.2
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 51.18,
+    "2021": 55.77,
+    "2022": 62.62,
+    "2023": 67.61,
+    "2024": 75.63,
+    "2025": 85.04
+   },
+   "merged_from": [
+    "Bình Định",
+    "Gia Lai"
+   ],
+   "structure_2025": {
+    "agri": 28.84,
+    "ind": 28.63,
+    "svc": 38.6,
+    "tax": 3.93
+   },
+   "structure_source": "https://congthuong.vn/gia-lai-grdp-tang-7-2-thu-ngan-sach-tren-28-000-ty-dong-nam-2025-437897.html",
+   "structure_note": "Structure and per capita (85.05 tr.đ, +12.4%) from Tạp chí Công Thương; GRDP scale 'gần 270.700 tỷ đồng' (approximate) from Thống kê tỉnh Gia Lai: https://thongkegialai.nso.gov.vn/tin-tuc/28 . Growth 7.2%. Merged unit (incl. Bình Định).",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 270700,
+    "grdp_pc_mvnd_2025": 85.05,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Khánh Hòa": {
+   "grdp_bn": {
+    "2020": 114811,
+    "2024": 190434,
+    "2025": 209446
+   },
+   "growth": {
+    "2020": -4.95,
+    "2024": 10.84,
+    "2025": 7.11
+   },
+   "grdp_pc_mvnd": {
+    "2020": 62.6,
+    "2024": 101.19,
+    "2025": 110.32
+   },
+   "grdp_pc_usd": {
+    "2020": 2697,
+    "2024": 4187,
+    "2025": 4417
+   },
+   "pop_avg_thousand": {
+    "2020": 1834.08,
+    "2024": 1881.98,
+    "2025": 1898.55
+   },
+   "growth_series": {
+    "2020": -4.95,
+    "2021": -1.07,
+    "2022": 15.43,
+    "2023": 9.59,
+    "2024": 10.84,
+    "2025": 7.11
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 62.6,
+    "2021": 65.51,
+    "2022": 77.36,
+    "2023": 87.56,
+    "2024": 101.19,
+    "2025": 110.32
+   },
+   "merged_from": [
+    "Ninh Thuận",
+    "Khánh Hòa"
+   ],
+   "structure_2025": {
+    "agri": 13.64,
+    "ind": 38.99,
+    "svc": 40.07,
+    "tax": 7.3
+   },
+   "structure_source": "https://tapchikinhtetaichinh.vn/kinh-te-khanh-hoa-nam-2025-giu-vung-da-tang-truong-tao-nen-tang-cho-muc-tieu-but-pha-138958.html",
+   "structure_note": "Tạp chí Kinh tế - Tài chính quoting Thống kê tỉnh Khánh Hòa, full-year 2025 estimates (merged unit incl. Ninh Thuận). Per capita +9.02%. USD per capita not stated.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 209341.9,
+    "grdp_pc_mvnd_2025": 110.26,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Đắk Lắk": {
+   "grdp_bn": {
+    "2020": 131102,
+    "2024": 201432,
+    "2025": 229539
+   },
+   "growth": {
+    "2020": 5.05,
+    "2024": 5.41,
+    "2025": 6.68
+   },
+   "grdp_pc_mvnd": {
+    "2020": 47.48,
+    "2024": 71.14,
+    "2025": 80.56
+   },
+   "grdp_pc_usd": {
+    "2020": 2046,
+    "2024": 2944,
+    "2025": 3225
+   },
+   "pop_avg_thousand": {
+    "2020": 2761.23,
+    "2024": 2831.33,
+    "2025": 2849.2
+   },
+   "growth_series": {
+    "2020": 5.05,
+    "2021": 3.74,
+    "2022": 7.97,
+    "2023": 5.3,
+    "2024": 5.41,
+    "2025": 6.68
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 47.48,
+    "2021": 51.14,
+    "2022": 56.91,
+    "2023": 61.32,
+    "2024": 71.14,
+    "2025": 80.56
+   },
+   "merged_from": [
+    "Phú Yên",
+    "Đắk Lắk"
+   ],
+   "structure_2025": {
+    "agri": 38.47,
+    "ind": 17.67,
+    "svc": 40.07,
+    "tax": 3.79
+   },
+   "structure_source": "https://thongkedaklak.nso.gov.vn/tinh-hinh-kinh-te-xa-hoi/22",
+   "structure_note": "Thống kê tỉnh Đắk Lắk, Báo cáo KT-XH tháng 12 và năm 2025 (merged unit incl. Phú Yên). 'Tổng sản phẩm ước đạt 229.549,7 tỷ đồng, đạt 99,52% KH năm'. Constant-2010 GRDP 102,036 tỷ, +6.68%. Per capita +13.25%.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 229549.7,
+    "grdp_pc_mvnd_2025": 80.6,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Lâm Đồng": {
+   "grdp_bn": {
+    "2020": 198867,
+    "2024": 310479,
+    "2025": 353258
+   },
+   "growth": {
+    "2020": 3.87,
+    "2024": 5.64,
+    "2025": 6.42
+   },
+   "grdp_pc_mvnd": {
+    "2020": 62.4,
+    "2024": 93.39,
+    "2025": 105.25
+   },
+   "grdp_pc_usd": {
+    "2020": 2689,
+    "2024": 3865,
+    "2025": 4214
+   },
+   "pop_avg_thousand": {
+    "2020": 3186.95,
+    "2024": 3324.38,
+    "2025": 3356.38
+   },
+   "growth_series": {
+    "2020": 3.87,
+    "2021": 4.22,
+    "2022": 7.92,
+    "2023": 5.65,
+    "2024": 5.64,
+    "2025": 6.42
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 62.4,
+    "2021": 66.67,
+    "2022": 75.3,
+    "2023": 79.85,
+    "2024": 93.39,
+    "2025": 105.25
+   },
+   "merged_from": [
+    "Đắk Nông",
+    "Bình Thuận",
+    "Lâm Đồng"
+   ],
+   "structure_2025": {
+    "agri": 38.59,
+    "ind": 20.87,
+    "svc": 35.83,
+    "tax": 4.71
+   },
+   "structure_source": "https://thongkelamdong.nso.gov.vn/tin-tuc/10051",
+   "structure_note": "Thống kê tỉnh Lâm Đồng, KT-XH tháng 12, quý IV và năm 2025 (merged unit incl. Đắk Nông, Bình Thuận). Growth 6.42%. Current-price GRDP scale not stated on the page.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": null,
+    "grdp_pc_mvnd_2025": 105.24,
+    "grdp_pc_usd_2025": 4047.6
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Đồng Nai": {
+   "grdp_bn": {
+    "2020": 434097,
+    "2024": 593232,
+    "2025": 677638
+   },
+   "growth": {
+    "2020": 3.36,
+    "2024": 7.27,
+    "2025": 9.63
+   },
+   "grdp_pc_mvnd": {
+    "2020": 103.64,
+    "2024": 133.98,
+    "2025": 150.8
+   },
+   "grdp_pc_usd": {
+    "2020": 4465,
+    "2024": 5544,
+    "2025": 6037
+   },
+   "pop_avg_thousand": {
+    "2020": 4188.48,
+    "2024": 4427.74,
+    "2025": 4493.7
+   },
+   "growth_series": {
+    "2020": 3.36,
+    "2021": 2.67,
+    "2022": 8.84,
+    "2023": 4.71,
+    "2024": 7.27,
+    "2025": 9.63
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 103.64,
+    "2021": 108.6,
+    "2022": 119.08,
+    "2023": 123.74,
+    "2024": 133.98,
+    "2025": 150.8
+   },
+   "merged_from": [
+    "Bình Phước",
+    "Đồng Nai"
+   ],
+   "structure_2025": {
+    "agri": 12.13,
+    "ind": 54.97,
+    "svc": 26.42,
+    "tax": 6.48
+   },
+   "structure_source": "https://sct.dongnai.gov.vn/vi/news/Chi-dao-dieu-hanh/dong-nai-nam-2025-grdp-toan-tinh-tang-9-63-so-voi-nam-truoc-vuot-1-13-diem-phan-tram-so-voi-chi-tieu-nghi-quyet-so-226-cua-chinh-phu-giao-8-5-va-la-muc-vuot-cao-nhat-ca-nuoc-52256.html",
+   "structure_note": "Merged Đồng Nai (incl. Bình Phước), full-year 2025 estimate published by provincial Dept of Industry & Trade citing provincial statistics. Sector scale (tỷ đồng, current prices): agri 82,222; ind 372,689.06; svc 179,102.87; tax 43,918.37. Growth 9.63%.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 677932.31,
+    "grdp_pc_mvnd_2025": 150.86,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "TP Hồ Chí Minh": {
+   "grdp_bn": {
+    "2020": 2053176,
+    "2024": 2675951,
+    "2025": 2972536
+   },
+   "growth": {
+    "2020": 0.33,
+    "2024": 5.86,
+    "2025": 7.53
+   },
+   "grdp_pc_mvnd": {
+    "2020": 158.23,
+    "2024": 196.63,
+    "2025": 215.34
+   },
+   "grdp_pc_usd": {
+    "2020": 6817,
+    "2024": 8137,
+    "2025": 8622
+   },
+   "pop_avg_thousand": {
+    "2020": 12976.09,
+    "2024": 13608.89,
+    "2025": 13803.8
+   },
+   "growth_series": {
+    "2020": 0.33,
+    "2021": -3.03,
+    "2022": 8.41,
+    "2023": 2.88,
+    "2024": 5.86,
+    "2025": 7.53
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 158.23,
+    "2021": 162.06,
+    "2022": 179.15,
+    "2023": 183.4,
+    "2024": 196.63,
+    "2025": 215.34
+   },
+   "merged_from": [
+    "TP Hồ Chí Minh",
+    "Bà Rịa - Vũng Tàu",
+    "Bình Dương"
+   ],
+   "structure_2025": {
+    "agri": 1.7,
+    "ind": 35.2,
+    "svc": 52.2,
+    "tax": 10.9
+   },
+   "structure_source": "https://www.tinnhanhchungkhoan.vn/tphcm-tang-truong-grdp-753-quy-mo-kinh-te-vuot-29-trieu-ty-dong-post383261.html",
+   "structure_note": "Merged HCMC, Thống kê TP.HCM year-end 2025 data (growth 7.53%), reported by Tin nhanh chứng khoán/Báo Đầu tư Jan 2026. Per-capita USD 8,755 read on HTV (https://htv.vn/tong-ket-kinh-te-xa-hoi-tp-ho-chi-minh-2025-grdp-dat-753-xuat-khau-vuot-95-ty-usd-222260107093940958.htm). Earlier Party-committee report (VnEconomy) gave different preliminary numbers: growth 8.3%, GRDP 3.03 triệu tỷ, per capita 8,944 USD - superseded.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 2972939,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": 8755
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Tây Ninh": {
+   "grdp_bn": {
+    "2020": 218077,
+    "2024": 306354,
+    "2025": 344556
+   },
+   "growth": {
+    "2020": 3.77,
+    "2024": 8.09,
+    "2025": 9.52
+   },
+   "grdp_pc_mvnd": {
+    "2020": 75.41,
+    "2024": 103.53,
+    "2025": 115.61
+   },
+   "grdp_pc_usd": {
+    "2020": 3249,
+    "2024": 4284,
+    "2025": 4629
+   },
+   "pop_avg_thousand": {
+    "2020": 2891.99,
+    "2024": 2959.01,
+    "2025": 2980.28
+   },
+   "growth_series": {
+    "2020": 3.77,
+    "2021": 1.08,
+    "2022": 9.54,
+    "2023": 3.89,
+    "2024": 8.09,
+    "2025": 9.52
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 75.41,
+    "2021": 78.52,
+    "2022": 88.9,
+    "2023": 93.44,
+    "2024": 103.53,
+    "2025": 115.61
+   },
+   "merged_from": [
+    "Long An",
+    "Tây Ninh"
+   ],
+   "structure_2025": null,
+   "structure_note": "Merged Tây Ninh (incl. Long An). Article (26/02/2026) says GRDP scale 'vượt 345 nghìn tỉ đồng' (lower bound, rounded); growth 9.52%. No official 2025 structure shares found (only 2024 figures and 2026 plan targets surfaced in search snippets: 2026 plan KV I 16.11%, KV II 51.24%, KV III 27.75%). Per capita not found on a verified page.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 345000,
+    "grdp_pc_mvnd_2025": null,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Đồng Tháp": {
+   "grdp_bn": {
+    "2020": 184284,
+    "2024": 260972,
+    "2025": 285983
+   },
+   "growth": {
+    "2020": 0.73,
+    "2024": 6.76,
+    "2025": 7.38
+   },
+   "grdp_pc_mvnd": {
+    "2020": 54.64,
+    "2024": 76.82,
+    "2025": 84.02
+   },
+   "grdp_pc_usd": {
+    "2020": 2354,
+    "2024": 3179,
+    "2025": 3364
+   },
+   "pop_avg_thousand": {
+    "2020": 3372.56,
+    "2024": 3397.18,
+    "2025": 3403.78
+   },
+   "growth_series": {
+    "2020": 0.73,
+    "2021": -0.83,
+    "2022": 7.83,
+    "2023": 6.19,
+    "2024": 6.76,
+    "2025": 7.38
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 54.64,
+    "2021": 55.13,
+    "2022": 62.57,
+    "2023": 68.96,
+    "2024": 76.82,
+    "2025": 84.02
+   },
+   "merged_from": [
+    "Tiền Giang",
+    "Đồng Tháp"
+   ],
+   "structure_2025": {
+    "agri": 34.6,
+    "ind": 25.48,
+    "svc": 34.44,
+    "tax": 5.48
+   },
+   "structure_source": "https://thongkedongthap.nso.gov.vn/tin-tuc/200",
+   "structure_note": "Merged Đồng Tháp (incl. Tiền Giang), Thống kê tỉnh Đồng Tháp 'Tình hình KT-XH năm 2025'. Growth 7.38%; GRDP at 2010 prices 147,216 tỷ.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 286053,
+    "grdp_pc_mvnd_2025": 84.04,
+    "grdp_pc_usd_2025": 3186
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "An Giang": {
+   "grdp_bn": {
+    "2020": 185038,
+    "2024": 269396,
+    "2025": 296383
+   },
+   "growth": {
+    "2020": 2.98,
+    "2024": 6.9,
+    "2025": 8.39
+   },
+   "grdp_pc_mvnd": {
+    "2020": 50.93,
+    "2024": 73.22,
+    "2025": 80.22
+   },
+   "grdp_pc_usd": {
+    "2020": 2194,
+    "2024": 3030,
+    "2025": 3212
+   },
+   "pop_avg_thousand": {
+    "2020": 3633.4,
+    "2024": 3679.24,
+    "2025": 3694.6
+   },
+   "growth_series": {
+    "2020": 2.98,
+    "2021": 0.29,
+    "2022": 6.82,
+    "2023": 5.76,
+    "2024": 6.9,
+    "2025": 8.39
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 50.93,
+    "2021": 53.13,
+    "2022": 59.25,
+    "2023": 65.32,
+    "2024": 73.22,
+    "2025": 80.22
+   },
+   "merged_from": [
+    "Kiên Giang",
+    "An Giang"
+   ],
+   "structure_2025": null,
+   "structure_note": "Merged An Giang (incl. Kiên Giang). Per capita 79.41 trđ (estimate, SGGP 25/12/2025 via vietnam.vn); growth 8.39% (baochinhphu). 2025 structure shares and current-price GRDP not found on a verified page (a snippet mentions agri ~26% 'đến 2025' but unverified). Thống kê An Giang Dec-2025 report not located (ctk.angiang.gov.vn only had T9/T10 PDFs).",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": null,
+    "grdp_pc_mvnd_2025": 79.41,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Vĩnh Long": {
+   "grdp_bn": {
+    "2020": 174384,
+    "2024": 254830,
+    "2025": 278466
+   },
+   "growth": {
+    "2020": 2.96,
+    "2024": 7.51,
+    "2025": 5.84
+   },
+   "grdp_pc_mvnd": {
+    "2020": 52.44,
+    "2024": 75.67,
+    "2025": 82.4
+   },
+   "grdp_pc_usd": {
+    "2020": 2259,
+    "2024": 3131,
+    "2025": 3299
+   },
+   "pop_avg_thousand": {
+    "2020": 3325.31,
+    "2024": 3367.43,
+    "2025": 3379.61
+   },
+   "growth_series": {
+    "2020": 2.96,
+    "2021": 0.05,
+    "2022": 8.12,
+    "2023": 4.69,
+    "2024": 7.51,
+    "2025": 5.84
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 52.44,
+    "2021": 54.21,
+    "2022": 61.93,
+    "2023": 67.7,
+    "2024": 75.67,
+    "2025": 82.4
+   },
+   "merged_from": [
+    "Bến Tre",
+    "Trà Vinh",
+    "Vĩnh Long"
+   ],
+   "structure_2025": {
+    "agri": null,
+    "ind": 27.54,
+    "svc": null,
+    "tax": null
+   },
+   "structure_source": "https://qppl.vinhlong.gov.vn/Portals/1027/VanBanUpload/492%20BC-UBND.signed.pdf",
+   "structure_note": "Merged Vĩnh Long (incl. Bến Tre, Trà Vinh). Provincial People's Committee report 492/BC-UBND (10/11/2025, 2021-2025 review): GRDP 2025 current prices ước 288,858 tỷ; per capita 85.31 trđ; non-agricultural sector ('phi nông nghiệp') ước 67.98% (implies agri ~32.02%, not stated directly); ind & construction share 27.54% (post-merger). Svc and tax shares not separated. USD 3,630 (at 23,500 VND/USD) and growth 8.03% read on vinhlong.dcs.vn Jan-2026 bulletin (https://vinhlong.dcs.vn/vinh-long-2025-buc-tranh-kinh-te---xa-hoi-nhieu-diem-sang-1005696.ngn).",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 288858,
+    "grdp_pc_mvnd_2025": 85.31,
+    "grdp_pc_usd_2025": 3630
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Cần Thơ": {
+   "grdp_bn": {
+    "2020": 182226,
+    "2024": 277520,
+    "2025": 306118
+   },
+   "growth": {
+    "2020": 0.62,
+    "2024": 7.42,
+    "2025": 7.23
+   },
+   "grdp_pc_mvnd": {
+    "2020": 57.55,
+    "2024": 86.53,
+    "2025": 94.92
+   },
+   "grdp_pc_usd": {
+    "2020": 2480,
+    "2024": 3581,
+    "2025": 3800
+   },
+   "pop_avg_thousand": {
+    "2020": 3166.25,
+    "2024": 3207.08,
+    "2025": 3224.94
+   },
+   "growth_series": {
+    "2020": 0.62,
+    "2021": 1.56,
+    "2022": 11.95,
+    "2023": 6.42,
+    "2024": 7.42,
+    "2025": 7.23
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 57.55,
+    "2021": 59.64,
+    "2022": 70.52,
+    "2023": 77.99,
+    "2024": 86.53,
+    "2025": 94.92
+   },
+   "merged_from": [
+    "Cần Thơ",
+    "Sóc Trăng",
+    "Hậu Giang"
+   ],
+   "structure_2025": null,
+   "structure_note": "Merged Cần Thơ (incl. Sóc Trăng, Hậu Giang). City press conference 06/01/2026: growth 7.23%. A search snippet gave structure agri 9.96/ind 30.88/svc 53.12/tax 6.04 but it could not be verified on any fetched page and looks like old (pre-merger) Cần Thơ - not recorded.",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 306170,
+    "grdp_pc_mvnd_2025": 94.94,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  },
+  "Cà Mau": {
+   "grdp_bn": {
+    "2020": 105007,
+    "2024": 152207,
+    "2025": 169047
+   },
+   "growth": {
+    "2020": 2.3,
+    "2024": 7.82,
+    "2025": 7.23
+   },
+   "grdp_pc_mvnd": {
+    "2020": 49.83,
+    "2024": 71.1,
+    "2025": 78.61
+   },
+   "grdp_pc_usd": {
+    "2020": 2147,
+    "2024": 2942,
+    "2025": 3147
+   },
+   "pop_avg_thousand": {
+    "2020": 2107.37,
+    "2024": 2140.68,
+    "2025": 2150.44
+   },
+   "growth_series": {
+    "2020": 2.3,
+    "2021": 0.66,
+    "2022": 7.6,
+    "2023": 7.37,
+    "2024": 7.82,
+    "2025": 7.23
+   },
+   "grdp_pc_mvnd_series": {
+    "2020": 49.83,
+    "2021": 51.65,
+    "2022": 59.38,
+    "2023": 64.41,
+    "2024": 71.1,
+    "2025": 78.61
+   },
+   "merged_from": [
+    "Bạc Liêu",
+    "Cà Mau"
+   ],
+   "structure_2025": {
+    "agri": 33.86,
+    "ind": null,
+    "svc": null,
+    "tax": null
+   },
+   "structure_source": "https://baocamau.vn/kinh-te-ca-mau-nam-2025-chuyen-dong-tich-cuc-a124926.html",
+   "structure_note": "Merged Cà Mau (incl. Bạc Liêu). Total GRDP current prices 'ước đạt hơn 172 ngàn tỷ' (lower bound, rounded) and per capita 'khoảng 80 triệu' (approx), growth ~8% from Báo Cà Mau year-end article. Agri share 33.86% from separate Báo Cà Mau article (https://baocamau.vn/toc-do-tang-truong-kinh-te-khu-vuc-i-cua-ca-mau-nam-2025-vuot-chi-tieu-bo-nn-mt-giao-a125069.html), price basis not stated (KV I GRDP 32,549 tỷ there appears to be constant-price). Other shares not found (snippet figures 30.7/29.4/35.9/4.1 appear to be targets - not recorded).",
+   "provincial_reported_2025": {
+    "grdp_bn_2025": 172000,
+    "grdp_pc_mvnd_2025": 80,
+    "grdp_pc_usd_2025": null
+   },
+   "basis": "NSO series compiled for the 34 new units (back-cast 2020-2023 official; 2024 'Sơ bộ' preliminary; 2025 'Ước tính' estimate). growth = NSO PL.V03.01 index (prev yr=100) minus 100, constant 2010 prices. grdp_pc_mvnd = NSO PL.V03.02. grdp_bn DERIVED = NSO per-capita (mn VND) x NSO average population (thousand, PL.V02.02-04); not a directly published NSO level. grdp_pc_usd DERIVED = grdp_pc_mvnd / NSO-implied national VND-USD rate (national GDP pc VND / national GDP pc USD in NSO V03.01). No aggregation from 63 old provinces was needed.",
+   "source": {
+    "growth": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+    "grdp_pc": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+    "population": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+    "press_release_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/"
+   }
+  }
+ },
+ "national": {
+  "gdp_bn_vnd": {
+   "2020": 8044385.73,
+   "2024": 11510328.92,
+   "2025": 12847571.22
+  },
+  "gdp_pc_mvnd": {
+   "2020": 82.44,
+   "2024": 113.58,
+   "2025": 125.53
+  },
+  "gdp_pc_usd": {
+   "2020": 3551.92,
+   "2024": 4700,
+   "2025": 5025.85
+  },
+  "growth": {
+   "2020": 2.87,
+   "2024": 7.04,
+   "2025": 8.02
+  },
+  "implied_vnd_per_usd": {
+   "2020": 23210.0,
+   "2024": 24166.0,
+   "2025": 24976.9
+  },
+  "source": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.01.px/",
+  "sum_of_34_grdp_bn": {
+   "2020": 8030658,
+   "2024": 11394517,
+   "2025": 12780578
+  },
+  "note": "Sum of derived 34-unit GRDP is ~0.2-1.0% below national GDP (rounding of published per-capita/population and GDP items not allocated to provinces)."
+ },
+ "world_rank": {
+  "gdp": {
+   "now": {
+    "year": 2025,
+    "value": 514697215165.065,
+    "rank": 31,
+    "of": 186
+   },
+   "prev": {
+    "year": 2020,
+    "value": 346615738537.796,
+    "rank": 37,
+    "of": 210
+   },
+   "alt_2024": {
+    "year": 2024,
+    "value": 476324572783.807,
+    "rank": 32,
+    "of": 200
+   },
+   "alt_2019": {
+    "year": 2019,
+    "value": 334365270496.667,
+    "rank": 40,
+    "of": 211
+   },
+   "units": "current US$"
+  },
+  "gdp_pc": {
+   "now": {
+    "year": 2025,
+    "value": 5065.99091899299,
+    "rank": 117,
+    "of": 186
+   },
+   "prev": {
+    "year": 2020,
+    "value": 3534.03953482647,
+    "rank": 143,
+    "of": 210
+   },
+   "alt_2024": {
+    "year": 2024,
+    "value": 4716.6599379632,
+    "rank": 130,
+    "of": 200
+   },
+   "alt_2019": {
+    "year": 2019,
+    "value": 3440.90025375434,
+    "rank": 151,
+    "of": 211
+   },
+   "units": "current US$"
+  },
+  "gdp_pc_ppp": {
+   "now": {
+    "year": 2025,
+    "value": 18088.491587163,
+    "rank": 102,
+    "of": 185
+   },
+   "prev": {
+    "year": 2020,
+    "value": 11609.3177276423,
+    "rank": 118,
+    "of": 199
+   },
+   "alt_2024": {
+    "year": 2024,
+    "value": 16387.9087954113,
+    "rank": 112,
+    "of": 195
+   },
+   "alt_2019": {
+    "year": 2019,
+    "value": 11029.2732083963,
+    "rank": 122,
+    "of": 199
+   },
+   "units": "current international $ (PPP)"
+  },
+  "growth": {
+   "now": {
+    "year": 2025,
+    "value": 8.01882998978245,
+    "rank": 10,
+    "of": 186
+   },
+   "prev": {
+    "year": 2020,
+    "value": 2.86541320912272,
+    "rank": 16,
+    "of": 210
+   },
+   "alt_2024": {
+    "year": 2024,
+    "value": 7.03955197123018,
+    "rank": 14,
+    "of": 200
+   },
+   "alt_2019": {
+    "year": 2019,
+    "value": 7.35926270105006,
+    "rank": 12,
+    "of": 210
+   },
+   "units": "annual %, constant prices"
+  },
+  "note": "World Bank WDI (lastupdated 2026-07-13), countries only (217 economies with region.id != 'NA'), rank 1 = highest among economies with data that year. 2025 coverage is incomplete (186 economies for GDP; e.g. UAE, Monaco, Liechtenstein, Bermuda, Cayman missing), which flatters 2025 ranks, especially per capita; alt_2024/alt_2019 give a fuller-coverage comparison.",
+  "imf_weo_apr2026": {
+   "vintage": "WEO April 2026 (IMF DataMapper API, last-modified 2026-04-08); Oct-2026 WEO not yet released as of 2026-10-05",
+   "units": {
+    "gdp": "bn US$",
+    "gdp_pc": "US$",
+    "gdp_pc_ppp": "intl $",
+    "growth": "%"
+   },
+   "ranks": {
+    "gdp": {
+     "2025": {
+      "value": 494.046,
+      "rank": 33,
+      "of": 193
+     },
+     "2026": {
+      "value": 527.266,
+      "rank": 34,
+      "of": 190
+     }
+    },
+    "gdp_pc": {
+     "2025": {
+      "value": 4829.379,
+      "rank": 127,
+      "of": 193
+     },
+     "2026": {
+      "value": 5115.236,
+      "rank": 125,
+      "of": 190
+     }
+    },
+    "gdp_pc_ppp": {
+     "2025": {
+      "value": 17970.652,
+      "rank": 108,
+      "of": 193
+     },
+     "2026": {
+      "value": 19648.624,
+      "rank": 107,
+      "of": 191
+     }
+    },
+    "growth": {
+     "2025": {
+      "value": 8,
+      "rank": 9,
+      "of": 193
+     },
+     "2026": {
+      "value": 7.1,
+      "rank": 7,
+      "of": 191
+     }
+    }
+   },
+   "note": "Ranked among IMF DataMapper country list (excludes groups); 2025 = IMF estimate, 2026 = projection."
+  }
+ },
+ "sources": {
+  "nso_grdp_growth_34": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.01.px/",
+  "nso_grdp_pc_34": "https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PL.V03.02.px/",
+  "nso_pop_34": "https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/PL.V02.02-04.px/",
+  "nso_national_accounts": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.01.px/",
+  "nso_press_release_grdp_2025": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/",
+  "wb_api": "https://api.worldbank.org/v2/country/all/indicator/{NY.GDP.MKTP.CD|NY.GDP.PCAP.CD|NY.GDP.PCAP.PP.CD|NY.GDP.MKTP.KD.ZG}?format=json&per_page=20000&date=2015:2026",
+  "wb_countries": "https://api.worldbank.org/v2/country?format=json&per_page=400",
+  "imf_datamapper": "https://www.imf.org/external/datamapper/api/v1/{NGDPD|NGDPDPC|PPPPC|NGDP_RPCH}",
+  "merger": "NQ 202/2025/QH15 (merged_from from demo.json)"
+ },
+ "meta": {
+  "generated": "2026-10-05",
+  "structure_missing": [
+   "Sơn La",
+   "Huế",
+   "Tây Ninh",
+   "An Giang",
+   "Cần Thơ"
+  ],
+  "crosscheck": "Derived 2025 GRDP vs press-quoted NSO levels: TP HCM 2,972,536 vs 2,972,939 bn; Hà Nội 1,588,060 vs 1,587,379 bn (<0.05% diff)."
+ }
+}

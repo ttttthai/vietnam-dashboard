@@ -1,0 +1,1 @@
+CM([{'id':'4112','title':'Kết quả toàn bộ Tổng điều tra Dân số và Nhà ở Việt Nam năm 2009','author':'','link':'http://ctk.angiang.gov.vn/trang/TinTuc/216/4112/Ket-qua-toan-bo-Tong-dieu-tra-Dan-so-va-Nha-o-Viet-Nam-nam-2009.html','pubDate':'2009-08-13 16:29:00','category':'Ấn phẩm tổng điều tra','image':'/filetintuc/Bia-ket-qua-TDT-DS-2009--1-.jpg','description':''}],'CM_216')

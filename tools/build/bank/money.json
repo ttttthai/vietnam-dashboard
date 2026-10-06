@@ -1,0 +1,3251 @@
+{
+ "annual": {
+  "years": [
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "m0": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "m1": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "m2": [
+   5771436,
+   6803390,
+   7773306,
+   8760391,
+   9953670,
+   11310702,
+   12405120,
+   13109658,
+   null,
+   17915362,
+   19444476.0
+  ],
+  "deposits": [
+   5047354,
+   5943047,
+   6810038,
+   7646743,
+   8758798,
+   9923970,
+   10911858,
+   11673514,
+   13259467,
+   14648162,
+   16802846
+  ],
+  "credit": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   11958000,
+   13569000,
+   15616077,
+   18594930.02
+  ],
+  "credit_growth": [
+   18.0,
+   18.25,
+   18.28,
+   13.89,
+   13.65,
+   12.2,
+   13.6,
+   14.2,
+   13.78,
+   15.09,
+   19.07
+  ],
+  "m2_growth": [
+   14.91,
+   17.88,
+   14.26,
+   12.7,
+   14.8,
+   14.5,
+   10.7,
+   6.2,
+   12.5,
+   11.97,
+   15.7
+  ],
+  "deposit_growth": [
+   13.59,
+   17.75,
+   14.59,
+   12.29,
+   14.54,
+   13.3,
+   10.3,
+   5.99,
+   13.2,
+   10.66,
+   15.42
+  ],
+  "loans_imf_fsi": [
+   4252194,
+   5093307,
+   6099704,
+   6845210,
+   7831392,
+   8932541,
+   10262458,
+   11332837,
+   13297456,
+   15341472,
+   18316030
+  ],
+  "cash_to_m2_pct": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   8.9,
+   null,
+   10.78
+  ],
+  "m2_to_gdp_pct_wb": [
+   111.17,
+   120.64,
+   123.51,
+   124.99,
+   129.15,
+   140.6,
+   146.16,
+   136.26,
+   null,
+   null,
+   null
+  ],
+  "private_credit_to_gdp_pct_wb": [
+   90.4,
+   98.86,
+   103.97,
+   105.28,
+   108.03,
+   115.53,
+   124.28,
+   124.96,
+   null,
+   null,
+   null
+  ],
+  "units": {
+   "m2": "VND billion",
+   "deposits": "VND billion (IMF FSI customer deposits of deposit takers)",
+   "credit": "VND billion (SBV credit to the economy)",
+   "loans_imf_fsi": "VND billion (IMF FSI total gross loans, deposit takers)",
+   "*_growth": "% y/y (end-year)",
+   "*_pct": "%"
+  },
+  "sources": {
+   "m0": "not published as a series by SBV/IMF for Vietnam in accessible form; SBV publishes only cash/M2 ratio (see cash_to_m2_pct) — null",
+   "m1": "not published by SBV — null",
+   "m2_by_year": {
+    "2015": "World Bank WDI FM.LBL.BMNY.CN (IMF IFS broad money)",
+    "2016": "World Bank WDI FM.LBL.BMNY.CN (IMF IFS broad money)",
+    "2017": "World Bank WDI FM.LBL.BMNY.CN (IMF IFS broad money)",
+    "2018": "World Bank WDI FM.LBL.BMNY.CN (IMF IFS broad money)",
+    "2019": "World Bank WDI FM.LBL.BMNY.CN (IMF IFS broad money)",
+    "2020": "World Bank WDI FM.LBL.BMNY.CN (IMF IFS broad money)",
+    "2021": "World Bank WDI FM.LBL.BMNY.CN (IMF IFS broad money)",
+    "2022": "World Bank WDI FM.LBL.BMNY.CN (IMF IFS broad money)",
+    "2023": null,
+    "2024": "derived from SBV Jan-2025 M2 (18,176,926) and YTD 1.46% (old SBV methodology)",
+    "2025": "SBV Dec-2025 (new methodology from Oct-2025)"
+   },
+   "m2_growth_by_year": {
+    "2015": "World Bank WDI FM.LBL.BMNY.ZG (IMF IFS)",
+    "2016": "World Bank WDI FM.LBL.BMNY.ZG (IMF IFS)",
+    "2017": "World Bank WDI FM.LBL.BMNY.ZG (IMF IFS)",
+    "2018": "World Bank WDI FM.LBL.BMNY.ZG (IMF IFS)",
+    "2019": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/ (SBV data, rounded; 2023 \"gần 12,5%\")",
+    "2020": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/ (SBV data, rounded; 2023 \"gần 12,5%\")",
+    "2021": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/ (SBV data, rounded; 2023 \"gần 12,5%\")",
+    "2022": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/ (SBV data, rounded; 2023 \"gần 12,5%\")",
+    "2023": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/ (SBV data, rounded; 2023 \"gần 12,5%\")",
+    "2024": "https://dantri.com.vn/kinh-doanh/tien-gui-cua-nguoi-dan-vao-ngan-hang-lap-ky-luc-hon-7-trieu-ty-dong-20250409162758993.htm",
+    "2025": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html"
+   },
+   "deposits": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_F2MC_XDC)",
+   "deposit_growth_by_year": {
+    "2015": "https://tapchinganhang.gov.vn/thi-truong-tai-chinh-tien-te-2015-va-trien-vong-2016-12185.html (as of 21/12/2015)",
+    "2016": "computed from IMF FSI customer deposits (deposit takers)",
+    "2017": "computed from IMF FSI customer deposits (deposit takers)",
+    "2018": "computed from IMF FSI customer deposits (deposit takers)",
+    "2019": "computed from IMF FSI customer deposits (deposit takers)",
+    "2020": "computed from IMF FSI customer deposits (deposit takers)",
+    "2021": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/",
+    "2022": "https://vnexpress.net/du-no-tin-dung-lan-dau-vuot-tien-gui-dan-cu-sau-10-nam-4556164.html (as of 21/12/2022)",
+    "2023": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/",
+    "2024": "https://cafef.vn/huy-dong-von-ngan-hang-bat-ngo-tang-manh-cao-hon-tang-truong-tin-dung-18826090408245786.chn (SBV)",
+    "2025": "https://cafef.vn/huy-dong-von-ngan-hang-bat-ngo-tang-manh-cao-hon-tang-truong-tin-dung-18826090408245786.chn (SBV)"
+   },
+   "credit_by_year": {
+    "2015": null,
+    "2016": null,
+    "2017": null,
+    "2018": null,
+    "2019": null,
+    "2020": null,
+    "2021": null,
+    "2022": "https://vnexpress.net/du-no-tin-dung-lan-dau-vuot-tien-gui-dan-cu-sau-10-nam-4556164.html (SBV estimate \"11,958 triệu tỷ\")",
+    "2023": "https://vietnamfinance.vn/tang-truong-tin-dung-2024-dat-1508-hon-2-trieu-ty-dong-chay-vao-linh-vuc-nao-d121084.html (approx. end-2023 base)",
+    "2024": "derived from SBV Jan-2025 credit level and YTD growth: https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+    "2025": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt (Dec-2025 table: 18,594,930.02)"
+   },
+   "credit_growth_by_year": {
+    "2015": "https://vov.vn/kinh-te/tang-truong-tin-dung-nam-2015-dat-18-462336.vov (SBV estimate ~18%; 17.17% as of 21/12/2015)",
+    "2016": "https://www.tinnhanhchungkhoan.vn/tang-truong-tin-dung-va-gdp-qua-cac-con-so-giai-doan-2016-2019-so-sanh-cho-nam-2020-post252898.html",
+    "2017": "https://www.tinnhanhchungkhoan.vn/tang-truong-tin-dung-va-gdp-qua-cac-con-so-giai-doan-2016-2019-so-sanh-cho-nam-2020-post252898.html",
+    "2018": "https://www.tinnhanhchungkhoan.vn/tang-truong-tin-dung-va-gdp-qua-cac-con-so-giai-doan-2016-2019-so-sanh-cho-nam-2020-post252898.html",
+    "2019": "https://www.tinnhanhchungkhoan.vn/tang-truong-tin-dung-va-gdp-qua-cac-con-so-giai-doan-2016-2019-so-sanh-cho-nam-2020-post252898.html",
+    "2020": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/ (rounded)",
+    "2021": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/ (rounded)",
+    "2022": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/ (rounded)",
+    "2023": "https://baodauthau.vn/den-cuoi-thang-102025-no-xau-noi-bang-o-muc-164-post190062.html",
+    "2024": "https://baodauthau.vn/den-cuoi-thang-102025-no-xau-noi-bang-o-muc-164-post190062.html",
+    "2025": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt (Dec-2025 YTD 19.07%; press at 31/12: 19.01%)"
+   },
+   "loans_imf_fsi": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_TGF4_XDC)",
+   "cash_to_m2_pct": {
+    "2023": "https://tuoitre.vn/saigontimes/phia-sau-dien-bien-tang-truong-cung-tien/",
+    "2025": "https://sbv.gov.vn/vi/tien-mat-luu-thong-tren-tong-phuong-tien-thanh-toan"
+   },
+   "m2_to_gdp_pct_wb": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json",
+   "private_credit_to_gdp_pct_wb": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+  }
+ },
+ "monthly": {
+  "months": [
+   "T10/24",
+   "T11/24",
+   "T12/24",
+   "T1/25",
+   "T2/25",
+   "T3/25",
+   "T4/25",
+   "T5/25",
+   "T6/25",
+   "T7/25",
+   "T8/25",
+   "T9/25",
+   "T10/25",
+   "T11/25",
+   "T12/25",
+   "T1/26",
+   "T2/26",
+   "T3/26",
+   "T4/26",
+   "T5/26",
+   "T6/26",
+   "T7/26",
+   "T8/26",
+   "T9/26"
+  ],
+  "period_keys": [
+   "2024-10",
+   "2024-11",
+   "2024-12",
+   "2025-01",
+   "2025-02",
+   "2025-03",
+   "2025-04",
+   "2025-05",
+   "2025-06",
+   "2025-07",
+   "2025-08",
+   "2025-09",
+   "2025-10",
+   "2025-11",
+   "2025-12",
+   "2026-01",
+   "2026-02",
+   "2026-03",
+   "2026-04",
+   "2026-05",
+   "2026-06",
+   "2026-07",
+   "2026-08",
+   "2026-09"
+  ],
+  "m2_ytd": [
+   null,
+   null,
+   11.97,
+   1.46,
+   1.35,
+   2.99,
+   4.5,
+   5.91,
+   9.32,
+   8.75,
+   9.89,
+   11.53,
+   null,
+   null,
+   15.7,
+   0.69,
+   1.01,
+   0.98,
+   1.92,
+   2.73,
+   4.99,
+   5.2,
+   null,
+   null
+  ],
+  "m2_yoy": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "m2_level": [
+   null,
+   null,
+   17915362,
+   18176926.0,
+   18157191.0,
+   18450042.0,
+   18721571.0,
+   18973143.0,
+   19584434.0,
+   19482760.0,
+   19685504.0,
+   19980717.0,
+   18728084.0,
+   18938260.0,
+   19444476.0,
+   19578695.0,
+   19641068.0,
+   19635094.0,
+   19818534.0,
+   19974985.0,
+   20414616.0,
+   20455644.0,
+   null,
+   null
+  ],
+  "cash_to_m2_pct": [
+   null,
+   null,
+   null,
+   10.88,
+   9.82,
+   9.52,
+   9.68,
+   9.48,
+   9.74,
+   9.69,
+   9.67,
+   9.72,
+   10.68,
+   10.78,
+   10.78,
+   11.52,
+   12.09,
+   11.11,
+   10.77,
+   10.46,
+   10.11,
+   9.98,
+   null,
+   null
+  ],
+  "deposits_level": [
+   null,
+   null,
+   14732000,
+   14621852.2,
+   14728372.23,
+   14990204.6,
+   15162766.92,
+   15344564.53,
+   15798887.74,
+   15725450.24,
+   15959293.24,
+   16182630.7,
+   15909571.0,
+   16064674.0,
+   16515887.0,
+   16461627.0,
+   16415112.0,
+   16575580.0,
+   16793661.0,
+   16995128.0,
+   17440361.0,
+   17461327.0,
+   null,
+   null
+  ],
+  "deposits_residents": [
+   null,
+   null,
+   7065000,
+   7188027.38,
+   7366165.8,
+   7469971.36,
+   7537620.83,
+   7603048.3,
+   7694546.37,
+   7748633.39,
+   7802496.86,
+   7832399.65,
+   10194762.0,
+   10224973.0,
+   10335383.0,
+   10381508.0,
+   10543901.0,
+   10561351.0,
+   10718801.0,
+   10826998.0,
+   11068825.0,
+   11220486.0,
+   null,
+   null
+  ],
+  "deposits_residents_ytd": [
+   null,
+   null,
+   null,
+   1.74,
+   4.26,
+   5.73,
+   6.69,
+   7.61,
+   8.91,
+   9.68,
+   10.44,
+   10.86,
+   null,
+   null,
+   null,
+   0.45,
+   2.02,
+   2.19,
+   3.71,
+   4.76,
+   7.1,
+   8.56,
+   null,
+   null
+  ],
+  "deposits_econ_orgs": [
+   null,
+   null,
+   7667000,
+   7433824.82,
+   7362206.43,
+   7520233.24,
+   7625146.09,
+   7741516.23,
+   8104341.37,
+   7976816.85,
+   8156796.38,
+   8350231.05,
+   5714809.0,
+   5839701.0,
+   6180504.0,
+   6080119.0,
+   5871211.0,
+   6014229.0,
+   6074860.0,
+   6168130.0,
+   6371536.0,
+   6240841.0,
+   null,
+   null
+  ],
+  "deposits_econ_orgs_ytd": [
+   null,
+   null,
+   null,
+   -3.04,
+   -3.98,
+   -1.92,
+   -0.55,
+   0.97,
+   5.7,
+   4.04,
+   6.39,
+   8.91,
+   null,
+   null,
+   null,
+   -1.62,
+   -5.0,
+   -2.69,
+   -1.71,
+   -0.2,
+   3.09,
+   0.98,
+   null,
+   null
+  ],
+  "deposits_ytd": [
+   null,
+   null,
+   null,
+   -0.75,
+   -0.02,
+   1.75,
+   2.92,
+   4.16,
+   7.24,
+   6.74,
+   8.33,
+   9.85,
+   null,
+   null,
+   null,
+   -0.33,
+   -0.61,
+   0.36,
+   1.68,
+   2.9,
+   5.6,
+   5.72,
+   null,
+   null
+  ],
+  "credit_level": [
+   null,
+   null,
+   15616077,
+   15701965.17,
+   15735537.26,
+   16226458.02,
+   16446560.51,
+   16665442.24,
+   17163138.4,
+   17215053.37,
+   17455203.75,
+   17780780.45,
+   18007536.76,
+   18247612.9,
+   18594930.02,
+   18815882.09,
+   18842357.0,
+   19186824.0,
+   19447521.0,
+   19703851.0,
+   20150411.0,
+   20262110.0,
+   20500000,
+   20750000
+  ],
+  "credit_ytd": [
+   null,
+   11.5,
+   15.08,
+   0.55,
+   0.76,
+   3.91,
+   5.32,
+   6.72,
+   9.91,
+   10.24,
+   11.78,
+   13.86,
+   15.31,
+   16.85,
+   19.07,
+   1.19,
+   1.33,
+   3.18,
+   4.59,
+   5.96,
+   8.37,
+   8.97,
+   10.24,
+   11.59
+  ],
+  "credit_yoy": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   19.32,
+   null,
+   null,
+   20.22,
+   null,
+   null,
+   null,
+   19.83,
+   19.74,
+   18.24,
+   18.25,
+   18.23,
+   17.41,
+   17.7,
+   null,
+   16.69
+  ],
+  "mobilisation_ytd_press": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   5.75,
+   8.77,
+   null
+  ],
+  "units": {
+   "m2_level": "VND billion (tỷ đồng), end of month",
+   "deposits_*": "VND billion; customer deposits at credit institutions (residents = tiền gửi dân cư; econ_orgs = tiền gửi của các TCKT)",
+   "credit_level": "VND billion, credit to the economy (dư nợ tín dụng đối với nền kinh tế)",
+   "*_ytd": "% change vs end of previous year",
+   "*_yoy": "% change vs same month previous year",
+   "cash_to_m2_pct": "% cash in circulation / M2 (SBV)"
+  },
+  "sources": {
+   "m2_level/m2_ytd/deposits (Jan-2025..Jul-2026)": [
+    "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd",
+    "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10038520&pageSize=100"
+   ],
+   "m2_level Dec-2024": "derived: SBV Jan-2025 M2 18,176,926 / (1+1.46%) (old methodology); press: 'hơn 17,9 triệu tỷ'",
+   "cash_to_m2_pct": "https://sbv.gov.vn/vi/tien-mat-luu-thong-tren-tong-phuong-tien-thanh-toan",
+   "credit_level/credit_ytd (Jan-2025..Jul-2026)": [
+    "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+    "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10034332&pageSize=200"
+   ],
+   "credit_level Dec-2024": "derived: SBV Jan-2025 level 15,701,965.17 / (1+0.55%) — https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+   "credit_yoy (2026 months)": "computed from SBV monthly levels (same month 2025)",
+   "credit_yoy Jun-2025": "https://sbv.gov.vn/en/w/t%C4%83ng-tr%C6%B0%E1%BB%9Fng-t%C3%ADn-d%E1%BB%A5ng-cao-nh%E1%BA%A5t-trong-nhi%E1%BB%81u-n%C4%83m-tr%E1%BB%9F-l%E1%BA%A1i-%C4%91%C3%A2y-1-1",
+   "credit_yoy Sep-2025": "https://baodauthau.vn/den-cuoi-thang-102025-no-xau-noi-bang-o-muc-164-post190062.html",
+   "credit Nov-2024": "https://thoibaotaichinhvietnam.vn/tang-truong-tin-dung-toan-nganh-ngan-hang-cai-thien-ro-ret-so-voi-nam-ngoai-166100.html",
+   "credit Dec-2024 ytd": "https://thitruongtaichinhtiente.vn/ket-thuc-nam-2024-tin-dung-tang-15-08-65089.html",
+   "credit Aug-2026": "https://thuonghieucongluan.com.vn/tin-dung-vuot-10-ngan-hang-duoc-mo-them-du-dia-a334713.html",
+   "credit Sep-2026": "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm",
+   "deposits Dec-2024 / m2_ytd Dec-2024": "https://dantri.com.vn/kinh-doanh/tien-gui-cua-nguoi-dan-vao-ngan-hang-lap-ky-luc-hon-7-trieu-ty-dong-20250409162758993.htm",
+   "deposits Dec-2024 (cross-check)": "https://www.div.gov.vn/tien-gui-dan-cu-tai-cac-tctd-lap-ky-luc-hon-7-trieu-ty-dong-so-lieu-tien-gui-khach-hang-tai-cac-to-chuc-tin-dung-tctd-tai-thoi-diem-cuoi-thang-12-2024-vua-duoc-ngan-hang-nha-nuoc-nhnn-cong-bo",
+   "m2_ytd Dec-2025": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html",
+   "deposits_ytd": "computed: (residents+econ orgs) vs end of previous year on the same methodology; null for Oct-Dec 2025 (methodology break)",
+   "mobilisation_ytd_press (huy động vốn, broader concept)": "https://cafef.vn/huy-dong-von-ngan-hang-bat-ngo-tang-manh-cao-hon-tang-truong-tin-dung-18826090408245786.chn"
+  },
+  "press_notes": {
+   "2024-11": {
+    "level": null,
+    "ytd": 11.5,
+    "date": "2024-11-27",
+    "url": "https://thoibaotaichinhvietnam.vn/tang-truong-tin-dung-toan-nganh-ngan-hang-cai-thien-ro-ret-so-voi-nam-ngoai-166100.html",
+    "note": "estimate at 27/11/2024; level \"vượt mốc 14,8 triệu tỷ đồng\""
+   },
+   "2024-12": {
+    "level": null,
+    "ytd": 15.08,
+    "date": "2024-12-31",
+    "url": "https://thitruongtaichinhtiente.vn/ket-thuc-nam-2024-tin-dung-tang-15-08-65089.html",
+    "note": "SBV press conference 07/01/2025; later SBV figure 15.09% (baodauthau) / 15.11% (cafef)"
+   },
+   "2026-08": {
+    "level": 20500000,
+    "ytd": 10.24,
+    "date": "2026-08-28",
+    "url": "https://thuonghieucongluan.com.vn/tin-dung-vuot-10-ngan-hang-duoc-mo-them-du-dia-a334713.html",
+    "note": "\"khoảng 20,5 triệu tỷ đồng\" at 28/8/2026"
+   },
+   "2026-09": {
+    "level": 20750000,
+    "ytd": 11.59,
+    "yoy": 16.69,
+    "date": "2026-09-30",
+    "url": "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm",
+    "note": "Deputy Governor Pham Thanh Ha, Govt press conference 03/10/2026; \"khoảng 20,75 triệu tỷ đồng\""
+   }
+  }
+ },
+ "ratios": {
+  "short_term_funds_for_mlt_loans_pct": [
+   {
+    "date": "2016-12",
+    "value": 34.51,
+    "url": "https://sbv.gov.vn/vi/w/sbv284952",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2017-12",
+    "value": 30.65,
+    "url": "https://sbv.gov.vn/vi/w/sbv330774",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2018-12",
+    "value": 28.41,
+    "url": "https://sbv.gov.vn/vi/w/sbv363572",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2019-12",
+    "value": 27.02,
+    "url": "https://sbv.gov.vn/vi/w/sbv408290",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2020-12",
+    "value": 25.79,
+    "url": "https://sbv.gov.vn/vi/w/sbv455232",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2021-12",
+    "value": 23.97,
+    "url": "https://sbv.gov.vn/vi/w/sbv503037",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2022-12",
+    "value": 25.56,
+    "url": "https://sbv.gov.vn/vi/w/sbv565631",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2023-01",
+    "value": 26.2,
+    "url": "https://sbv.gov.vn/vi/w/sbv569099",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2023-04",
+    "value": 25.71,
+    "url": "https://sbv.gov.vn/vi/w/sbv572232",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2023-08",
+    "value": 28.78,
+    "url": "https://sbv.gov.vn/vi/w/sbv577468",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2023-10",
+    "value": 28.17,
+    "url": "https://sbv.gov.vn/vi/w/sbv584023",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2023-12",
+    "value": 27.74,
+    "url": "https://sbv.gov.vn/vi/w/sbv588014",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2024-09",
+    "value": 28.25,
+    "url": "https://sbv.gov.vn/vi/w/sbv617934",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2024-10",
+    "value": 28.28,
+    "url": "https://sbv.gov.vn/vi/w/sbv621809",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2024-11",
+    "value": 28.32,
+    "url": "https://sbv.gov.vn/vi/w/sbv622220",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   },
+   {
+    "date": "2026-06",
+    "value": 29.16,
+    "url": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+    "note": "cap 30% (Circular 22/2019; roadmap)"
+   }
+  ],
+  "car_system_sbv_pct": [
+   {
+    "date": "2016-12",
+    "value": 12.84,
+    "url": "https://sbv.gov.vn/vi/w/sbv284952",
+    "note": "system minimum CAR (old SBV table, Circular 36/2014 basis)"
+   },
+   {
+    "date": "2017-12",
+    "value": 12.23,
+    "url": "https://sbv.gov.vn/vi/w/sbv330774",
+    "note": "system minimum CAR (old SBV table, Circular 36/2014 basis)"
+   },
+   {
+    "date": "2018-12",
+    "value": 12.14,
+    "url": "https://sbv.gov.vn/vi/w/sbv363572",
+    "note": "system minimum CAR (old SBV table, Circular 36/2014 basis)"
+   },
+   {
+    "date": "2019-12",
+    "value": 11.95,
+    "url": "https://sbv.gov.vn/vi/w/sbv408290",
+    "note": "system minimum CAR (old SBV table, Circular 36/2014 basis)"
+   }
+  ],
+  "roa_sbv_pct": [
+   {
+    "date": "2016-12",
+    "value": 0.45,
+    "url": "https://sbv.gov.vn/vi/w/sbv284952",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2017-12",
+    "value": 0.57,
+    "url": "https://sbv.gov.vn/vi/w/sbv330774",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2018-12",
+    "value": 0.7,
+    "url": "https://sbv.gov.vn/vi/w/sbv363572",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2019-12",
+    "value": 0.82,
+    "url": "https://sbv.gov.vn/vi/w/sbv408290",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2020-12",
+    "value": 0.75,
+    "url": "https://sbv.gov.vn/vi/w/sbv455232",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2021-12",
+    "value": 0.91,
+    "url": "https://sbv.gov.vn/vi/w/sbv503037",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2022-Q4",
+    "value": 1.38,
+    "url": "https://sbv.gov.vn/vi/w/sbv569099",
+    "note": "SBV table \"Quý IV - 2022\" (full-year 2022 cumulative)"
+   },
+   {
+    "date": "2023-Q1",
+    "value": 0.41,
+    "url": "https://sbv.gov.vn/vi/w/sbv572232",
+    "note": "cumulative Q1-2023"
+   },
+   {
+    "date": "2023-Q2",
+    "value": 0.73,
+    "url": "https://sbv.gov.vn/vi/w/sbv577468",
+    "note": "cumulative 6M-2023"
+   },
+   {
+    "date": "2023-Q3",
+    "value": 1.06,
+    "url": "https://sbv.gov.vn/vi/w/sbv584023",
+    "note": "table \"tháng 10/2023 (ROA, ROE)\"; likely cumulative 9M-2023"
+   },
+   {
+    "date": "2024-Q2",
+    "value": 0.72,
+    "url": "https://sbv.gov.vn/vi/w/sbv621811",
+    "note": "cumulative 6M-2024 (Q2/2024 financial statements)"
+   },
+   {
+    "date": "2024-Q3",
+    "value": 1.05,
+    "url": "https://sbv.gov.vn/vi/w/sbv621810",
+    "note": "cumulative 9M-2024 (Q3/2024 financial statements)"
+   },
+   {
+    "date": "2025",
+    "value": 1.24,
+    "url": "https://sbv.gov.vn/vi/w/th%E1%BB%91ng-k%C3%AA-m%E1%BB%99t-s%E1%BB%91-ch%E1%BB%89-ti%C3%AAu-c%C6%A1-b%E1%BA%A3n-roa-roe-n%C4%83m-2025-",
+    "note": "SBV table \"ROA, ROE (Năm 2025)\""
+   }
+  ],
+  "roe_sbv_pct": [
+   {
+    "date": "2016-12",
+    "value": 5.66,
+    "url": "https://sbv.gov.vn/vi/w/sbv284952",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2017-12",
+    "value": 7.64,
+    "url": "https://sbv.gov.vn/vi/w/sbv330774",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2018-12",
+    "value": 9.06,
+    "url": "https://sbv.gov.vn/vi/w/sbv363572",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2019-12",
+    "value": 10.37,
+    "url": "https://sbv.gov.vn/vi/w/sbv408290",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2020-12",
+    "value": 9.09,
+    "url": "https://sbv.gov.vn/vi/w/sbv455232",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2021-12",
+    "value": 10.9,
+    "url": "https://sbv.gov.vn/vi/w/sbv503037",
+    "note": "SBV table published with this period (ROA/ROE cumulative YTD; period of ROA/ROE may lag the table date)"
+   },
+   {
+    "date": "2022-Q4",
+    "value": 15.81,
+    "url": "https://sbv.gov.vn/vi/w/sbv569099",
+    "note": "SBV table \"Quý IV - 2022\" (full-year 2022 cumulative)"
+   },
+   {
+    "date": "2023-Q1",
+    "value": 4.5,
+    "url": "https://sbv.gov.vn/vi/w/sbv572232",
+    "note": "cumulative Q1-2023"
+   },
+   {
+    "date": "2023-Q2",
+    "value": 8.07,
+    "url": "https://sbv.gov.vn/vi/w/sbv577468",
+    "note": "cumulative 6M-2023"
+   },
+   {
+    "date": "2023-Q3",
+    "value": 11.52,
+    "url": "https://sbv.gov.vn/vi/w/sbv584023",
+    "note": "table \"tháng 10/2023 (ROA, ROE)\"; likely cumulative 9M-2023"
+   },
+   {
+    "date": "2024-Q2",
+    "value": 7.67,
+    "url": "https://sbv.gov.vn/vi/w/sbv621811",
+    "note": "cumulative 6M-2024 (Q2/2024 financial statements)"
+   },
+   {
+    "date": "2024-Q3",
+    "value": 11.08,
+    "url": "https://sbv.gov.vn/vi/w/sbv621810",
+    "note": "cumulative 9M-2024 (Q3/2024 financial statements)"
+   },
+   {
+    "date": "2025",
+    "value": 14.32,
+    "url": "https://sbv.gov.vn/vi/w/th%E1%BB%91ng-k%C3%AA-m%E1%BB%99t-s%E1%BB%91-ch%E1%BB%89-ti%C3%AAu-c%C6%A1-b%E1%BA%A3n-roa-roe-n%C4%83m-2025-",
+    "note": "SBV table \"ROA, ROE (Năm 2025)\""
+   }
+  ],
+  "total_assets_ci_vnd_bn": [
+   {
+    "date": "2016-12",
+    "value": 8503571,
+    "url": "https://sbv.gov.vn/vi/w/sbv284952"
+   },
+   {
+    "date": "2017-12",
+    "value": 10001790,
+    "url": "https://sbv.gov.vn/vi/w/sbv330774"
+   },
+   {
+    "date": "2018-12",
+    "value": 11064239,
+    "url": "https://sbv.gov.vn/vi/w/sbv363572"
+   },
+   {
+    "date": "2019-12",
+    "value": 12578812,
+    "url": "https://sbv.gov.vn/vi/w/sbv408290"
+   },
+   {
+    "date": "2020-12",
+    "value": 14019553,
+    "url": "https://sbv.gov.vn/vi/w/sbv455232"
+   },
+   {
+    "date": "2021-12",
+    "value": 15961107,
+    "url": "https://sbv.gov.vn/vi/w/sbv503037"
+   },
+   {
+    "date": "2022-12",
+    "value": 18275903,
+    "url": "https://sbv.gov.vn/vi/w/sbv565631"
+   },
+   {
+    "date": "2023-01",
+    "value": 17690692,
+    "url": "https://sbv.gov.vn/vi/w/sbv569099"
+   },
+   {
+    "date": "2023-04",
+    "value": 18161742,
+    "url": "https://sbv.gov.vn/vi/w/sbv572232"
+   },
+   {
+    "date": "2023-08",
+    "value": 18442342,
+    "url": "https://sbv.gov.vn/vi/w/sbv577468"
+   },
+   {
+    "date": "2023-10",
+    "value": 18870968,
+    "url": "https://sbv.gov.vn/vi/w/sbv584023"
+   },
+   {
+    "date": "2023-12",
+    "value": 20073281,
+    "url": "https://sbv.gov.vn/vi/w/sbv588014"
+   },
+   {
+    "date": "2024-09",
+    "value": 21453706,
+    "url": "https://sbv.gov.vn/vi/w/sbv617934"
+   },
+   {
+    "date": "2024-10",
+    "value": 21572042,
+    "url": "https://sbv.gov.vn/vi/w/sbv621809"
+   },
+   {
+    "date": "2024-11",
+    "value": 21938271,
+    "url": "https://sbv.gov.vn/vi/w/sbv622220"
+   },
+   {
+    "date": "2026-06",
+    "value": 29848110,
+    "url": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban"
+   }
+  ],
+  "ldr_sbv_tt22_pct": [
+   {
+    "date": "2020-12",
+    "value": 71.93,
+    "url": "https://sbv.gov.vn/vi/w/sbv455232",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2021-12",
+    "value": 72.11,
+    "url": "https://sbv.gov.vn/vi/w/sbv503037",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2022-12",
+    "value": 74.35,
+    "url": "https://sbv.gov.vn/vi/w/sbv565631",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2023-01",
+    "value": 76.15,
+    "url": "https://sbv.gov.vn/vi/w/sbv569099",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2023-04",
+    "value": 76.91,
+    "url": "https://sbv.gov.vn/vi/w/sbv572232",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2023-08",
+    "value": 76.67,
+    "url": "https://sbv.gov.vn/vi/w/sbv577468",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2023-10",
+    "value": 76.75,
+    "url": "https://sbv.gov.vn/vi/w/sbv584023",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2023-12",
+    "value": 76.04,
+    "url": "https://sbv.gov.vn/vi/w/sbv588014",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2024-09",
+    "value": 78.48,
+    "url": "https://sbv.gov.vn/vi/w/sbv617934",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2024-10",
+    "value": 78.72,
+    "url": "https://sbv.gov.vn/vi/w/sbv621809",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2024-11",
+    "value": 78.89,
+    "url": "https://sbv.gov.vn/vi/w/sbv622220",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2025-12",
+    "value": 76.0,
+    "url": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn",
+    "note": "press citing SBV"
+   },
+   {
+    "date": "2026-06",
+    "value": 77.06,
+    "url": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+    "note": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+   },
+   {
+    "date": "2026-06",
+    "value": 77.1,
+    "url": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn",
+    "note": "press citing SBV (SBV table: 77.06)"
+   }
+  ],
+  "car_basel2_banks_tt41_pct": [
+   {
+    "date": "2020-12",
+    "value": 11.41,
+    "url": "https://sbv.gov.vn/vi/w/sbv455232",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2021-12",
+    "value": 11.51,
+    "url": "https://sbv.gov.vn/vi/w/sbv503037",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2022-11",
+    "value": 11.68,
+    "url": "https://sbv.gov.vn/vi/w/sbv565631",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2023-01",
+    "value": 11.54,
+    "url": "https://sbv.gov.vn/vi/w/sbv569099",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2023-04",
+    "value": 11.51,
+    "url": "https://sbv.gov.vn/vi/w/sbv572232",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2023-08",
+    "value": 11.58,
+    "url": "https://sbv.gov.vn/vi/w/sbv577468",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2023-10",
+    "value": 11.82,
+    "url": "https://sbv.gov.vn/vi/w/sbv584023",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2023-12",
+    "value": 11.75,
+    "url": "https://sbv.gov.vn/vi/w/sbv588014",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2024-08",
+    "value": 12.55,
+    "url": "https://sbv.gov.vn/vi/w/sbv617935",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2024-09",
+    "value": 12.37,
+    "url": "https://sbv.gov.vn/vi/w/sbv621810",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2024-10",
+    "value": 12.48,
+    "url": "https://sbv.gov.vn/vi/w/sbv621809",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2024-11",
+    "value": 12.51,
+    "url": "https://sbv.gov.vn/vi/w/sbv622220",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   },
+   {
+    "date": "2026-03",
+    "value": 12.27,
+    "url": "https://sbv.gov.vn/vi/w/t%E1%BB%B7-l%E1%BB%87-an-to%C3%A0n-v%E1%BB%91n-c%E1%BB%A7a-tctd-chi-nh%C3%A1nh-ng%C3%A2n-h%C3%A0ng-n%C6%B0%E1%BB%9Bc-ngo%C3%A0i-%C4%91%E1%BA%BFn-th%E1%BB%9Di-%C4%91i%E1%BB%83m-31/03/2026-2-1",
+    "note": "banks applying Circular 41/2016 (Basel II); SBV publishes no system total since 2020"
+   }
+  ],
+  "ldr_vnd_credit_to_deposit_pct": [
+   {
+    "date": "2026-07",
+    "value": 110.6,
+    "url": "https://nhipsongkinhdoanh.vn/ngan-hang-nha-nuoc--chenh-lech-tin-dung---huy-dong-khoang-2-trieu-ty-dong--thanh-khoan-tiep-tuc-chiu-ap-luc-31824.htm",
+    "note": "VND credit / VND deposits (gross, not TT22 definition); SBV report for 13/8/2026 meeting"
+   }
+  ],
+  "liquidity_reserve_ratio_pct": [
+   {
+    "date": "2026-06",
+    "value": 17.7,
+    "url": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn"
+   }
+  ],
+  "car_state_owned_banks_pct": [
+   {
+    "date": "2026-06",
+    "value": 11.98,
+    "url": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn"
+   }
+  ],
+  "car_nonbank_ci_pct": [
+   {
+    "date": "2026-06",
+    "value": 17.06,
+    "url": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn"
+   }
+  ],
+  "car_banks_new_regulation_pct": [
+   {
+    "date": "2026-06",
+    "value": 11.1,
+    "url": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn"
+   }
+  ],
+  "npl_onbalance_sbv_pct": [
+   {
+    "date": "2025-Q1",
+    "value": 4.1,
+    "url": "https://sbv.gov.vn/vi/ty-le-no-xau-trong-tong-du-no-tin-dung",
+    "note": "SBV chart \"Tỷ lệ nợ xấu theo quý\" (whole system)"
+   },
+   {
+    "date": "2025-Q2",
+    "value": 3.86,
+    "url": "https://sbv.gov.vn/vi/ty-le-no-xau-trong-tong-du-no-tin-dung",
+    "note": "SBV chart \"Tỷ lệ nợ xấu theo quý\" (whole system)"
+   },
+   {
+    "date": "2025-Q3",
+    "value": 3.8,
+    "url": "https://sbv.gov.vn/vi/ty-le-no-xau-trong-tong-du-no-tin-dung",
+    "note": "SBV chart \"Tỷ lệ nợ xấu theo quý\" (whole system)"
+   },
+   {
+    "date": "2025-Q4",
+    "value": 3.44,
+    "url": "https://sbv.gov.vn/vi/ty-le-no-xau-trong-tong-du-no-tin-dung",
+    "note": "SBV chart \"Tỷ lệ nợ xấu theo quý\" (whole system)"
+   },
+   {
+    "date": "2026-05",
+    "value": 3.43,
+    "url": "https://vietnambiz.vn/tin-dung-tang-toc-ap-luc-kiem-soat-no-xau-nong-len-trong-nua-cuoi-nam-2026-2026723184533723.htm"
+   },
+   {
+    "date": "2026-06",
+    "value": 3.31,
+    "url": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn"
+   },
+   {
+    "date": "2026-Q1",
+    "value": 3.47,
+    "url": "https://sbv.gov.vn/vi/ty-le-no-xau-trong-tong-du-no-tin-dung",
+    "note": "SBV chart \"Tỷ lệ nợ xấu theo quý\" (whole system)"
+   }
+  ],
+  "npl_onbalance_excl_5_weak_banks_pct": [
+   {
+    "date": "2025-10",
+    "value": 1.64,
+    "url": "https://baodauthau.vn/den-cuoi-thang-102025-no-xau-noi-bang-o-muc-164-post190062.html",
+    "note": "excludes MBV, GPBank, VCBNeo, Vikki, SCB"
+   },
+   {
+    "date": "2025-12",
+    "value": 1.69,
+    "url": "https://baodauthau.vn/ty-le-no-xau-giam-nhe-ap-luc-chat-luong-tai-san-van-lon-post207731.html"
+   },
+   {
+    "date": "2026-06",
+    "value": 1.51,
+    "url": "https://baodauthau.vn/ty-le-no-xau-giam-nhe-ap-luc-chat-luong-tai-san-van-lon-post207731.html"
+   }
+  ],
+  "npl_onbalance_governor_statement_pct": [
+   {
+    "date": "2025-12",
+    "value": 1.68,
+    "url": "https://thanhnien.vn/thong-doc-ngan-hang-nha-nuoc-bao-cao-quoc-hoi-ve-no-xau-san-giao-dich-vang-185260930175339276.htm",
+    "note": "Governor report to National Assembly (Sep-2026); appears to exclude weak banks"
+   }
+  ],
+  "npl_incl_vamc_and_potential_pct": [
+   {
+    "date": "2025-12",
+    "value": 3.97,
+    "url": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn"
+   },
+   {
+    "date": "2026-06",
+    "value": 3.77,
+    "url": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn"
+   }
+  ],
+  "npl_coverage_ratio_listed_banks_pct": [
+   {
+    "date": "2026-06",
+    "value": 78.8,
+    "url": "https://baodauthau.vn/ty-le-no-xau-giam-nhe-ap-luc-chat-luong-tai-san-van-lon-post207731.html",
+    "note": "listed banks"
+   }
+  ],
+  "nim_listed_banks_pct": [
+   {
+    "date": "2022-12",
+    "value": 3.8,
+    "url": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html",
+    "note": "27 listed banks"
+   },
+   {
+    "date": "2024-12",
+    "value": 3.3,
+    "url": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html",
+    "note": "27 listed banks"
+   },
+   {
+    "date": "2025-09",
+    "value": 3.0,
+    "url": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html",
+    "note": "27 listed banks, 9M2025, approx."
+   }
+  ],
+  "credit_to_gdp_pct": [
+   {
+    "date": "2025-12",
+    "value": 146,
+    "url": "https://tuoitre.vn/saigontimes/duong-di-cua-tin-dung-nam-2026/"
+   }
+  ],
+  "private_credit_to_gdp_pct_wb": [
+   {
+    "date": "2015",
+    "value": 90.4,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+   },
+   {
+    "date": "2016",
+    "value": 98.86,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+   },
+   {
+    "date": "2017",
+    "value": 103.97,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+   },
+   {
+    "date": "2018",
+    "value": 105.28,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+   },
+   {
+    "date": "2019",
+    "value": 108.03,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+   },
+   {
+    "date": "2020",
+    "value": 115.53,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+   },
+   {
+    "date": "2021",
+    "value": 124.28,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+   },
+   {
+    "date": "2022",
+    "value": 124.96,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+   }
+  ],
+  "m2_to_gdp_pct_wb": [
+   {
+    "date": "2015",
+    "value": 111.17,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json"
+   },
+   {
+    "date": "2016",
+    "value": 120.64,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json"
+   },
+   {
+    "date": "2017",
+    "value": 123.51,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json"
+   },
+   {
+    "date": "2018",
+    "value": 124.99,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json"
+   },
+   {
+    "date": "2019",
+    "value": 129.15,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json"
+   },
+   {
+    "date": "2020",
+    "value": 140.6,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json"
+   },
+   {
+    "date": "2021",
+    "value": 146.16,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json"
+   },
+   {
+    "date": "2022",
+    "value": 136.26,
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json"
+   }
+  ],
+  "corporate_bonds_to_gdp_pct": [
+   {
+    "date": "2026-06",
+    "value": 11,
+    "url": "https://finance.vietstock.vn/bao-cao-phan-tich/21240/bao-cao-trai-phieu-doanh-nghiep-cap-nhat-1h-2026-trien-vong-2h-2026.htm",
+    "note": "VCBS estimate"
+   }
+  ],
+  "npl_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 2.76,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 2.64,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 2.11,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 2.13,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 1.77,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 1.87,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 1.6,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 2.32,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": 5.41,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 4.85,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 4.21,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ12_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "car_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 12.77,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 12.64,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 12.1,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 11.95,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 11.79,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 11.14,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 11.31,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 11.55,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": 11.74,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 12.33,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 12.06,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI688_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "tier1_rwa_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 10.14,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 9.37,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 8.77,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 9.43,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 9.39,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 9.45,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 9.63,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 10.14,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": 10.39,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 10.91,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 10.59,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI626_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "roa_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 0.64,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 0.69,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 0.8,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 1.15,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 1.21,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 1.2,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 1.54,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 1.55,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": -1.03,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers; 2023 ROA/ROE negative reflects SCB losses"
+   },
+   {
+    "date": "2024",
+    "value": 1.43,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 1.49,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROA_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "roe_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 5.63,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 6.77,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 8.23,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 12.3,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 12.39,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 11.91,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 14.94,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 14.52,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": -20.1,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers; 2023 ROA/ROE negative reflects SCB losses"
+   },
+   {
+    "date": "2024",
+    "value": 18.43,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 19.95,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (ROE_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "provisions_to_npl_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 45.73,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 46.37,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 41.34,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 50.69,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 52.49,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 44.5,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 64.07,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 50.6,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": 66.84,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 68.62,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 66.77,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (AQ14_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "liquid_assets_to_assets_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 13.26,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 13.18,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 12.72,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 11.34,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 11.67,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 11.28,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 10.28,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 9.16,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": 8.47,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 7.92,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 7.53,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI283_LIQATTA_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "customer_deposits_to_loans_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 125.5,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 122.87,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 117.7,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 115.89,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 115.84,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 114.76,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 110.8,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 106.12,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": 102.09,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 97.29,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 93.33,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI55_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "fx_loans_share_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 9.9,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 8.65,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 8.07,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 6.82,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 6.13,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 5.58,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 5.64,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 4.55,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": 4.04,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 3.62,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 3.25,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "fx_liabilities_share_imf_fsi_pct": [
+   {
+    "date": "2023",
+    "value": 5.66,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI680_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 5.41,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI680_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 5.67,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI680_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "interest_margin_to_gross_income_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 74.36,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 72.26,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 70.23,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 70.05,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 68.59,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 68.69,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 66.99,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 70.8,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": 62.92,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 68.65,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 67.73,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI99_CFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "commercial_real_estate_loans_share_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 9.19,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2016",
+    "value": 7.68,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2017",
+    "value": 5.37,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2018",
+    "value": 6.64,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2019",
+    "value": 6.63,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2020",
+    "value": 7.01,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2021",
+    "value": 6.87,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2022",
+    "value": 6.94,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2023",
+    "value": 8.0,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2024",
+    "value": 9.17,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   },
+   {
+    "date": "2025",
+    "value": 11.45,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI520_AFSI_PT)",
+    "note": "IMF FSI, deposit takers"
+   }
+  ],
+  "loans_to_customer_deposits_imf_fsi_pct": [
+   {
+    "date": "2015",
+    "value": 84.25,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2016",
+    "value": 85.7,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2017",
+    "value": 89.57,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2018",
+    "value": 89.52,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2019",
+    "value": 89.41,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2020",
+    "value": 90.01,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2021",
+    "value": 94.05,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2022",
+    "value": 97.08,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2023",
+    "value": 100.29,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2024",
+    "value": 104.73,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   },
+   {
+    "date": "2025",
+    "value": 109.01,
+    "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014",
+    "note": "computed: FSI total gross loans / customer deposits"
+   }
+  ]
+ },
+ "credit_by_sector": {
+  "periods": [
+   "2025-01",
+   "2025-02",
+   "2025-03",
+   "2025-04",
+   "2025-05",
+   "2025-06",
+   "2025-07",
+   "2025-08",
+   "2025-09",
+   "2025-10",
+   "2025-11",
+   "2025-12",
+   "2026-01",
+   "2026-02",
+   "2026-03",
+   "2026-04",
+   "2026-05",
+   "2026-06",
+   "2026-07"
+  ],
+  "sectors": {
+   "agriculture_forestry_fisheries": [
+    1022620.03,
+    1022172.02,
+    1037306.08,
+    1047958.6,
+    1056930.01,
+    1075788.61,
+    1073107.66,
+    1083062.21,
+    1097542.78,
+    1106909.62,
+    1119459.47,
+    1135005.66,
+    1143775.66,
+    1152648.0,
+    1174701.0,
+    1192086.0,
+    1202756.0,
+    1225073.0,
+    1232973.0
+   ],
+   "industry_and_construction": [
+    3925111.13,
+    3926336.85,
+    3985306.13,
+    4047937.55,
+    4069161.25,
+    4122480.01,
+    4125825.58,
+    4178505.98,
+    4266641.9,
+    4314295.34,
+    4335815.98,
+    4353611.45,
+    4403882.48,
+    4461418.0,
+    4557770.0,
+    4628160.0,
+    4684982.0,
+    4735598.0,
+    4782025.0
+   ],
+   "industry": [
+    2719532.34,
+    2720110.87,
+    2758503.55,
+    2810325.18,
+    2819622.57,
+    2846083.83,
+    2856111.86,
+    2890806.74,
+    2942714.42,
+    2968266.73,
+    2975448.36,
+    2947887.19,
+    2978644.46,
+    3025386.0,
+    3087333.0,
+    3147160.0,
+    3196871.0,
+    3240445.0,
+    3255581.0
+   ],
+   "construction": [
+    1205578.79,
+    1206225.98,
+    1226802.58,
+    1237612.37,
+    1249538.68,
+    1276396.19,
+    1269713.72,
+    1287699.24,
+    1323927.48,
+    1346028.61,
+    1360367.62,
+    1405724.25,
+    1425238.03,
+    1436032.0,
+    1470437.0,
+    1481000.0,
+    1488112.0,
+    1495153.0,
+    1526444.0
+   ],
+   "trade_transport_telecom": [
+    4420523.68,
+    4427158.54,
+    4576678.48,
+    4619852.64,
+    4667760.82,
+    4769010.25,
+    4735069.83,
+    4764750.54,
+    4792723.84,
+    4793564.4,
+    4850230.09,
+    4887503.37,
+    4902628.25,
+    4870177.0,
+    4944365.0,
+    4974211.0,
+    4987198.0,
+    5080910.0,
+    5088322.0
+   ],
+   "trade": [
+    4024782.89,
+    4028599.86,
+    4165463.23,
+    4199058.34,
+    4246595.68,
+    4329891.84,
+    4297621.43,
+    4325116.17,
+    4350580.31,
+    4341914.71,
+    4384276.65,
+    4411458.38,
+    4421050.47,
+    4377195.0,
+    4444600.0,
+    4461695.0,
+    4462902.0,
+    4534518.0,
+    4533303.0
+   ],
+   "transport_telecom": [
+    395740.79,
+    398558.68,
+    411215.24,
+    420794.3,
+    421165.14,
+    439118.41,
+    437448.41,
+    439634.37,
+    442143.53,
+    451649.69,
+    465953.44,
+    476044.99,
+    481577.78,
+    492981.0,
+    499765.0,
+    512517.0,
+    524296.0,
+    546391.0,
+    555019.0
+   ],
+   "other_services": [
+    6333710.33,
+    6359869.85,
+    6627167.34,
+    6730811.72,
+    6871590.17,
+    7195859.53,
+    7281050.29,
+    7428885.01,
+    7623871.93,
+    7792767.4,
+    7942107.36,
+    8218809.55,
+    8365595.7,
+    8358114.0,
+    8509988.0,
+    8653063.0,
+    8828916.0,
+    9108831.0,
+    9158790.0
+   ],
+   "total": [
+    15701965.17,
+    15735537.26,
+    16226458.02,
+    16446560.51,
+    16665442.24,
+    17163138.4,
+    17215053.37,
+    17455203.75,
+    17780780.45,
+    18007536.76,
+    18247612.9,
+    18594930.02,
+    18815882.09,
+    18842357.0,
+    19186824.0,
+    19447521.0,
+    19703851.0,
+    20150411.0,
+    20262110.0
+   ]
+  },
+  "growth_ytd_pct": {
+   "agriculture_forestry_fisheries": [
+    0.02,
+    -0.02,
+    1.46,
+    2.5,
+    3.38,
+    5.22,
+    4.96,
+    5.93,
+    7.35,
+    8.26,
+    9.49,
+    11.01,
+    0.77,
+    1.55,
+    3.5,
+    5.03,
+    5.97,
+    7.94,
+    8.63
+   ],
+   "industry_and_construction": [
+    1.34,
+    1.37,
+    2.89,
+    4.48,
+    5.03,
+    6.4,
+    6.49,
+    7.85,
+    10.12,
+    11.35,
+    11.91,
+    12.37,
+    1.15,
+    2.48,
+    4.69,
+    6.31,
+    7.61,
+    8.78,
+    9.84
+   ],
+   "industry": [
+    1.54,
+    1.57,
+    3.0,
+    4.96,
+    5.3,
+    6.29,
+    6.67,
+    7.96,
+    9.9,
+    10.85,
+    11.12,
+    10.09,
+    1.04,
+    2.63,
+    4.73,
+    6.76,
+    8.45,
+    9.93,
+    10.44
+   ],
+   "construction": [
+    0.88,
+    0.94,
+    2.66,
+    3.41,
+    4.41,
+    6.65,
+    6.09,
+    7.59,
+    10.62,
+    12.47,
+    13.67,
+    17.46,
+    1.39,
+    2.16,
+    4.6,
+    5.35,
+    5.86,
+    6.36,
+    8.59
+   ],
+   "trade_transport_telecom": [
+    0.33,
+    0.48,
+    3.87,
+    4.86,
+    5.94,
+    8.24,
+    7.47,
+    8.15,
+    8.78,
+    8.8,
+    10.09,
+    10.93,
+    0.31,
+    -0.35,
+    1.16,
+    1.77,
+    2.04,
+    3.96,
+    4.11
+   ],
+   "trade": [
+    0.01,
+    0.1,
+    3.5,
+    4.34,
+    5.52,
+    7.59,
+    6.79,
+    7.48,
+    8.11,
+    7.89,
+    8.95,
+    9.62,
+    0.22,
+    -0.78,
+    0.75,
+    1.14,
+    1.17,
+    2.79,
+    2.76
+   ],
+   "transport_telecom": [
+    3.7,
+    4.44,
+    7.76,
+    10.27,
+    10.37,
+    15.07,
+    14.63,
+    15.21,
+    15.86,
+    18.35,
+    22.1,
+    24.75,
+    1.16,
+    3.56,
+    4.98,
+    7.66,
+    10.14,
+    14.78,
+    16.59
+   ],
+   "other_services": [
+    0.3,
+    0.72,
+    4.95,
+    6.61,
+    8.84,
+    13.98,
+    15.33,
+    17.67,
+    20.76,
+    23.43,
+    25.8,
+    30.18,
+    1.79,
+    1.69,
+    3.54,
+    5.28,
+    7.42,
+    10.83,
+    11.44
+   ],
+   "total": [
+    0.55,
+    0.76,
+    3.91,
+    5.32,
+    6.72,
+    9.91,
+    10.24,
+    11.78,
+    13.86,
+    15.31,
+    16.85,
+    19.07,
+    1.19,
+    1.33,
+    3.18,
+    4.59,
+    5.96,
+    8.37,
+    8.97
+   ]
+  },
+  "share_of_total_pct": {
+   "agriculture_forestry_fisheries": [
+    6.51,
+    6.5,
+    6.39,
+    6.37,
+    6.34,
+    6.27,
+    6.23,
+    6.2,
+    6.17,
+    6.15,
+    6.13,
+    6.1,
+    6.08,
+    6.12,
+    6.12,
+    6.13,
+    6.1,
+    6.08,
+    6.09
+   ],
+   "industry_and_construction": [
+    25.0,
+    24.95,
+    24.56,
+    24.61,
+    24.42,
+    24.02,
+    23.97,
+    23.94,
+    24.0,
+    23.96,
+    23.76,
+    23.41,
+    23.41,
+    23.68,
+    23.75,
+    23.8,
+    23.78,
+    23.5,
+    23.6
+   ],
+   "industry": [
+    17.32,
+    17.29,
+    17.0,
+    17.09,
+    16.92,
+    16.58,
+    16.59,
+    16.56,
+    16.55,
+    16.48,
+    16.31,
+    15.85,
+    15.83,
+    16.06,
+    16.09,
+    16.18,
+    16.22,
+    16.08,
+    16.07
+   ],
+   "construction": [
+    7.68,
+    7.67,
+    7.56,
+    7.53,
+    7.5,
+    7.44,
+    7.38,
+    7.38,
+    7.45,
+    7.47,
+    7.46,
+    7.56,
+    7.57,
+    7.62,
+    7.66,
+    7.62,
+    7.55,
+    7.42,
+    7.53
+   ],
+   "trade_transport_telecom": [
+    28.15,
+    28.13,
+    28.21,
+    28.09,
+    28.01,
+    27.79,
+    27.51,
+    27.3,
+    26.95,
+    26.62,
+    26.58,
+    26.28,
+    26.06,
+    25.85,
+    25.77,
+    25.58,
+    25.31,
+    25.21,
+    25.11
+   ],
+   "trade": [
+    25.63,
+    25.6,
+    25.67,
+    25.53,
+    25.48,
+    25.23,
+    24.96,
+    24.78,
+    24.47,
+    24.11,
+    24.03,
+    23.72,
+    23.5,
+    23.23,
+    23.16,
+    22.94,
+    22.65,
+    22.5,
+    22.37
+   ],
+   "transport_telecom": [
+    2.52,
+    2.53,
+    2.53,
+    2.56,
+    2.53,
+    2.56,
+    2.54,
+    2.52,
+    2.49,
+    2.51,
+    2.55,
+    2.56,
+    2.56,
+    2.62,
+    2.6,
+    2.64,
+    2.66,
+    2.71,
+    2.74
+   ],
+   "other_services": [
+    40.34,
+    40.42,
+    40.84,
+    40.93,
+    41.23,
+    41.93,
+    42.29,
+    42.56,
+    42.88,
+    43.28,
+    43.52,
+    44.2,
+    44.46,
+    44.36,
+    44.35,
+    44.49,
+    44.81,
+    45.2,
+    45.2
+   ]
+  },
+  "unit": "VND billion (levels); growth_ytd_pct = % vs end of previous year (SBV); share_of_total_pct computed",
+  "sources": {
+   "levels_and_growth": [
+    "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+    "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10034332&pageSize=200"
+   ],
+   "share_of_total_pct": "computed from SBV levels",
+   "note": "SBV page publishes Jan-2025..Jul-2026 only (Aug/Sep-2026 not yet published at fetch time 2026-10-05). Sub-sector rows are 'trong đó'."
+  },
+  "growth_2024_by_sector_sep2024_ytd_pct": {
+   "other_services": 10.21,
+   "trade_transport_telecom": 9.55,
+   "industry_and_construction": 8.1,
+   "agriculture_forestry_fisheries": 4.92,
+   "total": 9.11,
+   "url": "https://danviet.vn/tin-dung-vao-nen-kinh-te-tang-911-tien-gui-dan-cu-xap-xi-7-trieu-ty-dong-2024120407515647-d85945.html"
+  }
+ },
+ "flows": [
+  {
+   "item": "Real estate credit, total (dư nợ tín dụng BĐS)",
+   "date": "2024-12",
+   "value": 3350000,
+   "unit": "VND billion",
+   "url": "https://vietnambiz.vn/tin-dung-bat-dong-san-tang-gan-35-dat-45-trieu-ty-dong-2026114145657651.htm",
+   "note": "3.35 triệu tỷ (SBV, cited)"
+  },
+  {
+   "item": "Real estate credit, total",
+   "date": "2025-07",
+   "value": 4100000,
+   "unit": "VND billion",
+   "url": "https://vietnambiz.vn/du-no-tin-dung-bat-dong-san-dat-hon-41-trieu-ty-dong-tang-17-so-voi-cuoi-nam-ngoai-202592372256132.htm",
+   "note": "\"hơn 4,1 triệu tỷ\", +17% YTD (SBV report, 31/7/2025)"
+  },
+  {
+   "item": "Real estate credit, total",
+   "date": "2025-11",
+   "value": 4500000,
+   "unit": "VND billion",
+   "url": "https://vietnambiz.vn/tin-dung-bat-dong-san-tang-gan-35-dat-45-trieu-ty-dong-2026114145657651.htm",
+   "note": "~4.5 triệu tỷ, +34.3% vs end-2024, 24.8% of total credit; business RE = 44.2% of RE credit"
+  },
+  {
+   "item": "Real estate credit, total",
+   "date": "2026-06",
+   "value": 5146000,
+   "unit": "VND billion",
+   "url": "https://cafebiz.vn/cu-4-dong-ngan-hang-cho-vay-thi-1-dong-chay-vao-bat-dong-san-du-no-vuot-5-trieu-ty-dong-nhieu-nha-bang-tang-manh-trong-nua-dau-nam-176260904091420664.chn",
+   "note": "25.5% of total credit, +8.3% vs end-2025 (SBV)"
+  },
+  {
+   "item": "Real estate credit share of total credit",
+   "date": "2026-06",
+   "value": 25.5,
+   "unit": "%",
+   "url": "https://nhipsongkinhdoanh.vn/ngan-hang-nha-nuoc--chenh-lech-tin-dung---huy-dong-khoang-2-trieu-ty-dong--thanh-khoan-tiep-tuc-chiu-ap-luc-31824.htm",
+   "note": "SBV report; RE NPL +10.5% in 6M"
+  },
+  {
+   "item": "Real-estate BUSINESS credit (kinh doanh BĐS, MoC report)",
+   "date": "2025-03",
+   "value": 1560000,
+   "unit": "VND billion",
+   "url": "https://vnexpress.net/du-no-tin-dung-bat-dong-san-dat-2-trieu-ty-dong-quy-iv-2025-5006978.html"
+  },
+  {
+   "item": "Real-estate BUSINESS credit (MoC report)",
+   "date": "2025-12",
+   "value": 2000000,
+   "unit": "VND billion",
+   "url": "https://vnexpress.net/du-no-tin-dung-bat-dong-san-dat-2-trieu-ty-dong-quy-iv-2025-5006978.html",
+   "note": "~2 triệu tỷ, +~28% y/y"
+  },
+  {
+   "item": "Real-estate BUSINESS credit (MoC report)",
+   "date": "2026-06",
+   "value": 2519000,
+   "unit": "VND billion",
+   "url": "https://dantri.com.vn/bat-dong-san/du-no-kinh-doanh-bat-dong-san-vuot-25-trieu-ty-dong-20260822144250909.htm",
+   "note": "\"hơn 2,519 triệu tỷ\", +12.71% q/q"
+  },
+  {
+   "item": "Home-purchase loans (cho vay mua nhà)",
+   "date": "2025-09",
+   "value": 2280000,
+   "unit": "VND billion",
+   "url": "https://theleader.vn/tin-dung-2025-lap-dinh-hang-trieu-ty-dong-chay-vao-bat-dong-san-d43901.html",
+   "note": "+12.4% YTD, 12.7% of total credit (date approx. Q3-2025)"
+  },
+  {
+   "item": "Share of medium/long-term credit in total credit",
+   "date": "2026-07",
+   "value": 48.5,
+   "unit": "%",
+   "url": "https://nhipsongkinhdoanh.vn/ngan-hang-nha-nuoc--chenh-lech-tin-dung---huy-dong-khoang-2-trieu-ty-dong--thanh-khoan-tiep-tuc-chiu-ap-luc-31824.htm",
+   "note": "vs ~16% medium/long-term share of funding"
+  },
+  {
+   "item": "Credit-deposit gap (tín dụng - huy động)",
+   "date": "2026-07",
+   "value": 2000000,
+   "unit": "VND billion",
+   "url": "https://nhipsongkinhdoanh.vn/ngan-hang-nha-nuoc--chenh-lech-tin-dung---huy-dong-khoang-2-trieu-ty-dong--thanh-khoan-tiep-tuc-chiu-ap-luc-31824.htm",
+   "note": "\"khoảng 2 triệu tỷ đồng\""
+  },
+  {
+   "item": "Total mobilised funds (huy động vốn, orgs+residents)",
+   "date": "2026-07-27",
+   "value": 18677900,
+   "unit": "VND billion",
+   "url": "https://nhipsongkinhdoanh.vn/ngan-hang-nha-nuoc--chenh-lech-tin-dung---huy-dong-khoang-2-trieu-ty-dong--thanh-khoan-tiep-tuc-chiu-ap-luc-31824.htm",
+   "note": "+5.75% YTD"
+  },
+  {
+   "item": "Stock-market lending by securities companies (margin + advances)",
+   "date": "2026-06",
+   "value": 453800,
+   "unit": "VND billion",
+   "url": "https://vietstock.vn/2026/07/du-no-margin-lap-ky-luc-454-ngan-ty-dong-cuoc-dua-co-su-phan-hoa-830-1468883.htm",
+   "note": "record; +7% q/q, +49% y/y"
+  },
+  {
+   "item": "Credit to securities sector share (bank credit)",
+   "date": "2024-12",
+   "value": 1,
+   "unit": "%",
+   "url": "https://tapchinganhang.gov.vn/tang-truong-tin-dung-cho-nen-kinh-te-nhin-lai-nam-2024-va-dinh-huong-nam-2025-15279.html",
+   "note": "\"khoảng 1%\" of total credit"
+  },
+  {
+   "item": "Corporate bonds outstanding",
+   "date": "2026-02-27",
+   "value": 1390000,
+   "unit": "VND billion",
+   "url": "https://www.fiingroup.vn/vi/bao-cao-thi-truong-trai-phieu-doanh-nghiep-thang-12026.html",
+   "note": "FiinGroup, ~1.39 triệu tỷ, -0.2% vs end-2025"
+  },
+  {
+   "item": "Corporate bonds outstanding",
+   "date": "2026-03",
+   "value": 1432000,
+   "unit": "VND billion",
+   "url": "https://vneconomy.vn/thi-truong-trai-phieu-doanh-nghiep-quy-12026-buoc-dem-phuc-hoi-giua-nhung-phep-thu-vi-mo.htm",
+   "note": "VIS Rating; of which banks (as issuers) 686 nghìn tỷ, residential RE 390 nghìn tỷ"
+  },
+  {
+   "item": "Corporate bonds outstanding",
+   "date": "2026-06",
+   "value": 1435040,
+   "unit": "VND billion",
+   "url": "https://finance.vietstock.vn/bao-cao-phan-tich/21240/bao-cao-trai-phieu-doanh-nghiep-cap-nhat-1h-2026-trien-vong-2h-2026.htm",
+   "note": "VCBS estimate, +8% y/y, ~11% of GDP; 1H2026 issuance 186,915 bn (-30.4%), banks 48% of issuance"
+  },
+  {
+   "item": "State Treasury (KBNN) deposits at banks",
+   "date": "2026-03",
+   "value": 626700,
+   "unit": "VND billion",
+   "url": "https://vnexpress.net/chinh-phu-muon-tang-tien-gui-cua-kho-bac-tai-ngan-hang-5091002.html",
+   "note": ">99% at Vietcombank, BIDV, VietinBank, Agribank"
+  },
+  {
+   "item": "State Treasury (KBNN) deposits at big-4 banks",
+   "date": "2026-06",
+   "value": 700000,
+   "unit": "VND billion",
+   "url": "https://baodautu.vn/noi-tran-tien-gui-kho-bac-len-50-big-4-ngan-hang-co-them-hang-tram-nghin-ty-cho-vay-d659909.html",
+   "note": "\"hơn 700.000 tỷ đồng\""
+  },
+  {
+   "item": "State Treasury deposits range (2026 YTD)",
+   "date": "2026-08",
+   "value": "460000-743000",
+   "unit": "VND billion",
+   "url": "https://nhipsongkinhdoanh.vn/ngan-hang-nha-nuoc--chenh-lech-tin-dung---huy-dong-khoang-2-trieu-ty-dong--thanh-khoan-tiep-tuc-chiu-ap-luc-31824.htm",
+   "note": "fluctuation range; daily swings up to 70,000 bn"
+  },
+  {
+   "item": "KBNN term deposits counted in LDR funding",
+   "date": "2026-08-01",
+   "value": 50,
+   "unit": "%",
+   "url": "https://www.vietnamplus.vn/tien-gui-kho-bac-duoc-tinh-50-vao-nguon-von-huy-dong-cua-ngan-hang-post1127465.vnp",
+   "note": "Decision 1743/QĐ-NHNN raised from 20% to 50%"
+  },
+  {
+   "item": "Deposits of residents (tiền gửi dân cư)",
+   "date": "2026-07",
+   "value": 11220486.0,
+   "unit": "VND billion",
+   "url": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd",
+   "note": "+8.56% YTD"
+  },
+  {
+   "item": "Deposits of economic organisations (tiền gửi TCKT)",
+   "date": "2026-07",
+   "value": 6240841.0,
+   "unit": "VND billion",
+   "url": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd",
+   "note": "+0.98% YTD"
+  },
+  {
+   "item": "Residents share of customer deposits",
+   "date": "2026-07",
+   "value": 64.26,
+   "unit": "%",
+   "url": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd",
+   "note": "computed"
+  },
+  {
+   "item": "Residents share of customer deposits",
+   "date": "2024-12",
+   "value": 47.96,
+   "unit": "%",
+   "url": "https://dantri.com.vn/kinh-doanh/tien-gui-cua-nguoi-dan-vao-ngan-hang-lap-ky-luc-hon-7-trieu-ty-dong-20250409162758993.htm",
+   "note": "computed"
+  },
+  {
+   "item": "FX-denominated liabilities share (deposit takers)",
+   "date": "2025",
+   "value": 5.67,
+   "unit": "%",
+   "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI680_AFSI_PT)",
+   "note": "proxy for FX deposit share; VND share ~= 100 - value"
+  },
+  {
+   "item": "FX-denominated loans share (deposit takers)",
+   "date": "2025",
+   "value": 3.25,
+   "unit": "%",
+   "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.STA,FSIC/VNM?startPeriod=2014 (FSI131_AFSI_PT)"
+  },
+  {
+   "item": "Credit growth by sector, 2025 full year (Dec-2025 YTD)",
+   "date": "2025-12",
+   "value": {
+    "agriculture_forestry_fisheries": 11.01,
+    "industry_and_construction": 12.37,
+    "industry": 10.09,
+    "construction": 17.46,
+    "trade_transport_telecom": 10.93,
+    "trade": 9.62,
+    "transport_telecom": 24.75,
+    "other_services": 30.18,
+    "total": 19.07
+   },
+   "unit": "%",
+   "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
+  },
+  {
+   "item": "Credit growth by sector, 2026 YTD (Jul-2026)",
+   "date": "2026-07",
+   "value": {
+    "agriculture_forestry_fisheries": 8.63,
+    "industry_and_construction": 9.84,
+    "industry": 10.44,
+    "construction": 8.59,
+    "trade_transport_telecom": 4.11,
+    "trade": 2.76,
+    "transport_telecom": 16.59,
+    "other_services": 11.44,
+    "total": 8.97
+   },
+   "unit": "%",
+   "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
+  },
+  {
+   "item": "Credit to production & business share",
+   "date": "2026-08",
+   "value": 77.3,
+   "unit": "%",
+   "url": "https://thuonghieucongluan.com.vn/tin-dung-vuot-10-ngan-hang-duoc-mo-them-du-dia-a334713.html"
+  },
+  {
+   "item": "Credit to SMEs",
+   "date": "2026-08",
+   "value": 4100000,
+   "unit": "VND billion",
+   "url": "https://thoibaonganhang.vn/du-no-tin-dung-doanh-nghiep-nho-va-vua-vuot-41-trieu-ty-dong-tang-1237-so-voi-cuoi-nam-2025-187712.html",
+   "note": "\"vượt 4,1 triệu tỷ\", +12.37% vs end-2025, ~20% of total credit"
+  },
+  {
+   "item": "Green credit outstanding",
+   "date": "2025-11",
+   "value": 750000,
+   "unit": "VND billion",
+   "url": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html",
+   "note": "~4.1% of total credit"
+  },
+  {
+   "item": "VBSP policy credit (27 programmes)",
+   "date": "2024-12",
+   "value": 365165,
+   "unit": "VND billion",
+   "url": "https://tapchinganhang.gov.vn/tang-truong-tin-dung-cho-nen-kinh-te-nhin-lai-nam-2024-va-dinh-huong-nam-2025-15279.html",
+   "note": "+10.01%"
+  },
+  {
+   "item": "Credit growth target 2026",
+   "date": "2026",
+   "value": 15,
+   "unit": "%",
+   "url": "https://vneconomy.vn/nam-2026-tin-dung-du-kien-tang-them-279-trieu-ty-dong-giam-183000-ty-so-voi-2025.htm",
+   "note": "implies ~2.787 triệu tỷ new credit"
+  }
+ ],
+ "notes": [
+  "SBV changed M2/deposit methodology from the Oct-2025 reporting period (sector reclassification; M2 excludes valuable papers bought by other domestic CIs). Jan-Sep 2025 and Oct-2025+ levels are NOT comparable; m2_ytd/deposits_ytd for Oct-Dec 2025 left null; M2 YoY null throughout (no comparable prior-year base). Dec-2025 m2_ytd = 15.7% is SBV-reported annual growth via press.",
+  "SBV monthly statistics pages (sbv.gov.vn) only expose Jan-2025 onward after the 2025 site migration; Oct-Dec 2024 monthly levels for M2 are not available (null). Dec-2024 deposits from press quoting SBV; Dec-2024 credit level derived from SBV Jan-2025 level/YTD.",
+  "Latest SBV statistical tables at fetch (2026-10-05): M2/deposits Jul-2026, credit by sector Jul-2026; Aug/Sep-2026 credit from SBV press conference statements (approximate levels).",
+  "Annual m2: 2015-2022 from World Bank WDI (IMF IFS broad money); 2024-2025 SBV 'tổng phương tiện thanh toán' — different definitions (SBV series includes valuable papers); 2023 null. Treat as a series break.",
+  "Annual deposits use IMF FSI 'customer deposits' of deposit takers (consistent 2015-2025); SBV-reported 'huy động vốn' growth used for deposit_growth where available (2015, 2021-2025), else computed from FSI (see sources.deposit_growth_by_year).",
+  "Annual credit growth: SBV final figures where found (2016-2019, 2023-2025); 2020-2022 rounded values from Saigon Times; 2015 is SBV's ~18% estimate (17.17% at 21/12/2015). 2022 SBV year-end estimate was 14.5%.",
+  "M0 and M1: SBV does not publish them; IMF MFS dataflows on api.imf.org return no Vietnam data; tradingeconomics blocked (403). Only cash/M2 ratio is available (monthly cash_to_m2_pct).",
+  "ROA/ROE in SBV tables are cumulative YTD figures for the period in the table (not annualised); IMF FSI annual ROA/ROE are full-year (2023 negative due to SCB).",
+  "CAR: SBV stopped publishing a whole-system CAR in 2020 (split into Basel II/TT41 group and TT22 group); use IMF FSI regulatory capital/RWA for the system.",
+  "NPL definitions differ: SBV on-balance whole-system (~3.3-4.1%), excl. 5 weak/special-control banks (~1.5-1.7%), incl. VAMC & potential (~3.8-4.0%); IMF FSI NPL 2025 = 4.21%.",
+  "Real-estate credit: SBV total RE credit (incl. home loans) vs MoC 'real-estate business' credit are different aggregates."
+ ],
+ "meta": {
+  "built": "2026-10-05",
+  "builder": "build.py"
+ }
+}

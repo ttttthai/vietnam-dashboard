@@ -1,0 +1,864 @@
+{
+  "articles" : [ {
+    "articleId" : "10151072",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-01T17:19:49+07:00",
+    "dateModified" : "2026-09-16T14:00:41+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "externalReferenceCode" : "10151072",
+    "fields" : {
+      "Date16293740" : "",
+      "tyTrongTienMat" : "",
+      "ghiChu" : "",
+      "title" : "",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "",
+    "id" : 10151073,
+    "key" : "10151072",
+    "keywords" : [ ],
+    "modifierUserName" : "",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 0.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10700038",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-09-16T08:40:56+07:00",
+    "dateModified" : "2026-09-17T13:42:36+07:00",
+    "datePublished" : "2026-09-16T08:40:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-09-16T08:40:00+07:00",
+    "externalReferenceCode" : "bd6f5c41-f3f1-1da9-937a-0ed3238b0f4a",
+    "fields" : {
+      "Date16293740" : "2026-07-31",
+      "tyTrongTienMat" : "9,98",
+      "ghiChu" : "",
+      "title" : "Tháng 7 năm 2026",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-7-n%C4%83m-2026-2",
+    "id" : 10700039,
+    "key" : "10700038",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 7 năm 2026",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "/10704262",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-09-16T14:06:02+07:00",
+    "dateModified" : "2026-09-16T14:10:34+07:00",
+    "datePublished" : "2026-09-16T02:06:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-09-16T02:06:00+07:00",
+    "externalReferenceCode" : "5b33e8a5-caf4-079e-b6d0-3042e9e489d9",
+    "fields" : {
+      "Date16293740" : "2026-07-31",
+      "tyTrongTienMat" : "9,98",
+      "ghiChu" : "",
+      "title" : "Tháng 7 năm 2026",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-7-n%C4%83m-2026-4",
+    "id" : 10704226,
+    "key" : "/10704262",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 8,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 7 năm 2026",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "/10704289",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-09-16T14:14:25+07:00",
+    "dateModified" : "2026-09-16T14:15:05+07:00",
+    "datePublished" : "2026-09-16T02:14:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-09-16T02:14:00+07:00",
+    "externalReferenceCode" : "df3fee93-d03e-9ab0-5eb3-be33522b4412",
+    "fields" : {
+      "Date16293740" : "2026-07-31",
+      "tyTrongTienMat" : "21312",
+      "ghiChu" : "",
+      "title" : "test",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "test-4",
+    "id" : 10704275,
+    "key" : "/10704289",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 8,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "test",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10153180",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-02T09:47:50+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2025-03-10T00:00:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2025-03-10T00:00:00+07:00",
+    "externalReferenceCode" : "ef1b6bc3-2c40-070f-51c6-036c04ce5554",
+    "fields" : {
+      "Date16293740" : "2025-03-10",
+      "tyTrongTienMat" : "9,52",
+      "ghiChu" : "",
+      "title" : "THÁNG 03 NĂM 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-03-n%C4%83m-2025-3",
+    "id" : 10153181,
+    "key" : "10153180",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "THÁNG 03 NĂM 2025",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10153196",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-02T09:49:00+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2025-02-14T00:00:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2025-02-14T00:00:00+07:00",
+    "externalReferenceCode" : "46297eb6-155c-1375-c4b1-eaa4cf3dcc87",
+    "fields" : {
+      "Date16293740" : "2025-02-14",
+      "tyTrongTienMat" : "9,82",
+      "ghiChu" : "",
+      "title" : "THÁNG 02 NĂM 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-02-n%C4%83m-2025-3",
+    "id" : 10153197,
+    "key" : "10153196",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "THÁNG 02 NĂM 2025",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10151090",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-01T17:21:44+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2025-09-10T00:00:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2025-09-10T00:00:00+07:00",
+    "externalReferenceCode" : "67564afb-5e20-1f45-c97e-40cfa2b969c2",
+    "fields" : {
+      "Date16293740" : "2025-09-10",
+      "tyTrongTienMat" : "9,72",
+      "ghiChu" : "",
+      "title" : "THÁNG 09 NĂM 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-09-n%C4%83m-2025-4",
+    "id" : 10151091,
+    "key" : "10151090",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "THÁNG 09 NĂM 2025",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10152984",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-02T09:20:58+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2025-08-19T00:00:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2025-08-19T00:00:00+07:00",
+    "externalReferenceCode" : "8e8080bb-c22a-109b-5283-3478ca51ca11",
+    "fields" : {
+      "Date16293740" : "2025-08-19",
+      "tyTrongTienMat" : "9,67",
+      "ghiChu" : "",
+      "title" : "THÁNG 08 NĂM 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-08-n%C4%83m-2025-3",
+    "id" : 10152985,
+    "key" : "10152984",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "THÁNG 08 NĂM 2025",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10153014",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-02T09:38:00+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2025-07-15T00:00:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2025-07-15T00:00:00+07:00",
+    "externalReferenceCode" : "7e6109d7-41d1-b828-818e-ca34d47a5ef8",
+    "fields" : {
+      "Date16293740" : "2025-07-15",
+      "tyTrongTienMat" : "9,69",
+      "ghiChu" : "",
+      "title" : "THÁNG 07 NĂM 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-07-n%C4%83m-2025-3",
+    "id" : 10153015,
+    "key" : "10153014",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "THÁNG 07 NĂM 2025",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10153031",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-02T09:40:30+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2025-06-10T00:00:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2025-06-10T00:00:00+07:00",
+    "externalReferenceCode" : "52eff2fa-3a3a-aa73-c0b5-f4922d8daf9c",
+    "fields" : {
+      "Date16293740" : "2025-06-10",
+      "tyTrongTienMat" : "9,74",
+      "ghiChu" : "",
+      "title" : "THÁNG 06 NĂM 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-06-n%C4%83m-2025-3",
+    "id" : 10153032,
+    "key" : "10153031",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "THÁNG 06 NĂM 2025",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10153047",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-02T09:41:58+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2025-05-10T00:00:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2025-05-10T00:00:00+07:00",
+    "externalReferenceCode" : "f1a620dc-be4e-1c1d-8aed-a931a867f659",
+    "fields" : {
+      "Date16293740" : "2025-05-10",
+      "tyTrongTienMat" : "9,48",
+      "ghiChu" : "",
+      "title" : "THÁNG 05 NĂM 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-05-n%C4%83m-2025-3",
+    "id" : 10153048,
+    "key" : "10153047",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "THÁNG 05 NĂM 2025",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10292853",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-05-14T15:58:58+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2026-05-14T03:58:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-05-14T03:58:00+07:00",
+    "externalReferenceCode" : "ffe3b202-8d9e-9458-72d9-3a05f9a865db",
+    "fields" : {
+      "Date16293740" : "2025-10-31",
+      "tyTrongTienMat" : "10,68",
+      "ghiChu" : "",
+      "title" : "Tháng 10 năm 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-10-n%C4%83m-2025-1",
+    "id" : 10292854,
+    "key" : "10292853",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 10 năm 2025",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10292864",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-05-14T15:59:38+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2026-05-14T03:59:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-05-14T03:59:00+07:00",
+    "externalReferenceCode" : "0d95bb09-0ff0-35ab-2286-39db91593941",
+    "fields" : {
+      "Date16293740" : "2025-11-30",
+      "tyTrongTienMat" : "10,78",
+      "ghiChu" : "",
+      "title" : "Tháng 11 năm 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-11-n%C4%83m-2025-1",
+    "id" : 10292865,
+    "key" : "10292864",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 11 năm 2025",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10153163",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-02T09:46:25+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2025-04-02T00:00:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2025-04-02T00:00:00+07:00",
+    "externalReferenceCode" : "30516ed6-446f-4920-7517-5c3e5b0a406f",
+    "fields" : {
+      "Date16293740" : "2025-04-02",
+      "tyTrongTienMat" : "9,68",
+      "ghiChu" : "",
+      "title" : "THÁNG 04 NĂM 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-04-n%C4%83m-2025-3",
+    "id" : 10153164,
+    "key" : "10153163",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "THÁNG 04 NĂM 2025",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10153215",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hệ Thống",
+      "givenName" : "Quản Trị",
+      "id" : 20123,
+      "name" : "Quản Trị Hệ Thống",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-04-02T09:53:33+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2025-01-23T00:00:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2025-01-23T00:00:00+07:00",
+    "externalReferenceCode" : "06cdedd5-0f32-2b18-8cb7-cb3e2322f99a",
+    "fields" : {
+      "Date16293740" : "2025-01-23",
+      "tyTrongTienMat" : "10,88",
+      "ghiChu" : "",
+      "title" : "THÁNG 01 NĂM 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-01-n%C4%83m-2025-3",
+    "id" : 10153216,
+    "key" : "10153215",
+    "keywords" : [ ],
+    "modifierUserName" : "Quản Trị Hệ Thống",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "THÁNG 01 NĂM 2025",
+    "userName" : "Quản Trị Hệ Thống",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10292883",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-05-14T16:04:10+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2026-05-14T04:04:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-05-14T04:04:00+07:00",
+    "externalReferenceCode" : "313a770c-8376-197f-dc7b-da74ba63ec9e",
+    "fields" : {
+      "Date16293740" : "2025-12-31",
+      "tyTrongTienMat" : "10,78",
+      "ghiChu" : "",
+      "title" : "Tháng 12 năm 2025",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-12-n%C4%83m-2025-1",
+    "id" : 10292884,
+    "key" : "10292883",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 12 năm 2025",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10292897",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-05-14T16:04:48+07:00",
+    "dateModified" : "2026-05-29T09:52:35+07:00",
+    "datePublished" : "2026-05-14T04:04:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-05-14T04:04:00+07:00",
+    "externalReferenceCode" : "55668cce-de3f-197b-67f6-d04a886994f2",
+    "fields" : {
+      "Date16293740" : "2026-01-31",
+      "tyTrongTienMat" : "11,52",
+      "ghiChu" : "",
+      "title" : "Tháng 1 năm 2026",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-1-n%C4%83m-2026-1",
+    "id" : 10292898,
+    "key" : "10292897",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 1 năm 2026",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10365520",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-06-01T14:07:57+07:00",
+    "dateModified" : "2026-06-01T14:07:57+07:00",
+    "datePublished" : "2026-06-01T02:07:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "<p> </p>\n\n<p> </p>",
+    "displayDate" : "2026-06-01T02:07:00+07:00",
+    "externalReferenceCode" : "d98071e9-d4e1-ab1f-664c-c277e1b3a393",
+    "fields" : {
+      "Date16293740" : "2026-03-31",
+      "tyTrongTienMat" : "11,11",
+      "ghiChu" : "",
+      "title" : "Tháng 3 năm 2026",
+      "description" : "<p> </p>\n\n<p> </p>"
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-3-n%C4%83m-2026-2",
+    "id" : 10365521,
+    "key" : "10365520",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 3 năm 2026",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10365497",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-06-01T14:06:49+07:00",
+    "dateModified" : "2026-06-01T14:06:50+07:00",
+    "datePublished" : "2026-06-01T02:06:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-06-01T02:06:00+07:00",
+    "externalReferenceCode" : "e96120a5-abff-e86f-188c-f56f9df545fb",
+    "fields" : {
+      "Date16293740" : "2026-02-28",
+      "tyTrongTienMat" : "12,09",
+      "ghiChu" : "",
+      "title" : "Tháng 2 năm 2026",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-2-n%C4%83m-2026-1",
+    "id" : 10365498,
+    "key" : "10365497",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 2 năm 2026",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10437155",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-06-17T15:52:08+07:00",
+    "dateModified" : "2026-06-17T15:52:08+07:00",
+    "datePublished" : "2026-06-17T03:52:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-06-17T03:52:00+07:00",
+    "externalReferenceCode" : "8b734901-078d-d97d-f62f-79686a997ee8",
+    "fields" : {
+      "Date16293740" : "2026-04-30",
+      "tyTrongTienMat" : "10,77",
+      "ghiChu" : "",
+      "title" : "Tháng 4 năm 2026",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-4-n%C4%83m-2026-2",
+    "id" : 10437156,
+    "key" : "10437155",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 4 năm 2026",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10551829",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-07-22T14:26:08+07:00",
+    "dateModified" : "2026-07-22T14:26:08+07:00",
+    "datePublished" : "2026-07-22T02:26:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-07-22T02:26:00+07:00",
+    "externalReferenceCode" : "04425ae1-45d9-9ea9-a192-cd7a321e8f84",
+    "fields" : {
+      "Date16293740" : "2026-05-31",
+      "tyTrongTienMat" : "10,46",
+      "ghiChu" : "",
+      "title" : "Tháng 5 năm 2026",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-5-n%C4%83m-2026-3",
+    "id" : 10551830,
+    "key" : "10551829",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 5 năm 2026",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  }, {
+    "articleId" : "10593396",
+    "availableLanguages" : [ "vi_VN" ],
+    "creator" : {
+      "familyName" : "Hoa",
+      "givenName" : "Trinh Thi Mai",
+      "id" : 541248,
+      "name" : "Trinh Thi Mai Hoa",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Creator"
+    },
+    "dateCreated" : "2026-08-11T13:49:10+07:00",
+    "dateModified" : "2026-08-11T13:49:11+07:00",
+    "datePublished" : "2026-08-11T01:49:00+07:00",
+    "ddmStructureId" : 10041267,
+    "description" : "",
+    "displayDate" : "2026-08-11T01:49:00+07:00",
+    "externalReferenceCode" : "34bbec4b-8c07-5092-c542-e456f8d6c177",
+    "fields" : {
+      "Date16293740" : "2026-06-30",
+      "tyTrongTienMat" : "10,11",
+      "ghiChu" : "",
+      "title" : "Tháng 6 năm 2026",
+      "description" : ""
+    },
+    "friendlyUrlPath" : "th%C3%A1ng-6-n%C4%83m-2026-1",
+    "id" : 10593397,
+    "key" : "10593396",
+    "keywords" : [ ],
+    "modifierUserName" : "Trinh Thi Mai Hoa",
+    "status" : 0,
+    "taxonomyCategoryBriefs" : [ {
+      "taxonomyCategoryId" : 83435,
+      "taxonomyCategoryName" : "Tiền mặt lưu thông trên tổng phương tiện thanh toán",
+      "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.TaxonomyCategoryBrief"
+    } ],
+    "title" : "Tháng 6 năm 2026",
+    "userName" : "Trinh Thi Mai Hoa",
+    "version" : 1.0,
+    "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.Article"
+  } ],
+  "lastPage" : 1,
+  "page" : 1,
+  "pageSize" : 200,
+  "totalCount" : 22,
+  "xClassName" : "vn.gov.sbv.article.headless.dto.v1_0.PageArticle"
+}
