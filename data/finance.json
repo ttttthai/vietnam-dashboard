@@ -4,7 +4,7 @@
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing."
  },
  "FINSYS": {
-  "asof": "2026-10-05",
+  "asof": "2026-10-06",
   "annual": {
    "years": [
     2015,
@@ -501,15 +501,15 @@
     },
     {
      "d": "2026-06",
-     "v": 77.06,
-     "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
-     "n": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
-    },
-    {
-     "d": "2026-06",
      "v": 77.1,
      "u": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn",
      "n": "press citing SBV (SBV table: 77.06)"
+    },
+    {
+     "d": "2026-06",
+     "v": 77.06,
+     "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+     "n": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
     }
    ],
    "short_term_funds_for_mlt_loans_pct": [
@@ -636,22 +636,22 @@
      "n": "SBV chart \"Tỷ lệ nợ xấu theo quý\" (whole system)"
     },
     {
+     "d": "2026-Q1",
+     "v": 3.47,
+     "u": "https://sbv.gov.vn/vi/ty-le-no-xau-trong-tong-du-no-tin-dung",
+     "n": "SBV chart \"Tỷ lệ nợ xấu theo quý\" (whole system)"
+    },
+    {
      "d": "2026-05",
      "v": 3.43,
      "u": "https://vietnambiz.vn/tin-dung-tang-toc-ap-luc-kiem-soat-no-xau-nong-len-trong-nua-cuoi-nam-2026-2026723184533723.htm",
-     "n": null
+     "n": "SBV on-balance NPL ratio, whole system, end-May 2026 (press citing SBV). Different definition from IMF FSI."
     },
     {
      "d": "2026-06",
      "v": 3.31,
      "u": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn",
-     "n": null
-    },
-    {
-     "d": "2026-Q1",
-     "v": 3.47,
-     "u": "https://sbv.gov.vn/vi/ty-le-no-xau-trong-tong-du-no-tin-dung",
-     "n": "SBV chart \"Tỷ lệ nợ xấu theo quý\" (whole system)"
+     "n": "SBV on-balance NPL ratio, whole system, end-Jun 2026 (press citing SBV; excl. 5 specially controlled/transferred banks = 1.51%). Different definition from IMF FSI."
     }
    ],
    "npl_incl_vamc_and_potential_pct": [
@@ -659,13 +659,19 @@
      "d": "2025-12",
      "v": 3.97,
      "u": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn",
-     "n": null
+     "n": "Gross NPL: on-balance NPL + loans sold to VAMC not yet resolved + potential NPLs (SBV, via press)."
+    },
+    {
+     "d": "2026-05",
+     "v": 3.9,
+     "u": "https://vietnambiz.vn/tin-dung-tang-toc-ap-luc-kiem-soat-no-xau-nong-len-trong-nua-cuoi-nam-2026-2026723184533723.htm",
+     "n": "Gross NPL (on-balance + unresolved VAMC + potential), end-May 2026, SBV 'khoảng 3,9%' (approx.; search excerpt). Same article gives on-balance 3.43%."
     },
     {
      "d": "2026-06",
      "v": 3.77,
      "u": "https://cafef.vn/tong-tai-san-he-thong-ngan-hang-viet-nam-sap-cham-moc-30-trieu-ty-dong-vietcombank-vietinbank-bidv-va-agribank-chiem-hon-41-tong-du-no-188260824162210863.chn",
-     "n": null
+     "n": "Gross NPL: on-balance NPL + loans sold to VAMC not yet resolved + potential NPLs (SBV, via press)."
     }
    ],
    "npl_imf_fsi_pct": [
@@ -1205,7 +1211,7 @@
      "d": "2025-12",
      "v": 146,
      "u": "https://tuoitre.vn/saigontimes/duong-di-cua-tin-dung-nam-2026/",
-     "n": null
+     "n": "Total credit outstanding / GDP, end-2025, press figure citing SBV data. Not the World Bank 'domestic credit to private sector' definition."
     }
    ],
    "npl_onbalance_excl_5_weak_banks_pct": [
@@ -1213,19 +1219,19 @@
      "d": "2025-10",
      "v": 1.64,
      "u": "https://baodauthau.vn/den-cuoi-thang-102025-no-xau-noi-bang-o-muc-164-post190062.html",
-     "n": "excludes MBV, GPBank, VCBNeo, Vikki, SCB"
+     "n": "SBV on-balance NPL ratio excluding the 5 specially controlled/compulsorily transferred banks (MBV, GPBank, VCBNeo, Vikki, SCB); press citing SBV."
     },
     {
      "d": "2025-12",
      "v": 1.69,
      "u": "https://baodauthau.vn/ty-le-no-xau-giam-nhe-ap-luc-chat-luong-tai-san-van-lon-post207731.html",
-     "n": null
+     "n": "SBV on-balance NPL ratio excluding the 5 specially controlled/compulsorily transferred banks (MBV, GPBank, VCBNeo, Vikki, SCB); press citing SBV."
     },
     {
      "d": "2026-06",
      "v": 1.51,
      "u": "https://baodauthau.vn/ty-le-no-xau-giam-nhe-ap-luc-chat-luong-tai-san-van-lon-post207731.html",
-     "n": null
+     "n": "SBV on-balance NPL ratio excluding the 5 specially controlled/compulsorily transferred banks (MBV, GPBank, VCBNeo, Vikki, SCB); press citing SBV."
     }
    ],
    "provisions_to_npl_imf_fsi_pct": [
@@ -1369,97 +1375,97 @@
      "d": "2016-12",
      "v": 8503571,
      "u": "https://sbv.gov.vn/vi/w/sbv284952",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2017-12",
      "v": 10001790,
      "u": "https://sbv.gov.vn/vi/w/sbv330774",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2018-12",
      "v": 11064239,
      "u": "https://sbv.gov.vn/vi/w/sbv363572",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2019-12",
      "v": 12578812,
      "u": "https://sbv.gov.vn/vi/w/sbv408290",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2020-12",
      "v": 14019553,
      "u": "https://sbv.gov.vn/vi/w/sbv455232",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2021-12",
      "v": 15961107,
      "u": "https://sbv.gov.vn/vi/w/sbv503037",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2022-12",
      "v": 18275903,
      "u": "https://sbv.gov.vn/vi/w/sbv565631",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2023-01",
      "v": 17690692,
      "u": "https://sbv.gov.vn/vi/w/sbv569099",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2023-04",
      "v": 18161742,
      "u": "https://sbv.gov.vn/vi/w/sbv572232",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2023-08",
      "v": 18442342,
      "u": "https://sbv.gov.vn/vi/w/sbv577468",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2023-10",
      "v": 18870968,
      "u": "https://sbv.gov.vn/vi/w/sbv584023",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2023-12",
      "v": 20073281,
      "u": "https://sbv.gov.vn/vi/w/sbv588014",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2024-09",
      "v": 21453706,
      "u": "https://sbv.gov.vn/vi/w/sbv617934",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2024-10",
      "v": 21572042,
      "u": "https://sbv.gov.vn/vi/w/sbv621809",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2024-11",
      "v": 21938271,
      "u": "https://sbv.gov.vn/vi/w/sbv622220",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     },
     {
      "d": "2026-06",
      "v": 29848110,
      "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
-     "n": null
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
     }
    ]
   },
@@ -1965,7 +1971,8 @@
      "d": "2026-06",
      "v": 453800,
      "unit": "VND billion",
-     "u": "https://vietstock.vn/2026/07/du-no-margin-lap-ky-luc-454-ngan-ty-dong-cuoc-dua-co-su-phan-hoa-830-1468883.htm"
+     "u": "https://vietstock.vn/2026/07/du-no-margin-lap-ky-luc-454-ngan-ty-dong-cuoc-dua-co-su-phan-hoa-830-1468883.htm",
+     "n": "Vietstock tally incl. advances. Conflict (not averaged): other end-Q2-2026 tallies give ~445,000-446,000 bn incl. advances and ~435,000 bn margin only (https://moneyf.vn/cuoi-quy-ii-du-no-cho-vay-tai-cac-cong-ty-chung-kh-h67ztex2 ; https://vn.investing.com/news/stock-market-news/du-no-margin-lap-ky-luc-435000-ty-dong-trong-quy-ii2026-2668501; search excerpts). Coverage (number of brokers) differs. Q3-2026 figures not yet available (broker Q3 statements due ~20/10/2026)."
     }
    ],
    "Credit to securities sector share (bank credit)": [
@@ -1993,7 +2000,15 @@
      "d": "2026-06",
      "v": 1435040,
      "unit": "VND billion",
-     "u": "https://finance.vietstock.vn/bao-cao-phan-tich/21240/bao-cao-trai-phieu-doanh-nghiep-cap-nhat-1h-2026-trien-vong-2h-2026.htm"
+     "u": "https://finance.vietstock.vn/bao-cao-phan-tich/21240/bao-cao-trai-phieu-doanh-nghiep-cap-nhat-1h-2026-trien-vong-2h-2026.htm",
+     "n": "Vietstock/FiinGroup-type H1 report. Conflict (not averaged): Saigon Ratings Q2-2026 report ~1,478,000 bn (~10.9% of GDP) — https://diendandoanhnghiep.vn/1-48-trieu-ty-dong-trai-phieu-doanh-nghiep-va-xu-huong-nua-cuoi-nam-10183702.html (search excerpt)."
+    },
+    {
+     "d": "2026-08",
+     "v": 1491000,
+     "unit": "VND billion",
+     "u": "https://markettimes.vn/thi-truong-trai-phieu-doanh-nghiep-thang-8-2026-ngan-hang-tiep-tuc-ap-dao-co-tin-vui-tu-nhom-bat-dong-san-130495.html",
+     "n": "End-Aug-2026 market value of corporate bonds in circulation 1,491 thousand bn (private placement 1,299k; public 192k; banks 685k; residential RE 446k; 12-month default rate 0.24%). Search excerpt only (page fetch blocked); excerpts attribute the monthly report to FiinGroup in one result and VIS Rating in another — provider not confirmed. Not strictly comparable with the Jun-2026 figure."
     }
    ],
    "State Treasury (KBNN) deposits at banks": [
@@ -2149,6 +2164,15 @@
      "unit": "%",
      "u": "https://vneconomy.vn/nam-2026-tin-dung-du-kien-tang-them-279-trieu-ty-dong-giam-183000-ty-so-voi-2025.htm"
     }
+   ],
+   "RE credit-control scope: hospitality increments excluded in 2026 (CV 8509/NHNN-CSTT)": [
+    {
+     "d": "2026-09",
+     "v": "excluded",
+     "unit": "text",
+     "u": "https://www.tinnhanhchungkhoan.vn/khong-tinh-du-no-cho-vay-nha-hang-khach-san-khu-du-lich-sinh-thai-nghi-duong-vao-tin-dung-bat-dong-san-post397735.html",
+     "n": "SBV letter 8509/NHNN-CSTT to 25 credit institutions: for 1/1-31/12/2026, the increase since end-2025 in lending to restaurants, hotels, tourist/eco/resort areas is not counted in real-estate credit for growth-control purposes. Affects comparability of later 'real-estate credit' figures quoted under the control framework. Search excerpt only."
+    }
    ]
   },
   "why": {
@@ -2239,6 +2263,21 @@
        "unit": "% QTD",
        "date": "2026-05-12",
        "url": "https://cafebiz.vn/tin-dung-dang-chay-nhanh-hon-huy-dong-von-176260512075343822.chn"
+      },
+      {
+       "name": "Tín dụng vs huy động đến 28/9/2026 (TCTK)",
+       "value": "10.89 vs 9.78",
+       "unit": "% YTD",
+       "date": "2026-10-03",
+       "url": "https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm",
+       "note": "GSO Q3 report; NHNN: tín dụng 30/9 +11,59% (khác ngày chốt)"
+      },
+      {
+       "name": "Tín dụng 2026 YTD đến 30/9 (NHNN)",
+       "value": 11.59,
+       "unit": "% YTD (+16,69% svck; ~20,75 triệu tỷ)",
+       "date": "2026-10-03",
+       "url": "https://cafef.vn/pho-thong-doc-pham-thanh-ha-tin-dung-den-30-9-dat-2075-trieu-ty-dong-tang-1159-188261003125449749.chn"
       }
      ],
      "quotes": [
@@ -2892,14 +2931,14 @@
     }
    ],
    "summary_vi": [
-    "Nguyên nhân gốc: tín dụng tăng nhanh hơn huy động (2025: ~19% vs ~14%; 3/9/2026: 9,98% vs 8,33%), LDR đơn giản toàn ngành lên ~114% (Q2/2026) → ngân hàng đua lãi suất huy động (12T nhóm tư nhân 5,82% → ~8,6%).",
+    "Nguyên nhân gốc: tín dụng tăng nhanh hơn huy động (2025: ~19% vs ~14%; 28/9/2026: 10,89% vs 9,78% theo TCTK; NHNN: tín dụng 30/9 +11,59%), LDR đơn giản toàn ngành lên ~114% (Q2/2026) → ngân hàng đua lãi suất huy động (12T nhóm tư nhân 5,82% → ~8,4–8,6%).",
     "Chi phí vốn tăng vọt: COF 4,79% Q2/2026 (+105 bps svck), CASA giảm còn ~20,9%, chi phí lãi H1/2026 +49%, phải phát hành GTCG/trái phiếu lãi 8–10% → lãi vay T8/2026 8,4–10,7%, cao hơn cuối 2025 ~1,8 điểm %.",
     "Thanh khoản và tỷ giá trói tay NHNN: liên ngân hàng qua đêm từng 17% (3/2/2026), OMO nâng lên 4,5% (12/2025), NHNN hút ròng để giữ tỷ giá (bán kỳ hạn 26.850), dự trữ ~2 tháng nhập khẩu; Fed tăng lên 3,75–4% (16/9/2026).",
     "Lạm phát ~5% (CPI T9/2026 +5,08%) giữ lãi suất thực dương ~3,5 điểm %; nợ xấu 3,31% và trích lập cao ở NH tư nhân giữ phần bù rủi ro.",
     "Chỉ đạo hành chính (CV 2342, 3972, 4190, 7125; SME −1 điểm %) và nới LDR/KBNN, trần 40% chỉ giảm nhẹ áp lực; VNDirect dời kỳ vọng hạ lãi suất sang đầu 2027."
    ],
    "summary_en": [
-    "Root cause: credit outgrowing deposits (2025 ~19% vs ~14%; 3-Sep-2026 9.98% vs 8.33%), simple sector LDR ~114% (Q2-26) → a deposit-rate race (private banks' 12M rate 5.82% → ~8.6%).",
+    "Root cause: credit outgrowing deposits (2025 ~19% vs ~14%; 28-Sep-2026 10.89% vs 9.78% per GSO; SBV: credit +11.59% at 30-Sep), simple sector LDR ~114% (Q2-26) → a deposit-rate race (private banks' 12M rate 5.82% → ~8.4–8.6%).",
     "Cost of funds surged: COF 4.79% in Q2-26 (+105 bps YoY), CASA down to ~20.9%, H1-26 interest expense +49%, paper issued at 8–10% → Aug-2026 lending rates 8.4–10.7%, ~1.8pp above end-2025.",
     "Liquidity and FX tie the SBV's hands: overnight interbank hit 17% (3-Feb-2026), OMO raised to 4.5% (Dec-2025), SBV drained VND to defend the dong (180-day forwards at 26,850), reserves ~2 months of imports; Fed hiked to 3.75–4% (16-Sep-2026).",
     "~5% inflation (Sep-2026 CPI +5.08%) keeps real deposit rates ~3.5pp positive; 3.31% NPLs and heavy private-bank provisioning keep risk premia wide.",
@@ -2971,7 +3010,7 @@
       20.79,
       22.11,
       22.06,
-      18.0,
+      null,
       20.9
      ],
      "unit": "% of customer deposits",
@@ -2982,7 +3021,7 @@
       "https://thoibaotaichinhvietnam.vn/vis-rating-lo-ngai-thanh-khoan-that-chat-no-xau-tang-khien-ngan-hang-them-ap-luc-198036.html",
       "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
      ],
-     "note": "Industry weighted CASA; Q1-26 from VIS Rating (different coverage, down 2pp); simple avg of 27 banks at 30-Jun-2026 = 14.7% (Wigroup via Cong Thuong)."
+     "note": "Industry-weighted CASA (Q4-24/Q4-25 Saigon Times; Q2-25/Q2-26 Yuanta). 2026-Q1 null: only a VIS Rating figure (18.0%, different coverage) exists — see casa_vis_rating. Simple average of 27 banks at 30-Jun-2026 = 14.7% (Wigroup via Cong Thuong), another definition."
     },
     "ldr": {
      "periods": [
@@ -2994,7 +3033,7 @@
      "values": [
       108,
       110,
-      100,
+      null,
       114
      ],
      "unit": "% loans/customer deposits",
@@ -3004,7 +3043,7 @@
       "https://thoibaotaichinhvietnam.vn/chenh-lech-tin-dung-huy-dong-len-14-trieu-ty-dong-ap-luc-ldr-bot-cang-khi-tinh-20-tien-gui-kho-bac-197524.html",
       "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
      ],
-     "note": "Simple LDR. 2025-Q4 '~110%, highest in a decade' (VinaCapital); 2026-Q1 = 27 listed banks (MBS, narrower definition, +2.3pp vs end-2025). Regulatory LDR (Circular 22 basis) ~88% in Q2-2026 per NSI vs 85% cap."
+     "note": "Simple LDR, sector-wide (loans/customer deposits). 2025-Q2 and 2026-Q2: Yuanta; 2025-Q4 '~110%, highest in a decade' (VinaCapital) — providers differ. 2026-Q1 set to null: the only Q1 figure is MBS's 27-listed-bank ratio (100%), moved to ldr_listed27_mbs. Regulatory LDR (Circular 22 basis) ~88% in Q2-2026 per NSI vs 85% cap (cap rises to 95% from 1/12/2026 under Circular 50/2026)."
     },
     "credit_vs_deposit_growth": {
      "dates": [
@@ -3014,7 +3053,8 @@
       "2026-03-24",
       "2026-06-15",
       "2026-08-22",
-      "2026-09-03"
+      "2026-09-03",
+      "2026-09-28"
      ],
      "credit": [
       15.08,
@@ -3023,7 +3063,8 @@
       2.15,
       6.38,
       8.38,
-      9.98
+      9.98,
+      10.89
      ],
      "deposit": [
       null,
@@ -3032,7 +3073,8 @@
       0.44,
       4.3,
       8.77,
-      8.33
+      8.33,
+      9.78
      ],
      "unit": "% YTD",
      "src": [
@@ -3042,9 +3084,10 @@
       "https://vietnambiz.vn/tinh-den-243-tang-truong-tin-dung-dat-215-trong-khi-huy-dong-von-chi-tang-044-2026449331850.htm",
       "https://www.dnse.com.vn/senses/tin-tuc/ngan-hang-nua-cuoi-2026-nong-chuyen-lai-suat-kho-bai-toan-loi-nhuan-35251787",
       "https://vietnamnet.vn/tin-dung-tang-nhanh-hon-huy-dong-lai-suat-ngan-hang-kho-giam-cuoi-nam-2554327.html",
-      "https://docnhanh.vn/kinh-te/lai-suat-huy-dong-vuot-9-ap-luc-von-ngan-hang-tang-tintuc1052480"
+      "https://docnhanh.vn/kinh-te/lai-suat-huy-dong-vuot-9-ap-luc-von-ngan-hang-tang-tintuc1052480",
+      "https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm"
      ],
-     "note": "SBV system data as quoted in press. 22-Aug-2026 figures are VND-only (MoF Deputy Minister Tran Quoc Phuong; deposits briefly exceeded credit). 2024 system deposit growth not found (M2 +9.42% to 25-Dec-2024 is not a deposit measure)."
+     "note": "SBV system data as quoted in press. 22-Aug-2026 figures are VND-only (MoF Deputy Minister Tran Quoc Phuong; deposits briefly exceeded credit). 2024 system deposit growth not found (M2 +9.42% to 25-Dec-2024 is not a deposit measure). 28-Sep-2026 = GSO Q3-2026 socio-economic report (credit +10.89%, mobilisation +9.78%; search excerpt only). SBV's own figure for 30-Sep-2026 is credit +11.59% (monthly.credit_ytd T9/26); SBV did not state a 30-Sep mobilisation figure in the excerpts found. The 3-Sep (9.98%) point is below the SBV 28-Aug figure (10.24%): BVSC/press estimate, cut-offs differ — not reconciled."
     },
     "deposit12m_private_banks_mbs": {
      "dates": [
@@ -3068,7 +3111,7 @@
       "https://congthuong.vn/casa-giam-dien-rong-ngan-hang-them-ap-luc-chi-phi-von-469327.html",
       "https://nguoiquansat.vn/fed-tang-lai-suat-chenh-lech-usd-vnd-thu-hep-lai-suat-viet-nam-se-ra-sao-317285.html"
      ],
-     "note": "MBS avg 12M deposit rate; Dec-2025 = private-bank group; Jul-2026 per Cong Thuong citing MBS; Aug-2026 = 'commercial banks ~8.4%, +259 bps YTD' (Nguoi Quan Sat 19-Sep-2026) - groups differ slightly."
+     "note": "MBS avg 12M deposit rate; Dec-2025 = private-bank group; Jul-2026 per Cong Thuong citing MBS; Aug-2026 = 'commercial banks ~8.4%, +259 bps YTD' (Nguoi Quan Sat 19-Sep-2026) - groups differ slightly. Sep-2026 MBS average not found as of 2026-10-06 (not appended). Cross-check, different definition (posted rates): end-Sep 2026 posted 12M rates were 6.8% at the Big-4 and 7.8% at the highest posting bank (ACB) — https://vietnamnet.vn/lai-suat-ngan-hang-hom-nay-28-9-2026-ong-lon-tang-lai-suat-len-8-4-nam-2559451.html (search excerpt). The MBS 8.4-8.6% averages exceed these posted rates, so they likely include special/negotiated rates; treat as a different measure."
     },
     "avg_lending_rate_sbv": {
      "dates": [
@@ -3090,7 +3133,7 @@
       "https://phapluat.suckhoedoisong.vn/lai-suat-cho-vay-thang-72026-tai-19-ngan-hang-khong-giam-noi-cao-nhat-len-1134nam-283666.html",
       "https://thanhnien.vn/lai-suat-cho-vay-binh-quan-tien-dong-len-107-nam-185260921142331886.htm"
      ],
-     "note": "2024 figure is SBV average lending rate (~6.65%, Tap chi Ngan hang); 2026 values are SBV-reported ranges."
+     "note": "2024 figure is SBV average lending rate (~6.65%, Tap chi Ngan hang); 2026 values are SBV-reported ranges. Sep-2026 SBV average lending rate not yet published as of 2026-10-06."
     },
     "usdvnd_monthly": {
      "months": [
@@ -3772,6 +3815,32 @@
       "Net INJECTION 64.7k bn VND: OMO 232.7k bn vs 168.0k maturing (Vietcap). 202.4k bn OMO maturing in Sep flagged.",
       "Monthly total not found. Late Sep: 6 consecutive sessions of net ABSORPTION totalling ~60k bn VND, then net INJECTION ~10.0k bn on 30/9 (CafeF 01/10/2026). No SBV bills reported."
      ]
+    },
+    "ldr_listed27_mbs": {
+     "periods": [
+      "2026-Q1"
+     ],
+     "values": [
+      100
+     ],
+     "unit": "% loans/customer deposits, 27 listed banks",
+     "src": [
+      "https://thoibaotaichinhvietnam.vn/chenh-lech-tin-dung-huy-dong-len-14-trieu-ty-dong-ap-luc-ldr-bot-cang-khi-tinh-20-tien-gui-kho-bac-197524.html"
+     ],
+     "note": "MBS, 27 listed banks (narrower coverage, +2.3pp vs end-2025). Split out of why.series.ldr on 2026-10-06 QC: different definition/coverage from the sector-wide simple LDR."
+    },
+    "casa_vis_rating": {
+     "periods": [
+      "2026-Q1"
+     ],
+     "values": [
+      18.0
+     ],
+     "unit": "% of customer deposits (VIS Rating coverage)",
+     "src": [
+      "https://thoibaotaichinhvietnam.vn/vis-rating-lo-ngai-thanh-khoan-that-chat-no-xau-tang-khien-ngan-hang-them-ap-luc-198036.html"
+     ],
+     "note": "VIS Rating rated-bank coverage, down 2pp. Split out of why.series.casa on 2026-10-06 QC: different coverage from the industry-weighted series."
     }
    }
   },
@@ -9339,7 +9408,8 @@
      "2025": "https://sbv.gov.vn/vi/tien-mat-luu-thong-tren-tong-phuong-tien-thanh-toan"
     },
     "m2_to_gdp_pct_wb": "https://api.worldbank.org/v2/country/VNM/indicator/FM.LBL.BMNY.GD.ZS?format=json",
-    "private_credit_to_gdp_pct_wb": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json"
+    "private_credit_to_gdp_pct_wb": "https://api.worldbank.org/v2/country/VNM/indicator/FS.AST.PRVT.GD.ZS?format=json",
+    "annual_definitions_note": "annual.deposits and annual.loans_imf_fsi are IMF FSI levels (deposit takers); annual.deposit_growth comes from SBV/press growth rates and is NOT the growth of annual.deposits (2025: IMF levels imply +14.71%, stored 15.42% per cafef/SBV; press also cites mobilisation +14.11% at 24/12/2025). annual.m2 2024 is old SBV methodology and 2025 new methodology: the two levels are not comparable (see m2_growth for like-for-like). Reported as conflicts, not reconciled."
    },
    "monthly": {
     "m2_level/m2_ytd/deposits (Jan-2025..Jul-2026)": [
@@ -9364,7 +9434,11 @@
     "deposits Dec-2024 (cross-check)": "https://www.div.gov.vn/tien-gui-dan-cu-tai-cac-tctd-lap-ky-luc-hon-7-trieu-ty-dong-so-lieu-tien-gui-khach-hang-tai-cac-to-chuc-tin-dung-tctd-tai-thoi-diem-cuoi-thang-12-2024-vua-duoc-ngan-hang-nha-nuoc-nhnn-cong-bo",
     "m2_ytd Dec-2025": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html",
     "deposits_ytd": "computed: (residents+econ orgs) vs end of previous year on the same methodology; null for Oct-Dec 2025 (methodology break)",
-    "mobilisation_ytd_press (huy động vốn, broader concept)": "https://cafef.vn/huy-dong-von-ngan-hang-bat-ngo-tang-manh-cao-hon-tang-truong-tin-dung-18826090408245786.chn"
+    "mobilisation_ytd_press (huy động vốn, broader concept)": "https://cafef.vn/huy-dong-von-ngan-hang-bat-ngo-tang-manh-cao-hon-tang-truong-tin-dung-18826090408245786.chn",
+    "credit Aug-2026 (note)": "Cut-off 28/8/2026, not month-end. Level is SBV's rounded 'khoảng 20,5 triệu tỷ đồng' (+10.24% YTD), not a table value. Cross-check https://diendandoanhnghiep.vn/den-28-8-tin-dung-dat-20-5-trieu-ty-dong-77-3-du-no-vao-san-xuat-kinh-doanh-10184465.html (search excerpt only, re-checked 2026-10-06; page fetch blocked).",
+    "credit Sep-2026 (note)": "Cut-off 30/9/2026. Deputy Governor Phạm Thanh Hà, SBV press briefing 3/10/2026: 'khoảng 20,75 triệu tỷ đồng', +11.59% vs end-2025, +16.69% YoY (credit_yoy Sep-2026 is the SBV-stated figure, not computed). Level is rounded. Cross-checks: https://cafef.vn/pho-thong-doc-pham-thanh-ha-tin-dung-den-30-9-dat-2075-trieu-ty-dong-tang-1159-188261003125449749.chn ; https://thitruongtaichinhtiente.vn/tong-du-no-tin-dung-9-thang-dau-nam-2026-dat-20-75-trieu-ty-dong-tang-16-69-so-voi-cung-ky-nam-truoc-86017.html (search excerpts only, 2026-10-06). Conflict, not averaged: GSO Q3 report gives credit +10.89% and mobilisation +9.78% at 28/9/2026 (https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm) — different cut-off date.",
+    "m2/deposits Aug-Sep 2026": "Not yet published as of 2026-10-06 (latest SBV month: Jul-2026, deposits 17.46 trillion-bn, +5.72% YTD — cross-check https://www.tinnhanhchungkhoan.vn/tien-gui-cham-moc-175-trieu-ty-dong-ngan-hang-van-loay-hoay-bu-hut-nguon-von-post397946.html, search excerpt). Arrays left null.",
+    "m2_ytd Dec-2025 vs levels": "Methodology break Oct-2025: m2_ytd Dec-2025 (15.7%) is SBV's like-for-like growth; dividing the Dec-2025 level (new method) by the Dec-2024 level (old method) gives 8.5% and is NOT a valid growth rate. Same break affects deposits_residents / deposits_econ_orgs from T10/25 (reclassification) — deposits_ytd left null Oct-Dec 2025."
    },
    "sectors": {
     "levels_and_growth": [
@@ -9372,7 +9446,7 @@
      "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10034332&pageSize=200"
     ],
     "share_of_total_pct": "computed from SBV levels",
-    "note": "SBV page publishes Jan-2025..Jul-2026 only (Aug/Sep-2026 not yet published at fetch time 2026-10-05). Sub-sector rows are 'trong đó'."
+    "note": "SBV page publishes Jan-2025..Jul-2026 only. Re-checked 2026-10-06 by search: Aug/Sep-2026 sector tables not yet published (no press citing them). Sub-sector rows are 'trong đó'."
    }
   },
   "other_services_breakdown": {
@@ -9381,7 +9455,7 @@
    "total_note": "SBV 'Các hoạt động dịch vụ khác' level for the latest sector period (Jul-2026: 9,158,790 bn VND).",
    "classification_note_vi": "NHNN không công bố danh mục chính thức của nhóm 'Các hoạt động dịch vụ khác'. Việc xếp cho vay tiêu dùng, nhà ở tự sử dụng và kinh doanh bất động sản vào nhóm này là suy luận theo ngành kinh tế của bên vay (VSIC), không phải số liệu NHNN công bố.",
    "classification_note_en": "The SBV publishes no official list of what 'other service activities' contains. Placing consumer, own-use housing and real-estate business lending in it is an inference from the borrower's industry (VSIC), not an SBV-published split.",
-   "verification_note": "Figures collected 2026-10-06 from the cited articles' search excerpts (direct page fetches were blocked); exact values matched across several outlets.",
+   "verification_note": "Figures collected 2026-10-06 from the cited articles' search excerpts (direct page fetches were blocked); exact values matched across several outlets. Re-checked 2026-10-06 (search excerpts; pages still blocked): consumer 4.62m at end-Aug-2026 (22.56% of credit, +21.75% YoY) confirmed in tuoitre/stockbiz excerpts; no newer national real-estate (Q3-2026) or consumer figure published yet.",
    "items": [
     {
      "key": "re_business",
@@ -9401,7 +9475,7 @@
      "as_of": "2026-06",
      "url": "https://vneconomy.vn/den-cuoi-thang-62026-no-xau-bat-dong-san-tang-105-so-cuoi-nam-ngoai.htm",
      "note": "NHNN, 30/6/2026; 25,5% tổng dư nợ.",
-     "overlaps": "= real-estate business + own-use housing; own-use housing is also inside consumer credit."
+     "overlaps": "= real-estate business + own-use housing; own-use housing is also inside consumer credit. Scope note: under SBV letter 8509/NHNN-CSTT (Sep-2026) the 2026 increase in hospitality/resort lending is excluded from real-estate credit for growth-control purposes; later 're_total' figures may not be comparable with this Jun-2026 value."
     },
     {
      "key": "re_selfuse_share",
@@ -9410,7 +9484,7 @@
      "share_pct": 51.97,
      "as_of": "2026-05",
      "url": "https://vneconomy.vn/tin-dung-bat-dong-san-chiem-2573-du-no-nen-kinh-te.htm",
-     "note": "NHNN báo cáo 6 tháng 2026; kỳ số liệu ước khoảng cuối T5/2026.",
+     "note": "NHNN báo cáo 6 tháng 2026; kỳ số liệu ước khoảng cuối T5/2026. QC: the period is inferred (report published with H1 data), not stated by the source. Cross-check at Jun-2026: 1 − 2,519,000/5,146,000 = 51.05% — different period/rounding, not reconciled.",
      "overlaps": "Cross-check for re_total − re_business."
     },
     {
@@ -9469,7 +9543,10 @@
     }
    ],
    "gaps_vi": "Chưa có số toàn quốc cho tài chính – ngân hàng – bảo hiểm, chứng khoán (tín dụng ngân hàng), lưu trú – ăn uống, giáo dục, y tế; phần này nằm trong 'chưa phân loại'.",
-   "gaps_en": "No national figures for finance/insurance, bank credit to securities, hospitality, education or health; they sit in the unclassified remainder."
+   "gaps_en": "No national figures for finance/insurance, bank credit to securities, hospitality, education or health; they sit in the unclassified remainder.",
+   "total_bn": 9158790.0,
+   "total_as_of": "2026-07",
+   "residual_note": "Unclassified residual = other-services total (Jul-2026, 9,158,790) − real-estate business (Jun-2026, 2,519,000) − consumer credit incl. own-use housing (Aug-2026, 4,620,000) ≈ 2,019,790 bn VND (≈22%). The three inputs are from three different months; nothing is rescaled, so the residual is indicative only. re_total and re_selfuse_share are stored for cross-checking and are not added (own-use housing sits inside consumer). Not every consumer or real-estate loan is necessarily booked under 'other services' (e.g. industrial-park projects may sit under construction), so the 'known' share is an upper-bound estimate."
   }
  }
 }
