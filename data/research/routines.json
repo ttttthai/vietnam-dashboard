@@ -1,0 +1,25 @@
+{
+ "_note": "Routines (claude.ai scheduled triggers) created 2026-10-06 from data/research/schedule.json at the user's request. Each fires a fresh cloud session that gates on the release calendar, runs the owning agent, and pushes to branch iiaa-dashboard-update-xd6nyr. Times are Asia/Ho_Chi_Minh. Change cadence via the routines UI (or ask the main session); keep this list in sync.",
+ "routines": [
+  {"job": "research-weekly-audit", "id": "trig_01VGhBheWf7EK1FDENZ6Brdx", "rule": "Mon 07:45"},
+  {"job": "econ-monthly-nso (+quarterly, +annual when due)", "id": "trig_01S73ihQYSDZrPC55F8GN6nN", "rule": "4th 08:52"},
+  {"job": "forecast-vintages", "id": "trig_01D8WiHoLgvQ1xqVC38QtrZq", "rule": "15th of Jan/Apr/Jun/Jul/Sep/Oct/Dec 13:19"},
+  {"job": "fin-monthly-credit", "id": "trig_01LJoZ6tQsEWgFufVuN3pCCA", "rule": "5th 09:41"},
+  {"job": "fin-monthly-tables", "id": "trig_01TxZGsW67C3t8UWM78jhfZv", "rule": "20th 09:41"},
+  {"job": "fin-quarterly banks", "id": "trig_013hu7Mjo9yQMhAbEuQKeVAg", "rule": "2 Feb/May/Aug/Nov 11:07"},
+  {"job": "fin-quarterly prudential", "id": "trig_01DKUYM9Q4PxEVrdZQfpKzyM", "rule": "16 Mar/Jun/Sep/Dec 11:07"},
+  {"job": "fin-fomc (Oct)", "id": "trig_01Lc6i4zVhsXhqXEBj75Bjya", "rule": "once 2026-10-30 10:13"},
+  {"job": "fin-fomc (Dec)", "id": "trig_01PyZzEcRJLCu7AVqbkYduFp", "rule": "once 2026-12-11 10:13"},
+  {"job": "policy-weekly", "id": "trig_01BQAAeLgtxWfkzMfa1ryKuH", "rule": "Mon 09:13"},
+  {"job": "policy after NA session", "id": "trig_01N4tKiyBAgsRNoR7xf9mdBL", "rule": "once 2026-11-21 10:13"},
+  {"job": "policy year-end expiries", "id": "trig_018FP3LmcxMNcaFGxw8twY4X", "rule": "once 2026-12-15 10:13"},
+  {"job": "strategy-weekly", "id": "trig_0185gw64psjYwnY48YbmMW8S", "rule": "Mon 10:27"},
+  {"job": "strategy Thursday (NA session only)", "id": "trig_01NBrLs9AWsFWiFirnkKwuoW", "rule": "Thu 10:27 in Oct/Nov, gated to 17/10–20/11/2026"},
+  {"job": "society-grdp", "id": "trig_01PVtjr1ADvyeKRdU8eY9Ya9", "rule": "30 Mar/Jun/Sep/Dec 14:23"},
+  {"job": "society-annual", "id": "trig_015SZroSbMiCMmpMq63ftVwT", "rule": "6 Jan, 6 Jul 14:23"},
+  {"job": "society-ranks", "id": "trig_01Lk7xfMBdbkGWLKoXgsNXXU", "rule": "20 Dec 15:11"},
+  {"job": "society-projections (UN WPP)", "id": "trig_01HQiUjsHQxxYGwPHktTfurW", "rule": "1 Jan/Apr/Jul/Oct 15:37, gated on WPP release"},
+  {"job": "ed-watch-dates", "id": "trig_01DXnSqAYEAr8MXgKkp8qSnp", "rule": "1st 16:44"}
+ ],
+ "server": [{"job": "server-market-daily", "rule": "00:00 nightly (server.py APScheduler)"}]
+}
