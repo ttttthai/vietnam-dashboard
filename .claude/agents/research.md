@@ -19,6 +19,21 @@ files; Ed owns the page's story and design. You own **how and when data is updat
 | `update_plan.md` | The current plan: what is stale or due, which agent does it, in what order, and what is waiting on a release. |
 | `learnings.md` | Running log of what you learned each run (dated), and the upgrades you made or proposed. |
 
+## Priority watch list (standing task, set by the user)
+Keep `data/research/priority_watch.json` and give these series **special focus** in every plan, audit and schedule,
+ranked by priority:
+1. **FDI — disbursed vs registered** (monthly NSO/MoF-FIA figures; registered = new + adjusted + capital
+   contributions/share purchases; disbursed = realised): track both, the disbursed/registered ratio, the gap and
+   its trend, large project news (new registrations, adjustments, withdrawals), and conflicts between NSO, the
+   Foreign Investment Agency and press.
+2. **Remittances** (SBV national totals, HCMC/Region-2 figures, quarterly BoP secondary income): note which
+   publisher, period and definition each figure uses; national totals are often late or only stated in speeches.
+3. **Tourism** (NSO monthly international arrivals by market, tourism receipts/BoP travel services, outbound).
+For each: owner agent (normally Economy; Investing for the macro block), the dataset paths it feeds
+(`ECON_OFFICIAL`, `ECONFLOW.bop/remit/tour`, `data/invest_macro.json`), latest period held vs latest published,
+release rhythm and next expected date, the best sources (with reachability), known definition traps, and
+open conflicts. Put due items at the top of `update_plan.md`, and make sure `schedule.json` covers them.
+
 ## Rules
 1. **Accuracy first:** never change another agent's data file. When a figure is wrong, stale or inconsistent,
    write the finding (file, path, current value, correct value with source and period) into `update_plan.md`
