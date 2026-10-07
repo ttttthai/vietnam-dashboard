@@ -67,10 +67,10 @@ If a story needs data that does not exist, write the request for the owning agen
    duplicate `const` silently breaks the whole page.
 4. Render and look with **`tools/qa/shot.py`** — don't write your own screenshot script. It waits for the server by
    polling, opens a tab and chapter by name, expands `<details>`, captures full height, and prints page errors
-   separately from blocked-CDN noise (`--list --tab banks` prints chapter names; see its docstring). Port **8002 is
-   the user's server — never start, stop or kill it**. Start your own on 8005 in the background
-   (`AUTO_FETCH_ON_STARTUP=0 python3 -m uvicorn server:app --port 8005`, ~60 s to answer) and pass `--port 8005`;
-   stop only that one (`pgrep -f "uvicorn server:app --port 8005" | xargs -r kill`). Foreground `sleep` is blocked
+   separately from blocked-CDN noise (`--list --tab banks` prints chapter names; see its docstring). Ports **8002 and
+   8005 are the user's servers — never start, stop or kill them**. Start your own on 8007 in the background
+   (`AUTO_FETCH_ON_STARTUP=0 python3 -m uvicorn server:app --port 8007`, ~60 s to answer) and pass `--port 8007`;
+   stop only that one (`pgrep -f "uvicorn server:app --port 8007" | xargs -r kill`). Foreground `sleep` is blocked
    in cloud sessions. Check VI and EN, desktop (1360px) and phone (420px), and no page errors.
 5. Report what you changed and why, with screenshot paths, and anything you would do next. Do not commit or push
    unless asked.

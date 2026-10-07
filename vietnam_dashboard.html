@@ -1204,7 +1204,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
   @media (min-width: 1000px) {
     .sm2-wb { grid-template-columns: minmax(0, 35fr) minmax(0, 65fr); grid-template-areas: "side top" "side rest"; gap: 6px 26px; }
     .sm2-side { position: sticky; top: calc(var(--sim-top, 46px) + 6px); max-height: calc(var(--sim-vh, 100vh) - var(--sim-top, 46px) - 14px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding-right: 8px; }
-    .sm2-mini { top: 0; } }
+    .sm2-wb .sm2-mini { top: 0; } }
   .sm2-mini { position: sticky; top: var(--sim-top, 46px); z-index: 3; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; background: #faf8f3; border-bottom: 1px solid #dedbd2; padding: 6px 0; font: 500 12px var(--font-ui); color: #5b6170; font-variant-numeric: tabular-nums; }
   .sm2-mini b { font: 700 17px var(--font-ui); color: #16181d; }
   .sm2-side-h { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 8px 0 2px; font: 650 14px var(--font-ui); color: #16181d; }
@@ -8388,7 +8388,7 @@ function sm2Wf() {
   const W = stCW(el, 1200), nar = W < 560, rows = sm2Groups(sm2.R, nar), rowsB = sm2Groups(sm2.B, nar), r0 = SIM.model2.params.r0, tot = sm2.R.path[5] - r0, totB = sm2.B.path[5] - r0;
   const LW = nar ? 116 : 250, VW = nar ? 58 : 104, RH = 32, MT = 22, n = rows.length + 1, H = MT + n * RH + 4;
   const ends = [0, tot]; let c = 0; rows.forEach(r => { c += r.v; ends.push(c); });
-  const tk = stNice(Math.min(...ends), Math.max(...ends), nar ? 3 : 5), sx = stLin(tk[0], tk[tk.length - 1], LW, W - VW);
+  const tk = simTicks(Math.min(...ends), Math.max(...ends), nar ? 3 : 5), sx = stLin(tk[0], tk[tk.length - 1], LW, W - VW);
   let s = tk.map(t => `<line class="st-grid" x1="${sx(t)}" x2="${sx(t)}" y1="${MT - 4}" y2="${H - 4}"/><text class="st-tick" x="${sx(t)}" y="${MT - 9}" text-anchor="middle">${t ? sm2Sgn(t, sm2TkD(tk)) : '0'}</text>`).join('');
   s += `<line class="st-base" x1="${sx(0)}" x2="${sx(0)}" y1="${MT - 4}" y2="${H - 4}"/>`;
   c = 0; const tb = [];
@@ -8415,7 +8415,7 @@ function sm2PCh() {
   const W = stCW(el, 1200), nar = W < 520, H = nar ? 220 : 250, ML = 34, MR = nar ? 40 : 54, MT = 14, MB = 24, M = SIM.model2, hp = M.liquidity.history_P;
   const ps = M.params.P_star, alt = ((M.estimation || {}).rate_equation_fit_to_2025_03 || {}).P_star, xs = SIM.projection2.months.map(simMI), iS = simMI(SIM.projection2.start.month);
   const hist = hp.months.map((m, j) => ({ i: simMI(m), v: hp.values[j] })).filter(p => simIn(p.i) && typeof p.v === 'number');
-  const all = hist.map(p => p.v).concat(sm2.R.P, sm2.B.P, [ps, 0], alt != null ? [alt] : []), tk = stNice(Math.min(...all), Math.max(...all), 4);
+  const all = hist.map(p => p.v).concat(sm2.R.P, sm2.B.P, [ps, 0], alt != null ? [alt] : []), tk = simTicks(Math.min(...all), Math.max(...all), 4);
   const sx = stLin(0, SIM_N - 1, ML, W - MR), sy = stLin(tk[0], tk[tk.length - 1], H - MB, MT), last = hist[hist.length - 1];
   let s = `<rect x="${sx(iS)}" y="${MT}" width="${sx(SIM_N - 1) - sx(iS)}" height="${H - MB - MT}" fill="#f1efe8"/>` + stAxisY(sy, tk, ML, W - MR, v => stN(v, sm2TkD(tk)));
   if (tk[0] < 0) s += `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
@@ -8438,7 +8438,7 @@ function sm2PCh() {
 function sm2Div(el, rows, o) {
   // narrow screens: the label sits above its bar so the bars keep the full width
   const W = stCW(el, 1200), nar = W < 560, LW = nar ? 6 : (o.lw || 210), VW = 46, RH = (o.rh || 22) + (nar ? 14 : 0), MT = 22, H = MT + rows.length * RH + 6, bh = (o.rh || 22) - 4;
-  const m = Math.max(0.05, ...rows.flatMap(r => r.segs.map(g => Math.abs(g.v)))), tk = stNice(-m, m, nar ? 4 : 6), sx = stLin(tk[0], tk[tk.length - 1], LW, W - VW);
+  const m = Math.max(0.05, ...rows.flatMap(r => r.segs.map(g => Math.abs(g.v)))), tk = simTicks(-m, m, nar ? 4 : 6), sx = stLin(tk[0], tk[tk.length - 1], LW, W - VW);
   let s = tk.map(t => `<line class="st-grid" x1="${sx(t)}" x2="${sx(t)}" y1="${MT - 4}" y2="${H - 4}"/><text class="st-tick" x="${sx(t)}" y="${MT - 9}" text-anchor="middle">${t ? sm2Sgn(t, sm2TkD(tk)) : '0'}</text>`).join('');
   s += `<line class="st-base" x1="${sx(0)}" x2="${sx(0)}" y1="${MT - 4}" y2="${H - 4}"/>`;
   rows.forEach((r, i) => { const y = MT + i * RH + RH / 2 + (nar ? 7 : 0);
@@ -8572,7 +8572,7 @@ function sm2BT(el, cfg) {
 function sm2Bars(el, key, sign) {
   const s = simS(key), v = Array.isArray(s.values) ? s.values : []; if (!el || !el.clientWidth || !v.length) return;
   const W = stCW(el, 800, 260), H = 130, ML = 40, MR = 6, MT = 8, MB = 20, n = v.length, nums = v.filter(x => typeof x === 'number');
-  const tk = stNice(Math.min(0, ...nums), Math.max(0, ...nums), 3), sx = stLin(0, n - 1, ML + 4, W - MR - 4), sy = stLin(tk[0], tk[tk.length - 1], H - MB, MT), slot = (W - ML - MR - 8) / n;
+  const tk = simTicks(Math.min(0, ...nums), Math.max(0, ...nums), 3), sx = stLin(0, n - 1, ML + 4, W - MR - 4), sy = stLin(tk[0], tk[tk.length - 1], H - MB, MT), slot = (W - ML - MR - 8) / n;
   let o = stAxisY(sy, tk, ML, W - MR, t => stN(t, sm2TkD(tk))) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
   v.forEach((x, i) => { if (typeof x === 'number' && x) o += stBarV(sx(i), slot, sy(x), sy(0), x * sign > 0 ? SM2_UP : SM2_DN, [simML(i), `${stN(x, 1)}${stT(' nghìn tỷ đ', ' VND tn')}`], { cls: '' }); });
   for (let y = 2021; y <= 2026; y += W < 360 ? 2 : 1) o += `<text class="st-tick" x="${sx((y - 2021) * 12)}" y="${H - 5}" text-anchor="start">${y}</text>`;
@@ -8592,7 +8592,7 @@ function sm2Chap3() {
   const M = SIM.model2, E = M.estimation || {}, re = E.rate_equation || {}, lq = E.liquidity || {}, p = M.params, cal = E.calibrated || {}, B = M.backtest || {}, chk = sm2Check();
   const t = (c, se) => se ? c / se : null, nm = { pol: stT('lãi suất điều hành', 'the policy rate'), P: stT('áp lực vốn', 'funding pressure'), vni: 'VN-Index', gold: stT('vàng', 'gold') };
   const top = Object.keys(re.coef || {}).filter(k => k !== 'c').sort((a, b) => Math.abs(t(re.coef[b], re.se[b])) - Math.abs(t(re.coef[a], re.se[a]))).slice(0, 2);
-  const lv = k => sm2Lv(k) || {}, fxw = Math.abs(lv('fdi_disbursed').liquidity_weight || 0), sbvw = lv('sbv_fx_sales').liquidity_weight, d2 = v => stN(v, 3), d4 = v => stN(v, Math.abs(v) < 0.01 ? 4 : 3);
+  const lv = k => sm2Lv(k) || {}, fxw = Math.abs(lv('fdi_disbursed').liquidity_weight || 0), sbvw = lv('sbv_fx_sales').liquidity_weight, d2 = v => stN(v, 3), d4 = v => stN(v, Math.abs(v) < 0.1 ? 4 : 3);
   const st = (c, se) => { const tv = t(c, se); return tv == null ? '' : Math.abs(tv) >= 2 ? sm2Tag('e') : sm2Tag('w'); };
   const row = (n, c, se, status, note) => `<tr><th>${n}</th><td>${c}</td><td>${se != null ? d4(se) : '—'}</td><td>${se ? stN(Math.abs(t(typeof c === 'string' ? NaN : c, se)), 1) : '—'}</td><td>${status}</td><td>${note || ''}</td></tr>`;
   const coefRow = (n, c, se, status, note) => `<tr><th>${n}</th><td>${d4(c)}</td><td>${se != null ? d4(se) : '—'}</td><td>${se ? stN(Math.abs(c / se), 1) : '—'}</td><td>${status}</td><td>${note || ''}</td></tr>`;
@@ -8605,10 +8605,10 @@ function sm2Chap3() {
   const rateRows = [[stT('Truyền dẫn lãi suất điều hành (cùng tháng)', 'Policy pass-through (same month)'), 'pol'], [stT('kappa: áp lực vốn P (tháng trước)', 'kappa: funding pressure P (last month)'), 'P'], [stT('VN-Index, lợi suất 12 tháng', 'VN-Index, 12-month return'), 'vni'], [stT('Vàng thế giới, lợi suất 12 tháng', 'World gold, 12-month return'), 'gold'], [stT('Hằng số (mỗi tháng)', 'Constant (per month)'), 'c']];
   const lbBasis = k => { const b = String((lq.basis || {})[k] || ''); return /^estimated/.test(b) ? sm2Tag('e') : /^assumption/.test(b) ? sm2Tag('a') : sm2Tag('w', b); };
   const tbl = `<div class="sim-tw"><table class="sim-t"><thead><tr><th>${stT('Tham số', 'Parameter')}</th><th>${stT('Giá trị', 'Value')}</th><th>${stT('Sai số chuẩn', 'SE')}</th><th>|t|</th><th>${stT('Trạng thái', 'Status')}</th><th>${stT('Ghi chú', 'Note')}</th></tr></thead><tbody>
-    <tr class="sm2-th"><th colspan="6">${stT(`Trọng số thanh khoản · hồi quy năm ${ciE(lq.sample || '')}, n = ${lq.n}, R² ${stN(lq.r2, 3)}`, `Liquidity weights · annual regression ${ciE(lq.sample || '')}, n = ${lq.n}, R² ${stN(lq.r2, 3)}`)}</th></tr>
+    <tr class="sm2-th"><th colspan="6">${stT(`Trọng số thanh khoản · hồi quy năm ${ciE(String(lq.sample || '').replace('..', '–').replace(' (annual)', ''))}, n = ${lq.n}, R² ${stN(lq.r2, 3)}`, `Liquidity weights · annual regression ${ciE(lq.sample || '')}, n = ${lq.n}, R² ${stN(lq.r2, 3)}`)}</th></tr>
     ${liqRows.map(([n, c, se, k]) => coefRow(n, c, se, lbBasis(k), stab[k === 'fx' ? 'netfx' : k === 'sbv' ? 'sbv_fx' : k] != null ? stT(`bỏ năm 2025: ${d2(stab[k === 'fx' ? 'netfx' : k === 'sbv' ? 'sbv_fx' : k])}`, `without 2025: ${d2(stab[k === 'fx' ? 'netfx' : k === 'sbv' ? 'sbv_fx' : k])}`) : '')).join('')}
     ${row(stT('OMO bơm ròng', 'OMO net injection'), stT('= NHNN mua ngoại tệ', '= SBV FX purchases'), null, lbBasis('omo'), stT('chưa có chuỗi OMO năm để ước lượng', 'no annual OMO series to estimate it'))}
-    <tr class="sm2-th"><th colspan="6">${stT(`Phương trình lãi suất · hồi quy khoảng ${ciE(re.sample || '')}, ${re.n_intervals} khoảng, R² ${stN(re.r2_centred, 3)}, σ tháng ${stN(re.sigma_month, 3)}`, `Rate equation · interval regression ${ciE(re.sample || '')}, ${re.n_intervals} intervals, R² ${stN(re.r2_centred, 3)}, monthly σ ${stN(re.sigma_month, 3)}`)}</th></tr>
+    <tr class="sm2-th"><th colspan="6">${stT(`Phương trình lãi suất · hồi quy khoảng ${ciE(String(re.sample || '').replace('..', '–'))}, ${re.n_intervals} khoảng, R² ${stN(re.r2_centred, 3)}, σ tháng ${stN(re.sigma_month, 3)}`, `Rate equation · interval regression ${ciE(re.sample || '')}, ${re.n_intervals} intervals, R² ${stN(re.r2_centred, 3)}, monthly σ ${stN(re.sigma_month, 3)}`)}</th></tr>
     ${rateRows.map(([n, k]) => coefRow(n, re.coef[k], re.se[k], st(re.coef[k], re.se[k]), k === 'c' ? stT('gộp vào P*', 'folded into P*') : k === 'gold' ? stT('≈0 khi có áp lực vốn', '≈0 once funding pressure is in') : '')).join('')}
     ${row(stT('Mức trung tính P* (≈ suy ra từ hằng số)', 'Neutral P* (≈ derived from the constant)'), stN(p.P_star, 2), null, sm2Tag('e'), stT(`ước lượng đến 3/2025: ${stN((E.rate_equation_fit_to_2025_03 || {}).P_star, 2)}`, `fitted to Mar 2025: ${stN((E.rate_equation_fit_to_2025_03 || {}).P_star, 2)}`))}
     <tr class="sm2-th"><th colspan="6">${stT('Hiệu chỉnh (không ước lượng được: thiếu số liệu hoặc sai dấu)', 'Calibrated (not estimable: gaps or wrong signs)')}</th></tr>
@@ -8618,10 +8618,10 @@ function sm2Chap3() {
   const oe = (oos.path || [])[(oos.path || []).length - 1] || {}, re2 = (rp.path || [])[(rp.path || []).length - 1] || {};
   return stChap('sim-st-model', stT('Chương 3 · Mô hình', 'Chapter 3 · The model'),
     stT(`Ước lượng trên ${re.n_intervals} khoảng (R² ${stN(re.r2_centred, 2)}): ${nm[top[0]]} và ${nm[top[1]]} là hai tác động rõ nhất`, `Estimated on ${re.n_intervals} intervals (R² ${stN(re.r2_centred, 2)}): ${nm[top[0]]} and ${nm[top[1]]} are the clearest effects`),
-    ciE(stT(M.method_vi, M.method_en)),
+    ciE(String(stT(M.method_vi, M.method_en) || '').replace(/\s*[^.]*\bSIM\.model\b[^.]*\./g, '')),
     `<div class="st-sub">${stT('Ba phương trình, tính theo tháng', 'Three equations, month by month')}</div>
      <ol class="sm2-eq">${eqs.map(([k, f]) => `<li><span>${k}</span><code>${ciE(f)}</code></li>`).join('')}</ol>
-     <p class="sim-small">${stT(`Xuất phát: r = ${stN(p.r0, 2)}%, P = ${stN(p.P0, 2)} (${simML(simMI(SIM.projection2.start.month))}). Khoảng 80% = ± 1,2816 × ${stN(M.residual_sd, 4)} × √h. Tỷ lệ chuyển đổi ngoại tệ tính theo tỷ giá ${stN(lq.usdvnd_for_conversion, 0)} đ/USD.`, `Start: r = ${stN(p.r0, 2)}%, P = ${stN(p.P0, 2)} (${simML(simMI(SIM.projection2.start.month))}). 80% band = ± 1.2816 × ${stN(M.residual_sd, 4)} × √h. FX conversion at ${stN(lq.usdvnd_for_conversion, 0)} VND/USD.`)}</p>
+     <p class="sim-small">${stT(`Xuất phát: r = ${stN(p.r0, 2)}%, P = ${stN(p.P0, 2)} (${simML(simMI(SIM.projection2.start.month))}). Khoảng 80% = ± 1,2816 × ${stN(M.residual_sd, 4)} × √h. Tỷ lệ chuyển đổi ngoại tệ tính theo tỷ giá ${stN((M.liquidity || {}).usdvnd_for_conversion, 0)} đ/USD.`, `Start: r = ${stN(p.r0, 2)}%, P = ${stN(p.P0, 2)} (${simML(simMI(SIM.projection2.start.month))}). 80% band = ± 1.2816 × ${stN(M.residual_sd, 4)} × √h. FX conversion at ${stN((M.liquidity || {}).usdvnd_for_conversion, 0)} VND/USD.`)}</p>
      <details class="sim-fd"><summary>${stT('Phương trình nguyên văn của mô hình', 'The model\'s equation, verbatim')}</summary><p class="sim-eq"><code>${ciE(M.equation || '')}</code></p></details>
      <div class="st-sub">${stT('Hệ số: ước lượng, hiệu chỉnh hay giả định', 'Coefficients: estimated, calibrated or assumed')}</div>${tbl}
      <p class="sim-p-t">${ciE(stT(re.verdict_vi, re.verdict_en))}</p>
@@ -8635,7 +8635,7 @@ function sm2Chap3() {
      <div class="st-sub">${stT('Thành phần của áp lực vốn, theo tháng (nghìn tỷ đ)', 'What builds funding pressure, monthly (VND tn)')}</div>
      ${stLegend([{ n: stT('Làm tăng áp lực vốn', 'Adds to funding pressure'), c: SM2_UP }, { n: stT('Làm giảm', 'Eases it'), c: SM2_DN }])}
      <div class="sm2-bt3"><div><div class="sim-card-h">${stT('Thiếu hụt vốn FG (mô hình)', 'Funding gap FG (model)')}</div><div id="sm2-fg" class="st-viz"></div></div><div><div class="sim-card-h">${stT('Ngân sách bơm ròng (chi − thu)', 'Fiscal net injection (spending − revenue)')}</div><div id="sm2-fi" class="st-viz"></div></div><div><div class="sim-card-h">${stT('Dòng ngoại tệ ròng quy ra đồng', 'Net FX inflow in VND')}</div><div id="sm2-fx" class="st-viz"></div></div></div>
-     ${stNote(stT('Một phần các tháng là số năm chia đều hoặc khoảng chia đều (xem Chương 4); hai tháng gần nhất có phần ước tính.', 'Some months are annual totals or intervals spread evenly (see Chapter 4); the latest two months are partly nowcast.'), /nowcast/i.test((M.params_note || {}).P0 || '') ? ciE((M.params_note || {}).P0) : '')}
+     ${stNote(stT('Một phần các tháng là số năm chia đều hoặc khoảng chia đều (xem Chương 4); hai tháng gần nhất có phần ước tính.', 'Some months are annual totals or intervals spread evenly (see Chapter 4); the latest two months are partly nowcast.'), APP_LANG === 'en' && /nowcast/i.test((M.params_note || {}).P0 || '') ? ciE((M.params_note || {}).P0) : '')}
      <p class="${chk.ok ? 'sm2-ok' : 'sm2-bad'}">${chk.ok ? stT(`Kiểm tra mô hình: bản JavaScript trên trang khớp ${chk.n}/${chk.n} bộ thử của bản Python (sai số lớn nhất ${chk.worst.toExponential(1)}), các đóng góp cộng đúng bằng tổng thay đổi.`, `Model check: the in-page JavaScript matches ${chk.n}/${chk.n} test vectors of the Python model (largest error ${chk.worst.toExponential(1)}); contributions add up to the total change.`) : stT(`Kiểm tra mô hình thất bại: ${ciE(chk.fails.join(', '))}.`, `Model check failed: ${ciE(chk.fails.join(', '))}.`)}</p>
      <p class="sim-small">${stT(`Phiên bản ${ciE(M.version || '')}. So sánh v1: mô hình cũ chỉ hiệu chỉnh 4 động lực (chênh lệch tín dụng − huy động, CPI, vàng, VN-Index); v2 thay chênh lệch bằng thiếu hụt vốn tính từ dòng tiền và ước lượng các hệ số chính.`, `Version ${ciE(M.version || '')}. v1 comparison: the old model calibrated 4 drivers (credit − deposit gap, CPI, gold, VN-Index); v2 replaces the gap with a funding gap built from money flows and estimates the main coefficients.`)}</p>
      <details class="sim-fd"><summary>${stT(`Số liệu mâu thuẫn giữa các nguồn (${(SIM.conflicts || []).length})`, `Conflicting figures between sources (${(SIM.conflicts || []).length})`)}</summary><ul class="sim-ul">${(SIM.conflicts || []).map(c => `<li><b>${ciE(c.topic)}</b>: ${ciE(c.a)} · ${ciE(c.b)} → ${ciE(c.handling)}</li>`).join('')}</ul></details>`);
