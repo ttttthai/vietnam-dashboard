@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Society agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "qc": "QC/freshness run 2026-10-06 (Society agent). Data status as of end-Sep 2026.",
+  "qc": "QC/freshness run 2026-10-06; 2026-10-07 added tfr_2025 (6 provinces, excerpt-verified) and null *_2025 vital-rate keys per audit S03/S04; GRDP 9M-2026 for Điện Biên, Quảng Trị, Huế, Gia Lai rechecked - still not published as 9-month figures (null). Data status as of 7 Oct 2026.",
   "sources": {
    "POP_SERIES.actual": "NSO PX V02.02 average population (2025 = Sơ bộ) https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.02.px/",
    "POP_SERIES.nat": "NSO PX V02.02/V02.08/V02.11/V02.15/V02.24, reference year 2024 (population change survey 1/4/2024)",
@@ -13,7 +13,8 @@
    "WORLD_RANK": "World Bank WDI API (demographic: tools/build/rank/world_rank.json; GDP: tools/build/grdp/wb_rank.json, July-2026 WDI). religion_unaffiliated: Pew Research Center Global Religious Landscape 2010-2020.",
    "PROV_PREV": "NSO PLV02 tables, reference 2020 (pop = 2020 average population on 34-unit basis).",
    "RELIGION": "Census 2019 Biểu 3 and Census 2009 religion table (NSO); btg = Ban Tôn giáo Chính phủ figure as reported by danviet.vn (31-12-2023), unchanged in 2025 statements (27.7m followers, 16 religions, 43 organisations).",
-   "POP_SERIES.age_sex": "UN WPP 2024 single-age population by sex (31 Dec stocks), Viet Nam, via UN Population Division R package wpp2024 v1.1-3 https://raw.githubusercontent.com/PPgp/wpp2024/main/data/popAge1dt.rda , .../popprojAge1dt.rda ; 2025-2050 = PROJECTION (medium). Added 2026-10-06."
+   "POP_SERIES.age_sex": "UN WPP 2024 single-age population by sex (31 Dec stocks), Viet Nam, via UN Population Division R package wpp2024 v1.1-3 https://raw.githubusercontent.com/PPgp/wpp2024/main/data/popAge1dt.rda , .../popprojAge1dt.rda ; 2025-2050 = PROJECTION (medium). Added 2026-10-06.",
+   "SOC_PROV_DATA.*_2025": "Reference 2025 (NSO population-change survey 1/4/2025, 34 provinces). Existing unsuffixed keys (tfr, cbr, cdr, life_exp, urban_pct, sex_ratio) stay at reference 2024 (vitals_ref_year). tfr_2025 filled only where a press excerpt quotes the survey value (6 of 34); search-excerpt verified only - the NSO tables could not be fetched (thuvienso.quochoi.vn, nso.gov.vn and the press hosts are blocked from the sandbox). Other *_2025 keys null (provincial values not found). Publications: https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf ; https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf. National TFR 2025 = 1.93 (POP_SERIES.nat_latest)."
   },
   "as_of": "2026-10-06"
  },
@@ -32,7 +33,15 @@
    "tfr": 2.55,
    "cbr": 15.83,
    "cdr": 6.86,
-   "life_exp": 72.2
+   "life_exp": 72.2,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Cao Bằng": {
    "area_km2": 6702,
@@ -45,7 +54,15 @@
    "tfr": 2.27,
    "cbr": 14.33,
    "cdr": 10.83,
-   "life_exp": 72.2
+   "life_exp": 72.2,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Lai Châu": {
    "area_km2": 9069,
@@ -58,7 +75,15 @@
    "tfr": 2.49,
    "cbr": 18.26,
    "cdr": 7.55,
-   "life_exp": 65.8
+   "life_exp": 65.8,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Lào Cai": {
    "area_km2": 13256.92,
@@ -74,7 +99,15 @@
    "tfr": 2.5,
    "cbr": 16.33,
    "cdr": 6.52,
-   "life_exp": 71.4
+   "life_exp": 71.4,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Thái Nguyên": {
    "area_km2": 8375.21,
@@ -90,7 +123,15 @@
    "tfr": 2.23,
    "cbr": 13.26,
    "cdr": 7.3,
-   "life_exp": 73.7
+   "life_exp": 73.7,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Điện Biên": {
    "area_km2": 9548,
@@ -103,7 +144,15 @@
    "tfr": 2.6,
    "cbr": 18.72,
    "cdr": 5.46,
-   "life_exp": 69.8
+   "life_exp": 69.8,
+   "vitals_ref_year": 2024,
+   "tfr_2025": 2.91,
+   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://vnexpress.net/muc-sinh-nam-2025-cua-viet-nam-tang-nhe-4995025.html ; https://nld.com.vn/tphcm-la-dia-phuong-co-muc-sinh-thap-nhat-ca-nuoc-voi-ti-suat-151-con-phu-nu-196251217152519275.htm | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Lạng Sơn": {
    "area_km2": 8307,
@@ -116,7 +165,15 @@
    "tfr": 2.22,
    "cbr": 12.76,
    "cdr": 9.42,
-   "life_exp": 73
+   "life_exp": 73,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Sơn La": {
    "area_km2": 14109,
@@ -129,7 +186,15 @@
    "tfr": 2.32,
    "cbr": 16.34,
    "cdr": 4.75,
-   "life_exp": 73.4
+   "life_exp": 73.4,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Phú Thọ": {
    "area_km2": 9361.38,
@@ -146,7 +211,15 @@
    "tfr": 2.23,
    "cbr": 13.46,
    "cdr": 6.71,
-   "life_exp": 74.4
+   "life_exp": 74.4,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Bắc Ninh": {
    "area_km2": 4718.6,
@@ -162,7 +235,15 @@
    "tfr": 2.24,
    "cbr": 16.77,
    "cdr": 4.68,
-   "life_exp": 75
+   "life_exp": 75,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Quảng Ninh": {
    "area_km2": 6231.27,
@@ -175,7 +256,15 @@
    "tfr": 2.06,
    "cbr": 13.36,
    "cdr": 4.5,
-   "life_exp": 74.7
+   "life_exp": 74.7,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Hà Nội": {
    "area_km2": 3359.84,
@@ -188,7 +277,15 @@
    "tfr": 1.86,
    "cbr": 13.62,
    "cdr": 4.13,
-   "life_exp": 76.6
+   "life_exp": 76.6,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Hải Phòng": {
    "area_km2": 3194.72,
@@ -204,7 +301,15 @@
    "tfr": 2.17,
    "cbr": 13.8,
    "cdr": 5.53,
-   "life_exp": 75.6
+   "life_exp": 75.6,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Hưng Yên": {
    "area_km2": 2514.81,
@@ -220,7 +325,15 @@
    "tfr": 2.35,
    "cbr": 14.3,
    "cdr": 6.7,
-   "life_exp": 75.8
+   "life_exp": 75.8,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Ninh Bình": {
    "area_km2": 3942.62,
@@ -237,7 +350,15 @@
    "tfr": 2.49,
    "cbr": 13.4,
    "cdr": 7.97,
-   "life_exp": 75.4
+   "life_exp": 75.4,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Thanh Hóa": {
    "area_km2": 11111.16,
@@ -250,7 +371,15 @@
    "tfr": 2.32,
    "cbr": 15.17,
    "cdr": 6.14,
-   "life_exp": 74.3
+   "life_exp": 74.3,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Nghệ An": {
    "area_km2": 16486.08,
@@ -263,7 +392,15 @@
    "tfr": 2.25,
    "cbr": 15.45,
    "cdr": 5.78,
-   "life_exp": 74.1
+   "life_exp": 74.1,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Hà Tĩnh": {
    "area_km2": 5994.31,
@@ -276,7 +413,15 @@
    "tfr": 2.41,
    "cbr": 13.42,
    "cdr": 8.46,
-   "life_exp": 73.9
+   "life_exp": 73.9,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Quảng Trị": {
    "area_km2": 12700.0,
@@ -292,7 +437,15 @@
    "tfr": 2.44,
    "cbr": 15.57,
    "cdr": 6.54,
-   "life_exp": 72.9
+   "life_exp": 72.9,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Huế": {
    "area_km2": 4947.11,
@@ -305,7 +458,15 @@
    "tfr": 2.07,
    "cbr": 15.55,
    "cdr": 5.46,
-   "life_exp": 73.7
+   "life_exp": 73.7,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Đà Nẵng": {
    "area_km2": 11859.59,
@@ -321,7 +482,15 @@
    "tfr": 1.99,
    "cbr": 15.68,
    "cdr": 6.03,
-   "life_exp": 75.5
+   "life_exp": 75.5,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Quảng Ngãi": {
    "area_km2": 14832.55,
@@ -337,7 +506,15 @@
    "tfr": 2.14,
    "cbr": 14.88,
    "cdr": 5.82,
-   "life_exp": 72
+   "life_exp": 72,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Gia Lai": {
    "area_km2": 21576.53,
@@ -353,7 +530,15 @@
    "tfr": 2.21,
    "cbr": 14.83,
    "cdr": 6.36,
-   "life_exp": 73.7
+   "life_exp": 73.7,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Đắk Lắk": {
    "area_km2": 18096.4,
@@ -369,7 +554,15 @@
    "tfr": 2.13,
    "cbr": 13.95,
    "cdr": 6.25,
-   "life_exp": 74
+   "life_exp": 74,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Khánh Hòa": {
    "area_km2": 8555.86,
@@ -385,7 +578,15 @@
    "tfr": 1.82,
    "cbr": 13.22,
    "cdr": 6.55,
-   "life_exp": 74.5
+   "life_exp": 74.5,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Lâm Đồng": {
    "area_km2": 24233.07,
@@ -402,7 +603,15 @@
    "tfr": 2.12,
    "cbr": 15.06,
    "cdr": 5.16,
-   "life_exp": 72.9
+   "life_exp": 72.9,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Đồng Nai": {
    "area_km2": 12737.18,
@@ -418,7 +627,15 @@
    "tfr": 1.79,
    "cbr": 13.94,
    "cdr": 3.7,
-   "life_exp": 75.8
+   "life_exp": 75.8,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Tây Ninh": {
    "area_km2": 8536.44,
@@ -434,7 +651,15 @@
    "tfr": 1.52,
    "cbr": 10.8,
    "cdr": 5.9,
-   "life_exp": 76
+   "life_exp": 76,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "TP. Hồ Chí Minh": {
    "area_km2": 6772.59,
@@ -451,7 +676,15 @@
    "tfr": 1.43,
    "cbr": 12.73,
    "cdr": 2.97,
-   "life_exp": 76.6
+   "life_exp": 76.6,
+   "vitals_ref_year": 2024,
+   "tfr_2025": 1.51,
+   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nld.com.vn/tphcm-la-dia-phuong-co-muc-sinh-thap-nhat-ca-nuoc-voi-ti-suat-151-con-phu-nu-196251217152519275.htm ; https://vnexpress.net/muc-sinh-nam-2025-cua-viet-nam-tang-nhe-4995025.html | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Đồng Tháp": {
    "area_km2": 5938.64,
@@ -467,7 +700,15 @@
    "tfr": 1.71,
    "cbr": 10.64,
    "cdr": 8.22,
-   "life_exp": 76
+   "life_exp": 76,
+   "vitals_ref_year": 2024,
+   "tfr_2025": 1.61,
+   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nhandan.vn/dan-so-va-lao-dong-viec-lam-tiep-tuc-on-dinh-nam-2025-tao-da-cho-2026-post946357.html | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "An Giang": {
    "area_km2": 9888.91,
@@ -483,7 +724,15 @@
    "tfr": 1.74,
    "cbr": 11.04,
    "cdr": 8.05,
-   "life_exp": 74.9
+   "life_exp": 74.9,
+   "vitals_ref_year": 2024,
+   "tfr_2025": null,
+   "tfr_2025_src": null,
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Vĩnh Long": {
    "area_km2": 6296.2,
@@ -500,7 +749,15 @@
    "tfr": 1.6,
    "cbr": 10.03,
    "cdr": 8.19,
-   "life_exp": 76
+   "life_exp": 76,
+   "vitals_ref_year": 2024,
+   "tfr_2025": 1.7,
+   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nhandan.vn/dan-so-va-lao-dong-viec-lam-tiep-tuc-on-dinh-nam-2025-tao-da-cho-2026-post946357.html | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Cần Thơ": {
    "area_km2": 6360.83,
@@ -517,7 +774,15 @@
    "tfr": 1.55,
    "cbr": 10.89,
    "cdr": 5.4,
-   "life_exp": 75.9
+   "life_exp": 75.9,
+   "vitals_ref_year": 2024,
+   "tfr_2025": 1.63,
+   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nhandan.vn/dan-so-va-lao-dong-viec-lam-tiep-tuc-on-dinh-nam-2025-tao-da-cho-2026-post946357.html ; https://tuoitre.vn/nld/muc-sinh-nam-2025-tang-nhung-chua-dat-nguong-thay-the-196251204105634814.htm | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   },
   "Cà Mau": {
    "area_km2": 7942.39,
@@ -533,7 +798,15 @@
    "tfr": 1.58,
    "cbr": 11.69,
    "cdr": 3.94,
-   "life_exp": 75.8
+   "life_exp": 75.8,
+   "vitals_ref_year": 2024,
+   "tfr_2025": 1.55,
+   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nhandan.vn/dan-so-va-lao-dong-viec-lam-tiep-tuc-on-dinh-nam-2025-tao-da-cho-2026-post946357.html | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
+   "cbr_2025": null,
+   "cdr_2025": null,
+   "life_exp_2025": null,
+   "urban_pct_2025": null,
+   "sex_ratio_2025": null
   }
  },
  "POP_SERIES": {
