@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-06",
+ "as_of": "2026-10-07",
  "built_by": "Research agent",
  "timezone": "Asia/Ho_Chi_Minh",
  "note": "Rules learned from observed releases (evidence) and published calendars. confidence: high = rule documented + observed; medium = observed or documented only; low = inferred, verify next run.",
@@ -232,6 +232,12 @@
      "observed": "2026-04-09",
      "what": "EAP Update Apr-2026 (6.3%)",
      "url": "https://en.baochinhphu.vn/viet-nams-gdp-growth-projected-to-be-highest-in-east-asia-pacific-wb-111260409155406194.htm"
+    },
+    {
+     "observed": "2026-10-07",
+     "what": "Vintages seen: April-2026 EAP VN 2026 6.3%; mid-May 2026 WB 6.8%; Oct-2026 EAP 7.4% (from the 06/10 run). \"+1.1 pp\" compares with April.",
+     "url": "https://en.vneconomy.vn/wb-forecasts-vietnams-2026-gdp-growth-at-63.htm",
+     "learned": "2026-10-07"
     }
    ],
    "confidence": "high",
@@ -261,6 +267,12 @@
      "announced": "2026-10-01",
      "what": "Oct-2026 WEO on 13 Oct",
      "url": "https://www.imf.org/en/news/articles/2026/10/01/tr-10012026-imf-press-briefing-transcript-october-01-2026"
+    },
+    {
+     "observed": "2026-10-07",
+     "what": "IMF WEO Oct-2026 page dated 2026-10-13; full report 13/10 09:00 Bangkok (12/10 22:00 ET); chapters 5–6 Oct",
+     "url": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
+     "learned": "2026-10-07"
     }
    ],
    "confidence": "high",
@@ -456,6 +468,12 @@
    "evidence": [
     {
      "observed": "ratios.ldr/npl/total_assets last 2026-06"
+    },
+    {
+     "observed": "2026-10-07",
+     "what": "SBV system stats to 31/5/2026 quoted (LDR 78.25%, total assets 29.28 quadrillion); Finance already holds Jun-2026 — lag ~1–2 months",
+     "url": "",
+     "learned": "2026-10-07"
     }
    ],
    "confidence": "medium",
@@ -521,6 +539,12 @@
     {
      "observed": "Q1-2026 BoP (date of article not recorded)",
      "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm"
+    },
+    {
+     "observed": "2026-10-07",
+     "what": "Q2-2026 BoP still not found (searches 07/10 return only Q1-2026: overall −1.078 bn). Now >3 months after quarter end.",
+     "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm",
+     "learned": "2026-10-07"
     }
    ],
    "confidence": "low",
@@ -656,6 +680,12 @@
    "evidence": [
     {
      "observed": "policy.json gov_bond_issuance last 2026-09-16"
+    },
+    {
+     "observed": "2026-10-07",
+     "what": "Sep-2026 10Y auction yields 4.67–4.80% (+0.17 pp vs Aug); Aug-2026 raised 27,756 bn — monthly totals appear in press within ~1 week of month end",
+     "url": "https://vnbusiness.vn/thang-9-huy-dong-trai-phieu-chinh-phu-tang-gan-20.html",
+     "learned": "2026-10-07"
     }
    ],
    "confidence": "medium",
@@ -676,6 +706,12 @@
    "evidence": [
     {
      "observed": "flows Corporate bonds outstanding last 2026-08"
+    },
+    {
+     "observed": "2026-10-07",
+     "what": "Aug-2026 corporate issuance 32,029 bn (33 issues), 8M ~349,000 bn — VBMA data to 28/8",
+     "url": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-gan-349-000-ty-dong-sau-8-thang.html",
+     "learned": "2026-10-07"
     }
    ],
    "confidence": "medium",
@@ -840,6 +876,12 @@
      "observed": "2026-01-01",
      "what": "FY2025 estimate ~10.5 bn",
      "url": "https://nld.com.vn/kieu-hoi-dat-muc-ky-luc-them-nguon-luc-lon-196260101222804058.htm"
+    },
+    {
+     "observed": "2026-10-07",
+     "what": "No 9M-2026 HCMC figure yet; searches return 9M-2023 (5.485 bn) articles with crawl dates in Jul-2026 — page header dates are not article dates",
+     "url": "https://thoibaotaichinhvietnam.vn/9-thang-luong-kieu-hoi-ve-tp-ho-chi-minh-dat-5485-ty-usd-161581.html",
+     "learned": "2026-10-07"
     }
    ],
    "confidence": "medium",
@@ -885,6 +927,130 @@
    "confidence": "high",
    "learned": "2026-10-06",
    "priority_watch": 3
+  },
+  {
+   "id": "vcci_pci",
+   "publisher": "VCCI",
+   "frequency": "annual",
+   "release_rule": "PCI for year t released in spring of t+1 (PCI 2025 on 15/05/2026)",
+   "next_expected": [
+    "~2027-05 (PCI 2026)"
+   ],
+   "feeds": [
+    "econ.pci"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-05-15",
+     "what": "PCI 2025 + private-economy report (first on 34 provinces, PCI 2.0)",
+     "url": "https://www.vcci.com.vn/tin-tuc/lan-dau-cong-bo-xep-hang-nang-luc-canh-tranh-34-tinh-thanh-pho"
+    }
+   ],
+   "confidence": "medium (one observation)",
+   "learned": "2026-10-07"
+  },
+  {
+   "id": "nso_pop_change_survey",
+   "publisher": "NSO",
+   "frequency": "annual",
+   "release_rule": "Population-change survey at 1 April; national key results with the January report, provincial tables later in the year (1/4/2025 tables were public by Oct-2026)",
+   "next_expected": [
+    "1/4/2026 survey results: check 2026-12 and 2027-01"
+   ],
+   "feeds": [
+    "soc.province_demo",
+    "soc.pop_nat_latest"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-10-07",
+     "what": "Provincial TFR 2025 quoted (HCMC 1.51, Ca Mau 1.55, Dong Thap 1.61, Can Tho 1.63, Vinh Long 1.70)",
+     "url": "https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf"
+    }
+   ],
+   "confidence": "low (publication date of provincial tables not observed)",
+   "learned": "2026-10-07"
+  },
+  {
+   "id": "property_quarterly",
+   "publisher": "Savills / CBRE (Hanoi, HCMC primary apartments)",
+   "frequency": "quarterly",
+   "release_rule": "Quarterly market briefings ~1–3 weeks after quarter end; keep providers as separate series",
+   "next_expected": [
+    "2026-10-10..2026-10-20 (Q3-2026)"
+   ],
+   "feeds": [
+    "sim.panel",
+    "fin.flows_re_bonds_margin"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-10-07",
+     "what": "Q2-2026: Savills Hanoi ~116 m VND/m² (+27% y/y), CBRE ~95 m (excerpt, published Aug-2026)",
+     "url": "https://cafef.vn/chung-cu-ha-noi-vang-bong-can-ho-duoi-70-trieu-dong-m2-188260814143655062.chn"
+    }
+   ],
+   "confidence": "low",
+   "learned": "2026-10-07"
+  },
+  {
+   "id": "vsdc_accounts",
+   "publisher": "VSDC (Tổng công ty Lưu ký và Bù trừ CK)",
+   "frequency": "monthly",
+   "release_rule": "New trading accounts for month m published in the first days of m+1",
+   "next_expected": [
+    "2026-11-05 (Oct)"
+   ],
+   "feeds": [
+    "sim.panel"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-10-07",
+     "what": "Jan-2026 ~245,000 new accounts",
+     "url": "https://mekongasean.vn/gan-245000-tai-khoan-chung-khoan-mo-moi-thang-dau-nam-2026-51691.html"
+    }
+   ],
+   "confidence": "low",
+   "learned": "2026-10-07"
+  },
+  {
+   "id": "fed_fomc",
+   "publisher": "US Federal Reserve",
+   "frequency": "ad_hoc",
+   "release_rule": "8 scheduled FOMC meetings a year; statement on the second day",
+   "next_expected": [
+    "2026-10-28",
+    "2026-12-09"
+   ],
+   "feeds": [
+    "fin.why_market",
+    "sim.panel"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-09-16",
+     "what": "raised target to 3.75–4.00% (12-0)",
+     "url": "https://www.securities.io/fomc-raises-federal-funds-target-range-to-3-3-4-to-4-percent/"
+    }
+   ],
+   "confidence": "high",
+   "learned": "2026-10-07"
+  },
+  {
+   "id": "eia_brent",
+   "publisher": "EIA (via datasets/oil-prices on GitHub)",
+   "frequency": "monthly",
+   "release_rule": "Monthly Brent average available after month end; the GitHub mirror lags a few days",
+   "next_expected": [
+    "~2026-10-10 (Sep)"
+   ],
+   "feeds": [
+    "sim.panel"
+   ],
+   "evidence": [],
+   "confidence": "low",
+   "learned": "2026-10-07"
   }
  ]
 }

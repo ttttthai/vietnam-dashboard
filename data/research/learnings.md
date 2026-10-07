@@ -107,3 +107,48 @@ Both keep their structure and ownership rules.
 - ~25/10: HCMC 9M remittances; 20/10: SBV BoP Q2-2026; 03/11: Jan–Oct FDI components + arrivals — update
   priority_watch.json `latest_published` and the derived ratio.
 - Verify the merged-HCMC basis of Region 2 remittances, and the outbound-travel sign.
+
+## 2026-10-07 — freshness audit (user request: "check every single chart, make sure you have latest 2026 figures"; check-only)
+
+### What I did
+- Mapped 142 chart / KPI / table rows on all 7 tabs (incl. the new Simulation tab and the server-fed bank appendix and
+  invest tools) to their series and latest period; checked latest published periods with ~35 web searches (excerpt-level)
+  and vnstock. Output: `freshness_audit.md` + `.json`. Counts: current 67, structural 26, waiting 26, stale 22, broken 1.
+- No data file, page or server code edited.
+
+### What I learned
+1. **The monthly NSO block is fully current** (03/10 release everywhere: GDP, CPI, FDI, tourism, budget, public investment).
+   Staleness lives in curated sparse series (Simulation panels), Society's provincial vitals, and the server's bank data.
+2. **PCI 2025 was released 15/05/2026** (VCCI; first on 34 provinces; "PCI 2.0"); median 63.90 (excerpt, outlet not pinned).
+   Not comparable with 2024 (67.67). New calendar id `vcci_pci`. The econ appendix tile silently shows the 2024 value for 2025
+   (nearest-year fallback in `calcEcon`) — first "broken" item.
+3. **Provincial vital rates for 1/4/2025 are public** (NSO survey "Kết quả chủ yếu … 01/4/2025", PDF on thuvienso.quochoi.vn):
+   e.g. HCMC TFR 1.51 (held 1.43, ref 2024). New calendar id `nso_pop_change_survey` (low confidence on timing).
+4. **IMF WEO Oct-2026: 13/10 09:00 Bangkok** confirmed on imf.org (page id 2026/10/13).
+5. **World Bank vintages:** April EAP 6.3% → mid-May 6.8% → Oct EAP 7.4%. Finance's "+1.1 pp" compares with April; label it.
+6. **FOMC 16/09/2026 hike to 3.75–4.00%** confirmed (held correctly). New calendar id `fed_fomc`.
+7. **SBV BoP Q2-2026 still unpublished** on 07/10 (>3 months after quarter end) — rule stays "check 20/10".
+8. **Search-date pitfall (again):** result headers such as "Thứ Tư, 22/07/2026" on thesaigontimes/vnba are crawl/page dates,
+   not article dates — the "9 tháng kiều hối TP.HCM 5.485 bn" hits are 9M-2023. Same for "Sep: 172,605 new accounts" (2024).
+9. **Gov-bond auction monthly totals and yields** appear in press within ~1 week of month end (Sep 10Y 4.67–4.80%).
+10. **Corporate-bond issuance** (VBMA) monthly with data to ~28th: Aug-2026 32,029 bn; 8M ~349,000 bn.
+11. **Conflicts logged (not averaged):** green credit 828k (9/6, held) vs >780k (SBV H1 briefing 2/7); margin Q2 453.8k (held)
+    vs 446k (80/85 firms) vs ~435k; WB 2027 CPI 3.8 (held) vs 3.7 (excerpt); HCMC 2025 remittances 10.34 actual vs 10.5 estimate.
+12. **Reachability 07/10:** vnstock VCI *quote* (trading.vietcap.com.vn) works from the sandbox with one retry; vnstock *Finance*
+    (iq.vietcap.com.vn, masboard.masvn.com, kbbuddywts.kbsec.com.vn) still CONNECT 403. Bank fundamentals cannot be refreshed here.
+
+### Files written / changed
+- New: `data/research/freshness_audit.md`, `data/research/freshness_audit.json`.
+- `inventory.json`: `last_checked` 2026-10-07 and a `freshness_2026_10_07` block on 51 families (48 existing + 3 new); new families `econ.pci`,
+  `sim.panel`, `page.gdp_sectors`.
+- `release_calendar.json`: evidence added to `imf_weo`, `sbv_bop`, `remittances_hcmc`, `wb_eap_update`, `hnx_gbond`,
+  `vbma_fiin_bonds`, `sbv_prudential`; new ids `vcci_pci`, `nso_pop_change_survey`, `property_quarterly`, `vsdc_accounts`,
+  `fed_fomc`, `eia_brent`.
+- No agent-definition edits this run (proposals only; the run was scoped check-only).
+
+### Next run should
+- 13/10: record the WEO release and hand Economy/Finance the new vintage. 20/10: BoP Q2 + SBV Aug tables. ~25/10: HCMC 9M remittances.
+- Confirm PCI 2025 median and the provincial 2025 vitals in the primary documents (try the thuvienso.quochoi.vn PDF; the
+  NA library host was not probed for reachability yet).
+- Consider adding to `.claude/agents/finance.md` (Simulation section): the sparse-series list (gov_bond_10y, SJC monthly, VSDC
+  accounts, Savills/CBRE, VBMA issuance, budget balance) with their release rhythm — proposal pending the user's go-ahead.
