@@ -152,3 +152,26 @@ Both keep their structure and ownership rules.
   NA library host was not probed for reachability yet).
 - Consider adding to `.claude/agents/finance.md` (Simulation section): the sparse-series list (gov_bond_10y, SJC monthly, VSDC
   accounts, Savills/CBRE, VBMA issuance, budget balance) with their release rhythm — proposal pending the user's go-ahead.
+
+## 2026-10-07 (second run) — animation plan, phase 1 (user request: animate every chart, ≥8 periods + projections to 2030)
+
+### Learned
+1. **Existing animation hooks:** `stTimeCtl` (story scrubbers: Policy multiples, fsLv board, Party wave/rows), `addTimeline`
+   (appendix cards: CPI, monetary, fiscal, bank IS/breakdown, Party graph), BoP year replay, pyramid ▶, GDP-sector slider,
+   two Flourish embeds. 23 of 142 charts already have a time control.
+2. **Synthetic periods are animated today:** `addTimeline('bkIS')` and `('bkBD')` step through bank periods that `server.py`
+   builds as FY2024 × fixed scale factors (only FY2024 is reported). Logged as a user decision in `animation_plan.md`.
+3. **`GDP_SECTORS` (page constant) carries 2026–2045 values with no source**; trimmed at runtime by `GDP_LAST_YEAR`, so not
+   displayed, but must not be fed to a projection animation.
+4. **Province drill-down in the FDI card (`PROVS.econ`) is a model** (2010 base × growth), not published data.
+5. **Projection coverage:** only 9 charts hold a 2030 path today; IMF WEO Oct-2026 (13/10, horizon 2031) unlocks most
+   Economy rows and fills CPI 2028–2030. Five-year targets (NQ 26/27/2026/QH16, NQ 10-NQ/TW) are totals/averages and
+   must stay bands, not yearly paths.
+6. **Tourism 2030 target is already in `strategy_directives.json`** (NQ 26-NQ/TW, 22/08/2026: 45–50 million international
+   visitors) but not in `economy.json` targets; enterprise target (NQ 68-NQ/TW) likewise.
+7. QĐ 1679/QĐ-TTg (22/11/2019) confirmed by search excerpt for TFR 2.1; other numeric population targets and QĐ 986/QĐ-TTg
+   CAR/credit-to-GDP targets were NOT confirmed — listed as "verify", no numbers recorded.
+8. UN WPP: no 2026 edition announced in search results (07/10/2026); WPP 2024 remains the demographic projection source.
+
+### Files written
+- New: `data/research/animation_plan.json` (142 entries), `data/research/animation_plan.md`. No data, agent or page file edited.
