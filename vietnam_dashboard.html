@@ -2300,9 +2300,9 @@ function lookupHcKey(hcKey, featureName) {
 // ─── MAP ────────────────────────────────────────────────────
 // Archipelagos (approximate island positions, lon/lat): Hoàng Sa belongs to Đà Nẵng (21), Trường Sa to Khánh Hòa (25)
 const MAP_ARCHIPELAGOS = [
-  { pid: 21, vi: 'QĐ Hoàng Sa (Đà Nẵng)', en: 'Hoang Sa archipelago (Da Nang)', labelBelow: false,
+  { pid: 21, vi: 'QĐ Hoàng Sa (Đà Nẵng)', en: 'Hoang Sa archipelago (Da Nang)', vi_short: 'Hoàng Sa', en_short: 'Hoang Sa', labelBelow: false,
     pts: [[112.34, 16.83], [111.61, 16.53], [111.71, 16.45], [112.73, 16.67], [111.20, 15.78], [112.26, 16.97], [111.75, 16.07]] },
-  { pid: 25, vi: 'QĐ Trường Sa (Khánh Hòa)', en: 'Truong Sa archipelago (Khanh Hoa)', labelBelow: false,
+  { pid: 25, vi: 'QĐ Trường Sa (Khánh Hòa)', en: 'Truong Sa archipelago (Khanh Hoa)', vi_short: 'Trường Sa', en_short: 'Truong Sa', labelBelow: false,
     pts: [[111.92, 8.64], [114.33, 11.43], [114.33, 9.88], [114.36, 10.18], [114.48, 10.38], [112.91, 7.89], [112.20, 8.85], [113.90, 10.20], [115.03, 10.72]] },
 ];
 let __mapSvgD3 = null;
@@ -2379,11 +2379,10 @@ function drawMap() {
   const fc = { type:'FeatureCollection', features: __map34.map(d => d.feature).concat(MAP_ARCHIPELAGOS.map(a =>
     ({ type:'Feature', geometry:{ type:'MultiPoint', coordinates: a.pts }, properties:{} }))) };
 
-  // Vietnam with its archipelagos is ~0.8 wide:tall; fit it to the right of the panel (the region legend floats left)
-  const padV = 8;
-  const mapW = Math.min(W, H * 0.82);
-  const leftPad = W - mapW;           // push map to right
-  const proj = d3.geoMercator().fitExtent([[leftPad, padV], [W, H - padV]], fc);
+  // fill the whole card: the region dropdown sits top right, so keep a top band clear for it
+  const padV = 8, padTop = 46, padX = 10;
+  const proj = d3.geoMercator().fitExtent([[padX, padTop], [W - padX, H - padV]], fc);
+  { const [[x0], ] = d3.geoPath().projection(proj).bounds(fc); const t = proj.translate(); proj.translate([t[0] - (x0 - padX), t[1]]); }   // pin to the left edge; spare width goes right
   const path = d3.geoPath().projection(proj);
 
   const svg = d3.select('#map-svg')
@@ -2471,7 +2470,8 @@ function drawMap() {
     const xs = xy.map(d => d[0]), ys = xy.map(d => d[1]);
     g.append('rect').attr('x', Math.min(...xs) - 6).attr('y', Math.min(...ys) - 6).attr('width', Math.max(...xs) - Math.min(...xs) + 12)
       .attr('height', Math.max(...ys) - Math.min(...ys) + 12).attr('fill', 'transparent').attr('stroke', '#94a3b8').attr('stroke-dasharray', '2,2').attr('rx', 3);
-    const lab = (typeof APP_LANG !== 'undefined' && APP_LANG === 'en') ? a.en : a.vi;
+    const en = typeof APP_LANG !== 'undefined' && APP_LANG === 'en', narrow = W < 360;
+    const lab = narrow ? (en ? a.en_short : a.vi_short) : (en ? a.en : a.vi);
     const lx = Math.min(W - 4, Math.max(...xs) + 2), ly = a.labelBelow ? Math.max(...ys) + 16 : Math.min(...ys) - 9;
     g.append('text').attr('x', lx).attr('y', ly).attr('text-anchor', 'end').attr('font-size', 9.5).attr('fill', '#475569').text(lab);
     g.on('mouseover', event => { const tip = document.getElementById('province-tooltip'); if (!tip) return;
