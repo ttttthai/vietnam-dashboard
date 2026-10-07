@@ -477,6 +477,38 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .bk-break-sub { font-size: 10px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.3px; margin-top: 6px; margin-bottom: 2px; }
   .bk-donut { height: 250px; }
   .bk-hstack { height: 38px; }
+  /* Balance sheet, 8 quarters (appendix small multiples, bshRender) */
+  .bsh { container-type: inline-size; }
+  .bsh .bk-card-hdr { flex-wrap: wrap; gap: 6px 12px; }
+  .bsh-pick { display: inline-flex; align-items: center; gap: 6px; font: 500 12px var(--font-ui); color: #5b6170; max-width: 100%; }
+  .bsh-pick select { font: 500 12px var(--font-ui); color: #16181d; background: #fff; border: 1px solid #cbd2db; border-radius: 4px; padding: 4px 6px; max-width: min(320px, 70vw); }
+  .bsh-body { background: #faf8f3; }
+  .bsh-cov { display: flex; flex-wrap: wrap; gap: 4px 12px; font: 400 11.5px var(--font-ui); color: #5b6170; font-variant-numeric: tabular-nums; margin: 0 0 6px; }
+  .bsh-cov b { color: #16181d; font-weight: 600; }
+  .bsh-cov-l { width: 100%; font-weight: 500; }
+  .bsh-empty-note { font: 500 13px/1.5 var(--font-ui); color: #16181d; background: #efede7; border-left: 3px solid #8a8f99; padding: 6px 10px; margin: 6px 0 8px; max-width: 90ch; }
+  .bsh-src { font: 400 11.5px/1.5 var(--font-ui); color: #8a8f99; margin: 6px 0 0; max-width: 100ch; }
+  .bsh .bsh-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 32px; --cw: 120px; }
+  @container (max-width: 760px) { .bsh .bsh-grid { grid-template-columns: minmax(0, 1fr); } }
+  .bsh-side { font: 700 12px var(--font-ui); text-transform: uppercase; letter-spacing: .08em; color: #16181d; border-bottom: 2px solid var(--c); padding: 10px 0 3px; margin-top: 4px; }
+  .bsh-row { display: grid; grid-template-columns: minmax(0, 1fr) var(--cw) 76px 48px; gap: 8px; align-items: center; padding: 2px 0; border-top: 1px solid #e7e4dc; font: 400 12.5px/1.3 var(--font-ui); color: #16181d; }
+  .bsh-colh { border-top: 0; font-size: 11px; color: #8a8f99; padding: 4px 0 2px; }
+  .bsh-colh > span:nth-child(n+3), .bsh-v, .bsh-qq { text-align: right; font-variant-numeric: tabular-nums; }
+  .bsh-ax { display: flex; justify-content: space-between; }
+  .bsh-ax i { font-style: normal; }
+  .bsh-n { overflow-wrap: anywhere; }
+  .bsh-ch { display: block; height: 34px; }
+  .bsh-ch svg { display: block; }
+  .bsh-v b { font-weight: 600; } .bsh-v small { display: block; font-size: 10.5px; color: #8a8f99; }
+  .bsh-qq { color: #5b6170; }
+  .bsh-tot { border-top: 1px solid #16181d; font-weight: 700; } .bsh-tot .bsh-v b { font-weight: 700; }
+  .bsh-child .bsh-n { padding-left: 14px; color: #5b6170; font-size: 12px; }
+  .bsh-base { stroke: #b9bcc3; stroke-width: 1; }
+  .bsh-empty { fill: none; stroke: #c9ccd2; stroke-width: 1; stroke-dasharray: 2 2; }
+  .bsh-hit { cursor: default; }
+  .st-legend .k-hollow { width: 8px; height: 8px; border-radius: 2px; border: 1.5px solid var(--c); background: #faf8f3; }
+  .st-legend .k-empty { width: 8px; height: 8px; border-radius: 2px; border: 1px dashed #8a8f99; }
+  @media (max-width: 480px) { .bsh-row { grid-template-columns: minmax(0, 1fr) var(--cw) 58px 44px; gap: 6px; font-size: 12px; } }
   .bk-inline-chart { height: 22px; width: 100%; }
   .bk-inline-chart svg { display: block; width: 100%; height: 100%; }
   .bk-inline-chart.bk-model { position: relative; }
@@ -1071,24 +1103,55 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .sim-toc button { width: 100%; height: 100%; text-align: left; background: #fff; border: 1px solid #e1e0d9; border-top: 2px solid #16181d; border-radius: 4px; padding: 10px 12px; cursor: pointer; font: 400 12.5px/1.45 var(--font-ui); color: #5b6170; }
   .sim-toc button:hover { border-color: #16181d; } .sim-toc b { display: block; font: 650 14px var(--font-ui); color: #16181d; margin-bottom: 2px; }
   @media (max-width: 900px) { .sim-toc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .sim-tctl { position: sticky; top: var(--st-sub-bar-h, 46px); z-index: 4; background: #faf8f3; padding: 6px 0; margin: 0; }
-  .sim-tctl output span { font-weight: 400; color: #5b6170; font-size: 13px; }
-  .sim-steps { list-style: none; margin: 6px 0 14px; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
-  .sim-steps button { width: 100%; height: 100%; text-align: left; border: 1px solid #e1e0d9; border-radius: 4px; background: #fff; padding: 7px 8px; cursor: pointer; display: flex; flex-direction: column; gap: 3px; font: 400 12px/1.35 var(--font-ui); color: #16181d; }
+  /* story player: side by side ≥1000px (pinned timeline + beat on the left, the six panels on the right); below, one
+     column with a slim sticky control bar. --sim-top / --sim-vh are measured from the sub-tab bar and the scrolling panel. */
+  .sim-sbs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; align-items: start; }
+  .sim-tctl { position: sticky; top: var(--sim-top, 46px); z-index: 4; background: #faf8f3; padding: 6px 0; margin: 0; gap: 6px 10px; flex-wrap: wrap; }
+  .sim-tctl input[type=range] { flex: 1 1 120px; max-width: none; }
+  .sim-tctl output { min-width: 0; font-size: 14.5px; }
+  .sim-tctl output span { font-weight: 400; color: #5b6170; font-size: 12.5px; }
+  .sim-nav { flex: 1 1 100%; display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .st-tctl .sim-nb { width: 30px; height: 30px; background: #fff; color: #16181d; border-color: #c3c2b7; font-size: 15px; line-height: 1; }
+  .st-tctl .sim-nb:hover { border-color: #16181d; } .st-tctl .sim-nb:disabled { opacity: .35; cursor: default; }
+  .sim-mini { flex: 1 1 auto; min-width: 0; font: 600 12.5px/1.3 var(--font-ui); color: #16181d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sim-mini b { color: #c2362f; font-weight: 600; margin-right: 4px; }
+  .sim-tg { justify-self: start; font: 600 12px var(--font-ui); color: #16181d; background: none; border: 1px solid #c3c2b7; border-radius: 999px; padding: 4px 12px; min-height: 28px; cursor: pointer; }
+  .sim-tg:hover { border-color: #16181d; }
+  .sim-steps { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: thin; -webkit-overflow-scrolling: touch; min-width: 0; }
+  .sim-steps li { flex: 0 0 auto; width: 148px; }
+  .sim-steps button { width: 100%; height: 100%; text-align: left; border: 1px solid #e1e0d9; border-radius: 4px; background: #fff; padding: 6px 8px; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 6px; align-items: center; font: 400 12px/1.35 var(--font-ui); color: #16181d; }
   .sim-steps button:hover { border-color: #16181d; }
-  .sim-steps button[aria-current=step] { border-color: #16181d; box-shadow: inset 0 3px 0 #16181d; }
-  .sim-st-p { font: 600 10.5px var(--font-ui); color: #c2362f; letter-spacing: .03em; } .sim-st-t { font-weight: 600; }
-  @media (max-width: 1000px) { .sim-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @media (max-width: 600px) { .sim-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .sim-steps button[aria-current=step] { border-color: #16181d; box-shadow: inset 3px 0 0 #16181d; background: #f4f2ec; }
+  .sim-st-p { grid-column: 1; font: 600 10.5px var(--font-ui); color: #c2362f; letter-spacing: .03em; } .sim-st-t { grid-column: 1 / -1; font-weight: 600; }
+  .sim-steps .sim-badge { grid-column: 2; grid-row: 1; }
+  .sim-body { min-width: 0; }
+  @media (max-width: 999.98px) {
+    .sim-side { display: contents; }   /* the control bar then sticks over the whole player, panels included */
+    .sim-side.sim-col .sim-steps, .sim-side.sim-col .sim-body { display: none; }
+  }
+  @media (min-width: 1000px) {
+    .sim-sbs { grid-template-columns: minmax(0, 34fr) minmax(0, 66fr); gap: 0 24px; }
+    .sim-side { position: sticky; top: calc(var(--sim-top, 46px) + 6px); max-height: calc(var(--sim-vh, 100vh) - var(--sim-top, 46px) - 14px); display: flex; flex-direction: column; min-height: 0; }
+    .sim-tctl { position: static; padding: 0 0 8px; }
+    .sim-nav, .sim-tg { display: none; }
+    .sim-steps { flex: none; flex-direction: column; gap: 3px; overflow: visible; margin: 0 0 10px; }
+    .sim-steps li { width: auto; }
+    .sim-steps button { padding: 4px 8px 5px; }
+    .sim-st-t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sim-steps button[aria-current=step] .sim-st-t { white-space: normal; }
+    .sim-body { flex: 1 1 auto; min-height: 120px; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; scrollbar-width: thin; }
+    .sim-body .sim-beat { min-height: 0; }
+    .sim-body .sim-beat-h { font-size: 18px; } .sim-body .sim-beat-t { font-size: 13.5px; line-height: 1.55; } .sim-body .sim-cav { font-size: 12.5px; }
+    .sim-body .sim-sum { margin-top: 12px; }
+  }
   .sim-badge { display: inline-flex; align-items: center; gap: 4px; font: 600 10.5px var(--font-ui); color: #16181d; border: 1px solid #c3c2b7; border-radius: 9px; padding: 1px 7px 1px 5px; width: max-content; max-width: 100%; background: #fff; }
   .sim-badge i { font-style: normal; font-size: 11px; }
   .sim-b-yes { border-color: #2a78d6; } .sim-b-yes i { color: #1d5fae; }
   .sim-b-partly { border-color: #c48600; } .sim-b-partly i { color: #8a5d00; }
   .sim-b-model { border-style: dashed; border-color: #5b6170; }
   .sim-half { display: inline-block; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid #8a5d00; background: linear-gradient(90deg, #8a5d00 50%, transparent 50%); box-sizing: border-box; }
-  .sim-beatrow { display: grid; grid-template-columns: 1.25fr 1fr; gap: 22px; align-items: start; margin-bottom: 18px; }
-  @media (max-width: 900px) { .sim-beatrow { grid-template-columns: 1fr; } }
   .sim-beat { border-left: 3px solid #16181d; padding: 2px 0 2px 14px; min-height: 120px; }
+  @media (max-width: 999.98px) { .sim-beat { min-height: 0; } .sim-body .sim-sum { margin-top: 12px; } }
   .sim-beat-k { font: 600 11.5px var(--font-ui); letter-spacing: .08em; text-transform: uppercase; color: #c2362f; }
   .sim-beat-h { font: 700 21px/1.3 var(--font-head); color: #16181d; margin: 4px 0 6px; }
   .sim-beat-t { font: 400 14.5px/1.6 var(--font-ui); color: #16181d; margin: 8px 0 0; max-width: 74ch; }
@@ -1105,12 +1168,12 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .sim-sum-p.up::before { content: '▲ '; color: #c2362f; } .sim-sum-p.dn::before { content: '▼ '; color: #1d5fae; }
   .sim-sum-l li > b { grid-column: 2; grid-row: 1; }
   .sim-sum-s { grid-column: 1 / -1; font-size: 11px; color: #6b6f78; }
-  .sim-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 20px; align-items: start; }
-  @media (max-width: 1000px) { .sim-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 640px) { .sim-grid { grid-template-columns: minmax(0, 1fr); } }
+  .sim-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px 20px; align-items: start; margin-top: 8px; }
+  @media (min-width: 1000px) { .sim-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; margin-top: 0; } }
   .sim-card { min-width: 0; }
   .sim-card-h { font: 650 13.5px var(--font-ui); color: #16181d; margin: 0 0 2px; }
   .sim-card .st-legend { font-size: 11.5px; gap: 2px 10px; margin: 2px 0 4px; }
+  @media (min-width: 1000px) { .sim-card-h { font-size: 12.5px; } .sim-card .st-legend { font-size: 10.5px; line-height: 1.3; gap: 0 8px; margin: 1px 0 0; } }
   .sim-u { font: 500 10.5px var(--font-ui); fill: #5b6170; }
   .sim-ph { stroke: #16181d; stroke-width: 1; pointer-events: none; }
   .sim-s { transition: opacity .25s ease, filter .25s ease; }
@@ -3039,6 +3102,7 @@ async function loadBanks() {
   renderBanks();
   renderBreakdowns();
   renderStatements();
+  bshLoad();
 }
 
 async function openLogModal() {
@@ -3146,6 +3210,136 @@ function renderStatements() {
     const toi = toiItem && toiItem.history ? toiItem.history[k] : S.totals.toi * ((items.find(d => d.key === 'int_inc') || {}).value || 1) / ((S.income_statement.find(d => d.key === 'int_inc') || {}).value || 1);
     drawISList('bk-is-list', items, toi);
   }, { note: _bkHistNote(S) });
+}
+
+// ── Balance sheet, last 8 quarters (appendix): small multiples of REPORTED values only, from GET /api/banks/bs_history
+// (data/banks_vnstock.json + data/finance.json; the preview/published page gets it from the snapshot shim). One row per
+// TT49 item: a mini column chart of the 8 quarters (own scale, zero baseline), latest value and q/q. Null = dashed empty
+// slot ("not reported"), never 0. A quarter whose bank sample (or, for one bank, basis) differs from the item's latest
+// reported quarter is drawn hollow: not comparable across quarters. Nothing here is modelled.
+let BSH = null, bshReq = null, bshSel = 'all';
+const bshC = side => ({ asset: ST.blue, liability: ST.orange, equity: ST.aqua })[side] || ST.ink2;   // colour follows the side (lazy: ST is declared later)
+function bshLoad() {
+  if (!bshReq) bshReq = fetch('/api/banks/bs_history').then(r => r.ok ? r.json() : null)
+    .then(d => { BSH = d && Array.isArray(d.periods) && Array.isArray(d.items) ? d : { failed: true }; })
+    .catch(() => { BSH = { failed: true }; });
+  return bshReq.then(() => { try { bshRender(); } catch (e) { console.warn('bsh', e); } });
+}
+const bshQ = p => { const m = /^(\d{4})-Q(\d)$/.exec(p || ''); return m ? `Q${m[2]}/${m[1].slice(2)}` : String(p || ''); };
+const bshTn = v => v == null || !isFinite(v) ? '—' : stN(v / 1000, Math.abs(v) < 100 ? 2 : 1);           // bn VND → thousand bn (VND tn)
+const bshBasis = b => !b ? '—' : /consol/i.test(b) ? stT('hợp nhất', 'consolidated') : /parent|separate|standalone/i.test(b) ? stT('riêng lẻ', 'parent only') : /unclear/i.test(b) ? stT('chưa rõ (trích báo chí)', 'unclear (press excerpt)') : b;
+// per-item series for the current view: values, the set of banks behind each quarter, the reference (latest reported) quarter
+function bshView() {
+  const D = BSH, P = D.periods, n = P.length, B = D.banks || {}, T = Object.keys(B).sort(), one = bshSel !== 'all' ? B[bshSel] : null;
+  const agg = (D.aggregate || {}).values || {};
+  return D.items.map(it => {
+    let v, sets;
+    if (one) { v = P.map((_, i) => ((one.values || {})[it.key] || [])[i] ?? null); sets = v.map(x => x == null ? [] : [bshSel]); }
+    else {
+      sets = P.map((_, i) => T.filter(t => (((B[t].values || {})[it.key] || [])[i]) != null));
+      v = P.map((_, i) => sets[i].length ? (((agg[it.key] || [])[i]) ?? sets[i].reduce((s, t) => s + B[t].values[it.key][i], 0)) : null);
+    }
+    let ref = -1; v.forEach((x, i) => { if (x != null) ref = i; });
+    const sig = i => one ? String(one.basis && one.basis[i] || '') : sets[i].join(',');
+    const comp = v.map((x, i) => x != null && ref >= 0 && sig(i) === sig(ref));
+    const prev = ref > 0 ? v[ref - 1] : null;
+    const qq = prev != null && comp[ref - 1] && prev !== 0 && Math.sign(prev) === Math.sign(v[ref]) ? (v[ref] / prev - 1) * 100 : null;
+    return { it, v, sets, ref, comp, qq };
+  });
+}
+function bshChart(r, W, H) {
+  const n = r.v.length, slot = W / n, vals = r.v.filter(x => x != null), c = bshC(r.it.side);
+  const lo = Math.min(0, ...vals), hi = Math.max(0, ...vals), span = hi - lo || 1, PT = 2, PB = 2;
+  const sy = x => PT + (hi - x) / span * (H - PT - PB), y0 = vals.length ? sy(0) : H - PB;
+  let s = `<line class="bsh-base" x1="0" x2="${W}" y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>`;
+  r.v.forEach((x, i) => {
+    const cx = slot * i + slot / 2, sl = slot * .72, bw = Math.min(ST_BAR, Math.max(2, sl - 4));   // narrower than the slot: reads as a mini column chart
+    if (x == null) s += `<rect class="bsh-empty" x="${(cx - bw / 2 + .5).toFixed(1)}" y="${PT + .5}" width="${(bw - 1).toFixed(1)}" height="${(H - PT - PB - 1).toFixed(1)}" rx="2"/>`;
+    else s += r.comp[i] ? stBarV(cx, sl, sy(x), y0, c, null, { cls: '' })
+      : stBarV(cx, sl, sy(x), y0, ST_SURF, null, { cls: '', attr: `stroke="${c}" stroke-width="1.5"` });
+    s += `<rect class="bsh-hit" data-q="${i}" x="${(slot * i).toFixed(1)}" y="0" width="${slot.toFixed(1)}" height="${H}" fill="transparent"/>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${ciE(stT(r.it.vi, r.it.en))}">${s}</svg>`;
+}
+function bshTip(e, el) {
+  const row = BSH._rows && BSH._rows[+el.closest('[data-r]').dataset.r], i = +el.dataset.q; if (!row) return;
+  const P = BSH.periods, one = bshSel !== 'all' ? BSH.banks[bshSel] : null, x = row.v[i], N = BSH.banks_total || Object.keys(BSH.banks || {}).length;
+  const extra = [];
+  if (x == null) extra.push(one ? stT('ngân hàng chưa báo cáo khoản mục này trong quý', 'the bank did not report this item in the quarter') : stT(`0/${N} NH có số liệu`, `0/${N} banks reporting`));
+  else if (one) {
+    extra.push(stT('Cơ sở: ', 'Basis: ') + bshBasis(one.basis && one.basis[i]));
+    if (one.source && one.source[i]) extra.push(stT('Nguồn: ', 'Source: ') + one.source[i]);
+    if (one.url && one.url[i]) extra.push(one.url[i]);
+  } else {
+    extra.push(stT(`${row.sets[i].length}/${N} NH có số liệu khoản mục này`, `${row.sets[i].length}/${N} banks report this item`));
+    const mix = ((BSH.aggregate || {}).basis_mix || [])[i] || {}, mx = Object.entries(mix).map(([b, k]) => `${k} ${bshBasis(b)}`).join(' · ');
+    if (mx) extra.push(stT('Cơ sở trong quý: ', 'Basis in the quarter: ') + mx);
+  }
+  if (x != null && !row.comp[i]) extra.push(one ? stT(`Cơ sở khác quý ${P[row.ref]} — không so sánh được qua các quý`, `Basis differs from ${P[row.ref]} — not comparable across quarters`)
+    : stT(`Mẫu NH khác quý ${P[row.ref]} — không so sánh được qua các quý`, `Sample differs from ${P[row.ref]} — not comparable across quarters`));
+  stTipKV(e, `${stT(row.it.vi, row.it.en)} · ${P[i]}`, x == null ? stT('chưa có số liệu', 'not reported') : `${stN(x, 0)} ${stT('tỷ đồng', 'bn VND')}`);
+  const tip = document.getElementById('dot-tip');
+  extra.forEach(t => { const d = document.createElement('div'); d.className = 'dt-l'; d.textContent = t; tip.appendChild(d); });
+  dotTipMove(e);
+}
+function bshRender() {
+  const host = document.getElementById('bk-bsh'); if (!host) return;
+  if (!BSH) { host.innerHTML = `<div class="bk-card-hdr"><span>${stT('Bảng cân đối kế toán theo quý', 'Quarterly balance sheet')}</span></div><div class="bk-card-body bsh-body"><p class="bsh-dek">${stT('Đang tải…', 'Loading…')}</p></div>`; bshLoad(); return; }
+  const EMPTY = stT('Chưa có báo cáo tài chính quý cho các ngân hàng niêm yết trong dữ liệu. Chạy tools/build/banks_vnstock.py trên máy có kết nối vnstock để nạp 8 quý gần nhất.',
+    'No quarterly financial statements for the listed banks in the data yet. Run tools/build/banks_vnstock.py on a machine with vnstock access to load the last 8 quarters.');
+  if (BSH.failed) {
+    host.innerHTML = `<div class="bk-card-hdr"><span>${stT('Bảng cân đối kế toán theo quý', 'Quarterly balance sheet')}</span></div><div class="bk-card-body bsh-body"><p class="bsh-empty-note">${EMPTY}</p><p class="bsh-src">${stT('Không tải được /api/banks/bs_history (trang mở không có máy chủ).', 'Could not load /api/banks/bs_history (page opened without the server).')}</p></div>`;
+    return;
+  }
+  const D = BSH, P = D.periods, n = P.length, B = D.banks || {}, T = Object.keys(B).sort(), N = D.banks_total || T.length;
+  if (bshSel !== 'all' && !B[bshSel]) bshSel = 'all';
+  const one = bshSel !== 'all' ? B[bshSel] : null, rows = D._rows = bshView();
+  const anyVal = rows.some(r => r.ref >= 0), nWith = D.banks_with_data != null ? D.banks_with_data : T.filter(t => (B[t].source || []).some(Boolean)).length;
+  // per-quarter coverage (all banks: banks with any balance-sheet value; one bank: its basis)
+  const cov = P.map((p, i) => one ? `<span><b>${bshQ(p)}</b> ${(one.source || [])[i] ? bshBasis((one.basis || [])[i]) : '—'}</span>`
+    : `<span><b>${bshQ(p)}</b> ${T.filter(t => (B[t].source || [])[i]).length}/${N}</span>`).join('');
+  const opts = [`<option value="all">${stT('Tất cả NH niêm yết (tổng các NH có báo cáo)', 'All listed banks (sum of reporting banks)')}</option>`]
+    .concat(T.map(t => `<option value="${ciE(t)}"${t === bshSel ? ' selected' : ''}>${ciE(t)} · ${ciE(B[t].name || t)}</option>`)).join('');
+  const sideHead = s => ({ asset: stT('Tài sản', 'Assets'), liability: stT('Nợ phải trả', 'Liabilities'), equity: stT('Vốn chủ sở hữu', 'Equity') })[s];
+  const colHead = s => `<div class="bsh-side" style="--c:${bshC(s)}">${sideHead(s)}</div><div class="bsh-row bsh-colh"><span>${stT('Khoản mục', 'Item')}</span><span class="bsh-ax"><i>${bshQ(P[0])}</i><i>${bshQ(P[n - 1])}</i></span><span>${stT('Mới nhất', 'Latest')}</span><span>q/q</span></div>`;
+  const rowH = (r, k) => `<div class="bsh-row${r.it.total ? ' bsh-tot' : ''}${r.it.parent ? ' bsh-child' : ''}" data-r="${k}"><span class="bsh-n">${ciE(stT(r.it.vi, r.it.en))}</span><span class="bsh-ch"></span>`
+    + `<span class="bsh-v">${r.ref >= 0 ? `<b>${bshTn(r.v[r.ref])}</b>${r.ref !== n - 1 || !one ? `<small>${[r.ref !== n - 1 ? bshQ(P[r.ref]) : '', one ? '' : `${r.sets[r.ref].length}/${N} ${stT('NH', 'banks')}`].filter(Boolean).join(' · ')}</small>` : ''}` : '<b>—</b>'}</span>`
+    + `<span class="bsh-qq">${r.qq == null ? '—' : (r.qq > 0 ? '+' : '') + stN(r.qq, 1) + '%'}</span></div>`;
+  const col = sides => sides.map(s => colHead(s) + rows.map((r, k) => r.it.side === s ? rowH(r, k) : '').join('')).join('');
+  // finding (computed): total assets of the view at its latest reported quarter
+  const ta = rows.find(r => r.it.key === 'total_assets'), who = one ? `${bshSel}` : stT(`${ta && ta.ref >= 0 ? ta.sets[ta.ref].length : 0} NH có báo cáo`, `the ${ta && ta.ref >= 0 ? ta.sets[ta.ref].length : 0} reporting banks`);
+  const lead = ta && ta.ref >= 0 ? stT(`Tổng tài sản của ${who}: ${bshTn(ta.v[ta.ref])} nghìn tỷ đồng tại ${P[ta.ref]}${ta.qq != null ? `, ${ta.qq >= 0 ? 'tăng' : 'giảm'} ${stN(Math.abs(ta.qq), 1)}% so với quý trước` : ''}.`,
+      `Total assets of ${who}: VND ${bshTn(ta.v[ta.ref])} tn at ${P[ta.ref]}${ta.qq != null ? `, ${ta.qq >= 0 ? 'up' : 'down'} ${stN(Math.abs(ta.qq), 1)}% on the previous quarter` : ''}.`)
+    : anyVal ? stT('Chưa có số tổng tài sản trong 8 quý này.', 'No total-assets figure in these 8 quarters yet.') : '';
+  const follow = one ? stT('Chỉ số liệu đã báo cáo; cột rỗng nét đứt = chưa có số liệu, cột rỗng viền = cơ sở (hợp nhất/riêng lẻ) khác quý mới nhất. Mỗi dòng một thang đo riêng, cột bắt đầu từ 0.',
+      'Reported figures only; dashed empty slot = not reported, outlined column = basis (consolidated/parent) differs from the latest quarter. Each row has its own scale; columns start at zero.')
+    : stT('Tổng = cộng các NH có báo cáo khoản mục trong quý đó, nên số NH thay đổi theo quý: cột rỗng viền = mẫu khác quý mới nhất, không so sánh được. Mỗi dòng một thang đo riêng, cột bắt đầu từ 0; NH có thể báo cáo hợp nhất hoặc riêng lẻ.',
+      'Sum over the banks reporting the item in that quarter, so the bank count changes by quarter: an outlined column = sample differs from the latest quarter, not comparable. Each row has its own scale; columns start at zero; banks may report consolidated or parent-only.');
+  host.innerHTML = `<div class="bk-card-hdr"><span>${stT(`Bảng cân đối kế toán 8 quý (${P[0]} → ${P[n - 1]}): ${nWith}/${N} NH có số liệu`, `Balance sheet over 8 quarters (${P[0]} → ${P[n - 1]}): ${nWith}/${N} banks with data`)}</span>`
+    + `<label class="bsh-pick"><span>${stT('Xem', 'View')}</span><select id="bsh-sel">${opts}</select></label></div>`
+    + `<div class="bk-card-body bsh-body">`
+    + `<div class="bsh-cov"><span class="bsh-cov-l">${one ? stT('Cơ sở số liệu theo quý:', 'Basis by quarter:') : stT('Số NH có số liệu theo quý:', 'Banks reporting, by quarter:')}</span>${cov}</div>`
+    + (!anyVal ? `<p class="bsh-empty-note">${one && nWith ? stT(`${ciE(bshSel)} chưa có số liệu bảng cân đối trong 8 quý này.`, `${ciE(bshSel)} has no balance-sheet figures in these 8 quarters.`) : EMPTY}</p>` : '')
+    + stLegend([{ n: sideHead('asset'), c: bshC('asset') }, { n: sideHead('liability'), c: bshC('liability') }, { n: sideHead('equity'), c: bshC('equity') },
+      { n: one ? stT('cơ sở khác quý mới nhất', 'basis differs from latest') : stT('mẫu khác quý mới nhất — không so sánh được', 'sample differs from latest — not comparable'), c: ST.ink2, k: 'hollow' },
+      { n: stT('chưa có số liệu', 'not reported'), c: ST_MUTE, k: 'empty' }])
+    + `<div class="bsh-grid st-mult"><div class="bsh-col">${col(['asset'])}</div><div class="bsh-col">${col(['liability', 'equity'])}</div></div>`
+    + (lead ? stNote(lead, follow) : `<p class="bsh-src">${follow}</p>`)
+    + `<p class="bsh-src">${stT('Đơn vị: nghìn tỷ đồng (chú thích: tỷ đồng) · q/q = so với quý liền trước, chỉ khi cùng mẫu/cơ sở; dấu * trong bảng số liệu = không so sánh được qua các quý. Nguồn: vnstock_data Finance (BCTC quý, data/banks_vnstock.json) và data/finance.json (số trích báo chí khi vnstock chưa có)',
+      'Unit: VND thousand bn (tooltips: bn VND) · q/q = vs the previous quarter, only on the same sample/basis; * in the data table = not comparable across quarters. Source: vnstock_data Finance (quarterly statements, data/banks_vnstock.json) and data/finance.json (press excerpts where vnstock has nothing)')}${D.as_of ? ` · ${stT('cập nhật', 'as of')} ${ciE(D.as_of)}` : ''}.</p></div>`;
+  const grid = host.querySelector('.bsh-grid');
+  const draw = () => {
+    const colW = (grid.querySelector('.bsh-col') || grid).clientWidth || 600, W = Math.round(Math.max(88, Math.min(220, colW * 0.34)));
+    grid.style.setProperty('--cw', W + 'px');
+    grid.querySelectorAll('.bsh-row[data-r]').forEach(el => { el.querySelector('.bsh-ch').innerHTML = bshChart(rows[+el.dataset.r], W, 34); });
+    grid._w = grid.clientWidth;
+  };
+  draw(); stRW(grid, draw);
+  grid._stRows = { head: [stT('Khoản mục', 'Item')].concat(P), rows: rows.map(r => [stT(r.it.vi, r.it.en)].concat(r.v.map((x, i) => x == null ? '—' : bshTn(x) + (one ? '' : ` (${r.sets[i].length} ${stT('NH', 'banks')})`) + (r.comp[i] ? '' : ' *')))) };
+  stTables(host);
+  grid.addEventListener('pointermove', ev => { const h = ev.target.closest && ev.target.closest('.bsh-hit'); if (h) bshTip(ev, h); else dotTipHide(); });
+  grid.addEventListener('pointerleave', dotTipHide);
+  host.querySelector('#bsh-sel').addEventListener('change', ev => { bshSel = ev.target.value; bshRender(); });
 }
 
 // Format VND tỷ
@@ -4528,7 +4722,7 @@ document.addEventListener('click', e => {
   if (t.tagName === 'DETAILS') t.open = true;
   t.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
-document.addEventListener('toggle', e => { if (e.target && e.target.id === 'fs-appendix' && e.target.open && typeof renderBanks === 'function') requestAnimationFrame(() => { try { renderBanks(); } catch (_) {} }); }, true);
+document.addEventListener('toggle', e => { if (e.target && e.target.id === 'fs-appendix' && e.target.open && typeof renderBanks === 'function') requestAnimationFrame(() => { try { renderBanks(); } catch (_) {} try { if (BSH) bshRender(); } catch (_) {} }); }, true);
 // ── /FINSYS renderer ──
 
 // ── POLICY data (generated by scratchpad/policy/pol_build.py) ──
@@ -7783,13 +7977,24 @@ function simMarks(S, sx, sy, mw) {
   return s;
 }
 const simSuf = b => ({ ann: stT(' (cả năm)', ' (full year)'), approx: ' (≈)', range: stT(' (khoảng, thước đo khác)', ' (range, other measure)'), carried: stT(' (giữ từ quan sát trước)', ' (carried from last quote)'), part: stT(' (9 tháng)', ' (9 months)') }[b] || '');
+const simSBS = () => window.matchMedia('(min-width: 1000px)').matches;   // same breakpoint as the .sim-sbs CSS
+// pin offsets for the player: below the chapter sub-tab bar, inside the scrolling panel (not 100vh: the site header sits above it)
+function simLay() {
+  const a = document.getElementById('sim-anim'), root = document.getElementById('sim-story'); if (!a || !root) return;
+  const bar = root.previousElementSibling, sc = typeof stSubScroller === 'function' ? stSubScroller(a) : null;
+  if (bar && bar.classList.contains('st-subbar') && bar.offsetHeight) a.style.setProperty('--sim-top', bar.offsetHeight + 'px');
+  if (sc && sc.clientHeight && sc !== document.scrollingElement && sc !== document.documentElement) a.style.setProperty('--sim-vh', sc.clientHeight + 'px'); else a.style.removeProperty('--sim-vh');
+}
 // one panel = stacked rows (each its own y scale) on the shared month axis; returns false while the panel is hidden
 function simDrawPanel(P, el) {
   if (!el || !el.clientWidth) return false;
   const W = el.clientWidth, ML = 44, MR = 10, nR = P.rows.length, sx = stLin(0, SIM_N - 1, ML, W - MR), mw = (W - ML - MR) / (SIM_N - 1), pj0 = simMI((SIM.projection.start || {}).month);
   let y0 = 0, s = '', hits = '';
   el._rows = [];
-  P.rows.forEach((R, r) => {
+  // side by side (≥1000px) the plots shrink to ~60% of their height so the six panels share one screen with the timeline
+  const k = simSBS() ? 0.6 : 1, gapR = k < 1 ? 5 : 8;
+  P.rows.forEach((R0, r) => {
+    const ex = r === nR - 1 ? 36 : 20, R = k < 1 ? Object.assign({}, R0, { h: Math.max(26, Math.round((R0.h - ex) * k)) + ex }) : R0;
     const top = y0 + 16, bot = y0 + R.h - (r === nR - 1 ? 20 : 4);
     const vals = R.s.flatMap(S => S.pts.flatMap(p => [p.v, p.lo, p.hi])).concat(R.s.some(S => S.proj) ? SIM.projection.low.concat(SIM.projection.high) : []).concat(R.s.flatMap(S => S.up ? [S.up.value] : [])).filter(v => typeof v === 'number');
     if (R.zero || R.s.some(S => S.kind === 'bars')) vals.push(0);
@@ -7804,10 +8009,11 @@ function simDrawPanel(P, el) {
     s += `<g clip-path="url(#simclip-${P.id})">` + R.s.map(S => `<g class="sim-s" data-s="${S.k}">${simMarks(S, sx, sy, mw)}</g>`).join('') + '</g>';
     s += `<line class="sim-ph" x1="0" x2="0" y1="${top}" y2="${bot}"/>`;
     hits += `<rect class="sim-hit" data-r="${r}" x="${ML - 6}" y="${top}" width="${W - ML - MR + 12}" height="${bot - top}" fill="transparent"/>`;
-    if (r === nR - 1) for (let y = 2021; y <= 2027; y += W < 380 ? 2 : 1) s += `<text class="st-tick" x="${sx((y - 2021) * 12)}" y="${bot + 15}" text-anchor="middle">${y}</text>`;
+    if (r === nR - 1) for (let y = 2021; y <= 2027; y += W < 300 ? 2 : 1) s += `<text class="st-tick" x="${sx((y - 2021) * 12)}" y="${bot + 15}" text-anchor="middle">${y}</text>`;
     el._rows.push({ R, top, bot });
-    y0 += R.h + 8;
+    y0 += R.h + gapR;
   });
+  el._k = k;
   el.innerHTML = `<svg viewBox="0 0 ${W} ${y0}" width="100%" role="img" aria-label="${ciE(P.t)}"><defs><clipPath id="simclip-${P.id}"><rect class="sim-clip" x="0" y="0" width="${W}" height="${y0}"/></clipPath></defs>${s}${hits}</svg>`;
   el._sx = sx; el._mw = mw; el._w = W;
   const svg = el.querySelector('svg');
@@ -7852,6 +8058,11 @@ function simBeatCard() {
   const dc = b.data_check || {}, note = simClean(stT(dc.note_vi, dc.note_en));
   el.innerHTML = `<div class="sim-beat-k">${stT('Nhịp', 'Beat')} ${j + 1}/${SIM.story.length} · ${simPer(b)}</div><h3 class="sim-beat-h">${ciE(stT(b.title_vi, b.title_en))}</h3>${simBadge(dc.supports)}<p class="sim-beat-t">${ciE(stT(b.text_vi, b.text_en))}</p>${note ? `<p class="sim-cav${dc.supports === 'partly' ? ' sim-cav-p' : ''}"><b>${dc.supports === 'partly' ? stT('Lưu ý: ', 'Caveat: ') : dc.supports === 'model' ? stT('Mô hình: ', 'Model: ') : stT('Kiểm chứng: ', 'Check: ')}</b>${ciE(note)}</p>` : ''}`;
   document.querySelectorAll('#sim-steps button').forEach((x, k) => { if (k === j) x.setAttribute('aria-current', 'step'); else x.removeAttribute('aria-current'); });
+  const mini = document.getElementById('sim-mini'); if (mini) mini.innerHTML = `<b>${j + 1}/${SIM.story.length}</b>${ciE(stT(b.title_vi, b.title_en))}`;
+  const pv = document.getElementById('sim-prev'), nx = document.getElementById('sim-next'); if (pv) pv.disabled = j <= 0; if (nx) nx.disabled = j >= SIM.story.length - 1;
+  // the phone strip scrolls sideways to the active beat (scrollLeft only, so the page itself never moves)
+  const ol = document.getElementById('sim-steps'), li = ol && ol.children[j];
+  if (li && ol.scrollWidth > ol.clientWidth + 2) ol.scrollLeft = Math.max(0, li.offsetLeft - ol.offsetLeft - (ol.clientWidth - li.offsetWidth) / 2);
   const sum = document.getElementById('sim-sum'), ci = (SIM.story || []).findIndex(x => /converg/.test(x.id));
   if (sum) sum.hidden = !(j >= (ci >= 0 ? ci : SIM.story.length - 2) || !simSt.touched);
 }
@@ -7882,8 +8093,15 @@ function simAnimWire() {
   const r = document.getElementById('sim-range');
   document.getElementById('sim-play').addEventListener('click', simPlay);
   r.addEventListener('input', () => { simStop(); simSetT(+r.value, { touch: 1 }); });
-  document.querySelectorAll('#sim-steps button').forEach(b => b.addEventListener('click', () => { simStop(); const j = +b.dataset.b, B = SIM.story[j];
-    simSt.pin = j; simSt.touched = true; simSetT(Math.min(SIM_N - 1, simMI(B.period_to)), { keepPin: 1, force: 1 }); }));
+  const go = j => { if (!SIM.story[j]) return; simStop(); simSt.pin = j; simSt.touched = true; simSetT(Math.min(SIM_N - 1, simMI(SIM.story[j].period_to)), { keepPin: 1, force: 1 }); };
+  document.querySelectorAll('#sim-steps button').forEach(b => b.addEventListener('click', () => go(+b.dataset.b)));
+  const pv = document.getElementById('sim-prev'), nx = document.getElementById('sim-next'), tg = document.getElementById('sim-tg'), sd = document.getElementById('sim-side');
+  if (pv) pv.addEventListener('click', () => go(simBeatIdx() - 1));
+  if (nx) nx.addEventListener('click', () => go(simBeatIdx() + 1));
+  if (tg && sd) tg.addEventListener('click', () => { const col = sd.classList.toggle('sim-col'); tg.setAttribute('aria-expanded', col ? 'false' : 'true'); tg.textContent = col ? stT('Hiện diễn giải và các nhịp', 'Show the commentary and beats') : stT('Ẩn diễn giải', 'Hide the commentary'); });
+  // arrow keys move between beats inside the list (each beat is a button; Tab still leaves the list)
+  const ol = document.getElementById('sim-steps');
+  if (ol) ol.addEventListener('keydown', e => { const k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]; if (!k) return; const bs = [...ol.querySelectorAll('button')], i = bs.indexOf(document.activeElement); if (i < 0) return; e.preventDefault(); const n = Math.max(0, Math.min(bs.length - 1, i + k)); bs[n].focus(); go(n); });
   simSetT(simSt.t, { force: 1, keepPin: true });
   // one orchestrated moment: the story plays once, the first time the chapter is on screen (never with reduced motion)
   if (!simSt.auto && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -8049,12 +8267,15 @@ function renderSimStory() {
   h += stChap('sim-st-story', stT('Chương 1 · Câu chuyện', 'Chapter 1 · The story'),
     stT(`Từ ${stN(vLow.v, 1)}% lên ${stN(st.value, 1)}%: vì sao lãi suất cao và khó sớm giảm`, `From ${stN(vLow.v, 1)}% to ${stN(st.value, 1)}%: why rates are high and unlikely to fall soon`),
     stT('Bấm ▶ để xem sáu nhóm số liệu chạy theo tháng từ 2021; mỗi nhịp tô đậm các chuỗi nó nhắc tới và cho biết dữ liệu ủng hộ đến đâu. Mỗi biểu đồ có thang đo riêng; vùng xám là 6 tháng tới (chỉ lãi suất Vietcombank có đường mô hình).', 'Press ▶ to run six groups of data month by month from 2021; each beat highlights the series it cites and says how far the data supports it. Every chart has its own scale; the grey zone is the next six months (only the Vietcombank rate has a model path).'),
-    `<div id="sim-anim"><div class="st-tctl sim-tctl"><button type="button" id="sim-play" aria-label="${stT('Phát câu chuyện', 'Play the story')}">▶</button><input type="range" id="sim-range" min="0" max="${SIM_N - 1}" step="1" value="${SIM_N - 1}" aria-label="${stT('Chọn tháng', 'Pick a month')}"><output id="sim-out" aria-live="off"></output></div>
-     <ol class="sim-steps" id="sim-steps">${B.map((b, j) => `<li><button type="button" data-b="${j}"><span class="sim-st-p">${simPer(b)}</span><span class="sim-st-t">${ciE(stT(b.title_vi, b.title_en))}</span>${simBadge((b.data_check || {}).supports, 1)}</button></li>`).join('')}</ol>
-     <div class="sim-beatrow"><div id="sim-beat" class="sim-beat" aria-live="polite"></div><div id="sim-sum" class="sim-sum">${simSummary()}</div></div>
-     <div class="sim-grid" id="sim-grid">${simPanels().map(P => `<div class="sim-card"><div class="sim-card-h">${ciE(P.t)}</div>${stLegend(P.rows.flatMap(r => r.s).filter((s, i, a) => a.findIndex(x => x.k === s.k && x.n === s.n) === i).map(s => ({ n: s.n, c: s.c, k: s.kind === 'dots' ? 'dot' : s.kind === 'bars' ? 'rect' : 'line' })))}<div class="st-viz sim-p" id="sim-p-${P.id}"></div></div>`).join('')}</div>
+    `<div id="sim-anim" class="sim-sbs"><div class="sim-side" id="sim-side">
+     <div class="st-tctl sim-tctl"><button type="button" id="sim-play" aria-label="${stT('Phát câu chuyện', 'Play the story')}">▶</button><input type="range" id="sim-range" min="0" max="${SIM_N - 1}" step="1" value="${SIM_N - 1}" aria-label="${stT('Chọn tháng', 'Pick a month')}"><output id="sim-out" aria-live="off"></output>
+      <div class="sim-nav"><button type="button" class="sim-nb" id="sim-prev" aria-label="${stT('Nhịp trước', 'Previous beat')}">‹</button><span class="sim-mini" id="sim-mini"></span><button type="button" class="sim-nb" id="sim-next" aria-label="${stT('Nhịp sau', 'Next beat')}">›</button></div></div>
+     <button type="button" class="sim-tg" id="sim-tg" aria-expanded="true" aria-controls="sim-steps sim-body">${stT('Ẩn diễn giải', 'Hide the commentary')}</button>
+     <ol class="sim-steps" id="sim-steps" aria-label="${stT('Các nhịp của câu chuyện', 'Story beats')}">${B.map((b, j) => `<li><button type="button" data-b="${j}" title="${ciE(stT(b.title_vi, b.title_en))}"><span class="sim-st-p">${j + 1} · ${simPer(b)}</span>${simBadge((b.data_check || {}).supports, 1)}<span class="sim-st-t">${ciE(stT(b.title_vi, b.title_en))}</span></button></li>`).join('')}</ol>
+     <div class="sim-body" id="sim-body"><div id="sim-beat" class="sim-beat" aria-live="polite"></div><div id="sim-sum" class="sim-sum">${simSummary()}</div></div></div>
+     <div class="sim-main"><div class="sim-grid" id="sim-grid">${simPanels().map(P => `<div class="sim-card"><div class="sim-card-h">${ciE(P.t)}</div>${stLegend(P.rows.flatMap(r => r.s).filter((s, i, a) => a.findIndex(x => x.k === s.k && x.n === s.n) === i).map(s => ({ n: s.n, c: s.c, k: s.kind === 'dots' ? 'dot' : s.kind === 'bars' ? 'rect' : 'line' })))}<div class="st-viz sim-p" id="sim-p-${P.id}"></div></div>`).join('')}</div>
      ${stNote(stT('Nét liền: số quan sát; nét đứt ở lãi suất Vietcombank: tháng giữ nguyên mức của lần niêm yết trước (chưa xác nhận); điểm rỗng: số cả năm, ước tính hoặc 9 tháng; đoạn có gạch: khoảng giá trị theo thước đo khác.', 'Solid: observed; dashed on the Vietcombank line: months carried from the last quote (not confirmed); hollow points: full-year, approximate or nine-month figures; capped segments: ranges on a different measure.'), stT('Tháng không có số liệu để trống, không nội suy. Số liệu của nhiều nguồn và định nghĩa khác nhau; chi tiết ở Chương 4.', 'Months without data stay blank, never interpolated. Sources and definitions differ; details in Chapter 4.'))}
-     ${stSrc(stT('Nguồn: NHNN, NSO, Bộ Tài chính, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, Fed, báo chí (đường dẫn từng chuỗi ở Chương 4). Tổng hợp: Finance agent, ', 'Sources: SBV, NSO, Ministry of Finance, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, the Fed, press (per-series links in Chapter 4). Compiled by the Finance agent, ') + polDS(SIM.as_of) + '.')}</div>`);
+     ${stSrc(stT('Nguồn: NHNN, NSO, Bộ Tài chính, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, Fed, báo chí (đường dẫn từng chuỗi ở Chương 4). Tổng hợp: Finance agent, ', 'Sources: SBV, NSO, Ministry of Finance, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, the Fed, press (per-series links in Chapter 4). Compiled by the Finance agent, ') + polDS(SIM.as_of) + '.')}</div></div>`);
   // 2 · projection
   const sc = Pj.scenarios, scK = ['status_quo', 'rates_cut', 'tighter'].filter(k => sc[k]), pr = simLast('dep12_private_mbs'), vAt = pr ? simAt('dep12_vcb', pr.i) : null;
   h += stChap('sim-st-proj', stT('Chương 2 · Dự phóng 6 tháng', 'Chapter 2 · The 6-month projection'),
@@ -8102,11 +8323,13 @@ function renderSimStory() {
   const panels = simPanels(); panels.forEach(P => simDrawPanel(P, document.getElementById('sim-p-' + P.id)));
   simAnimWire(); simProjWire(); simBT(document.getElementById('sim-bt1'), roos); simBT(document.getElementById('sim-bt2'), rep);
   stFinish(root);
+  simLay();
 }
 let simRT = null;
 window.addEventListener('resize', () => { clearTimeout(simRT); simRT = setTimeout(() => {
   const root = document.getElementById('sim-story'); if (!root || !root.isConnected || !root.querySelector('#sim-grid')) return;
-  const P = simPanels(); P.forEach(p => { const el = document.getElementById('sim-p-' + p.id); if (el && el.clientWidth && Math.abs(el.clientWidth - (el._w || 0)) > 8) { const tw = el._stRows; simDrawPanel(p, el); el._stRows = tw || el._stRows; } });
+  simLay();
+  const P = simPanels(), k = simSBS() ? 0.6 : 1; P.forEach(p => { const el = document.getElementById('sim-p-' + p.id); if (el && el.clientWidth && (Math.abs(el.clientWidth - (el._w || 0)) > 8 || el._k !== k)) { const tw = el._stRows; simDrawPanel(p, el); el._stRows = tw || el._stRows; } });
   const hf = document.getElementById('sim-hero'); if (hf && hf.clientWidth && Math.abs(hf.clientWidth - (hf._w || 0)) > 8) { const s = simPath('gap', simScn('status_quo').policy, simScn('status_quo').drv); simFan(hf, 0, { path: s.path, lo: s.lo, hi: s.hi, refi: true, h: 240 }); hf._w = hf.clientWidth; }
   const ff = document.getElementById('sim-fan'); if (ff && ff.clientWidth && Math.abs(ff.clientWidth - (ff._w || 0)) > 8) { simProjDraw(); ff._w = ff.clientWidth; }
   ['sim-bt1', 'sim-bt2'].forEach((id, k) => { const b = document.getElementById(id); if (b && b.clientWidth && Math.abs(b.clientWidth - (b._w || 0)) > 8) { simBT(b, k ? (SIM.backtest || {}).calibrated_in_sample_replay : (SIM.backtest || {}).regression_out_of_sample); b._w = b.clientWidth; } });
