@@ -1,130 +1,153 @@
 ---
 name: vn-data-story
-description: Build PowerPoint (.pptx) decks in the Vietnam Dashboard's editorial data-story style — red uppercase kickers, Newsreader serif headlines that state the finding, IBM Plex Sans text, one finding per slide, charts drawn in the dashboard palette with rounded bar ends (or native editable charts on request), two-line notes, dated sources, "what to watch" close. 30+ chart and slide types (line, fan, area, bars, stacked, waffle, waterfall, tornado, dumbbell, slope, bump, heatmap, scatter, small multiples, sparkline table, pyramid, tile map, Sankey flow, lever diagram, timeline, bullet, KPI tiles). Output is ALWAYS a .pptx file (never HTML, Markdown or an artifact page). Use when asked for a deck, slides, a presentation or a report "in our dashboard style" / "vn-data-story", or to turn dashboard data, economic or banking figures into slides.
+description: Build PowerPoint (.pptx) decks in the Vietnam Dashboard's editorial data-story style — red tracked kickers, Newsreader headlines that state the finding, IBM Plex Sans text, one finding per slide, two-line notes, dated sources, a "what to watch" close. Charts are native, data-editable PowerPoint charts by default (Edit Data works). 51 methods, each with a sample slide: lines, areas, fan, combo, columns, bars, lollipop, dot, dumbbell, slope, bump, diverging, tornado, waterfall, donut, waffle, treemap, marimekko, funnel, histogram, box plot, scatter, bubble, pyramid, radar, bullet, gauge, small multiples, sparkline table, heatmaps, tile map, Sankey, lever diagram, timeline, KPI tiles, tables. Output is ALWAYS a .pptx file — for web pages use vn-data-story-html. Use when asked for a deck, slides or a presentation "in our dashboard style" / "vn-data-story", or to turn economic or banking figures into slides.
 ---
 
 # vn-data-story — PowerPoint only
 
-**Output rule:** the deliverable is always a `.pptx` built with `scripts/vn_deck.py` (python-pptx + stdlib only).
+**Output rule:** the deliverable is always a `.pptx` built with `scripts/vn_deck.py` (python-pptx + xlsxwriter). For an HTML page or artifact, use the separate skill `vn-data-story-html`.
 Never produce HTML, an artifact page or Markdown as the result. If the user asks for a web page, say this skill
 makes PowerPoint decks only.
 
 Files: `scripts/vn_deck.py` (the library; its module docstring lists every method and spec key),
-`scripts/example_deck.py` (a 38-slide Vietnamese sample that uses **every** style with the dashboard's real
-figures; run it and copy patterns from it), `fonts/` (Newsreader + IBM Plex Sans TTFs, OFL licences).
+`scripts/example_deck.py` → `scripts/example.pptx` (61 slides, Vietnamese, real dashboard figures: cover, catalogue,
+8 chapters, **one slide per method** — copy patterns from it), `scripts/check_deck.py` (editability check),
+`fonts/` (Newsreader + IBM Plex Sans TTFs, OFL licences).
 
 ## How to build a deck
-1. **Plan the story**: one finding per slide — `cover` → `section` → `hero` → `kpis` → chapters of `chart` slides
-   → `watch` → `table` appendix → `sources`. Pick the chart type from the table below by the question it answers.
-2. **Write a script**: `sys.path.insert(0, '<skill dir>/scripts')`, `from vn_deck import Deck`,
-   `d = Deck(lang='vi')` (or `'en'`), slide methods, `d.save(path)`. Put the data in arrays and **compute every
-   number in headlines and notes** from them (`d.num(v, 2)` formats in the deck language) — never type a figure.
-3. **Render and look at every slide** before handing over:
-   `soffice --headless --convert-to pdf deck.pptx && pdftoppm -r 60 -png deck.pdf pg` (use `-r 110` to inspect).
-   Check the checklist at the end. Fix the spec (shorter labels, fewer rows, `dx/dy` of annotations) and re-render.
-4. Deliver the .pptx and say which fonts note applies (below).
+1. **Plan the story**: one finding per slide — `cover` → (`catalog`) → `section` → `hero` / `kpis` → chapters of
+   `chart` slides → `watch` → `table` appendix → `sources`. Pick the form from the catalogue below by the question.
+2. **Write a script**: `sys.path.insert(0, '<skill dir>/scripts')`, `from vn_deck import Deck`, `d = Deck(lang='vi')`
+   (or `'en'`), slide methods, `d.save(path)`. Put the data in arrays and **compute every number in headlines and
+   notes** from them (`d.num(v, 2)` formats in the deck language) — never type a figure. Pass `method='…'` to list a
+   slide in the catalogue slide.
+3. **Render and look at every slide**: `soffice --headless --convert-to pdf deck.pptx && pdftoppm -r 60 -png deck.pdf pg`
+   (`-r 110` to inspect). Fix the spec (shorter labels, fewer categories, `dx/dy` of annotations) and re-render.
+4. **Check editability**: `python3 scripts/check_deck.py deck.pptx` — every chart must have an embedded workbook
+   that opens and series linked to it; it also counts native-chart, native-table and shape-diagram slides.
+5. Deliver the .pptx and say which fonts note applies (below).
 
-## Slide methods (`Deck`)
-| Method | Use |
-|---|---|
-| `cover(kicker, title, subtitle, date, chart=None, note='')` | Cover, cream, optional motif chart on the right |
-| `section(number, title, dek, items=())` | Chapter divider: big red number, contents list |
-| `hero(kicker, headline, big, unit, dek, counts=[(label, text, value)], chart, chart_title, source, note)` | Headline number + count-style counters with progress bars + mini chart in a cream panel |
-| `kpis(kicker, headline, tiles, note, source)` | 2–4 KPI tiles: value, delta arrow (blue up / red down, `tone` overrides), optional sparkline |
-| `chart(kicker, headline, spec, note=(finding, caveat), source, dek, panel=None, chart_title)` | One chart. `panel={'label','value','unit','sub','bullets'}` → chart left + cream side panel carrying the key number and the note |
-| `two_charts(kicker, headline, left, right, titles, note, source)` | Two charts side by side |
-| `table(kicker, headline, header, rows, source, col_widths, number_cols, note)` | Appendix: zebra rows, right-aligned numbers, `None` → "—" |
-| `watch(kicker, headline, [(date, title, text, (big, small))…], source)` | 3 dated "what to watch" cards with a countdown block |
-| `quote(kicker, quote, who, role, note, source, facts=[(label, value, sub)])` | Analyst note / callout with fact column |
-| `sources(kicker, headline, [(publisher, what, period, url)…], method=[…], source)` | Sources & methodology |
+## Editable by default
+- `Deck(editable=True)` (default): every chart is a **native PowerPoint chart with an embedded workbook** — right-click
+  → Edit Data opens the numbers. vn_deck writes the workbook itself (xlsxwriter) and the chart XML itself (schema
+  order), so it can do what python-pptx cannot: several chart groups in one plot, secondary axes, per-point colours,
+  error bars, trend lines, label positions and offsets, hidden helper series. **Helper columns are Excel formulas**
+  (waterfall base/up/down, fan band = high − low, funnel padding, box-plot MIN/QUARTILE.INC/MEDIAN, histogram
+  COUNTIFS, bump RANK, stacked totals, lollipop sticks, dumbbell connectors): edit the input column and the chart
+  follows. Legends are small inline keys drawn above the plot (shapes), so helper series never appear in them.
+- Forms with no PowerPoint chart type stay editable: **native tables with cell fills** (heatmap, calendar heatmap,
+  waffle; sparkline table = native table + native mini charts) or **grouped shapes with editable text** (treemap,
+  tile map, Sankey, lever diagram, timeline) whose source numbers are written into the **slide notes**.
+- `Deck(editable=False)` or `spec['editable'] = False`: the shape-drawn version with **rounded data ends** for the
+  types that have one (line, fan, area, bar, barh, diverging, stacked, stacked_h, stacked100_h, waffle, waterfall,
+  tornado, dumbbell, slope, bump, heatmap, scatter, multiples, spark_table, pyramid, bullet). Trade-off: rounded bar
+  ends and pixel-exact label placement, but the data cannot be re-plotted. Native charts cannot round bar ends.
+- Static overlays on native charts (annotation callouts, forecast-zone caption, end shares on area charts, marimekko
+  column names, box-plot median text, gauge centre number) are text boxes: they do not move if the data is edited.
+- Numbers: VI decks tag number formats with the Vietnamese locale (`[$-42A]`), which LibreOffice honours (2.650,1);
+  PowerPoint formats chart numbers in the viewer's system locale (2,650.1 on an English Windows). Labels written as
+  text (waterfall, funnel, slide text) are always in the deck language.
 
-## Chart spec types (`spec['type']`)
-| Type | Answers | Key spec fields |
+## Catalogue — method → how it is built → when to use
+| Method (spec `type` / slide method) | Built as | Use when |
 |---|---|---|
-| `line` | How did it move? | `categories`, `series[{name, values, color, muted, dashed, dash_from, end_label, label}]`, `dec`, `unit`, `y_min/y_max`, `zero`, `forecast_from` + `forecast_label` (shaded zone), `refs[{value,label}]`, `annotations[{series, at, text, tier:'pri'/'sup', dx, dy, value}]`, `band` |
-| `fan` | Projection with uncertainty | `categories`, `actual`, `base`, `low`, `high`, `names` (80% band, dashed base, zone) |
-| `area` | Stacked totals over time | `categories`, `series` (end labels = share of last total) |
-| `bar` | Compare periods / one highlighted | `categories`, `series` (2+ = grouped), `highlight`, `basis` (`'estimate'`/`'plan'` → hollow dashed), `labels` (`'auto'`,`True`,`'hi'`,`False`) |
-| `barh` | Ranking | `categories`, `values` (sorted by you; first on top), `highlight`, `axis` |
-| `diverging` | Positive vs negative | `categories`, `values`, `pos_label/neg_label` (blue > 0, red < 0) |
-| `stacked` / `stacked_h` | Composition + total | `categories`, `series`, `totals`, `basis` (rounded top segment only, 2px gaps) |
-| `stacked100_h` | Parts of one whole per row | `categories`, `series` (normalised to 100, % inside segments) |
-| `waffle` | Share of a whole, 1 cell = 1% | `parts[{name, value, color, muted}]`, `dec` (largest-remainder rounding) |
-| `waterfall` | Start → contributions → end | `steps[{name, value, total, basis}]` (last total computed if `value` omitted) |
-| `tornado` | Sensitivity | `base`, `rows[{name, low, high}]`, `labels` |
-| `dumbbell` | Before / after per row | `rows[{name, a, b}]`, `labels` |
-| `slope` | Two periods | `periods`, `series[{name, values:[a,b], hi}]` |
-| `bump` | Rank over time | `periods`, `series[{name, values}]` (ranked inside), `highlight[names]` |
-| `heatmap` | Many rows × periods | `rows`, `cols`, `values`, `scale` (`diverging`/`sequential`), `vmax` (clip), `pos_color`, `legend_title` |
-| `scatter` | Relationship | `points[{name, x, y, label, hi, text}]`, `x_title`, `y_title`, `trend` (OLS line + r) |
-| `multiples` | Same metric, many panels, own scales | `panels[{title, categories, values, kind:'col'/'line'}]`, `cols` |
-| `spark_table` | Indicator table with trends | `rows[{name, sub, values, dec, unit, up_color, down_color}]`, `headers` |
-| `pyramid` | Age structure | `bands`, `left`, `right`, `compare` (dashed outline = projection) |
-| `tilemap` | Provinces / regions | `tiles[{name, short, col, row, value, panel}]`, `panels`, `breaks` (one-hue ramp) |
-| `flow` | Sources → uses (Sankey) | `columns[[{id, name, color}]]`, `links[(src, dst, value)]` |
-| `levers` | Instrument → channel → outcome | `columns[{title, items[{id, name, sub}]}]`, `links[(a, b)]` (adjacent or same column), `highlight` |
-| `timeline` | Dated beats | `events[{date, title, text, future}]`, `today` |
-| `bullet` | Actual vs target | `rows[{name, sub, value, target, max, ranges, unit, dec, value_text, color}]` |
-| `tiles` | KPI tiles (used by `kpis`) | `tiles[{label, value, unit, delta, delta_unit, delta_label, tone, spark, spark_kind, sub}]` |
+| Line `line` | line chart; forecast zone = full-height column series; target = dashed constant series | How did it move? |
+| Multi-line highlight `line` + `muted` | line chart, grey context lines | One series against its peers |
+| Step line `step` | XY scatter, each change point doubled; shared X column | Rates/levels that change by decision |
+| Area `area` (1 series) | area chart | Level over time, one series |
+| Stacked area `area` | stacked area | Composition and total over time |
+| 100% stacked area `area100` | percent-stacked area | Shares over time |
+| Fan `fan` | line + stacked area (hidden lower bound + band) | Projection with uncertainty |
+| Combo `combo` | column + line on a secondary axis, zero lines aligned | Two **different units** only; name both axes |
+| Column `bar` | clustered column, highlight by point colour, plans hollow dashed | Compare periods |
+| Grouped column `bar` (2+ series) | clustered column | Two series per period |
+| Ranked bar `barh` | clustered bar, reversed categories, value labels | Ranking |
+| Grouped bar `barh` (2+ series) | clustered bar | Two periods per row |
+| Stacked column / bar `stacked` / `stacked_h` | stacked + invisible clustered twin carrying the total label | Composition + total |
+| 100% column / bar `stacked100` / `stacked100_h` | percent-stacked, % labels inside | Parts of one whole per row |
+| Lollipop `lollipop` | marker-only line + error-bar sticks | Many similar bars, less ink |
+| Dot plot `dot` | marker-only line chart (+ dashed reference) | Several estimates per item; axis need not start at 0 |
+| Dumbbell `dumbbell` | two marker-only series + error-bar connector | Before / after per row |
+| Slope `slope` | 2-category line chart, labels at both ends | Two points in time |
+| Bump `bump` | line chart of RANK() formulas, reversed axis | Rank over time |
+| Diverging bar `diverging` | two bar series (+/−), overlap 100 | Positive vs negative |
+| Tornado `tornado` | clustered bar of level − base, overlap 100 | Sensitivity |
+| Waterfall `waterfall` | stacked column: hidden base + up + down + total (formulas) | Start → contributions → end |
+| Donut / pie `donut` / `pie` | doughnut / pie, shares + side key | Few parts of one whole (bars usually read better) |
+| Waffle `waffle` | native 10 × 10 table, filled cells | Share of a whole, 1 cell = 1% |
+| Treemap `treemap` | squarified grouped shapes; numbers in notes | Many parts of one whole |
+| Marimekko `marimekko` | 100% stacked column of zero-gap slices (width = slice count) | Size **and** mix at once |
+| Funnel `funnel` | stacked bar centred by hidden padding | Nested stages of one process |
+| Histogram `histogram` | column, gap 4, COUNTIFS over raw data | Distribution |
+| Box plot `box` | stacked column + error-bar whiskers, quartile formulas | Distributions side by side |
+| Scatter `scatter` | XY scatter + linear trendline, point labels | Relationship (say r, not causation) |
+| Bubble `bubble` | bubble chart, groups by colour | Relationship + size |
+| Population pyramid `pyramid` | clustered bar, left negative + unsigned format, outlined projection twin | Age structure |
+| Radar `radar` | radar chart | Shape comparison of few items (bars read better for values) |
+| Bullet `bullet` | one small chart per row: bands + error-bar actual + dash-marker target | Actual vs target |
+| Gauge `gauge` | half doughnut (hidden lower half) + target tick | One number against one mark |
+| Small multiples `multiples` | grid of native mini charts, own scales | Same metric, many panels |
+| Sparkline table `spark_table` | native table + native mini line charts | Indicator table with trends |
+| Heatmap `heatmap` | native table, diverging/sequential fills | Many rows × periods |
+| Calendar heatmap `calendar` | native table, rows = years, cols = months | Seasonal / monthly pattern |
+| Tile map `tilemap` | grouped shapes, one-hue ramp; notes | Provinces / regions |
+| Sankey `flow` | grouped shapes; notes | Sources → uses |
+| Lever / causal diagram `levers` | shapes + connectors; notes | Instrument → channel → outcome |
+| Timeline `timeline` | shapes; notes | Dated beats |
+| KPI tiles `kpis` | shapes + native sparklines | 2–4 headline indicators |
+| Hero number `hero` | big number + counters + native chart | Opening number |
+| Table `table` | native table | Appendix figures |
+| Quote `quote` | text + fact column | Analyst note |
+| What to watch `watch` | 3 dated cards with countdown | Close (dates must be in the future) |
+| Sources `sources` | text + method panel | Sources & methodology |
+| Catalogue `catalog` | filled at save from `method=` | Index of methods / slides |
 
-## Shape-drawn vs native editable charts
-- **Shape-drawn (default)** — every chart is drawn with shapes in one group per chart, one scale per chart, to the
-  dashboard look: bars ≤ 0.34 in with a **rounded data end only** (`ROUND_2_SAME_RECTANGLE`, rotated for
-  horizontal and negative bars, baseline square), 2px surface gaps between stacked segments, 2.25pt lines with
-  round joins, ringed dots, hairline grids, legend above, direct end labels, primary/supporting annotations. Use
-  for presentations, reports and anything the audience reads. Numbers can still be edited as text; the data
-  cannot be re-plotted.
-- **Native (`Deck(editable=True)` or `spec['editable'] = True`)** — real PowerPoint charts with an embedded
-  workbook, styled to match (Plex fonts, palette, no title, legend on top, hairline grid, gap width, data labels).
-  Use **only when the audience must edit the data**. Supported for `line, area, bar, barh, diverging, stacked,
-  stacked_h, stacked100_h, scatter`; all other types are always shape-drawn. PowerPoint cannot round bar ends and
-  number formats follow the viewer's locale (2,650.1 even in a VI deck) — say so in the note.
+## Typography and layout (matches the page's story CSS)
+- Headline: **Newsreader SemiBold** 24 → 20 pt, leading 1.08, ≤ 2 lines, **balanced** wrapping inside 10 columns.
+  Kicker: IBM Plex Sans SemiBold 11 pt, uppercase, tracked, #C2362F. Dek: Plex 13.5 pt / 1.4, #5B6170.
+  Note: Plex 13 pt / 1.42, finding in ink, caveat in #5B6170, 7-column measure, aligned to the chart's left edge.
+  Sources: Plex 9 pt #8A8F99. Chart text: Plex 10 pt #5B6170 (written into each chart's txPr, so it survives Edit
+  Data). Big numbers: Plex Bold. Plex and Newsreader digits are tabular by default.
+- Grid: 16:9, 0.6 in margins, 12 columns with 0.2 in gutters; hairline at 0.42 in, kicker 0.56 in, headline 0.84 in,
+  **chart top 1.92 in on every chart slide**, footer hairline 7.02 in. Side panel = 4 columns, cream #FAF8F3.
+- Charts: hairline grid #E1E0D9 0.5 pt, no value-axis line, only the baseline in ink, no chart borders, no tick marks,
+  lines 2 pt round caps, small markers, bars ≤ 0.34 in, legends as inline keys above the plot or direct end labels.
+- Colour: palette in fixed order blue #2A78D6, orange #EB6834, aqua #1BAF7A, yellow #EDA100, magenta #E87BA4, green
+  #008300, violet #4A3AA7, red #E34948; colour follows the entity across the deck; one accent on grey #C9CCD2 for
+  emphasis; polarity blue ↔ red with a grey midpoint; ordered bins one-hue ramps. Text is ink or grey, never a series
+  colour.
 
 ## Fonts and embedding
-- Roles map to the real faces: headlines `Newsreader` bold, kicker/labels `IBM Plex Sans SemiBold` / `Medium`,
-  body `IBM Plex Sans`, big numbers `IBM Plex Sans` bold (as on the page). Exact family names matter: the 500/600
-  weights are separate families ("IBM Plex Sans SemiBold", "Newsreader Medium"…). Text is measured with the real
-  font metrics from `fonts/` so labels, wrapping and headline sizing fit.
-- `Deck(embed_fonts=True)` (default) embeds the families the deck uses, the way PowerPoint does: each TTF wrapped
-  as uncompressed **EOT** in `/ppt/fonts/fontN.fntdata` (`application/x-fontdata`, font relationships) plus
-  `<p:embeddedFontLst>` with regular/bold `r:id`s and `embedTrueTypeFonts="1"` (~1.2 MB). (PowerPoint's `.fntdata`
-  is EOT; the GUID-XOR obfuscation is Word's `.odttf` convention and is not used.) **PowerPoint (Windows, Mac
-  16.17+) shows the embedded fonts; LibreOffice, Keynote and Google Slides ignore them** — on those, install
-  `fonts/*.ttf` first (Linux: copy to `~/.fonts` and run `fc-cache`). The deck re-opens in python-pptx and
-  LibreOffice with the parts intact.
-- `Deck(safe_fonts=True)` → Georgia / Arial everywhere, nothing embedded: use when the deck goes to machines you
-  don't control and must look identical in any app.
+- Exact family names matter: "Newsreader SemiBold", "Newsreader Medium", "IBM Plex Sans", "IBM Plex Sans Medium",
+  "IBM Plex Sans SemiBold". Text is measured with the real metrics from `fonts/`, so wrapping and balancing fit.
+- `Deck(embed_fonts=True)` (default) embeds the families the deck uses the way PowerPoint does (EOT `.fntdata` parts +
+  `<p:embeddedFontLst>`, `embedTrueTypeFonts="1"`). **PowerPoint (Windows, Mac 16.17+) shows the embedded fonts;
+  LibreOffice, Keynote and Google Slides ignore them** — install `fonts/*.ttf` first (Linux: `~/.fonts` + `fc-cache`).
+- `Deck(safe_fonts=True)` → Georgia / Arial everywhere, nothing embedded.
 
-## Style (built in — keep it)
-- **Colour:** ink `#16181D`, secondary `#5B6170`, sources `#8A8F99`, kicker `#C2362F`, cream `#FAF8F3`, muted
-  `#C9CCD2`, hairlines `#DEDBD2`/`#E1E0D9`. Palette in fixed order: blue `#2A78D6`, orange `#EB6834`, aqua
-  `#1BAF7A`, yellow `#EDA100`, magenta `#E87BA4`, green `#008300`, violet `#4A3AA7`, red `#E34948`. Colour follows
-  the entity across the deck; one accent on grey for emphasis; polarity blue ↔ red with a grey midpoint; ordered
-  bins use one-hue ramps. Text is ink or grey, never a series colour.
-- **Layout:** 16:9 (13.33 × 7.5 in), 0.65 in margins; heavy ink rule, kicker, headline (auto 28→21 pt, ≤ 2
-  lines), chart, two-line note, hairline footer with source + "Vietnam Dashboard  n". Cream panels for side notes,
-  KPI tiles, hero chart, quotes, watch cards.
+## Known renderer differences (LibreOffice preview vs PowerPoint)
+- LibreOffice ignores `tickLblSkip` (PowerPoint skips crowded category labels); keep ≤ ~12 categories on narrow charts.
+- LibreOffice draws radar charts smaller than their frame and does not show white rings around markers.
+- XY data must not start in workbook column A (some apps read it as categories); vn_deck puts labels there.
 
 ## Content rules
-- **Headline = the finding**, number-first when possible, ≤ ~15 words; every number in it appears on the slide and
-  is computed from the data. No hype, no verdicts the data doesn't show (r = 0.53 is "moderate", not "weak").
+- **Headline = the finding**, number-first when possible, ≤ ~15 words; every number in it is computed from the data.
+  No hype, no verdicts the data doesn't show (r = 0.53 is "moderate").
 - **Note = two lines:** the finding with its anchor (value, period), then one caveat, contrast or consequence.
-- **Every data slide has a source line** with publisher and period; each figure carries its basis (final /
-  estimate / plan / 9M). Mark derived values with ≈ and say how (e.g. "chi vượt thu ≈ chi − thu, not the official
-  deficit"). Illustrative content says "minh hoạ / illustrative" in the source.
-- **Honest forms:** bars start at zero (no truncated bar axes — use a change bridge instead); estimates, plans and
-  projections are dashed, hollow or outlined and labelled; model output says "model, not a forecast";
-  part-to-whole only when the parts sum to one whole; never a dual axis.
-- **Never mix definitions in one series** (registered vs disbursed FDI; 9-month vs full-year; consolidated vs
-  parent bank figures; SBV vs IMF FSI NPL).
-- **Gaps stay gaps:** `None`, never 0, never interpolated; say "not published".
-- **One language per deck**; VI number style 2.650,1 and U+2212 minus via `d.num`. Descriptive only — no
-  investment advice. "What to watch" items must be in the future at delivery.
+- **Every data slide has a source line** with publisher and period; each figure carries its basis (final / estimate /
+  plan / 9M). Mark derived values with ≈ and say how. Illustrative content says "minh hoạ / illustrative".
+- **Honest forms:** bars start at zero; estimates, plans and projections are dashed, hollow or outlined and labelled;
+  model output says "model, not a forecast"; part-to-whole only when the parts sum to one whole; a second axis only
+  for a second unit, both axes named, zero lines aligned (`combo`).
+- **Never mix definitions in one series**; **gaps stay gaps** (`None`, never 0, never interpolated).
+- One language per deck; descriptive only — no investment advice. "What to watch" items must be in the future.
 
 ## Checklist before delivering
-- Rendered every slide and looked at it: no clipped or overlapping text, nothing outside the slide or the chart
-  box, no label colliding with ticks or other labels, even spacing, empty areas filled or intentional.
-- Each chart answers its headline; scale starts at zero for bars; legend above for 2+ series; bar order intended;
-  highlighted element is the one the headline names.
+- Rendered every slide and looked at it: no clipped or overlapping text, nothing outside the slide or the chart box,
+  no label colliding with ticks or other labels, even spacing, empty areas filled or intentional.
+- `check_deck.py` reports no problems; every chart slide has a native chart with a workbook (diagram forms: shapes +
+  notes; heatmap / calendar / waffle: native tables).
+- Each chart answers its headline; bars start at zero; legend above for 2+ series; highlighted element is the one
+  the headline names.
 - Numbers in headline/notes match the chart; sources, periods and basis on every data slide; appendix table.
 - Fonts: embedded (PowerPoint) or `fonts/` installed (LibreOffice / Keynote) or `safe_fonts=True`.
