@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Finance agent",
   "as_of": "2026-10-07",
-  "note": "Simulation tab data. Built by tools/build/simulate.py from data/finance.json, economy.json, policy.json, invest_macro.json plus curated, sourced observations in the script (search excerpts 2026-10-06; press/SBV pages are blocked from the sandbox) and three downloads cached here (VN-Index via vnstock VCI; World Bank Pink Sheet gold and EIA Brent via github datasets). Nulls are gaps, never interpolated. The deposit-rate projection is a calibrated scenario model (regressions were not credible; see SIM.model.estimation). Not investment advice."
+  "note": "Simulation tab data. Built by tools/build/simulate.py from data/finance.json, economy.json, policy.json, invest_macro.json plus curated, sourced observations in the script (search excerpts 2026-10-06; press/SBV pages are blocked from the sandbox) and three downloads cached here (VN-Index via vnstock VCI; World Bank Pink Sheet gold and EIA Brent via github datasets). Nulls are gaps, never interpolated. Main deposit-rate model: SIM.model2 / SIM.projection2 (structural monthly VND funding model, partly estimated - see SIM.model2.estimation); v1 calibrated scenario model kept in SIM.model / projection / sliders for comparison. Not investment advice."
  },
  "SIM": {
   "as_of": "2026-10-07",
@@ -84,7 +84,10 @@
     "credit",
     "savings",
     "fiscal",
-    "external"
+    "external",
+    "fx",
+    "sbv",
+    "liquidity"
    ],
    "series": {
     "refi_rate": {
@@ -3608,7 +3611,70 @@
      "source": "derived",
      "url_or_note": "derived from sjc_gold_sell, gold_world_usd, finance.json alternatives.usd",
      "verified": "derived",
-     "derived": true
+     "derived": true,
+     "monthly_2026": {
+      "points": [
+       {
+        "date": "2026-02",
+        "sjc": 184.0,
+        "world_converted": 151.62,
+        "premium_mvnd": 32.38
+       },
+       {
+        "date": "2026-03",
+        "sjc": 174.9,
+        "world_converted": 146.96,
+        "premium_mvnd": 27.94
+       },
+       {
+        "date": "2026-04",
+        "sjc": 166.0,
+        "world_converted": 142.93,
+        "premium_mvnd": 23.07
+       },
+       {
+        "date": "2026-05",
+        "sjc": 159.0,
+        "world_converted": 139.03,
+        "premium_mvnd": 19.97
+       },
+       {
+        "date": "2026-07",
+        "sjc": 141.9,
+        "world_converted": 124.43,
+        "premium_mvnd": 17.47
+       },
+       {
+        "date": "2026-08",
+        "sjc": 148.7,
+        "world_converted": 136.2,
+        "premium_mvnd": 12.5
+       },
+       {
+        "date": "2026-09",
+        "sjc": 144.1,
+        "world_converted": 133.45,
+        "premium_mvnd": 10.65
+       }
+      ],
+      "press_quotes": [
+       {
+        "date": "2026-08-28",
+        "value": 3.0,
+        "basis": "SJC sell vs world spot at bank USD rate",
+        "url": "https://theleader.vn/gia-vang-hom-nay-28-8-2026-ap-luc-chot-loi-keo-vang-roi-moc-4600-usd-d47484.html",
+        "note": "'giá bán ra trong nước cao hơn 3 triệu đồng/lượng', record-low gap"
+       },
+       {
+        "date": "2026-09-19",
+        "value": 9.3,
+        "basis": "SJC sell 147.6 vs world ~4,378 USD/oz converted ~138.3",
+        "url": "https://baolaocai.vn/gia-vang-hom-nay-209-thi-truong-tam-lang-truoc-tuan-giao-dich-moi-post909869.html",
+        "note": "search excerpt 2026-10-07; exact article within the result set not pinned"
+       }
+      ],
+      "note": "SJC month-end sell − world monthly AVERAGE × month-end central rate (approximate; same convention as the year-end points). Press quotes use spot world prices and bank USD rates and are lower (conflict of conventions, not of data)."
+     }
     },
     "margin_lending": {
      "label_vi": "Dư nợ cho vay ký quỹ (CTCK)",
@@ -5425,7 +5491,2971 @@
      "source": "data/policy.json POLICY.mon.instruments[credit_growth_target]",
      "url_or_note": "see policy.json history URLs",
      "verified": "Policy tab"
+    },
+    "fdi_disbursed_m": {
+     "label_vi": "FDI giải ngân (theo tháng)",
+     "label_en": "FDI disbursed, monthly",
+     "unit": "USD bn per month",
+     "freq": "monthly",
+     "group": "fx",
+     "values": [
+      1.645,
+      1.645,
+      1.645,
+      1.645,
+      1.645,
+      1.645,
+      1.645,
+      1.645,
+      1.645,
+      1.645,
+      1.645,
+      1.645,
+      1.866,
+      1.866,
+      1.866,
+      1.866,
+      1.866,
+      1.866,
+      1.866,
+      1.866,
+      1.866,
+      1.866,
+      1.866,
+      1.866,
+      1.932,
+      1.932,
+      1.932,
+      1.932,
+      1.932,
+      1.932,
+      1.932,
+      1.932,
+      1.932,
+      1.932,
+      1.932,
+      1.932,
+      2.113,
+      2.113,
+      2.113,
+      2.113,
+      2.113,
+      2.113,
+      2.113,
+      2.113,
+      2.113,
+      2.113,
+      2.113,
+      2.113,
+      1.51,
+      1.44,
+      1.983,
+      1.983,
+      1.983,
+      2.35,
+      2.35,
+      1.8,
+      3.4,
+      2.5,
+      2.3,
+      4.02,
+      1.68,
+      1.53,
+      2.2,
+      1.99,
+      2.35,
+      3.28,
+      2.17,
+      2.05,
+      3.82
+     ],
+     "definition": "NSO 'vốn FDI thực hiện' (disbursed, an estimate revised next month). 2025-2026: differences of the cumulative-from-January figures (interval averages where an intermediate cumulative was not found, see 'basis'); 2021-2024: annual total / 12. Not BoP FDI (~80% of NSO disbursement).",
+     "source": "NSO monthly socio-economic reports via press; annual from data/economy.json ECON_OFFICIAL.fdi_dis_musd",
+     "url_or_note": "per point in 'cumulative'",
+     "verified": "search excerpts 2026-10-07",
+     "basis": [
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "cum_diff",
+      "cum_diff",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "interval_avg_2m",
+      "interval_avg_2m",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff"
+     ],
+     "cumulative": [
+      {
+       "month": "2025-01",
+       "value": 1.51,
+       "url": "https://thitruongtaichinhtiente.vn/viet-nam-thu-hut-hon-4-3-ty-usd-von-fdi-trong-thang-dau-nam-2025-65571.html"
+      },
+      {
+       "month": "2025-02",
+       "value": 2.95,
+       "url": "https://vneconomy.vn/vietnam-attracts-nearly-7-bln-in-fdi-in-first-two-months.htm"
+      },
+      {
+       "month": "2025-05",
+       "value": 8.9,
+       "url": "https://thesaigontimes.vn/saigontimes/giai-ngan-von-fdi-5-thang-dat-89-ti-do-la-cao-nhat-5-nam-qua/"
+      },
+      {
+       "month": "2025-07",
+       "value": 13.6,
+       "url": "https://doanhnhan.baophapluat.vn/von-fdi-thuc-hien-cao-nhat-cua-7-thang-trong-5-nam-qua-85116.html"
+      },
+      {
+       "month": "2025-08",
+       "value": 15.4,
+       "url": "https://vnbusiness.vn/kinh-te-8-thang-fdi-thuc-hien-cao-nhat-trong-5-nam-hon-209-nghin-doanh-nghiep-thanh-lap-moi.html"
+      },
+      {
+       "month": "2025-09",
+       "value": 18.8,
+       "url": "https://thitruongtaichinhtiente.vn/von-fdi-thuc-hien-9-thang-nam-2025-dat-muc-cao-nhat-trong-5-nam-qua-70916.html"
+      },
+      {
+       "month": "2025-10",
+       "value": 21.3,
+       "url": "https://doanhnhan.baophapluat.vn/kinh-te-10-thang-2025-fdi-thuc-hien-cao-nhat-5-nam-iip-tang-92-chi-ngan-sach-tang-471-88465.html"
+      },
+      {
+       "month": "2025-11",
+       "value": 23.6,
+       "url": "https://thitruongtaichinhtiente.vn/von-fdi-thuc-hien-9-thang-nam-2025-dat-muc-cao-nhat-trong-5-nam-qua-70916.html"
+      },
+      {
+       "month": "2025-12",
+       "value": 27.62,
+       "url": "data/economy.json ECON_OFFICIAL.fdi_dis_musd"
+      },
+      {
+       "month": "2026-01",
+       "value": 1.68,
+       "url": "https://baolaocai.vn/fdi-tang-toc-dau-nam-thang-12026-ghi-nhan-muc-giai-ngan-ky-luc-trong-5-nam-post893792.html"
+      },
+      {
+       "month": "2026-02",
+       "value": 3.21,
+       "url": "https://tapchikinhtetaichinh.vn/von-fdi-giai-ngan-2-thang-dau-nam-tiep-tuc-lap-dinh-cao-nhat-trong-5-nam-qua-150206.html"
+      },
+      {
+       "month": "2026-03",
+       "value": 5.41,
+       "url": "https://thitruongtaichinhtiente.vn/von-fdi-thuc-hien-quy-i-2026-lap-dinh-5-nam-dau-tu-ra-nuoc-ngoai-tiep-da-but-pha-80895.html"
+      },
+      {
+       "month": "2026-04",
+       "value": 7.4,
+       "url": "https://thanhtra.com.vn/dau-tu-72A9E3223/fdi-thuc-hien-4-thang-dau-nam-2026-dat-74-ty-usd-tang-98-49ad30925.html"
+      },
+      {
+       "month": "2026-05",
+       "value": 9.75,
+       "url": "https://tapchikinhtetaichinh.vn/von-dau-tu-nuoc-ngoai-thuc-hien-5-thang-giu-da-tang-truong-manh-tiep-tuc-dan-dau-trong-5-nam-157937.html"
+      },
+      {
+       "month": "2026-06",
+       "value": 13.03,
+       "url": "https://thoibaotaichinhvietnam.vn/von-fdi-thuc-hien-6-thang-dau-nam-cao-nhat-trong-5-nam-qua-200091.html"
+      },
+      {
+       "month": "2026-07",
+       "value": 15.2,
+       "url": "https://mekongasean.vn/von-fdi-thuc-hien-tai-viet-nam-7-thang-dat-152-ty-usd-58025.html"
+      },
+      {
+       "month": "2026-08",
+       "value": 17.25,
+       "url": "https://thitruongtaichinhtiente.vn/8-thang-nam-2026-von-dau-tu-cong-tang-18-5-fdi-thuc-hien-dat-17-25-ty-usd-85291.html"
+      },
+      {
+       "month": "2026-09",
+       "value": 21.07,
+       "url": "data/economy.json ECON_OFFICIAL.ytd_2026.fdi_dis_musd_9M"
+      }
+     ],
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "remittances_bop_m": {
+     "label_vi": "Kiều hối & chuyển giao vãng lai (BoP)",
+     "label_en": "Remittances & current transfers (BoP secondary income, credit)",
+     "unit": "USD bn per month",
+     "freq": "monthly",
+     "group": "fx",
+     "values": [
+      1.131,
+      1.131,
+      1.131,
+      1.131,
+      1.131,
+      1.131,
+      1.131,
+      1.131,
+      1.131,
+      1.131,
+      1.131,
+      1.131,
+      1.024,
+      1.024,
+      1.024,
+      1.024,
+      1.024,
+      1.024,
+      1.024,
+      1.024,
+      1.024,
+      1.024,
+      1.024,
+      1.024,
+      1.343,
+      1.343,
+      1.343,
+      1.343,
+      1.343,
+      1.343,
+      1.343,
+      1.343,
+      1.343,
+      1.343,
+      1.343,
+      1.343,
+      1.427,
+      1.427,
+      1.427,
+      1.427,
+      1.427,
+      1.427,
+      1.427,
+      1.427,
+      1.427,
+      1.427,
+      1.427,
+      1.427,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647,
+      1.647
+     ],
+     "definition": "BoP secondary income, credit (all current transfers incl. remittances) / 12 per year (one definition 2015-2025). 2026: no national figure - model carries the 2025 average (flagged in 'basis'). SBV channel-based kiều hối kept separately in 'sbv_kieu_hoi' (different definition, never merged).",
+     "source": "data/economy.json ECONFLOW.bop.s.secondary_income_in (IMF BPM6 from SBV)",
+     "url_or_note": "see economy.json bop.sources",
+     "verified": "Economy tab",
+     "basis": [
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "assumption: 2025 monthly average carried (no 2026 national figure)",
+      "assumption: 2025 monthly average carried (no 2026 national figure)",
+      "assumption: 2025 monthly average carried (no 2026 national figure)",
+      "assumption: 2025 monthly average carried (no 2026 national figure)",
+      "assumption: 2025 monthly average carried (no 2026 national figure)",
+      "assumption: 2025 monthly average carried (no 2026 national figure)",
+      "assumption: 2025 monthly average carried (no 2026 national figure)",
+      "assumption: 2025 monthly average carried (no 2026 national figure)",
+      "assumption: 2025 monthly average carried (no 2026 national figure)"
+     ],
+     "sbv_kieu_hoi": [
+      {
+       "period": "2021",
+       "value": 12.5,
+       "url": null,
+       "note": "per data/economy.json (origin not re-verified)"
+      },
+      {
+       "period": "2023",
+       "value": 16.0,
+       "url": "https://vnexpress.net/kieu-hoi-ve-viet-nam-dat-ky-luc-16-ty-usd-4706903.html"
+      },
+      {
+       "period": "2024",
+       "value": 16.0,
+       "url": "https://vnexpress.net/khoang-16-ty-usd-kieu-hoi-ve-viet-nam-trong-nam-2024-4832487.html"
+      },
+      {
+       "period": "2025",
+       "value": 18.0,
+       "url": "https://baophapluat.vn/kieu-hoi-nam-2025-dat-muc-ky-luc-gan-18-ty-usd.html",
+       "note": "'gần 18 tỷ USD' (search excerpt 2026-10-07). CONFLICT/new: data/economy.json leaves 2025 null with only 'over 16 bn' (Foreign Minister) - Economy owns this series"
+      },
+      {
+       "period": "2026-H1 (HCMC only)",
+       "value": 4.037,
+       "url": "https://vneconomy.vn/kieu-hoi-ve-tp-ho-chi-minh-hon-4-ty-usd-trong-6-thang-dau-nam-2026.htm",
+       "note": "HCMC, -22.8% y/y; no national 2026 figure"
+      }
+     ],
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "tourism_receipts_m": {
+     "label_vi": "Thu từ khách quốc tế (du lịch)",
+     "label_en": "International travel receipts",
+     "unit": "USD bn per month",
+     "freq": "monthly",
+     "group": "fx",
+     "values": [
+      0.012,
+      0.012,
+      0.012,
+      0.012,
+      0.012,
+      0.012,
+      0.012,
+      0.012,
+      0.012,
+      0.012,
+      0.012,
+      0.012,
+      0.267,
+      0.267,
+      0.267,
+      0.267,
+      0.267,
+      0.267,
+      0.267,
+      0.267,
+      0.267,
+      0.267,
+      0.267,
+      0.267,
+      0.763,
+      0.763,
+      0.763,
+      0.763,
+      0.763,
+      0.763,
+      0.763,
+      0.763,
+      0.763,
+      0.763,
+      0.763,
+      0.763,
+      1.019,
+      1.019,
+      1.019,
+      1.019,
+      1.019,
+      1.019,
+      1.019,
+      1.019,
+      1.019,
+      1.019,
+      1.019,
+      1.019,
+      1.268,
+      1.268,
+      1.268,
+      1.268,
+      1.268,
+      1.268,
+      1.268,
+      1.268,
+      1.268,
+      1.268,
+      1.268,
+      1.268,
+      1.451,
+      1.451,
+      1.451,
+      1.451,
+      1.451,
+      1.451,
+      1.451,
+      1.451,
+      1.451
+     ],
+     "definition": "BoP travel credit / 12 per year (2021-2025); 2026: NSO 9M-2026 service-export travel receipts 13.06 bn / 9. Monthly arrivals are not used to shape months.",
+     "source": "data/economy.json ECONFLOW.tour.travel_receipts_busd",
+     "url_or_note": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+     "verified": "Economy tab",
+     "basis": [
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "9M_even (NSO 9M-2026 service exports)",
+      "9M_even (NSO 9M-2026 service exports)",
+      "9M_even (NSO 9M-2026 service exports)",
+      "9M_even (NSO 9M-2026 service exports)",
+      "9M_even (NSO 9M-2026 service exports)",
+      "9M_even (NSO 9M-2026 service exports)",
+      "9M_even (NSO 9M-2026 service exports)",
+      "9M_even (NSO 9M-2026 service exports)",
+      "9M_even (NSO 9M-2026 service exports)"
+     ],
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "trade_balance_m": {
+     "label_vi": "Cán cân thương mại hàng hóa",
+     "label_en": "Goods trade balance",
+     "unit": "USD bn per month",
+     "freq": "monthly",
+     "group": "fx",
+     "values": [
+      0.266,
+      0.266,
+      0.266,
+      0.266,
+      0.266,
+      0.266,
+      0.266,
+      0.266,
+      0.266,
+      0.266,
+      0.266,
+      0.266,
+      0.995,
+      0.995,
+      0.995,
+      0.995,
+      0.995,
+      0.995,
+      0.995,
+      0.995,
+      0.995,
+      0.995,
+      0.995,
+      0.995,
+      2.343,
+      2.343,
+      2.343,
+      2.343,
+      2.343,
+      2.343,
+      2.343,
+      2.343,
+      2.343,
+      2.343,
+      2.343,
+      2.343,
+      2.053,
+      2.053,
+      2.053,
+      2.053,
+      2.053,
+      2.053,
+      2.053,
+      2.053,
+      2.053,
+      2.053,
+      2.053,
+      2.053,
+      1.053,
+      1.053,
+      1.053,
+      0.63,
+      0.88,
+      2.96,
+      2.55,
+      3.81,
+      2.83,
+      2.74,
+      0.235,
+      0.235,
+      -1.78,
+      -1.17,
+      -0.69,
+      -3.46,
+      -4.775,
+      -4.775,
+      -3.87,
+      0.06,
+      1.04
+     ],
+     "definition": "Customs/NSO goods balance (+ = surplus). 2025-2026: differences of cumulative-from-January balances (interval averages where a cumulative was not found); 2021-2024: annual (export − import, data/economy.json) / 12. Customs basis, not the BoP goods balance (2025: 20.0 vs 41.9 bn).",
+     "source": "Customs/NSO via press; data/economy.json ECON_OFFICIAL export/import",
+     "url_or_note": "per point in 'cumulative'",
+     "verified": "search excerpts 2026-10-07",
+     "basis": [
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "interval_avg_2m",
+      "interval_avg_2m",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "interval_avg_2m",
+      "interval_avg_2m",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff"
+     ],
+     "cumulative": [
+      {
+       "month": "2025-03",
+       "value": 3.16,
+       "url": "https://baodauthau.vn/quy-i2025-tong-kim-ngach-xuat-nhap-khau-uoc-dat-hon-202-ty-usd-post176838.html"
+      },
+      {
+       "month": "2025-04",
+       "value": 3.79,
+       "url": "https://cafeland.vn/tin-tuc/xuat-nhap-khau-4-thang-2025-duy-tri-da-tang-xuat-sieu-379-ty-usd-137912.html"
+      },
+      {
+       "month": "2025-05",
+       "value": 4.67,
+       "url": "https://baodauthau.vn/5-thang-dau-nam-2025-can-can-thuong-mai-hang-hoa-xuat-sieu-467-ty-usd-post180012.html"
+      },
+      {
+       "month": "2025-06",
+       "value": 7.63,
+       "url": "https://baodauthau.vn/xuat-sieu-uoc-dat-763-ty-usd-trong-nua-dau-nam-2025-post181191.html"
+      },
+      {
+       "month": "2025-07",
+       "value": 10.18,
+       "url": "https://baodauthau.vn/7-thang-nam-2025-viet-nam-xuat-sieu-1018-ty-usd-post182845.html"
+      },
+      {
+       "month": "2025-08",
+       "value": 13.99,
+       "url": "https://www.tinnhanhchungkhoan.vn/can-can-thuong-mai-hang-hoa-xuat-sieu-1399-ty-usd-trong-8-thang-post376106.html"
+      },
+      {
+       "month": "2025-09",
+       "value": 16.82,
+       "url": "https://vov.vn/kinh-te/9-thang-viet-nam-xuat-sieu-1682-ty-usd-post1235705.vov"
+      },
+      {
+       "month": "2025-10",
+       "value": 19.56,
+       "url": "https://vneconomy.vn/xuat-sieu-gan-20-ty-usd-thu-ngan-sach-nganh-hai-quan-10-thang-vuot-moc-379000-ty-dong.htm"
+      },
+      {
+       "month": "2025-12",
+       "value": 20.03,
+       "url": "https://baodauthau.vn/infographic-nam-2025-ca-nuoc-xuat-sieu-2003-ty-usd-post191866.html"
+      },
+      {
+       "month": "2026-01",
+       "value": -1.78,
+       "url": "https://baodauthau.vn/thang-12026-can-can-thuong-mai-hang-hoa-nhap-sieu-178-ty-usd-post193707.html"
+      },
+      {
+       "month": "2026-02",
+       "value": -2.95,
+       "url": "https://baomoi.com/cuc-hai-quan-het-2-thang-nam-2026-ca-nuoc-nhap-sieu-295-ti-usd-c54648473.epi"
+      },
+      {
+       "month": "2026-03",
+       "value": -3.64,
+       "url": "https://baodauthau.vn/quy-i2026-can-can-thuong-mai-hang-hoa-nhap-sieu-364-ty-usd-post196540.html"
+      },
+      {
+       "month": "2026-04",
+       "value": -7.1,
+       "url": "https://vietnamfinance.vn/viet-nam-nhap-sieu-hon-7-ty-usd-sau-4-thang-nam-2026-d144298.html"
+      },
+      {
+       "month": "2026-06",
+       "value": -16.65,
+       "url": "https://vneconomy.vn/xuat-nhap-khau-6-thang-dau-nam-tang-manh-ca-nuoc-nhap-sieu-1665-ty-usd.htm"
+      },
+      {
+       "month": "2026-07",
+       "value": -20.52,
+       "url": "https://baodauthau.vn/7-thang-nam-2026-ca-nuoc-nhap-sieu-2052-ty-usd-post204196.html"
+      },
+      {
+       "month": "2026-08",
+       "value": -20.46,
+       "url": "https://baodauthau.vn/8-thang-nam-2026-ca-nuoc-nhap-sieu-2046-ty-usd-post206269.html"
+      },
+      {
+       "month": "2026-09",
+       "value": -19.42,
+       "url": "data/economy.json ECON_OFFICIAL.ytd_2026.trade_balance_busd_9M"
+      }
+     ],
+     "conflicts": [
+      "Jan-Feb 2025 cumulative balance not found: Jan-Mar 2025 months are a 3-month interval average of the Q1 surplus.",
+      "2M-2026: customs 2.95 bn deficit used; NSO quotes 2.96-2.98.",
+      "Sep-2026: 9M (−19.42) minus 8M (−20.46) gives +1.04 bn; the same NSO release states the September surplus as +1.27 bn (8M revised). Cumulatives used as published."
+     ],
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "income_outflow_m": {
+     "label_vi": "Chuyển lợi nhuận/thu nhập ra nước ngoài (ròng)",
+     "label_en": "Net primary-income outflow (profit & interest repatriation)",
+     "unit": "USD bn per month",
+     "freq": "monthly",
+     "group": "fx",
+     "values": [
+      1.396,
+      1.396,
+      1.396,
+      1.396,
+      1.396,
+      1.396,
+      1.396,
+      1.396,
+      1.396,
+      1.396,
+      1.396,
+      1.396,
+      1.644,
+      1.644,
+      1.644,
+      1.644,
+      1.644,
+      1.644,
+      1.644,
+      1.644,
+      1.644,
+      1.644,
+      1.644,
+      1.644,
+      1.872,
+      1.872,
+      1.872,
+      1.872,
+      1.872,
+      1.872,
+      1.872,
+      1.872,
+      1.872,
+      1.872,
+      1.872,
+      1.872,
+      1.308,
+      1.308,
+      1.308,
+      1.308,
+      1.308,
+      1.308,
+      1.308,
+      1.308,
+      1.308,
+      1.308,
+      1.308,
+      1.308,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2
+     ],
+     "definition": "−(BoP primary income credit − debit) / 12 per year; positive = net outflow. 2026: 2025 average carried (assumption; SBV Q1-2026 reports only investment income net −1.23 bn, a narrower concept).",
+     "source": "data/economy.json ECONFLOW.bop.s.primary_income_in/out",
+     "url_or_note": "see economy.json bop.sources",
+     "verified": "Economy tab",
+     "basis": [
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "assumption: 2025 monthly average carried",
+      "assumption: 2025 monthly average carried",
+      "assumption: 2025 monthly average carried",
+      "assumption: 2025 monthly average carried",
+      "assumption: 2025 monthly average carried",
+      "assumption: 2025 monthly average carried",
+      "assumption: 2025 monthly average carried",
+      "assumption: 2025 monthly average carried",
+      "assumption: 2025 monthly average carried"
+     ],
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "fx_net_inflow_vnd_m": {
+     "label_vi": "Dòng ngoại tệ ròng quy VND (mô hình)",
+     "label_en": "Net FX inflow in VND (model input)",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "fx",
+     "values": [
+      38.416,
+      38.416,
+      38.416,
+      38.416,
+      38.416,
+      38.416,
+      38.416,
+      38.416,
+      38.416,
+      38.416,
+      38.416,
+      38.392,
+      58.359,
+      58.359,
+      58.359,
+      58.359,
+      58.359,
+      58.359,
+      58.359,
+      58.359,
+      58.359,
+      58.359,
+      58.359,
+      59.214,
+      107.249,
+      107.249,
+      107.249,
+      107.249,
+      107.249,
+      107.249,
+      107.249,
+      107.249,
+      107.249,
+      107.249,
+      107.249,
+      107.604,
+      128.158,
+      128.158,
+      128.158,
+      128.158,
+      128.158,
+      128.158,
+      128.158,
+      128.158,
+      128.158,
+      128.572,
+      128.615,
+      129.06,
+      104.085,
+      104.07,
+      118.032,
+      108.032,
+      114.372,
+      176.005,
+      166.977,
+      184.898,
+      200.125,
+      174.536,
+      106.923,
+      149.987,
+      45.092,
+      56.574,
+      85.557,
+      10.757,
+      -13.239,
+      10.167,
+      5.026,
+      102.654,
+      173.197
+     ],
+     "definition": "Derived: (FDI disbursed + remittances (BoP) + travel receipts + goods balance − net primary-income outflow) × USD/VND (month central rate from Oct-2024, annual average rate before) / 1000.",
+     "source": "derived",
+     "url_or_note": "derived",
+     "verified": "derived",
+     "derived": true,
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "budget_revenue_m": {
+     "label_vi": "Thu NSNN theo tháng",
+     "label_en": "State budget revenue, monthly",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "fiscal",
+     "values": [
+      132.618,
+      132.618,
+      132.618,
+      132.618,
+      132.618,
+      132.618,
+      132.618,
+      132.618,
+      132.618,
+      132.618,
+      132.618,
+      132.618,
+      151.692,
+      151.692,
+      151.692,
+      151.692,
+      151.692,
+      151.692,
+      151.692,
+      151.692,
+      151.692,
+      151.692,
+      151.692,
+      151.692,
+      147.565,
+      147.565,
+      147.565,
+      147.565,
+      147.565,
+      147.565,
+      147.565,
+      147.565,
+      147.565,
+      147.565,
+      147.565,
+      147.565,
+      171.462,
+      171.462,
+      171.462,
+      171.462,
+      171.462,
+      171.462,
+      171.462,
+      171.462,
+      171.462,
+      171.462,
+      171.462,
+      171.462,
+      276.6,
+      223.2,
+      221.5,
+      222.8,
+      195.5,
+      190.4,
+      242.3,
+      167.7,
+      161.6,
+      243.4,
+      252.7,
+      252.4,
+      370.7,
+      230.6,
+      228.1,
+      284.6,
+      225.7,
+      228.5,
+      264.8,
+      190.8,
+      163.5
+     ],
+     "definition": "MoF cash-basis execution: differences of cumulative estimates 2025-2026 (interval averages where a cumulative was not found); 2021-2024 final accounts / 12 (different basis: includes carry-overs). Cumulative points with URLs in 'cumulative'.",
+     "source": "Ministry of Finance via press; data/economy.json",
+     "url_or_note": "per point",
+     "verified": "search excerpts 2026-10-07",
+     "basis": [
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff"
+     ],
+     "cumulative": [
+      {
+       "month": "2025-01",
+       "rev": 276.6,
+       "exp": 134.4,
+       "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-chi-ngan-sach-nha-nuoc-thang-12025-169885.html"
+      },
+      {
+       "month": "2025-02",
+       "rev": 499.8,
+       "url": "https://baodauthau.vn/thu-ngan-sach-nha-nuoc-2-thang-dau-nam-2025-dat-tren-254-du-toan-post175639.html",
+       "note": "2M spending not found: Feb-Mar flows are a 2-month interval average"
+      },
+      {
+       "month": "2025-03",
+       "rev": 721.3,
+       "exp": 428.2,
+       "dev": 78.7,
+       "url": "https://thitruongtaichinhtiente.vn/quy-i-2025-ngan-sach-nha-nuoc-thang-du-293-nghin-ty-dong-67154.html"
+      },
+      {
+       "month": "2025-04",
+       "rev": 944.1,
+       "exp": 595.4,
+       "url": "https://nhandan.vn/thu-ngan-sach-nha-nuoc-tang-hon-26-trong-4-thang-dau-nam-post877837.html"
+      },
+      {
+       "month": "2025-05",
+       "rev": 1139.6,
+       "exp": 833.8,
+       "dev": 199.3,
+       "url": "https://thitruongtaichinhtiente.vn/5-thang-dau-nam-ngan-sach-nha-nuoc-boi-thu-hon-305-nghin-ty-dong-68216.html"
+      },
+      {
+       "month": "2025-06",
+       "rev": 1330.0,
+       "exp": 1100.0,
+       "dev": 268.1,
+       "approx": true,
+       "url": "https://mekongasean.vn/nua-dau-nam-2025-tong-thu-nsnn-tang-283-dat-khoang-133-trieu-ty-dong-43434.html",
+       "note": "rounded: revenue 'khoảng 1,33 triệu tỷ', spending '1,1 triệu tỷ'"
+      },
+      {
+       "month": "2025-07",
+       "rev": 1572.3,
+       "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-ngan-sach-nha-nuoc-7-thang-uoc-dat-1572300-ty-do-ng-181322.html",
+       "note": "7M spending not found: Jul-Aug flows are a 2-month interval average"
+      },
+      {
+       "month": "2025-08",
+       "rev": 1740.0,
+       "bal": 289.7,
+       "approx": true,
+       "url": "https://vneconomy.vn/chi-thuong-xuyen-gap-24-lan-chi-dau-tu-phat-trien-trong-8-thang.htm",
+       "note": "revenue 'gần 1.740 nghìn tỷ'; surplus 289.7 tn as stated (spending not stated)"
+      },
+      {
+       "month": "2025-09",
+       "rev": 1901.6,
+       "exp": 1591.3,
+       "url": "https://thitruongtaichinhtiente.vn/9-thang-nam-2025-thu-ngan-sach-nha-nuoc-dat-96-7-du-toan-ca-nam-70887.html",
+       "note": "CONFLICT: another excerpt gives 9M spending ~1,625 tn (63.1% of plan, +30.6%); 1,591.3 (61.7%) used; revenue also quoted as 'gần 1.888' in an earlier release"
+      },
+      {
+       "month": "2025-10",
+       "rev": 2145.0,
+       "exp": 1830.8,
+       "dev": 486.1,
+       "url": "https://doanhnhan.baophapluat.vn/kinh-te-10-thang-2025-fdi-thuc-hien-cao-nhat-5-nam-iip-tang-92-chi-ngan-sach-tang-471-88465.html"
+      },
+      {
+       "month": "2025-11",
+       "rev": 2397.7,
+       "exp": 2049.7,
+       "dev": 553.3,
+       "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-ngan-sach-nha-nuoc-11-thang-uoc-dat-2397700-ty-do-ng-188622.html"
+      },
+      {
+       "month": "2025-12",
+       "rev": 2650.1,
+       "exp": 2401.5,
+       "dev": 732.0,
+       "url": "data/economy.json ECONFLOW.budget.mof_execution_2025_jan2026"
+      },
+      {
+       "month": "2026-01",
+       "rev": 370.7,
+       "exp": 163.0,
+       "url": "https://mekongasean.vn/thu-ngan-sach-nha-nuoc-thang-12026-uoc-dat-3707-nghin-ty-dong-51682.html"
+      },
+      {
+       "month": "2026-02",
+       "rev": 601.3,
+       "exp": 311.0,
+       "url": "https://thoibaotaichinhvietnam.vn/thu-ngan-sach-2-thang-dat-238-du-toan-192621.html"
+      },
+      {
+       "month": "2026-03",
+       "rev": 829.4,
+       "exp": 530.1,
+       "dev": 116.1,
+       "url": "https://daibieunhandan.vn/thu-ngan-sach-nha-nuoc-quy-i-2026-dat-hon-829-nghin-ty-dong-10412177.html",
+       "note": "CONFLICT: an earlier release quotes Q1 revenue ~820 tn (thoibaotaichinhvietnam); 829.4 used (later estimate)"
+      },
+      {
+       "month": "2026-04",
+       "rev": 1114.0,
+       "exp": 668.2,
+       "dev": 153.2,
+       "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-chi-ngan-sach-nha-nuoc-4-thang-dau-nam-2026-196849.html",
+       "note": "CONFLICT: another excerpt cites development spending 191.1 tn for 4M; 153.2 (MoF infographic) used"
+      },
+      {
+       "month": "2026-05",
+       "rev": 1339.7,
+       "exp": 845.4,
+       "url": "https://thitruongtaichinhtiente.vn/5-thang-dau-nam-2026-thu-ngan-sach-nha-nuoc-dat-53-du-toan-tang-15-4-so-voi-cung-ky-83359.html"
+      },
+      {
+       "month": "2026-06",
+       "rev": 1568.2,
+       "exp": 1149.1,
+       "url": "https://mekongasean.vn/thu-ngan-sach-6-thang-dat-62-du-toan-nam-2026-56934.html"
+      },
+      {
+       "month": "2026-07",
+       "rev": 1833.0,
+       "exp": 1364.3,
+       "dev": 418.9,
+       "url": "https://www.vietnamplus.vn/thu-ngan-sach-trong-bay-thang-dat-tren-1834-nghin-ty-dong-bang-725-du-toan-post1127807.vnp"
+      },
+      {
+       "month": "2026-08",
+       "rev": 2023.8,
+       "exp": 1608.3,
+       "dev": 514.6,
+       "url": "https://www.vietnamplus.vn/thu-ngan-sach-nha-nuoc-8-thang-uoc-dat-80-du-toan-post1133887.vnp"
+      },
+      {
+       "month": "2026-09",
+       "rev": 2187.3,
+       "exp": 1873.7,
+       "dev": 657.5,
+       "url": "data/economy.json ECONFLOW.budget.exec_9M2026"
+      }
+     ],
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "budget_spending_m": {
+     "label_vi": "Chi NSNN theo tháng",
+     "label_en": "State budget spending, monthly",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "fiscal",
+     "values": [
+      142.341,
+      142.341,
+      142.341,
+      142.341,
+      142.341,
+      142.341,
+      142.341,
+      142.341,
+      142.341,
+      142.341,
+      142.341,
+      142.341,
+      145.899,
+      145.899,
+      145.899,
+      145.899,
+      145.899,
+      145.899,
+      145.899,
+      145.899,
+      145.899,
+      145.899,
+      145.899,
+      145.899,
+      161.409,
+      161.409,
+      161.409,
+      161.409,
+      161.409,
+      161.409,
+      161.409,
+      161.409,
+      161.409,
+      161.409,
+      161.409,
+      161.409,
+      179.04,
+      179.04,
+      179.04,
+      179.04,
+      179.04,
+      179.04,
+      179.04,
+      179.04,
+      179.04,
+      179.04,
+      179.04,
+      179.04,
+      134.4,
+      146.9,
+      146.9,
+      167.2,
+      238.4,
+      266.2,
+      163.767,
+      163.767,
+      163.767,
+      239.5,
+      218.9,
+      351.8,
+      163.0,
+      148.0,
+      219.1,
+      138.1,
+      177.2,
+      303.7,
+      215.2,
+      244.0,
+      265.4
+     ],
+     "definition": "As budget_revenue_m. 2-month gaps (Feb-Mar and Jul-Aug 2025) where the cumulative spending was not found are null here; the fiscal injection for those months uses the stated balances (interval average).",
+     "source": "Ministry of Finance via press",
+     "url_or_note": "see budget_revenue_m.cumulative",
+     "verified": "search excerpts 2026-10-07",
+     "basis": [
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "cum_diff",
+      "interval_avg_2m",
+      "interval_avg_2m",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff"
+     ],
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "dev_investment_m": {
+     "label_vi": "Chi đầu tư phát triển theo tháng",
+     "label_en": "Development-investment spending, monthly",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "fiscal",
+     "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      26.233,
+      26.233,
+      26.233,
+      60.3,
+      60.3,
+      68.8,
+      54.5,
+      54.5,
+      54.5,
+      54.5,
+      67.2,
+      178.7,
+      38.7,
+      38.7,
+      38.7,
+      37.1,
+      88.567,
+      88.567,
+      88.567,
+      95.7,
+      142.9
+     ],
+     "definition": "MoF development-investment spending (part of budget spending), differences/interval averages of cumulative estimates; null where not found. Not the public-investment disbursement rate (different scope).",
+     "source": "Ministry of Finance via press",
+     "url_or_note": "see budget_revenue_m.cumulative",
+     "verified": "search excerpts 2026-10-07",
+     "basis": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "interval_avg_2m",
+      "interval_avg_2m",
+      "cum_diff",
+      "interval_avg_4m",
+      "interval_avg_4m",
+      "interval_avg_4m",
+      "interval_avg_4m",
+      "cum_diff",
+      "cum_diff",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "cum_diff",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "interval_avg_3m",
+      "cum_diff",
+      "cum_diff"
+     ],
+     "coverage": {
+      "n": 21,
+      "first": "2025-01",
+      "last": "2026-09"
+     }
+    },
+    "fiscal_net_injection_m": {
+     "label_vi": "Bơm ròng từ ngân sách (chi − thu)",
+     "label_en": "Fiscal net injection (spending − revenue)",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "fiscal",
+     "values": [
+      9.723,
+      9.723,
+      9.723,
+      9.723,
+      9.723,
+      9.723,
+      9.723,
+      9.723,
+      9.723,
+      9.723,
+      9.723,
+      9.723,
+      -5.793,
+      -5.793,
+      -5.793,
+      -5.793,
+      -5.793,
+      -5.793,
+      -5.793,
+      -5.793,
+      -5.793,
+      -5.793,
+      -5.793,
+      -5.793,
+      13.845,
+      13.845,
+      13.845,
+      13.845,
+      13.845,
+      13.845,
+      13.845,
+      13.845,
+      13.845,
+      13.845,
+      13.845,
+      13.845,
+      7.578,
+      7.578,
+      7.578,
+      7.578,
+      7.578,
+      7.578,
+      7.578,
+      7.578,
+      7.578,
+      7.578,
+      7.578,
+      7.578,
+      -142.2,
+      -75.45,
+      -75.45,
+      -55.6,
+      42.9,
+      75.8,
+      -29.85,
+      -29.85,
+      -20.6,
+      -3.9,
+      -33.8,
+      99.4,
+      -207.7,
+      -82.6,
+      -9.0,
+      -146.5,
+      -48.5,
+      75.2,
+      -49.6,
+      53.2,
+      101.9
+     ],
+     "definition": "Spending minus revenue in the month (negative = budget surplus, money moving from customer deposits to State Treasury accounts). 2025-2026 from MoF cumulative balances; 2021-2024 annual / 12.",
+     "source": "derived from MoF execution",
+     "url_or_note": "see budget_revenue_m.cumulative",
+     "verified": "derived",
+     "basis": [
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "annual_even (final accounts)",
+      "cum_diff",
+      "interval_avg_2m",
+      "interval_avg_2m",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff (approx. cumulative)",
+      "interval_avg_2m",
+      "interval_avg_2m (approx. cumulative)",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff",
+      "cum_diff"
+     ],
+     "land_use_fees_annual": {
+      "years": [
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       "2026 plan"
+      ],
+      "values_tn": [
+       147.8,
+       153.7,
+       173.0,
+       185.1,
+       208.5,
+       153.8,
+       232.9,
+       474.2
+      ],
+      "note": "Land-use fees (thu tiền sử dụng đất), final accounts; 2025 not itemised in MoF releases (null; 'thu từ nhà, đất' 575.5 tn is a broader aggregate); 2026 = National Assembly plan. Monthly land-fee collections are not published nationally.",
+      "source": "data/economy.json ECONFLOW.budget.revenue.land_use_fees"
+     },
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "sbv_omo_net_m": {
+     "label_vi": "NHNN bơm/hút ròng qua OMO và tín phiếu",
+     "label_en": "SBV net injection via OMO repos and bills",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "sbv",
+     "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      -41.5,
+      17.75,
+      11.25,
+      -41.7,
+      17.5,
+      142.5,
+      -11.0,
+      -30.1,
+      55.1,
+      107.0,
+      94.0,
+      -104.0,
+      84.0,
+      -160.0,
+      -29.0,
+      116.0,
+      -102.0,
+      -58.0,
+      65.0,
+      -50.15
+     ],
+     "definition": "Change in (VBMA month-end repo outstanding − SBV bills outstanding); positive = net injection. From Feb-2025 only (finance.json sbv.operations); weekly reports are taken at the last Friday of the month, so month values carry timing noise. Before 2025 null (not in the model's index).",
+     "source": "VBMA weekly bond-market reports via finance.json FINSYS.sbv.operations",
+     "url_or_note": "https://vbma.org.vn",
+     "verified": "per finance.json",
+     "basis": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "VBMA month-end",
+      "VBMA month-end",
+      "VBMA month-end",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end",
+      "VBMA month-end",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)",
+      "VBMA month-end; bills carried at last reported level (0 after 28/7/2025: none reported)"
+     ],
+     "coverage": {
+      "n": 20,
+      "first": "2025-02",
+      "last": "2026-09"
+     }
+    },
+    "sbv_fx_reserves_change_m": {
+     "label_vi": "NHNN mua/bán ngoại tệ (thay đổi dự trữ, quy VND)",
+     "label_en": "SBV FX purchases (+) / sales (−), reserve change in VND",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "sbv",
+     "values": [
+      27.579,
+      27.579,
+      27.579,
+      27.579,
+      27.579,
+      27.579,
+      27.579,
+      27.579,
+      27.579,
+      27.579,
+      27.579,
+      27.562,
+      -44.109,
+      -44.109,
+      -44.109,
+      -44.109,
+      -44.109,
+      -44.109,
+      -44.109,
+      -44.109,
+      -44.109,
+      -44.109,
+      -44.109,
+      -44.755,
+      11.117,
+      11.117,
+      11.117,
+      11.117,
+      11.117,
+      11.117,
+      11.117,
+      11.117,
+      11.117,
+      11.117,
+      11.117,
+      11.153,
+      -18.46,
+      -18.46,
+      -18.46,
+      -18.46,
+      -18.46,
+      -18.46,
+      -18.46,
+      -18.46,
+      -18.46,
+      -18.52,
+      -18.526,
+      -18.59,
+      7.829,
+      7.958,
+      7.993,
+      8.032,
+      8.039,
+      8.063,
+      8.123,
+      8.123,
+      8.106,
+      8.076,
+      8.096,
+      8.085,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "definition": "BoP reserve-asset change × average rate / 12 per year (2021-2025). 2026 not published (SBV will publish net FX purchases with a 3-month lag from 2027): the model sets 0 (flagged). Reserves were ~87.6 bn USD on 18/6/2026 (SBV draft decree) vs 85.6 bn end-2025 (excl. gold).",
+     "source": "data/economy.json ECONFLOW.bop.s.reserves_change",
+     "url_or_note": "https://baodauthau.vn/den-186-du-tru-ngoai-hoi-dat-876-ty-usd-post201374.html",
+     "verified": "Economy tab / search excerpt 2026-10-07",
+     "basis": [
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "annual_even (BoP reserves change)",
+      "assumption: 0 (2026 SBV FX operations not published)",
+      "assumption: 0 (2026 SBV FX operations not published)",
+      "assumption: 0 (2026 SBV FX operations not published)",
+      "assumption: 0 (2026 SBV FX operations not published)",
+      "assumption: 0 (2026 SBV FX operations not published)",
+      "assumption: 0 (2026 SBV FX operations not published)",
+      "assumption: 0 (2026 SBV FX operations not published)",
+      "assumption: 0 (2026 SBV FX operations not published)",
+      "assumption: 0 (2026 SBV FX operations not published)"
+     ],
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "credit_flow_m": {
+     "label_vi": "Tín dụng tăng thêm trong tháng",
+     "label_en": "Credit increase in the month",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "credit",
+     "values": [
+      89.778,
+      89.778,
+      89.778,
+      66.491,
+      66.491,
+      66.491,
+      83.19,
+      83.19,
+      83.19,
+      83.19,
+      224.292,
+      224.292,
+      175.433,
+      175.433,
+      175.433,
+      101.709,
+      101.709,
+      101.709,
+      101.709,
+      101.709,
+      111.995,
+      111.995,
+      111.995,
+      111.995,
+      63.999,
+      63.999,
+      63.999,
+      81.887,
+      81.887,
+      81.887,
+      81.887,
+      81.887,
+      81.887,
+      203.922,
+      203.922,
+      552.14,
+      170.625,
+      170.625,
+      170.625,
+      170.625,
+      170.625,
+      170.625,
+      170.625,
+      170.625,
+      170.625,
+      170.625,
+      170.625,
+      170.625,
+      85.888,
+      33.572,
+      490.921,
+      220.102,
+      218.882,
+      497.696,
+      51.915,
+      240.15,
+      325.577,
+      226.756,
+      240.076,
+      347.317,
+      220.952,
+      26.475,
+      344.467,
+      260.697,
+      256.33,
+      446.56,
+      111.699,
+      237.89,
+      250.0
+     ],
+     "definition": "Change in credit to the economy. 2025-2026: SBV month-end table levels (Aug/Sep-2026 rounded statement levels); 2021-2023: interval averages between dated SBV statements (cut-off mapped to its calendar month), anchored to year-end levels; 2020 & 2024: annual increase / 12. Pre-2022 year-end levels chained back from 2024 with finance.json annual credit growth (derived).",
+     "source": "finance.json FINSYS.monthly / annual; SBV statements (credit_ytd observations)",
+     "url_or_note": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+     "verified": "per finance.json",
+     "basis": [
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "interval_avg_statements",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "annual_even",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "sbv_table_diff",
+      "statement_level_diff (rounded level)",
+      "statement_level_diff (rounded level)"
+     ],
+     "year_end_levels": {
+      "2019": {
+       "value_bn": 8192777,
+       "basis": "derived: chained back from the 2024 level with finance.json annual credit_growth"
+      },
+      "2020": {
+       "value_bn": 9192296,
+       "basis": "derived: chained back from the 2024 level with finance.json annual credit_growth"
+      },
+      "2021": {
+       "value_bn": 10442448,
+       "basis": "derived: chained back from the 2024 level with finance.json annual credit_growth"
+      },
+      "2022": {
+       "value_bn": 11925276,
+       "basis": "stated"
+      },
+      "2023": {
+       "value_bn": 13568579,
+       "basis": "stated"
+      },
+      "2024": {
+       "value_bn": 15616077,
+       "basis": "stated"
+      },
+      "2025": {
+       "value_bn": 18594930,
+       "basis": "stated (SBV table Dec-2025)"
+      }
+     },
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "re_credit_flow_m": {
+     "label_vi": "Tín dụng bất động sản tăng thêm (gồm cho vay mua nhà)",
+     "label_en": "Real-estate credit increase (incl. home loans)",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "credit",
+     "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      107.143,
+      107.143,
+      107.143,
+      107.143,
+      107.143,
+      107.143,
+      107.143,
+      100.0,
+      100.0,
+      100.0,
+      100.0,
+      92.286,
+      92.286,
+      92.286,
+      92.286,
+      92.286,
+      92.286,
+      92.286,
+      null,
+      null,
+      null
+     ],
+     "definition": "Interval averages between SBV total real-estate credit points (business + home purchase/repair; finance.json flows): Dec-2024 3.35, Jul-2025 4.10, Nov-2025 4.50, Jun-2026 5.146 quadrillion VND. Developer ('kinh doanh BĐS', MoC quarterly) outstanding in 're_business_outstanding'.",
+     "source": "SBV via MoC/press (finance.json flows)",
+     "url_or_note": "per point",
+     "verified": "per finance.json / search excerpts 2026-10-07",
+     "basis": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "interval_avg_7m (2024-12->2025-07)",
+      "interval_avg_7m (2024-12->2025-07)",
+      "interval_avg_7m (2024-12->2025-07)",
+      "interval_avg_7m (2024-12->2025-07)",
+      "interval_avg_7m (2024-12->2025-07)",
+      "interval_avg_7m (2024-12->2025-07)",
+      "interval_avg_7m (2024-12->2025-07)",
+      "interval_avg_4m (2025-07->2025-11)",
+      "interval_avg_4m (2025-07->2025-11)",
+      "interval_avg_4m (2025-07->2025-11)",
+      "interval_avg_4m (2025-07->2025-11)",
+      "interval_avg_7m (2025-11->2026-06)",
+      "interval_avg_7m (2025-11->2026-06)",
+      "interval_avg_7m (2025-11->2026-06)",
+      "interval_avg_7m (2025-11->2026-06)",
+      "interval_avg_7m (2025-11->2026-06)",
+      "interval_avg_7m (2025-11->2026-06)",
+      "interval_avg_7m (2025-11->2026-06)",
+      null,
+      null,
+      null
+     ],
+     "points": [
+      {
+       "date": "2024-12",
+       "value_bn": 3350000,
+       "url": "https://vietnambiz.vn/tin-dung-bat-dong-san-tang-gan-35-dat-45-trieu-ty-dong-2026114145657651.htm"
+      },
+      {
+       "date": "2025-07",
+       "value_bn": 4100000,
+       "url": "https://vietnambiz.vn/du-no-tin-dung-bat-dong-san-dat-hon-41-trieu-ty-dong-tang-17-so-voi-cuoi-nam-ngoai-202592372256132.htm"
+      },
+      {
+       "date": "2025-11",
+       "value_bn": 4500000,
+       "url": "https://vietnambiz.vn/tin-dung-bat-dong-san-tang-gan-35-dat-45-trieu-ty-dong-2026114145657651.htm"
+      },
+      {
+       "date": "2026-06",
+       "value_bn": 5146000,
+       "url": "https://cafebiz.vn/cu-4-dong-ngan-hang-cho-vay-thi-1-dong-chay-vao-bat-dong-san-du-no-vuot-5-trieu-ty-dong-nhieu-nha-bang-tang-manh-trong-nua-dau-nam-176260904091420664.chn"
+      }
+     ],
+     "re_business_outstanding": [
+      {
+       "date": "2025-03",
+       "value": 1560000,
+       "url": "https://vnexpress.net/du-no-tin-dung-bat-dong-san-dat-2-trieu-ty-dong-quy-iv-2025-5006978.html",
+       "note": "'over 1.56 quadrillion' (finance.json flows)"
+      },
+      {
+       "date": "2025-06",
+       "value": 1740000,
+       "url": "https://vietnamfinance.vn/tin-dung-kinh-doanh-bat-dong-san-vuot-moc-2-trieu-ty-dong-d138953.html",
+       "note": "'over 1.74 quadrillion' (search excerpt 2026-10-07)"
+      },
+      {
+       "date": "2025-09",
+       "value": 1890000,
+       "url": "https://vnbusiness.vn/tin-dung-bat-dong-san-vuot-moc-2-trieu-ty-dong.html",
+       "note": "'over 1.89 quadrillion' (search excerpt 2026-10-07)"
+      },
+      {
+       "date": "2025-12",
+       "value": 2000000,
+       "url": "https://vnexpress.net/du-no-tin-dung-bat-dong-san-dat-2-trieu-ty-dong-quy-iv-2025-5006978.html",
+       "note": "'over 2 quadrillion' (finance.json flows)"
+      },
+      {
+       "date": "2026-03",
+       "value": 2235305,
+       "url": "https://vnbusiness.vn/hon-25-trieu-ty-dong-tin-dung-chay-vao-bat-dong-san-va-bai-toan-ap-luc-chi-phi-von.html",
+       "note": "31/3/2026, stated as the base of the Q2 increase (search excerpt 2026-10-07)"
+      },
+      {
+       "date": "2026-06",
+       "value": 2519378,
+       "url": "https://dantri.com.vn/bat-dong-san/du-no-kinh-doanh-bat-dong-san-vuot-25-trieu-ty-dong-20260822144250909.htm",
+       "note": "30/6/2026, +284,073 bn q/q (+12.71%)"
+      }
+     ],
+     "coverage": {
+      "n": 18,
+      "first": "2025-01",
+      "last": "2026-06"
+     }
+    },
+    "funding_gap_fg_m": {
+     "label_vi": "Thiếu hụt vốn (mô hình), theo tháng",
+     "label_en": "Funding gap FG (model), monthly",
+     "unit": "VND tn per month",
+     "freq": "monthly",
+     "group": "liquidity",
+     "values": [
+      13.766,
+      13.766,
+      13.766,
+      2.052,
+      2.052,
+      2.052,
+      10.452,
+      10.452,
+      10.452,
+      10.452,
+      81.426,
+      81.444,
+      94.295,
+      94.295,
+      94.295,
+      57.212,
+      57.212,
+      57.212,
+      57.212,
+      57.212,
+      62.386,
+      62.386,
+      62.386,
+      62.445,
+      -15.115,
+      -15.115,
+      -15.115,
+      -6.117,
+      -6.117,
+      -6.117,
+      -6.117,
+      -6.117,
+      -6.117,
+      55.267,
+      55.267,
+      230.279,
+      49.597,
+      49.597,
+      49.597,
+      49.597,
+      49.597,
+      49.597,
+      49.597,
+      49.597,
+      49.597,
+      49.488,
+      49.477,
+      49.36,
+      51.6,
+      25.19,
+      218.23,
+      82.211,
+      74.879,
+      150.754,
+      -102.643,
+      69.417,
+      114.46,
+      21.501,
+      33.142,
+      34.374,
+      222.655,
+      -23.694,
+      234.163,
+      192.841,
+      86.778,
+      251.168,
+      102.811,
+      31.287,
+      59.463
+     ],
+     "definition": "Model-derived: w_credit×credit − w_fx×net FX inflow − w_fiscal×fiscal injection − w_sbv×(SBV FX purchases + OMO net), weights from the annual regression in SIM.model2.estimation.liquidity (constant omitted, absorbed in the neutral P*).",
+     "source": "derived (model v2)",
+     "url_or_note": "derived",
+     "verified": "derived",
+     "derived": true,
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "funding_pressure_index": {
+     "label_vi": "Chỉ số áp lực vốn P (12 tháng, % tiền gửi)",
+     "label_en": "Funding-pressure index P (12-month, % of deposits)",
+     "unit": "pp of deposits",
+     "freq": "monthly",
+     "group": "liquidity",
+     "values": [
+      -0.787,
+      -0.564,
+      -0.341,
+      -0.236,
+      -0.131,
+      -0.027,
+      0.163,
+      0.352,
+      0.542,
+      0.731,
+      1.636,
+      2.541,
+      3.266,
+      3.992,
+      4.717,
+      5.221,
+      5.724,
+      6.228,
+      6.647,
+      7.066,
+      7.532,
+      7.999,
+      7.75,
+      7.501,
+      6.508,
+      5.514,
+      4.521,
+      3.944,
+      3.367,
+      2.79,
+      2.214,
+      1.637,
+      1.013,
+      0.915,
+      0.816,
+      2.217,
+      2.72,
+      3.224,
+      3.727,
+      4.154,
+      4.58,
+      5.007,
+      5.433,
+      5.86,
+      6.286,
+      6.186,
+      6.085,
+      4.485,
+      4.463,
+      4.261,
+      5.377,
+      5.564,
+      5.701,
+      6.356,
+      5.282,
+      5.381,
+      5.789,
+      5.562,
+      5.415,
+      5.278,
+      6.251,
+      5.938,
+      5.842,
+      6.428,
+      6.433,
+      6.899,
+      8.211,
+      7.924,
+      7.496
+     ],
+     "definition": "Model-derived: sum of the last 12 monthly FG, each divided by customer deposits at the previous year-end (IMF-FSI) × 100. Comparable in spirit to credit growth minus deposit growth (y/y) but built from the levers; its neutral level P* is estimated.",
+     "source": "derived (model v2)",
+     "url_or_note": "derived",
+     "verified": "derived",
+     "derived": true,
+     "coverage": {
+      "n": 69,
+      "first": "2021-01",
+      "last": "2026-09"
+     }
+    },
+    "re_price_momentum": {
+     "label_vi": "Đà tăng giá căn hộ sơ cấp Hà Nội (y/y)",
+     "label_en": "Hanoi primary apartment price momentum (y/y)",
+     "unit": "% y/y",
+     "freq": "monthly",
+     "group": "savings",
+     "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      23.4,
+      23.4,
+      23.4,
+      23.4,
+      23.4,
+      23.4,
+      23.4,
+      23.4,
+      23.4,
+      23.4,
+      23.4,
+      23.4,
+      29.3,
+      29.3,
+      29.3,
+      29.3,
+      29.3,
+      29.3,
+      29.3,
+      29.3,
+      29.3,
+      29.3,
+      29.3,
+      29.3,
+      36.0,
+      36.0,
+      36.0,
+      36.0,
+      36.0,
+      36.0,
+      27.0,
+      27.0,
+      27.0,
+      27.0,
+      27.0,
+      27.0
+     ],
+     "definition": "Savills Hanoi primary asking price, % y/y; each published Q4 (or latest-quarter) value is applied to the months until the next one (stated in 'points'): a step series for the model, not monthly data.",
+     "source": "Savills via finance.json alternatives.real_estate",
+     "url_or_note": "see real_estate series URLs",
+     "verified": "per finance.json",
+     "points": [
+      {
+       "period": "2023-Q4",
+       "from": "2023-10",
+       "to": "2024-09",
+       "value": 23.4,
+       "note": "derived 58/47 (Q4-23 vs Q4-22)"
+      },
+      {
+       "period": "2024-Q4",
+       "from": "2024-10",
+       "to": "2025-09",
+       "value": 29.3,
+       "note": "derived 75/58"
+      },
+      {
+       "period": "2025-Q4",
+       "from": "2025-10",
+       "to": "2026-03",
+       "value": 36.0,
+       "note": "derived 102/75"
+      },
+      {
+       "period": "2026-Q2",
+       "from": "2026-04",
+       "to": "2026-09",
+       "value": 27.0,
+       "note": "Savills Q2-2026 +27% y/y as published"
+      }
+     ],
+     "coverage": {
+      "n": 36,
+      "first": "2023-10",
+      "last": "2026-09"
+     }
     }
+   },
+   "lever_series": {
+    "fx": [
+     "fdi_disbursed_m",
+     "remittances_bop_m",
+     "tourism_receipts_m",
+     "trade_balance_m",
+     "income_outflow_m",
+     "fx_net_inflow_vnd_m",
+     "usdvnd_central",
+     "usdvnd_12m"
+    ],
+    "fiscal": [
+     "budget_revenue_m",
+     "budget_spending_m",
+     "dev_investment_m",
+     "fiscal_net_injection_m",
+     "treasury_deposits",
+     "public_investment"
+    ],
+    "sbv": [
+     "sbv_omo_net_m",
+     "sbv_fx_reserves_change_m",
+     "refi_rate",
+     "omo_rate"
+    ],
+    "credit": [
+     "credit_flow_m",
+     "re_credit_flow_m",
+     "credit_ytd",
+     "credit_target"
+    ],
+    "substitution": [
+     "gold_world_12m",
+     "sjc_premium",
+     "vnindex_12m",
+     "new_stock_accounts",
+     "margin_lending",
+     "re_price_momentum"
+    ],
+    "prices": [
+     "cpi_yoy",
+     "core_cpi_yoy",
+     "brent"
+    ],
+    "external": [
+     "fed_funds_upper",
+     "usdvnd_12m",
+     "dxy"
+    ],
+    "liquidity": [
+     "funding_gap_fg_m",
+     "funding_pressure_index",
+     "credit_deposit_gap_yoy"
+    ]
    }
   },
   "story": [
@@ -6606,6 +9636,4051 @@
    "sd": 0.1282,
    "check": "With all sliders at 'current', the formula reproduces projection.base exactly."
   },
+  "model2": {
+   "version": "v2.0 (2026-10-07)",
+   "method_en": "Structural monthly VND funding model. (A) Each month's funding gap FG (VND tn) = credit growth not matched by new deposits − the part of net FX inflows that becomes deposits (conversion share) − the fiscal net injection − SBV liquidity (FX purchases, OMO), with weights estimated on 2016-2025 annual data. (B) The funding-pressure index P is the 12-month sum of FG in % of deposits. (C) The VCB 12-month deposit rate changes each month by pass-through × policy-rate change + kappa × (P last month − neutral P*) + substitution, inflation and external terms. Pass-through, kappa, P* and the stock-return term are estimated by interval regression on 2021-2026; inflation, USD/VND, Fed, SJC premium and real-estate prices are calibrated (see estimation). v1 (calibrated 4-driver model) is kept in SIM.model for comparison.",
+   "method_vi": "Mô hình cấu trúc theo tháng về nguồn vốn VND. (A) Thiếu hụt vốn hằng tháng FG (nghìn tỷ) = phần tín dụng tăng không có tiền gửi tương ứng − phần dòng ngoại tệ ròng chuyển thành tiền gửi (tỷ lệ chuyển đổi) − bơm ròng ngân sách − thanh khoản NHNN (mua ngoại tệ, OMO); trọng số ước lượng từ số liệu năm 2016-2025. (B) Chỉ số áp lực vốn P = tổng FG 12 tháng, tính theo % tiền gửi. (C) Lãi suất 12 tháng của VCB thay đổi mỗi tháng = hệ số truyền dẫn × thay đổi lãi suất điều hành + kappa × (P tháng trước − mức trung tính P*) + các yếu tố thay thế, lạm phát, bên ngoài. Truyền dẫn, kappa, P* và yếu tố cổ phiếu được ước lượng (hồi quy theo khoảng 2021-2026); lạm phát, tỷ giá, Fed, chênh lệch SJC và giá nhà được hiệu chỉnh. Mô hình v1 giữ trong SIM.model để so sánh.",
+   "equation": "Δr_t = 0.562 × Δpolicy_t + 0.0396 × (P_(t−1) − 4.24) + 0.0031 × (VNI12_(t−1) − 12.46) − 0.0007 × (gold12_(t−1) − 33.37) + 0.02 × (CPI_(t−1) − 3.36) + 0.02 × (USDVND12_(t−1) − 2.0) + 0.1 × ΔFed_t + 0.005 × (SJCprem_(t−1) − 6.51) + 0.002 × (REprice_(t−1) − 26.35);  P_t = P_(t−1) + 100 × FG_t / D − (month leaving the 12-month window);  FG_t = 0.503 × (RE credit + other credit) − 0.341 × S/1000 × (FDI + remittances + tourism + trade balance − income outflow) − 0.339 × (dev. investment + recurrent spending − taxes − land fees) − 0.544 × (OMO net + S/1000 × SBV FX purchases)",
+   "target": {
+    "series": "dep12_vcb",
+    "definition": "Vietcombank 12-month posted VND savings rate (counter), month-end; start 5.9% (Sep-2026)"
+   },
+   "params": {
+    "r0": 5.9,
+    "P0": 7.496248,
+    "kappa": 0.03965,
+    "P_star": 4.238908,
+    "D_tn": 16802.846,
+    "rolloff_pp": [
+     0.146781,
+     0.22625,
+     0.234666,
+     1.325105,
+     -0.141013,
+     1.393594
+    ]
+   },
+   "params_note": {
+    "r0": "VCB 12M at end-Sep-2026",
+    "P0": "funding-pressure index at Sep-2026 (Aug-Sep partly nowcast: credit from rounded statements, remittances/income/SBV FX assumed)",
+    "kappa": "estimated (rate_equation.coef.P)",
+    "P_star": "estimated neutral P",
+    "D_tn": "customer deposits end-2025 (IMF-FSI), VND tn",
+    "rolloff_pp": "100×FG/D of Oct-2025..Mar-2026, the months that leave the 12-month window in Oct-2026..Mar-2027"
+   },
+   "levers": [
+    {
+     "key": "fdi_disbursed",
+     "group": "fx",
+     "label_vi": "FDI giải ngân",
+     "label_en": "FDI disbursed",
+     "unit": "USD bn/month",
+     "frequency": "monthly (NSO cumulative)",
+     "latest_value": 3.82,
+     "latest_period": "2026-09",
+     "source": "NSO via press",
+     "url": "data/economy.json ECON_OFFICIAL.ytd_2026.fdi_dis_musd_9M",
+     "baseline_path": [
+      2.68,
+      2.68,
+      2.68,
+      2.68,
+      2.68,
+      2.68
+     ],
+     "baseline_basis": "average of Jul-Sep 2026 held flat",
+     "min": 0.5,
+     "max": 5.0,
+     "step": 0.1,
+     "liquidity_weight": -8.738807,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "Each USD 1 bn of extra net FX inflow narrows the funding gap by 0.341 × 25627 / 1000 = 8.739 VND tn (conversion share, estimated).",
+     "tornado": {
+      "low": [
+       1.5,
+       1.5,
+       1.5,
+       1.5,
+       1.5,
+       1.5
+      ],
+      "high": [
+       3.5,
+       3.5,
+       3.5,
+       3.5,
+       3.5,
+       3.5
+      ]
+     }
+    },
+    {
+     "key": "remittances",
+     "group": "fx",
+     "label_vi": "Kiều hối (BoP chuyển giao vãng lai)",
+     "label_en": "Remittances (BoP current transfers)",
+     "unit": "USD bn/month",
+     "frequency": "annual (BoP)",
+     "latest_value": 1.6472,
+     "latest_period": "2025 (avg)",
+     "source": "BoP secondary income credit (data/economy.json)",
+     "url": "data/economy.json ECONFLOW.bop",
+     "baseline_path": [
+      1.6472,
+      1.6472,
+      1.6472,
+      1.6472,
+      1.6472,
+      1.6472
+     ],
+     "baseline_basis": "2025 monthly average held (assumption)",
+     "min": 0.5,
+     "max": 3.0,
+     "step": 0.05,
+     "liquidity_weight": -8.738807,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "No 2026 national figure; HCMC H1-2026 −22.8% y/y (SBV Region 2) is the only 2026 signal - downside risk.",
+     "tornado": {
+      "low": [
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2
+      ],
+      "high": [
+       2.0,
+       2.0,
+       2.0,
+       2.0,
+       2.0,
+       2.0
+      ]
+     }
+    },
+    {
+     "key": "tourism_receipts",
+     "group": "fx",
+     "label_vi": "Thu từ khách quốc tế",
+     "label_en": "International tourism receipts",
+     "unit": "USD bn/month",
+     "frequency": "9M-2026 total",
+     "latest_value": 1.4511,
+     "latest_period": "2026-01..09 (avg)",
+     "source": "NSO 9M-2026 report",
+     "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+     "baseline_path": [
+      1.4511,
+      1.4511,
+      1.4511,
+      1.4511,
+      1.4511,
+      1.4511
+     ],
+     "baseline_basis": "9M-2026 monthly average held",
+     "min": 0.5,
+     "max": 2.5,
+     "step": 0.05,
+     "liquidity_weight": -8.738807,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "Travel receipts 13.06 bn in 9M-2026 (+17.4%).",
+     "tornado": {
+      "low": [
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "high": [
+       1.9,
+       1.9,
+       1.9,
+       1.9,
+       1.9,
+       1.9
+      ]
+     }
+    },
+    {
+     "key": "trade_balance",
+     "group": "fx",
+     "label_vi": "Cán cân thương mại hàng hóa",
+     "label_en": "Goods trade balance",
+     "unit": "USD bn/month",
+     "frequency": "monthly (customs)",
+     "latest_value": 1.04,
+     "latest_period": "2026-09",
+     "source": "Customs/NSO via press",
+     "url": "data/economy.json ECON_OFFICIAL.ytd_2026.trade_balance_busd_9M",
+     "baseline_path": [
+      -0.9233,
+      -0.9233,
+      -0.9233,
+      -0.9233,
+      -0.9233,
+      -0.9233
+     ],
+     "baseline_basis": "average of Jul-Sep 2026 held flat",
+     "min": -6.0,
+     "max": 6.0,
+     "step": 0.25,
+     "liquidity_weight": -8.738807,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "2026 turned to deficit (−19.4 bn in 9M) on 36.7% import growth; each USD 1 bn of deficit adds to the funding gap like an FX outflow.",
+     "tornado": {
+      "low": [
+       -4.0,
+       -4.0,
+       -4.0,
+       -4.0,
+       -4.0,
+       -4.0
+      ],
+      "high": [
+       3.0,
+       3.0,
+       3.0,
+       3.0,
+       3.0,
+       3.0
+      ]
+     }
+    },
+    {
+     "key": "income_outflow",
+     "group": "fx",
+     "label_vi": "Chuyển lợi nhuận/lãi ra nước ngoài (ròng)",
+     "label_en": "Profit & interest repatriation (net)",
+     "unit": "USD bn/month",
+     "frequency": "annual (BoP)",
+     "latest_value": 1.1999,
+     "latest_period": "2025 (avg)",
+     "source": "BoP primary income (data/economy.json)",
+     "url": "data/economy.json ECONFLOW.bop",
+     "baseline_path": [
+      1.1999,
+      1.1999,
+      1.1999,
+      1.1999,
+      1.1999,
+      1.1999
+     ],
+     "baseline_basis": "2025 monthly average held (assumption)",
+     "min": 0.0,
+     "max": 3.0,
+     "step": 0.05,
+     "liquidity_weight": 8.738807,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "Added driver: FDI firms' profit remittances are the largest FX outflow after imports (14.4 bn net in 2025).",
+     "tornado": {
+      "low": [
+       0.8,
+       0.8,
+       0.8,
+       0.8,
+       0.8,
+       0.8
+      ],
+      "high": [
+       1.6,
+       1.6,
+       1.6,
+       1.6,
+       1.6,
+       1.6
+      ]
+     }
+    },
+    {
+     "key": "dev_investment",
+     "group": "fiscal",
+     "label_vi": "Chi đầu tư phát triển (NSNN)",
+     "label_en": "Development investment spending",
+     "unit": "VND tn/month",
+     "frequency": "monthly (MoF cumulative)",
+     "latest_value": 142.9,
+     "latest_period": "2026-09",
+     "source": "Ministry of Finance via press",
+     "url": "data/economy.json ECONFLOW.budget.exec_9M2026",
+     "baseline_path": [
+      54.5,
+      67.2,
+      178.7,
+      38.7,
+      38.7,
+      38.7
+     ],
+     "baseline_basis": "same month one year earlier (Oct-2025..Mar-2026 actual/interval averages)",
+     "min": 0,
+     "max": 400,
+     "step": 5,
+     "liquidity_weight": -0.3386,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "Spending moves Treasury money into customer deposits. Baseline = same month a year earlier (seasonal, no scaling); 2026 plan 1,120 tn vs 657.5 tn spent in 9M.",
+     "tornado": {
+      "low": [
+       24.5,
+       37.2,
+       148.7,
+       8.7,
+       8.7,
+       8.7
+      ],
+      "high": [
+       134.5,
+       147.2,
+       258.7,
+       118.7,
+       118.7,
+       118.7
+      ]
+     }
+    },
+    {
+     "key": "recurrent_spending",
+     "group": "fiscal",
+     "label_vi": "Chi thường xuyên và chi khác",
+     "label_en": "Recurrent & other spending",
+     "unit": "VND tn/month",
+     "frequency": "monthly (MoF cumulative)",
+     "latest_value": 122.5,
+     "latest_period": "2026-09",
+     "source": "Ministry of Finance via press",
+     "url": "data/economy.json ECONFLOW.budget.exec_9M2026",
+     "baseline_path": [
+      185.0,
+      151.7,
+      173.1,
+      124.3,
+      109.3,
+      180.4
+     ],
+     "baseline_basis": "same month one year earlier",
+     "min": 0,
+     "max": 500,
+     "step": 5,
+     "liquidity_weight": -0.3386,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "Total spending minus development investment (incl. interest).",
+     "tornado": {
+      "low": [
+       155.0,
+       121.7,
+       143.1,
+       94.3,
+       79.3,
+       150.4
+      ],
+      "high": [
+       215.0,
+       181.7,
+       203.1,
+       154.3,
+       139.3,
+       210.4
+      ]
+     }
+    },
+    {
+     "key": "tax_revenue",
+     "group": "fiscal",
+     "label_vi": "Thu thuế, phí và thu khác (trừ tiền sử dụng đất)",
+     "label_en": "Taxes & other revenue (excl. land-use fees)",
+     "unit": "VND tn/month",
+     "frequency": "monthly (MoF cumulative)",
+     "latest_value": 123.9833,
+     "latest_period": "2026-09",
+     "source": "Ministry of Finance via press",
+     "url": "data/economy.json ECONFLOW.budget.exec_9M2026",
+     "baseline_path": [
+      203.8833,
+      213.1833,
+      212.8833,
+      331.1833,
+      191.0833,
+      188.5833
+     ],
+     "baseline_basis": "same month one year earlier, minus the land-fee assumption",
+     "min": 0,
+     "max": 500,
+     "step": 5,
+     "liquidity_weight": 0.3386,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "Revenue drains customer deposits into Treasury accounts. Split from land fees assumes land fees at the 2026 plan pace (no national monthly land-fee data).",
+     "tornado": {
+      "low": [
+       173.8833,
+       183.1833,
+       182.8833,
+       301.1833,
+       161.0833,
+       158.5833
+      ],
+      "high": [
+       233.8833,
+       243.1833,
+       242.8833,
+       361.1833,
+       221.0833,
+       218.5833
+      ]
+     }
+    },
+    {
+     "key": "land_use_fees",
+     "group": "fiscal",
+     "label_vi": "Thu tiền sử dụng đất",
+     "label_en": "Land-use fees",
+     "unit": "VND tn/month",
+     "frequency": "annual (plan)",
+     "latest_value": 39.5167,
+     "latest_period": "2026 plan / 12",
+     "source": "NA 2026 budget plan (data/economy.json)",
+     "url": "data/economy.json ECONFLOW.budget.revenue.land_use_fees",
+     "baseline_path": [
+      39.5167,
+      39.5167,
+      39.5167,
+      39.5167,
+      39.5167,
+      39.5167
+     ],
+     "baseline_basis": "2026 plan / 12 (assumption)",
+     "min": 0,
+     "max": 150,
+     "step": 5,
+     "liquidity_weight": 0.3386,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "2026 plan 474.2 tn (2024 actual 232.9). Monthly national collections are not published: the baseline is an assumption.",
+     "tornado": {
+      "low": [
+       20.0,
+       20.0,
+       20.0,
+       20.0,
+       20.0,
+       20.0
+      ],
+      "high": [
+       80.0,
+       80.0,
+       80.0,
+       80.0,
+       80.0,
+       80.0
+      ]
+     }
+    },
+    {
+     "key": "omo_net_injection",
+     "group": "sbv",
+     "label_vi": "NHNN bơm ròng OMO/tín phiếu",
+     "label_en": "SBV net OMO/bill injection",
+     "unit": "VND tn/month",
+     "frequency": "monthly (VBMA month-end)",
+     "latest_value": -50.15,
+     "latest_period": "2026-09",
+     "source": "VBMA weekly reports (finance.json)",
+     "url": "https://vbma.org.vn",
+     "baseline_path": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "baseline_basis": "0 (outstanding unchanged)",
+     "min": -200,
+     "max": 200,
+     "step": 10,
+     "liquidity_weight": -0.5439,
+     "rate_coef": null,
+     "neutral": 0.0,
+     "lag": 0,
+     "note": "Assumed to act like SBV FX purchases (same per-VND weight); OMO is short-term, so a lasting effect needs the injection to be rolled over.",
+     "tornado": {
+      "low": [
+       -50.0,
+       -50.0,
+       -50.0,
+       -50.0,
+       -50.0,
+       -50.0
+      ],
+      "high": [
+       50.0,
+       50.0,
+       50.0,
+       50.0,
+       50.0,
+       50.0
+      ]
+     }
+    },
+    {
+     "key": "sbv_fx_sales",
+     "group": "sbv",
+     "label_vi": "NHNN bán ngoại tệ (+) / mua (−)",
+     "label_en": "SBV FX sales (+) / purchases (−)",
+     "unit": "USD bn/month",
+     "frequency": "not published (annual BoP)",
+     "latest_value": null,
+     "latest_period": null,
+     "source": "BoP reserve change (data/economy.json)",
+     "url": "data/economy.json ECONFLOW.bop",
+     "baseline_path": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "baseline_basis": "0 (no extra intervention)",
+     "min": -3.0,
+     "max": 5.0,
+     "step": 0.25,
+     "liquidity_weight": 13.938525,
+     "rate_coef": null,
+     "neutral": 0.0,
+     "lag": 0,
+     "note": "Each USD 1 bn sold drains 13.94 VND tn of funding (estimated reserve-change weight × central rate). 2026 sales not published; 0 = beyond what the FX-flow levers imply.",
+     "tornado": {
+      "low": [
+       -1.0,
+       -1.0,
+       -1.0,
+       -1.0,
+       -1.0,
+       -1.0
+      ],
+      "high": [
+       2.0,
+       2.0,
+       2.0,
+       2.0,
+       2.0,
+       2.0
+      ]
+     }
+    },
+    {
+     "key": "re_credit",
+     "group": "credit",
+     "label_vi": "Tín dụng bất động sản tăng thêm (gồm cho vay mua nhà)",
+     "label_en": "Real-estate credit increase (incl. home loans)",
+     "unit": "VND tn/month",
+     "frequency": "interval (SBV points)",
+     "latest_value": 92.2857,
+     "latest_period": "2025-12..2026-06 avg",
+     "source": "SBV via press (finance.json flows)",
+     "url": "https://cafebiz.vn/cu-4-dong-ngan-hang-cho-vay-thi-1-dong-chay-vao-bat-dong-san-du-no-vuot-5-trieu-ty-dong-nhieu-nha-bang-tang-manh-trong-nua-dau-nam-176260904091420664.chn",
+     "baseline_path": [
+      92.2857,
+      92.2857,
+      92.2857,
+      92.2857,
+      92.2857,
+      92.2857
+     ],
+     "baseline_basis": "latest interval average held",
+     "min": 0,
+     "max": 250,
+     "step": 5,
+     "liquidity_weight": 0.503,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "Real-estate credit 5.146 quadrillion VND at end-Jun-2026 (25.5% of credit). Same funding weight as other credit (no evidence of a different deposit return).",
+     "tornado": {
+      "low": [
+       50.0,
+       50.0,
+       50.0,
+       50.0,
+       50.0,
+       50.0
+      ],
+      "high": [
+       160.0,
+       160.0,
+       160.0,
+       160.0,
+       160.0,
+       160.0
+      ]
+     }
+    },
+    {
+     "key": "other_credit",
+     "group": "credit",
+     "label_vi": "Tín dụng khác tăng thêm",
+     "label_en": "Other credit increase",
+     "unit": "VND tn/month",
+     "frequency": "monthly (SBV table)",
+     "latest_value": 157.7143,
+     "latest_period": "2026-09",
+     "source": "SBV (finance.json monthly)",
+     "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+     "baseline_path": [
+      134.4706,
+      147.7904,
+      255.0314,
+      128.6664,
+      -65.8108,
+      252.1813
+     ],
+     "baseline_basis": "same month one year earlier minus the real-estate baseline",
+     "min": -200,
+     "max": 600,
+     "step": 10,
+     "liquidity_weight": 0.503,
+     "rate_coef": null,
+     "neutral": null,
+     "lag": 0,
+     "note": "Total credit baseline = same month a year earlier (Oct-25..Mar-26 SBV table): 2026 would end at ~16% y/y vs the 15% target.",
+     "tornado": {
+      "low": [
+       54.4706,
+       67.7904,
+       175.0314,
+       48.6664,
+       -145.8108,
+       172.1813
+      ],
+      "high": [
+       214.4706,
+       227.7904,
+       335.0314,
+       208.6664,
+       14.1892,
+       332.1813
+      ]
+     }
+    },
+    {
+     "key": "gold_world_12m",
+     "group": "substitution",
+     "label_vi": "Vàng thế giới, lợi suất 12 tháng",
+     "label_en": "World gold 12-month return",
+     "unit": "%",
+     "frequency": "monthly",
+     "latest_value": 17.75,
+     "latest_period": "2026-09",
+     "source": "World Bank Pink Sheet (panel)",
+     "url": "https://raw.githubusercontent.com/datasets/gold-prices/main/data/monthly.csv",
+     "baseline_path": [
+      17.75,
+      17.75,
+      17.75,
+      17.75,
+      17.75,
+      17.75
+     ],
+     "baseline_basis": "latest held",
+     "min": -30,
+     "max": 80,
+     "step": 5,
+     "liquidity_weight": null,
+     "rate_coef": -0.000666,
+     "neutral": 33.3689,
+     "lag": 1,
+     "note": "Estimated jointly with the funding index: ~0 once the funding gap is included (v1's gold effect was the funding gap in disguise).",
+     "tornado": {
+      "low": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "high": [
+       50.0,
+       50.0,
+       50.0,
+       50.0,
+       50.0,
+       50.0
+      ]
+     }
+    },
+    {
+     "key": "sjc_premium",
+     "group": "substitution",
+     "label_vi": "Chênh lệch vàng SJC – thế giới",
+     "label_en": "SJC premium over world gold",
+     "unit": "million VND/tael",
+     "frequency": "points",
+     "latest_value": 10.6548,
+     "latest_period": "2026-09 (derived)",
+     "source": "derived: SJC month-end sell − world monthly average × central rate",
+     "url": "panel sjc_gold_sell / gold_world_usd",
+     "baseline_path": [
+      10.6548,
+      10.6548,
+      10.6548,
+      10.6548,
+      10.6548,
+      10.6548
+     ],
+     "baseline_basis": "latest held",
+     "min": 0,
+     "max": 30,
+     "step": 0.5,
+     "liquidity_weight": null,
+     "rate_coef": 0.005,
+     "neutral": 6.51,
+     "lag": 1,
+     "note": "Derived at the central rate (press quotes at bank USD rates are lower: ~3 m on 28/8, ~9.3 m on 19/9/2026). Calibrated coefficient.",
+     "tornado": {
+      "low": [
+       3.0,
+       3.0,
+       3.0,
+       3.0,
+       3.0,
+       3.0
+      ],
+      "high": [
+       20.0,
+       20.0,
+       20.0,
+       20.0,
+       20.0,
+       20.0
+      ]
+     }
+    },
+    {
+     "key": "vnindex_12m",
+     "group": "substitution",
+     "label_vi": "VN-Index, lợi suất 12 tháng",
+     "label_en": "VN-Index 12-month return",
+     "unit": "%",
+     "frequency": "monthly",
+     "latest_value": 6.43,
+     "latest_period": "2026-09",
+     "source": "vnstock VCI (panel)",
+     "url": "https://trading.vietcap.com.vn",
+     "baseline_path": [
+      6.43,
+      6.43,
+      6.43,
+      6.43,
+      6.43,
+      6.43
+     ],
+     "baseline_basis": "latest held",
+     "min": -40,
+     "max": 80,
+     "step": 5,
+     "liquidity_weight": null,
+     "rate_coef": 0.003092,
+     "neutral": 12.4583,
+     "lag": 1,
+     "note": "Estimated: stronger stock returns pull savings out of term deposits.",
+     "tornado": {
+      "low": [
+       -20.0,
+       -20.0,
+       -20.0,
+       -20.0,
+       -20.0,
+       -20.0
+      ],
+      "high": [
+       40.0,
+       40.0,
+       40.0,
+       40.0,
+       40.0,
+       40.0
+      ]
+     }
+    },
+    {
+     "key": "re_price_momentum",
+     "group": "substitution",
+     "label_vi": "Đà tăng giá căn hộ (Hà Nội, y/y)",
+     "label_en": "Apartment price momentum (Hanoi, y/y)",
+     "unit": "% y/y",
+     "frequency": "quarterly/annual",
+     "latest_value": 27.0,
+     "latest_period": "2026-Q2",
+     "source": "Savills (finance.json)",
+     "url": "https://cafef.vn/chung-cu-ha-noi-vang-bong-can-ho-duoi-70-trieu-dong-m2-188260814143655062.chn",
+     "baseline_path": [
+      27.0,
+      27.0,
+      27.0,
+      27.0,
+      27.0,
+      27.0
+     ],
+     "baseline_basis": "latest held",
+     "min": -20,
+     "max": 60,
+     "step": 5,
+     "liquidity_weight": null,
+     "rate_coef": 0.002,
+     "neutral": 26.35,
+     "lag": 1,
+     "note": "Calibrated; not a constant-quality index.",
+     "tornado": {
+      "low": [
+       10.0,
+       10.0,
+       10.0,
+       10.0,
+       10.0,
+       10.0
+      ],
+      "high": [
+       45.0,
+       45.0,
+       45.0,
+       45.0,
+       45.0,
+       45.0
+      ]
+     }
+    },
+    {
+     "key": "cpi_yoy",
+     "group": "prices",
+     "label_vi": "Lạm phát CPI (y/y)",
+     "label_en": "CPI inflation (y/y)",
+     "unit": "%",
+     "frequency": "monthly",
+     "latest_value": 5.08,
+     "latest_period": "2026-09",
+     "source": "NSO (data/economy.json)",
+     "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-than",
+     "baseline_path": [
+      5.08,
+      5.08,
+      5.08,
+      5.08,
+      5.08,
+      5.08
+     ],
+     "baseline_basis": "latest held",
+     "min": 1,
+     "max": 9,
+     "step": 0.1,
+     "liquidity_weight": null,
+     "rate_coef": 0.02,
+     "neutral": 3.3638,
+     "lag": 1,
+     "note": "Calibrated (see estimation.calibrated).",
+     "tornado": {
+      "low": [
+       3.5,
+       3.5,
+       3.5,
+       3.5,
+       3.5,
+       3.5
+      ],
+      "high": [
+       6.5,
+       6.5,
+       6.5,
+       6.5,
+       6.5,
+       6.5
+      ]
+     }
+    },
+    {
+     "key": "usdvnd_12m",
+     "group": "external",
+     "label_vi": "Tỷ giá trung tâm, thay đổi 12 tháng",
+     "label_en": "USD/VND central rate, 12-month change",
+     "unit": "%",
+     "frequency": "monthly",
+     "latest_value": 1.75,
+     "latest_period": "2026-09",
+     "source": "SBV central rate (finance.json)",
+     "url": "per finance.json usdvnd_monthly",
+     "baseline_path": [
+      1.75,
+      1.75,
+      1.75,
+      1.75,
+      1.75,
+      1.75
+     ],
+     "baseline_basis": "latest held",
+     "min": -3,
+     "max": 10,
+     "step": 0.25,
+     "liquidity_weight": null,
+     "rate_coef": 0.02,
+     "neutral": 2.0,
+     "lag": 1,
+     "note": "Calibrated. Central rate 25,627 at end-Sep-2026; record 25,643 on 6/10/2026 (finance.json sbv.constraints).",
+     "tornado": {
+      "low": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "high": [
+       5.0,
+       5.0,
+       5.0,
+       5.0,
+       5.0,
+       5.0
+      ]
+     }
+    },
+    {
+     "key": "fed_change",
+     "group": "external",
+     "label_vi": "Fed thay đổi lãi suất trong tháng",
+     "label_en": "Fed rate change in the month",
+     "unit": "pp",
+     "frequency": "event",
+     "latest_value": 0.0,
+     "latest_period": "2026-09 (+0.25 on 16/9)",
+     "source": "FOMC (panel)",
+     "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm",
+     "baseline_path": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "baseline_basis": "no change",
+     "min": -0.5,
+     "max": 0.5,
+     "step": 0.25,
+     "liquidity_weight": null,
+     "rate_coef": 0.1,
+     "neutral": 0.0,
+     "lag": 0,
+     "note": "Calibrated level shift. FOMC 27-28 Oct and 8-9 Dec 2026.",
+     "tornado": {
+      "low": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "high": [
+       0.25,
+       0.0,
+       0.25,
+       0.0,
+       0.0,
+       0.0
+      ]
+     }
+    },
+    {
+     "key": "policy_rate_change",
+     "group": "policy",
+     "label_vi": "NHNN thay đổi lãi suất điều hành",
+     "label_en": "SBV policy-rate change",
+     "unit": "pp",
+     "frequency": "event",
+     "latest_value": 0.0,
+     "latest_period": "2026-09",
+     "source": "SBV (panel refi_rate)",
+     "url": "data/policy.json",
+     "baseline_path": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "baseline_basis": "no change",
+     "min": -1.0,
+     "max": 1.0,
+     "step": 0.25,
+     "liquidity_weight": null,
+     "rate_coef": 0.561928,
+     "neutral": 0.0,
+     "lag": 0,
+     "note": "Estimated pass-through to the VCB 12-month rate in the month of the change.",
+     "tornado": {
+      "low": [
+       0.0,
+       0.0,
+       0.0,
+       -0.5,
+       0.0,
+       0.0
+      ],
+      "high": [
+       0.0,
+       0.0,
+       0.5,
+       0.0,
+       0.0,
+       0.0
+      ]
+     }
+    }
+   ],
+   "lever_groups": {
+    "fx": [
+     "fdi_disbursed",
+     "remittances",
+     "tourism_receipts",
+     "trade_balance",
+     "income_outflow"
+    ],
+    "fiscal": [
+     "dev_investment",
+     "recurrent_spending",
+     "tax_revenue",
+     "land_use_fees"
+    ],
+    "sbv": [
+     "omo_net_injection",
+     "sbv_fx_sales"
+    ],
+    "credit": [
+     "re_credit",
+     "other_credit"
+    ],
+    "substitution": [
+     "gold_world_12m",
+     "sjc_premium",
+     "vnindex_12m",
+     "re_price_momentum"
+    ],
+    "prices": [
+     "cpi_yoy"
+    ],
+    "external": [
+     "usdvnd_12m",
+     "fed_change"
+    ],
+    "policy": [
+     "policy_rate_change"
+    ]
+   },
+   "liquidity": {
+    "neutral_gap": 4.2389,
+    "neutral_gap_unit": "pp of deposits (12-month funding-gap sum, constant excluded)",
+    "kappa": 0.03965,
+    "conversion_share": 0.341,
+    "conversion_share_note": "VND tn of funding gap removed per VND tn of net FX inflow (estimated, SE 0.1647); per USD 1 bn at 25627 VND/USD = 8.739 VND tn. Separately, SBV FX purchases remove 0.544 per VND (SE 0.1294); only ~15% of listed inflows ended in reserves in 2016-2025.",
+    "credit_share": 0.503,
+    "fiscal_share": 0.3386,
+    "sbv_share": 0.5439,
+    "usdvnd_for_conversion": 25627,
+    "deposit_base_tn": 16802.846,
+    "P0": 7.496248,
+    "rolloff_pp": [
+     0.146781,
+     0.22625,
+     0.234666,
+     1.325105,
+     -0.141013,
+     1.393594
+    ],
+    "history_P": {
+     "months": [
+      "2021-01",
+      "2021-02",
+      "2021-03",
+      "2021-04",
+      "2021-05",
+      "2021-06",
+      "2021-07",
+      "2021-08",
+      "2021-09",
+      "2021-10",
+      "2021-11",
+      "2021-12",
+      "2022-01",
+      "2022-02",
+      "2022-03",
+      "2022-04",
+      "2022-05",
+      "2022-06",
+      "2022-07",
+      "2022-08",
+      "2022-09",
+      "2022-10",
+      "2022-11",
+      "2022-12",
+      "2023-01",
+      "2023-02",
+      "2023-03",
+      "2023-04",
+      "2023-05",
+      "2023-06",
+      "2023-07",
+      "2023-08",
+      "2023-09",
+      "2023-10",
+      "2023-11",
+      "2023-12",
+      "2024-01",
+      "2024-02",
+      "2024-03",
+      "2024-04",
+      "2024-05",
+      "2024-06",
+      "2024-07",
+      "2024-08",
+      "2024-09",
+      "2024-10",
+      "2024-11",
+      "2024-12",
+      "2025-01",
+      "2025-02",
+      "2025-03",
+      "2025-04",
+      "2025-05",
+      "2025-06",
+      "2025-07",
+      "2025-08",
+      "2025-09",
+      "2025-10",
+      "2025-11",
+      "2025-12",
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09"
+     ],
+     "values": [
+      -0.787,
+      -0.564,
+      -0.341,
+      -0.236,
+      -0.131,
+      -0.027,
+      0.163,
+      0.352,
+      0.542,
+      0.731,
+      1.636,
+      2.541,
+      3.266,
+      3.992,
+      4.717,
+      5.221,
+      5.724,
+      6.228,
+      6.647,
+      7.066,
+      7.532,
+      7.999,
+      7.75,
+      7.501,
+      6.508,
+      5.514,
+      4.521,
+      3.944,
+      3.367,
+      2.79,
+      2.214,
+      1.637,
+      1.013,
+      0.915,
+      0.816,
+      2.217,
+      2.72,
+      3.224,
+      3.727,
+      4.154,
+      4.58,
+      5.007,
+      5.433,
+      5.86,
+      6.286,
+      6.186,
+      6.085,
+      4.485,
+      4.463,
+      4.261,
+      5.377,
+      5.564,
+      5.701,
+      6.356,
+      5.282,
+      5.381,
+      5.789,
+      5.562,
+      5.415,
+      5.278,
+      6.251,
+      5.938,
+      5.842,
+      6.428,
+      6.433,
+      6.899,
+      8.211,
+      7.924,
+      7.496
+     ]
+    },
+    "history_FG_tn": {
+     "months": [
+      "2021-01",
+      "2021-02",
+      "2021-03",
+      "2021-04",
+      "2021-05",
+      "2021-06",
+      "2021-07",
+      "2021-08",
+      "2021-09",
+      "2021-10",
+      "2021-11",
+      "2021-12",
+      "2022-01",
+      "2022-02",
+      "2022-03",
+      "2022-04",
+      "2022-05",
+      "2022-06",
+      "2022-07",
+      "2022-08",
+      "2022-09",
+      "2022-10",
+      "2022-11",
+      "2022-12",
+      "2023-01",
+      "2023-02",
+      "2023-03",
+      "2023-04",
+      "2023-05",
+      "2023-06",
+      "2023-07",
+      "2023-08",
+      "2023-09",
+      "2023-10",
+      "2023-11",
+      "2023-12",
+      "2024-01",
+      "2024-02",
+      "2024-03",
+      "2024-04",
+      "2024-05",
+      "2024-06",
+      "2024-07",
+      "2024-08",
+      "2024-09",
+      "2024-10",
+      "2024-11",
+      "2024-12",
+      "2025-01",
+      "2025-02",
+      "2025-03",
+      "2025-04",
+      "2025-05",
+      "2025-06",
+      "2025-07",
+      "2025-08",
+      "2025-09",
+      "2025-10",
+      "2025-11",
+      "2025-12",
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09"
+     ],
+     "values": [
+      13.77,
+      13.77,
+      13.77,
+      2.05,
+      2.05,
+      2.05,
+      10.45,
+      10.45,
+      10.45,
+      10.45,
+      81.43,
+      81.44,
+      94.29,
+      94.29,
+      94.29,
+      57.21,
+      57.21,
+      57.21,
+      57.21,
+      57.21,
+      62.39,
+      62.39,
+      62.39,
+      62.45,
+      -15.11,
+      -15.11,
+      -15.11,
+      -6.12,
+      -6.12,
+      -6.12,
+      -6.12,
+      -6.12,
+      -6.12,
+      55.27,
+      55.27,
+      230.28,
+      49.6,
+      49.6,
+      49.6,
+      49.6,
+      49.6,
+      49.6,
+      49.6,
+      49.6,
+      49.6,
+      49.49,
+      49.48,
+      49.36,
+      51.6,
+      25.19,
+      218.23,
+      82.21,
+      74.88,
+      150.75,
+      -102.64,
+      69.42,
+      114.46,
+      21.5,
+      33.14,
+      34.37,
+      222.66,
+      -23.69,
+      234.16,
+      192.84,
+      86.78,
+      251.17,
+      102.81,
+      31.29,
+      59.46
+     ]
+    }
+   },
+   "compute_order": [
+    "1. Start from r = params.r0 (VCB 12M, Sep-2026) and P = params.P0 (funding-pressure index, Sep-2026).",
+    "2. For each projection month h = 0..5 (Oct-2026..Mar-2027): rate change dr = kappa × (P − P_star).",
+    "3. Add each rate lever: rate_coef × (x − neutral), where x = the lever's value LAST month (lag 1: latest_value for h = 0, path[h−1] after) or THIS month (lag 0: policy_rate_change, fed_change).",
+    "4. r = r + dr; record r for month h.",
+    "5. Update the funding index for next month: P = P + Σ over liquidity levers of 100 × liquidity_weight × path[h] / D_tn − rolloff_pp[h].",
+    "6. Repeat. Bands: base ± 1.2816 × residual_sd × √(h+1). Contributions: SIM.projection2.contributions (sum = path − r0)."
+   ],
+   "estimation": {
+    "liquidity": {
+     "dep_var": "annual increase in SBV credit minus increase in customer deposits (IMF-FSI), VND tn",
+     "regressors": {
+      "credit": "increase in credit to the economy (SBV; pre-2022 levels chained back with finance.json credit_growth)",
+      "netfx": "(NSO FDI disbursed + BoP secondary income credit + BoP travel credit + customs goods balance + BoP net primary income) × annual average USD/VND",
+      "fiscal": "budget spending − revenue (final accounts; 2025 MoF execution estimate)",
+      "sbv_fx": "BoP reserve-asset change × annual average USD/VND (SBV FX purchases +)"
+     },
+     "coef": {
+      "const": -76.3991,
+      "credit": 0.503,
+      "netfx": -0.341,
+      "fiscal": -0.3386,
+      "sbv_fx": -0.5439
+     },
+     "se": {
+      "const": 120.8356,
+      "credit": 0.134,
+      "netfx": 0.1647,
+      "fiscal": 0.3547,
+      "sbv_fx": 0.1294
+     },
+     "r2": 0.953,
+     "n": 10,
+     "sample": "2016..2025 (annual)",
+     "resid_sd_tn": 107.5,
+     "data": [
+      {
+       "year": 2016,
+       "gap": -69.8,
+       "credit": 825.9,
+       "netfx": 458.1,
+       "fiscal": 166.8,
+       "sbv_fx": 184.0
+      },
+      {
+       "year": 2017,
+       "gap": 111.2,
+       "credit": 978.2,
+       "netfx": 477.2,
+       "fiscal": 61.4,
+       "sbv_fx": 280.6
+      },
+      {
+       "year": 2018,
+       "gap": 42.5,
+       "credit": 879.2,
+       "netfx": 693.6,
+       "fiscal": 3.8,
+       "sbv_fx": 136.3
+      },
+      {
+       "year": 2019,
+       "gap": -128.1,
+       "credit": 984.0,
+       "netfx": 901.4,
+       "fiscal": -26.7,
+       "sbv_fx": 536.0
+      },
+      {
+       "year": 2020,
+       "gap": -165.7,
+       "credit": 999.5,
+       "netfx": 920.4,
+       "fiscal": 198.9,
+       "sbv_fx": 386.0
+      },
+      {
+       "year": 2021,
+       "gap": 262.3,
+       "credit": 1250.2,
+       "netfx": 461.0,
+       "fiscal": 116.7,
+       "sbv_fx": 331.0
+      },
+      {
+       "year": 2022,
+       "gap": 721.2,
+       "credit": 1482.8,
+       "netfx": 700.3,
+       "fiscal": -69.5,
+       "sbv_fx": -529.3
+      },
+      {
+       "year": 2023,
+       "gap": 57.3,
+       "credit": 1643.3,
+       "netfx": 1287.0,
+       "fiscal": 166.1,
+       "sbv_fx": 133.4
+      },
+      {
+       "year": 2024,
+       "gap": 658.8,
+       "credit": 2047.5,
+       "netfx": 1537.9,
+       "fiscal": 90.9,
+       "sbv_fx": -221.5
+      },
+      {
+       "year": 2025,
+       "gap": 824.2,
+       "credit": 2978.9,
+       "netfx": 1705.3,
+       "fiscal": -248.6,
+       "sbv_fx": 96.5
+      }
+     ],
+     "weights_used": {
+      "credit": 0.503,
+      "fx": 0.341,
+      "fiscal": 0.3386,
+      "sbv": 0.5439
+     },
+     "basis": {
+      "credit": "estimated (t≈3.8)",
+      "fx": "estimated (t≈2.1)",
+      "sbv": "estimated (t≈4.2)",
+      "fiscal": "point estimate used but NOT significant (t≈1.0): treat as calibrated; sensitivity ×0 / ×2",
+      "omo": "assumption: OMO net injection has the same weight as SBV FX purchases (no annual OMO series to estimate it)"
+     },
+     "stability": {
+      "sample": "2016..2024 (annual)",
+      "coef": {
+       "const": -257.2782,
+       "credit": 0.7217,
+       "netfx": -0.4331,
+       "fiscal": -0.7561,
+       "sbv_fx": -0.358
+      },
+      "se": {
+       "const": 152.2882,
+       "credit": 0.1771,
+       "netfx": 0.1533,
+       "fiscal": 0.3995,
+       "sbv_fx": 0.1596
+      },
+      "note": "Dropping 2025 changes the weights materially (credit 0.72, fiscal 0.76, SBV 0.36): 10 annual observations - treat weights as indicative."
+     },
+     "fx_into_reserves_share": 0.146,
+     "fx_into_reserves_note": "Over 2016-2025 the SBV's reserve purchases equalled ~15% of the listed net FX inflows (sum of BoP reserve change / sum of net FX inflow in VND); most of the inflow is offset by other outflows (errors & omissions −25.9 bn USD in 2025, portfolio, loans, residents' FX holdings)."
+    },
+    "rate_equation": {
+     "method": "Interval regression: the target (VCB 12-month posted rate) is observed in irregular months, so each change between two consecutive observed months is regressed on the SUM over the interval's months of the monthly regressors (exact for a linear monthly equation).",
+     "dep_var": "change in dep12_vcb between consecutive observed months (pp)",
+     "coef": {
+      "pol": 0.56193,
+      "P": 0.03965,
+      "gold": -0.00067,
+      "vni": 0.00309,
+      "c": -0.18438
+     },
+     "se": {
+      "pol": 0.10302,
+      "P": 0.00921,
+      "gold": 0.00091,
+      "vni": 0.0009,
+      "c": 0.0422
+     },
+     "names": {
+      "pol": "policy_rate_change (Δ refinancing rate, same month)",
+      "P": "kappa: funding-pressure index P (t−1)",
+      "gold": "world gold 12m return (t−1)",
+      "vni": "VN-Index 12m return (t−1)",
+      "c": "constant (per month)"
+     },
+     "r2_centred": 0.819,
+     "n_intervals": 42,
+     "sample": "2021-01..2026-09",
+     "sigma_month": 0.1193,
+     "P_star": 4.239,
+     "neutrals_flat_window_2024_04_2025_09": {
+      "cpi_yoy": 3.364,
+      "gold_world_12m": 33.369,
+      "vnindex_12m": 12.458
+     },
+     "P_star_derivation": "constant = −kappa×P* − g_vni×neutral_vni − g_gold×neutral_gold  →  P* = −(constant + g_vni×12.46 + g_gold×33.37)/kappa",
+     "intervals": [
+      {
+       "from": "2021-01",
+       "to": "2021-08",
+       "dr": -0.1,
+       "fitted": -0.246
+      },
+      {
+       "from": "2021-08",
+       "to": "2021-09",
+       "dr": 0.0,
+       "fitted": -0.006
+      },
+      {
+       "from": "2021-09",
+       "to": "2021-10",
+       "dr": 0.0,
+       "fitted": -0.009
+      },
+      {
+       "from": "2021-10",
+       "to": "2021-11",
+       "dr": 0.0,
+       "fitted": 0.022
+      },
+      {
+       "from": "2021-11",
+       "to": "2021-12",
+       "dr": 0.0,
+       "fitted": 0.029
+      },
+      {
+       "from": "2021-12",
+       "to": "2022-01",
+       "dr": 0.0,
+       "fitted": 0.029
+      },
+      {
+       "from": "2022-01",
+       "to": "2022-09",
+       "dr": 0.9,
+       "fitted": 1.002
+      },
+      {
+       "from": "2022-09",
+       "to": "2023-01",
+       "dr": 1.0,
+       "fitted": 0.727
+      },
+      {
+       "from": "2023-01",
+       "to": "2023-06",
+       "dr": -1.1,
+       "fitted": -1.214
+      },
+      {
+       "from": "2023-06",
+       "to": "2023-07",
+       "dr": 0.0,
+       "fitted": -0.098
+      },
+      {
+       "from": "2023-07",
+       "to": "2023-08",
+       "dr": -0.5,
+       "fitted": -0.101
+      },
+      {
+       "from": "2023-08",
+       "to": "2023-10",
+       "dr": -0.7,
+       "fitted": -0.286
+      },
+      {
+       "from": "2023-10",
+       "to": "2023-11",
+       "dr": -0.1,
+       "fitted": -0.158
+      },
+      {
+       "from": "2023-11",
+       "to": "2023-12",
+       "dr": -0.2,
+       "fitted": -0.149
+      },
+      {
+       "from": "2023-12",
+       "to": "2024-01",
+       "dr": -0.1,
+       "fitted": -0.067
+      },
+      {
+       "from": "2024-01",
+       "to": "2024-04",
+       "dr": -0.1,
+       "fitted": -0.042
+      },
+      {
+       "from": "2024-04",
+       "to": "2024-05",
+       "dr": 0.0,
+       "fitted": 0.017
+      },
+      {
+       "from": "2024-05",
+       "to": "2024-06",
+       "dr": 0.0,
+       "fitted": 0.039
+      },
+      {
+       "from": "2024-06",
+       "to": "2024-07",
+       "dr": 0.0,
+       "fitted": 0.036
+      },
+      {
+       "from": "2024-07",
+       "to": "2024-08",
+       "dr": 0.0,
+       "fitted": 0.023
+      },
+      {
+       "from": "2024-08",
+       "to": "2024-09",
+       "dr": 0.0,
+       "fitted": 0.044
+      },
+      {
+       "from": "2024-09",
+       "to": "2024-10",
+       "dr": 0.0,
+       "fitted": 0.078
+      },
+      {
+       "from": "2024-10",
+       "to": "2024-11",
+       "dr": 0.0,
+       "fitted": 0.105
+      },
+      {
+       "from": "2024-11",
+       "to": "2024-12",
+       "dr": 0.0,
+       "fitted": 0.079
+      },
+      {
+       "from": "2024-12",
+       "to": "2025-01",
+       "dr": 0.0,
+       "fitted": 0.01
+      },
+      {
+       "from": "2025-01",
+       "to": "2025-02",
+       "dr": 0.0,
+       "fitted": -0.003
+      },
+      {
+       "from": "2025-02",
+       "to": "2025-03",
+       "dr": 0.0,
+       "fitted": -0.031
+      },
+      {
+       "from": "2025-03",
+       "to": "2025-04",
+       "dr": 0.0,
+       "fitted": 0.009
+      },
+      {
+       "from": "2025-04",
+       "to": "2025-05",
+       "dr": 0.0,
+       "fitted": 0.015
+      },
+      {
+       "from": "2025-05",
+       "to": "2025-06",
+       "dr": 0.0,
+       "fitted": 0.032
+      },
+      {
+       "from": "2025-06",
+       "to": "2025-07",
+       "dr": 0.0,
+       "fitted": 0.071
+      },
+      {
+       "from": "2025-07",
+       "to": "2025-08",
+       "dr": 0.0,
+       "fitted": 0.061
+      },
+      {
+       "from": "2025-08",
+       "to": "2025-09",
+       "dr": 0.0,
+       "fitted": 0.101
+      },
+      {
+       "from": "2025-09",
+       "to": "2026-01",
+       "dr": 0.6,
+       "fitted": 0.413
+      },
+      {
+       "from": "2026-01",
+       "to": "2026-02",
+       "dr": 0.3,
+       "fitted": 0.151
+      },
+      {
+       "from": "2026-02",
+       "to": "2026-03",
+       "dr": 0.4,
+       "fitted": 0.138
+      },
+      {
+       "from": "2026-03",
+       "to": "2026-04",
+       "dr": 0.0,
+       "fitted": 0.092
+      },
+      {
+       "from": "2026-04",
+       "to": "2026-05",
+       "dr": 0.0,
+       "fitted": 0.198
+      },
+      {
+       "from": "2026-05",
+       "to": "2026-06",
+       "dr": 0.0,
+       "fitted": 0.168
+      },
+      {
+       "from": "2026-06",
+       "to": "2026-07",
+       "dr": 0.0,
+       "fitted": 0.181
+      },
+      {
+       "from": "2026-07",
+       "to": "2026-08",
+       "dr": 0.0,
+       "fitted": 0.175
+      },
+      {
+       "from": "2026-08",
+       "to": "2026-09",
+       "dr": 0.0,
+       "fitted": 0.137
+      }
+     ],
+     "verdict_en": "Estimated: policy pass-through 0.56 (SE 0.1), funding-pressure kappa 0.0396 pp per month per pp of P (SE 0.0092, t≈4.3), VN-Index 0.0031 (SE 0.0009); world gold ≈0 once the funding index is in (v1's gold effect was the funding gap in disguise). Fit to 2025-03 the neutral P* moves from 4.24 to 8.51: the level of 'normal' funding pressure is the least certain number in the model. CPI, USD/VND, Fed, SJC premium and real-estate prices cannot be estimated (gaps, wrong signs) and are calibrated add-ons.",
+     "verdict_vi": "Ước lượng: truyền dẫn lãi suất điều hành 0.56 (SE 0.1), hệ số áp lực vốn kappa 0.0396 điểm %/tháng cho mỗi điểm % của P (SE 0.0092), VN-Index 0.0031; vàng thế giới ≈0 khi đã có chỉ số áp lực vốn (tác động 'vàng' ở v1 thực chất là thiếu hụt vốn). Ước lượng đến 3/2025 thì mức trung tính P* đổi từ 4.24 lên 8.51: mức áp lực vốn 'bình thường' là con số kém chắc chắn nhất. CPI, tỷ giá, Fed, chênh lệch SJC và giá nhà không ước lượng được (thiếu số liệu, sai dấu) nên được hiệu chỉnh."
+    },
+    "rate_equation_fit_to_2025_03": {
+     "coef": {
+      "pol": 0.49197,
+      "P": 0.03152,
+      "gold": -0.00321,
+      "vni": 0.00265,
+      "c": -0.1942
+     },
+     "se": {
+      "pol": 0.11066,
+      "P": 0.00793,
+      "gold": 0.0015,
+      "vni": 0.00081,
+      "c": 0.05293
+     },
+     "r2_centred": 0.88,
+     "n_intervals": 27,
+     "sample": "2021-01..2025-03",
+     "P_star": 8.507,
+     "liquidity_weights": {
+      "credit": 0.7217,
+      "fx": 0.4331,
+      "fiscal": 0.7561,
+      "sbv": 0.358
+     }
+    },
+    "calibrated": {
+     "cpi_yoy": {
+      "coef": 0.02,
+      "neutral": 3.364,
+      "lag": 1,
+      "basis": "calibrated: free estimate has the wrong sign (CPI history has gaps and moves with the funding index); 0.02 pp/month per pp of CPI above its 2024-04..2025-09 mean = ~0.24 pp a year, below v1's 0.03 to limit double counting with the funding index",
+      "sensitivity_range": [
+       0.0,
+       0.04
+      ]
+     },
+     "usdvnd_12m": {
+      "coef": 0.02,
+      "neutral": 2.0,
+      "lag": 1,
+      "basis": "calibrated: monthly central-rate history starts Oct-2024, so the 12-month change exists only from Oct-2025; neutral 2.0% ~ the only flat-window observation (1.97%, Sep-2025). Depreciation above it pushes the SBV to drain VND liquidity",
+      "sensitivity_range": [
+       0.0,
+       0.05
+      ]
+     },
+     "fed_change": {
+      "coef": 0.1,
+      "neutral": 0.0,
+      "lag": 0,
+      "basis": "calibrated: v1 regressions give the Fed level the wrong sign (Fed cut 2025 while VN rates rose); a small level shift of 0.1 pp per 1 pp Fed move is kept for the external channel not already working through SBV FX sales and policy rates",
+      "sensitivity_range": [
+       0.0,
+       0.3
+      ]
+     },
+     "sjc_premium": {
+      "coef": 0.005,
+      "neutral": 6.51,
+      "lag": 1,
+      "basis": "calibrated: no monthly premium history before 2026 (year-end points only); 0.005 pp/month per million VND/tael above the Dec-2024 premium",
+      "sensitivity_range": [
+       0.0,
+       0.015
+      ]
+     },
+     "re_price_momentum": {
+      "coef": 0.002,
+      "neutral": 26.35,
+      "lag": 1,
+      "basis": "calibrated: Savills Hanoi primary price y/y is annual/quarterly and not a constant-quality index; neutral = mean of the 2023-Q4 and 2024-Q4 y/y (23.4%, 29.3%)",
+      "sensitivity_range": [
+       0.0,
+       0.006
+      ]
+     }
+    },
+    "estimated_vs_calibrated": {
+     "estimated": [
+      "liquidity weights: credit, net FX inflow (conversion share), SBV FX purchases (annual 2016-2025)",
+      "policy pass-through, kappa, P*, VN-Index, world gold (monthly interval regression 2021-2026)"
+     ],
+     "weakly_estimated_used_as_calibrated": [
+      "fiscal weight (t≈1.0)"
+     ],
+     "assumed": [
+      "OMO net injection weight = SBV FX purchase weight",
+      "deposit base D fixed at end-2025 (IMF-FSI) for the projection",
+      "conversion at the Sep-2026 central rate"
+     ],
+     "calibrated": [
+      "cpi_yoy",
+      "usdvnd_12m",
+      "fed_change",
+      "sjc_premium",
+      "re_price_momentum"
+     ]
+    },
+    "observed_gap_check": {
+     "note": "Model index P vs the SBV-basis credit-minus-deposit y/y gap (different construction; P excludes the regression constant, the gap includes it). Correlation over the overlap shown; the observed gap exists only Dec-2025..Jul-2026.",
+     "correlation": -0.51,
+     "months": [
+      {
+       "month": "2025-12",
+       "P_model": 5.278,
+       "credit_minus_deposit_yoy": 6.97
+      },
+      {
+       "month": "2026-01",
+       "P_model": 6.251,
+       "credit_minus_deposit_yoy": 7.25
+      },
+      {
+       "month": "2026-02",
+       "P_model": 5.938,
+       "credit_minus_deposit_yoy": 8.29
+      },
+      {
+       "month": "2026-03",
+       "P_model": 5.842,
+       "credit_minus_deposit_yoy": 7.66
+      },
+      {
+       "month": "2026-04",
+       "P_model": 6.428,
+       "credit_minus_deposit_yoy": 7.49
+      },
+      {
+       "month": "2026-05",
+       "P_model": 6.433,
+       "credit_minus_deposit_yoy": 7.47
+      },
+      {
+       "month": "2026-06",
+       "P_model": 6.899,
+       "credit_minus_deposit_yoy": 7.02
+      },
+      {
+       "month": "2026-07",
+       "P_model": 8.211,
+       "credit_minus_deposit_yoy": 6.66
+      }
+     ]
+    },
+    "data_frequency_methods": {
+     "annual_even": "annual total / 12 for each month of the year (2020-2024 FX, fiscal, credit 2020/2024; BoP items through 2025)",
+     "interval_avg_<k>m": "when an intermediate cumulative figure was not found, the k-month total between two published cumulatives is spread evenly",
+     "interval_avg_statements": "2021-2023 credit: increase between two dated SBV statements spread evenly over the months between them (cut-off date mapped to its calendar month)",
+     "9M_even": "2026 tourism receipts: 9-month total / 9",
+     "assumption_carry": "2026 remittances and income outflow: 2025 monthly average (no 2026 national data)",
+     "step": "Savills y/y applied until the next published value"
+    }
+   },
+   "backtest": {
+    "out_of_sample": {
+     "kind": "true out-of-sample: liquidity weights estimated on 2016-2024, rate equation fitted to intervals ending ≤ 2025-03, then a dynamic monthly simulation 2025-04..2026-09 from the observed 4.6% using actual levers (no re-fitting)",
+     "start": {
+      "month": "2025-03",
+      "value": 4.6
+     },
+     "path": [
+      {
+       "month": "2025-04",
+       "predicted": 4.546,
+       "actual": 4.6,
+       "addons_used": []
+      },
+      {
+       "month": "2025-05",
+       "predicted": 4.508,
+       "actual": 4.6,
+       "addons_used": []
+      },
+      {
+       "month": "2025-06",
+       "predicted": 4.474,
+       "actual": 4.6,
+       "addons_used": []
+      },
+      {
+       "month": "2025-07",
+       "predicted": 4.473,
+       "actual": 4.6,
+       "addons_used": []
+      },
+      {
+       "month": "2025-08",
+       "predicted": 4.483,
+       "actual": 4.6,
+       "addons_used": []
+      },
+      {
+       "month": "2025-09",
+       "predicted": 4.539,
+       "actual": 4.6,
+       "addons_used": []
+      },
+      {
+       "month": "2025-10",
+       "predicted": 4.591,
+       "actual": null,
+       "addons_used": []
+      },
+      {
+       "month": "2025-11",
+       "predicted": 4.617,
+       "actual": null,
+       "addons_used": []
+      },
+      {
+       "month": "2025-12",
+       "predicted": 4.655,
+       "actual": null,
+       "addons_used": []
+      },
+      {
+       "month": "2026-01",
+       "predicted": 4.679,
+       "actual": 5.2,
+       "addons_used": []
+      },
+      {
+       "month": "2026-02",
+       "predicted": 4.71,
+       "actual": 5.5,
+       "addons_used": []
+      },
+      {
+       "month": "2026-03",
+       "predicted": 4.74,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-04",
+       "predicted": 4.738,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-05",
+       "predicted": 4.875,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-06",
+       "predicted": 5.023,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-07",
+       "predicted": 5.208,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-08",
+       "predicted": 5.394,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-09",
+       "predicted": 5.521,
+       "actual": 5.9,
+       "addons_used": []
+      }
+     ],
+     "rmse": 0.651,
+     "end_error_pp": -0.379,
+     "naive_no_change_rmse": 0.931,
+     "with_calibrated_addons": {
+      "path": [
+       {
+        "month": "2025-04",
+        "predicted": 4.548,
+        "actual": 4.6,
+        "addons_used": [
+         "cpi_yoy",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2025-05",
+        "predicted": 4.51,
+        "actual": 4.6,
+        "addons_used": [
+         "cpi_yoy",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2025-06",
+        "predicted": 4.48,
+        "actual": 4.6,
+        "addons_used": [
+         "cpi_yoy",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2025-07",
+        "predicted": 4.489,
+        "actual": 4.6,
+        "addons_used": [
+         "cpi_yoy",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2025-08",
+        "predicted": 4.501,
+        "actual": 4.6,
+        "addons_used": [
+         "cpi_yoy",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2025-09",
+        "predicted": 4.536,
+        "actual": 4.6,
+        "addons_used": [
+         "cpi_yoy",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2025-10",
+        "predicted": 4.569,
+        "actual": null,
+        "addons_used": [
+         "cpi_yoy",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2025-11",
+        "predicted": 4.642,
+        "actual": null,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2025-12",
+        "predicted": 4.713,
+        "actual": null,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2026-01",
+        "predicted": 4.784,
+        "actual": 5.2,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2026-02",
+        "predicted": 4.839,
+        "actual": 5.5,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2026-03",
+        "predicted": 4.874,
+        "actual": 5.9,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2026-04",
+        "predicted": 4.899,
+        "actual": 5.9,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2026-05",
+        "predicted": 5.051,
+        "actual": 5.9,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2026-06",
+        "predicted": 5.218,
+        "actual": 5.9,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2026-07",
+        "predicted": 5.403,
+        "actual": 5.9,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2026-08",
+        "predicted": 5.58,
+        "actual": 5.9,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       },
+       {
+        "month": "2026-09",
+        "predicted": 5.753,
+        "actual": 5.9,
+        "addons_used": [
+         "cpi_yoy",
+         "usdvnd_12m",
+         "re_price_momentum",
+         "fed_change"
+        ]
+       }
+      ],
+      "rmse": 0.534,
+      "note": "CPI, USD/VND (from Oct-2025), Fed change and real-estate momentum add-ons applied where history exists; SJC premium has no monthly history"
+     },
+     "v1_comparison": "v1's out-of-sample test (gold + VN-Index equation fitted to 2025-03) only covered the flat 2025-04..09 window (RMSE 0.053) and could not test the 2026 rise.",
+     "summary_en": "Fitted only on data to Mar-2025, the structural model predicts a rise from 4.6% to 5.521% by Sep-2026 (actual 5.9%): right direction, about 71% of the size, but about half a year late (Big-4 banks moved in Jan-Mar 2026; the model's pressure builds through mid-2026 and reaches 5.5% only in Sep-2026). RMSE 0.651 pp vs 0.931 for 'no change'.",
+     "summary_vi": "Chỉ dùng số liệu đến 3/2025, mô hình dự báo lãi suất tăng từ 4,6% lên 5,521% vào 9/2026 (thực tế 5,9%): đúng hướng, khoảng 71% độ lớn nhưng trễ khoảng nửa năm (Big4 tăng trong 1-3/2026, mô hình chỉ đạt 5,5% vào 9/2026). RMSE 0,651 điểm % so với 0,931 nếu giả định 'không đổi'."
+    },
+    "episode_2022_q4": {
+     "in_sample_replay": {
+      "path": [
+       {
+        "month": "2022-02",
+        "predicted": 5.571,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-03",
+        "predicted": 5.628,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-04",
+        "predicted": 5.7,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-05",
+        "predicted": 5.747,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-06",
+        "predicted": 5.782,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-07",
+        "predicted": 5.798,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-08",
+        "predicted": 5.855,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-09",
+        "predicted": 6.502,
+        "actual": 6.4,
+        "addons_used": []
+       },
+       {
+        "month": "2022-10",
+        "predicted": 7.133,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-11",
+        "predicted": 7.181,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-12",
+        "predicted": 7.218,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2023-01",
+        "predicted": 7.229,
+        "actual": 7.4,
+        "addons_used": []
+       }
+      ],
+      "terms_sum_pp": {
+       "policy": 1.124,
+       "funding_pressure": 0.903,
+       "vnindex_12m": -0.563,
+       "gold_world_12m": 0.265
+      },
+      "note": "full-sample coefficients, dynamic from Jan-2022 (5.5%); observed: 6.4% (Sep-2022), 7.4% (Jan-2023). In-sample: the 2022 intervals are in the estimation."
+     },
+     "leave_episode_out": {
+      "fit": {
+       "coef": {
+        "pol": -0.09237,
+        "P": 0.02451,
+        "gold": 0.00204,
+        "vni": 0.00443,
+        "c": -0.2595
+       },
+       "r2_centred": 0.821,
+       "n_intervals": 40,
+       "P_star": 5.562
+      },
+      "path": [
+       {
+        "month": "2022-02",
+        "predicted": 5.492,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-03",
+        "predicted": 5.458,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-04",
+        "predicted": 5.453,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-05",
+        "predicted": 5.388,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-06",
+        "predicted": 5.257,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-07",
+        "predicted": 5.084,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-08",
+        "predicted": 4.943,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-09",
+        "predicted": 4.745,
+        "actual": 6.4,
+        "addons_used": []
+       },
+       {
+        "month": "2022-10",
+        "predicted": 4.498,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-11",
+        "predicted": 4.294,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-12",
+        "predicted": 4.084,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2023-01",
+        "predicted": 3.864,
+        "actual": 7.4,
+        "addons_used": []
+       }
+      ],
+      "path_with_full_sample_pass_through": [
+       {
+        "month": "2022-02",
+        "predicted": 5.492,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-03",
+        "predicted": 5.458,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-04",
+        "predicted": 5.453,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-05",
+        "predicted": 5.388,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-06",
+        "predicted": 5.257,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-07",
+        "predicted": 5.084,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-08",
+        "predicted": 4.943,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-09",
+        "predicted": 5.4,
+        "actual": 6.4,
+        "addons_used": []
+       },
+       {
+        "month": "2022-10",
+        "predicted": 5.807,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-11",
+        "predicted": 5.602,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2022-12",
+        "predicted": 5.393,
+        "actual": null,
+        "addons_used": []
+       },
+       {
+        "month": "2023-01",
+        "predicted": 5.173,
+        "actual": 7.4,
+        "addons_used": []
+       }
+      ],
+      "note": "Intervals overlapping Feb..Dec-2022 removed. Without them the pass-through is not identified (the only other policy moves, the 2023 cuts, coincide with falling funding pressure), and the 2022 stock crash pulls the predicted rate down: the model cannot reproduce the 2022 spike without seeing it. With the full-sample pass-through imposed, see path_with_full_sample_pass_through."
+     },
+     "summary_en": "The 2022-Q4 spike is mainly the policy hikes (+2 pp refinancing) with rising funding pressure (P from ~3 to ~7 pp during 2022, SBV selling ~23 bn USD of reserves); the stock crash worked the other way. The episode is not predictable out-of-sample without the policy reaction.",
+     "summary_vi": "Đợt tăng quý IV/2022 chủ yếu do NHNN tăng lãi suất điều hành (+2 điểm %) cộng áp lực vốn tăng (P từ ~3 lên ~7 điểm % trong 2022, NHNN bán ~23 tỷ USD dự trữ); chứng khoán giảm sâu tác động ngược lại. Không dự báo được ngoài mẫu nếu không biết trước phản ứng chính sách."
+    },
+    "in_sample_replay_2025_10_2026_09": {
+     "path": [
+      {
+       "month": "2025-10",
+       "predicted": 4.706,
+       "actual": null,
+       "addons_used": []
+      },
+      {
+       "month": "2025-11",
+       "predicted": 4.801,
+       "actual": null,
+       "addons_used": []
+      },
+      {
+       "month": "2025-12",
+       "predicted": 4.904,
+       "actual": null,
+       "addons_used": []
+      },
+      {
+       "month": "2026-01",
+       "predicted": 5.013,
+       "actual": 5.2,
+       "addons_used": []
+      },
+      {
+       "month": "2026-02",
+       "predicted": 5.164,
+       "actual": 5.5,
+       "addons_used": []
+      },
+      {
+       "month": "2026-03",
+       "predicted": 5.303,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-04",
+       "predicted": 5.395,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-05",
+       "predicted": 5.593,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-06",
+       "predicted": 5.761,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-07",
+       "predicted": 5.941,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-08",
+       "predicted": 6.116,
+       "actual": 5.9,
+       "addons_used": []
+      },
+      {
+       "month": "2026-09",
+       "predicted": 6.253,
+       "actual": 5.9,
+       "addons_used": []
+      }
+     ],
+     "rmse": 0.341,
+     "with_addons": [
+      {
+       "month": "2025-10",
+       "predicted": 4.688,
+       "actual": null,
+       "addons_used": [
+        "cpi_yoy",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2025-11",
+       "predicted": 4.829,
+       "actual": null,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2025-12",
+       "predicted": 4.965,
+       "actual": null,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2026-01",
+       "predicted": 5.121,
+       "actual": 5.2,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2026-02",
+       "predicted": 5.296,
+       "actual": 5.5,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2026-03",
+       "predicted": 5.44,
+       "actual": 5.9,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2026-04",
+       "predicted": 5.559,
+       "actual": 5.9,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2026-05",
+       "predicted": 5.772,
+       "actual": 5.9,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2026-06",
+       "predicted": 5.959,
+       "actual": 5.9,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2026-07",
+       "predicted": 6.14,
+       "actual": 5.9,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2026-08",
+       "predicted": 6.305,
+       "actual": 5.9,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      },
+      {
+       "month": "2026-09",
+       "predicted": 6.488,
+       "actual": 5.9,
+       "addons_used": [
+        "cpi_yoy",
+        "usdvnd_12m",
+        "re_price_momentum",
+        "fed_change"
+       ]
+      }
+     ],
+     "with_addons_rmse": 0.327,
+     "note": "In-sample. The model is above the posted VCB rate from Jul-2026 (6.25% vs 5.9% in Sep): Big-4 posted rates were held while private banks paid ~8.4% (MBS, Aug-2026) - a sign of administrative restraint the model does not capture; the projection inherits this upward tilt."
+    }
+   },
+   "residual_sd": 0.1193,
+   "band_method": "80% band = base ± 1.2816 × σ × √h, σ = per-month residual s.d. of the interval regression (σ² = mean of e²/interval length) - parameter uncertainty (e.g. P*) is shown separately in projection2.sensitivity, not in the band.",
+   "test_vectors": [
+    {
+     "id": "baseline",
+     "settings": {},
+     "expected_path": [
+      6.072264,
+      6.258398,
+      6.459219,
+      6.676481,
+      6.876486,
+      7.084288
+     ]
+    },
+    {
+     "id": "easing",
+     "settings": {
+      "policy_rate_change": [
+       0,
+       0,
+       0,
+       -0.5,
+       0,
+       0
+      ],
+      "omo_net_injection": [
+       40.0,
+       40.0,
+       40.0,
+       40.0,
+       40.0,
+       40.0
+      ],
+      "cpi_yoy": [
+       4.9,
+       4.72,
+       4.54,
+       4.36,
+       4.18,
+       4.0
+      ]
+     },
+     "expected_path": [
+      6.072264,
+      6.249664,
+      6.433018,
+      6.343114,
+      6.508184,
+      6.672317
+     ]
+    },
+    {
+     "id": "fx_inflow_shock",
+     "settings": {
+      "fdi_disbursed": [
+       1.876,
+       1.876,
+       1.876,
+       1.876,
+       1.876,
+       1.876
+      ],
+      "remittances": [
+       1.2354,
+       1.2354,
+       1.2354,
+       1.2354,
+       1.2354,
+       1.2354
+      ],
+      "tourism_receipts": [
+       1.1608800000000001,
+       1.1608800000000001,
+       1.1608800000000001,
+       1.1608800000000001,
+       1.1608800000000001,
+       1.1608800000000001
+      ],
+      "trade_balance": [
+       -2.4233000000000002,
+       -2.4233000000000002,
+       -2.4233000000000002,
+       -2.4233000000000002,
+       -2.4233000000000002,
+       -2.4233000000000002
+      ],
+      "sbv_fx_sales": [
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "usdvnd_12m": [
+       2.125,
+       2.5,
+       2.875,
+       3.25,
+       3.625,
+       4.0
+      ]
+     },
+     "expected_path": [
+      6.072264,
+      6.275385,
+      6.510183,
+      6.778408,
+      7.046365,
+      7.339106
+     ]
+    },
+    {
+     "id": "mixed_custom",
+     "settings": {
+      "policy_rate_change": [
+       0.25,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "cpi_yoy": [
+       6.0,
+       6.0,
+       6.0,
+       6.0,
+       6.0,
+       6.0
+      ],
+      "fdi_disbursed": [
+       2.0,
+       2.0,
+       2.0,
+       2.0,
+       2.0,
+       2.0
+      ],
+      "land_use_fees": [
+       70.0,
+       70.0,
+       70.0,
+       70.0,
+       70.0,
+       70.0
+      ],
+      "re_credit": [
+       150.0,
+       150.0,
+       150.0,
+       150.0,
+       150.0,
+       150.0
+      ],
+      "vnindex_12m": [
+       30.0,
+       30.0,
+       30.0,
+       30.0,
+       30.0,
+       30.0
+      ],
+      "fed_change": [
+       0,
+       0,
+       0.25,
+       0,
+       0,
+       0
+      ]
+     },
+     "expected_path": [
+      6.212746,
+      6.500846,
+      6.839322,
+      7.179928,
+      7.513964,
+      7.866485
+     ]
+    },
+    {
+     "id": "all_liquidity_zero",
+     "settings": {
+      "fdi_disbursed": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "remittances": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tourism_receipts": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "trade_balance": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "income_outflow": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "dev_investment": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "recurrent_spending": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "tax_revenue": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "land_use_fees": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "omo_net_injection": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "sbv_fx_sales": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "re_credit": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "other_credit": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "expected_path": [
+      6.072264,
+      6.238709,
+      6.396182,
+      6.544351,
+      6.63998,
+      6.7412
+     ]
+    }
+   ],
+   "test_vector_note": "expected_path is unrounded (6 decimals). A JS port of project_v2 using params and levers from this file must reproduce each path to 1e-6. settings override baseline_path for the listed levers; others stay on baseline.",
+   "not_modelled": [
+    {
+     "key": "ldr_cap_95_from_2026_12",
+     "why_en": "Circular 50/2026 raises the LDR cap to 95% on 1 Dec 2026 and 50% of Treasury term deposits count as funding from 1 Aug 2026: regulatory room, not new deposits; no history to estimate its price effect - discuss as an easing risk.",
+     "why_vi": "Nâng trần LDR lên 95% (1/12/2026) và tính 50% tiền gửi KBNN: tạo dư địa pháp lý, không phải tiền gửi mới; chưa có lịch sử để ước lượng."
+    },
+    {
+     "key": "cash_leakage",
+     "why_en": "Cash/M2 exists only from 2025 (methodology break Oct-2025); seasonal Tet swings (±150-200 tn) are visible but not in the annual regression.",
+     "why_vi": "Tiền mặt/M2 chỉ có từ 2025, có gãy phương pháp 10/2025."
+    },
+    {
+     "key": "gov_bond_issuance / corporate & bank bonds",
+     "why_en": "Bank bond issuance substitutes for deposits and G-bond purchases absorb bank liquidity; monthly series incomplete before 2026.",
+     "why_vi": "Trái phiếu ngân hàng thay thế tiền gửi, mua TPCP hút thanh khoản; thiếu chuỗi tháng trước 2026."
+    },
+    {
+     "key": "administrative_guidance",
+     "why_en": "SBV moral suasion on Big-4 posted rates (e.g. 2022 H1 and 2026 H2) keeps VCB below market pressure; not quantifiable.",
+     "why_vi": "Chỉ đạo hành chính của NHNN với Big4 giữ lãi suất niêm yết thấp hơn áp lực thị trường; không định lượng được."
+    }
+   ]
+  },
+  "projection2": {
+   "months": [
+    "2026-10",
+    "2026-11",
+    "2026-12",
+    "2027-01",
+    "2027-02",
+    "2027-03"
+   ],
+   "start": {
+    "month": "2026-09",
+    "value": 5.9,
+    "series": "dep12_vcb"
+   },
+   "base": [
+    6.0723,
+    6.2584,
+    6.4592,
+    6.6765,
+    6.8765,
+    7.0843
+   ],
+   "low": [
+    5.9194,
+    6.0422,
+    6.1944,
+    6.3707,
+    6.5346,
+    6.7098
+   ],
+   "high": [
+    6.2251,
+    6.4746,
+    6.724,
+    6.9822,
+    7.2183,
+    7.4588
+   ],
+   "band": "80% band = base ± 1.2816 × 0.1193 pp × √h (interval-regression residual s.d. per month)",
+   "contributions": {
+    "fdi_disbursed": [
+     0.0,
+     -0.0055,
+     -0.0166,
+     -0.0332,
+     -0.0553,
+     -0.0829
+    ],
+    "remittances": [
+     0.0,
+     -0.0034,
+     -0.0102,
+     -0.0204,
+     -0.034,
+     -0.051
+    ],
+    "tourism_receipts": [
+     0.0,
+     -0.003,
+     -0.009,
+     -0.018,
+     -0.0299,
+     -0.0449
+    ],
+    "trade_balance": [
+     0.0,
+     0.0019,
+     0.0057,
+     0.0114,
+     0.019,
+     0.0286
+    ],
+    "income_outflow": [
+     0.0,
+     0.0025,
+     0.0074,
+     0.0148,
+     0.0247,
+     0.0371
+    ],
+    "dev_investment": [
+     0.0,
+     -0.0044,
+     -0.0141,
+     -0.0381,
+     -0.0652,
+     -0.0954
+    ],
+    "recurrent_spending": [
+     0.0,
+     -0.0148,
+     -0.0417,
+     -0.0824,
+     -0.1331,
+     -0.1925
+    ],
+    "tax_revenue": [
+     0.0,
+     0.0163,
+     0.0496,
+     0.0999,
+     0.1767,
+     0.2688
+    ],
+    "land_use_fees": [
+     0.0,
+     0.0032,
+     0.0095,
+     0.0189,
+     0.0316,
+     0.0474
+    ],
+    "omo_net_injection": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "sbv_fx_sales": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "re_credit": [
+     0.0,
+     0.011,
+     0.0329,
+     0.0657,
+     0.1095,
+     0.1643
+    ],
+    "other_credit": [
+     0.0,
+     0.016,
+     0.0495,
+     0.1132,
+     0.1923,
+     0.2635
+    ],
+    "gold_world_12m": [
+     0.0104,
+     0.0208,
+     0.0312,
+     0.0416,
+     0.052,
+     0.0624
+    ],
+    "sjc_premium": [
+     0.0207,
+     0.0414,
+     0.0622,
+     0.0829,
+     0.1036,
+     0.1243
+    ],
+    "vnindex_12m": [
+     -0.0186,
+     -0.0373,
+     -0.0559,
+     -0.0746,
+     -0.0932,
+     -0.1118
+    ],
+    "re_price_momentum": [
+     0.0013,
+     0.0026,
+     0.0039,
+     0.0052,
+     0.0065,
+     0.0078
+    ],
+    "cpi_yoy": [
+     0.0343,
+     0.0686,
+     0.103,
+     0.1373,
+     0.1716,
+     0.2059
+    ],
+    "usdvnd_12m": [
+     -0.005,
+     -0.01,
+     -0.015,
+     -0.02,
+     -0.025,
+     -0.03
+    ],
+    "fed_change": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "policy_rate_change": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "inherited_pressure": [
+     0.1292,
+     0.2583,
+     0.3875,
+     0.5166,
+     0.6458,
+     0.7749
+    ],
+    "funding_rolloff": [
+     0.0,
+     -0.0058,
+     -0.0206,
+     -0.0447,
+     -0.1213,
+     -0.1924
+    ]
+   },
+   "contributions_note": "Cumulative pp vs the start (5.9%) for each month. Liquidity levers act through kappa × their accumulated addition to P (so their effect starts the month after); rate levers act directly. 'inherited_pressure' = kappa × (P0 − P*) each month (pressure already built up to Sep-2026); 'funding_rolloff' = the months of Oct-2025..Mar-2026 leaving the 12-month window. Sum over keys = base − start.",
+   "contributions_check_max_abs_error": 0.0,
+   "tornado": [
+    {
+     "key": "vnindex_12m",
+     "low_setting": [
+      -20.0,
+      -20.0,
+      -20.0,
+      -20.0,
+      -20.0,
+      -20.0
+     ],
+     "high_setting": [
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+     ],
+     "rate_at_h6_low": 6.6757,
+     "rate_at_h6_high": 7.6033,
+     "swing_pp": 0.9276
+    },
+    {
+     "key": "policy_rate_change",
+     "low_setting": [
+      0.0,
+      0.0,
+      0.0,
+      -0.5,
+      0.0,
+      0.0
+     ],
+     "high_setting": [
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "rate_at_h6_low": 6.8033,
+     "rate_at_h6_high": 7.3653,
+     "swing_pp": 0.5619
+    },
+    {
+     "key": "usdvnd_12m",
+     "low_setting": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "high_setting": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+     ],
+     "rate_at_h6_low": 6.9093,
+     "rate_at_h6_high": 7.4093,
+     "swing_pp": 0.5
+    },
+    {
+     "key": "sjc_premium",
+     "low_setting": [
+      3.0,
+      3.0,
+      3.0,
+      3.0,
+      3.0,
+      3.0
+     ],
+     "high_setting": [
+      20.0,
+      20.0,
+      20.0,
+      20.0,
+      20.0,
+      20.0
+     ],
+     "rate_at_h6_low": 6.8929,
+     "rate_at_h6_high": 7.3179,
+     "swing_pp": 0.425
+    },
+    {
+     "key": "re_price_momentum",
+     "low_setting": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+     ],
+     "high_setting": [
+      45.0,
+      45.0,
+      45.0,
+      45.0,
+      45.0,
+      45.0
+     ],
+     "rate_at_h6_low": 6.9143,
+     "rate_at_h6_high": 7.2643,
+     "swing_pp": 0.35
+    },
+    {
+     "key": "cpi_yoy",
+     "low_setting": [
+      3.5,
+      3.5,
+      3.5,
+      3.5,
+      3.5,
+      3.5
+     ],
+     "high_setting": [
+      6.5,
+      6.5,
+      6.5,
+      6.5,
+      6.5,
+      6.5
+     ],
+     "rate_at_h6_low": 6.9263,
+     "rate_at_h6_high": 7.2263,
+     "swing_pp": 0.3
+    },
+    {
+     "key": "other_credit",
+     "low_setting": [
+      54.4706,
+      67.7904,
+      175.0314,
+      48.6664,
+      -145.8108,
+      172.1813
+     ],
+     "high_setting": [
+      214.4706,
+      227.7904,
+      335.0314,
+      208.6664,
+      14.1892,
+      332.1813
+     ],
+     "rate_at_h6_low": 6.9419,
+     "rate_at_h6_high": 7.2267,
+     "swing_pp": 0.2849
+    },
+    {
+     "key": "trade_balance",
+     "low_setting": [
+      -4.0,
+      -4.0,
+      -4.0,
+      -4.0,
+      -4.0,
+      -4.0
+     ],
+     "high_setting": [
+      3.0,
+      3.0,
+      3.0,
+      3.0,
+      3.0,
+      3.0
+     ],
+     "rate_at_h6_low": 7.1795,
+     "rate_at_h6_high": 6.9629,
+     "swing_pp": 0.2165
+    },
+    {
+     "key": "re_credit",
+     "low_setting": [
+      50.0,
+      50.0,
+      50.0,
+      50.0,
+      50.0,
+      50.0
+     ],
+     "high_setting": [
+      160.0,
+      160.0,
+      160.0,
+      160.0,
+      160.0,
+      160.0
+     ],
+     "rate_at_h6_low": 7.009,
+     "rate_at_h6_high": 7.2048,
+     "swing_pp": 0.1958
+    },
+    {
+     "key": "omo_net_injection",
+     "low_setting": [
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0,
+      -50.0
+     ],
+     "high_setting": [
+      50.0,
+      50.0,
+      50.0,
+      50.0,
+      50.0,
+      50.0
+     ],
+     "rate_at_h6_low": 7.1805,
+     "rate_at_h6_high": 6.988,
+     "swing_pp": 0.1925
+    },
+    {
+     "key": "gold_world_12m",
+     "low_setting": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "high_setting": [
+      50.0,
+      50.0,
+      50.0,
+      50.0,
+      50.0,
+      50.0
+     ],
+     "rate_at_h6_low": 7.1434,
+     "rate_at_h6_high": 6.9769,
+     "swing_pp": 0.1665
+    },
+    {
+     "key": "sbv_fx_sales",
+     "low_setting": [
+      -1.0,
+      -1.0,
+      -1.0,
+      -1.0,
+      -1.0,
+      -1.0
+     ],
+     "high_setting": [
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+     ],
+     "rate_at_h6_low": 7.035,
+     "rate_at_h6_high": 7.183,
+     "swing_pp": 0.148
+    },
+    {
+     "key": "dev_investment",
+     "low_setting": [
+      24.5,
+      37.2,
+      148.7,
+      8.7,
+      8.7,
+      8.7
+     ],
+     "high_setting": [
+      134.5,
+      147.2,
+      258.7,
+      118.7,
+      118.7,
+      118.7
+     ],
+     "rate_at_h6_low": 7.1202,
+     "rate_at_h6_high": 6.9884,
+     "swing_pp": 0.1318
+    },
+    {
+     "key": "recurrent_spending",
+     "low_setting": [
+      155.0,
+      121.7,
+      143.1,
+      94.3,
+      79.3,
+      150.4
+     ],
+     "high_setting": [
+      215.0,
+      181.7,
+      203.1,
+      154.3,
+      139.3,
+      210.4
+     ],
+     "rate_at_h6_low": 7.1202,
+     "rate_at_h6_high": 7.0483,
+     "swing_pp": 0.0719
+    },
+    {
+     "key": "tax_revenue",
+     "low_setting": [
+      173.8833,
+      183.1833,
+      182.8833,
+      301.1833,
+      161.0833,
+      158.5833
+     ],
+     "high_setting": [
+      233.8833,
+      243.1833,
+      242.8833,
+      361.1833,
+      221.0833,
+      218.5833
+     ],
+     "rate_at_h6_low": 7.0483,
+     "rate_at_h6_high": 7.1202,
+     "swing_pp": 0.0719
+    },
+    {
+     "key": "land_use_fees",
+     "low_setting": [
+      20.0,
+      20.0,
+      20.0,
+      20.0,
+      20.0,
+      20.0
+     ],
+     "high_setting": [
+      80.0,
+      80.0,
+      80.0,
+      80.0,
+      80.0,
+      80.0
+     ],
+     "rate_at_h6_low": 7.0609,
+     "rate_at_h6_high": 7.1328,
+     "swing_pp": 0.0719
+    },
+    {
+     "key": "fdi_disbursed",
+     "low_setting": [
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5
+     ],
+     "high_setting": [
+      3.5,
+      3.5,
+      3.5,
+      3.5,
+      3.5,
+      3.5
+     ],
+     "rate_at_h6_low": 7.1208,
+     "rate_at_h6_high": 7.0589,
+     "swing_pp": 0.0619
+    },
+    {
+     "key": "fed_change",
+     "low_setting": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "high_setting": [
+      0.25,
+      0.0,
+      0.25,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "rate_at_h6_low": 7.0843,
+     "rate_at_h6_high": 7.1343,
+     "swing_pp": 0.05
+    },
+    {
+     "key": "tourism_receipts",
+     "low_setting": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "high_setting": [
+      1.9,
+      1.9,
+      1.9,
+      1.9,
+      1.9,
+      1.9
+     ],
+     "rate_at_h6_low": 7.0982,
+     "rate_at_h6_high": 7.0704,
+     "swing_pp": 0.0278
+    },
+    {
+     "key": "remittances",
+     "low_setting": [
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2,
+      1.2
+     ],
+     "high_setting": [
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+     ],
+     "rate_at_h6_low": 7.0981,
+     "rate_at_h6_high": 7.0734,
+     "swing_pp": 0.0247
+    },
+    {
+     "key": "income_outflow",
+     "low_setting": [
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8
+     ],
+     "high_setting": [
+      1.6,
+      1.6,
+      1.6,
+      1.6,
+      1.6,
+      1.6
+     ],
+     "rate_at_h6_low": 7.0719,
+     "rate_at_h6_high": 7.0967,
+     "swing_pp": 0.0247
+    }
+   ],
+   "tornado_note": "Each lever alone moved to its low/high setting (flat or baseline ± delta, see settings) with all others on baseline; rate at Mar-2027. Sorted by swing.",
+   "scenarios": {
+    "base": {
+     "assumptions_vi": "Mọi đòn bẩy theo đường cơ sở: dòng tiền tín dụng và ngân sách như cùng tháng năm trước, dòng ngoại tệ theo trung bình 3 tháng gần nhất, giá vàng/cổ phiếu/CPI/tỷ giá giữ mức mới nhất, NHNN và Fed không đổi lãi suất.",
+     "assumptions_en": "All levers on their baseline: credit and budget flows as in the same month a year earlier, FX flows at their latest 3-month average, gold/stocks/CPI/FX held at latest values, no SBV or Fed rate change.",
+     "lever_paths": {},
+     "path": [
+      6.0723,
+      6.2584,
+      6.4592,
+      6.6765,
+      6.8765,
+      7.0843
+     ],
+     "change_h6_vs_base": 0.0
+    },
+    "easing": {
+     "assumptions_vi": "NHNN giảm lãi suất điều hành 0,5 điểm % trong 1/2027, bơm ròng 40 nghìn tỷ/tháng qua OMO, CPI hạ dần về 4%.",
+     "assumptions_en": "SBV cuts policy rates by 0.5 pp in Jan-2027, injects a net VND 40 tn a month via OMO; CPI eases to 4%.",
+     "lever_paths": {
+      "policy_rate_change": [
+       0.0,
+       0.0,
+       0.0,
+       -0.5,
+       0.0,
+       0.0
+      ],
+      "omo_net_injection": [
+       40.0,
+       40.0,
+       40.0,
+       40.0,
+       40.0,
+       40.0
+      ],
+      "cpi_yoy": [
+       4.9,
+       4.72,
+       4.54,
+       4.36,
+       4.18,
+       4.0
+      ]
+     },
+     "path": [
+      6.0723,
+      6.2497,
+      6.433,
+      6.3431,
+      6.5082,
+      6.6723
+     ],
+     "change_h6_vs_base": -0.412
+    },
+    "fx_inflow_shock": {
+     "assumptions_vi": "FDI giải ngân −30%, kiều hối −25%, thu du lịch −20% so với cơ sở, nhập siêu thêm 1,5 tỷ USD/tháng; NHNN bán 1 tỷ USD/tháng để giữ tỷ giá; VND mất giá 4%/năm.",
+     "assumptions_en": "FDI disbursement −30%, remittances −25%, tourism receipts −20% vs baseline, trade balance 1.5 bn/month weaker; SBV sells USD 1 bn a month to steady the dong; 12-month depreciation rises to 4%.",
+     "lever_paths": {
+      "fdi_disbursed": [
+       1.876,
+       1.876,
+       1.876,
+       1.876,
+       1.876,
+       1.876
+      ],
+      "remittances": [
+       1.2354,
+       1.2354,
+       1.2354,
+       1.2354,
+       1.2354,
+       1.2354
+      ],
+      "tourism_receipts": [
+       1.1609,
+       1.1609,
+       1.1609,
+       1.1609,
+       1.1609,
+       1.1609
+      ],
+      "trade_balance": [
+       -2.4233,
+       -2.4233,
+       -2.4233,
+       -2.4233,
+       -2.4233,
+       -2.4233
+      ],
+      "sbv_fx_sales": [
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "usdvnd_12m": [
+       2.125,
+       2.5,
+       2.875,
+       3.25,
+       3.625,
+       4.0
+      ]
+     },
+     "path": [
+      6.0723,
+      6.2754,
+      6.5102,
+      6.7784,
+      7.0464,
+      7.3391
+     ],
+     "change_h6_vs_base": 0.2548
+    },
+    "fiscal_push": {
+     "assumptions_vi": "Đẩy nhanh đầu tư công: chi đầu tư phát triển tăng thêm 55 nghìn tỷ/tháng trong quý IV/2026 (tiến tới kế hoạch 1.120 nghìn tỷ) và 20 nghìn tỷ/tháng quý I/2027; đồng thời thu tiền sử dụng đất tăng thêm 30 nghìn tỷ/tháng.",
+     "assumptions_en": "Public-investment acceleration: development spending VND 55 tn a month above baseline in Q4-2026 (towards the 1,120 tn plan) and 20 tn in Q1-2027; at the same time land-use fees run 30 tn a month above baseline.",
+     "lever_paths": {
+      "dev_investment": [
+       109.5,
+       122.2,
+       233.7,
+       58.7,
+       58.7,
+       58.7
+      ],
+      "land_use_fees": [
+       69.5167,
+       69.5167,
+       69.5167,
+       69.5167,
+       69.5167,
+       69.5167
+      ]
+     },
+     "path": [
+      6.0723,
+      6.2564,
+      6.4532,
+      6.6645,
+      6.8593,
+      7.0627
+     ],
+     "change_h6_vs_base": -0.0216
+    },
+    "real_estate_credit_boom": {
+     "assumptions_vi": "Tín dụng bất động sản tăng thêm 60 nghìn tỷ/tháng so với cơ sở (khoảng 150 nghìn tỷ/tháng, như quý II/2026 của riêng tín dụng kinh doanh BĐS cộng cho vay mua nhà); giá căn hộ tăng tốc lên 40%/năm.",
+     "assumptions_en": "Real-estate credit VND 60 tn a month above baseline (~150 tn a month); apartment-price momentum accelerates to 40% y/y.",
+     "lever_paths": {
+      "re_credit": [
+       152.2857,
+       152.2857,
+       152.2857,
+       152.2857,
+       152.2857,
+       152.2857
+      ],
+      "re_price_momentum": [
+       29.1667,
+       31.3333,
+       33.5,
+       35.6667,
+       37.8333,
+       40.0
+      ]
+     },
+     "path": [
+      6.0723,
+      6.2699,
+      6.4936,
+      6.7452,
+      6.991,
+      7.2561
+     ],
+     "change_h6_vs_base": 0.1718
+    },
+    "external_tightening": {
+     "assumptions_vi": "Fed tăng 0,25 điểm % trong 10 và 12/2026; VND mất giá 4,5%/năm; NHNN bán 1,5 tỷ USD/tháng trong quý IV và hút ròng 30 nghìn tỷ/tháng qua OMO.",
+     "assumptions_en": "Fed hikes 0.25 pp in Oct and Dec 2026; the dong's 12-month depreciation reaches 4.5%; SBV sells USD 1.5 bn a month in Q4 and drains a net VND 30 tn a month via OMO.",
+     "lever_paths": {
+      "fed_change": [
+       0.25,
+       0.0,
+       0.25,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "usdvnd_12m": [
+       2.2083,
+       2.6667,
+       3.125,
+       3.5833,
+       4.0417,
+       4.5
+      ],
+      "sbv_fx_sales": [
+       1.5,
+       1.5,
+       1.5,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "omo_net_injection": [
+       -30.0,
+       -30.0,
+       -30.0,
+       -30.0,
+       -30.0,
+       -30.0
+      ]
+     },
+     "path": [
+      6.0973,
+      6.3013,
+      6.5631,
+      6.8342,
+      7.1011,
+      7.3887
+     ],
+     "change_h6_vs_base": 0.3045
+    }
+   },
+   "sensitivity": [
+    {
+     "case": "kappa − 1 SE",
+     "rate_at_h6": 6.8693,
+     "vs_base": -0.215
+    },
+    {
+     "case": "kappa + 1 SE",
+     "rate_at_h6": 7.2993,
+     "vs_base": 0.215
+    },
+    {
+     "case": "P* from the 2025-03 fit",
+     "rate_at_h6": 6.0689,
+     "vs_base": -1.0154
+    },
+    {
+     "case": "FX conversion share × 0 (FX flows irrelevant)",
+     "rate_at_h6": 7.1973,
+     "vs_base": 0.1131
+    },
+    {
+     "case": "FX conversion share × 2",
+     "rate_at_h6": 6.9712,
+     "vs_base": -0.1131
+    },
+    {
+     "case": "fiscal weight × 0",
+     "rate_at_h6": 7.056,
+     "vs_base": -0.0283
+    },
+    {
+     "case": "fiscal weight × 2 (~0.68)",
+     "rate_at_h6": 7.1126,
+     "vs_base": 0.0283
+    },
+    {
+     "case": "calibrated add-ons off (CPI, USD/VND, Fed, SJC, real-estate prices)",
+     "rate_at_h6": 6.7762,
+     "vs_base": -0.3081
+    }
+   ],
+   "sensitivity_note": "Parameter uncertainty not in the band. The neutral P* is the biggest: with the P* estimated only on data to Mar-2025, the base path is roughly flat.",
+   "kind": "dashboard model — not a forecast",
+   "note_vi": "Mô hình cấu trúc của dashboard, không phải dự báo. Đường cơ sở dựa trên giả định đòn bẩy giữ như cùng kỳ hoặc mức mới nhất; mô hình có xu hướng cao hơn lãi suất niêm yết của Big4 khi NHNN chỉ đạo giữ lãi suất. Không phải khuyến nghị đầu tư.",
+   "note_en": "Structural dashboard model, not a forecast. The base path assumes levers stay at same-month-last-year or latest values; the model tends to sit above Big-4 posted rates when the SBV guides banks to hold them. Not investment advice."
+  },
+  "model_versions": {
+   "main": "model2",
+   "comparison": "model",
+   "note": "model2 (structural funding model, v2) is the main deposit-rate model from 2026-10-07; model/projection/sliders (v1, calibrated 4-driver) are kept unchanged for comparison."
+  },
   "indicators_added": [
    {
     "key": "rediscount_rate / sbv_overnight_rate",
@@ -6872,6 +13947,26 @@
    {
     "series": "cash_to_m2",
     "months_covered": 19,
+    "of": 69
+   },
+   {
+    "series": "dev_investment_m",
+    "months_covered": 21,
+    "of": 69
+   },
+   {
+    "series": "sbv_omo_net_m",
+    "months_covered": 20,
+    "of": 69
+   },
+   {
+    "series": "re_credit_flow_m",
+    "months_covered": 18,
+    "of": 69
+   },
+   {
+    "series": "re_price_momentum",
+    "months_covered": 36,
     "of": 69
    }
   ],

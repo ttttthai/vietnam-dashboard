@@ -1061,6 +1061,1031 @@ def sliders_block(P, cal):
             "sd": round(cal["sd"], 4), "check": "With all sliders at 'current', the formula reproduces projection.base exactly."}
 
 
+# ============================================================================================
+# Model v2 - structural monthly VND funding model (main model from 2026-10-07; v1 kept for comparison)
+# ============================================================================================
+# Liquidity block:  FG_t (VND tn) = w_credit*credit - w_fx*S*netFX - w_fis*fiscal_injection - w_sbv*(SBV FX purchases + OMO net)
+#                   weights estimated on annual 2016-2025 data (SBV credit, IMF-FSI deposits, BoP/NSO/customs FX, MoF budget).
+# Pressure index:   P_t (pp of deposits) = sum of the last 12 months of 100*FG/D (D = deposits at the previous year-end).
+# Rate equation:    dr_t = pi*dpolicy_t + kappa*(P_{t-1} - P*) + g_vni*(VNI12_{t-1} - n) + g_gold*(gold12_{t-1} - n)
+#                          + calibrated add-ons (CPI, USD/VND, Fed change, SJC premium, real-estate prices),
+#                   estimated by interval regression on the irregularly observed VCB 12-month rate.
+# Everything the page needs to recompute a path is in SIM.model2 (no matrix algebra at run time).
+
+V2_MONTHS = [f"{y}-{m:02d}" for y in range(2020, 2027) for m in range(1, 13)]
+V2_MONTHS = V2_MONTHS[: V2_MONTHS.index("2026-09") + 1]
+V2_IDX = {m: i for i, m in enumerate(V2_MONTHS)}
+V2N = len(V2_MONTHS)
+
+# Ministry of Finance budget execution, cumulative from January (VND tn = nghìn tỷ đồng), cash-basis estimates.
+# rev = total revenue, exp = total spending, dev = development-investment spending, bal = stated balance when
+# spending is not given. Search-engine excerpts 2026-10-07 (MoF/press pages blocked from the sandbox).
+BUDGET_CUM = {
+    "2025-01": {"rev": 276.6, "exp": 134.4, "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-chi-ngan-sach-nha-nuoc-thang-12025-169885.html"},
+    "2025-02": {"rev": 499.8, "url": "https://baodauthau.vn/thu-ngan-sach-nha-nuoc-2-thang-dau-nam-2025-dat-tren-254-du-toan-post175639.html", "note": "2M spending not found: Feb-Mar flows are a 2-month interval average"},
+    "2025-03": {"rev": 721.3, "exp": 428.2, "dev": 78.7, "url": "https://thitruongtaichinhtiente.vn/quy-i-2025-ngan-sach-nha-nuoc-thang-du-293-nghin-ty-dong-67154.html"},
+    "2025-04": {"rev": 944.1, "exp": 595.4, "url": "https://nhandan.vn/thu-ngan-sach-nha-nuoc-tang-hon-26-trong-4-thang-dau-nam-post877837.html"},
+    "2025-05": {"rev": 1139.6, "exp": 833.8, "dev": 199.3, "url": "https://thitruongtaichinhtiente.vn/5-thang-dau-nam-ngan-sach-nha-nuoc-boi-thu-hon-305-nghin-ty-dong-68216.html"},
+    "2025-06": {"rev": 1330.0, "exp": 1100.0, "dev": 268.1, "approx": True, "url": "https://mekongasean.vn/nua-dau-nam-2025-tong-thu-nsnn-tang-283-dat-khoang-133-trieu-ty-dong-43434.html", "note": "rounded: revenue 'khoảng 1,33 triệu tỷ', spending '1,1 triệu tỷ'"},
+    "2025-07": {"rev": 1572.3, "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-ngan-sach-nha-nuoc-7-thang-uoc-dat-1572300-ty-do-ng-181322.html", "note": "7M spending not found: Jul-Aug flows are a 2-month interval average"},
+    "2025-08": {"rev": 1740.0, "bal": 289.7, "approx": True, "url": "https://vneconomy.vn/chi-thuong-xuyen-gap-24-lan-chi-dau-tu-phat-trien-trong-8-thang.htm", "note": "revenue 'gần 1.740 nghìn tỷ'; surplus 289.7 tn as stated (spending not stated)"},
+    "2025-09": {"rev": 1901.6, "exp": 1591.3, "url": "https://thitruongtaichinhtiente.vn/9-thang-nam-2025-thu-ngan-sach-nha-nuoc-dat-96-7-du-toan-ca-nam-70887.html", "note": "CONFLICT: another excerpt gives 9M spending ~1,625 tn (63.1% of plan, +30.6%); 1,591.3 (61.7%) used; revenue also quoted as 'gần 1.888' in an earlier release"},
+    "2025-10": {"rev": 2145.0, "exp": 1830.8, "dev": 486.1, "url": "https://doanhnhan.baophapluat.vn/kinh-te-10-thang-2025-fdi-thuc-hien-cao-nhat-5-nam-iip-tang-92-chi-ngan-sach-tang-471-88465.html"},
+    "2025-11": {"rev": 2397.7, "exp": 2049.7, "dev": 553.3, "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-ngan-sach-nha-nuoc-11-thang-uoc-dat-2397700-ty-do-ng-188622.html"},
+    "2025-12": {"rev": 2650.1, "exp": 2401.5, "dev": 732.0, "url": "data/economy.json ECONFLOW.budget.mof_execution_2025_jan2026"},
+    "2026-01": {"rev": 370.7, "exp": 163.0, "url": "https://mekongasean.vn/thu-ngan-sach-nha-nuoc-thang-12026-uoc-dat-3707-nghin-ty-dong-51682.html"},
+    "2026-02": {"rev": 601.3, "exp": 311.0, "url": "https://thoibaotaichinhvietnam.vn/thu-ngan-sach-2-thang-dat-238-du-toan-192621.html"},
+    "2026-03": {"rev": 829.4, "exp": 530.1, "dev": 116.1, "url": "https://daibieunhandan.vn/thu-ngan-sach-nha-nuoc-quy-i-2026-dat-hon-829-nghin-ty-dong-10412177.html", "note": "CONFLICT: an earlier release quotes Q1 revenue ~820 tn (thoibaotaichinhvietnam); 829.4 used (later estimate)"},
+    "2026-04": {"rev": 1114.0, "exp": 668.2, "dev": 153.2, "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-chi-ngan-sach-nha-nuoc-4-thang-dau-nam-2026-196849.html", "note": "CONFLICT: another excerpt cites development spending 191.1 tn for 4M; 153.2 (MoF infographic) used"},
+    "2026-05": {"rev": 1339.7, "exp": 845.4, "url": "https://thitruongtaichinhtiente.vn/5-thang-dau-nam-2026-thu-ngan-sach-nha-nuoc-dat-53-du-toan-tang-15-4-so-voi-cung-ky-83359.html"},
+    "2026-06": {"rev": 1568.2, "exp": 1149.1, "url": "https://mekongasean.vn/thu-ngan-sach-6-thang-dat-62-du-toan-nam-2026-56934.html"},
+    "2026-07": {"rev": 1833.0, "exp": 1364.3, "dev": 418.9, "url": "https://www.vietnamplus.vn/thu-ngan-sach-trong-bay-thang-dat-tren-1834-nghin-ty-dong-bang-725-du-toan-post1127807.vnp"},
+    "2026-08": {"rev": 2023.8, "exp": 1608.3, "dev": 514.6, "url": "https://www.vietnamplus.vn/thu-ngan-sach-nha-nuoc-8-thang-uoc-dat-80-du-toan-post1133887.vnp"},
+    "2026-09": {"rev": 2187.3, "exp": 1873.7, "dev": 657.5, "url": "data/economy.json ECONFLOW.budget.exec_9M2026"},
+}
+# NSO: FDI disbursed (vốn FDI thực hiện), cumulative from January, USD bn.
+FDI_CUM = {
+    "2025-01": (1.51, "https://thitruongtaichinhtiente.vn/viet-nam-thu-hut-hon-4-3-ty-usd-von-fdi-trong-thang-dau-nam-2025-65571.html"),
+    "2025-02": (2.95, "https://vneconomy.vn/vietnam-attracts-nearly-7-bln-in-fdi-in-first-two-months.htm"),
+    "2025-05": (8.90, "https://thesaigontimes.vn/saigontimes/giai-ngan-von-fdi-5-thang-dat-89-ti-do-la-cao-nhat-5-nam-qua/"),
+    "2025-07": (13.6, "https://doanhnhan.baophapluat.vn/von-fdi-thuc-hien-cao-nhat-cua-7-thang-trong-5-nam-qua-85116.html"),
+    "2025-08": (15.4, "https://vnbusiness.vn/kinh-te-8-thang-fdi-thuc-hien-cao-nhat-trong-5-nam-hon-209-nghin-doanh-nghiep-thanh-lap-moi.html"),
+    "2025-09": (18.80, "https://thitruongtaichinhtiente.vn/von-fdi-thuc-hien-9-thang-nam-2025-dat-muc-cao-nhat-trong-5-nam-qua-70916.html"),
+    "2025-10": (21.3, "https://doanhnhan.baophapluat.vn/kinh-te-10-thang-2025-fdi-thuc-hien-cao-nhat-5-nam-iip-tang-92-chi-ngan-sach-tang-471-88465.html"),
+    "2025-11": (23.6, "https://thitruongtaichinhtiente.vn/von-fdi-thuc-hien-9-thang-nam-2025-dat-muc-cao-nhat-trong-5-nam-qua-70916.html"),
+    "2025-12": (27.62, "data/economy.json ECON_OFFICIAL.fdi_dis_musd"),
+    "2026-01": (1.68, "https://baolaocai.vn/fdi-tang-toc-dau-nam-thang-12026-ghi-nhan-muc-giai-ngan-ky-luc-trong-5-nam-post893792.html"),
+    "2026-02": (3.21, "https://tapchikinhtetaichinh.vn/von-fdi-giai-ngan-2-thang-dau-nam-tiep-tuc-lap-dinh-cao-nhat-trong-5-nam-qua-150206.html"),
+    "2026-03": (5.41, "https://thitruongtaichinhtiente.vn/von-fdi-thuc-hien-quy-i-2026-lap-dinh-5-nam-dau-tu-ra-nuoc-ngoai-tiep-da-but-pha-80895.html"),
+    "2026-04": (7.40, "https://thanhtra.com.vn/dau-tu-72A9E3223/fdi-thuc-hien-4-thang-dau-nam-2026-dat-74-ty-usd-tang-98-49ad30925.html"),
+    "2026-05": (9.75, "https://tapchikinhtetaichinh.vn/von-dau-tu-nuoc-ngoai-thuc-hien-5-thang-giu-da-tang-truong-manh-tiep-tuc-dan-dau-trong-5-nam-157937.html"),
+    "2026-06": (13.03, "https://thoibaotaichinhvietnam.vn/von-fdi-thuc-hien-6-thang-dau-nam-cao-nhat-trong-5-nam-qua-200091.html"),
+    "2026-07": (15.2, "https://mekongasean.vn/von-fdi-thuc-hien-tai-viet-nam-7-thang-dat-152-ty-usd-58025.html"),
+    "2026-08": (17.25, "https://thitruongtaichinhtiente.vn/8-thang-nam-2026-von-dau-tu-cong-tang-18-5-fdi-thuc-hien-dat-17-25-ty-usd-85291.html"),
+    "2026-09": (21.07, "data/economy.json ECON_OFFICIAL.ytd_2026.fdi_dis_musd_9M"),
+}
+# Customs/NSO goods trade balance, cumulative from January, USD bn (+ = surplus).
+TRADE_CUM = {
+    "2025-03": (3.16, "https://baodauthau.vn/quy-i2025-tong-kim-ngach-xuat-nhap-khau-uoc-dat-hon-202-ty-usd-post176838.html"),
+    "2025-04": (3.79, "https://cafeland.vn/tin-tuc/xuat-nhap-khau-4-thang-2025-duy-tri-da-tang-xuat-sieu-379-ty-usd-137912.html"),
+    "2025-05": (4.67, "https://baodauthau.vn/5-thang-dau-nam-2025-can-can-thuong-mai-hang-hoa-xuat-sieu-467-ty-usd-post180012.html"),
+    "2025-06": (7.63, "https://baodauthau.vn/xuat-sieu-uoc-dat-763-ty-usd-trong-nua-dau-nam-2025-post181191.html"),
+    "2025-07": (10.18, "https://baodauthau.vn/7-thang-nam-2025-viet-nam-xuat-sieu-1018-ty-usd-post182845.html"),
+    "2025-08": (13.99, "https://www.tinnhanhchungkhoan.vn/can-can-thuong-mai-hang-hoa-xuat-sieu-1399-ty-usd-trong-8-thang-post376106.html"),
+    "2025-09": (16.82, "https://vov.vn/kinh-te/9-thang-viet-nam-xuat-sieu-1682-ty-usd-post1235705.vov"),
+    "2025-10": (19.56, "https://vneconomy.vn/xuat-sieu-gan-20-ty-usd-thu-ngan-sach-nganh-hai-quan-10-thang-vuot-moc-379000-ty-dong.htm"),
+    "2025-12": (20.03, "https://baodauthau.vn/infographic-nam-2025-ca-nuoc-xuat-sieu-2003-ty-usd-post191866.html"),
+    "2026-01": (-1.78, "https://baodauthau.vn/thang-12026-can-can-thuong-mai-hang-hoa-nhap-sieu-178-ty-usd-post193707.html"),
+    "2026-02": (-2.95, "https://baomoi.com/cuc-hai-quan-het-2-thang-nam-2026-ca-nuoc-nhap-sieu-295-ti-usd-c54648473.epi"),
+    "2026-03": (-3.64, "https://baodauthau.vn/quy-i2026-can-can-thuong-mai-hang-hoa-nhap-sieu-364-ty-usd-post196540.html"),
+    "2026-04": (-7.1, "https://vietnamfinance.vn/viet-nam-nhap-sieu-hon-7-ty-usd-sau-4-thang-nam-2026-d144298.html"),
+    "2026-06": (-16.65, "https://vneconomy.vn/xuat-nhap-khau-6-thang-dau-nam-tang-manh-ca-nuoc-nhap-sieu-1665-ty-usd.htm"),
+    "2026-07": (-20.52, "https://baodauthau.vn/7-thang-nam-2026-ca-nuoc-nhap-sieu-2052-ty-usd-post204196.html"),
+    "2026-08": (-20.46, "https://baodauthau.vn/8-thang-nam-2026-ca-nuoc-nhap-sieu-2046-ty-usd-post206269.html"),
+    "2026-09": (-19.42, "data/economy.json ECON_OFFICIAL.ytd_2026.trade_balance_busd_9M"),
+}
+TRADE_CONFLICTS = ["Jan-Feb 2025 cumulative balance not found: Jan-Mar 2025 months are a 3-month interval average of the Q1 surplus.",
+                   "2M-2026: customs 2.95 bn deficit used; NSO quotes 2.96-2.98.",
+                   "Sep-2026: 9M (−19.42) minus 8M (−20.46) gives +1.04 bn; the same NSO release states the September surplus as +1.27 bn (8M revised). Cumulatives used as published."]
+# Real-estate credit (SBV figures via MoC/press), VND bn outstanding.
+RE_BUSINESS = [  # 'kinh doanh BĐS' (developers/real-estate business), MoC quarterly report
+    {"date": "2025-03", "value": 1560000, "url": "https://vnexpress.net/du-no-tin-dung-bat-dong-san-dat-2-trieu-ty-dong-quy-iv-2025-5006978.html", "note": "'over 1.56 quadrillion' (finance.json flows)"},
+    {"date": "2025-06", "value": 1740000, "url": "https://vietnamfinance.vn/tin-dung-kinh-doanh-bat-dong-san-vuot-moc-2-trieu-ty-dong-d138953.html", "note": "'over 1.74 quadrillion' (search excerpt 2026-10-07)"},
+    {"date": "2025-09", "value": 1890000, "url": "https://vnbusiness.vn/tin-dung-bat-dong-san-vuot-moc-2-trieu-ty-dong.html", "note": "'over 1.89 quadrillion' (search excerpt 2026-10-07)"},
+    {"date": "2025-12", "value": 2000000, "url": "https://vnexpress.net/du-no-tin-dung-bat-dong-san-dat-2-trieu-ty-dong-quy-iv-2025-5006978.html", "note": "'over 2 quadrillion' (finance.json flows)"},
+    {"date": "2026-03", "value": 2235305, "url": "https://vnbusiness.vn/hon-25-trieu-ty-dong-tin-dung-chay-vao-bat-dong-san-va-bai-toan-ap-luc-chi-phi-von.html", "note": "31/3/2026, stated as the base of the Q2 increase (search excerpt 2026-10-07)"},
+    {"date": "2026-06", "value": 2519378, "url": "https://dantri.com.vn/bat-dong-san/du-no-kinh-doanh-bat-dong-san-vuot-25-trieu-ty-dong-20260822144250909.htm", "note": "30/6/2026, +284,073 bn q/q (+12.71%)"},
+]
+SAVILLS_HN_YOY = [  # Hanoi primary apartment asking price, % y/y (derived from finance.json Savills points; 2026-Q2 as published)
+    {"period": "2023-Q4", "from": "2023-10", "to": "2024-09", "value": 23.4, "note": "derived 58/47 (Q4-23 vs Q4-22)"},
+    {"period": "2024-Q4", "from": "2024-10", "to": "2025-09", "value": 29.3, "note": "derived 75/58"},
+    {"period": "2025-Q4", "from": "2025-10", "to": "2026-03", "value": 36.0, "note": "derived 102/75"},
+    {"period": "2026-Q2", "from": "2026-04", "to": "2026-09", "value": 27.0, "note": "Savills Q2-2026 +27% y/y as published"},
+]
+REMIT_SBV = [  # SBV kiều hối (channel-based) - shown in the panel, not used by the model (BoP secondary income is used)
+    {"period": "2021", "value": 12.5, "url": None, "note": "per data/economy.json (origin not re-verified)"},
+    {"period": "2023", "value": 16.0, "url": "https://vnexpress.net/kieu-hoi-ve-viet-nam-dat-ky-luc-16-ty-usd-4706903.html"},
+    {"period": "2024", "value": 16.0, "url": "https://vnexpress.net/khoang-16-ty-usd-kieu-hoi-ve-viet-nam-trong-nam-2024-4832487.html"},
+    {"period": "2025", "value": 18.0, "url": "https://baophapluat.vn/kieu-hoi-nam-2025-dat-muc-ky-luc-gan-18-ty-usd.html", "note": "'gần 18 tỷ USD' (search excerpt 2026-10-07). CONFLICT/new: data/economy.json leaves 2025 null with only 'over 16 bn' (Foreign Minister) - Economy owns this series"},
+    {"period": "2026-H1 (HCMC only)", "value": 4.037, "url": "https://vneconomy.vn/kieu-hoi-ve-tp-ho-chi-minh-hon-4-ty-usd-trong-6-thang-dau-nam-2026.htm", "note": "HCMC, -22.8% y/y; no national 2026 figure"},
+]
+SJC_PREMIUM_PRESS = [
+    {"date": "2026-08-28", "value": 3.0, "basis": "SJC sell vs world spot at bank USD rate", "url": "https://theleader.vn/gia-vang-hom-nay-28-8-2026-ap-luc-chot-loi-keo-vang-roi-moc-4600-usd-d47484.html", "note": "'giá bán ra trong nước cao hơn 3 triệu đồng/lượng', record-low gap"},
+    {"date": "2026-09-19", "value": 9.3, "basis": "SJC sell 147.6 vs world ~4,378 USD/oz converted ~138.3", "url": "https://baolaocai.vn/gia-vang-hom-nay-209-thi-truong-tam-lang-truoc-tuan-giao-dich-moi-post909869.html", "note": "search excerpt 2026-10-07; exact article within the result set not pinned"},
+]
+
+# ---- calibrated (not estimated) parts of the rate equation: coefficient, neutral, basis --------------------------
+V2_CALIBRATED = {
+    "cpi_yoy": {"coef": 0.02, "neutral": None, "lag": 1, "basis": "calibrated: free estimate has the wrong sign (CPI history has gaps and moves with the funding index); 0.02 pp/month per pp of CPI above its 2024-04..2025-09 mean = ~0.24 pp a year, below v1's 0.03 to limit double counting with the funding index", "sens": [0.0, 0.04]},
+    "usdvnd_12m": {"coef": 0.02, "neutral": 2.0, "lag": 1, "basis": "calibrated: monthly central-rate history starts Oct-2024, so the 12-month change exists only from Oct-2025; neutral 2.0% ~ the only flat-window observation (1.97%, Sep-2025). Depreciation above it pushes the SBV to drain VND liquidity", "sens": [0.0, 0.05]},
+    "fed_change": {"coef": 0.10, "neutral": 0.0, "lag": 0, "basis": "calibrated: v1 regressions give the Fed level the wrong sign (Fed cut 2025 while VN rates rose); a small level shift of 0.1 pp per 1 pp Fed move is kept for the external channel not already working through SBV FX sales and policy rates", "sens": [0.0, 0.3]},
+    "sjc_premium": {"coef": 0.005, "neutral": None, "lag": 1, "basis": "calibrated: no monthly premium history before 2026 (year-end points only); 0.005 pp/month per million VND/tael above the Dec-2024 premium", "sens": [0.0, 0.015]},
+    "re_price_momentum": {"coef": 0.002, "neutral": 26.35, "lag": 1, "basis": "calibrated: Savills Hanoi primary price y/y is annual/quarterly and not a constant-quality index; neutral = mean of the 2023-Q4 and 2024-Q4 y/y (23.4%, 29.3%)", "sens": [0.0, 0.006]},
+}
+
+
+def v2_load():
+    fin = load("finance.json")["FINSYS"]
+    eco = load("economy.json")
+    return fin, eco
+
+
+def _cum_to_flows(cum, months, yearly_reset=True):
+    """Monthly flows from cumulative-from-January points. Months between two points get the interval average
+    (basis 'interval_avg_<k>m'); a month whose cumulative and previous cumulative are both stated is 'cum_diff'."""
+    out, basis = {}, {}
+    for y in sorted({int(m[:4]) for m in cum}):
+        last_m, last_v = 0, 0.0
+        for m in sorted(k for k in cum if k.startswith(str(y))):
+            mo = int(m[5:])
+            k = mo - last_m
+            per = (cum[m] - last_v) / k
+            for j in range(last_m + 1, mo + 1):
+                mm = f"{y}-{j:02d}"
+                if mm in months:
+                    out[mm] = per
+                    basis[mm] = "cum_diff" if k == 1 else f"interval_avg_{k}m"
+            last_m, last_v = mo, cum[m]
+    return out, basis
+
+
+def v2_inputs(P):
+    """Monthly lever history on V2_MONTHS (2020-01..2026-09) + basis flags + annual blocks for the liquidity regression."""
+    fin, eco = v2_load()
+    eo, bop = eco["ECON_OFFICIAL"], eco["ECONFLOW"]["bop"]
+    y0 = eo["y0"]
+    A = lambda k: {y0 + i: v for i, v in enumerate(eo[k])}
+    usd_a, rev_a, exp_a, fdi_a, ex_a, im_a = A("usd_vnd"), A("budget_rev_bn"), A("budget_exp_bn"), A("fdi_dis_musd"), A("export_busd"), A("import_busd")
+    by = bop["years"]
+    B = lambda k, y: bop["s"][k][by.index(y)]
+    ann = fin["annual"]
+    cg = dict(zip(ann["years"], ann["credit_growth"]))
+    dep_fsi = dict(zip(ann["years"], ann["deposits"]))
+    # SBV credit levels at year-end: 2022-2025 stated; earlier years chained back from 2024 with credit_growth (derived)
+    lvl = {2024: 15616077.0}
+    for y in range(2024, 2014, -1):
+        lvl[y - 1] = lvl[y] / (1 + cg[y] / 100)
+    lvl_basis = {y: ("stated" if y in (2022, 2023, 2024) else "derived: chained back from the 2024 level with finance.json annual credit_growth") for y in lvl}
+    lvl[2025] = 18594930.02
+    lvl_basis[2025] = "stated (SBV table Dec-2025)"
+    pan = P["series"]
+    cen = {m: v for m, v in zip(MONTHS, pan["usdvnd_central"]["values"]) if v is not None}
+
+    def S_of(m):  # VND per USD used to convert USD flows
+        return (cen[m], "central_rate_month") if m in cen else (usd_a[int(m[:4])], "annual_average_rate")
+
+    H = {k: [None] * V2N for k in ("credit", "fdi", "remit", "tour", "tb", "income", "fx_vnd", "rev", "exp", "dev", "fis", "sbv_fx", "omo", "re_credit", "S")}
+    HB = {k: [None] * V2N for k in H}
+    # ---- credit: 2021-2023 interval averages between dated SBV statements, 2020 & 2024 annual/12, 2025+ SBV table
+    ytd_pts = {2021: {"2021-03": 2.93, "2021-06": 5.10, "2021-10": 8.72}, 2022: {"2022-03": 5.04, "2022-08": 9.91}, 2023: {"2023-03": 1.61, "2023-09": 5.73, "2023-11": 9.15}}
+    for y in range(2020, 2025):
+        cum = {f"{y}-12": (lvl[y] - lvl[y - 1]) / 1000}
+        for m, p in ytd_pts.get(y, {}).items():
+            cum[m] = lvl[y - 1] * p / 100 / 1000
+        fl, bs = _cum_to_flows(cum, V2_MONTHS)
+        for m, v in fl.items():
+            H["credit"][V2_IDX[m]] = v
+            HB["credit"][V2_IDX[m]] = "annual_even" if y in (2020, 2024) else "interval_avg_statements"
+    fm = fin["monthly"]
+    cl = {tlabel_to_month(t): v for t, v in zip(fm["months"], fm["credit_level"]) if v is not None}
+    cb = {tlabel_to_month(t): b for t, b in zip(fm["months"], fm["credit_basis"])}
+    for m in V2_MONTHS:
+        if m >= "2025-01":
+            pm = V2_MONTHS[V2_IDX[m] - 1]
+            if m in cl and pm in cl:
+                H["credit"][V2_IDX[m]] = (cl[m] - cl[pm]) / 1000
+                HB["credit"][V2_IDX[m]] = "sbv_table_diff" if cb.get(m) == "sbv_table" else "statement_level_diff (rounded level)"
+    # ---- FX: 2020-2024 annual/12 (NSO FDI, BoP secondary income & travel credit, customs balance, BoP primary income)
+    for m in V2_MONTHS:
+        i, y = V2_IDX[m], int(m[:4])
+        s, sb = S_of(m)
+        H["S"][i], HB["S"][i] = s, sb
+        if y <= 2024:
+            H["fdi"][i] = fdi_a[y] / 1000 / 12
+            H["tb"][i] = (ex_a[y] - im_a[y]) / 12
+            for k in ("fdi", "tb"):
+                HB[k][i] = "annual_even"
+        if y <= 2025:
+            H["remit"][i] = B("secondary_income_in", y) / 12
+            H["tour"][i] = B("travel_x", y) / 12
+            H["income"][i] = -(B("primary_income_in", y) - B("primary_income_out", y)) / 12
+            for k in ("remit", "tour", "income"):
+                HB[k][i] = "annual_even"
+            H["sbv_fx"][i] = B("reserves_change", y) * s / 1000 / 12
+            HB["sbv_fx"][i] = "annual_even (BoP reserves change)"
+    fdi_fl, fdi_b = _cum_to_flows({m: v for m, (v, u) in FDI_CUM.items()}, V2_MONTHS)
+    tb_fl, tb_b = _cum_to_flows({m: v for m, (v, u) in TRADE_CUM.items()}, V2_MONTHS)
+    for m in V2_MONTHS:
+        i = V2_IDX[m]
+        if m >= "2025-01":
+            H["fdi"][i], HB["fdi"][i] = fdi_fl[m], fdi_b[m]
+            H["tb"][i], HB["tb"][i] = tb_fl[m], tb_b[m]
+        if m >= "2026-01":
+            H["tour"][i], HB["tour"][i] = eco["ECONFLOW"]["tour"]["travel_receipts_busd"][-1] / 9, "9M_even (NSO 9M-2026 service exports)"
+            H["remit"][i], HB["remit"][i] = B("secondary_income_in", 2025) / 12, "assumption: 2025 monthly average carried (no 2026 national figure)"
+            H["income"][i], HB["income"][i] = -(B("primary_income_in", 2025) - B("primary_income_out", 2025)) / 12, "assumption: 2025 monthly average carried"
+            H["sbv_fx"][i], HB["sbv_fx"][i] = 0.0, "assumption: 0 (2026 SBV FX operations not published)"
+        H["fx_vnd"][i] = (H["fdi"][i] + H["remit"][i] + H["tour"][i] + H["tb"][i] - H["income"][i]) * H["S"][i] / 1000
+    # ---- fiscal: 2020-2024 annual/12 (final accounts), 2025-26 MoF monthly execution (cumulative differences)
+    for m in V2_MONTHS:
+        i, y = V2_IDX[m], int(m[:4])
+        if y <= 2024:
+            H["rev"][i], H["exp"][i] = rev_a[y] / 1000 / 12, exp_a[y] / 1000 / 12
+            H["fis"][i] = H["exp"][i] - H["rev"][i]
+            for k in ("rev", "exp", "fis"):
+                HB[k][i] = "annual_even (final accounts)"
+    bal = {m: (d["rev"] - d["exp"]) if "exp" in d else d.get("bal") for m, d in BUDGET_CUM.items()}
+    bal = {m: v for m, v in bal.items() if v is not None}
+    b_fl, b_b = _cum_to_flows(bal, V2_MONTHS)
+    r_fl, r_b = _cum_to_flows({m: d["rev"] for m, d in BUDGET_CUM.items()}, V2_MONTHS)
+    e_fl, e_b = _cum_to_flows({m: d["exp"] for m, d in BUDGET_CUM.items() if "exp" in d}, V2_MONTHS)
+    d_fl, d_b = _cum_to_flows({m: d["dev"] for m, d in BUDGET_CUM.items() if "dev" in d}, V2_MONTHS)
+    for m in V2_MONTHS:
+        if m >= "2025-01":
+            i = V2_IDX[m]
+            H["fis"][i], HB["fis"][i] = -b_fl[m], b_b[m] + (" (approx. cumulative)" if any(BUDGET_CUM.get(k, {}).get("approx") for k in (m,)) else "")
+            H["rev"][i], HB["rev"][i] = r_fl.get(m), r_b.get(m)
+            H["exp"][i], HB["exp"][i] = e_fl.get(m), e_b.get(m)
+            H["dev"][i], HB["dev"][i] = d_fl.get(m), d_b.get(m)
+    # ---- SBV OMO net injection (VBMA month-end repo outstanding minus SBV bills outstanding), 2025-02..
+    omo, bills = {}, {}
+    for x in fin["sbv"]["operations"]:
+        if x["period"] != "point":
+            continue
+        m = x["date"][:7]
+        if x["item"] == "omo_outstanding" and "VBMA" in (x.get("note") or ""):
+            if m not in omo or x["date"] >= omo[m][0]:
+                omo[m] = (x["date"], x["value"])
+        if x["item"] == "sbv_bills_outstanding":
+            if m not in bills or x["date"] >= bills[m][0]:
+                bills[m] = (x["date"], x["value"])
+    net, last_b = {}, None
+    for m in V2_MONTHS:
+        if m in bills:
+            last_b = bills[m][1]
+        if m in omo and last_b is not None:
+            net[m] = (omo[m][1] - (bills[m][1] if m in bills else last_b), "VBMA month-end" + ("" if m in bills else "; bills carried at last reported level (0 after 28/7/2025: none reported)"))
+    for m in V2_MONTHS:
+        pm = V2_MONTHS[V2_IDX[m] - 1] if V2_IDX[m] else None
+        if m in net and pm in net:
+            H["omo"][V2_IDX[m]] = (net[m][0] - net[pm][0]) / 1000
+            HB["omo"][V2_IDX[m]] = net[m][1]
+    # ---- real-estate credit (total incl. home loans) interval averages between finance.json points
+    re_pts = []
+    for key in ("Real estate credit, total (dư nợ tín dụng BĐS)", "Real estate credit, total"):
+        re_pts += [(o["d"], o["v"], o["u"]) for o in fin["flows"].get(key, [])]
+    re_pts.sort()
+    for (d0, v0, u0), (d1, v1, u1) in zip(re_pts, re_pts[1:]):
+        k = V2_IDX[d1] - V2_IDX[d0]
+        for j in range(V2_IDX[d0] + 1, V2_IDX[d1] + 1):
+            H["re_credit"][j] = (v1 - v0) / 1000 / k
+            HB["re_credit"][j] = f"interval_avg_{k}m ({d0}->{d1})"
+    annual = {"lvl": lvl, "lvl_basis": lvl_basis, "dep_fsi": dep_fsi, "usd_a": usd_a, "rev_a": rev_a, "exp_a": exp_a, "fdi_a": fdi_a, "ex_a": ex_a, "im_a": im_a, "B": B,
+              "re_pts": re_pts, "omo_points": omo}
+    return H, HB, annual
+
+
+def v2_liquidity_regression(annual, years):
+    """Annual: (credit increase - deposit increase) on credit increase, net FX inflow (VND), fiscal injection, SBV reserve purchases (VND)."""
+    lvl, D, B = annual["lvl"], annual["dep_fsi"], annual["B"]
+    rows = []
+    for y in years:
+        S = annual["usd_a"][y] / 1000
+        netfx = (annual["fdi_a"][y] / 1000 + B("secondary_income_in", y) + B("travel_x", y) + (annual["ex_a"][y] - annual["im_a"][y])
+                 + (B("primary_income_in", y) - B("primary_income_out", y))) * S
+        dC = (lvl[y] - lvl[y - 1]) / 1000
+        dD = (D[y] - D[y - 1]) / 1000
+        rows.append({"year": y, "gap": dC - dD, "credit": dC, "netfx": netfx, "fiscal": (annual["exp_a"][y] - annual["rev_a"][y]) / 1000,
+                     "sbv_fx": B("reserves_change", y) * S})
+    Y = np.array([r["gap"] for r in rows])
+    X = np.column_stack([np.ones(len(rows))] + [np.array([r[k] for r in rows]) for k in ("credit", "netfx", "fiscal", "sbv_fx")])
+    b = np.linalg.lstsq(X, Y, rcond=None)[0]
+    e = Y - X @ b
+    n, k = X.shape
+    s2 = float(e @ e / (n - k))
+    se = np.sqrt(np.diag(s2 * np.linalg.inv(X.T @ X)))
+    r2 = 1 - float(e @ e) / float((Y - Y.mean()) @ (Y - Y.mean()))
+    names = ["const", "credit", "netfx", "fiscal", "sbv_fx"]
+    return {"coef": {nm: round(float(c), 4) for nm, c in zip(names, b)}, "se": {nm: round(float(c), 4) for nm, c in zip(names, se)},
+            "r2": round(r2, 3), "n": n, "sample": f"{years[0]}..{years[-1]} (annual)", "resid_sd_tn": round(math.sqrt(s2), 1),
+            "rows": [{k: (round(v, 1) if isinstance(v, float) else v) for k, v in r.items()} for r in rows]}
+
+
+def v2_weights(liq):
+    c = liq["coef"]
+    return {"credit": c["credit"], "fx": -c["netfx"], "fiscal": -c["fiscal"], "sbv": -c["sbv_fx"]}
+
+
+def v2_fg(H, W):
+    """FG_t in VND tn (constant omitted - it is absorbed in P*). OMO net counts like SBV FX purchases (assumption)."""
+    out = [None] * V2N
+    for i in range(V2N):
+        c, fx, fis, sfx = H["credit"][i], H["fx_vnd"][i], H["fis"][i], H["sbv_fx"][i]
+        if None in (c, fx, fis, sfx):
+            continue
+        omo = H["omo"][i] if H["omo"][i] is not None else 0.0
+        out[i] = W["credit"] * c - W["fx"] * fx - W["fiscal"] * fis - W["sbv"] * (sfx + omo)
+    return out
+
+
+def v2_denominator(m, dep_fsi):
+    return dep_fsi[int(m[:4]) - 1] / 1000.0  # VND tn, previous year-end (IMF-FSI customer deposits)
+
+
+def v2_pressure(FG, dep_fsi):
+    pp = [None if FG[i] is None else 100.0 * FG[i] / v2_denominator(V2_MONTHS[i], dep_fsi) for i in range(V2N)]
+    P = [None] * V2N
+    for i in range(11, V2N):
+        w = pp[i - 11: i + 1]
+        if None not in w:
+            P[i] = sum(w)
+    return pp, P
+
+
+def v2_interval_rows(Pn, Pidx, start, end, exclude=None):
+    dep, refi = v(Pn, "dep12_vcb"), v(Pn, "refi_rate")
+    gold, vni = v(Pn, "gold_world_12m"), v(Pn, "vnindex_12m")
+    obs = [i for i in range(N) if dep[i] is not None]
+    rows = []
+    for a, b in zip(obs, obs[1:]):
+        if MONTHS[a] < start or MONTHS[b] > end:
+            continue
+        if exclude and not (MONTHS[b] < exclude[0] or MONTHS[a] >= exclude[1]):
+            continue
+        x = {"pol": 0.0, "P": 0.0, "gold": 0.0, "vni": 0.0, "c": 0.0}
+        ok = True
+        for i in range(a + 1, b + 1):
+            pm = MONTHS[i - 1]
+            p = Pidx[V2_IDX[pm]]
+            if p is None or gold[i - 1] is None or vni[i - 1] is None:
+                ok = False
+                break
+            x["pol"] += refi[i] - refi[i - 1]
+            x["P"] += p
+            x["gold"] += gold[i - 1]
+            x["vni"] += vni[i - 1]
+            x["c"] += 1
+        if ok:
+            rows.append({"from": MONTHS[a], "to": MONTHS[b], "dr": round(dep[b] - dep[a], 4), "len": b - a, "x": x})
+    return rows
+
+
+def v2_fit_rate(rows, names=("pol", "P", "gold", "vni", "c")):
+    Y = np.array([r["dr"] for r in rows])
+    X = np.array([[r["x"][k] for k in names] for r in rows])
+    b = np.linalg.lstsq(X, Y, rcond=None)[0]
+    e = Y - X @ b
+    n, k = X.shape
+    s2 = float(e @ e / (n - k))
+    se = np.sqrt(np.diag(s2 * np.linalg.pinv(X.T @ X)))
+    r2c = 1 - float(e @ e) / float((Y - Y.mean()) @ (Y - Y.mean()))
+    lens = np.array([r["len"] for r in rows], float)
+    sig_m = math.sqrt(float(np.mean(e ** 2 / lens)))
+    coef = {nm: float(c) for nm, c in zip(names, b)}
+    return {"coef": coef, "se": {nm: float(c) for nm, c in zip(names, se)}, "r2": round(r2c, 3), "n": n,
+            "sample": f"{rows[0]['from']}..{rows[-1]['to']}", "sigma_month": sig_m,
+            "intervals": [{"from": r["from"], "to": r["to"], "dr": r["dr"], "fitted": round(float(f), 3)} for r, f in zip(rows, X @ b)]}
+
+
+def v2_pstar(coef, neutral):
+    # const c = -kappa*P* - g_vni*n_vni - g_gold*n_gold  ->  P*
+    return -(coef["c"] + coef["vni"] * neutral["vnindex_12m"] + coef["gold"] * neutral["gold_world_12m"]) / coef["P"]
+
+
+def v2_neutrals(Pn):
+    flat = [m for m in MONTHS if "2024-04" <= m <= "2025-09"]
+    out = {}
+    for k in ("cpi_yoy", "gold_world_12m", "vnindex_12m"):
+        vals = [at(Pn, k, m) for m in flat if at(Pn, k, m) is not None]
+        out[k] = sum(vals) / len(vals)
+    return out
+
+
+def v2_simulate_history(Pn, Pidx, coef, pstar, neutral, start, end, addons=None):
+    """Dynamic replay from the observed rate at `start`, with actual drivers. addons: dict key->(coef, neutral, series) or None."""
+    dep, refi = v(Pn, "dep12_vcb"), v(Pn, "refi_rate")
+    gold, vni = v(Pn, "gold_world_12m"), v(Pn, "vnindex_12m")
+    r = dep[IDX[start]]
+    out = []
+    for i in range(IDX[start] + 1, IDX[end] + 1):
+        pm = MONTHS[i - 1]
+        dr = coef["pol"] * (refi[i] - refi[i - 1]) + coef["P"] * (Pidx[V2_IDX[pm]] - pstar) \
+            + coef["vni"] * (vni[i - 1] - neutral["vnindex_12m"]) + coef["gold"] * (gold[i - 1] - neutral["gold_world_12m"])
+        used = []
+        for k, (cf, nt, ser) in (addons or {}).items():
+            x = ser[i - 1]
+            if x is not None:
+                dr += cf * (x - nt)
+                used.append(k)
+        r += dr
+        out.append({"month": MONTHS[i], "predicted": round(r, 3), "actual": dep[i], "addons_used": used})
+    return out
+
+
+def _rmse(path):
+    e = [(p["predicted"] - p["actual"]) ** 2 for p in path if p["actual"] is not None]
+    return round(math.sqrt(sum(e) / len(e)), 3) if e else None
+
+
+# ---- browser-reproducible projection --------------------------------------------------------------------------------
+def _lever_x(lv, settings, h):
+    """Value a lever contributes to the RATE in month h: lag 1 -> previous month (latest observed value for h = 0)."""
+    path = settings.get(lv["key"], lv["baseline_path"])
+    if lv["lag"] == 1:
+        return lv["latest_value"] if h == 0 else path[h - 1]
+    return path[h]
+
+
+def project_v2(model, settings=None):
+    """Reference implementation - re-implementable in browser JS with + - * / and one loop (no matrix algebra).
+    model = SIM.model2; settings = {lever_key: [6 monthly values]} overriding baseline paths (missing keys = baseline).
+      for h in 0..5:
+        r  += kappa*(P - P_star) + sum over rate levers of rate_coef*(x_h - neutral)     (x_h per _lever_x)
+        P  += sum over liquidity levers of 100*liquidity_weight*path[h]/D_tn - rolloff_pp[h]
+    Returns the 6 month-end rates, unrounded."""
+    settings = settings or {}
+    p = model["params"]
+    r, P = p["r0"], p["P0"]
+    out = []
+    for h in range(6):
+        dr = p["kappa"] * (P - p["P_star"])
+        for lv in model["levers"]:
+            if lv["rate_coef"] is not None:
+                dr += lv["rate_coef"] * (_lever_x(lv, settings, h) - lv["neutral"])
+        r = r + dr
+        out.append(r)
+        for lv in model["levers"]:
+            if lv["liquidity_weight"] is not None:
+                P = P + 100.0 * lv["liquidity_weight"] * settings.get(lv["key"], lv["baseline_path"])[h] / p["D_tn"]
+        P = P - p["rolloff_pp"][h]
+    return out
+
+
+def contributions_v2(model, settings=None):
+    """Cumulative contribution of each lever (its funding-gap part via kappa and its direct rate part) plus the inherited
+    pressure (kappa*(P0 - P*)) and the roll-off of the months leaving the 12-month window. Sums to path - r0."""
+    settings = settings or {}
+    p = model["params"]
+    kappa = p["kappa"]
+    keys = [lv["key"] for lv in model["levers"]] + ["inherited_pressure", "funding_rolloff"]
+    cum = {k: 0.0 for k in keys}
+    out = {k: [] for k in keys}
+    padd = {lv["key"]: 0.0 for lv in model["levers"]}
+    roll = 0.0
+    for h in range(6):
+        cum["inherited_pressure"] += kappa * (p["P0"] - p["P_star"])
+        cum["funding_rolloff"] += -kappa * roll
+        for lv in model["levers"]:
+            d = kappa * padd[lv["key"]] if lv["liquidity_weight"] is not None else 0.0
+            if lv["rate_coef"] is not None:
+                d += lv["rate_coef"] * (_lever_x(lv, settings, h) - lv["neutral"])
+            cum[lv["key"]] += d
+        for k in keys:
+            out[k].append(cum[k])
+        for lv in model["levers"]:
+            if lv["liquidity_weight"] is not None:
+                padd[lv["key"]] += 100.0 * lv["liquidity_weight"] * settings.get(lv["key"], lv["baseline_path"])[h] / p["D_tn"]
+        roll += p["rolloff_pp"][h]
+    return out
+
+
+def _r(x, k=4):
+    return None if x is None else round(float(x), k)
+
+
+def _seasonal(H, key, months):
+    return [H[key][V2_IDX[m]] for m in months]
+
+
+def v2_panel_series(H, HB, FG, pp, Pidx, annual):
+    """Monthly lever series for SIM.panel (months 2021-01..2026-09)."""
+    def cut(arr):
+        return [None if arr[V2_IDX[m]] is None else _r(arr[V2_IDX[m]], 3) for m in MONTHS]
+
+    def bas(arr):
+        return [arr[V2_IDX[m]] for m in MONTHS]
+    S = {}
+    S["fdi_disbursed_m"] = series("FDI giải ngân (theo tháng)", "FDI disbursed, monthly", "USD bn per month", cut(H["fdi"]),
+                                  "NSO 'vốn FDI thực hiện' (disbursed, an estimate revised next month). 2025-2026: differences of the cumulative-from-January figures (interval averages where an intermediate cumulative was not found, see 'basis'); 2021-2024: annual total / 12. Not BoP FDI (~80% of NSO disbursement).",
+                                  "NSO monthly socio-economic reports via press; annual from data/economy.json ECON_OFFICIAL.fdi_dis_musd", "per point in 'cumulative'", "search excerpts 2026-10-07", "fx",
+                                  basis=bas(HB["fdi"]), cumulative=[{"month": m, "value": v_, "url": u} for m, (v_, u) in sorted(FDI_CUM.items())])
+    S["remittances_bop_m"] = series("Kiều hối & chuyển giao vãng lai (BoP)", "Remittances & current transfers (BoP secondary income, credit)", "USD bn per month", cut(H["remit"]),
+                                    "BoP secondary income, credit (all current transfers incl. remittances) / 12 per year (one definition 2015-2025). 2026: no national figure - model carries the 2025 average (flagged in 'basis'). SBV channel-based kiều hối kept separately in 'sbv_kieu_hoi' (different definition, never merged).",
+                                    "data/economy.json ECONFLOW.bop.s.secondary_income_in (IMF BPM6 from SBV)", "see economy.json bop.sources", "Economy tab", "fx",
+                                    basis=bas(HB["remit"]), sbv_kieu_hoi=REMIT_SBV)
+    S["tourism_receipts_m"] = series("Thu từ khách quốc tế (du lịch)", "International travel receipts", "USD bn per month", cut(H["tour"]),
+                                     "BoP travel credit / 12 per year (2021-2025); 2026: NSO 9M-2026 service-export travel receipts 13.06 bn / 9. Monthly arrivals are not used to shape months.",
+                                     "data/economy.json ECONFLOW.tour.travel_receipts_busd", "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/", "Economy tab", "fx",
+                                     basis=bas(HB["tour"]))
+    S["trade_balance_m"] = series("Cán cân thương mại hàng hóa", "Goods trade balance", "USD bn per month", cut(H["tb"]),
+                                  "Customs/NSO goods balance (+ = surplus). 2025-2026: differences of cumulative-from-January balances (interval averages where a cumulative was not found); 2021-2024: annual (export − import, data/economy.json) / 12. Customs basis, not the BoP goods balance (2025: 20.0 vs 41.9 bn).",
+                                  "Customs/NSO via press; data/economy.json ECON_OFFICIAL export/import", "per point in 'cumulative'", "search excerpts 2026-10-07", "fx",
+                                  basis=bas(HB["tb"]), cumulative=[{"month": m, "value": v_, "url": u} for m, (v_, u) in sorted(TRADE_CUM.items())], conflicts=TRADE_CONFLICTS)
+    S["income_outflow_m"] = series("Chuyển lợi nhuận/thu nhập ra nước ngoài (ròng)", "Net primary-income outflow (profit & interest repatriation)", "USD bn per month", cut(H["income"]),
+                                   "−(BoP primary income credit − debit) / 12 per year; positive = net outflow. 2026: 2025 average carried (assumption; SBV Q1-2026 reports only investment income net −1.23 bn, a narrower concept).",
+                                   "data/economy.json ECONFLOW.bop.s.primary_income_in/out", "see economy.json bop.sources", "Economy tab", "fx", basis=bas(HB["income"]))
+    S["fx_net_inflow_vnd_m"] = series("Dòng ngoại tệ ròng quy VND (mô hình)", "Net FX inflow in VND (model input)", "VND tn per month", cut(H["fx_vnd"]),
+                                      "Derived: (FDI disbursed + remittances (BoP) + travel receipts + goods balance − net primary-income outflow) × USD/VND (month central rate from Oct-2024, annual average rate before) / 1000.",
+                                      "derived", "derived", "derived", "fx", derived=True)
+    S["budget_revenue_m"] = series("Thu NSNN theo tháng", "State budget revenue, monthly", "VND tn per month", cut(H["rev"]),
+                                   "MoF cash-basis execution: differences of cumulative estimates 2025-2026 (interval averages where a cumulative was not found); 2021-2024 final accounts / 12 (different basis: includes carry-overs). Cumulative points with URLs in 'cumulative'.",
+                                   "Ministry of Finance via press; data/economy.json", "per point", "search excerpts 2026-10-07", "fiscal",
+                                   basis=bas(HB["rev"]), cumulative=[{"month": m, **{k: d[k] for k in d}} for m, d in sorted(BUDGET_CUM.items())])
+    S["budget_spending_m"] = series("Chi NSNN theo tháng", "State budget spending, monthly", "VND tn per month", cut(H["exp"]),
+                                    "As budget_revenue_m. 2-month gaps (Feb-Mar and Jul-Aug 2025) where the cumulative spending was not found are null here; the fiscal injection for those months uses the stated balances (interval average).",
+                                    "Ministry of Finance via press", "see budget_revenue_m.cumulative", "search excerpts 2026-10-07", "fiscal", basis=bas(HB["exp"]))
+    S["dev_investment_m"] = series("Chi đầu tư phát triển theo tháng", "Development-investment spending, monthly", "VND tn per month", cut(H["dev"]),
+                                   "MoF development-investment spending (part of budget spending), differences/interval averages of cumulative estimates; null where not found. Not the public-investment disbursement rate (different scope).",
+                                   "Ministry of Finance via press", "see budget_revenue_m.cumulative", "search excerpts 2026-10-07", "fiscal", basis=bas(HB["dev"]))
+    S["fiscal_net_injection_m"] = series("Bơm ròng từ ngân sách (chi − thu)", "Fiscal net injection (spending − revenue)", "VND tn per month", cut(H["fis"]),
+                                         "Spending minus revenue in the month (negative = budget surplus, money moving from customer deposits to State Treasury accounts). 2025-2026 from MoF cumulative balances; 2021-2024 annual / 12.",
+                                         "derived from MoF execution", "see budget_revenue_m.cumulative", "derived", "fiscal", basis=bas(HB["fis"]),
+                                         land_use_fees_annual={"years": [2018, 2019, 2020, 2021, 2022, 2023, 2024, "2026 plan"],
+                                                               "values_tn": [147.8, 153.7, 173.0, 185.1, 208.5, 153.8, 232.9, 474.2],
+                                                               "note": "Land-use fees (thu tiền sử dụng đất), final accounts; 2025 not itemised in MoF releases (null; 'thu từ nhà, đất' 575.5 tn is a broader aggregate); 2026 = National Assembly plan. Monthly land-fee collections are not published nationally.",
+                                                               "source": "data/economy.json ECONFLOW.budget.revenue.land_use_fees"})
+    S["sbv_omo_net_m"] = series("NHNN bơm/hút ròng qua OMO và tín phiếu", "SBV net injection via OMO repos and bills", "VND tn per month", cut(H["omo"]),
+                                "Change in (VBMA month-end repo outstanding − SBV bills outstanding); positive = net injection. From Feb-2025 only (finance.json sbv.operations); weekly reports are taken at the last Friday of the month, so month values carry timing noise. Before 2025 null (not in the model's index).",
+                                "VBMA weekly bond-market reports via finance.json FINSYS.sbv.operations", "https://vbma.org.vn", "per finance.json", "sbv", basis=bas(HB["omo"]))
+    S["sbv_fx_reserves_change_m"] = series("NHNN mua/bán ngoại tệ (thay đổi dự trữ, quy VND)", "SBV FX purchases (+) / sales (−), reserve change in VND", "VND tn per month", cut(H["sbv_fx"]),
+                                           "BoP reserve-asset change × average rate / 12 per year (2021-2025). 2026 not published (SBV will publish net FX purchases with a 3-month lag from 2027): the model sets 0 (flagged). Reserves were ~87.6 bn USD on 18/6/2026 (SBV draft decree) vs 85.6 bn end-2025 (excl. gold).",
+                                           "data/economy.json ECONFLOW.bop.s.reserves_change", "https://baodauthau.vn/den-186-du-tru-ngoai-hoi-dat-876-ty-usd-post201374.html", "Economy tab / search excerpt 2026-10-07", "sbv",
+                                           basis=bas(HB["sbv_fx"]))
+    S["credit_flow_m"] = series("Tín dụng tăng thêm trong tháng", "Credit increase in the month", "VND tn per month", cut(H["credit"]),
+                                "Change in credit to the economy. 2025-2026: SBV month-end table levels (Aug/Sep-2026 rounded statement levels); 2021-2023: interval averages between dated SBV statements (cut-off mapped to its calendar month), anchored to year-end levels; 2020 & 2024: annual increase / 12. Pre-2022 year-end levels chained back from 2024 with finance.json annual credit growth (derived).",
+                                "finance.json FINSYS.monthly / annual; SBV statements (credit_ytd observations)", "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt", "per finance.json", "credit",
+                                basis=bas(HB["credit"]), year_end_levels={str(y): {"value_bn": round(annual["lvl"][y]), "basis": annual["lvl_basis"][y]} for y in range(2019, 2026)})
+    S["re_credit_flow_m"] = series("Tín dụng bất động sản tăng thêm (gồm cho vay mua nhà)", "Real-estate credit increase (incl. home loans)", "VND tn per month", cut(H["re_credit"]),
+                                   "Interval averages between SBV total real-estate credit points (business + home purchase/repair; finance.json flows): Dec-2024 3.35, Jul-2025 4.10, Nov-2025 4.50, Jun-2026 5.146 quadrillion VND. Developer ('kinh doanh BĐS', MoC quarterly) outstanding in 're_business_outstanding'.",
+                                   "SBV via MoC/press (finance.json flows)", "per point", "per finance.json / search excerpts 2026-10-07", "credit",
+                                   basis=bas(HB["re_credit"]), points=[{"date": d, "value_bn": v_, "url": u} for d, v_, u in annual["re_pts"]], re_business_outstanding=RE_BUSINESS)
+    S["funding_gap_fg_m"] = series("Thiếu hụt vốn (mô hình), theo tháng", "Funding gap FG (model), monthly", "VND tn per month", cut(FG),
+                                   "Model-derived: w_credit×credit − w_fx×net FX inflow − w_fiscal×fiscal injection − w_sbv×(SBV FX purchases + OMO net), weights from the annual regression in SIM.model2.estimation.liquidity (constant omitted, absorbed in the neutral P*).",
+                                   "derived (model v2)", "derived", "derived", "liquidity", derived=True)
+    S["funding_pressure_index"] = series("Chỉ số áp lực vốn P (12 tháng, % tiền gửi)", "Funding-pressure index P (12-month, % of deposits)", "pp of deposits", cut(Pidx),
+                                         "Model-derived: sum of the last 12 monthly FG, each divided by customer deposits at the previous year-end (IMF-FSI) × 100. Comparable in spirit to credit growth minus deposit growth (y/y) but built from the levers; its neutral level P* is estimated.",
+                                         "derived (model v2)", "derived", "derived", "liquidity", derived=True)
+    re_m = [None] * N
+    for o in SAVILLS_HN_YOY:
+        for m in MONTHS:
+            if o["from"] <= m <= o["to"]:
+                re_m[IDX[m]] = o["value"]
+    S["re_price_momentum"] = series("Đà tăng giá căn hộ sơ cấp Hà Nội (y/y)", "Hanoi primary apartment price momentum (y/y)", "% y/y", re_m,
+                                    "Savills Hanoi primary asking price, % y/y; each published Q4 (or latest-quarter) value is applied to the months until the next one (stated in 'points'): a step series for the model, not monthly data.",
+                                    "Savills via finance.json alternatives.real_estate", "see real_estate series URLs", "per finance.json", "savings", points=SAVILLS_HN_YOY)
+    return S
+
+
+def model2_block(Pn):
+    H, HB, annual = v2_inputs(Pn)
+    yrs = list(range(2016, 2026))
+    liq = v2_liquidity_regression(annual, yrs)
+    liq_oos = v2_liquidity_regression(annual, list(range(2016, 2025)))
+    W = v2_weights(liq)
+    FG = v2_fg(H, W)
+    pp, Pidx = v2_pressure(FG, annual["dep_fsi"])
+    neutral = v2_neutrals(Pn)
+    rows = v2_interval_rows(Pn, Pidx, "2021-01", "2026-09")
+    fit = v2_fit_rate(rows)
+    c = fit["coef"]
+    pstar = v2_pstar(c, neutral)
+    # ---- out-of-sample: liquidity weights from 2016-2024, rate equation fitted to 2025-03, dynamic 2025-04..2026-09
+    W_e = v2_weights(liq_oos)
+    FG_e = v2_fg(H, W_e)
+    _, Pidx_e = v2_pressure(FG_e, annual["dep_fsi"])
+    rows_e = v2_interval_rows(Pn, Pidx_e, "2021-01", "2025-03")
+    fit_e = v2_fit_rate(rows_e)
+    pstar_e = v2_pstar(fit_e["coef"], neutral)
+    sv = lambda k: v(Pn, k)
+    fedc = [None] + [None if sv("fed_funds_upper")[i] is None or sv("fed_funds_upper")[i - 1] is None else sv("fed_funds_upper")[i] - sv("fed_funds_upper")[i - 1] for i in range(1, N)]
+    re_m = [None] * N
+    for o in SAVILLS_HN_YOY:
+        for m in MONTHS:
+            if o["from"] <= m <= o["to"]:
+                re_m[IDX[m]] = o["value"]
+    addons_hist = {"cpi_yoy": (V2_CALIBRATED["cpi_yoy"]["coef"], neutral["cpi_yoy"], sv("cpi_yoy")),
+                   "usdvnd_12m": (V2_CALIBRATED["usdvnd_12m"]["coef"], V2_CALIBRATED["usdvnd_12m"]["neutral"], sv("usdvnd_12m")),
+                   "re_price_momentum": (V2_CALIBRATED["re_price_momentum"]["coef"], V2_CALIBRATED["re_price_momentum"]["neutral"], re_m)}
+    # fed change is contemporaneous: shift the series by one month so the history simulator's x[i-1] picks month i
+    addons_hist["fed_change"] = (V2_CALIBRATED["fed_change"]["coef"], 0.0, fedc[1:] + [None])
+    oos = v2_simulate_history(Pn, Pidx_e, fit_e["coef"], pstar_e, neutral, "2025-03", "2026-09")
+    oos_add = v2_simulate_history(Pn, Pidx_e, fit_e["coef"], pstar_e, neutral, "2025-03", "2026-09", addons_hist)
+    naive = [{"month": p_["month"], "predicted": at(Pn, "dep12_vcb", "2025-03"), "actual": p_["actual"]} for p_ in oos]
+    # 2022-Q4 episode: in-sample replay and leave-episode-out refit
+    ep_in = v2_simulate_history(Pn, Pidx, c, pstar, neutral, "2022-01", "2023-01")
+    rows_lo = v2_interval_rows(Pn, Pidx, "2021-01", "2026-09", exclude=("2022-02", "2023-01"))
+    fit_lo = v2_fit_rate(rows_lo)
+    pstar_lo = v2_pstar(fit_lo["coef"], neutral)
+    ep_lo = v2_simulate_history(Pn, Pidx, fit_lo["coef"], pstar_lo, neutral, "2022-01", "2023-01")
+    ep_lo_nopol = v2_simulate_history(Pn, Pidx, dict(fit_lo["coef"], pol=0.0), pstar_lo, neutral, "2022-01", "2023-01")
+    replay_26 = v2_simulate_history(Pn, Pidx, c, pstar, neutral, "2025-09", "2026-09")
+    replay_26_add = v2_simulate_history(Pn, Pidx, c, pstar, neutral, "2025-09", "2026-09", addons_hist)
+
+    # ---- levers -------------------------------------------------------------------------------------------------
+    S_conv = at(Pn, "usdvnd_central", "2026-09")
+    D_tn = annual["dep_fsi"][2025] / 1000.0
+    last3 = lambda k: sum(H[k][V2_IDX[m]] for m in ("2026-07", "2026-08", "2026-09")) / 3
+    seas = ["2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"]
+    land_base = 474.2 / 12
+    dev_b = _seasonal(H, "dev", seas)
+    exp_b = _seasonal(H, "exp", seas)
+    rev_b = _seasonal(H, "rev", seas)
+    cred_b = _seasonal(H, "credit", seas)
+    re_latest = H["re_credit"][V2_IDX["2026-06"]]
+    sjc_sep = at(Pn, "sjc_gold_sell", "2026-09")
+    gw = at(Pn, "gold_world_usd", "2026-09")
+    sjc_prem_sep = sjc_sep - gw * S_conv * 37.5 / 31.1035 / 1e6
+    prem_dec24 = [o for o in Pn["series"]["sjc_premium"]["observations"] if o["date"] == "2024-12"][0]["premium_mvnd"]
+    wfx = W["fx"] * S_conv / 1000.0
+    wsbv = W["sbv"] * S_conv / 1000.0
+
+    def lever(key, group, lv_, le_, unit, freq, latest, lperiod, src, url, base, mn, mx, st, lw, rc, neu, lag, note, tor, basis):
+        return {"key": key, "group": group, "label_vi": lv_, "label_en": le_, "unit": unit, "frequency": freq,
+                "latest_value": _r(latest, 4), "latest_period": lperiod, "source": src, "url": url,
+                "baseline_path": [_r(x, 4) for x in base], "baseline_basis": basis, "min": mn, "max": mx, "step": st,
+                "liquidity_weight": _r(lw, 6), "rate_coef": _r(rc, 6), "neutral": _r(neu, 4), "lag": lag, "note": note,
+                "tornado": {"low": [_r(x, 4) for x in tor[0]], "high": [_r(x, 4) for x in tor[1]]}}
+    flat = lambda x: [x] * 6
+    add = lambda base, d: [b + d for b in base]
+    fdi3, tb3 = last3("fdi"), last3("tb")
+    remit_l, tour_l, inc_l = H["remit"][V2_IDX["2026-09"]], H["tour"][V2_IDX["2026-09"]], H["income"][V2_IDX["2026-09"]]
+    cal = V2_CALIBRATED
+    levers = [
+        lever("fdi_disbursed", "fx", "FDI giải ngân", "FDI disbursed", "USD bn/month", "monthly (NSO cumulative)", H["fdi"][V2_IDX["2026-09"]], "2026-09",
+              "NSO via press", FDI_CUM["2026-09"][1], flat(fdi3), 0.5, 5.0, 0.1, -wfx, None, None, 0,
+              f"Each USD 1 bn of extra net FX inflow narrows the funding gap by {_r(W['fx'],3)} × {S_conv} / 1000 = {_r(wfx,3)} VND tn (conversion share, estimated).",
+              (flat(1.5), flat(3.5)), "average of Jul-Sep 2026 held flat"),
+        lever("remittances", "fx", "Kiều hối (BoP chuyển giao vãng lai)", "Remittances (BoP current transfers)", "USD bn/month", "annual (BoP)", remit_l, "2025 (avg)",
+              "BoP secondary income credit (data/economy.json)", "data/economy.json ECONFLOW.bop", flat(remit_l), 0.5, 3.0, 0.05, -wfx, None, None, 0,
+              "No 2026 national figure; HCMC H1-2026 −22.8% y/y (SBV Region 2) is the only 2026 signal - downside risk.", (flat(1.2), flat(2.0)), "2025 monthly average held (assumption)"),
+        lever("tourism_receipts", "fx", "Thu từ khách quốc tế", "International tourism receipts", "USD bn/month", "9M-2026 total", tour_l, "2026-01..09 (avg)",
+              "NSO 9M-2026 report", "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/", flat(tour_l), 0.5, 2.5, 0.05, -wfx, None, None, 0,
+              "Travel receipts 13.06 bn in 9M-2026 (+17.4%).", (flat(1.0), flat(1.9)), "9M-2026 monthly average held"),
+        lever("trade_balance", "fx", "Cán cân thương mại hàng hóa", "Goods trade balance", "USD bn/month", "monthly (customs)", H["tb"][V2_IDX["2026-09"]], "2026-09",
+              "Customs/NSO via press", TRADE_CUM["2026-09"][1], flat(tb3), -6.0, 6.0, 0.25, -wfx, None, None, 0,
+              "2026 turned to deficit (−19.4 bn in 9M) on 36.7% import growth; each USD 1 bn of deficit adds to the funding gap like an FX outflow.", (flat(-4.0), flat(3.0)), "average of Jul-Sep 2026 held flat"),
+        lever("income_outflow", "fx", "Chuyển lợi nhuận/lãi ra nước ngoài (ròng)", "Profit & interest repatriation (net)", "USD bn/month", "annual (BoP)", inc_l, "2025 (avg)",
+              "BoP primary income (data/economy.json)", "data/economy.json ECONFLOW.bop", flat(inc_l), 0.0, 3.0, 0.05, wfx, None, None, 0,
+              "Added driver: FDI firms' profit remittances are the largest FX outflow after imports (14.4 bn net in 2025).", (flat(0.8), flat(1.6)), "2025 monthly average held (assumption)"),
+        lever("dev_investment", "fiscal", "Chi đầu tư phát triển (NSNN)", "Development investment spending", "VND tn/month", "monthly (MoF cumulative)", H["dev"][V2_IDX["2026-09"]], "2026-09",
+              "Ministry of Finance via press", BUDGET_CUM["2026-09"]["url"], dev_b, 0, 400, 5, -W["fiscal"], None, None, 0,
+              "Spending moves Treasury money into customer deposits. Baseline = same month a year earlier (seasonal, no scaling); 2026 plan 1,120 tn vs 657.5 tn spent in 9M.",
+              (add(dev_b, -30), add(dev_b, 80)), "same month one year earlier (Oct-2025..Mar-2026 actual/interval averages)"),
+        lever("recurrent_spending", "fiscal", "Chi thường xuyên và chi khác", "Recurrent & other spending", "VND tn/month", "monthly (MoF cumulative)", H["exp"][V2_IDX["2026-09"]] - H["dev"][V2_IDX["2026-09"]], "2026-09",
+              "Ministry of Finance via press", BUDGET_CUM["2026-09"]["url"], [e - d for e, d in zip(exp_b, dev_b)], 0, 500, 5, -W["fiscal"], None, None, 0,
+              "Total spending minus development investment (incl. interest).", (add([e - d for e, d in zip(exp_b, dev_b)], -30), add([e - d for e, d in zip(exp_b, dev_b)], 30)), "same month one year earlier"),
+        lever("tax_revenue", "fiscal", "Thu thuế, phí và thu khác (trừ tiền sử dụng đất)", "Taxes & other revenue (excl. land-use fees)", "VND tn/month", "monthly (MoF cumulative)", H["rev"][V2_IDX["2026-09"]] - land_base, "2026-09",
+              "Ministry of Finance via press", BUDGET_CUM["2026-09"]["url"], [x - land_base for x in rev_b], 0, 500, 5, W["fiscal"], None, None, 0,
+              "Revenue drains customer deposits into Treasury accounts. Split from land fees assumes land fees at the 2026 plan pace (no national monthly land-fee data).",
+              (add([x - land_base for x in rev_b], -30), add([x - land_base for x in rev_b], 30)), "same month one year earlier, minus the land-fee assumption"),
+        lever("land_use_fees", "fiscal", "Thu tiền sử dụng đất", "Land-use fees", "VND tn/month", "annual (plan)", land_base, "2026 plan / 12",
+              "NA 2026 budget plan (data/economy.json)", "data/economy.json ECONFLOW.budget.revenue.land_use_fees", flat(land_base), 0, 150, 5, W["fiscal"], None, None, 0,
+              "2026 plan 474.2 tn (2024 actual 232.9). Monthly national collections are not published: the baseline is an assumption.", (flat(20), flat(80)), "2026 plan / 12 (assumption)"),
+        lever("omo_net_injection", "sbv", "NHNN bơm ròng OMO/tín phiếu", "SBV net OMO/bill injection", "VND tn/month", "monthly (VBMA month-end)", H["omo"][V2_IDX["2026-09"]], "2026-09",
+              "VBMA weekly reports (finance.json)", "https://vbma.org.vn", flat(0.0), -200, 200, 10, -W["sbv"], None, 0.0, 0,
+              "Assumed to act like SBV FX purchases (same per-VND weight); OMO is short-term, so a lasting effect needs the injection to be rolled over.", (flat(-50), flat(50)), "0 (outstanding unchanged)"),
+        lever("sbv_fx_sales", "sbv", "NHNN bán ngoại tệ (+) / mua (−)", "SBV FX sales (+) / purchases (−)", "USD bn/month", "not published (annual BoP)", None, None,
+              "BoP reserve change (data/economy.json)", "data/economy.json ECONFLOW.bop", flat(0.0), -3.0, 5.0, 0.25, wsbv, None, 0.0, 0,
+              f"Each USD 1 bn sold drains {_r(wsbv,2)} VND tn of funding (estimated reserve-change weight × central rate). 2026 sales not published; 0 = beyond what the FX-flow levers imply.", (flat(-1.0), flat(2.0)), "0 (no extra intervention)"),
+        lever("re_credit", "credit", "Tín dụng bất động sản tăng thêm (gồm cho vay mua nhà)", "Real-estate credit increase (incl. home loans)", "VND tn/month", "interval (SBV points)", re_latest, "2025-12..2026-06 avg",
+              "SBV via press (finance.json flows)", annual["re_pts"][-1][2], flat(re_latest), 0, 250, 5, W["credit"], None, None, 0,
+              "Real-estate credit 5.146 quadrillion VND at end-Jun-2026 (25.5% of credit). Same funding weight as other credit (no evidence of a different deposit return).", (flat(50), flat(160)), "latest interval average held"),
+        lever("other_credit", "credit", "Tín dụng khác tăng thêm", "Other credit increase", "VND tn/month", "monthly (SBV table)", H["credit"][V2_IDX["2026-09"]] - re_latest, "2026-09",
+              "SBV (finance.json monthly)", "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt", [x - re_latest for x in cred_b], -200, 600, 10, W["credit"], None, None, 0,
+              "Total credit baseline = same month a year earlier (Oct-25..Mar-26 SBV table): 2026 would end at ~16% y/y vs the 15% target.", (add([x - re_latest for x in cred_b], -80), add([x - re_latest for x in cred_b], 80)), "same month one year earlier minus the real-estate baseline"),
+        lever("gold_world_12m", "substitution", "Vàng thế giới, lợi suất 12 tháng", "World gold 12-month return", "%", "monthly", at(Pn, "gold_world_12m", "2026-09"), "2026-09",
+              "World Bank Pink Sheet (panel)", "https://raw.githubusercontent.com/datasets/gold-prices/main/data/monthly.csv", flat(at(Pn, "gold_world_12m", "2026-09")), -30, 80, 5, None, c["gold"], neutral["gold_world_12m"], 1,
+              "Estimated jointly with the funding index: ~0 once the funding gap is included (v1's gold effect was the funding gap in disguise).", (flat(0), flat(50)), "latest held"),
+        lever("sjc_premium", "substitution", "Chênh lệch vàng SJC – thế giới", "SJC premium over world gold", "million VND/tael", "points", sjc_prem_sep, "2026-09 (derived)",
+              "derived: SJC month-end sell − world monthly average × central rate", "panel sjc_gold_sell / gold_world_usd", flat(sjc_prem_sep), 0, 30, 0.5, None, cal["sjc_premium"]["coef"], prem_dec24, 1,
+              "Derived at the central rate (press quotes at bank USD rates are lower: ~3 m on 28/8, ~9.3 m on 19/9/2026). Calibrated coefficient.", (flat(3), flat(20)), "latest held"),
+        lever("vnindex_12m", "substitution", "VN-Index, lợi suất 12 tháng", "VN-Index 12-month return", "%", "monthly", at(Pn, "vnindex_12m", "2026-09"), "2026-09",
+              "vnstock VCI (panel)", "https://trading.vietcap.com.vn", flat(at(Pn, "vnindex_12m", "2026-09")), -40, 80, 5, None, c["vni"], neutral["vnindex_12m"], 1,
+              "Estimated: stronger stock returns pull savings out of term deposits.", (flat(-20), flat(40)), "latest held"),
+        lever("re_price_momentum", "substitution", "Đà tăng giá căn hộ (Hà Nội, y/y)", "Apartment price momentum (Hanoi, y/y)", "% y/y", "quarterly/annual", SAVILLS_HN_YOY[-1]["value"], "2026-Q2",
+              "Savills (finance.json)", "https://cafef.vn/chung-cu-ha-noi-vang-bong-can-ho-duoi-70-trieu-dong-m2-188260814143655062.chn", flat(SAVILLS_HN_YOY[-1]["value"]), -20, 60, 5, None, cal["re_price_momentum"]["coef"], cal["re_price_momentum"]["neutral"], 1,
+              "Calibrated; not a constant-quality index.", (flat(10), flat(45)), "latest held"),
+        lever("cpi_yoy", "prices", "Lạm phát CPI (y/y)", "CPI inflation (y/y)", "%", "monthly", at(Pn, "cpi_yoy", "2026-09"), "2026-09",
+              "NSO (data/economy.json)", "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-than", flat(at(Pn, "cpi_yoy", "2026-09")), 1, 9, 0.1, None, cal["cpi_yoy"]["coef"], neutral["cpi_yoy"], 1,
+              "Calibrated (see estimation.calibrated).", (flat(3.5), flat(6.5)), "latest held"),
+        lever("usdvnd_12m", "external", "Tỷ giá trung tâm, thay đổi 12 tháng", "USD/VND central rate, 12-month change", "%", "monthly", at(Pn, "usdvnd_12m", "2026-09"), "2026-09",
+              "SBV central rate (finance.json)", "per finance.json usdvnd_monthly", flat(at(Pn, "usdvnd_12m", "2026-09")), -3, 10, 0.25, None, cal["usdvnd_12m"]["coef"], cal["usdvnd_12m"]["neutral"], 1,
+              "Calibrated. Central rate 25,627 at end-Sep-2026; record 25,643 on 6/10/2026 (finance.json sbv.constraints).", (flat(0.0), flat(5.0)), "latest held"),
+        lever("fed_change", "external", "Fed thay đổi lãi suất trong tháng", "Fed rate change in the month", "pp", "event", 0.0, "2026-09 (+0.25 on 16/9)",
+              "FOMC (panel)", "https://www.federalreserve.gov/monetarypolicy/openmarket.htm", flat(0.0), -0.5, 0.5, 0.25, None, cal["fed_change"]["coef"], 0.0, 0,
+              "Calibrated level shift. FOMC 27-28 Oct and 8-9 Dec 2026.", (flat(0.0), [0.25, 0, 0.25, 0, 0, 0]), "no change"),
+        lever("policy_rate_change", "policy", "NHNN thay đổi lãi suất điều hành", "SBV policy-rate change", "pp", "event", 0.0, "2026-09",
+              "SBV (panel refi_rate)", "data/policy.json", flat(0.0), -1.0, 1.0, 0.25, None, c["pol"], 0.0, 0,
+              "Estimated pass-through to the VCB 12-month rate in the month of the change.", ([0, 0, 0, -0.5, 0, 0], [0, 0, 0.5, 0, 0, 0]), "no change"),
+    ]
+    model = {"params": {"r0": at(Pn, "dep12_vcb", "2026-09"), "P0": Pidx[V2_IDX["2026-09"]], "kappa": c["P"], "P_star": pstar, "D_tn": D_tn,
+                        "rolloff_pp": [pp[V2_IDX[m]] for m in seas]}, "levers": levers}
+    # round params once so the browser and Python use the same numbers
+    model["params"] = {k: (_r(x, 6) if not isinstance(x, list) else [_r(y, 6) for y in x]) for k, x in model["params"].items()}
+    base = project_v2(model)
+    contrib = contributions_v2(model)
+    sig = fit["sigma_month"]
+    z = 1.2816
+    low = [b - z * sig * math.sqrt(h + 1) for h, b in enumerate(base)]
+    high = [b + z * sig * math.sqrt(h + 1) for h, b in enumerate(base)]
+    tornado = []
+    for lv in levers:
+        lo = project_v2(model, {lv["key"]: lv["tornado"]["low"]})[5]
+        hi = project_v2(model, {lv["key"]: lv["tornado"]["high"]})[5]
+        tornado.append({"key": lv["key"], "low_setting": lv["tornado"]["low"], "high_setting": lv["tornado"]["high"], "rate_at_h6_low": _r(lo, 4), "rate_at_h6_high": _r(hi, 4),
+                        "swing_pp": _r(abs(hi - lo), 4)})
+    tornado.sort(key=lambda t: -t["swing_pp"])
+    B_ = {lv["key"]: lv["baseline_path"] for lv in levers}
+    lin = lambda a, b: [round(a + (b - a) * (h + 1) / 6, 4) for h in range(6)]
+    scen_def = {
+        "base": ({}, "Mọi đòn bẩy theo đường cơ sở: dòng tiền tín dụng và ngân sách như cùng tháng năm trước, dòng ngoại tệ theo trung bình 3 tháng gần nhất, giá vàng/cổ phiếu/CPI/tỷ giá giữ mức mới nhất, NHNN và Fed không đổi lãi suất.",
+                 "All levers on their baseline: credit and budget flows as in the same month a year earlier, FX flows at their latest 3-month average, gold/stocks/CPI/FX held at latest values, no SBV or Fed rate change."),
+        "easing": ({"policy_rate_change": [0, 0, 0, -0.5, 0, 0], "omo_net_injection": flat(40.0), "cpi_yoy": lin(B_["cpi_yoy"][0], 4.0)},
+                   "NHNN giảm lãi suất điều hành 0,5 điểm % trong 1/2027, bơm ròng 40 nghìn tỷ/tháng qua OMO, CPI hạ dần về 4%.",
+                   "SBV cuts policy rates by 0.5 pp in Jan-2027, injects a net VND 40 tn a month via OMO; CPI eases to 4%."),
+        "fx_inflow_shock": ({"fdi_disbursed": [x * 0.7 for x in B_["fdi_disbursed"]], "remittances": [x * 0.75 for x in B_["remittances"]], "tourism_receipts": [x * 0.8 for x in B_["tourism_receipts"]],
+                             "trade_balance": add(B_["trade_balance"], -1.5), "sbv_fx_sales": flat(1.0), "usdvnd_12m": lin(B_["usdvnd_12m"][0], 4.0)},
+                            "FDI giải ngân −30%, kiều hối −25%, thu du lịch −20% so với cơ sở, nhập siêu thêm 1,5 tỷ USD/tháng; NHNN bán 1 tỷ USD/tháng để giữ tỷ giá; VND mất giá 4%/năm.",
+                            "FDI disbursement −30%, remittances −25%, tourism receipts −20% vs baseline, trade balance 1.5 bn/month weaker; SBV sells USD 1 bn a month to steady the dong; 12-month depreciation rises to 4%."),
+        "fiscal_push": ({"dev_investment": [b + d for b, d in zip(B_["dev_investment"], [55, 55, 55, 20, 20, 20])], "land_use_fees": add(B_["land_use_fees"], 30)},
+                        "Đẩy nhanh đầu tư công: chi đầu tư phát triển tăng thêm 55 nghìn tỷ/tháng trong quý IV/2026 (tiến tới kế hoạch 1.120 nghìn tỷ) và 20 nghìn tỷ/tháng quý I/2027; đồng thời thu tiền sử dụng đất tăng thêm 30 nghìn tỷ/tháng.",
+                        "Public-investment acceleration: development spending VND 55 tn a month above baseline in Q4-2026 (towards the 1,120 tn plan) and 20 tn in Q1-2027; at the same time land-use fees run 30 tn a month above baseline."),
+        "real_estate_credit_boom": ({"re_credit": add(B_["re_credit"], 60), "re_price_momentum": lin(B_["re_price_momentum"][0], 40)},
+                                    "Tín dụng bất động sản tăng thêm 60 nghìn tỷ/tháng so với cơ sở (khoảng 150 nghìn tỷ/tháng, như quý II/2026 của riêng tín dụng kinh doanh BĐS cộng cho vay mua nhà); giá căn hộ tăng tốc lên 40%/năm.",
+                                    "Real-estate credit VND 60 tn a month above baseline (~150 tn a month); apartment-price momentum accelerates to 40% y/y."),
+        "external_tightening": ({"fed_change": [0.25, 0, 0.25, 0, 0, 0], "usdvnd_12m": lin(B_["usdvnd_12m"][0], 4.5), "sbv_fx_sales": [1.5, 1.5, 1.5, 0, 0, 0], "omo_net_injection": flat(-30.0)},
+                                "Fed tăng 0,25 điểm % trong 10 và 12/2026; VND mất giá 4,5%/năm; NHNN bán 1,5 tỷ USD/tháng trong quý IV và hút ròng 30 nghìn tỷ/tháng qua OMO.",
+                                "Fed hikes 0.25 pp in Oct and Dec 2026; the dong's 12-month depreciation reaches 4.5%; SBV sells USD 1.5 bn a month in Q4 and drains a net VND 30 tn a month via OMO."),
+    }
+    scenarios = {}
+    for k, (sett, avi, aen) in scen_def.items():
+        pth = project_v2(model, sett)
+        scenarios[k] = {"assumptions_vi": avi, "assumptions_en": aen, "lever_paths": {kk: [_r(x, 4) for x in vv] for kk, vv in sett.items()},
+                        "path": [_r(x, 4) for x in pth], "change_h6_vs_base": _r(pth[5] - base[5], 4)}
+    # ---- parameter sensitivity (base path at month 6) ---------------------------------------------------------------
+    def with_params(**kw):
+        m2 = json.loads(json.dumps(model))
+        for kk, vv in kw.items():
+            if kk in m2["params"]:
+                m2["params"][kk] = vv
+        return m2
+
+    def scale_weights(group_keys, factor):
+        m2 = json.loads(json.dumps(model))
+        for lv in m2["levers"]:
+            if lv["key"] in group_keys and lv["liquidity_weight"] is not None:
+                lv["liquidity_weight"] *= factor
+        return m2
+
+    def addons_off():
+        m2 = json.loads(json.dumps(model))
+        for lv in m2["levers"]:
+            if lv["key"] in ("cpi_yoy", "usdvnd_12m", "fed_change", "sjc_premium", "re_price_momentum"):
+                lv["rate_coef"] = 0.0
+        return m2
+    fx_keys = ["fdi_disbursed", "remittances", "tourism_receipts", "trade_balance", "income_outflow"]
+    fis_keys = ["dev_investment", "recurrent_spending", "tax_revenue", "land_use_fees"]
+    sens = []
+    k_se = fit["se"]["P"]
+    for label, m2 in [("kappa − 1 SE", with_params(kappa=_r(c["P"] - k_se, 6))), ("kappa + 1 SE", with_params(kappa=_r(c["P"] + k_se, 6))),
+                      ("P* from the 2025-03 fit", with_params(P_star=_r(pstar_e, 6))),
+                      ("FX conversion share × 0 (FX flows irrelevant)", scale_weights(fx_keys, 0.0)), ("FX conversion share × 2", scale_weights(fx_keys, 2.0)),
+                      ("fiscal weight × 0", scale_weights(fis_keys, 0.0)), ("fiscal weight × 2 (~0.68)", scale_weights(fis_keys, 2.0)),
+                      ("calibrated add-ons off (CPI, USD/VND, Fed, SJC, real-estate prices)", addons_off())]:
+        sens.append({"case": label, "rate_at_h6": _r(project_v2(m2)[5], 4), "vs_base": _r(project_v2(m2)[5] - base[5], 4)})
+    # ---- test vectors -------------------------------------------------------------------------------------------------
+    tv_cases = [("baseline", {}), ("easing", scen_def["easing"][0]), ("fx_inflow_shock", scen_def["fx_inflow_shock"][0]),
+                ("mixed_custom", {"policy_rate_change": [0.25, 0, 0, 0, 0, 0], "cpi_yoy": flat(6.0), "fdi_disbursed": flat(2.0), "land_use_fees": flat(70.0),
+                                  "re_credit": flat(150.0), "vnindex_12m": flat(30.0), "fed_change": [0, 0, 0.25, 0, 0, 0]}),
+                ("all_liquidity_zero", {k: flat(0.0) for k in [lv["key"] for lv in levers if lv["liquidity_weight"] is not None]})]
+    test_vectors = [{"id": i, "settings": s, "expected_path": [_r(x, 6) for x in project_v2(model, s)]} for i, s in tv_cases]
+    # ---- observed check: model index vs SBV-basis credit-deposit y/y gap -------------------------------------------
+    gap_obs = v(Pn, "credit_deposit_gap_yoy")
+    chk = [{"month": m, "P_model": _r(Pidx[V2_IDX[m]], 3), "credit_minus_deposit_yoy": gap_obs[IDX[m]]} for m in MONTHS if gap_obs[IDX[m]] is not None]
+    # share of listed FX inflows that ended in reserves
+    tot_in = sum(r_["netfx"] for r_ in liq["rows"])
+    tot_res = sum(r_["sbv_fx"] for r_ in liq["rows"])
+    return {
+        "H": H, "HB": HB, "FG": FG, "pp": pp, "Pidx": Pidx, "annual": annual, "model": model, "base": base, "low": low, "high": high, "contrib": contrib,
+        "tornado": tornado, "scenarios": scenarios, "sens": sens, "test_vectors": test_vectors, "fit": fit, "fit_e": fit_e, "fit_lo": fit_lo, "liq": liq, "liq_oos": liq_oos,
+        "W": W, "W_e": W_e, "pstar": pstar, "pstar_e": pstar_e, "pstar_lo": pstar_lo, "neutral": neutral, "oos": oos, "oos_add": oos_add, "naive": naive,
+        "ep_in": ep_in, "ep_lo": ep_lo, "ep_lo_nopol": ep_lo_nopol, "replay_26": replay_26, "replay_26_add": replay_26_add, "chk": chk,
+        "fx_res_share": tot_res / tot_in, "S_conv": S_conv, "wfx": wfx, "wsbv": wsbv, "sjc_prem_sep": sjc_prem_sep, "prem_dec24": prem_dec24,
+    }
+
+
+def v2_episode_terms(Pn, Pidx, coef, pstar, neutral, start, end):
+    refi, gold, vni = v(Pn, "refi_rate"), v(Pn, "gold_world_12m"), v(Pn, "vnindex_12m")
+    t = {"policy": 0.0, "funding_pressure": 0.0, "vnindex_12m": 0.0, "gold_world_12m": 0.0}
+    for i in range(IDX[start] + 1, IDX[end] + 1):
+        t["policy"] += coef["pol"] * (refi[i] - refi[i - 1])
+        t["funding_pressure"] += coef["P"] * (Pidx[V2_IDX[MONTHS[i - 1]]] - pstar)
+        t["vnindex_12m"] += coef["vni"] * (vni[i - 1] - neutral["vnindex_12m"])
+        t["gold_world_12m"] += coef["gold"] * (gold[i - 1] - neutral["gold_world_12m"])
+    return {k: round(x, 3) for k, x in t.items()}
+
+
+def model2_json(R, Pn):
+    fit, fe, fl, liq, lo = R["fit"], R["fit_e"], R["fit_lo"], R["liq"], R["liq_oos"]
+    c = fit["coef"]
+    m = R["model"]
+    p = m["params"]
+    nm = {"pol": "policy_rate_change (Δ refinancing rate, same month)", "P": "kappa: funding-pressure index P (t−1)", "gold": "world gold 12m return (t−1)",
+          "vni": "VN-Index 12m return (t−1)", "c": "constant (per month)"}
+    eq = ("Δr_t = {pi} × Δpolicy_t + {k} × (P_(t−1) − {ps}) + {gv} × (VNI12_(t−1) − {nv}) + {gg} × (gold12_(t−1) − {ng})"
+          " + {cc} × (CPI_(t−1) − {nc}) + {cx} × (USDVND12_(t−1) − {nx}) + {cf} × ΔFed_t + {cs} × (SJCprem_(t−1) − {ns}) + {cr} × (REprice_(t−1) − {nr});"
+          "  P_t = P_(t−1) + 100 × FG_t / D − (month leaving the 12-month window);"
+          "  FG_t = {wc} × (RE credit + other credit) − {wf} × S/1000 × (FDI + remittances + tourism + trade balance − income outflow) − {wg} × (dev. investment + recurrent spending − taxes − land fees) − {ws} × (OMO net + S/1000 × SBV FX purchases)").format(
+        pi=_r(c["pol"], 3), k=_r(c["P"], 4), ps=_r(R["pstar"], 2), gv=_r(c["vni"], 4), nv=_r(R["neutral"]["vnindex_12m"], 2), gg=_r(c["gold"], 4), ng=_r(R["neutral"]["gold_world_12m"], 2),
+        cc=V2_CALIBRATED["cpi_yoy"]["coef"], nc=_r(R["neutral"]["cpi_yoy"], 2), cx=V2_CALIBRATED["usdvnd_12m"]["coef"], nx=V2_CALIBRATED["usdvnd_12m"]["neutral"], cf=V2_CALIBRATED["fed_change"]["coef"],
+        cs=V2_CALIBRATED["sjc_premium"]["coef"], ns=_r(R["prem_dec24"], 2), cr=V2_CALIBRATED["re_price_momentum"]["coef"], nr=V2_CALIBRATED["re_price_momentum"]["neutral"],
+        wc=_r(R["W"]["credit"], 3), wf=_r(R["W"]["fx"], 3), wg=_r(R["W"]["fiscal"], 3), ws=_r(R["W"]["sbv"], 3)).replace("+ -", "− ")
+    oos_end = R["oos"][-1]
+    ep_terms = v2_episode_terms(Pn, R["Pidx"], c, R["pstar"], R["neutral"], "2022-01", "2023-01")
+    ep_lo_pi = v2_simulate_history(Pn, R["Pidx"], dict(fl["coef"], pol=c["pol"]), R["pstar_lo"], R["neutral"], "2022-01", "2023-01")
+    chk = R["chk"]
+    import statistics
+    corr = None
+    if len(chk) > 2:
+        a_ = [x["P_model"] for x in chk]
+        b_ = [x["credit_minus_deposit_yoy"] for x in chk]
+        ma, mb = statistics.mean(a_), statistics.mean(b_)
+        num = sum((x - ma) * (y - mb) for x, y in zip(a_, b_))
+        den = math.sqrt(sum((x - ma) ** 2 for x in a_) * sum((y - mb) ** 2 for y in b_))
+        corr = round(num / den, 2) if den else None
+    est = {
+        "liquidity": {
+            "dep_var": "annual increase in SBV credit minus increase in customer deposits (IMF-FSI), VND tn",
+            "regressors": {"credit": "increase in credit to the economy (SBV; pre-2022 levels chained back with finance.json credit_growth)",
+                           "netfx": "(NSO FDI disbursed + BoP secondary income credit + BoP travel credit + customs goods balance + BoP net primary income) × annual average USD/VND",
+                           "fiscal": "budget spending − revenue (final accounts; 2025 MoF execution estimate)",
+                           "sbv_fx": "BoP reserve-asset change × annual average USD/VND (SBV FX purchases +)"},
+            "coef": liq["coef"], "se": liq["se"], "r2": liq["r2"], "n": liq["n"], "sample": liq["sample"], "resid_sd_tn": liq["resid_sd_tn"], "data": liq["rows"],
+            "weights_used": {k: _r(x, 4) for k, x in R["W"].items()},
+            "basis": {"credit": "estimated (t≈3.8)", "fx": "estimated (t≈2.1)", "sbv": "estimated (t≈4.2)",
+                      "fiscal": "point estimate used but NOT significant (t≈1.0): treat as calibrated; sensitivity ×0 / ×2",
+                      "omo": "assumption: OMO net injection has the same weight as SBV FX purchases (no annual OMO series to estimate it)"},
+            "stability": {"sample": lo["sample"], "coef": lo["coef"], "se": lo["se"],
+                          "note": "Dropping 2025 changes the weights materially (credit 0.72, fiscal 0.76, SBV 0.36): 10 annual observations - treat weights as indicative."},
+            "fx_into_reserves_share": _r(R["fx_res_share"], 3),
+            "fx_into_reserves_note": "Over 2016-2025 the SBV's reserve purchases equalled ~15% of the listed net FX inflows (sum of BoP reserve change / sum of net FX inflow in VND); most of the inflow is offset by other outflows (errors & omissions −25.9 bn USD in 2025, portfolio, loans, residents' FX holdings).",
+        },
+        "rate_equation": {
+            "method": "Interval regression: the target (VCB 12-month posted rate) is observed in irregular months, so each change between two consecutive observed months is regressed on the SUM over the interval's months of the monthly regressors (exact for a linear monthly equation).",
+            "dep_var": "change in dep12_vcb between consecutive observed months (pp)",
+            "coef": {k: _r(x, 5) for k, x in c.items()}, "se": {k: _r(x, 5) for k, x in fit["se"].items()}, "names": nm,
+            "r2_centred": fit["r2"], "n_intervals": fit["n"], "sample": fit["sample"], "sigma_month": _r(fit["sigma_month"], 4),
+            "P_star": _r(R["pstar"], 3), "neutrals_flat_window_2024_04_2025_09": {k: _r(x, 3) for k, x in R["neutral"].items()},
+            "P_star_derivation": "constant = −kappa×P* − g_vni×neutral_vni − g_gold×neutral_gold  →  P* = −(constant + g_vni×12.46 + g_gold×33.37)/kappa",
+            "intervals": fit["intervals"],
+            "verdict_en": (f"Estimated: policy pass-through {_r(c['pol'],2)} (SE {_r(fit['se']['pol'],2)}), funding-pressure kappa {_r(c['P'],4)} pp per month per pp of P (SE {_r(fit['se']['P'],4)}, t≈{_r(c['P']/fit['se']['P'],1)}), "
+                           f"VN-Index {_r(c['vni'],4)} (SE {_r(fit['se']['vni'],4)}); world gold ≈0 once the funding index is in (v1's gold effect was the funding gap in disguise). Fit to 2025-03 the neutral P* moves from {_r(R['pstar'],2)} to {_r(R['pstar_e'],2)}: "
+                           "the level of 'normal' funding pressure is the least certain number in the model. CPI, USD/VND, Fed, SJC premium and real-estate prices cannot be estimated (gaps, wrong signs) and are calibrated add-ons."),
+            "verdict_vi": (f"Ước lượng: truyền dẫn lãi suất điều hành {_r(c['pol'],2)} (SE {_r(fit['se']['pol'],2)}), hệ số áp lực vốn kappa {_r(c['P'],4)} điểm %/tháng cho mỗi điểm % của P (SE {_r(fit['se']['P'],4)}), "
+                           f"VN-Index {_r(c['vni'],4)}; vàng thế giới ≈0 khi đã có chỉ số áp lực vốn (tác động 'vàng' ở v1 thực chất là thiếu hụt vốn). Ước lượng đến 3/2025 thì mức trung tính P* đổi từ {_r(R['pstar'],2)} lên {_r(R['pstar_e'],2)}: "
+                           "mức áp lực vốn 'bình thường' là con số kém chắc chắn nhất. CPI, tỷ giá, Fed, chênh lệch SJC và giá nhà không ước lượng được (thiếu số liệu, sai dấu) nên được hiệu chỉnh."),
+        },
+        "rate_equation_fit_to_2025_03": {"coef": {k: _r(x, 5) for k, x in fe["coef"].items()}, "se": {k: _r(x, 5) for k, x in fe["se"].items()}, "r2_centred": fe["r2"],
+                                         "n_intervals": fe["n"], "sample": fe["sample"], "P_star": _r(R["pstar_e"], 3), "liquidity_weights": {k: _r(x, 4) for k, x in R["W_e"].items()}},
+        "calibrated": {k: {"coef": d["coef"], "neutral": (_r(R["neutral"]["cpi_yoy"], 3) if k == "cpi_yoy" else (_r(R["prem_dec24"], 2) if k == "sjc_premium" else d["neutral"])),
+                           "lag": d["lag"], "basis": d["basis"], "sensitivity_range": d["sens"]} for k, d in V2_CALIBRATED.items()},
+        "estimated_vs_calibrated": {
+            "estimated": ["liquidity weights: credit, net FX inflow (conversion share), SBV FX purchases (annual 2016-2025)", "policy pass-through, kappa, P*, VN-Index, world gold (monthly interval regression 2021-2026)"],
+            "weakly_estimated_used_as_calibrated": ["fiscal weight (t≈1.0)"],
+            "assumed": ["OMO net injection weight = SBV FX purchase weight", "deposit base D fixed at end-2025 (IMF-FSI) for the projection", "conversion at the Sep-2026 central rate"],
+            "calibrated": list(V2_CALIBRATED.keys()),
+        },
+        "observed_gap_check": {"note": "Model index P vs the SBV-basis credit-minus-deposit y/y gap (different construction; P excludes the regression constant, the gap includes it). Correlation over the overlap shown; the observed gap exists only Dec-2025..Jul-2026.",
+                               "correlation": corr, "months": chk},
+        "data_frequency_methods": {"annual_even": "annual total / 12 for each month of the year (2020-2024 FX, fiscal, credit 2020/2024; BoP items through 2025)",
+                                   "interval_avg_<k>m": "when an intermediate cumulative figure was not found, the k-month total between two published cumulatives is spread evenly",
+                                   "interval_avg_statements": "2021-2023 credit: increase between two dated SBV statements spread evenly over the months between them (cut-off date mapped to its calendar month)",
+                                   "9M_even": "2026 tourism receipts: 9-month total / 9",
+                                   "assumption_carry": "2026 remittances and income outflow: 2025 monthly average (no 2026 national data)",
+                                   "step": "Savills y/y applied until the next published value"},
+    }
+    backtest = {
+        "out_of_sample": {"kind": "true out-of-sample: liquidity weights estimated on 2016-2024, rate equation fitted to intervals ending ≤ 2025-03, then a dynamic monthly simulation 2025-04..2026-09 from the observed 4.6% using actual levers (no re-fitting)",
+                          "start": {"month": "2025-03", "value": at(Pn, "dep12_vcb", "2025-03")},
+                          "path": R["oos"], "rmse": _rmse(R["oos"]), "end_error_pp": _r(oos_end["predicted"] - oos_end["actual"], 3),
+                          "naive_no_change_rmse": _rmse(R["naive"]),
+                          "with_calibrated_addons": {"path": R["oos_add"], "rmse": _rmse(R["oos_add"]), "note": "CPI, USD/VND (from Oct-2025), Fed change and real-estate momentum add-ons applied where history exists; SJC premium has no monthly history"},
+                          "v1_comparison": "v1's out-of-sample test (gold + VN-Index equation fitted to 2025-03) only covered the flat 2025-04..09 window (RMSE 0.053) and could not test the 2026 rise.",
+                          "summary_en": (f"Fitted only on data to Mar-2025, the structural model predicts a rise from 4.6% to {oos_end['predicted']}% by Sep-2026 (actual 5.9%): right direction, about "
+                                         f"{int(round(100 * (oos_end['predicted'] - 4.6) / 1.3))}% of the size, but about half a year late (Big-4 banks moved in Jan-Mar 2026; the model's pressure builds through mid-2026 and reaches 5.5% only in Sep-2026). RMSE {_rmse(R['oos'])} pp vs {_rmse(R['naive'])} for 'no change'."),
+                          "summary_vi": (f"Chỉ dùng số liệu đến 3/2025, mô hình dự báo lãi suất tăng từ 4,6% lên {str(oos_end['predicted']).replace('.', ',')}% vào 9/2026 (thực tế 5,9%): đúng hướng, khoảng "
+                                         f"{int(round(100 * (oos_end['predicted'] - 4.6) / 1.3))}% độ lớn nhưng trễ khoảng nửa năm (Big4 tăng trong 1-3/2026, mô hình chỉ đạt 5,5% vào 9/2026). RMSE {str(_rmse(R['oos'])).replace('.', ',')} điểm % so với {str(_rmse(R['naive'])).replace('.', ',')} nếu giả định 'không đổi'.")},
+        "episode_2022_q4": {"in_sample_replay": {"path": R["ep_in"], "terms_sum_pp": ep_terms,
+                                                  "note": "full-sample coefficients, dynamic from Jan-2022 (5.5%); observed: 6.4% (Sep-2022), 7.4% (Jan-2023). In-sample: the 2022 intervals are in the estimation."},
+                            "leave_episode_out": {"fit": {"coef": {k: _r(x, 5) for k, x in fl["coef"].items()}, "r2_centred": fl["r2"], "n_intervals": fl["n"], "P_star": _r(R["pstar_lo"], 3)},
+                                                  "path": R["ep_lo"], "path_with_full_sample_pass_through": ep_lo_pi,
+                                                  "note": "Intervals overlapping Feb..Dec-2022 removed. Without them the pass-through is not identified (the only other policy moves, the 2023 cuts, coincide with falling funding pressure), and the 2022 stock crash pulls the predicted rate down: the model cannot reproduce the 2022 spike without seeing it. With the full-sample pass-through imposed, see path_with_full_sample_pass_through."},
+                            "summary_en": "The 2022-Q4 spike is mainly the policy hikes (+2 pp refinancing) with rising funding pressure (P from ~3 to ~7 pp during 2022, SBV selling ~23 bn USD of reserves); the stock crash worked the other way. The episode is not predictable out-of-sample without the policy reaction.",
+                            "summary_vi": "Đợt tăng quý IV/2022 chủ yếu do NHNN tăng lãi suất điều hành (+2 điểm %) cộng áp lực vốn tăng (P từ ~3 lên ~7 điểm % trong 2022, NHNN bán ~23 tỷ USD dự trữ); chứng khoán giảm sâu tác động ngược lại. Không dự báo được ngoài mẫu nếu không biết trước phản ứng chính sách."},
+        "in_sample_replay_2025_10_2026_09": {"path": R["replay_26"], "rmse": _rmse(R["replay_26"]), "with_addons": R["replay_26_add"], "with_addons_rmse": _rmse(R["replay_26_add"]),
+                                             "note": "In-sample. The model is above the posted VCB rate from Jul-2026 (6.25% vs 5.9% in Sep): Big-4 posted rates were held while private banks paid ~8.4% (MBS, Aug-2026) - a sign of administrative restraint the model does not capture; the projection inherits this upward tilt."},
+    }
+    levers = m["levers"]
+    model2 = {
+        "version": "v2.0 (2026-10-07)",
+        "method_en": ("Structural monthly VND funding model. (A) Each month's funding gap FG (VND tn) = credit growth not matched by new deposits − the part of net FX inflows that becomes deposits (conversion share) − the fiscal net injection − SBV liquidity (FX purchases, OMO), with weights estimated on 2016-2025 annual data. "
+                      "(B) The funding-pressure index P is the 12-month sum of FG in % of deposits. (C) The VCB 12-month deposit rate changes each month by pass-through × policy-rate change + kappa × (P last month − neutral P*) + substitution, inflation and external terms. "
+                      "Pass-through, kappa, P* and the stock-return term are estimated by interval regression on 2021-2026; inflation, USD/VND, Fed, SJC premium and real-estate prices are calibrated (see estimation). v1 (calibrated 4-driver model) is kept in SIM.model for comparison."),
+        "method_vi": ("Mô hình cấu trúc theo tháng về nguồn vốn VND. (A) Thiếu hụt vốn hằng tháng FG (nghìn tỷ) = phần tín dụng tăng không có tiền gửi tương ứng − phần dòng ngoại tệ ròng chuyển thành tiền gửi (tỷ lệ chuyển đổi) − bơm ròng ngân sách − thanh khoản NHNN (mua ngoại tệ, OMO); trọng số ước lượng từ số liệu năm 2016-2025. "
+                      "(B) Chỉ số áp lực vốn P = tổng FG 12 tháng, tính theo % tiền gửi. (C) Lãi suất 12 tháng của VCB thay đổi mỗi tháng = hệ số truyền dẫn × thay đổi lãi suất điều hành + kappa × (P tháng trước − mức trung tính P*) + các yếu tố thay thế, lạm phát, bên ngoài. "
+                      "Truyền dẫn, kappa, P* và yếu tố cổ phiếu được ước lượng (hồi quy theo khoảng 2021-2026); lạm phát, tỷ giá, Fed, chênh lệch SJC và giá nhà được hiệu chỉnh. Mô hình v1 giữ trong SIM.model để so sánh."),
+        "equation": eq,
+        "target": {"series": "dep12_vcb", "definition": "Vietcombank 12-month posted VND savings rate (counter), month-end; start 5.9% (Sep-2026)"},
+        "params": p,
+        "params_note": {"r0": "VCB 12M at end-Sep-2026", "P0": "funding-pressure index at Sep-2026 (Aug-Sep partly nowcast: credit from rounded statements, remittances/income/SBV FX assumed)",
+                        "kappa": "estimated (rate_equation.coef.P)", "P_star": "estimated neutral P", "D_tn": "customer deposits end-2025 (IMF-FSI), VND tn",
+                        "rolloff_pp": "100×FG/D of Oct-2025..Mar-2026, the months that leave the 12-month window in Oct-2026..Mar-2027"},
+        "levers": levers,
+        "lever_groups": {g: [lv["key"] for lv in levers if lv["group"] == g] for g in ["fx", "fiscal", "sbv", "credit", "substitution", "prices", "external", "policy"]},
+        "liquidity": {"neutral_gap": _r(R["pstar"], 4), "neutral_gap_unit": "pp of deposits (12-month funding-gap sum, constant excluded)", "kappa": p["kappa"],
+                      "conversion_share": _r(R["W"]["fx"], 4), "conversion_share_note": f"VND tn of funding gap removed per VND tn of net FX inflow (estimated, SE {liq['se']['netfx']}); per USD 1 bn at {R['S_conv']} VND/USD = {_r(R['wfx'],3)} VND tn. Separately, SBV FX purchases remove {_r(R['W']['sbv'],3)} per VND (SE {liq['se']['sbv_fx']}); only ~15% of listed inflows ended in reserves in 2016-2025.",
+                      "credit_share": _r(R["W"]["credit"], 4), "fiscal_share": _r(R["W"]["fiscal"], 4), "sbv_share": _r(R["W"]["sbv"], 4),
+                      "usdvnd_for_conversion": R["S_conv"], "deposit_base_tn": p["D_tn"], "P0": p["P0"], "rolloff_pp": p["rolloff_pp"],
+                      "history_P": {"months": MONTHS, "values": [_r(R["Pidx"][V2_IDX[mm]], 3) for mm in MONTHS]},
+                      "history_FG_tn": {"months": MONTHS, "values": [_r(R["FG"][V2_IDX[mm]], 2) for mm in MONTHS]}},
+        "compute_order": [
+            "1. Start from r = params.r0 (VCB 12M, Sep-2026) and P = params.P0 (funding-pressure index, Sep-2026).",
+            "2. For each projection month h = 0..5 (Oct-2026..Mar-2027): rate change dr = kappa × (P − P_star).",
+            "3. Add each rate lever: rate_coef × (x − neutral), where x = the lever's value LAST month (lag 1: latest_value for h = 0, path[h−1] after) or THIS month (lag 0: policy_rate_change, fed_change).",
+            "4. r = r + dr; record r for month h.",
+            "5. Update the funding index for next month: P = P + Σ over liquidity levers of 100 × liquidity_weight × path[h] / D_tn − rolloff_pp[h].",
+            "6. Repeat. Bands: base ± 1.2816 × residual_sd × √(h+1). Contributions: SIM.projection2.contributions (sum = path − r0).",
+        ],
+        "estimation": est,
+        "backtest": backtest,
+        "residual_sd": _r(fit["sigma_month"], 4),
+        "band_method": "80% band = base ± 1.2816 × σ × √h, σ = per-month residual s.d. of the interval regression (σ² = mean of e²/interval length) - parameter uncertainty (e.g. P*) is shown separately in projection2.sensitivity, not in the band.",
+        "test_vectors": R["test_vectors"],
+        "test_vector_note": "expected_path is unrounded (6 decimals). A JS port of project_v2 using params and levers from this file must reproduce each path to 1e-6. settings override baseline_path for the listed levers; others stay on baseline.",
+        "not_modelled": [
+            {"key": "ldr_cap_95_from_2026_12", "why_en": "Circular 50/2026 raises the LDR cap to 95% on 1 Dec 2026 and 50% of Treasury term deposits count as funding from 1 Aug 2026: regulatory room, not new deposits; no history to estimate its price effect - discuss as an easing risk.", "why_vi": "Nâng trần LDR lên 95% (1/12/2026) và tính 50% tiền gửi KBNN: tạo dư địa pháp lý, không phải tiền gửi mới; chưa có lịch sử để ước lượng."},
+            {"key": "cash_leakage", "why_en": "Cash/M2 exists only from 2025 (methodology break Oct-2025); seasonal Tet swings (±150-200 tn) are visible but not in the annual regression.", "why_vi": "Tiền mặt/M2 chỉ có từ 2025, có gãy phương pháp 10/2025."},
+            {"key": "gov_bond_issuance / corporate & bank bonds", "why_en": "Bank bond issuance substitutes for deposits and G-bond purchases absorb bank liquidity; monthly series incomplete before 2026.", "why_vi": "Trái phiếu ngân hàng thay thế tiền gửi, mua TPCP hút thanh khoản; thiếu chuỗi tháng trước 2026."},
+            {"key": "administrative_guidance", "why_en": "SBV moral suasion on Big-4 posted rates (e.g. 2022 H1 and 2026 H2) keeps VCB below market pressure; not quantifiable.", "why_vi": "Chỉ đạo hành chính của NHNN với Big4 giữ lãi suất niêm yết thấp hơn áp lực thị trường; không định lượng được."},
+        ],
+    }
+    return model2
+
+
+def projection2_json(R):
+    m = R["model"]
+    base = R["base"]
+    keys = [lv["key"] for lv in m["levers"]] + ["inherited_pressure", "funding_rolloff"]
+    contrib = {k: [_r(x, 4) for x in R["contrib"][k]] for k in keys}
+    total = [b - m["params"]["r0"] for b in base]
+    check = [abs(sum(R["contrib"][k][h] for k in keys) - total[h]) for h in range(6)]
+    return {
+        "months": PROJ_MONTHS,
+        "start": {"month": "2026-09", "value": m["params"]["r0"], "series": "dep12_vcb"},
+        "base": [_r(x, 4) for x in base], "low": [_r(x, 4) for x in R["low"]], "high": [_r(x, 4) for x in R["high"]],
+        "band": f"80% band = base ± 1.2816 × {round(R['fit']['sigma_month'], 4)} pp × √h (interval-regression residual s.d. per month)",
+        "contributions": contrib,
+        "contributions_note": "Cumulative pp vs the start (5.9%) for each month. Liquidity levers act through kappa × their accumulated addition to P (so their effect starts the month after); rate levers act directly. 'inherited_pressure' = kappa × (P0 − P*) each month (pressure already built up to Sep-2026); 'funding_rolloff' = the months of Oct-2025..Mar-2026 leaving the 12-month window. Sum over keys = base − start.",
+        "contributions_check_max_abs_error": _r(max(check), 10),
+        "tornado": R["tornado"],
+        "tornado_note": "Each lever alone moved to its low/high setting (flat or baseline ± delta, see settings) with all others on baseline; rate at Mar-2027. Sorted by swing.",
+        "scenarios": R["scenarios"],
+        "sensitivity": R["sens"],
+        "sensitivity_note": "Parameter uncertainty not in the band. The neutral P* is the biggest: with the P* estimated only on data to Mar-2025, the base path is roughly flat.",
+        "kind": "dashboard model — not a forecast",
+        "note_vi": "Mô hình cấu trúc của dashboard, không phải dự báo. Đường cơ sở dựa trên giả định đòn bẩy giữ như cùng kỳ hoặc mức mới nhất; mô hình có xu hướng cao hơn lãi suất niêm yết của Big4 khi NHNN chỉ đạo giữ lãi suất. Không phải khuyến nghị đầu tư.",
+        "note_en": "Structural dashboard model, not a forecast. The base path assumes levers stay at same-month-last-year or latest values; the model tends to sit above Big-4 posted rates when the SBV guides banks to hold them. Not investment advice.",
+    }
+
+
+def v2_attach_panel(Pn, R):
+    S = v2_panel_series(R["H"], R["HB"], R["FG"], R["pp"], R["Pidx"], R["annual"])
+    # SJC premium: monthly 2026 derived points (same convention as the year-end points) + press quotes
+    cen = dict(zip(MONTHS, v(Pn, "usdvnd_central")))
+    gw = dict(zip(MONTHS, v(Pn, "gold_world_usd")))
+    sj = dict(zip(MONTHS, v(Pn, "sjc_gold_sell")))
+    pts = []
+    for mm in MONTHS:
+        if mm >= "2026-02" and sj.get(mm) and gw.get(mm) and cen.get(mm):
+            w = gw[mm] * cen[mm] * 37.5 / 31.1035 / 1e6
+            pts.append({"date": mm, "sjc": sj[mm], "world_converted": round(w, 2), "premium_mvnd": round(sj[mm] - w, 2)})
+    Pn["series"]["sjc_premium"]["monthly_2026"] = {"points": pts, "press_quotes": SJC_PREMIUM_PRESS,
+                                                   "note": "SJC month-end sell − world monthly AVERAGE × month-end central rate (approximate; same convention as the year-end points). Press quotes use spot world prices and bank USD rates and are lower (conflict of conventions, not of data)."}
+    for k, s in S.items():
+        Pn["series"][k] = s
+    for g in ("fx", "sbv", "liquidity"):
+        if g not in Pn["groups"]:
+            Pn["groups"].append(g)
+    Pn["lever_series"] = {"fx": ["fdi_disbursed_m", "remittances_bop_m", "tourism_receipts_m", "trade_balance_m", "income_outflow_m", "fx_net_inflow_vnd_m", "usdvnd_central", "usdvnd_12m"],
+                          "fiscal": ["budget_revenue_m", "budget_spending_m", "dev_investment_m", "fiscal_net_injection_m", "treasury_deposits", "public_investment"],
+                          "sbv": ["sbv_omo_net_m", "sbv_fx_reserves_change_m", "refi_rate", "omo_rate"],
+                          "credit": ["credit_flow_m", "re_credit_flow_m", "credit_ytd", "credit_target"],
+                          "substitution": ["gold_world_12m", "sjc_premium", "vnindex_12m", "new_stock_accounts", "margin_lending", "re_price_momentum"],
+                          "prices": ["cpi_yoy", "core_cpi_yoy", "brent"],
+                          "external": ["fed_funds_upper", "usdvnd_12m", "dxy"],
+                          "liquidity": ["funding_gap_fg_m", "funding_pressure_index", "credit_deposit_gap_yoy"]}
+
+
 # --------------------------------------------------------------------------------------------
 # Story
 # --------------------------------------------------------------------------------------------
@@ -1280,6 +2305,8 @@ def main():
     est = estimation_attempts(P)
     cal = calibrate(P)
     proj = project(P, cal, est)
+    R2 = model2_block(P)
+    v2_attach_panel(P, R2)
     beats = story(P) + [story_next(P, proj)]
     SIM = {
         "as_of": AS_OF,
@@ -1289,6 +2316,10 @@ def main():
         "backtest": backtest_block(P, cal, est),
         "projection": proj,
         "sliders": sliders_block(P, cal),
+        "model2": model2_json(R2, P),
+        "projection2": projection2_json(R2),
+        "model_versions": {"main": "model2", "comparison": "model",
+                           "note": "model2 (structural funding model, v2) is the main deposit-rate model from 2026-10-07; model/projection/sliders (v1, calibrated 4-driver) are kept unchanged for comparison."},
         "indicators_added": INDICATORS_ADDED,
         "conflicts": conflicts_block(),
         "gaps": gaps_block(P),
@@ -1299,7 +2330,8 @@ def main():
                      "note": ("Simulation tab data. Built by tools/build/simulate.py from data/finance.json, economy.json, policy.json, invest_macro.json plus curated, sourced "
                               "observations in the script (search excerpts 2026-10-06; press/SBV pages are blocked from the sandbox) and three downloads cached here "
                               "(VN-Index via vnstock VCI; World Bank Pink Sheet gold and EIA Brent via github datasets). Nulls are gaps, never interpolated. "
-                              "The deposit-rate projection is a calibrated scenario model (regressions were not credible; see SIM.model.estimation). Not investment advice.")},
+                              "Main deposit-rate model: SIM.model2 / SIM.projection2 (structural monthly VND funding model, partly estimated - see SIM.model2.estimation); "
+                              "v1 calibrated scenario model kept in SIM.model / projection / sliders for comparison. Not investment advice.")},
            "SIM": SIM}
     Path(a.out).write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print("wrote", a.out)
@@ -1307,6 +2339,10 @@ def main():
     print("base:", proj["base"], "low:", proj["low"], "high:", proj["high"])
     for k, sc in proj["scenarios"].items():
         print(k, sc["path"])
+    print("v2:", SIM["model2"]["equation"])
+    print("v2 base:", SIM["projection2"]["base"])
+    for k, sc in SIM["projection2"]["scenarios"].items():
+        print("v2", k, sc["path"])
 
 
 if __name__ == "__main__":
