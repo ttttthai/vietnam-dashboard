@@ -49,7 +49,20 @@ fails on a missing module (e.g. `unidecode`), install that ordinary library from
 - **Bank universe:** `VNSTOCK_TELEMETRY=off /tmp/vnenv/bin/python tools/build/banks_vnstock.py` rebuilds
   `data/banks_vnstock.json` (retries, cache in `/tmp/vnstock_banks_cache`, prints a coverage table). Finance
   sources (VCI → `iq.vietcap.com.vn`, MAS, KBS, MBK) are pre-flighted; unreachable ones are recorded in
-  `_meta.coverage.sources` and their fields stay null.
+  `_meta.coverage.sources` and their fields stay null. Each period entry also carries `bs: {item_key: bn VND}`,
+  the full balance sheet mapped to the TT49 bank template (`_meta.bs_items`); source rows that match no template
+  item are listed per bank in `fetch.unmapped`.
+- **Filling the balance-sheet history (run on your own machine):** the fundamentals hosts (`iq.vietcap.com.vn`,
+  KBS, MAS, MBK, VNDirect, SSI, TCBS) are blocked from the agents' sandbox, so `data/banks_vnstock.json` has no
+  `bs` data until the builder runs where they are reachable:
+
+  ```bash
+  VNSTOCK_TELEMETRY=off /tmp/vnenv/bin/python tools/build/banks_vnstock.py   # or your own venv's python with vnstock_data
+  git add data/banks_vnstock.json && git commit -m "banks: full balance sheets (vnstock)"
+  ```
+
+  The coverage table it prints has a `bs` column (template items found per bank); check `fetch.unmapped` for rows
+  worth adding to `BS_TEMPLATE`. Until then `/api/banks/bs_history` returns nulls with coverage 0.
 
 ## Run locally
 
@@ -80,6 +93,15 @@ monthly API pulls work there (the agents' sandbox blocks them; the server then k
   `listed_banks_by_sector`). `include_synthetic=1` adds the old extrapolated periods, each flagged `synthetic: true`
 - `GET /api/banks/universe` — the listed-bank universe with per-bank coverage, finance-source reachability and the
   vnstock layer status
+- `GET /api/banks/bs_history` — full balance sheet of every listed bank for the last 8 quarters (2024-Q3 → 2026-Q2),
+  for the Appendix mini charts: `{periods, items, banks: {TICKER: {name, exchange, values: {item_key: [8]}, basis: [8],
+  source: [8], url: [8]}}, aggregate: {values: {item_key: [8]}, coverage: {item_key: [8 bank counts]}, basis_mix},
+  banks_total, banks_with_data, units, as_of, note}`. `items` is the ordered TT49 template (`key`, `side`
+  asset/liability/equity, `vi`, `en`, `parent`, `total`). Values come from `data/banks_vnstock.json` (vnstock); a
+  bank-quarter vnstock left empty is filled from `data/finance.json` `FINSYS.listed_banks_latest` (`customer_loans` →
+  `customer_loans_gross`, `equity` → `equity_total`, `items` by key), never mixing consolidated and parent-only figures
+  in one bank-quarter. `aggregate.values` sums the banks that report the item that quarter — always read it with
+  `aggregate.coverage` (out of `banks_total`). Null = not reported
 - `GET /api/banks/statements`, `/api/banks/breakdown`, `/api/banks/lineitem/{key}` — system BS / IS and breakdowns
   (`synthetic_history: true`: histories are modelled, not reported)
 - `GET /api/banks/{symbol}/entities` — subsidiaries & affiliates
@@ -105,11 +127,11 @@ Each tab's data lives in one JSON file owned by one agent; top-level keys are th
 | `data/economy.json` | Economy | `ECONFLOW`, `ECON_OFFICIAL`, `CPI_*` |
 | `data/society.json` | Society | `SOC_PROV_DATA`, `POP_SERIES`, `SOC_GRDP`, `WORLD_RANK`, `PROV_PREV`, `RELIGION` |
 | `data/policy.json` | Policy | `POLICY` (also `/api/rates`) |
-| `data/finance.json` | Finance | `FINSYS` (also `/api/rates`, `/api/banks` loans) |
+| `data/finance.json` | Finance | `FINSYS` (also `/api/rates`, `/api/banks` loans, `/api/banks/bs_history` via `listed_banks_latest`) |
 | `data/invest_macro.json` | Economy | `MACRO` for the Đầu tư tab, read by `invest.py` at call time (in-file fallback) |
 | `strategy_directives.json` | Strategy | `/api/strategy` |
 | `data/research/*` | Research | inventory, release calendar, source log, plans — ops files, served by `/api/freshness`, not embedded |
-| `data/banks_vnstock.json` | server (vnstock) | `/api/banks`, `/api/banks/universe` (built by `tools/build/banks_vnstock.py`) |
+| `data/banks_vnstock.json` | server (vnstock) | `/api/banks`, `/api/banks/universe`, `/api/banks/bs_history` (built by `tools/build/banks_vnstock.py`) |
 | `data/auto/*` | server | World Bank / IMF / FRED snapshots for agents to review; agents decide what to copy into their files |
 
 After editing a tab file, embed it into the page:
