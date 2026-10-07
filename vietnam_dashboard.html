@@ -1181,20 +1181,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .sim-s.sim-dim { opacity: .22; filter: grayscale(1); }
   @media (prefers-reduced-motion: reduce) { .sim-s { transition: none; } }
   .sim-pj-c { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; } .sim-pj-l { font: 600 12px var(--font-ui); color: #5b6170; min-width: 9em; }
-  .sim-pj { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 26px; align-items: start; margin-top: 6px; }
-  @media (max-width: 900px) { .sim-pj { grid-template-columns: minmax(0, 1fr); } }
-  .sim-res { font: 400 14px/1.5 var(--font-ui); color: #16181d; margin: 6px 0 0; } .sim-res b { font-size: 18px; } .sim-res span { color: #5b6170; font-size: 12.5px; }
-  .sim-why { font: 400 13px/1.55 var(--font-ui); color: #5b6170; margin: 6px 0 0; max-width: 76ch; }
-  .sim-sl { display: grid; gap: 10px; }
-  .sim-sl-i { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; font: 400 12.5px var(--font-ui); color: #16181d; }
-  .sim-sl-i input { grid-column: 1; accent-color: #16181d; min-height: 24px; width: 100%; } .sim-sl-i output { grid-column: 2; grid-row: 2; font: 650 13px var(--font-ui); font-variant-numeric: tabular-nums; align-self: center; }
-  .sim-sl-n { grid-column: 1 / -1; font-weight: 600; } .sim-sl-s { grid-column: 1 / -1; font-size: 11px; color: #6b6f78; }
-  .sim-sl-note { font: 400 11.5px/1.45 var(--font-ui); color: #6b6f78; margin: 2px 0 0; }
   .sim-fd { margin: 18px 0 0; font: 400 13px/1.55 var(--font-ui); color: #16181d; }
   .sim-fd > summary { cursor: pointer; font-weight: 600; width: max-content; max-width: 100%; color: #16181d; }
-  .sim-fml { margin: 6px 0 0; color: #5b6170; max-width: 90ch; overflow-wrap: anywhere; } .sim-fx { color: #16181d; font-variant-numeric: tabular-nums; }
-  .sim-coef { display: flex; flex-wrap: wrap; gap: 4px 16px; font: 400 12px var(--font-ui); color: #5b6170; margin-top: 6px; } .sim-coef b { color: #16181d; font-weight: 600; }
-  .sim-scn-a { margin: 8px 0 0; padding-left: 18px; color: #5b6170; font-size: 12.5px; } .sim-scn-a li { margin: 3px 0; }
   .sim-eq { margin: 0 0 12px; max-width: 100%; overflow-x: auto; } .sim-eq code { font: 500 12.5px/1.6 ui-monospace, Menlo, Consolas, monospace; color: #16181d; background: #fff; border: 1px solid #e1e0d9; border-radius: 4px; padding: 6px 10px; display: inline-block; white-space: normal; overflow-wrap: anywhere; }
   .sim-tw { max-width: 100%; overflow-x: auto; margin: 4px 0 6px; }
   .sim-t { border-collapse: collapse; width: 100%; font: 400 12.5px/1.45 var(--font-ui); color: #16181d; font-variant-numeric: tabular-nums; }
@@ -1205,9 +1193,56 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .sim-tag { font: 600 10.5px var(--font-ui); color: #5b6170; border: 1px solid #c3c2b7; border-radius: 3px; padding: 0 4px; white-space: nowrap; }
   .sim-small { font: 400 12px/1.5 var(--font-ui); color: #6b6f78; margin: 6px 0 0; max-width: 90ch; }
   .sim-p-t { font: 400 14px/1.6 var(--font-ui); color: #16181d; max-width: 80ch; margin: 0 0 8px; }
-  .sim-bt { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; } @media (max-width: 760px) { .sim-bt { grid-template-columns: minmax(0, 1fr); } }
   .sim-ul { margin: 4px 0 0; padding-left: 18px; font: 400 13px/1.55 var(--font-ui); color: #16181d; max-width: 90ch; } .sim-ul li { margin: 4px 0; } .sim-ul b { font-weight: 600; }
   @media (max-width: 640px) { .sim-t { font-size: 12px; } .sim-tw-src .sim-t thead { display: none; } .sim-tw-src .sim-t tr { display: block; border-bottom: 1px solid #e1e0d9; padding: 6px 0; } .sim-tw-src .sim-t th, .sim-tw-src .sim-t td { display: block; border: 0; padding: 1px 0; } }
+  /* Simulation · model v2 workbench (chapter 2): levers left (sticky, own scroll), result + charts right; one column on phones */
+  .sm2-top { margin: 0 0 12px; }
+  .sm2-scn-a { font: 400 13px/1.55 var(--font-ui); color: #5b6170; margin: 2px 0 0; max-width: 92ch; } .sm2-scn-a b { color: #16181d; font-weight: 600; }
+  .sm2-wb { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "top" "side" "rest"; gap: 18px; align-items: start; }
+  .sm2-wtop { grid-area: top; min-width: 0; } .sm2-rest { grid-area: rest; min-width: 0; } .sm2-side { grid-area: side; min-width: 0; }
+  .sm2-rest > .st-sub:first-child { margin-top: 0; }
+  @media (min-width: 1000px) {
+    .sm2-wb { grid-template-columns: minmax(0, 35fr) minmax(0, 65fr); grid-template-areas: "side top" "side rest"; gap: 6px 26px; }
+    .sm2-side { position: sticky; top: calc(var(--sim-top, 46px) + 6px); max-height: calc(var(--sim-vh, 100vh) - var(--sim-top, 46px) - 14px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding-right: 8px; }
+    .sm2-mini { top: 0; } }
+  .sm2-mini { position: sticky; top: var(--sim-top, 46px); z-index: 3; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; background: #faf8f3; border-bottom: 1px solid #dedbd2; padding: 6px 0; font: 500 12px var(--font-ui); color: #5b6170; font-variant-numeric: tabular-nums; }
+  .sm2-mini b { font: 700 17px var(--font-ui); color: #16181d; }
+  .sm2-side-h { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 8px 0 2px; font: 650 14px var(--font-ui); color: #16181d; }
+  .sm2-ra { font: 600 12px var(--font-ui); color: #16181d; background: #fff; border: 1px solid #c3c2b7; border-radius: 999px; padding: 4px 12px; min-height: 30px; cursor: pointer; } .sm2-ra:hover { border-color: #16181d; }
+  .sm2-side-d { font: 400 11.5px/1.45 var(--font-ui); color: #6b6f78; margin: 2px 0 6px; }
+  .sm2-g { border-top: 1px solid #dedbd2; }
+  .sm2-g > summary { display: flex; justify-content: space-between; align-items: center; gap: 8px; cursor: pointer; min-height: 32px; font: 650 13px var(--font-ui); color: #16181d; }
+  .sm2-g > summary i { font-style: normal; font-weight: 500; color: #8a8f99; font-size: 11.5px; }
+  .sm2-gc { font: 500 12px var(--font-ui); color: #5b6170; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .sm2-lv { padding: 4px 0 8px 8px; border-left: 2px solid transparent; }
+  .sm2-lv.mod { border-left-color: #eb6834; background: linear-gradient(90deg, #fdf1ea, rgba(250, 248, 243, 0) 60%); }
+  .sm2-lv-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font: 600 12.5px/1.3 var(--font-ui); color: #16181d; }
+  .sm2-lv-h output { font: 650 12.5px var(--font-ui); font-variant-numeric: tabular-nums; text-align: right; }
+  .sm2-lv-r { display: flex; align-items: center; gap: 6px; }
+  .sm2-lv-r input { flex: 1 1 auto; min-width: 0; min-height: 30px; margin: 0; accent-color: #16181d; cursor: pointer; }
+  .sm2-rs { flex: none; width: 28px; height: 28px; padding: 0; border: 1px solid #c3c2b7; border-radius: 50%; background: #fff; color: #16181d; font-size: 14px; line-height: 1; cursor: pointer; }
+  .sm2-rs:hover:not(:disabled) { border-color: #16181d; } .sm2-rs:disabled { opacity: .3; cursor: default; }
+  .sm2-lv-m { display: flex; align-items: flex-start; gap: 8px; font: 400 11px/1.45 var(--font-ui); color: #6b6f78; }
+  .sm2-sp { flex: none; } .sm2-sp:empty { display: none; } .sm2-sp svg { display: block; }
+  .sm2-lv-s { min-width: 0; overflow-wrap: anywhere; } .sm2-lv-s b { color: #16181d; font-weight: 600; } .sm2-lv-s a { color: #5b6170; }
+  .sm2-st { display: inline-block; font: 600 10px/1.5 var(--font-ui); color: #16181d; border: 1px solid #c3c2b7; border-radius: 3px; padding: 0 4px; white-space: nowrap; }
+  .sm2-st-e { border-color: #2a78d6; } .sm2-st-w { border-style: dashed; border-color: #2a78d6; } .sm2-st-c { border-style: dashed; border-color: #5b6170; } .sm2-st-a { border-style: dotted; border-color: #5b6170; }
+  .sm2-res { background: #fff; border: 1px solid #e1e0d9; border-left: 3px solid #eb6834; border-radius: 4px; padding: 8px 12px; margin: 0 0 10px; }
+  .sm2-res-k { font: 600 11px var(--font-ui); letter-spacing: .06em; text-transform: uppercase; color: #5b6170; }
+  .sm2-res-v { font: 700 30px/1.2 var(--font-head); color: #16181d; font-variant-numeric: tabular-nums; }
+  .sm2-res-v span { font: 500 13px var(--font-ui); color: #5b6170; margin-left: 10px; }
+  .sm2-res-s { font: 400 12.5px/1.5 var(--font-ui); color: #5b6170; } .sm2-res-s b { color: #16181d; font-weight: 600; }
+  .sm2-ar { font-style: normal; margin-right: 3px; } .sm2-ar.up { color: #c2362f; } .sm2-ar.dn { color: #1d5fae; }
+  .sm2-fan-h { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0 12px; }
+  .sm2-chk { display: inline-flex; align-items: center; gap: 6px; font: 500 12px var(--font-ui); color: #16181d; min-height: 28px; cursor: pointer; } .sm2-chk input { width: 16px; height: 16px; margin: 0; accent-color: #16181d; }
+  .sm2-bad { display: block; font: 650 12.5px/1.45 var(--font-ui); color: #fff; background: #c2362f; border-radius: 4px; padding: 6px 10px; margin: 0 0 8px; }
+  .sm2-ok { font: 400 12px/1.5 var(--font-ui); color: #5b6170; margin: 14px 0 0; } .sm2-ok::before { content: '✓ '; color: #16181d; }
+  .sm2-cav li { margin: 6px 0; } .sm2-v1 { border-top: 1px dotted #dedbd2; padding-top: 8px; margin-top: 14px; }
+  .sm2-eq { list-style: none; margin: 4px 0 6px; padding: 0; display: grid; gap: 8px; }
+  .sm2-eq span { display: block; font: 600 12px var(--font-ui); color: #5b6170; margin-bottom: 2px; }
+  .sm2-eq code { display: block; font: 500 13px/1.6 ui-monospace, Menlo, Consolas, monospace; color: #16181d; background: #fff; border: 1px solid #e1e0d9; border-left: 3px solid #16181d; border-radius: 4px; padding: 6px 10px; overflow-wrap: anywhere; }
+  .sim-t tr.sm2-th th { font-weight: 650; color: #16181d; background: #f1efe8; padding: 6px 8px; }
+  .sm2-bt3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; } @media (max-width: 900px) { .sm2-bt3 { grid-template-columns: minmax(0, 1fr); } }
   /* Financial overview · deposit alternatives */
   .fs-alt { margin: 34px 0 0; padding-top: 16px; border-top: 2px solid #16181d; }
   .fs-alt-k { font: 600 11.5px/1 var(--font-ui); letter-spacing: .12em; text-transform: uppercase; color: #c2362f; margin-bottom: 8px; }
@@ -7915,7 +7950,6 @@ const simTrn = v => stN(v, 0) + stT(' nghìn tỷ', ' trn');
 // beats that point at derived or annual series highlight the charted series they belong to
 const SIM_ALIAS = { vnindex_12m: ['vnindex'], annual_growth: ['credit_yoy', 'deposit_yoy', 'credit_deposit_gap_yoy'], usdvnd_12m: ['usdvnd_central'], gold_world_12m: ['gold_world_usd'], public_investment: ['public_investment', 'state_sector_investment_nso'] };
 let simSt = { t: SIM_N - 1, pin: -1, touched: false, playing: false, timer: null, auto: false };
-let simPj = { attr: 'gap', scn: 'status_quo', custom: false, vals: {} };
 
 function simPanels() {
   const ser = (k, n, c, kind, pts, f, o = {}) => Object.assign({ k, n, c, kind, pts: pts.sort((a, b) => a.i - b.i), f }, o);
@@ -7970,7 +8004,7 @@ function simMarks(S, sx, sy, mw) {
     for (let i = 0; i < SIM_N - 1; i++) if (A[i] && A[i + 1]) sol += `M${sx(i).toFixed(1)},${sy(A[i].v).toFixed(1)} H${sx(i + 1).toFixed(1)} V${sy(A[i + 1].v).toFixed(1)} `;
     if (S.up && typeof S.up.value === 'number') { const l = L[L.length - 1], ui = simMI(S.up.date); if (l && simIn(ui)) das += `M${sx(l.i)},${sy(l.v)} H${sx(ui)} V${sy(S.up.value)} H${sx(SIM_N - 1)}`; }
   } else for (let i = 0; i < SIM_N - 1; i++) if (A[i] && A[i + 1]) { const seg = `M${sx(i).toFixed(1)},${sy(A[i].v).toFixed(1)} L${sx(i + 1).toFixed(1)},${sy(A[i + 1].v).toFixed(1)} `; if (A[i].b === 'carried' || A[i + 1].b === 'carried') das += seg; else sol += seg; }
-  if (S.proj) { const Pj = SIM.projection, st = Pj.start || {}, i0 = simMI(st.month), xs = Pj.months.map(simMI);
+  if (S.proj) { const Pj = simPJ(), st = Pj.start || {}, i0 = simMI(st.month), xs = Pj.months.map(simMI);
     if (simIn(i0)) { s += `<path d="M${sx(i0)},${sy(st.value)} ${xs.map((x, h) => `L${sx(x)},${sy(Pj.high[h])}`).join(' ')} ${xs.map((x, h) => [x, h]).reverse().map(([x, h]) => `L${sx(x)},${sy(Pj.low[h])}`).join(' ')} Z" fill="${c}" opacity=".14"/>`;
       s += `<path d="M${sx(i0)},${sy(st.value)} ${xs.map((x, h) => `L${sx(x)},${sy(Pj.base[h])}`).join(' ')}" fill="none" stroke="${c}" stroke-width="2" stroke-dasharray="5,4"/>`; } }
   s += `<path d="${sol}" fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round"/>` + (das ? `<path d="${das}" fill="none" stroke="${c}" stroke-width="2" stroke-dasharray="4,3"/>` : '');
@@ -7981,15 +8015,17 @@ const simSuf = b => ({ ann: stT(' (cả năm)', ' (full year)'), approx: ' (≈)
 const simSBS = () => window.matchMedia('(min-width: 1000px)').matches;   // same breakpoint as the .sim-sbs CSS
 // pin offsets for the player: below the chapter sub-tab bar, inside the scrolling panel (not 100vh: the site header sits above it)
 function simLay() {
-  const a = document.getElementById('sim-anim'), root = document.getElementById('sim-story'); if (!a || !root) return;
-  const bar = root.previousElementSibling, sc = typeof stSubScroller === 'function' ? stSubScroller(a) : null;
-  if (bar && bar.classList.contains('st-subbar') && bar.offsetHeight) a.style.setProperty('--sim-top', bar.offsetHeight + 'px');
-  if (sc && sc.clientHeight && sc !== document.scrollingElement && sc !== document.documentElement) a.style.setProperty('--sim-vh', sc.clientHeight + 'px'); else a.style.removeProperty('--sim-vh');
+  const root = document.getElementById('sim-story'); if (!root) return;
+  const bar = root.previousElementSibling;
+  // the story player and the v2 workbench both pin below the chapter bar, inside the scrolling panel
+  ['sim-anim', 'sm2-wb'].forEach(id => { const a = document.getElementById(id); if (!a) return; const sc = typeof stSubScroller === 'function' ? stSubScroller(a) : null;
+    if (bar && bar.classList.contains('st-subbar') && bar.offsetHeight) a.style.setProperty('--sim-top', bar.offsetHeight + 'px');
+    if (sc && sc.clientHeight && sc !== document.scrollingElement && sc !== document.documentElement) a.style.setProperty('--sim-vh', sc.clientHeight + 'px'); else a.style.removeProperty('--sim-vh'); });
 }
 // one panel = stacked rows (each its own y scale) on the shared month axis; returns false while the panel is hidden
 function simDrawPanel(P, el) {
   if (!el || !el.clientWidth) return false;
-  const W = el.clientWidth, ML = 44, MR = 10, nR = P.rows.length, sx = stLin(0, SIM_N - 1, ML, W - MR), mw = (W - ML - MR) / (SIM_N - 1), pj0 = simMI((SIM.projection.start || {}).month);
+  const W = el.clientWidth, ML = 44, MR = 10, nR = P.rows.length, sx = stLin(0, SIM_N - 1, ML, W - MR), mw = (W - ML - MR) / (SIM_N - 1), pj0 = simMI((simPJ().start || {}).month);
   let y0 = 0, s = '', hits = '';
   el._rows = [];
   // side by side (≥1000px) the plots shrink to ~60% of their height so the six panels share one screen with the timeline
@@ -7997,7 +8033,7 @@ function simDrawPanel(P, el) {
   P.rows.forEach((R0, r) => {
     const ex = r === nR - 1 ? 36 : 20, R = k < 1 ? Object.assign({}, R0, { h: Math.max(26, Math.round((R0.h - ex) * k)) + ex }) : R0;
     const top = y0 + 16, bot = y0 + R.h - (r === nR - 1 ? 20 : 4);
-    const vals = R.s.flatMap(S => S.pts.flatMap(p => [p.v, p.lo, p.hi])).concat(R.s.some(S => S.proj) ? SIM.projection.low.concat(SIM.projection.high) : []).concat(R.s.flatMap(S => S.up ? [S.up.value] : [])).filter(v => typeof v === 'number');
+    const vals = R.s.flatMap(S => S.pts.flatMap(p => [p.v, p.lo, p.hi])).concat(R.s.some(S => S.proj) ? simPJ().low.concat(simPJ().high) : []).concat(R.s.flatMap(S => S.up ? [S.up.value] : [])).filter(v => typeof v === 'number');
     if (R.zero || R.s.some(S => S.kind === 'bars')) vals.push(0);
     if (!vals.length) vals.push(0, 1);
     let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.08 || 1, pos = lo >= 0; if (lo !== 0) lo -= pad; if (pos && lo < 0) lo = 0; hi += pad;
@@ -8022,7 +8058,7 @@ function simDrawPanel(P, el) {
     const mv = ev => { const pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY; const x = pt.matrixTransform(svg.getScreenCTM().inverse()).x, i = Math.max(0, Math.min(SIM_N - 1, Math.round((x - ML) / mw)));
       const R = P.rows[+h.dataset.r].R, rows = [];
       R.s.forEach(S => { S.pts.filter(p => p.i === i).forEach(p => rows.push({ n: S.n + simSuf(p.b) + (S.nt && p.note ? ' · ' + p.note : ''), c: S.c, v: p.b === 'range' ? `${stN(p.lo, 1)}–${stN(p.hi, 1)}%` : S.f(p.v) }));
-        if (S.proj && i > simMI(SIM.projection.start.month)) { const hh = i - simMI(SIM.projection.start.month) - 1; if (SIM.projection.base[hh] != null) rows.push({ n: stT('mô hình dashboard (80%: ', 'dashboard model (80%: ') + `${stN(SIM.projection.low[hh], 2)}–${stN(SIM.projection.high[hh], 2)}%)`, c: S.c, v: simPct(SIM.projection.base[hh]) }); } });
+        if (S.proj && i > simMI(simPJ().start.month)) { const hh = i - simMI(simPJ().start.month) - 1; if (simPJ().base[hh] != null) rows.push({ n: stT('mô hình dashboard (80%: ', 'dashboard model (80%: ') + `${stN(simPJ().low[hh], 2)}–${stN(simPJ().high[hh], 2)}%)`, c: S.c, v: simPct(simPJ().base[hh]) }); } });
       if (!rows.length) rows.push({ n: stT('không có số liệu tháng này', 'no data this month'), c: '#c9ccd2', v: '—' });
       stTipKV(ev, simML(i), '', rows); };
     h.addEventListener('pointermove', mv); h.addEventListener('pointerenter', mv); h.addEventListener('pointerleave', dotTipHide);
@@ -8071,7 +8107,7 @@ function simSetT(t, o = {}) {
   simSt.t = Math.max(0, Math.min(SIM_N - 1, t)); if (!o.keepPin) simSt.pin = -1; if (o.touch) simSt.touched = true;
   const r = document.getElementById('sim-range'), out = document.getElementById('sim-out');
   if (r) r.value = simSt.t;
-  if (out) out.innerHTML = `${simML(simSt.t)}${simSt.t > simMI(SIM.projection.start.month) ? ` <span>${stT('· mô hình dashboard', '· dashboard model')}</span>` : ''}`;
+  if (out) out.innerHTML = `${simML(simSt.t)}${simSt.t > simMI(simPJ().start.month) ? ` <span>${stT('· mô hình dashboard', '· dashboard model')}</span>` : ''}`;
   const pb = simSt._b; simSt._b = simBeatIdx(); if (pb !== simSt._b || o.force) simBeatCard();
   document.querySelectorAll('#sim-grid .sim-p').forEach(simPaint);
 }
@@ -8079,7 +8115,7 @@ function simStop() { clearTimeout(simSt.timer); simSt.timer = null; simSt.playin
 function simPlay() {
   if (simSt.playing) return simStop();
   simStop(); const gen = simSt.gen, b = document.getElementById('sim-play'); simSt.playing = true; if (b) { b.textContent = '❚❚'; b.setAttribute('aria-label', stT('Tạm dừng', 'Pause')); }
-  let t = simSt.t >= SIM_N - 1 || simSt.t >= simMI(SIM.projection.start.month) && !simSt.touched ? 0 : simSt.t + 1;
+  let t = simSt.t >= SIM_N - 1 || simSt.t >= simMI(simPJ().start.month) && !simSt.touched ? 0 : simSt.t + 1;
   const step = () => {
     if (gen !== simSt.gen) return;   // a newer play or a stop owns the playhead
     const host = document.getElementById('sim-anim'); if (!host || !host.offsetParent) return simStop();
@@ -8112,8 +8148,9 @@ function simAnimWire() {
 }
 // "where the pressure stands": latest value of every force, with its monthly push in the dashboard model where it is a driver
 function simSummary() {
-  const M = SIM.model || {}, D = Object.fromEntries((M.drivers || []).map(d => [d.key, d])), now = SIM.projection.drivers_now || {};
-  const push = (k, v) => { const d = D[k]; return d && typeof v === 'number' ? d.coef * (v - d.neutral) : null; };
+  // the push column uses the main model (v2): rate_coef × (value − neutral) for its rate levers, kappa × (P − P*) for funding pressure
+  const M2 = SIM.model2 || {}, D = Object.fromEntries((M2.levers || []).filter(l => l.rate_coef != null).map(l => [l.key, l])), now = SIM.projection.drivers_now || {}, pa = M2.params || {};
+  const push = (k, v) => { const d = D[k]; return d && typeof v === 'number' ? d.rate_coef * (v - d.neutral) : null; };
   const L = k => simLast(k), vcb = L('dep12_vcb'), vcb12 = vcb ? simAt('dep12_vcb', vcb.i - 12) : null, pr = L('dep12_private_mbs'), vAt = pr ? simAt('dep12_vcb', pr.i) : null;
   const cof = simPP(simS('cof_listed').periods, simS('cof_listed').values), cofP = simS('cof_listed').periods || [];
   const td = simO(simS('treasury_deposits').observations), tdL = td[td.length - 1], inc = (simS('treasury_deposits').ldr_inclusion || {}), incI = (inc.dates || []).length - 1;
@@ -8123,7 +8160,8 @@ function simSummary() {
   let h = `<div class="sim-sum-h">${stT('Các lực đang ở đâu', 'Where the forces stand')}</div><p class="sim-sum-d">${stT('Giá trị mới nhất. Cột phải: mức đẩy lãi suất mỗi tháng trong mô hình dashboard = hệ số × (giá trị − mức trung tính).', 'Latest values. Right: the monthly push on the rate in the dashboard model = coefficient × (value − neutral level).')}</p><ul class="sim-sum-l">`;
   if (vcb) h += row(stT('Tiết kiệm 12 tháng Vietcombank', 'Vietcombank 12-month deposit'), simPct(vcb.v, 1), simML(vcb.i), null, vcb12 ? stT(`${vcb.v >= vcb12.v ? '+' : '−'}${stN(Math.abs(vcb.v - vcb12.v), 1)} điểm % so với ${simML(vcb12.i)}`, `${vcb.v >= vcb12.v ? '+' : '−'}${stN(Math.abs(vcb.v - vcb12.v), 1)} pp on ${simML(vcb12.i)}`) : '');
   if (pr && vAt) h += row(stT('12 tháng, NH tư nhân (MBS)', '12-month, private banks (MBS)'), simPct(pr.v, 2), simML(pr.i), null, stT(`cao hơn Vietcombank ≈${stN(pr.v - vAt.v, 1)} điểm %`, `≈${stN(pr.v - vAt.v, 1)} pp above Vietcombank`));
-  const g = now.credit_deposit_gap; if (g) h += row(stT('Chênh lệch tín dụng − huy động', 'Credit − deposit gap'), simPP_(g.value), ym(g), push('credit_deposit_gap', g.value), stT(`mức trung tính ${stN(D.credit_deposit_gap.neutral, 1)} (giả định)`, `neutral ${stN(D.credit_deposit_gap.neutral, 1)} (assumed)`));
+  const g = now.credit_deposit_gap; if (g) h += row(stT('Chênh lệch tín dụng − huy động', 'Credit − deposit gap'), simPP_(g.value), ym(g), null, stT('mô hình dùng chỉ số áp lực vốn P (dòng dưới) thay cho chênh lệch này', 'the model uses the funding-pressure index P (next row) instead of this gap'));
+  if (pa.P0 != null) h += row(stT('Áp lực vốn P (mô hình, % tiền gửi)', 'Funding pressure P (model, % of deposits)'), stN(pa.P0, 2), simML(simMI(simPJ().start.month)), pa.kappa * (pa.P0 - pa.P_star), stT(`mức trung tính P* ${stN(pa.P_star, 2)} (ước lượng)`, `neutral P* ${stN(pa.P_star, 2)} (estimated)`));
   const c = now.cpi_yoy; if (c) h += row('CPI', simPct(c.value), ym(c), push('cpi_yoy', c.value), L('real_dep_rate') ? stT(`lãi suất thực ${stN(L('real_dep_rate').v, 2)} điểm %`, `real rate ${stN(L('real_dep_rate').v, 2)} pp`) : '');
   const gd = now.gold_world_12m; if (gd) h += row(stT('Vàng thế giới, 12 tháng', 'World gold, 12 months'), simPct(gd.value), ym(gd), push('gold_world_12m', gd.value), '');
   const vn = now.vnindex_12m; if (vn) h += row(stT('VN-Index, 12 tháng', 'VN-Index, 12 months'), simPct(vn.value), ym(vn), push('vnindex_12m', vn.value), '');
@@ -8131,13 +8169,13 @@ function simSummary() {
   if (cof.length > 1) h += row(stT('Chi phí vốn NH niêm yết', 'Listed banks\' cost of funds'), simPct(cof[cof.length - 1].v), ciE(cofP[cofP.length - 1]), null, stT(`từ ${stN(cof[0].v, 2)}% (${ciE(cofP[0])})`, `from ${stN(cof[0].v, 2)}% (${ciE(cofP[0])})`));
   if (tdL) h += row(stT('Tiền gửi KBNN tại NHTM', 'Treasury deposits at banks'), (tdL.b === 'approx' ? '≈' : '') + simTrn(tdL.v / 1000), simML(tdL.i), null, incI >= 0 ? stT(`${inc.values_pct[incI]}% được tính vào LDR từ ${polDS(inc.dates[incI])}`, `${inc.values_pct[incI]}% counts towards LDR from ${polDS(inc.dates[incI])}`) : '');
   if (ldr && cap) h += row(stT('LDR (định nghĩa NHNN)', 'LDR (SBV definition)'), simPct(ldr.v, 1), simML(ldr.i), null, stT(`trần ${stN(cap.v, 0)}%${up.value ? `, lên ${stN(up.value, 0)}% từ ${polDS(up.date)}` : ''}: còn xa trần`, `cap ${stN(cap.v, 0)}%${up.value ? `, ${stN(up.value, 0)}% from ${polDS(up.date)}` : ''}: well below it`));
-  if (fed) h += row(stT('Fed − tái cấp vốn', 'Fed − refinancing'), simPP_(fed.v), simML(fed.i), null, stT('âm: không phải áp lực tăng (loại khỏi mô hình)', 'negative: not an upward pressure (excluded from the model)'));
+  if (fed) h += row(stT('Fed − tái cấp vốn', 'Fed − refinancing'), simPP_(fed.v), simML(fed.i), null, stT('âm: không phải áp lực tăng; mô hình chỉ dùng các lần Fed đổi lãi suất', 'negative: not an upward pressure; the model only uses Fed moves'));
   return h + '</ul>';
 }
 // fan chart: VCB 12-month actual (solid; carried months dashed) + model path (dashed) + 80% band; alt paths in grey
 function simFan(el, i0, cfg) {
   if (!el || !el.clientWidth) return;
-  const W = el.clientWidth, H = cfg.h || 260, ML = 36, MR = W < 480 ? 64 : 92, MT = 14, MB = 22, st = SIM.projection.start, iS = simMI(st.month), xs = SIM.projection.months.map(simMI);
+  const W = el.clientWidth, H = cfg.h || 260, ML = 36, MR = W < 480 ? 64 : 92, MT = 14, MB = 22, st = simPJ().start, iS = simMI(st.month), xs = simPJ().months.map(simMI);
   const vcb = simV('dep12_vcb').filter(p => p.i >= i0), basis = simS('dep12_vcb').basis || [];
   const all = vcb.map(p => p.v).concat(cfg.path, cfg.lo, cfg.hi, ...(cfg.alts || []).map(a => a.path), cfg.refi ? simV('refi_rate').filter(p => p.i >= i0).map(p => p.v) : []);
   const tk = simTicks(Math.min(...all) - 0.15, Math.max(...all) + 0.15, 4), lo = tk[0], hi = tk[tk.length - 1];
@@ -8169,71 +8207,438 @@ function simFan(el, i0, cfg) {
   stCross(el, { xs: idx.map(sx), labels: idx.map(simML), top: MT, bottom: H - MB, series: ser });
   el._stRows.rows = el._stRows.rows.filter(r => r.slice(1).some(c => c !== '—'));
 }
-// ── projection: documented formula, recomputed in the browser ──
-function simCoefs(attr) {
-  const it = SIM.sliders.items, c = Object.fromEntries(it.map(x => [x.key, x.coef]));
-  if (attr !== 'opp') return c;
-  const cal = SIM.model.calibration || {}, sh = ((SIM.projection.share_sensitivity || []).find(x => x.id === 'regression_implied') || {}).shares || {};
-  Object.keys(sh).forEach(k => { if (cal.excess && cal.excess[k]) c[k] = sh[k] * cal.rise_per_month / cal.excess[k]; });
-  return c;
+// ── model v2 (main from 2026-10-07): structural VND funding model, SIM.model2 / SIM.projection2 (Finance agent) ──
+// sm2Run ports SIM.model2.compute_order exactly (one loop, + − × ÷): r += kappa·(P − P*) + Σ rate_coef·(x − neutral);
+// P += Σ 100·liquidity_weight·path/D − roll-off. It also returns the cumulative contribution of every lever, the
+// inherited pressure and the roll-off (same split as SIM.projection2.contributions; they sum to path − r0).
+// Identity: VCB 12-month rate blue (history, base dashed + 80% band); "your scenario" orange on every chart of the
+// chapter; pushes on the rate use polarity (red = up, blue = down); model-derived series (P, FG) in ink.
+const simPJ = () => (SIM.projection2 && SIM.model2 ? SIM.projection2 : SIM.projection);
+const SM2_ORDER = [['fx', ['fx'], 'Dòng ngoại tệ', 'FX inflows', 'Ngoại tệ', 'FX'], ['fiscal', ['fiscal'], 'Ngân sách', 'Budget', 'Ngân sách', 'Budget'],
+  ['sbv', ['policy', 'sbv'], 'Ngân hàng Nhà nước', 'State Bank (SBV)', 'NHNN', 'SBV'], ['credit', ['credit'], 'Tín dụng', 'Credit', 'Tín dụng', 'Credit'],
+  ['mkt', ['substitution', 'prices', 'external'], 'Kênh thay thế, giá cả, bên ngoài', 'Substitutes, prices, external', 'Thị trường & giá', 'Markets & prices']];
+const SM2_SEQ = ['fdi_disbursed', 'remittances', 'tourism_receipts', 'trade_balance', 'income_outflow', 'dev_investment', 'recurrent_spending', 'tax_revenue', 'land_use_fees',
+  'policy_rate_change', 'omo_net_injection', 'sbv_fx_sales', 're_credit', 'other_credit', 'vnindex_12m', 'gold_world_12m', 'sjc_premium', 're_price_momentum', 'cpi_yoy', 'usdvnd_12m', 'fed_change'];
+const SM2_SHORT = { fdi_disbursed: ['FDI giải ngân', 'FDI disbursed'], remittances: ['Kiều hối', 'Remittances'], tourism_receipts: ['Thu từ khách quốc tế', 'Tourism receipts'],
+  trade_balance: ['Cán cân thương mại', 'Trade balance'], income_outflow: ['Lợi nhuận chuyển ra', 'Profit repatriation'], dev_investment: ['Chi đầu tư phát triển', 'Development spending'],
+  recurrent_spending: ['Chi thường xuyên', 'Recurrent spending'], tax_revenue: ['Thu thuế, phí', 'Taxes & fees'], land_use_fees: ['Tiền sử dụng đất', 'Land-use fees'],
+  omo_net_injection: ['OMO bơm ròng', 'OMO net injection'], sbv_fx_sales: ['NHNN bán ngoại tệ', 'SBV FX sales'], re_credit: ['Tín dụng bất động sản', 'Real-estate credit'],
+  other_credit: ['Tín dụng khác', 'Other credit'], gold_world_12m: ['Vàng thế giới, 12 tháng', 'World gold, 12m'], sjc_premium: ['Chênh lệch SJC', 'SJC premium'],
+  vnindex_12m: ['VN-Index, 12 tháng', 'VN-Index, 12m'], re_price_momentum: ['Giá căn hộ, y/y', 'Apartment prices, y/y'], cpi_yoy: ['CPI', 'CPI'],
+  usdvnd_12m: ['Tỷ giá, 12 tháng', 'USD/VND, 12m'], fed_change: ['Fed đổi lãi suất', 'Fed move'], policy_rate_change: ['Lãi suất điều hành', 'Policy rate'] };
+// lever → panel series with the same definition (sparkline history); levers without one get no sparkline
+const SM2_SPARK = { fdi_disbursed: 'fdi_disbursed_m', remittances: 'remittances_bop_m', tourism_receipts: 'tourism_receipts_m', trade_balance: 'trade_balance_m', income_outflow: 'income_outflow_m',
+  dev_investment: 'dev_investment_m', omo_net_injection: 'sbv_omo_net_m', re_credit: 're_credit_flow_m', gold_world_12m: 'gold_world_12m', vnindex_12m: 'vnindex_12m',
+  re_price_momentum: 're_price_momentum', cpi_yoy: 'cpi_yoy', usdvnd_12m: 'usdvnd_12m' };
+const SM2_UNIT = { 'USD bn/month': ['tỷ USD/tháng', 'USD bn/mo'], 'VND tn/month': ['nghìn tỷ đ/tháng', 'VND tn/mo'], '%': ['%', '%'], 'pp': ['điểm %', 'pp'], 'million VND/tael': ['triệu đ/lượng', 'm VND/tael'], '% y/y': ['% y/y', '% y/y'] };
+const SM2_SCN = { base: ['Cơ sở', 'Base'], easing: ['Nới lỏng', 'Easing'], fx_inflow_shock: ['Dòng ngoại tệ yếu đi', 'FX inflow shock'], fiscal_push: ['Đẩy nhanh đầu tư công', 'Fiscal push'],
+  real_estate_credit_boom: ['Tín dụng BĐS tăng mạnh', 'Real-estate credit boom'], external_tightening: ['Thắt chặt từ bên ngoài', 'External tightening'] };
+const SM2_ST = { e: ['ước lượng', 'estimated'], w: ['ước lượng yếu', 'weak estimate'], c: ['hiệu chỉnh', 'calibrated'], a: ['giả định', 'assumed'] };
+const SM2_UP = ST.red, SM2_DN = ST.blue, SM2_YOU = ST.orange;
+let sm2 = { scn: 'base', ref: {}, paths: {}, all: false, chk: null, R: null, B: null };
+const sm2L = () => { const L = SIM.model2.levers, o = k => { const i = SM2_SEQ.indexOf(k); return i < 0 ? 99 : i; }; return L.slice().sort((a, b) => o(a.key) - o(b.key)); };
+const sm2Lv = k => SIM.model2.levers.find(l => l.key === k);
+const sm2Lab = l => { const s = SM2_SHORT[l.key]; return s ? stT(s[0], s[1]) : stT(l.label_vi, l.label_en); };
+const sm2U = l => { const u = SM2_UNIT[l.unit]; return u ? stT(u[0], u[1]) : l.unit; };
+const sm2Dec = l => /tn/.test(l.unit) ? 0 : ((String(l.step).split('.')[1] || '').length >= 2 || /USD bn/.test(l.unit)) ? 2 : 1;
+const sm2Grp = l => SM2_ORDER.find(g => g[1].includes(l.group)) || SM2_ORDER[SM2_ORDER.length - 1];
+const sm2Sum = a => a.reduce((s, x) => s + x, 0), sm2Mean = a => sm2Sum(a) / a.length;
+const sm2Sgn = (v, d = 2) => (Math.abs(v) < 0.5 * Math.pow(10, -d) ? '±' : v > 0 ? '+' : '−') + stN(Math.abs(v), d);
+const sm2Ev = l => l.frequency === 'event';
+const sm2TkD = tk => tk.length > 1 ? Math.min(3, (String(+(tk[1] - tk[0]).toFixed(6)).split('.')[1] || '').length) : 0;   // tick decimals from the tick step (0.25 stays 0,25)
+const sm2Flat = a => a.every(x => Math.abs(x - a[0]) < 1e-9);
+const sm2Val = (l, p) => sm2Ev(l) ? sm2Sum(p) : sm2Mean(p);
+const sm2Mo = h => simML(simMI(SIM.projection2.months[h]));
+const sm2Half = h => 1.2816 * SIM.model2.residual_sd * Math.sqrt(h + 1);
+const sm2ScnN = k => { const s = SIM.projection2.scenarios[k] || {}, m = SM2_SCN[k]; return s.label_vi ? stT(s.label_vi, s.label_en) : m ? stT(m[0], m[1]) : k; };
+// period strings from the data ("2026-09", "2025-12..2026-06 avg", "2026-Q2", "2026 plan / 12") → reader text
+const sm2Per = p => p == null ? '—' : String(p).replace(/(\d{4})-(\d{2})\.\.(\d{2})(?![\d-])/g, (m, y, a, b) => `${simML(simMI(`${y}-${a}`))}–${simML(simMI(`${y}-${b}`))}`)
+  .replace(/(\d{4})-(\d{2})(?![\d])/g, m => simML(simMI(m))).replace(/(\d{4})-Q([1-4])/g, (m, y, q) => stT(`Q${q}/${y}`, `Q${q} ${y}`)).replace(/\.\./g, '–')
+  .replace(/\s*\(avg\)|\s+avg\b/g, stT(', TB tháng', ', monthly avg')).replace(/\bplan\b/, stT('kế hoạch', 'plan')).replace(/\(derived\)/, stT('(suy ra)', '(derived)')).replace(/ on /, stT(' ngày ', ' on '));
+function sm2Run(set) {
+  const M = SIM.model2, p = M.params, L = M.levers, keys = L.map(l => l.key).concat(['inherited_pressure', 'funding_rolloff']);
+  const path = l => (set && set[l.key]) || l.baseline_path, x = (l, h) => l.lag === 1 ? (h === 0 ? l.latest_value : path(l)[h - 1]) : path(l)[h];
+  const C = {}, cum = {}, padd = {}; keys.forEach(k => { C[k] = []; cum[k] = 0; }); L.forEach(l => { padd[l.key] = 0; });
+  let r = p.r0, P = p.P0, roll = 0; const out = [], Ps = [];
+  for (let h = 0; h < 6; h++) {
+    let dr = p.kappa * (P - p.P_star);
+    cum.inherited_pressure += p.kappa * (p.P0 - p.P_star); cum.funding_rolloff -= p.kappa * roll;
+    for (const l of L) { let d = l.liquidity_weight != null ? p.kappa * padd[l.key] : 0;
+      if (l.rate_coef != null) { const t = l.rate_coef * (x(l, h) - l.neutral); dr += t; d += t; }
+      cum[l.key] += d; }
+    r += dr; out.push(r); keys.forEach(k => C[k].push(cum[k]));
+    for (const l of L) if (l.liquidity_weight != null) { const a = 100 * l.liquidity_weight * path(l)[h] / p.D_tn; P += a; padd[l.key] += a; }
+    P -= p.rolloff_pp[h]; roll += p.rolloff_pp[h]; Ps.push(P);
+  }
+  return { path: out, P: Ps, C };
 }
-// r_h = r_(h-1) + coef_policy × policy change in month h + Σ coef_k × (driver_k in month h−1 − neutral_k)   (lag 1)
-function simPath(attr, policy, drv) {
-  const it = SIM.sliders.items, c = simCoefs(attr), sd = SIM.sliders.sd; let r = SIM.sliders.start_rate.value; const out = [], lo = [], hi = [];
-  for (let h = 0; h < 6; h++) { r += c.policy_change * (policy[h] || 0); it.forEach(x => { if (x.key !== 'policy_change') r += c[x.key] * (drv[x.key][h] - x.neutral); });
-    const b = 1.28 * sd * Math.sqrt(h + 1); out.push(r); lo.push(r - b); hi.push(r + b); }
-  return { path: out, lo, hi };
+// on load: the JS port must reproduce every Python test vector to 1e-6 (else a visible badge + console.error)
+function sm2Check() {
+  if (sm2.chk) return sm2.chk;
+  const T = SIM.model2.test_vectors || [], fails = []; let worst = 0;
+  T.forEach(t => { const r = sm2Run(t.settings || {}).path, e = Math.max(...r.map((v, i) => Math.abs(v - t.expected_path[i]))); worst = Math.max(worst, e); if (!(e <= 1e-6)) fails.push(t.id); });
+  if (!T.length) fails.push('no test vectors');
+  const B = sm2Run({}), sum = Object.values(B.C).reduce((s, c) => s + c[5], 0), sumErr = Math.abs(sum - (B.path[5] - SIM.model2.params.r0));
+  if (sumErr > 1e-9) fails.push('contributions do not sum to the change');
+  if (fails.length) console.error('[Simulation] model check failed: the JS port of SIM.model2 does not match the test vectors', fails, worst);
+  return (sm2.chk = { n: T.length, ok: !fails.length, worst, fails });
 }
-function simScn(id) { const s = SIM.projection.scenarios[id]; return { policy: s.policy_change, drv: s.drivers }; }
-function simConst(vals) { const drv = {}; SIM.sliders.items.forEach(x => { if (x.key !== 'policy_change') drv[x.key] = new Array(6).fill(vals[x.key]); }); return { policy: [vals.policy_change || 0, 0, 0, 0, 0, 0], drv }; }
-function simCur() { return simPj.custom ? simConst(simPj.vals) : simScn(simPj.scn); }
-function simProjDraw() {
-  const el = document.getElementById('sim-fan'); if (!el) return;
-  const inp = simCur(), P = simPath(simPj.attr, inp.policy, inp.drv), other = simPath(simPj.attr === 'opp' ? 'gap' : 'opp', inp.policy, inp.drv), ro = (SIM.projection.regression_only || {}).path;
-  const alts = [{ n: simPj.attr === 'opp' ? stT('Cách phân bổ mặc định (chênh lệch vốn)', 'Default split (funding gap)') : stT('Cách phân bổ vàng & cổ phiếu', 'Gold-&-stocks split'), path: other.path, dash: '6,3' }];
-  if (simPj.attr === 'opp' && ro && !simPj.custom && simPj.scn === 'status_quo') alts.push({ n: stT('Chỉ phương trình hồi quy (vàng + cổ phiếu)', 'Regression equation only (gold + stocks)'), path: ro, dash: '2,3' });
-  simFan(el, simMI(SIM.projection.start.month) - 23, { path: P.path, lo: P.lo, hi: P.hi, alts, label: stT('Lãi suất 12 tháng Vietcombank và mô hình 6 tháng', 'Vietcombank 12-month rate and the 6-month model') });
-  const lg = document.getElementById('sim-fan-leg'); if (lg) lg.innerHTML = stLegend([{ n: stT('Thực tế', 'Actual'), c: ST.blue, k: 'line' }, { n: stT('Giữ từ quan sát trước', 'Carried from last quote'), c: ST.blue, k: 'dash' }, { n: stT('Mô hình dashboard', 'Dashboard model'), c: ST.blue, k: 'dash' }, { n: stT('Khoảng 80%', '80% band'), c: '#c5daf3' }].concat(alts.map(a => ({ n: a.n, c: '#8a8f99', k: 'dash' }))));
-  const e = P.path.length - 1, xs = SIM.projection.months, st = SIM.sliders.start_rate;
-  const mode = simPj.custom ? stT('tùy chỉnh', 'custom') : stT(SIM.projection.scenarios[simPj.scn].label_vi, SIM.projection.scenarios[simPj.scn].label_en);
-  document.getElementById('sim-fan-out').innerHTML = `<p class="sim-res">${stT('Đến', 'By')} ${simML(simMI(xs[e]))}: <b>${simPct(P.path[e])}</b> <span>(${stT('khoảng 80%', '80% band')} ${stN(P.lo[e], 2)}–${stN(P.hi[e], 2)}%) · ${stT('từ', 'from')} ${simPct(st.value, 1)} ${stT('tháng', 'in')} ${simML(simMI(st.month))} · ${stT('kịch bản', 'scenario')}: ${ciE(mode)}${simPj.attr === 'opp' ? stT(' · phân bổ vàng & cổ phiếu', ' · gold-&-stocks split') : ''}</span></p>
-    <p class="sim-why">${stT(`Hai cách phân bổ cho kết quả khác nhau: ${simPct(simPj.attr === 'opp' ? other.path[e] : P.path[e])} (chênh lệch vốn dẫn dắt) so với ${simPct(simPj.attr === 'opp' ? P.path[e] : other.path[e])} (vàng & cổ phiếu dẫn dắt) vào ${simML(simMI(xs[e]))}.`, `The two splits disagree: ${simPct(simPj.attr === 'opp' ? other.path[e] : P.path[e])} (funding gap leads) against ${simPct(simPj.attr === 'opp' ? P.path[e] : other.path[e])} (gold & stocks lead) by ${simML(simMI(xs[e]))}.`)} ${ciE(simClean(stT(SIM.projection.attribution_note_vi, SIM.projection.attribution_note_en)))}</p>`;
-  // live formula (constant sliders) or the monthly recursion (scenario paths)
-  const c = simCoefs(simPj.attr), it = SIM.sliders.items, v = simPj.custom ? simPj.vals : null;
-  const fx = document.getElementById('sim-fx');
-  if (fx) fx.innerHTML = v ? `r(6) = ${stN(st.value, 2)} + ${stN(c.policy_change, 2)} × ${stN(v.policy_change, 2)} + 6 × [${it.filter(x => x.key !== 'policy_change').map(x => `${stN(c[x.key], 4)} × (${stN(v[x.key], 2)} − ${stN(x.neutral, 2)})`).join(' + ')}] = <b>${stN(P.path[e], 2)}%</b>`
-    : stT(`Kịch bản thay đổi các động lực theo từng tháng nên mô hình cộng dồn từng tháng: r(h) = r(h−1) + ${stN(c.policy_change, 2)} × Δlãi suất điều hành(h) + Σ hệ số × (động lực(h−1) − trung tính); kết quả tháng ${simML(simMI(xs[e]))} = <b>${stN(P.path[e], 2)}%</b>. Kéo một thanh trượt để chuyển sang công thức giữ nguyên động lực.`, `Scenarios move the drivers month by month, so the model adds up month by month: r(h) = r(h−1) + ${stN(c.policy_change, 2)} × Δpolicy(h) + Σ coef × (driver(h−1) − neutral); result for ${simML(simMI(xs[e]))} = <b>${stN(P.path[e], 2)}%</b>. Move a slider to switch to the constant-driver formula.`);
-  const ct = document.getElementById('sim-coef'); if (ct) ct.innerHTML = it.map(x => `<span>${ciE(stT(x.label_vi, x.label_en))}: <b>${stN(c[x.key], 4)}</b></span>`).join('');
+const sm2Badge = () => { const c = sm2Check(); return c.ok ? '' : `<p class="sm2-bad" role="alert">${stT('Kiểm tra mô hình thất bại: bản JS không khớp bộ thử của mô hình — không dùng các con số dưới đây.', 'Model check failed: the JS port does not match the model\'s test vectors — do not use the figures below.')}</p>`; };
+function sm2Scn(id) {
+  const s = SIM.projection2.scenarios[id] || {}, lp = s.lever_paths && !Array.isArray(s.lever_paths) ? s.lever_paths : {};
+  sm2.scn = id; SIM.model2.levers.forEach(l => { sm2.ref[l.key] = (lp[l.key] || l.baseline_path).slice(); sm2.paths[l.key] = sm2.ref[l.key].slice(); });
 }
-function simSliders() {
-  const host = document.getElementById('sim-sl'); if (!host) return;
-  const it = SIM.sliders.items, sc = SIM.projection.scenarios[simPj.scn], end = k => k === 'policy_change' ? sc.policy_change.reduce((a, b) => a + b, 0) : sc.drivers[k][5];
-  if (!simPj.custom) it.forEach(x => { simPj.vals[x.key] = end(x.key); });
-  host.innerHTML = it.map(x => { const v = simPj.vals[x.key], d = Math.max(0, (String(x.step).split('.')[1] || '').length);
-    return `<label class="sim-sl-i"><span class="sim-sl-n">${ciE(stT(x.label_vi, x.label_en))}</span><input type="range" min="${x.min}" max="${x.max}" step="${x.step}" value="${Math.max(x.min, Math.min(x.max, v))}" data-k="${ciE(x.key)}"><output>${(x.key === 'policy_change' && v > 0 ? '+' : '') + stN(v, Math.max(d, 2))} ${ciE(x.unit)}</output><span class="sim-sl-s">${stT('hiện tại', 'now')} ${stN(x.current, 2)}${x.current_month ? ` (${simML(simMI(x.current_month))})` : ''} · ${stT('trung tính', 'neutral')} ${stN(x.neutral, 2)}</span></label>`; }).join('')
-    + `<p class="sim-sl-note">${simPj.custom ? stT('Tùy chỉnh: mỗi động lực giữ nguyên ở mức đã chọn trong 6 tháng.', 'Custom: each driver held at the chosen level for six months.') : stT('Thanh trượt hiển thị giá trị cuối kỳ của kịch bản; kéo để giữ cố định một mức.', 'Sliders show the scenario\'s end values; drag one to hold a level fixed.')}</p>`;
-  host.querySelectorAll('input').forEach(r => r.addEventListener('input', () => {
-    if (!simPj.custom) { simPj.custom = true; document.querySelectorAll('#sim-scn button').forEach(b => { b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); }); host.querySelector('.sim-sl-note').textContent = stT('Tùy chỉnh: mỗi động lực giữ nguyên ở mức đã chọn trong 6 tháng.', 'Custom: each driver held at the chosen level for six months.'); }
-    const x = it.find(y => y.key === r.dataset.k), v = +r.value; simPj.vals[x.key] = v;
-    r.nextElementSibling.textContent = `${(x.key === 'policy_change' && v > 0 ? '+' : '') + stN(v, 2)} ${x.unit}`; simProjDraw(); }));
+// a slider sets the 6-month average (event levers: the total change). Flat paths fill; seasonal positive paths scale
+// (keeping their monthly shape); paths that cross zero shift. Event changes keep the scenario's timing (else Oct-2026).
+function sm2Set(l, v) {
+  const ref = sm2.ref[l.key], p = ref.slice();
+  if (sm2Ev(l)) { let m = ref.findIndex(x => x !== 0); if (m < 0) m = 0; p[m] = +(p[m] + v - sm2Sum(ref)).toFixed(10); }
+  else if (sm2Flat(ref)) p.fill(v);
+  else { const mu = sm2Mean(ref); for (let h = 0; h < 6; h++) p[h] = l.min >= 0 && mu > 0 ? ref[h] * v / mu : ref[h] + v - mu; }
+  sm2.paths[l.key] = p;
 }
-function simProjWire() {
-  const g = (id, f) => { const h = document.getElementById(id); if (h) h.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { h.querySelectorAll('button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); f(b.dataset.v); })); };
-  g('sim-attr', v => { simPj.attr = v; simProjDraw(); });
-  g('sim-scn', v => { simPj.scn = v; simPj.custom = false; simSliders(); simProjDraw(); });
-  simSliders(); simProjDraw();
+const sm2Mod = k => sm2.paths[k].some((x, h) => Math.abs(x - sm2.ref[k][h]) > 1e-9);
+function sm2Status(l) {
+  const E = SIM.model2.estimation || {}, lb = (E.liquidity || {}).basis || {}, re = E.rate_equation || {}, cal = E.calibrated || {};
+  if (l.rate_coef != null) { if (cal[l.key]) return 'c'; const rk = { policy_rate_change: 'pol', vnindex_12m: 'vni', gold_world_12m: 'gold' }[l.key];
+    return rk && re.se && re.se[rk] ? (Math.abs(re.coef[rk] / re.se[rk]) >= 2 ? 'e' : 'w') : 'c'; }
+  const b = String(lb[l.key === 'omo_net_injection' ? 'omo' : l.key === 'sbv_fx_sales' ? 'sbv' : l.group] || '');
+  return /^estimated/.test(b) ? 'e' : /^assumption/.test(b) ? 'a' : 'w';
 }
-// backtest mini chart: actual solid, model dashed (model output)
-function simBT(el, B) {
-  if (!el || !el.clientWidth || !B || !B.path) return;
-  const W = el.clientWidth, H = 150, ML = 34, MR = 10, MT = 10, MB = 22, P = B.path, n = P.length;
-  const vals = P.flatMap(p => [p.predicted, p.actual]).concat(B.start ? [B.start.value] : []), tk = simTicks(Math.min(...vals) - 0.05, Math.max(...vals) + 0.05, 3);
+const sm2DataAssumed = l => l.latest_value == null || /assumption/i.test(l.baseline_basis || '') || /plan/i.test(l.latest_period || '');
+const sm2Tag = (s, title) => `<span class="sm2-st sm2-st-${s}"${title ? ` title="${ciE(title)}"` : ''}>${stT(SM2_ST[s][0], SM2_ST[s][1])}</span>`;
+const sm2Basis = l => { const b = l.baseline_basis || ''; if (APP_LANG === 'en') return b;
+  return /assumption/i.test(b) ? 'giả định' : /same month one year earlier/i.test(b) ? 'như cùng tháng năm trước' : /average of/i.test(b) ? 'trung bình 3 tháng gần nhất' : /9M/i.test(b) ? 'trung bình 9 tháng 2026'
+    : /latest interval/i.test(b) ? 'trung bình khoảng gần nhất' : /latest held/i.test(b) ? 'giữ mức mới nhất' : /no change|^0\b/i.test(b) ? 'không đổi' : b; };
+const sm2SetTxt = (l, a) => { if (!l) return ''; const d = sm2Dec(l), b = l.baseline_path;
+  if (sm2Flat(a)) return stN(a[0], d);
+  const df = a.map((x, h) => x - b[h]); if (df.every(x => Math.abs(x - df[0]) < 1e-6)) return stT('cơ sở ', 'base ') + sm2Sgn(df[0], d);
+  return a.map((x, h) => x ? `${sm2Sgn(x, d)} (${sm2Mo(h)})` : '').filter(Boolean).join(', ') || '0'; };
+function sm2OutTxt(l) {
+  const p = sm2.paths[l.key], v = sm2Val(l, p), d = sm2Dec(l);
+  if (sm2Ev(l)) { const mo = p.map((x, h) => x ? sm2Mo(h) : '').filter(Boolean); return `${sm2Sgn(v, d)} ${sm2U(l)}${mo.length ? ` · ${mo.join(', ')}` : ''}`; }
+  return `${stN(v, d)} ${sm2U(l)}${sm2Flat(p) ? '' : stT(' · TB 6 tháng', ' · 6-mo avg')}`;
+}
+function sm2Spark(l) {
+  const k = SM2_SPARK[l.key], s = k ? simS(k) : null, v = s && Array.isArray(s.values) ? s.values : null; if (!v) return '';
+  const hist = v.map((y, i) => typeof y === 'number' ? { i, y } : null).filter(Boolean); if (hist.length < 2) return '';
+  const W = 112, H = 26, p = sm2.paths[l.key], iS = simMI(SIM.projection2.start.month), bs = s.basis || [];
+  const ys = hist.map(q => q.y).concat(p); let lo = Math.min(...ys), hi = Math.max(...ys); if (hi - lo < 1e-9) { lo -= 1; hi += 1; }
+  const sx = stLin(hist[0].i, SIM_N - 1, 1, W - 3), sy = stLin(lo, hi, H - 3, 3), A = []; hist.forEach(q => { A[q.i] = q.y; });
+  let sol = '', das = ''; for (let i = hist[0].i; i < iS; i++) if (A[i] != null && A[i + 1] != null) { const g = `M${sx(i).toFixed(1)},${sy(A[i]).toFixed(1)}L${sx(i + 1).toFixed(1)},${sy(A[i + 1]).toFixed(1)}`; if (/^assumption/.test(bs[i + 1] || '')) das += g; else sol += g; }
+  const last = hist[hist.length - 1], pj = [[sx(last.i), sy(last.y)]].concat(p.map((y, h) => [sx(iS + 1 + h), sy(y)]));
+  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">${lo < 0 && hi > 0 ? `<line x1="1" x2="${W - 1}" y1="${sy(0)}" y2="${sy(0)}" stroke="#dedbd2" stroke-width="1"/>` : ''}<path d="${sol}" fill="none" stroke="#5b6170" stroke-width="1.5"/><path d="${das}" fill="none" stroke="#a7abb3" stroke-width="1.5" stroke-dasharray="2,2"/><path d="${pj.map((q, j) => `${j ? 'L' : 'M'}${q[0].toFixed(1)},${q[1].toFixed(1)}`).join('')}" fill="none" stroke="${SM2_YOU}" stroke-width="1.5"/></svg>`;
+}
+function sm2LeverHTML(l) {
+  const id = 'sm2-r-' + l.key, v = sm2Val(l, sm2.paths[l.key]), u = /^https?:\/\//.test(l.url || '') ? l.url : '', st = sm2Status(l);
+  const lat = l.latest_value != null ? `${stT('Mới nhất', 'Latest')} <b>${stN(l.latest_value, sm2Dec(l))}</b> (${ciE(sm2Per(l.latest_period))})` : stT('Chưa công bố', 'Not published');
+  return `<div class="sm2-lv" data-k="${ciE(l.key)}"><div class="sm2-lv-h"><label for="${id}" title="${ciE(stT(l.label_vi, l.label_en))}">${ciE(sm2Lab(l))}</label><output for="${id}" id="${id}-o"></output></div>
+    <div class="sm2-lv-r"><input type="range" id="${id}" min="${l.min}" max="${l.max}" step="${l.step}" value="${Math.max(l.min, Math.min(l.max, v))}" data-k="${ciE(l.key)}"><button type="button" class="sm2-rs" data-k="${ciE(l.key)}" aria-label="${ciE(stT('Đặt lại: ', 'Reset: ') + sm2Lab(l))}" title="${ciE(stT('Về kịch bản đang chọn', 'Back to the selected scenario'))}">↺</button></div>
+    <div class="sm2-lv-m"><span class="sm2-sp" id="${id}-sp"></span><span class="sm2-lv-s">${lat} · ${u ? `<a href="${ciE(u)}" target="_blank" rel="noopener">${ciE(l.source)}</a>` : ciE(l.source)} · ${stT('cơ sở: ', 'baseline: ')}${ciE(sm2Basis(l))} ${sm2Tag(st, stT('Trạng thái hệ số trong mô hình', 'Status of the coefficient in the model'))}${sm2DataAssumed(l) ? ` <span class="sm2-st sm2-st-a">${stT('số liệu giả định', 'assumed data')}</span>` : ''}</span></div></div>`;
+}
+function sm2LvUpd(l) {
+  const id = 'sm2-r-' + l.key, o = document.getElementById(id + '-o'), r = document.getElementById(id), sp = document.getElementById(id + '-sp'), card = r && r.closest('.sm2-lv'), mod = sm2Mod(l.key);
+  const txt = sm2OutTxt(l); if (o) o.textContent = txt; if (r) r.setAttribute('aria-valuetext', txt);
+  if (sp) sp.innerHTML = sm2Spark(l);
+  if (card) { card.classList.toggle('mod', mod); const b = card.querySelector('.sm2-rs'); if (b) b.disabled = !mod; }
+}
+// lever-group contributions to the change Sep-2026 → Mar-2027 (h = 5); they sum to path[5] − r0
+function sm2Groups(R, nar) {
+  const e = 5, st = simML(simMI(SIM.projection2.start.month)), L = SIM.model2.levers;
+  return [{ id: 'inh', n: nar ? stT('Áp lực tích lũy', 'Built-up pressure') : stT(`Áp lực vốn đã tích lũy đến ${st}`, `Funding pressure built up to ${st}`), v: R.C.inherited_pressure[e] },
+    { id: 'roll', n: nar ? stT('Tháng cũ rời đi', 'Months rolling off') : stT('Tháng cũ rời cửa sổ 12 tháng', 'Old months leaving the 12-month window'), v: R.C.funding_rolloff[e] }]
+    .concat(SM2_ORDER.map(G => ({ id: G[0], n: nar ? stT(G[4], G[5]) : stT(G[2], G[3]), v: L.filter(l => sm2Grp(l) === G).reduce((s, l) => s + R.C[l.key][e], 0) })));
+}
+function sm2Fan() {
+  const el = document.getElementById('sm2-fan'); if (!el || !el.clientWidth) return;
+  const W = stCW(el, 1200), nar = W < 520, H = nar ? 250 : 290, ML = 38, MR = nar ? 56 : 84, MT = 24, MB = 24;
+  const P2 = SIM.projection2, st = P2.start, iS = simMI(st.month), xs = P2.months.map(simMI), i0 = iS - 23, R = sm2.R;
+  const vcb = simV('dep12_vcb').filter(p => p.i >= i0), basis = simS('dep12_vcb').basis || [], S = P2.scenarios;
+  const alt = sm2.all ? Object.keys(S).filter(k => k !== sm2.scn && k !== 'base' && Array.isArray(S[k].path)).map(k => ({ k, n: sm2ScnN(k), path: S[k].path })) : [];
+  const all = vcb.map(p => p.v).concat(P2.low, P2.high, R.path, [st.value], ...alt.map(a => a.path));
+  const tk = simTicks(Math.floor((Math.min(...all) - 0.1) * 2) / 2, Math.max(...all) + 0.1, 4), sx = stLin(i0, SIM_N - 1, ML, W - MR), sy = stLin(tk[0], tk[tk.length - 1], H - MB, MT);
+  let s = `<rect x="${sx(iS)}" y="${MT}" width="${sx(SIM_N - 1) - sx(iS)}" height="${H - MB - MT}" fill="#f1efe8"/><text class="sim-u" x="${W - 2}" y="${MT - 8}" text-anchor="end">${stT('vùng tô: mô hình dashboard — không phải dự báo', 'shaded: dashboard model — not a forecast')}</text>`;
+  s += stAxisY(sy, tk, ML, W - MR, v => stN(v, 1) + '%');
+  for (let i = i0; i <= SIM_N - 1; i++) if (i % (nar ? 12 : 6) === 0) s += `<text class="st-tick" x="${sx(i)}" y="${H - 6}" text-anchor="middle">${simML(i)}</text>`;
+  s += `<path d="M${sx(iS)},${sy(st.value)} ${xs.map((x, h) => `L${sx(x)},${sy(P2.high[h])}`).join(' ')} ${xs.map((x, h) => [x, h]).reverse().map(([x, h]) => `L${sx(x)},${sy(P2.low[h])}`).join(' ')} Z" fill="${ST.blue}" opacity=".15"/>`;
+  alt.forEach(a => { s += `<path d="M${sx(iS)},${sy(st.value)} ${xs.map((x, h) => `L${sx(x)},${sy(a.path[h])}`).join(' ')}" fill="none" stroke="#8a8f99" stroke-width="1.5" stroke-dasharray="2,3"/>`; });
+  let sol = '', das = ''; const A = new Array(SIM_N).fill(null); vcb.forEach(p => { A[p.i] = p.v; });
+  for (let i = i0; i < iS; i++) if (A[i] != null && A[i + 1] != null) { const g = `M${sx(i)},${sy(A[i])} L${sx(i + 1)},${sy(A[i + 1])} `; if (basis[i] === 'carried' || basis[i + 1] === 'carried') das += g; else sol += g; }
+  s += `<path d="${sol}" fill="none" stroke="${ST.blue}" stroke-width="2"/><path d="${das}" fill="none" stroke="${ST.blue}" stroke-width="2" stroke-dasharray="4,3"/>`;
+  s += `<path d="M${sx(iS)},${sy(st.value)} ${xs.map((x, h) => `L${sx(x)},${sy(P2.base[h])}`).join(' ')}" fill="none" stroke="${ST.blue}" stroke-width="2" stroke-dasharray="5,4"/>`;
+  s += `<path d="M${sx(iS)},${sy(st.value)} ${xs.map((x, h) => `L${sx(x)},${sy(R.path[h])}`).join(' ')}" fill="none" stroke="${SM2_YOU}" stroke-width="2" stroke-linejoin="round"/>`;
+  s += xs.map((x, h) => stDot(sx(x), sy(R.path[h]), 3.5, SM2_YOU, [sm2Mo(h) + stT(' · kịch bản của bạn (mô hình)', ' · your scenario (model)'), simPct(R.path[h])], { cls: '', hollow: true })).join('');
+  s += stDot(sx(iS), sy(st.value), 4, ST.blue, [simML(iS) + stT(' · thực tế', ' · actual'), simPct(st.value, 1)], { cls: '' });
+  const e = 5, ex = sx(xs[e]), yU = sy(R.path[e]), yB = sy(P2.base[e]), apart = Math.abs(yU - yB) >= 26;
+  s += `<text class="st-lab st-b" x="${ex + 8}" y="${(apart ? yU : Math.min(yU, yB) - 4) + 4}">${simPct(R.path[e])}</text>`;
+  s += apart ? `<text class="st-tick" x="${ex + 8}" y="${yB + 4}">${stT('cơ sở ', 'base ')}${stN(P2.base[e], 2)}</text>` : `<text class="st-tick" x="${ex + 8}" y="${Math.min(yU, yB) + 12}">${sm2Mo(e)}</text>`;
+  el.innerHTML = stSvg(W, H, s, stT('Lãi suất 12 tháng Vietcombank: 24 tháng qua và mô hình 6 tháng', 'Vietcombank 12-month rate: the last 24 months and the 6-month model'));
+  const idx = []; for (let i = i0; i < SIM_N; i++) idx.push(i); const pv = i => { const h = xs.indexOf(i); return h >= 0 ? h : null; };
+  stCross(el, { xs: idx.map(sx), labels: idx.map(simML), top: MT, bottom: H - MB, series: [
+    { n: stT('Vietcombank 12 tháng (thực tế)', 'Vietcombank 12-month (actual)'), c: ST.blue, v: idx.map(i => A[i]), f: v => simPct(v, 2) },
+    { n: stT('Kịch bản của bạn', 'Your scenario'), c: SM2_YOU, v: idx.map(i => pv(i) != null ? R.path[pv(i)] : null), f: v => simPct(v, 2) },
+    { n: stT('Cơ sở', 'Base'), c: ST.blue, v: idx.map(i => pv(i) != null ? P2.base[pv(i)] : null), f: v => simPct(v, 2) },
+    { n: stT('Khoảng 80% (cơ sở)', '80% band (base)'), c: '#bcd3f0', v: idx.map(i => pv(i) != null ? `${stN(P2.low[pv(i)], 2)}–${stN(P2.high[pv(i)], 2)}%` : null), f: v => v }]
+    .concat(alt.map(a => ({ n: a.n, c: '#8a8f99', v: idx.map(i => pv(i) != null ? a.path[pv(i)] : null), f: v => simPct(v, 2) }))) });
+  el._stRows.rows = el._stRows.rows.filter(r => r.slice(1).some(c => c !== '—'));
+  const lg = document.getElementById('sm2-fan-leg'); if (lg) lg.innerHTML = stLegend([{ n: stT('Thực tế', 'Actual'), c: ST.blue, k: 'line' }, { n: stT('Cơ sở (mô hình)', 'Base (model)'), c: ST.blue, k: 'dash' }, { n: stT('Khoảng 80%', '80% band'), c: '#c5daf3' }, { n: stT('Kịch bản của bạn (mô hình)', 'Your scenario (model)'), c: SM2_YOU, k: 'line' }].concat(alt.length ? [{ n: stT('Các kịch bản khác', 'Other scenarios'), c: '#8a8f99', k: 'dash' }] : []));
+}
+function sm2Wf() {
+  const el = document.getElementById('sm2-wf'); if (!el || !el.clientWidth) return;
+  const W = stCW(el, 1200), nar = W < 560, rows = sm2Groups(sm2.R, nar), rowsB = sm2Groups(sm2.B, nar), r0 = SIM.model2.params.r0, tot = sm2.R.path[5] - r0, totB = sm2.B.path[5] - r0;
+  const LW = nar ? 116 : 250, VW = nar ? 58 : 104, RH = 32, MT = 22, n = rows.length + 1, H = MT + n * RH + 4;
+  const ends = [0, tot]; let c = 0; rows.forEach(r => { c += r.v; ends.push(c); });
+  const tk = stNice(Math.min(...ends), Math.max(...ends), nar ? 3 : 5), sx = stLin(tk[0], tk[tk.length - 1], LW, W - VW);
+  let s = tk.map(t => `<line class="st-grid" x1="${sx(t)}" x2="${sx(t)}" y1="${MT - 4}" y2="${H - 4}"/><text class="st-tick" x="${sx(t)}" y="${MT - 9}" text-anchor="middle">${t ? sm2Sgn(t, sm2TkD(tk)) : '0'}</text>`).join('');
+  s += `<line class="st-base" x1="${sx(0)}" x2="${sx(0)}" y1="${MT - 4}" y2="${H - 4}"/>`;
+  c = 0; const tb = [];
+  rows.forEach((r, i) => { const y = MT + i * RH + RH / 2, a = c, b = c + r.v, col = r.v >= 0 ? SM2_UP : SM2_DN, rb = rowsB[i].v;
+    s += `<text class="st-lab" x="${LW - 8}" y="${y + 4}" text-anchor="end">${ciE(r.n)}</text>`;
+    if (i) s += `<line x1="${sx(a)}" x2="${sx(a)}" y1="${y - RH / 2 - 9}" y2="${y - 9}" stroke="#8a8f99" stroke-width="1" stroke-dasharray="2,2"/>`;
+    s += Math.abs(sx(b) - sx(a)) < 1.5 ? `<line x1="${sx(a)}" x2="${sx(a)}" y1="${y - 9}" y2="${y + 9}" stroke="#8a8f99" stroke-width="1.5"/>` : stBarH(y, 22, sx(b), sx(a), col, [r.n, `${sm2Sgn(r.v)}${stT(' điểm %', ' pp')}`], { cls: '' });
+    s += `<text class="st-lab st-b" x="${W - 4}" y="${y + (Math.abs(r.v - rb) > 0.005 ? 0 : 4)}" text-anchor="end">${sm2Sgn(r.v)}</text>`;
+    if (Math.abs(r.v - rb) > 0.005) s += `<text class="st-tick" x="${W - 4}" y="${y + 12}" text-anchor="end">${stT('cơ sở ', 'base ')}${sm2Sgn(rb)}</text>`;
+    tb.push([r.n, sm2Sgn(r.v, 3), sm2Sgn(rb, 3)]); c = b; });
+  const y = MT + rows.length * RH + RH / 2;
+  s += `<line x1="${LW - 4}" x2="${W}" y1="${y - RH / 2}" y2="${y - RH / 2}" stroke="#16181d" stroke-width="1"/>`;
+  s += `<text class="st-lab st-b" x="${LW - 8}" y="${y + 4}" text-anchor="end">${nar ? stT('Tổng', 'Total') : stT(`Tổng: ${simPct(sm2.R.path[5])} − ${simPct(r0, 1)}`, `Total: ${simPct(sm2.R.path[5])} − ${simPct(r0, 1)}`)}</text>`;
+  s += stBarH(y, 22, sx(tot), sx(0), ST.ink, [stT('Tổng thay đổi', 'Total change'), `${sm2Sgn(tot)}${stT(' điểm %', ' pp')}`], { cls: '' });
+  s += `<text class="st-lab st-b" x="${W - 4}" y="${y + (Math.abs(tot - totB) > 0.005 ? 0 : 4)}" text-anchor="end">${sm2Sgn(tot)}</text>`;
+  if (Math.abs(tot - totB) > 0.005) s += `<text class="st-tick" x="${W - 4}" y="${y + 12}" text-anchor="end">${stT('cơ sở ', 'base ')}${sm2Sgn(totB)}</text>`;
+  tb.push([stT('Tổng thay đổi', 'Total change'), sm2Sgn(tot, 3), sm2Sgn(totB, 3)]);
+  el.innerHTML = stSvg(W, H, s, stT('Đóng góp của từng nhóm đòn bẩy vào thay đổi lãi suất', 'Contribution of each lever group to the change in the rate'));
+  el._stRows = { head: [stT('Nhóm', 'Group'), stT('Kịch bản của bạn, điểm %', 'Your scenario, pp'), stT('Cơ sở, điểm %', 'Base, pp')], rows: tb };
+  const chk = Math.abs(sm2Sum(rows.map(r => r.v)) - tot); if (chk > 1e-9) console.error('[Simulation] contributions do not sum to the total change', chk);
+}
+function sm2PCh() {
+  const el = document.getElementById('sm2-p'); if (!el || !el.clientWidth) return;
+  const W = stCW(el, 1200), nar = W < 520, H = nar ? 220 : 250, ML = 34, MR = nar ? 40 : 54, MT = 14, MB = 24, M = SIM.model2, hp = M.liquidity.history_P;
+  const ps = M.params.P_star, alt = ((M.estimation || {}).rate_equation_fit_to_2025_03 || {}).P_star, xs = SIM.projection2.months.map(simMI), iS = simMI(SIM.projection2.start.month);
+  const hist = hp.months.map((m, j) => ({ i: simMI(m), v: hp.values[j] })).filter(p => simIn(p.i) && typeof p.v === 'number');
+  const all = hist.map(p => p.v).concat(sm2.R.P, sm2.B.P, [ps, 0], alt != null ? [alt] : []), tk = stNice(Math.min(...all), Math.max(...all), 4);
+  const sx = stLin(0, SIM_N - 1, ML, W - MR), sy = stLin(tk[0], tk[tk.length - 1], H - MB, MT), last = hist[hist.length - 1];
+  let s = `<rect x="${sx(iS)}" y="${MT}" width="${sx(SIM_N - 1) - sx(iS)}" height="${H - MB - MT}" fill="#f1efe8"/>` + stAxisY(sy, tk, ML, W - MR, v => stN(v, sm2TkD(tk)));
+  if (tk[0] < 0) s += `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  for (let y = 2021; y <= 2027; y += nar ? 2 : 1) s += `<text class="st-tick" x="${sx((y - 2021) * 12)}" y="${H - 6}" text-anchor="middle">${y}</text>`;
+  s += `<line x1="${ML}" x2="${W - MR}" y1="${sy(ps)}" y2="${sy(ps)}" stroke="#5b6170" stroke-width="1.2" stroke-dasharray="6,4"/><text class="st-tick" x="${W - MR + 4}" y="${sy(ps) + 4}">${stN(ps, 2)}</text>`;
+  if (alt != null) s += `<line x1="${ML}" x2="${W - MR}" y1="${sy(alt)}" y2="${sy(alt)}" stroke="#5b6170" stroke-width="1.2" stroke-dasharray="1.5,3"/><text class="st-tick" x="${W - MR + 4}" y="${sy(alt) + 4}">${stN(alt, 2)}</text>`;
+  s += stLine(hist.map(p => [sx(p.i), sy(p.v)]), ST.ink, { cls: '' });
+  s += stLine([[sx(last.i), sy(last.v)]].concat(xs.map((x, h) => [sx(x), sy(sm2.B.P[h])])), '#8a8f99', { cls: '', dash: '5,4' });
+  s += stLine([[sx(last.i), sy(last.v)]].concat(xs.map((x, h) => [sx(x), sy(sm2.R.P[h])])), SM2_YOU, { cls: '' });
+  s += xs.map((x, h) => stDot(sx(x), sy(sm2.R.P[h]), 3, SM2_YOU, [sm2Mo(h) + stT(' · P, kịch bản của bạn', ' · P, your scenario'), stN(sm2.R.P[h], 2)], { cls: '', hollow: true })).join('');
+  el.innerHTML = stSvg(W, H, s, stT('Chỉ số áp lực vốn P, 2021–2027', 'Funding-pressure index P, 2021–2027'));
+  const idx = []; for (let i = 0; i < SIM_N; i++) idx.push(i); const H2 = {}; hist.forEach(p => { H2[p.i] = p.v; }); const pv = i => { const h = xs.indexOf(i); return h >= 0 ? h : null; };
+  stCross(el, { xs: idx.map(sx), labels: idx.map(simML), top: MT, bottom: H - MB, series: [
+    { n: stT('P (mô hình, lịch sử)', 'P (model, history)'), c: ST.ink, v: idx.map(i => H2[i] ?? null), f: v => stN(v, 2) },
+    { n: stT('P, kịch bản của bạn', 'P, your scenario'), c: SM2_YOU, v: idx.map(i => pv(i) != null ? sm2.R.P[pv(i)] : null), f: v => stN(v, 2) },
+    { n: stT('P, cơ sở', 'P, base'), c: '#8a8f99', v: idx.map(i => pv(i) != null ? sm2.B.P[pv(i)] : null), f: v => stN(v, 2) }] });
+  el._stRows.rows = el._stRows.rows.filter(r => r.slice(1).some(c => c !== '—'));
+}
+// horizontal diverging bars around zero: rows [{n, segs:[{v, key}], r (right text)}]
+function sm2Div(el, rows, o) {
+  // narrow screens: the label sits above its bar so the bars keep the full width
+  const W = stCW(el, 1200), nar = W < 560, LW = nar ? 6 : (o.lw || 210), VW = 46, RH = (o.rh || 22) + (nar ? 14 : 0), MT = 22, H = MT + rows.length * RH + 6, bh = (o.rh || 22) - 4;
+  const m = Math.max(0.05, ...rows.flatMap(r => r.segs.map(g => Math.abs(g.v)))), tk = stNice(-m, m, nar ? 4 : 6), sx = stLin(tk[0], tk[tk.length - 1], LW, W - VW);
+  let s = tk.map(t => `<line class="st-grid" x1="${sx(t)}" x2="${sx(t)}" y1="${MT - 4}" y2="${H - 4}"/><text class="st-tick" x="${sx(t)}" y="${MT - 9}" text-anchor="middle">${t ? sm2Sgn(t, sm2TkD(tk)) : '0'}</text>`).join('');
+  s += `<line class="st-base" x1="${sx(0)}" x2="${sx(0)}" y1="${MT - 4}" y2="${H - 4}"/>`;
+  rows.forEach((r, i) => { const y = MT + i * RH + RH / 2 + (nar ? 7 : 0);
+    s += nar ? `<text class="st-lab" x="${LW}" y="${y - bh / 2 - 4}">${ciE(r.n)}</text>` : `<text class="st-lab" x="${LW - 8}" y="${y + 4}" text-anchor="end">${ciE(r.n)}</text>`;
+    r.segs.forEach(g => { if (Math.abs(sx(g.v) - sx(0)) >= 1) s += stBarH(y, bh + 4, sx(g.v), sx(0), g.v >= 0 ? SM2_UP : SM2_DN, g.key, { cls: '' }); });
+    s += `<text class="st-lab st-b" x="${W - 4}" y="${y + 4}" text-anchor="end">${r.r}</text>`; });
+  el.innerHTML = stSvg(W, H, s, o.label || '');
+}
+function sm2Tor() {
+  const el = document.getElementById('sm2-tor'); if (!el || !el.clientWidth) return;
+  const P2 = SIM.projection2, b = P2.base[5], T = (P2.tornado || []).slice().sort((x, y) => y.swing_pp - x.swing_pp);
+  const rows = T.map(t => { const l = sm2Lv(t.key), n = l ? sm2Lab(l) : t.key, lo = t.rate_at_h6_low - b, hi = t.rate_at_h6_high - b;
+    return { n, r: stN(t.swing_pp, 2), segs: [{ v: lo, key: [`${n} · ${stT('mức thấp', 'low')}: ${sm2SetTxt(l, t.low_setting)}`, `${simPct(t.rate_at_h6_low)} (${sm2Sgn(lo)}${stT(' điểm %', ' pp')})`] }, { v: hi, key: [`${n} · ${stT('mức cao', 'high')}: ${sm2SetTxt(l, t.high_setting)}`, `${simPct(t.rate_at_h6_high)} (${sm2Sgn(hi)}${stT(' điểm %', ' pp')})`] }] }; });
+  sm2Div(el, rows, { label: stT('Độ nhạy của lãi suất T3/2027 theo từng đòn bẩy', 'Sensitivity of the Mar-2027 rate to each lever') });
+  el._stRows = { head: [stT('Đòn bẩy', 'Lever'), stT('Mức thấp', 'Low setting'), stT('Lãi suất', 'Rate'), stT('Mức cao', 'High setting'), stT('Lãi suất', 'Rate'), stT('Biên độ, điểm %', 'Swing, pp')],
+    rows: T.map(t => { const l = sm2Lv(t.key); return [l ? sm2Lab(l) : t.key, sm2SetTxt(l, t.low_setting), simPct(t.rate_at_h6_low), sm2SetTxt(l, t.high_setting), simPct(t.rate_at_h6_high), stN(t.swing_pp, 3)]; }) };
+}
+const SM2_SENS = [[/^kappa − 1 SE/, 'Hệ số áp lực vốn kappa − 1 sai số chuẩn'], [/^kappa \+ 1 SE/, 'Hệ số áp lực vốn kappa + 1 sai số chuẩn'], [/^P\* from the 2025-03 fit/, 'Mức trung tính P* ước lượng đến 3/2025'],
+  [/^FX conversion share × 0/, 'Tỷ lệ chuyển đổi ngoại tệ × 0 (dòng ngoại tệ không tác động)'], [/^FX conversion share × 2/, 'Tỷ lệ chuyển đổi ngoại tệ × 2'], [/^fiscal weight × 0/, 'Trọng số ngân sách × 0'],
+  [/^fiscal weight × 2/, 'Trọng số ngân sách × 2'], [/^calibrated add-ons off/, 'Tắt các hệ số hiệu chỉnh (CPI, tỷ giá, Fed, SJC, giá nhà)']];
+const sm2SensN = c => { if (APP_LANG === 'en') return c; const m = SM2_SENS.find(x => x[0].test(c)); return m ? m[1] : c; };
+function sm2Sens() {
+  const el = document.getElementById('sm2-sens'); if (!el || !el.clientWidth) return;
+  const S = (SIM.projection2.sensitivity || []).slice().sort((a, b) => Math.abs(b.vs_base) - Math.abs(a.vs_base));
+  sm2Div(el, S.map(x => ({ n: sm2SensN(x.case), r: simPct(x.rate_at_h6), segs: [{ v: x.vs_base, key: [sm2SensN(x.case), `${simPct(x.rate_at_h6)} (${sm2Sgn(x.vs_base)}${stT(' điểm %', ' pp')})`] }] })), { rh: 24, lw: 340, label: stT('Độ nhạy theo tham số', 'Sensitivity to parameters') });
+  el._stRows = { head: [stT('Trường hợp', 'Case'), stT('Lãi suất T3/2027', 'Rate, Mar 2027'), stT('So với cơ sở, điểm %', 'vs base, pp')], rows: S.map(x => [sm2SensN(x.case), simPct(x.rate_at_h6), sm2Sgn(x.vs_base, 3)]) };
+}
+function sm2Res() {
+  const P2 = SIM.projection2, R = sm2.R, B = sm2.B, e = 5, d = R.path[e] - B.path[e], r0 = SIM.model2.params.r0, n = SIM.model2.levers.filter(l => sm2Mod(l.key)).length, xE = sm2Mo(e);
+  const arrow = Math.abs(d) < 0.005 ? '' : `<i class="sm2-ar ${d > 0 ? 'up' : 'dn'}" aria-hidden="true">${d > 0 ? '▲' : '▼'}</i>`;
+  const el = document.getElementById('sm2-res');
+  if (el) el.innerHTML = `${sm2Badge()}<div class="sm2-res-k">${stT(`Lãi suất 12 tháng Vietcombank · ${xE} · mô hình`, `Vietcombank 12-month rate · ${xE} · model`)}</div>
+    <div class="sm2-res-v">${simPct(R.path[e])}<span>${arrow}${sm2Sgn(d)}${stT(' điểm % so với cơ sở ', ' pp vs base ')}${simPct(B.path[e])}</span></div>
+    <div class="sm2-res-s">${stT(`Từ ${simPct(r0, 1)} (${simML(simMI(P2.start.month))}): ${sm2Sgn(R.path[e] - r0)} điểm % · khoảng 80%: ${stN(R.path[e] - sm2Half(e), 2)}–${stN(R.path[e] + sm2Half(e), 2)}%`, `From ${simPct(r0, 1)} (${simML(simMI(P2.start.month))}): ${sm2Sgn(R.path[e] - r0)} pp · 80% band: ${stN(R.path[e] - sm2Half(e), 2)}–${stN(R.path[e] + sm2Half(e), 2)}%`)}<br>${stT('Kịch bản', 'Scenario')}: <b>${ciE(sm2ScnN(sm2.scn))}</b>${n ? stT(` · đã chỉnh ${n} đòn bẩy`, ` · ${n} lever${n > 1 ? 's' : ''} changed`) : ''}</div>`;
+  const mi = document.getElementById('sm2-mini'); if (mi) mi.innerHTML = `<span>${xE}</span><b>${simPct(R.path[e])}</b><span>${arrow}${sm2Sgn(d)}${stT(' so với cơ sở', ' vs base')}</span>`;
+  const G = sm2Groups(R); SM2_ORDER.forEach(g => { const x = document.getElementById('sm2-gc-' + g[0]), v = (G.find(q => q.id === g[0]) || {}).v; if (x && v != null) x.textContent = `${sm2Sgn(v)}${stT(' điểm %', ' pp')}`; });
+  const a = document.getElementById('sm2-scn-a'), sc = P2.scenarios[sm2.scn] || {}; if (a) a.innerHTML = `<b>${ciE(sm2ScnN(sm2.scn))}:</b> ${ciE(stT(sc.assumptions_vi || '', sc.assumptions_en || ''))}`;
+}
+function sm2Upd(k) {
+  sm2.R = sm2Run(sm2.paths);
+  (k ? [sm2Lv(k)] : SIM.model2.levers).forEach(sm2LvUpd);
+  sm2Res(); sm2Fan(); sm2Wf(); sm2PCh();
+}
+// table twins of the live charts follow the reader's last change (on release, not on every drag step); open tables stay open
+function sm2Tbl() {
+  const sec = document.getElementById('sim-st-proj'); if (!sec) return;
+  const open = [...sec.querySelectorAll('.st-tbl')].map(d => d.open); stTables(sec); sec.querySelectorAll('.st-tbl').forEach((d, i) => { if (open[i]) d.open = true; });
+}
+function sm2Chap2() {
+  const P2 = SIM.projection2, M = SIM.model2, S = P2.scenarios, ids = Object.keys(S), oth = ids.filter(k => k !== 'base'), e = 5, xE = simML(simMI(P2.months[e])), base = P2.base[e];
+  if (!Object.keys(sm2.paths).length) sm2Scn(sm2.scn);
+  const ends = oth.map(k => S[k].path[e]), lo = Math.min(...ends), hi = Math.max(...ends), L = sm2L(), nar0 = !window.matchMedia('(min-width: 1000px)').matches;
+  const B = sm2Run({}), tot = B.path[e] - M.params.r0, inh = B.C.inherited_pressure[e], rep = (M.backtest.in_sample_replay_2025_10_2026_09 || {}).path || [], rl = rep[rep.length - 1];
+  const groups = SM2_ORDER.map((G, gi) => `<details class="sm2-g"${!nar0 || gi === 0 ? ' open' : ''}><summary><span>${stT(G[2], G[3])} <i>${L.filter(l => sm2Grp(l) === G).length}</i></span><span class="sm2-gc" id="sm2-gc-${G[0]}"></span></summary>${L.filter(l => sm2Grp(l) === G).map(sm2LeverHTML).join('')}</details>`).join('');
+  return stChap('sim-st-proj', stT('Chương 2 · Dự phóng 6 tháng', 'Chapter 2 · The 6-month projection'),
+    stT(`Mô hình dashboard: ${stN(base, 2)}% vào ${xE} nếu các đòn bẩy giữ đường cơ sở; ${oth.length} kịch bản cho ${stN(lo, 2)}–${stN(hi, 2)}%`, `Dashboard model: ${stN(base, 2)}% by ${xE} on baseline levers; ${oth.length} scenarios span ${stN(lo, 2)}–${stN(hi, 2)}%`),
+    stT(`Mô hình cấu trúc của dashboard, không phải dự báo. Chọn một kịch bản hoặc kéo ${L.length} đòn bẩy — dòng ngoại tệ, ngân sách, NHNN, tín dụng, kênh thay thế — lãi suất, đóng góp từng nhóm và áp lực vốn tính lại ngay trên trình duyệt.`, `A structural dashboard model, not a forecast. Pick a scenario or move ${L.length} levers — FX inflows, the budget, the SBV, credit, substitutes — and the rate, each group's contribution and the funding pressure recompute in the browser.`),
+    `<div class="sm2-top"><div class="sim-pj-c"><span class="sim-pj-l">${stT('Kịch bản', 'Scenario')}</span><div class="st-ctrl" id="sm2-scn" role="group" aria-label="${stT('Kịch bản', 'Scenario')}">${ids.map(k => `<button type="button" class="${k === sm2.scn ? 'on' : ''}" aria-pressed="${k === sm2.scn}" data-v="${ciE(k)}">${ciE(sm2ScnN(k))}</button>`).join('')}</div></div><p class="sm2-scn-a" id="sm2-scn-a"></p></div>
+     <div class="sm2-wb" id="sm2-wb">
+      <aside class="sm2-side" aria-label="${stT('Đòn bẩy', 'Levers')}"><div class="sm2-mini" id="sm2-mini" aria-hidden="true"></div>
+       <div class="sm2-side-h"><b>${stT(`${L.length} đòn bẩy`, `${L.length} levers`)}</b><button type="button" class="sm2-ra" id="sm2-reset">${stT('Đặt lại tất cả', 'Reset all')}</button></div>
+       <p class="sm2-side-d">${stT('Thanh trượt đặt mức trung bình 6 tháng (đòn bẩy theo mùa giữ hình dạng theo tháng; lãi suất điều hành, Fed: tổng thay đổi). Đường nhỏ: lịch sử (xám, chấm = giả định) và đường bạn chọn (cam). Dòng tiền tác động qua áp lực vốn từ tháng sau; biến giá trễ 1 tháng.', 'Sliders set the 6-month average (seasonal levers keep their monthly shape; policy rate and Fed: total change). Sparkline: history (grey, dotted = assumed) and your path (orange). Money flows act through funding pressure from the next month; price variables with a 1-month lag.')}</p>
+       ${groups}</aside>
+      <div class="sm2-wtop"><div class="sm2-res" id="sm2-res" aria-live="polite" aria-atomic="true"></div>
+       <div class="sm2-fan-h"><div id="sm2-fan-leg"></div><label class="sm2-chk"><input type="checkbox" id="sm2-all"> ${stT('Hiện các kịch bản khác', 'Show the other scenarios')}</label></div><div id="sm2-fan" class="st-viz"></div>
+       ${stNote(stT(`Đường cơ sở tăng ${sm2Sgn(tot)} điểm % đến ${xE}; ${sm2Sgn(inh)} trong đó là áp lực vốn đã tích lũy đến ${simML(simMI(P2.start.month))} (P = ${stN(M.params.P0, 2)} so với mức trung tính ${stN(M.params.P_star, 2)}).`, `The base path rises ${sm2Sgn(tot)} pp by ${xE}; ${sm2Sgn(inh)} of it is funding pressure already built up by ${simML(simMI(P2.start.month))} (P = ${stN(M.params.P0, 2)} against a neutral ${stN(M.params.P_star, 2)}).`),
+         rl && rl.actual != null ? stT(`Chạy lại trong mẫu, mô hình đã cao hơn lãi suất niêm yết ${sm2Sgn(rl.predicted - rl.actual)} điểm % vào ${simML(simMI(rl.month))} (${simPct(rl.predicted)} so với ${simPct(rl.actual, 1)}): Big4 giữ lãi suất theo chỉ đạo; đường dự phóng thừa hưởng độ lệch này.`, `Replayed in sample, the model already sat ${sm2Sgn(rl.predicted - rl.actual)} pp above the posted rate in ${simML(simMI(rl.month))} (${simPct(rl.predicted)} vs ${simPct(rl.actual, 1)}): the Big-4 held rates under guidance; the projection inherits this tilt.`) : '')}</div>
+      <div class="sm2-rest">
+       <div class="st-sub">${stT(`Thay đổi từ ${simML(simMI(P2.start.month))} đến ${xE} đến từ đâu`, `Where the change from ${simML(simMI(P2.start.month))} to ${xE} comes from`)}</div>
+       ${stLegend([{ n: stT('Đẩy lãi suất lên', 'Pushes the rate up'), c: SM2_UP }, { n: stT('Kéo xuống', 'Pulls it down'), c: SM2_DN }, { n: stT('Tổng thay đổi', 'Total change'), c: ST.ink }])}<div id="sm2-wf" class="st-viz"></div>
+       ${stNote(stT('Mỗi thanh là đóng góp tích lũy của một nhóm đến tháng cuối; các thanh cộng lại đúng bằng tổng thay đổi.', 'Each bar is a group\'s cumulative contribution by the last month; the bars add up exactly to the total change.'), stT('Dòng tiền (ngoại tệ, ngân sách, NHNN, tín dụng) tác động qua chỉ số áp lực vốn nên có độ trễ; nhóm thị trường & giá tác động trực tiếp.', 'Money flows (FX, budget, SBV, credit) act through the funding-pressure index, so with a lag; markets & prices act directly.'))}
+       <div class="st-sub">${stT('Áp lực vốn: chỉ số P và mức trung tính', 'Funding pressure: the P index and its neutral level')}</div>
+       ${stLegend([{ n: stT('P (mô hình, 12 tháng, % tiền gửi)', 'P (model, 12 months, % of deposits)'), c: ST.ink, k: 'line' }, { n: stT('Cơ sở', 'Base'), c: '#8a8f99', k: 'dash' }, { n: stT('Kịch bản của bạn', 'Your scenario'), c: SM2_YOU, k: 'line' }, { n: stT(`P* trung tính ${stN(M.params.P_star, 2)} (ước lượng 2021–2026)`, `Neutral P* ${stN(M.params.P_star, 2)} (estimated 2021–2026)`), c: '#5b6170', k: 'dash' }].concat(((M.estimation || {}).rate_equation_fit_to_2025_03 || {}).P_star != null ? [{ n: stT(`P* ${stN(M.estimation.rate_equation_fit_to_2025_03.P_star, 2)} nếu ước lượng đến 3/2025`, `P* ${stN(M.estimation.rate_equation_fit_to_2025_03.P_star, 2)} if fitted to Mar 2025`), c: '#5b6170', k: 'empty' }] : []))}<div id="sm2-p" class="st-viz"></div>
+       ${stNote(stT('Lãi suất tăng khi P nằm trên mức trung tính P* và giảm khi P nằm dưới; P cộng dồn thiếu hụt vốn 12 tháng (tín dụng tăng nhanh hơn tiền gửi mới).', 'The rate rises while P is above the neutral P* and falls while it is below; P adds up 12 months of funding gaps (credit outrunning new deposits).'), stT('P* là con số kém chắc chắn nhất của mô hình: hai đường ngang cho thấy hai ước lượng.', 'P* is the least certain number in the model: the two horizontal lines show two estimates.'))}
+       <div class="st-sub">${stT(`Đòn bẩy nào quan trọng nhất: lãi suất ${xE} khi mỗi đòn bẩy ở mức thấp/cao`, `Which levers matter most: the ${xE} rate with each lever at its low/high setting`)}</div>
+       ${stLegend([{ n: stT('Cao hơn cơ sở', 'Above base'), c: SM2_UP }, { n: stT('Thấp hơn cơ sở', 'Below base'), c: SM2_DN }])}<p class="sim-small">${stT(`Điểm % so với cơ sở ${simPct(base)}; cột phải: biên độ. Mỗi đòn bẩy di chuyển riêng, các đòn bẩy khác giữ cơ sở.`, `pp vs the ${simPct(base)} base; right column: the swing. One lever moves at a time, the others stay on baseline.`)}</p><div id="sm2-tor" class="st-viz"></div>
+      </div></div>
+     ${sm2Caveats()}
+     ${stNote(stT('Mô hình cấu trúc của dashboard, không phải dự báo hay khuyến nghị đầu tư.', 'A structural dashboard model, not a forecast or investment advice.'), ciE(stT(P2.note_vi || '', P2.note_en || '')))}`);
+}
+function sm2Caveats() {
+  const P2 = SIM.projection2, M = SIM.model2, E = M.estimation || {}, b = P2.base[5], xE = simML(simMI(P2.months[5])), S = P2.sensitivity || [], fit = E.rate_equation_fit_to_2025_03 || {};
+  const ps = S.find(x => /P\*/.test(x.case)), kL = S.find(x => /kappa − 1 SE/.test(x.case)), kH = S.find(x => /kappa \+ 1 SE/.test(x.case)), off = S.find(x => /add-ons off/.test(x.case));
+  const oos = (M.backtest || {}).out_of_sample || {}, op = oos.path || [], oe = op[op.length - 1];
+  const L = SIM.model2.levers, cnt = { e: 0, w: 0, c: 0, a: 0 }; L.forEach(l => { cnt[sm2Status(l)]++; });
+  const cal = L.filter(l => sm2Status(l) === 'c').map(sm2Lab), weak = L.filter(l => sm2Status(l) === 'w').map(sm2Lab), asd = L.filter(l => sm2Status(l) === 'a').map(sm2Lab), dat = L.filter(sm2DataAssumed).map(sm2Lab);
+  const li = [];
+  if (ps) li.push(stT(`<b>Mức trung tính P* là tham số kém chắc chắn nhất.</b> Cơ sở cho ${simPct(b)} vào ${xE}; nếu P* lấy theo ước lượng đến 3/2025 (${stN(fit.P_star, 2)} thay vì ${stN(M.params.P_star, 2)}), đường cơ sở kết thúc ở ${simPct(ps.rate_at_h6)} (${sm2Sgn(ps.vs_base)} điểm %), gần như đi ngang so với ${simPct(M.params.r0, 1)}.`, `<b>The neutral level P* is the least certain parameter.</b> The base gives ${simPct(b)} by ${xE}; with P* from the fit to Mar 2025 (${stN(fit.P_star, 2)} instead of ${stN(M.params.P_star, 2)}) the base ends at ${simPct(ps.rate_at_h6)} (${sm2Sgn(ps.vs_base)} pp), roughly flat on ${simPct(M.params.r0, 1)}.`));
+  if (kL && kH) li.push(stT(`Hệ số áp lực vốn kappa ± 1 sai số chuẩn: ${simPct(kL.rate_at_h6)}–${simPct(kH.rate_at_h6)}. Khoảng 80% trên biểu đồ chỉ gồm sai số phần dư, không gồm độ bất định của tham số.`, `Funding-pressure kappa ± 1 standard error: ${simPct(kL.rate_at_h6)}–${simPct(kH.rate_at_h6)}. The 80% band on the chart holds residual error only, not parameter uncertainty.`));
+  if (oe) li.push(stT(`Kiểm định ngoài mẫu (chỉ dùng số liệu đến ${simML(simMI((oos.start || {}).month))}): mô hình đạt ${simPct(oe.predicted)} vào ${simML(simMI(oe.month))}, thực tế ${simPct(oe.actual, 1)} — đúng hướng, nhỏ hơn và chậm hơn (Chương 3).`, `Out-of-sample test (data to ${simML(simMI((oos.start || {}).month))} only): the model reached ${simPct(oe.predicted)} by ${simML(simMI(oe.month))} against an actual ${simPct(oe.actual, 1)} — right direction, smaller and later (Chapter 3).`));
+  li.push(stT(`Trạng thái hệ số của ${L.length} đòn bẩy: ${cnt.e} ước lượng, ${cnt.w} ước lượng yếu (${weak.join(', ')}), ${cnt.c} hiệu chỉnh (${cal.join(', ')}), ${cnt.a} giả định (${asd.join(', ')}).${off ? ` Tắt các hệ số hiệu chỉnh: ${simPct(off.rate_at_h6)}.` : ''}`, `Coefficient status of the ${L.length} levers: ${cnt.e} estimated, ${cnt.w} weakly estimated (${weak.join(', ')}), ${cnt.c} calibrated (${cal.join(', ')}), ${cnt.a} assumed (${asd.join(', ')}).${off ? ` With the calibrated add-ons off: ${simPct(off.rate_at_h6)}.` : ''}`));
+  if (dat.length) li.push(stT(`Số liệu đầu vào là giả định cho ${dat.length} đòn bẩy: ${dat.join(', ')} — chưa có số liệu tháng 2026 công bố.`, `Input data are assumptions for ${dat.length} levers: ${dat.join(', ')} — no published 2026 monthly figures.`));
+  (M.not_modelled || []).forEach(x => li.push(`<b>${stT('Không có trong mô hình', 'Not modelled')}:</b> ${ciE(stT(x.why_vi, x.why_en))}`));
+  const v1 = (SIM.projection || {}).base, v1e = v1 && v1[v1.length - 1];
+  return `<div class="st-sub">${stT('Đọc kết quả thận trọng', 'Read with care')}</div><ul class="sim-ul sm2-cav">${li.map(x => `<li>${x}</li>`).join('')}</ul>
+    <div class="st-sub">${stT('Độ nhạy theo tham số (không nằm trong khoảng 80%)', 'Sensitivity to parameters (not in the 80% band)')}</div>${stLegend([{ n: stT('Cao hơn cơ sở', 'Above base'), c: SM2_UP }, { n: stT('Thấp hơn cơ sở', 'Below base'), c: SM2_DN }])}<div id="sm2-sens" class="st-viz"></div>
+    ${v1e != null ? `<p class="sim-small sm2-v1">${stT(`So sánh v1: mô hình cũ (4 động lực, hiệu chỉnh, không ước lượng) cho ${simPct(v1e)} vào ${xE} khi giữ nguyên áp lực, so với ${simPct(b)} của mô hình v2. ${ciE(((M.backtest || {}).out_of_sample || {}).v1_comparison ? 'Kiểm định ngoài mẫu của v1 chỉ phủ giai đoạn đi ngang 4–9/2025 nên không kiểm được đợt tăng 2026.' : '')}`, `v1 comparison: the old model (4 drivers, calibrated, not estimated) gives ${simPct(v1e)} by ${xE} with pressures held, against ${simPct(b)} in v2. ${ciE(((M.backtest || {}).out_of_sample || {}).v1_comparison || '')}`)}</p>` : ''}`;
+}
+function sm2Wire() {
+  const sec = document.getElementById('sim-st-proj'); if (!sec || !SIM.model2) return;
+  sm2.B = sm2Run({});
+  const setIn = l => { const r = document.getElementById('sm2-r-' + l.key); if (r) r.value = Math.max(l.min, Math.min(l.max, sm2Val(l, sm2.paths[l.key]))); };
+  sec.querySelectorAll('.sm2-lv input[type=range]').forEach(r => {
+    r.addEventListener('input', () => { const l = sm2Lv(r.dataset.k); sm2Set(l, +r.value); sm2Upd(l.key); });
+    r.addEventListener('change', sm2Tbl); });
+  sec.querySelectorAll('.sm2-rs').forEach(b => b.addEventListener('click', () => { const l = sm2Lv(b.dataset.k); sm2.paths[l.key] = sm2.ref[l.key].slice(); setIn(l); sm2Upd(l.key); sm2Tbl(); }));
+  const pick = id => { sm2Scn(id); SIM.model2.levers.forEach(setIn); sec.querySelectorAll('#sm2-scn button').forEach(x => { x.classList.toggle('on', x.dataset.v === id); x.setAttribute('aria-pressed', x.dataset.v === id ? 'true' : 'false'); }); sm2Upd(null); sm2Tbl(); };
+  sec.querySelectorAll('#sm2-scn button').forEach(b => b.addEventListener('click', () => pick(b.dataset.v)));
+  const ra = document.getElementById('sm2-reset'); if (ra) ra.addEventListener('click', () => pick('base'));
+  const al = document.getElementById('sm2-all'); if (al) { al.checked = sm2.all; al.addEventListener('change', () => { sm2.all = al.checked; sm2Fan(); sm2Tbl(); }); }
+  sm2Upd(null); sm2Tor(); sm2Sens();
+  [['sm2-fan', sm2Fan], ['sm2-wf', sm2Wf], ['sm2-p', sm2PCh], ['sm2-tor', sm2Tor], ['sm2-sens', sm2Sens]].forEach(([id, f]) => stRW(document.getElementById(id), f));
+}
+// ── chapter 3: the model (equations, coefficients, regressions, backtests) ──
+function sm2BT(el, cfg) {
+  if (!el || !el.clientWidth || !cfg.path) return;
+  const W = stCW(el, 800, 260), H = 170, ML = 34, MR = 10, MT = 10, MB = 22, P = cfg.path, st = cfg.start;
+  const ms = (st ? [st.month] : []).concat(P.map(p => p.month)), n = ms.length, k0 = st ? 1 : 0;
+  const pred = (st ? [st.value] : []).concat(P.map(p => p.predicted)), act = (st ? [st.value] : []).concat(P.map(p => p.actual)), alt = cfg.alt ? (st ? [st.value] : []).concat(cfg.alt.map(p => p.predicted)) : null;
+  const vals = pred.concat(act, alt || []).filter(v => typeof v === 'number'), tk = simTicks(Math.min(...vals) - 0.05, Math.max(...vals) + 0.05, 3);
   const sx = stLin(0, n - 1, ML + 6, W - MR - 6), sy = stLin(tk[0], tk[tk.length - 1], H - MB, MT);
   let s = stAxisY(sy, tk, ML, W - MR, v => stN(v, 1) + '%');
-  s += stLine(P.map((p, i) => [sx(i), sy(p.actual)]), ST.blue, { cls: '' }) + stLine(P.map((p, i) => [sx(i), sy(p.predicted)]), ST.ink, { cls: '', dash: '5,4' });
-  P.forEach((p, i) => { if (i === 0 || i === n - 1 || n < 8) s += `<text class="st-tick" x="${sx(i)}" y="${H - 6}" text-anchor="${i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle'}">${simML(simMI(p.month))}</text>`; });
-  el.innerHTML = stSvg(W, H, s, B.kind || '');
-  stCross(el, { xs: P.map((p, i) => sx(i)), labels: P.map(p => simML(simMI(p.month))), top: MT, bottom: H - MB, series: [{ n: stT('Thực tế', 'Actual'), c: ST.blue, v: P.map(p => p.actual), f: v => simPct(v) }, { n: stT('Mô hình', 'Model'), c: ST.ink, v: P.map(p => p.predicted), f: v => simPct(v) }] });
+  if (alt) s += stLine(alt.map((v, i) => [sx(i), sy(v)]), '#8a8f99', { cls: '', dash: '1.5,3' });
+  s += stLine(pred.map((v, i) => [sx(i), sy(v)]), ST.ink, { cls: '', dash: '5,4' });
+  s += stLine(act.map((v, i) => [sx(i), v == null ? null : sy(v)]), ST.blue, { cls: '' });
+  act.forEach((v, i) => { if (v != null) s += stDot(sx(i), sy(v), 3, ST.blue, [simML(simMI(ms[i])) + stT(' · thực tế', ' · actual'), simPct(v, 2)], { cls: '' }); });
+  [0, n - 1].forEach(i => { s += `<text class="st-tick" x="${sx(i)}" y="${H - 6}" text-anchor="${i ? 'end' : 'start'}">${simML(simMI(ms[i]))}</text>`; });
+  el.innerHTML = stSvg(W, H, s, cfg.label || '');
+  stCross(el, { xs: ms.map((m, i) => sx(i)), labels: ms.map(m => simML(simMI(m))), top: MT, bottom: H - MB, series: [{ n: stT('Thực tế', 'Actual'), c: ST.blue, v: act, f: v => simPct(v) }, { n: stT('Mô hình', 'Model'), c: ST.ink, v: pred, f: v => simPct(v) }].concat(alt ? [{ n: cfg.altN, c: '#8a8f99', v: alt, f: v => simPct(v) }] : []) });
+}
+function sm2Bars(el, key, sign) {
+  const s = simS(key), v = Array.isArray(s.values) ? s.values : []; if (!el || !el.clientWidth || !v.length) return;
+  const W = stCW(el, 800, 260), H = 130, ML = 40, MR = 6, MT = 8, MB = 20, n = v.length, nums = v.filter(x => typeof x === 'number');
+  const tk = stNice(Math.min(0, ...nums), Math.max(0, ...nums), 3), sx = stLin(0, n - 1, ML + 4, W - MR - 4), sy = stLin(tk[0], tk[tk.length - 1], H - MB, MT), slot = (W - ML - MR - 8) / n;
+  let o = stAxisY(sy, tk, ML, W - MR, t => stN(t, sm2TkD(tk))) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  v.forEach((x, i) => { if (typeof x === 'number' && x) o += stBarV(sx(i), slot, sy(x), sy(0), x * sign > 0 ? SM2_UP : SM2_DN, [simML(i), `${stN(x, 1)}${stT(' nghìn tỷ đ', ' VND tn')}`], { cls: '' }); });
+  for (let y = 2021; y <= 2026; y += W < 360 ? 2 : 1) o += `<text class="st-tick" x="${sx((y - 2021) * 12)}" y="${H - 5}" text-anchor="start">${y}</text>`;
+  el.innerHTML = stSvg(W, H, o, stT(s.label_vi || key, s.label_en || key));
+  el._stRows = { head: [stT('Tháng', 'Month'), stT('Nghìn tỷ đ', 'VND tn')], rows: v.map((x, i) => typeof x === 'number' ? [simML(i), stN(x, 1)] : null).filter(Boolean) };
+}
+function sm2Ch3Draw() {
+  const B = SIM.model2.backtest || {}, ep = B.episode_2022_q4 || {}, rp = B.in_sample_replay_2025_10_2026_09 || {}, ip = ep.in_sample_replay || {}, f0 = ip.path && ip.path[0];
+  const st22 = f0 ? simAt('dep12_vcb', simMI(f0.month) - 1) : null, ym = i => `${2021 + Math.floor(i / 12)}-${String(i % 12 + 1).padStart(2, '0')}`;
+  const cfg = { 'sm2-bt1': () => ({ path: (B.out_of_sample || {}).path, start: (B.out_of_sample || {}).start, label: stT('Kiểm định ngoài mẫu', 'Out-of-sample test') }),
+    'sm2-bt2': () => ({ path: ip.path, start: st22 ? { month: ym(st22.i), value: st22.v } : null, alt: (ep.leave_episode_out || {}).path, altN: stT('Bỏ giai đoạn 2022 khi ước lượng', 'Fitted without 2022'), label: stT('Đợt tăng quý IV/2022', 'The 2022-Q4 spike') }),
+    'sm2-bt3': () => ({ path: rp.path, label: stT('Chạy lại trong mẫu 10/2025–9/2026', 'In-sample replay Oct 2025–Sep 2026') }) };
+  Object.entries(cfg).forEach(([id, f]) => { const el = document.getElementById(id); if (!el) return; const d = () => sm2BT(el, f()); d(); stRW(el, d); });
+  [['sm2-fg', 'funding_gap_fg_m', 1], ['sm2-fi', 'fiscal_net_injection_m', -1], ['sm2-fx', 'fx_net_inflow_vnd_m', -1]].forEach(([id, k, sg]) => { const el = document.getElementById(id); if (!el) return; const d = () => sm2Bars(el, k, sg); d(); stRW(el, d); });
+}
+function sm2Chap3() {
+  const M = SIM.model2, E = M.estimation || {}, re = E.rate_equation || {}, lq = E.liquidity || {}, p = M.params, cal = E.calibrated || {}, B = M.backtest || {}, chk = sm2Check();
+  const t = (c, se) => se ? c / se : null, nm = { pol: stT('lãi suất điều hành', 'the policy rate'), P: stT('áp lực vốn', 'funding pressure'), vni: 'VN-Index', gold: stT('vàng', 'gold') };
+  const top = Object.keys(re.coef || {}).filter(k => k !== 'c').sort((a, b) => Math.abs(t(re.coef[b], re.se[b])) - Math.abs(t(re.coef[a], re.se[a]))).slice(0, 2);
+  const lv = k => sm2Lv(k) || {}, fxw = Math.abs(lv('fdi_disbursed').liquidity_weight || 0), sbvw = lv('sbv_fx_sales').liquidity_weight, d2 = v => stN(v, 3), d4 = v => stN(v, Math.abs(v) < 0.01 ? 4 : 3);
+  const st = (c, se) => { const tv = t(c, se); return tv == null ? '' : Math.abs(tv) >= 2 ? sm2Tag('e') : sm2Tag('w'); };
+  const row = (n, c, se, status, note) => `<tr><th>${n}</th><td>${c}</td><td>${se != null ? d4(se) : '—'}</td><td>${se ? stN(Math.abs(t(typeof c === 'string' ? NaN : c, se)), 1) : '—'}</td><td>${status}</td><td>${note || ''}</td></tr>`;
+  const coefRow = (n, c, se, status, note) => `<tr><th>${n}</th><td>${d4(c)}</td><td>${se != null ? d4(se) : '—'}</td><td>${se ? stN(Math.abs(c / se), 1) : '—'}</td><td>${status}</td><td>${note || ''}</td></tr>`;
+  const lc = lq.coef || {}, ls = lq.se || {}, stab = (lq.stability || {}).coef || {}, oos = B.out_of_sample || {}, ep = B.episode_2022_q4 || {}, rp = B.in_sample_replay_2025_10_2026_09 || {}, ts = (ep.in_sample_replay || {}).terms_sum_pp || {};
+  const TS = { policy: stT('chính sách', 'policy'), funding_pressure: stT('áp lực vốn', 'funding pressure'), vnindex_12m: 'VN-Index', gold_world_12m: stT('vàng', 'gold') };
+  const eqs = [[stT('A · Thiếu hụt vốn của tháng (nghìn tỷ đ)', 'A · The month\'s funding gap (VND tn)'), `FG = ${d2(lc.credit)} × ${stT('tín dụng tăng thêm', 'new credit')} − ${stN(fxw, 2)} × ${stT('dòng ngoại tệ ròng (tỷ USD)', 'net FX inflow (USD bn)')} − ${d2(-lc.fiscal)} × (${stT('chi − thu ngân sách', 'budget spending − revenue')}) − ${d2(-lc.sbv_fx)} × OMO + ${stN(sbvw, 2)} × ${stT('NHNN bán ngoại tệ (tỷ USD)', 'SBV FX sales (USD bn)')}`],
+    [stT('B · Chỉ số áp lực vốn (điểm % tiền gửi)', 'B · Funding-pressure index (pp of deposits)'), `P = P${stT('(tháng trước)', '(last month)')} + 100 × FG / ${stN(p.D_tn, 0)} − ${stT('FG của tháng rời cửa sổ 12 tháng', 'FG of the month leaving the 12-month window')}`],
+    [stT('C · Thay đổi lãi suất 12 tháng VCB (điểm %)', 'C · Change in the VCB 12-month rate (pp)'), `Δr = ${d2(re.coef.pol)} × Δ${stT('lãi suất điều hành', 'policy rate')} + ${d4(p.kappa)} × (P${stT('(tháng trước)', '(last month)')} − ${stN(p.P_star, 2)}) + Σ ${stT('hệ số × (biến tháng trước − trung tính)', 'coef × (variable last month − neutral)')}`]];
+  const liqRows = [[stT('Tín dụng tăng thêm', 'New credit'), lc.credit, ls.credit, 'credit'], [stT('Dòng ngoại tệ ròng (tỷ lệ chuyển đổi)', 'Net FX inflow (conversion share)'), lc.netfx, ls.netfx, 'fx'], [stT('Ngân sách (chi − thu)', 'Budget (spending − revenue)'), lc.fiscal, ls.fiscal, 'fiscal'], [stT('NHNN mua ngoại tệ', 'SBV FX purchases'), lc.sbv_fx, ls.sbv_fx, 'sbv']];
+  const rateRows = [[stT('Truyền dẫn lãi suất điều hành (cùng tháng)', 'Policy pass-through (same month)'), 'pol'], [stT('kappa: áp lực vốn P (tháng trước)', 'kappa: funding pressure P (last month)'), 'P'], [stT('VN-Index, lợi suất 12 tháng', 'VN-Index, 12-month return'), 'vni'], [stT('Vàng thế giới, lợi suất 12 tháng', 'World gold, 12-month return'), 'gold'], [stT('Hằng số (mỗi tháng)', 'Constant (per month)'), 'c']];
+  const lbBasis = k => { const b = String((lq.basis || {})[k] || ''); return /^estimated/.test(b) ? sm2Tag('e') : /^assumption/.test(b) ? sm2Tag('a') : sm2Tag('w', b); };
+  const tbl = `<div class="sim-tw"><table class="sim-t"><thead><tr><th>${stT('Tham số', 'Parameter')}</th><th>${stT('Giá trị', 'Value')}</th><th>${stT('Sai số chuẩn', 'SE')}</th><th>|t|</th><th>${stT('Trạng thái', 'Status')}</th><th>${stT('Ghi chú', 'Note')}</th></tr></thead><tbody>
+    <tr class="sm2-th"><th colspan="6">${stT(`Trọng số thanh khoản · hồi quy năm ${ciE(lq.sample || '')}, n = ${lq.n}, R² ${stN(lq.r2, 3)}`, `Liquidity weights · annual regression ${ciE(lq.sample || '')}, n = ${lq.n}, R² ${stN(lq.r2, 3)}`)}</th></tr>
+    ${liqRows.map(([n, c, se, k]) => coefRow(n, c, se, lbBasis(k), stab[k === 'fx' ? 'netfx' : k === 'sbv' ? 'sbv_fx' : k] != null ? stT(`bỏ năm 2025: ${d2(stab[k === 'fx' ? 'netfx' : k === 'sbv' ? 'sbv_fx' : k])}`, `without 2025: ${d2(stab[k === 'fx' ? 'netfx' : k === 'sbv' ? 'sbv_fx' : k])}`) : '')).join('')}
+    ${row(stT('OMO bơm ròng', 'OMO net injection'), stT('= NHNN mua ngoại tệ', '= SBV FX purchases'), null, lbBasis('omo'), stT('chưa có chuỗi OMO năm để ước lượng', 'no annual OMO series to estimate it'))}
+    <tr class="sm2-th"><th colspan="6">${stT(`Phương trình lãi suất · hồi quy khoảng ${ciE(re.sample || '')}, ${re.n_intervals} khoảng, R² ${stN(re.r2_centred, 3)}, σ tháng ${stN(re.sigma_month, 3)}`, `Rate equation · interval regression ${ciE(re.sample || '')}, ${re.n_intervals} intervals, R² ${stN(re.r2_centred, 3)}, monthly σ ${stN(re.sigma_month, 3)}`)}</th></tr>
+    ${rateRows.map(([n, k]) => coefRow(n, re.coef[k], re.se[k], st(re.coef[k], re.se[k]), k === 'c' ? stT('gộp vào P*', 'folded into P*') : k === 'gold' ? stT('≈0 khi có áp lực vốn', '≈0 once funding pressure is in') : '')).join('')}
+    ${row(stT('Mức trung tính P* (≈ suy ra từ hằng số)', 'Neutral P* (≈ derived from the constant)'), stN(p.P_star, 2), null, sm2Tag('e'), stT(`ước lượng đến 3/2025: ${stN((E.rate_equation_fit_to_2025_03 || {}).P_star, 2)}`, `fitted to Mar 2025: ${stN((E.rate_equation_fit_to_2025_03 || {}).P_star, 2)}`))}
+    <tr class="sm2-th"><th colspan="6">${stT('Hiệu chỉnh (không ước lượng được: thiếu số liệu hoặc sai dấu)', 'Calibrated (not estimable: gaps or wrong signs)')}</th></tr>
+    ${Object.keys(cal).map(k => { const c = cal[k], l = sm2Lv(k); return row(l ? sm2Lab(l) : k, d4(c.coef), null, sm2Tag('c', c.basis), stT(`trung tính ${stN(c.neutral, 2)}, trễ ${c.lag}; kiểm tra độ nhạy ${(c.sensitivity_range || []).map(x => stN(x, 3)).join('–')}`, `neutral ${stN(c.neutral, 2)}, lag ${c.lag}; sensitivity ${(c.sensitivity_range || []).map(x => stN(x, 3)).join('–')}`)); }).join('')}
+    </tbody></table></div>`;
+  const btCard = (id, h, rm, note, leg) => `<div><div class="sim-card-h">${h}${rm != null ? ` · RMSE ${stN(rm, 3)}${stT(' điểm %', ' pp')}` : ''}</div>${stLegend(leg || [{ n: stT('Thực tế', 'Actual'), c: ST.blue, k: 'line' }, { n: stT('Mô hình', 'Model'), c: ST.ink, k: 'dash' }])}<div id="${id}" class="st-viz"></div><p class="sim-small">${note}</p></div>`;
+  const oe = (oos.path || [])[(oos.path || []).length - 1] || {}, re2 = (rp.path || [])[(rp.path || []).length - 1] || {};
+  return stChap('sim-st-model', stT('Chương 3 · Mô hình', 'Chapter 3 · The model'),
+    stT(`Ước lượng trên ${re.n_intervals} khoảng (R² ${stN(re.r2_centred, 2)}): ${nm[top[0]]} và ${nm[top[1]]} là hai tác động rõ nhất`, `Estimated on ${re.n_intervals} intervals (R² ${stN(re.r2_centred, 2)}): ${nm[top[0]]} and ${nm[top[1]]} are the clearest effects`),
+    ciE(stT(M.method_vi, M.method_en)),
+    `<div class="st-sub">${stT('Ba phương trình, tính theo tháng', 'Three equations, month by month')}</div>
+     <ol class="sm2-eq">${eqs.map(([k, f]) => `<li><span>${k}</span><code>${ciE(f)}</code></li>`).join('')}</ol>
+     <p class="sim-small">${stT(`Xuất phát: r = ${stN(p.r0, 2)}%, P = ${stN(p.P0, 2)} (${simML(simMI(SIM.projection2.start.month))}). Khoảng 80% = ± 1,2816 × ${stN(M.residual_sd, 4)} × √h. Tỷ lệ chuyển đổi ngoại tệ tính theo tỷ giá ${stN(lq.usdvnd_for_conversion, 0)} đ/USD.`, `Start: r = ${stN(p.r0, 2)}%, P = ${stN(p.P0, 2)} (${simML(simMI(SIM.projection2.start.month))}). 80% band = ± 1.2816 × ${stN(M.residual_sd, 4)} × √h. FX conversion at ${stN(lq.usdvnd_for_conversion, 0)} VND/USD.`)}</p>
+     <details class="sim-fd"><summary>${stT('Phương trình nguyên văn của mô hình', 'The model\'s equation, verbatim')}</summary><p class="sim-eq"><code>${ciE(M.equation || '')}</code></p></details>
+     <div class="st-sub">${stT('Hệ số: ước lượng, hiệu chỉnh hay giả định', 'Coefficients: estimated, calibrated or assumed')}</div>${tbl}
+     <p class="sim-p-t">${ciE(stT(re.verdict_vi, re.verdict_en))}</p>
+     <p class="sim-small">${stT(`Hồi quy trọng số thanh khoản: thiếu hụt vốn năm (tín dụng tăng thêm − tiền gửi tăng thêm) theo tín dụng, dòng ngoại tệ, ngân sách và NHNN mua ngoại tệ; ${lq.n} năm, R² ${stN(lq.r2, 3)}, sai số phần dư ${stN(lq.resid_sd_tn, 1)} nghìn tỷ. Chỉ ≈${stN((lq.fx_into_reserves_share || 0) * 100, 0)}% dòng ngoại tệ đã vào dự trữ. Bỏ năm 2025, trọng số đổi đáng kể: coi là chỉ dấu.`, `Liquidity-weight regression: the annual funding gap (credit increase − deposit increase) on credit, FX inflows, the budget and SBV FX purchases; ${lq.n} years, R² ${stN(lq.r2, 3)}, residual s.d. ${stN(lq.resid_sd_tn, 1)} VND tn. Only ≈${stN((lq.fx_into_reserves_share || 0) * 100, 0)}% of FX inflows ended in reserves. Dropping 2025 changes the weights materially: treat them as indicative.`)}</p>
+     <details class="sim-fd"><summary>${stT(`Số liệu năm dùng để ước lượng (${(lq.data || []).length} năm, nghìn tỷ đ)`, `Annual data used for the estimate (${(lq.data || []).length} years, VND tn)`)}</summary><div class="sim-tw"><table class="sim-t"><thead><tr><th>${stT('Năm', 'Year')}</th><th>${stT('Thiếu hụt', 'Gap')}</th><th>${stT('Tín dụng', 'Credit')}</th><th>${stT('Ngoại tệ ròng', 'Net FX')}</th><th>${stT('Ngân sách', 'Budget')}</th><th>${stT('NHNN mua ngoại tệ', 'SBV FX')}</th></tr></thead><tbody>${(lq.data || []).map(d => `<tr><th>${d.year}</th><td>${stN(d.gap, 1)}</td><td>${stN(d.credit, 1)}</td><td>${stN(d.netfx, 1)}</td><td>${stN(d.fiscal, 1)}</td><td>${stN(d.sbv_fx, 1)}</td></tr>`).join('')}</tbody></table></div></details>
+     <div class="st-sub">${stT('Kiểm định: thực tế và mô hình', 'Backtests: actual against the model')}</div>
+     <div class="sm2-bt3">${btCard('sm2-bt1', stT('Ngoài mẫu', 'Out of sample'), oos.rmse, stT(`Chỉ dùng số liệu đến ${simML(simMI((oos.start || {}).month))}: ${simPct(oe.predicted)} vào ${simML(simMI(oe.month))} so với thực tế ${simPct(oe.actual, 1)}. RMSE ${stN(oos.rmse, 3)} so với ${stN(oos.naive_no_change_rmse, 3)} nếu giả định "không đổi".`, `Data to ${simML(simMI((oos.start || {}).month))} only: ${simPct(oe.predicted)} by ${simML(simMI(oe.month))} against an actual ${simPct(oe.actual, 1)}. RMSE ${stN(oos.rmse, 3)} vs ${stN(oos.naive_no_change_rmse, 3)} for "no change".`))}
+       ${btCard('sm2-bt2', stT('Đợt tăng quý IV/2022 (trong mẫu)', 'The 2022-Q4 spike (in sample)'), null, `${ciE(stT(ep.summary_vi, ep.summary_en))} ${Object.keys(ts).length ? stT('Đóng góp: ', 'Contributions: ') + Object.keys(ts).map(k => `${TS[k] || k} ${sm2Sgn(ts[k])}`).join(', ') + stT(' điểm %.', ' pp.') : ''}`, [{ n: stT('Thực tế', 'Actual'), c: ST.blue, k: 'line' }, { n: stT('Mô hình', 'Model'), c: ST.ink, k: 'dash' }, { n: stT('Bỏ năm 2022 khi ước lượng', 'Fitted without 2022'), c: '#8a8f99', k: 'dash' }])}
+       ${btCard('sm2-bt3', stT('Chạy lại trong mẫu', 'In-sample replay'), rp.rmse, re2.actual != null ? stT(`Mô hình ${simPct(re2.predicted)} so với lãi suất niêm yết ${simPct(re2.actual, 1)} vào ${simML(simMI(re2.month))}: Big4 giữ lãi suất trong khi ngân hàng tư nhân trả cao hơn.`, `Model ${simPct(re2.predicted)} against the posted ${simPct(re2.actual, 1)} in ${simML(simMI(re2.month))}: the Big-4 held rates while private banks paid more.`) : '')}</div>
+     ${stNote(ciE(stT(oos.summary_vi, oos.summary_en)), stT('Dòng thực tế chỉ có ở tháng có niêm yết được xác minh; tháng trống không nội suy.', 'Actuals only where a posted rate was verified; empty months are not interpolated.'))}
+     <div class="st-sub">${stT('Thành phần của áp lực vốn, theo tháng (nghìn tỷ đ)', 'What builds funding pressure, monthly (VND tn)')}</div>
+     ${stLegend([{ n: stT('Làm tăng áp lực vốn', 'Adds to funding pressure'), c: SM2_UP }, { n: stT('Làm giảm', 'Eases it'), c: SM2_DN }])}
+     <div class="sm2-bt3"><div><div class="sim-card-h">${stT('Thiếu hụt vốn FG (mô hình)', 'Funding gap FG (model)')}</div><div id="sm2-fg" class="st-viz"></div></div><div><div class="sim-card-h">${stT('Ngân sách bơm ròng (chi − thu)', 'Fiscal net injection (spending − revenue)')}</div><div id="sm2-fi" class="st-viz"></div></div><div><div class="sim-card-h">${stT('Dòng ngoại tệ ròng quy ra đồng', 'Net FX inflow in VND')}</div><div id="sm2-fx" class="st-viz"></div></div></div>
+     ${stNote(stT('Một phần các tháng là số năm chia đều hoặc khoảng chia đều (xem Chương 4); hai tháng gần nhất có phần ước tính.', 'Some months are annual totals or intervals spread evenly (see Chapter 4); the latest two months are partly nowcast.'), /nowcast/i.test((M.params_note || {}).P0 || '') ? ciE((M.params_note || {}).P0) : '')}
+     <p class="${chk.ok ? 'sm2-ok' : 'sm2-bad'}">${chk.ok ? stT(`Kiểm tra mô hình: bản JavaScript trên trang khớp ${chk.n}/${chk.n} bộ thử của bản Python (sai số lớn nhất ${chk.worst.toExponential(1)}), các đóng góp cộng đúng bằng tổng thay đổi.`, `Model check: the in-page JavaScript matches ${chk.n}/${chk.n} test vectors of the Python model (largest error ${chk.worst.toExponential(1)}); contributions add up to the total change.`) : stT(`Kiểm tra mô hình thất bại: ${ciE(chk.fails.join(', '))}.`, `Model check failed: ${ciE(chk.fails.join(', '))}.`)}</p>
+     <p class="sim-small">${stT(`Phiên bản ${ciE(M.version || '')}. So sánh v1: mô hình cũ chỉ hiệu chỉnh 4 động lực (chênh lệch tín dụng − huy động, CPI, vàng, VN-Index); v2 thay chênh lệch bằng thiếu hụt vốn tính từ dòng tiền và ước lượng các hệ số chính.`, `Version ${ciE(M.version || '')}. v1 comparison: the old model calibrated 4 drivers (credit − deposit gap, CPI, gold, VN-Index); v2 replaces the gap with a funding gap built from money flows and estimates the main coefficients.`)}</p>
+     <details class="sim-fd"><summary>${stT(`Số liệu mâu thuẫn giữa các nguồn (${(SIM.conflicts || []).length})`, `Conflicting figures between sources (${(SIM.conflicts || []).length})`)}</summary><ul class="sim-ul">${(SIM.conflicts || []).map(c => `<li><b>${ciE(c.topic)}</b>: ${ciE(c.a)} · ${ciE(c.b)} → ${ciE(c.handling)}</li>`).join('')}</ul></details>`);
 }
 const simLink = s => ciE(s).replace(/https?:\/\/[^\s;|,)]+/g, u => { let h = u; try { h = new URL(u.replace(/&amp;/g, '&')).hostname.replace(/^www\./, ''); } catch (e) {} return `<a href="${u}" target="_blank" rel="noopener">${h}</a>`; });
 function simCov(k, o) {
@@ -8249,21 +8654,21 @@ function simCov(k, o) {
 function renderSimStory() {
   const root = document.getElementById('sim-story'); if (!root || typeof SIM === 'undefined' || !SIM.panel) return;
   simStop();
-  const Pj = SIM.projection, st = Pj.start, iS = simMI(st.month), e = Pj.base.length - 1, xE = simMI(Pj.months[e]);
+  const Pj = simPJ(), st = Pj.start, iS = simMI(st.month), e = Pj.base.length - 1, xE = simMI(Pj.months[e]);
   const vcb12 = simAt('dep12_vcb', iS - 12), rise = st.value - (vcb12 ? vcb12.v : st.value), refiNow = simAt('refi_rate', iS), refiThen = vcb12 ? simAt('refi_rate', vcb12.i) : null;
   const vLow = simV('dep12_vcb').filter(p => p.i >= simMI('2023-01')).reduce((a, p) => p.v < a.v ? p : a, { v: 99 });
-  const B = SIM.story || [], M = SIM.model || {}, R = ((M.estimation || {}).regressions || []), core = R.find(x => x.id === 'core_change') || {}, bt = SIM.backtest || {};
+  const B = SIM.story || [];
   const PS = SIM.panel.series, keys = Object.keys(PS);
-  const sq = simPath('gap', simScn('status_quo').policy, simScn('status_quo').drv), op = simPath('opp', simScn('status_quo').policy, simScn('status_quo').drv);
+  const sq = { path: Pj.base, lo: Pj.low, hi: Pj.high }, psA = ((SIM.projection2 || {}).sensitivity || []).find(x => /P\*/.test(x.case)), nLv = ((SIM.model2 || {}).levers || []).length, nSc = Object.keys((SIM.projection2 || {}).scenarios || {}).length;
   const disc = ciE(stT(SIM.disclaimer_vi, SIM.disclaimer_en));
   let h = `<section class="st-chap st-hero" id="sim-st-hero"><div class="st-kicker">${stT('Mô phỏng · lãi suất tiền gửi · cập nhật ', 'Simulation · deposit rates · as of ')}${polDS(SIM.as_of)}</div>
     <h2 class="st-h">${stT(`Lãi suất 12 tháng tăng ${stN(rise, 1)}\u00a0điểm\u00a0% trong 12 tháng; mô hình dashboard thấy ${stN(sq.path[e], 2)}% vào ${simML(xE)}`, `The 12-month deposit rate rose ${stN(rise, 1)} pp in 12 months; the dashboard model sees ${stN(sq.path[e], 2)}% by ${simML(xE)}`)}</h2>
     <div class="st-hero-grid"><div>
       <div class="st-big">${stN(st.value, 1)}%<span>${stT(' 12 tháng · VCB', ' 12-month · VCB')}</span></div>
-      <p class="st-dek">${stT(`Từ <b>${stN(vcb12 ? vcb12.v : st.value, 1)}%</b> (${vcb12 ? simML(vcb12.i) : ''}) lên <b>${stN(st.value, 1)}%</b> (${simML(iS)}), trong khi lãi suất tái cấp vốn ${refiNow && refiThen && refiNow.v === refiThen.v ? `giữ ${stN(refiNow.v, 1)}%` : `ở ${stN(refiNow ? refiNow.v : NaN, 1)}%`}. Nếu các áp lực giữ nguyên, mô hình của dashboard cho ${stN(sq.path[e], 2)}% vào ${simML(xE)} (khoảng 80%: ${stN(sq.lo[e], 2)}–${stN(sq.hi[e], 2)}%); nếu mức tăng chủ yếu do vàng và cổ phiếu, ${stN(op.path[e], 2)}%.`, `From <b>${stN(vcb12 ? vcb12.v : st.value, 1)}%</b> (${vcb12 ? simML(vcb12.i) : ''}) to <b>${stN(st.value, 1)}%</b> (${simML(iS)}), while the refinancing rate ${refiNow && refiThen && refiNow.v === refiThen.v ? `stayed at ${stN(refiNow.v, 1)}%` : `was ${stN(refiNow ? refiNow.v : NaN, 1)}%`}. If the pressures hold, the dashboard model gives ${stN(sq.path[e], 2)}% by ${simML(xE)} (80% band ${stN(sq.lo[e], 2)}–${stN(sq.hi[e], 2)}%); if the rise was mostly about gold and stocks, ${stN(op.path[e], 2)}%.`)}</p>
+      <p class="st-dek">${stT(`Từ <b>${stN(vcb12 ? vcb12.v : st.value, 1)}%</b> (${vcb12 ? simML(vcb12.i) : ''}) lên <b>${stN(st.value, 1)}%</b> (${simML(iS)}), trong khi lãi suất tái cấp vốn ${refiNow && refiThen && refiNow.v === refiThen.v ? `giữ ${stN(refiNow.v, 1)}%` : `ở ${stN(refiNow ? refiNow.v : NaN, 1)}%`}. Nếu các đòn bẩy giữ đường cơ sở, mô hình cấu trúc của dashboard cho ${stN(sq.path[e], 2)}% vào ${simML(xE)} (khoảng 80%: ${stN(sq.lo[e], 2)}–${stN(sq.hi[e], 2)}%)${psA ? `; nếu mức áp lực vốn “bình thường” lấy theo ước lượng đến 3/2025, chỉ ${stN(psA.rate_at_h6, 2)}%` : ''}.`, `From <b>${stN(vcb12 ? vcb12.v : st.value, 1)}%</b> (${vcb12 ? simML(vcb12.i) : ''}) to <b>${stN(st.value, 1)}%</b> (${simML(iS)}), while the refinancing rate ${refiNow && refiThen && refiNow.v === refiThen.v ? `stayed at ${stN(refiNow.v, 1)}%` : `was ${stN(refiNow ? refiNow.v : NaN, 1)}%`}. If the levers stay on baseline, the dashboard's structural model gives ${stN(sq.path[e], 2)}% by ${simML(xE)} (80% band ${stN(sq.lo[e], 2)}–${stN(sq.hi[e], 2)}%)${psA ? `; with the “normal” funding-pressure level fitted to Mar 2025, only ${stN(psA.rate_at_h6, 2)}%` : ''}.`)}</p>
       <p class="sim-disc">${disc}</p>
     </div><div><div id="sim-hero-leg"></div><div id="sim-hero" class="st-viz"></div></div></div>
-    <ol class="sim-toc">${[[stT('Câu chuyện', 'The story'), stT('6 lực, 2021–2026, phát theo thời gian', 'Six forces, 2021–2026, played over time'), 'sim-st-story'], [stT('Dự phóng 6 tháng', '6-month projection'), stT('kịch bản, thanh trượt, công thức', 'scenarios, sliders, the formula'), 'sim-st-proj'], [stT('Mô hình', 'The model'), stT('hệ số, hồi quy, kiểm định, giới hạn', 'coefficients, regressions, backtest, limits'), 'sim-st-model'], [stT('Chỉ số & nguồn', 'Indicators & sources'), stT(`${keys.length} chuỗi, nguồn, mức xác minh`, `${keys.length} series, sources, verification`), 'sim-st-src']].map(([a, b, id], i) => `<li><button type="button" data-st-go="${id}"><b>${i + 1} · ${a}</b><span>${b}</span></button></li>`).join('')}</ol></section>`;
+    <ol class="sim-toc">${[[stT('Câu chuyện', 'The story'), stT('6 lực, 2021–2026, phát theo thời gian', 'Six forces, 2021–2026, played over time'), 'sim-st-story'], [stT('Dự phóng 6 tháng', '6-month projection'), stT(`${nLv} đòn bẩy, ${nSc} kịch bản, đóng góp từng nhóm`, `${nLv} levers, ${nSc} scenarios, contributions`), 'sim-st-proj'], [stT('Mô hình', 'The model'), stT('phương trình, hệ số, kiểm định', 'equations, coefficients, backtests'), 'sim-st-model'], [stT('Chỉ số & nguồn', 'Indicators & sources'), stT(`${keys.length} chuỗi, nguồn, mức xác minh`, `${keys.length} series, sources, verification`), 'sim-st-src']].map(([a, b, id], i) => `<li><button type="button" data-st-go="${id}"><b>${i + 1} · ${a}</b><span>${b}</span></button></li>`).join('')}</ol></section>`;
   // 1 · the story
   h += stChap('sim-st-story', stT('Chương 1 · Câu chuyện', 'Chapter 1 · The story'),
     stT(`Từ ${stN(vLow.v, 1)}% lên ${stN(st.value, 1)}%: vì sao lãi suất cao và khó sớm giảm`, `From ${stN(vLow.v, 1)}% to ${stN(st.value, 1)}%: why rates are high and unlikely to fall soon`),
@@ -8277,37 +8682,8 @@ function renderSimStory() {
      <div class="sim-main"><div class="sim-grid" id="sim-grid">${simPanels().map(P => `<div class="sim-card"><div class="sim-card-h">${ciE(P.t)}</div>${stLegend(P.rows.flatMap(r => r.s).filter((s, i, a) => a.findIndex(x => x.k === s.k && x.n === s.n) === i).map(s => ({ n: s.n, c: s.c, k: s.kind === 'dots' ? 'dot' : s.kind === 'bars' ? 'rect' : 'line' })))}<div class="st-viz sim-p" id="sim-p-${P.id}"></div></div>`).join('')}</div>
      ${stNote(stT('Nét liền: số quan sát; nét đứt ở lãi suất Vietcombank: tháng giữ nguyên mức của lần niêm yết trước (chưa xác nhận); điểm rỗng: số cả năm, ước tính hoặc 9 tháng; đoạn có gạch: khoảng giá trị theo thước đo khác.', 'Solid: observed; dashed on the Vietcombank line: months carried from the last quote (not confirmed); hollow points: full-year, approximate or nine-month figures; capped segments: ranges on a different measure.'), stT('Tháng không có số liệu để trống, không nội suy. Số liệu của nhiều nguồn và định nghĩa khác nhau; chi tiết ở Chương 4.', 'Months without data stay blank, never interpolated. Sources and definitions differ; details in Chapter 4.'))}
      ${stSrc(stT('Nguồn: NHNN, NSO, Bộ Tài chính, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, Fed, báo chí (đường dẫn từng chuỗi ở Chương 4). Tổng hợp: Finance agent, ', 'Sources: SBV, NSO, Ministry of Finance, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, the Fed, press (per-series links in Chapter 4). Compiled by the Finance agent, ') + polDS(SIM.as_of) + '.')}</div></div>`);
-  // 2 · projection
-  const sc = Pj.scenarios, scK = ['status_quo', 'rates_cut', 'tighter'].filter(k => sc[k]), pr = simLast('dep12_private_mbs'), vAt = pr ? simAt('dep12_vcb', pr.i) : null;
-  h += stChap('sim-st-proj', stT('Chương 2 · Dự phóng 6 tháng', 'Chapter 2 · The 6-month projection'),
-    stT(`Mô hình dashboard: ${stN(sq.path[e], 2)}% vào ${simML(xE)} nếu áp lực giữ nguyên, ${stN(op.path[e], 2)}% nếu do vàng và cổ phiếu`, `Dashboard model: ${stN(sq.path[e], 2)}% by ${simML(xE)} if pressures hold, ${stN(op.path[e], 2)}% if gold and stocks drove the rise`),
-    stT('Mô hình của dashboard, không phải dự báo. Chọn cách phân bổ mức tăng năm 2026, một kịch bản, hoặc kéo thanh trượt; đường và công thức tính lại ngay trên trình duyệt.', 'A dashboard model, not a forecast. Pick how the 2026 rise is attributed, a scenario, or drag the sliders; the path and the formula recompute in the browser.'),
-    `<div class="sim-pj-c"><span class="sim-pj-l">${stT('Phân bổ mức tăng 2026', 'Attribution of the 2026 rise')}</span><div class="st-ctrl" id="sim-attr" role="group" aria-label="${stT('Cách phân bổ', 'Attribution')}"><button type="button" class="on" aria-pressed="true" data-v="gap">${stT('Chênh lệch vốn dẫn dắt (mặc định)', 'Funding gap leads (default)')}</button><button type="button" aria-pressed="false" data-v="opp">${stT('Vàng & cổ phiếu dẫn dắt', 'Gold & stocks lead')}</button></div></div>
-     <div class="sim-pj-c"><span class="sim-pj-l">${stT('Kịch bản', 'Scenario')}</span><div class="st-ctrl" id="sim-scn" role="group" aria-label="${stT('Kịch bản', 'Scenario')}">${scK.map((k, i) => `<button type="button" class="${i ? '' : 'on'}" aria-pressed="${i ? 'false' : 'true'}" data-v="${k}" title="${ciE(stT(sc[k].assumptions_vi, sc[k].assumptions_en))}">${ciE(stT(sc[k].label_vi, sc[k].label_en))}</button>`).join('')}</div></div>
-     <div class="sim-pj"><div><div id="sim-fan-leg"></div><div id="sim-fan" class="st-viz"></div><div id="sim-fan-out"></div></div><div><div class="sim-sl" id="sim-sl"></div></div></div>
-     <details class="sim-fd" open><summary>${stT('Công thức (tính lại khi bạn thay đổi)', 'The formula (recomputed as you change it)')}</summary><p class="sim-fml">${ciE(stT(SIM.sliders.formula_vi, SIM.sliders.formula_en))}${stT('; khoảng 80% = ± 1,28 × ', '; 80% band = ± 1.28 × ')}${stN(SIM.sliders.sd, 4)} × √h</p><p class="sim-fml sim-fx" id="sim-fx"></p><div class="sim-coef" id="sim-coef"></div>
-       <ul class="sim-scn-a">${scK.map(k => `<li><b>${ciE(stT(sc[k].label_vi, sc[k].label_en))}:</b> ${ciE(stT(sc[k].assumptions_vi, sc[k].assumptions_en))}</li>`).join('')}</ul></details>
-     ${stNote(pr && vAt ? stT(`Điểm xuất phát là lãi suất niêm yết của Vietcombank; nhóm ngân hàng tư nhân (MBS) trả ${stN(pr.v, 2)}% (${simML(pr.i)}), cao hơn ≈${stN(pr.v - vAt.v, 1)} điểm %.`, `The start point is Vietcombank's posted rate; private banks (MBS) paid ${stN(pr.v, 2)}% (${simML(pr.i)}), ≈${stN(pr.v - vAt.v, 1)} pp more.`) : '', stT('Mô hình của dashboard, không phải dự báo hay khuyến nghị đầu tư.', 'A dashboard model, not a forecast or investment advice.'))}`);
-  // 3 · the model
-  const D = M.drivers || [], cal = M.calibration || {}, roos = bt.regression_out_of_sample || {}, rep = bt.calibrated_in_sample_replay || {};
-  const bas = d => d.key === 'policy_change' ? stT('hiệu chỉnh theo giai đoạn 2022', 'calibrated on the 2022 episode') : stT('hiệu chỉnh: tỷ lệ phân bổ là giả định', 'calibrated: the split is an assumption');
-  h += stChap('sim-st-model', stT('Chương 3 · Mô hình', 'Chapter 3 · The model'),
-    stT(`Mô hình hiệu chỉnh, không ước lượng: hồi quy khả dụng chỉ giải thích R² ${stN(core.r2, 2)} trên ${core.n} tháng`, `Calibrated, not estimated: the usable regression explains R² ${stN(core.r2, 2)} on ${core.n} months`),
-    ciE(simClean(stT(M.method_vi, M.method_en))),
-    `<p class="sim-eq"><code>${ciE(M.equation || '')}</code></p>
-     <div class="sim-tw"><table class="sim-t"><thead><tr><th>${stT('Động lực', 'Driver')}</th><th>${stT('Hệ số', 'Coefficient')}</th><th>${stT('Mức trung tính', 'Neutral')}</th><th>${stT('Độ trễ', 'Lag')}</th><th>${stT('Tỷ lệ mức tăng 2026 (giả định)', 'Share of 2026 rise (assumed)')}</th><th>${stT('Cơ sở', 'Basis')}</th></tr></thead><tbody>
-     ${D.map(d => `<tr><th>${ciE(stT(d.label_vi, d.label_en))}</th><td>${stN(d.coef, d.coef < 0.1 ? 5 : 2)}</td><td>${stN(d.neutral, 2)}${d.key === 'credit_deposit_gap' ? '*' : ''}</td><td>${d.lag}</td><td>${d.share_of_2026_rise != null ? stN(d.share_of_2026_rise * 100, 1) + '%' : '—'}</td><td>${bas(d)}<span class="sim-ev">${ciE(d.evidence || '')}</span></td></tr>`).join('')}</tbody></table></div>
-     <p class="sim-small">* ${ciE(cal.neutral_gap_note || '')} ${stT('Các mức trung tính khác là trung bình', 'Other neutral levels are averages over')} ${ciE(cal.neutral_window || '')}. ${stT('Cơ sở tỷ lệ phân bổ:', 'Split basis:')} ${ciE(cal.shares_basis || '')}</p>
-     <div class="st-sub">${stT('Vì sao không dùng hồi quy để dự báo', 'Why the regressions do not drive the projection')}</div><p class="sim-p-t">${ciE(stT((M.estimation || {}).verdict_vi, (M.estimation || {}).verdict_en))}</p>
-     <div class="sim-tw"><table class="sim-t"><thead><tr><th>${stT('Phương trình', 'Equation')}</th><th>${stT('Mẫu', 'Sample')}</th><th>n</th><th>R²</th><th>${stT('Hệ số (sai số chuẩn)', 'Coefficients (standard error)')}</th><th>${stT('Ghi chú', 'Note')}</th></tr></thead><tbody>
-     ${R.map(r => `<tr><th>${ciE(r.id)}</th><td>${ciE(r.sample)}</td><td>${r.n}</td><td>${r.r2 != null ? stN(r.r2, 3) : '—'}</td><td>${Object.keys(r.coef || {}).map(k => `${ciE(k)} ${stN(r.coef[k], 4)} (${stN((r.se || {})[k], 4)})`).join('<br>')}</td><td>${ciE(r.note || '')}</td></tr>`).join('')}</tbody></table></div>
-     <div class="st-sub">${stT('Kiểm định', 'Backtests')}</div>
-     <div class="sim-bt"><div><div class="sim-card-h">${stT('Hồi quy, ngoài mẫu', 'Regression, out of sample')} · RMSE ${stN(roos.rmse, 3)} ${stT('điểm %', 'pp')}</div>${stLegend([{ n: stT('Thực tế', 'Actual'), c: ST.blue, k: 'line' }, { n: stT('Mô hình', 'Model'), c: ST.ink, k: 'dash' }])}<div id="sim-bt1" class="st-viz"></div><p class="sim-small">${ciE(roos.note || '')}</p></div>
-       <div><div class="sim-card-h">${stT('Mô hình hiệu chỉnh, chạy lại trong mẫu', 'Calibrated model, in-sample replay')} · RMSE ${stN(rep.rmse, 3)} ${stT('điểm %', 'pp')}</div>${stLegend([{ n: stT('Thực tế', 'Actual'), c: ST.blue, k: 'line' }, { n: stT('Mô hình', 'Model'), c: ST.ink, k: 'dash' }])}<div id="sim-bt2" class="st-viz"></div><p class="sim-small">${ciE(rep.kind || '')}. ${ciE(rep.note || '')}</p></div></div>
-     ${stNote(ciE(stT(bt.summary_vi, bt.summary_en)), stT(`Kiểm định ngoài mẫu đạt RMSE ${stN(roos.rmse, 3)} điểm % nhưng trong giai đoạn lãi suất đi ngang, nên không kiểm được điểm đảo chiều.`, `The out-of-sample test scored RMSE ${stN(roos.rmse, 3)} pp, but over a flat stretch, so it tests no turning point.`))}
-     <div class="st-sub">${stT('Biến bị loại', 'Drivers left out')}</div><ul class="sim-ul">${(M.excluded_drivers || []).map(x => `<li><b>${ciE(x.key)}</b> — ${ciE(stT(x.reason_vi, x.reason_en))}</li>`).join('')}</ul>
-     <div class="st-sub">${stT('Giới hạn', 'Limitations')}</div><ul class="sim-ul"><li>${stT(`Mô hình hiệu chỉnh, không khớp với dữ liệu nên không có R². Phương trình lõi ước lượng được (vàng + cổ phiếu) có R² ${stN(core.r2, 3)} với n = ${core.n} (${ciE(core.sample)}).`, `Calibrated, not fitted, so there is no R². The estimable core equation (gold + stocks) has R² ${stN(core.r2, 3)} on n = ${core.n} (${ciE(core.sample)}).`)}</li><li>${stT(`Độ phủ thấp: ${(SIM.gaps || []).filter(g => g.months_covered != null && g.months_covered < 20).map(g => `${ciE(g.series)} ${g.months_covered}/${g.of}`).join(', ')}.`, `Thin coverage: ${(SIM.gaps || []).filter(g => g.months_covered != null && g.months_covered < 20).map(g => `${ciE(g.series)} ${g.months_covered}/${g.of}`).join(', ')}.`)}</li><li>${stT('Mô hình không gồm phản ứng chính sách ngoài kịch bản, cú sốc tỷ giá hay sự kiện ngân hàng.', 'The model has no policy reaction beyond the scenarios, no FX shocks and no bank events.')}</li></ul>
-     <details class="sim-fd"><summary>${stT(`Số liệu mâu thuẫn giữa các nguồn (${(SIM.conflicts || []).length})`, `Conflicting figures between sources (${(SIM.conflicts || []).length})`)}</summary><ul class="sim-ul">${(SIM.conflicts || []).map(c => `<li><b>${ciE(c.topic)}</b>: ${ciE(c.a)} · ${ciE(c.b)} → ${ciE(c.handling)}</li>`).join('')}</ul></details>`);
+  // 2 · projection workbench and 3 · the model: model v2 (SIM.model2 / SIM.projection2); v1 survives as a comparison line
+  h += sm2Chap2() + sm2Chap3();
   // 4 · indicators & sources
   h += stChap('sim-st-src', stT('Chương 4 · Chỉ số & nguồn', 'Chapter 4 · Indicators & sources'),
     stT(`${keys.length} chuỗi số liệu: nguồn, độ phủ và mức xác minh của từng chuỗi`, `${keys.length} series: the source, coverage and verification of each`),
@@ -8319,10 +8695,10 @@ function renderSimStory() {
      <details class="sim-fd"><summary>${stT(`Khoảng trống dữ liệu (${(SIM.gaps || []).length})`, `Data gaps (${(SIM.gaps || []).length})`)}</summary><ul class="sim-ul">${(SIM.gaps || []).map(g => `<li><b>${ciE(g.series || '')}</b> ${g.months_covered != null ? `${g.months_covered}/${g.of}` : ''} ${ciE(g.note || g.reason || '')}</li>`).join('')}</ul></details>
      <p class="sim-disc">${disc}</p>`);
   root.innerHTML = h;
-  const hl = document.getElementById('sim-hero-leg'); if (hl) hl.innerHTML = stLegend([{ n: stT('Vietcombank 12 tháng', 'Vietcombank 12-month'), c: ST.blue, k: 'line' }, { n: stT('Mô hình (giữ nguyên áp lực)', 'Model (pressures held)'), c: ST.blue, k: 'dash' }, { n: stT('Khoảng 80%', '80% band'), c: '#c5daf3' }, { n: stT('Tái cấp vốn', 'Refinancing rate'), c: ST.violet, k: 'line' }]);
+  const hl = document.getElementById('sim-hero-leg'); if (hl) hl.innerHTML = stLegend([{ n: stT('Vietcombank 12 tháng', 'Vietcombank 12-month'), c: ST.blue, k: 'line' }, { n: stT('Mô hình, đường cơ sở', 'Model, base path'), c: ST.blue, k: 'dash' }, { n: stT('Khoảng 80%', '80% band'), c: '#c5daf3' }, { n: stT('Tái cấp vốn', 'Refinancing rate'), c: ST.violet, k: 'line' }]);
   simFan(document.getElementById('sim-hero'), 0, { path: sq.path, lo: sq.lo, hi: sq.hi, refi: true, h: 240, label: stT('Lãi suất 12 tháng Vietcombank 2021–2026 và mô hình', 'Vietcombank 12-month rate 2021–2026 and the model') });
   const panels = simPanels(); panels.forEach(P => simDrawPanel(P, document.getElementById('sim-p-' + P.id)));
-  simAnimWire(); simProjWire(); simBT(document.getElementById('sim-bt1'), roos); simBT(document.getElementById('sim-bt2'), rep);
+  simAnimWire(); sm2Wire(); sm2Ch3Draw();
   stFinish(root);
   simLay();
 }
@@ -8331,9 +8707,8 @@ window.addEventListener('resize', () => { clearTimeout(simRT); simRT = setTimeou
   const root = document.getElementById('sim-story'); if (!root || !root.isConnected || !root.querySelector('#sim-grid')) return;
   simLay();
   const P = simPanels(), k = simSBS() ? 0.6 : 1; P.forEach(p => { const el = document.getElementById('sim-p-' + p.id); if (el && el.clientWidth && (Math.abs(el.clientWidth - (el._w || 0)) > 8 || el._k !== k)) { const tw = el._stRows; simDrawPanel(p, el); el._stRows = tw || el._stRows; } });
-  const hf = document.getElementById('sim-hero'); if (hf && hf.clientWidth && Math.abs(hf.clientWidth - (hf._w || 0)) > 8) { const s = simPath('gap', simScn('status_quo').policy, simScn('status_quo').drv); simFan(hf, 0, { path: s.path, lo: s.lo, hi: s.hi, refi: true, h: 240 }); hf._w = hf.clientWidth; }
-  const ff = document.getElementById('sim-fan'); if (ff && ff.clientWidth && Math.abs(ff.clientWidth - (ff._w || 0)) > 8) { simProjDraw(); ff._w = ff.clientWidth; }
-  ['sim-bt1', 'sim-bt2'].forEach((id, k) => { const b = document.getElementById(id); if (b && b.clientWidth && Math.abs(b.clientWidth - (b._w || 0)) > 8) { simBT(b, k ? (SIM.backtest || {}).calibrated_in_sample_replay : (SIM.backtest || {}).regression_out_of_sample); b._w = b.clientWidth; } });
+  const hf = document.getElementById('sim-hero'); if (hf && hf.clientWidth && Math.abs(hf.clientWidth - (hf._w || 0)) > 8) { const s = simPJ(); simFan(hf, 0, { path: s.base, lo: s.low, hi: s.high, refi: true, h: 240 }); hf._w = hf.clientWidth; }
+  // chapters 2-3 (model v2) redraw through stRW
 }, 150); });
 // ── /STORY Simulation ──
 window.addEventListener('load', () => { try { if (activeBottomTab === 'social') renderSocStory(); } catch (e) { console.warn('soc story', e); } });
