@@ -87,6 +87,8 @@ from pptx.opc.packuri import PackURI
 from pptx.oxml.ns import qn
 from pptx.oxml.xmlchemy import OxmlElement
 from pptx.util import Pt
+from pptx.oxml import parse_xml
+from xml.sax.saxutils import escape as _xml_escape
 
 # ── tokens (same values as the dashboard's story CSS) ──
 INK, INK2, INK3, SUP = '16181D', '5B6170', '8A8F99', '6B7080'
@@ -478,7 +480,2132 @@ class _HX:
         return self.x0 + (v - self.lo) / ((self.hi - self.lo) or 1) * (self.x1 - self.x0)
 
 
-class Deck:
+# ── native chart engine ──────────────────────────────────────────────────────────────────────────────────────────
+# Every native chart is written by this engine, not by python-pptx's chart writer: python-pptx only creates the chart
+# part and its embedded-workbook part; the engine then writes (1) its own workbook (xlsxwriter; helper columns can be
+# Excel formulas, so "Edit Data" recalculates waterfall bases, fan bands, funnel padding, box-plot quartiles, ...) and
+# (2) its own chart XML in strict schema order (several chart groups per plot area, secondary axes, per-point
+# formats, error bars, trend lines, hi-low lines, label positions, legend entries hidden for helper series). Each
+# series points at its workbook column, so the chart is a real, data-editable PowerPoint chart.
+C_NS = ('xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" '
+        'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" '
+        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"')
+
+
+def _xe(s):
+    return _xml_escape(str(s), {'"': '&quot;'})
+
+
+def _colname(j):
+    s, j = '', j + 1
+    while j:
+        j, r = divmod(j - 1, 26)
+        s = chr(65 + r) + s
+    return s
+
+
+class _Book:
+    """The embedded workbook. Column j holds a header in row 1 and values from row 2; a cell may be a formula."""
+
+    def __init__(self):
+        self.cols = []
+
+    def add(self, header, values, fmt=None, formulas=None):
+        self.cols.append((header, list(values), fmt, formulas))
+        return len(self.cols) - 1
+
+    def ref(self, j, n=None):
+        c = _colname(j)
+        n = len(self.cols[j][1]) if n is None else n
+        return f'Sheet1!${c}$2:${c}${n + 1}'
+
+    def href(self, j):
+        return f'Sheet1!${_colname(j)}$1'
+
+    def cell(self, j, i):
+        """A1-style address of data row i (0-based) in column j, for formulas."""
+        return f'{_colname(j)}{i + 2}'
+
+    def blob(self):
+        import xlsxwriter
+        bio = io.BytesIO()
+        wb = xlsxwriter.Workbook(bio, {'in_memory': True})
+        ws = wb.add_worksheet('Sheet1')
+        hf = wb.add_format({'bold': True})
+        fmts = {}
+        for j, (h, vals, fmt, forms) in enumerate(self.cols):
+            if h is not None:
+                ws.write_string(0, j, str(h), hf)
+            nf = None
+            if fmt:
+                nf = fmts.setdefault(fmt, wb.add_format({'num_format': fmt}))
+            for i, v in enumerate(vals):
+                f = forms[i] if forms else None
+                if f:
+                    ws.write_formula(i + 1, j, f, nf, '' if v is None else v)
+                elif v is None:
+                    continue
+                elif isinstance(v, str):
+                    ws.write_string(i + 1, j, v)
+                else:
+                    ws.write_number(i + 1, j, float(v), nf)
+            ws.set_column(j, j, 22 if j == 0 else 13)
+        wb.close()
+        return bio.getvalue()
+
+
+def _x_fill(color, alpha=None):
+    if color is None:
+        return '<a:noFill/>'
+    a = f'<a:alpha val="{int(alpha * 100000)}"/>' if alpha is not None and alpha < 1 else ''
+    return f'<a:solidFill><a:srgbClr val="{color}">{a}</a:srgbClr></a:solidFill>'
+
+
+def _x_ln(color, w=0.75, dash=None, cap='rnd'):
+    if color is None:
+        return '<a:ln><a:noFill/></a:ln>'
+    d = f'<a:prstDash val="{dash}"/>' if dash else ''
+    return f'<a:ln w="{int(round(w * 12700))}" cap="{cap}">{_x_fill(color)}{d}<a:round/></a:ln>'
+
+
+def _x_sppr(fill=False, line=False, lw=0.75, dash=None, alpha=None, cap='rnd'):
+    """fill/line: hex colour, None (= no fill / no line) or False (= leave out, inherit)."""
+    out = ''
+    if fill is not False:
+        out += _x_fill(fill, alpha)
+    if line is not False:
+        out += _x_ln(line, lw, dash, cap)
+    return f'<c:spPr>{out}</c:spPr>'
+
+
+def _x_rpr(tag, size, color, fam, bold=False, lang='vi-VN'):
+    return (f'<a:{tag} lang="{lang}" sz="{int(round(size * 100))}" b="{int(bool(bold))}" i="0" baseline="0">'
+            f'{_x_fill(color)}<a:latin typeface="{_xe(fam)}"/><a:ea typeface="{_xe(fam)}"/>'
+            f'<a:cs typeface="{_xe(fam)}"/></a:{tag}>')
+
+
+def _x_txpr(size, color, fam, rot=None, lang='vi-VN', bold=False):
+    r = f' rot="{int(rot * 60000)}" vert="horz"' if rot is not None else ''
+    d = _x_rpr('defRPr', size, color, fam, bold, lang).replace(f' lang="{lang}"', '')
+    return (f'<c:txPr><a:bodyPr{r} spcFirstLastPara="1" vertOverflow="ellipsis" wrap="square" anchor="ctr" '
+            f'anchorCtr="1"/><a:lstStyle/><a:p><a:pPr>{d}</a:pPr><a:endParaRPr lang="{lang}"/></a:p></c:txPr>')
+
+
+def _x_strcache(vals):
+    pts = ''.join(f'<c:pt idx="{i}"><c:v>{_xe(v)}</c:v></c:pt>' for i, v in enumerate(vals) if v is not None)
+    return f'<c:strCache><c:ptCount val="{len(vals)}"/>{pts}</c:strCache>'
+
+
+def _x_numcache(vals, fmt='General'):
+    pts = ''.join(f'<c:pt idx="{i}"><c:v>{repr(float(v))}</c:v></c:pt>' for i, v in enumerate(vals) if v is not None)
+    return f'<c:numCache><c:formatCode>{_xe(fmt)}</c:formatCode><c:ptCount val="{len(vals)}"/>{pts}</c:numCache>'
+
+
+def _x_ref(tag, ref, vals, fmt='General'):
+    """<c:cat>/<c:val>/<c:xVal>/<c:yVal>/<c:bubbleSize>/<c:plus>/<c:minus> pointing at a workbook range."""
+    if vals and all(v is None or isinstance(v, (int, float)) for v in vals) and tag not in ('cat_str',):
+        body = f'<c:numRef><c:f>{ref}</c:f>{_x_numcache(vals, fmt)}</c:numRef>'
+    else:
+        body = f'<c:strRef><c:f>{ref}</c:f>{_x_strcache(["" if v is None else str(v) for v in vals])}</c:strRef>'
+    tag = 'cat' if tag == 'cat_str' else tag
+    return f'<c:{tag}>{body}</c:{tag}>'
+
+
+DLBL_FLAGS = ('showLegendKey', 'showVal', 'showCatName', 'showSerName', 'showPercent', 'showBubbleSize')
+
+
+def _x_flags(show):
+    m = {'key': 'showLegendKey', 'val': 'showVal', 'cat': 'showCatName', 'ser': 'showSerName', 'pct': 'showPercent',
+         'size': 'showBubbleSize'}
+    on = {m[k] for k in show}
+    return ''.join(f'<c:{k} val="{int(k in on)}"/>' for k in DLBL_FLAGS)
+
+
+class _XChart:
+    """Collects series/groups/axes and writes a complete <c:chartSpace> in schema order."""
+
+    def __init__(self, deck, book):
+        self.d, self.book = deck, book
+        self.groups, self.axes = [], []
+        self.legend = None
+        self.plot = None
+        self._idx = 0
+        self.fam = deck.font('ui')[0]
+        self.fam_semi = deck.font('ui_semi')[0]
+        self.fam_med = deck.font('ui_med')[0]
+        deck._used.update({self.fam, self.fam_semi, self.fam_med})
+        self.lang = deck.lang_tag
+
+    # text helpers
+    def tx(self, size=10, color=INK2, semi=False, med=False, rot=None, bold=False):
+        fam = self.fam_semi if semi else (self.fam_med if med else self.fam)
+        return _x_txpr(size, color, fam, rot, self.lang, bold)
+
+    def rich(self, text, size=10, color=INK, semi=True):
+        fam = self.fam_semi if semi else self.fam
+        paras = ''.join(f'<a:p><a:pPr>{_x_rpr("defRPr", size, color, fam, False, self.lang)}</a:pPr><a:r>'
+                        f'{_x_rpr("rPr", size, color, fam, False, self.lang)}<a:t>{_xe(t)}</a:t></a:r></a:p>'
+                        for t in str(text).split('\n'))
+        return f'<c:tx><c:rich><a:bodyPr wrap="none" anchor="ctr"/><a:lstStyle/>{paras}</c:rich></c:tx>'
+
+    # data labels
+    def dlbls(self, d, kind, n):
+        """d = {show: ('val',), pos, fmt, size, color, semi, only: [idx], text: {idx: str}, sep, hide: [idx]}."""
+        if not d:
+            return ''
+        show = d.get('show', ('val',))
+        pos = d.get('pos')
+        nf = f'<c:numFmt formatCode="{_xe(d["fmt"])}" sourceLinked="0"/>' if d.get('fmt') else ''
+        txp = self.tx(d.get('size', 10), d.get('color', INK2), semi=d.get('semi', True))
+        sp = '<c:spPr><a:noFill/><a:ln><a:noFill/></a:ln></c:spPr>'
+        posx = f'<c:dLblPos val="{pos}"/>' if pos else ''
+        sep = f'<c:separator>{_xe(d.get("sep", " "))}</c:separator>' if 'ser' in show or 'cat' in show else ''
+        texts = d.get('text', {})
+        only = d.get('only')
+        out = ''
+        offs = d.get('off', {})
+        idxs = sorted(set(only or []) | set(texts) | ({k for k, v in offs.items() if v != (0, 0)} if only is None
+                                                       and not texts else set()))
+        for i in idxs:
+            if i is None or i < 0 or i >= n:
+                continue
+            ppos = d.get('pos_at', {}).get(i, pos)
+            ox, oy = offs.get(i, (0, 0))
+            lay = (f'<c:layout><c:manualLayout><c:x val="{ox:.5f}"/><c:y val="{oy:.5f}"/></c:manualLayout></c:layout>'
+                   if abs(ox) > 1e-4 or abs(oy) > 1e-4 else '')
+            pp = f'<c:dLblPos val="{ppos}"/>' if ppos else ''
+            col = d.get('color_at', {}).get(i)
+            t = (self.rich(texts[i], d.get('size', 10), col or d.get('color', INK2), d.get('semi', True))
+                 if i in texts else '')
+            ptx = self.tx(d.get('size', 10), col or d.get('color', INK2), semi=d.get('semi', True))
+            out += f'<c:dLbl><c:idx val="{i}"/>{lay}{t}{nf}{sp}{ptx}{pp}{_x_flags(show)}{sep}</c:dLbl>'
+        for i in d.get('hide', []):
+            if i not in idxs:
+                out += f'<c:dLbl><c:idx val="{i}"/><c:delete val="1"/></c:dLbl>'
+        if only is not None or (texts and d.get('only_text', True)):
+            return f'<c:dLbls>{out}{nf}{sp}{txp}{_x_flags(())}</c:dLbls>'
+        return f'<c:dLbls>{out}{nf}{sp}{txp}{posx}{_x_flags(show)}{sep}</c:dLbls>'
+
+    # series
+    def ser(self, name, col=None, vals=None, cat=None, x=None, size=None, fill=False, line=False, lw=2.0, dash=None,
+            alpha=None, marker=None, dpts=None, labels=None, err=None, trend=None, smooth=False, legend=True,
+            explosion=None, fmt='General', cap='rnd'):
+        """col: workbook column of the values (or y for scatter); cat: (col, values); x / size: (col, values).
+        marker = None | {'symbol', 'size', 'fill', 'line', 'lw'}; dpts = {idx: {fill, line, lw, dash, marker}}."""
+        i = self._idx
+        self._idx += 1
+        return dict(i=i, name=name, col=col, vals=vals, cat=cat, x=x, size=size, fill=fill, line=line, lw=lw, dash=dash,
+                    alpha=alpha, marker=marker, dpts=dpts or {}, labels=labels, err=err or [], trend=trend,
+                    smooth=smooth, legend=legend, explosion=explosion, fmt=fmt, cap=cap)
+
+    def _marker(self, m):
+        if not m:
+            return '<c:marker><c:symbol val="none"/></c:marker>'
+        sp = _x_sppr(m.get('fill', INK), m.get('line', PAPER), m.get('lw', 0.75))
+        return f'<c:marker><c:symbol val="{m.get("symbol", "circle")}"/><c:size val="{int(m.get("size", 5))}"/>{sp}</c:marker>'
+
+    def _ser_xml(self, kind, s):
+        b = self.book
+        n = len(s['vals'] if s['vals'] is not None else (s['x'][1] if s['x'] else []))
+        out = f'<c:idx val="{s["i"]}"/><c:order val="{s["i"]}"/>'
+        if s['col'] is not None:
+            out += (f'<c:tx><c:strRef><c:f>{b.href(s["col"])}</c:f>{_x_strcache([s["name"]])}</c:strRef></c:tx>')
+        else:
+            out += f'<c:tx><c:v>{_xe(s["name"])}</c:v></c:tx>'
+        if kind in ('line', 'scatter', 'radar'):
+            out += _x_sppr(False, s['line'], s['lw'], s['dash'], cap=s['cap'])
+        elif kind in ('pie',):
+            out += _x_sppr(s['fill'], s['line'], s['lw'], s['dash'], s['alpha'])
+        else:
+            out += _x_sppr(s['fill'], s['line'], s['lw'], s['dash'], s['alpha'], cap='flat')
+        if kind in ('bar', 'bubble'):
+            out += '<c:invertIfNegative val="0"/>'
+        if kind in ('line', 'scatter', 'radar'):
+            out += self._marker(s['marker'])
+        if kind == 'pie' and s['explosion'] is not None:
+            out += f'<c:explosion val="{s["explosion"]}"/>'
+        for k in sorted(s['dpts']):
+            p = s['dpts'][k]
+            dp = f'<c:dPt><c:idx val="{k}"/>'
+            if kind in ('bar', 'bubble'):
+                dp += '<c:invertIfNegative val="0"/>'
+            if kind in ('line', 'scatter', 'radar') and 'marker' in p:
+                dp += self._marker(p['marker'])
+            if kind == 'bubble':
+                dp += '<c:bubble3D val="0"/>'
+            if kind in ('line', 'scatter', 'radar'):
+                if 'line' in p or 'dash' in p:
+                    dp += _x_sppr(False, p.get('line', s['line']), p.get('lw', s['lw']), p.get('dash', s['dash']))
+            else:
+                dp += _x_sppr(p.get('fill', s['fill']), p.get('line', s['line'] if s['line'] is not False else None),
+                              p.get('lw', s['lw'] if s['line'] else 0.75), p.get('dash'), p.get('alpha', s['alpha']))
+            out += dp + '</c:dPt>'
+        if s['labels']:
+            out += self.dlbls(s['labels'], kind, n)
+        if s['trend'] and kind in ('scatter', 'line', 'bar', 'bubble', 'area'):
+            t = s['trend']
+            out += (f'<c:trendline>{_x_sppr(False, t.get("line", INK2), t.get("lw", 1.0), t.get("dash", "dash"))}'
+                    f'<c:trendlineType val="linear"/><c:dispRSqr val="0"/><c:dispEq val="0"/></c:trendline>')
+        for e in s['err'][: (2 if kind in ('scatter', 'bubble', 'area') else 1)]:
+            out += self._err(kind, e)
+        if kind in ('scatter', 'bubble'):
+            out += _x_ref('xVal', b.ref(s['x'][0]), s['x'][1])
+            out += _x_ref('yVal', b.ref(s['col']), s['vals'], s['fmt'])
+            if kind == 'bubble':
+                out += _x_ref('bubbleSize', b.ref(s['size'][0]), s['size'][1])
+                out += '<c:bubble3D val="0"/>'
+        else:
+            if s['cat'] is not None:
+                cvals = s['cat'][1]
+                numeric = all(isinstance(v, (int, float)) for v in cvals)
+                out += _x_ref('cat' if numeric else 'cat_str', b.ref(s['cat'][0], len(cvals)), cvals)
+            out += _x_ref('val', b.ref(s['col'], len(s['vals'])), s['vals'], s['fmt'])
+        if kind in ('line', 'scatter'):
+            out += f'<c:smooth val="{int(bool(s["smooth"]))}"/>'
+        return f'<c:ser>{out}</c:ser>'
+
+    def _err(self, kind, e):
+        """e = {dir: 'x'|'y', type: 'plus'|'minus'|'both', plus: (col, vals), minus: (col, vals), fixed: v, line, lw}."""
+        out = '<c:errBars>'
+        if kind in ('scatter', 'bubble'):
+            out += f'<c:errDir val="{e.get("dir", "y")}"/>'
+        out += f'<c:errBarType val="{e.get("type", "both")}"/>'
+        if e.get('fixed') is not None:
+            out += f'<c:errValType val="fixedVal"/><c:noEndCap val="{int(e.get("nocap", True))}"/>'
+            out += f'<c:val val="{e["fixed"]}"/>'
+        else:
+            out += f'<c:errValType val="cust"/><c:noEndCap val="{int(e.get("nocap", True))}"/>'
+            for side in ('plus', 'minus'):
+                if e.get(side):
+                    c, v = e[side]
+                    out += _x_ref(side, self.book.ref(c, len(v)), v)
+        out += _x_sppr(False, e.get('line', INK), e.get('lw', 1.0), e.get('dash'), cap='flat')
+        return out + '</c:errBars>'
+
+    # groups
+    def group(self, kind, series, axes=(1, 2), **o):
+        self.groups.append(dict(kind=kind, series=series, axes=axes, o=o))
+
+    def _group_xml(self, g):
+        k, S, o, ax = g['kind'], g['series'], g['o'], g['axes']
+        sers = ''.join(self._ser_xml(k, s) for s in S)
+        axx = ''.join(f'<c:axId val="{a}"/>' for a in ax)
+        if k == 'bar':
+            ov = o.get('overlap', 100 if o.get('grouping', 'clustered') != 'clustered' else 0)
+            return (f'<c:barChart><c:barDir val="{o.get("dir", "col")}"/><c:grouping val="{o.get("grouping", "clustered")}"/>'
+                    f'<c:varyColors val="0"/>{sers}<c:gapWidth val="{int(max(0, min(500, o.get("gap", 80))))}"/>'
+                    f'<c:overlap val="{int(ov)}"/>{axx}</c:barChart>')
+        if k == 'line':
+            hl = ''
+            if o.get('hilo'):
+                h = o['hilo']
+                hl = f'<c:hiLowLines>{_x_sppr(False, h.get("line", MUTE), h.get("lw", 2.5), cap="rnd")}</c:hiLowLines>'
+            return (f'<c:lineChart><c:grouping val="{o.get("grouping", "standard")}"/><c:varyColors val="0"/>{sers}'
+                    f'{hl}<c:marker val="1"/>{axx}</c:lineChart>')
+        if k == 'area':
+            return (f'<c:areaChart><c:grouping val="{o.get("grouping", "standard")}"/><c:varyColors val="0"/>{sers}'
+                    f'{axx}</c:areaChart>')
+        if k == 'scatter':
+            return (f'<c:scatterChart><c:scatterStyle val="lineMarker"/><c:varyColors val="0"/>{sers}{axx}'
+                    f'</c:scatterChart>')
+        if k == 'bubble':
+            return (f'<c:bubbleChart><c:varyColors val="0"/>{sers}<c:bubbleScale val="{int(o.get("scale", 100))}"/>'
+                    f'<c:showNegBubbles val="0"/><c:sizeRepresents val="area"/>{axx}</c:bubbleChart>')
+        if k == 'doughnut':
+            return (f'<c:doughnutChart><c:varyColors val="1"/>{sers}<c:firstSliceAng val="{int(o.get("first", 0))}"/>'
+                    f'<c:holeSize val="{int(o.get("hole", 62))}"/></c:doughnutChart>')
+        if k == 'pie':
+            return (f'<c:pieChart><c:varyColors val="1"/>{sers}<c:firstSliceAng val="{int(o.get("first", 0))}"/>'
+                    f'</c:pieChart>')
+        if k == 'radar':
+            return (f'<c:radarChart><c:radarStyle val="marker"/><c:varyColors val="0"/>{sers}{axx}</c:radarChart>')
+        raise ValueError(k)
+
+    # axes
+    def cat_ax(self, aid, cross, pos='b', line=INK, lw=0.75, delete=False, reverse=False, lbl='nextTo', size=10,
+               color=INK2, crosses='autoZero', skip=None, grid=False, date=False, rot=None, numfmt=None):
+        self.axes.append(('date' if date else 'cat', dict(aid=aid, cross=cross, pos=pos, line=line, lw=lw, delete=delete,
+                                                          reverse=reverse, lbl=lbl, size=size, color=color,
+                                                          crosses=crosses, skip=skip, grid=grid, rot=rot,
+                                                          numfmt=numfmt)))
+
+    def val_ax(self, aid, cross, lo=None, hi=None, step=None, fmt='General', pos='l', grid=True, delete=False,
+               reverse=False, crosses='autoZero', between='between', lbl='nextTo', size=10, color=INK2, line=None,
+               lw=0.75):
+        self.axes.append(('val', dict(aid=aid, cross=cross, lo=lo, hi=hi, step=step, fmt=fmt, pos=pos, grid=grid,
+                                      delete=delete, reverse=reverse, crosses=crosses, between=between, lbl=lbl,
+                                      size=size, color=color, line=line, lw=lw)))
+
+    def _ax_xml(self, kind, a):
+        sc = f'<c:orientation val="{"maxMin" if a["reverse"] else "minMax"}"/>'
+        if kind == 'val':
+            if a['hi'] is not None:
+                sc += f'<c:max val="{a["hi"]}"/>'
+            if a['lo'] is not None:
+                sc += f'<c:min val="{a["lo"]}"/>'
+        head = (f'<c:axId val="{a["aid"]}"/><c:scaling>{sc}</c:scaling><c:delete val="{int(a["delete"])}"/>'
+                f'<c:axPos val="{a["pos"]}"/>')
+        if a.get('grid'):
+            head += f'<c:majorGridlines>{_x_sppr(False, HAIR, 0.5, cap="flat")}</c:majorGridlines>'
+        cr = a['crosses']
+        crx = (f'<c:crossesAt val="{cr}"/>' if isinstance(cr, (int, float)) and not isinstance(cr, bool)
+               else f'<c:crosses val="{cr}"/>')
+        txp = self.tx(a['size'], a['color'], rot=a.get('rot'))
+        sp = _x_sppr(None, a['line'], a['lw'], cap='flat')
+        if kind == 'val':
+            nf = f'<c:numFmt formatCode="{_xe(a["fmt"])}" sourceLinked="0"/>'
+            mu = f'<c:majorUnit val="{a["step"]}"/>' if a['step'] else ''
+            return (f'<c:valAx>{head}{nf}<c:majorTickMark val="none"/><c:minorTickMark val="none"/>'
+                    f'<c:tickLblPos val="{a["lbl"]}"/>{sp}{txp}<c:crossAx val="{a["cross"]}"/>{crx}'
+                    f'<c:crossBetween val="{a["between"]}"/>{mu}</c:valAx>')
+        nf = f'<c:numFmt formatCode="{_xe(a["numfmt"])}" sourceLinked="0"/>' if a.get('numfmt') else ''
+        if kind == 'date':
+            return (f'<c:dateAx>{head}{nf}<c:majorTickMark val="none"/><c:minorTickMark val="none"/>'
+                    f'<c:tickLblPos val="{a["lbl"]}"/>{sp}{txp}<c:crossAx val="{a["cross"]}"/>{crx}<c:auto val="0"/>'
+                    f'<c:lblOffset val="100"/><c:baseTimeUnit val="days"/></c:dateAx>')
+        skip = f'<c:tickLblSkip val="{a["skip"]}"/>' if a.get('skip') else ''
+        return (f'<c:catAx>{head}{nf}<c:majorTickMark val="none"/><c:minorTickMark val="none"/>'
+                f'<c:tickLblPos val="{a["lbl"]}"/>{sp}{txp}<c:crossAx val="{a["cross"]}"/>{crx}<c:auto val="1"/>'
+                f'<c:lblAlgn val="ctr"/><c:lblOffset val="60"/>{skip}<c:noMultiLvlLbl val="0"/></c:catAx>')
+
+    def set_legend(self, x, y, w, h, hide=(), size=10, vary_hide=()):
+        self.legend = dict(x=x, y=y, w=w, h=h, hide=list(hide), size=size)
+
+    def xml(self, rid, frame, plot=None):
+        """frame = (x, y, w, h) of the graphic frame; plot = (x, y, w, h) of the inner plot area, both in inches."""
+        fx, fy, fw, fh = frame
+        lay = '<c:layout/>'
+        if plot:
+            px, py, pw, ph = plot
+            lay = ('<c:layout><c:manualLayout><c:layoutTarget val="inner"/><c:xMode val="edge"/><c:yMode val="edge"/>'
+                   f'<c:x val="{(px - fx) / fw:.5f}"/><c:y val="{(py - fy) / fh:.5f}"/>'
+                   f'<c:w val="{pw / fw:.5f}"/><c:h val="{ph / fh:.5f}"/></c:manualLayout></c:layout>')
+        groups = ''.join(self._group_xml(g) for g in self.groups)
+        axes = ''.join(self._ax_xml(k, a) for k, a in self.axes)
+        leg = ''
+        if self.legend:
+            L = self.legend
+            ents = ''.join(f'<c:legendEntry><c:idx val="{i}"/><c:delete val="1"/></c:legendEntry>' for i in L['hide'])
+            leg = (f'<c:legend><c:legendPos val="t"/>{ents}<c:layout><c:manualLayout><c:xMode val="edge"/>'
+                   f'<c:yMode val="edge"/><c:x val="{max(0, (L["x"] - fx) / fw):.5f}"/>'
+                   f'<c:y val="{max(0, (L["y"] - fy) / fh):.5f}"/><c:w val="{min(1, L["w"] / fw):.5f}"/>'
+                   f'<c:h val="{min(1, L["h"] / fh):.5f}"/></c:manualLayout></c:layout><c:overlay val="0"/>'
+                   f'<c:spPr><a:noFill/><a:ln><a:noFill/></a:ln></c:spPr>'
+                   f'{self.tx(L["size"], INK, med=True)}</c:legend>')
+        return (f'<c:chartSpace {C_NS}><c:date1904 val="0"/><c:lang val="{self.lang}"/><c:roundedCorners val="0"/>'
+                f'<c:chart><c:autoTitleDeleted val="1"/><c:plotArea>{lay}{groups}{axes}'
+                f'<c:spPr><a:noFill/><a:ln><a:noFill/></a:ln></c:spPr></c:plotArea>{leg}'
+                f'<c:plotVisOnly val="1"/><c:dispBlanksAs val="gap"/></c:chart>'
+                f'<c:spPr><a:noFill/><a:ln><a:noFill/></a:ln></c:spPr>{self.tx(10, INK2)}'
+                f'<c:externalData r:id="{rid}"><c:autoUpdate val="0"/></c:externalData></c:chartSpace>')
+
+    def place(self, shapes, frame, plot=None, name='Chart'):
+        """Create the graphic frame + chart part (python-pptx), then swap in our workbook and our chart XML."""
+        x, y, w, h = frame
+        cd = CategoryChartData()
+        cd.categories = ['a']
+        cd.add_series('s', [1])
+        gf = shapes.add_chart(XL_CHART_TYPE.COLUMN_CLUSTERED, E(x), E(y), E(w), E(h), cd)
+        gf.name = name
+        part = gf.chart_part
+        part.chart_workbook.update_from_xlsx_blob(self.book.blob())
+        rid = part._element.find(qn('c:externalData')).get(qn('r:id'))
+        part._element = parse_xml(self.xml(rid, frame, plot).encode('utf-8'))
+        return gf
+
+
+def _nf(dec=1, unit='', sign=False):
+    """Excel number format: thousands separator, `dec` decimals, literal unit, U+2212 minus. Excel/PowerPoint render
+    the separators in the viewer's locale (VI shows 2.650,1, EN shows 2,650.1)."""
+    b = '#,##0' + ('.' + '0' * dec if dec else '')
+    u = f'"{unit}"' if unit else ''
+    if sign:
+        return f'+{b}{u};"−"{b}{u};{b}{u}'
+    return f'{b}{u};"−"{b}{u}'
+
+
+def squarify(values, x, y, w, h):
+    """Squarified treemap (Bruls et al.): values sorted descending -> list of (x, y, w, h) in the same order."""
+    vals = [max(v, 0) for v in values]
+    tot = sum(vals) or 1
+    area = [v / tot * w * h for v in vals]
+    rects, i = [], 0
+
+    def worst(row, side):
+        s = sum(row)
+        return max(max(side * side * r / (s * s), (s * s) / (side * side * r)) for r in row) if s else 1e9
+    while i < len(area):
+        side = min(w, h)
+        row = [area[i]]
+        j = i + 1
+        while j < len(area) and worst(row + [area[j]], side) <= worst(row, side):
+            row.append(area[j])
+            j += 1
+        s = sum(row)
+        if w >= h:                                   # lay the row as a column on the left
+            cw = s / h if h else 0
+            yy = y
+            for r in row:
+                rh = r / cw if cw else 0
+                rects.append((x, yy, cw, rh))
+                yy += rh
+            x, w = x + cw, w - cw
+        else:                                        # lay the row along the top
+            rh = s / w if w else 0
+            xx = x
+            for r in row:
+                rw = r / rh if rh else 0
+                rects.append((xx, y, rw, rh))
+                xx += rw
+            y, h = y + rh, h - rh
+        i = j
+    return rects
+
+
+def _quart(vals, q):
+    """Inclusive quartile (Excel QUARTILE.INC)."""
+    v = sorted(vals)
+    pos = (len(v) - 1) * q
+    lo = int(math.floor(pos))
+    hi = min(lo + 1, len(v) - 1)
+    return v[lo] + (v[hi] - v[lo]) * (pos - lo)
+
+
+class _Native:
+    """Native, data-editable chart builders. Each `_n_<type>(s, x, y, w, h, sp)` writes one real PowerPoint chart (or
+    a native table, or a grid of native charts) into the box (x, y, w, h) on slide s."""
+
+    # ── geometry helpers ──
+    def _yscale(self, vals, sp, zero=False, n=4):
+        vv = [v for v in vals if v is not None]
+        lo, hi = (min(vv), max(vv)) if vv else (0, 1)
+        if sp.get('y_min') is not None:
+            lo = sp['y_min']
+        if sp.get('y_max') is not None:
+            hi = sp['y_max']
+        a, b, ticks, st = nice(lo, hi, sp.get('ticks', n), zero)
+        if sp.get('y_min') is not None:
+            a = sp['y_min']
+        if sp.get('y_max') is not None:
+            b = sp['y_max']
+        dt = sp.get('tick_dec', step_dec(st))
+        k = math.floor(a / st + 1e-9)
+        tl = [t for t in (st * i for i in range(k, k + 200)) if a - 1e-9 <= t <= b + 1e-9]
+        lw = max(self.tw(self.num(t, dt) + sp.get('tick_unit', ''), 10, 'ui') for t in tl) + 0.14
+        return a, b, st, dt, lw
+
+    def _legend_w(self, items):
+        """items: [(name, kind)] -> (width, rows) of a native legend laid out left to right."""
+        return sum(self.tw(nm, 10, 'ui_med') + (0.46 if k == 'line' else 0.24) + 0.26 for nm, k in items) + 0.1
+
+    def _put_legend(self, X, x, y, w, items, hide=()):
+        lw = self._legend_w(items)
+        rows = 1 if lw <= w else 2
+        X.set_legend(x - 0.04, y, min(lw / rows + 0.4, w), 0.27 * rows, hide=hide)
+        return 0.27 * rows + 0.14
+
+    def _skip(self, cats, pw, size=10):
+        n = len(cats)
+        if not n:
+            return None
+        widest = max(self.tw(str(c), size, 'ui') for c in cats) + 0.12
+        step = 1
+        while step < n and widest > pw / n * step:
+            step += 1
+        return step if step > 1 else None
+
+    def _xs(self, n, px, pw, mid=False):
+        """Category centres: mid=True for 'midCat' (points on the edges), else 'between' (slot centres)."""
+        if mid:
+            return [px + (k * pw / (n - 1) if n > 1 else pw / 2) for k in range(n)]
+        return [px + (k + 0.5) * pw / n for k in range(n)]
+
+    def _gap(self, slot, m=1, max_t=BAR_MAX, frac=0.62):
+        t = min(max_t, slot * frac / m)
+        return max(0, min(500, (slot - m * t) / t * 100)), t
+
+    def _ann_n(self, s, pts, frame):
+        """Annotation overlay for native charts: pts = [(px, py, text, tier, dx, dy)] in slide inches."""
+        if not pts:
+            return
+        cv = _Cv(self, s, *frame, name='Chart annotations')
+        for px, py, text, tier, dx, dy in pts:
+            self._ann(cv, px, py, text, tier, dx, dy)
+
+    def _end_offsets(self, items, gap, lo, hi, fh):
+        """items: [(key, y_in)] -> {key: dy as a fraction of the frame height} so end labels never collide."""
+        L = spread([[yy, k, yy] for k, yy in items], gap, lo, hi)
+        return {k: (yy - y0) / fh for yy, k, y0 in L}
+
+    # ── line, multi-line highlight, fan ──
+    def _n_line(self, s, x, y, w, h, sp):
+        cats, S = [str(c) for c in sp['categories']], sp['series']
+        n, dec, unit = len(cats), sp.get('dec', 1), sp.get('unit', '')
+        cols = [MUTE if q.get('muted') else q.get('color', PALETTE[i % len(PALETTE)]) for i, q in enumerate(S)]
+        band, ff, refs = sp.get('band'), sp.get('forecast_from'), sp.get('refs', [])
+        allv = [v for q in S for v in q['values'] if v is not None] + [r['value'] for r in refs]
+        if band:
+            allv += [v for v in band['low'] + band['high'] if v is not None]
+        lo, hi, st, dt, lw = self._yscale(allv, sp, zero=sp.get('zero', False))
+        b = _Book()
+        cc = b.add(None, cats)
+        X = _XChart(self, b)
+        cat = (cc, cats)
+        leg = [(q['name'], 'line') for q in S if q.get('name')] + ([(band.get('name', self.T['band80']), 'rect')]
+                                                                  if band else [])
+        top = y
+        if len(leg) > 1 and sp.get('legend', True):
+            top += self._put_legend(X, x, y, w, leg)
+        if sp.get('y_title'):
+            top += 0.28
+        ends = []
+        for i, q in enumerate(S):
+            v = q['values']
+            last = max([k for k in range(n) if v[k] is not None], default=None)
+            if q.get('end_label', True) and last is not None:
+                lab = q.get('label', q['name'])
+                ends.append((i, last, (lab + ' ' if lab else '') + self.num(v[last], dec) + unit))
+        rp = max([self.tw(t, 10, 'ui_semi') for _, _, t in ends] + [0]) + 0.25
+        px, py = x + lw, top + 0.08
+        pw, ph = w - lw - rp, y + h - 0.36 - py
+        mid = not (ff is not None and 0 < ff < n)
+        xs = self._xs(n, px, pw, mid)
+        sy = lambda v: py + ph - (v - lo) / ((hi - lo) or 1) * ph
+        groups_bar, groups_area, sers = [], [], []
+        hidden = []
+        if not mid:                                     # forecast zone: full-height columns behind the lines
+            zc = b.add(sp.get('forecast_label', self.T['forecast']), [hi if k >= ff else None for k in range(n)])
+            z = X.ser(sp.get('forecast_label', self.T['forecast']), zc, b.cols[zc][1], cat, fill=ZONE, line=None)
+            groups_bar.append(z)
+            hidden.append(z['i'])
+        if band:
+            lc = b.add(band.get('low_name', 'Cận dưới' if self.lang == 'vi' else 'Lower bound'), band['low'])
+            hc = len(b.cols) + 1
+            forms = [None if (l_ is None or h_ is None) else f'={b.cell(hc, k)}-{b.cell(lc, k)}'
+                     for k, (l_, h_) in enumerate(zip(band['low'], band['high']))]
+            bc = b.add(band.get('name', self.T['band80']),
+                       [None if (l_ is None or h_ is None) else h_ - l_ for l_, h_ in zip(band['low'], band['high'])],
+                       formulas=forms)
+            b.add(band.get('high_name', 'Cận trên' if self.lang == 'vi' else 'Upper bound'), band['high'])
+            l_ = X.ser(b.cols[lc][0], lc, b.cols[lc][1], cat, fill=None, line=None)
+            u_ = X.ser(band.get('name', self.T['band80']), bc, b.cols[bc][1], cat,
+                       fill=band.get('color', BLUE), alpha=0.22, line=None)
+            groups_area += [l_, u_]
+            hidden.append(l_['i'])
+        offs = self._end_offsets([(i, sy(S[i]['values'][k])) for i, k, _ in ends], 0.22, py - 0.05, py + ph + 0.05,
+                                 h)
+        for i, q in enumerate(S):
+            c = cols[i]
+            v = q['values']
+            col = b.add(q['name'], v, fmt=_nf(dec))
+            dp = {}
+            df = q.get('dash_from')
+            if df is not None:
+                for k in range(df, n):
+                    dp[k] = {'dash': 'dash'}
+            mk = q.get('markers', sp.get('markers', 'last'))
+            msize = 6
+            last = max([k for k in range(n) if v[k] is not None], default=None)
+            hollow = bool(q.get('dashed'))
+            mkr = {'symbol': 'circle', 'size': msize, 'fill': PAPER if hollow else c, 'line': c if hollow else PAPER,
+                   'lw': 1.25 if hollow else 0.75}
+            marker = mkr if mk == 'all' else None
+            if mk == 'last' and not q.get('muted') and last is not None:
+                dp.setdefault(last, {})['marker'] = mkr
+            lab = None
+            e = [t for t in ends if t[0] == i]
+            if e:
+                _, k, t = e[0]
+                lab = {'show': ('ser', 'val') if q.get('label', q['name']) else ('val',), 'only': [k],
+                       'pos': 'r', 'fmt': _nf(dec, unit), 'color': INK2 if q.get('muted') else INK, 'size': 10,
+                       'off': {k: (0, offs.get(i, 0))}}
+                if q.get('label') is not None and q.get('label') != q['name']:
+                    lab['text'] = {k: t}
+            sers.append(X.ser(q['name'], col, v, cat, line=c, lw=q.get('width', 1.75 if q.get('muted') else 2.0),
+                              dash='dash' if q.get('dashed') else None, marker=marker, dpts=dp, labels=lab))
+        for r in refs:
+            rc = b.add(r.get('label', 'Ref'), [r['value']] * n)
+            rs = X.ser(r.get('label', 'Ref'), rc, b.cols[rc][1], cat, line=INK2, lw=1.0, dash='dash',
+                       labels={'text': {0: r['label']}, 'pos': 't', 'color': INK2, 'semi': False, 'size': 9.5}
+                       if r.get('label') else None)
+            sers.append(rs)
+            hidden.append(rs['i'])
+        if X.legend:
+            X.legend['hide'] = hidden
+        if groups_bar:
+            X.group('bar', groups_bar, gap=0)
+        if groups_area:
+            X.group('area', groups_area, grouping='stacked')
+        sers.sort(key=lambda q: 0 if q['line'] in (MUTE, INK2) else 1)    # muted and reference lines behind
+        X.group('line', sers)
+        X.cat_ax(1, 2, line=INK if lo <= 0 <= hi or sp.get('zero') else BASE, skip=self._skip(cats, pw))
+        X.val_ax(2, 1, lo, hi, st, _nf(dt) if not sp.get('tick_unit') else _nf(dt, sp['tick_unit']),
+                 between='midCat' if mid else 'between')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · line')
+        cv = _Cv(self, s, x, y, w, 0.3, 'Chart labels')
+        if sp.get('y_title'):
+            cv.label(x, top - 0.2, sp['y_title'], 9.5, 'ui', INK2)
+        if not mid:
+            cv.label(xs[ff] - pw / n / 2 + 0.08, py + 0.12, sp.get('forecast_label', self.T['forecast']), 9, 'ui_semi',
+                     INK2, caps=True, spacing=0.8)
+        pts = []
+        for a in sp.get('annotations', []):
+            q = S[a.get('series', 0)]
+            k = a['at']
+            v = a.get('value', q['values'][k])
+            if v is not None:
+                pts.append((xs[k], sy(v), a['text'], a.get('tier', 'pri'), a.get('dx', 0.3), a.get('dy', -0.45)))
+        self._ann_n(s, pts, (x, y, w, h))
+        return gf
+
+    def _n_fan(self, s, x, y, w, h, sp):
+        n_act = len(sp['actual'])
+        cats = sp['categories']
+        a = sp['actual']
+        act = list(a) + [None] * (len(cats) - n_act)
+        base = [None] * (n_act - 1) + [a[-1]] + list(sp['base'])
+        low = [None] * (n_act - 1) + [a[-1]] + list(sp['low'])
+        high = [None] * (n_act - 1) + [a[-1]] + list(sp['high'])
+        nm = sp.get('names', {})
+        ln = dict(sp, type='line', series=[
+            {'name': nm.get('actual', ''), 'values': act, 'color': sp.get('color', INK), 'end_label': False},
+            {'name': nm.get('base', self.T['forecast']), 'values': base, 'color': sp.get('color2', BLUE),
+             'dashed': True, 'label': ''}],
+            band={'low': low, 'high': high, 'name': nm.get('band', self.T['band80']), 'color': sp.get('color2', BLUE)},
+            forecast_from=sp.get('forecast_from', n_act))
+        return self._n_line(s, x, y, w, h, ln)
+
+    # ── step line (scatter with duplicated points) ──
+    def _n_step(self, s, x, y, w, h, sp):
+        S = sp['series']
+        dec, unit = sp.get('dec', 2), sp.get('unit', '')
+        b = _Book()
+        X = _XChart(self, b)
+        allv = [p[1] for q in S for p in q['points']]
+        lo, hi, st, dt, lw = self._yscale(allv, sp, zero=sp.get('zero', True))
+        xa, xb = sp['x_min'], sp['x_max']
+        top = y
+        leg = [(q['name'], 'line') for q in S]
+        if len(S) > 1:
+            top += self._put_legend(X, x, y, w, leg)
+        ends = []
+        for i, q in enumerate(S):
+            P = sorted(q['points'])
+            last = P[-1][1]
+            ends.append((i, last, f"{q.get('label', q['name'])} {self.num(last, dec)}{unit}"))
+        rp = max(self.tw(t, 10, 'ui_semi') for _, _, t in ends) + 0.25
+        px, py, pw, ph = x + lw, top + 0.1, w - lw - rp, y + h - 0.4 - top - 0.1
+        sy = lambda v: py + ph - (v - lo) / ((hi - lo) or 1) * ph
+        offs = self._end_offsets([(i, sy(v)) for i, v, _ in ends], 0.22, py, py + ph, h)
+        sers = []
+        for i, q in enumerate(S):
+            P = sorted(q['points'])
+            xs_, ys_ = [], []
+            for k, (px_, pv) in enumerate(P):
+                if k:
+                    xs_.append(px_)
+                    ys_.append(P[k - 1][1])
+                xs_.append(px_)
+                ys_.append(pv)
+            xs_.append(q.get('until', xb))
+            ys_.append(P[-1][1])
+            cx = b.add((q['name'] + ' · x'), xs_, fmt='0.00')
+            cy = b.add(q['name'], ys_, fmt=_nf(dec))
+            c = q.get('color', PALETTE[i % len(PALETTE)])
+            last = len(xs_) - 1
+            sers.append(X.ser(q['name'], cy, ys_, x=(cx, xs_), line=c, lw=2.0, cap='flat',
+                              dpts={last: {'marker': {'symbol': 'circle', 'size': 6, 'fill': c}}},
+                              labels={'show': ('ser', 'val'), 'only': [last], 'pos': 'r', 'fmt': _nf(dec, unit),
+                                      'color': INK, 'off': {last: (0, offs.get(i, 0))},
+                                      'text': {last: ends[i][2]}}))
+        X.group('scatter', sers)
+        X.val_ax(1, 2, xa, xb, sp.get('x_step', 1), sp.get('x_fmt', '0'), pos='b', grid=False, line=BASE, color=INK2)
+        X.val_ax(2, 1, lo, hi, st, _nf(dt), crosses=xa if False else 'autoZero')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · step line')
+        sx = lambda v: px + (v - xa) / ((xb - xa) or 1) * pw
+        self._ann_n(s, [(sx(a['x']), sy(a['y']), a['text'], a.get('tier', 'pri'), a.get('dx', 0.3), a.get('dy', -0.4))
+                        for a in sp.get('annotations', [])], (x, y, w, h))
+        return gf
+
+    # ── area: single, stacked, 100% stacked ──
+    def _n_area(self, s, x, y, w, h, sp, grouping=None):
+        cats, S = [str(c) for c in sp['categories']], sp['series']
+        n, dec, unit = len(cats), sp.get('dec', 0), sp.get('unit', '')
+        grouping = grouping or sp.get('grouping', 'stacked' if len(S) > 1 else 'standard')
+        pct = grouping == 'percentStacked'
+        cols = [MUTE if q.get('muted') else q.get('color', PALETTE[i % len(PALETTE)]) for i, q in enumerate(S)]
+        tot = [sum((q['values'][k] or 0) for q in S) for k in range(n)]
+        b = _Book()
+        cc = b.add(None, cats)
+        X = _XChart(self, b)
+        top = y
+        if len(S) > 1:
+            top += self._put_legend(X, x, y, w, [(q['name'], 'rect') for q in S])
+        if sp.get('y_title'):
+            top += 0.28
+        if pct:
+            lo, hi, st, dt, lw = 0, 1, 0.25, 0, self.tw('100%', 10, 'ui') + 0.14
+            fmt = '0%'
+        else:
+            lo, hi, st, dt, lw = self._yscale((tot if grouping == 'stacked' else [v for q in S for v in q['values']])
+                                              + [0], sp, zero=True)
+            fmt = _nf(dt)
+        labels = [f"{q.get('label', q['name'])} {self.num((q['values'][-1] or 0) / (tot[-1] or 1) * 100, 0)}%"
+                  if len(S) > 1 else self.num(q['values'][-1], dec) + unit for q in S]
+        rp = max(self.tw(t, 10, 'ui_semi') for t in labels) + 0.3
+        px, py, pw, ph = x + lw, top + 0.08, w - lw - rp, y + h - 0.36 - top - 0.08
+        sers = []
+        for i, q in enumerate(S):
+            col = b.add(q['name'], q['values'], fmt=_nf(dec))
+            sers.append(X.ser(q['name'], col, q['values'], (cc, cats), fill=cols[i], line=PAPER if len(S) > 1 else cols[i],
+                              lw=1.0 if len(S) > 1 else 2.0, alpha=None if len(S) > 1 else 0.85))
+        X.group('area', sers, grouping=grouping)
+        X.cat_ax(1, 2, line=INK, skip=self._skip(cats, pw))
+        X.val_ax(2, 1, lo, hi, st, fmt, between='midCat')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · area')
+        sy = lambda v: py + ph - (v - lo) / ((hi - lo) or 1) * ph
+        cv = _Cv(self, s, x, y, w, h, 'Chart labels')
+        if sp.get('y_title'):
+            cv.label(x, top - 0.2, sp['y_title'], 9.5, 'ui', INK2)
+        cum, mids = 0.0, []
+        for i, q in enumerate(S):
+            v = q['values'][-1] or 0
+            share = v / (tot[-1] or 1)
+            a0, a1 = (cum, cum + share) if pct else (cum * tot[-1], (cum + share) * tot[-1])
+            if grouping == 'standard':
+                a0, a1 = v, v
+            mids.append([sy((a0 + a1) / 2), i])
+            cum += share
+        spread(mids, 0.22, py, py + ph)
+        for yy, i in mids:
+            cv.label(px + pw + 0.1, yy, labels[i], 10, 'ui_semi', INK)
+        for a in sp.get('annotations', []):
+            k = a['at']
+            v = a.get('value', tot[k])
+            self._ann(cv, self._xs(n, px, pw, True)[k], sy(v), a['text'], a.get('tier', 'pri'), a.get('dx', 0.3),
+                      a.get('dy', -0.4))
+        return gf
+
+    def _n_area100(self, s, x, y, w, h, sp):
+        return self._n_area(s, x, y, w, h, sp, 'percentStacked')
+
+    # ── columns and bars ──
+    def _n_bar(self, s, x, y, w, h, sp, horizontal=False, grouping='clustered'):
+        cats = [str(c) for c in sp['categories']]
+        S = sp.get('series') or [{'name': sp.get('name', ''), 'values': sp['values'], 'color': sp.get('color', BLUE)}]
+        n, m = len(cats), len(S)
+        dec, unit = sp.get('dec', 1), sp.get('unit', '')
+        stacked = grouping != 'clustered'
+        pct = grouping == 'percentStacked'
+        hi_ = sp.get('highlight')
+        hi_ = set(hi_ if isinstance(hi_, (list, tuple)) else ([] if hi_ is None else [hi_]))
+        basis = sp.get('basis') or [None] * n
+        cols = [MUTE if q.get('muted') else q.get('color', PALETTE[i % len(PALETTE)]) for i, q in enumerate(S)]
+        if m == 1 and not stacked:
+            cols = [S[0].get('color', sp.get('color', BLUE))]
+        tots = [sum((q['values'][k] or 0) for q in S) for k in range(n)]
+        b = _Book()
+        cc = b.add(None, cats)
+        cat = (cc, cats)
+        X = _XChart(self, b)
+        top = y
+        leg = [(q['name'], 'rect') for q in S] if m > 1 else []
+        if any(bb in ('estimate', 'plan') for bb in basis):
+            leg.append((sp.get('basis_label', self.T['estimate'] + ' / ' + self.T['plan']), 'rect'))
+        hidden = []
+        if leg:
+            top += self._put_legend(X, x, y, w, leg)
+        if sp.get('y_title') and not horizontal:
+            top += 0.28
+        allv = [v for q in S for v in q['values'] if v is not None]
+        show_totals = stacked and not pct and sp.get('totals', True)
+        if pct:
+            lo, hi, st, dt = 0, 1, 0.25, 0
+            lw = self.tw('100%', 10, 'ui') + 0.14
+            afmt = '0%'
+        else:
+            lo, hi, st, dt, lw = self._yscale((tots if stacked else allv) + [0], sp, zero=True)
+            afmt = _nf(dt)
+        lab = sp.get('labels', 'auto')
+        vfmt = _nf(dec, unit, sp.get('sign', False))
+        sers = []
+        if not horizontal:
+            px, py = x + lw, top + 0.12
+            pw, ph = w - lw - 0.1, y + h - py - (0.62 if any(len(c) > 9 for c in cats) and n > 6 else 0.36)
+            slot = pw / n
+            gap, t = self._gap(slot, 1 if stacked else m)
+        else:
+            lwc = min(sp.get('label_w', 3.4), max(self.tw(c, 10.5, 'ui_med') for c in cats) + 0.2)
+            vw = (max(self.tw(self.num(v, dec, sp.get('sign', False)) + unit, 10, 'ui_semi') for v in
+                      (tots if show_totals else allv)) + 0.2) if not pct else 0.15
+            axis = sp.get('axis', stacked and not pct)
+            px, py = x + lwc, top + (0.05 if not axis else 0.05)
+            pw, ph = w - lwc - vw, y + h - py - (0.32 if axis else 0.05)
+            slot = ph / n
+            gap, t = self._gap(slot, 1 if stacked else m, BAR_MAX * 0.9, 0.64)
+        for j, q in enumerate(S):
+            col = b.add(q['name'], q['values'], fmt=_nf(dec))
+            c = cols[j]
+            dp = {}
+            for k in range(n):
+                fillk = c
+                if m == 1 and not stacked and hi_ and k not in hi_:
+                    fillk = MUTE
+                if basis[k] in ('estimate', 'plan'):
+                    dp[k] = {'fill': mix(fillk, 'FFFFFF', 0.78), 'line': fillk if fillk != MUTE else INK3, 'lw': 1.0,
+                             'dash': 'sysDash'}
+                elif fillk != c:
+                    dp[k] = {'fill': fillk}
+            labels = None
+            vals = q['values']
+            if not stacked and lab not in (False, 'none'):
+                only = []
+                for k in range(n):
+                    if vals[k] is None:
+                        continue
+                    txt = self.num(vals[k], dec, sp.get('sign', False)) + unit
+                    fits = (slot / m > self.tw(txt, 9.5, 'ui_semi') + 0.06) if not horizontal else True
+                    if lab is True or lab == 'all' or (lab == 'auto' and (fits or k in hi_ or k == n - 1)) or \
+                            (lab == 'hi' and k in hi_):
+                        only.append(k)
+                labels = {'show': ('val',), 'pos': 'outEnd', 'fmt': vfmt, 'only': only, 'size': 9.5,
+                          'color': INK2, 'color_at': {k: INK for k in hi_}}
+            elif pct and lab is not False:
+                only = [k for k in range(n) if vals[k] and (vals[k] / (tots[k] or 1)) * pw > 0.45]
+                labels = {'show': ('val',), 'pos': 'ctr', 'fmt': _nf(sp.get('dec', 0), '%'), 'only': only,
+                          'size': 9.5, 'color': on(c),
+                          'text': {k: self.num(vals[k] / tots[k] * 100, sp.get('dec', 0)) + '%' for k in only}}
+                if not horizontal:
+                    labels['only'] = [k for k in range(n) if vals[k] and vals[k] / (tots[k] or 1) * ph > 0.22]
+                    labels['text'] = {k: self.num(vals[k] / tots[k] * 100, sp.get('dec', 0)) + '%'
+                                      for k in labels['only']}
+            sers.append(X.ser(q['name'], col, vals, cat, fill=c, line=PAPER if stacked else None,
+                              lw=1.0 if stacked else 0.75, dpts=dp, labels=labels))
+        X.group('bar', sers, dir='bar' if horizontal else 'col', grouping=grouping, gap=gap,
+                overlap=100 if stacked else (sp.get('overlap', -8 if m > 1 else 0)))
+        if show_totals:                                # invisible clustered twin on secondary axes carries totals
+            forms = ['=' + '+'.join(b.cell(1 + j, k) for j in range(m)) for k in range(n)]
+            tc = b.add(sp.get('total_name', 'Tổng' if self.lang == 'vi' else 'Total'), tots, fmt=_nf(dec),
+                       formulas=forms)
+            ts = X.ser(b.cols[tc][0], tc, tots, cat, fill=None, line=None,
+                       labels={'show': ('val',), 'pos': 'outEnd', 'fmt': _nf(dec, unit), 'size': 9.5, 'color': INK2})
+            X.group('bar', [ts], axes=(3, 4), dir='bar' if horizontal else 'col', gap=gap)
+            hidden.append(ts['i'])
+        if X.legend:
+            X.legend['hide'] = hidden
+        if not horizontal:
+            X.cat_ax(1, 2, line=INK, skip=self._skip(cats, pw) if not sp.get('wrap') else None)
+            X.val_ax(2, 1, lo, hi, st, afmt, grid=sp.get('grid', True), delete=sp.get('value_axis') is False)
+            if show_totals:
+                X.cat_ax(3, 4, delete=True)
+                X.val_ax(4, 3, lo, hi, st, afmt, grid=False, delete=True, pos='r', crosses='max')
+        else:
+            X.cat_ax(1, 2, pos='l', reverse=True, line=INK if lo == 0 else None, lbl='low', size=10.5, color=INK)
+            X.val_ax(2, 1, lo, hi, st, afmt, pos='b', grid=axis, delete=not axis, crosses='max')
+            if show_totals:
+                X.cat_ax(3, 4, pos='l', reverse=True, delete=True)
+                X.val_ax(4, 3, lo, hi, st, afmt, pos='t', grid=False, delete=True, crosses='max')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · ' + ('bar' if horizontal else 'column'))
+        if sp.get('y_title') and not horizontal:
+            _Cv(self, s, x, y, w, h, 'Chart labels').label(x, top - 0.2, sp['y_title'], 9.5, 'ui', INK2)
+        pts = []
+        xs = self._xs(n, px, pw)
+        sy = lambda v: py + ph - (v - lo) / ((hi - lo) or 1) * ph
+        for a in sp.get('annotations', []):
+            k = a['at']
+            v = S[a.get('series', 0)]['values'][k]
+            pts.append((xs[k], sy(v) - 0.25, a['text'], a.get('tier', 'pri'), a.get('dx', 0.3), a.get('dy', -0.3)))
+        self._ann_n(s, pts, (x, y, w, h))
+        return gf
+
+    def _n_barh(self, s, x, y, w, h, sp):
+        return self._n_bar(s, x, y, w, h, sp, horizontal=True)
+
+    def _n_stacked(self, s, x, y, w, h, sp):
+        return self._n_bar(s, x, y, w, h, sp, grouping='stacked')
+
+    def _n_stacked100(self, s, x, y, w, h, sp):
+        return self._n_bar(s, x, y, w, h, sp, grouping='percentStacked')
+
+    def _n_stacked_h(self, s, x, y, w, h, sp):
+        return self._n_bar(s, x, y, w, h, sp, horizontal=True, grouping='stacked')
+
+    def _n_stacked100_h(self, s, x, y, w, h, sp):
+        return self._n_bar(s, x, y, w, h, sp, horizontal=True, grouping='percentStacked')
+
+    def _n_histogram(self, s, x, y, w, h, sp):
+        """data = raw values, edges = bin edges; counts are COUNTIFS formulas over the raw column in the workbook."""
+        data, E_ = sp['data'], sp['edges']
+        nb = len(E_) - 1
+        cats = sp.get('bin_labels') or [f'{self.num(E_[i], sp.get("edge_dec", 0))}–{self.num(E_[i + 1], sp.get("edge_dec", 0))}'
+                                       for i in range(nb)]
+        counts = [sum(1 for v in data if E_[i] <= v < E_[i + 1] or (i == nb - 1 and v == E_[-1])) for i in range(nb)]
+        b = _Book()
+        cc = b.add(sp.get('x_title', 'Khoảng'), cats)
+        lo_c, hi_c = b.add('Từ' if self.lang == 'vi' else 'From', E_[:-1]), b.add('Đến' if self.lang == 'vi' else 'To', E_[1:])
+        rawc = 4
+        raw_ref = f'${_colname(rawc)}$2:${_colname(rawc)}${len(data) + 1}'
+        forms = [f'=COUNTIFS({raw_ref},">="&{b.cell(lo_c, i)},{raw_ref},"<"&{b.cell(hi_c, i)})' for i in range(nb)]
+        vc = b.add(sp.get('name', 'Số lượng' if self.lang == 'vi' else 'Count'), counts, fmt='0', formulas=forms)
+        b.add(sp.get('data_name', 'Dữ liệu' if self.lang == 'vi' else 'Data'), data)
+        X = _XChart(self, b)
+        lo, hi, st, dt, lw = self._yscale(counts + [0], {}, zero=True)
+        st = max(1, st)
+        top = y + (0.28 if sp.get('y_title') else 0)
+        px, py, pw, ph = x + lw, top + 0.1, w - lw - 0.1, y + h - top - 0.1 - 0.4
+        hi_ = sp.get('highlight', [])
+        dp = {k: {'fill': MUTE} for k in range(nb) if hi_ and k not in hi_}
+        X.group('bar', [X.ser(b.cols[vc][0], vc, counts, (cc, cats), fill=sp.get('color', BLUE), line=PAPER, lw=1.5,
+                              dpts=dp, labels={'show': ('val',), 'pos': 'outEnd', 'fmt': '0', 'size': 9.5,
+                                               'only': [k for k in range(nb) if counts[k]]})], gap=4)
+        X.cat_ax(1, 2, line=INK)
+        X.val_ax(2, 1, 0, hi, st, '0')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · histogram')
+        cv = _Cv(self, s, x, y, w, h, 'Chart labels')
+        if sp.get('y_title'):
+            cv.label(x, y + 0.08, sp['y_title'], 9.5, 'ui', INK2)
+        if sp.get('x_title'):
+            cv.label(px + pw, y + h - 0.02, sp['x_title'], 9.5, 'ui', INK2, ha='r', va='b')
+        return gf
+
+    def _n_diverging(self, s, x, y, w, h, sp):
+        cats = [str(c) for c in sp['categories']]
+        vals = sp['values']
+        n, dec, unit = len(cats), sp.get('dec', 1), sp.get('unit', '')
+        b = _Book()
+        cc = b.add(None, cats)
+        vc = b.add(sp.get('name', 'Giá trị' if self.lang == 'vi' else 'Value'), vals, fmt=_nf(dec))
+        pos_n, neg_n = sp.get('pos_label', '> 0'), sp.get('neg_label', '< 0')
+        pc = b.add(pos_n, [v if v is not None and v >= 0 else None for v in vals], fmt=_nf(dec),
+                   formulas=[f'=IF({b.cell(vc, k)}>=0,{b.cell(vc, k)},NA())' for k in range(n)])
+        nc = b.add(neg_n, [v if v is not None and v < 0 else None for v in vals], fmt=_nf(dec),
+                   formulas=[f'=IF({b.cell(vc, k)}<0,{b.cell(vc, k)},NA())' for k in range(n)])
+        X = _XChart(self, b)
+        top = y + self._put_legend(X, x, y, w, [(pos_n, 'rect'), (neg_n, 'rect')])
+        vv = [v for v in vals if v is not None]
+        a_, b_, st, dt, _ = self._yscale(vv + [0], {}, zero=True)
+        lwc = max(self.tw(c, 10.5, 'ui_med') for c in cats) + 0.2
+        vw = max(self.tw(self.num(v, dec, True) + unit, 10, 'ui_semi') for v in vv) + 0.18
+        px, py, pw, ph = x + lwc + vw, top + 0.05, w - lwc - 2 * vw, y + h - top - 0.1
+        slot = ph / n
+        gap, _ = self._gap(slot, 1, BAR_MAX * 0.9, 0.64)
+        lab = {'show': ('val',), 'pos': 'outEnd', 'fmt': _nf(dec, unit, True), 'size': 10, 'color': INK}
+        X.group('bar', [X.ser(pos_n, pc, b.cols[pc][1], (cc, cats), fill=sp.get('pos_color', BLUE), labels=lab),
+                        X.ser(neg_n, nc, b.cols[nc][1], (cc, cats), fill=sp.get('neg_color', REDS), labels=lab)],
+                dir='bar', gap=gap, overlap=100)
+        X.cat_ax(1, 2, pos='l', reverse=True, lbl='low', line=INK2, lw=1.0, size=10.5, color=INK)
+        X.val_ax(2, 1, a_, b_, st, _nf(dt), pos='b', grid=False, delete=True, crosses='max')
+        return X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · diverging bar')
+
+    def _n_lollipop(self, s, x, y, w, h, sp):
+        """Line series with markers only (the heads) + minus error bars of the value's own length (the sticks)."""
+        cats = [str(c) for c in sp['categories']]
+        vals = sp['values']
+        n, dec, unit = len(cats), sp.get('dec', 1), sp.get('unit', '')
+        hi_ = set(sp.get('highlight', []))
+        b = _Book()
+        cc = b.add(None, cats)
+        vc = b.add(sp.get('name', 'Giá trị'), vals, fmt=_nf(dec))
+        sc = b.add('Que (= giá trị)' if self.lang == 'vi' else 'Stick (= value)', vals,
+                   formulas=[f'={b.cell(vc, k)}' for k in range(n)])
+        X = _XChart(self, b)
+        top = y + (0.28 if sp.get('y_title') else 0)
+        lo, hi, st, dt, lw = self._yscale(vals + [0], sp, zero=True)
+        wrap = any(self.tw(c, 10, 'ui') > w / n - 0.1 for c in cats)
+        px, py, pw, ph = x + lw, top + 0.15, w - lw - 0.1, y + h - top - 0.15 - (0.55 if wrap else 0.36)
+        c = sp.get('color', BLUE)
+        dp = {k: {'marker': {'symbol': 'circle', 'size': 9, 'fill': MUTE if hi_ and k not in hi_ else c,
+                             'line': PAPER, 'lw': 1}} for k in range(n)}
+        X.group('line', [X.ser(b.cols[vc][0], vc, vals, (cc, cats), line=None,
+                               marker={'symbol': 'circle', 'size': 9, 'fill': c, 'line': PAPER, 'lw': 1}, dpts=dp,
+                               err=[{'type': 'minus', 'minus': (sc, vals), 'line': INK3, 'lw': 1.5}],
+                               labels={'show': ('val',), 'pos': 't', 'fmt': _nf(dec, unit), 'size': 9.5,
+                                       'color': INK2, 'color_at': {k: INK for k in hi_}})])
+        X.cat_ax(1, 2, line=INK)
+        X.val_ax(2, 1, lo, hi, st, _nf(dt))
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · lollipop')
+        if sp.get('y_title'):
+            _Cv(self, s, x, y, w, h, 'Chart labels').label(x, y + 0.08, sp['y_title'], 9.5, 'ui', INK2)
+        return gf
+
+    def _n_dot(self, s, x, y, w, h, sp):
+        """Dot plot: one marker per series and category, no lines; optional reference line and range connector."""
+        cats = [str(c) for c in sp['categories']]
+        S = sp['series']
+        n, dec, unit = len(cats), sp.get('dec', 1), sp.get('unit', '')
+        b = _Book()
+        cc = b.add(None, cats)
+        X = _XChart(self, b)
+        refs = sp.get('refs', [])
+        leg = [(q['name'], 'rect') for q in S] + [(r['label'], 'line') for r in refs]
+        top = y + self._put_legend(X, x, y, w, leg)
+        allv = [v for q in S for v in q['values'] if v is not None] + [r['value'] for r in refs]
+        lo, hi, st, dt, lw = self._yscale(allv, sp, zero=sp.get('zero', False))
+        wrap = any(self.tw(c, 10, 'ui') > w / n - 0.1 for c in cats)
+        px, py, pw, ph = x + lw, top + 0.1, w - lw - 0.1, y + h - top - 0.1 - (0.55 if wrap else 0.36)
+        sers = []
+        for i, q in enumerate(S):
+            col = b.add(q['name'], q['values'], fmt=_nf(dec))
+            c = q.get('color', PALETTE[i % len(PALETTE)])
+            sers.append(X.ser(q['name'], col, q['values'], (cc, cats), line=None,
+                              marker={'symbol': q.get('symbol', 'circle'), 'size': 9, 'fill': c, 'line': PAPER, 'lw': 1},
+                              labels={'show': ('val',), 'pos': q.get('label_pos', 'r'), 'fmt': _nf(dec, unit),
+                                      'size': 9, 'color': INK2} if q.get('labels', True) else None))
+        for r in refs:
+            rc = b.add(r['label'], [r['value']] * n)
+            sers.insert(0, X.ser(r['label'], rc, b.cols[rc][1], (cc, cats), line=INK2, lw=1.0, dash='dash'))
+        X.group('line', sers)
+        X.cat_ax(1, 2, line=INK if lo <= 0 <= hi else BASE)
+        X.val_ax(2, 1, lo, hi, st, _nf(dt))
+        return X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · dot plot')
+
+    def _n_dumbbell(self, s, x, y, w, h, sp):
+        """Two marker-only line series; the connector is a custom error bar on series A (b − a, as formulas)."""
+        rows = sp['rows']
+        cats = [r['name'] for r in rows]
+        A = [r.get('a') for r in rows]
+        B = [r.get('b') for r in rows]
+        n, dec, unit = len(cats), sp.get('dec', 1), sp.get('unit', '')
+        la, lb = sp.get('labels', ('A', 'B'))
+        ca, cb = sp.get('colors', (INK3, BLUE))
+        b = _Book()
+        cc = b.add(None, cats)
+        ac, bc = b.add(la, A, fmt=_nf(dec)), b.add(lb, B, fmt=_nf(dec))
+        up = b.add('Nối lên' if self.lang == 'vi' else 'Up', [max((q or 0) - (p or 0), 0) if p is not None and q is not None
+                                                             else None for p, q in zip(A, B)],
+                   formulas=[f'=MAX({b.cell(bc, k)}-{b.cell(ac, k)},0)' for k in range(n)])
+        dn = b.add('Nối xuống' if self.lang == 'vi' else 'Down', [max((p or 0) - (q or 0), 0) if p is not None and q is not None
+                                                                 else None for p, q in zip(A, B)],
+                   formulas=[f'=MAX({b.cell(ac, k)}-{b.cell(bc, k)},0)' for k in range(n)])
+        X = _XChart(self, b)
+        top = y + self._put_legend(X, x, y, w, [(la, 'rect'), (lb, 'rect')])
+        lo, hi, st, dt, lw = self._yscale([v for v in A + B if v is not None], sp, zero=sp.get('zero', False))
+        wrap = any(self.tw(c, 10, 'ui') > w / n - 0.12 for c in cats)
+        px, py, pw, ph = x + lw, top + 0.1, w - lw - 0.1, y + h - top - 0.1 - (0.55 if wrap else 0.36)
+        X.group('line', [
+            X.ser(la, ac, A, (cc, cats), line=None, marker={'symbol': 'circle', 'size': 8, 'fill': ca, 'line': PAPER},
+                  err=[{'type': 'both', 'plus': (up, b.cols[up][1]), 'minus': (dn, b.cols[dn][1]), 'line': MUTE,
+                        'lw': 3.0}]),
+            X.ser(lb, bc, B, (cc, cats), line=None, marker={'symbol': 'circle', 'size': 9, 'fill': cb, 'line': PAPER},
+                  labels={'show': ('val',), 'fmt': _nf(dec, unit), 'size': 9.5, 'color': INK,
+                          'pos': 't', 'pos_at': {k: ('t' if (B[k] or 0) >= (A[k] or 0) else 'b') for k in range(n)},
+                          'only': [k for k in range(n) if B[k] is not None]})])
+        X.cat_ax(1, 2, line=BASE)
+        X.val_ax(2, 1, lo, hi, st, _nf(dt))
+        return X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · dumbbell')
+
+    def _n_slope(self, s, x, y, w, h, sp):
+        S, pa = sp['series'], sp['periods']
+        dec, unit = sp.get('dec', 1), sp.get('unit', '')
+        b = _Book()
+        cc = b.add(None, list(pa))
+        X = _XChart(self, b)
+        vals = [v for q in S for v in q['values']]
+        lo, hi = min(vals), max(vals)
+        pad = (hi - lo) * 0.06
+        lo, hi = lo - pad, hi + pad
+        lab_l = max(self.tw(f"{q['name']} {self.num(q['values'][0], dec)}{unit}", 10.5, 'ui_semi') for q in S) + 0.3
+        lab_r = max(self.tw(f"{q['name']} {self.num(q['values'][1], dec)}{unit}", 10.5, 'ui_semi') for q in S) + 0.3
+        span = min(w - lab_l - lab_r, 5.6)
+        px = x + lab_l + (w - lab_l - lab_r - span) / 2
+        py, pw, ph = y + 0.15, span, h - 0.55
+        sy = lambda v: py + ph - (v - lo) / ((hi - lo) or 1) * ph
+        offl = self._end_offsets([(i, sy(q['values'][0])) for i, q in enumerate(S)], 0.24, py - 0.1, py + ph + 0.1, h)
+        offr = self._end_offsets([(i, sy(q['values'][1])) for i, q in enumerate(S)], 0.24, py - 0.1, py + ph + 0.1, h)
+        ci = 0
+        sers = []
+        for i, q in enumerate(S):
+            if q.get('hi'):
+                c = q.get('color', PALETTE[ci % len(PALETTE)])
+                ci += 1
+            else:
+                c = MUTE
+            col = b.add(q['name'], q['values'], fmt=_nf(dec))
+            strong = bool(q.get('hi'))
+            sers.append(X.ser(q['name'], col, q['values'], (cc, list(pa)), line=c, lw=2.0 if strong else 1.5,
+                              marker={'symbol': 'circle', 'size': 7, 'fill': c, 'line': PAPER},
+                              labels={'show': ('ser', 'val'), 'only': [0, 1], 'fmt': _nf(dec, unit), 'size': 10.5,
+                                      'color': INK if strong else INK2, 'semi': strong, 'pos': 'r',
+                                      'pos_at': {0: 'l', 1: 'r'}, 'off': {0: (0, offl.get(i, 0)), 1: (0, offr.get(i, 0))}}))
+        sers.sort(key=lambda q: 0 if q['line'] == MUTE else 1)
+        X.group('line', sers)
+        X.cat_ax(1, 2, pos='b', line=None, lbl='high', size=11, color=INK)
+        X.val_ax(2, 1, lo, hi, None, '0', grid=False, delete=True, between='midCat')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · slope')
+        cv = _Cv(self, s, x, y, w, h, 'Chart rules')
+        for xx in (px, px + pw):
+            cv.seg(xx, py - 0.05, xx, py + ph + 0.05, BASE, 0.75, cap='flat')
+        return gf
+
+    def _n_bump(self, s, x, y, w, h, sp):
+        """Ranks as RANK() formulas over the raw values (kept in the workbook); value axis reversed, 1 on top."""
+        P, S = [str(p) for p in sp['periods']], sp['series']
+        k_, m_ = len(S), len(P)
+        dec, unit = sp.get('dec', 1), sp.get('unit', '')
+        hl = sp.get('highlight', [])
+        ranks = []
+        for j in range(m_):
+            order = sorted(range(k_), key=lambda i: -(S[i]['values'][j] if S[i]['values'][j] is not None else -1e9))
+            r = [0] * k_
+            for pos, i in enumerate(order):
+                r[i] = pos + 1
+            ranks.append(r)
+        b = _Book()
+        cc = b.add(None, P)
+        rank_cols = [b.add(q['name'], [ranks[j][i] for j in range(m_)], fmt='0') for i, q in enumerate(S)]
+        raw0 = len(b.cols)
+        raw_cols = [b.add(q['name'] + (' (giá trị)' if self.lang == 'vi' else ' (value)'), q['values'], fmt=_nf(dec))
+                    for q in S]
+        for i, rc in enumerate(rank_cols):
+            row = b.cols[rc]
+            forms = []
+            for j in range(m_):
+                rng = f'${_colname(raw0)}${j + 2}:${_colname(raw0 + k_ - 1)}${j + 2}'
+                forms.append(f'=RANK({b.cell(raw_cols[i], j)},{rng},0)')
+            b.cols[rc] = (row[0], row[1], row[2], forms)
+        X = _XChart(self, b)
+        cols = {}
+        ci = 0
+        for i, q in enumerate(S):
+            if q['name'] in hl:
+                cols[i] = q.get('color', PALETTE[ci % len(PALETTE)])
+                ci += 1
+            else:
+                cols[i] = MUTE
+        wl = max(self.tw(q['name'], 10, 'ui_med') for q in S) + 0.35
+        wr = max(self.tw(f"{q['name']} {self.num(q['values'][-1], dec)}{unit}", 10, 'ui_semi') for q in S) + 0.35
+        px, py, pw, ph = x + wl, y + 0.12, w - wl - wr, h - 0.5
+        sers = []
+        for i, q in enumerate(S):
+            c = cols[i]
+            strong = c != MUTE
+            sers.append(X.ser(q['name'], rank_cols[i], [ranks[j][i] for j in range(m_)], (cc, P), line=c,
+                              lw=2.25 if strong else 1.5, marker={'symbol': 'circle', 'size': 6 if strong else 5,
+                                                                  'fill': c, 'line': PAPER},
+                              labels={'show': ('ser',), 'only': [0, m_ - 1], 'pos': 'r', 'pos_at': {0: 'l', m_ - 1: 'r'},
+                                      'size': 10, 'color': INK if strong else INK2, 'semi': strong,
+                                      'text': {m_ - 1: f"{q['name']} {self.num(q['values'][-1], dec)}{unit}"}}))
+        sers.sort(key=lambda q: 0 if q['line'] == MUTE else 1)
+        X.group('line', sers)
+        X.cat_ax(1, 2, line=None, lbl='high', size=10, color=INK2)
+        X.val_ax(2, 1, 0.5, k_ + 0.5, 1, '0', grid=False, delete=True, reverse=True, between='midCat')
+        return X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · bump')
+
+    # ── combo, waterfall, tornado, pyramid, funnel ──
+    def _n_combo(self, s, x, y, w, h, sp):
+        """Columns on the left axis + a line on the right axis. Use only for two different units, name both axes,
+        and keep both zero lines aligned (done here)."""
+        cats = [str(c) for c in sp['categories']]
+        bs, ls = sp['bar'], sp['line']
+        n = len(cats)
+        b = _Book()
+        cc = b.add(None, cats)
+        bcol = b.add(bs['name'], bs['values'], fmt=_nf(bs.get('dec', 1)))
+        lcol = b.add(ls['name'], ls['values'], fmt=_nf(ls.get('dec', 1)))
+        X = _XChart(self, b)
+        top = y + self._put_legend(X, x, y, w, [(bs['name'], 'rect'), (ls['name'], 'line')]) + 0.28
+        bl0, bh0, bst, bdt, blw = self._yscale(bs['values'] + [0], {}, zero=True)
+        pos_int = round(bh0 / bst)
+        lv = [v for v in ls['values'] if v is not None]
+        rst = nice(0, max(max(lv), 0) / max(pos_int, 1) * 1.0001, 1)[3]
+        while max(lv) > rst * pos_int + 1e-9:
+            rst = nice(0, rst * 1.5, 1)[3]
+        neg_int = math.ceil(-min(min(lv), 0) / rst - 1e-9)
+        llo, lhi = -neg_int * rst, pos_int * rst
+        blo = -neg_int * bst
+        rdt = step_dec(rst)
+        rlw = max(self.tw(self.num(t * rst, rdt), 10, 'ui') for t in range(-neg_int, pos_int + 1)) + 0.16
+        px, py, pw, ph = x + blw, top + 0.08, w - blw - rlw, y + h - top - 0.08 - 0.36
+        gap, _ = self._gap(pw / n)
+        X.group('bar', [X.ser(bs['name'], bcol, bs['values'], (cc, cats), fill=bs.get('color', BLUE))], gap=gap)
+        last = max(k for k in range(n) if ls['values'][k] is not None)
+        X.group('line', [X.ser(ls['name'], lcol, ls['values'], (cc, cats), line=ls.get('color', ORANGE), lw=2.0,
+                               marker={'symbol': 'circle', 'size': 5, 'fill': ls.get('color', ORANGE), 'line': PAPER},
+                               labels={'show': ('val',), 'only': [last], 'pos': 't',
+                                       'fmt': _nf(ls.get('dec', 1), ls.get('unit', '')), 'color': INK})], axes=(3, 4))
+        X.cat_ax(1, 2, line=INK, skip=self._skip(cats, pw))
+        X.val_ax(2, 1, blo, bh0, bst, _nf(bdt) + ';;0' if False else f'#,##0;;0', grid=True)
+        X.cat_ax(3, 4, delete=True)
+        X.val_ax(4, 3, llo, lhi, rst, _nf(rdt), pos='r', grid=False, crosses='max')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · combo')
+        cv = _Cv(self, s, x, y, w, h, 'Axis titles')
+        cv.label(x, top - 0.2, bs.get('axis_title', bs['name']), 9.5, 'ui_semi', INK2)
+        cv.label(x + w, top - 0.2, ls.get('axis_title', ls['name']), 9.5, 'ui_semi', INK2, ha='r')
+        return gf
+
+    def _n_waterfall(self, s, x, y, w, h, sp):
+        """Stacked columns: invisible base + up + down + total, all derived by formulas from the input column."""
+        steps = sp['steps']
+        n = len(steps)
+        dec, unit = sp.get('dec', 0), sp.get('unit', '')
+        cats = [st['name'] for st in steps]
+        run, rows = 0.0, []
+        for st in steps:
+            if st.get('total'):
+                v = st['value'] if st.get('value') is not None else run
+                rows.append(('T', v, run))
+                run = v
+            else:
+                rows.append(('D', st['value'], run))
+                run += st['value']
+        b = _Book()
+        cc = b.add(None, cats)
+        kc = b.add('Loại' if self.lang == 'vi' else 'Kind', ['Tổng' if r[0] == 'T' else 'Thay đổi' for r in rows])
+        ic = b.add('Giá trị nhập' if self.lang == 'vi' else 'Input', [r[1] for r in rows], fmt=_nf(dec))
+        cum = []
+        run = 0.0
+        for r in rows:
+            run = r[1] if r[0] == 'T' else run + r[1]
+            cum.append(run)
+        cmc = b.add('Luỹ kế' if self.lang == 'vi' else 'Running total', cum, fmt=_nf(dec),
+                    formulas=[f'=IF({b.cell(kc, k)}="Tổng",{b.cell(ic, k)},{b.cell(len(b.cols), k - 1) if k else "0"}+{b.cell(ic, k)})'
+                              for k in range(n)])
+        if steps[-1].get('total') and steps[-1].get('value') is None:
+            col = b.cols[ic]
+            forms = [None] * (n - 1) + [f'={b.cell(cmc, n - 2)}']
+            b.cols[ic] = (col[0], col[1], col[2], forms)
+        prev = lambda k: b.cell(cmc, k - 1) if k else '0'
+        base = [0 if r[0] == 'T' else min(cum[k - 1] if k else 0, cum[k]) for k, r in enumerate(rows)]
+        upv = [0 if r[0] == 'T' or r[1] < 0 else r[1] for r in rows]
+        dnv = [0 if r[0] == 'T' or r[1] >= 0 else -r[1] for r in rows]
+        tov = [r[1] if r[0] == 'T' else 0 for r in rows]
+        T = f'"Tổng"'
+        bcol = b.add('Nền (ẩn)' if self.lang == 'vi' else 'Base (hidden)', base, fmt=_nf(dec),
+                     formulas=[f'=IF({b.cell(kc, k)}={T},0,MIN({prev(k)},{b.cell(cmc, k)}))' for k in range(n)])
+        pos_n = sp.get('pos_label', 'Tăng' if self.lang == 'vi' else 'Adds')
+        neg_n = sp.get('neg_label', 'Giảm' if self.lang == 'vi' else 'Subtracts')
+        tot_n = sp.get('total_label', 'Tổng' if self.lang == 'vi' else 'Total')
+        ucol = b.add(pos_n, upv, fmt=_nf(dec),
+                     formulas=[f'=IF(AND({b.cell(kc, k)}<>{T},{b.cell(ic, k)}>=0),{b.cell(ic, k)},0)' for k in range(n)])
+        dcol = b.add(neg_n, dnv, fmt=_nf(dec),
+                     formulas=[f'=IF(AND({b.cell(kc, k)}<>{T},{b.cell(ic, k)}<0),-{b.cell(ic, k)},0)' for k in range(n)])
+        tcol = b.add(tot_n, tov, fmt=_nf(dec),
+                     formulas=[f'=IF({b.cell(kc, k)}={T},{b.cell(ic, k)},0)' for k in range(n)])
+        topv = [max(cum[k - 1] if k and rows[k][0] == 'D' else 0, cum[k]) for k in range(n)]
+        lcol = b.add('Đỉnh nhãn (ẩn)' if self.lang == 'vi' else 'Label top (hidden)', topv, fmt=_nf(dec),
+                     formulas=[f'=MAX({b.cell(bcol, k)}+{b.cell(ucol, k)}+{b.cell(dcol, k)}+{b.cell(tcol, k)},0)'
+                               for k in range(n)])
+        X = _XChart(self, b)
+        leg = [(tot_n, 'rect'), (pos_n, 'rect'), (neg_n, 'rect')]
+        plan = [k for k, st in enumerate(steps) if st.get('basis') in ('estimate', 'plan')]
+        top = y + self._put_legend(X, x, y, w, leg) + (0.28 if sp.get('y_title') else 0)
+        lo, hi, st_, dt, lw = self._yscale(cum + [0] + topv, sp, zero=True)
+        px, py, pw, ph = x + lw, top + 0.15, w - lw - 0.1, y + h - top - 0.15 - 0.62
+        gap, _ = self._gap(pw / n, 1, BAR_MAX * 1.25, 0.58)
+        cat = (cc, cats)
+        sb = X.ser(b.cols[bcol][0], bcol, base, cat, fill=None, line=None)
+        su = X.ser(pos_n, ucol, upv, cat, fill=BLUE, line=None)
+        sd = X.ser(neg_n, dcol, dnv, cat, fill=REDS, line=None)
+        stt = X.ser(tot_n, tcol, tov, cat, fill=INK, line=None,
+                    dpts={k: {'fill': mix(INK, 'FFFFFF', 0.8), 'line': INK, 'lw': 1.0, 'dash': 'sysDash'} for k in plan})
+        texts = {k: (self.num(rows[k][1], dec) if rows[k][0] == 'T' else self.num(rows[k][1], dec, True)) + unit
+                 for k in range(n)}
+        sl = X.ser(b.cols[lcol][0], lcol, topv, cat, fill=None, line=None,
+                   labels={'show': ('val',), 'pos': 'outEnd', 'text': texts, 'size': 10, 'color': INK,
+                           'color_at': {k: INK2 for k in range(n) if rows[k][0] == 'D'}})
+        X.group('bar', [sb, stt, su, sd], grouping='stacked', gap=gap)
+        X.group('bar', [sl], axes=(3, 4), gap=gap)
+        X.legend['hide'] = [sb['i'], sl['i']]
+        X.cat_ax(1, 2, line=INK)
+        X.val_ax(2, 1, lo, hi, st_, _nf(dt))
+        X.cat_ax(3, 4, delete=True)
+        X.val_ax(4, 3, lo, hi, st_, _nf(dt), grid=False, delete=True, pos='r', crosses='max')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · waterfall')
+        if sp.get('y_title'):
+            _Cv(self, s, x, y, w, h, 'Chart labels').label(x, top - 0.2, sp['y_title'], 9.5, 'ui', INK2)
+        return gf
+
+    def _n_tornado(self, s, x, y, w, h, sp):
+        """Clustered bars, overlap 100: change from the base when one driver is at its low / high value."""
+        rows, base = sp['rows'], sp['base']
+        dec, unit = sp.get('dec', 2), sp.get('unit', '')
+        la, lb = sp.get('labels', ('Thấp', 'Cao'))
+        ca, cb = sp.get('colors', (BLUE, ORANGE))
+        cats = [r['name'] for r in rows]
+        n = len(rows)
+        b = _Book()
+        cc = b.add(None, cats)
+        lc = b.add(la + (' (mức)' if self.lang == 'vi' else ' (level)'), [r['low'] for r in rows], fmt=_nf(dec))
+        hc = b.add(lb + (' (mức)' if self.lang == 'vi' else ' (level)'), [r['high'] for r in rows], fmt=_nf(dec))
+        bc = b.add(sp.get('base_label', self.T['base']), [base] + [None] * (n - 1), fmt=_nf(dec))
+        B1 = f'${_colname(bc)}$2'
+        dl = b.add(la, [r['low'] - base for r in rows], fmt=_nf(dec, '', True),
+                   formulas=[f'={b.cell(lc, k)}-{B1}' for k in range(n)])
+        dh = b.add(lb, [r['high'] - base for r in rows], fmt=_nf(dec, '', True),
+                   formulas=[f'={b.cell(hc, k)}-{B1}' for k in range(n)])
+        X = _XChart(self, b)
+        top = y + self._put_legend(X, x, y, w, [(la, 'rect'), (lb, 'rect')]) + 0.3
+        dv = [r['low'] - base for r in rows] + [r['high'] - base for r in rows]
+        m = max(abs(v) for v in dv)
+        a_, b_, st, dt = nice(-m, m, 4, True)[0], nice(-m, m, 4, True)[1], nice(-m, m, 4, True)[3], 0
+        dt = step_dec(st)
+        lwc = min(3.8, max(self.tw(c, 10.5, 'ui_med') for c in cats) + 0.2)
+        px, py, pw, ph = x + lwc, top + 0.05, w - lwc - 0.15, y + h - top - 0.05 - 0.36
+        gap, _ = self._gap(ph / n, 1, BAR_MAX * 0.8, 0.6)
+        lab = {'show': ('val',), 'pos': 'outEnd', 'fmt': _nf(dec, '', True), 'size': 9.5, 'color': INK2}
+        X.group('bar', [X.ser(la, dl, b.cols[dl][1], (cc, cats), fill=ca, labels=lab),
+                        X.ser(lb, dh, b.cols[dh][1], (cc, cats), fill=cb, labels=lab)], dir='bar', gap=gap, overlap=100)
+        X.cat_ax(1, 2, pos='l', reverse=True, lbl='low', line=INK, lw=1.25, size=10.5, color=INK)
+        X.val_ax(2, 1, a_, b_, st, _nf(dt, '', True), pos='b', crosses='max')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · tornado')
+        zx = px + (0 - a_) / (b_ - a_) * pw
+        _Cv(self, s, x, y, w, h, 'Chart labels').label(
+            zx, top - 0.16, f"{sp.get('base_label', self.T['base'])} {self.num(base, dec)}{unit} = 0", 10, 'ui_semi', INK,
+            ha='c')
+        return gf
+
+    def _n_pyramid(self, s, x, y, w, h, sp):
+        """Clustered bars, overlap 100: left side stored negative (formula), shown unsigned by the number format;
+        the comparison year is an outlined twin on secondary axes with the same scale."""
+        B, L, R = sp['bands'], sp['left'], sp['right']
+        cmp_ = sp.get('compare')
+        dec, unit = sp.get('dec', 1), sp.get('unit', '')
+        cl, cr = sp.get('colors', (BLUE, ORANGE))
+        n = len(B)
+        b = _Book()
+        cc = b.add(None, list(B))
+        lin = b.add(L['name'] + (' (nhập)' if self.lang == 'vi' else ' (input)'), L['values'], fmt=_nf(dec))
+        lneg = b.add(L['name'], [-v for v in L['values']], fmt=_nf(dec), formulas=[f'=-{b.cell(lin, k)}' for k in range(n)])
+        rc = b.add(R['name'], R['values'], fmt=_nf(dec))
+        X = _XChart(self, b)
+        leg = [(L['name'], 'rect'), (R['name'], 'rect')] + ([(cmp_['name'], 'rect')] if cmp_ else [])
+        top = y + self._put_legend(X, x, y, w, leg)
+        allv = L['values'] + R['values'] + ((cmp_['left'] + cmp_['right']) if cmp_ else [])
+        mx_ = nice(0, max(allv), 3)
+        lim, st = mx_[1], mx_[3]
+        lwc = max(self.tw(c, 9.5, 'ui') for c in B) + 0.2
+        px, py, pw, ph = x + lwc, top + 0.05, w - lwc - 0.1, y + h - top - 0.05 - 0.34
+        gap = 18
+        fmt = _nf(step_dec(st), unit) + ';' + _nf(step_dec(st), unit).split(';')[0] if False else \
+            f'#,##0{"." + "0" * step_dec(st) if step_dec(st) else ""}"{unit}";#,##0{"." + "0" * step_dec(st) if step_dec(st) else ""}"{unit}"'
+        sers = [X.ser(L['name'], lneg, b.cols[lneg][1], (cc, list(B)), fill=cl),
+                X.ser(R['name'], rc, R['values'], (cc, list(B)), fill=cr)]
+        X.group('bar', sers, dir='bar', gap=gap, overlap=100)
+        if cmp_:
+            cin = b.add(cmp_['name'] + (' · trái (nhập)' if self.lang == 'vi' else ' · left (input)'), cmp_['left'])
+            cln = b.add(cmp_['name'] + (' · trái' if self.lang == 'vi' else ' · left'), [-v for v in cmp_['left']],
+                        formulas=[f'=-{b.cell(cin, k)}' for k in range(n)])
+            crc = b.add(cmp_['name'] + (' · phải' if self.lang == 'vi' else ' · right'), cmp_['right'])
+            c1 = X.ser(cmp_['name'], cln, b.cols[cln][1], (cc, list(B)), fill=None, line=INK, lw=1.0, dash='sysDash')
+            c2 = X.ser(b.cols[crc][0], crc, cmp_['right'], (cc, list(B)), fill=None, line=INK, lw=1.0, dash='sysDash')
+            X.group('bar', [c1, c2], axes=(3, 4), dir='bar', gap=gap, overlap=100)
+            X.legend['hide'] = [c2['i']]
+        X.cat_ax(1, 2, pos='l', lbl='low', line=INK, size=9.5, color=INK2)
+        X.val_ax(2, 1, -lim, lim, st, fmt, pos='b', grid=True)
+        if cmp_:
+            X.cat_ax(3, 4, pos='l', delete=True)
+            X.val_ax(4, 3, -lim, lim, st, fmt, pos='t', grid=False, delete=True, crosses='max')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · population pyramid')
+        cy = lambda band: py + ph - (B.index(band) + 0.5) * ph / n
+        sx = lambda v: px + (v + lim) / (2 * lim) * pw
+        pts = []
+        for a_ in sp.get('annotations', []):
+            side = a_.get('side', 'r')
+            v = (cmp_ if a_.get('compare') else None)
+            vv = (cmp_['right' if side == 'r' else 'left'] if a_.get('compare') else (R if side == 'r' else L)['values'])[
+                B.index(a_['band'])]
+            pts.append((sx(vv if side == 'r' else -vv), cy(a_['band']), a_['text'], a_.get('tier', 'pri'),
+                        a_.get('dx', 0.35 if side == 'r' else -0.35), a_.get('dy', 0)))
+        self._ann_n(s, pts, (x, y, w, h))
+        return gf
+
+    def _n_funnel(self, s, x, y, w, h, sp):
+        """Stacked bars centred by an invisible padding series = (max − value) / 2 (formula)."""
+        st_ = sp['stages']
+        cats = [q['name'] for q in st_]
+        vals = [q['value'] for q in st_]
+        n, dec, unit = len(cats), sp.get('dec', 1), sp.get('unit', '')
+        b = _Book()
+        cc = b.add(None, cats)
+        vc = b.add(sp.get('name', 'Giá trị' if self.lang == 'vi' else 'Value'), vals, fmt=_nf(dec))
+        mxr = f'${_colname(vc)}$2:${_colname(vc)}${n + 1}'
+        pc = b.add('Đệm (ẩn)' if self.lang == 'vi' else 'Padding (hidden)', [(max(vals) - v) / 2 for v in vals],
+                   formulas=[f'=(MAX({mxr})-{b.cell(vc, k)})/2' for k in range(n)])
+        X = _XChart(self, b)
+        lwc = min(3.6, max(self.tw(c, 11, 'ui_med') for c in cats) + 0.25)
+        px, py, pw, ph = x + lwc, y + 0.1, w - lwc - 0.2, h - 0.2
+        gap, _ = self._gap(ph / n, 1, 0.75, 0.8)
+        ramp = [mix(sp.get('color', BLUE), 'FFFFFF', t) for t in [0.0, 0.25, 0.45, 0.6, 0.7][:n]]
+        texts = {k: self.num(vals[k], dec) + unit + (f"  ({self.num(vals[k] / vals[0] * 100, 1)}%)" if k else '')
+                 for k in range(n)}
+        X.group('bar', [X.ser(b.cols[pc][0], pc, b.cols[pc][1], (cc, cats), fill=None, line=None),
+                        X.ser(b.cols[vc][0], vc, vals, (cc, cats), fill=sp.get('color', BLUE),
+                              dpts={k: {'fill': ramp[k]} for k in range(n)},
+                              labels={'show': ('val',), 'pos': 'ctr', 'text': texts, 'size': 12,
+                                      'color_at': {k: on(ramp[k]) for k in range(n)}})],
+                dir='bar', grouping='stacked', gap=gap)
+        X.cat_ax(1, 2, pos='l', reverse=True, lbl='low', line=None, size=11, color=INK)
+        X.val_ax(2, 1, 0, max(vals), None, '0', pos='b', grid=False, delete=True, crosses='max')
+        return X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · funnel')
+
+    def _n_bullet(self, s, x, y, w, h, sp):
+        """One small native chart per indicator: grey bands (stacked), actual (thin column, secondary axis, same
+        scale), target (marker-only line series, dash marker)."""
+        R = sp['rows']
+        k = len(R)
+        gx = 0.35
+        cw = (w - gx * (k - 1)) / k
+        cv = _Cv(self, s, x, y, w, h, 'Bullet labels')
+        top = y + self._legend(cv, [(sp.get('actual_label', 'Thực hiện' if self.lang == 'vi' else 'Actual'),
+                                     sp.get('color', INK), 'rect'),
+                                    (sp.get('target_label', 'Mục tiêu' if self.lang == 'vi' else 'Target'), RED, 'dashkey'),
+                                    (sp.get('range_label', 'Vùng tham chiếu' if self.lang == 'vi' else 'Reference bands'),
+                                     'D9D7CF', 'rect')]) + 0.1
+        head = 1.45
+        last = None
+        for i, r in enumerate(R):
+            cx = x + i * (cw + gx)
+            dec, unit = r.get('dec', 1), r.get('unit', '')
+            cv.seg(cx, top, cx + cw, top, INK, 1.25, cap='flat')
+            nl = self.nlines(r['name'], 11, 'ui_semi', cw)
+            self._tx(cv.s, cx, top + 0.08, cw, self.lh(11, 1.05, nl), r['name'], 11, INK, 'ui_semi', line=1.05)
+            yy = top + 0.1 + self.lh(11, 1.05, nl)
+            cv.runs(cx, yy + 0.25, [(self.num(r['value'], dec) + unit, {'role': 'ui_bold', 'size': 20})])
+            if r.get('value_text'):
+                ns = self.nlines(r['value_text'], 9.5, 'ui', cw)
+                self._tx(cv.s, cx, yy + 0.5, cw, self.lh(9.5, 1.1, ns), r['value_text'], 9.5, INK2, 'ui', line=1.1)
+            mx_ = r['max']
+            bands = [0] + list(r.get('ranges', [])) + [mx_]
+            b = _Book()
+            cc = b.add(None, [r.get('short', r['name'])])
+            bcols = []
+            for q in range(len(bands) - 1):
+                bcols.append(b.add(f"Vùng {q + 1}" if self.lang == 'vi' else f'Band {q + 1}', [bands[q + 1] - bands[q]]))
+            ac = b.add(sp.get('actual_label', 'Thực hiện' if self.lang == 'vi' else 'Actual'), [r['value']], fmt=_nf(dec))
+            tc = b.add(sp.get('target_label', 'Mục tiêu' if self.lang == 'vi' else 'Target'), [r['target']], fmt=_nf(dec))
+            X = _XChart(self, b)
+            cat = (cc, b.cols[cc][1])
+            shades = ['EEECE6', 'E4E2DB', 'D9D7CF', 'CFCDC4']
+            X.group('bar', [X.ser(b.cols[c][0], c, b.cols[c][1], cat, fill=shades[q % 4], line=None)
+                            for q, c in enumerate(bcols)], grouping='stacked', gap=45)
+            col = r.get('color', sp.get('color', INK))
+            X.group('bar', [X.ser(b.cols[ac][0], ac, [r['value']], cat, fill=col)], axes=(3, 4), gap=260)
+            X.group('line', [X.ser(b.cols[tc][0], tc, [r['target']], cat, line=None,
+                                   marker={'symbol': 'dash', 'size': 26, 'fill': RED, 'line': RED, 'lw': 0.75})],
+                    axes=(3, 4))
+            st = nice(0, mx_, 4)[3]
+            lw = max(self.tw(self.num(t, step_dec(st)), 9, 'ui') for t in (0, mx_)) + 0.12
+            fy = top + head + 0.15
+            fh = y + h - fy
+            X.cat_ax(1, 2, line=INK, lbl='none')
+            X.val_ax(2, 1, 0, mx_, st, _nf(step_dec(st)), grid=False, size=9)
+            X.cat_ax(3, 4, delete=True)
+            X.val_ax(4, 3, 0, mx_, st, '0', grid=False, delete=True, pos='r', crosses='max')
+            X.place(s.shapes, (cx, fy, cw, fh), (cx + lw, fy + 0.05, cw - lw - 0.05, fh - 0.15), 'Chart · bullet')
+        return cv.grp
+
+    # ── distributions and relationships ──
+    def _n_box(self, s, x, y, w, h, sp):
+        """Stacked columns (q1 invisible, q1→median, median→q3) + custom error bars (whiskers to min / max). The
+        five numbers are QUARTILE.INC / MIN / MAX formulas over the raw data kept in the workbook."""
+        G = sp['groups']
+        n = len(G)
+        dec, unit = sp.get('dec', 1), sp.get('unit', '')
+        cats = [g['name'] for g in G]
+        st5 = [(min(g['values']), _quart(g['values'], .25), _quart(g['values'], .5), _quart(g['values'], .75),
+                max(g['values'])) for g in G]
+        b = _Book()
+        cc = b.add(None, cats)
+        raw0 = 11
+        nr = max(len(g['values']) for g in G)
+
+        def rng(i):
+            c = _colname(raw0 + i)
+            return f'${c}$2:${c}${len(G[i]["values"]) + 1}'
+        names = (('Nhỏ nhất', 'Q1', 'Trung vị', 'Q3', 'Lớn nhất') if self.lang == 'vi' else
+                 ('Min', 'Q1', 'Median', 'Q3', 'Max'))
+        fn = ('MIN({r})', 'QUARTILE.INC({r},1)', 'MEDIAN({r})', 'QUARTILE.INC({r},3)', 'MAX({r})')
+        sc = [b.add(names[j], [q[j] for q in st5], fmt=_nf(dec), formulas=['=' + fn[j].format(r=rng(i)) for i in range(n)])
+              for j in range(5)]
+        c_base = b.add('Q1 (nền ẩn)' if self.lang == 'vi' else 'Q1 (hidden base)', [q[1] for q in st5],
+                       formulas=[f'={b.cell(sc[1], i)}' for i in range(n)])
+        c_lo = b.add('Q1→trung vị' if self.lang == 'vi' else 'Q1→median', [q[2] - q[1] for q in st5],
+                     formulas=[f'={b.cell(sc[2], i)}-{b.cell(sc[1], i)}' for i in range(n)])
+        c_hi = b.add('Trung vị→Q3' if self.lang == 'vi' else 'Median→Q3', [q[3] - q[2] for q in st5],
+                     formulas=[f'={b.cell(sc[3], i)}-{b.cell(sc[2], i)}' for i in range(n)])
+        c_wl = b.add('Râu dưới' if self.lang == 'vi' else 'Lower whisker', [q[1] - q[0] for q in st5],
+                     formulas=[f'={b.cell(sc[1], i)}-{b.cell(sc[0], i)}' for i in range(n)])
+        c_wh = b.add('Râu trên' if self.lang == 'vi' else 'Upper whisker', [q[4] - q[3] for q in st5],
+                     formulas=[f'={b.cell(sc[4], i)}-{b.cell(sc[3], i)}' for i in range(n)])
+        while len(b.cols) < raw0:
+            b.add(None, [])
+        for g in G:
+            b.add(g['name'] + (' (số liệu gốc)' if self.lang == 'vi' else ' (raw data)'), g['values'], fmt=_nf(dec))
+        X = _XChart(self, b)
+        top = y + 0.32
+        lo, hi, st, dt, lw = self._yscale([q[0] for q in st5] + [q[4] for q in st5], sp, zero=sp.get('zero', False))
+        px, py, pw, ph = x + lw, top + 0.1, w - lw - 2.4, y + h - top - 0.1 - 0.36
+        gap, _ = self._gap(pw / n, 1, 0.7, 0.45)
+        cat = (cc, cats)
+        c = sp.get('color', BLUE)
+        texts = {i: f"{names[2].lower()} {self.num(st5[i][2], dec)}{unit}" for i in range(n)}
+        X.group('bar', [
+            X.ser(b.cols[c_base][0], c_base, [q[1] for q in st5], cat, fill=None, line=None,
+                  err=[{'type': 'minus', 'minus': (c_wl, b.cols[c_wl][1]), 'line': INK, 'lw': 1.25}]),
+            X.ser(b.cols[c_lo][0], c_lo, b.cols[c_lo][1], cat, fill=mix(c, 'FFFFFF', 0.45), line=PAPER, lw=1.0),
+            X.ser(b.cols[c_hi][0], c_hi, b.cols[c_hi][1], cat, fill=c, line=PAPER, lw=1.0,
+                  err=[{'type': 'plus', 'plus': (c_wh, b.cols[c_wh][1]), 'line': INK, 'lw': 1.25}])],
+            grouping='stacked', gap=gap)
+        X.cat_ax(1, 2, line=BASE, size=10.5, color=INK)
+        X.val_ax(2, 1, lo, hi, st, _nf(dt), crosses=lo)
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · box plot')
+        cv = _Cv(self, s, x, y, w, h, 'Box plot key')
+        if sp.get('y_title'):
+            cv.label(x, y + 0.1, sp['y_title'], 9.5, 'ui', INK2)
+        sy = lambda v: py + ph - (v - lo) / ((hi - lo) or 1) * ph
+        xs = self._xs(n, px, pw)
+        for i in range(n):
+            cv.label(xs[i] + pw / n * 0.2 + 0.06, sy(st5[i][2]), texts[i], 9.5, 'ui_semi', INK)
+        kx = px + pw + 0.45
+        ky = py + 0.1
+        key = [(names[4], 'max'), (names[3], 'q3'), (names[2], 'med'), (names[1], 'q1'), (names[0], 'min')]
+        cv.label(kx, ky, 'Cách đọc' if self.lang == 'vi' else 'How to read', 9.5, 'ui_semi', INK2, caps=True,
+                 spacing=0.8, va='t')
+        bx, by = kx + 0.05, ky + 0.45
+        cv.seg(bx + 0.15, by, bx + 0.15, by + 0.35, INK, 1.25, cap='flat')
+        cv.rect(bx, by + 0.35, 0.3, 0.45, c)
+        cv.rect(bx, by + 0.8, 0.3, 0.45, mix(c, 'FFFFFF', 0.45))
+        cv.seg(bx + 0.15, by + 1.25, bx + 0.15, by + 1.6, INK, 1.25, cap='flat')
+        for t, yy in zip([q[0] for q in key], (by, by + 0.35, by + 0.8, by + 1.25, by + 1.6)):
+            cv.seg(bx + 0.34, yy, bx + 0.46, yy, INK3, 0.5, cap='flat')
+            cv.label(bx + 0.52, yy, t, 9.5, 'ui', INK2)
+        cv.label(kx, by + 1.95, sp.get('method', 'Tứ phân vị kiểu QUARTILE.INC' if self.lang == 'vi' else
+                                       'Quartiles: QUARTILE.INC'), 8.5, 'ui', INK3)
+        return gf
+
+    def _n_scatter(self, s, x, y, w, h, sp, bubble=False):
+        P = sp['points']
+        xd, yd = sp.get('x_dec', 0), sp.get('y_dec', 1)
+        b = _Book()
+        X = _XChart(self, b)
+        groups = sp.get('groups')                  # [{name, color, test: lambda p}] -> one series per group
+        hl = [p for p in P if p.get('hi')]
+        if not groups:
+            groups = ([{'name': sp.get('hi_label', ''), 'color': sp.get('color', BLUE), 'pts': hl},
+                       {'name': sp.get('other_label', ''), 'color': MUTE, 'pts': [p for p in P if not p.get('hi')]}]
+                      if hl else [{'name': sp.get('name', ''), 'color': sp.get('color', BLUE), 'pts': P}])
+        else:
+            groups = [dict(g, pts=[p for p in P if p.get('group') == g['name']]) for g in groups]
+        leg = [(g['name'], 'rect') for g in groups if g['name']]
+        if sp.get('trend'):
+            leg.append((self.T['trend'], 'line'))
+        top = y + (self._put_legend(X, x, y, w, leg) if leg else 0) + 0.3
+        xa, xb, xt, xst = nice(min(p['x'] for p in P), max(p['x'] for p in P), 5, zero=sp.get('x_zero', False))
+        ya, yb, yt, yst = nice(min(p['y'] for p in P), max(p['y'] for p in P), 4, zero=sp.get('y_zero', False))
+        lw = max(self.tw(self.num(t, step_dec(yst)), 10, 'ui') for t in yt) + 0.14
+        px, py, pw, ph = x + lw, top + 0.05, w - lw - 0.3, y + h - top - 0.05 - 0.62
+        sx = lambda v: px + (v - xa) / ((xb - xa) or 1) * pw
+        sy = lambda v: py + ph - (v - ya) / ((yb - ya) or 1) * ph
+        smax = max((p.get('size', 1) for p in P), default=1)
+        # label placement (same rules as the shape renderer), written as native per-point labels
+        boxes = []
+        place = {}
+        for p in sorted([p for p in P if p.get('label')], key=lambda p: 0 if p.get('hi') else 1):
+            qx, qy = sx(p['x']), sy(p['y'])
+            t = p.get('text', p['name'])
+            tw_, th = self.tw(t, 9.5, 'ui_semi') + 0.05, 0.18
+            r_ = (math.sqrt(p.get('size', 1) / smax) * 0.42 + 0.05) if bubble else 0.09
+            for pos, dx, dy, ha in (('r', r_, 0, 'l'), ('l', -r_, 0, 'r'), ('t', 0, -r_ - 0.08, 'c'),
+                                    ('b', 0, r_ + 0.08, 'c')):
+                lx = qx + dx if ha == 'l' else (qx + dx - tw_ if ha == 'r' else qx - tw_ / 2)
+                bb = (lx, qy + dy - th / 2, lx + tw_, qy + dy + th / 2)
+                if bb[2] > x + w or bb[0] < px:
+                    continue
+                if not any(bb[0] < o[2] and bb[2] > o[0] and bb[1] < o[3] and bb[3] > o[1] for o in boxes):
+                    break
+            boxes.append(bb)
+            place[id(p)] = pos
+        sers = []
+        for gi, g in enumerate(groups):
+            pts = g['pts']
+            if not pts:
+                continue
+            xs_, ys_ = [p['x'] for p in pts], [p['y'] for p in pts]
+            nm = g['name'] or ('Điểm' if self.lang == 'vi' else 'Points')
+            nmc = b.add(nm + (' · tên' if self.lang == 'vi' else ' · name'), [p['name'] for p in pts])
+            cx = b.add(sp.get('x_title', 'x'), xs_, fmt=_nf(xd))
+            cy = b.add(nm, ys_, fmt=_nf(yd))
+            texts = {k: p.get('text', p['name']) for k, p in enumerate(pts) if p.get('label')}
+            lab = {'text': texts, 'pos': 'r', 'pos_at': {k: place.get(id(p), 'r') for k, p in enumerate(pts)},
+                   'size': 9.5, 'color': INK if g['color'] != MUTE else INK2, 'show': ('val',)} if texts else None
+            kw = dict(labels=lab)
+            if bubble:
+                sz = b.add(sp.get('size_title', 'size'), [p.get('size', 1) for p in pts], fmt='#,##0')
+                sers.append(X.ser(nm, cy, ys_, x=(cx, xs_), size=(sz, b.cols[sz][1]), fill=g['color'], alpha=0.72,
+                                  line=PAPER, lw=0.75, **kw))
+            else:
+                sers.append(X.ser(nm, cy, ys_, x=(cx, xs_), line=None, marker={'symbol': 'circle',
+                                                                               'size': 7 if g['color'] != MUTE else 6,
+                                                                               'fill': g['color'], 'line': PAPER,
+                                                                               'lw': 0.75}, **kw))
+        if sp.get('trend') and not bubble:
+            xs_, ys_ = [p['x'] for p in P], [p['y'] for p in P]
+            cx = b.add(sp.get('x_title', 'x') + (' (tất cả)' if self.lang == 'vi' else ' (all)'), xs_)
+            cy = b.add(self.T['trend'], ys_)
+            n_ = len(P)
+            mx_, my_ = sum(xs_) / n_, sum(ys_) / n_
+            sxx = sum((v - mx_) ** 2 for v in xs_)
+            sxy = sum((a - mx_) * (c - my_) for a, c in zip(xs_, ys_))
+            syy = sum((v - my_) ** 2 for v in ys_)
+            self.last_r = sxy / math.sqrt(sxx * syy)
+            tr = X.ser(self.T['trend'], cy, ys_, x=(cx, xs_), line=None, marker=None,
+                       trend={'line': INK2, 'lw': 1.25, 'dash': 'dash'})
+            sers.insert(0, tr)
+            if X.legend:
+                X.legend['hide'] = [tr['i']]
+        X.group('bubble' if bubble else 'scatter', sers, scale=sp.get('bubble_scale', 70))
+        X.val_ax(1, 2, xa, xb, xst, _nf(step_dec(xst)), pos='b', grid=True, line=INK if not sp.get('x_zero') else INK)
+        X.val_ax(2, 1, ya, yb, yst, _nf(step_dec(yst)), crosses=xa if xa > 0 else 'autoZero')
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · ' + ('bubble' if bubble else 'scatter'))
+        cv = _Cv(self, s, x, y, w, h, 'Axis titles')
+        if sp.get('y_title'):
+            cv.label(x, top - 0.18, sp['y_title'], 9.5, 'ui', INK2)
+        if sp.get('x_title'):
+            cv.label(px + pw, py + ph + 0.36, sp['x_title'], 9.5, 'ui', INK2, ha='r', va='t')
+        if sp.get('trend') and not bubble:
+            cv.label(px + pw, py + 0.08, f"{self.T['trend']}: r = {self.num(self.last_r, 2)}", 9.5, 'ui_semi', INK2,
+                     ha='r')
+        if bubble and sp.get('size_note'):
+            cv.label(x, py + ph + 0.36, sp['size_note'], 9.5, 'ui', INK2, va='t')
+        return gf
+
+    def _n_bubble(self, s, x, y, w, h, sp):
+        return self._n_scatter(s, x, y, w, h, sp, bubble=True)
+
+    # ── parts of a whole: donut, pie, gauge, marimekko ──
+    def _n_donut(self, s, x, y, w, h, sp, pie=False):
+        parts = sp['parts']
+        dec, unit = sp.get('dec', 0), sp.get('unit', '')
+        cols = [MUTE if p.get('muted') else p.get('color', PALETTE[i % len(PALETTE)]) for i, p in enumerate(parts)]
+        b = _Book()
+        cc = b.add(None, [p['name'] for p in parts])
+        vc = b.add(sp.get('name', 'Giá trị' if self.lang == 'vi' else 'Value'), [p['value'] for p in parts],
+                   fmt=_nf(sp.get('value_dec', dec)))
+        X = _XChart(self, b)
+        side = min(h, w * 0.5)
+        tot = sum(p['value'] for p in parts)
+        shares = [p['value'] / tot * 100 for p in parts]
+        lab = {'show': ('pct',), 'fmt': '0%', 'size': 10.5, 'semi': True,
+               'only': [i for i, v in enumerate(shares) if v >= 4],
+               'color_at': {i: on(cols[i]) for i in range(len(parts))}}
+        X.group('pie' if pie else 'doughnut', [X.ser(b.cols[vc][0], vc, b.cols[vc][1], (cc, b.cols[cc][1]),
+                                                     fill=cols[0], line=PAPER, lw=1.5, labels=lab,
+                                                     dpts={i: {'fill': c} for i, c in enumerate(cols)})],
+                first=sp.get('first', 0), hole=sp.get('hole', 58))
+        gf = X.place(s.shapes, (x, y, side, side), (x + 0.1, y + 0.1, side - 0.2, side - 0.2),
+                     'Chart · ' + ('pie' if pie else 'donut'))
+        cv = _Cv(self, s, x, y, w, h, 'Chart key')
+        if not pie and sp.get('center'):
+            cv.label(x + side / 2, y + side / 2 - 0.13, sp['center'][0], 20, 'ui_bold', INK, ha='c')
+            cv.label(x + side / 2, y + side / 2 + 0.2, sp['center'][1], 9.5, 'ui', INK2, ha='c')
+        lx, ly = x + side + 0.5, y + 0.15
+        vw = max(self.tw(self.num(v, sp.get('share_dec', 1)) + '%', 18, 'ui_semi') for v in shares)
+        for i, p in enumerate(parts):
+            cv.rrect(lx, ly + 0.09, 0.16, 0.16, cols[i], r=0.03)
+            cv.label(lx + 0.28, ly + 0.17, self.num(shares[i], sp.get('share_dec', 1)) + '%', 18, 'ui_semi', INK)
+            tx_ = p['name'] + (f" · {self.num(p['value'], sp.get('value_dec', dec))}{unit}" if sp.get('show_values', True)
+                               else '')
+            nl = self.nlines(tx_, 11, 'ui', x + w - (lx + 0.45 + vw))
+            self._tx(cv.s, lx + 0.45 + vw, ly + 0.07, x + w - (lx + 0.45 + vw), self.lh(11, 1.1, nl) + 0.04, tx_, 11,
+                     INK2, 'ui', line=1.1)
+            ly += max(0.55, self.lh(11, 1.1, nl) + 0.25)
+        return gf
+
+    def _n_pie(self, s, x, y, w, h, sp):
+        return self._n_donut(s, x, y, w, h, sp, pie=True)
+
+    def _n_gauge(self, s, x, y, w, h, sp):
+        """Half doughnut: value, remainder (= max − value) and an invisible lower half (= max), as formulas."""
+        v, mx_ = sp['value'], sp.get('max', 100)
+        dec, unit = sp.get('dec', 1), sp.get('unit', '%')
+        b = _Book()
+        cc = b.add(None, [sp.get('value_label', 'Đã đạt' if self.lang == 'vi' else 'Reached'),
+                          sp.get('rest_label', 'Còn lại' if self.lang == 'vi' else 'Remaining'),
+                          '(nửa dưới, ẩn)' if self.lang == 'vi' else '(lower half, hidden)'])
+        vc = b.add(sp.get('name', 'Giá trị' if self.lang == 'vi' else 'Value'), [v, mx_ - v, mx_], fmt=_nf(dec),
+                   formulas=[None, '=$C$2-B2', '=$C$2'])
+        b.add('Thang tối đa' if self.lang == 'vi' else 'Scale max', [mx_])
+        X = _XChart(self, b)
+        side = min(w, h * 2 - 0.2)
+        gx = x + (w - side) / 2
+        X.group('doughnut', [X.ser(b.cols[vc][0], vc, [v, mx_ - v, mx_], (cc, b.cols[cc][1]), fill=BLUE, line=PAPER,
+                                   lw=1.5, dpts={0: {'fill': sp.get('color', BLUE)}, 1: {'fill': 'E6E4DE'},
+                                                 2: {'fill': None, 'line': None}})], first=270, hole=sp.get('hole', 66))
+        gf = X.place(s.shapes, (gx, y, side, side), (gx + 0.05, y + 0.05, side - 0.1, side - 0.1), 'Chart · gauge')
+        cv = _Cv(self, s, x, y, w, h, 'Gauge labels')
+        cy = y + side / 2
+        cv.label(gx + side / 2, cy - 0.32, self.num(v, dec) + unit, 40, 'ui_bold', INK, ha='c')
+        cv.label(gx + side / 2, cy + 0.05, sp.get('caption', ''), 11, 'ui', INK2, ha='c')
+        cv.label(gx + side * 0.04, cy + 0.2, self.num(0, 0), 9.5, 'ui', INK2, ha='c')
+        cv.label(gx + side * 0.96, cy + 0.2, self.num(mx_, 0) + unit, 9.5, 'ui', INK2, ha='c')
+        if sp.get('target') is not None:
+            ang = math.pi * (1 - sp['target'] / mx_)
+            r0, r1 = side / 2 * sp.get('hole', 66) / 100 - 0.05, side / 2 - 0.02
+            cx_ = gx + side / 2
+            cv.seg(cx_ + r0 * math.cos(ang), cy - r0 * math.sin(ang), cx_ + r1 * math.cos(ang),
+                   cy - r1 * math.sin(ang), RED, 2.5, cap='flat')
+        return gf
+
+    def _n_marimekko(self, s, x, y, w, h, sp):
+        """Native variable-width 100% columns: each column is a run of `res` zero-gap slices (widths by largest
+        remainder), one empty slice between columns. Edit composition in the input table; widths are the slice
+        counts (re-run the script to change widths)."""
+        C, S = sp['columns'], sp['series']
+        res = sp.get('resolution', 200)
+        widths = [c['width'] for c in C]
+        cnt = largest_remainder(widths, res)
+        cols = [q.get('color', PALETTE[i % len(PALETTE)]) for i, q in enumerate(S)]
+        rows, owner = [], []
+        for j, c in enumerate(C):
+            rows += [j] * cnt[j]
+            if j < len(C) - 1:
+                rows.append(None)
+        b = _Book()
+        cats = [str(i + 1) for i in range(len(rows))]
+        cc = b.add('Lát' if self.lang == 'vi' else 'Slice', cats)
+        inp0 = len(S) + 2
+        X = _XChart(self, b)
+        sers_cols = []
+        for i, q in enumerate(S):
+            vals = [None if r is None else C[r]['values'][i] for r in rows]
+            forms = [None if r is None else f'=${_colname(inp0 + 1 + i)}${r + 2}' for r in rows]
+            sers_cols.append(b.add(q['name'], vals, formulas=forms))
+        b.add(None, [])
+        b.add('Cột' if self.lang == 'vi' else 'Column', [c['name'] for c in C])
+        for i, q in enumerate(S):
+            b.add(q['name'] + (' (nhập)' if self.lang == 'vi' else ' (input)'), [c['values'][i] for c in C])
+        b.add('Độ rộng' if self.lang == 'vi' else 'Width', widths)
+        top = y + self._put_legend(X, x, y, w, [(q['name'], 'rect') for q in S])
+        lw = self.tw('100%', 10, 'ui') + 0.14
+        px, py, pw, ph = x + lw, top + 0.05, w - lw - 0.05, y + h - top - 0.05 - 0.62
+        X.group('bar', [X.ser(q['name'], sers_cols[i], b.cols[sers_cols[i]][1], (cc, cats), fill=cols[i], line=None)
+                        for i, q in enumerate(S)], grouping='percentStacked', gap=0)
+        X.cat_ax(1, 2, line=None, lbl='none')
+        X.val_ax(2, 1, 0, 1, 0.25, '0%', grid=False)
+        gf = X.place(s.shapes, (x, y, w, h), (px, py, pw, ph), 'Chart · marimekko')
+        cv = _Cv(self, s, x, y, w, h, 'Column labels')
+        sl = pw / len(rows)
+        k = 0
+        tw_ = sum(widths)
+        for j, c in enumerate(C):
+            x0 = px + k * sl
+            cw = cnt[j] * sl
+            k += cnt[j] + 1
+            t1 = c.get('short', c['name'])
+            t2 = self.num(c['width'] / tw_ * 100, 0) + '%'
+            if self.tw(t1, 9.5, 'ui_med') < cw - 0.04:
+                cv.label(x0 + cw / 2, py + ph + 0.08, t1, 9.5, 'ui_med', INK, ha='c', va='t')
+                cv.label(x0 + cw / 2, py + ph + 0.3, t2, 9, 'ui', INK2, ha='c', va='t')
+            elif self.tw(t2, 9, 'ui') < cw:
+                cv.label(x0 + cw / 2, py + ph + 0.08, t2, 9, 'ui', INK2, ha='c', va='t')
+            # segment shares inside the column when they fit
+            acc = 0
+            tot = sum(c['values'])
+            for i, q in enumerate(S):
+                v = c['values'][i] / tot
+                seg_h = v * ph
+                t = self.num(v * 100, 0) + '%'
+                if seg_h > 0.24 and cw > self.tw(t, 9, 'ui_semi') + 0.08:
+                    cv.label(x0 + cw / 2, py + ph - (acc + v / 2) * ph, t, 9, 'ui_semi', on(cols[i]), ha='c')
+                acc += v
+        return gf
+
+    def _n_radar(self, s, x, y, w, h, sp):
+        axes_, S = sp['axes'], sp['series']
+        dec, unit = sp.get('dec', 0), sp.get('unit', '')
+        b = _Book()
+        cc = b.add(None, list(axes_))
+        X = _XChart(self, b)
+        top = y + self._put_legend(X, x, y, w, [(q['name'], 'line') for q in S])
+        mx_ = nice(0, max(v for q in S for v in q['values']), 4)
+        side = min(w, y + h - top)
+        rx = x + (w - side) / 2
+        sers = []
+        for i, q in enumerate(S):
+            col = b.add(q['name'], q['values'], fmt=_nf(dec))
+            c = q.get('color', PALETTE[i % len(PALETTE)])
+            sers.append(X.ser(q['name'], col, q['values'], (cc, list(axes_)), line=c, lw=2.0,
+                              marker={'symbol': 'circle', 'size': 5, 'fill': c, 'line': PAPER}))
+        X.group('radar', sers)
+        X.cat_ax(1, 2, line=HAIR, size=10.5, color=INK, grid=True)
+        X.val_ax(2, 1, 0, mx_[1], mx_[3], _nf(step_dec(mx_[3]), unit), size=9)
+        return X.place(s.shapes, (x, top, w, y + h - top), (rx + 0.9, top + 0.35, side - 1.8, side - 0.75),
+                       'Chart · radar')
+
+    # ── small multiples, sparklines ──
+    def _nmini(self, s, x, y, w, h, cats, vals, kind='col', polarity=True, color=BLUE, dec=1, name='Series',
+               axis=False, base=True, markers=True):
+        """A tiny native chart (column or line) with no axes: sparklines, small multiples, KPI tiles."""
+        cats = [str(c) for c in cats]
+        b = _Book()
+        cc = b.add(None, cats)
+        vc = b.add(name, vals, fmt=_nf(dec))
+        X = _XChart(self, b)
+        vv = [v for v in vals if v is not None]
+        n = len(vals)
+        if kind == 'col':
+            lo, hi = min(vv + [0]), max(vv + [0])
+            gap, _ = self._gap(w / n, 1, BAR_MAX * 0.6, 0.66)
+            dp = {k: {'fill': (REDS if polarity and v < 0 else (BLUE if polarity else color))}
+                  for k, v in enumerate(vals) if v is not None}
+            X.group('bar', [X.ser(name, vc, vals, (cc, cats), fill=color if not polarity else BLUE, dpts=dp)], gap=gap)
+            X.cat_ax(1, 2, line=BASE if base else None, lbl='none')
+        else:
+            lo, hi = min(vv), max(vv)
+            last = max(k for k in range(n) if vals[k] is not None)
+            kmin = min(range(n), key=lambda k: vals[k] if vals[k] is not None else 1e18)
+            dp = {last: {'marker': {'symbol': 'circle', 'size': 5, 'fill': color if not markers else BLUE,
+                                    'line': PAPER}}}
+            if markers and kmin != last:
+                dp[kmin] = {'marker': {'symbol': 'circle', 'size': 4, 'fill': MUTE, 'line': PAPER}}
+            X.group('line', [X.ser(name, vc, vals, (cc, cats), line=color, lw=1.5, dpts=dp)])
+            X.cat_ax(1, 2, line=BASE if (base and lo < 0 < hi) else None, lbl='none')
+        pad = (hi - lo) * 0.08 or 1
+        X.val_ax(2, 1, lo if (kind == 'col' and lo >= 0) else lo - (pad if kind != 'col' else 0),
+                 hi + (pad if kind != 'col' else 0), None, _nf(dec), grid=False, delete=not axis,
+                 between='between' if kind == 'col' else 'midCat')
+        return X.place(s.shapes, (x, y, w, h), (x, y, w, h), 'Chart · mini')
+
+    def _n_multiples(self, s, x, y, w, h, sp):
+        P = sp['panels']
+        cols = sp.get('cols', 4)
+        rows = math.ceil(len(P) / cols)
+        gx, gy = 0.4, 0.28
+        cv = _Cv(self, s, x, y, w, h, 'Small multiples')
+        top = y
+        if sp.get('legend', True) and sp.get('polarity', True):
+            top += self._legend(cv, [(sp.get('pos_label', 'Dương' if self.lang == 'vi' else 'Positive'), BLUE, 'rect'),
+                                     (sp.get('neg_label', 'Âm' if self.lang == 'vi' else 'Negative'), REDS, 'rect')])
+        cw = (w - gx * (cols - 1)) / cols
+        ch = (y + h - top - gy * (rows - 1)) / rows
+        for i, p in enumerate(P):
+            r, c = divmod(i, cols)
+            px, py = x + c * (cw + gx), top + r * (ch + gy)
+            cv.seg(px, py, px + cw, py, INK, 1.0, cap='flat')
+            cv.label(px, py + 0.06, p['title'], 10, 'ui_semi', INK2, va='t')
+            last = [v for v in p['values'] if v is not None][-1]
+            dec = p.get('dec', sp.get('dec', 1))
+            cv.runs(px, py + 0.46, [(self.num(last, dec), {'role': 'ui_semi', 'size': 17, 'color': INK}),
+                                    (' ' + p.get('unit', sp.get('unit', '')), {'role': 'ui', 'size': 9.5, 'color': INK2}),
+                                    ('  ' + str(p['categories'][-1]), {'role': 'ui', 'size': 9, 'color': INK3})])
+            my, mh = py + 0.72, ch - 0.72 - 0.26
+            vv = [v for v in p['values'] if v is not None]
+            self._nmini(s, px, my, cw - 0.55, mh, p['categories'], p['values'], p.get('kind', 'col'),
+                        sp.get('polarity', True), p.get('color', BLUE), dec, p['title'])
+            lo_, hi_ = min(vv + [0]), max(vv + [0])
+            cv.label(px + cw - 0.5, my + 0.02, self.num(hi_, 0), 8, 'ui', INK3, va='t')
+            if lo_ < 0:
+                cv.label(px + cw - 0.5, my + mh - 0.02, self.num(lo_, 0), 8, 'ui', INK3, va='b')
+            cv.label(px, my + mh + 0.05, str(p['categories'][0]), 8.5, 'ui', INK3, va='t')
+            cv.label(px + cw - 0.55, my + mh + 0.05, str(p['categories'][-1]), 8.5, 'ui', INK3, ha='r', va='t')
+        return cv.grp
+
+    def _ntable(self, s, x, y, w, rows, col_w, row_h, fills=None, styles=None, name='Table', borders='rows'):
+        """Native table: rows = [[text|None]], fills[i][j] = hex | None, styles[i][j] = dict(size, role, color, align)."""
+        nr, nc = len(rows), len(rows[0])
+        gf = s.shapes.add_table(nr, nc, E(x), E(y), E(w), E(sum(row_h) if isinstance(row_h, list) else row_h * nr))
+        gf.name = name
+        tbl = gf.table
+        tblPr = gf._element.graphic.graphicData.tbl.tblPr
+        sid = tblPr.find(qn('a:tableStyleId'))
+        if sid is None:
+            sid = OxmlElement('a:tableStyleId')
+            tblPr.append(sid)
+        sid.text = '{2D5ABB26-0587-4C30-8999-92F81FD0307C}'
+        tbl.first_row = False
+        tbl.horz_banding = False
+        for j, cw in enumerate(col_w):
+            tbl.columns[j].width = E(cw)
+        for i in range(nr):
+            tbl.rows[i].height = E(row_h[i] if isinstance(row_h, list) else row_h)
+            for j in range(nc):
+                c = tbl.cell(i, j)
+                st = (styles[i][j] if styles else None) or {}
+                f = fills[i][j] if fills else None
+                if f:
+                    c.fill.solid()
+                    c.fill.fore_color.rgb = rgb(f)
+                else:
+                    c.fill.background()
+                c.margin_left = c.margin_right = E(st.get('pad', 0.06))
+                c.margin_top = c.margin_bottom = E(0.01)
+                c.vertical_anchor = MSO_ANCHOR.MIDDLE
+                tf = c.text_frame
+                tf.word_wrap = st.get('wrap', True)
+                v = rows[i][j]
+                p = tf.paragraphs[0]
+                p.alignment = {'l': PP_ALIGN.LEFT, 'r': PP_ALIGN.RIGHT, 'c': PP_ALIGN.CENTER}[st.get('align', 'l')]
+                if isinstance(v, list):                      # multi-paragraph cell: [(text, style)]
+                    for k, (t, so) in enumerate(v):
+                        pp = p if k == 0 else tf.add_paragraph()
+                        pp.alignment = p.alignment
+                        self._run(pp, t, size=so.get('size', 10), color=so.get('color', INK), role=so.get('role', 'ui'))
+                else:
+                    self._run(p, '' if v is None else str(v), size=st.get('size', 10), color=st.get('color', INK),
+                              role=st.get('role', 'ui'), caps=st.get('caps', False))
+                tcPr = c._tc.get_or_add_tcPr()
+                for tag in ('a:lnL', 'a:lnR', 'a:lnT', 'a:lnB'):
+                    for el in tcPr.findall(qn(tag)):
+                        tcPr.remove(el)
+                bl = st.get('borders', {})
+                for k, tag in enumerate(('a:lnL', 'a:lnR', 'a:lnT', 'a:lnB')):
+                    side = tag[-1]
+                    spec = bl.get(side)
+                    ln = OxmlElement(tag)
+                    if spec:
+                        col, wpt = spec
+                        ln.set('w', str(int(wpt * 12700)))
+                        sf = OxmlElement('a:solidFill')
+                        clr = OxmlElement('a:srgbClr')
+                        clr.set('val', col)
+                        sf.append(clr)
+                        ln.append(sf)
+                    else:
+                        ln.set('w', '0')
+                        ln.append(OxmlElement('a:noFill'))
+                    tcPr.insert(k, ln)
+        return gf
+
+    def _n_spark_table(self, s, x, y, w, h, sp):
+        R = sp['rows']
+        H = sp.get('headers', ('', '', '', ''))
+        n = len(R)
+        cw = [w * 0.34, w * 0.34, w * 0.14, w * 0.18]
+        rh = min(0.58, (h - 0.34) / n)
+        rows = [[H[0], H[1], H[2], H[3]]]
+        styles = [[dict(size=9, role='ui_semi', color=INK2, caps=True, align=a, borders={'B': (INK, 1.0)})
+                   for a in ('l', 'l', 'r', 'r')]]
+        fills = [[None] * 4]
+        for i, r in enumerate(R):
+            dec, unit = r.get('dec', 1), r.get('unit', '')
+            v = r['values']
+            first = next(q for q in v if q is not None)
+            ch = v[-1] - first
+            ctext = self.num(ch, dec, sign=True) + r.get('chg_unit', ' đ.%' if self.lang == 'vi' else ' pp')
+            name_cell = [(r['name'], {'size': 11, 'role': 'ui_med', 'color': INK})]
+            if r.get('sub'):
+                name_cell.append((r['sub'], {'size': 8.5, 'role': 'ui', 'color': INK3}))
+            rows.append([name_cell, '', self.num(v[-1], dec) + unit, ctext])
+            bd = {'B': (HAIR, 0.5)}
+            styles.append([dict(borders=bd, pad=0.08), dict(borders=bd), dict(size=12, role='ui_semi', align='r',
+                                                                              borders=bd),
+                           dict(size=10.5, color=INK2, align='r', borders=bd, pad=0.08)])
+            fills.append([ZEBRA if i % 2 else None] * 4)
+        gf = self._ntable(s, x, y, w, rows, cw, [0.32] + [rh] * n, fills, styles, 'Sparkline table')
+        for i, r in enumerate(R):
+            yy = y + 0.32 + i * rh
+            self._nmini(s, x + cw[0] + 0.12, yy + 0.09, cw[1] - 0.6, rh - 0.18, sp.get('years') and
+                        list(range(len(r['values']))) or list(range(len(r['values']))), r['values'], 'line', False,
+                        INK2, r.get('dec', 1), r['name'])
+        return gf
+
+    # ── tables with cell fills: heatmap, calendar heatmap, waffle ──
+    def _n_heatmap(self, s, x, y, w, h, sp):
+        R, C, V = sp['rows'], sp['cols'], sp['values']
+        dec = sp.get('dec', 1)
+        allv = [v for r in V for v in r if v is not None]
+        div = sp.get('scale', 'diverging') == 'diverging'
+        vmax = sp.get('vmax') or (max(abs(v - sp.get('center', 0)) for v in allv) if div else max(allv))
+        cv = _Cv(self, s, x, y, w, 0.4, 'Heatmap legend')
+        lx, ly = x, y + 0.12
+        if sp.get('legend_title'):
+            cv.label(lx, ly, sp['legend_title'], 9.5, 'ui_semi', INK)
+            lx += self.tw(sp['legend_title'], 9.5, 'ui_semi') + 0.2
+        if div:
+            c0 = sp.get('center', 0)
+            stops = [c0 - vmax, c0 - vmax / 2, c0, c0 + vmax / 2, c0 + vmax]
+        else:
+            lo = sp.get('vmin', 0)
+            stops = [lo + (vmax - lo) * t for t in (0, .25, .5, .75, 1)]
+        for v in stops:
+            cv.rrect(lx, ly - 0.08, 0.26, 0.16, self._heat_color(sp, v, vmax), r=0.03)
+            t = self.num(v, dec, sign=div)
+            cv.label(lx + 0.31, ly, t, 9, 'ui', INK2)
+            lx += 0.31 + self.tw(t, 9, 'ui') + 0.18
+        top = y + 0.42
+        lw = max(self.tw(r, 10, 'ui_med') for r in R) + 0.2
+        ccw = (w - lw) / len(C)
+        rh = min(0.38, (y + h - top - 0.3) / len(R))
+        rows = [[''] + [str(c) for c in C]]
+        styles = [[dict(size=9, color=INK2, align='c')] * (len(C) + 1)]
+        fills = [[None] * (len(C) + 1)]
+        for i, r in enumerate(R):
+            row, st, fl = [r], [dict(size=10, role='ui_med', align='r', pad=0.1)], [None]
+            for j in range(len(C)):
+                v = V[i][j]
+                col = self._heat_color(sp, v, vmax)
+                row.append('' if v is None else (self.num(v, dec) if sp.get('show_values', True) else ''))
+                st.append(dict(size=8.5, role='ui_med', color=on(col), align='c', pad=0.02,
+                               borders={'L': (PAPER, 1.5), 'R': (PAPER, 1.5), 'T': (PAPER, 1.5), 'B': (PAPER, 1.5)}))
+                fl.append(col)
+            rows.append(row)
+            styles.append(st)
+            fills.append(fl)
+        return self._ntable(s, x, top, w, rows, [lw] + [ccw] * len(C), [0.28] + [rh] * len(R), fills, styles,
+                            'Heatmap (table)')
+
+    def _n_calendar(self, s, x, y, w, h, sp):
+        """Calendar heatmap: rows = years, columns = months (or weeks × weekdays), one native table cell per period."""
+        return self._n_heatmap(s, x, y, w, h, dict(sp, rows=sp['rows'], cols=sp['cols'], values=sp['values']))
+
+    def _n_waffle(self, s, x, y, w, h, sp):
+        """10 × 10 native table; each cell = 1% (largest-remainder rounding), filled in reading order."""
+        parts = sp['parts']
+        cells = largest_remainder([p['value'] for p in parts], 100)
+        cols = [MUTE if p.get('muted') else p.get('color', PALETTE[i % len(PALETTE)]) for i, p in enumerate(parts)]
+        seq = [c for c, k in zip(cols, cells) for _ in range(k)]
+        side = min(h, w * 0.5)
+        g = side / 10
+        rows = [[''] * 10 for _ in range(10)]
+        fills = [[seq[r * 10 + c] if r * 10 + c < len(seq) else 'F3F2EE' for c in range(10)] for r in range(10)]
+        bd = {k: (PAPER, 2.0) for k in 'LRTB'}
+        styles = [[dict(size=2, borders=bd) for _ in range(10)] for _ in range(10)]
+        gf = self._ntable(s, x, y, side, rows, [g] * 10, [g] * 10, fills, styles, 'Waffle (table)')
+        cv = _Cv(self, s, x, y, w, h, 'Waffle key')
+        lx, ly = x + side + 0.4, y + 0.05
+        fv = sp.get('fmt')
+        lab = lambda q: fv(q['value']) if fv else self.num(q['value'], q.get('dec', sp.get('dec', 0))) + sp.get('unit', '%')
+        vw = max(self.tw(lab(q), 18, 'ui_semi') for q in parts)
+        for i, p in enumerate(parts):
+            cv.rrect(lx, ly + 0.09, 0.16, 0.16, cols[i], r=0.03)
+            cv.label(lx + 0.28, ly + 0.17, lab(p), 18, 'ui_semi', INK)
+            nl = self.nlines(p['name'], 11, 'ui', x + w - (lx + 0.45 + vw))
+            self._tx(cv.s, lx + 0.45 + vw, ly + 0.07, x + w - (lx + 0.45 + vw), self.lh(11, 1.1, nl) + 0.04, p['name'],
+                     11, INK2, 'ui', line=1.1)
+            ly += max(0.58, self.lh(11, 1.1, nl) + 0.3)
+        if sp.get('caption'):
+            cv.label(lx, y + side - 0.1, sp['caption'], 9.5, 'ui', INK3)
+        return gf
+
+    # ── treemap (squarified shapes; numbers in the notes) ──
+    def _c_treemap(self, cv, sp):
+        items = sorted(sp['items'], key=lambda it: -it['value'])
+        dec, unit = sp.get('dec', 0), sp.get('unit', '')
+        groups = sp.get('groups')
+        top = cv.y
+        gcol = {}
+        if groups:
+            for i, g in enumerate(groups):
+                gcol[g['name']] = g.get('color', PALETTE[i % len(PALETTE)])
+            top += self._legend(cv, [(g['name'], gcol[g['name']], 'rect') for g in groups])
+        tot = sum(it['value'] for it in items)
+        rects = squarify([it['value'] for it in items], cv.x, top, cv.w, cv.y1 - top)
+        for it, (rx, ry, rw, rh) in zip(items, rects):
+            c = it.get('color') or gcol.get(it.get('group'), BLUE)
+            if it.get('muted'):
+                c = MUTE
+            cv.rect(rx, ry, rw, rh, c, line=cv.bg, lw=1.5)
+            share = it['value'] / tot * 100
+            t1, t2 = it.get('short', it['name']), self.num(share, sp.get('share_dec', 1)) + '%'
+            tc = on(c)
+            if rw > self.tw(t1, 10, 'ui_semi') + 0.14 and rh > 0.42:
+                cv.label(rx + 0.07, ry + 0.07, t1, 10, 'ui_semi', tc, va='t')
+                cv.label(rx + 0.07, ry + 0.27, t2, 9.5, 'ui', tc, va='t')
+            elif rw > self.tw(t2, 8.5, 'ui') + 0.08 and rh > 0.22:
+                cv.label(rx + 0.04, ry + 0.04, t2, 8.5, 'ui', tc, va='t')
+
+
+class Deck(_Native):
     def __init__(self, lang='vi', safe_fonts=False, embed_fonts=True, editable=False, brand='Vietnam Dashboard',
                  template=None):
         self.lang = lang if lang in TXT else 'vi'
@@ -681,6 +2808,8 @@ class Deck:
                 cv.rrect(cx, cy - 0.07, 0.14, 0.14, mix(color, 'FFFFFF', 0.8), r=0.025, line=color, lw=1, dash='sdash')
             elif kind == 'outline':
                 cv.rect(cx, cy - 0.07, 0.14, 0.14, None, line=color, lw=1.25, dash='sdash')
+            elif kind == 'dashkey':
+                cv.rect(cx, cy - 0.025, kw, 0.05, color)
             elif kind == 'tick':
                 cv.seg(cx + 0.07, cy - 0.09, cx + 0.07, cy + 0.09, color, 2.5, cap='flat')
             else:
