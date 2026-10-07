@@ -852,6 +852,25 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-pt { cursor: pointer; } .st-pt:hover circle:last-child, .st-pt:focus circle:last-child { stroke: #16181d; }
   .st-bar { cursor: pointer; transition: opacity .15s; } .st-bar:hover { opacity: .78; }
   .st-xh-line { stroke: #16181d; stroke-width: 1; pointer-events: none; }
+  /* chapter 3 · scrollytelling: steps scroll past a pinned chart; phone / reduced motion = static stack (chart in each step) */
+  .fs-sc { display: grid; grid-template-columns: minmax(250px, .78fr) 1.22fr; gap: 32px; align-items: start; margin: 8px 0 6px; }
+  .fs-sc-step { min-height: 62vh; padding: 14px 0 14px 16px; border-left: 3px solid #e1e0d9; transition: border-color .3s ease; }
+  .fs-sc-step:last-child { min-height: 46vh; } .fs-sc-step.on { border-left-color: #16181d; }
+  .fs-sc-n { font: 600 11.5px var(--font-ui); letter-spacing: .08em; color: #c2362f; margin-bottom: 6px; }
+  .fs-sc-h { font: 650 18px/1.3 var(--font-ui); color: #16181d; margin: 0 0 8px; text-wrap: balance; }
+  .fs-sc-big { font: 700 30px/1.1 var(--font-ui); color: #16181d; margin: 4px 0 8px; letter-spacing: -.01em; } .fs-sc-big span { display: block; font: 400 12px var(--font-ui); color: #5b6170; letter-spacing: 0; margin-top: 3px; }
+  .fs-sc-step p { font: 400 14px/1.55 var(--font-ui); color: #16181d; margin: 0 0 8px; max-width: 60ch; } .fs-sc-step p.fs-sc-c { color: #5b6170; font-size: 13px; }
+  .fs-sc-fig { position: sticky; top: var(--fs-sc-top, 60px); background: #fff; padding-bottom: 6px; }
+  .fs-sc-nav { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 0 0 6px; }
+  .fs-sc-nav button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid #dedbd2; background: #fff; color: #5b6170; font: 600 12.5px var(--font-ui); cursor: pointer; }
+  .fs-sc-nav button:hover { border-color: #16181d; color: #16181d; } .fs-sc-nav button.on { background: #16181d; border-color: #16181d; color: #fff; }
+  .fs-sc-cap { font: 500 12px/1.3 var(--font-ui); color: #5b6170; margin-left: 6px; flex: 1 1 160px; }
+  .fs-sc-svg { display: grid; } .fs-sc-st { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .45s ease, visibility 0s linear .45s; }
+  .fs-sc-st.on { opacity: 1; visibility: visible; transition: opacity .45s ease; } .fs-sc-st svg { display: block; overflow: visible; }
+  .fs-sc-inl { display: none; margin-top: 8px; } .fs-sc-inl svg { display: block; overflow: visible; }
+  @media (max-width: 860px), (prefers-reduced-motion: reduce) {
+    .fs-sc { grid-template-columns: 1fr; gap: 0; } .fs-sc-fig { display: none; } .fs-sc-inl { display: block; }
+    .fs-sc-step, .fs-sc-step:last-child { min-height: 0; padding: 16px 0 18px 12px; border-left-color: #16181d; } .fs-sc-st { transition: none; } }
   /* chapter 7 · money-supply levers */
   .fs-lv { width: 100%; margin: 6px 0 0; } .fs-lv svg { display: block; overflow: visible; }
   .fs-lv-g { font: 400 12px var(--font-ui); color: #5b6170; margin: 0 0 10px; } .fs-lv-g b { color: #16181d; font-weight: 600; }
@@ -867,6 +886,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .fs-lv-dh { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
   .fs-lv-x { border: 0; background: transparent; font: 400 20px/1 var(--font-ui); color: #5b6170; cursor: pointer; min-width: 28px; min-height: 28px; }
   .fs-lv-go { margin: 14px 0 0; }
+  .fs-lv-t-h { font: 400 12.5px/1.45 var(--font-ui); color: #5b6170; margin: 10px 0 2px; max-width: 80ch; }
+  #fs-lv-t output { font-size: 14px; min-width: 0; flex: 1 1 260px; } #fs-lv-t .fs-lv-tc { font-weight: 400; color: #5b6170; } #fs-lv-t .fs-lv-tc b { font-weight: 400; }
   @media (prefers-reduced-motion: reduce) { .fs-lv svg * { transition: none !important; } }
   /* chapter sub-tabs: sticky pill bar under the main tabs; one chapter panel at a time; prev/next at the bottom */
   .st-subbar { grid-column: 1 / -1; position: sticky; top: var(--st-sub-top, 0px); z-index: 6; width: 100%; max-width: 1120px; margin: 0 auto; min-width: 0; box-sizing: border-box; background: #fff; border-bottom: 1px solid #dedbd2; padding: 6px 4px; }
@@ -973,10 +994,21 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-tctl output span { font-weight: 400; color: #5b6170; font-size: 13px; }
   .st-tstep { transition: opacity .12s linear; }
   .st-tstep.st-off { opacity: 0 !important; pointer-events: none; }
+  .soc-gs-q { font: 400 13.5px/1.5 var(--font-ui); color: #5b6170; margin: 2px 0 6px; max-width: 72ch; }
+  .soc-gs { max-width: 760px; touch-action: pan-y; }
+  .soc-gs .soc-gs-h { cursor: grab; outline: none; } .soc-gs .soc-gs-h:focus-visible circle:nth-child(2) { stroke: #2a78d6; stroke-width: 3; }
+  .soc-gs .soc-gs-rv { transition: opacity .5s ease, transform .5s ease; } .soc-gs.soc-gs-in .soc-gs-rv { opacity: 0; transform: translateY(-8px); }
+  @media (prefers-reduced-motion: reduce) { .soc-gs .soc-gs-rv { transition: none; } }
   .soc-geo { display: grid; grid-template-columns: minmax(260px, 360px) 1fr; gap: 32px; align-items: start; }
   @media (max-width: 900px) { .soc-geo { grid-template-columns: 1fr; } .soc-geo-map { max-width: 400px; } }
   #soc-st-map path.st-cell { stroke: #faf8f3; stroke-width: .8; transition: opacity .35s ease var(--d, 0ms), fill .4s ease var(--d, 0ms); }
   #soc-st-map path.st-cell:hover, #soc-st-map path.lk-on { stroke: #16181d; stroke-width: 1.6; }
+  #soc-st-map .soc-hx g.hx { transition: transform .8s cubic-bezier(.3,.7,.2,1) var(--d, 0ms), opacity .15s ease; }
+  #soc-st-map .soc-hx .hx-h, #soc-st-map .soc-hx .hx-c { transition: opacity .45s ease, fill .4s ease; }
+  #soc-st-map .soc-hx .hx-c { opacity: 0; } #soc-st-map .soc-hx.hx-rank .hx-h, #soc-st-map .soc-hx.hx-rank .hx-t { opacity: 0; } #soc-st-map .soc-hx.hx-rank .hx-c { opacity: 1; }
+  #soc-st-map .soc-hx .hx-t { font: 650 10.5px var(--font-ui); pointer-events: none; transition: opacity .3s ease; }
+  .soc-hx-v { display: inline-flex; gap: 4px; margin-right: 8px; padding-right: 8px; border-right: 1px solid #dedbd2; }
+  @media (prefers-reduced-motion: reduce) { #soc-st-map .soc-hx *, #soc-st-map .soc-hx g.hx { transition: none !important; } }
   #soc-st-map .soc-map-lab { font: 650 12px var(--font-ui); fill: #16181d; stroke: #faf8f3; stroke-width: 4px; paint-order: stroke; pointer-events: none; }
   .st-cell.fs-drill { cursor: pointer; }
   #fs-st-waf rect.st-cell { transition: opacity .35s ease var(--d, 0ms), fill .45s ease var(--d2, 0ms); }
@@ -4940,7 +4972,9 @@ function renderEconStory() {
     `<div id="st-eq" class="st-viz"></div>
      <div class="st-sub">${stT('Xuất khẩu và nhập khẩu, so với cả GDP (%)', 'Exports and imports, against all of GDP (%)')}</div><div id="st-giants" class="st-viz"></div>
      <div class="st-sub">${stT('Cơ cấu thay đổi thế nào, 2015–2025 (% GDP)', 'How the mix has shifted, 2015–2025 (% of GDP)')}</div><div id="st-mix-leg"></div><div id="st-mix" class="st-viz"></div><div id="st-mix-note"></div>
-     ${stSrc(stT('Nguồn: NSO — GDP theo mục đích sử dụng, giá hiện hành (2024 sơ bộ, 2025 ước tính); X, M: World Bank.', 'Source: NSO — GDP by expenditure, current prices (2024 preliminary, 2025 estimate); X, M: World Bank.'))}`);
+     ${stSrc(stT('Nguồn: NSO — GDP theo mục đích sử dụng, giá hiện hành (2024 sơ bộ, 2025 ước tính); X, M: World Bank.', 'Source: NSO — GDP by expenditure, current prices (2024 preliminary, 2025 estimate); X, M: World Bank.'))}
+     <div class="st-sub">${stT('Phía sản xuất: các ngành xếp hạng theo tỷ trọng trong GDP, 2010–2025 (1 = lớn nhất; rê chuột vào một đường để xem tỷ trọng)', 'The production side: activities ranked by share of GDP, 2010–2025 (1 = largest; hover a line for its share)')}</div><div id="st-bump-leg"></div><div id="st-bump" class="st-viz"></div><div id="st-bump-note"></div>
+     ${stSrc(stT('Nguồn: NSO PxWeb — cơ cấu GDP theo ngành kinh tế, giá hiện hành (V03.02, V03.04–05), chuỗi đánh giá lại 2021. Nông, lâm, thủy sản là một dòng vì NSO không tách theo giá hiện hành. Bảng ngành theo từng năm có ở phụ lục.', 'Source: NSO PxWeb — GDP structure by economic activity, current prices (V03.02, V03.04–05), revised 2021 series. Agriculture, forestry and fishing is one line because NSO does not split it at current prices. A year-by-year sector card is in the appendix.'))}`);
   // ── 2. Balance of payments ──
   h += stChap('st-bop', stT('Chương 2 · Tiền chảy qua biên giới', 'Chapter 2 · Money across the border'),
     stT(`Thặng dư vãng lai ${stN(ca, 1)} tỷ USD năm ${B.years[bi]}; dự trữ chỉ tăng ${stN(res, 1)} tỷ`, `A ${stN(ca, 1)} bn USD current-account surplus in ${B.years[bi]}; reserves rose only ${stN(res, 1)} bn`),
@@ -4989,7 +5023,7 @@ function renderEconStory() {
   h += stChap('st-watch', stT('Tiếp theo · Điều cần theo dõi', 'Next · What to watch'), stT('Ba mốc sẽ cho biết bức tranh này thay đổi thế nào', 'Three markers that will show how this picture changes'), '',
     `<ol class="st-watch">${w.map(([t, b, p]) => `<li><time>${t}</time><b>${b}</b>${p}</li>`).join('')}</ol>`);
   root.innerHTML = h;
-  stGrowth(); stEquation(); stGiants(); stMix(); stBopControls(); stSankey(); stBopMult(); stBopFacts(); stBudControls(); stWaffles(); stBudLine(); stInvArea(); stHeat(); stFan();
+  stGrowth(); stEquation(); stGiants(); stMix(); stBump(); stBopControls(); stSankey(); stBopMult(); stBopFacts(); stBudControls(); stWaffles(); stBudLine(); stInvArea(); stHeat(); stFan();
   ecDef(); ecDebt(); ecFdi(); ecFdiReg(); ecCpiY(); ecPcChart(); ecUsdChart();
   stFinish(root);
 }
@@ -5354,6 +5388,67 @@ function stMix() {
   const c0 = P('C')[0], c1 = P('C')[yrs.length - 1];
   document.getElementById('st-mix-note').innerHTML = stNote(stT(`Tỷ trọng tiêu dùng hộ gia đình giảm từ ${stN(c0, 1)}% (${yrs[0]}) xuống ${stN(c1, 1)}% (${yrs[yrs.length - 1]}).`, `The household share fell from ${stN(c0, 1)}% (${yrs[0]}) to ${stN(c1, 1)}% (${yrs[yrs.length - 1]}).`), stT('GDP vẫn tăng; đây là tỷ trọng, không phải mức chi tiêu tuyệt đối.', 'GDP still grew; this is a share, not the level of spending.'));
   stRW(el, stMix);
+}
+// 1d — GDP by activity, 2010–2025: a rank (bump) chart of each NSO activity's share of GDP at current prices
+// (GDP_SUB_OFFICIAL, 19 activities) plus agriculture/forestry/fishing as one line (GDP_SECTORS 'agr'; NSO does not split it at
+// current prices). Ranks are computed per year (ties share a rank); shares are on hover and in the table. Taxes less subsidies
+// are not an activity and are excluded. Guard: if any year's activities + agriculture + taxes do not sum to ≈100%, nothing is drawn.
+const EC_ACT = { manufacturing: ['Chế biến, chế tạo', 'Manufacturing', 'Chế biến, chế tạo', 'Manufacturing'], agr: ['Nông, lâm, thủy sản', 'Agriculture, forestry, fishing', 'Nông, lâm, thủy sản', 'Agriculture'], wholesale_retail: ['Bán buôn, bán lẻ', 'Wholesale & retail', 'Bán buôn, bán lẻ', 'Trade'],
+  construction: ['Xây dựng', 'Construction'], transport_storage: ['Vận tải, kho bãi', 'Transport & storage', 'Vận tải', 'Transport'], finance_insurance: ['Tài chính, ngân hàng, bảo hiểm', 'Finance & insurance', 'Tài chính, NH', 'Finance'],
+  electricity_gas: ['Điện, khí đốt', 'Electricity & gas', 'Điện, khí đốt', 'Power & gas'], education: ['Giáo dục, đào tạo', 'Education'], real_estate: ['Kinh doanh bất động sản', 'Real estate', 'Bất động sản', 'Real estate'], ict: ['Thông tin, truyền thông', 'Information & communication', 'Thông tin, TT', 'ICT'],
+  health_social: ['Y tế, trợ giúp xã hội', 'Health & social work', 'Y tế', 'Health'], accommodation_food: ['Lưu trú, ăn uống', 'Accommodation & food', 'Lưu trú, ăn uống', 'Hotels & food'], mining: ['Khai khoáng', 'Mining & quarrying', 'Khai khoáng', 'Mining'],
+  public_admin_defence: ['Quản lý nhà nước, quốc phòng', 'Public admin & defence', 'QLNN, quốc phòng', 'Public admin'], professional_science_tech: ['KH, chuyên môn, công nghệ', 'Professional & technical', 'KH, công nghệ', 'Professional'],
+  admin_support: ['Hành chính, dịch vụ hỗ trợ', 'Administrative & support', 'DV hỗ trợ', 'Admin support'], other_services: ['Dịch vụ khác', 'Other services'], arts_entertainment: ['Nghệ thuật, vui chơi, giải trí', 'Arts & entertainment', 'Giải trí', 'Arts'],
+  water_waste: ['Cấp nước, xử lý rác thải', 'Water supply & waste', 'Cấp nước, rác', 'Water & waste'], households_employers: ['Hộ gia đình làm chủ', 'Households as employers', 'Hộ gia đình', 'Households'] };
+function ecActData() {
+  if (typeof GDP_SUB_OFFICIAL === 'undefined' || typeof GDP_SECTORS === 'undefined') return null;
+  const D = GDP_SUB_OFFICIAL.data, ks = Object.keys(D), n = D[ks[0]].length, yrs = Array.from({ length: n }, (_, i) => GDP_SUB_OFFICIAL.y0 + i);
+  const sec = k => (GDP_SECTORS.find(s => s.key === k) || {}).data, agr = sec('agr'), tax = sec('tax'), at = (a, y) => a ? a[GDP_YEARS.indexOf(y)] : null;
+  const S = { ...Object.fromEntries(ks.map(k => [k, D[k]])), agr: yrs.map(y => at(agr, y)) };
+  const sums = yrs.map((y, i) => Object.values(S).reduce((a, v) => a + (v[i] || 0), 0) + (at(tax, y) || 0));
+  if (sums.some(v => !isFinite(v) || Math.abs(v - 100) > 0.5) || S.agr.some(v => v == null)) return { bad: sums };
+  const keys = Object.keys(S), rank = yrs.map((_, i) => Object.fromEntries(keys.map(k => [k, 1 + keys.filter(j => S[j][i] > S[k][i]).length])));
+  return { yrs, S, keys, rank, tax: yrs.map(y => at(tax, y)) };
+}
+function stBump() {
+  const el = document.getElementById('st-bump'); if (!el) return; const A = ecActData();
+  const note = document.getElementById('st-bump-note');
+  if (!A || A.bad) { el.innerHTML = `<p class="st-fact-s">${stT('Chuỗi ngành chưa khớp tổng 100% GDP nên chưa vẽ.', 'The activity series does not add up to 100% of GDP, so it is not drawn.')}</p>`; if (note) note.innerHTML = ''; return; }
+  const { yrs, S, keys, rank } = A, n = yrs.length, L = n - 1, nm = k => stT(...(EC_ACT[k] || [k, k]).slice(0, 2)), f = v => stN(v, 1) + '%';
+  const ACC = { manufacturing: ST.blue, mining: ST.orange };
+  document.getElementById('st-bump-leg').innerHTML = stLegend([{ n: nm('manufacturing'), c: ST.blue, k: 'line' }, { n: nm('mining'), c: ST.orange, k: 'line' }, { n: stT('Các ngành khác', 'Other activities'), c: ST_MUTE, k: 'line' }]);
+  const W = stCW(el, 1100), narrow = W < 680, K = keys.length, RH = narrow ? 21 : 22, MT = 26;
+  const sn = k => { const e = EC_ACT[k] || [k, k]; return narrow ? stT(e[2] || e[0], e[3] || e[1]) : nm(k); };
+  // label slots: one row per activity, in rank order (ties broken by key order and marked "="), so tied names never overprint
+  const slot = i => { const o = keys.slice().sort((a, b) => rank[i][a] - rank[i][b] || keys.indexOf(a) - keys.indexOf(b)); return Object.fromEntries(o.map((k, j) => [k, j + 1])); };
+  const tie = (i, k) => keys.some(j => j !== k && rank[i][j] === rank[i][k]) ? '=' : '';
+  const lR = k => `${rank[L][k]}${tie(L, k)}. ${sn(k)} ${f(S[k][L])}`, lL = k => `${nm(k)} ${rank[0][k]}${tie(0, k)}`;
+  const cw = narrow ? 6.1 : 6.9, MR = Math.min(Math.round(W * (narrow ? .56 : .3)), Math.round(Math.max(...keys.map(k => lR(k).length)) * cw) + 18), ML = narrow ? 30 : Math.min(Math.round(W * .26), Math.round(Math.max(...keys.map(k => lL(k).length)) * cw) + 16), H = MT + K * RH + 6;
+  const sx = stLin(yrs[0], yrs[L], ML, W - MR), sy = r => MT + (r - 0.5) * RH, s0 = slot(0), sL = slot(L);
+  let s = '';
+  yrs.forEach((y, i) => { if (!narrow || i % 5 === 0 || i === L) s += `<text class="st-tick" x="${sx(y)}" y="12" text-anchor="middle">${narrow && i && i !== L ? "'" + String(y).slice(2) : y}</text>`; });
+  for (let r = 1; r <= K; r++) s += `<line class="st-grid" x1="${ML}" x2="${W - MR}" y1="${sy(r)}" y2="${sy(r)}" opacity=".5"/>`;
+  // grey first, accents on top; on a phone only the accents and the end points carry dots (the table has every value)
+  const order = keys.slice().sort((a, b) => (ACC[a] ? 1 : 0) - (ACC[b] ? 1 : 0));
+  order.forEach(k => { const c = ACC[k] || ST_MUTE, lk = `data-lk="act:${k}"`, nmk = nm(k);
+    s += stLine(yrs.map((y, i) => [sx(y), sy(rank[i][k])]), c, { attr: lk });
+    yrs.forEach((y, i) => { const key = [`${nmk} · ${y}`, `${f(S[k][i])} GDP · ${stT('hạng', 'rank')} ${rank[i][k]}${tie(i, k)}/${K}`];
+      if (!narrow || ACC[k] || i === 0 || i === L) s += stDot(sx(y), sy(rank[i][k]), 4, c, key, { d: i * 20, attr: lk });
+      else s += `<g class="st-pt" ${stKey(...key)} ${lk}><circle cx="${sx(y)}" cy="${sy(rank[i][k])}" r="6" fill="transparent"/></g>`; });
+    const yR = sy(sL[k]), y0 = sy(rank[L][k]);
+    if (Math.abs(yR - y0) > 1) s += `<path d="M${W - MR + 4},${y0} L${W - MR + 8},${yR}" stroke="#8a8f99" fill="none"/>`;
+    s += `<text class="st-lab${ACC[k] ? ' st-b' : ''}" x="${W - MR + 10}" y="${yR + 4}" style="font-size:${narrow ? 11 : 12}px" ${lk}>${ciE(lR(k))}</text>`;
+    if (!narrow) { const yl = sy(s0[k]), yl0 = sy(rank[0][k]); if (Math.abs(yl - yl0) > 1) s += `<path d="M${ML - 4},${yl0} L${ML - 8},${yl}" stroke="#8a8f99" fill="none"/>`;
+      s += `<text class="st-lab${ACC[k] ? ' st-b' : ''}" x="${ML - 10}" y="${yl + 4}" text-anchor="end" style="font-size:12px" ${lk}>${ciE(lL(k))}</text>`; } });
+  if (narrow) for (let r = 1; r <= K; r++) s += `<text class="st-tick" x="${ML - 8}" y="${sy(r) + 4}" text-anchor="end">${r}</text>`;
+  el.innerHTML = stSvg(W, H, s, stT(`Thứ hạng các ngành theo tỷ trọng GDP, ${yrs[0]}–${yrs[L]}`, `Activities ranked by share of GDP, ${yrs[0]}–${yrs[L]}`));
+  el._stRows = { head: [stT('Ngành', 'Activity')].concat(yrs.map(String)), rows: keys.slice().sort((a, b) => rank[L][a] - rank[L][b]).map(k => [nm(k)].concat(yrs.map((y, i) => `${f(S[k][i])} (#${rank[i][k]})`))) };
+  const mf = S.manufacturing, mr = k => [rank[0][k], rank[L][k]], allTop = yrs.every((_, i) => rank[i].manufacturing === 1), sum = i => keys.reduce((a, k) => a + S[k][i], 0);
+  if (note) note.innerHTML = stNote(stT(`Chế biến, chế tạo tăng từ ${f(mf[0])} lên ${f(mf[L])} GDP${allTop ? `, đứng đầu cả ${n} năm` : ''}; khai khoáng từ hạng ${mr('mining')[0]} (${f(S.mining[0])}) xuống hạng ${mr('mining')[1]} (${f(S.mining[L])}).`,
+      `Manufacturing rose from ${f(mf[0])} to ${f(mf[L])} of GDP${allTop ? `, first in all ${n} years` : ''}; mining fell from rank ${mr('mining')[0]} (${f(S.mining[0])}) to rank ${mr('mining')[1]} (${f(S.mining[L])}).`),
+    stT(`Tỷ trọng theo giá hiện hành, chuỗi đã đánh giá lại năm 2021; ${yrs[L] - 1} là số sơ bộ, ${yrs[L]} là ước tính. Thuế sản phẩm trừ trợ cấp (${f(A.tax[L])} năm ${yrs[L]}) không phải một ngành nên không xếp hạng; ${K} ngành cộng lại ${f(sum(L))}.`,
+      `Shares at current prices, revised 2021 series; ${yrs[L] - 1} is preliminary, ${yrs[L]} an estimate. Taxes less subsidies on products (${f(A.tax[L])} in ${yrs[L]}) are not an activity and are not ranked; the ${K} activities add up to ${f(sum(L))}.`));
+  stRW(el, stBump);
 }
 
 // 2 — balance of payments sankey: colour by direction (in = blue, out = orange, reserves = ink), not one hue per flow
@@ -5967,11 +6062,14 @@ function renderSocStory() {
     stT(`Tháp dân số theo nhóm 5 tuổi và giới tính: ${asA} (ước tính, tô màu) và ${asB} (dự báo, viền đứt nét). Mỗi thanh là % tổng dân số của năm đó.`, `Population pyramid by 5-year age group and sex: ${asA} (estimate, filled) and ${asB} (projection, dashed outline). Each bar is a % of that year's total population.`),
     `${stLegend([{ n: stT(`Nam ${asA}`, `Male ${asA}`), c: ST.blue }, { n: stT(`Nữ ${asA}`, `Female ${asA}`), c: ST.orange }, { n: stT(`${asB} (dự báo)`, `${asB} (projection)`), c: ST.ink, k: 'dash' }])}<div id="soc-st-agebar" class="st-viz"></div>
      ${stNote(stT(`Nhóm 15–64 tuổi từ ${stN(shA['15-64'], 1)}% xuống ${stN(shB['15-64'], 1)}%; nhóm 0–14 từ ${stN(shA['0-14'], 1)}% xuống ${stN(shB['0-14'], 1)}%.`, `The 15–64 group goes from ${stN(shA['15-64'], 1)}% to ${stN(shB['15-64'], 1)}%; the 0–14 group from ${stN(shA['0-14'], 1)}% to ${stN(shB['0-14'], 1)}%.`), stT(`Số ${asB} là dự báo phương án trung bình, không phải số đo; số ${asA} cũng là ước tính mô hình hoá của Liên Hợp Quốc, không phải số đếm của NSO.`, `The ${asB} figures are a medium-variant projection, not a measurement; the ${asA} figures are also UN modelled estimates, not NSO counts.`))}
+     <div class="st-sub">${stT('Đoán thử: năm 2050 Việt Nam có bao nhiêu người?', 'Your guess: how many people will Vietnam have in 2050?')}</div>
+     <p class="soc-gs-q">${stT('Kéo chấm đen (hoặc chọn nó rồi dùng phím mũi tên) tới con số bạn nghĩ, rồi bấm “Xem dự báo”. Không đoán cũng được: bấm thẳng nút. Không có gì được lưu hay gửi đi.', 'Drag the black dot (or select it and use the arrow keys) to your number, then press “Show the projections”. You can also skip the guess and press the button. Nothing is stored or sent.')}</p>
+     <div id="soc-st-guess" class="st-viz soc-gs"></div><div class="st-ctrl" id="soc-st-guess-ctl"></div><div id="soc-st-guess-out" aria-live="polite"></div>
      ${stSrc(stT(`Nguồn: Liên Hợp Quốc, World Population Prospects 2024 (UN WPP 2024) — dân số theo tuổi đơn và giới tính, cộng thành nhóm 5 tuổi; dân số tại 31/12. Tỷ số giới tính theo WPP (~${stN(AS.sex_ratio[asA], 0)} nam/100 nữ) thấp hơn số tổng điều tra của NSO (~99). Dự báo riêng của NSO (2019–2069) là một nguồn khác, không gộp vào đây.`, `Source: United Nations, World Population Prospects 2024 (UN WPP 2024) — single-year age by sex, summed to 5-year groups; population at 31 December. WPP's sex ratio (~${stN(AS.sex_ratio[asA], 0)} males per 100 females) is lower than the NSO census (~99). The NSO's own 2019–2069 projection is a different source and is not mixed in.`))}`);
   h += stChap('soc-st-rich', stT('Chương 3 · Khoảng cách vùng miền', 'Chapter 3 · The regional gap'),
     stT(`GRDP bình quân ${top.n} ${stN(top.v, 0)} USD/người, gấp ${stN(top.v / bot.v, 1)} lần ${bot.n}`, `GRDP per person in ${top.n} is ${stN(top.v, 0)} USD, ${stN(top.v / bot.v, 1)}× ${bot.n}`),
-    stT('GRDP bình quân đầu người năm 2025 (USD), 34 tỉnh, thành. Đường đứt nét: bình quân cả nước. Rê chuột vào một tỉnh trên bản đồ, thanh hoặc chấm để thấy tỉnh đó trên mọi biểu đồ của trang.', 'GRDP per person in 2025 (USD), 34 provinces. Dashed line: national average. Hover a province on the map, a bar or a dot to pick it out on every chart on this page.'),
-    `<div class="soc-geo"><div class="soc-geo-map"><div class="st-ctrl" id="soc-st-map-ctl"></div><div id="soc-st-map-leg"></div><div id="soc-st-map" class="st-viz"></div></div><div><div id="soc-st-grdp" class="st-viz"></div></div></div><div id="soc-st-map-note"></div>${stSrc(stT('Nguồn: NSO và cục thống kê các tỉnh — GRDP 2025 ước tính; bình quân cả nước = GDP 2025 / dân số trung bình, quy đổi theo tỷ giá bình quân năm.' + ' ' + socFxTxt(), 'Source: NSO and provincial statistics offices — 2025 GRDP estimates; national average = 2025 GDP / average population at the annual average exchange rate.') + ' ' + socFxTxt())}`);
+    stT('GRDP bình quân đầu người năm 2025 (USD), 34 tỉnh, thành. Đường đứt nét: bình quân cả nước. Bản đồ ô cho mỗi tỉnh một ô bằng nhau, đặt gần đúng vị trí; bấm “Xếp hạng” để các ô xếp thành dải chấm theo giá trị, hoặc đổi chỉ số. Rê chuột vào một ô, thanh hoặc chấm để thấy tỉnh đó trên mọi biểu đồ của trang.', 'GRDP per person in 2025 (USD), 34 provinces. Dashed line: national average. The tile map gives every province one equal tile in roughly its place; press “Ranked” to line the tiles up by value, or switch the measure. Hover a tile, a bar or a dot to pick the province out on every chart on this page.'),
+    `<div class="soc-geo"><div class="soc-geo-map"><div class="st-ctrl" id="soc-st-map-ctl"></div><div id="soc-st-map-leg"></div><div id="soc-st-map" class="st-viz"></div></div><div><div id="soc-st-grdp" class="st-viz"></div></div></div><div id="soc-st-map-note"></div>${stSrc(stT('Nguồn: NSO và cục thống kê các tỉnh — GRDP 2025 ước tính; bình quân cả nước = GDP 2025 / dân số trung bình, quy đổi theo tỷ giá bình quân năm. Đô thị hoá, tuổi thọ, mức sinh: Điều tra biến động dân số 1/4/2024; mật độ: dân số trung bình 2025 / diện tích. Bản đồ thật ở phần Tự khám phá.', 'Source: NSO and provincial statistics offices — 2025 GRDP estimates; national average = 2025 GDP / average population at the annual average exchange rate. Urbanisation, life expectancy, fertility: population change survey of 1 Apr 2024; density: 2025 average population / area. The real map is in Explore.') + ' ' + socFxTxt())}`);
   h += stChap('soc-st-rank', stT('Chương 4 · Việt Nam trên bản đồ thế giới', 'Chapter 4 · Vietnam among nations'),
     stT(`Thứ ${W.pop.now.rank} về dân số, ${W.g_growth.now.rank} về tăng trưởng, ${W.g_gdp_pc.now.rank} về GDP bình quân đầu người`, `${W.pop.now.rank}th for population, ${W.g_growth.now.rank}th for growth, ${W.g_gdp_pc.now.rank}th for GDP per person`),
     stT('Vị trí của Việt Nam trong khoảng 200 quốc gia và vùng lãnh thổ (trái = cao nhất). Ba chỉ số trong tiêu đề được tô đậm.', 'Vietnam\'s position among roughly 200 countries and territories (left = highest). The three in the headline are highlighted.'),
@@ -5984,7 +6082,7 @@ function renderSocStory() {
     stT('Bản đồ 34 tỉnh và tháp dân số', 'The 34-province map and the population pyramid'),
     stT('Bấm một tỉnh hoặc chọn vùng để xem tổng quan kinh tế – xã hội; kéo thanh thời gian hoặc bấm ▶ để xem tháp dân số cả nước 2000–2050 (UN WPP 2024; từ 2025 là dự báo).', 'Click a province or pick a region for its socio-economic summary; drag the timeline or press ▶ to step the national population pyramid from 2000 to 2050 (UN WPP 2024; projections from 2025).'), '');
   root.innerHTML = h;
-  socStPop(); socStStrip(); socStMult(); socStAge(); socStGrdp(); socStRanks(); socStWaffle();
+  socStPop(); socStStrip(); socStMult(); socStAge(); socStGuess(); socStGrdp(); socStRanks(); socStWaffle();
   stFinish(root); socStMap();
 }
 // hero — population 2000–2025 (ink) + projections to 2050 (dashed; NSO band low–high), crosshair
@@ -6059,6 +6157,68 @@ function socStAge() {
   el.innerHTML = stSvg(W, H, s, stT(`Tháp dân số ${yA} và ${yB} (dự báo), UN WPP 2024`, `Population pyramid ${yA} and ${yB} (projection), UN WPP 2024`));
   stRW(el, socStAge);
 }
+// ch2 — "guess first": the reader places a dot for Vietnam's 2050 population (pointer drag or keyboard: role=slider), then
+// reveals the two projections as separate rows — NSO (blue) and UN WPP 2024 (orange), the hero chart's colours — each a hollow,
+// dashed medium-variant mark on its low–high line. Nothing is stored or sent; the button works without a guess.
+const SOC_GS = { v: null, moved: false, shown: false };
+function socGsData() {
+  const P = POP_SERIES, A = P.actual, y0 = Math.max(...Object.keys(A).map(Number)), Y = 2050, g = (o, k) => o && o[k] && o[k][Y] != null ? o[k][Y] : null;
+  const AS = popAS(), u65 = AS && AS.shares_pct && AS.shares_pct[Y] ? AS.shares_pct[Y]['65+'] : null, n65 = P.gso && P.gso.age_2050 ? P.gso.age_2050['65+'] : null;
+  const src = [{ k: 'gso', n: stT('NSO (Cục Thống kê)', 'NSO (Vietnam statistics office)'), c: ST.blue, m: g(P.gso, 'medium'), lo: g(P.gso, 'low'), hi: g(P.gso, 'high'), pk: P.gso.peak, s65: n65 },
+    { k: 'un', n: stT('Liên Hợp Quốc (WPP 2024)', 'United Nations (WPP 2024)'), c: ST.orange, m: g(P.un, 'medium'), lo: g(P.un, 'low'), hi: g(P.un, 'high'), pk: P.un.peak, s65: u65 }].filter(x => x.m != null);
+  return { y0, now: A[y0], Y, src };
+}
+function socStGuess() {
+  const el = document.getElementById('soc-st-guess'); if (!el || typeof POP_SERIES === 'undefined') return; const D = socGsData(); if (D.src.length < 2) { el.innerHTML = ''; return; }
+  const all = [D.now, ...D.src.flatMap(x => [x.lo, x.hi, x.m])].filter(v => v != null), lo = Math.floor((Math.min(...all) - 8) / 10) * 10, hi = Math.ceil((Math.max(...all) + 8) / 10) * 10;
+  if (SOC_GS.v == null) SOC_GS.v = Math.round(D.now * 2) / 2;
+  const W = stCW(el, 760), narrow = W < 520, ML = narrow ? 22 : 196, MR = 24, RH = narrow ? 58 : 46, MT = 18, H = MT + 3 * RH + 22, sx = stLin(lo, hi, ML, W - MR), u = stT(' triệu', 'm'), f = v => stN(v, 1) + u;
+  const rowY = i => MT + i * RH + (narrow ? 34 : 22), ticks = []; for (let t = lo; t <= hi; t += 10) ticks.push(t);
+  let s = ticks.map(t => `<line class="st-grid" x1="${sx(t)}" x2="${sx(t)}" y1="${MT}" y2="${H - 22}"/><text class="st-tick" x="${sx(t)}" y="${H - 6}" text-anchor="middle">${t}${u}</text>`).join('');
+  const lab = (i, t) => narrow ? `<text class="st-lab st-b" x="${ML}" y="${rowY(i) - 16}">${t}</text>` : `<text class="st-lab st-b" x="${ML - 12}" y="${rowY(i) + 4}" text-anchor="end">${t}</text>`;
+  // today, on the guess row, as a small ink tick: the anchor the guess starts from
+  s += lab(0, stT('Bạn đoán', 'Your guess')) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${rowY(0)}" y2="${rowY(0)}"/>`;
+  s += `<line x1="${sx(D.now)}" x2="${sx(D.now)}" y1="${rowY(0) - 7}" y2="${rowY(0) + 7}" stroke="${ST.ink3}" stroke-width="2"/><text class="st-tick" x="${sx(D.now)}" y="${rowY(0) + 22}" text-anchor="middle">${D.y0}: ${f(D.now)}</text>`;
+  D.src.forEach((x, j) => { const i = j + 1, y = rowY(i);
+    s += lab(i, x.n) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${y}" y2="${y}" opacity=".5"/>`;
+    if (SOC_GS.shown) s += `<g class="soc-gs-rv">${x.lo != null && x.hi != null ? `<line x1="${sx(x.lo)}" x2="${sx(x.hi)}" y1="${y}" y2="${y}" stroke="${x.c}" stroke-width="2" stroke-linecap="round" opacity=".55"/><text class="st-tick" x="${sx(x.lo)}" y="${y + 18}" text-anchor="middle">${stN(x.lo, 1)}</text><text class="st-tick" x="${sx(x.hi)}" y="${y + 18}" text-anchor="middle">${stN(x.hi, 1)}</text>` : ''}
+      ${stDot(sx(x.m), y, 7, x.c, [`${x.n} · ${D.Y} (${stT('dự báo trung bình', 'medium projection')})`, f(x.m)], { cls: 'soc-gs-m', hollow: true, dash: true })}<text class="st-lab st-b" x="${sx(x.m)}" y="${y - 13}" text-anchor="middle">${f(x.m)}</text></g>`;
+    if (!SOC_GS.shown) s += `<text class="st-tick" x="${(ML + W - MR) / 2}" y="${y + 4}" text-anchor="middle" style="fill:#5b6170">${stT('ẩn cho tới khi bạn bấm “Xem dự báo”', 'hidden until you press “Show the projections”')}</text>`; });
+  // the guess handle (role=slider): ink ring, 24px+ hit area; a vertical guide crosses the source rows after the reveal
+  const gx = sx(SOC_GS.v);
+  if (SOC_GS.shown && SOC_GS.moved) s += `<line x1="${gx}" x2="${gx}" y1="${rowY(0)}" y2="${rowY(2) + 8}" stroke="${ST.ink}" stroke-dasharray="3,3"/>`;
+  s += `<g class="soc-gs-h" role="slider" tabindex="0" aria-label="${ciE(stT(`Dân số Việt Nam năm ${D.Y} bạn đoán, triệu người`, `Your guess for Vietnam's ${D.Y} population, millions`))}" aria-valuemin="${lo}" aria-valuemax="${hi}" aria-valuenow="${SOC_GS.v}" aria-valuetext="${ciE(f(SOC_GS.v))}">
+    <circle cx="${gx}" cy="${rowY(0)}" r="16" fill="transparent"/><circle cx="${gx}" cy="${rowY(0)}" r="9" fill="${ST.ink}" stroke="${ST_SURF}" stroke-width="2"/><text class="st-lab st-b" x="${gx}" y="${rowY(0) - 15}" text-anchor="middle">${SOC_GS.moved ? f(SOC_GS.v) : '?'}</text></g>`;
+  el.innerHTML = stSvg(W, H, s, stT(`Đoán dân số năm ${D.Y} và hai dự báo`, `Guess the ${D.Y} population, and two projections`));
+  el._stRows = { head: [stT('Nguồn', 'Source'), stT('Năm', 'Year'), stT('Trung bình', 'Medium'), stT('Thấp', 'Low'), stT('Cao', 'High')],
+    rows: [[stT('NSO, thực tế', 'NSO, actual'), String(D.y0), f(D.now), '—', '—'], ...D.src.map(x => [x.n + ' · ' + stT('dự báo', 'projection'), String(D.Y), f(x.m), x.lo != null ? f(x.lo) : '—', x.hi != null ? f(x.hi) : '—'])] };
+  el._gs = { lo, hi, sx, inv: px => lo + (px - ML) / ((W - MR) - ML) * (hi - lo) };
+  document.getElementById('soc-st-guess-ctl').innerHTML = SOC_GS.shown ? `<button type="button" data-soc-gs="again">${stT('Đoán lại', 'Guess again')}</button><span class="st-fact-s" style="align-self:center;margin:0 0 0 6px">${stT('Vòng nét đứt: phương án trung bình; đoạn thẳng: từ phương án thấp tới cao.', 'Dashed ring: medium variant; line: low to high variant.')}</span>` : `<button type="button" data-soc-gs="show" class="on">${stT('Xem dự báo', 'Show the projections')}</button>`;
+  socGsOut(D);
+  stRW(el, socStGuess);
+}
+function socGsOut(D) {
+  const o = document.getElementById('soc-st-guess-out'); if (!o) return; D = D || socGsData();
+  if (!SOC_GS.shown) { o.innerHTML = ''; return; }
+  const [a, b] = D.src, u = stT(' triệu', 'm'), f = v => stN(v, 1) + u, cmp = x => { const d = SOC_GS.v - x.m; return Math.abs(d) < 0.05 ? stT(`trùng dự báo ${x.k === 'un' ? 'LHQ' : 'NSO'}`, `level with the ${x.k === 'un' ? 'UN' : 'NSO'} projection`) : stT(`${d > 0 ? 'cao' : 'thấp'} hơn dự báo ${x.k === 'un' ? 'LHQ' : 'NSO'} ${stN(Math.abs(d), 1)}${u}`, `${stN(Math.abs(d), 1)}${u} ${d > 0 ? 'above' : 'below'} the ${x.k === 'un' ? 'UN' : 'NSO'} projection`); };
+  const lead = SOC_GS.moved ? stT(`Bạn đoán ${f(SOC_GS.v)}: ${cmp(a)}, ${cmp(b)}.`, `You guessed ${f(SOC_GS.v)}: ${cmp(a)} and ${cmp(b)}.`)
+    : stT(`Dự báo trung bình cho ${D.Y}: NSO ${f(a.m)}, Liên Hợp Quốc ${f(b.m)}, cách nhau ${stN(Math.abs(a.m - b.m), 1)}${u}.`, `Medium projections for ${D.Y}: NSO ${f(a.m)}, United Nations ${f(b.m)}, ${stN(Math.abs(a.m - b.m), 1)}${u} apart.`);
+  const pk = x => x.pk && x.pk.year ? stT(`${x.k === 'un' ? 'LHQ' : 'NSO'}: đỉnh ${stN(x.pk.pop_m, 1)}${u} năm ${x.pk.year}`, `${x.k === 'un' ? 'UN' : 'NSO'}: peak of ${stN(x.pk.pop_m, 1)}${u} in ${x.pk.year}`) : '';
+  const s65 = D.src.every(x => x.s65 != null) ? stT(` Người từ 65 tuổi năm ${D.Y}: ${stN(a.s65, 1)}% (NSO), ${stN(b.s65, 1)}% (LHQ).`, ` People aged 65+ in ${D.Y}: ${stN(a.s65, 1)}% (NSO), ${stN(b.s65, 1)}% (UN).`) : '';
+  o.innerHTML = stNote(lead, stT(`Hai dự báo khác giả định về mức sinh nên được trình bày riêng, không cộng hay lấy trung bình (${[pk(a), pk(b)].filter(Boolean).join('; ')}).${s65}`, `The two projections assume different fertility paths, so they are shown separately, never averaged (${[pk(a), pk(b)].filter(Boolean).join('; ')}).${s65}`));
+}
+function socGsSet(v, moved = true) { const el = document.getElementById('soc-st-guess'); if (!el || !el._gs) return; const { lo, hi } = el._gs; SOC_GS.v = Math.round(Math.max(lo, Math.min(hi, v)) * 10) / 10; if (moved) SOC_GS.moved = true; socStGuess(); const h = el.querySelector('.soc-gs-h'); if (h && document.activeElement !== h && socGsSet._focus) h.focus({ preventScroll: true }); }
+document.addEventListener('pointerdown', e => { const el = e.target.closest && e.target.closest('#soc-st-guess'); if (!el || !el._gs || e.button) return; const svg = el.querySelector('svg'), h = e.target.closest('.soc-gs-h');
+  const toV = ev => { const r = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal, px = (ev.clientX - r.left) * vb.width / r.width; return el._gs.inv(px); };
+  const yv = (e.clientY - svg.getBoundingClientRect().top) / svg.getBoundingClientRect().height; if (!h && yv > .42) return;   // only the guess row (top) or the handle starts a drag
+  e.preventDefault(); socGsSet._focus = 1; socGsSet(toV(e)); socGsSet._focus = 0;
+  const mv = ev => socGsSet(toV(ev)), up = () => { document.removeEventListener('pointermove', mv); document.removeEventListener('pointerup', up); const hh = el.querySelector('.soc-gs-h'); if (hh) hh.focus({ preventScroll: true }); };
+  document.addEventListener('pointermove', mv); document.addEventListener('pointerup', up); });
+document.addEventListener('keydown', e => { const h = e.target.closest && e.target.closest('.soc-gs-h'); if (!h) return; const st = { ArrowRight: .5, ArrowUp: .5, ArrowLeft: -.5, ArrowDown: -.5, PageUp: 5, PageDown: -5 }[e.key], el = document.getElementById('soc-st-guess');
+  if (st != null) { e.preventDefault(); socGsSet._focus = 1; socGsSet(SOC_GS.v + st); socGsSet._focus = 0; } else if ((e.key === 'Home' || e.key === 'End') && el && el._gs) { e.preventDefault(); socGsSet._focus = 1; socGsSet(e.key === 'Home' ? el._gs.lo : el._gs.hi); socGsSet._focus = 0; } });
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-soc-gs]'); if (!b) return;
+  if (b.dataset.socGs === 'show') { SOC_GS.shown = true; socStGuess(); const el = document.getElementById('soc-st-guess'); if (el) { el.classList.add('soc-gs-in'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('soc-gs-in'))); } const r = el && el.closest('.st-root'); if (r) stTables(r); const nb = document.querySelector('[data-soc-gs="again"]'); if (nb) nb.focus({ preventScroll: true }); }
+  else { SOC_GS.shown = false; SOC_GS.moved = false; SOC_GS.v = null; socStGuess(); const h = document.querySelector('#soc-st-guess .soc-gs-h'); if (h) h.focus({ preventScroll: true }); } });
 // ch3 — GRDP per person by province: sorted bars (24px cap), the two named provinces accented, the rest grey
 function socStGrdp() {
   const el = document.getElementById('soc-st-grdp'), rows = socGrdp(), top = rows[0], bot = rows[rows.length - 1];
@@ -6075,11 +6235,22 @@ function socStGrdp() {
   if (nat && document.getElementById('soc-st-grdp-note')) document.getElementById('soc-st-grdp-note').innerHTML = stNote(stT(`${above} trong ${rows.length} tỉnh, thành có GRDP bình quân cao hơn mức cả nước ${stN(nat, 0)} USD.`, `${above} of ${rows.length} provinces are above the national ${stN(nat, 0)} USD.`), stT('GRDP đo giá trị sản xuất tại tỉnh, không phải thu nhập của người dân.', 'GRDP measures output produced in a province, not residents\' income.'));
   stRW(el, socStGrdp);
 }
-// ch3 — the province map beside the bars: GRDP per person (one-hue blue ramp, validated --ordinal on #faf8f3) or fertility
-// (blue below / red above the 2.1 replacement line — the strip's own threshold — darker = further from it). It reuses the
-// explore map's merged shapes (__map34, built once by initMap). Switching measure recolours north → south in one wave.
-let socMapMode = 'grdp';
-const SOC_MAP = { grdp: { brk: [3000, 4000, 5000, 7000], col: ['#6da7ec', '#3987e5', '#256abf', '#184f95', '#0d366b'] },
+// ch3 — province tile map ↔ ranked dot strip. 34 equal hexagons in rough geographic position (a schematic, not a map: every
+// province gets the same weight, unlike a Mercator map where the Highlands outweigh Hà Nội and HCMC). Hand-placed grid,
+// pointy-top hexes, rows 0 (north) → 17 (south); x in half-column steps (odd rows sit half a column right). Placement notes:
+// row 0 Lai Châu · Lào Cai · Tuyên Quang (+Hà Giang) · Cao Bằng; row 1 Điện Biên · Sơn La · Phú Thọ (+Vĩnh Phúc, Hòa Bình) ·
+// Thái Nguyên (+Bắc Kạn) · Lạng Sơn; row 2 Hà Nội · Bắc Ninh (+Bắc Giang) · Quảng Ninh; row 3 Ninh Bình (+Hà Nam, Nam Định) ·
+// Hưng Yên (+Thái Bình) · Hải Phòng (+Hải Dương); rows 4–10 the coast Thanh Hóa → Quảng Ngãi (+Kon Tum); rows 11–13 Gia Lai
+// (+Bình Định), Đắk Lắk (+Phú Yên), Lâm Đồng (+Đắk Nông, Bình Thuận) · Khánh Hòa (+Ninh Thuận); row 14 Tây Ninh (+Long An) ·
+// Đồng Nai (+Bình Phước); row 15 An Giang (+Kiên Giang) · Đồng Tháp (+Tiền Giang) · TP.HCM (+Bình Dương, BR-VT); row 16 Cần Thơ
+// (+Sóc Trăng, Hậu Giang) · Vĩnh Long (+Bến Tre, Trà Vinh); row 17 Cà Mau (+Bạc Liêu). Keyed by PROVS id; [x, row, code].
+const SOC_HEX = { 3: [1, 0, 'LCh'], 4: [2, 0, 'LCa'], 1: [3, 0, 'TQ'], 2: [4, 0, 'CB'], 6: [.5, 1, 'ĐB'], 8: [1.5, 1, 'SL'], 9: [2.5, 1, 'PT'], 5: [3.5, 1, 'TN'], 7: [4.5, 1, 'LS'],
+  12: [2, 2, 'HN'], 10: [3, 2, 'BN'], 11: [4, 2, 'QN'], 15: [2.5, 3, 'NB'], 14: [3.5, 3, 'HY'], 13: [4.5, 3, 'HP'], 16: [2, 4, 'TH'], 17: [1.5, 5, 'NA'], 18: [2, 6, 'HT'],
+  19: [2.5, 7, 'QT'], 20: [3, 8, 'Huế'], 21: [3.5, 9, 'ĐN'], 22: [4, 10, 'QNg'], 23: [3.5, 11, 'GL'], 24: [4, 12, 'ĐL'], 26: [3.5, 13, 'LĐ'], 25: [4.5, 13, 'KH'],
+  28: [2, 14, 'TNi'], 27: [3, 14, 'ĐNa'], 31: [.5, 15, 'AG'], 30: [1.5, 15, 'ĐT'], 29: [2.5, 15, 'HCM'], 33: [1, 16, 'CT'], 32: [2, 16, 'VL'], 34: [.5, 17, 'CM'] };
+let socMapMode = 'grdp', socHxView = 'map';
+const SOC_RAMP = ['#6da7ec', '#3987e5', '#256abf', '#184f95', '#0d366b'];   // blue steps 300–700, validated --ordinal on #faf8f3
+const SOC_MAP = { grdp: { brk: [3000, 4000, 5000, 7000], col: SOC_RAMP },
   tfr: { brk: [1.7, 1.9, 2.1, 2.3, 2.5], col: ['#184f95', '#2a78d6', '#6da7ec', '#f08a80', '#e34948', '#a8221f'] } };
 // national GDP per person in USD on the same per-year basis as the provinces' NSO GRDP in USD (fxYear, P-8): NSO's 2025 annual
 // rate when published, else the rate implied by NSO's own GDP-per-person USD figure — one basis for "N of 34 above national"
@@ -6087,44 +6258,77 @@ const socFxTxt = () => { const fx = fxYear(2025), b = fxBasis[2025]; if (!fx) re
   return b === 'nso' ? stT(`Tỷ giá 2025: ${stN(fx, 0)} VND/USD (NSO).`, `2025 rate: ${stN(fx, 0)} VND/USD (NSO).`)
     : stT(`Tỷ giá 2025 ≈ ${stN(fx, 0)} VND/USD, suy ra từ GDP/người bằng USD của NSO — cùng cơ sở với GRDP tỉnh.`, `2025 rate ≈ ${stN(fx, 0)} VND/USD, implied by NSO's GDP per person in USD — the same basis as the provincial GRDP.`); };
 const socNat = () => { const G = ECONFLOW.gdp, gi = G.years.indexOf(2025), fx = fxYear(2025); return gi >= 0 && fx ? G.GDP[gi] * 1e9 / fx / (POP_SERIES.actual['2025'] * 1e6) : null; };
+// metrics: rows, value format (with unit, so tooltips never guess one), colour breaks (fixed where a threshold matters, else
+// quintiles rounded to 2 significant digits), reference line, log scale
+const socHxSig = v => { if (!v) return v; const m = Math.pow(10, Math.floor(Math.log10(Math.abs(v))) - 1); return Math.round(v / m) * m; };
+const socHxQ = rows => { const v = rows.map(r => r.v).sort((a, b) => a - b), q = p => v[Math.min(v.length - 1, Math.floor(p * v.length))]; const b = [.2, .4, .6, .8].map(p => socHxSig(q(p))); return b.filter((x, i) => !i || x > b[i - 1]); };
+function socHxMetric(k) {
+  const nat = POP_SERIES.nat || {};
+  const M = { grdp: { rows: socGrdp(), n: stT('GRDP/người 2025', 'GRDP per person, 2025'), f: v => stN(v, 0) + ' USD', fb: v => stN(v, 0), u: stT('USD/người', 'USD per person'), ref: socNat(), refN: stT('Cả nước', 'National'), brk: SOC_MAP.grdp.brk, col: SOC_MAP.grdp.col },
+    tfr: { rows: socRows('tfr'), n: stT('Mức sinh 2024', 'Fertility, 2024'), f: v => stN(v, 2) + stT(' con/phụ nữ', ' children per woman'), fb: v => stN(v, 1), fv: v => stN(v, 2), u: stT('con/phụ nữ · xanh: dưới mức thay thế 2,1 · đỏ: từ 2,1 trở lên', 'children per woman · blue: below the 2.1 replacement rate · red: 2.1 or above'), ref: 2.1, refN: stT('Mức thay thế', 'Replacement'), brk: SOC_MAP.tfr.brk, col: SOC_MAP.tfr.col },
+    urban: { rows: socRows('urban_pct'), n: stT('Đô thị hoá 2024', 'Urbanisation, 2024'), f: v => stN(v, 1) + stT('% dân số', '% of people'), fb: v => stN(v, 0) + '%', u: stT('% dân số sống ở đô thị', '% of people in urban areas'), ref: nat.urban_pct, refN: stT('Cả nước', 'National') },
+    life: { rows: socRows('life_exp'), n: stT('Tuổi thọ 2024', 'Life expectancy, 2024'), f: v => stN(v, 1) + stT(' năm', ' years'), fb: v => stN(v, 1), u: stT('năm, tuổi thọ trung bình khi sinh', 'years, life expectancy at birth'), ref: nat.life_exp, refN: stT('Cả nước', 'National') },
+    density: { rows: socRows('density'), n: stT('Mật độ 2025', 'Density, 2025'), f: v => stN(v, 0) + stT(' người/km²', ' people/km²'), fb: v => stN(v, 0), u: stT('người/km² (thang log ở chế độ xếp hạng)', 'people/km² (log scale in the ranked view)'), log: true } }[k];
+  if (!M.brk) { M.brk = socHxQ(M.rows); M.col = SOC_RAMP.slice(SOC_RAMP.length - M.brk.length - 1); M.q = true; }
+  return M;
+}
+const socHxLum = c => { const n = parseInt(c.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255; return (0.299 * r + 0.587 * g + 0.114 * b) / 255; };
 function socStMap() {
   const host = document.getElementById('soc-st-map'); if (!host) return;
-  const ready = () => typeof __map34 !== 'undefined' && __map34 && __map34.length && window.d3 && d3.geoMercator;
-  if (ready()) return socStMapDraw();
-  host.innerHTML = `<p class="st-fact-s">${stT('Đang tải bản đồ…', 'Loading the map…')}</p>`;
-  let k = 0; const t = setInterval(() => { if (!host.isConnected) return clearInterval(t); if (ready()) { clearInterval(t); socStMapDraw(); } else if (++k > 80) { clearInterval(t); host.innerHTML = `<p class="st-fact-s">${stT('Không tải được bản đồ; biểu đồ bên cạnh có cùng số liệu.', 'The map could not load; the chart alongside has the same data.')}</p>`; } }, 250);
+  const W = stCW(host, 360, 260), xs = Object.values(SOC_HEX).map(p => p[0]), rows = Object.values(SOC_HEX).map(p => p[1]), cx0 = Math.min(...xs), cx1 = Math.max(...xs), R1 = Math.max(...rows);
+  const r = Math.min(23, (Math.min(W, 340) * .62) / ((cx1 - cx0 + 1) * Math.sqrt(3))), hw = Math.sqrt(3) * r, ox = 4 + hw / 2, oy = 6 + r, hexH = oy + R1 * 1.5 * r + r + 6;
+  const RH = 17, rankH = 34 + 34 * RH + 6, H = Math.round(Math.max(hexH, rankH));
+  const hex = `M${[0, 1, 2, 3, 4, 5].map(i => { const a = Math.PI / 180 * (60 * i - 90), q = r - 1.2; return `${(q * Math.cos(a)).toFixed(1)},${(q * Math.sin(a)).toFixed(1)}`; }).join(' L')} Z`;
+  host._hx = { W, H, r, RH, pos: Object.fromEntries(Object.entries(SOC_HEX).map(([id, p]) => [id, [ox + (p[0] - cx0) * hw, oy + p[1] * 1.5 * r]])), gx: ox + (cx1 - cx0) * hw + hw / 2 + 12 };
+  const g = PROVS.filter(p => SOC_HEX[p.id]).map(p => `<g class="hx" data-pid="${p.id}" data-lk="pv:${p.id}"><path class="hx-h" d="${hex}" fill="#e1e0d9"/><circle class="hx-c" r="6" fill="#e1e0d9" stroke="${ST_SURF}" stroke-width="2"/><circle r="12" fill="transparent"/><text class="hx-t" text-anchor="middle" y="4">${ciE(SOC_HEX[p.id][2])}</text></g>`).join('');
+  host.innerHTML = `<svg class="soc-hx" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ciE(stT('Bản đồ ô 34 tỉnh, thành (mỗi tỉnh một ô bằng nhau)', 'Tile map of the 34 provinces (one equal tile each)'))}"><g class="hx-axis"></g><g class="hx-tiles">${g}</g><g class="hx-labs"></g></svg>`;
+  socStMapPaint(true);
+  stRW(host, socStMap);
 }
-function socStMapDraw() {
-  const host = document.getElementById('soc-st-map'), W = 360, H = 640, fc = { type: 'FeatureCollection', features: __map34.map(d => d.feature) };
-  const path = d3.geoPath(d3.geoMercator().fitExtent([[4, 4], [W - 4, H - 4]], fc)), C = __map34.map(d => path.centroid(d.feature)), ys = C.map(c => c[1]), y0 = Math.min(...ys), y1 = Math.max(...ys);
-  host._cen = Object.fromEntries(__map34.map((d, i) => [d.pid, C[i]]));
-  host.innerHTML = stSvg(W, H, __map34.map((d, i) => `<path class="st-cell" style="--d:${Math.round((C[i][1] - y0) / (y1 - y0 || 1) * 600)}ms" d="${path(d.feature)}" fill="#e1e0d9" data-pid="${d.pid}" data-lk="pv:${d.pid}"/>`).join('') + '<g class="soc-map-labs"></g>', stT('Bản đồ 34 tỉnh, thành', 'Map of the 34 provinces'));
-  host.getBoundingClientRect(); socStMapPaint();
-}
-function socStMapPaint() {
-  const host = document.getElementById('soc-st-map'); if (!host || !host._cen) return;
-  const tfr = socMapMode === 'tfr', M = SOC_MAP[socMapMode], rows = tfr ? socRows('tfr') : socGrdp(), by = Object.fromEntries(rows.map(r => [r.id, r]));
-  const bin = v => M.brk.filter(b => v >= b).length, f = v => tfr ? stN(v, 2) : stN(v, 0) + ' USD', fb = v => tfr ? stN(v, 1) : stN(v, 0);
-  document.getElementById('soc-st-map-ctl').innerHTML = [['grdp', stT('GRDP/người 2025', 'GRDP per person, 2025')], ['tfr', stT('Mức sinh 2024', 'Fertility, 2024')]].map(([k, n]) => `<button type="button" data-soc-map="${k}" class="${k === socMapMode ? 'on' : ''}" aria-pressed="${k === socMapMode}">${n}</button>`).join('');
+function socStMapPaint(first) {
+  const host = document.getElementById('soc-st-map'); if (!host || !host._hx) return; const X = host._hx, svg = host.querySelector('svg');
+  const M = socHxMetric(socMapMode), rows = M.rows, by = Object.fromEntries(rows.map(r => [r.id, r])), bin = v => M.brk.filter(b => v >= b).length;
+  const rank = rows.slice().sort((a, b) => b.v - a.v), rk = Object.fromEntries(rank.map((r, i) => [r.id, i])), lo = rank[rank.length - 1], hi = rank[0], isR = socHxView === 'rank';
+  document.getElementById('soc-st-map-ctl').innerHTML = `<div class="soc-hx-v" role="group" aria-label="${ciE(stT('Cách xem', 'View'))}">${[['map', stT('Bản đồ ô', 'Tile map')], ['rank', stT('Xếp hạng', 'Ranked')]].map(([k, n]) => `<button type="button" data-soc-view="${k}" class="${k === socHxView ? 'on' : ''}" aria-pressed="${k === socHxView}">${n}</button>`).join('')}</div>`
+    + ['grdp', 'tfr', 'urban', 'life', 'density'].map(k => `<button type="button" data-soc-map="${k}" class="${k === socMapMode ? 'on' : ''}" aria-pressed="${k === socMapMode}">${socHxMetric(k).n}</button>`).join('');
   const cnt = M.col.map(() => 0); rows.forEach(r => cnt[bin(r.v)]++);
-  const lab = i => i === 0 ? `< ${fb(M.brk[0])}` : i === M.brk.length ? `≥ ${fb(M.brk[i - 1])}` : `${fb(M.brk[i - 1])}–${fb(M.brk[i])}`;
-  document.getElementById('soc-st-map-leg').innerHTML = `<div class="st-fact-s" style="margin:0">${tfr ? stT('con/phụ nữ · xanh: dưới mức thay thế 2,1 · đỏ: từ 2,1 trở lên', 'children per woman · blue: below the 2.1 replacement rate · red: 2.1 or above') : stT('USD/người · đậm hơn = cao hơn', 'USD per person · darker = higher')}</div>` + stLegend(M.col.map((c, i) => ({ n: `${lab(i)} <span style="color:#8a8f99">(${cnt[i]})</span>`, c })));
-  host.querySelectorAll('path[data-pid]').forEach(p => { const r = by[p.dataset.pid]; p.setAttribute('fill', r ? M.col[bin(r.v)] : '#e1e0d9'); if (r) p.setAttribute('data-st-k', encodeURIComponent(r.n + ' · ' + socRegName(r.r) + '|' + f(r.v))); else p.removeAttribute('data-st-k'); });
-  // labels sit in empty space (Gulf of Tonkin; Laos / Cambodia side) with a leader to the province, never on the shapes
-  const s2 = rows.slice().sort((a, b) => a.v - b.v), lo = s2[0], hi = s2[s2.length - 1], used = {}, L = r => { const [x, y] = host._cen[r.id] || [0, 0], slot = y > 330 ? 'sw' : x < 150 ? 'nw' : 'ne', k = used[slot] = (used[slot] || 0) + 1;
-    const [lx, ly] = { ne: [262, 110 + k * 44], nw: [8, 180 + k * 44], sw: [8, 370 + k * 44] }[slot];
-    return `<path d="M${x},${y} L${lx + (slot === 'ne' ? -4 : 30)},${slot === 'sw' ? ly + 20 : ly - 16}" stroke="#5b6170" stroke-width=".8" fill="none"/><circle cx="${x}" cy="${y}" r="2.5" fill="#16181d"/><text class="soc-map-lab" x="${lx}" y="${ly - 2}"><tspan x="${lx}" dy="0">${ciE(r.n)}</tspan><tspan x="${lx}" dy="15" style="font-weight:500">${f(r.v)}</tspan></text>`; };
-  host.querySelector('.soc-map-labs').innerHTML = L(hi) + L(lo);
+  const lab = i => i === 0 ? `< ${M.fb(M.brk[0])}` : i === M.brk.length ? `≥ ${M.fb(M.brk[i - 1])}` : `${M.fb(M.brk[i - 1])}–${M.fb(M.brk[i])}`;
+  document.getElementById('soc-st-map-leg').innerHTML = `<div class="st-fact-s" style="margin:0">${M.u}${M.q ? stT(' · nhóm theo ngũ phân vị', ' · bins are quintiles') : socMapMode === 'tfr' ? '' : stT(' · đậm hơn = cao hơn', ' · darker = higher')}</div>` + stLegend(M.col.map((c, i) => ({ n: `${lab(i)} <span style="color:#8a8f99">(${cnt[i]})</span>`, c })));
+  // ranked view geometry: rows by rank, x = value (log for density); names left, values right
+  const ML = Math.min(118, X.W * .36), MR = 46, x0 = ML, x1 = X.W - MR, vs = rows.map(r => r.v), vmin = Math.min(...vs), vmax = Math.max(...vs);
+  const [d0, d1] = M.log ? [vmin * .9, vmax * 1.1] : socMapMode === 'grdp' || socMapMode === 'urban' ? [0, vmax * 1.04] : [vmin - (vmax - vmin) * .08, vmax + (vmax - vmin) * .08];
+  const sxv = M.log ? (v => x0 + (Math.log10(v) - Math.log10(d0)) / (Math.log10(d1) - Math.log10(d0)) * (x1 - x0)) : stLin(d0, d1, x0, x1), ry = i => 34 + i * X.RH + X.RH / 2;
+  svg.classList.toggle('hx-rank', isR); svg.style.height = '';
+  svg.setAttribute('aria-label', isR ? stT(`Xếp hạng 34 tỉnh, thành theo ${M.n}`, `The 34 provinces ranked by ${M.n}`) : stT(`Bản đồ ô 34 tỉnh, thành theo ${M.n} (sơ đồ, không theo tỷ lệ)`, `Tile map of the 34 provinces by ${M.n} (schematic, not to scale)`));
+  svg.querySelectorAll('g.hx').forEach(gg => { const id = gg.dataset.pid, rr = by[id], c = rr ? M.col[bin(rr.v)] : '#e1e0d9', i = rr ? rk[id] : 33;
+    const [mx, my] = X.pos[id], p = isR && rr ? [sxv(rr.v), ry(i)] : [mx, my];
+    gg.style.transform = `translate(${p[0].toFixed(1)}px,${p[1].toFixed(1)}px)`; gg.style.setProperty('--d', `${first ? 0 : Math.round(i * 14)}ms`);
+    gg.querySelector('.hx-h').setAttribute('fill', c); gg.querySelector('.hx-c').setAttribute('fill', c); gg.querySelector('.hx-t').style.fill = socHxLum(c) < .55 ? '#fff' : '#16181d';
+    if (rr) gg.setAttribute('data-st-k', encodeURIComponent(`${rr.n} · ${socRegName(rr.r)}|${M.f(rr.v)} · ${stT('hạng', 'rank')} ${i + 1}/${rows.length}`)); else gg.removeAttribute('data-st-k'); });
+  // ranked view: axis, reference line, names and values (drawn in every state, shown only in the ranked view)
+  let ax = '';
+  if (isR) { const tk = M.log ? [10, 20, 50, 100, 200, 500, 1000, 2000, 5000].filter(t => t >= d0 && t <= d1).filter((t, j, a) => a.length <= 4 || /^[15]/.test(String(t))) : stNice(Math.max(0, d0), d1, 3).filter(t => t >= d0 && t <= d1);
+    ax += tk.map(t => `<line class="st-grid" x1="${sxv(t)}" x2="${sxv(t)}" y1="26" y2="${ry(rows.length - 1) + 8}"/><text class="st-tick" x="${sxv(t)}" y="18" text-anchor="middle">${M.fb(t)}</text>`).join('');
+    if (M.ref != null) ax += `<line x1="${sxv(M.ref)}" x2="${sxv(M.ref)}" y1="24" y2="${ry(rows.length - 1) + 8}" stroke="${ST.ink}" stroke-dasharray="4,3"/><text class="st-tick" x="${sxv(M.ref) + 4}" y="${ry(rows.length - 1) + 20}" style="fill:#16181d">${M.refN} ${M.fb(M.ref)}</text>`;
+    ax += rank.map((rr, i) => `<text class="st-lab" x="${ML - 10}" y="${ry(i) + 4}" text-anchor="end" style="font-size:11.5px" data-lk="pv:${rr.id}">${ciE(rr.n)}</text><text class="st-tick" x="${X.W - 2}" y="${ry(i) + 4}" text-anchor="end" data-lk="pv:${rr.id}">${(M.fv || M.fb)(rr.v)}</text>`).join(''); }
+  svg.querySelector('.hx-axis').innerHTML = ax;
+  // tile view: the highest and lowest named in the gutter with a leader, never on the tiles
+  const L = (rr, k) => { const [x, y] = X.pos[rr.id], lx = X.gx, ly = k ? Math.max(y + 4, 60) : Math.min(y, X.H - 40); return `<path d="M${x + X.r * .7},${y} L${lx - 4},${ly - 4}" stroke="#5b6170" stroke-width=".8" fill="none"/><text class="soc-map-lab" x="${lx}" y="${ly}"><tspan x="${lx}">${ciE(rr.n)}</tspan><tspan x="${lx}" dy="15" style="font-weight:500">${M.f(rr.v)}</tspan></text>`; };
+  svg.querySelector('.hx-labs').innerHTML = isR ? '' : `<text class="st-tick" x="${X.gx}" y="${X.H - 6}">${stT('Sơ đồ, không theo tỷ lệ', 'Schematic, not to scale')}</text>` + L(hi, 0) + L(lo, 1);
   let note;
-  if (tfr) { const inR = rs => rows.filter(r => rs.includes(r.r)), S = inR([5, 6]), N = inR([1, 2, 3]), bS = S.filter(r => r.v < 2.1).length, bN = N.filter(r => r.v < 2.1).length;
-    note = stNote(stT(`${bS === S.length ? 'Cả' : ''} ${bS}/${S.length} tỉnh, thành Đông Nam Bộ và ĐB sông Cửu Long sinh dưới mức thay thế; ở ba vùng phía Bắc là ${bN}/${N.length}.`.trim(), `${bS === S.length ? `All ${bS}` : `${bS} of ${S.length}`} provinces in the Southeast and Mekong Delta are below replacement; in the three northern regions, ${bN} of ${N.length}.`), stT(`Thấp nhất ${lo.n} (${f(lo.v)}), cao nhất ${hi.n} (${f(hi.v)}); số liệu 2024 quy đổi về 34 tỉnh, thành.`, `Lowest ${lo.n} (${f(lo.v)}), highest ${hi.n} (${f(hi.v)}); 2024 data mapped onto the 34 provinces.`)); }
-  else { const nat = socNat(), ab = nat ? rows.filter(r => r.v > nat) : [], g = {}; ab.forEach(r => { g[r.r] = (g[r.r] || 0) + 1; });
-    const gs = Object.entries(g).sort((a, b) => b[1] - a[1]).map(([r, n]) => `${socRegName(+r)} (${n})`), join = a => a.length > 1 ? a.slice(0, -1).join(', ') + stT(' và ', ' and ') + a[a.length - 1] : a.join('');
+  if (socMapMode === 'tfr') { const inR = rs => rows.filter(r => rs.includes(r.r)), S = inR([5, 6]), N = inR([1, 2, 3]), bS = S.filter(r => r.v < 2.1).length, bN = N.filter(r => r.v < 2.1).length;
+    note = stNote(stT(`${bS === S.length ? 'Cả' : ''} ${bS}/${S.length} tỉnh, thành Đông Nam Bộ và ĐB sông Cửu Long sinh dưới mức thay thế; ở ba vùng phía Bắc là ${bN}/${N.length}.`.trim(), `${bS === S.length ? `All ${bS}` : `${bS} of ${S.length}`} provinces in the Southeast and Mekong Delta are below replacement; in the three northern regions, ${bN} of ${N.length}.`), stT(`Thấp nhất ${lo.n} (${M.f(lo.v)}), cao nhất ${hi.n} (${M.f(hi.v)}); số liệu 2024 quy đổi về 34 tỉnh, thành.`, `Lowest ${lo.n} (${M.f(lo.v)}), highest ${hi.n} (${M.f(hi.v)}); 2024 data mapped onto the 34 provinces.`)); }
+  else if (socMapMode === 'grdp') { const nat = M.ref, ab = nat ? rows.filter(r => r.v > nat) : [], gg = {}; ab.forEach(r => { gg[r.r] = (gg[r.r] || 0) + 1; });
+    const gs = Object.entries(gg).sort((a, b) => b[1] - a[1]).map(([r, n]) => `${socRegName(+r)} (${n})`), join = a => a.length > 1 ? a.slice(0, -1).join(', ') + stT(' và ', ' and ') + a[a.length - 1] : a.join('');
     note = nat ? stNote(stT(`${ab.length} tỉnh, thành trên mức cả nước ≈ ${stN(nat, 0)} USD đều thuộc ${join(gs)}.`, `The ${ab.length} provinces above the national ≈ ${stN(nat, 0)} USD are all in ${join(gs)}.`), stT('GRDP đo giá trị sản xuất tại tỉnh, không phải thu nhập của người dân.', 'GRDP measures output produced in a province, not residents\' income.')) : ''; }
+  else note = stNote(stT(`${M.n}: cao nhất ${hi.n} (${M.f(hi.v)}), thấp nhất ${lo.n} (${M.f(lo.v)}), gấp ${stN(hi.v / lo.v, 1)} lần.`, `${M.n}: highest ${hi.n} (${M.f(hi.v)}), lowest ${lo.n} (${M.f(lo.v)}), ${stN(hi.v / lo.v, 1)}×.`),
+    socMapMode === 'density' ? stT('Mật độ = dân số trung bình 2025 / diện tích sau sáp nhập.', 'Density = 2025 average population / post-merger area.') : stT('Số liệu Điều tra biến động dân số 1/4/2024, quy đổi về 34 tỉnh, thành.', 'Population change survey of 1 Apr 2024, mapped onto the 34 provinces.'));
   document.getElementById('soc-st-map-note').innerHTML = note;
   stTables(host.closest('.soc-geo-map'));
 }
-document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-soc-map]'); if (!b || b.dataset.socMap === socMapMode) return; socMapMode = b.dataset.socMap; socStMapPaint(); });
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-soc-map],[data-soc-view]'); if (!b) return;
+  if (b.dataset.socMap) { if (b.dataset.socMap === socMapMode) return; socMapMode = b.dataset.socMap; } else { if (b.dataset.socView === socHxView) return; socHxView = b.dataset.socView; }
+  socStMapPaint(); const n = document.querySelector(b.dataset.socMap ? `[data-soc-map="${socMapMode}"]` : `[data-soc-view="${socHxView}"]`); if (n) n.focus({ preventScroll: true }); });
 // ch4 — rank positions among nations; the three headline indicators accented, the rest grey
 function socStRanks() {
   const el = document.getElementById('soc-st-ranks'), R = WORLD_RANK, acc = new Set(['pop', 'g_growth', 'g_gdp_pc']);
@@ -6348,8 +6552,9 @@ function renderFsStory() {
      <div id="fs-st-ffacts" class="st-facts"></div>`);
   h += stChap('fs-st-why', stT('Chương 3 · Vì sao lãi suất khó giảm', 'Chapter 3 · Why rates won\'t fall'),
     cof.length > 1 && dep.length > 1 ? stT(`Chi phí vốn ngân hàng niêm yết tăng từ ${stN(cof[0][1], 2)}% lên ${stN(cof[cof.length - 1][1], 2)}%; lãi suất huy động 12 tháng lên ${stN(dep[dep.length - 1][1], 2)}%`, `Listed banks' cost of funds rose from ${stN(cof[0][1], 2)}% to ${stN(cof[cof.length - 1][1], 2)}%; 12-month deposit rates reached ${stN(dep[dep.length - 1][1], 2)}%`) : stT('Vì sao lãi suất khó giảm', 'Why rates won\'t fall'),
-    stT('Sơ đồ nối các nguyên nhân được tổng hợp từ báo cáo NHNN, công ty chứng khoán và báo chí (mỗi nguyên nhân có nguồn trong phần khám phá). Số trên mỗi ô lấy từ dữ liệu của dashboard. Ngay dưới sơ đồ: vì sao NHNN không thể chỉ hạ lãi suất hay in thêm tiền để bù.', 'The diagram links the causes compiled from SBV, broker and press reports (each is sourced in the explore section). The numbers in each box come from the dashboard\'s data. Directly below: why the SBV cannot simply cut rates or print money to offset it.'),
-    `<div id="fs-st-mech"></div><div id="fs-st-cf"></div><div class="st-sub">${stT('Bốn chỉ số của ngân hàng niêm yết (mỗi biểu đồ một thang đo)', 'Four listed-bank metrics (one scale per chart)')}</div><div id="fs-st-wmult" class="st-mult"></div>
+    stT('Năm bước, mỗi bước một bằng chứng: cuộn xuống (hoặc bấm số trên biểu đồ) để biểu đồ đổi theo. Sau đó là sơ đồ nối các nguyên nhân được tổng hợp từ báo cáo NHNN, công ty chứng khoán và báo chí (nguồn trong phần khám phá), và vì sao NHNN không thể chỉ hạ lãi suất hay in thêm tiền để bù.', 'Five steps, one piece of evidence each: scroll on (or press the numbers on the chart) and the chart changes with you. After that, the diagram linking the causes compiled from SBV, broker and press reports (sourced in the explore section), and why the SBV cannot simply cut rates or print money to offset it.'),
+    `${fsScBlock()}${stSrc(stT('Nguồn các bước: NHNN, IMF FSI (tăng trưởng cả năm); công ty chứng khoán qua báo chí (LDR đơn giản, chi phí vốn, lãi suất bình quân MBS); Vietcombank; NSO (CPI); Cục Dự trữ Liên bang Mỹ; NHNN (tỷ giá trung tâm). Chuỗi tháng lấy từ bảng số liệu của tab Mô phỏng.', 'Step sources: SBV, IMF FSI (full-year growth); brokers via the press (simple LDR, cost of funds, MBS average rate); Vietcombank; NSO (CPI); US Federal Reserve; SBV (central rate). Monthly series from the Simulation tab\'s panel.'))}
+     <div class="st-sub">${stT('Toàn bộ cơ chế trên một sơ đồ', 'The whole mechanism in one diagram')}</div><div id="fs-st-mech"></div><div id="fs-st-cf"></div><div class="st-sub">${stT('Bốn chỉ số của ngân hàng niêm yết (mỗi biểu đồ một thang đo)', 'Four listed-bank metrics (one scale per chart)')}</div><div id="fs-st-wmult" class="st-mult"></div>
      <div class="st-sub">${stT('Mười nguyên nhân, xếp theo mức tác động', 'The ten causes, ranked by impact')}</div><div id="fs-st-drivers" class="st-facts" style="grid-template-columns:repeat(2,1fr)"></div>`);
   h += stChap('fs-st-safe', stT('Chương 4 · An toàn hệ thống', 'Chapter 4 · How sound is it?'),
     stT(`Nợ xấu (IMF) từ ${stN(npk.v, 2)}% năm ${npk.d} xuống ${stN(npL.v, 2)}% năm ${npL.d}`, `Bad loans (IMF) fell from ${stN(npk.v, 2)}% in ${npk.d} to ${stN(npL.v, 2)}% in ${npL.d}`),
@@ -6373,11 +6578,150 @@ function renderFsStory() {
     stT('Số liệu đầy đủ: NHNN, cung tiền, dòng vốn, lãi suất, an toàn hệ thống', 'The full data: SBV, money supply, flows, rates, soundness'),
     stT('Các bảng và biểu đồ chi tiết kèm nguồn; phụ lục cuối trang có số liệu các ngân hàng niêm yết.', 'Detailed tables and charts with sources; the appendix at the bottom has data for the listed banks.'), '');
   root.innerHTML = h;
-  fsStGap(); fsStDepth(); fsStMMult(); fsStWaffle(); fsStLB(); fsStOSChart(); fsStFacts(); fsStMech(); fsStCf(); fsStWMult(); fsStDrivers(); fsStNpl(); fsStSMult(); fsStRes(); fsLvDraw();
+  fsStGap(); fsStDepth(); fsStMMult(); fsStWaffle(); fsStLB(); fsStOSChart(); fsStFacts(); fsScDraw(); fsStMech(); fsStCf(); fsStWMult(); fsStDrivers(); fsStNpl(); fsStSMult(); fsStRes(); fsLvDraw();
   fsStWhyAll(root);
   const fsHero = root.querySelector('#fs-st-hero'); if (fsHero && FINSYS.alternatives) { fsHero.insertAdjacentHTML('beforeend', fsAltBlock()); fsAltWire(); }
-  stFinish(root); fsPipePaint();
+  stFinish(root); fsPipePaint(); fsScWire();
 }
+// ch3 — "why rates won't fall" as a scrollytelling sequence: five steps of evidence scroll past a pinned chart that changes
+// state with each step (credit vs deposits → LDR and cost of funds → the deposit race → inflation and the real rate → the
+// policy constraints). Every figure is computed from FINSYS (Finance) and SIM.panel (the Finance agent's monthly panel). Each
+// state keeps one scale per panel (never a dual axis); derived series carry ≈. The pinned chart switches when a step crosses
+// the middle of the viewport (IntersectionObserver, which works inside the chapter panel's own scroller); a numbered stepper
+// above the chart does the same by click or keyboard. Phone width and reduced motion get the static stack: each step with its
+// own chart, nothing pinned. The mechanism diagram stays below the steps.
+let fsScI = 0, fsScIO = null;
+const fsScT = l => stTimeOf(l);
+const fsScSim = k => { const P = typeof SIM !== 'undefined' && SIM.panel ? SIM.panel : null, s = P && P.series[k]; if (!s || !Array.isArray(s.values)) return [];
+  return P.months.map((m, i) => [m, s.values[i]]).filter(p => typeof p[1] === 'number'); };
+const fsScSimAll = k => { const P = typeof SIM !== 'undefined' && SIM.panel ? SIM.panel : null, s = P && P.series[k]; return s && Array.isArray(s.values) ? P.months.map((m, i) => [m, s.values[i]]) : []; };
+const fsScML = m => fsStDL(m);
+function fsScSpec() {
+  if (typeof FINSYS === 'undefined') return null;
+  const A = FINSYS.annual, Y = A.years, n = Y.length - 1, W = FINSYS.why.series, f1 = v => stN(v, 1), f2 = v => stN(v, 2), pp = stT(' điểm %', ' pp');
+  const last = a => a[a.length - 1], first = a => a[0];
+  // 1 · credit vs deposits (annual, IMF FSI basis, as in the hero) + the latest year-to-date pair
+  const yrs = Y.map((y, i) => ({ y, c: A.credit_growth[i], d: A.deposit_growth[i] })).filter(r => r.c != null && r.d != null), over = yrs.filter(r => r.c > r.d).length, yL = last(yrs);
+  const CV = W.credit_vs_deposit_growth || {}, pr = (CV.dates || []).map((d, i) => ({ d, c: CV.credit[i], p: CV.deposit[i] })).filter(r => r.c != null && r.p != null).pop();
+  const dm = fsScSimAll('deposit_yoy').find(p => p[0] === `${yL.y}-12`);
+  // 2 · LDR and cost of funds
+  const ldr = fsStPP(W.ldr), cof = fsStPP(W.cof), tt = (FINSYS.ratios.ldr_sbv_tt22_pct || []).filter(x => typeof x.v === 'number').reduce((o, x) => { if (!o[x.d] || /sbv\.gov\.vn/.test(x.u || '')) o[x.d] = x; return o; }, {}), ttA = Object.values(tt).sort((a, b) => a.d.localeCompare(b.d)), ttL = last(ttA);
+  const capS = fsScSim('ldr_cap'), cap = capS.length ? last(capS)[1] : null, capI = typeof POLICY !== 'undefined' ? polIns('mon', 'ldr_cap') : null, capN = capI ? (capI.history || []).filter(h => h.date > new Date().toISOString().slice(0, 10)).sort((a, b) => a.date.localeCompare(b.date))[0] : null;
+  // 3 · deposit race
+  const mbs = (W.deposit12m_private_banks_mbs.dates || []).map((d, i) => [d.slice(0, 7), W.deposit12m_private_banks_mbs.values[i]]).filter(p => typeof p[1] === 'number');
+  const vcb = fsScSim('dep12_vcb'), refi = fsScSim('refi_rate'), v24 = vcb.filter(p => p[0] >= '2024-01'), vMin = v24.reduce((a, b) => b[1] < a[1] ? b : a, v24[0] || [null, null]), vL = last(vcb) || [null, null];
+  let rc = refi.length - 1; while (rc > 0 && refi[rc - 1][1] === last(refi)[1]) rc--; const rSince = refi[rc] ? refi[rc][0] : null, rMon = rSince ? (() => { const [a, b] = rSince.split('-').map(Number), [c, d] = last(refi)[0].split('-').map(Number); return (c - a) * 12 + d - b + 1; })() : null;
+  // 4 · inflation and the real rate (≈ VCB posted 12M − CPI y/y, derived by the panel)
+  const cpi = fsScSim('cpi_yoy'), cL = last(cpi) || [null, null], c12 = cpi.find(p => { const [a, b] = cL[0].split('-').map(Number); return p[0] === `${a - 1}-${String(b).padStart(2, '0')}`; }), rr = fsScSim('real_dep_rate'), rL = last(rr) || [null, null], rMax = rr.reduce((a, b) => b[1] > a[1] ? b : a, rr[0] || [null, -1e9]);
+  // 5 · constraints: the Fed against the refinancing rate, the OMO rate, the dong
+  const fed = fsScSim('fed_funds_upper'), omo = fsScSim('omo_rate'), fx = fsScSim('usdvnd_12m'), fL = last(fed) || [null, null], refL = last(refi) || [null, null], fxL = last(fx) || [null, null];
+  const omoI = typeof POLICY !== 'undefined' ? polIns('mon', 'omo_rate') : null, gap = refL[1] - fL[1];
+  const T = { m: (y0, y1) => [y0, y1] };
+  const steps = [
+    { k: 'gap', big: `${yL.c - yL.d >= 0 ? '+' : '−'}${f1(Math.abs(yL.c - yL.d))}${pp}`, bigL: stT(`tín dụng trừ huy động, năm ${yL.y}`, `credit minus deposit growth, ${yL.y}`),
+      h: stT(`Tín dụng tăng nhanh hơn huy động ${over}/${yrs.length} năm, ${yrs[0].y}–${yL.y}`, `Credit outgrew deposits in ${over} of ${yrs.length} years, ${yrs[0].y}–${yL.y}`),
+      p: stT(`Năm ${yL.y} tín dụng tăng ${f1(yL.c)}%, huy động ${f1(yL.d)}%.${pr ? ` Đến ${polDS(pr.d)}: tín dụng +${f2(pr.c)}%, huy động +${f2(pr.p)}% từ đầu năm.` : ''}`, `In ${yL.y} credit grew ${f1(yL.c)}% and deposits ${f1(yL.d)}%.${pr ? ` By ${polDS(pr.d)}: credit +${f2(pr.c)}%, deposits +${f2(pr.p)}% year to date.` : ''}`),
+      c: dm ? stT(`Huy động ở đây theo số IMF FSI; bảng tháng của NHNN cho mức thấp hơn (+${f2(dm[1])}% so cùng kỳ, 12/${yL.y}). Hai định nghĩa, không trộn.`, `Deposits here are IMF FSI figures; the SBV's monthly tables give a lower ${f2(dm[1])}% y/y (Dec ${yL.y}). Two definitions, not mixed.`) : '',
+      panels: [{ t: stT('Tăng trưởng cả năm (%)', 'Full-year growth (%)'), x: [yrs[0].y, yL.y], band: ['c', 'd'],
+        s: [{ id: 'c', n: stT('Tín dụng', 'Credit'), sh: stT('tín dụng', 'credit'), c: ST.blue, pts: yrs.map(r => [r.y, r.c]), lab: String }, { id: 'd', n: stT('Huy động', 'Deposits'), sh: stT('huy động', 'deposits'), c: ST.orange, pts: yrs.map(r => [r.y, r.d]), lab: String }] }] },
+    { k: 'ldr', big: cof.length ? `${f2(last(cof)[1])}%` : '—', bigL: stT(`chi phí vốn, ${cof.length ? last(cof)[0] : ''}`, `cost of funds, ${cof.length ? last(cof)[0] : ''}`),
+      h: cof.length > 1 ? stT(`Chi phí vốn ngân hàng niêm yết từ ${f2(first(cof)[1])}% lên ${f2(last(cof)[1])}% trong ${cof.length - 1} quý`, `Listed banks' cost of funds rose from ${f2(first(cof)[1])}% to ${f2(last(cof)[1])}% in ${cof.length - 1} quarters`) : '',
+      p: stT(`Cho vay so với tiền gửi khách hàng (cách tính đơn giản, toàn ngành): ${ldr.length ? `${f1(first(ldr)[1])}% (${first(ldr)[0]}) → ${f1(last(ldr)[1])}% (${last(ldr)[0]})` : '—'}.${ttL ? ` Theo công thức của NHNN (Thông tư 22), tỷ lệ toàn hệ thống là ${f2(ttL.v)}% (${fsStDL(ttL.d)}), dưới trần ${f1(cap)}%${capN ? `; trần nâng lên ${capN.to} từ ${polDS(capN.date)}` : ''}.` : ''}`,
+        `Loans to customer deposits (simple, sector-wide): ${ldr.length ? `${f1(first(ldr)[1])}% (${first(ldr)[0]}) → ${f1(last(ldr)[1])}% (${last(ldr)[0]})` : '—'}.${ttL ? ` On the SBV's own formula (Circular 22) the system ratio is ${f2(ttL.v)}% (${fsStDL(ttL.d)}), under the ${f1(cap)}% cap${capN ? `, which rises to ${capN.to} from ${polDS(capN.date)}` : ''}.` : ''}`),
+      c: stT('Hai cách tính LDR khác nhau nên không so trực tiếp. Chi phí vốn tổng hợp từ nhiều công ty chứng khoán, phương pháp hơi khác nhau.', 'The two LDR measures differ and are not compared directly. Cost-of-funds figures come from several brokers with slightly different methods.'),
+      panels: [{ t: stT('Cho vay / tiền gửi (%)', 'Loans / deposits (%)'), x: [2021, 2026.75], refs: cap != null ? [{ v: cap, l: stT(`trần TT22 ${f1(cap)}%`, `Circular 22 cap ${f1(cap)}%`) }] : [],
+        s: [{ id: 'ls', n: stT('Đơn giản, toàn ngành', 'Simple, sector-wide'), sh: stT('đơn giản', 'simple'), c: ST.blue, pts: ldr.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => ldr[i][0], dots: 1 }, { id: 'lt', n: stT('Theo TT22 (NHNN)', 'Circular 22 (SBV)'), sh: 'TT22', c: ST.aqua, pts: ttA.map(x => [fsScT(x.d), x.v]), lab: (t, i) => fsStDL(ttA[i].d), dots: 1 }] },
+        { t: stT('Chi phí vốn, NH niêm yết (%)', 'Cost of funds, listed banks (%)'), x: [2025, 2026.75], s: [{ id: 'cof', n: stT('Chi phí vốn', 'Cost of funds'), c: ST.orange, pts: cof.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => cof[i][0], dots: 1 }] }] },
+    { k: 'race', big: mbs.length > 1 ? `+${f2(last(mbs)[1] - first(mbs)[1])}${pp}` : '—', bigL: stT('lãi suất huy động 12 tháng bình quân (MBS)', 'average 12-month deposit rate (MBS)'),
+      h: mbs.length > 1 ? stT(`Lãi suất huy động 12 tháng từ ${f2(first(mbs)[1])}% lên ${f2(last(mbs)[1])}%; lãi suất điều hành giữ ${f1(refL[1])}% suốt ${rMon} tháng`, `12-month deposit rates rose from ${f2(first(mbs)[1])}% to ${f2(last(mbs)[1])}%; the policy rate held at ${f1(refL[1])}% for ${rMon} months`) : '',
+      p: stT(`Bình quân của MBS: ${f2(first(mbs)[1])}% (${fsScML(first(mbs)[0])}) → ${f2(last(mbs)[1])}% (${fsScML(last(mbs)[0])}). Lãi suất niêm yết của Vietcombank: thấp nhất ${f1(vMin[1])}% (${fsScML(vMin[0])}), nay ${f1(vL[1])}% (${fsScML(vL[0])}).`, `MBS average: ${f2(first(mbs)[1])}% (${fsScML(first(mbs)[0])}) → ${f2(last(mbs)[1])}% (${fsScML(last(mbs)[0])}). Vietcombank's posted rate: a low of ${f1(vMin[1])}% (${fsScML(vMin[0])}), now ${f1(vL[1])}% (${fsScML(vL[0])}).`),
+      c: stT('Số MBS là bình quân có thể gồm lãi suất đặc biệt; Vietcombank là lãi suất niêm yết tại quầy. Hai thước đo khác nhau, vẽ riêng.', 'The MBS figure is an average that may include special rates; Vietcombank\'s is its posted counter rate. Two measures, drawn separately.'),
+      panels: [{ t: stT('Lãi suất (%/năm)', 'Rates (% a year)'), x: [2021, 2026.75],
+        s: [{ id: 'vcb', n: stT('Vietcombank 12T, niêm yết', 'Vietcombank 12M, posted'), c: ST.orange, pts: vcb.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => fsScML(vcb[i][0]), gaps: fsScSimAll('dep12_vcb'), sh: 'VCB' }, { id: 'mbs', n: stT('Bình quân 12T (MBS)', '12M average (MBS)'), c: ST.magenta, pts: mbs.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => fsScML(mbs[i][0]), dots: 1, noline: 1, sh: 'MBS' },
+          { id: 'refi', n: stT('Tái cấp vốn (NHNN)', 'Refinancing rate (SBV)'), c: ST.ink, pts: refi.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => fsScML(refi[i][0]), step: 1, sh: stT('TCV', 'Refi') }] }] },
+    { k: 'real', big: rL[1] != null ? `≈ ${f2(rL[1])}${pp}` : '—', bigL: stT(`lãi suất thực, ${fsScML(rL[0])}`, `real deposit rate, ${fsScML(rL[0])}`),
+      h: stT(`CPI ${f2(cL[1])}% (${fsScML(cL[0])}); lãi suất thực của tiền gửi Vietcombank còn ≈ ${f2(rL[1])} điểm %`, `CPI at ${f2(cL[1])}% (${fsScML(cL[0])}); the real return on a Vietcombank deposit is down to ≈ ${f2(rL[1])} pp`),
+      p: stT(`${c12 ? `Một năm trước CPI là ${f2(c12[1])}%. ` : ''}Lãi suất thực cao nhất trong chuỗi là ≈ ${f2(rMax[1])} điểm % (${fsScML(rMax[0])}). Lạm phát cao hơn thu hẹp phần lãi thực của người gửi; hạ lãi suất danh nghĩa sẽ thu hẹp thêm.`, `${c12 ? `A year earlier CPI was ${f2(c12[1])}%. ` : ''}The highest real rate in the series was ≈ ${f2(rMax[1])} pp (${fsScML(rMax[0])}). Higher inflation shrinks the saver's real return; a nominal cut would shrink it further.`),
+      c: stT('≈ Lãi suất thực = lãi suất niêm yết 12 tháng của Vietcombank − CPI cùng tháng, do dashboard tính; ngân hàng tư nhân trả cao hơn. Tháng thiếu số CPI để trống.', '≈ Real rate = Vietcombank\'s posted 12-month rate − CPI for the same month, computed by the dashboard; private banks pay more. Months without a CPI figure are left blank.'),
+      panels: [{ t: '%', x: [2021, 2026.75], zero: true, s: [{ id: 'cpi', n: stT('CPI so cùng kỳ', 'CPI y/y'), sh: 'CPI', c: ST.violet, pts: cpi.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => fsScML(cpi[i][0]), gaps: fsScSimAll('cpi_yoy') }, { id: 'rr', n: stT('≈ Lãi suất thực (VCB 12T − CPI)', '≈ Real rate (VCB 12M − CPI)'), sh: stT('≈ thực', '≈ real'), c: ST.orange, pts: rr.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => fsScML(rr[i][0]), gaps: fsScSimAll('real_dep_rate') }] }] },
+    { k: 'tie', big: `${gap >= 0 ? '+' : '−'}${f2(Math.abs(gap))}${pp}`, bigL: stT(`tái cấp vốn trừ lãi suất Fed, ${fsScML(fL[0])}`, `refinancing rate minus the Fed rate, ${fsScML(fL[0])}`),
+      h: stT(`Fed ${f2(fL[1])}%, tái cấp vốn ${f2(refL[1])}%: chênh lệch ${gap >= 0 ? '' : 'âm '}${f2(Math.abs(gap))} điểm %`, `Fed at ${f2(fL[1])}%, refinancing rate at ${f2(refL[1])}%: a gap of ${gap >= 0 ? '' : 'minus '}${f2(Math.abs(gap))} pp`),
+      p: stT(`Tỷ giá trung tâm USD/VND tăng ${f2(fxL[1])}% trong 12 tháng (${fsScML(fxL[0])}).${omoI && omoI.current_value != null ? ` Lãi suất OMO ${f1(omoI.current_value)}% từ ${polDS(omoI.effective)}.` : ''} Theo các phân tích được tổng hợp ở phần dưới, hạ lãi suất điều hành khi chênh lệch với Fed đã hẹp sẽ thêm sức ép lên tỷ giá.`,
+        `The SBV central USD/VND rate rose ${f2(fxL[1])}% over 12 months (${fsScML(fxL[0])}).${omoI && omoI.current_value != null ? ` The OMO rate is ${f1(omoI.current_value)}% since ${polDS(omoI.effective)}.` : ''} In the analyses compiled below, cutting policy rates while the gap to the Fed is this narrow would add pressure on the dong.`),
+      c: stT('Lãi suất Fed là cận trên của khung mục tiêu; tỷ giá trung tâm do NHNN công bố, dương = đồng Việt Nam yếu đi.', 'The Fed rate is the upper bound of its target range; the central rate is the SBV\'s, positive = a weaker dong.'),
+      panels: [{ t: stT('Lãi suất điều hành (%)', 'Policy rates (%)'), x: [2021, 2026.75], zero: true, s: [{ id: 'refi', n: stT('Tái cấp vốn (NHNN)', 'Refinancing (SBV)'), c: ST.ink, pts: refi.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => fsScML(refi[i][0]), step: 1, sh: stT('TCV', 'Refi') },
+          { id: 'omo', n: 'OMO (NHNN)', sh: 'OMO', c: ST.yellow, pts: omo.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => fsScML(omo[i][0]), step: 1 }, { id: 'fed', n: stT('Fed, cận trên', 'Fed, upper bound'), sh: 'Fed', c: ST.green, pts: fed.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => fsScML(fed[i][0]), step: 1 }] },
+        { t: stT('USD/VND trung tâm, thay đổi 12 tháng (%)', 'USD/VND central rate, 12-month change (%)'), x: [2022.5, 2026.75], zero: true, s: [{ id: 'fx', n: stT('Thay đổi 12 tháng', '12-month change'), c: ST.blue, pts: fx.map(p => [fsScT(p[0]), p[1]]), lab: (t, i) => fsScML(fx[i][0]), dots: 1, gaps: fsScSimAll('usdvnd_12m') }] }] }];
+  return steps.filter(s => s.h);
+}
+// one state = 1–2 panels, each with its own y scale (never a dual axis); W, H in real pixels
+function fsScSvg(st, W, H) {
+  const P = st.panels, side = P.length > 1 && W >= 620, gap = 28, pw = side ? (W - gap) / P.length : W, ph = side ? H : (H - (P.length - 1) * 18) / P.length;
+  let out = '';
+  P.forEach((p, pi) => { const multi = p.s.filter(x => x.pts.length).length > 1, ox = side ? pi * (pw + gap) : 0, oy = side ? 0 : pi * (ph + 18), ML = 34, MR = multi ? 92 : 54, MT = 24, MB = 22;
+    const vs = p.s.flatMap(s => s.pts.filter(q => q[0] >= p.x[0] - .05 && q[0] <= p.x[1] + .05).map(q => q[1])).concat((p.refs || []).map(r => r.v)), lo0 = Math.min(...vs), hi0 = Math.max(...vs), lo = p.zero ? Math.min(0, lo0) : lo0 - (hi0 - lo0) * .15, hi = hi0 + (hi0 - lo0 || 1) * .12;
+    const tk = stNice(lo, hi, 4).filter(t => t >= lo - 1e-9 && t <= hi + 1e-9), y0 = Math.min(lo, tk[0]), y1 = Math.max(hi, tk[tk.length - 1]);
+    const sx = stLin(p.x[0], p.x[1], ox + ML, ox + pw - MR), sy = stLin(y0, y1, oy + ph - MB, oy + MT);
+    let s = `<text class="st-lab st-b" x="${ox}" y="${oy + 12}">${ciE(p.t)}</text>` + stAxisY(sy, tk, ox + ML, ox + pw - MR, v => stN(v, Math.abs(v) < 10 && v % 1 ? 1 : 0));
+    if (y0 < 0 && y1 > 0) s += `<line class="st-base" x1="${ox + ML}" x2="${ox + pw - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+    const xt = []; for (let y = Math.ceil(p.x[0]); y <= p.x[1]; y++) xt.push(y); const every = xt.length > 7 ? 2 : 1;
+    xt.forEach((y, i) => { if (i % every === 0 || i === xt.length - 1) s += `<text class="st-tick" x="${sx(y)}" y="${oy + ph - 6}" text-anchor="middle">${y}</text>`; });
+    (p.refs || []).forEach(r => { s += `<line x1="${ox + ML}" x2="${ox + pw - MR}" y1="${sy(r.v)}" y2="${sy(r.v)}" stroke="${ST.ink}" stroke-dasharray="4,3"/><text class="st-tick" x="${ox + ML + 4}" y="${sy(r.v) - 5}" style="fill:#16181d">${ciE(r.l)}</text>`; });
+    if (p.band) { const a = p.s.find(x => x.id === p.band[0]), b = p.s.find(x => x.id === p.band[1]); if (a && b && a.pts.length === b.pts.length) a.pts.forEach((q, i) => { if (i === 0) return; const q0 = a.pts[i - 1], r0 = b.pts[i - 1], r1 = b.pts[i]; if (q0[1] > r0[1] && q[1] > r1[1]) s += `<path d="M${sx(q0[0])},${sy(q0[1])} L${sx(q[0])},${sy(q[1])} L${sx(r1[0])},${sy(r1[1])} L${sx(r0[0])},${sy(r0[1])} Z" fill="${ST_MUTE}" opacity=".45"/>`; }); }
+    const ends = [];
+    p.s.forEach(se0 => { const inX = t => t >= p.x[0] - .05 && t <= p.x[1] + .05, se = { ...se0, pts: se0.pts.filter(q => inX(q[0])), off: se0.pts.findIndex(q => inX(q[0])) }; if (!se.pts.length) return; let pts = se.pts.map(q => [sx(q[0]), sy(q[1])]);
+      if (se.gaps) pts = se.gaps.filter(([mm]) => inX(fsScT(mm))).map(([mm, v]) => v == null ? null : [sx(fsScT(mm)), sy(v)]);
+      if (se.step) { const st2 = []; se.pts.forEach((q, i) => { if (i) st2.push([sx(q[0]), sy(se.pts[i - 1][1])]); st2.push([sx(q[0]), sy(q[1])]); }); pts = st2; }
+      if (!se.noline) s += stLine(pts, se.c, { cls: '' });
+      se.pts.forEach((q, i) => { const key = [`${se.n} · ${se.lab(q[0], i + se.off)}`, stN(q[1], 2) + (p.t === '%' || /%/.test(p.t) ? '%' : '')];
+        if (se.dots || i === se.pts.length - 1) s += stDot(sx(q[0]), sy(q[1]), 4, se.c, key, { cls: '' });
+        else s += `<g ${stKey(...key)}><circle cx="${sx(q[0])}" cy="${sy(q[1])}" r="7" fill="transparent"/></g>`; });
+      const L = se.pts[se.pts.length - 1]; ends.push({ y: sy(L[1]), y0: sy(L[1]), t: (multi && se.sh ? se.sh + ' ' : '') + stN(L[1], Math.abs(L[1]) >= 50 ? (L[1] % 1 ? 1 : 0) : 2), x: sx(L[0]) }); });
+    ends.sort((a, b) => a.y - b.y).forEach((e, i, a) => { if (i && e.y - a[i - 1].y < 13) e.y = a[i - 1].y + 13; s += `<text class="st-val" x="${ox + pw - MR + 8}" y="${e.y + 4}">${e.t}</text>`; });
+    out += s; });
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ciE(st.h)}">${out}</svg>`;
+}
+const fsScLeg = st => stLegend(st.panels.flatMap(p => p.s).filter((s, i, a) => a.findIndex(x => x.id === s.id) === i).map(s => ({ n: s.n, c: s.c, k: s.noline ? 'dot' : 'line' })));
+function fsScBlock() {
+  const S = fsScSpec(); if (!S || !S.length) return '';
+  const step = (s, i) => `<div class="fs-sc-step" data-sc="${i}"><div class="fs-sc-n">${i + 1}/${S.length}</div><h3 class="fs-sc-h">${s.h}</h3><div class="fs-sc-big">${s.big}<span>${s.bigL}</span></div><p>${s.p}</p>${s.c ? `<p class="fs-sc-c">${s.c}</p>` : ''}<div class="fs-sc-inl" data-sci="${i}"></div></div>`;
+  return `<div class="fs-sc" id="fs-sc"><div class="fs-sc-steps">${S.map(step).join('')}</div>
+    <div class="fs-sc-fig" aria-live="polite"><div class="fs-sc-nav" role="group" aria-label="${ciE(stT('Các bước', 'Steps'))}">${S.map((s, i) => `<button type="button" data-sc-go="${i}" aria-label="${ciE(`${stT('Bước', 'Step')} ${i + 1}: ${fsTxt(s.h)}`)}">${i + 1}</button>`).join('')}<span class="fs-sc-cap"></span></div><div class="fs-sc-leg"></div><div class="fs-sc-svg"></div></div></div>
+    <div class="st-viz fs-sc-data" id="fs-sc-data"></div>`;
+}
+function fsScDraw() {
+  const host = document.getElementById('fs-sc'); if (!host) return; const S = fsScSpec(); if (!S) return; host._S = S;
+  const fig = host.querySelector('.fs-sc-svg'), Wf = stCW(fig, 720, 300);
+  fig.innerHTML = S.map((s, i) => `<div class="fs-sc-st${i === fsScI ? ' on' : ''}" data-st="${i}">${fsScSvg(s, Wf, Wf < 520 ? 400 : 360)}</div>`).join('');
+  host.querySelectorAll('.fs-sc-inl').forEach(el => { const i = +el.dataset.sci, w = stCW(el, 680, 280); el.innerHTML = fsScLeg(S[i]) + fsScSvg(S[i], w, w < 520 ? 400 : 300); });
+  fsScSet(fsScI, false); fsScTop();
+  const d = document.getElementById('fs-sc-data'); if (d) d._stRows = { head: [stT('Bước', 'Step'), stT('Chuỗi', 'Series'), stT('Kỳ', 'Period'), stT('Giá trị', 'Value')],
+    rows: S.flatMap((s, i) => s.panels.flatMap(p => p.s.flatMap(se => se.pts.map((q, j) => [String(i + 1), se.n, String(se.lab(q[0], j)), stN(q[1], 2)])))) };
+  stRW(fig, fsScDraw);
+}
+function fsScSet(i, user) {
+  const host = document.getElementById('fs-sc'); if (!host || !host._S) return; const S = host._S; i = Math.max(0, Math.min(S.length - 1, i)); fsScI = i;
+  host.querySelectorAll('.fs-sc-st').forEach(x => x.classList.toggle('on', +x.dataset.st === i));
+  host.querySelectorAll('.fs-sc-step').forEach(x => x.classList.toggle('on', +x.dataset.sc === i));
+  host.querySelectorAll('[data-sc-go]').forEach(b => { const on = +b.dataset.scGo === i; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+  host.querySelector('.fs-sc-leg').innerHTML = fsScLeg(S[i]);
+  host.querySelector('.fs-sc-cap').textContent = `${i + 1}/${S.length} · ${fsTxt(S[i].h)}`;
+  if (user) { const st = host.querySelector(`.fs-sc-step[data-sc="${i}"]`); if (st && getComputedStyle(host.querySelector('.fs-sc-fig')).display !== 'none') { const sc = stSubScroller(host), r = st.getBoundingClientRect(), top = sc === document.scrollingElement || sc === document.documentElement ? 0 : sc.getBoundingClientRect().top;
+    host._lock = Date.now(); sc.scrollTo({ top: sc.scrollTop + r.top - top - (sc.clientHeight || innerHeight) * .3, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); } }
+}
+// the pinned chart sits just under the chapter sub-tab bar, whose height depends on how many rows of pills it wraps to
+function fsScTop() { const host = document.getElementById('fs-sc'), root = host && host.closest('.st-root'), bar = root && root.previousElementSibling; if (!host || !bar || !bar.classList.contains('st-subbar')) return;
+  host.style.setProperty('--fs-sc-top', `${(parseFloat(getComputedStyle(bar).top) || 0) + bar.offsetHeight + 12}px`); }
+function fsScWire() {
+  const host = document.getElementById('fs-sc'); if (!host) return; fsScTop(); if (fsScIO) { fsScIO.disconnect(); fsScIO = null; }
+  if (!('IntersectionObserver' in window)) return;   // the stepper still works
+  fsScIO = new IntersectionObserver(es => { if (host._lock && Date.now() - host._lock < 900) return; es.forEach(e => { if (e.isIntersecting) fsScSet(+e.target.dataset.sc, false); }); }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  host.querySelectorAll('.fs-sc-step').forEach(x => fsScIO.observe(x));
+}
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-sc-go]'); if (b) fsScSet(+b.dataset.scGo, true); });
+window.addEventListener('resize', () => fsScTop());   // chapter switches dispatch a resize: re-measure the sub-tab bar
+document.addEventListener('keydown', e => { const b = e.target.closest && e.target.closest('[data-sc-go]'); if (!b || !['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) return; e.preventDefault();
+  const n = document.querySelectorAll('#fs-sc [data-sc-go]').length, i = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : fsScI + (e.key === 'ArrowRight' ? 1 : -1); fsScSet(i, true); const nb = document.querySelector(`#fs-sc [data-sc-go="${Math.max(0, Math.min(n - 1, i))}"]`); if (nb) nb.focus(); });
 // generic single-series small line chart for multiples (slot 1, 2px, ringed last point)
 // period label → fractional year ('Q2/25', 'T11/24', '07/26', '2025', '2025-06', '2025-Q2'); null if not a date
 const stTimeOf = l => { const t = String(l || '').trim(), Y = y => (y.length === 2 ? 2000 + +y : +y); let m;
@@ -6890,8 +7234,12 @@ const FS_LV_GROUPS = [
     ids: [['budget_deficit_target', '↕'], ['budget_outturn', '↕'], ['gov_bond_issuance', '↓'], ['@treasury', '↕'], ['public_investment_annual', '↑'], ['@tax', '↓'], ['@nomf', '≤']] }];
 const fsLvFis = () => Object.fromEntries(((typeof POLICY !== 'undefined' && POLICY.fis.instruments) || []).map(I => [I.id, 1]));
 const FS_LV_C = { easing: ST.blue, tightening: ST.red, neutral: ST_MUTE };
-let fsLvSel = null, fsLvRT = null;
-const fsLvToday = () => new Date().toISOString().slice(0, 10);
+let fsLvSel = null, fsLvRT = null, fsLvAsOf = null, fsLvPrev = null, fsLvCtl = null;
+// time scrubber: fsLvAsOf (ISO date, null = today) replays the board as of a past date — each lever's setting is the 'to' of its
+// latest move on or before that date (or the 'from' of its first later move), its colour that move's direction; the 12-month
+// counts use the 12 months before that date. Layout stays today's so the board does not jump while it plays.
+const fsLvToday = () => fsLvAsOf || new Date().toISOString().slice(0, 10);
+const fsLvY1 = () => new Date((fsLvAsOf ? Date.parse(fsLvAsOf + 'T12:00:00Z') : Date.now()) - 365 * 864e5).toISOString().slice(0, 10);   // same window as before the scrubber
 const fsLvLast = I => (I.history || []).filter(h => h && h.date && h.date <= fsLvToday()).sort((a, b) => a.date.localeCompare(b.date)).pop() || null;
 const fsLvUrl = I => { const h = (I.history || []).filter(x => x && x.url && x.date <= fsLvToday()).sort((a, b) => a.date.localeCompare(b.date)).pop(); return h && /^https:\/\//.test(h.url) ? h.url : ''; };
 const fsLvDir = d => d === 'easing' ? stT('nới', 'easing') : d === 'tightening' ? stT('thắt', 'tightening') : d === 'neutral' ? stT('giữ nguyên', 'neutral') : '—';
@@ -6906,7 +7254,7 @@ function fsLvVal(I) {
 }
 // a summary node for a whole instrument group (targeted packages, taxes): count and the moves of the past 12 months
 function fsLvSum(list, name, glyph) {
-  const y1 = new Date(Date.now() - 365 * 864e5).toISOString().slice(0, 10), L = list.map(I => fsLvLast(I)).filter(h => h && h.date >= y1);
+  const y1 = fsLvY1(), L = list.map(I => fsLvLast(I)).filter(h => h && h.date >= y1);
   const e = L.filter(h => h.direction === 'easing').length, t = L.filter(h => h.direction === 'tightening').length;
   return { id: name[2], name: stT(name[0], name[1]) + ` (${list.length})`, g: glyph, sum: list, dir: e > t ? 'easing' : t > e ? 'tightening' : L.length ? 'neutral' : null, approx: 1,
     val: stT(`12 tháng qua: ${e} nới, ${t} thắt`, `past 12 months: ${e} eased, ${t} tightened`), since: '', doc: '', cur: list.map(I => `${stT(I.name_vi, I.name_en)}: ${stT(I.current_vi, I.current_en) || '—'}`).join('\n') };
@@ -6914,7 +7262,10 @@ function fsLvSum(list, name, glyph) {
 function fsLvSpec() {
   if (typeof POLICY === 'undefined' || typeof FINSYS === 'undefined') return null;
   const all = [...(POLICY.mon.instruments || []).map(I => ({ I, s: 'mon' })), ...(POLICY.fis.instruments || []).map(I => ({ I, s: 'fis' }))], by = Object.fromEntries(all.map(x => [x.I.id, x.I]));
-  const node = (I, g) => { const h = fsLvLast(I); return { id: I.id, I, g, name: stT(I.name_vi, I.name_en), val: fsLvVal(I), since: I.effective || '', doc: (h && h.doc) || '', dir: h ? h.direction : null, last: h, cur: stT(I.current_vi, I.current_en) || '', url: fsLvUrl(I) }; };
+  const node = (I, g) => { const h = fsLvLast(I); if (fsLvAsOf) { const nx = (I.history || []).filter(x => x && x.date > fsLvAsOf).sort((a, b) => a.date.localeCompare(b.date))[0], vi = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i;
+      let v = h ? h.to : nx ? nx.from : ''; if (APP_LANG === 'en' && v && vi.test(v)) v = h && h.note_en ? h.note_en : '';   // 'to'/'from' are often Vietnamese text: EN falls back to the move's English note
+      return { id: I.id, I, g, name: stT(I.name_vi, I.name_en), val: String(v || '—'), since: h ? h.date : '', doc: (h && h.doc) || '', dir: h ? h.direction : null, last: h, cur: `${stT('Đến', 'As of')} ${polDS(fsLvAsOf)}: ${v || '—'}`, url: fsLvUrl(I) }; }
+    return { id: I.id, I, g, name: stT(I.name_vi, I.name_en), val: fsLvVal(I), since: I.effective || '', doc: (h && h.doc) || '', dir: h ? h.direction : null, last: h, cur: stT(I.current_vi, I.current_en) || '', url: fsLvUrl(I) }; };
   const td = fsPl('treasury_deposits_at_banks'), nomf = ((FINSYS.sbv.constraints || {}).items || []).find(x => x.key === 'no_monetary_financing');
   const special = {
     '@targeted': g => { const L = (POLICY.mon.instruments || []).filter(I => I.group === 'targeted'); return L.length ? fsLvSum(L, ['Gói tín dụng ưu đãi', 'Targeted credit packages', '@targeted'], g) : null; },
@@ -6938,12 +7289,12 @@ function fsLvSpec() {
     { k: 'eco', n: stT('Nền kinh tế', 'The economy'), s: stT('doanh nghiệp, hộ gia đình, Nhà nước', 'firms, households, the State'),
       v: [cl >= 0 ? `${stT('dư nợ', 'loans')} ${fsU(M.credit_level[cl], 'bn VND')} (${fsStMon(M.months[cl])})` : ''].filter(Boolean) }];
   // headline counts: every POLICY instrument in the diagram (group summaries count each of their instruments)
-  const ins = groups.flatMap(G => G.nodes.flatMap(n => n.sum ? n.sum : n.I ? [n.I] : [])), y1 = new Date(Date.now() - 365 * 864e5).toISOString().slice(0, 10);
+  const ins = groups.flatMap(G => G.nodes.flatMap(n => n.sum ? n.sum : n.I ? [n.I] : [])), y1 = fsLvY1();
   const L12 = ins.map(fsLvLast).filter(h => h && h.date >= y1), ne = L12.filter(h => h.direction === 'easing').length, nt = L12.filter(h => h.direction === 'tightening').length;
   return { groups, chain, ins, ne, nt, cash: cm >= 0 ? { p: M.cash_to_m2_pct[cm], m: M.months[cm] } : null };
 }
 function fsStLeversChap() {
-  const S = fsLvSpec(); if (!S) return '';
+  fsLvAsOf = null; const S = fsLvSpec(); if (!S) return '';
   const title = stT(`12 tháng qua, ${S.ne}/${S.ins.length} công cụ tác động tới cung tiền được nới, ${S.nt} bị thắt`, `In the past 12 months, ${S.ne} of ${S.ins.length} money-supply levers eased and ${S.nt} tightened`);
   const rows = []; S.groups.forEach(G => G.nodes.forEach(n => {
     (n.sum || [null]).forEach(I => { const x = I ? { name: stT(I.name_vi, I.name_en), cur: stT(I.current_vi, I.current_en), since: I.effective, last: fsLvLast(I) } : { name: n.name, cur: n.cur || n.val, since: n.since, last: n.last };
@@ -6954,6 +7305,7 @@ function fsStLeversChap() {
     stT('NHNN tạo ra tiền cơ sở; ngân hàng cho vay tạo ra phần lớn M2. Mỗi ô là một công cụ, đặt dưới khâu nó tác động. Rê chuột hoặc bấm một ô để xem văn bản, ngày hiệu lực và đường tác động.', 'The SBV creates base money; bank lending creates most of M2. Each box is one lever, placed under the link it acts on. Hover or click a box for its document, effective date and path.'),
     `${stLegend([{ n: stT('Lần điều chỉnh gần nhất: nới', 'Latest move: easing'), c: ST.blue, k: 'dot' }, { n: stT('thắt', 'tightening'), c: ST.red, k: 'dot' }, { n: stT('giữ nguyên', 'neutral'), c: ST_MUTE, k: 'dot' }, { n: stT('số dư hoặc quy định luật, không phải công cụ điều chỉnh', 'a stock or a legal rule, not a dial'), c: ST.ink3, k: 'ring' }])}
      <div class="fs-lv-g">${stT('Cách tác động: <b>↑</b> thêm tiền · <b>↓</b> rút tiền · <b>↕</b> cả hai chiều · <b>≤</b> giới hạn, quy định hoặc mức giá', 'How it acts: <b>↑</b> adds money · <b>↓</b> removes money · <b>↕</b> either way · <b>≤</b> a limit, rule or price')}</div>
+     <div class="fs-lv-t-h">${stT('Tua lại theo thời gian: kéo thanh trượt hoặc bấm ▶ để xem bảng như ở từng tháng từ 1/2023. Ô có viền đậm = điều chỉnh trong tháng đó. Bốn ô trên cùng luôn là số liệu mới nhất.', 'Rewind: drag the slider or press ▶ to see the board as it stood each month since Jan 2023. A heavy outline = a move in that month. The four boxes at the top always show the latest data.')}</div><div id="fs-lv-t"></div>
      <div id="fs-lv" class="fs-lv"></div><div id="fs-lv-det" class="fs-lv-det" aria-live="polite"></div>
      ${note}<p class="fs-lv-go"><button type="button" class="st-pn-b" data-st-go="fs-st-pipe">${stT('Xem tiền đi qua từng kênh thế nào', 'See how the money moves through each channel')}: <b>${stT('Chương 6', 'Chapter 6')}</b><span aria-hidden="true"> →</span></button></p>
      ${fsTbl([stT('Nhóm', 'Group'), stT('Công cụ', 'Lever'), stT('Hiện hành', 'Current setting'), stT('Từ', 'Since'), stT('Văn bản', 'Document'), stT('Lần điều chỉnh gần nhất', 'Latest move')], rows)}
@@ -6961,6 +7313,9 @@ function fsStLeversChap() {
 }
 function fsLvDraw() {
   const host = document.getElementById('fs-lv'); if (!host) return; const S = fsLvSpec(); if (!S) return;
+  // layout lock: value-line counts come from today's board, so a replayed month fills the same boxes (cut with … if longer)
+  let lock = null; if (fsLvAsOf) { const a = fsLvAsOf; fsLvAsOf = null; const S0 = fsLvSpec(); fsLvAsOf = a; lock = {}; S0.groups.forEach(G => G.nodes.forEach(n => { lock[n.id] = [n.val, n.since ? stT('từ ', 'since ') + polDS(n.since) : ''].filter(Boolean).join(' · '); })); }
+  const mon = fsLvAsOf ? fsLvAsOf.slice(0, 7) : null;
   const Wp = Math.round(Math.max(300, Math.min(1120, host.clientWidth || 1000))), wide = Wp >= 760; host._w = Wp; host._S = S;
   const gap = 34, cw = wide ? (Wp - gap * 3) / 4 : Wp, cx = i => wide ? i * (cw + gap) : 0;
   const T = (x, y, s, cls, anc) => `<text class="${cls}" x="${x}" y="${y}"${anc ? ` text-anchor="${anc}"` : ''}>${ciE(s)}</text>`;
@@ -6976,11 +7331,13 @@ function fsLvDraw() {
     y = H + 26;
   } else { S.chain.forEach((c, i) => { const b = box(c, 0, y, Wp); svg += b.s; CB[c.k] = { x: Wp / 2, y: y + b.h }; y += b.h; if (i < 3) { svg += `<path d="M${Wp / 2},${y + 2} L${Wp / 2},${y + 16}" stroke="#16181d" stroke-width="2" fill="none" marker-end="url(#fslv-a)"/>`; y += 20; } }); y += 22; }
   // lever groups
-  const node = (n, x, y0, w) => { const pad = 9, nl = fsWrap(n.name, w - 2 * pad - 30, 12.5), vl = fsWrap([n.val, n.since ? stT('từ ', 'since ') + polDS(n.since) : ''].filter(Boolean).join(' · '), w - 2 * pad - 18, 11.5);
+  const node = (n, x, y0, w) => { const pad = 9, nl = fsWrap(n.name, w - 2 * pad - 30, 12.5), vtx = [n.val, n.since ? stT('từ ', 'since ') + polDS(n.since) : ''].filter(Boolean).join(' · '); let vl = fsWrap(vtx, w - 2 * pad - 18, 11.5);
+    if (lock && lock[n.id] != null) { const k = Math.max(1, fsWrap(lock[n.id], w - 2 * pad - 18, 11.5).length); if (vl.length > k) { vl = vl.slice(0, k); vl[k - 1] = vl[k - 1].replace(/\s*\S*$/, '') + '…'; } while (vl.length < k) vl.push(''); }
+    const moved = mon && (n.sum ? n.sum.some(I => { const h = fsLvLast(I); return h && h.date.slice(0, 7) === mon; }) : n.last && n.last.date.slice(0, 7) === mon);
     let t = '', yy = y0 + 4; nl.forEach(l => { yy += 15; t += T(x + pad + 16, yy, l, 'fs-lv-nn'); }); vl.forEach(l => { yy += 14; t += T(x + pad + 16, yy, l, 'fs-lv-nv'); }); const h = Math.max(30, yy - y0 + 9);
     const c = n.dir ? FS_LV_C[n.dir] : null, dot = c ? `<circle cx="${x + pad + 4}" cy="${y0 + 14}" r="6" fill="#fff"/><circle cx="${x + pad + 4}" cy="${y0 + 14}" r="4.5" fill="${c}"/>` : `<circle cx="${x + pad + 4}" cy="${y0 + 14}" r="4" fill="#fff" stroke="${ST.ink3}" stroke-width="1.5"/>`;
     const lab = n.name, val = [n.val, n.dir ? `${stT('gần nhất', 'latest')}: ${fsLvDir(n.dir)}${n.approx ? ' ≈' : ''}${n.last ? ' · ' + polDS(n.last.date) : ''}` : '', n.doc].filter(Boolean).join(' · ');
-    return { h, s: `<g class="fs-lv-n" tabindex="0" role="button" aria-label="${ciE(lab + ': ' + (val || n.cur || ''))}" data-lv="${ciE(n.id)}" data-on="${n.on}" ${stKey(lab, val || fsTxt(n.cur).slice(0, 160))}><rect x="${x + .5}" y="${y0 + .5}" width="${w - 1}" height="${h - 1}" rx="5" fill="#fff" stroke="#dedbd2"/>${dot}${T(x + w - pad, y0 + 18, n.g, 'fs-lv-gl', 'end')}${t}</g>` }; };
+    return { h, s: `<g class="fs-lv-n${moved ? ' fs-lv-mv' : ''}" tabindex="0" role="button" aria-label="${ciE(lab + ': ' + (val || n.cur || '') + (moved ? ' · ' + stT('điều chỉnh trong tháng này', 'moved this month') : ''))}" data-lv="${ciE(n.id)}" data-on="${n.on}" ${stKey(lab, val || fsTxt(n.cur).slice(0, 160))}><rect x="${x + .5}" y="${y0 + .5}" width="${w - 1}" height="${h - 1}" rx="5" fill="#fff" stroke="${moved && c ? c : '#dedbd2'}"${moved ? ' stroke-width="2.5"' : ''}/>${dot}${T(x + w - pad, y0 + 18, n.g, 'fs-lv-gl', 'end')}${t}</g>` }; };
   const cols = wide ? 1 : Wp >= 520 ? 2 : 1, ncw = wide ? cw : (Wp - (cols - 1) * 8) / cols;
   let yMax = y;
   S.groups.forEach((G, gi) => { G.nodes.forEach(n => { n.on = G.on.join(' '); });
@@ -6995,8 +7352,22 @@ function fsLvDraw() {
     G.nodes.forEach(n => { const c = colY.indexOf(Math.min(...colY)), b = node(n, x0 + c * (ncw + 8), colY[c], ncw); svg += b.s; colY[c] += b.h + 6; });
     yMax = Math.max(yMax, ...colY) + (wide ? 0 : 18);
   });
-  host.innerHTML = `<svg viewBox="0 0 ${Wp} ${yMax + 2}" width="100%" role="group" aria-label="${ciE(stT('Sơ đồ các công cụ tác động tới cung tiền', 'Diagram of the levers on the money supply'))}">${defs}${svg}</svg>`;
+  host.innerHTML = `<svg viewBox="0 0 ${Wp} ${yMax + 2}" width="100%" role="group" aria-label="${ciE(stT('Sơ đồ các công cụ tác động tới cung tiền', 'Diagram of the levers on the money supply') + (fsLvAsOf ? ' · ' + stT('đến ', 'as of ') + polDS(fsLvAsOf) : ''))}">${defs}${svg}</svg>`;
   if (fsLvSel) fsLvPick(fsLvSel, false);
+  fsLvTime(S);
+}
+// the scrubber: months from Jan 2023 to the current month (last step = today, the board at rest); built once per draw host
+function fsLvTime(S) {
+  const t = document.getElementById('fs-lv-t'); if (!t) return;
+  const now = new Date().toISOString().slice(0, 10), M = []; for (let y = 2023, m = 1; `${y}-${String(m).padStart(2, '0')}` <= now.slice(0, 7); m === 12 ? (y++, m = 1) : m++) M.push(`${y}-${String(m).padStart(2, '0')}`);
+  const end = ym => { const [y, m] = ym.split('-').map(Number), d = new Date(Date.UTC(y, m, 0)).toISOString().slice(0, 10); return d > now ? now : d; };
+  const cnt = () => { const sp = fsLvSpec(); return sp ? [sp.ne, sp.nt, sp.ins.length] : [0, 0, 0]; };
+  const lab = i => { const d = i === M.length - 1 ? now : end(M[i]), a = fsLvAsOf; fsLvAsOf = i === M.length - 1 ? null : d; const [e, tt, n] = cnt(); fsLvAsOf = a;
+    return `${polDS(d)}<span class="fs-lv-tc"> · ${stT(`12 tháng trước đó: <b style="color:${ST.blue}">●</b> ${e} nới, <b style="color:${ST.red}">●</b> ${tt} thắt (trong ${n} công cụ)`, `previous 12 months: <b style="color:${ST.blue}">●</b> ${e} eased, <b style="color:${ST.red}">●</b> ${tt} tightened (of ${n} levers)`)}</span>`; };
+  if (t._n === M.length && t.firstElementChild) return;   // already built; the draw was triggered by the scrubber itself
+  t._n = M.length;
+  fsLvCtl = stTimeCtl(t, M.length, lab, i => { const v = i === M.length - 1 ? null : end(M[i]); if (v === fsLvAsOf) return; fsLvAsOf = v; fsLvDraw(); },
+    { ms: matchMedia('(prefers-reduced-motion: reduce)').matches ? 900 : 450, play: stT('Phát lại từ 1/2023', 'Replay from Jan 2023'), aria: stT('Chọn tháng', 'Pick a month') });
 }
 // highlight a lever's path: the lever, its group's connector(s) and the chain box(es) it acts on; others recede
 function fsLvHi(id) {
