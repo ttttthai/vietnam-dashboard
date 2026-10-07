@@ -34,7 +34,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 OUT = DATA / "simulation.json"
-AS_OF = "2026-10-06"
+AS_OF = "2026-10-07"
 
 MONTHS = [f"{y}-{m:02d}" for y in range(2021, 2027) for m in range(1, 13)]
 MONTHS = MONTHS[: MONTHS.index("2026-09") + 1]
@@ -158,6 +158,8 @@ GB10 = [
     {"date": "2026-02", "value": 4.09, "url": "https://baodauthau.vn/2-thang-dau-nam-2026-huy-dong-duoc-hon-60000-ty-dong-trai-phieu-chinh-phu-post194923.html", "note": "end-Feb-2026"},
     {"date": "2026-06", "value": 4.35, "url": "https://baodauthau.vn/huy-dong-23375-ty-dong-trai-phieu-chinh-phu-qua-dau-thau-trong-thang-6-post202309.html", "note": "end-Jun-2026"},
     {"date": "2026-07", "value": 4.36, "url": "https://tapchikinhtetaichinh.vn/thang-7-2026-huy-dong-18-603-ty-dong-trai-phieu-chinh-phu-qua-dau-thau-164137.html", "note": "end-Jul-2026"},
+    {"date": "2026-08", "value": 4.41, "url": "https://baodauthau.vn/huy-dong-hon-27756-ty-dong-trai-phieu-chinh-phu-qua-dau-thau-trong-thang-8-post207553.html", "note": "last Aug-2026 session, +5 bp vs last Jul session (HNX; search excerpt 2026-10-07)"},
+    {"date": "2026-09", "value": 4.43, "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/09/27/vietnam-raises-us1bil-n-government-bond-auction-highest-volume-this-year", "note": "auction of 23/9/2026 (Reuters): 20,000 bn 10-year fully sold at 4.43%. A 30/9 auction probably followed (9M issuance implies ~11 tn after 23/9) but its 10-year yield was not found. Rejected: '10-year 4.67-4.80% in Sep' (vnbusiness excerpt) is from an earlier year (5-year at 5.08% above the 10-year)."},
 ]
 
 # CPI y/y (NSO). Values before Oct-2024 only where a search excerpt confirmed the figure; others null.
@@ -247,11 +249,24 @@ ACCOUNTS_MONTH = [
     {"date": "2025-01", "value": 81000, "url": "https://thoibaotaichinhvietnam.vn/81000-tai-khoan-chung-khoan-mo-moi-thang-dau-nam-2025-170069.html"},
     {"date": "2025-05", "value": 191000, "url": "https://thoibaotaichinhvietnam.vn/gan-191000-tai-khoan-chung-khoan-mo-moi-trong-thang-5-so-tai-khoan-chung-khoan-can-moc-10-trieu-177893.html", "note": "'nearly 191,000'; total accounts passed 10 million"},
     {"date": "2025-07", "value": 226000, "url": "https://thoibaotaichinhvietnam.vn/hon-226-nghin-tai-khoan-chung-khoan-mo-moi-trong-thang-7-cao-nhat-trong-vong-11-thang-181243.html", "note": "'over 226 thousand', highest in 11 months"},
+    {"date": "2025-08", "value": 257632, "url": "https://thitruongtaichinhtiente.vn/gan-260-000-tai-khoan-giao-dich-chung-khoan-mo-moi-trong-thang-8-70281.html", "note": "VSDC; total accounts ~10.7 m at end-Aug-2025"},
+    {"date": "2025-10", "value": 310651, "url": "https://doanhnhan.baophapluat.vn/don-tin-thi-truong-duoc-nang-hang-co-hon-310000-tai-khoan-chung-khoan-duoc-mo-moi-trong-thang-102025-88541.html", "note": "domestic accounts +310,651 vs end-Sep-2025 (individuals +310,496); 11,305,254 at 30/10/2025. Sep-2025 not found (the '172,605/172,695 in Sep' articles are Sep-2024): null"},
+    {"date": "2025-11", "value": 237000, "url": "https://doanhnhan.baophapluat.vn/so-luong-tai-khoan-chung-khoan-mo-moi-cham-day-4-thang-89547.html", "note": "'over 237,000', ~73,000 fewer than Oct, lowest in 4 months"},
+    {"date": "2025-12", "value": 279383, "url": "https://vneconomy.vn/nha-dau-tu-ca-nhan-lai-o-at-mo-tai-khoan-chung-khoan-trong-thang-cuoi-nam-2025.htm", "note": "domestic accounts +279,383"},
+    {"date": "2026-01", "value": 244700, "url": "https://thoibaotaichinhvietnam.vn/hon-244700-tai-khoan-chung-khoan-mo-moi-trong-thang-1-192048.html", "note": "'over 244,700' (also 'nearly 245,000', mekongasean)"},
+    {"date": "2026-02", "value": 198159, "url": "https://nhandan.vn/ocop/ket-thuc-quy-i2026-viet-nam-co-hon-126-trieu-tai-khoan-chung-khoan-post954464.html", "note": "derived in the same release: Mar increase 345,979 is '147,820 more than Feb' -> 198,159; press 'over 198,000' (https://thoibaotaichinhvietnam.vn/hon-198-nghin-tai-khoan-chung-khoan-mo-moi-trong-thang-2-193524.html); 9-day Tet holiday"},
+    {"date": "2026-03", "value": 345979, "url": "https://nhandan.vn/ocop/ket-thuc-quy-i2026-viet-nam-co-hon-126-trieu-tai-khoan-chung-khoan-post954464.html", "note": "domestic accounts +345,979; 12,661,417 accounts at end-Q1"},
+    {"date": "2026-04", "value": 244700, "url": "https://mekongasean.vn/hon-244700-tai-khoan-chung-khoan-duoc-mo-moi-trong-thang-4-55018.html", "note": "'about 244,700', ~-30% vs Mar; individuals >244,300"},
+    {"date": "2026-05", "value": 256500, "url": "https://vietnamfinance.vn/vn-index-lap-dinh-nha-dau-tu-o-at-mo-moi-tai-khoan-chung-khoan-d145805.html", "note": "'over 256,500' (individuals 255,700); total ~13.16 m"},
+    {"date": "2026-06", "value": 268000, "url": "https://thoibaotaichinhvietnam.vn/nha-dau-tu-trong-nuoc-mo-moi-gan-268000-tai-khoan-chung-khoan-200329.html", "note": "'nearly 268,000'"},
+    {"date": "2026-07", "value": 227300, "url": "https://tapchikinhtetaichinh.vn/them-227-nghin-tai-khoan-giao-dich-chung-khoan-duoc-bo-sung-trong-thang-7-2026-163901.html", "note": "'over 227,300'; 13.66 m accounts at end-Jul"},
+    {"date": "2026-08", "value": 230000, "url": "https://tapchikinhtetaichinh.vn/so-tai-khoan-chung-khoan-ca-nhan-tuong-duong-gan-14-dan-so-166573.html", "note": "'nearly 230,000'; individuals >13.8 m at end-Aug. Sep-2026 VSDC figure not found by 2026-10-07 (an excerpt '158,302 in Sep' is Sep-2023): null"},
 ]
 ACCOUNTS_YEAR = [
     {"period": "2021", "value": 1500000, "url": "https://baodauthau.vn/tai-khoan-chung-khoan-mo-moi-tang-manh-trong-nam-2022-post132874.html", "note": "'over 1.5 million'"},
     {"period": "2022", "value": 2600000, "url": "https://baodauthau.vn/nam-2022-gan-26-trieu-tai-khoan-chung-khoan-mo-moi-post133309.html", "note": "'nearly 2.6 million', record"},
     {"period": "2024-Jan-Sep", "value": 1570000, "url": "https://thoibaotaichinhvietnam.vn/tai-khoan-chung-khoan-mo-moi-trong-thang-8-o-muc-cao-nhat-hon-2-nam-qua-159157.html", "note": "individual accounts opened Jan-Sep 2024"},
+    {"period": "2025", "value": 2600000, "url": "https://nhandan.vn/ocop/viet-nam-co-them-26-trieu-tai-khoan-chung-khoan-nam-2025-vuot-xa-muc-tieu-11-trieu-tai-khoan-vao-nam-2030-post935997.html", "note": "'+2.6 million' accounts in 2025 (>11.8 m total)"},
 ]
 
 # Public investment (state-budget capital) disbursed, full year incl. the January extension month.
@@ -278,6 +293,10 @@ RE_POINTS = {
         {"period": "2023-Q4", "value": 58, "url": "https://baomoi.com/ha-noi-gia-can-ho-tang-20-quy-lien-tiep-rat-hiem-can-duoi-2-ti-dong-c48102695.epi", "provider": "Savills (via finance.json)"},
         {"period": "2024-Q4", "value": 75, "url": "https://vn.savills.com.vn/blog/article/220417/vietnam-viet/toan-canh-thi-truong-can-ho-q4-2024.aspx", "provider": "Savills (via finance.json)"},
         {"period": "2025-Q4", "value": 102, "url": "https://vtv.vn/trung-binh-102-trieu-dong-m2-gia-can-ho-tai-ha-noi-100260322082236072.htm", "provider": "Savills (via finance.json)"},
+        {"period": "2026-Q2", "value": 116, "url": "https://cafef.vn/chung-cu-ha-noi-vang-bong-can-ho-duoi-70-trieu-dong-m2-188260814143655062.chn", "provider": "Savills Q2-2026 (latest quarter, not Q4; +16% q/q, +27% y/y; via finance.json)"},
+    ],
+    "hanoi_primary_apartment_price_cbre_mvnd_m2": [
+        {"period": "2026-Q2", "value": 95, "url": "https://vietnamfinance.vn/nguon-cung-chung-cu-ha-noi-lap-ky-luc-gia-can-ho-moi-neo-cao-d147694.html", "provider": "CBRE (excl. VAT; +12% q/q, +21% y/y) - separate provider, never mixed with Savills"},
     ],
     "hanoi_hcmc_new_launch_price_moc_2025": [
         {"period": "2025-Q2", "city": "Hanoi", "value": 80, "url": "https://doanhnhan.baophapluat.vn/gia-chung-cu-tai-ha-noi-va-tp-hcm-lap-dinh-moi-cao-nhat-gan-mot-thap-ky-84861.html", "provider": "MoC quarterly report", "note": "+5.6% q/q"},
@@ -450,19 +469,31 @@ def build_panel(prev, args):
     S["credit_ytd"] = series("Tăng trưởng tín dụng so với đầu năm", "Credit growth YTD", "%", from_fin_monthly(fm["credit_ytd"]),
                              "Credit to the economy vs previous year-end (SBV). Monthly values Nov-2024+ from finance.json (SBV month-end tables/statements; check cut-off notes there). 2021-2024 only at stated cut-off dates ('observations').",
                              "finance.json FINSYS.monthly.credit_ytd + SBV statements", "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt", "per finance.json / search excerpts", "credit",
-                             observations=CREDIT_YTD_POINTS)
+                             observations=CREDIT_YTD_POINTS,
+                             basis=align(fm["credit_basis"], fin_months), cutoff=align(fm["credit_cutoff"], fin_months),
+                             basis_note="Per month: 'sbv_table' = SBV month-end table row; 'statement' = SBV/Government statement at the cut-off date in 'cutoff' (rounded level). Aug/Sep-2026 are statement points (28/8, 30/9).")
     cy = from_fin_monthly(fm["credit_yoy"])
     der_cy = pct_change(credit_level, 12)
     S["credit_yoy"] = series("Tăng trưởng tín dụng so với cùng kỳ", "Credit growth y/y", "%",
                              [a if a is not None else b for a, b in zip(cy, der_cy)],
                              "Credit to the economy, y/y. finance.json credit_yoy where stated; otherwise derived from SBV month-end levels (credit_level) 12 months apart (flag in 'derived_months').",
                              "finance.json FINSYS.monthly", "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt", "per finance.json", "credit",
-                             derived_months=[MONTHS[i] for i in range(N) if cy[i] is None and der_cy[i] is not None])
+                             derived_months=[MONTHS[i] for i in range(N) if cy[i] is None and der_cy[i] is not None],
+                             basis=[b if b is not None else (("derived_from_statement_level" if cb == "statement" else "derived_from_sbv_table_levels") if d is not None else None)
+                                    for b, d, cb in zip(align(fm["credit_yoy_basis"], fin_months), der_cy, align(fm["credit_basis"], fin_months))],
+                             basis_note="'statement' = SBV-stated y/y; 'computed_from_sbv_table_levels' (finance.json) / 'derived_from_sbv_table_levels' (here) = table level vs table level 12 months earlier; 'derived_from_statement_level' = rounded statement level (Aug-2026: ~20.5 quadrillion at 28/8) vs the Aug-2025 table month-end - indicative only (rounding ~±0.15 pp, cut-offs 3 days apart); not used by the model (deposit y/y for Aug-2026 is null).")
     S["deposit_ytd"] = series("Tăng trưởng huy động (dân cư + TCKT) so với đầu năm", "Deposit growth YTD (residents + organisations)", "%",
                               from_fin_monthly(fm["deposits_ytd"]),
                               "Customer deposits of residents + economic organisations at credit institutions vs previous year-end (SBV money-supply tables, ~2-month lag). 2021-2024 only stated mobilisation points ('observations' - mobilisation, a broader concept).",
                               "finance.json FINSYS.monthly.deposits_ytd", "SBV statistics via finance.json", "per finance.json", "credit",
-                              observations=DEPOSIT_YTD_POINTS)
+                              observations=DEPOSIT_YTD_POINTS + [
+                                  {"date": c, "value": v, "basis": b, "url": u, "note": nt}
+                                  for c, v, b, u, nt in [(fm["deposits_ytd_statement_cutoff"][i], fm["deposits_ytd_statement"][i], fm["deposits_ytd_statement_basis"][i],
+                                                          *{"vnd_mobilisation_statement": ("https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html",
+                                                                                           "statement basis, cut-off 22/8/2026: VND mobilisation only (MoF, Government press conference 3/9/2026); not the SBV table measure"),
+                                                            "mobilisation_nso_report": ("https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm",
+                                                                                        "statement basis, cut-off 28/9/2026: mobilisation per NSO Q3-2026 report (credit +10.89% same date); not the SBV table measure")}[fm["deposits_ytd_statement_basis"][i]])
+                                                         for i in range(len(fm["months"])) if fm["deposits_ytd_statement"][i] is not None]])
     S["deposit_yoy"] = series("Tăng trưởng huy động so với cùng kỳ", "Deposit growth y/y", "%", pct_change(dep_level, 12),
                               "Derived from SBV month-end deposit levels (residents + organisations) 12 months apart; null where either level is missing. Note an Oct-2025 reclassification between residents and organisations (total unaffected).",
                               "derived from finance.json FINSYS.monthly.deposits_level", "derived", "derived", "credit", derived=True)
@@ -563,12 +594,14 @@ def build_panel(prev, args):
         sjc_obs.append({"date": f"{y}-12", "value": alt["gold_sjc"]["level_vnd_per_tael"][alt["years"].index(y)], "quote": p.get("quote"), "url": p.get("url")})
     sjc_obs += [{"date": "2026-01", "value": 184.2, "quote": "SJC 181.7–184.2 on 29/1/2026 (record)", "url": "https://baovanhoa.vn/kinh-te/gia-vang-hom-nay-2912026-sjc-tang-soc-lap-dinh-moi-201009.html"},
                 {"date": "2026-10", "value": fin["alternatives"]["ytd"]["gold_sjc"]["level"], "quote": fin["alternatives"]["ytd"]["gold_sjc"]["quote"] + " on 6/10/2026", "url": fin["alternatives"]["ytd"]["gold_sjc"]["url"]}]
+    sjc_obs[-1:-1] = [{"date": p["d"][:7], "value": p["v"], "quote": p["quote"] + " on " + p["d"], "url": p["u"], "note": p["n"]}
+                      for p in alt["gold_sjc"].get("month_end_2026", {}).get("points", []) if p.get("v") is not None]
     sjc = nulls()
     for o in sjc_obs:
         if o["date"] in IDX:
             sjc[IDX[o["date"]]] = o["value"]
     S["sjc_gold_sell"] = series("Vàng miếng SJC (giá bán)", "SJC gold bar, sell price", "million VND per tael", sjc,
-                                "SJC bar sell price at the last session of the year (Dec values), plus the Jan-2026 record and the 6-Oct-2026 quote (in observations). Monthly SJC history could not be pulled (sjc.com.vn/simplize blocked): other months null.",
+                                "SJC bar sell price at the last session of the year (Dec values), the Jan-2026 record (29/1), month-end quotes Feb-Sep 2026 (finance.json alternatives.series.gold_sjc.month_end_2026; Jun-2026 null, Sep-2026 derived from the 1/10 stated change) and the 6-Oct-2026 quote (in observations). Full monthly history before 2026 could not be pulled (sjc.com.vn/simplize blocked): other months null.",
                                 "finance.json FINSYS.alternatives.series.gold_sjc + press", "per observation", "search excerpts", "savings", observations=sjc_obs)
     # SJC premium vs world gold converted (year-end points only, derived)
     fx_ye = {f"{y}-12": alt["usd"]["level"][alt["years"].index(y)] for y in range(2020, 2026)}
@@ -601,12 +634,14 @@ def build_panel(prev, args):
                                      observations=ACCOUNTS_MONTH, annual=ACCOUNTS_YEAR)
     S["real_estate"] = {"label_vi": "Bất động sản: giá căn hộ sơ cấp và nguồn cung", "label_en": "Real estate: primary apartment prices and supply",
                         "unit": "million VND/m² (prices)", "freq": "quarterly/annual", "group": "savings", "series": RE_POINTS,
-                        "definition": "Hanoi average primary (new-launch) apartment asking price per Savills, Q4 of each year; MoC new-launch averages for 2025 (Hanoi and HCMC separately). Different providers and launch mix each quarter - not a constant-quality index, not spliced. HCMC Savills Q4 series not built (excerpts inconsistent, see finance.json).",
+                        "definition": "Hanoi average primary (new-launch) apartment asking price per Savills, Q4 of each year plus the latest quarter (2026-Q2, labelled); CBRE Q2-2026 kept in its own list (different basis, excl. VAT); MoC new-launch averages for 2025 (Hanoi and HCMC separately). Different providers and launch mix each quarter - not a constant-quality index, not spliced. HCMC Savills Q4 series not built (excerpts inconsistent, see finance.json).",
                         "source": "Savills Vietnam (via finance.json alternatives.real_estate) and Ministry of Construction reports", "url_or_note": "per observation", "verified": "search excerpts"}
     S["corporate_bonds"] = {"label_vi": "Trái phiếu doanh nghiệp", "label_en": "Corporate bonds", "unit": "VND bn", "freq": "annual/points", "group": "savings",
                             "issuance": CORP_BOND,
+                            "issuance_2026_cumulative": fin["flows"]["Corporate bond issuance, 2026 cumulative (VBMA)"],
+                            "issuance_monthly_2026": fin["flows"]["Corporate bond issuance by month, 2026 (VBMA, as disclosed by month-end)"],
                             "outstanding": fin["flows"]["Corporate bonds outstanding"],
-                            "definition": "Issuance (VBMA; private placement and public) and outstanding (FiinGroup/VBMA via finance.json). Annual issuance for 2021, 2023-2025 not confirmed in excerpts: missing, not estimated.",
+                            "definition": "Issuance (VBMA; private placement and public) and outstanding (FiinGroup/VBMA via finance.json). Annual issuance for 2021, 2023-2025 not confirmed in excerpts: missing, not estimated. 2026: VBMA cumulative YTD points (8M ~349,000 bn) and month figures as disclosed by each month-end (Mar and Jul null); VBMA revises cumulatives upward for late disclosures, so months do not sum to the cumulative - see finance.json sources.corporate_bond_issuance_2026.",
                             "source": "VBMA / FiinGroup via press; finance.json flows", "url_or_note": "per observation", "verified": "search excerpts"}
 
     # ---------------- fiscal
@@ -625,9 +660,26 @@ def build_panel(prev, args):
                                     freq="points", observations=TREASURY,
                                     ldr_inclusion={"dates": ins["treasury_deposits_ldr"]["series"]["dates"], "values_pct": ins["treasury_deposits_ldr"]["series"]["values"],
                                                    "note": "Share of Treasury term deposits that may count as LDR funding (Policy tab): 50% (2023) -> 40% -> 20% -> 0% (2026-01) -> 20% (15/5/2026) -> 50% (1/8/2026)."})
-    S["budget_balance_monthly"] = series("Cân đối NSNN theo tháng", "Monthly budget balance", "VND bn", nulls(),
-                                         "Not collected: no consistent monthly series in reach (MoF publishes cumulative estimates). Null by design.",
-                                         "-", "gap", "-", "fiscal")
+    ex9 = eco["ECONFLOW"]["budget"]["exec_9M2026"]
+    bud_obs = [
+        {"date": "2026-03", "period": "Q1-2026 cumulative", "value": 299300, "revenue": 829400, "expenditure": 530100,
+         "url": "https://thitruongtaichinhtiente.vn/thu-ngan-sach-nha-nuoc-quy-i-2026-dat-829-nghin-ty-dong-tang-11-4-so-voi-cung-ky-80853.html",
+         "note": "revenue 829.4 tn (32.8% of plan) - spending 530.1 tn (16.8%) = +299.3 tn (derived), MoF estimate, cash basis; search excerpt 2026-10-07"},
+        {"date": "2026-08", "period": "Jan-Aug 2026 cumulative", "value": 415500, "revenue": 2023800, "expenditure": 1608300,
+         "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-chi-ngan-sach-nha-nuoc-8-thang-nam-2026-203305.html",
+         "note": "revenue 2,023.8 tn (80% of plan) - spending 1,608.3 tn (50.9%) = +415.5 tn (derived), MoF estimate, cash basis; search excerpt 2026-10-07"},
+        {"date": "2026-09", "period": "Jan-Sep 2026 cumulative", "value": ex9["balance"], "revenue": ex9["revenue_total"], "expenditure": ex9["expenditure_total"],
+         "url": ex9["source"], "note": "copied from data/economy.json ECONFLOW.budget.exec_9M2026 (" + ex9["balance_note"] + ")"},
+    ]
+    bb = nulls()
+    sep_rev, sep_exp = ex9["revenue_total"] - 2023800, ex9["expenditure_total"] - 1608300
+    bb[IDX["2026-09"]] = sep_rev - sep_exp
+    S["budget_balance_monthly"] = series("Cân đối NSNN theo tháng", "Monthly budget balance", "VND bn", bb,
+                                         "Revenue minus spending in the month, MoF cash-basis estimates (not the NA-defined deficit). Only Sep-2026 is filled: derived as the difference of two cumulative MoF estimates "
+                                         f"(9M − 8M: revenue {sep_rev:,} − spending {sep_exp:,} = {sep_rev - sep_exp:,} bn); cumulative estimates are revised between releases, so the month value is approximate. "
+                                         "Other months null (no consistent monthly series in reach). Cumulative year-to-date balances in 'observations' (Q1, 8M, 9M); 9M = economy.json exec_9M2026.",
+                                         "Ministry of Finance budget execution via press; data/economy.json", "per observation", "search excerpts 2026-10-07 / Economy tab", "fiscal",
+                                         observations=bud_obs, derived_months=["2026-09"])
 
     # ---------------- external & inflation
     cpi = nulls(); cpi_src = [None] * N
@@ -1177,7 +1229,7 @@ INDICATORS_ADDED = [
     {"key": "cof_listed / casa_listed / nim_listed", "why_en": "Banks' cost of funds and the share of cheap current accounts show the pressure from the funding side directly; falling CASA forces more term deposits at higher rates.", "why_vi": "Chi phí vốn và tỷ lệ CASA cho thấy trực tiếp áp lực nguồn vốn; CASA giảm buộc huy động có kỳ hạn với lãi suất cao hơn."},
     {"key": "ldr_simple_listed vs ldr_sbv", "why_en": "Two definitions tell different stories: the SBV Circular-22 LDR (~77%) is far below the cap, while simple loans/deposits (~114%) shows how stretched balance sheets are.", "why_vi": "Hai định nghĩa cho hai câu chuyện: LDR theo TT22 (~77%) còn xa trần, còn cho vay/tiền gửi đơn giản (~114%) cho thấy bảng cân đối căng."},
     {"key": "treasury_deposits.ldr_inclusion", "why_en": "How much Treasury money banks may count as funding moved 50% -> 0% -> 50% (2023-2026); public-investment spending drains these deposits.", "why_vi": "Tỷ lệ tiền gửi KBNN được tính vào nguồn vốn thay đổi 50% → 0% → 50% (2023–2026); giải ngân đầu tư công rút bớt khoản tiền gửi này."},
-    {"key": "gov_bond_10y", "why_en": "The 10-year government yield (4.0% end-2025 -> 4.36% Jul-2026) is the risk-free benchmark competing for the same savings and signals the fiscal financing need.", "why_vi": "Lợi suất TPCP 10 năm là chuẩn phi rủi ro cạnh tranh cùng nguồn tiết kiệm và phản ánh nhu cầu vốn của ngân sách."},
+    {"key": "gov_bond_10y", "why_en": "The 10-year government yield (4.0% end-2025 -> 4.43% at the 23-Sep-2026 auction) is the risk-free benchmark competing for the same savings and signals the fiscal financing need.", "why_vi": "Lợi suất TPCP 10 năm là chuẩn phi rủi ro cạnh tranh cùng nguồn tiết kiệm và phản ánh nhu cầu vốn của ngân sách."},
     {"key": "brent", "why_en": "Fuel drives Vietnam's CPI swings (transport +12.6% YTD in Sep-2026); oil therefore feeds the inflation driver.", "why_vi": "Giá xăng dầu chi phối biến động CPI (giao thông +12,6% từ đầu năm, 9/2026)."},
     {"key": "cash_to_m2", "why_en": "A rising cash share (12.1% in Feb-2026) means money circulating outside banks rather than as deposits.", "why_vi": "Tỷ trọng tiền mặt tăng (12,1% tháng 2/2026) nghĩa là tiền lưu thông ngoài ngân hàng thay vì thành tiền gửi."},
     {"key": "credit_target / ldr_cap.upcoming", "why_en": "Credit quotas (15% for 2026) and the LDR cap rise to 95% (1 Dec 2026) set how much more lending banks must fund.", "why_vi": "Chỉ tiêu tín dụng (15% cho 2026) và trần LDR 95% (1/12/2026) quyết định ngân hàng còn phải huy động bao nhiêu."},
@@ -1196,6 +1248,10 @@ def conflicts_block():
         {"topic": "Margin lending scope", "a": "201,824 bn (106 securities firms, Q1-2022)", "b": "~230,000 bn whole-market estimate", "handling": "securities-firm figure used; tallies differ in scope over time"},
         {"topic": "Treasury deposits", "a": "460,000 bn at 3 Big-4 banks (Q3-2025)", "b": "406,000 bn at state banks (end-2025)", "handling": "kept as separate points with scope"},
         {"topic": "LDR 'near cap'", "a": "SBV TT22 LDR 77.1% (Jun-2026) vs 85% cap", "b": "simple loans/deposits ~114% (Q2-2026)", "handling": "different definitions, never merged"},
+        {"topic": "Regulatory LDR Q2-2026", "a": "77.06% SBV system statistic (Circular 22, 30/6/2026)", "b": "~88% NSI estimate for its listed-bank sample", "handling": "77.06 used (official, whole system); 88 is a sample estimate - coverage differs, not merged"},
+        {"topic": "10-year G-bond Sep-2026", "a": "4.43% at the 23/9/2026 auction (Reuters)", "b": "'4.67-4.80% in Sep' (vnbusiness excerpt, undated)", "handling": "b rejected: earlier-year article (5-year above 10-year, 31 sessions incl. VBSP)"},
+        {"topic": "Corporate bond issuance 2026", "a": "VBMA 7M 289,911 / 8M ~349,000 bn", "b": "VBMA 5M 127,351 + Jun 43,876 = 171,227; other providers H1 ~273,500, 7M ~322,300", "handling": "VBMA cumulatives kept as stated; months shown as disclosed; not reconciled or summed"},
+        {"topic": "Deposit growth Aug/Sep-2026", "a": "8.77% (22/8, VND only) and 9.78% (28/9, NSO) mobilisation statements", "b": "SBV table deposits of residents + organisations (latest Jul-2026 5.72% YTD)", "handling": "statement points stored as labelled observations of deposit_ytd; monthly values and y/y gap (model driver) stay on the table basis"},
     ]
 
 

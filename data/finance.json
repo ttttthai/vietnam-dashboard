@@ -2,10 +2,10 @@
  "_meta": {
   "owner": "Finance agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-10-06"
+  "as_of": "2026-10-07"
  },
  "FINSYS": {
-  "asof": "2026-10-06",
+  "asof": "2026-10-07",
   "annual": {
    "years": [
     2015,
@@ -424,6 +424,162 @@
     9.98,
     null,
     null
+   ],
+   "credit_basis": [
+    null,
+    "statement",
+    "statement",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "sbv_table",
+    "statement",
+    "statement"
+   ],
+   "credit_cutoff": [
+    null,
+    null,
+    "2024-12-31",
+    "2025-01-31",
+    "2025-02-28",
+    "2025-03-31",
+    "2025-04-30",
+    "2025-05-31",
+    "2025-06-30",
+    "2025-07-31",
+    "2025-08-31",
+    "2025-09-30",
+    "2025-10-31",
+    "2025-11-30",
+    "2025-12-31",
+    "2026-01-31",
+    "2026-02-28",
+    "2026-03-31",
+    "2026-04-30",
+    "2026-05-31",
+    "2026-06-30",
+    "2026-07-31",
+    "2026-08-28",
+    "2026-09-30"
+   ],
+   "credit_yoy_basis": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    "statement",
+    null,
+    null,
+    "statement",
+    null,
+    null,
+    null,
+    "computed_from_sbv_table_levels",
+    "computed_from_sbv_table_levels",
+    "computed_from_sbv_table_levels",
+    "computed_from_sbv_table_levels",
+    "computed_from_sbv_table_levels",
+    "computed_from_sbv_table_levels",
+    "computed_from_sbv_table_levels",
+    null,
+    "statement"
+   ],
+   "deposits_ytd_statement": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    8.77,
+    9.78
+   ],
+   "deposits_ytd_statement_cutoff": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    "2026-08-22",
+    "2026-09-28"
+   ],
+   "deposits_ytd_statement_basis": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    "vnd_mobilisation_statement",
+    "mobilisation_nso_report"
    ]
   },
   "ratios": {
@@ -2241,6 +2397,94 @@
      "u": "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm",
      "note": "20.75 quadrillion; stated 3/10/2026"
     }
+   ],
+   "Corporate bond issuance, 2026 cumulative (VBMA)": [
+    {
+     "d": "2026-04-30",
+     "v": 77800,
+     "unit": "VND billion, cumulative Jan-Apr 2026",
+     "u": "https://mekongasean.vn/doanh-nghiep-tang-toc-phat-hanh-trai-phieu-55180.html",
+     "n": "'khoảng 77,8 nghìn tỷ' after 4 months (VBMA from HNX/SSC). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-05-29",
+     "v": 127351,
+     "unit": "VND billion, cumulative Jan-May 2026",
+     "u": "https://vbma.org.vn/storage/reports/June2026/VIE - VBMA Ban tin hoat dong thang 5.20261.pdf",
+     "n": "private 107,018 + public 20,333 (sum of the two stated parts). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-07-31",
+     "v": 289911,
+     "unit": "VND billion, cumulative Jan-Jul 2026",
+     "u": "https://thoibaotaichinhvietnam.vn/infographics-7-thang-doanh-nghiep-phat-hanh-289-911-ty-dong-trai-phieu-201996.html",
+     "n": "private 258,273 (89.09%), public 31,638 (10.91%). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-08-28",
+     "v": 349000,
+     "unit": "VND billion, cumulative Jan-Aug 2026 ('gần 349.000')",
+     "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-gan-349-000-ty-dong-sau-8-thang.html",
+     "n": "private ~296,000, public ~53,000; alt https://vnbusiness.vn/gan-349000-ty-dong-trai-phieu-doanh-nghiep-duoc-phat-hanh-bat-dong-san-tra-lai-toi-13nam.html. Year confirmed by the same excerpt comparing Aug buy-backs with Aug-2025. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    }
+   ],
+   "Corporate bond issuance by month, 2026 (VBMA, as disclosed by month-end)": [
+    {
+     "d": "2026-01",
+     "v": 3711,
+     "unit": "VND billion, issued in the month",
+     "u": "https://mekongasean.vn/trai-phieu-doanh-nghiep-khoi-sac-ngay-tu-dau-nam-2026-51658.html",
+     "n": "4 issues to 30/1 (private 190 Khai Hoan Land; public 3,521: VietinBank 2,221.5, BAF 1,000, F88 300). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-02",
+     "v": 3380.5,
+     "unit": "VND billion, issued in the month",
+     "u": "https://thitruongtaichinhtiente.vn/trai-phieu-mua-lai-truoc-han-giam-manh-trong-thang-2-ap-luc-dao-han-nam-2026-con-tren-194-000-ty-dong-80254.html",
+     "n": "to 28/2: private 79.5 + public 3,301 (BIDV, 3 issues). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-03",
+     "v": null,
+     "unit": "VND billion",
+     "u": null,
+     "n": "no month figure with a confirmed 2026 date found (excerpts with 11.6 tn / 31.6 tn could not be dated to 2026) - null. VBMA Q1-2026 cumulative 23,832 (public 12,917; private 10,915) seen in an excerpt without a pinned URL."
+    },
+    {
+     "d": "2026-04",
+     "v": 36200,
+     "unit": "VND billion, issued in the month",
+     "u": "https://mekongasean.vn/doanh-nghiep-tang-toc-phat-hanh-trai-phieu-55180.html",
+     "n": "18 issues 'hơn 36,2 nghìn tỷ': private 17 issues >35,200, public 1 issue 1,000. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-05",
+     "v": 40262,
+     "unit": "VND billion, issued in the month",
+     "u": "https://vbma.org.vn/storage/reports/June2026/VIE - VBMA Ban tin hoat dong thang 5.20261.pdf",
+     "n": "to 29/5: 29 private issues 36,263 + 4 public 3,999 (sum). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-06",
+     "v": 43876,
+     "unit": "VND billion, issued in the month",
+     "u": "https://mekongasean.vn/thi-truong-trai-phieu-6-thang-ngan-hang-va-bat-dong-san-dan-song-57333.html",
+     "n": "to 30/6: 41 issues; private 39 issues 40,376, public 2 issues 3,500. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-07",
+     "v": null,
+     "unit": "VND billion",
+     "u": null,
+     "n": "excerpt '20 issues, 12,339 bn' could not be dated to 2026 (12.5% Vinhomes coupons suggest another year) - null."
+    },
+    {
+     "d": "2026-08",
+     "v": 32029,
+     "unit": "VND billion, issued in the month",
+     "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-gan-349-000-ty-dong-sau-8-thang.html",
+     "n": "to 28/8: 33 issues 'hơn 32.000' (32,029 per the Research audit excerpt); private 25 issues ~25,600, public 8 issues ~6,400. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    }
    ]
   },
   "why": {
@@ -2318,12 +2562,20 @@
        "note": "Q2/2025: 108%"
       },
       {
-       "name": "LDR theo quy định (NSI) Q2/2026",
+       "name": "LDR theo TT22 toàn hệ thống (NHNN) 30/6/2026",
+       "value": 77.06,
+       "unit": "%",
+       "date": "2026-06-30",
+       "url": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+       "note": "số liệu thống kê chính thức của NHNN (trừ NHCSXH, QTDND); trần 85% (95% từ 1/12/2026) áp cho từng ngân hàng"
+      },
+      {
+       "name": "LDR theo TT22 – ước tính của NSI cho nhóm NH niêm yết, Q2/2026",
        "value": 88,
        "unit": "%",
        "date": "2026-08-23",
        "url": "https://phapluat.suckhoedoisong.vn/tong-tai-san-he-thong-ngan-hang-dat-226-trieu-ty-dong-nim-chiu-suc-ep-trong-quy-ii2026-283986.html",
-       "note": "trần quy định 85% (TT22) cho từng NH; có điều chỉnh tiền gửi KBNN"
+       "note": "ước tính của CTCK (mẫu NH niêm yết), không phải số toàn hệ thống; trần 85% áp cho từng NH; có điều chỉnh tiền gửi KBNN. Số toàn hệ thống của NHNN (TT22) 30/6/2026: 77,06%"
       },
       {
        "name": "Q1/2026: dư nợ 27 NH +~4% vs tiền gửi +~0.6%",
@@ -3111,7 +3363,7 @@
       "https://thoibaotaichinhvietnam.vn/chenh-lech-tin-dung-huy-dong-len-14-trieu-ty-dong-ap-luc-ldr-bot-cang-khi-tinh-20-tien-gui-kho-bac-197524.html",
       "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
      ],
-     "note": "Simple LDR, sector-wide (loans/customer deposits). 2025-Q2 and 2026-Q2: Yuanta; 2025-Q4 '~110%, highest in a decade' (VinaCapital) — providers differ. 2026-Q1 set to null: the only Q1 figure is MBS's 27-listed-bank ratio (100%), stored as a separate MBS 27-listed-bank series. Regulatory LDR (Circular 22 basis) ~88% in Q2-2026 per NSI vs 85% cap (cap rises to 95% from 1/12/2026 under Circular 50/2026)."
+     "note": "Simple LDR, sector-wide (loans/customer deposits). 2025-Q2 and 2026-Q2: Yuanta; 2025-Q4 '~110%, highest in a decade' (VinaCapital) — providers differ. 2026-Q1 set to null: the only Q1 figure is MBS's 27-listed-bank ratio (100%), stored as a separate MBS 27-listed-bank series. Regulatory LDR, Q2-2026 - two figures, different coverage, not merged: (a) SBV system statistic 'Tỷ lệ dư nợ cho vay so với tổng tiền gửi' (Circular 22 definition, whole system excl. VBSP and PCFs) 77.06% at 30/6/2026 (https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban; ratios.ldr_sbv_tt22_pct) - the official figure and the one the dashboard uses; (b) ~88% = NSI broker estimate of the Circular-22 LDR for its listed-bank sample (https://phapluat.suckhoedoisong.vn/tong-tai-san-he-thong-ngan-hang-dat-226-trieu-ty-dong-nim-chiu-suc-ep-trong-quy-ii2026-283986.html; excerpt not re-found 2026-10-07). The cap (85%, 95% from 1/12/2026 under Circular 50/2026) binds bank by bank, so large listed banks can sit near it while the system aggregate (which includes low-LDR banks and Circular-22 funding items) is ~77%."
     },
     "credit_vs_deposit_growth": {
      "dates": [
@@ -3122,7 +3374,8 @@
       "2026-06-15",
       "2026-08-22",
       "2026-09-03",
-      "2026-09-28"
+      "2026-09-28",
+      "2026-09-30"
      ],
      "credit": [
       15.08,
@@ -3132,7 +3385,8 @@
       6.38,
       8.38,
       9.98,
-      10.89
+      10.89,
+      11.59
      ],
      "deposit": [
       null,
@@ -3142,7 +3396,8 @@
       4.3,
       8.77,
       8.33,
-      9.78
+      9.78,
+      null
      ],
      "unit": "% YTD",
      "src": [
@@ -3153,9 +3408,10 @@
       "https://www.dnse.com.vn/senses/tin-tuc/ngan-hang-nua-cuoi-2026-nong-chuyen-lai-suat-kho-bai-toan-loi-nhuan-35251787",
       "https://vietnamnet.vn/tin-dung-tang-nhanh-hon-huy-dong-lai-suat-ngan-hang-kho-giam-cuoi-nam-2554327.html",
       "https://docnhanh.vn/kinh-te/lai-suat-huy-dong-vuot-9-ap-luc-von-ngan-hang-tang-tintuc1052480",
-      "https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm"
+      "https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm",
+      "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm"
      ],
-     "note": "SBV system data as quoted in press. 22-Aug-2026 figures are VND-only (MoF Deputy Minister Tran Quoc Phuong at the 3/9/2026 Government press conference: VND mobilisation +8.77% vs VND credit +8.38%; re-verified 2026-10-06, https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html). The 8.38% equals the 29-Jul total-credit figure only by coincidence: it is a different measure (VND only) and date; total credit was +10.24% at 28/8. 2024 system deposit growth not found (M2 +9.42% to 25-Dec-2024 is not a deposit measure). 28-Sep-2026 = GSO Q3-2026 socio-economic report (credit +10.89%, mobilisation +9.78%; search excerpt only). SBV's own figure for 30-Sep-2026 is credit +11.59% (dashboard monthly credit series, T9/26); SBV did not state a 30-Sep mobilisation figure in the excerpts found. The 3-Sep (9.98%) point is below the SBV 28-Aug figure (10.24%): BVSC/press estimate, cut-offs differ — not reconciled.",
+     "note": "SBV system data as quoted in press. 22-Aug-2026 figures are VND-only (MoF Deputy Minister Tran Quoc Phuong at the 3/9/2026 Government press conference: VND mobilisation +8.77% vs VND credit +8.38%; re-verified 2026-10-06, https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html). The 8.38% equals the 29-Jul total-credit figure only by coincidence: it is a different measure (VND only) and date; total credit was +10.24% at 28/8. 2024 system deposit growth not found (M2 +9.42% to 25-Dec-2024 is not a deposit measure). 28-Sep-2026 = GSO Q3-2026 socio-economic report (credit +10.89%, mobilisation +9.78%; search excerpt only). SBV's own figure for 30-Sep-2026 is credit +11.59% (dashboard monthly credit series, T9/26); SBV did not state a 30-Sep mobilisation figure in the excerpts found. The 3-Sep (9.98%) point is below the SBV 28-Aug figure (10.24%): BVSC/press estimate, cut-offs differ — not reconciled. 2026-10-07: added the SBV 30-Sep-2026 credit point (+11.59%, credit only, deposit null) so the series reaches the cut-off the hero dek quotes; the latest credit-AND-deposit pair is still 28/9 (NSO). 'basis' gives the source type and cut-off for every point.",
      "src_alt": [
       null,
       null,
@@ -3164,7 +3420,19 @@
       null,
       "https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html",
       null,
-      null
+      null,
+      "https://cafef.vn/pho-thong-doc-pham-thanh-ha-tin-dung-den-30-9-dat-2075-trieu-ty-dong-tang-1159-188261003125449749.chn"
+     ],
+     "basis": [
+      "SBV year-end statement (credit); 2024 system deposit growth not found",
+      "SBV figures at cut-off 24/12/2025 (credit and mobilisation), via press",
+      "SBV year-end statement (credit only)",
+      "SBV figures at cut-off 24/3/2026 (credit and mobilisation), via press",
+      "SBV figures at cut-off 15/6/2026 quoted by DNSE (credit and mobilisation)",
+      "VND-only credit and VND mobilisation at 22/8/2026 (MoF Deputy Minister, Government press conference 3/9/2026)",
+      "BVSC/press estimate at 3/9/2026 (below SBV's 28/8 total-credit 10.24%; not reconciled)",
+      "NSO Q3-2026 socio-economic report, cut-off 28/9/2026 (credit and mobilisation)",
+      "SBV Deputy Governor Pham Thanh Ha, press briefing 3/10/2026, cut-off 30/9/2026: credit only (+11.59% YTD, +16.69% y/y, ~20.75 quadrillion); no mobilisation figure stated"
      ]
     },
     "deposit12m_private_banks_mbs": {
@@ -9776,7 +10044,7 @@
     ]
    },
    "plumbing": {
-    "as_of": "2026-10-06",
+    "as_of": "2026-10-07",
     "facts": {
      "currency_in_circulation": {
       "value": 2041473,
@@ -9788,13 +10056,13 @@
       "note": "DERIVED from SBV cash/M2 9.98% (Jul-2026) x SBV M2 20,455,644 bn (Jul-2026, https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd). SBV publishes only the ratio. IMF 'currency outside banks' (1,631 trn end-2024, IMF monetary survey in the SBV balance sheet) is a different definition."
      },
      "gov_bond_issued_2026_ytd": {
-      "value": 261108,
+      "value": 299100,
       "unit": "bn VND",
-      "as_of": "2026-09-16",
+      "as_of": "2026-09-30",
       "label_vi": "TPCP KBNN đã phát hành qua HNX từ đầu năm",
       "label_en": "Government bonds issued by the State Treasury via HNX, YTD",
-      "url": "https://vnexpress.net/kho-bac-tang-toc-huy-dong-trai-phieu-chinh-phu-5120717.html",
-      "note": "~261,108 bn = 52.2% of the 500,000 bn plan by 16/09/2026 (excerpt; attribution between vnexpress and znews https://znews.vn/kho-bac-nha-nuoc-tang-huy-dong-trai-phieu-chinh-phu-post1683585.html not pinned). Firm month-end: 228,921.3 bn to end-Aug (46% of plan; HNX via VietnamPlus https://www.vietnamplus.vn/hnx-huy-dong-27756-ty-dong-qua-dau-thau-trai-phieu-chinh-phu-thang-tam-post1136568.vnp). Another excerpt: 'over 246,700 bn' in early Sep - consistent ordering. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+      "url": "https://thitruongtaichinhtiente.vn/thu-ngan-sach-9-thang-dat-86-5-du-toan-tang-12-1-so-voi-cung-ky-86105.html",
+      "note": "299,100 bn to 30/09/2026 = MoF 9M budget-execution release: 'Lũy kế 9 tháng ... phát hành 299,1 nghìn tỷ đồng TPCP, kỳ hạn bình quân 8,84 năm, lãi suất bình quân 4,2%/năm' (59.8% of the 500,000 bn plan, derived). Previous value: 261,108 bn to 16/09/2026 (vnexpress/znews excerpt). Firm month-end: 228,921.3 bn to end-Aug (HNX via VietnamPlus https://www.vietnamplus.vn/hnx-huy-dong-27756-ty-dong-qua-dau-thau-trai-phieu-chinh-phu-thang-tam-post1136568.vnp). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)."
      },
      "gov_bond_plan_2026": {
       "value": 500000,
@@ -9921,6 +10189,15 @@
       "label_en": "State FX reserves (SBV disclosure)",
       "url": "https://cafef.vn/du-tru-ngoai-hoi-con-876-ty-usd-ngan-hang-nha-nuoc-muon-sua-doi-nhieu-quy-dinh-188260624112155679.chn",
       "note": "SBV official ~87.6 bn USD on 18/06/2026. IMF International Liquidity total reserves incl. gold (TRGNV_REVS, national valuation) 86.10 bn Jul-2026 / 89.55 Jun-2026 - different definition (see the IMF monthly reserves series in the SBV balance sheet). SBV to publish IMF-template reserves data from 2027 (https://vietstock.vn/2026/05/ngan-hang-nha-nuoc-va-bo-tai-chinh-hoa-ky-ra-tuyen-bo-chung-ve-chinh-sach-ty-gia-va-du-tru-ngoai-hoi-757-1448772.htm)."
+     },
+     "gov_bond_issued_2026_sep": {
+      "value": 70179,
+      "unit": "bn VND",
+      "as_of": "2026-09",
+      "label_vi": "TPCP KBNN phát hành trong tháng 9/2026 (tính: lũy kế 9T − 8T)",
+      "label_en": "Government bonds issued by the State Treasury in Sep-2026 (derived: 9M − 8M cumulative)",
+      "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/09/27/vietnam-raises-us1bil-n-government-bond-auction-highest-volume-this-year",
+      "note": "Derived: 299,100 (MoF 9M, rounded) − 228,921.3 (HNX to end-Aug) = ~70,179 bn; precision limited by the rounded 9M figure. HNX's own September monthly total not found yet. Largest session: 23/9/2026, 26,550 bn (10-year 20,000 bn fully sold at 4.43%; 5-year 6,500 of 9,000 at 4.27%; 86% sold) per Reuters via The Star. Rejected: an excerpt 'Sep: 31 sessions, 20,800 bn, 10-year 4.67-4.80%' (https://vnbusiness.vn/thang-9-huy-dong-trai-phieu-chinh-phu-tang-gan-20.html) is from an earlier year (5-year 5.08-5.09% above the 10-year; inconsistent with 2026 auctions); another '18 auctions, 19,370 bn, -11.07% m/m' excerpt is likewise undated. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)."
      }
     },
     "flow_notes_vi": [
@@ -10125,7 +10402,9 @@
      "note": "Search-excerpt verification only (all hosts blocked). Values unchanged."
     },
     "credit Aug-2026 (cut-off)": "T8/26 credit_level/credit_ytd are an SBV statement to 28/8/2026 ('about 20.5 quadrillion', +10.24%), not the month-end table; replace with the SBV Aug table (expected mid-late Oct 2026).",
-    "credit Sep-2026 (cut-off)": "T9/26 = SBV statement to 30/9/2026 (20.75 quadrillion, +11.59%), stated 3/10/2026; level rounded to 20,750,000; not yet the SBV table."
+    "credit Sep-2026 (cut-off)": "T9/26 = SBV statement to 30/9/2026 (20.75 quadrillion, +11.59%), stated 3/10/2026; level rounded to 20,750,000; not yet the SBV table.",
+    "credit_basis / credit_cutoff / credit_yoy_basis (added 2026-10-07)": "Aligned with months. credit_basis: 'sbv_table' = SBV table 'Dư nợ tín dụng đối với nền kinh tế' month-end row (exact level, cut-off = month-end, https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt); 'statement' = figure stated by SBV/Government at a cut-off date, level rounded (T11/24 press, cut-off not recorded; T12/24 year-end statement 15.08%, level derived; T8/26 cut-off 28/8 'about 20.5 quadrillion', +10.24%; T9/26 cut-off 30/9 'about 20.75 quadrillion', +11.59%). credit_cutoff gives the date. credit_yoy_basis: 'statement' (T6/25, T9/25, T9/26 = SBV-stated) vs 'computed_from_sbv_table_levels' (2026 T1-T7). The credit line therefore has two bases: table months end at T7/26; T8/26-T9/26 are statement points and should be drawn as such (e.g. hollow markers) until the SBV Aug/Sep tables replace them. Values were not changed.",
+    "deposits_ytd_statement (T8/26, T9/26; added 2026-10-07)": "Separate from deposits_ytd (SBV money-supply table: customer deposits of residents + economic organisations vs previous year-end), which stays null for Aug-Sep 2026 until the SBV tables appear (~mid-late Oct). Statement-basis points, a broader/different concept, never merged into deposits_ytd: T8/26 = 8.77% at 22/8/2026, VND mobilisation only (MoF Deputy Minister Tran Quoc Phuong, Government press conference 3/9/2026; https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html; same date VND credit +8.38%); T9/26 = 9.78% at 28/9/2026, mobilisation of credit institutions (NSO Q3-2026 socio-economic report; https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm; same date credit +10.89%). Both already held in why.series.credit_vs_deposit_growth; copied here so monthly charts can show them, labelled."
    },
    "sectors": {
     "levels_and_growth": [
@@ -10140,7 +10419,8 @@
     "date": "2026-10-06",
     "verification": "Most pages (vietstock, cafef, thoibaotaichinhvietnam, sbv.gov.vn, thuvienphapluat, IMF, ADB, FRED, World Bank API) were blocked by the egress proxy; all new figures were verified via search-engine excerpts only. Derived values are labelled 'derived' with inputs."
    },
-   "alternatives": "see FINSYS.alternatives.series.*.source / points / observations (added 2026-10-06)"
+   "alternatives": "see FINSYS.alternatives.series.*.source / points / observations (added 2026-10-06)",
+   "corporate_bond_issuance_2026": "VBMA (from HNX/SSC disclosures) via press. Monthly figures are 'as disclosed by the month-end report date'; VBMA's cumulative totals are revised upward as late disclosures arrive, so monthly values do NOT sum to the cumulative (Jan-Jun months known = 127.4k vs 7M cumulative 289.9k). Conflict, not reconciled: 5M 127,351 + Jun 43,876 = 171,227 vs 7M 289,911 (implies July ~119k or large late additions). Other providers differ: H1-2026 ~273,500 (+1.8% y/y) and 7M ~322,300 (+2.7% y/y) per non-VBMA tallies (https://vneconomy.vn/trai-phieu-dao-han-giam-nhe-trong-thang-7-uoc-khoang-17700-ty-dong.htm, search excerpt) - not mixed."
   },
   "other_services_breakdown": {
    "as_of": "2026-10-06",
@@ -11085,8 +11365,28 @@
       "url": "https://thoibaotaichinhvietnam.vn/wb-nang-manh-du-bao-tang-truong-cua-viet-nam-nam-2026-204930.html",
       "alt_url": "https://mekongasean.vn/world-bank-nang-du-bao-tang-truong-viet-nam-len-74-60355.html"
      },
-     "method_vi": "Công bố 06/10/2026; 2026 nâng 1,1 điểm % (từ 6,3%). 2027–2028 = 7,3% theo Thời báo Tài chính; một bản tóm tắt khác ghi 2027 là 7,4% — chưa đối chiếu bảng gốc.",
-     "method_en": "Released 06/10/2026; 2026 raised 1.1 pp (from 6.3%). 2027–2028 = 7.3% per Thoi bao Tai chinh; another summary reads 2027 as 7.4% — original table not checked."
+     "method_vi": "Công bố 06/10/2026 (Báo cáo Cập nhật kinh tế Đông Á – Thái Bình Dương tháng 10/2026). '+1,1 điểm %' là so với báo cáo EAP tháng 4/2026 (6,3%, https://en.vneconomy.vn/wb-forecasts-vietnams-2026-gdp-growth-at-63.htm), tức so EAP với EAP. Bản dự báo WB gần nhất trước đó là Báo cáo Điểm lại (Taking Stock) 15/5/2026: 6,8% (https://www.businesstoday.com.my/2026/05/15/world-bank-expects-vietnams-economy-to-slow-to-6-8-in-2026/), nên so với bản gần nhất mức nâng là +0,6 điểm %. 2027–2028 = 7,3% theo Thời báo Tài chính; một bản tóm tắt khác ghi 2027 là 7,4% — chưa đối chiếu bảng gốc.",
+     "method_en": "Released 06/10/2026 (East Asia & Pacific Economic Update, October 2026). The '+1.1 pp' compares with the April-2026 EAP Update (6.3%, https://en.vneconomy.vn/wb-forecasts-vietnams-2026-gdp-growth-at-63.htm), i.e. EAP to EAP. The latest earlier World Bank vintage is the Vietnam Economic Update 'Taking Stock' of 15/05/2026 at 6.8% (https://www.businesstoday.com.my/2026/05/15/world-bank-expects-vietnams-economy-to-slow-to-6-8-in-2026/), so the step from the most recent vintage is +0.6 pp. 2027-2028 = 7.3% per Thoi bao Tai chinh; another summary reads 2027 as 7.4% - original table not checked.",
+     "comparison_vintages": [
+      {
+       "vintage": "WB EAP Update, April 2026",
+       "date": "2026-04-08",
+       "value_2026": 6.3,
+       "url": "https://en.vneconomy.vn/wb-forecasts-vietnams-2026-gdp-growth-at-63.htm"
+      },
+      {
+       "vintage": "WB Vietnam Economic Update (Taking Stock), May 2026",
+       "date": "2026-05-15",
+       "value_2026": 6.8,
+       "url": "https://www.businesstoday.com.my/2026/05/15/world-bank-expects-vietnams-economy-to-slow-to-6-8-in-2026/"
+      },
+      {
+       "vintage": "WB EAP Update, October 2026",
+       "date": "2026-10-06",
+       "value_2026": 7.4,
+       "url": "https://thoibaotaichinhvietnam.vn/wb-nang-manh-du-bao-tang-truong-cua-viet-nam-nam-2026-204930.html"
+      }
+     ]
     }
    },
    "targets": [
@@ -11973,7 +12273,69 @@
       }
      },
      "source": "Year-end press quotes of SJC prices (URLs per year). vnstock CommodityPrice.gold_vn (simplize) was blocked by the proxy.",
-     "verified": "search-engine excerpts, 2026-10-06"
+     "verified": "search-engine excerpts, 2026-10-06",
+     "month_end_2026": {
+      "unit": "million VND per tael, SJC bar SELL price",
+      "definition": "Last quote found for the last trading day of each month (time of day varies: closing where stated, otherwise the latest dated quote). Not used in the annual table; feeds the Simulation panel (sjc_gold_sell). Month without a month-end quote = null.",
+      "points": [
+       {
+        "d": "2026-02-27",
+        "v": 184.0,
+        "quote": "SJC 181.0–184.0 (adjustment 08:30)",
+        "u": "https://webgia.com/gia-vang/sjc/27-02-2026.html",
+        "n": "Fri 27/2 = last trading day of Feb; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+       },
+       {
+        "d": "2026-03-31",
+        "v": 174.9,
+        "quote": "SJC 171.9–174.9 (midday, +1.1 m)",
+        "u": "https://baolamdong.vn/cap-nhat-gia-vang-trua-hom-nay-31-03-2026-gia-vang-sjc-gia-vang-24k-9999-gia-vang-nhan-vang-the-gioi-433427.html",
+        "n": "midday quote; the same outlet's closing article (https://baolamdong.vn/print/433496.html) not read; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+       },
+       {
+        "d": "2026-04-30",
+        "v": 166.0,
+        "quote": "SJC bars 163–166 at BTMH/DOJI/PNJ, 13:30",
+        "u": "https://vietbao.vn/gia-vang-hom-nay-chieu-15-tang-khong-dong-deu-590522.html",
+        "n": "dealer quotes for SJC-brand bars (SJC company quote not seen); outlet pinned only to the result set; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+       },
+       {
+        "d": "2026-05-31",
+        "v": 159.0,
+        "quote": "SJC 156.0–159.0 (end of May; '+6 m vs start of year')",
+        "u": "https://baolamdong.vn/gia-vang-chieu-hom-nay-31-5-2026-chot-tang-hon-6-trieu-dong-so-voi-dau-nam-445173.html",
+        "n": "31/5 is a Sunday; quote = end-of-month board; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+       },
+       {
+        "d": "2026-06-30",
+        "v": null,
+        "quote": null,
+        "u": null,
+        "n": "no month-end quote found (week 26 close 28/6: 148.5; 1/7: 144.0–147.0 per webgia, both not month-end) - null"
+       },
+       {
+        "d": "2026-07-31",
+        "v": 141.9,
+        "quote": "SJC HCMC 137.9–141.9 at 15:30",
+        "u": "https://baohatinh.vn/tv/gia-vang-31072026-sjc-1379-1419-trieu-dongluong-tang-48649.html",
+        "n": "the same live article showed 142.2 (11:57) and 142.7 earlier; latest-in-day 141.9 used; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+       },
+       {
+        "d": "2026-08-31",
+        "v": 148.7,
+        "quote": "SJC sell 148.7",
+        "u": "https://vietbao.vn/gia-vang-hom-nay-318-vang-trong-nuoc-duy-tri-1487-trieu-dongluong-605273.html",
+        "n": "cross-check simplize week 36 open 148.7 (https://simplize.vn/gia-vang/tong-hop/tuan-36-2026); search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+       },
+       {
+        "d": "2026-09-30",
+        "v": 144.1,
+        "quote": "derived: 1/10 morning 140.8–143.8 stated as −0.3 m vs 30/9; 1/10 16:28 141.3–144.3 stated as +0.2 m",
+        "u": "https://baolamdong.vn/gia-vang-hom-nay-01102026-sjc-1413-1443-trieu-dongluong-tang-200000-dong-467234.html",
+        "n": "30/9 close = stated 1/10 level minus stated change (both routes give 144.1); no direct 30/9 quote found; also https://tapchikinhtetaichinh.vn/gia-vang-hom-nay-sjc-giam-tiep-sau-thang-9-nhieu-bien-dong-168416.html; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+       }
+      ]
+     }
     },
     "gold_world_vnd": {
      "label_vi": "Vàng thế giới quy VND",
@@ -12134,7 +12496,20 @@
        "Q4-2018 and Q4-2019 levels are both quoted as 1,370 USD/m², yet Q4-2019 is said to be +5% y/y. Possibly a methodology or excerpt error; stated y/y kept.",
        "Q4-2023: stated +12% y/y, but 58 vs 47 m VND/m² (Q4-2022) implies +23%. Stated value kept and the conflict reported."
       ],
-      "verified": "search-engine excerpts, 2026-10-06"
+      "verified": "search-engine excerpts, 2026-10-06",
+      "quarterly_2026": [
+       {
+        "period": "2026-Q2",
+        "level": 116,
+        "unit": "million VND/m²",
+        "qoq_pct": 16,
+        "yoy_pct": 27,
+        "released": "2026-08-12",
+        "u": "https://cafef.vn/chung-cu-ha-noi-vang-bong-can-ho-duoi-70-trieu-dong-m2-188260814143655062.chn",
+        "alt_u": "https://mekongasean.vn/thi-truong-nha-o-ha-noi-vang-bong-can-ho-so-cap-duoi-70-trieu-dongm2-58416.html",
+        "n": "Savills Hanoi Q2-2026: average primary asking price ~116 m VND/m², +16% q/q, +27% y/y; no new supply below 70 m; >60% of new supply grade A; new supply ~5,317 units. Q2 y/y as stated - not a Q4-vs-Q4 value, so it is not placed in 'values'. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+       }
+      ]
      },
      "hcmc": {
       "label_vi": "TP.HCM – giá sơ cấp căn hộ",
@@ -12178,6 +12553,22 @@
       "url": "https://baochinhphu.vn/nguon-cung-tang-gia-nha-chua-giam-102260117005432583.htm",
       "note": "Different definition (annual average, MoC) from the Savills Q4 y/y. Do not plot on the same line. MoC also reported Hanoi Q2-2025 at 80 m VND/m², +33% y/y (https://moc.gov.vn/vn/tin-tuc/1269/87076/bo-xay-dung-cong-bo-thong-tin-ve-nha-o-va-thi-truong-bat-dong-san-trong-quy-ii-nam-2025.aspx).",
       "verified": "search-engine excerpt, 2026-10-06"
+     },
+     "hanoi_cbre": {
+      "label_vi": "Hà Nội – giá bán căn hộ sơ cấp (CBRE)",
+      "label_en": "Hanoi – primary apartment price (CBRE)",
+      "unit": "million VND/m²",
+      "points": [
+       {
+        "period": "2026-Q2",
+        "level": 95,
+        "qoq_pct": 12,
+        "yoy_pct": 21,
+        "u": "https://vietnamfinance.vn/nguon-cung-chung-cu-ha-noi-lap-ky-luc-gia-can-ho-moi-neo-cao-d147694.html",
+        "n": "CBRE Q2-2026: ~95 m VND/m² (excl. VAT, maintenance fee, before discounts), +12% q/q, +21% y/y; second straight quarter with no new project below 60 m VND/m². search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+       }
+      ],
+      "note": "Different provider, coverage and price basis from Savills (CBRE excludes VAT and maintenance fee). Kept as a separate, labelled series - never mixed or spliced with hanoi_savills."
      }
     },
     "usd": {
@@ -12378,7 +12769,23 @@
     },
     "real_estate": {
      "value": null,
-     "note": "no Q3-2026 y/y figure sourced for this block"
+     "note": "YTD cell left null on purpose: providers publish quarterly levels and y/y changes, not a change since end-2025. Latest stated y/y (Q2-2026 vs Q2-2025) is in latest_yoy (Savills) and latest_yoy_cbre - label them 'Q2 y/y', not YTD. Q3-2026 reports due ~mid-Oct.",
+     "latest_yoy": {
+      "value": 27,
+      "period": "2026-Q2",
+      "basis": "y/y, Q2-2026 vs Q2-2025, Hanoi average primary asking price (Savills)",
+      "level": 116,
+      "unit": "% y/y",
+      "url": "https://cafef.vn/chung-cu-ha-noi-vang-bong-can-ho-duoi-70-trieu-dong-m2-188260814143655062.chn"
+     },
+     "latest_yoy_cbre": {
+      "value": 21,
+      "period": "2026-Q2",
+      "basis": "y/y, Q2-2026 vs Q2-2025, Hanoi primary price excl. VAT (CBRE)",
+      "level": 95,
+      "unit": "% y/y",
+      "url": "https://vietnamfinance.vn/nguon-cung-chung-cu-ha-noi-lap-ky-luc-gia-can-ho-moi-neo-cao-d147694.html"
+     }
     },
     "deposit_ifs": {
      "value": null
@@ -12451,10 +12858,11 @@
     "deposit_ifs": "World Bank WDI FR.INR.DPST (IMF IFS)",
     "gold_sjc": "year-end press quotes (per year)",
     "vnindex": "vnstock_data VCI daily history",
-    "real_estate": "Savills Vietnam Hanoi quarterly reports via press; MoC Q4-2025 report",
+    "real_estate": "Savills Vietnam Hanoi quarterly reports via press; MoC Q4-2025 report; CBRE Q2-2026 (separate series hanoi_cbre, not mixed)",
     "usd": "SBV reference rates via press (per year)",
     "cpi": "NSO via ECON_OFFICIAL.cpi_avg",
-    "access": "sbv.gov.vn, imf.org, api.worldbank.org, savills, sjc.com.vn and press sites blocked from the sandbox; verified via search excerpts on 2026-10-06"
+    "access": "sbv.gov.vn, imf.org, api.worldbank.org, savills, sjc.com.vn and press sites blocked from the sandbox; verified via search excerpts on 2026-10-06",
+    "gold_sjc_month_end_2026": "dated press quotes per month (series.gold_sjc.month_end_2026.points[].u)"
    }
   }
  }

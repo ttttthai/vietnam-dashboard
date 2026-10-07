@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Economy agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-10-06"
+  "as_of": "2026-10-07"
  },
  "ECONFLOW": {
   "gdp": {
@@ -1638,7 +1638,1589 @@
      "verified": "search excerpt, 2026-10-06"
     }
    },
-   "qc_note": "QC 2026-10-06: (1) 2025 column replaced with the MoF Jan-2026 year-end execution estimate (owner-approved); untraceable sub-lines set to null. The 2025 spending waffle now shows recurrent 1,553.0 (64.7%), development 732.0 (30.5%), interest 109.4 (4.6%) and \"Khác\" 7.1 (0.3%, the un-itemised remainder of the same release, not a plug from another source). Revenue sub-lines PIT/land-use/env/lottery/fees 2025 are null, so the renderer's \"other domestic taxes\" slice equals all domestic revenue (2,279.9) for 2025. (2) The 2025 estimate is cash-basis execution and excludes carry-over spending (chi chuyển nguồn) that the 2018–2024 final accounts include; the 2024→2025 change in the line chart is therefore not like-for-like. (3) deficit ≠ revenue − expenditure in every year (MoF deficit definition); expected. (4) deficit_pct_gdp 2018–2020 (2.80, 2.67, 3.44) match the pre-2019-revision GDP denominator; on the current gdp.GDP series they would be 2.18, 2.10, 2.69. Published ratios kept. (5) FY2025 final account (quyết toán) not yet published as of 2026-10-06 (due NA spring 2027), so 2025 stays \"estimate\"."
+   "qc_note": "QC 2026-10-06: (1) 2025 column replaced with the MoF Jan-2026 year-end execution estimate (owner-approved); untraceable sub-lines set to null. The 2025 spending waffle now shows recurrent 1,553.0 (64.7%), development 732.0 (30.5%), interest 109.4 (4.6%) and \"Khác\" 7.1 (0.3%, the un-itemised remainder of the same release, not a plug from another source). Revenue sub-lines PIT/land-use/env/lottery/fees 2025 are null, so the renderer's \"other domestic taxes\" slice equals all domestic revenue (2,279.9) for 2025. (2) The 2025 estimate is cash-basis execution and excludes carry-over spending (chi chuyển nguồn) that the 2018–2024 final accounts include; the 2024→2025 change in the line chart is therefore not like-for-like. (3) deficit ≠ revenue − expenditure in every year (MoF deficit definition); expected. (4) deficit_pct_gdp 2018–2020 (2.80, 2.67, 3.44) match the pre-2019-revision GDP denominator; on the current gdp.GDP series they would be 2.18, 2.10, 2.69. Published ratios kept. (5) FY2025 final account (quyết toán) not yet published as of 2026-10-06 (due NA spring 2027), so 2025 stays \"estimate\".",
+   "detail": {
+    "as_of": "2026-10-07",
+    "classification_note": "Two revenue classifications are kept apart: revenue_domestic_by_source (ownership sector + revenue type — the official presentation) and revenue_domestic_by_tax (tax type — mostly unpublished nationally). Items in \"items\" add up to the held total; \"of_which\" lines are subsets and must never be added. Every table carries a \"reconciles\" block: gaps are reported, never plugged. Columns: 2018–2024 final accounts, 2025 MoF Jan-2026 estimate (the held column), 2026 plan, 9M-2026 execution. Units bn VND.",
+    "years": [
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026,
+     "9M-2026"
+    ],
+    "basis": [
+     "final",
+     "final",
+     "final",
+     "final",
+     "final",
+     "final",
+     "final",
+     "estimate",
+     "plan",
+     "estimate"
+    ],
+    "basis_note": [
+     "final account (quyết toán)",
+     "final account (quyết toán)",
+     "final account (quyết toán)",
+     "final account (quyết toán)",
+     "final account (quyết toán)",
+     "final account (quyết toán)",
+     "final account (quyết toán)",
+     "estimate — MoF year-end execution, Jan-2026, cash basis (the held 2025 column)",
+     "plan — NQ 245/2025/QH15 (13/11/2025)",
+     "execution estimate Jan–Sep 2026, MoF monthly release (cumulative)"
+    ],
+    "revenue_domestic_by_source": {
+     "classification": "by ownership sector and revenue type, as in the MoF final-account Biểu 26/CK-NSNN / NA Mẫu biểu 58 and NSO V03.13-14",
+     "unit": "bn VND",
+     "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026,
+      "9M-2026"
+     ],
+     "basis": [
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "estimate",
+      "plan",
+      "estimate"
+     ],
+     "items": [
+      {
+       "key": "soe",
+       "name_vi": "Thu từ khu vực doanh nghiệp nhà nước",
+       "name_en": "State-owned enterprises (VAT, CIT, excise, resource tax paid by SOEs)",
+       "values": [
+        153323,
+        165055,
+        148183,
+        163896,
+        174448,
+        179278,
+        180215,
+        null,
+        194417,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "url": "per year in source; 2018–2024 final accounts, 2026 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "fdi",
+       "name_vi": "Thu từ khu vực doanh nghiệp có vốn đầu tư nước ngoài (không kể dầu thô)",
+       "name_en": "FDI enterprises (excl. crude oil)",
+       "values": [
+        190309,
+        212199,
+        209090,
+        217259,
+        243447,
+        238795,
+        260871,
+        null,
+        321418,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "url": "per year in source; 2018–2024 final accounts, 2026 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "non_state",
+       "name_vi": "Thu từ khu vực kinh tế ngoài quốc doanh",
+       "name_en": "Non-state (private) sector",
+       "values": [
+        209624,
+        238228,
+        247134,
+        289878,
+        307613,
+        335317,
+        391948,
+        null,
+        503754,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "url": "per year in source; 2018–2024 final accounts, 2026 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "pit",
+       "name_vi": "Thuế thu nhập cá nhân",
+       "name_en": "Personal income tax",
+       "values": [
+        94364,
+        109406,
+        115150,
+        127661,
+        162790,
+        157034,
+        186350,
+        null,
+        237037,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "url": "per year in source; 2018–2024 final accounts, 2026 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "env_protection",
+       "name_vi": "Thuế bảo vệ môi trường (hàng sản xuất trong nước)",
+       "name_en": "Environmental protection tax (domestic goods)",
+       "values": [
+        47050,
+        63075,
+        60631,
+        58592,
+        43067,
+        37267,
+        40333,
+        null,
+        43846,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "url": "per year in source; 2018–2024 final accounts, 2026 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "fees_charges",
+       "name_vi": "Các loại phí, lệ phí",
+       "name_en": "Fees and charges (incl. registration fee)",
+       "values": [
+        69940,
+        81201,
+        69932,
+        73036,
+        88740,
+        79618,
+        95870,
+        null,
+        110135,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "url": "per year in source; 2018–2024 final accounts, 2026 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "land_house",
+       "name_vi": "Các khoản thu về nhà, đất",
+       "name_en": "Land and housing revenue (land-use fees, land & water-surface rent, land/house taxes, sale of state housing)",
+       "values": [
+        180779,
+        193337,
+        212970,
+        228275,
+        255386,
+        202468,
+        293931,
+        null,
+        550778,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "url": "per year in source; 2018–2024 final accounts, 2026 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "other_domestic",
+       "name_vi": "Các khoản thu khác (xổ số, cổ tức/lợi nhuận, chênh lệch thu chi NHNN, thu khác…)",
+       "name_en": "Other domestic revenue (lottery, dividends/profit, SBV surplus, other)",
+       "values": [
+        209903,
+        215488,
+        230639,
+        154683,
+        172424,
+        254004,
+        274125,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "2018-2024": "NSO PxWeb V03.13-14 line \"Các khoản thu khác\" (NSO compiles from the MoF final accounts) https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.13-14.px/",
+        "2026": "not itemised in the plan extract (only lottery is): left null"
+       },
+       "url": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.13-14.px/",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      }
+     ],
+     "of_which": [
+      {
+       "key": "registration_fee",
+       "parent": "fees_charges",
+       "name_vi": "trong đó: Lệ phí trước bạ",
+       "name_en": "of which: registration fee",
+       "values": [
+        32409,
+        40190,
+        34823,
+        38166,
+        47654,
+        34646,
+        41875,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "2018-2024": "NSO PxWeb V03.13-14 \"Trong đó: Lệ phí trước bạ\" https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.13-14.px/"
+       },
+       "url": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.13-14.px/",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "land_use_fees",
+       "parent": "land_house",
+       "name_vi": "trong đó: Thu tiền sử dụng đất",
+       "name_en": "of which: land-use fees",
+       "values": [
+        147815,
+        153738,
+        172987,
+        185117,
+        208458,
+        153769,
+        232927,
+        null,
+        474165,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "url": "per year in source",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "land_rent",
+       "parent": "land_house",
+       "name_vi": "trong đó: Thu tiền cho thuê đất, thuê mặt nước",
+       "name_en": "of which: land and water-surface rent",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "level not in the extracted tables for any held column; 2024 thuyết minh gives only \"+28,620 vs plan\" (https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=66); 2025 MoF Apr-2026 vintage 75,600 is in alt_vintage_2025"
+       },
+       "url": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=66",
+       "verified": "document text (MoF ckns.mof.gov.vn item saved locally in tools/build/econ/budget/cms66.json); not re-fetched 2026-10-07"
+      },
+      {
+       "key": "lottery",
+       "parent": "other_domestic",
+       "name_vi": "trong đó: Thu từ hoạt động xổ số kiến thiết",
+       "name_en": "of which: lottery",
+       "values": [
+        29440,
+        33908,
+        36926,
+        32612,
+        40596,
+        45844,
+        49990,
+        null,
+        57716,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "url": "per year in source",
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "dividends_profit_sbv",
+       "parent": "other_domestic",
+       "name_vi": "trong đó: Thu hồi vốn, cổ tức, lợi nhuận được chia, lợi nhuận sau thuế, chênh lệch thu chi NHNN",
+       "name_en": "of which: capital recovery, dividends, SOE after-tax profit, SBV revenue-expenditure surplus",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        138682,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "2024": "MoF Báo cáo thuyết minh quyết toán NSNN 2024 (QĐ 1229/QĐ-BTC 21/5/2026), I.1.e: quyết toán 138,682 (of which SBV surplus 52,741; capital recovery 18,311)",
+        "other years": "not in the extracted tables: null"
+       },
+       "url": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=66",
+       "verified": "document text (MoF ckns.mof.gov.vn item saved locally in tools/build/econ/budget/cms66.json); not re-fetched 2026-10-07",
+       "sub": {
+        "sbv_surplus": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         52741,
+         null,
+         null,
+         null
+        ],
+        "capital_recovery": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         18311,
+         null,
+         null,
+         null
+        ]
+       }
+      },
+      {
+       "key": "other_budget_revenue",
+       "parent": "other_domestic",
+       "name_vi": "trong đó: Thu khác ngân sách",
+       "name_en": "of which: other budget revenue (fines, recoveries…)",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        69827,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "2024": "MoF thuyết minh QT 2024, I.1.g: 69,827 (of which administrative fines 17,916; recoveries via inspection/audit 4,672)"
+       },
+       "url": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=66",
+       "verified": "document text (MoF ckns.mof.gov.vn item saved locally in tools/build/econ/budget/cms66.json); not re-fetched 2026-10-07"
+      }
+     ],
+     "reconciles": {
+      "total_field": "ECONFLOW.budget.revenue.domestic",
+      "rule": "sum of the 8 top-level items = held domestic revenue (of_which lines are NOT added)",
+      "tolerance_bn": 2,
+      "by_year": [
+       {
+        "year": 2018,
+        "total": 1155293,
+        "sum_items": 1155292,
+        "gap": 1,
+        "items_null": 0,
+        "status": "ok (rounding)"
+       },
+       {
+        "year": 2019,
+        "total": 1277988,
+        "sum_items": 1277989,
+        "gap": -1,
+        "items_null": 0,
+        "status": "ok (rounding)"
+       },
+       {
+        "year": 2020,
+        "total": 1293728,
+        "sum_items": 1293729,
+        "gap": -1,
+        "items_null": 0,
+        "status": "ok (rounding)"
+       },
+       {
+        "year": 2021,
+        "total": 1313281,
+        "sum_items": 1313280,
+        "gap": 1,
+        "items_null": 0,
+        "status": "ok (rounding)"
+       },
+       {
+        "year": 2022,
+        "total": 1447915,
+        "sum_items": 1447915,
+        "gap": 0,
+        "items_null": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2023,
+        "total": 1483781,
+        "sum_items": 1483781,
+        "gap": 0,
+        "items_null": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2024,
+        "total": 1723643,
+        "sum_items": 1723643,
+        "gap": 0,
+        "items_null": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2025,
+        "total": 2279900,
+        "sum_items": null,
+        "gap": 2279900,
+        "items_null": 8,
+        "status": "gap — not itemised in source"
+       },
+       {
+        "year": 2026,
+        "total": 2199967,
+        "sum_items": 1961385,
+        "gap": 238582,
+        "items_null": 1,
+        "status": "gap — not itemised in source"
+       },
+       {
+        "year": "9M-2026",
+        "total": 1880300,
+        "sum_items": null,
+        "gap": 1880300,
+        "items_null": 8,
+        "status": "gap — not itemised in source"
+       }
+      ]
+     },
+     "reconciles_of_which": {
+      "2024": {
+       "other_domestic": 274125,
+       "lottery+dividends_profit_sbv+other_budget_revenue": 258499,
+       "unitemised_within_other": 15626,
+       "note": "remaining 15,626 is not itemised in the thuyết minh text (the full Biểu also has e.g. mineral-rights fees, public-land income); left as a reported gap, not assigned"
+      }
+     },
+     "alt_vintage_2025": {
+      "vintage": "MoF \"Báo cáo đánh giá bổ sung kết quả thực hiện NSNN năm 2025\", ckns.mof.gov.vn 13/04/2026; sector split from NSO PxWeb V03.13-14 \"Ước tính 2025\" (same vintage: sectors sum 1,018,538 = MoF \"3 khu vực\" 1,018.5 nghìn tỷ)",
+      "url": "https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65",
+      "url_nso": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.13-14.px/",
+      "verified": "document text (MoF ckns.mof.gov.vn item saved locally in tools/build/econ/budget/cms65.json); not re-fetched 2026-10-07; NSO lines document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)",
+      "domestic_total_this_vintage": 2308437,
+      "held_total_jan2026": 2279900,
+      "why_separate": "Does NOT reconcile with the held 2025 column (MoF Jan-2026, domestic 2,279,900): the April report revised domestic revenue up by ~28.5 tn. Shown as a separate vintage so no item is forced under a total it was not published with.",
+      "items": {
+       "soe": 192061,
+       "fdi": 323862,
+       "non_state": 502615,
+       "pit": 235080,
+       "env_protection": 42486,
+       "fees_charges": 110271,
+       "land_house": 579943,
+       "other_domestic": 322119
+      },
+      "of_which": {
+       "registration_fee": 51559,
+       "land_use_fees": 498600,
+       "land_rent": 75600,
+       "lottery": 57200,
+       "dividends_profit_sbv": 161300
+      },
+      "units_note": "MoF lines given in nghìn tỷ with one decimal (±50 bn); NSO lines in tỷ",
+      "sum_items": 2308437,
+      "gap_vs_this_vintage_total": 0
+     }
+    },
+    "revenue_domestic_by_tax": {
+     "classification": "by tax type — kept separate from the by-source table; never add the two",
+     "unit": "bn VND",
+     "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026,
+      "9M-2026"
+     ],
+     "basis": [
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "estimate",
+      "plan",
+      "estimate"
+     ],
+     "items": [
+      {
+       "key": "vat_domestic",
+       "name_vi": "Thuế giá trị gia tăng (hàng trong nước)",
+       "name_en": "VAT (domestic)",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published as a national total in the final accounts, plan resolutions or NSO tables: these taxes sit inside the SOE / FDI / non-state lines of revenue_domestic_by_source. GDT (tax-administration) totals have a different scope and are not used."
+       }
+      },
+      {
+       "key": "cit",
+       "name_vi": "Thuế thu nhập doanh nghiệp",
+       "name_en": "Corporate income tax",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published as a national total in the final accounts, plan resolutions or NSO tables: these taxes sit inside the SOE / FDI / non-state lines of revenue_domestic_by_source. GDT (tax-administration) totals have a different scope and are not used."
+       }
+      },
+      {
+       "key": "sct_domestic",
+       "name_vi": "Thuế tiêu thụ đặc biệt (hàng trong nước)",
+       "name_en": "Special consumption (excise) tax, domestic",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published as a national total in the final accounts, plan resolutions or NSO tables: these taxes sit inside the SOE / FDI / non-state lines of revenue_domestic_by_source. GDT (tax-administration) totals have a different scope and are not used."
+       }
+      },
+      {
+       "key": "natural_resource_tax",
+       "name_vi": "Thuế tài nguyên",
+       "name_en": "Natural-resource tax",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published as a national total in the final accounts, plan resolutions or NSO tables: these taxes sit inside the SOE / FDI / non-state lines of revenue_domestic_by_source. GDT (tax-administration) totals have a different scope and are not used."
+       }
+      },
+      {
+       "key": "pit",
+       "name_vi": "Thuế thu nhập cá nhân",
+       "name_en": "Personal income tax",
+       "values": [
+        94364,
+        109406,
+        115150,
+        127661,
+        162790,
+        157034,
+        186350,
+        null,
+        237037,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "note": "same official line as in revenue_domestic_by_source (PIT and environmental tax are reported as stand-alone lines)"
+      },
+      {
+       "key": "env_protection",
+       "name_vi": "Thuế bảo vệ môi trường",
+       "name_en": "Environmental protection tax (domestic)",
+       "values": [
+        47050,
+        63075,
+        60631,
+        58592,
+        43067,
+        37267,
+        40333,
+        null,
+        43846,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "note": "same official line as in revenue_domestic_by_source (PIT and environmental tax are reported as stand-alone lines)"
+      }
+     ],
+     "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)",
+     "reconciles": {
+      "status": "not reconcilable: VAT, CIT, excise and resource tax on domestic production are not published as national totals; only PIT and environmental tax exist as stand-alone lines. VAT and excise on imports are in revenue_other.of_which."
+     }
+    },
+    "revenue_other": {
+     "classification": "non-domestic revenue (what the waffle shows as \"other\" besides domestic lines)",
+     "unit": "bn VND",
+     "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026,
+      "9M-2026"
+     ],
+     "basis": [
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "estimate",
+      "plan",
+      "estimate"
+     ],
+     "items": [
+      {
+       "key": "crude_oil",
+       "name_vi": "Thu từ dầu thô",
+       "name_en": "Crude oil",
+       "values": [
+        66048,
+        56251,
+        34598,
+        44638,
+        78137,
+        61971,
+        58646,
+        48000,
+        43000,
+        50000
+       ],
+       "source": {
+        "2018-2024": "final accounts (as held in ECONFLOW.budget.revenue)",
+        "2025": "MoF Jan-2026 estimate (held column) https://tapchikinhtetaichinh.vn/boi-chi-ngan-sach-nha-nuoc-nam-2025-uoc-khoang-36-gdp-thap-hon-du-toan-100288.html",
+        "2026": "NQ 245/2025/QH15 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+        "9M-2026": "MoF 9M release https://vietstock.vn/2026/10/tong-thu-nsnn-9-thang-nam-2026-dat-21873-nghin-ty-dong-bang-865-du-toan-nam-758-1498672.htm"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox); 2025 and 9M-2026 search-excerpt verified 2026-10-06"
+      },
+      {
+       "key": "import_export_net",
+       "name_vi": "Thu cân đối từ hoạt động xuất nhập khẩu (sau hoàn thuế GTGT)",
+       "name_en": "Import-export balance (net of VAT refunds)",
+       "values": [
+        202540,
+        214239,
+        177444,
+        216307,
+        285898,
+        219651,
+        272006,
+        319800,
+        278000,
+        253500
+       ],
+       "source": {
+        "2018-2024": "final accounts (as held in ECONFLOW.budget.revenue)",
+        "2025": "MoF Jan-2026 estimate (held column) https://tapchikinhtetaichinh.vn/boi-chi-ngan-sach-nha-nuoc-nam-2025-uoc-khoang-36-gdp-thap-hon-du-toan-100288.html",
+        "2026": "NQ 245/2025/QH15 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+        "9M-2026": "MoF 9M release https://vietstock.vn/2026/10/tong-thu-nsnn-9-thang-nam-2026-dat-21873-nghin-ty-dong-bang-865-du-toan-nam-758-1498672.htm"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox); 2025 and 9M-2026 search-excerpt verified 2026-10-06"
+      },
+      {
+       "key": "grants",
+       "name_vi": "Thu viện trợ không hoàn lại",
+       "name_en": "Grants",
+       "values": [
+        7780,
+        5133,
+        4808,
+        17185,
+        8360,
+        5373,
+        3249,
+        null,
+        8500,
+        null
+       ],
+       "source": {
+        "2018-2024": "final accounts (as held in ECONFLOW.budget.revenue)",
+        "2025": "MoF Jan-2026 estimate (held column) https://tapchikinhtetaichinh.vn/boi-chi-ngan-sach-nha-nuoc-nam-2025-uoc-khoang-36-gdp-thap-hon-du-toan-100288.html",
+        "2026": "NQ 245/2025/QH15 https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html",
+        "9M-2026": "MoF 9M release https://vietstock.vn/2026/10/tong-thu-nsnn-9-thang-nam-2026-dat-21873-nghin-ty-dong-bang-865-du-toan-nam-758-1498672.htm"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox); 2025 and 9M-2026 search-excerpt verified 2026-10-06"
+      }
+     ],
+     "of_which": [
+      {
+       "key": "import_export_gross",
+       "parent": "import_export_net",
+       "name_vi": "Tổng thu từ hoạt động xuất nhập khẩu",
+       "name_en": "Gross import-export revenue",
+       "values": [
+        314324,
+        347282,
+        314463,
+        377105,
+        436627,
+        368593,
+        427433,
+        null,
+        451000,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "vat_on_imports",
+       "parent": "import_export_gross",
+       "name_vi": "trong đó: Thuế GTGT hàng nhập khẩu",
+       "name_en": "of which: VAT on imports",
+       "values": [
+        227006,
+        248634,
+        235825,
+        287118,
+        322336,
+        281220,
+        329857,
+        null,
+        351773,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "sct_on_imports",
+       "parent": "import_export_gross",
+       "name_vi": "trong đó: Thuế TTĐB hàng nhập khẩu",
+       "name_en": "of which: excise on imports",
+       "values": [
+        22353,
+        33795,
+        23627,
+        28845,
+        38720,
+        32953,
+        36161,
+        null,
+        37352,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "vat_refunds",
+       "parent": "import_export_net",
+       "name_vi": "Hoàn thuế giá trị gia tăng (âm)",
+       "name_en": "VAT refunds (negative)",
+       "values": [
+        -111783,
+        -133043,
+        -137019,
+        -160798,
+        -150729,
+        -148942,
+        -155427,
+        null,
+        -173000,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV)"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "note",
+       "text": "gross + vat_refunds = import_export_net in every year with data (2018: +1 rounding). Import duty, export duty and environmental tax on imports make up the rest of gross but are not stored as separate lines (no residual is plugged). 2025 Apr-2026 vintage: gross 469,500, refunds −150,700, grants 5,900 (https://ckns.mof.gov.vn/Lists/News/DispForm.aspx?ID=65)."
+      }
+     ],
+     "reconciles": {
+      "total_field": "ECONFLOW.budget.revenue.total",
+      "rule": "domestic + crude_oil + import_export_net + grants = held total revenue",
+      "tolerance_bn": 2,
+      "by_year": [
+       {
+        "year": 2018,
+        "total": 1431662,
+        "sum_items": 1431661,
+        "gap": 1,
+        "items_null": 0,
+        "status": "ok (rounding)"
+       },
+       {
+        "year": 2019,
+        "total": 1553612,
+        "sum_items": 1553611,
+        "gap": 1,
+        "items_null": 0,
+        "status": "ok (rounding)"
+       },
+       {
+        "year": 2020,
+        "total": 1510579,
+        "sum_items": 1510578,
+        "gap": 1,
+        "items_null": 0,
+        "status": "ok (rounding)"
+       },
+       {
+        "year": 2021,
+        "total": 1591411,
+        "sum_items": 1591411,
+        "gap": 0,
+        "items_null": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2022,
+        "total": 1820310,
+        "sum_items": 1820310,
+        "gap": 0,
+        "items_null": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2023,
+        "total": 1770776,
+        "sum_items": 1770776,
+        "gap": 0,
+        "items_null": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2024,
+        "total": 2057544,
+        "sum_items": 2057544,
+        "gap": 0,
+        "items_null": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2025,
+        "total": 2650100,
+        "sum_items": 2647700,
+        "gap": 2400,
+        "items_null": 1,
+        "status": "gap — not itemised in source (grants / other not reported in this release)"
+       },
+       {
+        "year": 2026,
+        "total": 2529467,
+        "sum_items": 2529467,
+        "gap": 0,
+        "items_null": 0,
+        "status": "ok"
+       },
+       {
+        "year": "9M-2026",
+        "total": 2187300,
+        "sum_items": 2183800,
+        "gap": 3500,
+        "items_null": 1,
+        "status": "gap — not itemised in source (grants / other not reported in this release)"
+       }
+      ]
+     }
+    },
+    "spending_other": {
+     "classification": "spending beyond development / recurrent / interest (the waffle's \"Khác\" slice)",
+     "unit": "bn VND",
+     "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026,
+      "9M-2026"
+     ],
+     "basis": [
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "estimate",
+      "plan",
+      "estimate"
+     ],
+     "items": [
+      {
+       "key": "aid",
+       "name_vi": "Chi viện trợ",
+       "name_en": "Foreign aid given",
+       "values": [
+        1460,
+        1358,
+        1488,
+        1401,
+        1264,
+        1741,
+        1739,
+        null,
+        6300,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV); total \"other spending\" 108,752 confirmed in the MoF citizen budget 2026 (https://thitruongtaichinhtiente.vn/bo-tai-chinh-cong-khai-bao-cao-danh-cho-cong-dan-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-75561.html, search-excerpt verified 2026-10-07)"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "reserve_fund",
+       "name_vi": "Chi bổ sung quỹ dự trữ tài chính",
+       "name_en": "Additions to the financial reserve fund",
+       "values": [
+        298,
+        341,
+        10123,
+        428,
+        1562,
+        3590,
+        1453,
+        null,
+        100,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV); total \"other spending\" 108,752 confirmed in the MoF citizen budget 2026 (https://thitruongtaichinhtiente.vn/bo-tai-chinh-cong-khai-bao-cao-danh-cho-cong-dan-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-75561.html, search-excerpt verified 2026-10-07)"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "national_reserves",
+       "name_vi": "Chi dự trữ quốc gia",
+       "name_en": "National (strategic) reserves",
+       "values": [
+        1932,
+        1702,
+        null,
+        null,
+        1990,
+        1212,
+        1357,
+        null,
+        1950,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://static3.luatvietnam.vn/uploaded/others/2024/07/23/phu_luc_2307134036.pdf (NQ 132/2024/QH15 Phụ lục I)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/223-qh15.signed.pdf (NQ 223/2025/QH15 Phụ lục I)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV); total \"other spending\" 108,752 confirmed in the MoF citizen budget 2026 (https://thitruongtaichinhtiente.vn/bo-tai-chinh-cong-khai-bao-cao-danh-cho-cong-dan-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-75561.html, search-excerpt verified 2026-10-07)"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)",
+       "note": "2020 and 2021 not read from a source (MoF Biểu 26 omits the line): null; the reconciliation gap of those years (1,566; 3,119) is presumably this line but is not assigned"
+      },
+      {
+       "key": "contingency",
+       "name_vi": "Dự phòng ngân sách nhà nước",
+       "name_en": "Budget contingency (plan only; spent inside sector lines in final accounts)",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        100402,
+        null
+       ],
+       "source": {
+        "2018": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2020/07/114.signed.pdf (NQ 114/2020/QH14 18/6/2020, Phụ lục II & III; original unit triệu đồng, rounded to tỷ)",
+        "2019": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2021/08/22.signed.pdf (NQ 22/2021/QH15 28/7/2021, Phụ lục I & II; original unit triệu đồng, rounded to tỷ)",
+        "2020": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/07/1420-btc.signed.pdf (QĐ 1420/QĐ-BTC 15/7/2022, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2021": "https://baocaotaichinh.vn/tintuc/loadfile?file=856902190quyet-dinh-so-1518_qd-btc.pdf (QĐ 1518/QĐ-BTC 24/7/2023, Biểu 26/CK-NSNN & 27/CK-NSNN; also https://luatvietnam.vn/tai-chinh/quyet-dinh-1518-qd-btc-2023-cong-khai-quyet-toan-ngan-sach-nha-nuoc-261315-d1.html)",
+        "2022": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/7/1686-btc.signed.pdf (QĐ 1686/QĐ-BTC 19/7/2024, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2023": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/2557-btc.signed.pdf (QĐ 2557/QĐ-BTC 23/7/2025, Biểu 26/CK-NSNN & 27/CK-NSNN)",
+        "2024": "https://luatvietnam.vn/tai-chinh/nghi-quyet-21-2026-qh16-bo-sung-va-phe-chuan-quyet-toan-ngan-sach-nha-nuoc-2024-434117-d1.html (NQ 21/2026/QH16 24/4/2026, Phụ lục I Mẫu biểu 58 & Phụ lục II Mẫu biểu 59)",
+        "2026": "https://luatvietnam.vn/tai-chinh/nghi-quyet-245-2025-qh15-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-co-hieu-luc-tu-28-12-2025-419537-d1.html (NQ 245/2025/QH15 13/11/2025, Phụ lục I, II, IV); total \"other spending\" 108,752 confirmed in the MoF citizen budget 2026 (https://thitruongtaichinhtiente.vn/bo-tai-chinh-cong-khai-bao-cao-danh-cho-cong-dan-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-75561.html, search-excerpt verified 2026-10-07)"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      }
+     ],
+     "reconciles": {
+      "total_field": "ECONFLOW.budget.expenditure.total",
+      "rule": "total − development − recurrent − interest = sum of these items",
+      "tolerance_bn": 2,
+      "by_year": [
+       {
+        "year": 2018,
+        "other_spending_held": 3688,
+        "sum_items": 3690,
+        "gap": -2,
+        "status": "ok (rounding)"
+       },
+       {
+        "year": 2019,
+        "other_spending_held": 3401,
+        "sum_items": 3401,
+        "gap": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2020,
+        "other_spending_held": 13177,
+        "sum_items": 11611,
+        "gap": 1566,
+        "status": "gap — not itemised in source"
+       },
+       {
+        "year": 2021,
+        "other_spending_held": 4948,
+        "sum_items": 1829,
+        "gap": 3119,
+        "status": "gap — not itemised in source"
+       },
+       {
+        "year": 2022,
+        "other_spending_held": 4816,
+        "sum_items": 4816,
+        "gap": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2023,
+        "other_spending_held": 6543,
+        "sum_items": 6543,
+        "gap": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2024,
+        "other_spending_held": 4549,
+        "sum_items": 4549,
+        "gap": 0,
+        "status": "ok"
+       },
+       {
+        "year": 2025,
+        "other_spending_held": 7100,
+        "sum_items": null,
+        "gap": 7100,
+        "status": "gap — not itemised in source"
+       },
+       {
+        "year": 2026,
+        "other_spending_held": 108752,
+        "sum_items": 108752,
+        "gap": 0,
+        "status": "ok"
+       },
+       {
+        "year": "9M-2026",
+        "other_spending_held": 2700,
+        "sum_items": null,
+        "gap": 2700,
+        "status": "gap — not itemised in source"
+       }
+      ]
+     },
+     "not_in_scope": "Principal repayment (chi trả nợ gốc) is financing, outside expenditure.total; carry-over spending (chi chuyển nguồn) is outside expenditure.total in the 2018–2024 final-account series; wage-reform resources are spent inside recurrent and are not a separate line."
+    },
+    "recurrent_by_function": {
+     "classification": "recurrent spending by function (of_which lines of expenditure.recurrent; they do not sum to recurrent)",
+     "unit": "bn VND",
+     "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026,
+      "9M-2026"
+     ],
+     "basis": [
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "final",
+      "estimate",
+      "plan",
+      "estimate"
+     ],
+     "items": [
+      {
+       "key": "education_training",
+       "name_vi": "Chi sự nghiệp giáo dục, đào tạo và dạy nghề",
+       "name_en": "Education and training",
+       "values": [
+        220436,
+        237767,
+        241927,
+        237339,
+        247939,
+        275673,
+        339930,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "2018-2024": "NSO PxWeb V03.16 Chi ngân sách Nhà nước (from the final accounts) https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.16.px/",
+        "2025": "held column (MoF Jan-2026) not split by function: null; NSO \"Ước tính 2025\" (Apr-2026 vintage) in alt_vintage_2025",
+        "2026": "plan values not in the extracted NQ 245/2025 appendix: null"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "science_technology",
+       "name_vi": "Chi sự nghiệp khoa học và công nghệ",
+       "name_en": "Science and technology",
+       "values": [
+        11111,
+        12426,
+        11886,
+        10294,
+        10513,
+        9902,
+        9671,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "2018-2024": "NSO PxWeb V03.16 Chi ngân sách Nhà nước (from the final accounts) https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.16.px/",
+        "2025": "held column (MoF Jan-2026) not split by function: null; NSO \"Ước tính 2025\" (Apr-2026 vintage) in alt_vintage_2025",
+        "2026": "plan values not in the extracted NQ 245/2025 appendix: null"
+       },
+       "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+      },
+      {
+       "key": "health",
+       "name_vi": "Chi sự nghiệp y tế, dân số và gia đình",
+       "name_en": "Health, population and family",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published for the consolidated state budget (NSNN) in the final-account Biểu 27/CK-NSNN, NA Mẫu biểu 59 or NSO V03.16 — those list only education and S&T under recurrent. MoF publishes a full functional split for the CENTRAL budget only (NSTW), which is not comparable with recurrent NSNN."
+       }
+      },
+      {
+       "key": "social_security",
+       "name_vi": "Chi bảo đảm xã hội (gồm lương hưu từ NSNN)",
+       "name_en": "Social security (incl. budget-paid pensions)",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published for the consolidated state budget (NSNN) in the final-account Biểu 27/CK-NSNN, NA Mẫu biểu 59 or NSO V03.16 — those list only education and S&T under recurrent. MoF publishes a full functional split for the CENTRAL budget only (NSTW), which is not comparable with recurrent NSNN."
+       }
+      },
+      {
+       "key": "economic_affairs",
+       "name_vi": "Chi các hoạt động kinh tế",
+       "name_en": "Economic affairs",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published for the consolidated state budget (NSNN) in the final-account Biểu 27/CK-NSNN, NA Mẫu biểu 59 or NSO V03.16 — those list only education and S&T under recurrent. MoF publishes a full functional split for the CENTRAL budget only (NSTW), which is not comparable with recurrent NSNN."
+       }
+      },
+      {
+       "key": "defence",
+       "name_vi": "Chi quốc phòng",
+       "name_en": "Defence",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published for the consolidated state budget (NSNN) in the final-account Biểu 27/CK-NSNN, NA Mẫu biểu 59 or NSO V03.16 — those list only education and S&T under recurrent. MoF publishes a full functional split for the CENTRAL budget only (NSTW), which is not comparable with recurrent NSNN."
+       }
+      },
+      {
+       "key": "security",
+       "name_vi": "Chi an ninh và trật tự an toàn xã hội",
+       "name_en": "Public security",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published for the consolidated state budget (NSNN) in the final-account Biểu 27/CK-NSNN, NA Mẫu biểu 59 or NSO V03.16 — those list only education and S&T under recurrent. MoF publishes a full functional split for the CENTRAL budget only (NSTW), which is not comparable with recurrent NSNN."
+       }
+      },
+      {
+       "key": "environment",
+       "name_vi": "Chi sự nghiệp bảo vệ môi trường",
+       "name_en": "Environmental protection",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published for the consolidated state budget (NSNN) in the final-account Biểu 27/CK-NSNN, NA Mẫu biểu 59 or NSO V03.16 — those list only education and S&T under recurrent. MoF publishes a full functional split for the CENTRAL budget only (NSTW), which is not comparable with recurrent NSNN."
+       }
+      },
+      {
+       "key": "culture_media_sport",
+       "name_vi": "Chi văn hóa thông tin, phát thanh truyền hình, thể dục thể thao",
+       "name_en": "Culture, media, sport",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published for the consolidated state budget (NSNN) in the final-account Biểu 27/CK-NSNN, NA Mẫu biểu 59 or NSO V03.16 — those list only education and S&T under recurrent. MoF publishes a full functional split for the CENTRAL budget only (NSTW), which is not comparable with recurrent NSNN."
+       }
+      },
+      {
+       "key": "administration",
+       "name_vi": "Chi quản lý hành chính, Đảng, đoàn thể",
+       "name_en": "Public administration, Party and mass organisations",
+       "values": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ],
+       "source": {
+        "all": "not published for the consolidated state budget (NSNN) in the final-account Biểu 27/CK-NSNN, NA Mẫu biểu 59 or NSO V03.16 — those list only education and S&T under recurrent. MoF publishes a full functional split for the CENTRAL budget only (NSTW), which is not comparable with recurrent NSNN."
+       }
+      }
+     ],
+     "share_of_recurrent_pct": {
+      "education_training": [
+       23.7,
+       23.9,
+       23.9,
+       22.4,
+       24.0,
+       24.7,
+       25.7,
+       null,
+       null,
+       null
+      ],
+      "science_technology": [
+       1.2,
+       1.2,
+       1.2,
+       1.0,
+       1.0,
+       0.9,
+       0.7,
+       null,
+       null,
+       null
+      ]
+     },
+     "alt_vintage_2025": {
+      "vintage": "NSO PxWeb V03.16 \"Ước tính 2025\" (= MoF Apr-2026 supplementary assessment vintage; recurrent 1,683,253)",
+      "url": "https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/V03.16.px/",
+      "education_training": 409062,
+      "science_technology": 16972,
+      "verified": "document-extracted in an earlier session (local copies: tools/build/econ/budget/data.py for MoF/NA final-account tables, tools/build/econ/nso_budget.json for NSO PxWeb); not re-fetched 2026-10-07 (all hosts blocked from the sandbox)"
+     },
+     "reconciles": {
+      "status": "partial by design: only 2 of ~10 functions are published for the consolidated budget; the remainder of recurrent is not split and no residual is assigned"
+     },
+     "note_2026_st": "The PM's \"about 95 nghìn tỷ for science & technology in 2026\" (https://tapchicongthuong.vn/thu-tuong--nam-2026--danh-khoang-95-nghin-ty-dong-ngan-sach-cho-khoa-hoc-cong-nghe-313817.htm) covers S&T + innovation + digital transformation across recurrent AND investment — not comparable with the recurrent S&T line, not stored."
+    },
+    "not_found": [
+     "2025 (Jan-2026 vintage) sub-lines of domestic revenue — the January release gives only the domestic total; the April supplementary report (different vintage) is stored as alt_vintage_2025",
+     "9M-2026 sub-lines of domestic revenue and the grants / other-spending split — MoF 9M release excerpts give only domestic / oil / import-export and dev / recurrent / interest (gaps 3,500 revenue and 2,700 spending reported)",
+     "land & water-surface rent, dividends/SBV surplus and other budget revenue for 2018–2023 and 2026 (only 2024 published in the text available)",
+     "national reserves 2020, 2021; health, social security, defence, etc. for the consolidated budget"
+    ]
+   }
   },
   "inv": {
    "years": [

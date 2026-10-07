@@ -1,11 +1,11 @@
 {
  "_meta": {
   "owner": "Finance agent",
-  "as_of": "2026-10-06",
+  "as_of": "2026-10-07",
   "note": "Simulation tab data. Built by tools/build/simulate.py from data/finance.json, economy.json, policy.json, invest_macro.json plus curated, sourced observations in the script (search excerpts 2026-10-06; press/SBV pages are blocked from the sandbox) and three downloads cached here (VN-Index via vnstock VCI; World Bank Pink Sheet gold and EIA Brent via github datasets). Nulls are gaps, never interpolated. The deposit-rate projection is a calibrated scenario model (regressions were not credible; see SIM.model.estimation). Not investment advice."
  },
  "SIM": {
-  "as_of": "2026-10-06",
+  "as_of": "2026-10-07",
   "panel": {
    "months": [
     "2021-01",
@@ -758,8 +758,8 @@
       null,
       4.35,
       4.36,
-      null,
-      null
+      4.41,
+      4.43
      ],
      "definition": "Primary-auction winning yield of 10-year State Treasury bonds at HNX, end-of-month session (one Dec-2022 value is the month's high). Primary market, not secondary yields.",
      "source": "HNX auction results as reported by press",
@@ -826,12 +826,24 @@
        "value": 4.36,
        "url": "https://tapchikinhtetaichinh.vn/thang-7-2026-huy-dong-18-603-ty-dong-trai-phieu-chinh-phu-qua-dau-thau-164137.html",
        "note": "end-Jul-2026"
+      },
+      {
+       "date": "2026-08",
+       "value": 4.41,
+       "url": "https://baodauthau.vn/huy-dong-hon-27756-ty-dong-trai-phieu-chinh-phu-qua-dau-thau-trong-thang-8-post207553.html",
+       "note": "last Aug-2026 session, +5 bp vs last Jul session (HNX; search excerpt 2026-10-07)"
+      },
+      {
+       "date": "2026-09",
+       "value": 4.43,
+       "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/09/27/vietnam-raises-us1bil-n-government-bond-auction-highest-volume-this-year",
+       "note": "auction of 23/9/2026 (Reuters): 20,000 bn 10-year fully sold at 4.43%. A 30/9 auction probably followed (9M issuance implies ~11 tn after 23/9) but its 10-year yield was not found. Rejected: '10-year 4.67-4.80% in Sep' (vnbusiness excerpt) is from an earlier year (5-year at 5.08% above the 10-year)."
       }
      ],
      "coverage": {
-      "n": 10,
+      "n": 12,
       "first": "2021-12",
-      "last": "2026-07"
+      "last": "2026-09"
      }
     },
     "dep12_vcb": {
@@ -1754,6 +1766,149 @@
        "url": "https://thitruongtaichinhtiente.vn/ket-thuc-nam-2024-tin-dung-tang-15-08-65089.html"
       }
      ],
+     "basis": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "statement",
+      "statement",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "sbv_table",
+      "statement",
+      "statement"
+     ],
+     "cutoff": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "2024-12-31",
+      "2025-01-31",
+      "2025-02-28",
+      "2025-03-31",
+      "2025-04-30",
+      "2025-05-31",
+      "2025-06-30",
+      "2025-07-31",
+      "2025-08-31",
+      "2025-09-30",
+      "2025-10-31",
+      "2025-11-30",
+      "2025-12-31",
+      "2026-01-31",
+      "2026-02-28",
+      "2026-03-31",
+      "2026-04-30",
+      "2026-05-31",
+      "2026-06-30",
+      "2026-07-31",
+      "2026-08-28",
+      "2026-09-30"
+     ],
+     "basis_note": "Per month: 'sbv_table' = SBV month-end table row; 'statement' = SBV/Government statement at the cut-off date in 'cutoff' (rounded level). Aug/Sep-2026 are statement points (28/8, 30/9).",
      "coverage": {
       "n": 23,
       "first": "2024-11",
@@ -1845,6 +2000,78 @@
       "2025-12",
       "2026-08"
      ],
+     "basis": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "statement",
+      null,
+      null,
+      "statement",
+      null,
+      null,
+      "derived_from_sbv_table_levels",
+      "computed_from_sbv_table_levels",
+      "computed_from_sbv_table_levels",
+      "computed_from_sbv_table_levels",
+      "computed_from_sbv_table_levels",
+      "computed_from_sbv_table_levels",
+      "computed_from_sbv_table_levels",
+      "computed_from_sbv_table_levels",
+      "derived_from_statement_level",
+      "statement"
+     ],
+     "basis_note": "'statement' = SBV-stated y/y; 'computed_from_sbv_table_levels' (finance.json) / 'derived_from_sbv_table_levels' (here) = table level vs table level 12 months earlier; 'derived_from_statement_level' = rounded statement level (Aug-2026: ~20.5 quadrillion at 28/8) vs the Aug-2025 table month-end - indicative only (rounding ~±0.15 pp, cut-offs 3 days apart); not used by the model (deposit y/y for Aug-2026 is null).",
      "coverage": {
       "n": 12,
       "first": "2025-06",
@@ -1955,6 +2182,20 @@
        "date": "2024-12-07",
        "value": 7.36,
        "url": "https://diendandoanhnghiep.vn/tang-truong-huy-dong-von-ky-luc-ho-tro-mo-rong-tin-dung-10148775.html"
+      },
+      {
+       "date": "2026-08-22",
+       "value": 8.77,
+       "basis": "vnd_mobilisation_statement",
+       "url": "https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html",
+       "note": "statement basis, cut-off 22/8/2026: VND mobilisation only (MoF, Government press conference 3/9/2026); not the SBV table measure"
+      },
+      {
+       "date": "2026-09-28",
+       "value": 9.78,
+       "basis": "mobilisation_nso_report",
+       "url": "https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm",
+       "note": "statement basis, cut-off 28/9/2026: mobilisation per NSO Q3-2026 report (credit +10.89% same date); not the SBV table measure"
       }
      ],
      "coverage": {
@@ -2481,7 +2722,7 @@
       null,
       114
      ],
-     "definition": "Simple LDR, sector-wide (loans/customer deposits). 2025-Q2 and 2026-Q2: Yuanta; 2025-Q4 '~110%, highest in a decade' (VinaCapital) — providers differ. 2026-Q1 set to null: the only Q1 figure is MBS's 27-listed-bank ratio (100%), stored as a separate MBS 27-listed-bank series. Regulatory LDR (Circular 22 basis) ~88% in Q2-2026 per NSI vs 85% cap (cap rises to 95% from 1/12/2026 under Circular 50/2026).",
+     "definition": "Simple LDR, sector-wide (loans/customer deposits). 2025-Q2 and 2026-Q2: Yuanta; 2025-Q4 '~110%, highest in a decade' (VinaCapital) — providers differ. 2026-Q1 set to null: the only Q1 figure is MBS's 27-listed-bank ratio (100%), stored as a separate MBS 27-listed-bank series. Regulatory LDR, Q2-2026 - two figures, different coverage, not merged: (a) SBV system statistic 'Tỷ lệ dư nợ cho vay so với tổng tiền gửi' (Circular 22 definition, whole system excl. VBSP and PCFs) 77.06% at 30/6/2026 (https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban; ratios.ldr_sbv_tt22_pct) - the official figure and the one the dashboard uses; (b) ~88% = NSI broker estimate of the Circular-22 LDR for its listed-bank sample (https://phapluat.suckhoedoisong.vn/tong-tai-san-he-thong-ngan-hang-dat-226-trieu-ty-dong-nim-chiu-suc-ep-trong-quy-ii2026-283986.html; excerpt not re-found 2026-10-07). The cap (85%, 95% from 1/12/2026 under Circular 50/2026) binds bank by bank, so large listed banks can sit near it while the system aggregate (which includes low-LDR banks and Circular-22 funding items) is ~77%.",
      "source": "finance.json why.series.ldr",
      "url_or_note": "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html; https://fili.vn/2026/02/nim-ngan-hang-giam-tren-dien-rong-nam-2026-se-ra-sao-757-1402723.htm; https://thoibaotaichinhvietnam.vn/chenh-lech-tin-dung-huy-dong-len-14-trieu-ty-dong-ap-luc-ldr-bot-cang-khi-tinh-20-tien-gui-kho-bac-197524.html; https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html",
      "verified": "per finance.json"
@@ -3195,16 +3436,16 @@
       null,
       152.8,
       184.2,
+      184.0,
+      174.9,
+      166.0,
+      159.0,
       null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
+      141.9,
+      148.7,
+      144.1
      ],
-     "definition": "SJC bar sell price at the last session of the year (Dec values), plus the Jan-2026 record and the 6-Oct-2026 quote (in observations). Monthly SJC history could not be pulled (sjc.com.vn/simplize blocked): other months null.",
+     "definition": "SJC bar sell price at the last session of the year (Dec values), the Jan-2026 record (29/1), month-end quotes Feb-Sep 2026 (finance.json alternatives.series.gold_sjc.month_end_2026; Jun-2026 null, Sep-2026 derived from the 1/10 stated change) and the 6-Oct-2026 quote (in observations). Full monthly history before 2026 could not be pulled (sjc.com.vn/simplize blocked): other months null.",
      "source": "finance.json FINSYS.alternatives.series.gold_sjc + press",
      "url_or_note": "per observation",
      "verified": "search excerpts",
@@ -3252,6 +3493,55 @@
        "url": "https://baovanhoa.vn/kinh-te/gia-vang-hom-nay-2912026-sjc-tang-soc-lap-dinh-moi-201009.html"
       },
       {
+       "date": "2026-02",
+       "value": 184.0,
+       "quote": "SJC 181.0–184.0 (adjustment 08:30) on 2026-02-27",
+       "url": "https://webgia.com/gia-vang/sjc/27-02-2026.html",
+       "note": "Fri 27/2 = last trading day of Feb; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "date": "2026-03",
+       "value": 174.9,
+       "quote": "SJC 171.9–174.9 (midday, +1.1 m) on 2026-03-31",
+       "url": "https://baolamdong.vn/cap-nhat-gia-vang-trua-hom-nay-31-03-2026-gia-vang-sjc-gia-vang-24k-9999-gia-vang-nhan-vang-the-gioi-433427.html",
+       "note": "midday quote; the same outlet's closing article (https://baolamdong.vn/print/433496.html) not read; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "date": "2026-04",
+       "value": 166.0,
+       "quote": "SJC bars 163–166 at BTMH/DOJI/PNJ, 13:30 on 2026-04-30",
+       "url": "https://vietbao.vn/gia-vang-hom-nay-chieu-15-tang-khong-dong-deu-590522.html",
+       "note": "dealer quotes for SJC-brand bars (SJC company quote not seen); outlet pinned only to the result set; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "date": "2026-05",
+       "value": 159.0,
+       "quote": "SJC 156.0–159.0 (end of May; '+6 m vs start of year') on 2026-05-31",
+       "url": "https://baolamdong.vn/gia-vang-chieu-hom-nay-31-5-2026-chot-tang-hon-6-trieu-dong-so-voi-dau-nam-445173.html",
+       "note": "31/5 is a Sunday; quote = end-of-month board; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "date": "2026-07",
+       "value": 141.9,
+       "quote": "SJC HCMC 137.9–141.9 at 15:30 on 2026-07-31",
+       "url": "https://baohatinh.vn/tv/gia-vang-31072026-sjc-1379-1419-trieu-dongluong-tang-48649.html",
+       "note": "the same live article showed 142.2 (11:57) and 142.7 earlier; latest-in-day 141.9 used; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "date": "2026-08",
+       "value": 148.7,
+       "quote": "SJC sell 148.7 on 2026-08-31",
+       "url": "https://vietbao.vn/gia-vang-hom-nay-318-vang-trong-nuoc-duy-tri-1487-trieu-dongluong-605273.html",
+       "note": "cross-check simplize week 36 open 148.7 (https://simplize.vn/gia-vang/tong-hop/tuan-36-2026); search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "date": "2026-09",
+       "value": 144.1,
+       "quote": "derived: 1/10 morning 140.8–143.8 stated as −0.3 m vs 30/9; 1/10 16:28 141.3–144.3 stated as +0.2 m on 2026-09-30",
+       "url": "https://baolamdong.vn/gia-vang-hom-nay-01102026-sjc-1413-1443-trieu-dongluong-tang-200000-dong-467234.html",
+       "note": "30/9 close = stated 1/10 level minus stated change (both routes give 144.1); no direct 30/9 quote found; also https://tapchikinhtetaichinh.vn/gia-vang-hom-nay-sjc-giam-tiep-sau-thang-9-nhieu-bien-dong-168416.html; search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
        "date": "2026-10",
        "value": 143.5,
        "quote": "SJC 140.5–143.5 on 6/10/2026",
@@ -3259,9 +3549,9 @@
       }
      ],
      "coverage": {
-      "n": 6,
+      "n": 13,
       "first": "2021-12",
-      "last": "2026-01"
+      "last": "2026-09"
      }
     },
     "sjc_premium": {
@@ -3525,19 +3815,19 @@
       191000,
       null,
       226000,
+      257632,
       null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
+      310651,
+      237000,
+      279383,
+      244700,
+      198159,
+      345979,
+      244700,
+      256500,
+      268000,
+      227300,
+      230000,
       null
      ],
      "definition": "New domestic investor accounts opened in the month (VSDC). Sparse month points + annual totals in 'annual'.",
@@ -3595,6 +3885,78 @@
        "value": 226000,
        "url": "https://thoibaotaichinhvietnam.vn/hon-226-nghin-tai-khoan-chung-khoan-mo-moi-trong-thang-7-cao-nhat-trong-vong-11-thang-181243.html",
        "note": "'over 226 thousand', highest in 11 months"
+      },
+      {
+       "date": "2025-08",
+       "value": 257632,
+       "url": "https://thitruongtaichinhtiente.vn/gan-260-000-tai-khoan-giao-dich-chung-khoan-mo-moi-trong-thang-8-70281.html",
+       "note": "VSDC; total accounts ~10.7 m at end-Aug-2025"
+      },
+      {
+       "date": "2025-10",
+       "value": 310651,
+       "url": "https://doanhnhan.baophapluat.vn/don-tin-thi-truong-duoc-nang-hang-co-hon-310000-tai-khoan-chung-khoan-duoc-mo-moi-trong-thang-102025-88541.html",
+       "note": "domestic accounts +310,651 vs end-Sep-2025 (individuals +310,496); 11,305,254 at 30/10/2025. Sep-2025 not found (the '172,605/172,695 in Sep' articles are Sep-2024): null"
+      },
+      {
+       "date": "2025-11",
+       "value": 237000,
+       "url": "https://doanhnhan.baophapluat.vn/so-luong-tai-khoan-chung-khoan-mo-moi-cham-day-4-thang-89547.html",
+       "note": "'over 237,000', ~73,000 fewer than Oct, lowest in 4 months"
+      },
+      {
+       "date": "2025-12",
+       "value": 279383,
+       "url": "https://vneconomy.vn/nha-dau-tu-ca-nhan-lai-o-at-mo-tai-khoan-chung-khoan-trong-thang-cuoi-nam-2025.htm",
+       "note": "domestic accounts +279,383"
+      },
+      {
+       "date": "2026-01",
+       "value": 244700,
+       "url": "https://thoibaotaichinhvietnam.vn/hon-244700-tai-khoan-chung-khoan-mo-moi-trong-thang-1-192048.html",
+       "note": "'over 244,700' (also 'nearly 245,000', mekongasean)"
+      },
+      {
+       "date": "2026-02",
+       "value": 198159,
+       "url": "https://nhandan.vn/ocop/ket-thuc-quy-i2026-viet-nam-co-hon-126-trieu-tai-khoan-chung-khoan-post954464.html",
+       "note": "derived in the same release: Mar increase 345,979 is '147,820 more than Feb' -> 198,159; press 'over 198,000' (https://thoibaotaichinhvietnam.vn/hon-198-nghin-tai-khoan-chung-khoan-mo-moi-trong-thang-2-193524.html); 9-day Tet holiday"
+      },
+      {
+       "date": "2026-03",
+       "value": 345979,
+       "url": "https://nhandan.vn/ocop/ket-thuc-quy-i2026-viet-nam-co-hon-126-trieu-tai-khoan-chung-khoan-post954464.html",
+       "note": "domestic accounts +345,979; 12,661,417 accounts at end-Q1"
+      },
+      {
+       "date": "2026-04",
+       "value": 244700,
+       "url": "https://mekongasean.vn/hon-244700-tai-khoan-chung-khoan-duoc-mo-moi-trong-thang-4-55018.html",
+       "note": "'about 244,700', ~-30% vs Mar; individuals >244,300"
+      },
+      {
+       "date": "2026-05",
+       "value": 256500,
+       "url": "https://vietnamfinance.vn/vn-index-lap-dinh-nha-dau-tu-o-at-mo-moi-tai-khoan-chung-khoan-d145805.html",
+       "note": "'over 256,500' (individuals 255,700); total ~13.16 m"
+      },
+      {
+       "date": "2026-06",
+       "value": 268000,
+       "url": "https://thoibaotaichinhvietnam.vn/nha-dau-tu-trong-nuoc-mo-moi-gan-268000-tai-khoan-chung-khoan-200329.html",
+       "note": "'nearly 268,000'"
+      },
+      {
+       "date": "2026-07",
+       "value": 227300,
+       "url": "https://tapchikinhtetaichinh.vn/them-227-nghin-tai-khoan-giao-dich-chung-khoan-duoc-bo-sung-trong-thang-7-2026-163901.html",
+       "note": "'over 227,300'; 13.66 m accounts at end-Jul"
+      },
+      {
+       "date": "2026-08",
+       "value": 230000,
+       "url": "https://tapchikinhtetaichinh.vn/so-tai-khoan-chung-khoan-ca-nhan-tuong-duong-gan-14-dan-so-166573.html",
+       "note": "'nearly 230,000'; individuals >13.8 m at end-Aug. Sep-2026 VSDC figure not found by 2026-10-07 (an excerpt '158,302 in Sep' is Sep-2023): null"
       }
      ],
      "annual": [
@@ -3615,12 +3977,18 @@
        "value": 1570000,
        "url": "https://thoibaotaichinhvietnam.vn/tai-khoan-chung-khoan-mo-moi-trong-thang-8-o-muc-cao-nhat-hon-2-nam-qua-159157.html",
        "note": "individual accounts opened Jan-Sep 2024"
+      },
+      {
+       "period": "2025",
+       "value": 2600000,
+       "url": "https://nhandan.vn/ocop/viet-nam-co-them-26-trieu-tai-khoan-chung-khoan-nam-2025-vuot-xa-muc-tieu-11-trieu-tai-khoan-vao-nam-2030-post935997.html",
+       "note": "'+2.6 million' accounts in 2025 (>11.8 m total)"
       }
      ],
      "coverage": {
-      "n": 9,
+      "n": 21,
       "first": "2021-01",
-      "last": "2025-07"
+      "last": "2026-08"
      }
     },
     "real_estate": {
@@ -3654,6 +4022,20 @@
         "value": 102,
         "url": "https://vtv.vn/trung-binh-102-trieu-dong-m2-gia-can-ho-tai-ha-noi-100260322082236072.htm",
         "provider": "Savills (via finance.json)"
+       },
+       {
+        "period": "2026-Q2",
+        "value": 116,
+        "url": "https://cafef.vn/chung-cu-ha-noi-vang-bong-can-ho-duoi-70-trieu-dong-m2-188260814143655062.chn",
+        "provider": "Savills Q2-2026 (latest quarter, not Q4; +16% q/q, +27% y/y; via finance.json)"
+       }
+      ],
+      "hanoi_primary_apartment_price_cbre_mvnd_m2": [
+       {
+        "period": "2026-Q2",
+        "value": 95,
+        "url": "https://vietnamfinance.vn/nguon-cung-chung-cu-ha-noi-lap-ky-luc-gia-can-ho-moi-neo-cao-d147694.html",
+        "provider": "CBRE (excl. VAT; +12% q/q, +21% y/y) - separate provider, never mixed with Savills"
        }
       ],
       "hanoi_hcmc_new_launch_price_moc_2025": [
@@ -3691,7 +4073,7 @@
        "note": "2025 apartment prices rose 'commonly 20-30%, >40% in some areas'"
       }
      },
-     "definition": "Hanoi average primary (new-launch) apartment asking price per Savills, Q4 of each year; MoC new-launch averages for 2025 (Hanoi and HCMC separately). Different providers and launch mix each quarter - not a constant-quality index, not spliced. HCMC Savills Q4 series not built (excerpts inconsistent, see finance.json).",
+     "definition": "Hanoi average primary (new-launch) apartment asking price per Savills, Q4 of each year plus the latest quarter (2026-Q2, labelled); CBRE Q2-2026 kept in its own list (different basis, excl. VAT); MoC new-launch averages for 2025 (Hanoi and HCMC separately). Different providers and launch mix each quarter - not a constant-quality index, not spliced. HCMC Savills Q4 series not built (excerpts inconsistent, see finance.json).",
      "source": "Savills Vietnam (via finance.json alternatives.real_estate) and Ministry of Construction reports",
      "url_or_note": "per observation",
      "verified": "search excerpts"
@@ -3709,6 +4091,94 @@
        "public_bn": 10599,
        "url": "https://vneconomy.vn/quy-mo-phat-hanh-trai-phieu-doanh-nghiep-giam-60-gan-164-000-ty-dong-duoc-mua-lai.htm",
        "note": "issuance; both about -65% vs 2021 (VBMA)"
+      }
+     ],
+     "issuance_2026_cumulative": [
+      {
+       "d": "2026-04-30",
+       "v": 77800,
+       "unit": "VND billion, cumulative Jan-Apr 2026",
+       "u": "https://mekongasean.vn/doanh-nghiep-tang-toc-phat-hanh-trai-phieu-55180.html",
+       "n": "'khoảng 77,8 nghìn tỷ' after 4 months (VBMA from HNX/SSC). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "d": "2026-05-29",
+       "v": 127351,
+       "unit": "VND billion, cumulative Jan-May 2026",
+       "u": "https://vbma.org.vn/storage/reports/June2026/VIE - VBMA Ban tin hoat dong thang 5.20261.pdf",
+       "n": "private 107,018 + public 20,333 (sum of the two stated parts). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "d": "2026-07-31",
+       "v": 289911,
+       "unit": "VND billion, cumulative Jan-Jul 2026",
+       "u": "https://thoibaotaichinhvietnam.vn/infographics-7-thang-doanh-nghiep-phat-hanh-289-911-ty-dong-trai-phieu-201996.html",
+       "n": "private 258,273 (89.09%), public 31,638 (10.91%). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "d": "2026-08-28",
+       "v": 349000,
+       "unit": "VND billion, cumulative Jan-Aug 2026 ('gần 349.000')",
+       "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-gan-349-000-ty-dong-sau-8-thang.html",
+       "n": "private ~296,000, public ~53,000; alt https://vnbusiness.vn/gan-349000-ty-dong-trai-phieu-doanh-nghiep-duoc-phat-hanh-bat-dong-san-tra-lai-toi-13nam.html. Year confirmed by the same excerpt comparing Aug buy-backs with Aug-2025. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      }
+     ],
+     "issuance_monthly_2026": [
+      {
+       "d": "2026-01",
+       "v": 3711,
+       "unit": "VND billion, issued in the month",
+       "u": "https://mekongasean.vn/trai-phieu-doanh-nghiep-khoi-sac-ngay-tu-dau-nam-2026-51658.html",
+       "n": "4 issues to 30/1 (private 190 Khai Hoan Land; public 3,521: VietinBank 2,221.5, BAF 1,000, F88 300). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "d": "2026-02",
+       "v": 3380.5,
+       "unit": "VND billion, issued in the month",
+       "u": "https://thitruongtaichinhtiente.vn/trai-phieu-mua-lai-truoc-han-giam-manh-trong-thang-2-ap-luc-dao-han-nam-2026-con-tren-194-000-ty-dong-80254.html",
+       "n": "to 28/2: private 79.5 + public 3,301 (BIDV, 3 issues). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "d": "2026-03",
+       "v": null,
+       "unit": "VND billion",
+       "u": null,
+       "n": "no month figure with a confirmed 2026 date found (excerpts with 11.6 tn / 31.6 tn could not be dated to 2026) - null. VBMA Q1-2026 cumulative 23,832 (public 12,917; private 10,915) seen in an excerpt without a pinned URL."
+      },
+      {
+       "d": "2026-04",
+       "v": 36200,
+       "unit": "VND billion, issued in the month",
+       "u": "https://mekongasean.vn/doanh-nghiep-tang-toc-phat-hanh-trai-phieu-55180.html",
+       "n": "18 issues 'hơn 36,2 nghìn tỷ': private 17 issues >35,200, public 1 issue 1,000. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "d": "2026-05",
+       "v": 40262,
+       "unit": "VND billion, issued in the month",
+       "u": "https://vbma.org.vn/storage/reports/June2026/VIE - VBMA Ban tin hoat dong thang 5.20261.pdf",
+       "n": "to 29/5: 29 private issues 36,263 + 4 public 3,999 (sum). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "d": "2026-06",
+       "v": 43876,
+       "unit": "VND billion, issued in the month",
+       "u": "https://mekongasean.vn/thi-truong-trai-phieu-6-thang-ngan-hang-va-bat-dong-san-dan-song-57333.html",
+       "n": "to 30/6: 41 issues; private 39 issues 40,376, public 2 issues 3,500. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+      },
+      {
+       "d": "2026-07",
+       "v": null,
+       "unit": "VND billion",
+       "u": null,
+       "n": "excerpt '20 issues, 12,339 bn' could not be dated to 2026 (12.5% Vinhomes coupons suggest another year) - null."
+      },
+      {
+       "d": "2026-08",
+       "v": 32029,
+       "unit": "VND billion, issued in the month",
+       "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-gan-349-000-ty-dong-sau-8-thang.html",
+       "n": "to 28/8: 33 issues 'hơn 32.000' (32,029 per the Research audit excerpt); private 25 issues ~25,600, public 8 issues ~6,400. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
       }
      ],
      "outstanding": [
@@ -3739,7 +4209,7 @@
        "n": "End-Aug-2026 market value of corporate bonds in circulation 1,491 thousand bn (private placement 1,299k; public 192k; banks 685k; residential RE 446k; 12-month default rate 0.24%). Search excerpt only (page fetch blocked); excerpts attribute the monthly report to FiinGroup in one result and VIS Rating in another — provider not confirmed. Not strictly comparable with the Jun-2026 figure."
       }
      ],
-     "definition": "Issuance (VBMA; private placement and public) and outstanding (FiinGroup/VBMA via finance.json). Annual issuance for 2021, 2023-2025 not confirmed in excerpts: missing, not estimated.",
+     "definition": "Issuance (VBMA; private placement and public) and outstanding (FiinGroup/VBMA via finance.json). Annual issuance for 2021, 2023-2025 not confirmed in excerpts: missing, not estimated. 2026: VBMA cumulative YTD points (8M ~349,000 bn) and month figures as disclosed by each month-end (Mar and Jul null); VBMA revises cumulatives upward for late disclosures, so months do not sum to the cumulative - see finance.json sources.corporate_bond_issuance_2026.",
      "source": "VBMA / FiinGroup via press; finance.json flows",
      "url_or_note": "per observation",
      "verified": "search excerpts"
@@ -4029,16 +4499,48 @@
       null,
       null,
       null,
-      null
+      -101900
      ],
-     "definition": "Not collected: no consistent monthly series in reach (MoF publishes cumulative estimates). Null by design.",
-     "source": "-",
-     "url_or_note": "gap",
-     "verified": "-",
+     "definition": "Revenue minus spending in the month, MoF cash-basis estimates (not the NA-defined deficit). Only Sep-2026 is filled: derived as the difference of two cumulative MoF estimates (9M − 8M: revenue 163,500 − spending 265,400 = -101,900 bn); cumulative estimates are revised between releases, so the month value is approximate. Other months null (no consistent monthly series in reach). Cumulative year-to-date balances in 'observations' (Q1, 8M, 9M); 9M = economy.json exec_9M2026.",
+     "source": "Ministry of Finance budget execution via press; data/economy.json",
+     "url_or_note": "per observation",
+     "verified": "search excerpts 2026-10-07 / Economy tab",
+     "observations": [
+      {
+       "date": "2026-03",
+       "period": "Q1-2026 cumulative",
+       "value": 299300,
+       "revenue": 829400,
+       "expenditure": 530100,
+       "url": "https://thitruongtaichinhtiente.vn/thu-ngan-sach-nha-nuoc-quy-i-2026-dat-829-nghin-ty-dong-tang-11-4-so-voi-cung-ky-80853.html",
+       "note": "revenue 829.4 tn (32.8% of plan) - spending 530.1 tn (16.8%) = +299.3 tn (derived), MoF estimate, cash basis; search excerpt 2026-10-07"
+      },
+      {
+       "date": "2026-08",
+       "period": "Jan-Aug 2026 cumulative",
+       "value": 415500,
+       "revenue": 2023800,
+       "expenditure": 1608300,
+       "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-chi-ngan-sach-nha-nuoc-8-thang-nam-2026-203305.html",
+       "note": "revenue 2,023.8 tn (80% of plan) - spending 1,608.3 tn (50.9%) = +415.5 tn (derived), MoF estimate, cash basis; search excerpt 2026-10-07"
+      },
+      {
+       "date": "2026-09",
+       "period": "Jan-Sep 2026 cumulative",
+       "value": 313600,
+       "revenue": 2187300,
+       "expenditure": 1873700,
+       "url": "https://vietstock.vn/2026/10/tong-thu-nsnn-9-thang-nam-2026-dat-21873-nghin-ty-dong-bang-865-du-toan-nam-758-1498672.htm",
+       "note": "copied from data/economy.json ECONFLOW.budget.exec_9M2026 (revenue − expenditure, cash basis (surplus); not the NA-defined deficit)"
+      }
+     ],
+     "derived_months": [
+      "2026-09"
+     ],
      "coverage": {
-      "n": 0,
-      "first": null,
-      "last": null
+      "n": 1,
+      "first": "2026-09",
+      "last": "2026-09"
      }
     },
     "cpi_yoy": {
@@ -6137,7 +6639,7 @@
    },
    {
     "key": "gov_bond_10y",
-    "why_en": "The 10-year government yield (4.0% end-2025 -> 4.36% Jul-2026) is the risk-free benchmark competing for the same savings and signals the fiscal financing need.",
+    "why_en": "The 10-year government yield (4.0% end-2025 -> 4.43% at the 23-Sep-2026 auction) is the risk-free benchmark competing for the same savings and signals the fiscal financing need.",
     "why_vi": "Lợi suất TPCP 10 năm là chuẩn phi rủi ro cạnh tranh cùng nguồn tiết kiệm và phản ánh nhu cầu vốn của ngân sách."
    },
    {
@@ -6215,6 +6717,30 @@
     "a": "SBV TT22 LDR 77.1% (Jun-2026) vs 85% cap",
     "b": "simple loans/deposits ~114% (Q2-2026)",
     "handling": "different definitions, never merged"
+   },
+   {
+    "topic": "Regulatory LDR Q2-2026",
+    "a": "77.06% SBV system statistic (Circular 22, 30/6/2026)",
+    "b": "~88% NSI estimate for its listed-bank sample",
+    "handling": "77.06 used (official, whole system); 88 is a sample estimate - coverage differs, not merged"
+   },
+   {
+    "topic": "10-year G-bond Sep-2026",
+    "a": "4.43% at the 23/9/2026 auction (Reuters)",
+    "b": "'4.67-4.80% in Sep' (vnbusiness excerpt, undated)",
+    "handling": "b rejected: earlier-year article (5-year above 10-year, 31 sessions incl. VBSP)"
+   },
+   {
+    "topic": "Corporate bond issuance 2026",
+    "a": "VBMA 7M 289,911 / 8M ~349,000 bn",
+    "b": "VBMA 5M 127,351 + Jun 43,876 = 171,227; other providers H1 ~273,500, 7M ~322,300",
+    "handling": "VBMA cumulatives kept as stated; months shown as disclosed; not reconciled or summed"
+   },
+   {
+    "topic": "Deposit growth Aug/Sep-2026",
+    "a": "8.77% (22/8, VND only) and 9.78% (28/9, NSO) mobilisation statements",
+    "b": "SBV table deposits of residents + organisations (latest Jul-2026 5.72% YTD)",
+    "handling": "statement points stored as labelled observations of deposit_ytd; monthly values and y/y gap (model driver) stay on the table basis"
    }
   ],
   "gaps": [
@@ -6225,7 +6751,7 @@
    },
    {
     "series": "gov_bond_10y",
-    "months_covered": 10,
+    "months_covered": 12,
     "of": 69
    },
    {
@@ -6295,17 +6821,17 @@
    },
    {
     "series": "sjc_gold_sell",
-    "months_covered": 6,
+    "months_covered": 13,
     "of": 69
    },
    {
     "series": "new_stock_accounts",
-    "months_covered": 9,
+    "months_covered": 21,
     "of": 69
    },
    {
     "series": "budget_balance_monthly",
-    "months_covered": 0,
+    "months_covered": 1,
     "of": 69
    },
    {
