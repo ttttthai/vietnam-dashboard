@@ -287,32 +287,20 @@ if (window.APP_LANG === 'en') window.I18N_START();
   #panel-map { flex: 1; min-width: 0; display: flex; flex-direction: column; background: var(--bg); border-right: 1px solid var(--border); overflow: hidden; }
   #map-wrap { flex: 1; overflow: hidden; position: relative; min-height: 0; min-width: 0; }
   #map-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-  /* Floating legend overlay */
-  #map-legend { position: absolute; top: 50%; left: 8px; transform: translateY(-50%); z-index: 10; display: flex; flex-direction: column; gap: 0; }
-  #map-legend-header { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.94); border: 1px solid var(--border); border-radius: 6px 6px 0 0; padding: 4px 8px; backdrop-filter: blur(4px); }
-  #legend-sel-label { font-size: 11px; font-weight: 700; color: var(--accent); flex: 1; }
-  #legend-toggle { background: none; border: none; color: var(--text2); cursor: pointer; font-size: 13px; padding: 0 2px; line-height: 1; }
-  #legend-toggle:hover { color: var(--accent); }
-  #legend-dropdown { display: flex; flex-direction: column; background: rgba(255,255,255,0.94); border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; backdrop-filter: blur(4px); overflow: hidden; }
-  #legend-dropdown.legend-closed { display: none; }
-  #legend-dropdown .rg-btn { padding: 4px 8px; font-size: 11px; gap: 5px; }
-  #legend-dropdown .rg-btn:hover { background: rgba(15,23,42,0.04); }
-  #legend-dropdown .rg-btn.active { background: rgba(11,83,148,0.12); color: var(--accent); }
-  #legend-dropdown .rg-dot { width: 8px; height: 8px; }
+  /* Region selector: dropdown, top right of the map card */
+  #map-legend { position: absolute; top: 8px; right: 8px; z-index: 10; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  #map-region-select { font: 500 12px var(--font-ui, system-ui); color: var(--text); background: rgba(255,255,255,0.96); border: 1px solid var(--border); border-radius: 6px; padding: 5px 26px 5px 9px; min-height: 30px; max-width: 220px; cursor: pointer; box-shadow: 0 1px 2px rgba(15,23,42,.06); }
+  #map-region-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  #map-region-key { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px 7px; max-width: 220px; font: 500 10px var(--font-ui, system-ui); color: var(--text2); background: rgba(255,255,255,0.85); border-radius: 4px; padding: 2px 5px; }
+  #map-region-key span { display: inline-flex; align-items: center; gap: 3px; }
+  #map-region-key i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
   /* Mobile/narrow viewports — shrink legend so it doesn't cover the map */
   @media (max-width: 720px) {
-    #map-legend-header { padding: 2px 6px; }
-    #legend-toggle { font-size: 10px; }
-    #legend-dropdown .rg-btn { padding: 2px 5px; font-size: 9px; gap: 3px; }
-    #legend-dropdown .rg-dot { width: 6px; height: 6px; }
     #legend-sel-label { font-size: 10px; }
   }
   @media (max-width: 480px) {
-    #map-legend { left: 4px; }
-    #map-legend-header { padding: 2px 4px; gap: 2px; }
-    #legend-toggle { font-size: 9px; padding: 0; }
-    #legend-dropdown .rg-btn { padding: 1px 4px; font-size: 8.5px; gap: 2px; }
-    #legend-dropdown .rg-dot { width: 5px; height: 5px; }
+    #map-legend { right: 4px; top: 4px; }
+    #map-region-select { font-size: 11px; min-height: 26px; padding: 3px 22px 3px 7px; }
   }
   /* Other panels */
   #vdivider { width: 5px; background: var(--bg3); cursor: col-resize; flex-shrink: 0; transition: background 0.2s; }
@@ -1025,7 +1013,12 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .soc-gs .soc-gs-rv { transition: opacity .5s ease, transform .5s ease; } .soc-gs.soc-gs-in .soc-gs-rv { opacity: 0; transform: translateY(-8px); }
   @media (prefers-reduced-motion: reduce) { .soc-gs .soc-gs-rv { transition: none; } }
   .soc-geo { display: grid; grid-template-columns: minmax(260px, 360px) 1fr; gap: 32px; align-items: start; }
-  @media (max-width: 900px) { .soc-geo { grid-template-columns: 1fr; } .soc-geo-map { max-width: 400px; } }
+  @media (max-width: 999px) { .soc-geo { grid-template-columns: 1fr; } .soc-geo-map { max-width: 400px; } }
+  .soc-geo-cv { min-width: 0; } .soc-cv-h { font: 600 13px/1.4 var(--font-ui); color: #16181d; margin: 0 0 6px; }
+  .soc-geo-cv .st-legend { margin-bottom: 4px; }
+  #soc-st-conv .soc-cv-b { cursor: pointer; outline: none; } #soc-st-conv .soc-cv-b:focus-visible .cv-c, .st-root.lk-hl #soc-st-conv .soc-cv-b.lk-on .cv-c { stroke: #16181d; stroke-width: 2; }
+  #soc-st-conv .soc-cv-t { font-size: 11.5px; stroke: #faf8f3; stroke-width: 3.5px; paint-order: stroke; pointer-events: none; }
+  .soc-gap { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 14px 0 4px; } @media (max-width: 560px) { .soc-gap { grid-template-columns: 1fr; } }
   #soc-st-map path.st-cell { stroke: #faf8f3; stroke-width: .8; transition: opacity .35s ease var(--d, 0ms), fill .4s ease var(--d, 0ms); }
   #soc-st-map path.st-cell:hover, #soc-st-map path.lk-on { stroke: #16181d; stroke-width: 1.6; }
   #soc-st-map .soc-hx g.hx { transition: transform .8s cubic-bezier(.3,.7,.2,1) var(--d, 0ms), opacity .15s ease; }
@@ -1436,20 +1429,19 @@ if (window.APP_LANG === 'en') window.I18N_START();
         <!-- Map fills the entire panel -->
         <div id="map-wrap">
           <svg id="map-svg"></svg>
-          <!-- Floating legend overlay (region selector only, no title) -->
+          <!-- Region selector: dropdown at the top right of the map card, with a compact colour key -->
           <div id="map-legend">
-            <div id="map-legend-header">
-              <button id="legend-toggle" title="Chọn vùng">☰ Vùng</button>
-            </div>
-            <div id="legend-dropdown">
-              <button class="rg-btn active" data-type="all" data-key="all"><span class="rg-dot" style="background:#94a3b8"></span>Cả nước</button>
-              <button class="rg-btn" data-type="v" data-key="1"><span class="rg-dot" style="background:#1baf7a"></span>V1 – Trung du & MN Bắc</button>
-              <button class="rg-btn" data-type="v" data-key="2"><span class="rg-dot" style="background:#008300"></span>V2 – Đồng bằng S.Hồng</button>
-              <button class="rg-btn" data-type="v" data-key="3"><span class="rg-dot" style="background:#2a78d6"></span>V3 – Bắc Trung Bộ</button>
-              <button class="rg-btn" data-type="v" data-key="4"><span class="rg-dot" style="background:#f43f5e"></span>V4 – Nam TB & Tây Nguyên</button>
-              <button class="rg-btn" data-type="v" data-key="5"><span class="rg-dot" style="background:#eb6834"></span>V5 – Đông Nam Bộ</button>
-              <button class="rg-btn" data-type="v" data-key="6"><span class="rg-dot" style="background:#eda100"></span>V6 – Đồng bằng S.CL</button>
-            </div>
+            <select id="map-region-select" aria-label="Chọn vùng hoặc tỉnh" title="Chọn vùng">
+              <option value="all:all">Cả nước</option>
+              <option value="v:1">V1 – Trung du & MN Bắc</option>
+              <option value="v:2">V2 – Đồng bằng S.Hồng</option>
+              <option value="v:3">V3 – Bắc Trung Bộ</option>
+              <option value="v:4">V4 – Nam TB & Tây Nguyên</option>
+              <option value="v:5">V5 – Đông Nam Bộ</option>
+              <option value="v:6">V6 – Đồng bằng S.CL</option>
+              <option value="p:" id="map-sel-prov" hidden></option>
+            </select>
+            <div id="map-region-key" aria-hidden="true"><span title="V1 – Trung du & MN Bắc"><i style="background:#1baf7a"></i>V1</span><span title="V2 – Đồng bằng S.Hồng"><i style="background:#008300"></i>V2</span><span title="V3 – Bắc Trung Bộ"><i style="background:#2a78d6"></i>V3</span><span title="V4 – Nam TB & Tây Nguyên"><i style="background:#f43f5e"></i>V4</span><span title="V5 – Đông Nam Bộ"><i style="background:#eb6834"></i>V5</span><span title="V6 – Đồng bằng S.CL"><i style="background:#eda100"></i>V6</span></div>
           </div>
         </div>
       </div><!-- /panel-map -->
@@ -2531,9 +2523,12 @@ function setSelection(type, key, name) {
   // Update floating legend label
   const lbl = document.getElementById('legend-sel-label');
   if (lbl) lbl.textContent = name;
-  document.querySelectorAll('.rg-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.type === type && b.dataset.key === key);
-  });
+  const sel = document.getElementById('map-region-select');
+  if (sel) {
+    const po = document.getElementById('map-sel-prov');
+    if (type === 'p') { po.value = 'p:' + key; po.textContent = name; po.hidden = false; sel.value = po.value; }
+    else { po.hidden = true; sel.value = type + ':' + key; }
+  }
   updateMapColors();
   const _crl=document.getElementById('corr-region-label'); if(_crl) _crl.textContent=name;
   const _ssl=document.getElementById('ss-sel-label'); if(_ssl) _ssl.textContent=name;
@@ -2542,15 +2537,11 @@ function setSelection(type, key, name) {
   if (activeBottomTab === 'econ' && econReady) updateSpecialCharts('all', 0);
 }
 
-// Legend toggle (☰ button collapses/expands the dropdown)
-document.getElementById('legend-toggle').addEventListener('click', () => {
-  const dd = document.getElementById('legend-dropdown');
-  dd.classList.toggle('legend-closed');
+// Region selector (dropdown): choose the whole country or a region; clicking a province on the map shows it here
+document.getElementById('map-region-select').addEventListener('change', e => {
+  const [type, key] = e.target.value.split(':'); if (type === 'p') return;
+  setSelection(type, key, e.target.selectedOptions[0].textContent.trim());
 });
-// On small screens, start with the legend collapsed so it doesn't block the map
-if (window.matchMedia('(max-width: 720px)').matches) {
-  document.getElementById('legend-dropdown').classList.add('legend-closed');
-}
 
 // ============================================================
 // DEMOGRAPHIC PYRAMID
@@ -6280,7 +6271,7 @@ const socGrdp = () => PROVS.map(p => ({ n: p.n, r: p.v, id: p.id, v: ((SOC_GRDP[
 function renderSocStory() {
   const root = document.getElementById('soc-story'); if (!root || typeof POP_SERIES === 'undefined') return;
   const A = POP_SERIES.actual, y1 = Math.max(...Object.keys(A).map(Number)), pop = A[y1], W = WORLD_RANK, N = POP_SERIES.nat, gp = POP_SERIES.gso.peak || {}, up = POP_SERIES.un.peak || {};
-  const tfr = socRows('tfr').sort((a, b) => a.v - b.v), below = tfr.filter(r => r.v < 2.1).length, gr = socGrdp(), top = gr[0], bot = gr[gr.length - 1];
+  const tfr = socRows('tfr').sort((a, b) => a.v - b.v), below = tfr.filter(r => r.v < 2.1).length;
   const C = RELIGION.nat.c19;
   // hero growth reads the latest national release (nat_latest, e.g. 2025 preliminary); chapter 1 keeps POP_SERIES.nat, the year of the province survey
   const NL = POP_SERIES.nat_latest && POP_SERIES.nat_latest.growth_pct != null ? POP_SERIES.nat_latest : N, nlP = /sơ bộ|prelim/i.test(NL.status || '') ? stT(', sơ bộ', ', preliminary') : '';
@@ -6306,10 +6297,22 @@ function renderSocStory() {
      <p class="soc-gs-q">${stT('Kéo chấm đen (hoặc chọn nó rồi dùng phím mũi tên) tới con số bạn nghĩ, rồi bấm “Xem dự báo”. Không đoán cũng được: bấm thẳng nút. Không có gì được lưu hay gửi đi.', 'Drag the black dot (or select it and use the arrow keys) to your number, then press “Show the projections”. You can also skip the guess and press the button. Nothing is stored or sent.')}</p>
      <div id="soc-st-guess" class="st-viz soc-gs"></div><div class="st-ctrl" id="soc-st-guess-ctl"></div><div id="soc-st-guess-out" aria-live="polite"></div>
      ${stSrc(stT(`Nguồn: Liên Hợp Quốc, World Population Prospects 2024 (UN WPP 2024) — dân số theo tuổi đơn và giới tính, cộng thành nhóm 5 tuổi; dân số tại 31/12. Tỷ số giới tính theo WPP (~${stN(AS.sex_ratio[asA], 0)} nam/100 nữ) thấp hơn số tổng điều tra của NSO (~99). Dự báo riêng của NSO (2019–2069) là một nguồn khác, không gộp vào đây.`, `Source: United Nations, World Population Prospects 2024 (UN WPP 2024) — single-year age by sex, summed to 5-year groups; population at 31 December. WPP's sex ratio (~${stN(AS.sex_ratio[asA], 0)} males per 100 females) is lower than the NSO census (~99). The NSO's own 2019–2069 projection is a different source and is not mixed in.`))}`);
-  h += stChap('soc-st-rich', stT('Chương 3 · Khoảng cách vùng miền', 'Chapter 3 · The regional gap'),
-    stT(`GRDP bình quân ${top.n} ${stN(top.v, 0)} USD/người, gấp ${stN(top.v / bot.v, 1)} lần ${bot.n}`, `GRDP per person in ${top.n} is ${stN(top.v, 0)} USD, ${stN(top.v / bot.v, 1)}× ${bot.n}`),
-    stT('GRDP bình quân đầu người năm 2025 (USD), 34 tỉnh, thành. Đường đứt nét: bình quân cả nước. Bản đồ ô cho mỗi tỉnh một ô bằng nhau, đặt gần đúng vị trí; bấm “Xếp hạng” để các ô xếp thành dải chấm theo giá trị, hoặc đổi chỉ số. Rê chuột vào một ô, thanh hoặc chấm để thấy tỉnh đó trên mọi biểu đồ của trang.', 'GRDP per person in 2025 (USD), 34 provinces. Dashed line: national average. The tile map gives every province one equal tile in roughly its place; press “Ranked” to line the tiles up by value, or switch the measure. Hover a tile, a bar or a dot to pick the province out on every chart on this page.'),
-    `<div class="soc-geo"><div class="soc-geo-map"><div class="st-ctrl" id="soc-st-map-ctl"></div><div id="soc-st-map-leg"></div><div id="soc-st-map" class="st-viz"></div></div><div><div id="soc-st-grdp" class="st-viz"></div></div></div><div id="soc-st-map-note"></div>${stSrc(stT('Nguồn: NSO và cục thống kê các tỉnh — GRDP 2025 ước tính; bình quân cả nước = GDP 2025 / dân số trung bình, quy đổi theo tỷ giá bình quân năm. Đô thị hoá, tuổi thọ, mức sinh: Điều tra biến động dân số 1/4/2024; mật độ: dân số trung bình 2025 / diện tích. Bản đồ thật ở phần Tự khám phá.', 'Source: NSO and provincial statistics offices — 2025 GRDP estimates; national average = 2025 GDP / average population at the annual average exchange rate. Urbanisation, life expectancy, fertility: population change survey of 1 Apr 2024; density: 2025 average population / area. The real map is in Explore.') + ' ' + socFxTxt())}`);
+  const CV = socConvData(), cvR = CV && CV.ratio, cvUp = cvR && cvR.b.v > cvR.a.v;
+  if (CV) h += stChap('soc-st-rich', stT('Chương 3 · Khoảng cách vùng miền', 'Chapter 3 · The regional gap'),
+    stT(`GRDP/người: tỉnh giàu nhất gấp ${stN(cvR.b.v, 1)} lần tỉnh nghèo nhất, ${cvUp ? 'tăng' : 'giảm'} từ ${stN(cvR.a.v, 1)} lần năm ${CV.y0}`, `The richest province's GRDP per person is ${stN(cvR.b.v, 1)}× the poorest's, ${cvUp ? 'up' : 'down'} from ${stN(cvR.a.v, 1)}× in ${CV.y0}`),
+    stT('Bản đồ ô cho mỗi tỉnh, thành một ô bằng nhau, đặt gần đúng vị trí; bấm “Xếp hạng” để xếp các ô theo giá trị, hoặc đổi chỉ số. Biểu đồ bong bóng hỏi: tỉnh nghèo có đuổi kịp không? Mỗi bong bóng là một tỉnh — trục ngang là GRDP/người năm ' + CV.y0 + ', trục dọc là mức tăng bình quân mỗi năm đến ' + CV.y1 + ', diện tích là dân số. Rê chuột vào một ô hoặc bong bóng để thấy tỉnh đó trên mọi biểu đồ của trang.', 'The tile map gives every province one equal tile in roughly its place; press “Ranked” to line the tiles up by value, or switch the measure. The bubble chart asks: are poorer provinces catching up? Each bubble is a province — across, GRDP per person in ' + CV.y0 + '; up, its average yearly growth to ' + CV.y1 + '; area, its population. Hover a tile or a bubble to pick the province out on every chart on this page.'),
+    `<div class="soc-geo"><div class="soc-geo-map"><div class="st-ctrl" id="soc-st-map-ctl"></div><div id="soc-st-map-leg"></div><div id="soc-st-map" class="st-viz"></div><div id="soc-st-map-note"></div></div>
+     <div class="soc-geo-cv"><div class="soc-cv-h">${stT(`Tỉnh nghèo có đuổi kịp không? GRDP/người ${CV.y0} và mức tăng bình quân mỗi năm ${CV.y0}–${CV.y1}`, `Are poorer provinces catching up? GRDP per person in ${CV.y0} and its average yearly growth, ${CV.y0}–${CV.y1}`)}</div>
+     ${stLegend([1, 2, 3, 4, 5, 6].map(v => ({ n: socRegName(v), c: VCOL[v], k: 'dot' })))}${stLegend([{ n: stT(`Cả nước ≈ ${stN(CV.nat, 1)}%/năm`, `National ≈ ${stN(CV.nat, 1)}% a year`), c: ST.ink, k: 'dash' }, { n: stT('Đường xu hướng', 'Trend line'), c: ST.ink3, k: 'line' }, { n: stT(`Diện tích = dân số ${CV.y1}`, `Area = population ${CV.y1}`), c: ST.ink3, k: 'ring' }])}
+     <div id="soc-st-conv" class="st-viz"></div>
+     <div class="soc-gap">
+       <div class="st-fact"><div class="st-mini-h">${stT('Tỉnh giàu nhất ÷ tỉnh nghèo nhất, GRDP/người', 'Richest ÷ poorest province, GRDP per person')}</div><div class="st-mini-v">${stN(cvR.a.v, 1)}× → ${stN(cvR.b.v, 1)}×</div><div class="st-fact-s">${CV.y0}: ${ciE(cvR.a.hi.n)} ÷ ${ciE(cvR.a.lo.n)} · ${CV.y1}: ${ciE(cvR.b.hi.n)} ÷ ${ciE(cvR.b.lo.n)}</div></div>
+       <div class="st-fact"><div class="st-mini-h">${stT('Độ phân tán giữa các tỉnh, có trọng số dân số', 'Spread across provinces, weighted by population')}</div><div class="st-mini-v">${stN(CV.cv0, 2)} → ${stN(CV.cv1, 2)}</div><div class="st-fact-s">${stT(`Hệ số biến thiên của GRDP/người (độ lệch chuẩn ÷ bình quân); thấp hơn = các tỉnh gần nhau hơn. ${CV.y0} → ${CV.y1}.`, `Coefficient of variation of GRDP per person (standard deviation ÷ mean); lower = provinces closer together. ${CV.y0} → ${CV.y1}.`)}</div></div>
+     </div>
+     ${stNote(stT(`Trung bình, tỉnh xuất phát thấp tăng ${CV.b < 0 ? 'nhanh' : 'chậm'} hơn${Math.abs(CV.r) < .4 ? ' một chút' : ''} (độ dốc ${stN(CV.b * Math.LN2, 1)} điểm %/năm mỗi khi GRDP/người ${CV.y0} gấp đôi, r ≈ ${stN(CV.r, 2)}); độ phân tán ${CV.cv1 < CV.cv0 ? 'thu hẹp' : 'nới rộng'} từ ${stN(CV.cv0, 2)} ${CV.cv1 < CV.cv0 ? 'xuống' : 'lên'} ${stN(CV.cv1, 2)}${CV.cv1 < CV.cv0 && cvUp ? ', nhưng hai đầu lại giãn ra' : ''}: tỷ lệ giàu nhất/nghèo nhất ${cvUp ? 'tăng' : 'giảm'} từ ${stN(cvR.a.v, 1)} ${cvUp ? 'lên' : 'xuống'} ${stN(cvR.b.v, 1)} lần.`,
+        `On average, provinces that started lower grew ${Math.abs(CV.r) < .4 ? 'slightly ' : ''}${CV.b < 0 ? 'faster' : 'slower'} (slope ${stN(CV.b * Math.LN2, 1)} points a year per doubling of ${CV.y0} GRDP per person, r ≈ ${stN(CV.r, 2)}), and the spread ${CV.cv1 < CV.cv0 ? 'narrowed' : 'widened'} from ${stN(CV.cv0, 2)} to ${stN(CV.cv1, 2)}${CV.cv1 < CV.cv0 && cvUp ? ' — but the extremes moved apart' : ''}: the richest-to-poorest ratio ${cvUp ? 'rose' : 'fell'} from ${stN(cvR.a.v, 1)}× to ${stN(cvR.b.v, 1)}×.`),
+      stT(`Mức tăng tính từ số danh nghĩa (≈; không có chỉ số giá theo tỉnh) nên gồm cả lạm phát. GRDP đo giá trị sản xuất tạo ra trong tỉnh, không phải thu nhập của người dân; số ${CV.y1} là ước tính.`, `Growth is derived from nominal values (≈; there are no provincial deflators), so it includes inflation. GRDP measures output located in the province, not residents' income; ${CV.y1} figures are estimates.`))}</div></div>
+     ${stSrc(stT(`Nguồn: NSO và cục thống kê các tỉnh — GRDP, GRDP/người (giá hiện hành) và dân số trung bình ${CV.y0} và ${CV.y1} của 34 tỉnh, thành (${CV.y1} ước tính). Bình quân cả nước trong biểu đồ bong bóng = tổng GRDP / tổng dân số 34 tỉnh, thành. Bản đồ ô: GRDP/người ${CV.y1} bằng USD; bình quân cả nước = GDP ${CV.y1} / dân số trung bình, quy đổi theo tỷ giá bình quân năm. Đô thị hoá, tuổi thọ, mức sinh: Điều tra biến động dân số 1/4/2024; mật độ: dân số trung bình ${CV.y1} / diện tích. Bản đồ thật ở phần Tự khám phá.`, `Source: NSO and provincial statistics offices — GRDP, GRDP per person (current prices) and average population for the 34 provinces, ${CV.y0} and ${CV.y1} (${CV.y1} estimates). National average in the bubble chart = total GRDP / total population of the 34 provinces. Tile map: ${CV.y1} GRDP per person in USD; national average = ${CV.y1} GDP / average population at the annual average exchange rate. Urbanisation, life expectancy, fertility: population change survey of 1 Apr 2024; density: ${CV.y1} average population / area. The real map is in Explore.`) + ' ' + socFxTxt())}`);
   h += stChap('soc-st-rank', stT('Chương 4 · Việt Nam trên bản đồ thế giới', 'Chapter 4 · Vietnam among nations'),
     stT(`Thứ ${W.pop.now.rank} về dân số, ${W.g_growth.now.rank} về tăng trưởng, ${W.g_gdp_pc.now.rank} về GDP bình quân đầu người`, `${W.pop.now.rank}th for population, ${W.g_growth.now.rank}th for growth, ${W.g_gdp_pc.now.rank}th for GDP per person`),
     stT('Vị trí của Việt Nam trong khoảng 200 quốc gia và vùng lãnh thổ (trái = cao nhất). Ba chỉ số trong tiêu đề được tô đậm.', 'Vietnam\'s position among roughly 200 countries and territories (left = highest). The three in the headline are highlighted.'),
@@ -6322,7 +6325,7 @@ function renderSocStory() {
     stT('Bản đồ 34 tỉnh và tháp dân số', 'The 34-province map and the population pyramid'),
     stT('Bấm một tỉnh hoặc chọn vùng để xem tổng quan kinh tế – xã hội; kéo thanh thời gian hoặc bấm ▶ để xem tháp dân số cả nước 2000–2050 (UN WPP 2024; từ 2025 là dự báo).', 'Click a province or pick a region for its socio-economic summary; drag the timeline or press ▶ to step the national population pyramid from 2000 to 2050 (UN WPP 2024; projections from 2025).'), '');
   root.innerHTML = h;
-  socStPop(); socStStrip(); socStMult(); socStAge(); socStGuess(); socStGrdp(); socStRanks(); socStWaffle();
+  socStPop(); socStStrip(); socStMult(); socStAge(); socStGuess(); socStConv(); socStRanks(); socStWaffle();
   stFinish(root); socStMap();
 }
 // hero — population 2000–2025 (ink) + projections to 2050 (dashed; NSO band low–high), crosshair
@@ -6459,21 +6462,76 @@ document.addEventListener('keydown', e => { const h = e.target.closest && e.targ
 document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-soc-gs]'); if (!b) return;
   if (b.dataset.socGs === 'show') { SOC_GS.shown = true; socStGuess(); const el = document.getElementById('soc-st-guess'); if (el) { el.classList.add('soc-gs-in'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('soc-gs-in'))); } const r = el && el.closest('.st-root'); if (r) stTables(r); const nb = document.querySelector('[data-soc-gs="again"]'); if (nb) nb.focus({ preventScroll: true }); }
   else { SOC_GS.shown = false; SOC_GS.moved = false; SOC_GS.v = null; socStGuess(); const h = document.querySelector('#soc-st-guess .soc-gs-h'); if (h) h.focus({ preventScroll: true }); } });
-// ch3 — GRDP per person by province: sorted bars (24px cap), the two named provinces accented, the rest grey
-function socStGrdp() {
-  const el = document.getElementById('soc-st-grdp'), rows = socGrdp(), top = rows[0], bot = rows[rows.length - 1];
-  const nat = socNat();
-  const W = stCW(el, 680), narrow = W < 460, ML = narrow ? 112 : 130, MR = 56, RH = 18, H = rows.length * RH + 30, mx = top.v, sx = stLin(0, mx, ML, W - MR);
-  let s = `<line class="st-base" x1="${ML}" x2="${ML}" y1="0" y2="${rows.length * RH + 4}"/>`;
-  rows.forEach((x, i) => { const y = 4 + i * RH + RH / 2, acc = x === top || x === bot;
-    const lk = `data-lk="pv:${x.id}"`;
-    s += `<text class="st-lab${acc ? ' st-b' : ''}" x="${ML - 8}" y="${y + 4}" text-anchor="end" style="font-size:11.5px" ${lk}>${ciE(x.n)}</text>` + stBarH(y, RH, sx(x.v), ML, acc ? ST.blue : ST_MUTE, [x.n + ' · ' + socRegName(x.r), stN(x.v, 0) + ' USD'], { d: i * 18, attr: lk });
-    s += `<text class="st-val${acc || i < 3 || i > rows.length - 4 ? '' : ' st-hideval'}" x="${sx(x.v) + 6}" y="${y + 4}" ${lk}>${stN(x.v, 0)}</text>`; });
-  const above = nat ? rows.filter(r => r.v > nat).length : 0;
-  if (nat) s += `<line x1="${sx(nat)}" x2="${sx(nat)}" y1="0" y2="${H - 20}" stroke="${ST.ink}" stroke-dasharray="5,4"/><text class="st-lab st-b" x="${sx(nat) + 6}" y="${H - 6}">${stT('Cả nước', 'National')} ≈ ${stN(nat, 0)} USD</text>`;
-  el.innerHTML = stSvg(W, H, s, stT('GRDP bình quân đầu người theo tỉnh', 'GRDP per person by province'));
-  if (nat && document.getElementById('soc-st-grdp-note')) document.getElementById('soc-st-grdp-note').innerHTML = stNote(stT(`${above} trong ${rows.length} tỉnh, thành có GRDP bình quân cao hơn mức cả nước ${stN(nat, 0)} USD.`, `${above} of ${rows.length} provinces are above the national ${stN(nat, 0)} USD.`), stT('GRDP đo giá trị sản xuất tại tỉnh, không phải thu nhập của người dân.', 'GRDP measures output produced in a province, not residents\' income.'));
-  stRW(el, socStGrdp);
+// ch3 — convergence ("are poorer provinces catching up?"): x = GRDP per person in Y0 (million VND, log), y = its average yearly
+// growth Y0→Y1 derived from NOMINAL values ((x1/x0)^(1/n) − 1, marked ≈), bubble area = Y1 population, colour = region (VCOL, as
+// on the National Map). National reference = the same rate for Σ GRDP / Σ population; trend = OLS of y on ln x. Also the
+// richest ÷ poorest ratio and the population-weighted coefficient of variation in Y0 and Y1. Everything computed from SOC_GRDP.
+function socConvData(y0 = 2020, y1 = 2025) {
+  if (typeof SOC_GRDP === 'undefined') return null;
+  const n = y1 - y0, rows = PROVS.map(p => { const d = SOC_GRDP[p.n] || {}, x = d.grdp_pc_mvnd || {}, pp = d.pop_avg_thousand || {}, b = d.grdp_bn || {};
+    return { n: p.n, r: p.v, id: p.id, x0: x[y0], x1: x[y1], p0: pp[y0], p1: pp[y1], b0: b[y0], b1: b[y1], g: (d.growth || {})[y1] }; })
+    .filter(r => r.x0 > 0 && r.x1 > 0 && r.p0 > 0 && r.p1 > 0);
+  if (rows.length < 3) return null;
+  rows.forEach(r => { r.y = (Math.pow(r.x1 / r.x0, 1 / n) - 1) * 100; });
+  const sum = f => rows.reduce((t, r) => t + f(r), 0), okB = rows.every(r => r.b0 > 0 && r.b1 > 0);
+  const nat = okB ? (Math.pow((sum(r => r.b1) / sum(r => r.p1)) / (sum(r => r.b0) / sum(r => r.p0)), 1 / n) - 1) * 100 : null;
+  const lx = rows.map(r => Math.log(r.x0)), mx = lx.reduce((a, b) => a + b) / lx.length, my = sum(r => r.y) / rows.length;
+  let sxy = 0, sxx = 0, syy = 0; rows.forEach((r, i) => { sxy += (lx[i] - mx) * (r.y - my); sxx += (lx[i] - mx) ** 2; syy += (r.y - my) ** 2; });
+  const b = sxy / sxx, a = my - b * mx, rr = sxy / Math.sqrt(sxx * syy);
+  const cv = (xk, pk) => { const W = sum(r => r[pk]), mu = sum(r => r[xk] * r[pk]) / W; return Math.sqrt(sum(r => r[pk] * (r[xk] - mu) ** 2) / W) / mu; };
+  const ext = k => { const s = rows.slice().sort((p, q) => q[k] - p[k]), hi = s[0], lo = s[s.length - 1]; return { hi, lo, v: hi[k] / lo[k] }; };
+  return { rows, y0, y1, nat, a, b, r: rr, cv0: cv('x0', 'p0'), cv1: cv('x1', 'p1'), ratio: { a: ext('x0'), b: ext('x1') } };
+}
+function socStConv() {
+  const el = document.getElementById('soc-st-conv'), D = socConvData(); if (!el || !D) return;
+  const R = D.rows, W = stCW(el, 760, 300), narrow = W < 520, ML = 40, MR = narrow ? 8 : 14, MT = 26, MB = 46, H = narrow ? 380 : 440;
+  const xs = R.map(r => r.x0), lo = Math.min(...xs) * .88, hi = Math.max(...xs) * 1.12, L = Math.log;
+  const sx = v => ML + (L(v) - L(lo)) / (L(hi) - L(lo)) * (W - ML - MR);
+  const yv = R.map(r => r.y).concat(D.nat != null ? [D.nat] : []), yMx = Math.max(...yv) + .4, yt = stNice(Math.min(...yv) - .4, yMx, 4); if (yt[yt.length - 1] < yMx) yt.push(+(yt[yt.length - 1] + yt[1] - yt[0]).toFixed(10));   // stNice stops at or below the max
+  const sy = stLin(yt[0], yt[yt.length - 1], H - MB, MT);
+  const pmax = Math.max(...R.map(r => r.p1)), rMax = narrow ? 16 : 22, rad = p => Math.max(3.5, rMax * Math.sqrt(p / pmax));
+  const nm = r => r.id === 29 ? 'TP.HCM' : r.n, f1 = v => stN(v, 1);
+  let s = stAxisY(sy, yt, ML, W - MR, t => stN(t, 0) + '%');
+  const xt = [20, 30, 40, 60, 100, 150, 200, 300, 400].filter(t => t >= lo && t <= hi);
+  s += xt.map(t => `<line class="st-grid" x1="${sx(t)}" x2="${sx(t)}" y1="${MT}" y2="${H - MB}"/><text class="st-tick" x="${sx(t)}" y="${H - MB + 16}" text-anchor="middle">${stN(t, 0)}</text>`).join('');
+  s += `<text class="st-tick" x="${ML}" y="${H - 6}">${stT(`GRDP/người ${D.y0}, triệu đồng (thang log) →`, `GRDP per person ${D.y0}, million VND (log scale) →`)}</text>`;
+  s += `<text class="st-tick" x="0" y="12">${narrow ? stT(`↑ Tăng bình quân/năm ${D.y0}–${D.y1} (≈, danh nghĩa)`, `↑ Average yearly growth ${D.y0}–${D.y1} (≈, nominal)`) : stT(`↑ Tăng GRDP/người bình quân/năm ${D.y0}–${D.y1} (≈, tính từ số danh nghĩa)`, `↑ GRDP per person, average yearly growth ${D.y0}–${D.y1} (≈, derived from nominal values)`)}</text>`;
+  // label obstacles (boxes [x0, y0, x1, y1]) — reference-line labels first, then province labels placed greedily
+  const box = [], cw = narrow ? 6 : 6.4, hit = (a, b) => a[0] < b[2] && b[0] < a[2] && a[1] < b[3] && b[1] < a[3];
+  const tx0 = lo * 1.03, tx1 = hi / 1.03, ty = v => sy(D.a + D.b * L(v));
+  s += `<path d="M${sx(tx0).toFixed(1)},${ty(tx0).toFixed(1)} L${sx(tx1).toFixed(1)},${ty(tx1).toFixed(1)}" stroke="${ST.ink3}" stroke-width="1.25" fill="none"/>`;
+  if (D.nat != null) { const yN = sy(D.nat), t = stT(`Cả nước ≈ ${f1(D.nat)}%/năm`, `National ≈ ${f1(D.nat)}% a year`), w = t.length * cw;
+    s += `<line x1="${ML}" x2="${W - MR}" y1="${yN}" y2="${yN}" stroke="${ST.ink}" stroke-width="1.25" stroke-dasharray="5,4"/>`;
+    const ny = Math.abs(ty(tx1) - yN) < 16 && ty(tx1) < yN ? yN + 14 : yN - 5;
+    s += `<text class="st-lab st-b soc-cv-t" x="${W - MR - 2}" y="${ny}" text-anchor="end">${t}</text>`; box.push([W - MR - 2 - w, ny - 11, W - MR, ny + 3]); }
+  // bubbles: largest first so small ones stay on top; each carries the province link key
+  const ord = R.map((r, i) => i).sort((p, q) => R[q].p1 - R[p].p1);
+  s += ord.map(i => { const r = R[i], cx = sx(r.x0), cy = sy(r.y), rr = rad(r.p1);
+    return `<g class="soc-cv-b" data-i="${i}" data-lk="pv:${r.id}" tabindex="0" role="img" aria-label="${ciE(`${r.n}: ${f1(r.x0)} → ${f1(r.x1)} ${stT('triệu đồng/người', 'million VND per person')}, ≈ ${f1(r.y)}%/${stT('năm', 'yr')}`)}"><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${Math.max(12, rr + 2).toFixed(1)}" fill="transparent"/><circle class="cv-c" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${rr.toFixed(1)}" fill="${VCOL[r.r]}" fill-opacity=".82" stroke="${ST_SURF}" stroke-width="1.5"/></g>`; }).join('');
+  // direct labels: the 3 fastest, the 3 slowest, and the richest/poorest of each year (computed, not named in code)
+  const byY = R.slice().sort((p, q) => q.y - p.y), pick = new Set([...byY.slice(0, 3), ...byY.slice(-3), D.ratio.a.hi, D.ratio.a.lo, D.ratio.b.hi, D.ratio.b.lo]);
+  const circ = R.map(r => [sx(r.x0), sy(r.y), rad(r.p1)]), cHit = (b, c) => { const nx = Math.max(b[0], Math.min(c[0], b[2])), ny = Math.max(b[1], Math.min(c[1], b[3])); return Math.hypot(nx - c[0], ny - c[1]) < c[2]; };
+  let labs = '', hid = '';
+  [...pick].sort((p, q) => q.p1 - p.p1).forEach(r => { const [cx, cy, rr] = circ[R.indexOf(r)], t = nm(r), w = t.length * cw;
+    const cand = [[cx + rr + 4, cy + 4, 'start'], [cx - rr - 4, cy + 4, 'end'], [cx, cy - rr - 5, 'middle'], [cx, cy + rr + 13, 'middle'], [cx + rr * .7 + 3, cy - rr * .7 - 3, 'start'], [cx - rr * .7 - 3, cy - rr * .7 - 3, 'end']];
+    const bx = ([x, y, a]) => { const x0 = a === 'start' ? x : a === 'end' ? x - w : x - w / 2; return [x0, y - 10, x0 + w, y + 3]; };
+    const ok = c => { const b = bx(c); return b[0] >= ML && b[2] <= W - 1 && b[1] >= MT - 4 && b[3] <= H - MB && !box.some(o => hit(o, b)); };
+    const sc = c => circ.filter(k => cHit(bx(c), k)).length;
+    const c = cand.filter(ok).sort((p, q) => sc(p) - sc(q))[0] || cand[0]; box.push(bx(c));
+    labs += `<text class="st-lab soc-cv-t" x="${c[0].toFixed(1)}" y="${c[1].toFixed(1)}" text-anchor="${c[2]}" data-lk="pv:${r.id}">${ciE(t)}</text>`; });
+  // every other province gets a label that only shows while it is highlighted (hover here or on the tile map)
+  R.filter(r => !pick.has(r)).forEach(r => { const [cx, cy, rr] = circ[R.indexOf(r)];
+    hid += `<text class="st-lab st-b soc-cv-t st-hideval" x="${cx.toFixed(1)}" y="${(cy - rr - 5).toFixed(1)}" text-anchor="middle" data-lk="pv:${r.id}">${ciE(nm(r))}</text>`; });
+  el.innerHTML = stSvg(W, H, s + labs + hid, stT(`Biểu đồ bong bóng: GRDP/người ${D.y0} và mức tăng bình quân mỗi năm ${D.y0}–${D.y1} của 34 tỉnh, thành`, `Bubble chart: GRDP per person in ${D.y0} and its average yearly growth ${D.y0}–${D.y1}, 34 provinces`));
+  el._stRows = { head: [stT('Tỉnh, thành', 'Province'), stT('Vùng', 'Region'), stT(`GRDP/người ${D.y0} (tr đ)`, `GRDP/person ${D.y0} (m VND)`), stT(`GRDP/người ${D.y1} (tr đ)`, `GRDP/person ${D.y1} (m VND)`), stT('Tăng bq/năm (≈ %)', 'Avg growth/yr (≈ %)'), stT(`Tăng trưởng GRDP ${D.y1} (%, giá so sánh)`, `GRDP growth ${D.y1} (%, real)`), stT(`Dân số ${D.y1} (nghìn)`, `Population ${D.y1} (thousand)`)],
+    rows: byY.map(r => [r.n, socRegName(r.r), f1(r.x0), f1(r.x1), f1(r.y), r.g != null ? stN(r.g, 2) : '—', stN(r.p1, 0)]) };
+  const tip = e => { const g = e.target.closest && e.target.closest('.soc-cv-b'); if (!g) { dotTipHide(); return; } const r = R[+g.dataset.i];
+    stTipKV(e, `${r.n} · ${socRegName(r.r)}`, '', [{ v: `≈ ${f1(r.y)}%/${stT('năm', 'yr')}`, n: stT(`GRDP/người, tăng bình quân ${D.y0}–${D.y1} (danh nghĩa)`, `GRDP per person, average yearly growth ${D.y0}–${D.y1} (nominal)`), c: VCOL[r.r] },
+      { v: `${f1(r.x0)} → ${f1(r.x1)}`, n: stT(`triệu đồng/người, ${D.y0} → ${D.y1}`, `million VND per person, ${D.y0} → ${D.y1}`) },
+      { v: r.g != null ? stN(r.g, 2) + '%' : '—', n: stT(`tăng trưởng GRDP ${D.y1}, giá so sánh (ước tính)`, `real GRDP growth, ${D.y1} (estimate)`) },
+      { v: stN(r.p1 / 1000, 2) + stT(' triệu', ' m'), n: stT(`dân số trung bình ${D.y1}`, `average population, ${D.y1}`) }].map(x => ({ ...x, v: x.v.replace(/ /g, ' ') }))); };   // values never wrap
+  el.onpointermove = tip; el.onpointerover = tip; el.onpointerleave = () => dotTipHide();
+  stRW(el, socStConv);
 }
 // ch3 — province tile map ↔ ranked dot strip. 34 equal hexagons in rough geographic position (a schematic, not a map: every
 // province gets the same weight, unlike a Mercator map where the Highlands outweigh Hà Nội and HCMC). Hand-placed grid,
@@ -6517,7 +6575,7 @@ function socHxMetric(k) {
 }
 const socHxLum = c => { const n = parseInt(c.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255; return (0.299 * r + 0.587 * g + 0.114 * b) / 255; };
 function socStMap() {
-  const host = document.getElementById('soc-st-map'); if (!host) return;
+  const host = document.getElementById('soc-st-map'); if (!host || !host.classList.contains('st-viz')) return;   // the Explore chapter section shares this id
   const W = stCW(host, 360, 260), xs = Object.values(SOC_HEX).map(p => p[0]), rows = Object.values(SOC_HEX).map(p => p[1]), cx0 = Math.min(...xs), cx1 = Math.max(...xs), R1 = Math.max(...rows);
   const r = Math.min(23, (Math.min(W, 340) * .62) / ((cx1 - cx0 + 1) * Math.sqrt(3))), hw = Math.sqrt(3) * r, ox = 4 + hw / 2, oy = 6 + r, hexH = oy + R1 * 1.5 * r + r + 6;
   const RH = 17, rankH = 34 + 34 * RH + 6, H = Math.round(Math.max(hexH, rankH));
@@ -9042,11 +9100,6 @@ document.querySelectorAll('#tabs-bottom .tab-btn').forEach(b =>
   b.addEventListener('click', () => switchBottomTab(b.dataset.tab))
 );
 
-document.querySelectorAll('.rg-btn').forEach(b => b.addEventListener('click', () => {
-  setSelection(b.dataset.type, b.dataset.key, b.textContent.trim());
-  // Collapse the legend dropdown after choosing
-  document.getElementById('legend-dropdown').classList.add('legend-closed');
-}));
 
 // Demo tab controls
 // ── Shared top-panel timeline (Dân số + Học sinh) ────────────
