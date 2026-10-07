@@ -813,6 +813,33 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-leg li { display: flex; gap: 7px; align-items: baseline; margin-bottom: 7px; }
   .st-leg i { width: 10px; height: 10px; border-radius: 2px; flex: none; transform: translateY(1px); }
   .st-leg b { color: #16181d; font: 700 14px var(--font-head); min-width: 22px; }
+  /* budget drill-down panel (Economy ch. 3) */
+  .st-dd-hint { font: 400 12px var(--font-ui); color: #6b7080; margin: 10px 0 0; }
+  .st-dd-basis { font: 400 12.5px/1.5 var(--font-ui); color: #16181d; margin: 12px 0 0; max-width: 84ch; border-left: 3px solid #8a8f99; padding: 2px 0 2px 10px; }
+  .st-leg .st-dd-lb { all: unset; box-sizing: border-box; display: flex; gap: 7px; align-items: baseline; cursor: pointer; border-radius: 4px; padding: 3px 4px; margin: -3px -4px; min-height: 24px; color: #5b6170; }
+  .st-leg .st-dd-lb:hover span, .st-leg .st-dd-lb.on span { color: #16181d; text-decoration: underline; text-underline-offset: 2px; }
+  .st-leg .st-dd-lb:focus-visible { outline: 2px solid #16181d; outline-offset: 1px; }
+  .st-leg .st-dd-lb em { font-style: normal; font-weight: 700; color: #16181d; margin-left: 2px; }
+  .st-leg .st-dd-lb.on em { transform: rotate(90deg); display: inline-block; }
+  .st-dd { margin: 14px 0 6px; padding: 14px 16px 12px; background: #fff; border: 1px solid #dedbd2; border-radius: 8px; max-width: 860px; }
+  .st-dd-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+  .st-dd-top .st-ctrl { margin: 0; }
+  .st-dd-x { flex: none; width: 32px; height: 32px; border: 1px solid #dedbd2; background: #fff; border-radius: 999px; cursor: pointer; color: #16181d; font: 600 13px var(--font-ui); }
+  .st-dd-x:hover, .st-dd-x:focus-visible { border-color: #16181d; }
+  .st-dd-h { font: 700 18px/1.3 var(--font-head); color: #16181d; margin: 12px 0 6px; } .st-dd-h:focus, .st-dd-h:focus-visible { outline: none !important; box-shadow: none !important; }
+  .st-dd-yr { font: 600 14px var(--font-ui); color: #5b6170; margin-left: 4px; }
+  .st-badge { display: inline-block; font: 600 11px/1.5 var(--font-ui); color: #16181d; border: 1px solid #16181d; border-radius: 999px; padding: 0 8px; margin-left: 8px; vertical-align: 2px; white-space: nowrap; }
+  .st-badge-estimate, .st-badge-plan, .st-badge-part { border-style: dashed; border-color: #5b6170; color: #5b6170; }
+  .st-dd-none { font: 400 13.5px/1.5 var(--font-ui); color: #16181d; background: #f3f1ea; border-left: 3px solid #8a8f99; padding: 9px 12px; margin: 8px 0 4px; max-width: 76ch; }
+  .st-dd-alt, .st-dd-x2 { font: 400 12.5px/1.5 var(--font-ui); color: #5b6170; margin: 10px 0 0; max-width: 80ch; }
+  .st-dd-altb { font: 600 12px var(--font-ui); border: 1px dashed #5b6170; background: #fff; color: #16181d; border-radius: 999px; padding: 3px 10px; cursor: pointer; min-height: 28px; margin-left: 4px; }
+  .st-dd-altb:hover, .st-dd-altb[aria-pressed="true"] { border-style: solid; border-color: #16181d; }
+  .st-dd-sl { font-weight: 400; }
+  .st-dd-na { fill: #5b6170; } .st-dd-nav { font-style: italic; fill: #16181d; }
+  .st-dd-u { font-weight: 400; color: #8a8f99; }
+  .st-dd-rec { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 6px; }
+  @media (max-width: 720px) { .st-dd-rec { grid-template-columns: 1fr; } .st-dd { padding: 12px 10px; } }
+  .st-dd-cell { cursor: pointer; }
   .st-cell, .st-band { cursor: pointer; transition: opacity .15s; }
   .st-band:hover { opacity: .6 !important; }
   .st-cell:hover { stroke: #16181d; stroke-width: 1.5; }
@@ -2770,7 +2797,14 @@ function updateSpecialCharts(cardId, yi) {
   if (cardId==='labour') {
     drawBarChart(__svgRefs['ecb-labour'],[allEcon.map(ae=>ae.biz)],['#4a3aa7'],['Doanh nghiệp']);
     setKpi('kpi-unemp',e.unemp.toFixed(1)+'%'); setKpi('kpi-biz',fmtNum(e.biz,0));
-    setKpi('kpi-pci',e.pci.toFixed(1)); setKpi('kpi-iip',e.iip.toFixed(0));
+    // PCI: only VCCI's published medians. A year without one (e.g. 2025, when VCCI switched to the non-comparable PCI 2.0,
+    // or a forecast year) shows the last published value with its year, never a scaled model number, a blank or NaN
+    { const pA = ECON_OFFICIAL.pci_median || [], pv = pA[yi], pL = pA.reduce((k, v, i) => v != null && i <= yi ? i : k, -1), en = APP_LANG === 'en', el = document.getElementById('kpi-pci'), p2 = (ECON_OFFICIAL.sources || {}).pci_median_2025;
+      if (pv != null) { setKpi('kpi-pci', pv.toFixed(1)); if (el) el.removeAttribute('title'); }
+      else if (pL >= 0) { setKpi('kpi-pci', `${pA[pL].toFixed(1)} (${ECON_OFFICIAL.y0 + pL})`);
+        if (el) el.title = (en ? `No comparable PCI for ${2010 + yi}; showing ${ECON_OFFICIAL.y0 + pL}.` : `Chưa có PCI so sánh được cho ${2010 + yi}; hiển thị số ${ECON_OFFICIAL.y0 + pL}.`) + (p2 && p2.v != null && 2010 + yi === 2025 ? (en ? ` PCI 2.0 (2025, new method, not comparable): ${p2.v.toFixed(1)}.` : ` PCI 2.0 (2025, phương pháp mới, không so sánh được): ${p2.v.toFixed(1).replace('.', ',')}.`) : ''); }
+      else setKpi('kpi-pci', '—'); }
+    setKpi('kpi-iip', e.iip != null && isFinite(e.iip) ? e.iip.toFixed(0) : '—');
   }
 
 
@@ -4914,7 +4948,7 @@ const stT = (vi, en) => (typeof APP_LANG !== 'undefined' && APP_LANG === 'en') ?
 const stN = (v, d = 1) => v == null || !isFinite(v) ? '—' : v.toLocaleString(APP_LOC, { minimumFractionDigits: d, maximumFractionDigits: d });
 const stLin = (d0, d1, r0, r1) => v => r0 + (v - d0) / ((d1 - d0) || 1) * (r1 - r0);
 const stTip = (e, html) => dotTipShow(e, html);
-let stBopYear = null, stBopTimer = null, stBudYear = null, stBopGross = false;
+let stBopYear = null, stBopTimer = null, stBudYear = null, stBopGross = false, stDD = null, stDDYear = null, stDDTax = false, stDDAlt = false;   // stDD* = budget drill-down panel state
 
 // scroll reveal: chapters fade/slide in; marks with .st-grow scale from baseline, .st-draw lines draw on
 function stObserve(root) {
@@ -4989,7 +5023,8 @@ function renderEconStory() {
   h += stChap('st-budget', stT('Chương 3 · Ngân sách nhà nước', 'Chapter 3 · The State budget'),
     stT(`Thu ngân sách ${stN(Bu.revenue.total[b25] / 1e3, 0)} nghìn tỷ năm 2025, tăng ${stN((Bu.revenue.total[b25] / Bu.revenue.total[b24] - 1) * 100, 0)}% so với 2024`, `Budget revenue reached ${stN(Bu.revenue.total[b25] / 1e3, 0)} tn VND in 2025, up ${stN((Bu.revenue.total[b25] / Bu.revenue.total[b24] - 1) * 100, 0)}% on 2024`),
     stT('Mỗi ô vuông là 1% tổng thu (trái) hoặc tổng chi (phải).', 'Each square is 1% of total revenue (left) or total spending (right).'),
-    `<div class="st-ctrl" id="st-bud-ctrl"></div><div class="st-waffles"><div id="st-waf-in"></div><div id="st-waf-out"></div></div>
+    `<div class="st-ctrl" id="st-bud-ctrl"></div><div class="st-waffles"><div id="st-waf-in"></div><div id="st-waf-out"></div></div><div id="st-bud-basis"></div>
+     <p class="st-dd-hint">${stT('Bấm vào một nhóm có dấu › (ô vuông hoặc chú giải) để xem chi tiết theo từng năm.', 'Click a group marked › (its squares or its legend entry) for a year-by-year breakdown.')}</p><div id="st-bud-dd" class="st-dd" role="region" aria-label="${stT('Chi tiết ngân sách', 'Budget detail')}" hidden></div>
      <div class="st-sub">${stT('Thu, chi và bội chi, 2018–2026 (nghìn tỷ đồng; nét đứt = ước tính/dự toán)', 'Revenue, spending and deficit, 2018–2026 (trillion VND; dashed = estimate/plan)')}</div><div id="st-bud-leg"></div><div id="st-bud-line" class="st-viz"></div>
      ${stNote(stT(`Tiền sử dụng đất năm ${lY} đạt ${stN(land[lI] / 1e3, 0)} nghìn tỷ, gấp ${stN(land[lI] / land[lI - 1], 1)} lần ${lY - 1}.`, `Land-use fees reached ${stN(land[lI] / 1e3, 0)} tn VND in ${lY}, ${stN(land[lI] / land[lI - 1], 1)}× the ${lY - 1} level.`), land[b25] == null ? stT('Số 2025 là ước tính tiền mặt của Bộ Tài chính, chưa tách khoản này và chưa gồm chi chuyển nguồn, nên không so sánh ngang với các năm quyết toán.', 'The 2025 figure is the MoF cash-basis estimate: it does not split this line and excludes carry-over spending, so it is not like-for-like with the final-account years.') : stT('Số 2025 là ước tính, chưa quyết toán.', 'The 2025 figure is an estimate, not a final account.'))}
      ${ecFiscalBlock()}
@@ -5513,18 +5548,26 @@ function stBudgetParts(yi) {
   const noSub = SUBK.every(k => (R[k] || [])[yi] == null);
   // four named classes + one grey "other" (chart audit #10: 7 hues incl. sub-1% squares → at most 5); land-use fees are magenta
   // here and in the line chart below, so the land-use note points at the same colour in both
-  const IN = [[noSub ? stT('Thu nội địa', 'Domestic revenue') : stT('Thuế khác trong nước (GTGT, TNDN…)', 'Other domestic taxes (VAT, CIT…)'), g(R, 'domestic') - known, ST.blue], [stT('Tiền sử dụng đất', 'Land-use fees'), g(R, 'land_use_fees'), ST.magenta], [stT('Xuất nhập khẩu', 'Import-export'), g(R, 'import_export'), ST.aqua], [stT('Thuế TNCN', 'Personal income tax'), g(R, 'pit'), ST.yellow], [stT('Khác (dầu thô, phí, lệ phí, xổ số, thuế BVMT, viện trợ)', 'Other (crude oil, fees, lottery, env. tax, grants)'), g(R, 'fees_charges') + g(R, 'lottery') + g(R, 'env_protection') + g(R, 'crude_oil') + g(R, 'grants'), ST_MUTE]];
+  // 4th element = the drill-down panel the slice opens (stDD*): domestic lines → 'dom', trade / oil / grants → 'orev'
+  const IN = [[noSub ? stT('Thu nội địa', 'Domestic revenue') : stT('Thuế khác trong nước (GTGT, TNDN…)', 'Other domestic taxes (VAT, CIT…)'), g(R, 'domestic') - known, ST.blue, 'dom'], [stT('Tiền sử dụng đất', 'Land-use fees'), g(R, 'land_use_fees'), ST.magenta, 'dom'], [stT('Xuất nhập khẩu', 'Import-export'), g(R, 'import_export'), ST.aqua, 'orev'], [stT('Thuế TNCN', 'Personal income tax'), g(R, 'pit'), ST.yellow, 'dom'], [noSub ? stT('Khác (dầu thô, viện trợ)', 'Other (crude oil, grants)') : stT('Khác (dầu thô, phí, lệ phí, xổ số, thuế BVMT, viện trợ)', 'Other (crude oil, fees, lottery, env. tax, grants)'), g(R, 'fees_charges') + g(R, 'lottery') + g(R, 'env_protection') + g(R, 'crude_oil') + g(R, 'grants'), ST_MUTE, 'orev']];
   const knownX = ['development_investment', 'recurrent', 'interest'].reduce((t, k) => t + g(X, k), 0);
-  const OUT = [[stT('Chi thường xuyên (lương, an sinh, y tế, giáo dục…)', 'Recurrent (salaries, social, health, education…)'), g(X, 'recurrent'), ST.blue], [stT('Đầu tư phát triển', 'Development investment'), g(X, 'development_investment'), ST.orange], [stT('Trả lãi vay', 'Interest'), g(X, 'interest'), ST.aqua], [stT('Khác (dự phòng, viện trợ, chi từ tăng thu…)', 'Other (reserve, aid, overrun-funded…)'), Math.max(0, g(X, 'total') - knownX), ST_MUTE]];
-  return { IN: IN.filter(x => x[1] > 0), OUT: OUT.filter(x => x[1] > 0), rev: g(R, 'total'), exp: g(X, 'total'), def: (B.deficit || [])[yi], basis: (B.basis || [])[yi] };
+  const OUT = [[stT('Chi thường xuyên (lương, an sinh, y tế, giáo dục…)', 'Recurrent (salaries, social, health, education…)'), g(X, 'recurrent'), ST.blue, 'rec'], [stT('Đầu tư phát triển', 'Development investment'), g(X, 'development_investment'), ST.orange], [stT('Trả lãi vay', 'Interest'), g(X, 'interest'), ST.aqua], [stT('Khác (dự phòng, viện trợ, chi từ tăng thu…)', 'Other (reserve, aid, overrun-funded…)'), Math.max(0, g(X, 'total') - knownX), ST_MUTE, 'osp']];
+  const rev = g(R, 'total'), exp = g(X, 'total'), def = (B.deficit || [])[yi], basis = (B.basis || [])[yi];
+  // mixed basis (e.g. the 2025 MoF cash-basis execution): revenue exceeds spending, yet the official deficit is positive because it
+  // includes carry-over spending. Detected from the numbers, so the label follows the data, not a typed year.
+  const mixed = basis === 'estimate' && def > 0 && rev > exp;
+  return { IN: IN.filter(x => x[1] > 0), OUT: OUT.filter(x => x[1] > 0), rev, exp, def, basis, mixed, dpct: (B.deficit_pct_gdp || [])[yi], yr: B.years[yi] };
 }
 function stWaffle(el, parts, total, title) {
   const cnt = parts.map(p => p[1] / total * 100), fl = cnt.map(Math.floor); let rem = 100 - fl.reduce((t, v) => t + v, 0);
   cnt.map((v, i) => [v - fl[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rem > 0) { fl[i]++; rem--; } });
   const cells = []; fl.forEach((n, i) => { for (let k = 0; k < n; k++) cells.push(i); });
   const C = 22, G2 = 3, W = 10 * (C + G2), H = 10 * (C + G2);
-  const s = cells.map((pi, k) => { const r = Math.floor(k / 10), c = k % 10; return `<rect class="st-cell" style="--d:${k * 6}ms" x="${c * (C + G2)}" y="${r * (C + G2)}" width="${C}" height="${C}" rx="3" fill="${parts[pi][2]}" ${stKey(parts[pi][0], stN(parts[pi][1] / 1e3, 0) + ' ' + stT('nghìn tỷ', 'tn VND') + ' · ' + stN(cnt[pi], 1) + '%')}/>`; }).join('');
-  el.innerHTML = `<div class="st-waf-h">${title}</div><div class="st-waf-row"><div style="width:${W}px;max-width:100%;flex:none">${stSvg(W, H, s, title.replace(/<[^>]+>/g, ''))}</div><ul class="st-leg">${parts.map((p, i) => `<li><i style="background:${p[2]}"></i><b>${fl[i] || '<1'}</b> ${p[0]}</li>`).join('')}</ul></div>`;
+  // a part with a 4th element (drill-down key) is clickable: squares by pointer, the legend entry as a real button (keyboard path)
+  const s = cells.map((pi, k) => { const r = Math.floor(k / 10), c = k % 10, dd = parts[pi][3]; return `<rect class="st-cell${dd ? ' st-dd-cell' : ''}" style="--d:${k * 6}ms" x="${c * (C + G2)}" y="${r * (C + G2)}" width="${C}" height="${C}" rx="3" fill="${parts[pi][2]}"${dd ? ` data-st-dd="${dd}"` : ''} ${stKey(parts[pi][0], stN(parts[pi][1] / 1e3, 0) + ' ' + stT('nghìn tỷ', 'tn VND') + ' · ' + stN(cnt[pi], 1) + '%')}/>`; }).join('');
+  const li = (p, i) => { const inner = `<i style="background:${p[2]}"></i><b>${fl[i] || '<1'}</b> <span>${p[0]}</span>`;
+    return p[3] ? `<li><button type="button" class="st-dd-lb${stDD === p[3] ? ' on' : ''}" data-st-dd="${p[3]}" aria-expanded="${stDD === p[3]}" aria-controls="st-bud-dd">${inner}<em aria-hidden="true">›</em></button></li>` : `<li>${inner}</li>`; };
+  el.innerHTML = `<div class="st-waf-h">${title}</div><div class="st-waf-row"><div style="width:${W}px;max-width:100%;flex:none">${stSvg(W, H, s, title.replace(/<[^>]+>/g, ''))}</div><ul class="st-leg">${parts.map(li).join('')}</ul></div>`;
 }
 // basis label for a non-final budget year; the MoF year-end estimate is cash-basis and excludes carry-over spending (chi chuyển
 // nguồn) that the final accounts include, so its change on the last final year is not like-for-like (ECONFLOW.budget.qc_note)
@@ -5532,19 +5575,21 @@ const stBudBasis = b => b === 'plan' ? stT('dự toán', 'plan') : stT('ước t
 function stBudLine() {
   const el = document.getElementById('st-bud-line'), B = ECONFLOW.budget, ys = B.years, t = a => (a || []).map(v => v == null ? null : v / 1e3);
   const rev = t(B.revenue.total), exp = t(B.expenditure.total), def = t(B.deficit), dev = t(B.expenditure.development_investment), fin = ys.map((_, i) => B.basis[i] === 'final'), lf = fin.lastIndexOf(true);
+  // mixed-basis year (cash-basis revenue/spending, official deficit incl. carry-over): said in every label that shows them together
+  const mixd = ys.map((_, i) => B.basis[i] === 'estimate' && def[i] > 0 && rev[i] > exp[i]), bLab = i => fin[i] ? '' : ' (' + stBudBasis(B.basis[i]) + (mixd[i] ? stT('; bội chi theo định nghĩa chính thức, gồm chi chuyển nguồn', '; deficit on the official definition, incl. carry-over spending') : '') + ')';
   const land = t(B.revenue.land_use_fees);
   const S = [[stT('Thu', 'Revenue'), rev, ST.blue], [stT('Chi', 'Spending'), exp, ST.orange], [stT('Chi đầu tư phát triển', 'Development spending'), dev, ST.aqua], [stT('Tiền sử dụng đất', 'Land-use fees'), land, ST.magenta]];
   document.getElementById('st-bud-leg').innerHTML = stLegend(S.map(([n, , c]) => ({ n, c, k: 'line' })).concat([{ n: stT('Bội chi', 'Deficit'), c: ST.yellow }, { n: stT('Ước tính / dự toán', 'Estimate / plan'), c: '#5b6170', k: 'dash' }]));
   const vmax = Math.max(...[rev, exp, dev, def, land].flat().filter(v => v != null)), tk = stNice(0, vmax, 4), top = Math.max(vmax * 1.06, tk[tk.length - 1]);   // computed: no fixed 3,500 ceiling
   const W = stCW(el), narrow = W < 560, H = 260, ML = 50, MR = narrow ? 120 : 200, MT = 14, MB = 26, slot = (W - ML - MR) / ys.length, sx = stLin(ys[0], ys[ys.length - 1], ML, W - MR), sy = stLin(0, top, H - MB, MT);
   let s = stAxisY(sy, tk.filter(v => v <= top), ML, W - MR, v => stN(v, 0)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
-  ys.forEach((y, i) => { if (!narrow || i % 2 === 0 || i === ys.length - 1) s += `<text class="st-tick" x="${sx(y)}" y="${H - 6}" text-anchor="middle">${narrow ? String(y).slice(2) : y}${fin[i] ? '' : '*'}</text>`; if (def[i] != null) s += stBarV(sx(y), Math.min(slot, 22), sy(def[i]), sy(0), fin[i] ? ST.yellow : ST_SURF, [stT('Bội chi ', 'Deficit ') + y + (fin[i] ? '' : ' (' + stBudBasis(B.basis[i]) + ')'), stN(def[i], 0) + stT(' nghìn tỷ', ' tn VND')], { d: i * 50, style: fin[i] ? '' : `stroke:${ST.yellow};stroke-width:2;` }); });
+  ys.forEach((y, i) => { if (!narrow || i % 2 === 0 || i === ys.length - 1) s += `<text class="st-tick" x="${sx(y)}" y="${H - 6}" text-anchor="middle">${narrow ? String(y).slice(2) : y}${fin[i] ? '' : '*'}</text>`; if (def[i] != null) s += stBarV(sx(y), Math.min(slot, 22), sy(def[i]), sy(0), fin[i] ? ST.yellow : ST_SURF, [stT('Bội chi ', 'Deficit ') + y + bLab(i), stN(def[i], 0) + stT(' nghìn tỷ', ' tn VND')], { d: i * 50, style: fin[i] ? '' : `stroke:${ST.yellow};stroke-width:2;` }); });
   S.forEach(([n, d, c]) => { s += stLine(d.map((v, i) => i <= lf ? [sx(ys[i]), v == null ? null : sy(v)] : null), c) + stLine(d.map((v, i) => i >= lf ? [sx(ys[i]), v == null ? null : sy(v)] : null), c, { dash: '5,4' });
     d.forEach((v, i) => { if (!fin[i] && v != null) s += `<circle cx="${sx(ys[i])}" cy="${sy(v)}" r="4" fill="${ST_SURF}" stroke="${c}" stroke-width="2"/>`; }); });   // hollow = estimate / plan
   const L = ys.length - 1, ends = S.filter(([, d]) => d[L] != null).map(([n, d]) => ({ y: sy(d[L]), y0: sy(d[L]), t: `${narrow ? n.split(' ')[0] : n} ${stN(d[L], 0)}` }));
   ends.sort((a, b) => a.y - b.y).forEach((e, i, a) => { if (i && e.y - a[i - 1].y < 14) e.y = a[i - 1].y + 14; s += `<text class="st-lab" x="${W - MR + 8}" y="${e.y + 4}">${e.t}</text>`; });
   el.innerHTML = stSvg(W, H, s, stT('Thu chi ngân sách', 'Budget revenue and spending'));
-  stCross(el, { xs: ys.map(sx), labels: ys.map((y, i) => y + (fin[i] ? '' : ' (' + stBudBasis(B.basis[i]) + ')')), top: MT, bottom: H - MB, series: S.concat([[stT('Bội chi', 'Deficit'), def, ST.yellow]]).map(([n, d, c]) => ({ n, c, v: d, f: v => stN(v, 0) + stT(' nghìn tỷ', ' tn') })) });
+  stCross(el, { xs: ys.map(sx), labels: ys.map((y, i) => y + bLab(i)), top: MT, bottom: H - MB, series: S.concat([[stT('Bội chi', 'Deficit'), def, ST.yellow]]).map(([n, d, c]) => ({ n, c, v: d, f: v => stN(v, 0) + stT(' nghìn tỷ', ' tn') })) });
   stRW(el, stBudLine);
 }
 // 4 — investment by owner (stacked area, 2px surface seams, crosshair)
@@ -5637,9 +5682,181 @@ function stBudControls() {
 }
 function stWaffles() {
   const ys = ECONFLOW.budget.years, yi = ys.indexOf(stBudYear ?? 2025), P = stBudgetParts(yi), bl = { final: stT('quyết toán', 'final'), estimate: stT('ước tính', 'estimate'), plan: stT('dự toán', 'plan') }[P.basis] || '';
-  stWaffle(document.getElementById('st-waf-in'), P.IN, P.rev, `${stT('Thu', 'Revenue')} ${stN(P.rev / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')} <span>(${bl})</span>`);
-  stWaffle(document.getElementById('st-waf-out'), P.OUT, P.exp, `${stT('Chi', 'Spending')} ${stN(P.exp / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')} · ${stT('bội chi', 'deficit')} ${stN((P.def || 0) / 1e3, 0)}`);
+  const cash = P.mixed ? stT(', cơ sở tiền mặt', ', cash basis') : '';
+  stWaffle(document.getElementById('st-waf-in'), P.IN, P.rev, `${stT('Thu', 'Revenue')} ${stN(P.rev / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')} <span>(${bl}${cash})</span>`);
+  stWaffle(document.getElementById('st-waf-out'), P.OUT, P.exp, `${stT('Chi', 'Spending')} ${stN(P.exp / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')}${P.mixed ? ` <span>(${bl}${cash})</span>` : ''} · ${P.mixed ? stT('bội chi chính thức', 'official deficit') : stT('bội chi', 'deficit')} ${stN((P.def || 0) / 1e3, 0)}`);
+  // the mixed-basis year: say why revenue − spending and the deficit disagree, with both numbers computed
+  const bn = document.getElementById('st-bud-basis');
+  if (bn) bn.innerHTML = P.mixed ? `<p class="st-dd-basis"><b>${P.yr}:</b> ${stT(`thu và chi là số thực hiện theo cơ sở tiền mặt (Bộ Tài chính, ước tính tháng 1/${P.yr + 1}), thu − chi = +${stN((P.rev - P.exp) / 1e3, 1)} nghìn tỷ. Bội chi chính thức ${stN(P.def / 1e3, 0)} nghìn tỷ${P.dpct != null ? ` (${stN(P.dpct, 1)}% GDP)` : ''} theo định nghĩa chính thức, gồm cả chi chuyển nguồn, nên không bằng thu trừ chi.`, `revenue and spending are MoF cash-basis execution (estimate of Jan ${P.yr + 1}): revenue − spending = +${stN((P.rev - P.exp) / 1e3, 1)} tn VND. The official deficit of ${stN(P.def / 1e3, 0)} tn VND${P.dpct != null ? ` (${stN(P.dpct, 1)}% of GDP)` : ''} uses the official definition and includes carry-over spending, so it is not revenue minus spending.`)}</p>` : '';
 }
+
+// ── 3b · budget drill-down (ECONFLOW.budget.detail: MoF/NA final accounts 2018–2024, MoF Jan-2026 estimate for 2025, 2026 plan,
+// 9M-2026 execution). One panel under the waffles, opened from a slice (its squares, or its legend entry = a real button).
+// Rules: "items" add up to the held total; "of which" lines are subsets, drawn thinner and never added; each table's reconciliation
+// gap is its own grey "not itemised" bar (never assigned to an item); a missing line reads "not published", never 0; the MoF April-2026
+// revision of 2025 is a labelled alternative vintage, off by default (the main 2025 column is the held Jan-2026 estimate).
+const stDDD = () => (ECONFLOW.budget || {}).detail || null;
+const ST_DD_NM = {   // short display names (labels only; the full official names go in the tooltip and the table twin)
+  soe: ['Doanh nghiệp nhà nước', 'State-owned enterprises'], fdi: ['Doanh nghiệp FDI (trừ dầu thô)', 'Foreign-invested firms (excl. crude oil)'],
+  non_state: ['Khu vực ngoài quốc doanh', 'Non-state (private) sector'], pit: ['Thuế thu nhập cá nhân', 'Personal income tax'],
+  env_protection: ['Thuế bảo vệ môi trường', 'Environmental protection tax'], fees_charges: ['Phí, lệ phí', 'Fees and charges'],
+  land_house: ['Thu về nhà, đất', 'Land and housing'], other_domestic: ['Thu khác (xổ số, cổ tức, NHNN…)', 'Other (lottery, dividends, SBV…)'],
+  registration_fee: ['Lệ phí trước bạ', 'Registration fee'], land_use_fees: ['Tiền sử dụng đất', 'Land-use fees'], land_rent: ['Tiền thuê đất, mặt nước', 'Land and water-surface rent'],
+  lottery: ['Xổ số kiến thiết', 'Lottery'], dividends_profit_sbv: ['Cổ tức, lợi nhuận DNNN, chênh lệch thu chi NHNN', 'Dividends, SOE profit, SBV surplus'],
+  other_budget_revenue: ['Thu khác ngân sách (phạt, thu hồi…)', 'Other budget revenue (fines, recoveries…)'],
+  crude_oil: ['Dầu thô', 'Crude oil'], import_export_net: ['Xuất nhập khẩu (sau hoàn thuế GTGT)', 'Import-export (net of VAT refunds)'], grants: ['Viện trợ không hoàn lại', 'Grants'],
+  import_export_gross: ['Tổng thu xuất nhập khẩu (trước hoàn thuế)', 'Gross import-export revenue (before refunds)'], vat_on_imports: ['Thuế GTGT hàng nhập khẩu', 'VAT on imports'],
+  sct_on_imports: ['Thuế TTĐB hàng nhập khẩu', 'Excise on imports'], vat_refunds: ['Hoàn thuế GTGT (trừ đi)', 'VAT refunds (deducted)'],
+  aid: ['Chi viện trợ', 'Foreign aid given'], reserve_fund: ['Bổ sung quỹ dự trữ tài chính', 'Financial reserve fund'], national_reserves: ['Dự trữ quốc gia', 'National reserves'],
+  contingency: ['Dự phòng ngân sách', 'Budget contingency'],
+  vat_domestic: ['Thuế GTGT (hàng trong nước)', 'VAT (domestic)'], cit: ['Thuế thu nhập doanh nghiệp', 'Corporate income tax'], sct_domestic: ['Thuế TTĐB (hàng trong nước)', 'Excise (domestic)'],
+  natural_resource_tax: ['Thuế tài nguyên', 'Natural-resource tax'], education_training: ['Giáo dục, đào tạo và dạy nghề', 'Education and training'], science_technology: ['Khoa học và công nghệ', 'Science and technology'] };
+const stDDNm = it => { const m = ST_DD_NM[it.key]; return m ? stT(m[0], m[1]) : stT(it.name_vi || it.key, it.name_en || it.key); };
+const stDDFull = it => stT(it.name_vi || stDDNm(it), it.name_en || stDDNm(it));
+const stDDTab = k => { const D = stDDD() || {}; return { dom: D.revenue_domestic_by_source, orev: D.revenue_other, osp: D.spending_other, rec: D.recurrent_by_function }[k]; };
+const ST_DD_C = { dom: ST.blue, orev: ST.aqua, osp: '#5b6170' };   // the slice's colour in the waffle (grey "other spending" → dark grey so "not itemised" stays the lightest)
+const stDDHead = k => ({ dom: stT('Thu nội địa', 'Domestic revenue'), orev: stT('Thu ngoài nội địa: dầu thô, xuất nhập khẩu, viện trợ', 'Non-domestic revenue: crude oil, trade, grants'), osp: stT('Chi khác (ngoài đầu tư, thường xuyên, trả lãi)', 'Other spending (beyond investment, recurrent, interest)'), rec: stT('Trong chi thường xuyên: giáo dục và khoa học – công nghệ', 'Inside recurrent spending: education and science & technology') }[k]);
+const stDDTabLab = k => ({ dom: stT('Thu nội địa', 'Domestic revenue'), orev: stT('Thu khác', 'Other revenue'), osp: stT('Chi khác', 'Other spending'), rec: stT('Giáo dục, KH&CN', 'Education, S&T') }[k]);
+const stDDYL = y => /^9M-/.test(String(y)) ? stT('9T/' + String(y).slice(3), '9M-' + String(y).slice(3)) : String(y);
+const stDDBadge = (b, y) => { const part = /^9M-/.test(String(y)), t = part ? stT('9 tháng · ước tính', '9 months · estimate') : ({ final: stT('quyết toán', 'final account'), estimate: stT('ước tính', 'estimate'), plan: stT('dự toán', 'plan') }[b] || b);
+  return `<span class="st-badge st-badge-${part ? 'part' : b}">${t}</span>`; };
+const stTn = (v, d = 1) => stN(v / 1e3, d) + stT(' nghìn tỷ', ' tn VND');
+// rows of one table for column j: [{t: item|sub|neg|gap|subgap|na|alt|altsub, n, full, v, depth, derived}]
+function stDDRows(k, j) {
+  const T = stDDTab(k), y = T.years[j], R = T.reconciles || {}, rec = (R.by_year || []).find(r => r.year === y) || {}, tol = R.tolerance_bn || 0;
+  const total = rec.total ?? rec.other_spending_held ?? null, rows = [];
+  const items = T.items.map(it => ({ it, v: it.values[j] })), has = items.filter(x => x.v != null).sort((a, b) => b.v - a.v), na = items.filter(x => x.v == null);
+  // "of which" prefix only when the line really is a part of its parent (gross trade revenue is larger than its net parent: no prefix)
+  const sub = (p, depth, via, pv) => (T.of_which || []).filter(o => o.parent === p && Array.isArray(o.values)).forEach(o => { const v = o.values[j]; if (v == null) return;
+    rows.push({ t: v < 0 ? 'neg' : 'sub', n: stDDNm(o), full: stDDFull(o) + (via ? ` (${stT('thuộc', 'part of')} ${via})` : ''), v, depth, of: v >= 0 && (pv == null || v <= pv) }); sub(o.key, depth + 1, via, v); });
+  const RO = (T.reconciles_of_which || {})[String(y)] || {};
+  has.forEach(({ it, v }) => { rows.push({ t: 'item', n: stDDNm(it), full: stDDFull(it), v, depth: 0 }); sub(it.key, 1, '', v);
+    if (RO[it.key] != null && RO.unitemised_within_other > 0) rows.push({ t: 'subgap', n: stT('phần chưa tách chi tiết', 'part not itemised'), full: stT(`${stDDNm(it)}: phần chưa tách chi tiết`, `${stDDNm(it)}: part not itemised`), v: RO.unitemised_within_other, depth: 1, of: true }); });
+  const known = has.reduce((t, x) => t + x.v, 0), gap = rec.gap != null ? rec.gap : (total != null ? total - known : null);
+  if (!has.length) { if (total != null) rows.push({ t: 'gap', n: stT('Chưa tách chi tiết (cả tổng)', 'Not itemised (the whole total)'), full: stT('Chưa tách chi tiết', 'Not itemised'), v: total, depth: 0 }); }
+  else {
+    if (gap != null && gap > tol) { rows.push({ t: 'gap', n: stT('Chưa tách chi tiết', 'Not itemised'), full: stT('Chưa tách chi tiết' + (na.length ? ' — dòng không có số: ' + na.map(x => stDDNm(x.it)).join(', ') : ''), 'Not itemised' + (na.length ? ' — lines with no figure: ' + na.map(x => stDDNm(x.it)).join(', ') : '')), v: gap, depth: 0 });
+      na.forEach(({ it }) => sub(it.key, 1, stDDNm(it), gap)); }   // a published "of which" of an unpublished line sits under the gap, never under a made-up parent
+    na.forEach(({ it }) => rows.push({ t: 'na', n: stDDNm(it), full: stDDFull(it), depth: 0 }));
+  }
+  return { y, rows, total, known, gap, tol, none: !has.length, basis: (T.basis || [])[j], nHas: has.length, top: has[0] ? { n: stDDNm(has[0].it), v: has[0].v } : null };
+}
+// tax-type view of domestic revenue: only PIT and the environmental tax exist as national lines; the rest is "not published" and the
+// remainder of domestic revenue is one derived (≈) grey bar, not split
+function stDDTaxRows(j) {
+  const D = stDDD(), T = D.revenue_domestic_by_tax, y = T.years[j], tot = ((D.revenue_domestic_by_source.reconciles || {}).by_year || []).find(r => r.year === y) || {};
+  const has = T.items.filter(it => it.values[j] != null).sort((a, b) => b.values[j] - a.values[j]), na = T.items.filter(it => it.values[j] == null), rows = [];
+  has.forEach(it => rows.push({ t: 'item', n: stDDNm(it), full: stDDFull(it), v: it.values[j], depth: 0 }));
+  const sum = has.reduce((t, it) => t + it.values[j], 0);
+  if (has.length && tot.total != null) rows.push({ t: 'gap', derived: true, n: stT('Phần còn lại, không tách theo sắc thuế', 'Remainder, not split by tax type'), full: stT('≈ Phần còn lại của thu nội địa (thu nội địa − các sắc thuế có số)', '≈ Remainder of domestic revenue (domestic total − taxes with a figure)'), v: tot.total - sum, depth: 0 });
+  na.forEach(it => rows.push({ t: 'na', n: stDDNm(it), full: stDDFull(it), depth: 0 }));
+  return { y, rows, total: tot.total ?? null, none: !has.length, basis: (T.basis || [])[j], nHas: has.length, top: has[0] ? { n: stDDNm(has[0]), v: has[0].values[j] } : null, gap: has.length && tot.total != null ? tot.total - sum : null, tol: 0 };
+}
+// the MoF Apr-2026 revision of 2025 domestic revenue (alternative vintage): outlined bars, its own total
+function stDDAltRows() {
+  const T = stDDD().revenue_domestic_by_source, A = T.alt_vintage_2025; if (!A || !A.items) return null;
+  const rows = [], it = k => T.items.find(x => x.key === k) || { key: k }, ow = k => (T.of_which || []).find(x => x.key === k) || { key: k };
+  Object.entries(A.items).sort((a, b) => b[1] - a[1]).forEach(([k, v]) => { rows.push({ t: 'alt', n: stDDNm(it(k)), full: stDDFull(it(k)) + stT(' — bản sửa đổi T4/2026', ' — Apr-2026 revision'), v, depth: 0 });
+    Object.entries(A.of_which || {}).filter(([q]) => ow(q).parent === k).forEach(([q, w]) => rows.push({ t: 'altsub', n: stDDNm(ow(q)), full: stDDFull(ow(q)) + stT(' — bản sửa đổi T4/2026', ' — Apr-2026 revision'), v: w, depth: 1, of: true })); });
+  return { rows, total: A.domestic_total_this_vintage, held: A.held_total_jan2026, url: A.url };
+}
+// ranked horizontal bars: the label sits above each bar (works at 420px); value + share at the bar end
+function stDDChart() {
+  const el = document.getElementById('st-dd-chart'); if (!el || !el._rows) return;
+  const rows = el._rows, c = el._c, tot = el._tot, W = stCW(el, 760), MR = W < 520 ? 92 : 120, vis = rows.filter(r => r.v > 0 && r.t !== 'neg'), mx = Math.max(...vis.map(r => r.v), 1), sx = stLin(0, mx, 0, W - MR);
+  let y = 2, s = '';
+  rows.forEach((r, i) => { const ind = r.depth * 14, of = r.of ? stT('trong đó: ', 'of which: ') : '';
+    if (r.t === 'na' || r.t === 'neg' || !(r.v > 0)) { const val = r.t === 'na' ? stT('chưa công bố', 'not published') : stTn(r.v);
+      s += `<text class="st-val st-dd-na" x="${ind}" y="${y + 13}" ${stKey(r.full + ' · ' + el._yl, val)}>${of}${r.n}: <tspan class="st-dd-nav">${val}</tspan></text>`; y += 22; return; }
+    const thin = r.depth > 0, th = thin ? 10 : 18, cy = y + 17 + th / 2, grey = r.t === 'gap' || r.t === 'subgap', alt = r.t === 'alt' || r.t === 'altsub';
+    const sh = tot ? r.v / tot * 100 : null, val = (r.derived ? '≈ ' : '') + stTn(r.v) + (sh != null ? ' · ' + (r.derived ? '≈' : '') + stN(sh, 1) + '%' : '');
+    s += `<text class="st-lab${thin ? ' st-dd-sl' : ''}" x="${ind}" y="${y + 12}">${of}${r.derived ? '≈ ' : ''}${r.n}</text>`;
+    s += stBarH(cy, th + 4, sx(r.v), sx(0), grey ? ST_MUTE : alt ? ST_SURF : c, [r.full + ' · ' + el._yl, val], { d: i * 35, op: thin && !grey && !alt ? .5 : null, style: grey ? 'stroke:#8a8f99;stroke-width:1;stroke-dasharray:3,2;' : alt ? `stroke:${c};stroke-width:1.5;stroke-dasharray:4,3;` : '' });
+    s += `<text class="st-val" x="${sx(r.v) + 6}" y="${cy + 4}">${(r.derived ? '≈' : '') + stN(r.v / 1e3, 1)}${sh != null && !thin ? ` · ${stN(sh, 1)}%` : ''}</text>`;
+    y += 17 + th + (thin ? 7 : 11); });
+  el.innerHTML = stSvg(W, y + 2, `<line class="st-base" x1="0" x2="0" y1="0" y2="${y}"/>` + s, el._title || '');
+  stRW(el, stDDChart);
+}
+// education and S&T as % of recurrent spending (published shares), one small column chart each on its own zero-based axis
+function stDDRec() {
+  const T = stDDTab('rec'), S = T.share_of_recurrent_pct || {}, ys = T.years;
+  [['st-dd-ed', 'education_training', ST.blue], ['st-dd-st', 'science_technology', ST.orange]].forEach(([id, k, c]) => {
+    const el = document.getElementById(id); if (!el) return; const it = T.items.find(x => x.key === k) || { key: k }, a = S[k] || [], idx = ys.map((_, i) => i).filter(i => a[i] != null);
+    const W = stCW(el, 520), H = 190, ML = 34, MR = 8, MT = 18, MB = 22, mxv = Math.max(...idx.map(i => a[i])), top = mxv * 1.16, tk = stNice(0, top, 3).filter(v => v <= top), sy = stLin(0, top, H - MB, MT), slot = (W - ML - MR) / idx.length;
+    let s = stAxisY(sy, tk, ML, W - MR, v => stN(v, v < 5 && v % 1 ? 1 : 0) + '%') + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+    idx.forEach((i, n) => { const cx = ML + slot * (n + .5), v = a[i], lv = (it.values || [])[i];
+      s += stBarV(cx, Math.min(slot, 26), sy(v), sy(0), c, [`${stDDNm(it)} · ${ys[i]}`, `${stN(v, 1)}% ${stT('chi thường xuyên', 'of recurrent')}${lv != null ? ' · ' + stTn(lv) : ''}`], { d: n * 50 });
+      s += `<text class="st-val" x="${cx}" y="${sy(v) - 5}" text-anchor="middle">${stN(v, 1)}</text><text class="st-tick" x="${cx}" y="${H - 6}" text-anchor="middle">${W < 360 ? String(ys[i]).slice(2) : ys[i]}</text>`; });
+    el.innerHTML = `<div class="st-mini-h">${stDDNm(it)} <span class="st-dd-u">(% ${stT('chi thường xuyên', 'of recurrent spending')})</span></div>` + stSvg(W, H, s, stDDNm(it));
+    stRW(el, stDDRec); });
+}
+const stDDSrc = (T, y) => { const B = ECONFLOW.budget, fy = typeof y === 'number' && y >= 2018 && y <= 2024;
+  // periods with no per-line source: the release the held column comes from (MoF Jan-2026 estimate; MoF 9M execution)
+  if (y === 2025 && (B.mof_execution_2025_jan2026 || {}).source) return ecLink(B.mof_execution_2025_jan2026.source, stT('Bộ Tài chính, ước thực hiện NSNN 2025 (T1/2026), qua Tạp chí Kinh tế Tài chính', 'MoF 2025 execution estimate (Jan-2026), via tapchikinhtetaichinh.vn'));
+  if (/^9M-/.test(String(y)) && (B.exec_9M2026 || {}).source) return ecLink(B.exec_9M2026.source, stT('Bộ Tài chính, thu chi NSNN 9 tháng 2026, qua Vietstock', 'MoF 9-month 2026 budget execution, via Vietstock'));
+  const it = T.items.find(x => x.source && (x.source[String(y)] || (fy && x.source['2018-2024']))); if (!it) return '';
+  const raw = it.source[String(y)] || it.source['2018-2024'], m = /^(https?:\/\/\S+)\s*\((.+)\)\s*$/.exec(raw), m2 = /(https?:\/\/\S+)/.exec(raw);
+  return m ? ecLink(m[1], m[2].split(/;\s*also\s/)[0]) : m2 ? ecLink(m2[1], raw.replace(m2[1], '').replace(/\s+/g, ' ').trim() || m2[1]) : ''; };   // no URL (an internal note) → the generic line below
+function stDDDraw(o = {}) {
+  const host = document.getElementById('st-bud-dd'), D = stDDD(); if (!host) return;
+  document.querySelectorAll('.st-dd-lb').forEach(b => { const on = b.dataset.stDd === stDD; b.classList.toggle('on', on); b.setAttribute('aria-expanded', on); });
+  if (!stDD || !D) { host.hidden = true; host.innerHTML = ''; return; }
+  host.hidden = false;
+  const k = stDD, T = stDDTab(k), tabs = `<div class="st-ctrl st-dd-tabs" role="group" aria-label="${stT('Chọn bảng chi tiết', 'Choose a breakdown')}">${['dom', 'orev', 'osp', 'rec'].map(q => `<button type="button" data-st-ddk="${q}" class="${q === k ? 'on' : ''}" aria-pressed="${q === k}">${stDDTabLab(q)}</button>`).join('')}</div>`;
+  let h = `<div class="st-dd-top">${tabs}<button type="button" class="st-dd-x" data-st-ddx="1" aria-label="${stT('Đóng chi tiết', 'Close the breakdown')}">✕</button></div>`;
+  if (k === 'rec') {
+    const S = T.share_of_recurrent_pct || {}, ys = T.years, last = a => { const i = (a || []).reduce((b, v, j) => v != null ? j : b, -1); return i; };
+    const E = S.education_training || [], C = S.science_technology || [], ie = last(E), ic = last(C), eV = E.filter(v => v != null), cV = C.filter(v => v != null), y0 = ys[E.findIndex(v => v != null)];
+    const eW = E[ie] === Math.max(...eV) ? stT('cao nhất', 'the highest') : E[ie] === Math.min(...eV) ? stT('thấp nhất', 'the lowest') : '', cW = C[ic] === Math.min(...cV) ? stT('thấp nhất', 'the lowest') : C[ic] === Math.max(...cV) ? stT('cao nhất', 'the highest') : '';
+    const AV = T.alt_vintage_2025 || {};
+    h += `<h3 class="st-dd-h" tabindex="-1">${stDDHead(k)} <span class="st-dd-yr">${y0}–${ys[ie]}</span>${stDDBadge('final', ys[ie])}</h3>
+      <div class="st-dd-rec"><div><div id="st-dd-ed" class="st-viz"></div></div><div><div id="st-dd-st" class="st-viz"></div></div></div>
+      ${stNote(stT(`Giáo dục, đào tạo chiếm ${stN(E[ie], 1)}% chi thường xuyên năm ${ys[ie]}${eW ? `, mức ${eW} giai đoạn ${y0}–${ys[ie]}` : ''}; khoa học – công nghệ ${stN(C[ic], 1)}%${cW ? `, mức ${cW}` : ''}.`, `Education and training took ${stN(E[ie], 1)}% of recurrent spending in ${ys[ie]}${eW ? `, ${eW} share in ${y0}–${ys[ie]}` : ''}; science and technology ${stN(C[ic], 1)}%${cW ? `, ${cW}` : ''}.`),
+        stT('Chỉ 2 lĩnh vực này được công bố cho ngân sách hợp nhất; y tế, an sinh, quốc phòng… chưa tách. Con số KH&CN 2026 Thủ tướng nêu gồm cả đổi mới sáng tạo, chuyển đổi số và chi đầu tư, nên không so được với dòng chi thường xuyên này.', 'Only these 2 functions are published for the consolidated budget; health, social security, defence and the rest are not split. The PM\'s 2026 S&T figure also covers innovation, digital transformation and investment spending, so it is not comparable with this recurrent line.'))}
+      ${AV.education_training != null ? `<p class="st-dd-alt">${stT(`Phương án khác cho 2025 (Bộ Tài chính sửa đổi, T4/2026; không phải số chính): giáo dục ${stTn(AV.education_training)}, KH&CN ${stTn(AV.science_technology)}. Không tính tỷ trọng ở đây vì khác kỳ số liệu với tổng chi thường xuyên đang dùng.`, `Alternative 2025 vintage (MoF revised, Apr-2026; not the main figure): education ${stTn(AV.education_training)}, S&T ${stTn(AV.science_technology)}. No share is computed here because it is a different vintage from the recurrent total in use.`)}</p>` : ''}
+      ${stSrc(stT('Nguồn: quyết toán NSNN 2018–2024 (Bộ Tài chính, Quốc hội); tỷ trọng theo công bố.', 'Source: State budget final accounts 2018–2024 (MoF, National Assembly); shares as published.'))}`;
+    host.innerHTML = h; stDDRec(); stDDAfter(o); return;
+  }
+  const ys = T.years; if (stDDYear == null || ys.indexOf(stDDYear) < 0) stDDYear = ys.indexOf(stBudYear ?? 2025) >= 0 ? (stBudYear ?? 2025) : ys[ys.length - 1];
+  const j = ys.indexOf(stDDYear), tax = k === 'dom' && stDDTax, alt = k === 'dom' && stDDAlt && stDDYear === 2025, yl = stDDYL(stDDYear);
+  const R = tax ? stDDTaxRows(j) : stDDRows(k, j), A = alt ? stDDAltRows() : null, word = k === 'dom' ? (stDDTax ? stT('sắc thuế', 'taxes') : stT('nguồn', 'sources')) : stT('khoản', 'lines');
+  h += `<h3 class="st-dd-h" tabindex="-1">${stDDHead(k)} <span class="st-dd-yr">${yl}${R.total != null ? ' · ' + stTn(R.total, 1) : ''}</span>${stDDBadge(R.basis, stDDYear)}</h3>
+    <div class="st-ctrl" role="group" aria-label="${stT('Năm', 'Year')}">${ys.map(y => `<button type="button" data-st-ddy="${y}" class="${y === stDDYear ? 'on' : ''}" aria-pressed="${y === stDDYear}">${stDDYL(y)}</button>`).join('')}</div>`;
+  if (k === 'dom') h += `<div class="st-ctrl" role="group" aria-label="${stT('Cách phân loại', 'Classification')}"><button type="button" data-st-ddtax="0" class="${tax ? '' : 'on'}" aria-pressed="${!tax}">${stT('Theo nguồn thu', 'By source')}</button><button type="button" data-st-ddtax="1" class="${tax ? 'on' : ''}" aria-pressed="${tax}">${stT('Theo sắc thuế', 'By tax type')}</button></div>`;
+  const c = ST_DD_C[k];
+  if (R.none && !A) {
+    h += `<div class="st-dd-none"><b>${stT(`Chưa công bố chi tiết cho ${yl}.`, `No breakdown published yet for ${yl}.`)}</b> ${R.total != null ? stT(`Nguồn công bố cho kỳ này chỉ có tổng ${stTn(R.total)}; các dòng con để trống, không ghi 0.`, `The release for this period gives only the total, ${stTn(R.total)}; the lines are left blank, not set to 0.`) : ''}${tax ? ' ' + stT('Theo sắc thuế, cả nước chỉ công bố thuế TNCN và thuế BVMT thành dòng riêng.', 'By tax type, only PIT and the environmental tax are published as national lines.') : ''}</div>`;
+  }
+  if (k === 'dom' && stDDYear === 2025 && !tax) { const AA = stDDAltRows(); if (AA) h += `<p class="st-dd-alt">${stT(`Có một bản số khác: Bộ Tài chính sửa đổi (T4/2026) đưa thu nội địa 2025 lên ${stTn(AA.total)}, cao hơn số đang dùng (${stTn(AA.held)}) ${stTn(AA.total - AA.held)}, kèm chi tiết theo nguồn. Đây không phải số chính.`, `There is another vintage: the MoF revision (Apr-2026) puts 2025 domestic revenue at ${stTn(AA.total)}, ${stTn(AA.total - AA.held)} above the figure in use (${stTn(AA.held)}), with a breakdown by source. It is not the main figure.`)} <button type="button" class="st-dd-altb" data-st-ddalt="1" aria-pressed="${alt}">${alt ? stT('Ẩn bản sửa đổi', 'Hide the revision') : stT('Xem bản sửa đổi T4/2026', 'Show the Apr-2026 revision')}</button></p>`; }
+  const rows = A ? A.rows : R.rows, tot = A ? A.total : R.total, showChart = rows.length > 0;
+  if (showChart) {
+    const lg = A ? [{ n: stT('Bản sửa đổi T4/2026 (phương án khác)', 'Apr-2026 revision (alternative vintage)'), c, k: 'orect' }] : rows.some(r => r.t === 'item' && !r.derived) ? [{ n: stT('Dòng chi tiết', 'Itemised line'), c }] : [];
+    if (rows.some(r => r.t === 'sub')) lg.push({ n: stT('"trong đó" — một phần của dòng trên, không cộng thêm', '"of which" — part of the line above, not added'), c: c + '80' });
+    if (rows.some(r => r.t === 'gap' || r.t === 'subgap')) lg.push({ n: rows.some(r => r.derived) ? stT('≈ suy ra: phần còn lại', '≈ derived: the remainder') : stT('Chưa tách chi tiết', 'Not itemised'), c: ST_MUTE });
+    h += `<div class="st-sub">${A ? stT(`Thu nội địa 2025 theo bản sửa đổi T4/2026 (nghìn tỷ đồng; % trên tổng ${stTn(A.total)})`, `2025 domestic revenue, Apr-2026 revision (tn VND; % of its ${stTn(A.total)} total)`) : stT(`Xếp hạng ${word}, ${yl} (nghìn tỷ đồng; % trên tổng)`, `${word.replace(/^./, c => c.toUpperCase())} ranked, ${yl} (tn VND; % of the total)`)}</div>${stLegend(lg)}<div id="st-dd-chart" class="st-viz"></div>`;
+  }
+  // computed note: the finding with its anchor, then the reconciliation (or the classification caveat)
+  if (showChart && !A && R.top) {
+    const lead = stT(`${R.top.n} ${stTn(R.top.v)} năm ${yl}, lớn nhất trong ${R.nHas} ${word} có số${R.total ? ` (${stN(R.top.v / R.total * 100, 1)}% tổng)` : ''}.`, `${R.top.n}: ${stTn(R.top.v)} in ${yl}, the largest of ${R.nHas} ${word} with a figure${R.total ? ` (${stN(R.top.v / R.total * 100, 1)}% of the total)` : ''}.`);
+    const fol = tax ? stT(`Thuế GTGT, TNDN, TTĐB và tài nguyên trên hàng trong nước không được công bố thành tổng cả nước; phần còn lại ≈ ${stTn(R.gap)} là suy ra (thu nội địa trừ các sắc thuế có số). GTGT và TTĐB hàng nhập khẩu nằm ở "Thu khác".`, `VAT, CIT, excise and resource tax on domestic production are not published as national totals; the ≈ ${stTn(R.gap)} remainder is derived (domestic total minus the taxes with a figure). VAT and excise on imports sit under "Other revenue".`)
+      : R.gap != null && R.gap > R.tol ? stT(`${stTn(R.gap)} (${stN(R.gap / R.total * 100, 1)}% tổng) chưa được tách chi tiết trong nguồn công bố, nên để là một khoản riêng, không gán cho dòng nào.`, `${stTn(R.gap)} (${stN(R.gap / R.total * 100, 1)}% of the total) is not itemised in the published source, so it stays a separate bar and is not assigned to any line.`)
+      : stT(`Các dòng cộng lại khớp tổng${R.gap ? ` (chênh ${stN(Math.abs(R.gap), 0)} tỷ do làm tròn)` : ''}; dòng "trong đó" là một phần của dòng trên, không cộng thêm.`, `The lines add up to the total${R.gap ? ` (a ${stN(Math.abs(R.gap), 0)} bn rounding difference)` : ''}; "of which" lines are part of the line above and are not added.`);
+    h += stNote(lead, fol);
+  }
+  if (A) h += stNote(stT(`Bản sửa đổi tách đủ 8 nguồn, cộng lại đúng ${stTn(A.total)}.`, `The revision itemises all 8 sources, adding up to exactly ${stTn(A.total)}.`), stT(`Nó không khớp với tổng ${stTn(A.held)} đang dùng cho 2025, nên được vẽ riêng (viền đứt) thay vì xếp dưới tổng đó. Việc chọn bản số chính cho 2025 đang chờ quyết định.`, `It does not reconcile with the ${stTn(A.held)} total used for 2025, so it is drawn on its own (dashed outline) rather than under that total. Which vintage becomes the main 2025 figure is pending.`));
+  if (k === 'orev') h += `<p class="st-dd-x2">${stT('Phí, lệ phí, xổ số và thuế bảo vệ môi trường thuộc thu nội địa.', 'Fees, lottery and the environmental tax belong to domestic revenue.')} <button type="button" class="st-dd-altb" data-st-ddk="dom">${stT('Xem thu nội địa', 'See domestic revenue')}</button></p>`;
+  if (k === 'osp') h += `<p class="st-dd-x2">${stT('Không gồm trả nợ gốc (là nguồn bù đắp, ngoài tổng chi) và chi chuyển nguồn; nguồn cải cách tiền lương chi trong chi thường xuyên.', 'Excludes principal repayment (financing, outside total spending) and carry-over spending; wage-reform money is spent inside recurrent spending.')}</p>`;
+  const src = A ? ecLink(A.url, stT('Bộ Tài chính, báo cáo đánh giá bổ sung NSNN 2025 (13/4/2026)', 'MoF supplementary assessment of the 2025 budget (13 Apr 2026)')) : stDDSrc(tax ? stDDD().revenue_domestic_by_source : T, stDDYear);
+  h += stSrc(stT('Nguồn: ', 'Source: ') + (src || ({ final: stT('quyết toán NSNN (Bộ Tài chính; Nghị quyết Quốc hội phê chuẩn)', 'State budget final accounts (MoF; approved by National Assembly resolution)'), plan: stT('Nghị quyết Quốc hội về dự toán NSNN', 'National Assembly budget-plan resolution') }[R.basis] || stT('Bộ Tài chính, báo cáo thực hiện kỳ này', 'MoF execution release for this period'))) + stT('. Đơn vị gốc: tỷ đồng; quyết toán 2018–2024, 2025 ước tính (T1/2026), 2026 dự toán, 9T/2026 ước thực hiện.', '. Original unit: bn VND; 2018–2024 final accounts, 2025 estimate (Jan-2026), 2026 plan, 9M-2026 execution estimate.'));
+  host.innerHTML = h;
+  const ch = document.getElementById('st-dd-chart');
+  if (ch) { ch._rows = rows; ch._c = c; ch._tot = tot; ch._yl = A ? stT('2025, bản sửa đổi T4/2026', '2025, Apr-2026 revision') : yl; ch._title = stDDHead(k) + ' ' + yl; stDDChart(); }
+  stDDAfter(o);
+}
+function stDDAfter(o) { const sec = document.getElementById('st-budget'); if (sec) stTables(sec);
+  if (o.focus) { const hd = document.querySelector('#st-bud-dd .st-dd-h'); if (hd) { hd.focus({ preventScroll: true }); const p = document.getElementById('st-bud-dd'); if (p && p.scrollIntoView) p.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); } } }
+function stDDOpen(k, o = {}) { if (o.toggle && stDD === k) { stDD = null; stDDDraw(); return; } stDD = k; stDDAlt = false; if (k !== 'dom') stDDTax = false; stDDDraw({ focus: true }); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && stDD && e.target.closest && e.target.closest('#st-bud-dd')) { const k = stDD; stDD = null; stDDDraw(); const b = document.querySelector(`.st-dd-lb[data-st-dd="${k}"]`); if (b) b.focus(); } });
 
 // ── projections to 2030 (ECONFLOW.projections). Same grammar as the Financial "To 2030" chapter: actuals solid; projections
 // dashed with hollow points right of a "Projection →" divider; low–high ranges as light bands; official targets as ink
@@ -6027,7 +6244,20 @@ document.addEventListener('click', e => {
   if (p) { if (stBopTimer) { clearInterval(stBopTimer); stBopTimer = null; stBopControls(); return; }
     const ys = ECONFLOW.bop.years; let i = 0; stBopTimer = setInterval(() => { stBopYear = ys[i++]; stBopControls(); stSankey(); stBopMult(); if (i >= ys.length) { clearInterval(stBopTimer); stBopTimer = null; stBopControls(); } }, 1100); stBopControls(); return; }
   const d = e.target.closest && e.target.closest('[data-st-bud]');
-  if (d) { stBudYear = +d.dataset.stBud; stBudControls(); stWaffles(); if (typeof stBudgetDeep === 'function') stBudgetDeep(); }
+  if (d) { stBudYear = +d.dataset.stBud; stBudControls(); stWaffles(); if (stDD && stDD !== 'rec') { stDDYear = stBudYear; stDDDraw(); } if (typeof stBudgetDeep === 'function') stBudgetDeep(); return; }
+  // budget drill-down: a slice (square or legend button) opens its panel; tabs, years, tax-type toggle, alternative vintage, close
+  const dd = e.target.closest && e.target.closest('[data-st-dd]');
+  if (dd) { stDDOpen(dd.dataset.stDd, { toggle: dd.tagName === 'BUTTON' }); return; }
+  const dk = e.target.closest && e.target.closest('[data-st-ddk]');
+  if (dk) { stDD = dk.dataset.stDdk; stDDAlt = false; if (stDD !== 'dom') stDDTax = false; stDDDraw(); const b = document.querySelector(`#st-bud-dd [data-st-ddk="${stDD}"]`); if (b) b.focus(); return; }
+  const dy = e.target.closest && e.target.closest('[data-st-ddy]');
+  if (dy) { const v = dy.dataset.stDdy; stDDYear = /^\d+$/.test(v) ? +v : v; stDDAlt = false; stDDDraw(); const b = document.querySelector(`#st-bud-dd [data-st-ddy="${v}"]`); if (b) b.focus(); return; }
+  const dt = e.target.closest && e.target.closest('[data-st-ddtax]');
+  if (dt) { stDDTax = dt.dataset.stDdtax === '1'; stDDAlt = false; stDDDraw(); const b = document.querySelector(`#st-bud-dd [data-st-ddtax="${dt.dataset.stDdtax}"]`); if (b) b.focus(); return; }
+  const da = e.target.closest && e.target.closest('[data-st-ddalt]');
+  if (da) { stDDAlt = !stDDAlt; stDDDraw(); const b = document.querySelector('#st-bud-dd [data-st-ddalt]'); if (b) b.focus(); return; }
+  const dx = e.target.closest && e.target.closest('[data-st-ddx]');
+  if (dx) { const k = stDD; stDD = null; stDDDraw(); const b = document.querySelector(`.st-dd-lb[data-st-dd="${k}"]`); if (b) b.focus(); return; }
 });
 document.addEventListener('mouseover', e => { const k = e.target.closest && e.target.closest('[data-st-k]'); if (!k) return; const p = decodeURIComponent(k.dataset.stK).split('|'), b = p.slice(1).join(' · '); stTipKV(e, p[0], isNaN(+b) || b === '' ? b : stN(+b, 1) + stT(' tỷ USD', ' bn USD')); });
 document.addEventListener('mousemove', e => { if (e.target.closest && e.target.closest('[data-st-k]')) dotTipMove(e); });
@@ -6044,10 +6274,12 @@ function renderSocStory() {
   const A = POP_SERIES.actual, y1 = Math.max(...Object.keys(A).map(Number)), pop = A[y1], W = WORLD_RANK, N = POP_SERIES.nat, gp = POP_SERIES.gso.peak || {}, up = POP_SERIES.un.peak || {};
   const tfr = socRows('tfr').sort((a, b) => a.v - b.v), below = tfr.filter(r => r.v < 2.1).length, gr = socGrdp(), top = gr[0], bot = gr[gr.length - 1];
   const C = RELIGION.nat.c19;
+  // hero growth reads the latest national release (nat_latest, e.g. 2025 preliminary); chapter 1 keeps POP_SERIES.nat, the year of the province survey
+  const NL = POP_SERIES.nat_latest && POP_SERIES.nat_latest.growth_pct != null ? POP_SERIES.nat_latest : N, nlP = /sơ bộ|prelim/i.test(NL.status || '') ? stT(', sơ bộ', ', preliminary') : '';
   let h = `<section class="st-chap st-hero" id="soc-st-hero"><div class="st-kicker">${stT('Xã hội Việt Nam · ', 'Vietnam\'s society · ')}${y1}</div>
     <div class="st-hero-grid"><div>
       <div class="st-big">${stN(pop, 1)}<span>${stT(' triệu người', ' million people')}</span></div>
-      <p class="st-dek">${stT(`Đông dân thứ <b>${W.pop.now.rank}</b> trong ${W.pop.now.of} quốc gia, vùng lãnh thổ. Dân số tăng ${stN(N.growth_pct, 2)}%/năm (${N.year}); dự báo trung bình của Cục Thống kê đạt đỉnh <b>${stN(gp.pop_m, 1)} triệu</b> năm ${gp.year}, Liên Hợp Quốc dự báo đỉnh năm ${up.year}.`, `The <b>${W.pop.now.rank}th</b> most populous of ${W.pop.now.of} countries and territories. Population grew ${stN(N.growth_pct, 2)}% a year (${N.year}); the NSO medium projection peaks at <b>${stN(gp.pop_m, 1)} million</b> in ${gp.year}, the UN's in ${up.year}.`)}</p>
+      <p class="st-dek">${stT(`Đông dân thứ <b>${W.pop.now.rank}</b> trong ${W.pop.now.of} quốc gia, vùng lãnh thổ. Dân số tăng ${stN(NL.growth_pct, 2)}%/năm (${NL.year}${nlP}); dự báo trung bình của Cục Thống kê đạt đỉnh <b>${stN(gp.pop_m, 1)} triệu</b> năm ${gp.year}, Liên Hợp Quốc dự báo đỉnh năm ${up.year}.`, `The <b>${W.pop.now.rank}th</b> most populous of ${W.pop.now.of} countries and territories. Population grew ${stN(NL.growth_pct, 2)}% a year (${NL.year}${nlP}); the NSO medium projection peaks at <b>${stN(gp.pop_m, 1)} million</b> in ${gp.year}, the UN's in ${up.year}.`)}</p>
     </div><div><div id="soc-st-pop-leg"></div><div id="soc-st-pop" class="st-viz"></div></div></div></section>`;
   h += stChap('soc-st-tfr', stT('Chương 1 · Sinh ít đi', 'Chapter 1 · Fewer births'),
     stT(`${below}/${tfr.length} tỉnh, thành sinh dưới mức thay thế 2,1; thấp nhất ${tfr[0].n} ${stN(tfr[0].v, 2)}`, `${below} of ${tfr.length} provinces are below the 2.1 replacement rate; lowest is ${tfr[0].n} at ${stN(tfr[0].v, 2)}`),
@@ -6264,10 +6496,13 @@ const socHxSig = v => { if (!v) return v; const m = Math.pow(10, Math.floor(Math
 const socHxQ = rows => { const v = rows.map(r => r.v).sort((a, b) => a - b), q = p => v[Math.min(v.length - 1, Math.floor(p * v.length))]; const b = [.2, .4, .6, .8].map(p => socHxSig(q(p))); return b.filter((x, i) => !i || x > b[i - 1]); };
 function socHxMetric(k) {
   const nat = POP_SERIES.nat || {};
+  // the province vitals year comes from the data (vitals_ref_year; the most common one if provinces ever differ), not a typed label
+  const vyC = {}; Object.values(SOC_PROV_DATA).forEach(d => { if (d && d.vitals_ref_year) vyC[d.vitals_ref_year] = (vyC[d.vitals_ref_year] || 0) + 1; });
+  const vy = Object.keys(vyC).sort((a, b) => vyC[b] - vyC[a])[0] || nat.year || '';
   const M = { grdp: { rows: socGrdp(), n: stT('GRDP/người 2025', 'GRDP per person, 2025'), f: v => stN(v, 0) + ' USD', fb: v => stN(v, 0), u: stT('USD/người', 'USD per person'), ref: socNat(), refN: stT('Cả nước', 'National'), brk: SOC_MAP.grdp.brk, col: SOC_MAP.grdp.col },
-    tfr: { rows: socRows('tfr'), n: stT('Mức sinh 2024', 'Fertility, 2024'), f: v => stN(v, 2) + stT(' con/phụ nữ', ' children per woman'), fb: v => stN(v, 1), fv: v => stN(v, 2), u: stT('con/phụ nữ · xanh: dưới mức thay thế 2,1 · đỏ: từ 2,1 trở lên', 'children per woman · blue: below the 2.1 replacement rate · red: 2.1 or above'), ref: 2.1, refN: stT('Mức thay thế', 'Replacement'), brk: SOC_MAP.tfr.brk, col: SOC_MAP.tfr.col },
-    urban: { rows: socRows('urban_pct'), n: stT('Đô thị hoá 2024', 'Urbanisation, 2024'), f: v => stN(v, 1) + stT('% dân số', '% of people'), fb: v => stN(v, 0) + '%', u: stT('% dân số sống ở đô thị', '% of people in urban areas'), ref: nat.urban_pct, refN: stT('Cả nước', 'National') },
-    life: { rows: socRows('life_exp'), n: stT('Tuổi thọ 2024', 'Life expectancy, 2024'), f: v => stN(v, 1) + stT(' năm', ' years'), fb: v => stN(v, 1), u: stT('năm, tuổi thọ trung bình khi sinh', 'years, life expectancy at birth'), ref: nat.life_exp, refN: stT('Cả nước', 'National') },
+    tfr: { rows: socRows('tfr'), n: stT(`Mức sinh ${vy}`, `Fertility, ${vy}`), f: v => stN(v, 2) + stT(' con/phụ nữ', ' children per woman'), fb: v => stN(v, 1), fv: v => stN(v, 2), u: stT('con/phụ nữ · xanh: dưới mức thay thế 2,1 · đỏ: từ 2,1 trở lên', 'children per woman · blue: below the 2.1 replacement rate · red: 2.1 or above'), ref: 2.1, refN: stT('Mức thay thế', 'Replacement'), brk: SOC_MAP.tfr.brk, col: SOC_MAP.tfr.col },
+    urban: { rows: socRows('urban_pct'), n: stT(`Đô thị hoá ${vy}`, `Urbanisation, ${vy}`), f: v => stN(v, 1) + stT('% dân số', '% of people'), fb: v => stN(v, 0) + '%', u: stT('% dân số sống ở đô thị', '% of people in urban areas'), ref: nat.urban_pct, refN: stT('Cả nước', 'National') },
+    life: { rows: socRows('life_exp'), n: stT(`Tuổi thọ ${vy}`, `Life expectancy, ${vy}`), f: v => stN(v, 1) + stT(' năm', ' years'), fb: v => stN(v, 1), u: stT('năm, tuổi thọ trung bình khi sinh', 'years, life expectancy at birth'), ref: nat.life_exp, refN: stT('Cả nước', 'National') },
     density: { rows: socRows('density'), n: stT('Mật độ 2025', 'Density, 2025'), f: v => stN(v, 0) + stT(' người/km²', ' people/km²'), fb: v => stN(v, 0), u: stT('người/km² (thang log ở chế độ xếp hạng)', 'people/km² (log scale in the ranked view)'), log: true } }[k];
   if (!M.brk) { M.brk = socHxQ(M.rows); M.col = SOC_RAMP.slice(SOC_RAMP.length - M.brk.length - 1); M.q = true; }
   return M;
@@ -6523,6 +6758,9 @@ const fsStFlowI = k => [...((FINSYS.flows || {})[k] || [])].sort((a, b) => Strin
 const fsStFlow = k => fsStFlowI(k).v;
 const fsStDL = d => { const m = /^(\d{4})-(\d{2})/.exec(String(d || '')); return m ? stT(`${+m[2]}/${m[1]}`, `${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m[2] - 1]} ${m[1]}`) : String(d || ''); };
 const fsStPP = o => (o.periods || o.dates || []).map((p, i) => [String(p).replace(/^20(\d\d)-(Q\d|FY)$/, '$2/$1').replace(/^20(\d\d)-(\d\d)-\d\d$/, '$2/$1'), o.values[i]]).filter(p => typeof p[1] === 'number');
+// cut-off of a provisional credit point: "theo phát biểu NHNN, số đến 28/8/2026" (the date comes from FINSYS.monthly.credit_cutoff)
+const fsCutLab = d => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); const dt = m ? stT(`${+m[3]}/${+m[2]}/${m[1]}`, `${+m[3]} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][m[2] - 1]} ${m[1]}`) : '';
+  return stT(`theo phát biểu của NHNN${dt ? ', số đến ' + dt : ''}`, `per an SBV statement${dt ? ', data to ' + dt : ''}`); };
 const fsStMon = m => { const [mm, yy] = m.replace(/^T/, '').split('/').map(Number); return stT(`T${mm}/20${yy}`, `${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][mm - 1]} 20${yy}`); };
 function renderFsStory() {
   const root = document.getElementById('fs-story'); if (!root || typeof FINSYS === 'undefined') return;
@@ -6537,7 +6775,7 @@ function renderFsStory() {
   let h = `<section class="st-chap st-hero" id="fs-st-hero"><div class="st-kicker">${stT('Hệ thống tài chính · cập nhật ', 'Financial system · as of ')}${polDS(FINSYS.asof)}</div>
     <div class="st-hero-grid"><div>
       <div class="st-big">${stN(cg.v, 0)}%<span>${stT(' tín dụng / GDP', ' credit to GDP')}</span></div>
-      <p class="st-dek">${stT(`Năm ${y} tín dụng tăng <b>${stN(A.credit_growth[n], 1)}%</b>, huy động tăng <b>${stN(A.deposit_growth[n], 1)}%</b>. Đến ${fsStMon(M.months[mi])}, tín dụng đã tăng thêm ${stN(M.credit_ytd[mi], 1)}% từ đầu năm.`, `In ${y} credit grew <b>${stN(A.credit_growth[n], 1)}%</b> and deposits <b>${stN(A.deposit_growth[n], 1)}%</b>. By ${fsStMon(M.months[mi])}, credit was up another ${stN(M.credit_ytd[mi], 1)}% year to date.`)}</p>
+      <p class="st-dek">${stT(`Năm ${y} tín dụng tăng <b>${stN(A.credit_growth[n], 1)}%</b>, huy động tăng <b>${stN(A.deposit_growth[n], 1)}%</b>. Đến ${fsStMon(M.months[mi])}, tín dụng đã tăng thêm ${stN(M.credit_ytd[mi], 1)}% từ đầu năm${(M.credit_basis || [])[mi] === 'statement' ? ` (${fsCutLab((M.credit_cutoff || [])[mi])}, chưa có trong bảng số liệu)` : ''}.`, `In ${y} credit grew <b>${stN(A.credit_growth[n], 1)}%</b> and deposits <b>${stN(A.deposit_growth[n], 1)}%</b>. By ${fsStMon(M.months[mi])}, credit was up another ${stN(M.credit_ytd[mi], 1)}% year to date${(M.credit_basis || [])[mi] === 'statement' ? ` (${fsCutLab((M.credit_cutoff || [])[mi])}, not yet in the data table)` : ''}.`)}</p>
     </div><div><div id="fs-st-gap-leg"></div><div id="fs-st-gap" class="st-viz"></div></div></div></section>`;
   h += stChap('fs-st-depth', stT('Chương 1 · Một nền kinh tế dựa vào ngân hàng', 'Chapter 1 · A bank-financed economy'),
     stT(`Tín dụng tư nhân vượt 100% GDP từ ${y100}; tổng tín dụng khoảng ${stN(cg.v, 0)}% GDP năm ${String(cg.d).slice(0, 4)}`, `Private credit passed 100% of GDP in ${y100}; total credit was about ${stN(cg.v, 0)}% of GDP in ${String(cg.d).slice(0, 4)}`),
@@ -6738,7 +6976,12 @@ function stMiniLine(pts, f, opt = {}) {
   const c = opt.c || ST.blue, W = 240, H = 90, vs = pts.map(p => p[1]), lo = opt.lo ?? Math.min(...vs), hi = opt.hi ?? Math.max(...vs), pad = (hi - lo) * 0.15 || 1, sy = stLin(lo - pad, hi + pad, H - 18, 8);
   const sxi = timed ? (() => { const a = Math.min(...tt), b = Math.max(...tt), g = stLin(a, b === a ? a + 1 : b, 6, W - 6); return i => g(tt[i]); })() : (() => { const g = stLin(0, Math.max(1, pts.length - 1), 6, W - 6); return i => g(i); })(), sx = sxi;
   let s = opt.ref != null ? `<line x1="0" x2="${W}" y1="${sy(opt.ref)}" y2="${sy(opt.ref)}" class="st-base"/><text class="st-tick" x="${W}" y="${sy(opt.ref) - 3}" text-anchor="end">${opt.refL || ''}</text>` : '';
-  s += stLine(pts.map((p, i) => [sx(i), sy(p[1])]), c) + pts.map((p, i) => i === pts.length - 1 || opt.allDots ? stDot(sx(i), sy(p[1]), 4, c, [(opt.name || '') + ' · ' + p[0], f(p[1])], { d: i * 40 }) : `<g ${stKey((opt.name || '') + ' · ' + p[0], f(p[1]))}><circle cx="${sx(i)}" cy="${sy(p[1])}" r="9" fill="transparent"/></g>`).join('');
+  // opt.hol[i] = a provisional point (e.g. an SBV statement, not yet in the data table): hollow marker, dashed segment into it,
+  // opt.tip[i] = text appended to its tooltip label (e.g. the cut-off date)
+  const H0 = opt.hol || [], T0 = opt.tip || [], lab = i => (opt.name || '') + ' · ' + pts[i][0] + (T0[i] || '');
+  s += stLine(pts.map((p, i) => H0[i] ? null : [sx(i), sy(p[1])]), c)
+    + pts.map((p, i) => i > 0 && (H0[i] || H0[i - 1]) ? stLine([[sx(i - 1), sy(pts[i - 1][1])], [sx(i), sy(p[1])]], c, { dash: '4,3' }) : '').join('')
+    + pts.map((p, i) => H0[i] ? stDot(sx(i), sy(p[1]), 4, c, [lab(i), f(p[1])], { d: i * 40, hollow: true }) : i === pts.length - 1 || opt.allDots ? stDot(sx(i), sy(p[1]), 4, c, [lab(i), f(p[1])], { d: i * 40 }) : `<g ${stKey(lab(i), f(p[1]))}><circle cx="${sx(i)}" cy="${sy(p[1])}" r="9" fill="transparent"/></g>`).join('');
   s += `<text class="st-tick" x="4" y="${H}">${pts[0][0]}</text><text class="st-tick" x="${W - 4}" y="${H}" text-anchor="end">${pts[pts.length - 1][0]}</text>`;
   return stSvg(W, H, s, opt.name || '');
 }
@@ -6784,8 +7027,12 @@ function fsStDepth() {
 function fsStMMult() {
   const el = document.getElementById('fs-st-mmult'), M = FINSYS.monthly, I = FINSYS.why.series.interbank_on_monthly || {};
   const ser = (labels, vals) => labels.map((m, i) => [m, vals[i]]).filter(p => p[1] != null), mm = s => s.map(([m, v]) => [m.replace(/^T/, stT('T', '')), v]), f1 = v => stN(v, 1) + '%', f2 = v => stN(v, 2) + '%';
-  el.innerHTML = [[stT('Tín dụng (% từ đầu năm)', 'Credit (% YTD)'), mm(ser(M.months, M.credit_ytd)), f1], [stT('Tiền gửi khách hàng (% từ đầu năm)', 'Customer deposits (% YTD)'), mm(ser(M.months, M.deposits_ytd)), f1], [stT('Tiền mặt / M2', 'Cash / M2'), mm(ser(M.months, M.cash_to_m2_pct)), f1], [stT('Lãi suất liên ngân hàng qua đêm', 'Overnight interbank rate'), ser((I.months || []).map(m => `${+m.slice(5)}/${m.slice(2, 4)}`), I.values || []), f2]]
-    .filter(x => x[1].length > 1).map(([t, p, f]) => stMini(t, f(p[p.length - 1][1]), stMiniLine(p, f, { name: t }), `${stT('mới nhất', 'latest')}: ${p[p.length - 1][0]}`)).join('');
+  // credit points whose basis is an SBV statement (not the SBV data table) are hollow, with their cut-off date in the tooltip
+  const crI = M.months.map((_, i) => i).filter(i => M.credit_ytd[i] != null), crSt = crI.map(i => (M.credit_basis || [])[i] === 'statement'), cL = crI[crI.length - 1];
+  const crTip = crI.map((i, j) => crSt[j] ? ' · ' + fsCutLab((M.credit_cutoff || [])[i]) : '');
+  const crSub = crSt[crSt.length - 1] ? `${stT('mới nhất', 'latest')}: ${mm([[M.months[cL], 0]])[0][0]} · ${fsCutLab(M.credit_cutoff[cL])}; ${stT('○ = chưa có trong bảng số liệu NHNN', '○ = not yet in the SBV data table')}` : null;
+  el.innerHTML = [[stT('Tín dụng (% từ đầu năm)', 'Credit (% YTD)'), mm(crI.map(i => [M.months[i], M.credit_ytd[i]])), f1, { hol: crSt, tip: crTip }, crSub], [stT('Tiền gửi khách hàng (% từ đầu năm)', 'Customer deposits (% YTD)'), mm(ser(M.months, M.deposits_ytd)), f1], [stT('Tiền mặt / M2', 'Cash / M2'), mm(ser(M.months, M.cash_to_m2_pct)), f1], [stT('Lãi suất liên ngân hàng qua đêm', 'Overnight interbank rate'), ser((I.months || []).map(m => `${+m.slice(5)}/${m.slice(2, 4)}`), I.values || []), f2]]
+    .filter(x => x[1].length > 1).map(([t, p, f, o, sub]) => stMini(t, f(p[p.length - 1][1]), stMiniLine(p, f, Object.assign({ name: t }, o || {})), sub || `${stT('mới nhất', 'latest')}: ${p[p.length - 1][0]}`)).join('');
 }
 // ch2 — sector waffle (slots in fixed order) + growth bars: 2025 grey, 7M-2026 blue
 function fsStWaffle() {
@@ -7729,7 +7976,8 @@ let simPj = { attr: 'gap', scn: 'status_quo', custom: false, vals: {} };
 function simPanels() {
   const ser = (k, n, c, kind, pts, f, o = {}) => Object.assign({ k, n, c, kind, pts: pts.sort((a, b) => a.i - b.i), f }, o);
   const vcb = simS('dep12_vcb'), basis = vcb.basis || [], ann = simS('annual_growth'), AG = f => simPP((ann.periods || []).map(String), ann[f], { b: 'ann' });
-  const re = ((simS('real_estate').series || {}).hanoi_primary_apartment_price_mvnd_m2) || [], pi = simS('public_investment'), nso = pi.state_sector_investment_nso || {};
+  // providers stay separate series (Savills and CBRE measure differently; CBRE excludes VAT) — never joined into one line
+  const re = ((simS('real_estate').series || {}).hanoi_primary_apartment_price_mvnd_m2) || [], reC = ((simS('real_estate').series || {}).hanoi_primary_apartment_price_cbre_mvnd_m2) || [], pi = simS('public_investment'), nso = pi.state_sector_investment_nso || {};
   const k1 = p => Object.assign({}, p, { v: p.v / 1000 }), f0 = v => stN(v, 0), f1 = v => stN(v, 1);
   const vcbS = o => ser('dep12_vcb', stT('Tiết kiệm 12 tháng Vietcombank', 'Vietcombank 12-month deposit'), ST.blue, 'line', simV('dep12_vcb').map(p => Object.assign(p, { b: basis[p.i] || '' })), simPct, o);
   const refi = () => ser('refi_rate', stT('Tái cấp vốn', 'Refinancing rate'), ST.violet, 'step', simV('refi_rate'), simPct);
@@ -7749,7 +7997,7 @@ function simPanels() {
       { h: 74, u: stT('VN-Index, điểm', 'VN-Index, points'), s: [ser('vnindex', 'VN-Index', ST.orange, 'line', simV('vnindex'), f0)] },
       { h: 74, u: stT('vàng thế giới, USD/oz', 'world gold, USD/oz'), s: [ser('gold_world_usd', stT('Vàng thế giới', 'World gold'), ST.yellow, 'line', simV('gold_world_usd'), f0)] },
       { h: 74, u: stT('vàng SJC, triệu đ/lượng', 'SJC gold, m VND/tael'), s: [ser('sjc_gold_sell', stT('Vàng miếng SJC (giá bán)', 'SJC gold bar (sell)'), ST.yellow, 'dots', simO(simS('sjc_gold_sell').observations), f1)] },
-      { h: 74, u: stT('căn hộ Hà Nội, triệu đ/m²', 'Hanoi flats, m VND/m²'), zero: true, s: [ser('real_estate', stT('Căn hộ sơ cấp Hà Nội (Savills, Q4)', 'Hanoi primary apartments (Savills, Q4)'), ST.magenta, 'dots', simO(re.map(x => ({ period: x.period, value: x.value, note: x.provider }))), f0)] },
+      { h: 74, u: stT('căn hộ Hà Nội, triệu đ/m²', 'Hanoi flats, m VND/m²'), zero: true, s: [ser('real_estate', stT('Căn hộ sơ cấp Hà Nội (Savills)', 'Hanoi primary apartments (Savills)'), ST.magenta, 'dots', simO(re.map(x => ({ period: x.period, value: x.value, note: x.provider }))), f0)].concat(reC.length ? [ser('real_estate', stT('Căn hộ sơ cấp Hà Nội (CBRE, chưa VAT)', 'Hanoi primary apartments (CBRE, excl. VAT)'), ST.violet, 'dots', simO(reC.map(x => ({ period: x.period, value: x.value, note: x.provider }))), f0)] : []) },
       { h: 74, u: stT('margin, nghìn tỷ đ', 'margin, VND trn'), zero: true, s: [ser('margin_lending', stT('Dư nợ cho vay của CTCK', 'Securities firms\' loans'), ST.orange, 'dots', simO(simS('margin_lending').observations).map(k1), f0)] },
       { h: 74, u: stT('tài khoản mới, nghìn/tháng', 'new accounts, k a month'), zero: true, s: [ser('new_stock_accounts', stT('Tài khoản chứng khoán mở mới', 'New securities accounts'), ST.orange, 'dots', simO(simS('new_stock_accounts').observations).map(k1), f0)] }] },
     { id: 'fiscal', t: stT('Đầu tư công và tiền Kho bạc gửi ngân hàng', 'Public investment and Treasury money in banks'), rows: [
@@ -8055,7 +8303,7 @@ function renderSimStory() {
     `<div id="sim-anim"><div class="st-tctl sim-tctl"><button type="button" id="sim-play" aria-label="${stT('Phát câu chuyện', 'Play the story')}">▶</button><input type="range" id="sim-range" min="0" max="${SIM_N - 1}" step="1" value="${SIM_N - 1}" aria-label="${stT('Chọn tháng', 'Pick a month')}"><output id="sim-out" aria-live="off"></output></div>
      <ol class="sim-steps" id="sim-steps">${B.map((b, j) => `<li><button type="button" data-b="${j}"><span class="sim-st-p">${simPer(b)}</span><span class="sim-st-t">${ciE(stT(b.title_vi, b.title_en))}</span>${simBadge((b.data_check || {}).supports, 1)}</button></li>`).join('')}</ol>
      <div class="sim-beatrow"><div id="sim-beat" class="sim-beat" aria-live="polite"></div><div id="sim-sum" class="sim-sum">${simSummary()}</div></div>
-     <div class="sim-grid" id="sim-grid">${simPanels().map(P => `<div class="sim-card"><div class="sim-card-h">${ciE(P.t)}</div>${stLegend(P.rows.flatMap(r => r.s).filter((s, i, a) => a.findIndex(x => x.k === s.k) === i).map(s => ({ n: s.n, c: s.c, k: s.kind === 'dots' ? 'dot' : s.kind === 'bars' ? 'rect' : 'line' })))}<div class="st-viz sim-p" id="sim-p-${P.id}"></div></div>`).join('')}</div>
+     <div class="sim-grid" id="sim-grid">${simPanels().map(P => `<div class="sim-card"><div class="sim-card-h">${ciE(P.t)}</div>${stLegend(P.rows.flatMap(r => r.s).filter((s, i, a) => a.findIndex(x => x.k === s.k && x.n === s.n) === i).map(s => ({ n: s.n, c: s.c, k: s.kind === 'dots' ? 'dot' : s.kind === 'bars' ? 'rect' : 'line' })))}<div class="st-viz sim-p" id="sim-p-${P.id}"></div></div>`).join('')}</div>
      ${stNote(stT('Nét liền: số quan sát; nét đứt ở lãi suất Vietcombank: tháng giữ nguyên mức của lần niêm yết trước (chưa xác nhận); điểm rỗng: số cả năm, ước tính hoặc 9 tháng; đoạn có gạch: khoảng giá trị theo thước đo khác.', 'Solid: observed; dashed on the Vietcombank line: months carried from the last quote (not confirmed); hollow points: full-year, approximate or nine-month figures; capped segments: ranges on a different measure.'), stT('Tháng không có số liệu để trống, không nội suy. Số liệu của nhiều nguồn và định nghĩa khác nhau; chi tiết ở Chương 4.', 'Months without data stay blank, never interpolated. Sources and definitions differ; details in Chapter 4.'))}
      ${stSrc(stT('Nguồn: NHNN, NSO, Bộ Tài chính, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, Fed, báo chí (đường dẫn từng chuỗi ở Chương 4). Tổng hợp: Finance agent, ', 'Sources: SBV, NSO, Ministry of Finance, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, the Fed, press (per-series links in Chapter 4). Compiled by the Finance agent, ') + polDS(SIM.as_of) + '.')}</div>`);
   // 2 · projection
@@ -8236,7 +8484,7 @@ function ecRenderBudget() {
       <div><div class="ec-lh in">${ecT('Thu (nghìn tỷ đồng)', 'Revenue (trillion VND)')} <b>${fsN((g(R, 'total') || 0) / 1e3, 0)}</b></div>${col(IN, '#1baf7a')}</div>
       <div><div class="ec-lh out">${ecT('Chi (nghìn tỷ đồng)', 'Spending (trillion VND)')} <b>${fsN((g(X, 'total') || 0) / 1e3, 0)}</b></div>${col(OUT, '#e34948')}</div>
     </div>
-    <div class="ec-net">${ecT('Bội chi chính thức', 'Official deficit')} <b>${fsN((g(B, 'deficit') || 0) / 1e3, 0)} ${ecT('nghìn tỷ', 'tn VND')}</b>${(B.deficit_pct_gdp || [])[yi] != null ? ` (${ecN(B.deficit_pct_gdp[yi], 1)}% GDP)` : ''}</div>
+    <div class="ec-net">${ecT('Bội chi chính thức', 'Official deficit')} <b>${fsN((g(B, 'deficit') || 0) / 1e3, 0)} ${ecT('nghìn tỷ', 'tn VND')}</b>${(B.deficit_pct_gdp || [])[yi] != null ? ` (${ecN(B.deficit_pct_gdp[yi], 1)}% GDP)` : ''}${basis === 'estimate' && g(B, 'deficit') > 0 && g(R, 'total') > g(X, 'total') ? ` · <span class="pol-ft">${ecT(`thu, chi ${yr} là số thực hiện theo cơ sở tiền mặt (thu − chi = +${fsN((g(R, 'total') - g(X, 'total')) / 1e3, 1)} nghìn tỷ); bội chi chính thức gồm chi chuyển nguồn`, `${yr} revenue and spending are cash-basis execution (revenue − spending = +${fsN((g(R, 'total') - g(X, 'total')) / 1e3, 1)} tn VND); the official deficit includes carry-over spending`)}</span>` : ''}</div>
     <div class="iv-sec">${ecT('Thu, chi và bội chi 2018–2026 (nghìn tỷ đồng)', 'Revenue, spending and deficit 2018–2026 (trillion VND)')}</div><div id="ec-ch-bud" class="fs-ch"></div>
     <div class="iv-src">${ecT('Nguồn: Nghị quyết Quốc hội & quyết toán NSNN của Bộ Tài chính (2018–2024 quyết toán, 2025 ước tính, 2026 dự toán), NSO. Số thu chi không gồm chuyển nguồn; bội chi là số chính thức (không bằng thu − chi). Chi 2025 gồm chi từ nguồn tăng thu nên không so sánh trực tiếp. Bộ Tài chính không công bố tách thuế GTGT, TNDN, TTĐB trong thu nội địa — gộp vào "thuế khác".', 'Sources: National Assembly resolutions & MoF budget final accounts (2018–2024 final, 2025 estimate, 2026 plan), NSO. Totals exclude carry-overs; the deficit is the official figure (not revenue − spending). 2025 spending includes spending from revenue overruns, so not directly comparable. MoF does not split VAT, CIT and excise within domestic revenue — grouped as "other taxes".')}</div>`;
   const yl = ys.map(String), t = a => (a || []).map(v => v == null ? null : v / 1e3);
@@ -9482,7 +9730,7 @@ const CI = {
   labour() {
     const yi = cardYi.labour, e = calcEcon(getProvList(), yi), ep = yi > 0 ? calcEcon(getProvList(), yi - 1) : null;
     return { title: `Lao động & doanh nghiệp · ${ciE(ciSelName())} · ${2010 + yi}`, ...ciEconQ(yi, 'unemp', 'NSO — thất nghiệp, DN hoạt động, IIP; VCCI — PCI', 'Mô hình: công thức tuyến tính / tăng trưởng cố định'),
-      summary: [`DN hoạt động ~<b>${ciN(e.biz, 0)}</b>${ep ? ` (${ciPct(ciChg(e.biz, ep.biz))})` : ''}.`, `Thất nghiệp ${ciN(e.unemp, 1)}% · PCI ${ciN(e.pci, 1)} · IIP ${ciN(e.iip, 0)}.`],
+      summary: [`DN hoạt động ~<b>${ciN(e.biz, 0)}</b>${ep ? ` (${ciPct(ciChg(e.biz, ep.biz))})` : ''}.`, `Thất nghiệp ${ciN(e.unemp, 1)}% · PCI ${(() => { const pA = ECON_OFFICIAL.pci_median || [], pL = pA.reduce((k, v, i) => v != null && i <= yi ? i : k, -1); return pA[yi] != null ? ciN(pA[yi], 1) : pL >= 0 ? `${ciN(pA[pL], 1)} (${ECON_OFFICIAL.y0 + pL})` : '—'; })()} · IIP ${ciN(e.iip, 0)}.`],
       why: ['Số DN = 16% thu ngân sách 2010 × 1,08^n — tăng đều 8%/năm.', 'Thất nghiệp = 3,8% − 0,05 đ.%/năm (sàn 1,5%); PCI = 55 + 0,8/năm (trần 70); IIP = 100 × 1,07^n.', ciYt(Y => Y.iip_growth_9M != null ? `${stT('Thực tế', 'Actual')} ${ciYtL(Y)}: IIP ${ciPct(Y.iip_growth_9M, 1)}${Y.unemp_Q3 != null ? `; ${stT('thất nghiệp Q3', 'unemployment Q3')} ${ciN(Y.unemp_Q3, 2)}%` : ''} — NSO.` : '')].filter(Boolean),
       comp: { title: 'Công thức mô hình', head: ['Chỉ tiêu', 'Giá trị', 'Quy tắc'], rows: [['DN hoạt động', ciN(e.biz, 0), '+8%/năm'], ['Thất nghiệp', ciN(e.unemp, 1) + '%', '−0,05 đ.%/năm'], ['PCI', ciN(e.pci, 1), '+0,8/năm'], ['IIP', ciN(e.iip, 0), '+7%/năm']] } };
   },
