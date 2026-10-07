@@ -5620,7 +5620,7 @@ function stWaffle(el, parts, total, title, ctx) {
   const cnt = cellP.map(p => sh(p.v)), fl = cnt.map(Math.floor); let rem = 100 - fl.reduce((t, v) => t + v, 0);
   cnt.map((v, i) => [v - fl[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rem > 0) { fl[i]++; rem--; } });
   const cells = []; fl.forEach((n, i) => { for (let k = 0; k < n; k++) cells.push(i); });
-  const C = 22, G2 = 3, W = 10 * (C + G2), H = W, val = p => `${stN(p.v / 1e3, p.v < 1e4 ? 1 : 0)} ${stT('nghìn tỷ', 'tn VND')} · ${stN(sh(p.v), 1)}%`;
+  const C = 22, G2 = 3, W = 10 * (C + G2), H = W, val = p => `${stN(p.v / 1e3, p.v < 1e4 ? 1 : 0)} ${stT('nghìn tỷ', 'tn VND')} · ${stN(sh(p.v), sh(p.v) < 1 ? 2 : 1)}%`;
   const s = cells.map((pi, k) => { const p = cellP[pi], r = Math.floor(k / 10), c = k % 10, dd = !p.gap && !p.poolAll && G[p.grp] ? G[p.grp][3] : null;
     return `<rect class="st-cell${dd ? ' st-dd-cell' : ''}" style="--d:${k * 6}ms" x="${c * (C + G2)}" y="${r * (C + G2)}" width="${C}" height="${C}" rx="3" fill="${p.c}"${p.gap ? ' stroke="#8a8f99" stroke-width="1" stroke-dasharray="3,2"' : ''}${dd ? ` data-st-dd="${dd}"` : ''} ${stKey(`${p.full || p.n} · ${ctx.yl}`, `${val(p)} · ${ctx.bl}`)}/>`; }).join('');
   const sw = p => `<i style="background:${p.c}${p.gap ? ';outline:1px dashed #8a8f99;outline-offset:-1px' : ''}"></i>`;
@@ -5628,7 +5628,7 @@ function stWaffle(el, parts, total, title, ctx) {
     return dd ? `<li><button type="button" class="st-dd-lb${stDD === dd ? ' on' : ''}" data-st-dd="${dd}" aria-expanded="${stDD === dd}" aria-controls="st-bud-dd" title="${ciE(p.full || p.n)}">${inner}<em aria-hidden="true">›</em></button></li>` : `<li title="${ciE(p.full || p.n)}">${inner}</li>`; };
   const leg = gk.map(k => { const L = byG(k), tot = L.reduce((t, p) => t + p.v, 0), dd = G[k][3];
     return (L.length > 1 ? `<li class="st-leg-g"><span>${G[k][0]}</span><span class="st-leg-v">${stN(tot / 1e3, 0)} · ${stN(sh(tot), 1)}%</span></li>` : '') + L.map(p => row(p, p.gap ? null : dd)).join(''); }).join('')
-    + (pooled.length ? `<li class="st-leg-n">${sw({ c: ST_WAF_POOL })}<span>${stT(`Nhỏ khác: ${pooled.length} khoản dưới ${stN(ST_WAF_SMALL, 1)}% mỗi khoản, cộng ${stN(cellP[cellP.length - 1].v / 1e3, 1)} nghìn tỷ, gộp thành ${fl[fl.length - 1]} ô`, `Other small items: ${pooled.length} lines under ${stN(ST_WAF_SMALL, 1)}% each, ${stN(cellP[cellP.length - 1].v / 1e3, 1)} tn VND in all, pooled into ${fl[fl.length - 1]} cell${fl[fl.length - 1] === 1 ? '' : 's'}`)}</span></li>` : '');
+    + (pooled.length ? `<li class="st-leg-n">${sw({ c: ST_WAF_POOL })}<span>${stT(`Nhỏ khác: ${pooled.length} khoản dưới ${stN(ST_WAF_SMALL, 1)}% mỗi khoản, cộng ${stN(cellP[cellP.length - 1].v / 1e3, 1)} nghìn tỷ, ${fl[fl.length - 1] ? `gộp thành ${fl[fl.length - 1]} ô` : 'chưa đủ 1 ô (1%)'}`, `Other small items: ${pooled.length} line${pooled.length === 1 ? '' : 's'} under ${stN(ST_WAF_SMALL, 1)}% each, ${stN(cellP[cellP.length - 1].v / 1e3, 1)} tn VND in all, ${fl[fl.length - 1] ? `pooled into ${fl[fl.length - 1]} cell${fl[fl.length - 1] === 1 ? '' : 's'}` : 'less than one cell (1%)'}`)}</span></li>` : '');
   el.innerHTML = `<div class="st-waf-h">${title}</div><div class="st-waf-row"><div style="width:${W}px;max-width:100%;flex:none">${stSvg(W, H, s, title.replace(/<[^>]+>/g, ''))}</div><ul class="st-leg st-leg-d">${leg}</ul></div>`;
   return gk.flatMap(k => byG(k).map(p => [p.full || p.n, `${ctx.side} · ${G[k][0]}`, stN(p.v / 1e3, 1), stN(sh(p.v), 1) + '%' + (p.pool ? ' *' : '')]));
 }
