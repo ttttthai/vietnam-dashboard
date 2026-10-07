@@ -1118,12 +1118,12 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .sim-tg { justify-self: start; font: 600 12px var(--font-ui); color: #16181d; background: none; border: 1px solid #c3c2b7; border-radius: 999px; padding: 4px 12px; min-height: 28px; cursor: pointer; }
   .sim-tg:hover { border-color: #16181d; }
   .sim-steps { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: thin; -webkit-overflow-scrolling: touch; min-width: 0; }
-  .sim-steps li { flex: 0 0 auto; width: 148px; }
-  .sim-steps button { width: 100%; height: 100%; text-align: left; border: 1px solid #e1e0d9; border-radius: 4px; background: #fff; padding: 6px 8px; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 6px; align-items: center; font: 400 12px/1.35 var(--font-ui); color: #16181d; }
+  .sim-steps li { flex: 0 0 auto; width: 168px; }
+  .sim-steps button { width: 100%; height: 100%; text-align: left; border: 1px solid #e1e0d9; border-radius: 4px; background: #fff; padding: 6px 8px; cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; font: 400 12px/1.35 var(--font-ui); color: #16181d; }
   .sim-steps button:hover { border-color: #16181d; }
   .sim-steps button[aria-current=step] { border-color: #16181d; box-shadow: inset 3px 0 0 #16181d; background: #f4f2ec; }
   .sim-st-p { grid-column: 1; font: 600 10.5px var(--font-ui); color: #c2362f; letter-spacing: .03em; } .sim-st-t { grid-column: 1 / -1; font-weight: 600; }
-  .sim-steps .sim-badge { grid-column: 2; grid-row: 1; }
+  .sim-steps .sim-badge { order: 3; }
   .sim-body { min-width: 0; }
   @media (max-width: 999.98px) {
     .sim-side { display: contents; }   /* the control bar then sticks over the whole player, panels included */
@@ -1134,9 +1134,10 @@ if (window.APP_LANG === 'en') window.I18N_START();
     .sim-side { position: sticky; top: calc(var(--sim-top, 46px) + 6px); max-height: calc(var(--sim-vh, 100vh) - var(--sim-top, 46px) - 14px); display: flex; flex-direction: column; min-height: 0; }
     .sim-tctl { position: static; padding: 0 0 8px; }
     .sim-nav, .sim-tg { display: none; }
-    .sim-steps { flex: none; flex-direction: column; gap: 3px; overflow: visible; margin: 0 0 10px; }
+    .sim-steps { flex: none; flex-direction: column; gap: 2px; overflow: visible; margin: 0 0 10px; }
     .sim-steps li { width: auto; }
-    .sim-steps button { padding: 4px 8px 5px; }
+    .sim-steps button { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding: 3px 8px 4px; line-height: 1.25; gap: 0 6px; }
+    .sim-steps .sim-badge { order: 0; grid-column: 2; grid-row: 1; font-size: 10px; padding: 0 6px 0 4px; }
     .sim-st-t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .sim-steps button[aria-current=step] .sim-st-t { white-space: normal; }
     .sim-body { flex: 1 1 auto; min-height: 120px; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; scrollbar-width: thin; }
