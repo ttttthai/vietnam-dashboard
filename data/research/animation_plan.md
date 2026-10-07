@@ -379,3 +379,10 @@ Columns: kind · animation · frequency · periods held (first–last, count) ·
 | G10 | pgGraph + pgNews | diagram/table | timeline (exists) | event | 2024-07–2026-10 | yes | n/a | S | Strategy | 5 |
 
 (D) = needs a user decision (§3).
+
+## User decisions (2026-10-07)
+1. Bank statements/breakdowns (F36/F37): animation OFF until reported statements exist (FY2024 only).
+2. Finance credit/deposit/credit-to-GDP paths to 2030 (F01/F04/F20): keep as a labelled "dashboard scenario — not a forecast", assumptions stated.
+3. Provinces: animate on the 34-province basis, totals only (GRDP, population…); rates only for years with 34-province figures.
+4. Monthly charts: "8 periods" = 8 of the chart's own periods.
+Defaults applied by the main session (user may overrule): E27 FDI province drill-down = no animation, labelled "model"; CPI model inputs/basket move to economy.json (Economy owner); unsourced 2026–2045 sector constants left untouched; FX reserves kept as two labelled series (with/without gold), animated separately.
