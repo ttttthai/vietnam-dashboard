@@ -807,6 +807,13 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-leg .st-dd-lb:focus-visible { outline: 2px solid #16181d; outline-offset: 1px; }
   .st-leg .st-dd-lb em { font-style: normal; font-weight: 700; color: #16181d; margin-left: 2px; }
   .st-leg .st-dd-lb.on em { transform: rotate(90deg); display: inline-block; }
+  /* detailed budget legend: group head, every line with value · share (tabular), pooled small lines noted */
+  .st-leg-d li { margin-bottom: 4px; } .st-leg-d li > .st-dd-lb { flex: 1; min-width: 0; }
+  .st-leg-d .st-leg-g { margin: 10px 0 3px; font-weight: 650; color: #16181d; border-bottom: 1px solid #dedbd2; padding-bottom: 2px; }
+  .st-leg-d .st-leg-g:first-child { margin-top: 0; }
+  .st-leg-d .st-leg-v { margin-left: auto; padding-left: 8px; white-space: nowrap; font-variant-numeric: tabular-nums; color: #16181d; }
+  .st-leg-d small { color: #8a8f99; font-size: 11px; }
+  .st-leg-d .st-leg-n { margin-top: 8px; font-size: 11.5px; color: #5b6170; }
   .st-dd { margin: 14px 0 6px; padding: 14px 16px 12px; background: #fff; border: 1px solid #dedbd2; border-radius: 8px; max-width: 860px; }
   .st-dd-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
   .st-dd-top .st-ctrl { margin: 0; }
@@ -2364,11 +2371,38 @@ async function initMap() {
   drawMap();
 }
 
+// Map card width = the map's own width at the card's height (+ margins), so the card has no empty band; the summary
+// panel gets the rest. Skipped on narrow screens and after the reader drags the divider.
+let __mapUserW = null;
+function syncMapHeader() {
+  const lab = document.querySelector('#top-panel-header .col-label'), panel = document.getElementById('panel-map'), row = document.getElementById('top-row');
+  if (!lab || !panel || !row) return;
+  if (row.getBoundingClientRect().width < 700) { lab.style.flex = ''; return; }
+  lab.style.flex = `0 0 ${panel.getBoundingClientRect().width + 5}px`;   // + the divider
+}
+function fitMapPanel() {
+  const panel = document.getElementById('panel-map'), wrap = document.getElementById('map-wrap'), row = document.getElementById('top-row');
+  if (!panel || !wrap || !row || !__map34 || !__map34.length) return;
+  const rowW = row.getBoundingClientRect().width;
+  if (rowW < 700) { panel.style.flex = ''; syncMapHeader(); return; }
+  let w = __mapUserW;
+  if (w == null) {
+    const fc = { type: 'FeatureCollection', features: __map34.map(d => d.feature).concat(MAP_ARCHIPELAGOS.map(a => ({ type: 'Feature', geometry: { type: 'MultiPoint', coordinates: a.pts }, properties: {} }))) };
+    const b = d3.geoPath().projection(d3.geoMercator().fitSize([1000, 1000], fc)).bounds(fc), ar = (b[1][0] - b[0][0]) / (b[1][1] - b[0][1]);
+    const H = wrap.getBoundingClientRect().height || 400;
+    w = Math.round(ar * (H - 18) + 20);                         // map height minus top/bottom padding, plus side padding
+    w = Math.max(240, Math.min(w, Math.round(rowW * 0.55)));
+  }
+  panel.style.flex = `0 0 ${w}px`;
+  syncMapHeader();
+}
+
 function drawMap() {
   if (!__map34 || !__map34.length) return;
   const mapEl = document.getElementById('map-svg');
   const wrap  = document.getElementById('map-wrap');
   if (!mapEl || !wrap) return;
+  fitMapPanel();   // size the card to the map (desktop), then measure
   const rect = wrap.getBoundingClientRect();
   const W = rect.width  || wrap.offsetWidth  || 290;
   const H = rect.height || wrap.offsetHeight || 400;
@@ -5539,34 +5573,64 @@ function stBopFacts() {
   ].map(([h4, v, sub, sp]) => `<div class="st-fact"><div class="st-mini-h">${h4}</div><div class="st-mini-v">${v}</div>${sp}<div class="st-fact-s">${sub}</div></div>`).join('');
 }
 
-// 3 — budget waffles (categorical slots in fixed order; "other" muted) + line chart
+// 3 — budget waffles: every published line of the selected year (ECONFLOW.budget.detail), 1 cell = 1% of the total.
+// Revenue: domestic lines by source (shades of blue; "of which" lines are never added) + crude oil / trade / grants (shades
+// of aqua). Spending: recurrent (blue; education and S&T are "of which" lines of recurrent, so they are carved out of it,
+// never added on top), development investment (orange), interest (aqua), each other-spending line (shades of violet).
+// A reconciliation gap is a grey dashed "not itemised" block, never assigned to a line; lines under 0.5% of the total are
+// pooled into one "other small items" block and still listed one by one in the legend and the table twin. A year whose
+// release has no line-level split keeps that group as one slice (named, and said under the waffles).
+const ST_WAF_SMALL = 0.5, ST_WAF_GAP = '#ebe9e3', ST_WAF_POOL = '#8a8f99';
+const stHexMix = (c1, c2, t) => '#' + [1, 3, 5].map(k => Math.round(parseInt(c1.slice(k, k + 2), 16) * (1 - t) + parseInt(c2.slice(k, k + 2), 16) * t).toString(16).padStart(2, '0')).join('');
+const stRamp = (c0, c1, n) => Array.from({ length: n }, (_, i) => n < 2 || !c1 ? c0 : stHexMix(c0, c1, i / (n - 1)));
+// group order, name, one-hue ramp (dark = largest) and the drill-down panel the group opens
+const stWafG = () => ({ dom: [stT('Thu nội địa', 'Domestic revenue'), '#1d5aa6', '#b4d0f2', 'dom'], orev: [stT('Dầu thô, xuất nhập khẩu, viện trợ', 'Crude oil, trade, grants'), '#0d7a55', '#94dcbf', 'orev'],
+  rec: [stT('Chi thường xuyên', 'Recurrent spending'), '#2a78d6', '#a9c9f2', 'rec'], dev: [stT('Chi đầu tư phát triển', 'Development investment'), ST.orange, null, null], int: [stT('Trả lãi vay', 'Interest'), ST.aqua, null, null],
+  osp: [stT('Chi khác', 'Other spending'), '#4a3aa7', '#b3acd9', 'osp'] });
 function stBudgetParts(yi) {
-  const B = ECONFLOW.budget, R = B.revenue, X = B.expenditure, g = (o, k) => (o[k] || [])[yi] || 0;
-  const SUBK = ['pit', 'land_use_fees', 'env_protection', 'lottery', 'fees_charges'], known = SUBK.reduce((t, k) => t + g(R, k), 0);
-  // a year whose domestic sub-lines are all unpublished (e.g. the MoF year-end estimate) shows the whole domestic total under its own name
-  const noSub = SUBK.every(k => (R[k] || [])[yi] == null);
-  // four named classes + one grey "other" (chart audit #10: 7 hues incl. sub-1% squares → at most 5); land-use fees are magenta
-  // here and in the line chart below, so the land-use note points at the same colour in both
-  // 4th element = the drill-down panel the slice opens (stDD*): domestic lines → 'dom', trade / oil / grants → 'orev'
-  const IN = [[noSub ? stT('Thu nội địa', 'Domestic revenue') : stT('Thuế khác trong nước (GTGT, TNDN…)', 'Other domestic taxes (VAT, CIT…)'), g(R, 'domestic') - known, ST.blue, 'dom'], [stT('Tiền sử dụng đất', 'Land-use fees'), g(R, 'land_use_fees'), ST.magenta, 'dom'], [stT('Xuất nhập khẩu', 'Import-export'), g(R, 'import_export'), ST.aqua, 'orev'], [stT('Thuế TNCN', 'Personal income tax'), g(R, 'pit'), ST.yellow, 'dom'], [noSub ? stT('Khác (dầu thô, viện trợ)', 'Other (crude oil, grants)') : stT('Khác (dầu thô, phí, lệ phí, xổ số, thuế BVMT, viện trợ)', 'Other (crude oil, fees, lottery, env. tax, grants)'), g(R, 'fees_charges') + g(R, 'lottery') + g(R, 'env_protection') + g(R, 'crude_oil') + g(R, 'grants'), ST_MUTE, 'orev']];
-  const knownX = ['development_investment', 'recurrent', 'interest'].reduce((t, k) => t + g(X, k), 0);
-  const OUT = [[stT('Chi thường xuyên (lương, an sinh, y tế, giáo dục…)', 'Recurrent (salaries, social, health, education…)'), g(X, 'recurrent'), ST.blue, 'rec'], [stT('Đầu tư phát triển', 'Development investment'), g(X, 'development_investment'), ST.orange], [stT('Trả lãi vay', 'Interest'), g(X, 'interest'), ST.aqua], [stT('Khác (dự phòng, viện trợ, chi từ tăng thu…)', 'Other (reserve, aid, overrun-funded…)'), Math.max(0, g(X, 'total') - knownX), ST_MUTE, 'osp']];
-  const rev = g(R, 'total'), exp = g(X, 'total'), def = (B.deficit || [])[yi], basis = (B.basis || [])[yi];
-  // mixed basis (e.g. the 2025 MoF cash-basis execution): revenue exceeds spending, yet the official deficit is positive because it
-  // includes carry-over spending. Detected from the numbers, so the label follows the data, not a typed year.
-  const mixed = basis === 'estimate' && def > 0 && rev > exp;
-  return { IN: IN.filter(x => x[1] > 0), OUT: OUT.filter(x => x[1] > 0), rev, exp, def, basis, mixed, dpct: (B.deficit_pct_gdp || [])[yi], yr: B.years[yi] };
+  const B = ECONFLOW.budget, R = B.revenue, X = B.expenditure, D = B.detail || {}, yr = B.years[yi], j = (D.years || []).indexOf(yr), g = (o, k) => (o[k] || [])[yi] || 0;
+  const rev = g(R, 'total'), exp = g(X, 'total'), def = (B.deficit || [])[yi], basis = (B.basis || [])[yi], mixed = basis === 'estimate' && def > 0 && rev > exp;
+  const DS = D.revenue_domestic_by_source, OR = D.revenue_other, SO = D.spending_other, RF = D.recurrent_by_function, miss = [];
+  const items = T => j < 0 || !T ? [] : T.items.filter(it => typeof (it.values || [])[j] === 'number' && it.values[j] > 0).map(it => ({ n: stDDNm(it), full: stDDFull(it), v: it.values[j], key: it.key }));
+  const gapOf = (T, list, total) => { const Rc = (T && T.reconciles) || {}, r = (Rc.by_year || []).find(x => x.year === yr) || {}, gp = r.gap != null ? r.gap : total - list.reduce((t, x) => t + x.v, 0); return gp > (Rc.tolerance_bn || 2) ? gp : 0; };
+  const nI = stT('chưa tách chi tiết', 'not itemised'), add = (arr, list, grp, gap, whole, total) => {
+    if (list.length) { list.forEach(x => arr.push({ ...x, grp })); if (gap) arr.push({ n: `${stWafG()[grp][0]}: ${nI}`, full: `${stWafG()[grp][0]} — ${stT('phần chưa tách chi tiết trong nguồn công bố, không gán cho dòng nào', 'part not itemised in the published source, not assigned to any line')}`, v: gap, grp, gap: 1 }); }
+    else if (total > 0) { arr.push({ n: whole[0], full: whole[1], v: total, grp, whole: 1 }); if (whole[2]) miss.push(whole[2]); } };
+  const IN = [], OUT = [], domT = g(R, 'domestic'), dI = items(DS), oI = items(OR);
+  add(IN, dI, 'dom', dI.length ? gapOf(DS, dI, domT) : 0, [stT('Thu nội địa', 'Domestic revenue'), stT('Thu nội địa (nguồn công bố chưa tách theo dòng)', 'Domestic revenue (the release does not split it by line)'), stT('thu nội địa', 'domestic revenue')], domT);
+  add(IN, oI, 'orev', oI.length ? gapOf(OR, oI, rev) : 0, [stT('Dầu thô, xuất nhập khẩu, viện trợ', 'Crude oil, trade, grants'), stT('Thu ngoài nội địa (chưa tách theo dòng)', 'Non-domestic revenue (not split by line)'), stT('thu dầu thô, xuất nhập khẩu', 'crude oil and trade revenue')], rev - domT);
+  const dev = g(X, 'development_investment'), rc = g(X, 'recurrent'), it = g(X, 'interest'), oS = Math.max(0, exp - dev - rc - it);
+  const rI = items(RF).filter(x => x.key === 'education_training' || x.key === 'science_technology'), rS = rI.reduce((t, x) => t + x.v, 0);
+  if (rc > 0) { if (rI.length && rS < rc) { OUT.push({ n: stT('Chi thường xuyên khác', 'Other recurrent'), full: stT('Chi thường xuyên còn lại: lương, an sinh, y tế, quốc phòng… (chưa tách theo lĩnh vực)', 'Rest of recurrent spending: wages, social security, health, defence… (not split by function)'), v: rc - rS, grp: 'rec' }); rI.forEach(x => OUT.push({ ...x, grp: 'rec' })); }
+    else { OUT.push({ n: stT('Chi thường xuyên', 'Recurrent spending'), full: stT('Chi thường xuyên (lương, an sinh, y tế, giáo dục…)', 'Recurrent spending (salaries, social, health, education…)'), v: rc, grp: 'rec' }); if (j >= 0 && RF) miss.push(stT('giáo dục và KH&CN trong chi thường xuyên', 'education and S&T within recurrent spending')); } }
+  if (dev > 0) OUT.push({ n: stT('Chi đầu tư phát triển', 'Development investment'), full: stT('Chi đầu tư phát triển', 'Development investment'), v: dev, grp: 'dev' });
+  if (it > 0) OUT.push({ n: stT('Trả lãi vay', 'Interest'), full: stT('Chi trả nợ lãi', 'Interest payments'), v: it, grp: 'int' });
+  const sI = items(SO); add(OUT, sI, 'osp', sI.length ? gapOf(SO, sI, oS) : 0, [stT('Chi khác', 'Other spending'), stT('Chi khác (dự phòng, viện trợ, dự trữ…; chưa tách theo dòng)', 'Other spending (contingency, aid, reserves…; not split by line)'), stT('chi khác', 'other spending')], oS);
+  return { IN, OUT, rev, exp, def, basis, mixed, miss, dpct: (B.deficit_pct_gdp || [])[yi], yr };
 }
-function stWaffle(el, parts, total, title) {
-  const cnt = parts.map(p => p[1] / total * 100), fl = cnt.map(Math.floor); let rem = 100 - fl.reduce((t, v) => t + v, 0);
+// one waffle + its full legend; returns the table-twin rows. ctx = {yl, bl, side}
+function stWaffle(el, parts, total, title, ctx) {
+  const G = stWafG(), sh = v => v / total * 100, small = p => sh(p.v) < ST_WAF_SMALL, gk = Object.keys(G).filter(k => parts.some(p => p.grp === k));
+  // colours: within each group the lines are ranked, the largest darkest; the gap is grey; pooled lines take the pool grey
+  gk.forEach(k => { const L = parts.filter(p => p.grp === k && !p.gap).sort((a, b) => b.v - a.v), big = L.filter(p => !small(p)), cs = stRamp(G[k][1], G[k][2], big.length);
+    big.forEach((p, i) => { p.c = cs[i]; }); L.filter(small).forEach(p => { p.c = ST_WAF_POOL; p.pool = 1; }); parts.filter(p => p.grp === k && p.gap).forEach(p => { p.c = ST_WAF_GAP; if (small(p)) p.pool = 1; }); });
+  const byG = k => parts.filter(p => p.grp === k).sort((a, b) => (a.gap ? 1 : 0) - (b.gap ? 1 : 0) || b.v - a.v);
+  const cellP = gk.flatMap(k => byG(k).filter(p => !p.pool)), pooled = parts.filter(p => p.pool).sort((a, b) => b.v - a.v);
+  if (pooled.length) cellP.push({ n: stT('Nhỏ khác', 'Other small items'), full: stT(`Nhỏ khác: ${pooled.length} khoản dưới ${stN(ST_WAF_SMALL, 1)}% mỗi khoản (${pooled.map(p => p.n).join('; ')})`, `Other small items: ${pooled.length} lines under ${stN(ST_WAF_SMALL, 1)}% each (${pooled.map(p => p.n).join('; ')})`), v: pooled.reduce((t, p) => t + p.v, 0), c: ST_WAF_POOL, poolAll: 1 });
+  const cnt = cellP.map(p => sh(p.v)), fl = cnt.map(Math.floor); let rem = 100 - fl.reduce((t, v) => t + v, 0);
   cnt.map((v, i) => [v - fl[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rem > 0) { fl[i]++; rem--; } });
   const cells = []; fl.forEach((n, i) => { for (let k = 0; k < n; k++) cells.push(i); });
-  const C = 22, G2 = 3, W = 10 * (C + G2), H = 10 * (C + G2);
-  // a part with a 4th element (drill-down key) is clickable: squares by pointer, the legend entry as a real button (keyboard path)
-  const s = cells.map((pi, k) => { const r = Math.floor(k / 10), c = k % 10, dd = parts[pi][3]; return `<rect class="st-cell${dd ? ' st-dd-cell' : ''}" style="--d:${k * 6}ms" x="${c * (C + G2)}" y="${r * (C + G2)}" width="${C}" height="${C}" rx="3" fill="${parts[pi][2]}"${dd ? ` data-st-dd="${dd}"` : ''} ${stKey(parts[pi][0], stN(parts[pi][1] / 1e3, 0) + ' ' + stT('nghìn tỷ', 'tn VND') + ' · ' + stN(cnt[pi], 1) + '%')}/>`; }).join('');
-  const li = (p, i) => { const inner = `<i style="background:${p[2]}"></i><b>${fl[i] || '<1'}</b> <span>${p[0]}</span>`;
-    return p[3] ? `<li><button type="button" class="st-dd-lb${stDD === p[3] ? ' on' : ''}" data-st-dd="${p[3]}" aria-expanded="${stDD === p[3]}" aria-controls="st-bud-dd">${inner}<em aria-hidden="true">›</em></button></li>` : `<li>${inner}</li>`; };
-  el.innerHTML = `<div class="st-waf-h">${title}</div><div class="st-waf-row"><div style="width:${W}px;max-width:100%;flex:none">${stSvg(W, H, s, title.replace(/<[^>]+>/g, ''))}</div><ul class="st-leg">${parts.map(li).join('')}</ul></div>`;
+  const C = 22, G2 = 3, W = 10 * (C + G2), H = W, val = p => `${stN(p.v / 1e3, p.v < 1e4 ? 1 : 0)} ${stT('nghìn tỷ', 'tn VND')} · ${stN(sh(p.v), 1)}%`;
+  const s = cells.map((pi, k) => { const p = cellP[pi], r = Math.floor(k / 10), c = k % 10, dd = !p.gap && !p.poolAll && G[p.grp] ? G[p.grp][3] : null;
+    return `<rect class="st-cell${dd ? ' st-dd-cell' : ''}" style="--d:${k * 6}ms" x="${c * (C + G2)}" y="${r * (C + G2)}" width="${C}" height="${C}" rx="3" fill="${p.c}"${p.gap ? ' stroke="#8a8f99" stroke-width="1" stroke-dasharray="3,2"' : ''}${dd ? ` data-st-dd="${dd}"` : ''} ${stKey(`${p.full || p.n} · ${ctx.yl}`, `${val(p)} · ${ctx.bl}`)}/>`; }).join('');
+  const sw = p => `<i style="background:${p.c}${p.gap ? ';outline:1px dashed #8a8f99;outline-offset:-1px' : ''}"></i>`;
+  const row = (p, dd) => { const inner = `${sw(p)}<span>${ciE(p.n)}${p.pool ? ` <small>${stT('(gộp vào "Nhỏ khác")', '(in "other small items")')}</small>` : ''}</span><span class="st-leg-v">${val(p)}</span>`;
+    return dd ? `<li><button type="button" class="st-dd-lb${stDD === dd ? ' on' : ''}" data-st-dd="${dd}" aria-expanded="${stDD === dd}" aria-controls="st-bud-dd" title="${ciE(p.full || p.n)}">${inner}<em aria-hidden="true">›</em></button></li>` : `<li title="${ciE(p.full || p.n)}">${inner}</li>`; };
+  const leg = gk.map(k => { const L = byG(k), tot = L.reduce((t, p) => t + p.v, 0), dd = G[k][3];
+    return (L.length > 1 ? `<li class="st-leg-g"><span>${G[k][0]}</span><span class="st-leg-v">${stN(tot / 1e3, 0)} · ${stN(sh(tot), 1)}%</span></li>` : '') + L.map(p => row(p, p.gap ? null : dd)).join(''); }).join('')
+    + (pooled.length ? `<li class="st-leg-n">${sw({ c: ST_WAF_POOL })}<span>${stT(`Nhỏ khác: ${pooled.length} khoản dưới ${stN(ST_WAF_SMALL, 1)}% mỗi khoản, cộng ${stN(cellP[cellP.length - 1].v / 1e3, 1)} nghìn tỷ, gộp thành ${fl[fl.length - 1]} ô`, `Other small items: ${pooled.length} lines under ${stN(ST_WAF_SMALL, 1)}% each, ${stN(cellP[cellP.length - 1].v / 1e3, 1)} tn VND in all, pooled into ${fl[fl.length - 1]} cell${fl[fl.length - 1] === 1 ? '' : 's'}`)}</span></li>` : '');
+  el.innerHTML = `<div class="st-waf-h">${title}</div><div class="st-waf-row"><div style="width:${W}px;max-width:100%;flex:none">${stSvg(W, H, s, title.replace(/<[^>]+>/g, ''))}</div><ul class="st-leg st-leg-d">${leg}</ul></div>`;
+  return gk.flatMap(k => byG(k).map(p => [p.full || p.n, `${ctx.side} · ${G[k][0]}`, stN(p.v / 1e3, 1), stN(sh(p.v), 1) + '%' + (p.pool ? ' *' : '')]));
 }
 // basis label for a non-final budget year; the MoF year-end estimate is cash-basis and excludes carry-over spending (chi chuyển
 // nguồn) that the final accounts include, so its change on the last final year is not like-for-like (ECONFLOW.budget.qc_note)
@@ -5681,12 +5745,16 @@ function stBudControls() {
 }
 function stWaffles() {
   const ys = ECONFLOW.budget.years, yi = ys.indexOf(stBudYear ?? 2025), P = stBudgetParts(yi), bl = { final: stT('quyết toán', 'final'), estimate: stT('ước tính', 'estimate'), plan: stT('dự toán', 'plan') }[P.basis] || '';
-  const cash = P.mixed ? stT(', cơ sở tiền mặt', ', cash basis') : '';
-  stWaffle(document.getElementById('st-waf-in'), P.IN, P.rev, `${stT('Thu', 'Revenue')} ${stN(P.rev / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')} <span>(${bl}${cash})</span>`);
-  stWaffle(document.getElementById('st-waf-out'), P.OUT, P.exp, `${stT('Chi', 'Spending')} ${stN(P.exp / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')}${P.mixed ? ` <span>(${bl}${cash})</span>` : ''} · ${P.mixed ? stT('bội chi chính thức', 'official deficit') : stT('bội chi', 'deficit')} ${stN((P.def || 0) / 1e3, 0)}`);
-  // the mixed-basis year: say why revenue − spending and the deficit disagree, with both numbers computed
+  const cash = P.mixed ? stT(', cơ sở tiền mặt', ', cash basis') : '', ctx = { yl: String(P.yr), bl: bl + cash };
+  const rIn = stWaffle(document.getElementById('st-waf-in'), P.IN, P.rev, `${stT('Thu', 'Revenue')} ${stN(P.rev / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')} <span>(${bl}${cash})</span>`, { ...ctx, side: stT('Thu', 'Revenue') });
+  const rOut = stWaffle(document.getElementById('st-waf-out'), P.OUT, P.exp, `${stT('Chi', 'Spending')} ${stN(P.exp / 1e3, 0)} ${stT('nghìn tỷ', 'tn VND')}${P.mixed ? ` <span>(${bl}${cash})</span>` : ''} · ${P.mixed ? stT('bội chi chính thức', 'official deficit') : stT('bội chi', 'deficit')} ${stN((P.def || 0) / 1e3, 0)}`, { ...ctx, side: stT('Chi', 'Spending') });
+  // table twin: every line of both waffles, pooled ones included (marked *)
+  const wrap = document.querySelector('#st-budget .st-waffles'); if (wrap) wrap._stRows = { head: [stT(`Khoản (${P.yr})`, `Line (${P.yr})`), stT('Nhóm', 'Group'), stT('Nghìn tỷ đồng', 'tn VND'), stT('% tổng (* = trong "Nhỏ khác")', '% of total (* = in "other small items")')], rows: rIn.concat(rOut) };
+  // the mixed-basis year: say why revenue − spending and the deficit disagree, with both numbers computed; then what has no line-level split
   const bn = document.getElementById('st-bud-basis');
-  if (bn) bn.innerHTML = P.mixed ? `<p class="st-dd-basis"><b>${P.yr}:</b> ${stT(`thu và chi là số thực hiện theo cơ sở tiền mặt (Bộ Tài chính, ước tính tháng 1/${P.yr + 1}), thu − chi = +${stN((P.rev - P.exp) / 1e3, 1)} nghìn tỷ. Bội chi chính thức ${stN(P.def / 1e3, 0)} nghìn tỷ${P.dpct != null ? ` (${stN(P.dpct, 1)}% GDP)` : ''} theo định nghĩa chính thức, gồm cả chi chuyển nguồn, nên không bằng thu trừ chi.`, `revenue and spending are MoF cash-basis execution (estimate of Jan ${P.yr + 1}): revenue − spending = +${stN((P.rev - P.exp) / 1e3, 1)} tn VND. The official deficit of ${stN(P.def / 1e3, 0)} tn VND${P.dpct != null ? ` (${stN(P.dpct, 1)}% of GDP)` : ''} uses the official definition and includes carry-over spending, so it is not revenue minus spending.`)}</p>` : '';
+  if (bn) bn.innerHTML = (P.mixed ? `<p class="st-dd-basis"><b>${P.yr}:</b> ${stT(`thu và chi là số thực hiện theo cơ sở tiền mặt (Bộ Tài chính, ước tính tháng 1/${P.yr + 1}), thu − chi = +${stN((P.rev - P.exp) / 1e3, 1)} nghìn tỷ. Bội chi chính thức ${stN(P.def / 1e3, 0)} nghìn tỷ${P.dpct != null ? ` (${stN(P.dpct, 1)}% GDP)` : ''} theo định nghĩa chính thức, gồm cả chi chuyển nguồn, nên không bằng thu trừ chi.`, `revenue and spending are MoF cash-basis execution (estimate of Jan ${P.yr + 1}): revenue − spending = +${stN((P.rev - P.exp) / 1e3, 1)} tn VND. The official deficit of ${stN(P.def / 1e3, 0)} tn VND${P.dpct != null ? ` (${stN(P.dpct, 1)}% of GDP)` : ''} uses the official definition and includes carry-over spending, so it is not revenue minus spending.`)}</p>` : '')
+    + (P.miss.length ? `<p class="st-dd-basis"><b>${stT(`Chưa công bố chi tiết cho ${P.yr}:`, `No breakdown published yet for ${P.yr}:`)}</b> ${P.miss.join('; ')}. ${stT('Nguồn công bố cho kỳ này chỉ có tổng, nên các ô đó là cả nhóm, không chia nhỏ.', 'The release for this period gives only the total, so those cells are the whole group, not split.')}</p>` : '');
+  const sec = document.getElementById('st-budget'); if (sec && sec.querySelector('.st-tbl')) stTables(sec);
 }
 
 // ── 3b · budget drill-down (ECONFLOW.budget.detail: MoF/NA final accounts 2018–2024, MoF Jan-2026 estimate for 2025, 2026 plan,
@@ -9171,8 +9239,9 @@ document.addEventListener('mousemove', e => {
   const rect = topRow.getBoundingClientRect();
   // Keep at least 240px for the summary panel
   const maxW = rect.width - 240;
-  const newW = Math.max(100, Math.min(maxW, e.clientX - rect.left));
-  mapPanel.style.width = newW + 'px';
+  const newW = Math.max(180, Math.min(maxW, e.clientX - rect.left));
+  __mapUserW = newW;   // the reader's choice wins over the automatic fit
+  mapPanel.style.flex = `0 0 ${newW}px`;
   redrawMap = drawMap;
   redrawMap();
 });
