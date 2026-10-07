@@ -262,7 +262,29 @@
 "Chính sách tài khoá": "Fiscal policy",
 "Dư nợ cho vay khách hàng theo BCTC giữa niên độ gần nhất (Finance: listed_banks_by_sector)": "Customer loans per the latest interim statements (Finance: listed_banks_by_sector)",
 "CPI bình quân năm %": "Annual-average CPI %",
-"Mô phỏng": "Simulation"
+"Mô phỏng": "Simulation",
+"Tăng trưởng GDP thực": "Real GDP growth",
+"Tháp dân số": "Population pyramid",
+"UN WPP 2024": "UN WPP 2024",
+"Cơ cấu tuổi: UN WPP 2024 (cả nước, ngày 31/12; 2000–2023 ước tính, 2025–2050 dự báo) — chưa có số theo tỉnh.": "Age structure: UN WPP 2024 (whole country, 31 Dec; 2000–2023 estimates, 2025–2050 projections) — no province data yet.",
+"Nguồn: Cục Thống kê (NSO), bảng PL.V02 cho 34 đơn vị mới — dân số TB 2025 sơ bộ; đô thị hoá, TFR, tuổi thọ, tỷ suất sinh/chết, tỷ số giới tính năm 2024. Diện tích, danh sách sáp nhập: NQ 202/2025/QH15 (quy mô dân số trong NQ cao hơn số TB của NSO). Cấp vùng (≈) = bình quân gia quyền theo dân số. Cơ cấu tuổi: UN WPP 2024 (cả nước, ngày 31/12; 2000–2023 ước tính, 2025–2050 dự báo) — chưa có số theo tỉnh.": "Source: National Statistics Office (NSO), tables PL.V02 for the 34 new units — 2025 average population (preliminary); urbanisation, TFR, life expectancy, crude birth/death rates and sex ratio for 2024. Area and merger lists: Resolution 202/2025/QH15 (its population figures are higher than NSO averages). Regional values (≈) are population-weighted averages. Age structure: UN WPP 2024 (whole country, 31 Dec; 2000–2023 estimates, 2025–2050 projections) — no province data yet.",
+"So cùng kỳ, 24 tháng: cột đỏ = giá tăng, cột xanh = giá giảm; gốc 0; một thang chung cho các nhóm, một thang khác cho các khoản mục con; cột đầu = cũ nhất, cột cuối = mới nhất": "Year on year, 24 months: red bar = prices up, blue bar = prices down; zero baseline; one scale for all groups, another for the sub-items; first bar = oldest, last bar = latest",
+"Phụ lục: số liệu ngân hàng thương mại niêm yết (báo cáo tài chính, xếp hạng)": "Appendix: listed commercial banks (financial statements, rankings)",
+"Chỉ số tổng hợp các NHTM niêm yết có số liệu": "Aggregate indicators of the listed banks with data",
+"Báo cáo tài chính hợp nhất": "Consolidated financial statements of",
+"NHTM —": "commercial banks —",
+"Bảng xếp hạng NHTM niêm yết ·": "Ranking of listed commercial banks ·",
+"Bảng xếp hạng NHTM niêm yết": "Ranking of listed commercial banks",
+"Sàn": "Exchange",
+"Sàn niêm yết": "Listing exchange",
+"Vốn hoá": "Market cap",
+"Vốn hoá = giá × số cổ phiếu niêm yết (nghìn tỷ VND)": "Market cap = price × listed shares (thousand bn VND)",
+"Dự báo UN WPP 2024 (phương án trung bình)": "UN WPP 2024 projection (medium variant)",
+"Ước tính UN WPP 2024 (mô hình hoá từ tổng điều tra/khảo sát, không phải số đếm của NSO)": "UN WPP 2024 estimate (modelled from censuses/surveys, not NSO counts)",
+"Các năm lưu trữ cách nhau không đều (2000, 2005, 2010, 2015, 2019, 2020, 2023, rồi 5 năm một lần); so sánh luôn là với năm lưu trữ liền trước.": "Stored years are unevenly spaced (2000, 2005, 2010, 2015, 2019, 2020, 2023, then every 5 years); comparisons are always with the previous stored year.",
+"Theo nhóm tuổi lớn": "By broad age group",
+"Tháp dân số · cả nước": "Population pyramid · whole country",
+"CHI TIẾT TỪNG KHOẢN MỤC (tỷ VND)": "LINE-ITEM DETAIL (bn VND)"
 },
 "templates": {
 "{0} cp/phiên · ngưỡng ≥ {1}": "{0} shares/session · threshold ≥ {1}",
@@ -384,6 +406,16 @@
 "{0} · giá so sánh": "{0} · constant prices",
 "tăng trưởng {0}": "growth {0}",
 "{0} nghìn tỷ": "{0} trillion VND",
-"{0} · {1} GDP cả nước": "{0} · {1} of national GDP"
+"{0} · {1} GDP cả nước": "{0} · {1} of national GDP",
+"Cơ cấu tuổi cả nước · {0}": "Age structure, whole country · {0}",
+"UN WPP 2024 · phụ thuộc {0} · già hoá {1}": "UN WPP 2024 · dependency {0} · ageing index {1}",
+"UN WPP 2024 · dự báo · phụ thuộc {0} · già hoá {1}": "UN WPP 2024 · projection · dependency {0} · ageing index {1}",
+"Tháp dân số · cả nước · {0}": "Population pyramid · whole country · {0}",
+"{0} là năm đầu của chuỗi lưu trữ — không có kỳ trước để so sánh.": "{0} is the first stored year — no earlier period to compare.",
+"Từ {0}: tỷ trọng 65+ {1}, 0–14 {2}.": "Since {0}: 65+ share {1}, 0–14 {2}.",
+"Chỉ số tổng hợp NHTM niêm yết có số liệu · {0}": "Aggregate indicators, listed banks with data · {0}",
+"Kết quả kinh doanh — {0} NHTM · {1}": "Business results — {0} commercial banks · {1}",
+"Tài sản — {0} NHTM · {1}": "Assets — {0} commercial banks · {1}",
+"Nợ phải trả & VCSH — {0} NHTM · {1}": "Liabilities & equity — {0} commercial banks · {1}"
 }
 }
