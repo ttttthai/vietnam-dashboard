@@ -24,6 +24,7 @@ OWNERS = {   # file → constants it owns (and the agent that maintains it)
     'society': (['SOC_PROV_DATA', 'POP_SERIES', 'SOC_GRDP', 'WORLD_RANK', 'PROV_PREV', 'RELIGION'], 'Society'),
     'policy': (['POLICY'], 'Policy'),
     'finance': (['FINSYS'], 'Finance'),
+    'simulation': (['SIM'], 'Finance'),   # Simulation tab: monthly panel, story beats, scenario model (tools/build/simulate.py)
     'flourish': (['FLOURISH_VIZ'], 'Main session'),   # Flourish chart registry (story slots read it)
 }
 
