@@ -1160,7 +1160,8 @@
      },
      "2025": {
       "v": null,
-      "note": "only 'over 16 bn' (Foreign Minister speech, lower bound): https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html"
+      "note": "No SBV national kiều hối total for 2025 found (re-searched 2026-10-07). Two non-SBV national statements exist (see remit.national_statements_2025); neither is SBV channel data, so the SBV series stays null.",
+      "lower_bound_statement": "over 16 bn USD — Foreign Minister Lê Hoài Trung, year-end diplomacy article, 01/01/2026: https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html"
      }
     },
     "hcmc_busd": {
@@ -1178,7 +1179,7 @@
      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
     }
    },
-   "note": "2025 national total left null: no SBV national figure found (re-searched 2026-10-06). Only \"over 16 bn USD\" (Foreign Minister, https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html), a lower bound. No 9M-2026 national or HCMC figure published yet; latest is HCMC H1-2026 (hcmc_H1_2026_busd). A search result quoting \"7.969 bn USD in 9 months\" for HCMC is the 9M-2025 figure (compared with 2024), not 2026. national_sbv_busd 2023/2024 (16.0) now cited (approx. SBV-system estimates, Jan of following year).",
+   "note": "2025 national SBV kiều hối left null: no SBV national figure found (re-searched 2026-10-07). National statements from MoFA are kept apart in national_statements_2025: 'over 16 bn USD' (Foreign Minister, 01/01/2026, lower bound) and 'ước đạt gần 18 tỷ USD trên cả nước' (baophapluat.vn, attributed in search summaries to Deputy FM Lê Thị Thu Hằng; page not readable, date unconfirmed). These do not conflict: 18 is above the 16 lower bound, and both exceed HCMC 10.34 (SBV Region 2; HCMC is commonly put at ~60% of the national total, which implies ~17 bn, but that is not stored because it would be a derived figure). World Bank 2025 figure: only the June-2024 projection (15.0); no KNOMAD 2025 estimate found. BoP secondary income credit 2025 = 19.766 (all current transfers, a wider definition). No H1-2026 or 9M-2026 national figure published; latest is HCMC H1-2026 4.037 bn (−22.8% yoy, hcmc_H1_2026_busd). A search result quoting \"7.969 bn USD in 9 months\" for HCMC is the 9M-2025 figure, not 2026. national_sbv_busd 2023/2024 (16.0) are cited approx. SBV-system estimates (Jan of following year).",
    "hcmc_H1_2026_busd": {
     "v": 4.037,
     "period": "Jan–Jun 2026",
@@ -1234,6 +1235,51 @@
     "hcmc_busd": "SBV Region 2 (HCMC) kiều hối; from 2025 coverage of merged HCMC (with Bình Dương, Bà Rịa–Vũng Tàu from 01/07/2025) not confirmed",
     "labour": "labour.remit_statements = contract-worker subset estimates (not additive)",
     "page_caution": "The page's remittance card splices KNOMAD → SBV → WB projection per year; these are different definitions."
+   },
+   "national_statements_2025": {
+    "definition": "National 2025 remittance totals announced by officials outside SBV (MoFA / State Committee for Overseas Vietnamese). Not SBV kiều hối channel data, not KNOMAD, not BoP. Statements only — do not plot in national_sbv_busd.",
+    "items": [
+     {
+      "v_busd": 16.0,
+      "qualifier": "hơn (over) — lower bound",
+      "speaker": "Foreign Minister Lê Hoài Trung",
+      "date": "2026-01-01",
+      "text": "kiều hối đạt mức kỷ lục hơn 16 tỷ USD",
+      "url": "https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html",
+      "alt_url": "https://vietnamnet.vn/bo-truong-ngoai-giao-kieu-hoi-dat-muc-ky-luc-hon-16-ty-usd-2478212.html",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+     },
+     {
+      "v_busd": null,
+      "approx_busd": 18.0,
+      "qualifier": "gần / khoảng (nearly / about) — estimate, ước đạt",
+      "speaker": "Deputy Foreign Minister Lê Thị Thu Hằng, Chair of the State Committee for Overseas Vietnamese (attribution per search summary only)",
+      "date": null,
+      "text": "Năm 2025, kiều hối về Việt Nam ghi nhận mức kỷ lục mới, ước đạt gần 18 tỷ USD trên cả nước. Riêng Thành phố Hồ Chí Minh chiếm hơn phân nửa, với khoảng 10,3 tỷ USD.",
+      "url": "https://baophapluat.vn/kieu-hoi-nam-2025-dat-muc-ky-luc-gan-18-ty-usd.html",
+      "verified": "partial: wording from search-engine excerpt; article page blocked (EGRESS_BLOCKED), publication date and exact speaker quote not seen; underlying data source (SBV or other) not stated, 2026-10-07",
+      "why_not_stored": "not an SBV figure; 'gần 18' is an approximate ceiling, not a value; attribution and date not confirmed on the page"
+     }
+    ],
+    "rejected": [
+     {
+      "v_busd": 17.7,
+      "text": "kiều hối tăng từ 2,3 tỷ USD (2004) lên 17,7 tỷ USD (2025)",
+      "why": "appeared only in a search-engine summary; no page found that carries it (exact-phrase search returned nothing) — untraced"
+     },
+     {
+      "v_busd": 18.0,
+      "text": "Vietnam Remittance & Money Transfer Market valued at USD 18.0 bn in 2025",
+      "url": "https://www.kenresearch.com/vietnam-remittance-money-transfer-market",
+      "why": "commercial market-size estimate, not an official statistic"
+     },
+     {
+      "v_busd": 19.0,
+      "text": "'Việt Nam's $19 Billion Lifeline' (thevietnamese.org, 02/2026)",
+      "url": "https://thevietnamese.org/2026/02/viet-nams-19-billion-lifeline-the-economic-impact-of-overseas-remittances/",
+      "why": "secondary article; ~19 bn matches BoP secondary income credit 2025 (19.766), a different definition"
+     }
+    ]
    }
   },
   "labour": {
