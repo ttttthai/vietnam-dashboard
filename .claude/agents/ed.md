@@ -65,13 +65,13 @@ If a story needs data that does not exist, write the request for the owning agen
    ```
    Also check for duplicate top-level names you introduce (`grep -n "^const NAME\|^function NAME"`), because a
    duplicate `const` silently breaks the whole page.
-4. Render and look: Playwright + Chromium (`executable_path='/opt/pw-browsers/chromium-1194/chrome-linux/chrome'`
-   in cloud sessions). Economy, Society, Policies and Financial render from `file://`; Party & Government and the
-   Investing story need the server (`python3 -m uvicorn server:app --port 8002` in the background; stop it with
-   `pgrep -f "uvicorn server:app --port 800[2]" | xargs -r kill` from a separate command). If d3/topojson CDNs are
-   blocked, route `**/d3.min.js` and `**/topojson.min.js` to local copies. Force reveal before screenshots with
-   `document.querySelectorAll('.st-chap').forEach(x=>x.classList.add('in'))`. Check VI and EN, desktop (1360px)
-   and phone (420px), and the console for errors.
+4. Render and look with **`tools/qa/shot.py`** — don't write your own screenshot script. It waits for the server by
+   polling, opens a tab and chapter by name, expands `<details>`, captures full height, and prints page errors
+   separately from blocked-CDN noise (`--list --tab banks` prints chapter names; see its docstring). Port **8002 is
+   the user's server — never start, stop or kill it**. Start your own on 8005 in the background
+   (`AUTO_FETCH_ON_STARTUP=0 python3 -m uvicorn server:app --port 8005`, ~60 s to answer) and pass `--port 8005`;
+   stop only that one (`pgrep -f "uvicorn server:app --port 8005" | xargs -r kill`). Foreground `sleep` is blocked
+   in cloud sessions. Check VI and EN, desktop (1360px) and phone (420px), and no page errors.
 5. Report what you changed and why, with screenshot paths, and anything you would do next. Do not commit or push
    unless asked.
 
