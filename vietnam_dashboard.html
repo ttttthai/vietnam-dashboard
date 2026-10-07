@@ -470,21 +470,6 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .bk-chg-neg { color: var(--accent4); }
   .bk-footer { font-size: 10px; color: var(--text3); padding: 4px 8px; }
 
-  /* Major-change alerts strip */
-  .bk-alert-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
-  .bk-alert { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto auto; gap: 2px 6px; align-items: center; transition: border-color 0.15s, transform 0.1s; cursor: pointer; }
-  .bk-alert:hover { border-color: var(--accent); transform: translateY(-1px); }
-  .bk-alert .ba-sym { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 0.3px; }
-  .bk-alert .ba-mag { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
-  .bk-alert .ba-mag.pos { color: var(--accent2); }
-  .bk-alert .ba-mag.neg { color: var(--accent4); }
-  .bk-alert .ba-metric { font-size: 10px; color: var(--text2); grid-column: 1 / -1; line-height: 1.3; }
-  .bk-alert .ba-detail { font-size: 10px; color: var(--text3); grid-column: 1 / -1; font-variant-numeric: tabular-nums; }
-  .bk-alert.severity-high   { border-left: 3px solid #e34948; }
-  .bk-alert.severity-medium { border-left: 3px solid #eda100; }
-  .bk-alert.severity-low    { border-left: 3px solid #64748b; }
-  .bk-alert-empty { color: var(--text3); font-size: 11px; padding: 12px; text-align: center; font-style: italic; }
-
   /* Lending / Funding breakdown layout */
   .bk-break-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .bk-break-col { display: flex; flex-direction: column; gap: 6px; }
@@ -492,19 +477,6 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .bk-break-sub { font-size: 10px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.3px; margin-top: 6px; margin-bottom: 2px; }
   .bk-donut { height: 250px; }
   .bk-hstack { height: 38px; }
-  /* Full balance-sheet layout */
-  .bk-bs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .bk-bs-side { display: flex; flex-direction: column; gap: 6px; }
-  .bk-bs-list { display: flex; flex-direction: column; gap: 3px; }
-  .bk-bs-group { font-size:10px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.4px; padding: 4px 0 2px; border-bottom: 1px dashed var(--border); margin-top: 4px; }
-  .bk-bs-row { display: grid; grid-template-columns: 8px 1fr 56px auto; gap: 8px; align-items: center; padding: 3px 6px; background: var(--bg2); border-radius: 4px; border: 1px solid var(--border); transition: background 0.15s; cursor: default; }
-  .bk-bs-row:hover { background: #e8eef6; border-color: var(--accent); }
-  .bk-bs-dot { width: 8px; height: 8px; border-radius: 2px; }
-  .bk-bs-name { font-size: 11px; color: var(--text); font-weight: 600; line-height: 1.3; }
-  .bk-bs-note { font-size:10px; color: var(--text3); margin-top: 1px; }
-  .bk-bs-bar-wrap { grid-column: 2 / 3; height: 3px; background: rgba(100,116,139,0.4); border-radius: 2px; overflow: hidden; margin-top: 3px; }
-  .bk-bs-bar { height: 100%; border-radius: 2px; }
-  .bk-bs-pct { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; padding: 2px 6px; border-radius: 3px; }
   .bk-inline-chart { height: 22px; width: 100%; }
   .bk-inline-chart svg { display: block; width: 100%; height: 100%; }
   .bk-inline-chart.bk-model { position: relative; }
@@ -523,9 +495,6 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .bk-cov { display: inline-block; font: 600 10px var(--font-ui, sans-serif); color: #5b6170; background: #efede7; border-radius: 999px; padding: 2px 8px; margin-left: 6px; }
   .bkm-entity-chart { height: 20px; width: 80px; }
   .bkm-entity-chart svg { display: block; width: 100%; height: 100%; }
-  @media (max-width: 900px) {
-    .bk-bs-grid { grid-template-columns: 1fr; }
-  }
   /* Income Statement list */
   .bk-is-list { display: flex; flex-direction: column; gap: 2px; }
   .bk-is-row { display: grid; grid-template-columns: 1fr 70px auto auto; gap: 10px; align-items: center; padding: 5px 10px; border-bottom: 1px solid rgba(100,116,139,0.4); font-size: 12px; }
@@ -539,9 +508,6 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .bk-is-row.revenue .bk-is-value { color: var(--accent2); }
   .bk-is-row.cost .bk-is-value    { color: var(--accent4); }
   .bk-is-row.profit.subtotal .bk-is-value { color: var(--accent); font-size: 14px; }
-  /* Rows that are clickable in BS list */
-  .bk-bs-row.clickable { cursor: pointer; }
-  .bk-bs-row.clickable .bk-bs-name::after { content: ' ▸'; color: var(--accent); font-size: 10px; opacity: 0.6; margin-left: 4px; }
   @media (max-width: 900px) {
     .bk-break-grid { grid-template-columns: 1fr; }
   }
@@ -1822,17 +1788,6 @@ if (window.APP_LANG === 'en') window.I18N_START();
             </div>
           </div>
 
-          <!-- Major changes alert panel -->
-          <div class="bk-card">
-            <div class="bk-card-hdr">
-              <span>Biến động đáng chú ý — <span id="bk-alert-period">kỳ gần nhất</span> vs kỳ trước</span>
-              <span style="font-size:10px;color:var(--text2);font-weight:400" id="bk-alert-count">—</span>
-            </div>
-            <div class="bk-card-body" style="padding:6px 10px">
-              <div id="bk-alert-strip" class="bk-alert-strip"></div>
-            </div>
-          </div>
-
           <!-- Industry aggregates — 10 indicators × 6 periods -->
           <div class="bk-card">
             <div class="bk-card-hdr">
@@ -1844,29 +1799,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
             </div>
           </div>
 
-          <!-- Full Balance Sheet + Income Statement -->
-          <div class="bk-card">
-            <div class="bk-card-hdr">
-              <span>Báo cáo tài chính hợp nhất <span id="bk-bs-n"></span> NHTM — <span id="bk-bs-period">FY2024</span></span>
-              <span style="font-size:10px;color:var(--text2);font-weight:400">Click khoản mục để xem cơ cấu chi tiết</span>
-            </div>
-            <div class="bk-card-body">
-              <div class="bk-bs-grid">
-                <div class="bk-bs-side">
-                  <div class="bk-break-header" style="color:var(--accent)">TÀI SẢN (ASSETS)</div>
-                  <div id="bk-bs-assets-donut"></div>
-                  <div class="bk-break-sub" style="margin-top:4px">CHI TIẾT TỪNG KHOẢN MỤC (tỷ VND)</div>
-                  <div class="bk-bs-list" id="bk-bs-assets-list"></div>
-                </div>
-                <div class="bk-bs-side">
-                  <div class="bk-break-header" style="color:var(--accent2)">⚖️ NỢ PHẢI TRẢ & VỐN CSH</div>
-                  <div id="bk-bs-leq-donut"></div>
-                  <div class="bk-break-sub" style="margin-top:4px">CHI TIẾT TỪNG KHOẢN MỤC (tỷ VND)</div>
-                  <div class="bk-bs-list" id="bk-bs-leq-list"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- Balance sheet, last 8 quarters, reported values only (GET /api/banks/bs_history; rendered by bshRender) -->
+          <div class="bk-card bsh" id="bk-bsh"></div>
 
           <!-- Lending & Funding breakdowns -->
           <div class="bk-card">
@@ -3199,19 +3133,12 @@ let _bkHi = null;                      // period index the bank mini-bars highli
 // note beside the modelled bank timelines: the server flags them (synthetic_history) and explains them (history_note, EN)
 const _bkModel = d => d && d.synthetic_history ? { model: (d.periods || []).map((_, i) => i) } : {};   // every period of a synthetic_history series is modelled
 const _bkHistNote = d => d && d.synthetic_history ? stT('Mô hình — chuỗi theo tỷ lệ cố định từ tổng FY2024, không phải số báo cáo', d.history_note || 'Modelled — not reported data') : '';
-const _atVal = (items, k) => { const tot = items.reduce((s, d) => s + ((d.history || [])[k] ?? d.value ?? 0), 0) || 1;
-  return items.map(d => { const v = (d.history || [])[k] ?? d.value; return { ...d, value: v, pct: v / tot * 100 }; }); };
 const _atPct = (items, k) => items.map(d => ({ ...d, pct: (d.history || [])[k] ?? d.pct }));
 
 function renderStatements() {
   if (!BANK_STATEMENTS) return;
   const S = BANK_STATEMENTS, P = S.periods;
-  const bsHost = document.getElementById('bk-bs-assets-donut'), isHost = document.getElementById('bk-is-list');
-  addTimeline('bkBS', bsHost && bsHost.closest('.bk-card-body'), P, k => {
-    _bkHi = k; const bsP = document.getElementById('bk-bs-period'); if (bsP) bsP.textContent = P[k]; const bsN = document.getElementById('bk-bs-n'); if (bsN) bsN.textContent = (S.totals || {}).bank_count ?? '';
-    const A = _atVal(S.balance_sheet.assets, k), Lq = _atVal(S.balance_sheet.liab_equity, k);
-    drawBSListClickable('bk-bs-assets-list', A); drawBSListClickable('bk-bs-leq-list', Lq);
-  }, { note: _bkHistNote(S) });
+  const isHost = document.getElementById('bk-is-list');
   addTimeline('bkIS', isHost && isHost.closest('.bk-card-body'), P, k => {
     _bkHi = k; const isP = document.getElementById('bk-is-period'); if (isP) isP.textContent = P[k];
     const items = S.income_statement.map(d => ({ ...d, value: (d.history || [])[k] ?? d.value }));
@@ -3268,45 +3195,6 @@ function inlineBarsSvg(history, color, periods, hi, opt = {}) {
   return svg;
 }
 
-// BS list with VND values + click-to-drill + inline 6-period bars
-function drawBSListClickable(containerId, items) {
-  const el = document.getElementById(containerId);
-  if (!el || !items) return;
-  const mx = Math.max(...items.map(d => d.pct)) || 1;
-  const periods = (BANK_STATEMENTS && BANK_STATEMENTS.periods) || [];
-  const groups = {};
-  items.forEach(d => {
-    const g = d.group || '';
-    if (!groups[g]) groups[g] = [];
-    groups[g].push(d);
-  });
-  let html = '';
-  Object.keys(groups).forEach(g => {
-    if (g) html += `<div class="bk-bs-group">${g}</div>`;
-    groups[g].forEach(d => {
-      const pctBarW = (d.pct / mx) * 100;
-      const hasBd = !!d.breakdown;
-      const clickAttrs = hasBd ? `class="bk-bs-row clickable" data-item="${d.breakdown}"` : `class="bk-bs-row"`;
-      const tipData = `${d.name}|${fmtVndTy(d.value)} tỷ VND · ${d.pct.toFixed(1)}%${d.note ? '|' + d.note : ''}${hasBd ? '|→ Click để xem cơ cấu' : ''}`;
-      const bars = inlineBarsSvg(d.history, d.color, periods, _bkHi, _bkModel(BANK_STATEMENTS));
-      html += `<div ${clickAttrs} data-tip="${tipData}">
-        <span class="bk-bs-dot" style="background:${d.color}"></span>
-        <div>
-          <div class="bk-bs-name">${d.name}</div>
-          ${d.note ? `<div class="bk-bs-note">${d.note}</div>` : ''}
-          <div class="bk-bs-bar-wrap"><div class="bk-bs-bar" style="width:${pctBarW.toFixed(1)}%;background:${d.color}"></div></div>
-        </div>
-        <div class="bk-inline-chart${BANK_STATEMENTS && BANK_STATEMENTS.synthetic_history ? ' bk-model' : ''}" data-model="${stT('mô hình', 'model')}" title="${periods.length} ${stT('kỳ', 'periods')}">${bars}</div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:1px">
-          <span class="bk-bs-pct" style="color:${d.color};background:${d.color}22">${fmtVndTy(d.value)}</span>
-          <span style="font-size: 10px;color:var(--text3);font-variant-numeric:tabular-nums">${d.pct.toFixed(1)}%</span>
-        </div>
-      </div>`;
-    });
-  });
-  el.innerHTML = html;
-}
-
 // Income Statement list — hierarchical + inline 6-period bar chart
 function drawISList(containerId, items, toi) {
   const el = document.getElementById(containerId);
@@ -3343,39 +3231,6 @@ function renderBreakdowns() {
     drawSortedBars('bk-fund-source', _atPct(F.source, k));
     drawHStack('bk-fund-tenor', _atPct(F.tenor, k)); drawHStack('bk-fund-customer', _atPct(F.customer, k)); drawHStack('bk-fund-currency', _atPct(F.currency, k));
   }, { note: _bkHistNote(BANK_BREAKDOWN) });
-}
-
-// Detailed balance-sheet line-item list with in-row bar
-function drawBSList(containerId, items) {
-  const el = document.getElementById(containerId);
-  if (!el || !items) return;
-  const mx = Math.max(...items.map(d => d.pct)) || 1;
-  // Group by `group` property if present (for L+E), else flat
-  const groups = {};
-  items.forEach(d => {
-    const g = d.group || '';
-    if (!groups[g]) groups[g] = [];
-    groups[g].push(d);
-  });
-  const keys = Object.keys(groups);
-  let html = '';
-  keys.forEach(g => {
-    if (g) html += `<div class="bk-bs-group">${g}</div>`;
-    groups[g].forEach(d => {
-      const pctBarW = (d.pct / mx) * 100;
-      const tipData = `${d.name}|Tỷ trọng: ${d.pct.toFixed(1)}%${d.note ? '|' + d.note : ''}`;
-      html += `<div class="bk-bs-row bk-bar" data-tip="${tipData}">
-        <span class="bk-bs-dot" style="background:${d.color}"></span>
-        <div>
-          <div class="bk-bs-name">${d.name}</div>
-          ${d.note ? `<div class="bk-bs-note">${d.note}</div>` : ''}
-          <div class="bk-bs-bar-wrap"><div class="bk-bs-bar" style="width:${pctBarW.toFixed(1)}%;background:${d.color}"></div></div>
-        </div>
-        <span class="bk-bs-pct" style="color:${d.color};background:${d.color}22">${d.pct.toFixed(1)}%</span>
-      </div>`;
-    });
-  });
-  el.innerHTML = html;
 }
 
 // Sorted bars (chart audit #87/#89: replaces the 8+-slice donuts) — HTML, so text never stretches; one hue per item as before
@@ -3440,8 +3295,6 @@ function renderBanks() {
     (r.history||[]).forEach((h, i) => { if (h && !h.missing && h.period) perLabels[i] = h.period; });
   });
 
-  // ---- Major changes alerts (latest vs previous period, per bank) ----
-  renderMajorChanges(BANK_ROWS, perLabels);
   // Build per-period aggregates: sums for scale metrics, weighted avgs for ratios
   const agg = {
     assets: [], equity: [], loans: [], deposits: [],
@@ -3544,105 +3397,6 @@ function renderBanks() {
 
 }
 
-// ───────── Major-changes alert renderer ─────────
-// Compares each bank's latest period vs previous period across BS line items.
-// Flags changes exceeding metric-specific thresholds, sorts by severity.
-function renderMajorChanges(rows, perLabels) {
-  const strip   = document.getElementById('bk-alert-strip');
-  const lblPer  = document.getElementById('bk-alert-period');
-  const lblCnt  = document.getElementById('bk-alert-count');
-  if (!strip) return;
-  const N = perLabels.length;
-  if (N < 2) {   // one reported period of fundamentals: compare FY2024 loans with the latest reported loans instead (neutral colour)
-    const L = rows.filter(r => r.loans && r.loans_latest_bn).map(r => ({ r, g: (r.loans_latest_bn / r.loans - 1) * 100 })).sort((a, b) => b.g - a.g), lp = (L[0] && L[0].r.loans_latest_period) || '';
-    if (lblPer) lblPer.textContent = stT(`dư nợ cho vay ${pmDate(lp)}`, `loans at ${pmDate(lp)}`);
-    if (lblCnt) lblCnt.textContent = L.length ? stT(`${L.length} NH · FY2024 → ${pmDate(lp)} · cơ sở số liệu có thể khác nhau`, `${L.length} banks · FY2024 → ${pmDate(lp)} · bases may differ`) : '—';
-    strip.innerHTML = L.length ? L.slice(0, 12).map(({ r, g }) => `<div class="bk-alert" data-sym="${r.symbol}" title="${ciE(r.name)} · ${ciE((r.latest_reported_loans || {}).basis || '')}">
-      <span class="ba-sym">${r.symbol}</span><span class="ba-mag">${g >= 0 ? '+' : ''}${g.toFixed(1)}%</span>
-      <span class="ba-metric">${stT('Cho vay khách hàng', 'Customer loans')} <span style="color:var(--text3)">· FY2024→${pmDate(r.loans_latest_period).slice(0, 5)}/${String(r.loans_latest_period).slice(2, 4)}</span></span>
-      <span class="ba-detail">${(r.loans / 1000).toFixed(0)}K → ${(r.loans_latest_bn / 1000).toFixed(0)}K</span></div>`).join('')
-      : `<div class="bk-alert-empty">${stT('Chỉ có một kỳ báo cáo (FY2024); không có kỳ thứ hai để so sánh.', 'Only one reported period (FY2024); nothing to compare against.')}</div>`;
-    return;
-  }
-  const cur = perLabels[N-1], prev = perLabels[N-2];
-  if (lblPer) lblPer.textContent = cur;
-
-  // Balance-sheet line items only (no ratios).
-  // Quarterly drift is much smaller than yearly — pick the right threshold scale.
-  const isQ = /^Q/.test(cur);
-  const Q = isQ ? 1 : 5;  // multiplier: yearly thresholds are ~5x quarterly
-  const METRICS = [
-    { k:'assets',  lbl:'Tổng tài sản',         type:'scale', thr:[1.5*Q, 3.0*Q] },
-    { k:'equity',  lbl:'Vốn chủ sở hữu',       type:'scale', thr:[1.5*Q, 3.5*Q] },
-    { k:'loans',   lbl:'Cho vay khách hàng',    type:'scale', thr:[1.5*Q, 3.5*Q] },
-    { k:'deposits',lbl:'Tiền gửi khách hàng',  type:'scale', thr:[1.5*Q, 3.0*Q] },
-  ];
-
-  const alerts = [];
-  rows.forEach(r => {
-    const hist = r.history || [];
-    if (hist.length < 2) return;
-    const hCur = hist[hist.length-1], hPrev = hist[hist.length-2];
-    if (!hCur || !hPrev) return;
-    const bankCur = hCur.period, bankPrev = hPrev.period;
-    METRICS.forEach(m => {
-      const a = hCur[m.k], b = hPrev[m.k];
-      if (a == null || b == null) return;
-      let mag, severity, fmt;
-      if (m.type === 'scale') {
-        if (b === 0) return;
-        const pct = (a/b - 1) * 100;
-        if (Math.abs(pct) < m.thr[0]) return;
-        mag = pct;
-        severity = Math.abs(pct) >= m.thr[1] ? 'high' : 'medium';
-        fmt = (mag>0?'+':'') + mag.toFixed(1) + '%';
-      } else {
-        const pp = a - b;
-        if (Math.abs(pp) < m.thr[0]) return;
-        mag = pp;
-        severity = Math.abs(pp) >= m.thr[1] ? 'high' : 'medium';
-        fmt = (mag>0?'+':'') + mag.toFixed(2) + 'pp';
-      }
-      // For NPL & CIR, rising is bad → flip severity color
-      const negativeWhenUp = (m.k === 'npl' || m.k === 'cir');
-      const goodDirection = negativeWhenUp ? mag < 0 : mag > 0;
-      alerts.push({
-        sym: r.symbol, name: r.name, metric: m.lbl, mag, fmt,
-        absMag: Math.abs(mag), severity, type: m.type, key: m.k,
-        cur: a, prev: b, good: goodDirection,
-        periodCur: bankCur, periodPrev: bankPrev
-      });
-    });
-  });
-
-  // Sort by absolute magnitude (scaled by metric threshold so ratios and scales mix fairly)
-  alerts.sort((x, y) => {
-    const sevOrder = { high: 2, medium: 1, low: 0 };
-    if (sevOrder[y.severity] !== sevOrder[x.severity]) return sevOrder[y.severity] - sevOrder[x.severity];
-    return y.absMag - x.absMag;
-  });
-
-  if (lblCnt) lblCnt.textContent = alerts.length === 0 ? '0 cảnh báo' : `${alerts.length} cảnh báo · ${prev} → ${cur}`;
-  if (alerts.length === 0) {
-    strip.innerHTML = `<div class="bk-alert-empty">Không có biến động nào vượt ngưỡng giữa <b>${prev}</b> và <b>${cur}</b>.</div>`;
-    return;
-  }
-
-  // Show top 12
-  const top = alerts.slice(0, 12);
-  strip.innerHTML = top.map(a => {
-    const dirIcon = a.mag > 0 ? '▲' : '▼';
-    const colorCls = a.good ? 'pos' : 'neg';
-    const fmtV = (v) => a.type === 'scale' ? (v >= 1000 ? (v/1000).toFixed(1)+'K' : Math.round(v).toLocaleString('en-US')) : v.toFixed(2)+'%';
-    return `<div class="bk-alert severity-${a.severity}" data-sym="${a.sym}" title="${a.name} · Click để xem công ty con">
-      <span class="ba-sym">${a.sym}</span>
-      <span class="ba-mag ${colorCls}">${dirIcon} ${a.fmt}</span>
-      <span class="ba-metric">${a.metric} <span style="color:var(--text3)">· ${a.periodPrev}→${a.periodCur}</span></span>
-      <span class="ba-detail">${fmtV(a.prev)} → ${fmtV(a.cur)}</span>
-    </div>`;
-  }).join('');
-}
-
 // KPI-tile sparkline (chart audit #86: replaces the bars that were "zoomed to amplify change"): a 2px line with first and last
 // values labelled; a line may start above zero because it shows change, not size. One period → a single labelled dot.
 function drawMiniBars(containerId, series, labels, color, unit, metricLabel) {
@@ -3680,11 +3434,6 @@ document.addEventListener('click', e => {
   const symCell = e.target.closest('.bk-sym-cell');
   if (symCell && symCell.dataset.sym) {
     openBankEntities(symCell.dataset.sym);
-    return;
-  }
-  const alertCard = e.target.closest('.bk-alert');
-  if (alertCard && alertCard.dataset.sym) {
-    openBankEntities(alertCard.dataset.sym);
     return;
   }
   if (e.target.id === 'bk-update-btn') {
@@ -9854,12 +9603,6 @@ const CI = {
         rows: rows.map(r => isPct ? [ciE(r.x.name), ciN(r.cur, 1) + '%', r.prev != null ? ciN(r.prev, 1) + '%' : '—', r.d != null ? ciCol(r.d, ciPP(r.d, 2)) : '—']
                                   : [ciE(r.x.name), ciN(r.cur / 1e3, 0), ciN(r.cur / tot * 100, 1) + '%', r.prev ? ciCol(r.d, ciPct(ciChg(r.cur, r.prev))) : '—', dTot && r.d != null ? ciN(r.d / dTot * 100, 1) + '%' : '—']) } };
   },
-  bkStmt(side) {
-    if (!BANK_STATEMENTS) return this._bkNeed();
-    const S = BANK_STATEMENTS, items = side === 'assets' ? S.balance_sheet.assets : S.balance_sheet.liab_equity;
-    const k = TL.bkBS ? TL.bkBS.i : S.periods.length - 1;
-    return { title: `${side === 'assets' ? 'Tài sản' : 'Nợ phải trả & VCSH'} — ${(S.totals || {}).bank_count || '—'} NHTM · ${S.periods[k]}`, ...this._bkQ, ...this._bkItems(items, 'Khoản mục (nghìn tỷ VND)', 'Nghìn tỷ', k) };
-  },
   bkBreak(grp, key, label) {
     if (!BANK_BREAKDOWN) return this._bkNeed();
     const items = (BANK_BREAKDOWN[grp] || {})[key] || [];
@@ -9884,17 +9627,6 @@ const CI = {
         .concat([`NPL bình quân (theo dư nợ) ${ciN(wavg('npl', 'loans'), 2)}% · ROE (theo VCSH) ${ciN(wavg('roe', 'equity'), 1)}% · CAR ${ciN(wavg('car', 'assets'), 1)}%.`]),
       why: [`Cho vay ${ciPct(ciChg(hsum('loans', 0), hsum('loans', 1)))} vs tiền gửi ${ciPct(ciChg(hsum('deposits', 0), hsum('deposits', 1)))}: cho vay tăng nhanh hơn huy động → LDR tăng, phù hợp với lãi suất liên NH đi lên.`],
       comp: { title: 'Top 5 theo tổng tài sản', head: ['Ngân hàng', 'Tài sản (nghìn tỷ)', '% ngành', 'NPL', 'ROE'], rows: top.map(r => [`${r.symbol} · ${ciE(r.name)}`, ciN(r.assets / 1e3, 0), ciN(r.assets / A * 100, 1) + '%', ciN(r.npl, 2) + '%', ciN(r.roe, 1) + '%']) } };
-  },
-  bkAlert() {
-    const d = BANK_DATA[bkPeriod]; if (!d || !d.rows) return this._bkNeed();
-    const ch = [];
-    d.rows.forEach(r => { const h = r.history || []; if (h.length < 2) return; const a = h[h.length - 1], b = h[h.length - 2];
-      [['assets', 'Tài sản'], ['loans', 'Cho vay'], ['deposits', 'Tiền gửi'], ['equity', 'VCSH']].forEach(([k, n]) => { if (a[k] && b[k]) ch.push({ s: r.symbol, n, v: ciChg(a[k], b[k]) }); }); });
-    ch.sort((x, y) => Math.abs(y.v) - Math.abs(x.v));
-    return { title: 'Biến động đáng chú ý', ...this._bkQ,
-      summary: ['So sánh kỳ mới nhất với kỳ trước cho 4 khoản mục (tài sản, VCSH, cho vay, tiền gửi) của từng ngân hàng; cảnh báo khi vượt ngưỡng (năm ≈ 7,5–17,5%, quý ≈ 1,5–3,5%).'],
-      why: ['Tăng VCSH đột biến thường do phát hành/chia cổ tức cổ phiếu; tăng cho vay > tiền gửi làm LDR tăng.'],
-      comp: { title: 'Thay đổi lớn nhất', head: ['NH', 'Khoản mục', 'Thay đổi'], rows: ch.slice(0, 10).map(x => [x.s, x.n, ciCol(x.v, ciPct(x.v))]) } };
   },
   bkTable() {
     const d = BANK_DATA[bkPeriod]; if (!d || !d.rows) return this._bkNeed();
@@ -9928,8 +9660,6 @@ const CI = {
       why, comp: cmp ? { title: `${cmp.title}${cmp.basis ? ' · ' + cmp.basis : ''}`, head: ['Thành phần', 'Tỷ trọng', 'Giá trị'], rows: cmp.items.map(x => [ciE(x.name), x.share_pct != null ? ciN(x.share_pct, 1) + '%' : '—', ciE(x.value ?? '')]) } : null };
   },
 };
-CI['bk-assets'] = () => CI.bkStmt('assets');
-CI['bk-leq'] = () => CI.bkStmt('leq');
 [['lending', 'sector', 'theo ngành kinh tế'], ['lending', 'tenor', 'theo kỳ hạn'], ['lending', 'customer', 'theo khách hàng'], ['lending', 'currency', 'theo đồng tiền'],
  ['funding', 'source', 'theo nguồn'], ['funding', 'tenor', 'theo kỳ hạn'], ['funding', 'customer', 'theo khách hàng'], ['funding', 'currency', 'theo đồng tiền']]
   .forEach(([g, k, l]) => { CI[`bk-${g === 'lending' ? 'lend' : 'fund'}-${k}`] = () => CI.bkBreak(g, k, l); });
@@ -9962,7 +9692,7 @@ const CI_SPOTS = (() => {
     ['money', hdr('ecb-money-supply')],
     ['fisBudget', hdr('ecb-fis-budget')], ['fisPubinv', hdr('ecb-fis-pubinv')], ['gold', hdr('ecb-gold-fx')], ['neer', hdr('ecb-neer-cds')], ['fx', hdr('ecb-fx-detail')],
     ['cpi', hdr('cpi-basket-list')], ['basket', () => [...document.querySelectorAll('#ec-cpi span')].find(s => s.textContent.trim().startsWith('Rổ CPI'))],
-    ['bkAlert', bkHdr('bk-alert-strip')], ['bkInd', bkHdr('bk-indicators')], ['bk-assets', prev('bk-bs-assets-donut')], ['bk-leq', prev('bk-bs-leq-donut')],
+    ['bkInd', bkHdr('bk-indicators')],
     ['bk-lend-sector', prev('bk-lend-sector')], ['bk-lend-tenor', prev('bk-lend-tenor')], ['bk-lend-customer', prev('bk-lend-customer')], ['bk-lend-currency', prev('bk-lend-currency')],
     ['bk-fund-source', prev('bk-fund-source')], ['bk-fund-tenor', prev('bk-fund-tenor')], ['bk-fund-customer', prev('bk-fund-customer')], ['bk-fund-currency', prev('bk-fund-currency')],
     ['bkIS', bkHdr('bk-is-list')], ['bkTable', bkHdr('bk-table')],
