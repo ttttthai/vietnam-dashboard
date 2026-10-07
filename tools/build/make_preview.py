@@ -21,7 +21,7 @@ out = args[args.index('--out') + 1] if '--out' in args else os.path.join(ROOT, '
 
 # read-only endpoints the page calls on load or on tab open (the refresh/analyze/screen calls stay live-only)
 ENDPOINTS = ['/api/strategy', '/api/invest/research', '/api/invest/context', '/api/snapshot', '/api/i18n/en',
-             '/api/logs?limit=200', '/api/freshness', '/api/auto'] + [f'/api/banks{p}?period={q}' for q in ('year', 'quarter') for p in ('', '/breakdown', '/statements')]
+             '/api/logs?limit=200', '/api/freshness', '/api/auto'] + [f'/api/banks{p}?period={q}' for q in ('year', 'quarter') for p in ('', '/breakdown', '/statements')] + ['/api/banks/bs_history']
 data = {}
 for ep in ENDPOINTS:
     try:

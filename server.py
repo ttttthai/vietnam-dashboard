@@ -12,6 +12,7 @@ Serves (main ones):
   /api/banks            -> all listed banks from data/banks_vnstock.json (reported periods only; falls back to the
                            curated 17-bank FY2024 set when the file is missing; ?include_synthetic=1 old series)
   /api/banks/universe   -> listed-bank universe with per-bank coverage
+  /api/banks/bs_history -> full balance sheet per listed bank, last 8 quarters (TT49 items) + coverage-aware aggregate
   /api/freshness        -> per-series data freshness from data/research/{inventory,release_calendar}.json
   /api/auto             -> World Bank / IMF / FRED snapshots in data/auto/ (POST /api/auto/refresh to re-pull)
 
@@ -27,6 +28,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 import threading
 import time
 from collections import deque
@@ -1568,6 +1570,131 @@ def api_banks_universe():
         "banks": out,
         "vnstock": vnstock_layer.status(),
     })
+
+
+# ─── Per-item balance-sheet history (8 quarters) for the Appendix mini charts ──
+BS_HISTORY_QUARTERS = ["2024-Q3", "2024-Q4", "2025-Q1", "2025-Q2", "2025-Q3", "2025-Q4", "2026-Q1", "2026-Q2"]
+FINANCE_LATEST_MAP = {"total_assets": "total_assets", "customer_loans": "customer_loans_gross",
+                      "customer_deposits": "customer_deposits", "equity": "equity_total"}
+_BS_TEMPLATE_CACHE: list[dict] = []
+
+
+def _bs_template() -> list[dict]:
+    """Ordered TT49 item list, from tools/build/banks_vnstock.py (the builder owns it; same list it writes to
+    _meta.bs_items) — used when the data file predates the full-balance-sheet build."""
+    if not _BS_TEMPLATE_CACHE:
+        try:
+            import importlib.util
+            spec = importlib.util.spec_from_file_location("_banks_vnstock_tpl", ROOT / "tools" / "build" / "banks_vnstock.py")
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            _BS_TEMPLATE_CACHE.extend(mod.BS_ITEMS)
+        except Exception as e:
+            log.warning("bs template unavailable: %s", str(e)[:120])
+    return list(_BS_TEMPLATE_CACHE)
+
+
+def _is_num(v) -> bool:
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and v == v
+
+
+def _date_quarter(d: str) -> str | None:
+    """'2025-12-31' → '2025-Q4'."""
+    m = re.match(r"^(\d{4})-(\d{2})", str(d or ""))
+    if not m or not 1 <= int(m.group(2)) <= 12:
+        return None
+    return f"{m.group(1)}-Q{(int(m.group(2)) - 1) // 3 + 1}"
+
+
+def _bs_history(vn: dict, fin: dict, fallback_items: list[dict] | None = None) -> dict:
+    """Pure builder for /api/banks/bs_history (vn = data/banks_vnstock.json, fin = data/finance.json)."""
+    meta = vn.get("_meta") or {}
+    items = meta.get("bs_items") or fallback_items or []
+    keys = [i["key"] for i in items if isinstance(i, dict) and i.get("key")]
+    periods = list(BS_HISTORY_QUARTERS)
+    n = len(periods)
+    banks_in = [b for b in (vn.get("banks") or []) if isinstance(b, dict) and isinstance(b.get("ticker"), str)]
+    latest = (((fin.get("FINSYS") or {}).get("listed_banks_latest") or {}).get("banks") or {})
+    banks: dict[str, dict] = {}
+    for b in banks_in:
+        t = b["ticker"]
+        vals = {k: [None] * n for k in keys}
+        basis, source, url = [None] * n, [None] * n, [None] * n
+        q = b.get("quarterly") or {}
+        for i, pk in enumerate(periods):
+            p = q.get(pk) if isinstance(q.get(pk), dict) else {}
+            bs = p.get("bs") if isinstance(p.get("bs"), dict) else {}
+            got = {k: bs[k] for k in keys if _is_num(bs.get(k))}
+            if got:
+                for k, v in got.items():
+                    vals[k][i] = v
+                basis[i], source[i] = p.get("basis"), p.get("source") or "vnstock_data"
+        # data/finance.json FINSYS.listed_banks_latest fills bank-periods vnstock left empty. A bank-period never
+        # mixes bases: finance values are added only to an empty period, or to one whose (labelled) basis matches.
+        fb = latest.get(t) if isinstance(latest, dict) else None
+        for d, e in (fb.items() if isinstance(fb, dict) else []):
+            pk = _date_quarter(d)
+            if pk not in periods or not isinstance(e, dict):
+                continue
+            i = periods.index(pk)
+            has_vn = any(vals[k][i] is not None for k in keys)
+            if has_vn and not (basis[i] and e.get("basis") and basis[i] == e.get("basis")):
+                continue
+            add = {}
+            for src_k, item in FINANCE_LATEST_MAP.items():
+                if item in vals and _is_num(e.get(src_k)):
+                    add[item] = e[src_k]
+            for k, v in (e.get("items") or {}).items() if isinstance(e.get("items"), dict) else []:
+                if k in vals and k not in add and _is_num(v):
+                    add[k] = v
+            add = {k: v for k, v in add.items() if vals[k][i] is None}
+            if not add:
+                continue
+            for k, v in add.items():
+                vals[k][i] = v
+            tag = "data/finance.json FINSYS.listed_banks_latest" + (f" ({e['source']})" if e.get("source") else "")
+            source[i] = f"{source[i]} + {tag}" if has_vn else tag
+            basis[i] = basis[i] or e.get("basis")
+            url[i] = e.get("url")
+        banks[t] = {"name": b.get("name") or t, "exchange": b.get("exchange"), "values": vals,
+                    "basis": basis, "source": source, "url": url}
+    agg_v = {k: [None] * n for k in keys}
+    cov = {k: [0] * n for k in keys}
+    for bk in banks.values():
+        for k in keys:
+            for i, v in enumerate(bk["values"][k]):
+                if v is not None:
+                    cov[k][i] += 1
+                    agg_v[k][i] = (agg_v[k][i] or 0) + v
+    agg_v = {k: [round(v, 1) if v is not None else None for v in arr] for k, arr in agg_v.items()}
+    basis_mix = [{} for _ in range(n)]
+    for bk in banks.values():
+        for i in range(n):
+            if bk["source"][i]:
+                lab = bk["basis"][i] or "unlabelled"
+                basis_mix[i][lab] = basis_mix[i].get(lab, 0) + 1
+    with_any = sum(1 for bk in banks.values() if any(s for s in bk["source"]))
+    return {
+        "periods": periods, "items": items, "banks": banks,
+        "aggregate": {"values": agg_v, "coverage": cov, "basis_mix": basis_mix},
+        "banks_total": len(banks), "banks_with_data": with_any,
+        "units": "bn VND", "as_of": meta.get("as_of"),
+        "note": ("Full balance sheet per listed bank, last 8 quarters, mapped to the TT49 bank template (items). Values "
+                 "are as reported by vnstock_data Finance (data/banks_vnstock.json; built locally with "
+                 "tools/build/banks_vnstock.py) and, where vnstock has nothing for a bank-quarter, data/finance.json "
+                 "FINSYS.listed_banks_latest; null = not reported, never estimated. A bank-quarter never mixes "
+                 "consolidated and parent-only figures. aggregate.values = sum over the banks that report the item in "
+                 "that quarter — read it with aggregate.coverage (number of banks summed, out of banks_total); "
+                 "aggregate.basis_mix counts each quarter's banks by basis."
+                 + ("" if with_any else " No balance-sheet data yet: every fundamentals host was unreachable from the "
+                    "build machine — run the builder where they are reachable.")),
+    }
+
+
+@app.get("/api/banks/bs_history")
+def api_banks_bs_history():
+    """Per-item balance-sheet history (8 quarters) for every listed bank + coverage-aware aggregate."""
+    return JSONResponse(_bs_history(_data_json("banks_vnstock"), _data_json("finance"), _bs_template()))
 
 
 @app.get("/api/banks/statements")
