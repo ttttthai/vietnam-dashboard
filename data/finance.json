@@ -12864,6 +12864,918 @@
     "access": "sbv.gov.vn, imf.org, api.worldbank.org, savills, sjc.com.vn and press sites blocked from the sandbox; verified via search excerpts on 2026-10-06",
     "gold_sjc_month_end_2026": "dated press quotes per month (series.gold_sjc.month_end_2026.points[].u)"
    }
+  },
+  "listed_banks_latest": {
+   "unit": "bn VND",
+   "as_of": "2026-10-07",
+   "dates": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "note": "Balance-sheet levels for the 28 listed banks in data/banks_vnstock.json, from press excerpts of Q4-2025 and Q2-2026 financial statements/results (bank IR sites, vietstock, cafef, vnstock hosts and news pages are blocked from the sandbox, so every value is 'verified: excerpt' from web-search snippets, not read from the FS). customer_loans = gross loans to customers where the excerpt says so; credit incl. bonds, 'thị trường 1' credit, net loans and deposits+valuable papers are kept in items under their own keys. Values in approx_fields are press-rounded ('gần X', 'X triệu tỷ'); lower bounds ('hơn/vượt X') are never stored. basis='consolidated' only when the excerpt says hợp nhất; otherwise 'unclear (press excerpt)' and fields within one bank-date may come from different articles (see field_urls) - bases could differ. No 2026-03-31 or 2025-09-30 data collected in this pass. Nothing derived from growth rates; conflicts are listed per entry, including differences vs listed_banks_by_sector (left unchanged).",
+   "banks": {
+    "ABB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 220392,
+      "customer_loans": 113891,
+      "customer_deposits": 133411,
+      "equity": null,
+      "items": {},
+      "source": "ABBank 2025 FS via press",
+      "url": "https://thoibaonganhang.vn/abbank-cong-bo-bctc-2025-truoc-them-dhcd-tong-tai-san-vuot-nguong-220392-ty-dong-179710.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "conflicts": "Total assets 220,392 (headline) vs 220,462 (another snippet)."
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 260560,
+      "customer_loans": null,
+      "customer_deposits": 142300,
+      "equity": null,
+      "items": {
+       "credit_outstanding": 138000,
+       "total_mobilization": 163000
+      },
+      "source": "ABBank H1-2026 results via press",
+      "url": "https://thoibaotaichinhvietnam.vn/thu-ngoai-lai-dan-nhip-cho-vay-tien-sat-ke-hoach-abbank-bao-lai-tang-hon-80-201009.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets",
+       "customer_deposits",
+       "items.credit_outstanding",
+       "items.total_mobilization"
+      ],
+      "notes": "TA '260,56 nghìn tỷ' (+18.2%); deposits '142,3 nghìn tỷ' (+6.6%)."
+     }
+    },
+    "ACB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": null,
+      "customer_loans": 686777,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "2025 loan ranking (ACB 686,777, +18%)",
+      "url": "https://vietnamnet.vn/thi-phan-cho-vay-don-ve-5-ong-lon-du-no-ngan-hang-lap-ky-luc-moi-2491761.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Total assets only 'vượt 1 triệu tỷ'. An equity figure 83,461.678 bn surfaced for '2025' but is inconsistent with 30/6/2026 equity 99,314.5 (+5.1% YTD) - likely end-2024; rejected."
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 1067845,
+      "customer_loans": 745759,
+      "customer_deposits": 576604,
+      "equity": 99314.5,
+      "items": {},
+      "source": "ACB Q2-2026 consolidated FS via press",
+      "url": "https://theleader.vn/acb-quy-ii-2026-tin-dung-tang-nhanh-loi-nhuan-dung-lai-d47672.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "field_urls": {
+       "customer_deposits": "https://etime.danviet.vn/loi-nhuan-quy-ii-cua-acb-giam-12-du-phong-rui-ro-tang-gap-hon-2-lan-d1446041.html"
+      },
+      "notes": "TA +4.1% YTD; equity +5.1% YTD; deposits -1% YTD (-8,577)."
+     }
+    },
+    "BAB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 195820,
+      "customer_loans": 126405,
+      "customer_deposits": 127023,
+      "equity": null,
+      "items": {},
+      "source": "Bac A Bank 2025 FS via press",
+      "url": "https://vietstock.vn/2026/02/tang-truong-nho-quy-cuoi-nam-80-no-xau-bac-a-bank-co-kha-nang-mat-von-737-1398297.htm",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)"
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 214351,
+      "customer_loans": 136219,
+      "customer_deposits": 120141,
+      "equity": null,
+      "items": {},
+      "source": "Bac A Bank Q2-2026 consolidated FS via press",
+      "url": "https://doanhnhan.baophapluat.vn/ap-luc-du-phong-bao-mon-loi-nhuan-bac-a-bank-bab-bao-lai-di-ngang-nua-dau-nam-2026.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "TA +9%, loans +8%, deposits -5% YTD."
+     }
+    },
+    "BID": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 3330000,
+      "customer_loans": 2370000,
+      "customer_deposits": 2223000,
+      "equity": null,
+      "items": {},
+      "source": "2025 rankings: total assets '3,33 triệu tỷ' (+20.6%), loans '2,37 triệu tỷ', deposits 'gần 2,223 triệu tỷ'",
+      "url": "https://thitruongtaichinhtiente.vn/top-10-ngan-hang-co-tong-tai-san-va-cho-vay-nhieu-nhat-nam-2025-77727.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets",
+       "customer_loans",
+       "customer_deposits"
+      ],
+      "field_urls": {
+       "customer_loans": "https://viettimes.vn/bidv-doi-dien-voi-khoan-cho-vay-25800-ty-dong-co-kha-nang-mat-von-post194412.html",
+       "customer_deposits": "https://cafef.vn/hon-94-trieu-ty-dong-cua-nguoi-dan-va-doanh-nghiep-chay-vao-27-ngan-hang-trong-10-nam-qua-ngan-hang-nao-hut-duoc-nhieu-tien-gui-nhat-188260714080501681.chn"
+      }
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 3440843.5,
+      "customer_loans": 2502000,
+      "customer_deposits": 2261720.4,
+      "equity": 198778,
+      "items": {},
+      "source": "BIDV Q2-2026 consolidated FS via press",
+      "url": "https://doanhnghiepkinhtexanh.vn/bidv-dat-hon-34-trieu-ty-dong-tai-san-hieu-qua-kinh-doanh-con-khoang-cach-a53868.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "customer_loans"
+      ],
+      "field_urls": {
+       "equity": "https://vietbao.vn/bidv-kiem-gan-19000-ty-dong-sau-nua-nam-nhung-no-xau-tang-gan-46-601182.html"
+      },
+      "notes": "Deposits +1.7% YTD, equity +14.5% YTD. Loans 'gần 2,502 triệu tỷ' (rounded).",
+      "conflicts": "Customer loans: ~2,502,000 (this excerpt) vs 2,467,112 (listed_banks_by_sector, nguoiquansat) vs 2.41 quadrillion (VietnamNet). Not reconciled."
+     }
+    },
+    "BVB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": null,
+      "customer_loans": 78200,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "BVBank 2025 results via press",
+      "url": "https://doanhnhan.baophapluat.vn/bvbank-bvb-loi-nhuan-nam-2025-tang-truong-34-tong-tai-san-vuot-moc-133-000-ty-dong.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "customer_loans"
+      ],
+      "notes": "TA 'hơn 133.000' and deposits 'hơn 98.000' are bounds - not stored."
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 142000,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "BVBank H1-2026 results via press",
+      "url": "https://baophapluat.vn/thu-nhap-lai-thuan-dan-dat-tang-truong-bvbank-hoan-thanh-gan-80-ke-hoach-loi-nhuan-sau-quy-ii-2026.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets"
+      ],
+      "notes": "TA 'gần 142.000' (+7% YTD). Loans/deposits not found."
+     }
+    },
+    "CTG": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 2770000,
+      "customer_loans": null,
+      "customer_deposits": 1794000,
+      "equity": null,
+      "items": {},
+      "source": "2025 rankings: total assets 'gần 2,77 triệu tỷ' (+16%); deposits 'khoảng 1,794 triệu tỷ'",
+      "url": "https://thitruongtaichinhtiente.vn/top-10-ngan-hang-co-tong-tai-san-va-cho-vay-nhieu-nhat-nam-2025-77727.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets",
+       "customer_deposits"
+      ],
+      "field_urls": {
+       "customer_deposits": "https://cafef.vn/hon-94-trieu-ty-dong-cua-nguoi-dan-va-doanh-nghiep-chay-vao-27-ngan-hang-trong-10-nam-qua-ngan-hang-nao-hut-duoc-nhieu-tien-gui-nhat-188260714080501681.chn"
+      },
+      "notes": "Loans only 'gần 2 triệu tỷ' (too rounded, null). Equity not found."
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 2962004,
+      "customer_loans": 2092708,
+      "customer_deposits": 1890810,
+      "equity": null,
+      "items": {},
+      "source": "VietinBank Q2-2026 consolidated FS (dated 30/7/2026) via press",
+      "url": "https://doanhnhan.baophapluat.vn/vietinbank-ctg-bao-lai-ban-nien-tang-36-7-tong-tai-san-vuot-2-9-trieu-ty-dong.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "field_urls": {
+       "customer_loans": "https://congthuong.vn/vietinbank-tang-truong-an-tuong-trong-nua-dau-nam-2026-468773.html"
+      },
+      "notes": "TA +7.02% YTD, deposits +5.41%; loans = 110.68% of deposits per excerpt (consistent). Equity not found.",
+      "conflicts": "Customer loans 2,092,708 vs 2,059,113 in listed_banks_by_sector (nguoiquansat) and 2.04 quadrillion (VietnamNet)."
+     }
+    },
+    "EIB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 273270,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {
+       "credit_outstanding": 196077,
+       "total_mobilization": 242669
+      },
+      "source": "Eximbank 2025 results via press",
+      "url": "https://vnexpress.net/eximbank-lai-hon-1-500-ty-dong-nam-2025-5012031.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)"
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 266067,
+      "customer_loans": 188029,
+      "customer_deposits": 170608,
+      "equity": null,
+      "items": {
+       "npl_balance": 5792
+      },
+      "source": "Eximbank Q2-2026 FS via press",
+      "url": "https://www.tinnhanhchungkhoan.vn/eximbank-eib-loi-nhuan-quy-ii2026-giam-tren-50-so-cung-ky-do-chi-phi-du-phong-tang-cao-post395025.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "NPL 5,792 = 3.08% of loans (consistent with 188,029).",
+      "conflicts": "Customer loans 188,029 vs 186,193 in listed_banks_by_sector."
+     }
+    },
+    "HDB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 931101,
+      "customer_loans": 546371,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "HDBank Q4-2025 FS via press",
+      "url": "https://vnexpress.net/hdbank-lai-truoc-thue-hon-21-300-ty-dong-trong-nam-2025-5011840.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "TA +33.5%, loans +23.5%. Deposits/equity not found."
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 1045435,
+      "customer_loans": 649803,
+      "customer_deposits": 674059,
+      "equity": null,
+      "items": {},
+      "source": "HDBank H1-2026 consolidated results via press",
+      "url": "https://bnews.vn/hdbank-lai-hon-13-200-ty-dong-tong-tai-san-vuot-1-trieu-ty-dong/430875.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "TA +12.3% YTD, loans +20.5%. HD Securities consolidated from Q2-2026. A '103,088 bn equity' figure found is a 2026 plan, not an actual - not stored.",
+      "conflicts": "Deposits 674,059 (this excerpt) vs 674,058 (top-10 ranking) - 1 bn rounding. VietnamNet loans '659 nghìn tỷ' vs 649,803."
+     }
+    },
+    "KLB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": null,
+      "customer_loans": 71600,
+      "customer_deposits": 72000,
+      "equity": null,
+      "items": {},
+      "source": "KienlongBank Q4-2025 results via press",
+      "url": "https://thoibaotaichinhvietnam.vn/kienlongbank-duy-tri-da-tang-truong-manh-khep-lai-nam-2025-voi-ket-qua-tich-cuc-194752.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "customer_loans",
+       "customer_deposits"
+      ],
+      "notes": "TA 'trên 103.300 tỷ' (bound)."
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 115000,
+      "customer_loans": 77617,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {
+       "total_mobilization": 102592
+      },
+      "source": "KienlongBank Q2-2026 FS via press",
+      "url": "https://cafef.vn/kienlongbank-cong-bo-bctc-quy-ii-2026-quy-mo-tai-san-but-pha-manh-me-loi-nhuan-but-toc-188260723110815949.chn",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets"
+      ],
+      "notes": "TA 'gần 115.000' (+11.2%); loans +8.4%."
+     }
+    },
+    "LPB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 605585,
+      "customer_loans": 391747,
+      "customer_deposits": null,
+      "equity": 47192,
+      "items": {
+       "customer_loans_net": 386867,
+       "total_mobilization": 337583
+      },
+      "source": "LPBank Q4-2025 results via press",
+      "url": "https://thoibaonganhang.vn/lpbank-but-toc-tin-dung-tang-17-tai-san-vuot-539000-ty-dong-173669.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "field_urls": {
+       "items.customer_loans_net": "https://vietnamnet.vn/thi-phan-cho-vay-don-ve-5-ong-lon-du-no-ngan-hang-lap-ky-luc-moi-2491761.html"
+      },
+      "notes": "391,747 (+18%) assumed gross and 386,867 (+18.21%, from a listing in million VND) assumed net - not confirmed by the excerpts."
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 615502,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {
+       "customer_loans_net": 424148.7,
+       "loan_loss_provision": 5316
+      },
+      "source": "LPBank Q2-2026 FS via press",
+      "url": "https://doanhnhan.baophapluat.vn/lpbank-lpb-bao-lai-ban-nien-gan-6-000-ty-dong-thu-nhap-ngoai-lai-but-pha-33.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Excerpt: after 5,316 bn provisions net customer loans 424,148.7 (up from 386,867). Gross loans not stated -> customer_loans null. Deposits/equity not found."
+     }
+    },
+    "MBB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 1620000,
+      "customer_loans": null,
+      "customer_deposits": 906000,
+      "equity": null,
+      "items": {},
+      "source": "2025 rankings: total assets 'gần 1,62 triệu tỷ' (+43.1%); deposits 'khoảng 906 nghìn tỷ'",
+      "url": "https://thitruongtaichinhtiente.vn/top-10-ngan-hang-co-tong-tai-san-va-cho-vay-nhieu-nhat-nam-2025-77727.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets",
+       "customer_deposits"
+      ],
+      "field_urls": {
+       "customer_deposits": "https://cafef.vn/hon-94-trieu-ty-dong-cua-nguoi-dan-va-doanh-nghiep-chay-vao-27-ngan-hang-trong-10-nam-qua-ngan-hang-nao-hut-duoc-nhieu-tien-gui-nhat-188260714080501681.chn"
+      },
+      "notes": "Loans only 'hơn 1,08 triệu tỷ' (lower bound, null)."
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 1733013,
+      "customer_loans": 1227554,
+      "customer_deposits": 963815,
+      "equity": null,
+      "items": {
+       "total_credit": 1256084,
+       "total_mobilization": 1149786
+      },
+      "source": "MB H1-2026 consolidated results via press",
+      "url": "https://thoibaotaichinhvietnam.vn/mb-lai-hon-20-000-ty-dong-tin-dung-tang-13-2-tiep-suc-da-tang-truong-201586.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "TA +7.3% YTD; total credit 1,256,084 (+13.2%) includes bonds. Equity not found."
+     }
+    },
+    "MSB": {
+     "2025-12-31": {
+      "basis": "consolidated",
+      "total_assets": 408000,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {
+       "charter_capital": 31200
+      },
+      "source": "MSB 2025 results via press ('gần 408 nghìn tỷ', +27.3%)",
+      "url": "https://thoibaotaichinhvietnam.vn/msb-giu-nhip-tang-truong-2025-voi-lai-truoc-thue-hon-7000-ty-dong-va-tin-dung-tang-158-191606.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets"
+      ],
+      "notes": "Parent loans 'vượt 201 nghìn tỷ' (bound). A deposit figure 26,327 shown for MSB is Saigonbank's - rejected."
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 440998,
+      "customer_loans": 230420,
+      "customer_deposits": 204674,
+      "equity": null,
+      "items": {},
+      "source": "MSB Q2-2026 consolidated FS via press",
+      "url": "https://anninhthudo.vn/msb-dat-3423-ty-dong-loi-nhuan-tong-tai-san-tang-gan-30-post661511.antd",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "TA +8.17% YTD; loans +12.3%; deposits +4.1%.",
+      "conflicts": "Customer loans 230,420 vs 221,606 in listed_banks_by_sector."
+     }
+    },
+    "NAB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 418335,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "Nam A Bank 2025 results via press",
+      "url": "https://doanhnhan.baophapluat.vn/nam-a-bank-nab-tang-truong-quy-mo-vuot-troi-trong-nam-2025-chat-luong-tai-san-duoc-cai-thien-dang-ke.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Credit 'hơn 198.000 tỷ' and deposits+valuable papers 'hơn 211.000 tỷ' are bounds - not stored."
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 451517,
+      "customer_loans": 218790,
+      "customer_deposits": 200096,
+      "equity": 25892,
+      "items": {},
+      "source": "Nam A Bank Q2-2026 consolidated FS via press",
+      "url": "https://thitruongtaichinhtiente.vn/6-thang-dau-nam-2026-nam-a-bank-cung-co-nen-tang-tai-san-va-nang-luc-du-phong-84615.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "TA +8%, loans +11%, deposits +13%, equity +11% YTD.",
+      "conflicts": "Customer loans 218,790 vs 216,589 in listed_banks_by_sector."
+     }
+    },
+    "NVB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 163730,
+      "customer_loans": 97545,
+      "customer_deposits": 127403,
+      "equity": null,
+      "items": {},
+      "source": "NCB annual report / 2025 results via press",
+      "url": "https://www.ncb-bank.vn/Shareholders/BaoCaoThuongNien/VI_BCTN_2025%20_%200804.pdf",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)"
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 199000,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {
+       "casa": 11889
+      },
+      "source": "NCB H1-2026 results via press",
+      "url": "https://thoibaotaichinhvietnam.vn/cho-vay-tang-manh-37-giup-ncb-lai-hon-700-ty-dong-tao-da-hoan-thanh-som-phuong-an-co-cau-lai-201434.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets"
+      ],
+      "notes": "TA 'gần 199.000' (+21.5%); loans +37% (level not stated). Trading status flagged in banks_vnstock.json."
+     }
+    },
+    "OCB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 322975,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {
+       "market1_mobilization": 220958
+      },
+      "source": "OCB 2025 results via press",
+      "url": "https://thoibaotaichinhvietnam.vn/loi-nhuan-truoc-thue-nam-2025-cua-ocb-dat-5046-ty-dong-tang-gan-26-191617.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)"
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 351741,
+      "customer_loans": null,
+      "customer_deposits": 159695,
+      "equity": null,
+      "items": {
+       "market1_credit": 227554
+      },
+      "source": "OCB H1-2026 results via press",
+      "url": "https://thitruongtaichinhtiente.vn/loi-nhuan-quy-ii-ocb-tang-gan-25-duy-tri-da-tang-truong-nua-dau-nam-84616.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "'Dư nợ tín dụng thị trường 1' 227,554 (+11%) is credit, not FS customer loans; listed_banks_by_sector has loans 215,783 (different definition, not a conflict per se)."
+     }
+    },
+    "PCB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 263457,
+      "customer_loans": 151656,
+      "customer_deposits": 201548,
+      "equity": null,
+      "items": {},
+      "source": "PVcomBank 2025 FS via press",
+      "url": "https://theleader.vn/pvcombank-phia-sau-cu-bat-hau-tai-co-cau-d46978.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Loans stated as gross."
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 278431,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "PVcomBank Q2-2026 FS via press",
+      "url": "https://dantri.com.vn/kinh-doanh/pvcombank-cai-thien-hieu-qua-kinh-doanh-nang-cao-chat-luong-tai-san-20260810141145635.htm",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "TA +5.7%; loans 'hơn 162.000' (bound)."
+     }
+    },
+    "PGB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 88882,
+      "customer_loans": 45781,
+      "customer_deposits": 48460,
+      "equity": null,
+      "items": {
+       "credit_outstanding": 47165,
+       "charter_capital": 6815
+      },
+      "source": "PGBank 2025 results via press",
+      "url": "https://doanhnhan.baophapluat.vn/pgbank-pgb-loi-nhuan-nam-2025-tang-toc-81-vuot-ke-hoach-nho-nguon-thu-da-dang.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets"
+      ],
+      "notes": "An equity figure 6,579 surfaced but is below the 6,815 charter capital quoted alongside - not stored."
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 89312.5,
+      "customer_loans": 48349,
+      "customer_deposits": 49715.9,
+      "equity": null,
+      "items": {},
+      "source": "PGBank Q2-2026 FS via press",
+      "url": "https://cafeland.vn/tin-tuc/pgbank-lai-hon-439-ty-dong-sau-6-thang-no-xau-tang-30-so-voi-dau-nam-153627.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Loans +4.3%, deposits +2.6% vs end-2025."
+     }
+    },
+    "SGB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 35377,
+      "customer_loans": 21972,
+      "customer_deposits": 26327,
+      "equity": null,
+      "items": {
+       "charter_capital": 3388
+      },
+      "source": "Saigonbank 2025 FS via press",
+      "url": "https://mekongasean.vn/saigonbank-quy-42025-thu-nhap-lai-tang-hai-chu-so-lo-sau-thue-88-ty-dong-51429.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)"
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 35670,
+      "customer_loans": 22205,
+      "customer_deposits": 25205,
+      "equity": null,
+      "items": {},
+      "source": "Saigonbank Q2-2026 FS via press",
+      "url": "https://phapluat.suckhoedoisong.vn/saigonbank-bao-lo-40-ty-dong-quy-ii2026-loi-nhuan-6-thang-giam-7241-281655.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "TA +0.83%, loans +1.06%, deposits -4.26% YTD (consistent with end-2025 values)."
+     }
+    },
+    "SHB": {
+     "2025-12-31": {
+      "basis": "consolidated",
+      "total_assets": 892009,
+      "customer_loans": 614862,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {
+       "charter_capital": 45942
+      },
+      "source": "SHB audited consolidated FS 2025 via press; loans from 2025 ranking",
+      "url": "https://thoibaonganhang.vn/shb-vuot-ke-hoach-tai-san-nam-2025-tang-truong-but-pha-173029.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "field_urls": {
+       "customer_loans": "https://vietnamnet.vn/thi-phan-cho-vay-don-ve-5-ong-lon-du-no-ngan-hang-lap-ky-luc-moi-2491761.html"
+      },
+      "notes": "Basis of the loan figure not stated."
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 962667,
+      "customer_loans": 659611,
+      "customer_deposits": 624269,
+      "equity": null,
+      "items": {},
+      "source": "SHB Q2-2026 FS via press",
+      "url": "https://thoibaotaichinhvietnam.vn/shb-bao-lai-hon-9-000-ty-dong-nho-thu-ngoai-lai-but-toc-tong-tai-san-tien-sat-1-trieu-ty-dong-201552.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Loans +7.3%, deposits +9.1%, TA ~+8% YTD.",
+      "conflicts": "Customer loans 659,611 (consistent with 614,862 end-2025 +7.3%) vs 636,617 in listed_banks_by_sector."
+     }
+    },
+    "SSB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 396443,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "SeABank 2025 results via press",
+      "url": "https://www.seabank.com.vn/tin-tuc/tin-seabank/news/seabank-dat-6868-ty-dong-loi-nhuan-truoc-thue-tang-truong-ve-quy-mo-va-hieu-qua-hoat-dong",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)"
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 427108,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {
+       "credit_outstanding": 264453,
+       "customer_deposits_and_valuable_papers": 239779
+      },
+      "source": "SeABank H1-2026 consolidated results via press",
+      "url": "https://vietstock.vn/2026/07/quy-mo-tai-san-seabank-vuot-427100-ty-dong-cung-co-nen-tang-tang-truong-dai-han-737-1473986.htm",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Only credit and deposits+valuable papers reported (+~8%, +8.1%); FS customer loans/deposits not found."
+     }
+    },
+    "STB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 909084,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": 58933,
+      "items": {
+       "market_loans_prelim": 612088,
+       "market_mobilization_prelim": 622347
+      },
+      "source": "Sacombank preliminary 2025 results ('ước đạt') via press",
+      "url": "https://dantri.com.vn/kinh-doanh/sacombank-bat-ngo-bao-lo-quy-iv-ca-nam-2025-thuc-hien-52-chi-tieu-20260107124316956.htm",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "equity"
+      ],
+      "notes": "Preliminary estimates, not FS. 'Cho vay thị trường'/'huy động thị trường' are not FS customer loans/deposits (30/6 loans 636,028.9 are only +1.5% YTD), so kept in items."
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 892049,
+      "customer_loans": 636028.9,
+      "customer_deposits": 647939,
+      "equity": 62807,
+      "items": {
+       "total_liabilities": 829241
+      },
+      "source": "Sacombank Q2-2026 FS via press",
+      "url": "https://nongnghiepmoitruong.vn/tai-san-sacombank-sut-giam-57548-ty-dong-sa-thai-hon-4000-nhan-vien-d809635.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Loans +1.5% YTD; deposits +4.8%; equity +4.9%; liabilities -3.3%.",
+      "conflicts": "Customer loans 636,028.9 vs 595,103 in listed_banks_by_sector (outlet not pinned). Equity +4.9% YTD implies ~59.9k at end-2025 vs preliminary 58,933."
+     }
+    },
+    "TCB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": null,
+      "customer_loans": 767617,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "2025 loan ranking (Techcombank 767,617, +22%)",
+      "url": "https://vietnamnet.vn/thi-phan-cho-vay-don-ve-5-ong-lon-du-no-ngan-hang-lap-ky-luc-moi-2491761.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Total assets only 'vượt 1,19 triệu tỷ' (bound).",
+      "conflicts": "Customer deposits: ~618 thousand bn (27-bank deposit ranking, cafef) vs 665,600 (Q4 search summary) - left null."
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 1270000,
+      "customer_loans": 847336,
+      "customer_deposits": 662448,
+      "equity": null,
+      "items": {
+       "charter_capital": 70862.404
+      },
+      "source": "Techcombank Q2-2026 consolidated results via press",
+      "url": "https://mekongasean.vn/top-10-ngan-hang-nam-gan-83-tien-gui-he-thong-sau-nua-dau-nam-2026-58129.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets"
+      ],
+      "field_urls": {
+       "customer_loans": "https://baomoi.com/techcombank-lai-18-540-ty-dong-no-nhom-2-tang-46-trai-phieu-doanh-nghiep-tang-80-c55740226.epi",
+       "total_assets": "https://thoibaotaichinhvietnam.vn/loi-nhuan-quy-ii-cua-techcombank-cham-dinh-moi-tu-dong-luc-tang-truong-da-chieu-201004.html"
+      },
+      "notes": "Loans +10% YTD, deposits +7% YTD; TA '1,27 triệu tỷ'. listed_banks_by_sector keeps separate-basis loans 795,813. Equity not found."
+     }
+    },
+    "TPB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 505901.57,
+      "customer_loans": null,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "TPBank balance sheet (505,901,570 million VND) via search",
+      "url": "https://vn.investing.com/equities/tien-phong-commercial-balance-sheet",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Only total assets found."
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 547664,
+      "customer_loans": 338148,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {
+       "investment_securities": 59281,
+       "deposits_at_sbv": 13445
+      },
+      "source": "TPBank Q2-2026 FS via press",
+      "url": "https://doanhnhan.baophapluat.vn/loi-nhuan-ban-nien-dat-4-668-ty-dong-tpbank-tpb-tien-gan-muc-tieu-10-300-ty-nam-2026.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "TA +8.25%, loans +10.57%, investment securities +14.86%, SBV deposits -34.29% vs end-2025.",
+      "conflicts": "Customer loans 338,148 vs 332,086 in listed_banks_by_sector."
+     }
+    },
+    "VAB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 140486.1,
+      "customer_loans": 88741,
+      "customer_deposits": 99079,
+      "equity": null,
+      "items": {
+       "customer_deposits_and_valuable_papers": 104039,
+       "charter_capital": 8163.7
+      },
+      "source": "VietABank 2025 results via press",
+      "url": "https://thoibaotaichinhvietnam.vn/vietabank-lap-dinh-loi-nhuan-tren-1600-ty-dong-song-hanh-tang-von-va-siet-chat-du-phong-191184.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)"
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 149131,
+      "customer_loans": 96200,
+      "customer_deposits": 104044,
+      "equity": null,
+      "items": {},
+      "source": "VietABank H1-2026 consolidated results via press",
+      "url": "https://tapchikinhtetaichinh.vn/vietabank-tang-loi-nhuan-dong-tien-va-chat-luong-tai-san-van-can-theo-doi-162896.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "customer_loans"
+      ],
+      "notes": "TA +6.1%, loans 'gần 96.200' (+8.4%), deposits +~5% YTD."
+     }
+    },
+    "VBB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 196771,
+      "customer_loans": 108440,
+      "customer_deposits": 101450,
+      "equity": null,
+      "items": {},
+      "source": "Vietbank 2025 results via press",
+      "url": "https://thoibaotaichinhvietnam.vn/loi-nhuan-truoc-thue-nam-2025-cua-vietbank-dat-1532-ty-dong-tang-35-191713.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)"
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 205000,
+      "customer_loans": 120300,
+      "customer_deposits": null,
+      "equity": null,
+      "items": {},
+      "source": "Vietbank Q2-2026 FS via press",
+      "url": "https://cafef.vn/vietbank-lai-truoc-thue-777-ty-dong-trong-quy-ii-2026-gan-gap-3-lan-cung-ky-cho-vay-khach-hang-tang-manh-188260730134937097.chn",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets",
+       "customer_loans"
+      ],
+      "notes": "TA 'gần 205.000' (+4%); loans 120,300 (+11%)."
+     }
+    },
+    "VCB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 2441929,
+      "customer_loans": null,
+      "customer_deposits": 1673000,
+      "equity": 227500,
+      "items": {},
+      "source": "SHS VCB research table (Tổng TS 2025: 2,441,929) for total assets; VCB year-end announcement via Báo Chính phủ for equity ('gần 227.500'); 27-bank deposit ranking ('gần 1,673 triệu tỷ')",
+      "url": "https://s3-storage.shs.com.vn/shs-website/BAO_CAO_PHAN_TICH_VCB_ac2e89f289.pdf",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "customer_deposits",
+       "equity"
+      ],
+      "field_urls": {
+       "equity": "https://baochinhphu.vn/vietcombank-nam-2025-tang-truong-co-chon-loc-tong-tai-san-dat-248-trieu-ty-dong-102260109150802105.htm",
+       "customer_deposits": "https://cafef.vn/hon-94-trieu-ty-dong-cua-nguoi-dan-va-doanh-nghiep-chay-vao-27-ngan-hang-trong-10-nam-qua-ngan-hang-nao-hut-duoc-nhieu-tien-gui-nhat-188260714080501681.chn"
+      },
+      "notes": "Fields come from different sources; basis not confirmed for each (possible consolidated/parent mix). Customer loans only 'gần 1,7 triệu tỷ' (too rounded, left null).",
+      "conflicts": "Total assets: 2,441,929 (SHS table; 'hơn 2,44 triệu tỷ' in 2025 rankings) vs '2,48 triệu tỷ' in VCB's January 2026 announcement (https://www.vietnamplus.vn/tong-tai-san-cua-vietcombank-dat-248-trieu-ty-dong-tang-gan-20-post1087520.vnp) - likely preliminary/parent vs consolidated; not reconciled."
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": 2657000,
+      "customer_loans": 1758168,
+      "customer_deposits": 1728821,
+      "equity": null,
+      "items": {},
+      "source": "TheLEADER on VCB Q2-2026 consolidated FS",
+      "url": "https://theleader.vn/vietcombank-quy-ii-2026-loi-nhuan-tang-toc-tren-nen-tin-dung-di-ngang-d47684.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets"
+      ],
+      "notes": "Total assets 'gần 2,657 triệu tỷ'. Loans +5.1% YTD per snippet. Equity not found.",
+      "conflicts": "listed_banks_by_sector has VCB total_loans_bn 1,728,183 (nguoiquansat top-10) - close to the deposit figure 1,728,821, possibly a label/transposition error; 1,758,168 is the loan figure in TheLEADER's excerpt."
+     }
+    },
+    "VIB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 556098,
+      "customer_loans": 377113,
+      "customer_deposits": null,
+      "equity": 46905,
+      "items": {
+       "credit_outstanding": 381976,
+       "total_mobilization": 329649
+      },
+      "source": "VIB 2025 results via press; loans from a listing in million VND",
+      "url": "https://www.vib.com.vn/wps/wcm/connect/7caff5c6-9685-4483-b730-f932f1a70817/7+Bao+cao+de+xuat+HDQT+va+BKS+AGM+2026+-+VIE.pdf?MOD=AJPERES&CVID=pP.sU1O",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "field_urls": {
+       "customer_loans": "https://vietnamnet.vn/thi-phan-cho-vay-don-ve-5-ong-lon-du-no-ngan-hang-lap-ky-luc-moi-2491761.html"
+      }
+     },
+     "2026-06-30": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": null,
+      "customer_loans": null,
+      "customer_deposits": 317452,
+      "equity": null,
+      "items": {},
+      "source": "VIB H1-2026 results via press",
+      "url": "https://thoibaotaichinhvietnam.vn/vib-lai-truoc-thue-gan-5-200-ty-dong-sau-6-thang-du-no-cho-vay-tien-sat-400-nghin-ty-dong-201292.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "notes": "Total assets 'hơn 580 nghìn tỷ' (+4%, bound -> null); credit 'hơn 397 nghìn tỷ' (+4%). Deposits +7.8%.",
+      "conflicts": "Customer loans: 381,972 (+4.9%, one snippet; equals end-2025 credit 381,976 and inconsistent with 377,113 end-2025 loans) vs 392,020 (listed_banks_by_sector) - left null."
+     }
+    },
+    "VPB": {
+     "2025-12-31": {
+      "basis": "unclear (press excerpt)",
+      "total_assets": 1260000,
+      "customer_loans": 943902,
+      "customer_deposits": 683000,
+      "equity": null,
+      "items": {},
+      "source": "2025 rankings: loans 943,902 (+36%); total assets '1,26 triệu tỷ'; deposits 'khoảng 683 nghìn tỷ'",
+      "url": "https://vietnambiz.vn/top-10-ngan-hang-cho-vay-khach-hang-nhieu-nhat-nam-2025-mb-dan-dau-toc-do-tang-truong-202624744234.htm",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "total_assets",
+       "customer_deposits"
+      ],
+      "field_urls": {
+       "customer_deposits": "https://cafef.vn/hon-94-trieu-ty-dong-cua-nguoi-dan-va-doanh-nghiep-chay-vao-27-ngan-hang-trong-10-nam-qua-ngan-hang-nao-hut-duoc-nhieu-tien-gui-nhat-188260714080501681.chn",
+       "total_assets": "https://cafef.vn/vpbank-lap-ky-luc-loi-nhuan-30600-ty-dong-nam-2025-tang-truong-53-188260119140218786.chn"
+      },
+      "notes": "Basis of 943,902 not stated (likely consolidated). Consolidated credit 'hơn 961.000 tỷ' (lower bound, not stored)."
+     },
+     "2026-06-30": {
+      "basis": "consolidated",
+      "total_assets": null,
+      "customer_loans": null,
+      "customer_deposits": 732887,
+      "equity": 191215,
+      "items": {
+       "customer_deposits_and_valuable_papers": 902000
+      },
+      "source": "VPBank H1-2026 consolidated results via press; deposits from top-10 deposit ranking",
+      "url": "https://cafeland.vn/tin-tuc/vpbank-lai-hon-15100-ty-dong-no-xau-tang-21-sau-nua-dau-nam-153371.html",
+      "verified": "excerpt (web-search snippet 2026-10-07; FS PDFs and news pages blocked by egress proxy)",
+      "approx_fields": [
+       "items.customer_deposits_and_valuable_papers"
+      ],
+      "field_urls": {
+       "customer_deposits": "https://mekongasean.vn/top-10-ngan-hang-nam-gan-83-tien-gui-he-thong-sau-nua-dau-nam-2026-58129.html"
+      },
+      "notes": "Total assets only 'vượt 1,5 triệu tỷ' (+19.2%, bound -> null). Parent-bank loans ~1.06 quadrillion (+24.6%); consolidated loans ~1,161,000 (VietnamNet, rounded) not stored here. Equity 191,215 (+10,940 / +6.1% YTD)."
+     }
+    }
+   }
   }
  }
 }
