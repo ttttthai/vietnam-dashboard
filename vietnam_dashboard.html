@@ -5031,7 +5031,9 @@ let stBopYear = null, stBopTimer = null, stBudYear = null, stBopGross = false, s
 function stObserve(root) {
   const els = root.querySelectorAll('.st-chap');
   if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(x => x.classList.add('in')); return; }
-  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); const big = en.target.querySelector('.st-big'); if (big) stCountUp(big); io.unobserve(en.target); } }), { threshold: 0.12 });
+  // reveal as soon as the chapter's top part is on screen; a ratio threshold never fires for chapters taller than
+  // ~8 screens (12% of an 8,000px chapter is more than the viewport), which left long chapters invisible
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); const big = en.target.querySelector('.st-big'); if (big) stCountUp(big); io.unobserve(en.target); } }), { threshold: 0, rootMargin: '0px 0px -10% 0px' });
   els.forEach(x => io.observe(x));
 }
 // hero count-up: once, on reveal, the big number counts from 0 to its rendered value in step with the hero chart's bar sweep
