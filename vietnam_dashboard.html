@@ -1214,11 +1214,11 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .sim-sum-l li > b { grid-column: 2; grid-row: 1; }
   .sim-sum-s { grid-column: 1 / -1; font-size: 11px; color: #6b6f78; }
   .sim-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px 20px; align-items: start; margin-top: 8px; }
-  @media (min-width: 1000px) { .sim-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; margin-top: 0; } }
-  .sim-card { min-width: 0; }
+  @media (min-width: 1000px) { .sim-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 0; } }   /* one column of charts beside the pinned timeline */
+  .sim-card { min-width: 0; background: #fff; border: 1px solid #e1e0d9; border-radius: 6px; padding: 10px 12px 8px; }   /* same card for every panel */
   .sim-card-h { font: 650 13.5px var(--font-ui); color: #16181d; margin: 0 0 2px; }
   .sim-card .st-legend { font-size: 11.5px; gap: 2px 10px; margin: 2px 0 4px; }
-  @media (min-width: 1000px) { .sim-card-h { font-size: 12.5px; } .sim-card .st-legend { font-size: 10.5px; line-height: 1.3; gap: 0 8px; margin: 1px 0 0; } }
+  @media (min-width: 1000px) { .sim-card .st-legend { font-size: 11px; line-height: 1.35; gap: 0 10px; margin: 2px 0 2px; } }
   .sim-u { font: 500 10.5px var(--font-ui); fill: #5b6170; }
   .sim-ph { stroke: #16181d; stroke-width: 1; pointer-events: none; }
   .sim-s { transition: opacity .25s ease, filter .25s ease; }
@@ -8990,10 +8990,10 @@ function simDrawPanel(P, el) {
   const W = el.clientWidth, ML = 44, MR = 10, nR = P.rows.length, sx = stLin(0, SIM_N - 1, ML, W - MR), mw = (W - ML - MR) / (SIM_N - 1), pj0 = simMI((simPJ().start || {}).month);
   let y0 = 0, s = '', hits = '';
   el._rows = [];
-  // side by side (≥1000px) the plots shrink to ~60% of their height so the six panels share one screen with the timeline
-  const k = simSBS() ? 0.6 : 1, gapR = k < 1 ? 5 : 8;
+  // every row gets the same plot height so all panels read at one scale of size (consistent across the six charts)
+  const SIM_PLOT = simSBS() ? 96 : 104, gapR = 8;
   P.rows.forEach((R0, r) => {
-    const ex = r === nR - 1 ? 36 : 20, R = k < 1 ? Object.assign({}, R0, { h: Math.max(26, Math.round((R0.h - ex) * k)) + ex }) : R0;
+    const ex = r === nR - 1 ? 36 : 20, R = Object.assign({}, R0, { h: SIM_PLOT + ex });
     const top = y0 + 16, bot = y0 + R.h - (r === nR - 1 ? 20 : 4);
     const vals = R.s.flatMap(S => S.pts.flatMap(p => [p.v, p.lo, p.hi])).concat(R.s.some(S => S.proj) ? simPJ().low.concat(simPJ().high) : []).concat(R.s.flatMap(S => S.up ? [S.up.value] : [])).filter(v => typeof v === 'number');
     if (R.zero || R.s.some(S => S.kind === 'bars')) vals.push(0);
@@ -9012,7 +9012,7 @@ function simDrawPanel(P, el) {
     el._rows.push({ R, top, bot });
     y0 += R.h + gapR;
   });
-  el._k = k;
+  el._k = simSBS() ? 1 : 0;   // layout mode the panel was drawn for (redraw on breakpoint change)
   el.innerHTML = `<svg viewBox="0 0 ${W} ${y0}" width="100%" role="img" aria-label="${ciE(P.t)}"><defs><clipPath id="simclip-${P.id}"><rect class="sim-clip" x="0" y="0" width="${W}" height="${y0}"/></clipPath></defs>${s}${hits}</svg>`;
   el._sx = sx; el._mw = mw; el._w = W;
   const svg = el.querySelector('svg');
@@ -9578,7 +9578,7 @@ function sm2Chap3() {
     </tbody></table></div>`;
   const btCard = (id, h, rm, note, leg) => `<div><div class="sim-card-h">${h}${rm != null ? ` · RMSE ${stN(rm, 3)}${stT(' điểm %', ' pp')}` : ''}</div>${stLegend(leg || [{ n: stT('Thực tế', 'Actual'), c: ST.blue, k: 'line' }, { n: stT('Mô hình', 'Model'), c: ST.ink, k: 'dash' }])}<div id="${id}" class="st-viz"></div><p class="sim-small">${note}</p></div>`;
   const oe = (oos.path || [])[(oos.path || []).length - 1] || {}, re2 = (rp.path || [])[(rp.path || []).length - 1] || {};
-  return stChap('sim-st-model', stT('Chương 3 · Mô hình', 'Chapter 3 · The model'),
+  return stChap('sim-st-model', stT('Mô hình', 'The model'),
     stT(`Ước lượng trên ${re.n_intervals} khoảng (R² ${stN(re.r2_centred, 2)}): ${nm[top[0]]} và ${nm[top[1]]} là hai tác động rõ nhất`, `Estimated on ${re.n_intervals} intervals (R² ${stN(re.r2_centred, 2)}): ${nm[top[0]]} and ${nm[top[1]]} are the clearest effects`),
     ciE(String(stT(M.method_vi, M.method_en) || '').replace(/\s*[^.]*\bSIM\.model\b[^.]*\./g, '')),
     `<div class="st-sub">${stT('Ba phương trình, tính theo tháng', 'Three equations, month by month')}</div>
@@ -9597,7 +9597,7 @@ function sm2Chap3() {
      <div class="st-sub">${stT('Thành phần của áp lực vốn, theo tháng (nghìn tỷ đ)', 'What builds funding pressure, monthly (VND tn)')}</div>
      ${stLegend([{ n: stT('Làm tăng áp lực vốn', 'Adds to funding pressure'), c: SM2_UP }, { n: stT('Làm giảm', 'Eases it'), c: SM2_DN }])}
      <div class="sm2-bt3"><div><div class="sim-card-h">${stT('Thiếu hụt vốn FG (mô hình)', 'Funding gap FG (model)')}</div><div id="sm2-fg" class="st-viz"></div></div><div><div class="sim-card-h">${stT('Ngân sách bơm ròng (chi − thu)', 'Fiscal net injection (spending − revenue)')}</div><div id="sm2-fi" class="st-viz"></div></div><div><div class="sim-card-h">${stT('Dòng ngoại tệ ròng quy ra đồng', 'Net FX inflow in VND')}</div><div id="sm2-fx" class="st-viz"></div></div></div>
-     ${stNote(stT('Một phần các tháng là số năm chia đều hoặc khoảng chia đều (xem Chương 4); hai tháng gần nhất có phần ước tính.', 'Some months are annual totals or intervals spread evenly (see Chapter 4); the latest two months are partly nowcast.'), APP_LANG === 'en' && /nowcast/i.test((M.params_note || {}).P0 || '') ? ciE((M.params_note || {}).P0) : '')}
+     ${stNote(stT('Một phần các tháng là số năm chia đều hoặc khoảng chia đều (xem Chương 3); hai tháng gần nhất có phần ước tính.', 'Some months are annual totals or intervals spread evenly (see Chapter 3); the latest two months are partly nowcast.'), APP_LANG === 'en' && /nowcast/i.test((M.params_note || {}).P0 || '') ? ciE((M.params_note || {}).P0) : '')}
      <p class="${chk.ok ? 'sm2-ok' : 'sm2-bad'}">${chk.ok ? stT(`Kiểm tra mô hình: bản JavaScript trên trang khớp ${chk.n}/${chk.n} bộ thử của bản Python (sai số lớn nhất ${chk.worst.toExponential(1)}), các đóng góp cộng đúng bằng tổng thay đổi.`, `Model check: the in-page JavaScript matches ${chk.n}/${chk.n} test vectors of the Python model (largest error ${chk.worst.toExponential(1)}); contributions add up to the total change.`) : stT(`Kiểm tra mô hình thất bại: ${ciE(chk.fails.join(', '))}.`, `Model check failed: ${ciE(chk.fails.join(', '))}.`)}</p>
      <p class="sim-small">${stT(`Phiên bản ${ciE(M.version || '')}. So sánh v1: mô hình cũ chỉ hiệu chỉnh 4 động lực (chênh lệch tín dụng − huy động, CPI, vàng, VN-Index); v2 thay chênh lệch bằng thiếu hụt vốn tính từ dòng tiền và ước lượng các hệ số chính.`, `Version ${ciE(M.version || '')}. v1 comparison: the old model calibrated 4 drivers (credit − deposit gap, CPI, gold, VN-Index); v2 replaces the gap with a funding gap built from money flows and estimates the main coefficients.`)}</p>
      <details class="sim-fd"><summary>${stT(`Số liệu mâu thuẫn giữa các nguồn (${(SIM.conflicts || []).length})`, `Conflicting figures between sources (${(SIM.conflicts || []).length})`)}</summary><ul class="sim-ul">${(SIM.conflicts || []).map(c => `<li><b>${ciE(c.topic)}</b>: ${ciE(c.a)} · ${ciE(c.b)} → ${ciE(c.handling)}</li>`).join('')}</ul></details>`);
@@ -9630,7 +9630,7 @@ function renderSimStory() {
       <p class="st-dek">${stT(`Từ <b>${stN(vcb12 ? vcb12.v : st.value, 1)}%</b> (${vcb12 ? simML(vcb12.i) : ''}) lên <b>${stN(st.value, 1)}%</b> (${simML(iS)}), trong khi lãi suất tái cấp vốn ${refiNow && refiThen && refiNow.v === refiThen.v ? `giữ ${stN(refiNow.v, 1)}%` : `ở ${stN(refiNow ? refiNow.v : NaN, 1)}%`}. Nếu các đòn bẩy giữ đường cơ sở, mô hình cấu trúc của dashboard cho ${stN(sq.path[e], 2)}% vào ${simML(xE)} (khoảng 80%: ${stN(sq.lo[e], 2)}–${stN(sq.hi[e], 2)}%)${psA ? `; nếu mức áp lực vốn “bình thường” lấy theo ước lượng đến 3/2025, chỉ ${stN(psA.rate_at_h6, 2)}%` : ''}.`, `From <b>${stN(vcb12 ? vcb12.v : st.value, 1)}%</b> (${vcb12 ? simML(vcb12.i) : ''}) to <b>${stN(st.value, 1)}%</b> (${simML(iS)}), while the refinancing rate ${refiNow && refiThen && refiNow.v === refiThen.v ? `stayed at ${stN(refiNow.v, 1)}%` : `was ${stN(refiNow ? refiNow.v : NaN, 1)}%`}. If the levers stay on baseline, the dashboard's structural model gives ${stN(sq.path[e], 2)}% by ${simML(xE)} (80% band ${stN(sq.lo[e], 2)}–${stN(sq.hi[e], 2)}%)${psA ? `; with the “normal” funding-pressure level fitted to Mar 2025, only ${stN(psA.rate_at_h6, 2)}%` : ''}.`)}</p>
       <p class="sim-disc">${disc}</p>
     </div><div><div id="sim-hero-leg"></div><div id="sim-hero" class="st-viz"></div></div></div>
-    <ol class="sim-toc">${[[stT('Câu chuyện', 'The story'), stT('6 lực, 2021–2026, phát theo thời gian', 'Six forces, 2021–2026, played over time'), 'sim-st-story'], [stT('Dự phóng 6 tháng', '6-month projection'), stT(`${nLv} đòn bẩy, ${nSc} kịch bản, đóng góp từng nhóm`, `${nLv} levers, ${nSc} scenarios, contributions`), 'sim-st-proj'], [stT('Mô hình', 'The model'), stT('phương trình, hệ số, kiểm định', 'equations, coefficients, backtests'), 'sim-st-model'], [stT('Chỉ số & nguồn', 'Indicators & sources'), stT(`${keys.length} chuỗi, nguồn, mức xác minh`, `${keys.length} series, sources, verification`), 'sim-st-src']].map(([a, b, id], i) => `<li><button type="button" data-st-go="${id}"><b>${i + 1} · ${a}</b><span>${b}</span></button></li>`).join('')}</ol></section>`;
+    <ol class="sim-toc">${[[stT('Câu chuyện', 'The story'), stT('6 lực, 2021–2026, phát theo thời gian', 'Six forces, 2021–2026, played over time'), 'sim-st-story'], [stT('Dự phóng 6 tháng', '6-month projection'), stT(`${nLv} đòn bẩy, ${nSc} kịch bản, đóng góp từng nhóm`, `${nLv} levers, ${nSc} scenarios, contributions`), 'sim-st-proj'], [stT('Chỉ số & nguồn', 'Indicators & sources'), stT(`${keys.length} chuỗi, nguồn, mức xác minh`, `${keys.length} series, sources, verification`), 'sim-st-src']].map(([a, b, id], i) => `<li><button type="button" data-st-go="${id}"><b>${i + 1} · ${a}</b><span>${b}</span></button></li>`).join('')}</ol></section>`;
   // 1 · the story
   h += stChap('sim-st-story', stT('Chương 1 · Câu chuyện', 'Chapter 1 · The story'),
     stT(`Từ ${stN(vLow.v, 1)}% lên ${stN(st.value, 1)}%: vì sao lãi suất cao và khó sớm giảm`, `From ${stN(vLow.v, 1)}% to ${stN(st.value, 1)}%: why rates are high and unlikely to fall soon`),
@@ -9642,12 +9642,16 @@ function renderSimStory() {
      <ol class="sim-steps" id="sim-steps" aria-label="${stT('Các nhịp của câu chuyện', 'Story beats')}">${B.map((b, j) => `<li><button type="button" data-b="${j}" title="${ciE(stT(b.title_vi, b.title_en))}"><span class="sim-st-p">${j + 1} · ${simPer(b)}</span>${simBadge((b.data_check || {}).supports, 1)}<span class="sim-st-t">${ciE(stT(b.title_vi, b.title_en))}</span></button></li>`).join('')}</ol>
      <div class="sim-body" id="sim-body"><div id="sim-beat" class="sim-beat" aria-live="polite"></div><div id="sim-sum" class="sim-sum">${simSummary()}</div></div></div>
      <div class="sim-main"><div class="sim-grid" id="sim-grid">${simPanels().map(P => `<div class="sim-card"><div class="sim-card-h">${ciE(P.t)}</div>${stLegend(P.rows.flatMap(r => r.s).filter((s, i, a) => a.findIndex(x => x.k === s.k && x.n === s.n) === i).map(s => ({ n: s.n, c: s.c, k: s.kind === 'dots' ? 'dot' : s.kind === 'bars' ? 'rect' : 'line' })))}<div class="st-viz sim-p" id="sim-p-${P.id}"></div></div>`).join('')}</div>
-     ${stNote(stT('Nét liền: số quan sát; nét đứt ở lãi suất Vietcombank: tháng giữ nguyên mức của lần niêm yết trước (chưa xác nhận); điểm rỗng: số cả năm, ước tính hoặc 9 tháng; đoạn có gạch: khoảng giá trị theo thước đo khác.', 'Solid: observed; dashed on the Vietcombank line: months carried from the last quote (not confirmed); hollow points: full-year, approximate or nine-month figures; capped segments: ranges on a different measure.'), stT('Tháng không có số liệu để trống, không nội suy. Số liệu của nhiều nguồn và định nghĩa khác nhau; chi tiết ở Chương 4.', 'Months without data stay blank, never interpolated. Sources and definitions differ; details in Chapter 4.'))}
-     ${stSrc(stT('Nguồn: NHNN, NSO, Bộ Tài chính, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, Fed, báo chí (đường dẫn từng chuỗi ở Chương 4). Tổng hợp: Finance agent, ', 'Sources: SBV, NSO, Ministry of Finance, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, the Fed, press (per-series links in Chapter 4). Compiled by the Finance agent, ') + polDS(SIM.as_of) + '.')}</div></div>`);
+     ${stNote(stT('Nét liền: số quan sát; nét đứt ở lãi suất Vietcombank: tháng giữ nguyên mức của lần niêm yết trước (chưa xác nhận); điểm rỗng: số cả năm, ước tính hoặc 9 tháng; đoạn có gạch: khoảng giá trị theo thước đo khác.', 'Solid: observed; dashed on the Vietcombank line: months carried from the last quote (not confirmed); hollow points: full-year, approximate or nine-month figures; capped segments: ranges on a different measure.'), stT('Tháng không có số liệu để trống, không nội suy. Số liệu của nhiều nguồn và định nghĩa khác nhau; chi tiết ở Chương 3.', 'Months without data stay blank, never interpolated. Sources and definitions differ; details in Chapter 3.'))}
+     ${stSrc(stT('Nguồn: NHNN, NSO, Bộ Tài chính, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, Fed, báo chí (đường dẫn từng chuỗi ở Chương 3). Tổng hợp: Finance agent, ', 'Sources: SBV, NSO, Ministry of Finance, HNX, VSDC, Savills, World Bank Pink Sheet, EIA, the Fed, press (per-series links in Chapter 3). Compiled by the Finance agent, ') + polDS(SIM.as_of) + '.')}</div></div>`);
   // 2 · projection workbench and 3 · the model: model v2 (SIM.model2 / SIM.projection2); v1 survives as a comparison line
-  h += sm2Chap2() + sm2Chap3();
+  // the model (equations, coefficients, backtests) sits inside chapter 2 as a collapsible section (user: merge 3 into 2)
+  { const c2 = sm2Chap2(), c3 = sm2Chap3(), i = c2.lastIndexOf('</section>');
+    const inner = c3.replace(/^<section class="st-chap" id="sim-st-model">/, '').replace(/<\/section>\s*$/, '');
+    const det = `<details class="sim-fd sim-model" id="sim-st-model"><summary>${stT('Mô hình: phương trình, hệ số và kiểm định', 'The model: equations, coefficients and backtests')}</summary>${inner}</details>`;
+    h += i >= 0 ? c2.slice(0, i) + det + c2.slice(i) : c2 + det; }
   // 4 · indicators & sources
-  h += stChap('sim-st-src', stT('Chương 4 · Chỉ số & nguồn', 'Chapter 4 · Indicators & sources'),
+  h += stChap('sim-st-src', stT('Chương 3 · Chỉ số & nguồn', 'Chapter 3 · Indicators & sources'),
     stT(`${keys.length} chuỗi số liệu: nguồn, độ phủ và mức xác minh của từng chuỗi`, `${keys.length} series: the source, coverage and verification of each`),
     stT('Độ phủ tính trên 69 tháng 1/2021–9/2026; "điểm" là số liệu có ngày nằm ngoài lưới tháng. Nhấn vào nguồn để mở.', 'Coverage counts the 69 months Jan 2021–Sep 2026; "points" are dated figures off the monthly grid. Click a source to open it.'),
     `<div class="sim-tw sim-tw-src"><table class="sim-t"><thead><tr><th>${stT('Chuỗi', 'Series')}</th><th>${stT('Đơn vị · tần suất', 'Unit · frequency')}</th><th>${stT('Độ phủ', 'Coverage')}</th><th>${stT('Nguồn', 'Source')}</th><th>${stT('Xác minh', 'Verification')}</th></tr></thead><tbody>
@@ -9661,6 +9665,7 @@ function renderSimStory() {
   simFan(document.getElementById('sim-hero'), 0, { path: sq.path, lo: sq.lo, hi: sq.hi, refi: true, h: 240, label: stT('Lãi suất 12 tháng Vietcombank 2021–2026 và mô hình', 'Vietcombank 12-month rate 2021–2026 and the model') });
   const panels = simPanels(); panels.forEach(P => simDrawPanel(P, document.getElementById('sim-p-' + P.id)));
   simAnimWire(); sm2Wire(); sm2Ch3Draw();
+  { const md = document.getElementById('sim-st-model'); if (md) md.addEventListener('toggle', () => { if (md.open) { sm2Ch3Draw(); const r = md.closest('.st-root'); if (r && typeof stTables === 'function') stTables(r); } }); }   // charts inside the collapsed model section draw at their real width when opened
   stFinish(root);
   simLay();
 }
@@ -9668,7 +9673,7 @@ let simRT = null;
 window.addEventListener('resize', () => { clearTimeout(simRT); simRT = setTimeout(() => {
   const root = document.getElementById('sim-story'); if (!root || !root.isConnected || !root.querySelector('#sim-grid')) return;
   simLay();
-  const P = simPanels(), k = simSBS() ? 0.6 : 1; P.forEach(p => { const el = document.getElementById('sim-p-' + p.id); if (el && el.clientWidth && (Math.abs(el.clientWidth - (el._w || 0)) > 8 || el._k !== k)) { const tw = el._stRows; simDrawPanel(p, el); el._stRows = tw || el._stRows; } });
+  const P = simPanels(), k = simSBS() ? 1 : 0; P.forEach(p => { const el = document.getElementById('sim-p-' + p.id); if (el && el.clientWidth && (Math.abs(el.clientWidth - (el._w || 0)) > 8 || el._k !== k)) { const tw = el._stRows; simDrawPanel(p, el); el._stRows = tw || el._stRows; } });
   const hf = document.getElementById('sim-hero'); if (hf && hf.clientWidth && Math.abs(hf.clientWidth - (hf._w || 0)) > 8) { const s = simPJ(); simFan(hf, 0, { path: s.base, lo: s.low, hi: s.high, refi: true, h: 240 }); hf._w = hf.clientWidth; }
   // chapters 2-3 (model v2) redraw through stRW
 }, 150); });
