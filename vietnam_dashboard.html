@@ -958,6 +958,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-subtab:hover { color: #16181d; border-color: #dedbd2; }
   .st-subtab[aria-selected=true] { background: #16181d; color: #fff; border-color: #16181d; }
   .st-chap[hidden], .st-tail[hidden] { display: none !important; }
+  .st-group { padding: 0; border-top: none; opacity: 1; transform: none; } .st-group > .st-ingroup:first-child { border-top: none; }
   .st-chap[role=tabpanel]:focus { outline: none; }
   .st-root > .st-chap[role=tabpanel] { border-top: none; }
   .st-pn { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 30px auto 0; padding-top: 14px; border-top: 1px solid #dedbd2; width: 100%; max-width: 1120px; box-sizing: border-box; }
@@ -4859,6 +4860,7 @@ function fsSbvDraw(B) {
 document.addEventListener('click', e => {
   const b = e.target.closest && e.target.closest('[data-fs-go]'); if (!b) return;
   const t = document.getElementById(b.dataset.fsGo); if (!t) return;
+  { const root = t.closest('.st-root'), S = root && root._stSub, top = root && stTopSec(root, t.id), i = S && top ? S.secs.indexOf(top) : -1; if (i >= 0) stSubSel(root, i, { user: 1 }); }
   if (t.tagName === 'DETAILS') t.open = true;
   t.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
@@ -5381,7 +5383,32 @@ function stBulbs(root) {
     if (last) last.before(a); else c.appendChild(a);
   });
 }
-function stFinish(root) { stObserve(root); stTables(root); stFresh(root); stFlourish(root); stOwner(root); stBulbs(root); stChapters(root); }
+// at most 4 sub-tabs per tab (user rule): related chapters are wrapped into one sub-tab section before the bar is built;
+// inner chapters keep their ids, charts, boxes and reveal animation. A group whose id ends in -explore owns the panel tail.
+const ST_GROUPS = [
+  ['pg-g-goals', '1 · Mục tiêu & ưu tiên', '1 · Goals & priorities', ['pg-st-gap', 'pg-st-pil']],
+  ['pg-g-docs', '2 · Văn bản & thực thi', '2 · Documents & delivery', ['pg-st-wave', 'pg-st-chain', 'pg-st-pipe', 'pg-st-watch']],
+  ['soc-g-people', '1 · Dân số', '1 · Population', ['soc-st-tfr', 'soc-st-age']],
+  ['soc-g-place', '2 · Vùng miền & thế giới', '2 · Regions & the world', ['soc-st-rich', 'soc-st-rank', 'soc-st-rel']],
+  ['st-g-growth', '1 · Tăng trưởng & dòng tiền', '1 · Growth & money flows', ['st-formula', 'st-bop', 'st-inv']],
+  ['st-g-fiscal', '2 · Ngân sách & lạm phát', '2 · Budget & inflation', ['st-budget', 'st-cpi']],
+  ['st-g-2030', '3 · Đến 2030', '3 · To 2030', ['st-2030', 'st-watch']],
+  ['fs-g-money', '1 · Tiền, tín dụng & lãi suất', '1 · Money, credit & rates', ['fs-st-money', 'fs-st-flow', 'fs-st-rates']],
+  ['fs-g-system', '2 · Tỷ giá, ngân hàng & thanh toán', '2 · FX, banks & payments', ['fs-st-fx', 'fs-st-safe', 'fs-st-pay', 'fs-st-sbv']],
+  ['fs-g-explore', 'Theo dõi & khám phá', 'Watch & explore', ['fs-st-watch', 'fs-st-explore']],
+  ['iv-g-mkt', '1 · Vĩ mô & thị trường', '1 · Macro & market', ['iv-st-macro', 'iv-st-market']],
+  ['iv-g-stocks', '2 · Cổ phiếu & lịch', '2 · Stocks & calendar', ['iv-st-stocks', 'iv-st-cal']]];
+function stGroupChapters(root) {
+  ST_GROUPS.forEach(([id, vi, en]) => { ST_SUB_SHORT[id] = [vi, en]; });   // labels for the group pills
+  ST_GROUPS.forEach(([id, , , ids]) => {
+    const secs = ids.map(x => root.querySelector(`:scope > section.st-chap#${x}`)).filter(Boolean); if (!secs.length || root.querySelector('#' + id)) return;
+    const g = document.createElement('section'); g.className = 'st-chap st-group in'; g.id = id;
+    secs[0].before(g); secs.forEach(s => { g.appendChild(s); s.classList.add('st-ingroup'); });
+  });
+}
+// a chapter id → its top-level sub-tab (itself, or the group that holds it)
+const stTopSec = (root, id) => { const el = document.getElementById(id); return el ? (el.closest('.st-root > section.st-chap') || el) : null; };
+function stFinish(root) { stObserve(root); stTables(root); stFresh(root); stFlourish(root); stOwner(root); stBulbs(root); stGroupChapters(root); stChapters(root); }
 // ── chapter sub-tabs: one chapter on screen at a time. Built from the rendered .st-chap sections of a story root (hero =
 // "Overview"); ARIA tabs with arrow/Home/End keys; the bar sits just before the root (sticky inside the scrolling panel,
 // so it stays in view over the tab's explore content too). The explore chapter also owns the panel's content after the
@@ -5457,7 +5484,7 @@ function stSubSel(root, i, o) {
 // jump to another chapter of the same story: <button data-st-go="chapter-id">
 document.addEventListener('click', e => {
   const g = e.target.closest && e.target.closest('[data-st-go]'); if (!g) return;
-  const root = g.closest('.st-root'), S = root && root._stSub, i = S ? S.secs.findIndex(s => s.id === g.dataset.stGo) : -1;
+  const root = g.closest('.st-root'), S = root && root._stSub, top = root && stTopSec(root, g.dataset.stGo), i = S && top ? S.secs.indexOf(top) : -1;
   if (i >= 0) { e.stopPropagation(); stSubSel(root, i, { user: 1, focus: 1 }); }
 }, true);
 document.addEventListener('click', e => {
