@@ -7055,7 +7055,7 @@ function renderFsStory() {
       `<div id="fs-st-nest-leg"></div><div id="fs-st-nest" class="st-viz"></div><ul class="fs-expl" id="fs-st-nest-x"></ul>`)
     + fsBlk('fs-b-ops', stT('Giải thích · NHNN mua và bán', 'Explainer · The SBV buying and selling'), stT('Khi NHNN bán, tiền rời các ngân hàng; khi NHNN mua, tiền vào các ngân hàng', 'When the SBV sells, money leaves the banks; when it buys, money flows in'),
       stT('Mũi tên đi theo dòng tiền đồng giữa NHNN và các ngân hàng. Đỏ: hút tiền khỏi hệ thống ngân hàng; xanh: bơm vào; đen: tiền không đi qua NHNN.', 'Arrows follow the dong between the SBV and the banks. Red: drains money from the banking system; blue: injects it; ink: money that does not pass through the SBV.'),
-      `<div id="fs-st-ops"></div><div class="st-sub">${stT('Dư nợ cuối tuần: cho vay OMO (bơm, trên trục 0) và tín phiếu NHNN (hút, dưới trục 0), tỷ đồng', 'Week-end balances: OMO loans (injection, above zero) and SBV bills (drain, below zero), bn VND')}</div><div id="fs-st-liq-leg"></div><div id="fs-st-liq" class="st-viz"></div><div id="fs-st-liq-note"></div>
+      `<div id="fs-st-ops"></div><div class="st-sub">${stT('Dư nợ cuối tuần: cho vay OMO (bơm, trên trục 0) và tín phiếu NHNN (hút, dưới trục 0), nghìn tỷ đồng', 'Week-end balances: OMO loans (injection, above zero) and SBV bills (drain, below zero), tn VND')}</div><div id="fs-st-liq-leg"></div><div id="fs-st-liq" class="st-viz"></div><div id="fs-st-liq-note"></div>
        <p class="fs-lv-go"><button type="button" class="st-pn-b" data-st-go="fs-st-sbv">${stT('Mọi công cụ của NHNN và các kênh tiền đi', 'Every SBV lever and money channel')}: <b>${stT('Chương 7', 'Chapter 7')}</b><span aria-hidden="true"> →</span></button></p>`)
     + fsBlk('fs-b-gap', stT('Tín dụng và huy động', 'Credit and deposits'), stT(`Năm ${A.years[n]} tín dụng tăng ${stN(A.credit_growth[n], 1)}%, huy động ${stN(A.deposit_growth[n], 1)}%`, `In ${A.years[n]} credit grew ${stN(A.credit_growth[n], 1)}% and deposits ${stN(A.deposit_growth[n], 1)}%`),
       stT('Tăng trưởng cả năm (%); vùng xám là phần tín dụng vượt huy động.', 'Full-year growth (%); the grey wash is where credit outgrew deposits.'),
@@ -7117,7 +7117,7 @@ function renderFsStory() {
   // ── what to watch: every dated POLICY move still ahead (monetary side), then the credit target and the deposit rate ──
   const today = pgToday().toISOString().slice(0, 10), tg = fsStFlow('Credit growth target 2026'), w = [];
   const ahead = typeof POLICY !== 'undefined' ? (POLICY.mon.instruments || []).flatMap(I => (I.history || []).filter(x => x && x.date > today).map(x => ({ I, x }))).sort((a, b) => a.x.date.localeCompare(b.x.date)).slice(0, 3) : [];
-  ahead.forEach(({ I, x }) => w.push([polDS(x.date), ciE(stT(I.name_vi, I.name_en)), `${ciE(x.from || '')} → ${ciE(x.to || '')}${x.doc ? ` · ${ciE(x.doc)}` : ''}`]));
+  ahead.forEach(({ I, x }) => w.push([polDS(x.date), ciE(stT(I.name_vi, I.name_en)), `${APP_LANG === 'en' && x.note_en ? ciE(x.note_en) : `${ciE(x.from || '')} → ${ciE(x.to || '')}`}${x.doc ? ` · ${ciE(x.doc)}` : ''}`]));
   if (tg) w.push([stT('31/12/2026', '31 Dec 2026'), stT(`Chỉ tiêu tín dụng ${stN(tg, 0)}%`, `${stN(tg, 0)}% credit target`), stT(`Đến ${fsStMon(M.months[mi])} đã tăng ${stN(M.credit_ytd[mi], 2)}%; còn ${stN(tg - M.credit_ytd[mi], 2)} điểm % cho ${12 - +M.months[mi].replace(/^T/, '').split('/')[0]} tháng cuối năm.`, `${stN(M.credit_ytd[mi], 2)}% reached by ${fsStMon(M.months[mi])}; ${stN(tg - M.credit_ytd[mi], 2)} points left for the last ${12 - +M.months[mi].replace(/^T/, '').split('/')[0]} months.`)]);
   if (dep.length) w.push([stT('Hằng tháng', 'Monthly'), stT('Lãi suất huy động 12 tháng', '12-month deposit rate'), stT(`${stN(dep[dep.length - 1][1], 2)}% ở nhóm ngân hàng tư nhân (${dep[dep.length - 1][0]}), so với ${stN(dep[0][1], 2)}% (${dep[0][0]}).`, `${stN(dep[dep.length - 1][1], 2)}% at private banks (${dep[dep.length - 1][0]}), against ${stN(dep[0][1], 2)}% (${dep[0][0]}).`)]);
   h += stChap('fs-st-watch', stT('Tiếp theo · Điều cần theo dõi', 'Next · What to watch'), stT(`${w.length} mốc sẽ cho biết áp lực vốn và lãi suất có giảm hay không`, `${w.length} markers that will show whether funding and rate pressure eases`), '', `<ol class="st-watch">${w.map(([t, b, p]) => `<li><time>${t}</time><b>${b}</b>${p}</li>`).join('')}</ol>`);
@@ -7306,7 +7306,7 @@ const stMini = (title, val, svg, sub) => `<div><div class="st-mini-h">${title}</
 function fsStGap() {
   const el = document.getElementById('fs-st-gap'), A = FINSYS.annual, Y = A.years, yL = Y[Y.length - 1], PK = ['credit_growth_pct', 'deposit_growth_pct'], xM = Math.max(yL, Math.min(2030, fsProjMaxY(PK) || yL)), pj = xM > yL;
   const pv = fsProjVals(PK), lo = Math.min(4, ...pv.map(v => Math.floor(v))), hi = Math.max(20, ...pv.map(v => Math.ceil(v / 5) * 5));
-  const W = stCW(el, 680), narrow = W < 460, H = 220, ML = 30, MR = narrow ? (pj ? 104 : 96) : (pj ? 118 : 104), MT = 14, MB = 22, sx = stLin(Y[0], xM, ML, W - MR), sy = stLin(lo, hi, H - MB, MT);
+  const W = stCW(el, 1000), narrow = W < 460, H = 240, ML = 30, MR = narrow ? (pj ? 104 : 96) : (pj ? 150 : 120), MT = 14, MB = 22, sx = stLin(Y[0], xM, ML, W - MR), sy = stLin(lo, hi, H - MB, MT);
   document.getElementById('fs-st-gap-leg').innerHTML = stLegend([{ n: stT('Tín dụng', 'Credit'), c: ST.blue, k: 'line' }, { n: stT('Huy động', 'Deposits'), c: ST.orange, k: 'line' }, { n: stT('Chênh lệch', 'Gap'), c: '#e1e0d9' }].concat(fsProjLeg(PK, [stT('Tín dụng', 'Credit'), stT('Huy động', 'Deposits')], [ST.blue, ST.orange])));
   const tk = []; for (let t = Math.ceil(lo / 5) * 5; t <= hi; t += 5) tk.push(t);
   let s = stAxisY(sy, tk, ML, W - MR, v => v + '%');
@@ -8125,7 +8125,7 @@ const fsDL2 = d => { const s = String(d || ''); return /^\d{4}-\d{2}-\d{2}$/.tes
 const fsMonths = (a, b) => { const [ya, ma] = String(a).split('-').map(Number), [yb, mb] = String(b).split('-').map(Number); return (yb - ya) * 12 + mb - ma; };
 const fsQ = q => /lower bound|hơn|trên|vượt|at least/i.test(q || '') ? '≥' : /approx|khoảng|gần|rounded/i.test(q || '') ? '≈' : '';
 // axis: nice ticks that cover the data; returns ticks and the domain
-const fsAx = (lo, hi, n = 4) => { const tk = stNice(lo, hi, n); return { tk, a: Math.min(lo, tk[0]), b: Math.max(hi, tk[tk.length - 1]) }; };
+const fsAx = (lo, hi, n = 4) => { const tk = stNice(lo, hi, n); if (tk.length > 1 && tk[tk.length - 1] < hi - 1e-9) tk.push(+(tk[tk.length - 1] + tk[1] - tk[0]).toFixed(10)); return { tk, a: Math.min(lo, tk[0]), b: Math.max(hi, tk[tk.length - 1]) }; };
 const fsTickF = tk => v => stN(v, tk.some(t => Math.abs(t % 1) > 1e-9) ? (tk.some(t => Math.abs((t * 10) % 1) > 1e-9) ? 2 : 1) : 0);
 // year labels centred on each year span (points sit at period ends, so a year's label sits in the middle of its span)
 function fsYearTicks(sx, t0, t1, y, narrow) { let s = ''; const ys = []; for (let yy = Math.floor(t0); yy < t1; yy++) if (yy + .5 >= t0 && yy + .5 <= t1) ys.push(yy);
@@ -8165,7 +8165,7 @@ function fsStM2C() {
   ca.forEach((v, j) => { if (v == null) return; s += stBarV(cx(j), slot, sy2(q(v)), sy2(0), amb[j] ? 'url(#fs-hatch-c)' : ST.aqua, null, { d: j * 25 }); });
   const l2 = fsLi(ca); s += `<text class="st-val" x="${W - MR + 8}" y="${sy2(q(ca[l2])) + 4}">≈ ${f2(q(ca[l2]))}</text>`;
   const pk = ca.reduce((b, v, j) => v != null && (b < 0 || v > ca[b]) ? j : b, -1), tet = /^T[12]\//.test(mo[pk]);
-  if (pk >= 0) { const right = pk > N * .6; s += stAnn(cx(pk), sy2(q(ca[pk])), cx(pk) + (right ? -24 : 24), y2t + 4, `${fsMS(mo[pk])}: ≈ ${f2(q(ca[pk]))}${tet ? stT(' (tháng Tết)', ' (Tết month)') : ''}`, right ? 'end' : 'start'); }
+  if (pk >= 0) { const right = pk > N * (narrow ? .4 : .6); s += stAnn(cx(pk), sy2(q(ca[pk])), cx(pk) + (right ? -24 : 24), y2t + 4, `${fsMS(mo[pk])}: ≈ ${f2(q(ca[pk]))}${tet && !narrow ? stT(' (tháng Tết)', ' (Tết month)') : ''}`, right ? 'end' : 'start'); }
   el.innerHTML = stSvg(W, H, s, stT('M2 và tiền mặt lưu thông theo tháng', 'M2 and cash in circulation by month'));
   const xs = mo.map((_, j) => cx(j)), labels = mo.map(fsStMon);
   stCross(el, { xs, labels, top: MT, bottom: y2b, series: [{ n: 'M2', c: ST.orange, v: m2, f: v => fsU(v, 'bn VND') }, { n: stT('≈ Tiền mặt lưu thông', '≈ Cash in circulation'), c: ST.aqua, v: ca, f: v => '≈ ' + fsU(v, 'bn VND') }, { n: stT('Tiền mặt / M2 (NHNN)', 'Cash / M2 (SBV)'), c: ST.ink, v: sh, f: v => stN(v, 2) + '%' },
@@ -8230,7 +8230,7 @@ function fsStOps() {
     { k: 'in', t: stT('NHNN mua có kỳ hạn giấy tờ có giá (thị trường mở, OMO)', 'The SBV buys securities under repo (open-market operations)'), a: arr(SBV, BK, 'in', dong),
       p: [stT(`NHNN cho ngân hàng vay ngắn hạn${ten ? ` (kỳ hạn tới ${stN(ten.value, 0)} ngày từ ${fsDD(ten.date)})` : ''}, nhận trái phiếu Chính phủ và giấy tờ có giá khác làm tài sản bảo đảm: dự trữ tăng, lãi suất liên ngân hàng thường giảm.`, `The SBV lends to banks short term${ten ? ` (tenors up to ${stN(ten.value, 0)} days since ${fsDD(ten.date)})` : ''}, taking government bonds and other papers as collateral: reserves rise, interbank rates tend to fall.`), stT('Đến hạn, ngân hàng mua lại giấy tờ: tiền quay về NHNN. Chỉ khi lượng cho vay mới lớn hơn lượng đáo hạn thì mới là bơm ròng.', 'At maturity the banks buy the papers back: the money returns to the SBV. Only when new lending exceeds maturities is it a net injection.')],
       now: o.omo ? stT(`Dư nợ OMO ${fsU(o.omo.value, 'bn VND')} (${fsDD(o.omo.date)})${o.omoPk ? `; cao nhất ${fsU(o.omoPk.value, 'bn VND')} (${fsDD(o.omoPk.date)})` : ''}`, `OMO outstanding ${fsU(o.omo.value, 'bn VND')} (${fsDD(o.omo.date)})${o.omoPk ? `; peak ${fsU(o.omoPk.value, 'bn VND')} (${fsDD(o.omoPk.date)})` : ''}`) : '' },
-    { k: 'fx', t: stT('NHNN mua hoặc bán USD', 'The SBV buys or sells dollars'), a: arr(SBV, BK, 'in', stT('mua USD: tiền đồng', 'buys USD: dong')) + arr(BK, SBV, 'out', stT('bán USD: tiền đồng', 'sells USD: dong')),
+    { k: 'fx', t: stT('NHNN mua hoặc bán USD', 'The SBV buys or sells dollars'), a: arr(SBV, BK, 'in', stT('mua USD', 'buys USD')) + arr(BK, SBV, 'out', stT('bán USD', 'sells USD')),
       p: [stT('Mua USD, NHNN trả bằng tiền đồng: bơm tiền, dự trữ ngoại hối tăng. Bán USD, NHNN thu tiền đồng về: hút tiền, dự trữ giảm.', 'Buying dollars, the SBV pays in dong: it injects money and reserves rise. Selling dollars, it takes dong back: it drains money and reserves fall.'), stT('Hoán đổi (mua USD giao ngay, bán lại kỳ hạn) là bơm tiền đồng tạm thời.', 'A swap (buy dollars spot, sell them back forward) is a temporary dong injection.')],
       now: [fsale ? stT(`bán ≈ ${fsU(fsale.value, 'bn USD')} (${fsDD(fsale.date)}, ước tính của công ty chứng khoán)`, `sold ≈ ${fsU(fsale.value, 'bn USD')} (${fsDD(fsale.date)}, broker estimate)`) : '', o.swap ? stT(`hoán đổi tới ${fsU(o.swap.value, 'bn USD')} (${fsDD(o.swap.date)})`, `swaps up to ${fsU(o.swap.value, 'bn USD')} (${fsDD(o.swap.date)})`) : ''].filter(Boolean).join('; ') },
     { k: 'mon', t: stT('Kho bạc Nhà nước bán trái phiếu Chính phủ (không phải NHNN)', 'The State Treasury sells government bonds (not the SBV)'), a: arr(BK, TR, 'mon', dong),
@@ -8271,17 +8271,17 @@ function fsStLiq() {
 function fsStComp() {
   const el = document.getElementById('fs-st-comp'); if (!el) return; const A = FINSYS.annual, Y = A.years;
   const I = Y.map((y, i) => i).filter(i => A.m2_imf_monetary_survey_bn[i] != null && A.currency_outside_banks_imf_bn[i] != null); if (I.length < 2) return;
-  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 30 : 40, MR = narrow ? 8 : 150, MT = 12, H1 = narrow ? 200 : 230, G = 44, H2 = 90, MB = 24, y2t = MT + H1 + G, y2b = y2t + H2, H = y2b + MB;
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 30 : 40, MR = narrow ? 8 : 150, MT = 28, H1 = narrow ? 200 : 230, G = 44, H2 = 90, MB = 24, y2t = MT + H1 + G, y2b = y2t + H2, H = y2b + MB;
   const slot = (W - ML - MR) / I.length, cx = j => ML + (j + .5) * slot, q = v => v / 1e6, m2 = i => A.m2_imf_monetary_survey_bn[i], ca = i => A.currency_outside_banks_imf_bn[i];
   const AX = fsAx(0, Math.max(...I.map(i => q(m2(i)))), 4), sy = stLin(0, AX.b, MT + H1, MT);
-  let s = `<text class="st-lab st-b" x="0" y="${MT - 2}">${stT('triệu tỷ đồng, cuối năm', 'quadrillion VND, year-end')}</text>` + stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, fsTickF(AX.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  let s = `<text class="st-lab st-b" x="0" y="${MT - 14}">${stT('triệu tỷ đồng, cuối năm', 'quadrillion VND, year-end')}</text>` + stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, fsTickF(AX.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
   I.forEach((i, j) => { const y = Y[i]; s += stStackV(cx(j), slot, sy, [{ v: q(ca(i)), c: ST.aqua, key: [`${y} · ${stT('Tiền mặt ngoài ngân hàng (IMF)', 'Cash outside banks (IMF)')}`, fsU(ca(i), 'bn VND')] }, { v: q(m2(i) - ca(i)), c: ST.orange, key: [`${y} · ≈ ${stT('Tiền gửi và phần còn lại (M2 − tiền mặt)', 'Deposits and the rest (M2 − cash)')}`, '≈ ' + fsU(m2(i) - ca(i), 'bn VND')] }], { d: j * 50 });
     if (A.m1_adb_bn[i] != null) { const x = cx(j), yy = sy(q(A.m1_adb_bn[i])); s += `<g class="st-pt st-cell" ${stKey(`${y} · M1 (ADB)`, fsU(A.m1_adb_bn[i], 'bn VND'))}><circle cx="${x}" cy="${yy}" r="12" fill="transparent"/><rect x="${x - 4.5}" y="${yy - 4.5}" width="9" height="9" transform="rotate(45 ${x} ${yy})" fill="${ST.ink}" stroke="${ST_SURF}" stroke-width="1.5"/></g>`; }
     if (!narrow || j % 2 === 0 || j === I.length - 1) s += `<text class="st-tick" x="${cx(j)}" y="${MT + H1 + 16}" text-anchor="middle">${narrow ? String(y).slice(2) : y}</text>`; });
   const iL = I[I.length - 1], xl = cx(I.length - 1) + Math.min(ST_BAR, slot - 4) / 2 + 8;
   if (!narrow) s += fsEnds([{ y: sy(q(m2(iL))), t: `M2 ${fsTq(m2(iL))}` }, { y: sy(q(ca(iL)) / 2), t: stT(`tiền mặt ${fsTq(ca(iL))}`, `cash ${fsTq(ca(iL))}`) }].concat(A.m1_adb_bn[iL] != null ? [{ y: sy(q(A.m1_adb_bn[iL])), t: `◆ M1 ${fsTq(A.m1_adb_bn[iL])}` }] : []), xl);
   // panel 2: cash share (≈ derived IMF/IMF)
-  const sh = I.map(i => A.cash_to_m2_pct_imf_derived[i]), A2 = fsAx(0, Math.max(...sh.filter(v => v != null)), 2), sy2 = stLin(0, A2.b, y2b, y2t);
+  const sh = I.map(i => A.cash_to_m2_pct_imf_derived[i]), A2 = fsAx(0, Math.max(...sh.filter(v => v != null)), 2), sy2 = stLin(0, A2.b * 1.25, y2b, y2t);
   s += `<text class="st-lab st-b" x="0" y="${y2t - 12}">${stT('≈ Tiền mặt / M2 (%)', '≈ Cash / M2 (%)')}</text>` + stAxisY(sy2, A2.tk, ML, W - MR, v => stN(v, 0)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${y2b}" y2="${y2b}"/>`;
   s += stLine(sh.map((v, j) => v == null ? null : [cx(j), sy2(v)]), ST.aqua) + sh.map((v, j) => v == null ? '' : stDot(cx(j), sy2(v), 4, ST.aqua, [`${Y[I[j]]} · ≈ ${stT('tiền mặt / M2', 'cash / M2')}`, '≈ ' + stN(v, 2) + '%'], { d: j * 40 })).join('');
   const s0 = sh.find(v => v != null), sL = sh[sh.length - 1];
@@ -8337,14 +8337,14 @@ function fsStDepH() {
   const el = document.getElementById('fs-st-deph'); if (!el) return; const M = FINSYS.monthly, me = M.m2_methodology || [];
   const I = M.months.map((m, i) => i).filter(i => M.deposits_residents[i] != null && M.deposits_econ_orgs[i] != null); if (I.length < 2) return;
   const mo = I.map(i => M.months[i]), R = I.map(i => M.deposits_residents[i]), O = I.map(i => M.deposits_econ_orgs[i]), mt = I.map(i => me[i]), brk = mt.findIndex((x, j) => j && x && mt[j - 1] && x !== mt[j - 1]);
-  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 30 : 40, MR = narrow ? 70 : 110, MT = 14, MB = 24, H = 240, N = mo.length, cx = j => ML + (j + .5) * (W - ML - MR) / N, q = v => v / 1e6;
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 30 : 40, MR = narrow ? 70 : 110, MT = 26, MB = 24, H = 250, N = mo.length, cx = j => ML + (j + .5) * (W - ML - MR) / N, q = v => v / 1e6;
   const AX = fsAx(0, Math.max(...R, ...O) / 1e6, 4), sy = stLin(0, AX.b, H - MB, MT);
-  let s = `<text class="st-lab st-b" x="0" y="${MT - 4}">${stT('triệu tỷ đồng', 'quadrillion VND')}</text>` + stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, fsTickF(AX.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  let s = `<text class="st-lab st-b" x="0" y="${MT - 12}">${stT('triệu tỷ đồng', 'quadrillion VND')}</text>` + stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, fsTickF(AX.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
   mo.forEach((m, j) => { if ((N - 1 - j) % (narrow ? 4 : 2) === 0) s += `<text class="st-tick" x="${cx(j)}" y="${H - 6}" text-anchor="middle">${fsMS(m)}</text>`; });
   if (brk > 0) { const xb = (cx(brk - 1) + cx(brk)) / 2; s += `<line x1="${xb}" x2="${xb}" y1="${MT}" y2="${H - MB}" stroke="${ST.ink}" stroke-width="1" stroke-dasharray="4,3"/><text class="st-tick" x="${xb + 5}" y="${MT + 10}" style="fill:#16181d">${stT('cách tính mới →', 'new method →')}</text>`; }
   const ln = (V, c, n) => { const p = []; V.forEach((v, j) => { if (j === brk) p.push(null); p.push([cx(j), sy(q(v))]); }); return stLine(p, c) + V.map((v, j) => `<g ${stKey(`${n} · ${fsStMon(mo[j])}`, fsU(v, 'bn VND'))}><circle cx="${cx(j)}" cy="${sy(q(v))}" r="7" fill="transparent"/></g>`).join('') + stDot(cx(N - 1), sy(q(V[N - 1])), 4, c, null, { cls: '' }); };
   const nR = stT('Dân cư', 'Residents'), nO = stT('Tổ chức kinh tế', 'Economic organisations');
-  s += ln(R, ST.orange, nR) + ln(O, ST.violet, nO) + fsEnds([{ y: sy(q(R[N - 1])), t: `${narrow ? '' : nR + ' '}${stN(q(R[N - 1]), 2)}` }, { y: sy(q(O[N - 1])), t: `${narrow ? '' : nO.split(' ')[0] + ' '}${stN(q(O[N - 1]), 2)}` }], W - MR + 8);
+  s += ln(R, ST.orange, nR) + ln(O, ST.violet, nO) + fsEnds([{ y: sy(q(R[N - 1])), t: `${narrow ? '' : nR + ' '}${stN(q(R[N - 1]), 2)}` }, { y: sy(q(O[N - 1])), t: `${narrow ? '' : stT('Tổ chức KT ', 'Organisations ')}${stN(q(O[N - 1]), 2)}` }], W - MR + 8);
   el.innerHTML = stSvg(W, H, s, stT('Tiền gửi theo người gửi', 'Deposits by holder'));
   stCross(el, { xs: mo.map((_, j) => cx(j)), labels: mo.map(fsStMon), top: MT, bottom: H - MB, series: [{ n: nR, c: ST.orange, v: R, f: v => fsU(v, 'bn VND') }, { n: nO, c: ST.violet, v: O, f: v => fsU(v, 'bn VND') }] });
   document.getElementById('fs-st-deph-leg').innerHTML = stLegend([{ n: nR, c: ST.orange, k: 'line' }, { n: nO, c: ST.violet, k: 'line' }, { n: stT('Đổi cách tính', 'Method change'), c: ST.ink, k: 'dash' }]);
@@ -8402,7 +8402,7 @@ function fsStOmoW() {
   el.innerHTML = stSvg(W, H, s, stT('Bơm, hút ròng qua thị trường mở theo tuần', 'Weekly net injection through open-market operations'));
   document.getElementById('fs-st-omo-leg').innerHTML = stLegend([{ n: stT('Tuần bơm ròng', 'Net-injection week'), c: ST.blue }, { n: stT('Tuần hút ròng', 'Net-drain week'), c: ST.red }]);
   const yL = P[P.length - 1].d.slice(0, 4), cur = P.filter(p => p.d.slice(0, 4) === yL), sum = cur.reduce((a, p) => a + p.v, 0), inj = cur.filter(p => p.v > 0).length, mx = P.reduce((a, b) => Math.abs(b.v) > Math.abs(a.v) ? b : a);
-  fsHead(el, stT(`Từ đầu ${yL}, cộng các tuần, NHNN bơm ròng ≈ ${fsU(sum, 'bn VND')} qua thị trường mở; ${inj}/${cur.length} tuần là bơm`, `Since the start of ${yL}, summing the weeks, the SBV injected a net ≈ ${fsU(sum, 'bn VND')} through open-market operations; ${inj} of ${cur.length} weeks were injections`),
+  fsHead(el, stT(`Từ đầu ${yL}, cộng các tuần, NHNN ${sum >= 0 ? 'bơm' : 'hút'} ròng ≈ ${fsU(Math.abs(sum), 'bn VND')} qua thị trường mở; ${inj}/${cur.length} tuần là bơm`, `Since the start of ${yL}, summing the weeks, the SBV ${sum >= 0 ? 'injected' : 'drained'} a net ≈ ${fsU(Math.abs(sum), 'bn VND')} through open-market operations; ${inj} of ${cur.length} weeks were injections`),
     stT('Mỗi cột là một tuần: lượng cho vay OMO và tín phiếu mới trừ lượng đáo hạn.', 'Each bar is one week: new OMO lending and bills net of maturities.'));
   document.getElementById('fs-st-omo-note').innerHTML = stNote(stT(`Tuần lớn nhất: ${mx.v >= 0 ? 'bơm' : 'hút'} ≈ ${fsU(Math.abs(mx.v), 'bn VND')} (${fsWk(mx.r)}).`, `Largest week: ${mx.v >= 0 ? 'injection' : 'drain'} of ≈ ${fsU(Math.abs(mx.v), 'bn VND')} (${fsWk(mx.r)}).`),
     stT('Số tuần của VBMA là "khoảng" (≈); tổng các tuần là phép cộng của dashboard, không phải số NHNN công bố. Dư nợ (số tồn) ở chương 1.', 'VBMA weekly figures are approximate (≈); the year total is the dashboard\'s sum, not an SBV figure. Outstanding balances (the stock) are in chapter 1.'))
@@ -8436,27 +8436,27 @@ function fsStBand() {
   const cr = typeof POLICY !== 'undefined' ? polIns('mon', 'central_rate') : null, extra = cr && cr.series ? cr.series.dates.map((d, i) => [d, cr.series.values[i]]).filter(p => p[0].slice(0, 7) > X.months[X.months.length - 1]) : [];
   const C = X.months.map((m, i) => [fsTE(m), X.central[i], m]).filter(p => p[1] != null).concat(extra.map(p => [fsTE(p[0]), p[1], p[0]]));
   const V = X.months.map((m, i) => [fsTE(m), X.vcb_sell[i], m]), F = X.months.map((m, i) => [fsTE(m), X.free_sell[i], m]);
-  const t0 = C[0][0] - .02, t1 = C[C.length - 1][0] + .03, W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 40 : 50, MR = narrow ? 64 : 120, MT = 14, MB = 24, H = narrow ? 270 : 300, sx = stLin(t0, t1, ML, W - MR);
+  const t0 = C[0][0] - .02, t1 = C[C.length - 1][0] + .03, W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 46 : 50, MR = narrow ? 64 : 120, MT = 14, MB = 24, H = narrow ? 270 : 300, sx = stLin(t0, t1, ML, W - MR);
   const all = C.flatMap(p => band != null ? [p[1] * (1 - band / 100), p[1] * (1 + band / 100)] : [p[1]]).concat(V.map(p => p[1]), F.map(p => p[1])).filter(v => v != null), AX = fsAx(Math.min(...all) - 100, Math.max(...all) + 100, 4), sy = stLin(AX.a, AX.b, H - MB, MT);
   let s = stAxisY(sy, AX.tk.filter(t => t >= AX.a), ML, W - MR, v => stN(v, 0)) + `<text class="st-tick" x="${ML + 4}" y="${MT + 2}" style="fill:#16181d">${stT('đồng / USD', 'VND per USD')}</text>`;
   for (let y = Math.floor(t0); y <= t1; y++) for (let m = 1; m <= 12; m += narrow ? 6 : 3) { const t = y + (m - 1) / 12; if (t >= t0 && t <= t1) s += `<text class="st-tick" x="${sx(t)}" y="${H - 6}" text-anchor="middle">${fsMS(`T${m}/${String(y).slice(2)}`)}</text>`; }
   if (band != null) { const up = C.map(p => [sx(p[0]), sy(p[1] * (1 + band / 100))]), dn = C.map(p => [sx(p[0]), sy(p[1] * (1 - band / 100))]);
     s += `<path d="M${up.map(p => p.join(',')).join(' L')} L${dn.slice().reverse().map(p => p.join(',')).join(' L')} Z" fill="#e9e7e0"/>` + stLine(up, ST.ink3, { w: 1, dash: '3,3', cls: '' }) + stLine(dn, ST.ink3, { w: 1, dash: '3,3', cls: '' });
-    const lu = up[up.length - 1], ld = dn[dn.length - 1]; s += `<text class="st-tick" x="${lu[0] + 6}" y="${lu[1] + 4}">${stT('trần', 'ceiling')} +${stN(band, 0)}%</text><text class="st-tick" x="${ld[0] + 6}" y="${ld[1] + 4}">${stT('sàn', 'floor')} −${stN(band, 0)}%</text>`; }
+  }
   const S = [{ n: stT('Tỷ giá trung tâm (NHNN)', 'Central rate (SBV)'), sh: stT('TT', 'Central'), c: ST.blue, p: C }, { n: stT('Giá bán Vietcombank', 'Vietcombank selling rate'), sh: 'VCB', c: ST.aqua, p: V }, { n: stT('Giá bán tự do', 'Free-market selling rate'), sh: stT('Tự do', 'Free'), c: ST.magenta, p: F, dots: 1 }];
   const ends = [];
   S.forEach(x => { s += stLine(x.p.map(p => p[1] == null ? null : [sx(p[0]), sy(p[1])]), x.c);
     x.p.forEach(p => { if (p[1] == null) return; const k = [`${x.n} · ${fsDL2(p[2])}`, stN(p[1], 0)]; s += x.dots ? stDot(sx(p[0]), sy(p[1]), 3.5, x.c, k, { cls: '' }) : `<g ${stKey(...k)}><circle cx="${sx(p[0])}" cy="${sy(p[1])}" r="7" fill="transparent"/></g>`; });
     const L = x.p.filter(p => p[1] != null).pop(); s += stDot(sx(L[0]), sy(L[1]), 4, x.c, null, { cls: '' }); ends.push({ y: sy(L[1]), t: `${narrow ? '' : x.sh + ' '}${stN(L[1], 0)}` }); });
-  // band labels sit at the right edge too: keep the line-end labels clear of them by nudging only among themselves
-  s += fsEnds(ends, W - MR + (narrow ? 6 : 64), 13);
+  if (band != null) { const L = C[C.length - 1]; ends.push({ y: sy(L[1] * (1 + band / 100)), t: `${stT('trần', 'ceiling')} +${stN(band, 0)}%` }, { y: sy(L[1] * (1 - band / 100)), t: `${stT('sàn', 'floor')} −${stN(band, 0)}%` }); }
+  s += fsEnds(ends, W - MR + 8, 13);
   const EV = typeof POLICY !== 'undefined' ? (polIns('mon', 'fx_intervention').history || []).filter(h => fsTE(h.date) >= t0 && fsTE(h.date) <= t1).sort((a, b) => a.date.localeCompare(b.date)) : [];
-  EV.forEach((h, i) => { const x = sx(fsTE(h.date)), y = H - MB - 2; s += `<g ${stKey(`${polDS(h.date)} · ${stT('NHNN can thiệp', 'SBV intervention')}`, `${h.to || ''}${h.doc ? ' · ' + h.doc : ''}`)}><circle cx="${x}" cy="${y - 8}" r="12" fill="transparent"/><path d="M${x},${y - 14} L${x + 6},${y - 2} L${x - 6},${y - 2} Z" fill="${ST.ink}"/><text class="st-tick" x="${x}" y="${y - 17}" text-anchor="middle" style="fill:#16181d">${i + 1}</text></g>`; });
+  EV.forEach((h, i) => { const x = sx(fsTE(h.date)), y = H - MB - 2; s += `<g ${stKey(`${polDS(h.date)} · ${stT('NHNN can thiệp', 'SBV intervention')}`, `${APP_LANG === 'en' ? (h.note_en || h.to || '') : (h.to || '')}${h.doc ? ' · ' + h.doc : ''}`)}><circle cx="${x}" cy="${y - 8}" r="12" fill="transparent"/><path d="M${x},${y - 14} L${x + 6},${y - 2} L${x - 6},${y - 2} Z" fill="${ST.ink}"/><text class="st-tick" x="${x}" y="${y - 17}" text-anchor="middle" style="fill:#16181d">${i + 1}</text></g>`; });
   el.innerHTML = stSvg(W, H, s, stT('Tỷ giá USD/VND trong biên độ', 'USD/VND inside the band'));
   el._stRows = { head: [stT('Kỳ', 'Period'), stT('Trung tâm', 'Central'), band != null ? stT(`Trần +${band}%`, `Ceiling +${band}%`) : '', 'Vietcombank', stT('Tự do', 'Free market')].filter(Boolean),
     rows: C.map(p => { const j = X.months.indexOf(p[2]); return [fsDL2(p[2]), stN(p[1], 0)].concat(band != null ? [stN(p[1] * (1 + band / 100), 0)] : [], [j >= 0 && X.vcb_sell[j] != null ? stN(X.vcb_sell[j], 0) : '—', j >= 0 && X.free_sell[j] != null ? stN(X.free_sell[j], 0) : '—']); }) };
-  document.getElementById('fs-st-band-leg').innerHTML = stLegend(S.map(x => ({ n: x.n, c: x.c, k: x.dots ? 'dot' : 'line' })).concat(band != null ? [{ n: stT(`Biên độ ±${stN(band, 0)}% quanh tỷ giá trung tâm`, `±${stN(band, 0)}% band around the central rate`), c: '#e9e7e0' }] : [], EV.length ? [{ n: stT('▲ NHNN can thiệp (số thứ tự bên dưới)', '▲ SBV intervention (numbered below)'), c: ST.ink, k: 'diamond' }] : []));
-  document.getElementById('fs-st-band-ev').innerHTML = EV.map(h => `<li><time>${polDS(h.date)}</time> <b>${ciE(h.to || '')}</b> ${ciE(stT(h.note_vi || h.note_en || '', h.note_en || ''))}</li>`).join('');
+  document.getElementById('fs-st-band-leg').innerHTML = stLegend(S.map(x => ({ n: x.n, c: x.c, k: x.dots ? 'dot' : 'line' })).concat(band != null ? [{ n: stT(`Biên độ ±${stN(band, 0)}% quanh tỷ giá trung tâm`, `±${stN(band, 0)}% band around the central rate`), c: '#e9e7e0' }] : [], EV.length ? [{ n: stT('NHNN can thiệp (tam giác đánh số, danh sách bên dưới)', 'SBV intervention (numbered triangle, list below)'), c: ST.ink, k: 'diamond' }] : []));
+  document.getElementById('fs-st-band-ev').innerHTML = EV.map(h => `<li><time>${polDS(h.date)}</time> ${APP_LANG === 'en' ? ciE(h.note_en || h.to || '') : `<b>${ciE(h.to || '')}</b> ${ciE(h.note_vi || '')}`}${h.doc ? ` <span>${ciE(h.doc)}</span>` : ''}</li>`).join('');
   const cL = C[C.length - 1], c12 = C.filter(p => p[0] <= cL[0] - 1 + .01).pop(), vi = fsLi(X.vcb_sell), ceil = band != null ? X.central[vi] * (1 + band / 100) : null, fi = fsLi(X.free_sell);
   fsHead(el, stT(`Tỷ giá trung tâm ${stN(cL[1], 0)} đồng/USD (${fsDL2(cL[2])})${c12 ? `, tăng ${stN((cL[1] / c12[1] - 1) * 100, 1)}% trong 12 tháng` : ''}`, `Central rate at ${stN(cL[1], 0)} VND/USD (${fsDL2(cL[2])})${c12 ? `, up ${stN((cL[1] / c12[1] - 1) * 100, 1)}% in 12 months` : ''}`),
     stT('Ngân hàng được mua bán USD trong biên độ quanh tỷ giá trung tâm NHNN công bố hằng ngày; thị trường tự do không bị ràng buộc.', 'Banks may trade USD within a band around the central rate the SBV sets daily; the free market is not bound by it.'));
@@ -8476,7 +8476,7 @@ function fsStResM() {
   s += area(x => 0, x => x.fx, ST.blue) + area(x => x.fx, x => x.fx + x.g, ST.yellow) + area(x => x.fx + x.g, x => x.tot, ST_MUTE);
   const pk = P.reduce((a, b) => b.tot > a.tot ? b : a), L = P[P.length - 1];
   s += stAnn(sx(pk.t), sy(pk.tot), sx(pk.t) + 24, sy(pk.tot) + 2, `${fsDL2(pk.p)}: ${stN(pk.tot, 1)}`);
-  s += fsEnds([{ y: sy(L.tot) - 2, t: `${stT('tổng', 'total')} ${stN(L.tot, 1)}` }, { y: sy(L.fx / 2), t: `${narrow ? '' : stT('ngoại tệ ', 'FX ')}${stN(L.fx, 1)}` }], W - MR + 8, 13);
+  s += fsEnds([{ y: sy(L.tot) - 2, t: `${narrow ? '' : stT('tổng ', 'total ')}${stN(L.tot, 1)}` }, { y: sy(L.fx / 2), t: `${narrow ? '' : stT('ngoại tệ ', 'FX ')}${stN(L.fx, 1)}` }], W - MR + 8, 13);
   el.innerHTML = stSvg(W, H, s, stT('Dự trữ ngoại hối theo tháng', 'FX reserves by month'));
   stCross(el, { xs: P.map(x => sx(x.t)), labels: P.map(x => fsDL2(x.p)), top: MT, bottom: H - MB, series: [{ n: stT('Tổng (gồm vàng)', 'Total (incl. gold)'), c: ST.ink, v: P.map(x => x.tot), f: v => stN(v, 2) }, { n: stT('Ngoại tệ', 'Foreign currency'), c: ST.blue, v: P.map(x => x.fx), f: v => stN(v, 2) }, { n: stT('Vàng', 'Gold'), c: ST.yellow, v: P.map(x => x.g), f: v => stN(v, 2) }, { n: stT('≈ Khác (SDR, vị thế tại IMF)', '≈ Other (SDR, IMF position)'), c: ST_MUTE, v: P.map(x => x.o), f: v => '≈ ' + stN(v, 2) }] });
   document.getElementById('fs-st-resm-leg').innerHTML = stLegend([{ n: stT('Ngoại tệ', 'Foreign currency'), c: ST.blue }, { n: stT('Vàng (giá quốc gia)', 'Gold (national valuation)'), c: ST.yellow }, { n: stT('≈ Khác: SDR, vị thế tại IMF (tổng − ngoại tệ − vàng)', '≈ Other: SDR, IMF position (total − FX − gold)'), c: ST_MUTE }]);
@@ -8494,7 +8494,7 @@ function fsTL(el, rows, o = {}) {
   const LW = one || narrow ? 0 : Math.min(250, W * .3), ML = LW + 10, MR = 14, RH = one ? 52 : narrow ? 42 : 28, MT = one ? 22 : 6, H = MT + rows.length * RH + 24, sx = stLin(t0, t1, ML, W - MR);
   let s = fsYearTicks(sx, t0, t1, H - 6, narrow);
   for (let y = Math.ceil(t0); y <= t1; y++) s += `<line class="st-grid" x1="${sx(y)}" x2="${sx(y)}" y1="${MT - 4}" y2="${H - 20}"/>`;
-  const xt = sx(fsTE(today)); s += `<line x1="${xt}" x2="${xt}" y1="${MT - 6}" y2="${H - 20}" stroke="${ST.ink}" stroke-width="1" stroke-dasharray="3,3"/><text class="st-tick" x="${xt + 4}" y="${MT - 8 < 8 ? 8 : MT - 8}" style="fill:#16181d">${stT('dữ liệu đến ', 'data to ')}${polDS(today)}</text>`;
+  const xt = sx(fsTE(today)); s += `<line x1="${xt}" x2="${xt}" y1="${MT - 6}" y2="${H - 20}" stroke="${ST.ink}" stroke-width="1" stroke-dasharray="3,3"/><text class="st-tick" x="${xt > W * .7 ? xt - 4 : xt + 4}" text-anchor="${xt > W * .7 ? 'end' : 'start'}" y="${MT - 8 < 8 ? 8 : MT - 8}" style="fill:#16181d">${stT('dữ liệu đến ', 'data to ')}${polDS(today)}</text>`;
   const C = d => d === 'easing' ? ST.blue : d === 'tightening' ? ST.red : ST.ink3, rowsT = []; let k = 0;
   rows.forEach((r, i) => { const y = MT + i * RH + (one ? RH / 2 : narrow ? 30 : RH / 2);
     if (!one) { const nm = fsWrap(r.n, narrow ? W - 8 : LW - 8, 12)[0] + (fsWrap(r.n, narrow ? W - 8 : LW - 8, 12).length > 1 ? '…' : ''); s += narrow ? `<text class="st-lab" x="2" y="${y - 10}">${ciE(nm)}</text>` : `<text class="st-lab" x="${LW}" y="${y + 4}" text-anchor="end">${ciE(nm)}</text>`; }
@@ -8508,7 +8508,7 @@ function fsTL(el, rows, o = {}) {
   if (o.list) { const L = document.getElementById(o.list); if (L) L.innerHTML = rows.flatMap(r => r.ev).sort((a, b) => a._k - b._k).map(e => `<li value="${e._k}"><time>${polDS(e.d)}</time> <b>${ciE(e.t)}</b>${e.s ? ' ' + ciE(e.s) : ''}${e.doc ? ` <span>${ciE(e.doc)}</span>` : ''}</li>`).join(''); }
 }
 const fsTLLeg = () => stLegend([{ n: stT('Nới', 'Easing'), c: ST.blue, k: 'dot' }, { n: stT('Thắt', 'Tightening'), c: ST.red, k: 'dot' }, { n: stT('Trung tính, quy định, thông tin', 'Neutral, rule, information'), c: ST.ink3, k: 'dot' }, { n: stT('Sắp có hiệu lực', 'Still ahead'), c: ST.ink3, k: 'ring' }]);
-const fsHistEv = id => { const I = typeof POLICY !== 'undefined' ? polIns('mon', id) : null; return I ? (I.history || []).filter(h => h && h.date).map(h => ({ d: h.date, t: `${h.from && h.from !== '—' ? h.from + ' → ' : ''}${h.to || ''}`, s: stT(h.note_vi || '', h.note_en || ''), dir: h.direction, doc: h.doc })) : []; };
+const fsHistEv = id => { const I = typeof POLICY !== 'undefined' ? polIns('mon', id) : null; return I ? (I.history || []).filter(h => h && h.date).map(h => ({ d: h.date, t: APP_LANG === 'en' ? (h.note_en || h.to || '') : `${h.from && h.from !== '—' ? h.from + ' → ' : ''}${h.to || ''}`, s: APP_LANG === 'en' ? '' : (h.note_vi || ''), dir: h.direction, doc: h.doc })) : []; };
 function fsStGold() {
   const el = document.getElementById('fs-st-gold'); if (!el) return; const ev = fsHistEv('gold_policy'); if (!ev.length) return;
   fsTL(el, [{ n: '', ev }], { list: 'fs-st-gold-ev', label: stT('Dòng thời gian quản lý vàng', 'Gold-policy timeline') });
@@ -8526,12 +8526,12 @@ function fsSafeTitle() { const n = fsStR('npl_onbalance_sbv_pct').filter(x => /^
   return n ? stT(`Nợ xấu nội bảng ${stN(n.v, 2)}% (${fsDL2(n.d)})${e ? `; bỏ 5 ngân hàng yếu còn ${stN(e.v, 2)}% (${fsDL2(e.d)})` : ''}`, `On-balance bad loans at ${stN(n.v, 2)}% (${fsDL2(n.d)})${e ? `; ${stN(e.v, 2)}% without the 5 weak banks (${fsDL2(e.d)})` : ''}`) : stT('Sức khỏe hệ thống ngân hàng', 'Banking-system health'); }
 function fsStAssets() {
   const el = document.getElementById('fs-st-assets'); if (!el) return; const P = fsStR('total_assets_ci_vnd_bn').map(x => ({ d: x.d, t: fsTE(x.d), v: x.v })).sort((a, b) => a.t - b.t); if (P.length < 2) return;
-  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 26 : 34, MR = narrow ? 50 : 80, MT = 16, MB = 24, H = 240, t0 = Math.floor(P[0].t) - .05, t1 = P[P.length - 1].t + .1, sx = stLin(t0, t1, ML, W - MR), q = v => v / 1e6;
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 26 : 34, MR = narrow ? 50 : 80, MT = 28, MB = 24, H = 250, t0 = Math.floor(P[0].t) - .05, t1 = P[P.length - 1].t + .1, sx = stLin(t0, t1, ML, W - MR), q = v => v / 1e6;
   const AX = fsAx(0, q(Math.max(...P.map(p => p.v))), 4), sy = stLin(0, AX.b, H - MB, MT);
-  let s = stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, fsTickF(AX.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/><text class="st-tick" x="${ML + 4}" y="${MT - 2}" style="fill:#16181d">${stT('triệu tỷ đồng', 'quadrillion VND')}</text>` + fsYearTicks(sx, t0, t1, H - 6, narrow);
+  let s = stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, fsTickF(AX.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/><text class="st-tick" x="${ML + 4}" y="${MT - 14}" style="fill:#16181d">${stT('triệu tỷ đồng', 'quadrillion VND')}</text>` + fsYearTicks(sx, t0, t1, H - 6, narrow);
   const pts = []; P.forEach((p, i) => { if (i && p.t - P[i - 1].t > 13 / 12) { pts.push(null); s += `<text class="st-tick" x="${(sx(p.t) + sx(P[i - 1].t)) / 2}" y="${sy(q((p.v + P[i - 1].v) / 2)) + 22}" text-anchor="middle">${stT('chưa có số', 'no data')}</text>`; } pts.push([sx(p.t), sy(q(p.v))]); });
   s += stLine(pts, ST.blue) + P.map((p, i) => stDot(sx(p.t), sy(q(p.v)), 3.5, ST.blue, [`${stT('Tổng tài sản', 'Total assets')} · ${fsDL2(p.d)}`, fsU(p.v, 'bn VND')], { d: i * 40, cls: '' })).join('');
-  const f = P[0], L = P[P.length - 1]; s += `<text class="st-val" x="${sx(L.t) + 8}" y="${sy(q(L.v)) + 4}">${stN(q(L.v), 2)}</text><text class="st-val" x="${sx(f.t)}" y="${sy(q(f.v)) - 10}" text-anchor="middle">${stN(q(f.v), 2)}</text>`;
+  const f = P[0], L = P[P.length - 1]; s += `<text class="st-val" x="${sx(L.t) + 8}" y="${sy(q(L.v)) + 4}">${stN(q(L.v), 2)}</text><text class="st-val" x="${sx(f.t) + 6}" y="${sy(q(f.v)) + 18}">${stN(q(f.v), 2)}</text>`;
   el.innerHTML = stSvg(W, H, s, stT('Tổng tài sản các tổ chức tín dụng', 'Total assets of credit institutions'));
   fsHead(el, stT(`Tổng tài sản các tổ chức tín dụng ${fsU(L.v, 'bn VND')} (${fsDL2(L.d)}), gấp ${stN(L.v / f.v, 1)} lần ${fsDL2(f.d)}`, `Credit institutions' total assets of ${fsU(L.v, 'bn VND')} (${fsDL2(L.d)}), ${stN(L.v / f.v, 1)}× ${fsDL2(f.d)}`), stT('Toàn hệ thống, theo bảng "một số chỉ tiêu cơ bản" của NHNN.', 'Whole system, from the SBV\'s "basic indicators" table.'));
   const M = FINSYS.monthly, ci = M.months.findIndex(m => fsTE(m) != null && Math.abs(fsTE(m) - L.t) < .01), cc = fsStR('charter_capital_ci_vnd_bn').pop();
@@ -8561,12 +8561,12 @@ function fsStHMult() {
 function fsStNpl() {
   const el = document.getElementById('fs-st-npl'); if (!el) return;
   const ser = k => fsStR(k).map(x => ({ d: x.d, t: fsTE(x.d), v: x.v })).filter(x => x.t != null).sort((a, b) => a.t - b.t);
-  const S = [{ k: 'sbv', n: stT('NHNN, nội bảng, toàn hệ thống', 'SBV, on-balance, whole system'), sh: stT('NHNN nội bảng', 'SBV on-balance'), c: ST.orange, p: ser('npl_onbalance_sbv_annual_pct').concat(ser('npl_onbalance_sbv_pct')).sort((a, b) => a.t - b.t) },
-    { k: 'gross', n: stT('NHNN, gồm nợ bán VAMC và nợ tiềm ẩn', 'SBV, incl. loans sold to VAMC and potential NPLs'), sh: stT('gồm VAMC, tiềm ẩn', 'incl. VAMC, potential'), c: ST.aqua, p: ser('npl_incl_vamc_and_potential_pct') },
+  const S = [{ k: 'sbv', n: stT('NHNN, nội bảng, toàn hệ thống', 'SBV, on-balance, whole system'), sh: stT('Nội bảng', 'On-balance'), c: ST.orange, p: ser('npl_onbalance_sbv_annual_pct').concat(ser('npl_onbalance_sbv_pct')).sort((a, b) => a.t - b.t) },
+    { k: 'gross', n: stT('NHNN, gồm nợ bán VAMC và nợ tiềm ẩn', 'SBV, incl. loans sold to VAMC and potential NPLs'), sh: stT('Gồm VAMC', 'Incl. VAMC'), c: ST.aqua, p: ser('npl_incl_vamc_and_potential_pct') },
     { k: 'imf', n: stT('IMF FSI, tổ chức nhận tiền gửi', 'IMF FSI, deposit takers'), sh: 'IMF', c: ST.blue, p: ser('npl_imf_fsi_pct') },
-    { k: 'ex5', n: stT('NHNN, nội bảng, bỏ 5 ngân hàng yếu', 'SBV, on-balance, excl. the 5 weak banks'), sh: stT('bỏ 5 NH yếu', 'excl. 5 weak'), c: ST.yellow, p: ser('npl_onbalance_excl_5_weak_banks_pct') }].filter(x => x.p.length);
+    { k: 'ex5', n: stT('NHNN, nội bảng, bỏ 5 ngân hàng yếu', 'SBV, on-balance, excl. the 5 weak banks'), sh: stT('Bỏ 5 NH yếu', 'Excl. 5 weak'), c: ST.yellow, p: ser('npl_onbalance_excl_5_weak_banks_pct') }].filter(x => x.p.length);
   const PK = ['npl_pct'], pyM = Math.min(2030, fsProjMaxY(PK) || 0), x0 = Math.min(...S.flatMap(x => x.p.map(p => p.t))) - .4, x1 = Math.max(fsTE(FINSYS.asof) + .3, pyM ? pyM + 1.2 : 0), pj = pyM > 2026;
-  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 28 : 36, MR = narrow ? 96 : 170, MT = 14, MB = 24, H = narrow ? 260 : 280, sx = stLin(x0, x1, ML, W - MR);
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 28 : 36, MR = narrow ? 52 : 190, MT = 14, MB = 24, H = narrow ? 260 : 280, sx = stLin(x0, x1, ML, W - MR);
   const AX = fsAx(0, Math.max(...S.flatMap(x => x.p.map(p => p.v)), ...fsProjVals(PK)), 4), sy = stLin(0, AX.b, H - MB, MT);
   let s = stAxisY(sy, AX.tk, ML, W - MR, v => v + '%') + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>` + fsYearTicks(sx, x0, x1, H - 6, narrow);
   const sxE = y => sx(+y + 1);   // projection years and targets are year-ends
@@ -8574,7 +8574,7 @@ function fsStNpl() {
   const ends = [];
   S.forEach(x => { const pts = []; x.p.forEach((p, i) => { if (i && p.t - x.p[i - 1].t > 13 / 12) pts.push(null); pts.push([sx(p.t), sy(p.v)]); });
     s += stLine(pts, x.c) + x.p.map((p, i) => stDot(sx(p.t), sy(p.v), 3.5, x.c, [`${x.n} · ${fsDL2(p.d)}`, stN(p.v, 2) + '%'], { d: i * 30, cls: '' })).join('');
-    const L = x.p[x.p.length - 1]; ends.push({ y: sy(L.v), t: `${narrow ? '' : x.sh + ' '}${stN(L.v, 2)} (${fsDL2(L.d).replace(/^(\d+)\/(\d{4})$/, '$1/$2')})` }); });
+    const L = x.p[x.p.length - 1]; ends.push({ y: sy(L.v), t: narrow ? `${stN(L.v, 2)}%` : `${x.sh} ${stN(L.v, 2)} (${fsDL2(L.d)})` }); });
   s += fsEnds(ends, W - MR + 8, 13);
   el.innerHTML = stSvg(W, H, s, stT('Tỷ lệ nợ xấu theo các định nghĩa', 'Bad-loan ratio under each definition'));
   el._stRows = { head: [stT('Định nghĩa', 'Definition'), stT('Kỳ', 'Period'), stT('Tỷ lệ', 'Ratio')], rows: S.flatMap(x => x.p.map(p => [x.n, fsDL2(p.d), stN(p.v, 2) + '%'])) };
@@ -8664,7 +8664,7 @@ function fsStPayCh() {
     let s = `<text class="st-lab st-b" x="0" y="12">${title}</text><line class="st-base" x1="${sx(0)}" x2="${sx(0)}" y1="18" y2="${H}"/>`;
     C.forEach((c, i) => { const y = 22 + i * RH + RH / 2, v = c[k]; s += `<text class="st-lab" x="${LW - 8}" y="${y + 4}" text-anchor="end">${nm(c)}</text>`;
       if (v == null) { s += `<text class="st-tick" x="${sx(0) + 6}" y="${y + 4}">${/conflict/i.test(c.qualifier || '') ? stT('không có số (nguồn mâu thuẫn)', 'no figure (sources conflict)') : stT('không có số', 'no figure')}</text>`; return; }
-      s += stBarH(y, 20, sx(v), sx(0), v >= 0 ? ST.blue : ST.red, [`${nm(c)} · ${title}`, `${fsQ(c.qualifier)}${v >= 0 ? '+' : ''}${stN(v, 1)}%`], { d: i * 60 }) + `<text class="st-val" x="${v >= 0 ? sx(v) + 6 : sx(v) - 6}" y="${y + 4}" text-anchor="${v >= 0 ? 'start' : 'end'}">${v >= 0 ? '+' : '−'}${stN(Math.abs(v), 1)}%</text>`; });
+      s += stBarH(y, 20, sx(v), sx(0), v >= 0 ? ST.blue : ST.red, [`${nm(c)} · ${title}`, `${fsQ(c.qualifier)}${v >= 0 ? '+' : ''}${stN(v, 1)}%`], { d: i * 60 }) + `<text class="st-val" x="${v >= 0 ? sx(v) + 6 : sx(0) + 6}" y="${y + 4}">${v >= 0 ? '+' : '−'}${stN(Math.abs(v), 1)}%</text>`; });
     return `<div>${stSvg(pw, H, s, title)}</div>`; };
   // labels sit left of the zero line; with a negative bar the label column moves left of the bars' minimum
   el.innerHTML = `<div class="fs-2col">${panel('volume_growth_pct', stT(`Số giao dịch, ${yr} so với ${yr - 1}`, `Transactions, ${yr} vs ${yr - 1}`))}${panel('value_growth_pct', stT(`Giá trị, ${yr} so với ${yr - 1}`, `Value, ${yr} vs ${yr - 1}`))}</div>`;
@@ -8685,12 +8685,13 @@ function fsStPayTg() {
   [2025, 2030].forEach(y => { const t = xT(y); if (t && g) R.push({ n: stT(`Giá trị thanh toán không tiền mặt / GDP, mục tiêu ${y}`, `Non-cash payment value / GDP, ${y} target`), act: g.v, actL: `≈ ${stN(g.v, 0)}× (${g.y})`, tg: t.v, tgL: `${stN(t.v, 0)}×`, up: 1, doc: t.t.doc, due: y }); });
   if (cT && cI >= 0 && M.cash_to_m2_pct[cI] != null) R.push({ n: stT(`Tiền mặt / M2, mục tiêu ${cT.year}: dưới ${stN(cT.value, 0)}%`, `Cash / M2, ${cT.year} target: below ${stN(cT.value, 0)}%`), act: M.cash_to_m2_pct[cI], actL: `${stN(M.cash_to_m2_pct[cI], 2)}% (${fsStMon(M.months[cI])})`, tg: cT.value, tgL: `< ${stN(cT.value, 0)}%`, up: 0, doc: cT.doc || '', due: cT.year });
   if (!R.length) return;
-  const W = stCW(el, 1000), narrow = W < 560, RH = narrow ? 62 : 50, ML = 2, MR = narrow ? 8 : 200; let s = '';
+  const W = stCW(el, 1000), narrow = W < 560, RH = narrow ? 92 : 50, ML = 2, MR = narrow ? 8 : 200; let s = '';
   R.forEach((r, i) => { const y = i * RH, mx = Math.max(r.act, r.tg) * 1.2, sx = stLin(0, mx, ML, W - MR), met = r.up ? r.act >= r.tg : r.act < r.tg, ahead = r.due > +FINSYS.asof.slice(0, 4);
     const st = ahead ? stT('đang tiến tới', 'in progress') : met ? stT('đạt', 'met') : stT('chưa đạt', 'missed');
-    s += `<text class="st-lab st-b" x="${ML}" y="${y + 14}">${ciE(r.n)}</text>` + stBarH(y + 30, 16, sx(r.act), sx(0), ST.blue, [r.n, `${r.actL} · ${stT('mục tiêu', 'target')} ${r.tgL} · ${st}`], { d: i * 80 })
-      + `<line x1="${sx(r.tg)}" x2="${sx(r.tg)}" y1="${y + 19}" y2="${y + 41}" stroke="#16181d" stroke-width="2.5"/><text class="st-tick" x="${sx(r.tg)}" y="${y + 52}" text-anchor="middle" style="fill:#16181d">${stT('mục tiêu', 'target')} ${r.tgL}</text>`
-      + (narrow ? `<text class="st-val" x="${W - 4}" y="${y + 14}" text-anchor="end">${r.actL.split(' (')[0]}: ${st}</text>` : `<text class="st-val" x="${W - MR + 12}" y="${y + 34}">${r.actL}: <tspan style="font-weight:700">${st}</tspan></text>`); });
+    const nl = narrow ? fsWrap(r.n, W - 4, 12.5) : [r.n], oy = (nl.length - 1) * 15;
+    s += nl.map((l, k) => `<text class="st-lab st-b" x="${ML}" y="${y + 14 + k * 15}">${ciE(l)}</text>`).join('') + stBarH(y + oy + 30, 16, sx(r.act), sx(0), ST.blue, [r.n, `${r.actL} · ${stT('mục tiêu', 'target')} ${r.tgL} · ${st}`], { d: i * 80 })
+      + `<line x1="${sx(r.tg)}" x2="${sx(r.tg)}" y1="${y + oy + 19}" y2="${y + oy + 41}" stroke="#16181d" stroke-width="2.5"/><text class="st-tick" x="${sx(r.tg)}" y="${y + oy + 52}" text-anchor="${narrow ? 'end' : 'middle'}" style="fill:#16181d">${stT('mục tiêu', 'target')} ${r.tgL}</text>`
+      + (narrow ? `<text class="st-val" x="${ML}" y="${y + oy + 68}">${r.actL}: ${st}</text>` : `<text class="st-val" x="${W - MR + 12}" y="${y + 34}">${r.actL}: <tspan style="font-weight:700">${st}</tspan></text>`); });
   el.innerHTML = stSvg(W, R.length * RH + 4, s, stT('Theo dõi mục tiêu thanh toán', 'Payment target tracker'));
   const due = R.filter(r => r.due <= +FINSYS.asof.slice(0, 4)), met = due.filter(r => r.up ? r.act >= r.tg : r.act < r.tg), cash = R.find(r => !r.up);
   fsHead(el, stT(`${met.length}/${due.length} mục tiêu thanh toán 2025 có số đã đạt${cash && !(cash.act < cash.tg) ? `; tiền mặt vẫn ${stN(cash.act, 2)}% M2, trên mức ${stN(cash.tg, 0)}%` : ''}`, `${met.length} of ${due.length} measurable 2025 payment targets met${cash && !(cash.act < cash.tg) ? `; cash is still ${stN(cash.act, 2)}% of M2, above ${stN(cash.tg, 0)}%` : ''}`), stT('Thanh: số thực tế. Vạch đen: mục tiêu trong văn bản.', 'Bar: the actual. Ink tick: the target in the document.'));
@@ -8702,11 +8703,11 @@ function fsStPayTg() {
 function fsStIncl() {
   const el = document.getElementById('fs-st-incl'), FI = FINSYS.financial_inclusion, P = FINSYS.payments; if (!el || !FI) return;
   const B = (FI.adults_with_account_pct || []).filter(x => typeof x.v === 'number'), T = (FI.targets || []).filter(t => typeof t.v === 'number'); if (!B.length) return;
-  const W = stCW(el, 1000), narrow = W < 560, RH = narrow ? 50 : 40, ML = 2, MR = narrow ? 50 : 70, H = B.length * RH + 34, sx = stLin(0, 100, ML, W - MR);
+  const W = stCW(el, 1000), narrow = W < 560, RH = narrow ? 58 : 40, ML = 2, MR = narrow ? 50 : 70, H = B.length * RH + 34 + (narrow ? 14 : 0), sx = stLin(0, 100, ML, W - MR);
   const lab = x => /payment account/i.test(x.basis) ? stT('có tài khoản thanh toán (báo cáo NHNN)', 'with a payment account (SBV report)') : /15\+/.test(x.basis) ? stT('người từ 15 tuổi có tài khoản ngân hàng (báo chí dẫn NHNN)', 'aged 15+ with a bank account (press citing the SBV)') : x.basis;
   let s = '';
-  B.forEach((x, i) => { const y = i * RH; s += `<text class="st-lab" x="${ML}" y="${y + 12}">${ciE(lab(x))} · ${fsDL2(x.d)}</text>` + stBarH(y + 26, 16, sx(x.v), sx(0), ST.blue, [lab(x), stN(x.v, 2) + '%'], { d: i * 80 }) + `<text class="st-val" x="${sx(x.v) + 6}" y="${y + 30}">${stN(x.v, 2)}%</text>`; });
-  T.forEach(t => { const x = sx(t.v); s += `<line x1="${x}" x2="${x}" y1="14" y2="${B.length * RH + 4}" stroke="#16181d" stroke-width="2" stroke-dasharray="${t.year > +FINSYS.asof.slice(0, 4) ? '4,3' : ''}"/><text class="st-tick" x="${x}" y="${B.length * RH + 18}" text-anchor="middle" style="fill:#16181d">${stT('mục tiêu', 'target')} ${t.year}: ${stN(t.v, 0)}%</text>`; });
+  B.forEach((x, i) => { const y = i * RH; s += fsWrap(`${lab(x)} · ${fsDL2(x.d)}`, W - 8, 12).slice(0, narrow ? 2 : 1).map((l, k) => `<text class="st-lab" x="${ML + 4}" y="${y + 12 + k * 14}">${ciE(l)}</text>`).join('') + stBarH(y + 26 + (narrow ? 14 : 0), 16, sx(x.v), sx(0), ST.blue, [lab(x), stN(x.v, 2) + '%'], { d: i * 80 }) + `<text class="st-val" x="${narrow ? sx(x.v) - 6 : sx(x.v) + 6}" text-anchor="${narrow ? 'end' : 'start'}" y="${y + 30 + (narrow ? 14 : 0)}"${narrow ? ' style="fill:#fff"' : ''}>${stN(x.v, 2)}%</text>`; });
+  T.forEach((t, k) => { const x = sx(t.v); s += `<line x1="${x}" x2="${x}" y1="14" y2="${B.length * RH + 4}" stroke="#16181d" stroke-width="2" stroke-dasharray="${t.year > +FINSYS.asof.slice(0, 4) ? '4,3' : ''}"/><text class="st-tick" x="${x}" y="${B.length * RH + 18 + (narrow ? k * 14 : 0)}" text-anchor="${narrow ? 'end' : 'middle'}" style="fill:#16181d">${stT('mục tiêu', 'target')} ${t.year}: ${stN(t.v, 0)}%</text>`; });
   s += `<line class="st-base" x1="${sx(0)}" x2="${sx(0)}" y1="14" y2="${B.length * RH + 4}"/>`;
   el.innerHTML = stSvg(W, H, s, stT('Người trưởng thành có tài khoản', 'Adults with an account'));
   document.getElementById('fs-st-incl-leg').innerHTML = stLegend([{ n: stT('Tỷ lệ có tài khoản (hai cách đo, giữ riêng)', 'Share with an account (two measures, kept apart)'), c: ST.blue }, { n: stT('Mục tiêu (nét đứt: còn ở phía trước)', 'Target (dashed: still ahead)'), c: '#16181d', k: 'line' }]);
@@ -8727,7 +8728,7 @@ function fsSbvTitle() { const B = FINSYS.sbv.balance_sheet, i = fsLi(B.series.nf
   return i >= 0 && j >= 0 ? stT(`NHNN nắm ${fsU(B.series.nfa[i], 'trn VND')} tài sản nước ngoài ròng; ${B.series.net_claims_govt_sbv[j] < 0 ? `Chính phủ gửi ròng ${fsU(-B.series.net_claims_govt_sbv[j], 'trn VND')} tại NHNN` : `NHNN cho Chính phủ vay ròng ${fsU(B.series.net_claims_govt_sbv[j], 'trn VND')}`} (cuối ${B.periods[j]}, IMF)`, `The SBV holds ${fsU(B.series.nfa[i], 'trn VND')} of net foreign assets; ${B.series.net_claims_govt_sbv[j] < 0 ? `the government keeps a net ${fsU(-B.series.net_claims_govt_sbv[j], 'trn VND')} at the SBV` : `the SBV lends the government a net ${fsU(B.series.net_claims_govt_sbv[j], 'trn VND')}`} (end-${B.periods[j]}, IMF)`) : stT('NHNN và luật chơi', 'The SBV and the rules'); }
 function fsStSbvB() {
   const el = document.getElementById('fs-st-sbvb'); if (!el) return; const B = FINSYS.sbv.balance_sheet, I = B.periods.map((p, i) => i).filter(i => B.series.nfa[i] != null && B.series.net_claims_govt_sbv[i] != null); if (I.length < 2) return;
-  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 34 : 44, MR = 10, MT = 14, MB = 24, H = 260, slot = (W - ML - MR) / I.length, cx = j => ML + (j + .5) * slot, bw = Math.max(4, Math.min(ST_BAR, slot / 2 - 3));
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 42 : 44, MR = 10, MT = 14, MB = 24, H = 260, slot = (W - ML - MR) / I.length, cx = j => ML + (j + .5) * slot, bw = Math.max(4, Math.min(ST_BAR, slot / 2 - 3));
   const nfa = I.map(i => B.series.nfa[i]), nc = I.map(i => B.series.net_claims_govt_sbv[i]), AX = fsAx(Math.min(0, ...nc), Math.max(...nfa), 4), sy = stLin(AX.a, AX.b, H - MB, MT);
   let s = stAxisY(sy, AX.tk, ML, W - MR, v => stN(v, 0)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/><text class="st-tick" x="${ML + 4}" y="${MT - 2}" style="fill:#16181d">${stT('nghìn tỷ đồng, cuối năm', 'tn VND, year-end')}</text>`;
   I.forEach((i, j) => { const p = B.periods[i]; s += stBarV(cx(j) - bw / 2 - 1, bw + 4, sy(nfa[j]), sy(0), ST.blue, [`${p} · ${stT('Tài sản nước ngoài ròng', 'Net foreign assets')}`, fsU(nfa[j], 'trn VND')], { d: j * 40 })
