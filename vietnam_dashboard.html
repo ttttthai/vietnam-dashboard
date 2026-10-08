@@ -5109,10 +5109,7 @@ function renderEconStory() {
     stT(`Thu ngân sách ${stN(Bu.revenue.total[b25] / 1e3, 0)} nghìn tỷ năm 2025, tăng ${stN((Bu.revenue.total[b25] / Bu.revenue.total[b24] - 1) * 100, 0)}% so với 2024`, `Budget revenue reached ${stN(Bu.revenue.total[b25] / 1e3, 0)} tn VND in 2025, up ${stN((Bu.revenue.total[b25] / Bu.revenue.total[b24] - 1) * 100, 0)}% on 2024`),
     stT('Mỗi ô vuông là 1% tổng thu (trái) hoặc tổng chi (phải).', 'Each square is 1% of total revenue (left) or total spending (right).'),
     `<div class="st-ctrl" id="st-bud-ctrl"></div><div class="st-waffles"><div id="st-waf-in"></div><div id="st-waf-out"></div></div><div id="st-bud-basis"></div>
-     <p class="st-dd-hint">${stT('Bấm vào một nhóm có dấu › (ô vuông hoặc chú giải) để xem chi tiết theo từng năm.', 'Click a group marked › (its squares or its legend entry) for a year-by-year breakdown.')}</p><div id="st-bud-dd" class="st-dd" role="region" aria-label="${stT('Chi tiết ngân sách', 'Budget detail')}" hidden></div>
-     <div class="st-sub">${stT('Thu, chi và bội chi, 2018–2026 (nghìn tỷ đồng; nét đứt = ước tính/dự toán)', 'Revenue, spending and deficit, 2018–2026 (trillion VND; dashed = estimate/plan)')}</div><div id="st-bud-leg"></div><div id="st-bud-line" class="st-viz"></div>
      ${stNote(stT(`Tiền sử dụng đất năm ${lY} đạt ${stN(land[lI] / 1e3, 0)} nghìn tỷ, gấp ${stN(land[lI] / land[lI - 1], 1)} lần ${lY - 1}.`, `Land-use fees reached ${stN(land[lI] / 1e3, 0)} tn VND in ${lY}, ${stN(land[lI] / land[lI - 1], 1)}× the ${lY - 1} level.`), land[b25] == null ? stT('Số 2025 là ước tính tiền mặt của Bộ Tài chính, chưa tách khoản này và chưa gồm chi chuyển nguồn, nên không so sánh ngang với các năm quyết toán.', 'The 2025 figure is the MoF cash-basis estimate: it does not split this line and excludes carry-over spending, so it is not like-for-like with the final-account years.') : stT('Số 2025 là ước tính, chưa quyết toán.', 'The 2025 figure is an estimate, not a final account.'))}
-     ${ecFiscalBlock()}
      ${stSrc(stT('Nguồn: Nghị quyết Quốc hội & quyết toán NSNN (Bộ Tài chính); 2018–2024 quyết toán, 2025 ước tính, 2026 dự toán. Bộ Tài chính không tách thuế GTGT, TNDN, TTĐB trong thu nội địa.', 'Source: National Assembly resolutions & MoF budget final accounts; 2018–2024 final, 2025 estimate, 2026 plan. MoF does not split VAT, CIT and excise within domestic revenue.'))}`);
   // ── 4. Investment ──
   h += stChap('st-inv', stT('Chương 4 · Ai đang đầu tư?', 'Chapter 4 · Who is investing?'),
@@ -5143,7 +5140,7 @@ function renderEconStory() {
   h += stChap('st-watch', stT('Tiếp theo · Điều cần theo dõi', 'Next · What to watch'), stT('Ba mốc sẽ cho biết bức tranh này thay đổi thế nào', 'Three markers that will show how this picture changes'), '',
     `<ol class="st-watch">${w.map(([t, b, p]) => `<li><time>${t}</time><b>${b}</b>${p}</li>`).join('')}</ol>`);
   root.innerHTML = h;
-  stGrowth(); stEquation(); stGiants(); stMix(); stBump(); stBopControls(); stSankey(); stBopMult(); stBopFacts(); stBudControls(); stWaffles(); stBudLine(); stInvArea(); stHeat(); stFan();
+  stGrowth(); stEquation(); stGiants(); stMix(); stBump(); stBopControls(); stSankey(); stBopMult(); stBopFacts(); stBudControls(); stWaffles(); stInvArea(); stHeat(); stFan();
   ecDef(); ecDebt(); ecFdi(); ecFdiReg(); ecCpiY(); ecPcChart(); ecUsdChart();
   stFinish(root);
 }
@@ -5816,9 +5813,10 @@ const ST_WAF_SMALL = 0.5, ST_WAF_GAP = '#ebe9e3', ST_WAF_POOL = '#8a8f99';
 const stHexMix = (c1, c2, t) => '#' + [1, 3, 5].map(k => Math.round(parseInt(c1.slice(k, k + 2), 16) * (1 - t) + parseInt(c2.slice(k, k + 2), 16) * t).toString(16).padStart(2, '0')).join('');
 const stRamp = (c0, c1, n) => Array.from({ length: n }, (_, i) => n < 2 || !c1 ? c0 : stHexMix(c0, c1, i / (n - 1)));
 // group order, name, one-hue ramp (dark = largest) and the drill-down panel the group opens
-const stWafG = () => ({ dom: [stT('Thu nội địa', 'Domestic revenue'), '#1d5aa6', '#b4d0f2', 'dom'], orev: [stT('Dầu thô, xuất nhập khẩu, viện trợ', 'Crude oil, trade, grants'), '#0d7a55', '#94dcbf', 'orev'],
-  rec: [stT('Chi thường xuyên', 'Recurrent spending'), '#2a78d6', '#a9c9f2', 'rec'], dev: [stT('Chi đầu tư phát triển', 'Development investment'), ST.orange, null, null], int: [stT('Trả lãi vay', 'Interest'), ST.aqua, null, null],
-  osp: [stT('Chi khác', 'Other spending'), '#4a3aa7', '#b3acd9', 'osp'] });
+const stDDOn = () => !!document.getElementById('st-bud-dd');   // the year-by-year drill-down panel (removed at the user's request: cubes only)
+const stWafG = () => ({ dom: [stT('Thu nội địa', 'Domestic revenue'), '#1d5aa6', '#b4d0f2', stDDOn() ? 'dom' : null], orev: [stT('Dầu thô, xuất nhập khẩu, viện trợ', 'Crude oil, trade, grants'), '#0d7a55', '#94dcbf', stDDOn() ? 'orev' : null],
+  rec: [stT('Chi thường xuyên', 'Recurrent spending'), '#2a78d6', '#a9c9f2', stDDOn() ? 'rec' : null], dev: [stT('Chi đầu tư phát triển', 'Development investment'), ST.orange, null, null], int: [stT('Trả lãi vay', 'Interest'), ST.aqua, null, null],
+  osp: [stT('Chi khác', 'Other spending'), '#4a3aa7', '#b3acd9', stDDOn() ? 'osp' : null] });
 function stBudgetParts(yi) {
   const B = ECONFLOW.budget, R = B.revenue, X = B.expenditure, D = B.detail || {}, yr = B.years[yi], j = (D.years || []).indexOf(yr), g = (o, k) => (o[k] || [])[yi] || 0;
   const rev = g(R, 'total'), exp = g(X, 'total'), def = (B.deficit || [])[yi], basis = (B.basis || [])[yi], mixed = basis === 'estimate' && def > 0 && rev > exp;
