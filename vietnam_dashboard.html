@@ -757,6 +757,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-chap.in { opacity: 1; transform: none; }
   .st-hero { border-top: none; padding-top: 18px; }
   .st-kicker { font: 600 11.5px/1 var(--font-ui); letter-spacing: .12em; text-transform: uppercase; color: #c2362f; margin-bottom: 10px; }
+  .st-owner { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 6px; margin: -4px 0 12px; font: 400 12px/1.45 var(--font-ui); color: #5b6170; }
+  .st-owner b { font-weight: 600; color: #16181d; } .st-owner-f { color: #8a8f99; } .st-owner-s { color: #c3c2b7; }
   .st-h { font: 700 clamp(22px, 2.6vw, 32px)/1.18 var(--font-head); color: #16181d; margin: 0 0 10px; max-width: 30ch; text-wrap: balance; }
   .st-dek { font: 400 15px/1.55 var(--font-ui); color: #5b6170; margin: 0 0 18px; max-width: 68ch; }
   .st-dek b { color: #16181d; }
@@ -5255,7 +5257,21 @@ function stFresh(root) {
   hero.appendChild(p);
 }
 // finish a story: reveal on scroll + table twins + freshness line + Flourish slots + chapter sub-tabs (last: charts are drawn)
-function stFinish(root) { stObserve(root); stTables(root); stFresh(root); stFlourish(root); stChapters(root); }
+// who maintains each tab: the data agent that owns its data file(s), plus the shared roles (Ed: story & design;
+// Research: update schedule and cross-checks). Shown once, under the hero kicker of every tab.
+const ST_OWNER = {
+  'pg-st-hero': ['Strategy', 'strategy_directives.json'], 'soc-st-hero': ['Society', 'data/society.json'], 'st-hero': ['Economy', 'data/economy.json'],
+  'pol-st-hero': ['Policy', 'data/policy.json'], 'fs-st-hero': ['Finance', 'data/finance.json'], 'iv-st-hero': ['Investing', 'data/invest_macro.json'],
+  'sim-st-hero': ['Finance', 'data/simulation.json'] };
+function stOwner(root) {
+  const h = root.querySelector('.st-hero'), o = h && ST_OWNER[h.id]; if (!o || h.querySelector('.st-owner')) return;
+  const k = h.querySelector('.st-kicker'), p = document.createElement('p'); p.className = 'st-owner';
+  p.innerHTML = `<span>${stT('Phụ trách', 'Maintained by')}</span> <b>${o[0]} agent</b> <span class="st-owner-f">${stT('dữ liệu', 'data')} · ${o[1]}</span>`
+    + ` <span class="st-owner-s">·</span> <b>Ed</b> <span class="st-owner-f">${stT('câu chuyện & thiết kế', 'story & design')}</span>`
+    + ` <span class="st-owner-s">·</span> <b>Research</b> <span class="st-owner-f">${stT('lịch cập nhật & đối chiếu', 'update schedule & cross-checks')}</span>`;
+  if (k) k.after(p); else h.prepend(p);
+}
+function stFinish(root) { stObserve(root); stTables(root); stFresh(root); stFlourish(root); stOwner(root); stChapters(root); }
 // ── chapter sub-tabs: one chapter on screen at a time. Built from the rendered .st-chap sections of a story root (hero =
 // "Overview"); ARIA tabs with arrow/Home/End keys; the bar sits just before the root (sticky inside the scrolling panel,
 // so it stays in view over the tab's explore content too). The explore chapter also owns the panel's content after the
