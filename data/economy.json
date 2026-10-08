@@ -304,7 +304,102 @@
     },
     "period": "Q3-2026 and 9M-2026 vs same period 2025, constant prices; NSO estimate (ước tính), released 03/10/2026",
     "report_url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-    "verified": "verified via search-engine excerpts (nso.gov.vn page fetch blocked by egress proxy), 2026-10-06"
+    "verified": "verified via search-engine excerpts (nso.gov.vn page fetch blocked by egress proxy), 2026-10-06",
+    "quarterly_history": {
+     "periods": [
+      "Q1-2024",
+      "Q2-2024",
+      "Q3-2024",
+      "Q4-2024",
+      "Q1-2025",
+      "Q2-2025",
+      "Q3-2025",
+      "Q4-2025",
+      "Q1-2026",
+      "Q2-2026",
+      "Q3-2026"
+     ],
+     "GDP_yoy": [
+      5.98,
+      7.25,
+      7.43,
+      7.55,
+      7.05,
+      8.16,
+      8.25,
+      8.46,
+      8.15,
+      8.81,
+      9.95
+     ],
+     "vintage": [
+      "Jan-2025 year-end release",
+      "Jan-2025 year-end release",
+      "Jan-2025 year-end release",
+      "Jan-2025 year-end release",
+      "Jan-2026 year-end release",
+      "Jan-2026 year-end release",
+      "Jan-2026 year-end release",
+      "Jan-2026 year-end release",
+      "as quoted in the Q3-2026 release (03/10/2026)",
+      "as quoted in the Q3-2026 release (03/10/2026)",
+      "Q3-2026 estimate (03/10/2026)"
+     ],
+     "unit": "% yoy, constant prices",
+     "sources": {
+      "2024": {
+       "url": "https://tapchicongthuong.vn/vuot-muc-tieu--gdp-nam-2024-tang-truong-7-09--so-voi-nam-truoc-132041.htm",
+       "alt_url": "https://thoibaotaichinhvietnam.vn/tang-truong-kinh-te-nam-2024-dat-709-168022.html",
+       "text": "Q1 5.98, Q2 7.25, Q3 7.43, Q4 7.55; year 7.09 (NSO, 06/01/2025)"
+      },
+      "2025": {
+       "url": "https://tapchicongthuong.vn/gdp-nam-2025-dat-muc-tieu--uoc-tang-8-02--so-voi-nam-2024-386035.htm",
+       "alt_url": "https://thitruongtaichinhtiente.vn/gdp-nam-2025-tang-8-02-quy-mo-nen-kinh-te-vuot-moc-500-ty-usd-75909.html",
+       "text": "Q1 7.05, Q2 8.16, Q3 8.25, Q4 8.46; year 8.02 (NSO, 05/01/2026)"
+      },
+      "2026": {
+       "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+      }
+     },
+     "revision_note": "The annual 2024 rate was later revised to 7.04 (ECON_OFFICIAL.gdp_growth); a revised quarterly split for 2024 was not found, so the January-2025 quarters are kept with their vintage. First releases differed (e.g. Q1-2024 5.66, Q2-2025 7.96) — the latest vintage seen is stored.",
+     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+    },
+    "annual_demand_yoy": {
+     "years": [
+      2024,
+      2025
+     ],
+     "final_consumption": [
+      6.57,
+      7.95
+     ],
+     "gross_capital_formation": [
+      7.2,
+      8.68
+     ],
+     "exports_gs": [
+      15.45,
+      16.27
+     ],
+     "imports_gs": [
+      16.1,
+      17.12
+     ],
+     "Q4_2025_yoy": {
+      "final_consumption": 7.15,
+      "gross_capital_formation": 8.92,
+      "exports_gs": 19.34,
+      "imports_gs": 19.4
+     },
+     "unit": "% yoy, constant prices",
+     "vintage": "NSO year-end releases (Jan-2025, Jan-2026); 'tích lũy tài sản' = gross capital formation",
+     "sources": {
+      "2024": "https://thoibaotaichinhvietnam.vn/tang-truong-kinh-te-nam-2024-dat-709-168022.html",
+      "2025": "https://thitruongtaichinhtiente.vn/gdp-nam-2025-tang-8-02-quy-mo-nen-kinh-te-vuot-moc-500-ty-usd-75909.html"
+     },
+     "missing": "2018–2023 not collected this run (NSO PxWeb V03 blocked; one search per year needed).",
+     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+    }
    },
    "basis": [
     "official",
@@ -843,46 +938,141 @@
    "note": "2026 quarterly BoP is in bop.quarterly (Q1-2026 from SBV via VnEconomy). Annual arrays end in 2025. Latest FX-reserve datapoint: SBV ≈87.6 bn USD at 18/06/2026 (https://nhadautu.vn/du-tru-ngoai-hoi-viet-nam-gan-88-ty-usd-d105852.html; https://vnexpress.net/du-tru-ngoai-hoi-gan-88-ty-usd-5089444.html) — not added to the annual ECON_OFFICIAL.fx_reserves_busd series. FDI trap: bop.s.fdi_in (SBV BPM6 liabilities inflow) is ~80% of NSO/FIA disbursed FDI every year 2015–2025 (2025: 21.99 / 27.62 = 79.6%, derived) — it is NOT 'disbursement' (vốn thực hiện, which includes domestically funded spending) and NOT registered capital (pledges incl. M&A). Label BoP FDI as 'FDI inflow (BoP)'.",
    "quarterly": {
     "periods": [
+     "Q4-2023",
+     "Q1-2024",
+     "Q2-2024",
+     "Q3-2024",
+     "Q4-2024",
+     "Q1-2025",
+     "Q2-2025",
+     "Q3-2025",
      "Q4-2025",
      "Q1-2026"
     ],
     "unit": "bn USD",
     "current_account": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     3.96,
+     8.72,
+     12.459,
      7.654,
      2.716
     ],
     "goods_balance": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
      9.135,
      2.434
     ],
     "secondary_income_net": [
      null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
      3.187
     ],
     "investment_income_net": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
      -2.975,
      -1.231
     ],
     "financial_account_net": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
      7.076,
      0.893
     ],
     "fdi_net": [
      null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
      5.38
     ],
     "portfolio_net": [
      null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
      -2.478
     ],
     "overall_balance": [
+     null,
+     -1.37,
+     -6.07,
+     null,
+     null,
+     null,
+     1.49,
+     null,
      null,
      -1.078
     ],
     "source": "SBV quarterly BoP release for Q1-2026, as reported by VnEconomy",
     "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm",
     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06",
-    "note": "Q1-2026 overall balance −1.078 bn ended three consecutive quarterly surpluses. Q4-2025 values are the comparison figures quoted in the same article. Errors & omissions not quoted (not derived). Q2-2026: only a secondary claim found — \"SBV Q2 BoP shows a current-account deficit of US$11.1bn (~8% of GDP)\" (ASEAN Macro Monitor, https://aseanmacromonitor.substack.com/p/state-of-the-buffers-thin-spreads-to-current-accounts); not confirmed by SBV or Vietnamese press, so not stored."
+    "note": "Q1-2026 overall balance −1.078 bn ended three consecutive quarterly surpluses. Q4-2025 values are the comparison figures quoted in the same article. Errors & omissions not quoted (not derived). Q2-2026: only a secondary claim found — \"SBV Q2 BoP shows a current-account deficit of US$11.1bn (~8% of GDP)\" (ASEAN Macro Monitor, https://aseanmacromonitor.substack.com/p/state-of-the-buffers-thin-spreads-to-current-accounts); not confirmed by SBV or Vietnamese press, so not stored.",
+    "point_sources": {
+     "Q1-2024.overall_balance, Q2-2024.overall_balance": {
+      "v": "−1.37 (Q1-2024), −6.07 (Q2-2024; H1-2024 −7.44); H1-2024 current account +9.73 (not a quarter, not stored)",
+      "url": "https://vneconomy.vn/xoay-xo-dieu-hanh-ty-gia-trong-khong-gian-han-hep.htm",
+      "verified": "search-engine excerpt from the vneconomy/diendandoanhnghiep cluster — outlet not pinned; SBV data as reported"
+     },
+     "Q1-2025.current_account, Q2-2025.current_account, Q2-2025.overall_balance": {
+      "v": "CA Q1-2025 3.96, Q2-2025 8.72; overall Q2-2025 +1.49 after five deficits (Q1-2024…Q1-2025)",
+      "url": "https://vneconomy.vn/can-can-thanh-toan-tong-the-thang-du-sau-5-quy-tham-hut-lien-tiep.htm",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+     },
+     "Q3-2025.current_account": {
+      "v": 12.459,
+      "url": "https://tradingeconomics.com/vietnam/current-account",
+      "provider": "Trading Economics (SBV data) — secondary aggregator, not SBV's own table",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+     },
+     "Q4-2025, Q1-2026": "as before (SBV Q1-2026 release via VnEconomy, see url)"
+    },
+    "signs_only": "Overall balance was negative in each of Q3-2024, Q4-2024 and Q1-2025 (five consecutive deficits Q1-2024…Q1-2025, vneconomy) — values not found, kept null. Q3-2024 had the highest current-account surplus of the six quarters to Q2-2025 (value not pinned).",
+    "conflicts": "(1) Q2-2025 current account: 8.72 (SBV first release via vneconomy, kept) vs 7.438 (Trading Economics, probably a later SBV revision). (2) Trading Economics excerpt shows Q2-2024 4.5 and Q3-2024 7.8, which contradicts vneconomy (Q3-2024 > 8.72) — not stored. (3) An excerpt put Q4-2024 CA at 8.18 — outlet not identifiable, not stored. (4) Q1–Q4 2025 sum 32.79 vs annual bop.s.current_account 2025 33.135 (vintages differ).",
+    "missing": "Q4-2023 (all items), Q3/Q4-2024 values, goods/transfers/income/financial-account lines before Q4-2025, and Q2-2026: no SBV Q2-2026 release found in search on 2026-10-07 (only an unconfirmed secondary claim, see note). History only — no quarterly BoP projection exists.",
+    "as_of": "2026-10-07"
    }
   },
   "tour": {
@@ -953,7 +1143,7 @@
     null,
     null,
     null,
-    null,
+    6700.0,
     4300.0
    ],
    "total_tourism_revenue_vnat_trn_vnd": [
@@ -1001,6 +1191,13 @@
       "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
       "verified": "verified via search-engine excerpts (nso.gov.vn page fetch blocked by egress proxy), 2026-10-06; excerpt did not name the publishing page, figure attributed to the NSO 9M report",
       "recheck_2026-10-06": "Re-confirmed in a second excerpt (baovanhoa/vietnamplus cluster): Q3-2026 1.6 m (+16.4%), 9M 4.3 m (−21.2%). Implied arithmetic: 9M-2025 ≈5.46 m, Q3-2025 ≈1.37 m, so H1-2026 ≈2.7 m vs H1-2025 ≈4.08 m (≈−34%) — derived, no published H1-2026 figure found; kept as published, flagged."
+     },
+     "2025": {
+      "v": "6.7 million Vietnamese departures (xuất cảnh), +26.4% vs 2024",
+      "url": "https://nhandan.vn/khach-viet-ngay-cang-chuong-xuat-ngoai-va-sanh-du-lich-post936688.html",
+      "alt_url": "https://baolaocai.vn/khach-viet-ngay-cang-chuong-xuat-ngoai-va-sanh-du-lich-post891422.html",
+      "attributed_to": "NSO (Cục Thống kê)",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07; 2024 implied ≈5.3 m (derived, not stored); 2018–2024 not found"
      }
     },
     "total_tourism_revenue_vnat_trn_vnd": {
@@ -1054,7 +1251,8 @@
     ],
     "check": "3.9/17.68 = 22.1% and 3.0/17.68 = 17.0% vs published 22.4%/17.3% — consistent with rounded volumes",
     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
-   }
+   },
+   "target_2030": "ECONFLOW.projections.series.intl_arrivals_million_target (NQ 26-NQ/TW, 22/08/2026: 45–50 million international visitors in 2030; end-point only)"
   },
   "remit": {
    "years": [
@@ -1280,6 +1478,18 @@
       "why": "secondary article; ~19 bn matches BoP secondary income credit 2025 (19.766), a different definition"
      }
     ]
+   },
+   "animation_series": {
+    "separate_series": [
+     "national_sbv_busd (SBV kiều hối; sparse: 2021, 2023, 2024)",
+     "national_wb_knomad_busd (World Bank KNOMAD, 2015–2023)",
+     "national_wb_projection_busd (World Bank projection 2024–2025, not outturn — dashed)",
+     "bop_secondary_income_in_busd.v (BoP secondary income credit, all transfers, 2015–2025)",
+     "hcmc_busd (SBV Region 2, HCMC only, 2015–2025 + hcmc_H1_2026_busd)"
+    ],
+    "rule": "Animate each as its own line with its own label; never splice one into another to fill gaps; HCMC is never added to or substituted for national totals.",
+    "projection": "none beyond the World Bank's published years (2024–2025 projection held); no source projects remittances to 2030 — history only.",
+    "noted": "2026-10-07"
    }
   },
   "labour": {
@@ -3689,10 +3899,105 @@
       "2024": "https://finance.vietstock.vn/downloadedoc/18952"
      }
     }
+   },
+   "public_debt_pct_gdp": {
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "unit": "% of GDP (end of year)",
+    "public_debt": [
+     63.7,
+     61.4,
+     58.4,
+     55.0,
+     55.9,
+     42.7,
+     37.3,
+     36.1,
+     34.0,
+     null
+    ],
+    "government_debt": [
+     null,
+     null,
+     50.0,
+     null,
+     49.9,
+     38.7,
+     34.0,
+     33.2,
+     31.8,
+     null
+    ],
+    "national_external_debt": [
+     null,
+     null,
+     null,
+     null,
+     47.9,
+     38.1,
+     35.9,
+     32.6,
+     27.9,
+     null
+    ],
+    "basis": [
+     "MoF actual (pre-revision GDP)",
+     "MoF actual (pre-revision GDP)",
+     "MoF actual (pre-revision GDP)",
+     "MoF estimate 'khoảng 55%' (pre-revision GDP)",
+     "MoF QĐ 2823/QĐ-BTC (pre-revision GDP denominator)",
+     "MoF QĐ 2823/QĐ-BTC",
+     "MoF QĐ 2823/QĐ-BTC",
+     "MoF QĐ 2823/QĐ-BTC",
+     "MoF QĐ 2823/QĐ-BTC",
+     "estimate — see estimate_2025"
+    ],
+    "estimate_2025": {
+     "public_debt_low": 35,
+     "public_debt_high": 36,
+     "government_debt_low": 33,
+     "government_debt_high": 34,
+     "national_external_debt_low": 31,
+     "national_external_debt_high": 32,
+     "basis": "MoF estimate (Jan-2026)",
+     "url": "https://vneconomy.vn/no-cong-nam-2025-thap-xa-nguong-tran-nhu-cau-vay-nam-2026-tang-gan-19.htm",
+     "conflict": "An earlier MoF forecast (2025) put end-2025 public debt at 36–37% and government debt at 34–35% (https://thitruongtaichinhtiente.vn/du-bao-den-cuoi-nam-2025-du-no-cong-o-muc-36-37-gdp-63459.html); the Jan-2026 estimate 35–36 is the later vintage and is kept. External debt 31–32 (2025 est.) vs 27.9 (2024 QĐ 2823) is as published — not explained in the excerpt.",
+     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+    },
+    "break": "2020 → 2021 (55.9 → 42.7) is mainly NSO's GDP revision (larger denominator from 2021 reporting), not a halving of debt. Press puts 2020 at ≈45% of the revised GDP and 55.3–55.9% of the old GDP — the revised-basis 2020 value is not stored (not in an MoF table seen). Draw a visible break between 2020 and 2021.",
+    "sources": {
+     "2016-2017,2019": {
+      "url": "https://vneconomy.vn/ty-le-no-cong-gdp-cua-viet-nam-khong-ngung-giam-20201022093041725.htm",
+      "text": "63.7% (2016) → 61.4% (2017) → ~55.0% (end-2019)"
+     },
+     "2018": {
+      "url": "https://tapchicongthuong.vn/bai-viet/bo-tai-chinh-ly-giai-no-cong-no-chinh-phu-no-quoc-gia-deu-thap-trong-gioi-han-63071.htm",
+      "alt_url": "https://kisvn.vn/en/vietnams-public-debt-hits-three-year-low-at-58-4-of-gdp",
+      "text": "public debt 58.4%, government debt 50.0%"
+     },
+     "2020-2024": {
+      "url": "https://thuvienphapluat.vn/van-ban/Tai-chinh-nha-nuoc/Quyet-dinh-2823-QD-BTC-2025-cong-bo-thong-tin-no-cong-669672.aspx",
+      "alt_url": "https://luatvietnam.vn/tai-chinh/quyet-dinh-2823-qd-btc-cua-bo-tai-chinh-ve-viec-cong-bo-thong-tin-no-cong-408773-d1.html",
+      "text": "QĐ 2823/QĐ-BTC (14/08/2025), public-debt information 2020–2024"
+     }
+    },
+    "plan_and_ceiling": "2026 plan 36–37% and ceilings/warning levels in ECONFLOW.projections.series.public_debt_pct_gdp_plan (ceilings_2026_2030)",
+    "imf": "IMF WEO general-government gross debt (GGXWDG_NGDP) — pending the 13/10/2026 WEO; a different definition from MoF public debt",
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
    }
   },
   "projections": {
-   "as_of": "2026-10-06",
+   "as_of": "2026-10-07",
    "note_vi": "Dự báo của các tổ chức (IMF, World Bank, ADB, AMRO) và mục tiêu chính thức cho 2026–2030. Mục tiêu không phải dự báo. Mỗi tổ chức một chuỗi riêng, không lấy trung bình. IMF WEO tháng 10/2026 chưa công bố tại ngày cập nhật. Không có chuỗi \"scenario\" do dashboard tự tính.",
    "note_en": "Institutional forecasts (IMF, World Bank, ADB, AMRO) and official targets for 2026–2030. Targets are not forecasts. Each institution is a separate series; nothing is averaged. The IMF October 2026 WEO was not yet published at the update date. No dashboard-computed \"scenario\" series are included.",
    "verified": "All values from search-engine excerpts (imf.org, worldbank.org, nso.gov.vn and press pages blocked by the egress proxy), 2026-10-06. IMF 2027–2030 levels were read from a WEO mirror (statisticsoftheworld.com) and are internally consistent (GDP / GDP per capita imply population 103.1→105.6 mn).",
@@ -4167,7 +4472,26 @@
      },
      "method_vi": "Cuối 2026: nợ công 36–37% GDP (low/high), nợ Chính phủ 34–35%, nợ nước ngoài quốc gia 32–33%. Trần nợ công 60% GDP mỗi năm (ngưỡng cảnh báo 50%).",
      "method_en": "End-2026: public debt 36–37% of GDP (low/high), government debt 34–35%, national external debt 32–33%. Annual public-debt ceiling 60% of GDP (warning 50%).",
-     "pub": "2026-02-27"
+     "pub": "2026-02-27",
+     "ceilings_2026_2030": {
+      "public_debt": {
+       "ceiling": 60,
+       "warning": 50
+      },
+      "government_debt": {
+       "ceiling": 50,
+       "warning": 45
+      },
+      "national_external_debt": {
+       "ceiling": 50,
+       "warning": 45
+      },
+      "unit": "% of GDP, each year",
+      "source": "NQ 26/2026/QH16 (24/04/2026)",
+      "url": "https://daibieunhandan.vn/quoc-hoi-thong-qua-nghi-quyet-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-5-nam-giai-doan-2026-2030-10414840.html",
+      "conflict": "vneconomy (Jan-2026, https://vneconomy.vn/no-cong-nam-2025-thap-xa-nguong-tran-nhu-cau-vay-nam-2026-tang-gan-19.htm) gives a public-debt warning level of 55% — that is the 2021–2025 plan (NQ 23/2021/QH15). The 2026–2030 resolution sets 50%; keep 50.",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+     }
     },
     "fdi_disbursed_busd_target": {
      "years": [
@@ -4206,7 +4530,260 @@
      },
      "method_vi": "Mục tiêu vốn FDI thực hiện ~30–40 tỷ USD/năm (150–200 tỷ USD cả giai đoạn 2026–2030); vốn đăng ký 40–50 tỷ USD/năm.",
      "method_en": "Target FDI disbursement ~30–40 bn USD a year (150–200 bn over 2026–2030); registered FDI 40–50 bn USD a year.",
-     "pub": "2026-06-08"
+     "pub": "2026-06-08",
+     "cumulative_years": "2026–2030",
+     "cumulative_low": 150,
+     "cumulative_high": 200,
+     "cumulative_unit": "bn USD, 5-year total",
+     "per_year_basis": "30–40 bn USD/yr is written in the resolution's target text next to the 5-year total (150–200 bn), i.e. total ÷ 5 — an average-per-year band, not a yearly path",
+     "display_note": "Draw as a target band (per-year average) and/or a cumulative 2026–2030 band against cumulative actuals; never as a forecast path. Comparator: 2021–2025 disbursed ≈118 bn USD (press).",
+     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07: 'vốn thực hiện khoảng 150–200 tỷ USD (30–40 tỷ USD/năm)'; registered 200–300 bn (40–50/yr), 75% from developed economies",
+     "alt_urls": [
+      "https://thoibaotaichinhvietnam.vn/nghi-quyet-so-10-nq-tw-va-chu-ky-fdi-the-he-moi-200488.html",
+      "https://nhadautu.vn/bo-chinh-tri-ban-hanh-nghi-quyet-moi-ve-fdi-d105603.html",
+      "https://acbs.com.vn/acbsmedia/2026/06/Nghi-quyet-FDI.pdf"
+     ]
+    },
+    "fdi_registered_busd_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": [
+      40,
+      40,
+      40,
+      40,
+      40
+     ],
+     "high": [
+      50,
+      50,
+      50,
+      50,
+      50
+     ],
+     "kind": "official_target",
+     "unit": "bn USD per year (5-year average)",
+     "cumulative_years": "2026–2030",
+     "cumulative_low": 200,
+     "cumulative_high": 300,
+     "cumulative_unit": "bn USD, 5-year total",
+     "source": {
+      "name": "Bộ Chính trị — Nghị quyết 10-NQ/TW ngày 08/6/2026",
+      "url": "https://xaydungchinhsach.chinhphu.vn/nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-11926061312552157.htm",
+      "alt_url": "https://nhadautu.vn/bo-chinh-tri-ban-hanh-nghi-quyet-moi-ve-fdi-d105603.html"
+     },
+     "method_vi": "Mục tiêu vốn FDI đăng ký khoảng 200–300 tỷ USD cả giai đoạn 2026–2030 (40–50 tỷ USD/năm, bình quân); ~75% từ các nền kinh tế phát triển.",
+     "method_en": "Target: registered FDI ~200–300 bn USD over 2026–2030 (40–50 bn a year on average); ~75% from developed economies. Registered = new + adjusted + capital contributions/share purchases.",
+     "pub": "2026-06-08",
+     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+    },
+    "budget_deficit_pct_gdp_avg_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "avg": 5,
+     "kind": "official_target",
+     "unit": "% of GDP, 2026–2030 average",
+     "source": {
+      "name": "Quốc hội — NQ 26/2026/QH16 (kế hoạch tài chính quốc gia và vay, trả nợ công 5 năm 2026–2030), 24/04/2026",
+      "url": "https://tapchikinhtetaichinh.vn/thong-qua-ke-hoach-tai-chinh-2026-2030-thu-164-trieu-ty-dong-boi-chi-khoang-5-gdp-154565.html",
+      "alt_url": "https://daibieunhandan.vn/quoc-hoi-thong-qua-nghi-quyet-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-5-nam-giai-doan-2026-2030-10414840.html"
+     },
+     "method_vi": "Bội chi NSNN bình quân khoảng 5% GDP cả giai đoạn — mức bình quân, không chia theo năm. Năm 2026 có dự toán riêng 4,2% (budget_deficit_pct_gdp_target).",
+     "method_en": "Average budget deficit about 5% of GDP over 2026–2030 — an average, not a yearly value. 2026 has its own plan of 4.2% (budget_deficit_pct_gdp_target).",
+     "display_note": "One horizontal dashed band/line across 2026–2030 labelled 'average target ≈5%'; same value as targets[budget_deficit_avg], which ecDef already draws.",
+     "pub": "2026-04-24",
+     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+    },
+    "total_investment_pct_gdp_avg_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "avg": 40,
+     "kind": "official_target",
+     "unit": "% of GDP, 2026–2030 average",
+     "source": {
+      "name": "Quốc hội — Nghị quyết kế hoạch phát triển KT-XH 5 năm 2026–2030 (NQ 25/2026/QH16) as reported",
+      "url": "https://baodauthau.vn/tu-khoa/tong-von-dau-tu-tag16589.html",
+      "alt_url": "https://luatvietnam.vn/dau-tu/nghi-quyet-27-2026-qh16-ve-ke-hoach-dau-tu-cong-trung-han-2026-2030-434066-d1.html"
+     },
+     "method_vi": "Tổng vốn đầu tư toàn xã hội bình quân năm khoảng 40% GDP (~1.400 tỷ USD cả giai đoạn) — mức bình quân.",
+     "method_en": "Total social investment about 40% of GDP a year on average (~1,400 bn USD over the period) — an average, not a yearly path.",
+     "comparator": "NSO realised investment (ECONFLOW.inv.total) / GDP: 2025 = 4,150,507 / 12,847,572 ≈ 32.3% (derived). Not the same concept as ECONFLOW.gdp.pct_gdp.I (gross capital formation, 30.8% in 2025).",
+     "attribution_conflict": "targets[total_investment_pct_gdp] cites NQ 27/2026/QH16 (public investment); the press excerpt attributes the 40% to the 5-year socio-economic plan resolution (NQ 25/2026/QH16). Not resolved from the resolution text — check before labelling the document.",
+     "pub": "2026-04",
+     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+    },
+    "public_investment_share_pct_avg_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "avg_low": 20,
+     "avg_high": 22,
+     "kind": "official_target",
+     "unit": "% of total social investment, 2026–2030",
+     "source": {
+      "name": "Quốc hội — NQ 27/2026/QH16 (kế hoạch đầu tư công trung hạn 2026–2030)",
+      "url": "https://luatvietnam.vn/dau-tu/nghi-quyet-27-2026-qh16-ve-ke-hoach-dau-tu-cong-trung-han-2026-2030-434066-d1.html"
+     },
+     "method_en": "Public investment 20–22% of total social investment over 2026–2030 (5-year state-budget plan 8.22 million bn VND, see targets). A share band, not yearly values.",
+     "method_vi": "Đầu tư công chiếm 20–22% tổng vốn đầu tư toàn xã hội giai đoạn 2026–2030; không phải giá trị từng năm.",
+     "comparator": "NSO realised investment by the state sector (ECONFLOW.inv.state) is broader than budget-funded public investment — do not compare directly.",
+     "pub": "2026-04-24",
+     "verified": "value as held in targets[public_investment_share] (verified 2026-10-06); not re-searched 2026-10-07"
+    },
+    "fdi_share_of_total_investment_target": {
+     "years": [
+      2030
+     ],
+     "base": [
+      25
+     ],
+     "low": null,
+     "high": null,
+     "kind": "official_target",
+     "unit": "% of total social investment",
+     "source": {
+      "name": "Bộ Chính trị — Nghị quyết 10-NQ/TW ngày 08/6/2026 (as summarised in strategy_directives.json NQ10 targets)",
+      "url": "https://xaydungchinhsach.chinhphu.vn/nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-11926061312552157.htm"
+     },
+     "method_en": "FDI about 25% of total social investment (2026–2030 target text). Comparator: NSO realised FDI-sector investment / total = 679,842 / 4,150,507 ≈ 16.4% in 2025 (derived).",
+     "method_vi": "Vốn FDI chiếm khoảng 25% tổng vốn đầu tư toàn xã hội.",
+     "pub": "2026-06-08",
+     "verified": "from strategy_directives.json (Strategy agent); not re-searched 2026-10-07"
+    },
+    "iip_growth_pct_avg_target": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     "low": null,
+     "high": null,
+     "avg_low": 11,
+     "avg_high": 12,
+     "kind": "official_target",
+     "unit": "% yoy, 2026–2030 average",
+     "source": {
+      "name": "Quốc hội — NQ 25/2026/QH16",
+      "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html"
+     },
+     "method_en": "Industrial production (IIP) growth 11–12% a year on average over 2026–2030 — an average band, not yearly targets. Actuals: ECON_OFFICIAL.iip_growth (2025: 9.2), 9M-2026 12.3.",
+     "method_vi": "Chỉ số sản xuất công nghiệp tăng bình quân 11–12%/năm giai đoạn 2026–2030.",
+     "pub": "2026-04-24",
+     "verified": "value as held in targets[iip_growth_avg]; not re-searched 2026-10-07"
+    },
+    "active_enterprises_target": {
+     "years": [
+      2030
+     ],
+     "base": [
+      2000000
+     ],
+     "low": null,
+     "high": null,
+     "kind": "official_target",
+     "unit": "enterprises",
+     "source": {
+      "name": "Bộ Chính trị — Nghị quyết 68-NQ/TW ngày 04/5/2025 (kinh tế tư nhân)",
+      "url": "https://baochinhphu.vn/toan-van-nghi-quyet-so-68-nq-tw-ve-phat-trien-kinh-te-tu-nhan-102250505122337909.htm"
+     },
+     "method_en": "About 2 million enterprises operating in the economy by 2030 (also: private sector growing 10–12%/yr, ~55–58% of GDP). End-point target only — no path 2026–2029.",
+     "method_vi": "Đến 2030 có 2 triệu doanh nghiệp hoạt động trong nền kinh tế. Chỉ là mục tiêu năm cuối.",
+     "definition_caveat": "ECON_OFFICIAL.ent_active counts enterprises operating with business results at year-end (859,048 at 31/12/2025, Economic Census). The NQ 68 count may use a broader 'operating' definition — label both; do not read the gap as exact.",
+     "pub": "2025-05-04",
+     "verified": "from strategy_directives.json NQ68-TW targets (Strategy agent, full text URL); not re-searched 2026-10-07"
+    },
+    "intl_arrivals_million_target": {
+     "years": [
+      2030
+     ],
+     "base": [
+      null
+     ],
+     "low": [
+      45
+     ],
+     "high": [
+      50
+     ],
+     "kind": "official_target",
+     "unit": "million international visitor arrivals in the year",
+     "source": {
+      "name": "Bộ Chính trị — Nghị quyết 26-NQ/TW ngày 22/8/2026 (phát triển du lịch thành ngành kinh tế mũi nhọn trong kỷ nguyên mới)",
+      "url": "https://www.vietnamplus.vn/phat-trien-du-lich-viet-nam-tro-thanh-nganh-kinh-te-mui-nhon-trong-ky-nguyen-moi-post1133212.vnp",
+      "alt_url": "https://daibieunhandan.vn/phat-trien-du-lich-theo-chieu-sau-tao-gia-tri-gia-tang-cao-10430500.html"
+     },
+     "method_en": "By 2030: 45–50 million international visitors, 160 million domestic visitors, total tourist revenue 80–90 bn USD, direct contribution 10–12% of GDP. End-point target (2030 only); no yearly path. Action programme: NQ 263/NQ-CP (07/09/2026).",
+     "method_vi": "Đến 2030: đón 45–50 triệu lượt khách quốc tế, phục vụ 160 triệu lượt khách nội địa, tổng thu 80–90 tỷ USD, đóng góp trực tiếp 10–12% GDP.",
+     "comparator": "ECONFLOW.tour.intl_arrivals_thousand: 2025 = 21,168.3; 9M-2026 = 17,680.",
+     "other_targets": {
+      "domestic_visitors_million_2030": 160,
+      "total_tourist_revenue_busd_2030": "80–90",
+      "direct_gdp_share_pct_2030": "10–12"
+     },
+     "pub": "2026-08-22",
+     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07 — date 22/08/2026 and 45–50 m confirmed"
     }
    },
    "targets": [
@@ -4278,7 +4855,8 @@
      "unit": "% GDP",
      "year": "2026–2030",
      "doc": "NQ 27/2026/QH16",
-     "url": "https://luatvietnam.vn/dau-tu/nghi-quyet-27-2026-qh16-ve-ke-hoach-dau-tu-cong-trung-han-2026-2030-434066-d1.html"
+     "url": "https://luatvietnam.vn/dau-tu/nghi-quyet-27-2026-qh16-ve-ke-hoach-dau-tu-cong-trung-han-2026-2030-434066-d1.html",
+     "doc_note": "Press attributes the 40% average to the 5-year socio-economic plan resolution (NQ 25/2026/QH16), not NQ 27 — unresolved; see series total_investment_pct_gdp_avg_target.attribution_conflict"
     },
     {
      "key": "public_investment_total",
@@ -4368,7 +4946,8 @@
      "unit": "tỷ USD",
      "year": "2026–2030",
      "doc": "Nghị quyết 10-NQ/TW (08/6/2026)",
-     "url": "https://xaydungchinhsach.chinhphu.vn/nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-11926061312552157.htm"
+     "url": "https://xaydungchinhsach.chinhphu.vn/nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-11926061312552157.htm",
+     "per_year": "30–40 bn USD/yr (stated in the resolution text)"
     },
     {
      "key": "fdi_registered_total",
@@ -4378,7 +4957,8 @@
      "unit": "tỷ USD",
      "year": "2026–2030",
      "doc": "Nghị quyết 10-NQ/TW (08/6/2026)",
-     "url": "https://xaydungchinhsach.chinhphu.vn/nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-11926061312552157.htm"
+     "url": "https://xaydungchinhsach.chinhphu.vn/nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-11926061312552157.htm",
+     "per_year": "40–50 bn USD/yr (stated in the resolution text)"
     },
     {
      "key": "export_growth_avg",
@@ -4399,8 +4979,2213 @@
      "year": 2030,
      "doc": "Nghị quyết 06-NQ/TW (24/01/2022)",
      "url": "https://luatvietnam.vn/xay-dung/nghi-quyet-06-nq-tw-cua-bo-chinh-tri-ve-quy-hoach-xay-dung-quan-ly-va-phat-trien-ben-vung-do-thi-viet-nam-den-nam-2030-tam-nhin-den-nam-2045-216381-d1.html"
+    },
+    {
+     "key": "intl_arrivals_2030",
+     "label_vi": "Khách quốc tế năm 2030",
+     "label_en": "International visitor arrivals in 2030",
+     "value": "45–50",
+     "unit": "triệu lượt (million)",
+     "year": 2030,
+     "doc": "Nghị quyết 26-NQ/TW (22/8/2026)",
+     "url": "https://www.vietnamplus.vn/phat-trien-du-lich-viet-nam-tro-thanh-nganh-kinh-te-mui-nhon-trong-ky-nguyen-moi-post1133212.vnp"
+    },
+    {
+     "key": "active_enterprises_2030",
+     "label_vi": "Số doanh nghiệp hoạt động năm 2030",
+     "label_en": "Operating enterprises in 2030",
+     "value": 2000000,
+     "unit": "doanh nghiệp (enterprises)",
+     "year": 2030,
+     "doc": "Nghị quyết 68-NQ/TW (04/5/2025)",
+     "url": "https://baochinhphu.vn/toan-van-nghi-quyet-so-68-nq-tw-ve-phat-trien-kinh-te-tu-nhan-102250505122337909.htm"
     }
-   ]
+   ],
+   "pending_refresh": {
+    "what": "IMF WEO October 2026 (due 13/10/2026): refresh every *_imf series (gdp_growth_pct_imf, gdp_usd_bn_imf, gdp_per_capita_usd_imf, cpi_pct_imf), add 2031, fill cpi_pct_imf 2028–2030, and add IMF general-government gross debt (GGXWDG_NGDP), net lending (GGXCNL_NGDP) and investment (NID_NGDP) as labelled institution lines (general government ≠ state budget).",
+    "status": "pending — not yet published on 2026-10-07; nothing estimated in its place",
+    "noted": "2026-10-07"
+   }
+  },
+  "cpi_model": {
+   "_moved_from": "vietnam_dashboard.html constants CPI_FC_SCEN, CPI_FC_TEMPLATE, CPI_FC_VAT_JAN27, CPI_FC_DRIVERS, CPI_MONTHS_24 (copied verbatim 2026-10-07; page not edited)",
+   "kind": "dashboard model — not an official or institutional forecast; horizon Dec-2027 (do not extend)",
+   "months_24": [
+    "T10/24",
+    "T11/24",
+    "T12/24",
+    "T1/25",
+    "T2/25",
+    "T3/25",
+    "T4/25",
+    "T5/25",
+    "T6/25",
+    "T7/25",
+    "T8/25",
+    "T9/25",
+    "T10/25",
+    "T11/25",
+    "T12/25",
+    "T1/26",
+    "T2/26",
+    "T3/26",
+    "T4/26",
+    "T5/26",
+    "T6/26",
+    "T7/26",
+    "T8/26",
+    "T9/26"
+   ],
+   "scen": {
+    "low": {
+     "q4": [
+      0,
+      0.05,
+      0.1
+     ],
+     "avg27": 3.3,
+     "label": "Thấp"
+    },
+    "central": {
+     "q4": [
+      0.2,
+      0.2,
+      0.25
+     ],
+     "avg27": 3.9,
+     "label": "Cơ sở"
+    },
+    "high": {
+     "q4": [
+      0.4,
+      0.4,
+      0.45
+     ],
+     "avg27": 4.6,
+     "label": "Cao"
+    }
+   },
+   "template": [
+    0.52,
+    0.74,
+    -0.03,
+    0.07,
+    0.16,
+    0.48,
+    0.11,
+    0.05,
+    0.42,
+    0.2,
+    0.45,
+    0.19
+   ],
+   "vat_jan27_pp": 0.3,
+   "drivers": [
+    {
+     "m": "T10/26",
+     "dir": "up",
+     "t": "Giá xăng dầu điều chỉnh 1/10: E10 +100đ lên 27.180đ/l, E5 +170đ; dầu diesel −780đ. Brent tăng 4,4% lên ~102 USD/thùng (1/10). T9 xăng tăng 9,39% m/m, đóng góp chính vào CPI +0,62%.",
+     "te": "Fuel prices adjusted on 1 Oct: E10 +100 VND to 27,180 VND/l, E5 +170 VND; diesel −780 VND. Brent up 4.4% to ~$102/bbl (1 Oct). In Sep, petrol rose 9.39% m/m and was the main driver of CPI +0.62%.",
+     "u": "https://luatvietnam.vn/tin-van-ban-moi/gia-xang-ngay-01-10-2026-186-113107-article.html"
+    },
+    {
+     "m": "T10/26",
+     "dir": "flat",
+     "t": "Giá điện chưa điều chỉnh (2.204 đ/kWh từ 10/5/2025); NĐ 278/2026 cho phép điều chỉnh 3 tháng/lần — có khả năng giảm vì EVN lãi lớn; BTC yêu cầu cân nhắc thời điểm.",
+     "te": "Electricity tariff unchanged (2,204 VND/kWh since 10/5/2025); Decree 278/2026 allows adjustments every 3 months — a cut is possible given EVN's large profit; MoF asks to weigh the timing.",
+     "u": "https://tuoitre.vn/lam-phat-gan-cham-tran-gia-dien-co-tinh-giam-de-bot-ap-luc-tieu-dung-cuoi-nam-100260923080556954.htm"
+    },
+    {
+     "m": "T10/26",
+     "dir": "up",
+     "t": "Học phí năm học 2026–27 phần lớn đã phản ánh ở T9 (nhóm giáo dục +1,41% m/m); còn dư địa nhỏ ở T10.",
+     "te": "2026–27 tuition increases were mostly captured in Sep (education +1.41% m/m); small residual in Oct.",
+     "u": "https://markettimes.vn/cpi-thang-9-2026-tang-0-62-chu-yeu-do-gia-xang-dau-va-hoc-phi-132253.html"
+    },
+    {
+     "m": "T11/26",
+     "dir": "up",
+     "t": "Giá dịch vụ y tế: chưa có quyết định trong Q4; BTC đề nghị Bộ Y tế lộ trình gắn với mục tiêu kiểm soát lạm phát — rủi ro tăng.",
+     "te": "Healthcare service prices: no Q4 decision yet; MoF asked MoH for a roadmap aligned with the inflation target — upside risk.",
+     "u": "https://www.vietnamplus.vn/tap-trung-thuc-hien-tot-viec-kiem-soat-gia-nhung-thang-cuoi-nam-2026-post1134293.vnp"
+    },
+    {
+     "m": "T10/26",
+     "dir": "down",
+     "t": "Giá lợn hơi giảm còn 56–59 nghìn đ/kg cuối T9; giá gạo ổn định khi vào vụ thu đông.",
+     "te": "Live hog prices fell to 56–59k VND/kg in late Sep; rice prices stable as the autumn–winter harvest arrives.",
+     "u": "https://thuonggiaonline.vn/gia-nong-san-hom-nay-299-gia-thit-lon-hoi-giam-tren-dien-rong-ca-phe-di-ngang-post573192.html"
+    },
+    {
+     "m": "T10/26",
+     "dir": "down",
+     "t": "Tỷ giá: chỉ số giá USD T9 −0,69% m/m, −1,34% yoy; dự báo cuối năm ~26.000 (VNDirect) – 26.800 (MBS).",
+     "te": "Exchange rate: USD price index −0.69% m/m, −1.34% y/y in Sep; year-end forecasts ~26,000 (VNDirect) to 26,800 (MBS).",
+     "u": "https://nguoiquansat.vn/vndirect-research-du-bao-dien-bien-ty-gia-lai-suat-cuoi-nam-2026-317361.html"
+    },
+    {
+     "m": "T12/26",
+     "dir": "up",
+     "t": "Nhu cầu cuối năm, giải ngân đầu tư công làm tăng giá vật liệu xây dựng, nhiên liệu.",
+     "te": "Year-end demand and public-investment disbursement lift prices of construction materials and fuel.",
+     "u": "https://thitruongtaichinhtiente.vn/cap-nhat-2-kich-ban-lam-phat-nam-2026-dong-bo-giai-phap-dieu-hanh-gia-kiem-soat-on-dinh-vi-mo-85326.html"
+    },
+    {
+     "m": "T11/26–T12/26",
+     "dir": "down",
+     "t": "Hiệu ứng nền: 2025 tăng T10 +0,20%, T11 +0,45%, T12 +0,19% m/m — nền cao T11 kéo YoY xuống.",
+     "te": "Base effect: 2025 m/m was Oct +0.20%, Nov +0.45%, Dec +0.19% — the high November base pulls y/y down.",
+     "u": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/"
+    },
+    {
+     "m": "2027",
+     "dir": "down",
+     "t": "Giá dầu: EIA dự báo Brent ~90 USD nửa cuối 2026, ~77 USD Q2/2027, BQ 74 USD năm 2027.",
+     "te": "Oil: EIA expects Brent ~$90 in 2H26, ~$77 in 2Q27 and $74 on average in 2027.",
+     "u": "https://www.eia.gov/outlooks/steo/report/global_oil.php"
+    },
+    {
+     "m": "T1/27",
+     "dir": "up",
+     "t": "Chính sách giảm 2% thuế GTGT hết hạn 31/12/2026 (8% → 10%) nếu không gia hạn — OECD đánh giá giữ lạm phát ở mức cao.",
+     "te": "The 2pp VAT cut expires on 31/12/2026 (8% → 10%) unless extended — OECD sees this keeping inflation elevated.",
+     "u": "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/nam-2027-con-duoc-giam-2-thue-gia-tri-gia-tang-khong-290351-231939.html"
+    }
+   ],
+   "method": "Q4-2026 m/m from driver-based scenarios (scen.*.q4 for Oct/Nov/Dec); 2027 m/m = template (Jan..Dec) × k, plus vat_jan27_pp in Jan-2027 if the 2pp VAT cut expires; k solved so the 2027 average equals scen.*.avg27 (range of institutional 2027 forecasts in CPI_FC_INST). y/y_t = (1+y/y_t−1)(1+m/m_t)/(1+m/m same month a year earlier) − 1.",
+   "sources": {
+    "template": "NSO 2025 monthly CPI m/m (Jan–Feb = average of 2025 and 2026 because of Tết timing), per page comment; NSO release URLs per month in CPI_DETAIL",
+    "scen": "dashboard assumptions (low/central/high); avg27 bounds from CPI_FC_INST 2027 values",
+    "vat_jan27_pp": "dashboard assumption (pp added to Jan-2027 m/m); origin of 0.30 not documented in the page",
+    "drivers": "each driver carries its own URL (u)"
+   }
+  },
+  "cpi_basket": {
+   "_moved_from": "vietnam_dashboard.html constant CPI_BASKET (copied verbatim 2026-10-07; page not edited)",
+   "items": [
+    {
+     "name": "Hàng ăn & Dịch vụ ăn uống",
+     "w": 33.56,
+     "color": "#e34948",
+     "yoy": [
+      4.45,
+      4.12,
+      3.87,
+      4.42,
+      3.1,
+      3.83,
+      4.09,
+      3.72,
+      3.01,
+      2.92,
+      2.58,
+      2.06,
+      2.09,
+      3.29,
+      4.2,
+      3.64,
+      5.28,
+      4.72,
+      5.2,
+      5.03,
+      4.89,
+      4.63,
+      4.67,
+      4.44
+     ],
+     "subs": [
+      {
+       "name": "Lương thực (gạo, ngũ cốc, mì)",
+       "w": 3.67,
+       "yoy": [
+        8.23,
+        6.13,
+        4.58,
+        3.11,
+        1.1,
+        0.68,
+        0.66,
+        0.74,
+        0.38,
+        0.24,
+        0.06,
+        -0.72,
+        -1.46,
+        -1.49,
+        -1.2,
+        -1.22,
+        -0.05,
+        0.72,
+        2.06,
+        1.55,
+        1.07,
+        0.73,
+        0.68,
+        0.81
+       ]
+      },
+      {
+       "name": "Thực phẩm — Thịt heo",
+       "w": 4.4,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Thực phẩm — Thịt bò, gia cầm",
+       "w": 2.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Thực phẩm — Thuỷ sản, hải sản",
+       "w": 3.2,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Thực phẩm — Rau, củ, quả tươi",
+       "w": 4.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Thực phẩm — Đường, bánh, mứt",
+       "w": 2.1,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Thực phẩm — Sữa, chế phẩm",
+       "w": 1.95,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Thực phẩm — Đồ gia vị, dầu ăn",
+       "w": 1.93,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Ăn uống ngoài gia đình",
+       "w": 8.61,
+       "yoy": [
+        3.81,
+        3.87,
+        3.95,
+        3.98,
+        3.68,
+        3.45,
+        3.57,
+        3.71,
+        3.76,
+        3.9,
+        3.84,
+        3.57,
+        3.96,
+        4.05,
+        4.21,
+        4.31,
+        5.31,
+        6.58,
+        8.3,
+        8.39,
+        8.28,
+        7.99,
+        7.78,
+        7.4
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Nhà ở, điện, nước, chất đốt, VLXD",
+     "w": 18.82,
+     "color": "#eb6834",
+     "yoy": [
+      4.21,
+      5.06,
+      5.16,
+      4.95,
+      5.07,
+      5.3,
+      5.73,
+      6.1,
+      7.23,
+      7.07,
+      6.99,
+      6.87,
+      6.76,
+      5.73,
+      5.23,
+      5.6,
+      5.6,
+      5.88,
+      7.95,
+      8.19,
+      7.17,
+      6.71,
+      6.6,
+      6.47
+     ],
+     "subs": [
+      {
+       "name": "Tiền thuê nhà",
+       "w": 3.45,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        7.17,
+        6.99,
+        6.84,
+        6.43,
+        7.52,
+        null,
+        5.09,
+        4.98,
+        6.21,
+        6.2,
+        6.19,
+        5.87,
+        5.29,
+        5.07,
+        null
+       ]
+      },
+      {
+       "name": "Sửa chữa & bảo trì nhà ở",
+       "w": 1.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        8.68,
+        9.04,
+        9.19,
+        null
+       ]
+      },
+      {
+       "name": "Vật liệu xây dựng — Xi măng",
+       "w": 0.95,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Vật liệu xây dựng — Sắt, thép",
+       "w": 1.2,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Vật liệu xây dựng — Cát, đá, sỏi, đất",
+       "w": 0.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Vật liệu xây dựng — Gạch, ngói, mái lợp",
+       "w": 0.55,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Vật liệu xây dựng — Sơn, vôi, hoá chất",
+       "w": 0.42,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Điện sinh hoạt",
+       "w": 3.5,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        8.94,
+        10.88,
+        10.8,
+        11.12,
+        7.25,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        4.03,
+        3.76,
+        1.36,
+        null
+       ]
+      },
+      {
+       "name": "Nước sinh hoạt",
+       "w": 0.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0.8,
+        0.84,
+        0.96,
+        0.55,
+        0.63,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1.45,
+        1.79,
+        1.6,
+        null
+       ]
+      },
+      {
+       "name": "Gas & các loại chất đốt khác",
+       "w": 1.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2.97,
+        39.35,
+        37.15,
+        35.23,
+        23.69,
+        33.49,
+        null
+       ]
+      },
+      {
+       "name": "Đồ dùng cố định trong nhà",
+       "w": 1.3,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Giao thông",
+     "w": 9.67,
+     "color": "#2a78d6",
+     "yoy": [
+      -3.25,
+      -3.3,
+      -0.89,
+      -0.36,
+      -2.74,
+      -4.07,
+      -6.89,
+      -5.66,
+      -1.87,
+      -3.74,
+      -1.92,
+      1.46,
+      -0.02,
+      1.11,
+      -0.55,
+      -3.76,
+      -3.19,
+      10.81,
+      11.08,
+      12.48,
+      5.29,
+      3.66,
+      8.02,
+      11.67
+     ],
+     "subs": [
+      {
+       "name": "Phương tiện đi lại (xe máy, ô tô, xe đạp)",
+       "w": 1.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Nhiên liệu (xăng, dầu)",
+       "w": 4.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        21.6,
+        21.47,
+        25.12,
+        8.97,
+        5.89,
+        15.8,
+        23.96
+       ]
+      },
+      {
+       "name": "Phụ tùng, sửa chữa phương tiện",
+       "w": 1.65,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Dịch vụ giao thông công cộng",
+       "w": 1.32,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Thiết bị & đồ dùng gia đình",
+     "w": 6.74,
+     "color": "#4a3aa7",
+     "yoy": [
+      1.33,
+      1.41,
+      1.49,
+      1.66,
+      1.45,
+      1.58,
+      1.57,
+      1.64,
+      1.68,
+      1.71,
+      1.73,
+      1.69,
+      1.69,
+      1.78,
+      1.77,
+      1.71,
+      2.23,
+      2.44,
+      3.14,
+      3.12,
+      3.17,
+      3.21,
+      3.29,
+      3.27
+     ],
+     "subs": [
+      {
+       "name": "Đồ điện gia dụng (máy giặt, tủ lạnh, ...)",
+       "w": 2.2,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Đồ dùng nhà bếp",
+       "w": 1.45,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Đồ vải, giường, đệm",
+       "w": 1.1,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Sản phẩm sửa chữa nhà",
+       "w": 0.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Dịch vụ sửa chữa, bảo dưỡng",
+       "w": 1.14,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Giáo dục",
+     "w": 6.17,
+     "color": "#008300",
+     "yoy": [
+      -0.54,
+      -0.81,
+      -1.08,
+      -1,
+      -0.56,
+      -0.25,
+      2.76,
+      3.03,
+      3.06,
+      3.05,
+      3.11,
+      3.24,
+      3.27,
+      3.2,
+      3.05,
+      3.14,
+      3.21,
+      3.3,
+      3.37,
+      3.39,
+      3.39,
+      3.63,
+      3.9,
+      2.93
+     ],
+     "subs": [
+      {
+       "name": "Học phí",
+       "w": 4.85,
+       "yoy": [
+        -0.77,
+        -1.08,
+        -1.4,
+        -1.3,
+        -0.82,
+        -0.48,
+        2.93,
+        3.24,
+        3.24,
+        3.24,
+        3.32,
+        3.43,
+        3.45,
+        3.39,
+        3.23,
+        3.33,
+        3.42,
+        3.51,
+        3.56,
+        3.57,
+        3.63,
+        3.93,
+        4.3,
+        3.29
+       ]
+      },
+      {
+       "name": "Sách giáo khoa",
+       "w": 0.55,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Văn phòng phẩm",
+       "w": 0.42,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Đồ dùng học tập",
+       "w": 0.35,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      }
+     ]
+    },
+    {
+     "name": "May mặc, mũ nón, giầy dép",
+     "w": 5.7,
+     "color": "#1baf7a",
+     "yoy": [
+      1.13,
+      1.14,
+      1.16,
+      1.32,
+      1.05,
+      1.16,
+      1.09,
+      1.14,
+      1.35,
+      1.37,
+      1.49,
+      1.41,
+      1.5,
+      1.41,
+      1.33,
+      1.21,
+      1.87,
+      1.82,
+      2.29,
+      2.37,
+      2.19,
+      2.29,
+      2.23,
+      2.19
+     ],
+     "subs": [
+      {
+       "name": "Vải các loại",
+       "w": 0.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Quần áo may sẵn",
+       "w": 2.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Mũ nón, phụ kiện",
+       "w": 0.55,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Giầy dép",
+       "w": 1.2,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Dịch vụ may mặc",
+       "w": 0.25,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Thuốc & Dịch vụ y tế",
+     "w": 5.39,
+     "color": "#e87ba4",
+     "yoy": [
+      8.28,
+      5.28,
+      5.32,
+      14.14,
+      14.47,
+      14.59,
+      13.56,
+      13.58,
+      12.92,
+      12.81,
+      12.64,
+      12.62,
+      12.63,
+      12.65,
+      10.27,
+      0.92,
+      0.74,
+      1,
+      1.11,
+      1.19,
+      1.2,
+      1.24,
+      1.25,
+      1.47
+     ],
+     "subs": [
+      {
+       "name": "Thuốc các loại",
+       "w": 1.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Dụng cụ y tế",
+       "w": 0.45,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Dịch vụ khám chữa bệnh",
+       "w": 3.09,
+       "yoy": [
+        10.58,
+        6.55,
+        6.6,
+        18.45,
+        18.88,
+        19.05,
+        17.65,
+        17.65,
+        16.77,
+        16.61,
+        16.37,
+        16.37,
+        16.38,
+        16.4,
+        13.19,
+        0.78,
+        0.56,
+        0.74,
+        0.74,
+        0.75,
+        0.74,
+        0.76,
+        0.77,
+        1.09
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Văn hoá, giải trí, du lịch",
+     "w": 4.55,
+     "color": "#eda100",
+     "yoy": [
+      2.09,
+      2.2,
+      2.31,
+      2.48,
+      1.86,
+      2.16,
+      2.14,
+      2.11,
+      1.7,
+      1.76,
+      1.73,
+      1.84,
+      1.81,
+      1.63,
+      1.31,
+      1.11,
+      2.31,
+      2.07,
+      2.71,
+      2.91,
+      3.32,
+      3.65,
+      3.59,
+      3.42
+     ],
+     "subs": [
+      {
+       "name": "Thiết bị văn hoá",
+       "w": 0.85,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Sách, báo, tạp chí",
+       "w": 0.45,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Dịch vụ giải trí (rạp, công viên)",
+       "w": 1.45,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Du lịch trong nước",
+       "w": 1.2,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Du lịch nước ngoài",
+       "w": 0.6,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Hàng hoá & Dịch vụ khác",
+     "w": 3.53,
+     "color": "#84cc16",
+     "yoy": [
+      7.03,
+      7,
+      6.89,
+      7.01,
+      6.36,
+      6.53,
+      6.4,
+      6.64,
+      6.68,
+      3,
+      2.91,
+      2.88,
+      3.06,
+      3.07,
+      3.03,
+      2.94,
+      4.1,
+      4.01,
+      4.52,
+      4.22,
+      4.08,
+      5.91,
+      5.95,
+      5.82
+     ],
+     "subs": [
+      {
+       "name": "Đồ dùng cá nhân",
+       "w": 1.45,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Dịch vụ chăm sóc cá nhân",
+       "w": 1.2,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Dịch vụ tài chính, bảo hiểm",
+       "w": 0.88,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Bưu chính, viễn thông",
+     "w": 3.14,
+     "color": "#64748b",
+     "yoy": [
+      -0.37,
+      -0.57,
+      -0.61,
+      -0.69,
+      -0.55,
+      -0.52,
+      -0.5,
+      -0.2,
+      -0.24,
+      -0.38,
+      -0.57,
+      -0.62,
+      -0.54,
+      -0.3,
+      -0.25,
+      -0.28,
+      -0.24,
+      -0.07,
+      0.24,
+      0.07,
+      0.13,
+      0.38,
+      0.5,
+      0.33
+     ],
+     "subs": [
+      {
+       "name": "Bưu chính",
+       "w": 0.18,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Thiết bị điện thoại, máy tính",
+       "w": 1.45,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Dịch vụ viễn thông (di động, internet)",
+       "w": 1.51,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Đồ uống & thuốc lá",
+     "w": 2.73,
+     "color": "#d946ef",
+     "yoy": [
+      2.26,
+      2.34,
+      2.4,
+      2.72,
+      2.02,
+      2.05,
+      2.07,
+      2.07,
+      2.1,
+      2.24,
+      2.25,
+      2.35,
+      2.36,
+      2.2,
+      2.05,
+      1.95,
+      3.03,
+      3.44,
+      4.21,
+      4.29,
+      4.21,
+      4.13,
+      4.09,
+      4.33
+     ],
+     "subs": [
+      {
+       "name": "Đồ uống không cồn",
+       "w": 0.55,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Đồ uống có cồn (rượu, bia)",
+       "w": 1.35,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      },
+      {
+       "name": "Thuốc lá",
+       "w": 0.83,
+       "yoy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+       ]
+      }
+     ]
+    }
+   ],
+   "months": "yoy arrays align with cpi_model.months_24 (T10/24 … T9/26) and CPI_YOY_24",
+   "sources": {
+    "group_weights": "GSO/NSO CPI weights, 2020 base period (per page comment); the 11 group weights sum to 100.00",
+    "group_yoy": "NSO 'Biểu 1 – Cả nước' monthly spreadsheets T10/24–T9/26 (per page comment)",
+    "sub_yoy": "NSO figures where NSO publishes them (spreadsheet or 'Tổng quan' PDF text); null where NSO gives no y/y (per page comment)",
+    "sub_weights": "origin not documented in the page — not verified; treat as indicative",
+    "color": "display colour (page styling, not data)"
+   },
+   "caveat": "The page comment 'YoY arrays follow each category's typical trajectory' predates the NSO verification note; Research should confirm that every group y/y equals the NSO sheet before the heat-strip animation ships. If NSO re-based the CPI weights for 2026, the 2020-base weights here are out of date — not checked this run."
   }
  },
  "ECON_OFFICIAL": {
@@ -4826,7 +7611,10 @@
     "period": "PCI 2025 (VCCI, published 15/05/2026)",
     "url": "https://vneconomy.vn/vcci-cong-bo-bao-cao-kinh-te-tu-nhan-viet-nam-nam-2025-ra-mat-phien-ban-pci-20-va-bpi.htm",
     "note": "NOT appended to pci_median: PCI 2025 is the new \"PCI 2.0\" (9 sub-indices, 98 indicators, post-merger 34 provinces), not comparable with the 2010–2024 series; plotting it would show a spurious fall from 67.67.",
-    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06",
+    "series": "ECON_OFFICIAL.pci2_median (aligned with y0; PCI 2.0 only, 2025 = first year)",
+    "alt_url": "https://en.vneconomy.vn/vcci-unveils-2025-vietnam-private-economic-report-launches-pci-20-and-bpi.htm",
+    "verified_2026-10-07": "re-confirmed: national median 63.90, 34 provinces, PCI 2.0 (3,546 private firms, 586 FDI firms, 1,001 household businesses surveyed); search-engine excerpt"
    },
    "usd_vnd_2025": {
     "v": 24976,
@@ -4882,8 +7670,155 @@
      }
     },
     "yoy_caution": "FIA yoy rates use the revised base (e.g. 2024 'down ~3%' vs 39.39 bn), so yoy computed from this array for 2023→2024 differs from first-release comparisons."
-   }
-  }
+   },
+   "pci2_median": "VCCI PCI 2.0 national median (34 provinces). New method; a separate series from pci_median (PCI 1.0, 63 provinces, 2010–2024) — draw as a separate marker, never as a continuation."
+  },
+  "fdi_reg_components_fy": {
+   "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "unit": "bn USD",
+   "vintage": "first release (MPI/FIA year-end report, December/January) — NOT the revised vintage held in ECON_OFFICIAL.fdi_reg_musd for ≤2023 (e.g. 2023 revised 39.39 vs first release 36.61; 2021 revised 38.85 vs 31.15). Do not mix the two in one line.",
+   "new_projects": [
+    18.0,
+    16.75,
+    14.65,
+    15.25,
+    12.45,
+    20.19,
+    19.73,
+    17.32
+   ],
+   "adjusted": [
+    7.59,
+    5.8,
+    6.4,
+    9.01,
+    10.12,
+    7.88,
+    13.96,
+    14.07
+   ],
+   "capital_contribution_share_purchase": [
+    9.89,
+    15.47,
+    7.5,
+    6.89,
+    5.15,
+    8.5,
+    4.54,
+    7.03
+   ],
+   "registered_total": [
+    35.46,
+    38.02,
+    28.53,
+    31.15,
+    27.72,
+    36.61,
+    38.23,
+    38.42
+   ],
+   "disbursed": [
+    19.1,
+    20.38,
+    19.98,
+    19.74,
+    22.4,
+    23.18,
+    25.35,
+    27.62
+   ],
+   "sum_check": {
+    "2018": 35.48,
+    "2019": 38.02,
+    "2020": 28.55,
+    "2021": 31.15,
+    "2022": 27.72,
+    "2023": 36.57,
+    "2024": 38.23,
+    "2025": 38.42
+   },
+   "qualifiers": {
+    "2018": "new projects published as 'gần 18 tỷ USD' (nearly 18) — components sum 35.48 vs total 35.46 (rounding)",
+    "2020": "adjusted 'hơn 6,4' and contributions '7,5' as published (rounded) — components sum 28.55 vs total 28.53",
+    "2023": "adjusted 'hơn 7,88' and contributions 'hơn 8,5' as published (lower bounds) — components sum 36.57 vs total 36.61"
+   },
+   "cutoff": {
+    "2018": "to 20/12/2018",
+    "2019": "year-end report (cut-off date not shown in excerpt)",
+    "2020": "to 20/12/2020",
+    "2021": "to 20/12/2021",
+    "2022": "to 20/12/2022",
+    "2023": "to 20/12/2023",
+    "2024": "to 31/12/2024",
+    "2025": "to 31/12/2025"
+   },
+   "sources": {
+    "2018": {
+     "url": "https://vneconomy.vn/viet-nam-hut-hon-35-ty-usd-von-fdi-nam-2018.htm",
+     "alt_url": "https://www.vietnamplus.vn/von-fdi-do-vao-viet-nam-dat-hon-35-ty-usd-trong-nam-2018-post544008.vnp"
+    },
+    "2019": {
+     "url": "https://baodauthau.vn/nam-2019-ca-nuoc-thu-hut-3802-ty-usd-von-fdi-post82997.html",
+     "alt_url": "https://www.vir.com.vn/fdi-inflow-makes-new-10-year-record-in-2019-72741.html"
+    },
+    "2020": {
+     "url": "https://nhadautu.vn/2853-ty-usd-von-dau-tu-dang-ky-nuoc-ngoai-vao-viet-nam-trong-nam-2020-d46847.html",
+     "alt_url": "https://thitruongtaichinhtiente.vn/infographics-thu-hut-von-dau-tu-nuoc-ngoai-nam-2020-dat-28-53-ty-usd-32982.html"
+    },
+    "2021": {
+     "url": "https://tapchicongthuong.vn/nam-2021--thu-hut-fdi-vuot-moc-31-ty-usd-86299.htm",
+     "alt_url": "https://thitruongtaichinhtiente.vn/von-fdi-rot-vao-viet-nam-nam-2021-vuot-30-ty-usd-38570.html"
+    },
+    "2022": {
+     "url": "https://tapchicongthuong.vn/fdi-dang-ky-moi-nam-2022--tang-du-an--giam-so-von-101864.htm",
+     "alt_url": "https://thitruongtaichinhtiente.vn/giai-ngan-von-fdi-nam-2022-dat-hon-22-ty-usd-43766.html"
+    },
+    "2023": {
+     "url": "https://thitruongtaichinhtiente.vn/viet-nam-thu-hut-36-61-ty-usd-von-fdi-nam-2023-von-giai-ngan-lap-ky-luc-55217.html",
+     "alt_url": "https://tapchicongthuong.vn/von-dau-tu-fdi-thuc-hien-nam-2023-cao-nhat-trong-5-nam-115527.htm"
+    },
+    "2024": {
+     "url": "https://vneconomy.vn/von-fdi-giai-ngan-nam-2024-dat-muc-cao-nhat-tu-truoc-toi-nay.htm",
+     "alt_url": "https://baodauthau.vn/nam-2024-nha-dau-tu-nuoc-ngoai-giai-ngan-ky-luc-2535-ty-usd-vao-viet-nam-post172256.html"
+    },
+    "2025": {
+     "url": "https://thitruongtaichinhtiente.vn/von-fdi-thuc-hien-nam-2025-cao-nhat-5-nam-qua-dat-hon-27-6-ty-usd-75933.html",
+     "alt_url": "https://mekongasean.vn/von-fdi-vao-viet-nam-dat-hon-38-ty-usd-nam-2025-50458.html"
+    }
+   },
+   "disbursed_note": "disbursed = first-release estimate; equals ECON_OFFICIAL.fdi_dis_musd/1000 for 2018–2025 (rounded). BoP fdi_in is a different concept (~80% of disbursed) — never label it disbursement.",
+   "registered_target": "see ECONFLOW.projections.series.fdi_registered_busd_target (200–300 bn 2026–2030, 40–50/yr)",
+   "current_year": "ytd_2026.fdi_reg_components_9M (Jan–Sep 2026)",
+   "definition": "Registered = new projects + adjusted (added) capital + capital contribution & share purchase. Components carry each year's published rounding.",
+   "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+  },
+  "pci2_median": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   63.9
+  ]
  },
  "CPI_YOY_24": [
   2.89,

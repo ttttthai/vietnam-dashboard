@@ -1,8 +1,8 @@
 {
  "_meta": {
   "owner": "Economy agent",
-  "as_of": "2026-10-06",
-  "note": "Drop-in replacement for the MACRO dict hard-coded in invest.py (same keys and structure; extra keys are additive). Values re-checked 2026-10-06 against the latest releases (NSO 9M/Q3-2026 report and Sep-2026 CPI of 03/10/2026; MoF public-investment disbursement to 30/09/2026). All via search-engine excerpts: nso.gov.vn, mof.gov.vn and press pages are blocked from the sandbox. Changes vs invest.py: public_invest.plan_bn 991,931.6 -> 1,022,607 (the 62.9% headline rate is of the full plan; 991,931.6 is the plan excluding the 5% local reserve for the Lao Cai-Hanoi-Hai Phong railway, on which the rate is 64.8%, now in plan_ex_rail_bn / pct_ex_rail); gdp.q4_required_est 12.5 -> 12.6 (same formula, rounded correctly). Refreshed by Economy after each NSO monthly release (next: 03/11/2026)."
+  "as_of": "2026-10-07",
+  "note": "Drop-in replacement for the MACRO dict hard-coded in invest.py (same keys and structure; extra keys are additive). Values re-checked 2026-10-06 against the latest releases (NSO 9M/Q3-2026 report and Sep-2026 CPI of 03/10/2026; MoF public-investment disbursement to 30/09/2026). All via search-engine excerpts: nso.gov.vn, mof.gov.vn and press pages are blocked from the sandbox. Changes vs invest.py: public_invest.plan_bn 991,931.6 -> 1,022,607 (the 62.9% headline rate is of the full plan; 991,931.6 is the plan excluding the 5% local reserve for the Lao Cai-Hanoi-Hai Phong railway, on which the rate is 64.8%, now in plan_ex_rail_bn / pct_ex_rail); gdp.q4_required_est 12.5 -> 12.6 (same formula, rounded correctly). Refreshed by Economy after each NSO monthly release (next: 03/11/2026). 2026-10-07: added MACRO.gdp.history_quarterly (Q1-2024…Q3-2026, additive key) for the I01 animation."
  },
  "MACRO": {
   "as_of": "2026-10-06",
@@ -18,7 +18,56 @@
    "source": "Cục Thống kê (NSO), công bố 03/10/2026",
    "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
    "alt_url": "https://nhandan.vn/tang-truong-gdp-9-thang-nam-2026-dat-901-nho-cac-chinh-sach-thuc-day-kinh-te-post992684.html",
-   "verified": "search-engine excerpt, 2026-10-06; same values as data/economy.json ECONFLOW.gdp.growth_real_pct"
+   "verified": "search-engine excerpt, 2026-10-06; same values as data/economy.json ECONFLOW.gdp.growth_real_pct",
+   "history_quarterly": {
+    "periods": [
+     "Q1-2024",
+     "Q2-2024",
+     "Q3-2024",
+     "Q4-2024",
+     "Q1-2025",
+     "Q2-2025",
+     "Q3-2025",
+     "Q4-2025",
+     "Q1-2026",
+     "Q2-2026",
+     "Q3-2026"
+    ],
+    "yoy": [
+     5.98,
+     7.25,
+     7.43,
+     7.55,
+     7.05,
+     8.16,
+     8.25,
+     8.46,
+     8.15,
+     8.81,
+     9.95
+    ],
+    "vintage": [
+     "Jan-2025 year-end release",
+     "Jan-2025 year-end release",
+     "Jan-2025 year-end release",
+     "Jan-2025 year-end release",
+     "Jan-2026 year-end release",
+     "Jan-2026 year-end release",
+     "Jan-2026 year-end release",
+     "Jan-2026 year-end release",
+     "as quoted in the Q3-2026 release (03/10/2026)",
+     "as quoted in the Q3-2026 release (03/10/2026)",
+     "Q3-2026 estimate (03/10/2026)"
+    ],
+    "source_note": "copied from data/economy.json ECONFLOW.gdp.growth_real_pct.quarterly_history (NSO year-end releases Jan-2025, Jan-2026 and the Q3-2026 release); 2024 annual later revised to 7.04, quarterly split not re-published in sources seen",
+    "urls": [
+     "https://tapchicongthuong.vn/vuot-muc-tieu--gdp-nam-2024-tang-truong-7-09--so-voi-nam-truoc-132041.htm",
+     "https://tapchicongthuong.vn/gdp-nam-2025-dat-muc-tieu--uoc-tang-8-02--so-voi-nam-2024-386035.htm",
+     "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+    ],
+    "as_of": "2026-10-07",
+    "verified": "search-engine excerpt, 2026-10-07"
+   }
   },
   "public_invest": {
    "plan_bn": 1022607,
