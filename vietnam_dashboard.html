@@ -906,6 +906,41 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .fs-lv-dh { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
   .fs-lv-x { border: 0; background: transparent; font: 400 20px/1 var(--font-ui); color: #5b6170; cursor: pointer; min-width: 28px; min-height: 28px; }
   .fs-lv-go { margin: 14px 0 0; }
+  /* Financial system, SBV-report chapters: hero pair, blocks, explainer cards, event lists */
+  .fs-kpi2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 6px 0 4px; }
+  @media (max-width: 760px) { .fs-kpi2 { grid-template-columns: 1fr; gap: 14px; } }
+  .fs-kpi { border-top: 2px solid #16181d; padding-top: 10px; min-width: 0; }
+  .fs-kpi-k { font: 600 13px/1.35 var(--font-ui); color: #16181d; margin-bottom: 6px; }
+  .fs-kpi .st-big { font-size: clamp(38px, 5vw, 64px); margin-bottom: 8px; overflow-wrap: anywhere; }
+  .fs-kpi-s { font: 400 13.5px/1.5 var(--font-ui); color: #5b6170; margin: 0; max-width: 60ch; }
+  .fs-kpi-s b { color: #16181d; }
+  .fs-blk { margin-top: 38px; padding-top: 16px; border-top: 1px solid #dedbd2; min-width: 0; }
+  .fs-blk:first-of-type { margin-top: 22px; }
+  .fs-blk-k { font: 600 11.5px var(--font-ui); letter-spacing: .06em; text-transform: uppercase; color: #5b6170; margin-bottom: 4px; }
+  .fs-blk-h { font: 650 19px/1.3 var(--font-ui); color: #16181d; margin: 0 0 6px; max-width: 60ch; }
+  .fs-blk > .st-dek { font-size: 14px; margin: 0 0 8px; }
+  .fs-expl { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 6px; max-width: 80ch; font: 400 14px/1.55 var(--font-ui); color: #16181d; }
+  .fs-expl b { font-weight: 650; }
+  .fs-expl .fs-expl-s { list-style: none; margin-left: -18px; font-size: 12px; color: #8a8f99; }
+  .fs-ops { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 8px 0 4px; }
+  @media (max-width: 1100px) { .fs-ops { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 620px) { .fs-ops { grid-template-columns: 1fr; } }
+  .fs-op { border: 1px solid #dedbd2; border-radius: 6px; background: #fff; padding: 10px 12px; font: 400 13px/1.5 var(--font-ui); color: #16181d; min-width: 0; }
+  .fs-op p { margin: 6px 0 0; }
+  .fs-op-t { font: 650 14px/1.35 var(--font-ui); margin-bottom: 8px; }
+  .fs-op-a { display: flex; align-items: center; gap: 6px; margin: 4px 0; font: 600 12px var(--font-ui); }
+  .fs-op-a span { border: 1px solid #16181d; border-radius: 4px; padding: 2px 6px; background: #faf8f3; white-space: nowrap; }
+  .fs-op-a i { flex: 1; font-style: normal; text-align: center; border-bottom: 2px solid var(--c, #16181d); padding-bottom: 1px; white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .fs-op-in { --c: #2a78d6; } .fs-op-out { --c: #e34948; } .fs-op-mon { --c: #16181d; }
+  .fs-op-in i, .fs-op-out i { color: var(--c); }
+  .fs-op-now { margin-top: 8px; padding-top: 6px; border-top: 1px dotted #c9ccd2; font-size: 12.5px; color: #5b6170; }
+  .fs-op-now span { display: block; font-weight: 600; color: #16181d; }
+  .fs-evl { margin: 6px 0 0; padding-left: 22px; display: grid; gap: 4px; font: 400 13px/1.45 var(--font-ui); color: #5b6170; max-width: 90ch; }
+  .fs-evl time { font-weight: 600; color: #16181d; }
+  .fs-evl b { color: #16181d; font-weight: 600; }
+  .fs-evl span { color: #8a8f99; font-size: 12px; }
+  .fs-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+  @media (max-width: 620px) { .fs-2col { grid-template-columns: 1fr; gap: 18px; } }
   .fs-lv-t-h { font: 400 12.5px/1.45 var(--font-ui); color: #5b6170; margin: 10px 0 2px; max-width: 80ch; }
   #fs-lv-t output { font-size: 14px; min-width: 0; flex: 1 1 260px; } #fs-lv-t .fs-lv-tc { font-weight: 400; color: #5b6170; } #fs-lv-t .fs-lv-tc b { font-weight: 400; }
   @media (prefers-reduced-motion: reduce) { .fs-lv svg * { transition: none !important; } }
@@ -5227,8 +5262,9 @@ function stFinish(root) { stObserve(root); stTables(root); stFresh(root); stFlou
 // when a panel actually comes into view. Selection is remembered per tab (localStorage) and deep-linkable as #<tab>-<n>.
 const ST_SUB_SHORT = {   // short labels where the kicker is too long for a pill; everything else comes from the kicker
   'st-bop': ['2 · Tiền qua biên giới', '2 · Across the border'], 'soc-st-rank': ['4 · Việt Nam và thế giới', '4 · Among nations'],
-  'fs-st-depth': ['1 · Kinh tế dựa vào ngân hàng', '1 · Bank-financed economy'], 'fs-st-pipe': ['6 · NHNN điều tiết tiền', '6 · How the SBV moves money'],
-  'pg-st-chain': ['4 · Nghị quyết → hành động', '4 · Resolution to action'], 'iv-st-stocks': ['3 · Bốn mã theo dõi', '3 · The four stocks'], 'fs-st-levers': ['7 · Ai điều khiển cung tiền', '7 · Who controls money'] };
+  'fs-st-money': ['1 · Tiền và tín dụng', '1 · Money & credit'], 'fs-st-flow': ['2 · Tín dụng đi đâu', '2 · Where credit goes'], 'fs-st-rates': ['3 · Lãi suất, CSTT', '3 · Rates & policy'], 'fs-st-fx': ['4 · Tỷ giá, dự trữ, vàng', '4 · FX, reserves & gold'],
+  'fs-st-safe': ['5 · Sức khỏe ngân hàng', '5 · Bank health'], 'fs-st-pay': ['6 · Thanh toán', '6 · Payments & inclusion'], 'fs-st-sbv': ['7 · NHNN và luật chơi', '7 · The SBV & rules'],
+  'pg-st-chain': ['4 · Nghị quyết → hành động', '4 · Resolution to action'], 'iv-st-stocks': ['3 · Bốn mã theo dõi', '3 · The four stocks'] };
 const stSubHash = () => { const m = /^#(party|social|econ|money|banks|invest|sim)-(\d{1,2})$/.exec(location.hash || ''); return m ? { tab: m[1], i: +m[2] } : null; };
 let stSubHashUsed = false;
 function stSubLbl(sec, i) {
@@ -6976,61 +7012,127 @@ const fsStPP = o => (o.periods || o.dates || []).map((p, i) => [String(p).replac
 const fsCutLab = d => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); const dt = m ? stT(`${+m[3]}/${+m[2]}/${m[1]}`, `${+m[3]} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][m[2] - 1]} ${m[1]}`) : '';
   return stT(`theo phát biểu của NHNN${dt ? ', số đến ' + dt : ''}`, `per an SBV statement${dt ? ', data to ' + dt : ''}`); };
 const fsStMon = m => { const [mm, yy] = m.replace(/^T/, '').split('/').map(Number); return stT(`T${mm}/20${yy}`, `${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][mm - 1]} 20${yy}`); };
+// Chapter order follows the standard SBV annual report (map: data/research/sbv_annual_report_map.md): overview → 1 money
+// & credit → 2 where credit goes → 3 rates & monetary policy → 4 FX, reserves & gold → 5 banking-system health → 6 payments
+// & inclusion → 7 the SBV & rules → what to watch → explore (+ listed-bank appendix). Deep links #banks-N follow this order.
+// A chapter holds several blocks (fsBlk): each block = kicker, finding headline, dek, chart(s), note, sources.
+const fsBlk = (id, kick, title, dek, body) => `<div class="fs-blk" id="${id}">${kick ? `<div class="fs-blk-k">${kick}</div>` : ''}<h3 class="fs-blk-h">${title}</h3>${dek ? `<p class="st-dek">${dek}</p>` : ''}${body}</div>`;
+// latest money facts (M2, ≈ cash in circulation, cash share, method break, last official annual cash), all from FINSYS
+function fsMoney() {
+  const M = FINSYS.monthly, A = FINSYS.annual, i = fsLi(M.m2_level), c = fsLi(M.cash_in_circulation_derived_bn), me = M.m2_methodology || [];
+  const o = { i, m: M.months[i], m2: M.m2_level[i], ytd: M.m2_ytd[i], c, cm: M.months[c], cash: M.cash_in_circulation_derived_bn[c], sh: M.cash_to_m2_pct[c] };
+  const ai = fsLi(A.currency_outside_banks_imf_bn), bi = fsLi(A.m0_adb_bn);
+  o.imf = ai >= 0 ? { y: A.years[ai], v: A.currency_outside_banks_imf_bn[ai] } : null; o.adb = bi >= 0 ? { y: A.years[bi], v: A.m0_adb_bn[bi] } : null;
+  o.brk = M.months.findIndex((m, j) => j > 0 && me[j] && me[j - 1] && me[j] !== me[j - 1]);   // first month on the new M2 method
+  return o;
+}
+const fsTq = v => stN(v / 1e6, 2), fsBn = v => stN(v, 0);
 function renderFsStory() {
   const root = document.getElementById('fs-story'); if (!root || typeof FINSYS === 'undefined') return;
-  const A = FINSYS.annual, n = A.years.length - 1, y = A.years[n], cg = fsStR('credit_to_gdp_pct').slice(-1)[0] || {};
-  const M = FINSYS.monthly, mi = M.credit_ytd.map((v, i) => v == null ? -1 : i).filter(i => i >= 0).pop();
+  const A = FINSYS.annual, n = A.years.length - 1, cg = fsStR('credit_to_gdp_pct').slice(-1)[0] || {};
+  const M = FINSYS.monthly, mi = fsLi(M.credit_ytd), cl = fsLi(M.credit_level);
   const pc = A.private_credit_to_gdp_pct_wb, y100 = A.years.find((yy, i) => pc[i] != null && pc[i] >= 100);
-  const S = FINSYS.sectors, k = S.periods.length - 1, os = S.levels.other_services[k] / S.levels.total[k] * 100;
-  const osb = fsStOS();
-  const W = FINSYS.why.series, cof = fsStPP(W.cof), dep = fsStPP(W.deposit12m_private_banks_mbs);
-  const npl = fsStR('npl_imf_fsi_pct'), npk = npl.reduce((a, b) => b.v > a.v ? b : a), npL = npl[npl.length - 1];
-  const B = FINSYS.sbv.balance_sheet, rv = B.periods.map((p, i) => [p, B.series.fx_reserves_busd[i]]).filter(x => x[1] != null), rPk = rv.reduce((a, b) => b[1] > a[1] ? b : a), rL = rv[rv.length - 1];
+  const S = FINSYS.sectors, k = S.periods.length - 1, os = S.levels.other_services[k] / S.levels.total[k] * 100, osb = fsStOS();
+  const W = FINSYS.why.series, cof = fsStPP(W.cof), dep = fsStPP(W.deposit12m_private_banks_mbs), MC = fsMoney(), unitQ = stT(' triệu tỷ đồng', ' quadrillion VND');
+  const offL = [MC.adb ? stT(`${fsBn(MC.adb.v)} tỷ đồng cuối ${MC.adb.y} (ADB)`, `${fsBn(MC.adb.v)} bn VND at end-${MC.adb.y} (ADB)`) : '', MC.imf ? stT(`${fsBn(MC.imf.v)} tỷ (IMF, làm tròn)`, `${fsBn(MC.imf.v)} bn (IMF, rounded)`) : ''].filter(Boolean).join(' · ');
+  // ── 0 · overview: total money supply and money in circulation, side by side ──
   let h = `<section class="st-chap st-hero" id="fs-st-hero"><div class="st-kicker">${stT('Hệ thống tài chính · cập nhật ', 'Financial system · as of ')}${polDS(FINSYS.asof)}</div>
-    <div class="st-hero-grid"><div>
-      <div class="st-big">${stN(cg.v, 0)}%<span>${stT(' tín dụng / GDP', ' credit to GDP')}</span></div>
-      <p class="st-dek">${stT(`Năm ${y} tín dụng tăng <b>${stN(A.credit_growth[n], 1)}%</b>, huy động tăng <b>${stN(A.deposit_growth[n], 1)}%</b>. Đến ${fsStMon(M.months[mi])}, tín dụng đã tăng thêm ${stN(M.credit_ytd[mi], 1)}% từ đầu năm${(M.credit_basis || [])[mi] === 'statement' ? ` (${fsCutLab((M.credit_cutoff || [])[mi])}, chưa có trong bảng số liệu)` : ''}.`, `In ${y} credit grew <b>${stN(A.credit_growth[n], 1)}%</b> and deposits <b>${stN(A.deposit_growth[n], 1)}%</b>. By ${fsStMon(M.months[mi])}, credit was up another ${stN(M.credit_ytd[mi], 1)}% year to date${(M.credit_basis || [])[mi] === 'statement' ? ` (${fsCutLab((M.credit_cutoff || [])[mi])}, not yet in the data table)` : ''}.`)}</p>
-    </div><div><div id="fs-st-gap-leg"></div><div id="fs-st-gap" class="st-viz"></div></div></div></section>`;
-  h += stChap('fs-st-depth', stT('Chương 1 · Một nền kinh tế dựa vào ngân hàng', 'Chapter 1 · A bank-financed economy'),
-    stT(`Tín dụng tư nhân vượt 100% GDP từ ${y100}; tổng tín dụng khoảng ${stN(cg.v, 0)}% GDP năm ${String(cg.d).slice(0, 4)}`, `Private credit passed 100% of GDP in ${y100}; total credit was about ${stN(cg.v, 0)}% of GDP in ${String(cg.d).slice(0, 4)}`),
-    stT('Tín dụng cho khu vực tư nhân và cung tiền M2, tính theo % GDP. Điểm rỗng: ước tính từ báo chí, không cùng nguồn với chuỗi World Bank.', 'Private-sector credit and M2 money supply, as % of GDP. Hollow point: a press-reported estimate, not from the World Bank series.'),
-    `<div id="fs-st-depth-leg"></div><div id="fs-st-depthline" class="st-viz"></div><div class="st-sub">${stT('Từng tháng: tăng so với cuối năm trước (%)', 'Month by month: growth since the end of the previous year (%)')}</div><div id="fs-st-mmult" class="st-mult"></div>
-     ${stSrc(stT(`Nguồn: World Bank (tín dụng tư nhân/GDP, M2/GDP, đến 2022); ${stN(cg.v, 0)}% năm 2025: báo chí dẫn số NHNN; số tháng: NHNN.`, `Source: World Bank (private credit/GDP, M2/GDP, to 2022); ${stN(cg.v, 0)}% for 2025: press citing SBV data; monthly figures: SBV.`))}`);
-  h += stChap('fs-st-flow', stT('Chương 2 · Tiền đi đâu', 'Chapter 2 · Where the money goes'),
+    <h2 class="st-h">${stT(`Cứ 100 đồng trong tổng cung tiền thì ≈ ${stN(MC.sh, 0)} đồng là tiền mặt; phần còn lại là tiền gửi ngân hàng`, `Of every 100 dong of money supply, ≈ ${stN(MC.sh, 0)} are cash; the rest is bank deposits`)}</h2>
+    <div class="fs-kpi2">
+      <div class="fs-kpi"><div class="fs-kpi-k">${stT('Tổng cung tiền (M2, tổng phương tiện thanh toán)', 'Total money supply (M2)')} · ${fsStMon(MC.m)}</div><div class="st-big">${fsTq(MC.m2)}<span>${unitQ}</span></div>
+        <p class="fs-kpi-s">${stT(`= ${fsBn(MC.m2)} tỷ đồng · <b>${MC.ytd >= 0 ? '+' : ''}${stN(MC.ytd, 2)}%</b> từ đầu năm`, `= ${fsBn(MC.m2)} bn VND · <b>${MC.ytd >= 0 ? '+' : ''}${stN(MC.ytd, 2)}%</b> year to date`)}${MC.brk >= 0 ? stT(` · theo cách tính mới của NHNN từ ${fsStMon(M.months[MC.brk])}`, ` · on the SBV's new method since ${fsStMon(M.months[MC.brk])}`) : ''}</p></div>
+      <div class="fs-kpi"><div class="fs-kpi-k">${stT('Tiền trong lưu thông (tiền mặt ngoài ngân hàng)', 'Money in circulation (cash outside banks)')} · ${fsStMon(MC.cm)}</div><div class="st-big">≈ ${fsTq(MC.cash)}<span>${unitQ}</span></div>
+        <p class="fs-kpi-s">${stT(`≈ ${fsBn(MC.cash)} tỷ đồng = <b>${stN(MC.sh, 2)}%</b> M2. ≈: tỷ lệ tiền mặt/M2 của NHNN × M2, dashboard tính; NHNN không công bố số tuyệt đối.`, `≈ ${fsBn(MC.cash)} bn VND = <b>${stN(MC.sh, 2)}%</b> of M2. ≈: the SBV's cash/M2 ratio × M2, computed by the dashboard; the SBV does not publish the level.`)}${offL ? `<br>${stT('Số chính thức gần nhất', 'Latest official level')}: ${offL}` : ''}</p></div>
+    </div>
+    <p class="st-dek">${stT(`Dư nợ tín dụng ${cl >= 0 ? fsU(M.credit_level[cl], 'bn VND') + ` (${fsStMon(M.months[cl])})` : ''}; đến ${fsStMon(M.months[mi])} tăng <b>${stN(M.credit_ytd[mi], 2)}%</b> từ đầu năm${(M.credit_basis || [])[mi] === 'statement' ? ` (${fsCutLab((M.credit_cutoff || [])[mi])})` : ''}. Tín dụng ≈ ${stN(cg.v, 0)}% GDP (${String(cg.d || '').slice(0, 4)}).`, `Credit outstanding ${cl >= 0 ? fsU(M.credit_level[cl], 'bn VND') + ` (${fsStMon(M.months[cl])})` : ''}; by ${fsStMon(M.months[mi])} up <b>${stN(M.credit_ytd[mi], 2)}%</b> year to date${(M.credit_basis || [])[mi] === 'statement' ? ` (${fsCutLab((M.credit_cutoff || [])[mi])})` : ''}. Credit ≈ ${stN(cg.v, 0)}% of GDP (${String(cg.d || '').slice(0, 4)}).`)}</p>
+    <div class="st-sub">${stT('Theo tháng: M2 (trên) và tiền mặt lưu thông ≈ (dưới)', 'Month by month: M2 (top) and ≈ cash in circulation (bottom)')}</div><div id="fs-st-m2c-leg"></div><div id="fs-st-m2c" class="st-viz"></div><div id="fs-st-m2c-note"></div>
+    ${stSrc(stT('Nguồn: NHNN (M2 và tỷ lệ tiền mặt/M2 theo tháng); ≈ tiền mặt = tỷ lệ × M2 do dashboard tính; số chính thức cuối năm: IMF Điều IV (Monetary Survey) và ADB Key Indicators.', 'Source: SBV (monthly M2 and cash/M2 ratio); ≈ cash = ratio × M2, computed by the dashboard; official year-end levels: IMF Article IV (Monetary Survey) and ADB Key Indicators.'))}</section>`;
+  // ── 1 · money & credit ──
+  h += stChap('fs-st-money', stT('Chương 1 · Tiền và tín dụng', 'Chapter 1 · Money and credit'),
+    stT(`Tín dụng tăng nhanh hơn huy động ${A.years.filter((y, i) => A.credit_growth[i] > A.deposit_growth[i]).length}/${A.years.filter((y, i) => A.credit_growth[i] != null && A.deposit_growth[i] != null).length} năm; tín dụng tư nhân vượt 100% GDP từ ${y100}`, `Credit outgrew deposits in ${A.years.filter((y, i) => A.credit_growth[i] > A.deposit_growth[i]).length} of ${A.years.filter((y, i) => A.credit_growth[i] != null && A.deposit_growth[i] != null).length} years; private credit passed 100% of GDP in ${y100}`),
+    stT('Phần I của báo cáo thường niên NHNN: cung tiền, tiền gửi và tín dụng. Trước hết: tiền trong lưu thông khác tổng cung tiền thế nào, và NHNN mua bán gì để bơm hay hút tiền.', 'Part I of the SBV annual report: money supply, deposits and credit. First: how money in circulation differs from total money supply, and what the SBV buys and sells to add or drain money.'),
+    fsBlk('fs-b-nest', stT('Giải thích · Tiền lồng trong tiền', 'Explainer · Money inside money'), stT(`Tiền mặt ≈ ${stN(MC.sh, 2)}% M2; ≈ ${stN(100 - MC.sh, 2)}% còn lại là tiền gửi (${fsStMon(MC.cm)})`, `Cash ≈ ${stN(MC.sh, 2)}% of M2; the other ≈ ${stN(100 - MC.sh, 2)}% is deposits (${fsStMon(MC.cm)})`), '',
+      `<div id="fs-st-nest-leg"></div><div id="fs-st-nest" class="st-viz"></div><ul class="fs-expl" id="fs-st-nest-x"></ul>`)
+    + fsBlk('fs-b-ops', stT('Giải thích · NHNN mua và bán', 'Explainer · The SBV buying and selling'), stT('Khi NHNN bán, tiền rời các ngân hàng; khi NHNN mua, tiền vào các ngân hàng', 'When the SBV sells, money leaves the banks; when it buys, money flows in'),
+      stT('Mũi tên đi theo dòng tiền đồng giữa NHNN và các ngân hàng. Đỏ: hút tiền khỏi hệ thống ngân hàng; xanh: bơm vào; đen: tiền không đi qua NHNN.', 'Arrows follow the dong between the SBV and the banks. Red: drains money from the banking system; blue: injects it; ink: money that does not pass through the SBV.'),
+      `<div id="fs-st-ops"></div><div class="st-sub">${stT('Dư nợ cuối tuần: cho vay OMO (bơm, trên trục 0) và tín phiếu NHNN (hút, dưới trục 0), tỷ đồng', 'Week-end balances: OMO loans (injection, above zero) and SBV bills (drain, below zero), bn VND')}</div><div id="fs-st-liq-leg"></div><div id="fs-st-liq" class="st-viz"></div><div id="fs-st-liq-note"></div>
+       <p class="fs-lv-go"><button type="button" class="st-pn-b" data-st-go="fs-st-sbv">${stT('Mọi công cụ của NHNN và các kênh tiền đi', 'Every SBV lever and money channel')}: <b>${stT('Chương 7', 'Chapter 7')}</b><span aria-hidden="true"> →</span></button></p>`)
+    + fsBlk('fs-b-gap', stT('Tín dụng và huy động', 'Credit and deposits'), stT(`Năm ${A.years[n]} tín dụng tăng ${stN(A.credit_growth[n], 1)}%, huy động ${stN(A.deposit_growth[n], 1)}%`, `In ${A.years[n]} credit grew ${stN(A.credit_growth[n], 1)}% and deposits ${stN(A.deposit_growth[n], 1)}%`),
+      stT('Tăng trưởng cả năm (%); vùng xám là phần tín dụng vượt huy động.', 'Full-year growth (%); the grey wash is where credit outgrew deposits.'),
+      `<div id="fs-st-gap-leg"></div><div id="fs-st-gap" class="st-viz"></div><div class="st-sub">${stT('Từng tháng: tăng so với cuối năm trước (%)', 'Month by month: growth since the previous year-end (%)')}</div><div id="fs-st-mmult" class="st-mult"></div>
+       ${stSrc(stT('Nguồn: NHNN; IMF FSI (huy động cả năm). Số tháng: bảng thống kê NHNN; điểm rỗng là phát biểu của NHNN chưa có trong bảng.', 'Source: SBV; IMF FSI (full-year deposits). Monthly: SBV tables; hollow points are SBV statements not yet in the tables.'))}`)
+    + fsBlk('fs-b-comp', stT('Cấu phần cung tiền', 'What money supply is made of'), '', '', `<div id="fs-st-comp-leg"></div><div id="fs-st-comp" class="st-viz"></div><div id="fs-st-comp-note"></div>`)
+    + fsBlk('fs-b-depth', stT('Độ sâu tài chính', 'Financial depth'), stT(`Tín dụng tư nhân vượt 100% GDP từ ${y100}; tổng tín dụng khoảng ${stN(cg.v, 0)}% GDP năm ${String(cg.d).slice(0, 4)}`, `Private credit passed 100% of GDP in ${y100}; total credit was about ${stN(cg.v, 0)}% of GDP in ${String(cg.d).slice(0, 4)}`),
+      stT('Tín dụng cho khu vực tư nhân và M2, tính theo % GDP. Điểm rỗng: ước tính từ báo chí, không cùng nguồn với chuỗi World Bank.', 'Private-sector credit and M2, as % of GDP. Hollow point: a press-reported estimate, not from the World Bank series.'),
+      `<div id="fs-st-depth-leg"></div><div id="fs-st-depthline" class="st-viz"></div>${stSrc(stT(`Nguồn: World Bank (tín dụng tư nhân/GDP, M2/GDP, đến 2022); ${stN(cg.v, 0)}% năm 2025: báo chí dẫn số NHNN.`, `Source: World Bank (private credit/GDP, M2/GDP, to 2022); ${stN(cg.v, 0)}% for 2025: press citing SBV data.`))}`)
+    + fsBlk('fs-b-cgt', stT('Chỉ tiêu tín dụng', 'Credit target'), '', '', `<div id="fs-st-cgt-leg"></div><div id="fs-st-cgt" class="st-viz"></div><div id="fs-st-cgt-note"></div>`)
+    + fsBlk('fs-b-deph', stT('Tiền gửi theo người gửi', 'Deposits by holder'), '', '', `<div id="fs-st-deph-leg"></div><div id="fs-st-deph" class="st-viz"></div><div id="fs-st-deph-note"></div>`));
+  // ── 2 · where credit goes (unchanged chapter) ──
+  h += stChap('fs-st-flow', stT('Chương 2 · Tín dụng đi đâu', 'Chapter 2 · Where credit goes'),
     (osb ? stT(`"Dịch vụ khác" chiếm ${stN(os, 0)}% dư nợ; ước tính ${stN(osb.known, 0)}% trong đó là cho vay tiêu dùng và kinh doanh bất động sản`, `"Other services" hold ${stN(os, 0)}% of loans; an estimated ${stN(osb.known, 0)}% of that is consumer and real-estate business lending`) : stT(`"Dịch vụ khác" chiếm ${stN(os, 0)}% dư nợ (${S.periods[k]})`, `"Other services" hold ${stN(os, 0)}% of loans (${S.periods[k]})`)),
     stT('Trái: mỗi ô vuông là 1% tổng dư nợ theo ngành. Phải: tăng trưởng so với cuối năm trước.', 'Left: each square is 1% of outstanding credit by sector. Right: growth since the previous year-end.'),
     `<div class="st-waffles"><div id="fs-st-waf"></div><div id="fs-st-sgrow"></div></div><div id="fs-st-lb"></div>
      <div class="st-sub">${stT('Bên trong "Dịch vụ khác": ước tính từ các nguồn, kỳ số liệu 6–8/2026', 'Inside "other services": estimated from published sources, data for Jun–Aug 2026')}</div><div id="fs-st-os-leg"></div><div id="fs-st-os" class="st-viz"></div><div id="fs-st-os-note"></div>
      <div id="fs-st-ffacts" class="st-facts"></div>`);
-  h += stChap('fs-st-why', stT('Chương 3 · Vì sao lãi suất khó giảm', 'Chapter 3 · Why rates won\'t fall'),
-    cof.length > 1 && dep.length > 1 ? stT(`Chi phí vốn ngân hàng niêm yết tăng từ ${stN(cof[0][1], 2)}% lên ${stN(cof[cof.length - 1][1], 2)}%; lãi suất huy động 12 tháng lên ${stN(dep[dep.length - 1][1], 2)}%`, `Listed banks' cost of funds rose from ${stN(cof[0][1], 2)}% to ${stN(cof[cof.length - 1][1], 2)}%; 12-month deposit rates reached ${stN(dep[dep.length - 1][1], 2)}%`) : stT('Vì sao lãi suất khó giảm', 'Why rates won\'t fall'),
-    stT('Năm bước, mỗi bước một bằng chứng: cuộn xuống (hoặc bấm số trên biểu đồ) để biểu đồ đổi theo. Sau đó là sơ đồ nối các nguyên nhân được tổng hợp từ báo cáo NHNN, công ty chứng khoán và báo chí (nguồn trong phần khám phá), và vì sao NHNN không thể chỉ hạ lãi suất hay in thêm tiền để bù.', 'Five steps, one piece of evidence each: scroll on (or press the numbers on the chart) and the chart changes with you. After that, the diagram linking the causes compiled from SBV, broker and press reports (sourced in the explore section), and why the SBV cannot simply cut rates or print money to offset it.'),
-    `${fsScBlock()}${stSrc(stT('Nguồn các bước: NHNN, IMF FSI (tăng trưởng cả năm); công ty chứng khoán qua báo chí (LDR đơn giản, chi phí vốn, lãi suất bình quân MBS); Vietcombank; NSO (CPI); Cục Dự trữ Liên bang Mỹ; NHNN (tỷ giá trung tâm). Chuỗi tháng lấy từ bảng số liệu của tab Mô phỏng.', 'Step sources: SBV, IMF FSI (full-year growth); brokers via the press (simple LDR, cost of funds, MBS average rate); Vietcombank; NSO (CPI); US Federal Reserve; SBV (central rate). Monthly series from the Simulation tab\'s panel.'))}
-     <div class="st-sub">${stT('Toàn bộ cơ chế trên một sơ đồ', 'The whole mechanism in one diagram')}</div><div id="fs-st-mech"></div><div id="fs-st-cf"></div><div class="st-sub">${stT('Bốn chỉ số của ngân hàng niêm yết (mỗi biểu đồ một thang đo)', 'Four listed-bank metrics (one scale per chart)')}</div><div id="fs-st-wmult" class="st-mult"></div>
-     <div class="st-sub">${stT('Mười nguyên nhân, xếp theo mức tác động', 'The ten causes, ranked by impact')}</div><div id="fs-st-drivers" class="st-facts" style="grid-template-columns:repeat(2,1fr)"></div>`);
-  h += stChap('fs-st-safe', stT('Chương 4 · An toàn hệ thống', 'Chapter 4 · How sound is it?'),
-    stT(`Nợ xấu (IMF) từ ${stN(npk.v, 2)}% năm ${npk.d} xuống ${stN(npL.v, 2)}% năm ${npL.d}`, `Bad loans (IMF) fell from ${stN(npk.v, 2)}% in ${npk.d} to ${stN(npL.v, 2)}% in ${npL.d}`),
-    stT('Tỷ lệ nợ xấu theo hai định nghĩa, và các chỉ số an toàn của tổ chức nhận tiền gửi (IMF FSI).', 'The bad-loan ratio under two definitions, and soundness indicators for deposit takers (IMF FSI).'),
-    `<div id="fs-st-npl-leg"></div><div id="fs-st-npl" class="st-viz"></div><div id="fs-st-npl-note"></div><div class="st-sub">${stT('Chỉ số an toàn (mỗi biểu đồ một thang đo)', 'Soundness indicators (one scale per chart)')}</div><div id="fs-st-smult" class="st-mult"></div>${stSrc(stT('Nguồn: IMF Financial Soundness Indicators; nợ xấu nội bảng: NHNN. ROE 2023 âm do khoản lỗ lớn của các ngân hàng yếu được tính vào toàn hệ thống.', 'Source: IMF Financial Soundness Indicators; on-balance NPL: SBV. The negative 2023 ROE reflects large losses at weak banks counted in the system total.'))}`);
-  h += stChap('fs-st-sbv', stT('Chương 5 · Ngân hàng Nhà nước', 'Chapter 5 · The central bank'),
-    stT(`Dự trữ ngoại hối ${stN(rL[1], 1)} tỷ USD cuối ${rL[0]}, dưới đỉnh ${stN(rPk[1], 1)} tỷ năm ${rPk[0]}`, `FX reserves of ${stN(rL[1], 1)} bn USD at end-${rL[0]}, below the ${stN(rPk[1], 1)} bn peak of ${rPk[0]}`),
-    stT('Dự trữ ngoại hối cuối năm (tỷ USD, IMF, gồm vàng), theo bảng cân đối của NHNN. Số ở tab Kinh tế không gồm vàng nên thấp hơn.', 'Year-end FX reserves (bn USD, IMF, incl. gold), from the SBV balance sheet. The Economy tab\'s figure excludes gold and is lower.'),
-    `<div id="fs-st-res" class="st-viz"></div>${stSrc(stT('Nguồn: IMF IFS / báo cáo thường niên NHNN.', 'Source: IMF IFS / SBV annual reports.'))}`);
-  h += fsStPipeChap();
-  h += fsStLeversChap();
-  h += fsStTo2030Chap();
-  // what to watch
-  const ldr = typeof POLICY !== 'undefined' ? (polIns('mon', 'ldr_cap').history || []).find(x => x.date > pgToday().toISOString().slice(0, 10)) : null, tg = fsStFlow('Credit growth target 2026');
-  const w = [];
-  if (ldr) w.push([polDS(ldr.date), stT('Trần cho vay/tiền gửi (LDR) nâng lên', 'Loan-to-deposit cap raised'), `${ciE(ldr.from || '')} → ${ciE(ldr.to || '')}. ${stT('Ngân hàng có thêm dư địa cho vay mà không cần huy động tương ứng.', 'Banks gain room to lend without matching deposits.')}`]);
+  // ── 3 · rates & monetary policy ──
+  h += stChap('fs-st-rates', stT('Chương 3 · Lãi suất và chính sách tiền tệ', 'Chapter 3 · Rates and monetary policy'), fsPolTitle(),
+    stT('Phần II của báo cáo NHNN: lãi suất điều hành, nghiệp vụ thị trường mở, dự trữ bắt buộc; sau đó là vì sao lãi suất thị trường vẫn tăng khi lãi suất điều hành đứng yên.', 'Part II of the SBV report: policy rates, open-market operations, reserve requirements; then why market rates rise while policy rates stand still.'),
+    fsBlk('fs-b-polr', stT('Lãi suất điều hành', 'Policy rates'), '', '', `<div id="fs-st-polr-leg"></div><div id="fs-st-polr" class="st-viz"></div><div id="fs-st-polr-note"></div>`)
+    + fsBlk('fs-b-omo', stT('Thị trường mở', 'Open-market operations'), '', '', `<div id="fs-st-omo-leg"></div><div id="fs-st-omo" class="st-viz"></div><div id="fs-st-omo-note"></div>`)
+    + fsBlk('fs-b-rrr', stT('Dự trữ bắt buộc', 'Reserve requirements'), fsRrrTitle(), '', `<div id="fs-st-rrr" class="st-facts"></div><div id="fs-st-rrr-note"></div>`)
+    + fsBlk('fs-b-why', stT('Vì sao lãi suất khó giảm', 'Why rates won\'t fall'),
+      cof.length > 1 && dep.length > 1 ? stT(`Chi phí vốn ngân hàng niêm yết tăng từ ${stN(cof[0][1], 2)}% lên ${stN(cof[cof.length - 1][1], 2)}%; lãi suất huy động 12 tháng lên ${stN(dep[dep.length - 1][1], 2)}%`, `Listed banks' cost of funds rose from ${stN(cof[0][1], 2)}% to ${stN(cof[cof.length - 1][1], 2)}%; 12-month deposit rates reached ${stN(dep[dep.length - 1][1], 2)}%`) : stT('Vì sao lãi suất khó giảm', 'Why rates won\'t fall'),
+      stT('Năm bước, mỗi bước một bằng chứng: cuộn xuống (hoặc bấm số trên biểu đồ) để biểu đồ đổi theo. Sau đó là sơ đồ nối các nguyên nhân và vì sao NHNN không thể chỉ hạ lãi suất hay in thêm tiền để bù.', 'Five steps, one piece of evidence each: scroll on (or press the numbers on the chart) and the chart changes with you. Then the diagram linking the causes, and why the SBV cannot simply cut rates or print money to offset it.'),
+      `${fsScBlock()}${stSrc(stT('Nguồn các bước: NHNN, IMF FSI (tăng trưởng cả năm); công ty chứng khoán qua báo chí (LDR đơn giản, chi phí vốn, lãi suất bình quân MBS); Vietcombank; NSO (CPI); Cục Dự trữ Liên bang Mỹ; NHNN (tỷ giá trung tâm). Chuỗi tháng lấy từ bảng số liệu của tab Mô phỏng.', 'Step sources: SBV, IMF FSI (full-year growth); brokers via the press (simple LDR, cost of funds, MBS average rate); Vietcombank; NSO (CPI); US Federal Reserve; SBV (central rate). Monthly series from the Simulation tab\'s panel.'))}
+       <div class="st-sub">${stT('Toàn bộ cơ chế trên một sơ đồ', 'The whole mechanism in one diagram')}</div><div id="fs-st-mech"></div><div id="fs-st-cf"></div><div class="st-sub">${stT('Bốn chỉ số của ngân hàng niêm yết (mỗi biểu đồ một thang đo)', 'Four listed-bank metrics (one scale per chart)')}</div><div id="fs-st-wmult" class="st-mult"></div>
+       <div class="st-sub">${stT('Mười nguyên nhân, xếp theo mức tác động', 'The ten causes, ranked by impact')}</div><div id="fs-st-drivers" class="st-facts" style="grid-template-columns:repeat(2,1fr)"></div>`));
+  // ── 4 · exchange rate, reserves & gold ──
+  h += stChap('fs-st-fx', stT('Chương 4 · Tỷ giá, dự trữ ngoại hối và vàng', 'Chapter 4 · Exchange rate, reserves and gold'), fsFxTitle(),
+    stT('Phần II của báo cáo NHNN: quản lý ngoại hối, dự trữ quốc tế và thị trường vàng.', 'Part II of the SBV report: foreign-exchange management, international reserves and the gold market.'),
+    fsBlk('fs-b-band', stT('Tỷ giá trong biên độ', 'The rate inside its band'), '', '', `<div id="fs-st-band-leg"></div><div id="fs-st-band" class="st-viz"></div><ol class="fs-evl" id="fs-st-band-ev"></ol><div id="fs-st-band-note"></div>`)
+    + fsBlk('fs-b-res', stT('Dự trữ ngoại hối', 'FX reserves'), '', '', `<div id="fs-st-resm-leg"></div><div id="fs-st-resm" class="st-viz"></div><div id="fs-st-resm-note"></div>`)
+    + fsBlk('fs-b-gold', stT('Quản lý thị trường vàng', 'Gold-market management'), '', '', `<div id="fs-st-gold" class="st-viz"></div><ol class="fs-evl" id="fs-st-gold-ev"></ol><div id="fs-st-gold-note"></div>`));
+  // ── 5 · banking-system health ──
+  h += stChap('fs-st-safe', stT('Chương 5 · Sức khỏe hệ thống ngân hàng', 'Chapter 5 · Banking-system health'), fsSafeTitle(),
+    stT('Phần II của báo cáo NHNN: thanh tra, giám sát, cơ cấu lại tổ chức tín dụng và xử lý nợ xấu. Mỗi định nghĩa giữ riêng một đường; không trộn số.', 'Part II of the SBV report: inspection, supervision, restructuring of credit institutions and bad-debt resolution. Each definition keeps its own line; nothing is merged.'),
+    fsBlk('fs-b-assets', stT('Quy mô', 'Size'), '', '', `<div id="fs-st-assets" class="st-viz"></div><div id="fs-st-assets-note"></div>`)
+    + fsBlk('fs-b-hmult', stT('Vốn, thanh khoản, sinh lời', 'Capital, liquidity, profitability'), stT('Các tỷ lệ an toàn so với ngưỡng quy định', 'Safety ratios against their regulatory limits'), stT('Mỗi biểu đồ một thang đo; đường ngang là ngưỡng hiện hành trong dữ liệu chính sách.', 'One scale per chart; the horizontal rule is the current limit in the policy data.'), `<div id="fs-st-hmult" class="st-mult"></div>${stSrc(stT('Nguồn: NHNN (thống kê một số chỉ tiêu cơ bản; ROA/ROE lũy kế, chỉ vẽ số cả năm); IMF Financial Soundness Indicators (tổ chức nhận tiền gửi). ROE của IMF năm 2023 âm do lỗ lớn của các ngân hàng yếu được tính vào toàn hệ thống; số NHNN không cho thấy điều đó.', 'Source: SBV (basic indicators; ROA/ROE cumulative, full-year values only); IMF Financial Soundness Indicators (deposit takers). The IMF\'s negative 2023 ROE reflects weak banks\' losses counted in the system; the SBV figures do not show it.'))}`)
+    + fsBlk('fs-b-npl', stT('Nợ xấu', 'Bad loans'), '', '', `<div id="fs-st-npl-leg"></div><div id="fs-st-npl" class="st-viz"></div><div id="fs-st-npl-note"></div>`)
+    + fsBlk('fs-b-vamc', stT('Xử lý nợ xấu và ngân hàng yếu', 'Resolving bad debt and weak banks'), '', '', `<div id="fs-st-vamc" class="st-viz"></div><div id="fs-st-vamc-note"></div><div class="st-sub">${stT('Chuyển giao bắt buộc các ngân hàng yếu', 'Compulsory transfers of weak banks')}</div><div id="fs-st-xfer" class="st-viz"></div><ol class="fs-evl" id="fs-st-xfer-ev"></ol>`)
+    + fsBlk('fs-b-inst', stT('Các loại tổ chức tín dụng', 'Types of credit institution'), '', '', `<div id="fs-st-inst-leg"></div><div id="fs-st-inst" class="st-viz"></div><div id="fs-st-inst-note"></div>`));
+  // ── 6 · payments & inclusion ──
+  h += stChap('fs-st-pay', stT('Chương 6 · Thanh toán và tài chính toàn diện', 'Chapter 6 · Payments and financial inclusion'), fsPayTitle(),
+    stT('Phần II của báo cáo NHNN: thanh toán và công nghệ ngân hàng, phát hành tiền, tài chính toàn diện.', 'Part II of the SBV report: payments and banking technology, currency issuance, financial inclusion.'),
+    fsBlk('fs-b-payv', stT('Thanh toán không dùng tiền mặt', 'Non-cash payments'), '', '', `<div id="fs-st-payv-leg"></div><div id="fs-st-payv" class="st-viz"></div><div id="fs-st-payv-note"></div>`)
+    + fsBlk('fs-b-paych', stT('Theo kênh', 'By channel'), '', '', `<div id="fs-st-paych-leg"></div><div id="fs-st-paych" class="st-viz"></div><div id="fs-st-paych-note"></div>`)
+    + fsBlk('fs-b-paytg', stT('Mục tiêu', 'Targets'), '', '', `<div id="fs-st-paytg" class="st-viz"></div><div id="fs-st-paytg-note"></div>`)
+    + fsBlk('fs-b-incl', stT('Tài chính toàn diện', 'Financial inclusion'), '', '', `<div id="fs-st-incl-leg"></div><div id="fs-st-incl" class="st-viz"></div><div id="fs-st-incl-f" class="st-facts"></div><div id="fs-st-incl-note"></div>`));
+  // ── 7 · the SBV & rules ──
+  h += stChap('fs-st-sbv', stT('Chương 7 · NHNN và luật chơi', 'Chapter 7 · The SBV and the rules'), fsSbvTitle(),
+    stT('Ai điều khiển cung tiền và bằng công cụ nào; tiền đi qua NHNN thế nào; NHNN nắm gì; các luật, thông tư đang đổi luật chơi; và chỉ tiêu đến 2030. Báo cáo thường niên NHNN không có báo cáo tài chính của chính NHNN, nên bảng cân đối dưới đây theo IMF.', 'Who controls the money supply and with which levers; how money passes through the SBV; what the SBV holds; the laws and circulars changing the rules; and the targets to 2030. The SBV annual report has no SBV financial statements, so the balance sheet below follows the IMF.'),
+    fsStLeversChap() + fsStPipeChap()
+    + fsBlk('fs-b-sbvb', stT('NHNN nắm gì', 'What the SBV holds'), '', '', `<div id="fs-st-sbvb-leg"></div><div id="fs-st-sbvb" class="st-viz"></div><div id="fs-st-sbvb-note"></div>`)
+    + fsBlk('fs-b-legal', stT('Khung pháp lý', 'Legal framework'), '', '', `<div id="fs-st-legal-leg"></div><div id="fs-st-legal" class="st-viz"></div><div id="fs-st-legal-note"></div>`)
+    + fsStTo2030Chap());
+  // ── what to watch: every dated POLICY move still ahead (monetary side), then the credit target and the deposit rate ──
+  const today = pgToday().toISOString().slice(0, 10), tg = fsStFlow('Credit growth target 2026'), w = [];
+  const ahead = typeof POLICY !== 'undefined' ? (POLICY.mon.instruments || []).flatMap(I => (I.history || []).filter(x => x && x.date > today).map(x => ({ I, x }))).sort((a, b) => a.x.date.localeCompare(b.x.date)).slice(0, 3) : [];
+  ahead.forEach(({ I, x }) => w.push([polDS(x.date), ciE(stT(I.name_vi, I.name_en)), `${ciE(x.from || '')} → ${ciE(x.to || '')}${x.doc ? ` · ${ciE(x.doc)}` : ''}`]));
   if (tg) w.push([stT('31/12/2026', '31 Dec 2026'), stT(`Chỉ tiêu tín dụng ${stN(tg, 0)}%`, `${stN(tg, 0)}% credit target`), stT(`Đến ${fsStMon(M.months[mi])} đã tăng ${stN(M.credit_ytd[mi], 2)}%; còn ${stN(tg - M.credit_ytd[mi], 2)} điểm % cho ${12 - +M.months[mi].replace(/^T/, '').split('/')[0]} tháng cuối năm.`, `${stN(M.credit_ytd[mi], 2)}% reached by ${fsStMon(M.months[mi])}; ${stN(tg - M.credit_ytd[mi], 2)} points left for the last ${12 - +M.months[mi].replace(/^T/, '').split('/')[0]} months.`)]);
-  if (dep.length) w.push([dep[dep.length - 1][0], stT('Lãi suất huy động 12 tháng', '12-month deposit rate'), stT(`${stN(dep[dep.length - 1][1], 2)}% ở nhóm ngân hàng tư nhân, so với ${stN(dep[0][1], 2)}% (${dep[0][0]}).`, `${stN(dep[dep.length - 1][1], 2)}% at private banks, against ${stN(dep[0][1], 2)}% (${dep[0][0]}).`)]);
-  h += stChap('fs-st-watch', stT('Tiếp theo · Điều cần theo dõi', 'Next · What to watch'), stT('Ba con số sẽ cho biết áp lực lãi suất có giảm hay không', 'Three numbers that will show whether rate pressure eases'), '', `<ol class="st-watch">${w.map(([t, b, p]) => `<li><time>${t}</time><b>${b}</b>${p}</li>`).join('')}</ol>`);
+  if (dep.length) w.push([stT('Hằng tháng', 'Monthly'), stT('Lãi suất huy động 12 tháng', '12-month deposit rate'), stT(`${stN(dep[dep.length - 1][1], 2)}% ở nhóm ngân hàng tư nhân (${dep[dep.length - 1][0]}), so với ${stN(dep[0][1], 2)}% (${dep[0][0]}).`, `${stN(dep[dep.length - 1][1], 2)}% at private banks (${dep[dep.length - 1][0]}), against ${stN(dep[0][1], 2)}% (${dep[0][0]}).`)]);
+  h += stChap('fs-st-watch', stT('Tiếp theo · Điều cần theo dõi', 'Next · What to watch'), stT(`${w.length} mốc sẽ cho biết áp lực vốn và lãi suất có giảm hay không`, `${w.length} markers that will show whether funding and rate pressure eases`), '', `<ol class="st-watch">${w.map(([t, b, p]) => `<li><time>${t}</time><b>${b}</b>${p}</li>`).join('')}</ol>`);
   h += stChap('fs-st-explore', stT('Tự khám phá', 'Explore'),
     stT('Số liệu đầy đủ: NHNN, cung tiền, dòng vốn, lãi suất, an toàn hệ thống', 'The full data: SBV, money supply, flows, rates, soundness'),
     stT('Các bảng và biểu đồ chi tiết kèm nguồn; phụ lục cuối trang có số liệu các ngân hàng niêm yết.', 'Detailed tables and charts with sources; the appendix at the bottom has data for the listed banks.'), '');
   root.innerHTML = h;
-  fsStGap(); fsStDepth(); fsStMMult(); fsStWaffle(); fsStLB(); fsStOSChart(); fsStFacts(); fsScDraw(); fsStMech(); fsStCf(); fsStWMult(); fsStDrivers(); fsStNpl(); fsStSMult(); fsStRes(); fsLvDraw();
+  const run = fns => fns.forEach(f => { try { f(); } catch (e) { console.warn('fs story', f.name, e); } });
+  run([fsStM2C, fsStNest, fsStOps, fsStLiq, fsStGap, fsStMMult, fsStComp, fsStDepth, fsStCgT, fsStDepH,
+    fsStWaffle, fsStLB, fsStOSChart, fsStFacts,
+    fsStPolR, fsStOmoW, fsStRrr, fsScDraw, fsStMech, fsStCf, fsStWMult, fsStDrivers,
+    fsStBand, fsStResM, fsStGold,
+    fsStAssets, fsStHMult, fsStNpl, fsStVamc, fsStXfer, fsStInst,
+    fsStPayV, fsStPayCh, fsStPayTg, fsStIncl,
+    fsLvDraw, fsStSbvB, fsStLegal]);
   fsStWhyAll(root);
   const fsHero = root.querySelector('#fs-st-hero'); if (fsHero && FINSYS.alternatives) { fsHero.insertAdjacentHTML('beforeend', fsAltBlock()); fsAltWire(); }
   stFinish(root); fsPipePaint(); fsScWire();
@@ -7245,7 +7347,7 @@ function fsStMMult() {
   const crI = M.months.map((_, i) => i).filter(i => M.credit_ytd[i] != null), crSt = crI.map(i => (M.credit_basis || [])[i] === 'statement'), cL = crI[crI.length - 1];
   const crTip = crI.map((i, j) => crSt[j] ? ' · ' + fsCutLab((M.credit_cutoff || [])[i]) : '');
   const crSub = crSt[crSt.length - 1] ? `${stT('mới nhất', 'latest')}: ${mm([[M.months[cL], 0]])[0][0]} · ${fsCutLab(M.credit_cutoff[cL])}; ${stT('○ = chưa có trong bảng số liệu NHNN', '○ = not yet in the SBV data table')}` : null;
-  el.innerHTML = [[stT('Tín dụng (% từ đầu năm)', 'Credit (% YTD)'), mm(crI.map(i => [M.months[i], M.credit_ytd[i]])), f1, { hol: crSt, tip: crTip }, crSub], [stT('Tiền gửi khách hàng (% từ đầu năm)', 'Customer deposits (% YTD)'), mm(ser(M.months, M.deposits_ytd)), f1], [stT('Tiền mặt / M2', 'Cash / M2'), mm(ser(M.months, M.cash_to_m2_pct)), f1], [stT('Lãi suất liên ngân hàng qua đêm', 'Overnight interbank rate'), ser((I.months || []).map(m => `${+m.slice(5)}/${m.slice(2, 4)}`), I.values || []), f2]]
+  el.innerHTML = [[stT('Tín dụng (% từ đầu năm)', 'Credit (% YTD)'), mm(crI.map(i => [M.months[i], M.credit_ytd[i]])), f1, { hol: crSt, tip: crTip }, crSub], [stT('Tiền gửi khách hàng (% từ đầu năm)', 'Customer deposits (% YTD)'), mm(ser(M.months, M.deposits_ytd)), f1]]
     .filter(x => x[1].length > 1).map(([t, p, f, o, sub]) => stMini(t, f(p[p.length - 1][1]), stMiniLine(p, f, Object.assign({ name: t }, o || {})), sub || `${stT('mới nhất', 'latest')}: ${p[p.length - 1][0]}`)).join('');
 }
 // ch2 — sector waffle (slots in fixed order) + growth bars: 2025 grey, 7M-2026 blue
@@ -7393,39 +7495,6 @@ function fsStDrivers() {
   document.getElementById('fs-st-drivers').innerHTML = D.map(d => { const up = d.direction === 'up_pressure';
     return `<div class="st-fact"><div class="st-mini-h" style="display:flex;gap:8px;align-items:baseline"><b style="font:650 18px var(--font-ui);color:#16181d">${d.rank}</b><span style="color:#16181d;font-weight:600">${ciE(E ? d.title_en : d.title_vi)}</span></div><div class="st-fact-s">${up ? '▲ ' + stT('đẩy lãi suất lên', 'pushes rates up') : '■ ' + stT('cản trở giảm lãi suất', 'blocks rate cuts')}</div></div>`; }).join('');
 }
-// ch4 — NPL under two definitions (one axis, both %), crosshair over the annual series
-function fsStNpl() {
-  const el = document.getElementById('fs-st-npl'), P = fsStR('npl_imf_fsi_pct'), S = fsStR('npl_onbalance_sbv_pct').filter(x => /Q\d$/.test(x.d)).sort((a, b) => a.d.localeCompare(b.d));
-  document.getElementById('fs-st-npl-leg').innerHTML = stLegend([{ n: stT('IMF FSI (cả năm)', 'IMF FSI (annual)'), c: ST.blue, k: 'line' }, { n: stT('NHNN, nợ xấu nội bảng (quý)', 'SBV, on-balance NPL (quarterly)'), c: ST.orange, k: 'line' }].concat(fsProjLeg(['npl_pct'], [stT('Nợ xấu toàn hệ thống (NHNN)', 'System NPL ratio (SBV)')], [ST.orange])));
-  const PK = ['npl_pct'], pyM = Math.min(2030, fsProjMaxY(PK) || 0), x0 = +P[0].d, x1 = Math.max(2026.5, pyM + .5), pj = pyM > 2026, W = stCW(el), narrow = W < 560, H = 220, ML = 40, MR = narrow ? 120 : 190, MT = 14, MB = 24, sx = stLin(x0, x1, ML, W - MR), yTop = Math.max(6, ...[...fsProjVals(PK), ...P.map(p => p.v), ...S.map(p => p.v)].filter(v => v != null).map(v => Math.ceil(v / 2) * 2)), sy = stLin(0, yTop, H - MB, MT);   // top from the data
-  let s = stAxisY(sy, stNice(0, yTop, 3).filter(v => v <= yTop), ML, W - MR, v => v + '%');
-  for (let y = x0; y <= Math.floor(x1); y++) if (narrow ? y % 4 === 1 : y % 2 === 1) s += `<text class="st-tick" x="${sx(y)}" y="${H - 6}" text-anchor="middle">${y}</text>`;
-  if (pj) s += fsProjDiv(sx(2026.5) + 2, MT, H - MB) + fsProjSvg('npl_pct', sx, sy, ST.orange, null, stT('Nợ xấu (NHNN)', 'NPL ratio (SBV)'), v => stN(v, 2) + '%', { endLab: true, tLab: true });
-  s += stLine(P.map(p => [sx(+p.d), sy(p.v)]), ST.blue) + P.map((p, i) => stDot(sx(+p.d), sy(p.v), 4, ST.blue, ['IMF FSI · ' + p.d, stN(p.v, 2) + '%'], { d: i * 40 })).join('');
-  const qx = d => +d.slice(0, 4) + (+d.slice(-1) - 0.5) / 4 - 0.5;
-  if (S.length) { s += stLine(S.map(p => [sx(qx(p.d)), sy(p.v)]), ST.orange) + S.map(p => stDot(sx(qx(p.d)), sy(p.v), 4, ST.orange, [stT('NHNN nội bảng · ', 'SBV on-balance · ') + p.d, stN(p.v, 2) + '%'])).join(''); const l = S[S.length - 1]; s += `<text class="st-lab" x="${sx(qx(l.d)) + 10}" y="${sy(l.v) + 14}">${stT('NHNN', 'SBV')} ${stN(l.v, 2)}% (${l.d})</text>`; }
-  const l = P[P.length - 1]; s += `<text class="st-lab" x="${sx(+l.d) + 10}" y="${sy(l.v) - 6}">IMF ${stN(l.v, 2)}% (${l.d})</text>`;
-  const pk = P.reduce((a, b) => b.v > a.v ? b : a), prev = P[P.indexOf(pk) - 1]; if (prev) s += stAnn(sx(+pk.d), sy(pk.v), Math.max(ML + 150, sx(+pk.d) - 40), sy(Math.min(yTop * .95, 5.8)), stT(`${pk.d}: ${stN(pk.v, 2)}%, từ ${stN(prev.v, 2)}% năm ${prev.d}`, `${pk.d}: ${stN(pk.v, 2)}%, from ${stN(prev.v, 2)}% in ${prev.d}`), 'end');
-  el.innerHTML = stSvg(W, H, s, stT('Tỷ lệ nợ xấu', 'Non-performing loan ratio'));
-  document.getElementById('fs-st-npl-note').innerHTML = stNote(stT(`Số nợ xấu nội bảng của NHNN (${stN(S.length ? S[S.length - 1].v : null, 2)}%) thấp hơn số IMF (${stN(l.v, 2)}%).`, `The SBV's on-balance figure (${stN(S.length ? S[S.length - 1].v : null, 2)}%) is lower than the IMF's (${stN(l.v, 2)}%).`), stT('Hai định nghĩa khác nhau về phạm vi tổ chức và loại nợ; không nên so trực tiếp từng quý.', 'The two definitions cover different institutions and loan types; do not compare them quarter by quarter.'));
-  if (pj) document.getElementById('fs-st-npl-note').insertAdjacentHTML('beforeend', fsProjMeta(PK));
-  stRW(el, fsStNpl);
-}
-function fsStSMult() {
-  const f = v => stN(v, 1) + '%';
-  document.getElementById('fs-st-smult').innerHTML = [[stT('Bao phủ nợ xấu bằng dự phòng', 'Provisions / NPLs'), 'provisions_to_npl_imf_fsi_pct'], [stT('Hệ số an toàn vốn (CAR)', 'Capital adequacy (CAR)'), 'car_imf_fsi_pct'], [stT('Lợi nhuận / vốn chủ (ROE)', 'Return on equity (ROE)'), 'roe_imf_fsi_pct'], [stT('Tỷ trọng cho vay BĐS thương mại', 'Commercial real-estate loan share'), 'commercial_real_estate_loans_share_imf_fsi_pct']]
-    .map(([t, k]) => { const p = fsStR(k).map(x => [x.d, x.v]); return p.length > 1 ? stMini(t, f(p[p.length - 1][1]), stMiniLine(p, f, { name: t, ref: k === 'roe_imf_fsi_pct' ? 0 : null, refL: '0' }), `${stT('từ', 'from')} ${f(p[0][1])} (${p[0][0]})`) : ''; }).join('');
-}
-// ch5 — FX reserves: grey context bars, the peak and the latest accented
-function fsStRes() {
-  const el = document.getElementById('fs-st-res'), B = FINSYS.sbv.balance_sheet, v = B.series.fx_reserves_busd, P = B.periods.map((p, i) => [p, v[i]]).filter(x => x[1] != null);
-  const W = stCW(el), narrow = W < 560, H = 230, ML = 40, MR = 20, MT = 24, MB = 24, slot = (W - ML - MR) / P.length, cx = i => ML + (i + .5) * slot, mx = Math.max(...P.map(p => p[1])), sy = stLin(0, Math.ceil(mx / 20) * 20, H - MB, MT);
-  let s = stAxisY(sy, stNice(0, mx, 4), ML, W - MR, x => x) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
-  P.forEach(([p, x], i) => { const acc = x === mx || i === P.length - 1; s += stBarV(cx(i), slot, sy(x), sy(0), acc ? ST.blue : ST_MUTE, [`${p} · ${stT('IMF, gồm vàng', 'IMF, incl. gold')}`, stN(x, 1) + stT(' tỷ USD', ' bn USD')], { d: i * 50 }) + `${!narrow || i % 2 === 0 || i === P.length - 1 ? `<text class="st-tick" x="${cx(i)}" y="${H - 6}" text-anchor="middle">${narrow ? String(p).slice(-2) : p}</text>` : ''}${acc ? `<text class="st-lab st-b" x="${cx(i)}" y="${sy(x) - 7}" text-anchor="middle">${stN(x, 1)}</text>` : ''}`; });
-  el.innerHTML = stLegend([{ n: stT('Dự trữ ngoại hối cuối năm (IMF, gồm vàng)', 'Year-end FX reserves (IMF, incl. gold)'), c: ST.blue }]) + stSvg(W, H, s, stT('Dự trữ ngoại hối (IMF, gồm vàng)', 'FX reserves (IMF, incl. gold)'))
-    + `<div class="st-src">${stT('Định nghĩa: gồm vàng tiền tệ. Thẻ dự trữ ở phụ lục tab Chính sách dùng số không gồm vàng, nên thấp hơn.', 'Definition: includes monetary gold. The reserves card in the Policies appendix uses the figure excluding gold, so it is lower.')}</div>`;
-  stRW(el, fsStRes);
-}
 // ── data access for ch3b + ch6: SBV operations log and the Finance agent's constraints / plumbing facts. Everything is
 // optional: a missing key hides its value, nothing is typed in its place. Weekly ranges are dated by their last day; log
 // notes flagged CAUTION are skipped and, on the same date, VBMA wins (guidance in FINSYS.sbv.notes).
@@ -7541,7 +7610,7 @@ function fsStCf() {
   const r1 = { acc: true, title: stT('Thực tế: NHNN vẫn đang bơm tiền, qua các khoản vay ngắn hạn có tài sản bảo đảm', 'In fact the SBV is supplying money, through short, collateralised loans'),
     now: o.omo ? `${stT('Dư nợ OMO', 'OMO outstanding')} ${fsU(o.omo.value, 'bn VND')} (${fsDD(o.omo.date)})${pkPct != null ? stT(`, bằng ${stN(pkPct, 0)}% mức đỉnh ${fsU(o.omoPk.value, 'bn VND')} (${fsDD(o.omoPk.date)})`, `, ${stN(pkPct, 0)}% of the ${fsU(o.omoPk.value, 'bn VND')} peak (${fsDD(o.omoPk.date)})`) : ''}` : '',
     sub: [o.net ? `${stT('Tuần', 'Week of')} ${fsWk(o.net.date)}: ${o.net.value >= 0 ? stT('bơm ròng', 'net injection') : stT('hút ròng', 'net withdrawal')} ${fsEst(o.net)}${fsU(Math.abs(o.net.value), 'bn VND')}` : '', o.swap ? `${stT('hoán đổi ngoại tệ', 'FX swap')} ${fsU(o.swap.value, 'bn USD')} (${fsDD(o.swap.date)})` : ''].filter(Boolean).join('; '),
-    tx: stT('Bơm qua OMO là cho vay ngắn hạn (vài ngày đến vài tháng): ngân hàng phải cầm cố giấy tờ có giá và trả lại khi đến hạn. Đó là điều tiết thanh khoản, không phải hạ lãi suất điều hành hay in tiền trên diện rộng. Chương 6 cho thấy dòng tiền này.', 'OMO money is a short loan (days to months): banks pledge securities and repay at maturity. It manages liquidity; it is not a policy-rate cut or money printing at scale. Chapter 6 traces these flows.') };
+    tx: stT('Bơm qua OMO là cho vay ngắn hạn (vài ngày đến vài tháng): ngân hàng phải cầm cố giấy tờ có giá và trả lại khi đến hạn. Đó là điều tiết thanh khoản, không phải hạ lãi suất điều hành hay in tiền trên diện rộng. Chương 7 cho thấy dòng tiền này.', 'OMO money is a short loan (days to months): banks pledge securities and repay at maturity. It manages liquidity; it is not a policy-rate cut or money printing at scale. Chapter 7 traces these flows.') };
   const col = (...bs) => `<div class="fs-cf-col">${bs.map((b, i) => (i ? arr(b.verb) : '') + box(b)).join('')}</div>`;
   a2.verb = stT('làm giảm', 'which cuts'); b2.verb = stT('vốn chuyển sang USD', 'money shifts to USD'); b3.verb = stT('giá nhập khẩu tăng', 'import prices rise'); c2.verb = stT('đẩy', 'pushes');
   const pol = o.pol ? `OMO ${pct(o.pol.v)}${o.refi ? `, ${stT('tái cấp vốn', 'refinancing')} ${pct(o.refi.v)}` : ''}` : '';
@@ -7626,7 +7695,7 @@ function fsStPipeChap() {
   const S = fsPipeSpec(), o = S.o; fsPipeTab = Math.min(fsPipeTab, S.tabs.length - 1);
   const title = o.omo ? stT(`${fsU(o.omo.value, 'bn VND')} NHNN cho ngân hàng vay qua OMO; tín phiếu hút tiền ${o.bills && o.bills.value === 0 ? 'đang bằng 0' : o.bills ? fsU(o.bills.value, 'bn VND') : ''}`, `${fsU(o.omo.value, 'bn VND')} lent to banks through OMO; SBV bills outstanding: ${o.bills && o.bills.value === 0 ? 'zero' : o.bills ? fsU(o.bills.value, 'bn VND') : ''}`) : stT('NHNN điều tiết tiền như thế nào', 'How the SBV moves money');
   const rows = []; S.tabs.forEach(t => { const nm = id => fsTxt(t.actors.find(a => a.id === id).n.join(' ')); t.flows.forEach(f => rows.push([t.name, `${nm(f.f)} → ${nm(f.t)}`, fsTxt(f.n), fsTxt([f.v, f.x].filter(Boolean).join(' · ')) || '—'])); t.facts.forEach(x => rows.push([t.name, '', fsTxt(x.t), fsTxt([x.v, x.s].filter(Boolean).join(' · '))])); });
-  return stChap('fs-st-pipe', stT('Chương 6 · NHNN điều tiết tiền thế nào', 'Chapter 6 · How the SBV moves money'), title,
+  return fsBlk('fs-b-pipe', stT('NHNN điều tiết tiền thế nào', 'How the SBV moves money'), title,
     stT('Mũi tên đi theo dòng tiền đồng. Lưu ý: NHNN phát hành <b>tín phiếu</b>, không phát hành trái phiếu; <b>trái phiếu Chính phủ</b> do Kho bạc Nhà nước (Bộ Tài chính) phát hành. Chọn một kênh để xem.', 'Arrows follow the dong. Note: the SBV issues <b>bills</b>, not bonds; <b>government bonds</b> are issued by the State Treasury (Ministry of Finance). Pick a channel.'),
     `<div class="st-ctrl fs-pipe-tabs" role="tablist" aria-label="${ciE(stT('Kênh dòng tiền', 'Money channel'))}">${S.tabs.map((t, i) => `<button type="button" role="tab" id="fs-pipe-t-${i}" data-fs-pipe="${i}" aria-controls="fs-pipe-panel" aria-selected="${i === fsPipeTab}" tabindex="${i === fsPipeTab ? 0 : -1}" class="${i === fsPipeTab ? 'on' : ''}">${t.name}</button>`).join('')}</div>
      <div id="fs-pipe-panel" role="tabpanel" aria-labelledby="fs-pipe-t-${fsPipeTab}"><p class="fs-pipe-lede" id="fs-pipe-lede"></p><div id="fs-pipe-leg"></div><div id="fs-pipe-svg" class="fs-pipe"></div><div id="fs-pipe-facts" class="st-facts"></div><div id="fs-pipe-note"></div></div>
@@ -7762,13 +7831,13 @@ function fsStLeversChap() {
       const h = x.last; rows.push([G.name, x.name, fsTxt(x.cur) || '—', x.since ? polDS(x.since) : '—', (h && h.doc) || '—', h ? `${fsLvDir(h.direction)} · ${polDS(h.date)}` : '—']); }); }));
   const note = S.cash ? stNote(stT(`Tiền mặt chỉ bằng ${stN(S.cash.p, 2)}% M2 (${fsStMon(S.cash.m)}); ≈ ${stN(100 - S.cash.p, 2)}% còn lại là tiền gửi, phần lớn sinh ra khi ngân hàng cho vay.`, `Cash is only ${stN(S.cash.p, 2)}% of M2 (${fsStMon(S.cash.m)}); the other ≈ ${stN(100 - S.cash.p, 2)}% is deposits, mostly created when banks lend.`),
     stT('Dự trữ của ngân hàng tại NHNN không được công bố hằng tháng, nên dashboard không tính số nhân tiền. "Nới/thắt" là hướng của lần điều chỉnh gần nhất trong dữ liệu, không đo mức độ.', 'Bank reserves at the SBV are not published monthly, so the dashboard does not compute a money multiplier. "Eased/tightened" is the direction of the latest move in the data, not its size.')) : '';
-  return stChap('fs-st-levers', stT('Chương 7 · Ai điều khiển cung tiền', 'Chapter 7 · Who controls the money supply'), title,
+  return fsBlk('fs-b-lv', stT('Ai điều khiển cung tiền', 'Who controls the money supply'), title,
     stT('NHNN tạo ra tiền cơ sở; ngân hàng cho vay tạo ra phần lớn M2. Mỗi ô là một công cụ, đặt dưới khâu nó tác động. Rê chuột hoặc bấm một ô để xem văn bản, ngày hiệu lực và đường tác động.', 'The SBV creates base money; bank lending creates most of M2. Each box is one lever, placed under the link it acts on. Hover or click a box for its document, effective date and path.'),
     `${stLegend([{ n: stT('Lần điều chỉnh gần nhất: nới', 'Latest move: easing'), c: ST.blue, k: 'dot' }, { n: stT('thắt', 'tightening'), c: ST.red, k: 'dot' }, { n: stT('giữ nguyên', 'neutral'), c: ST_MUTE, k: 'dot' }, { n: stT('số dư hoặc quy định luật, không phải công cụ điều chỉnh', 'a stock or a legal rule, not a dial'), c: ST.ink3, k: 'ring' }])}
      <div class="fs-lv-g">${stT('Cách tác động: <b>↑</b> thêm tiền · <b>↓</b> rút tiền · <b>↕</b> cả hai chiều · <b>≤</b> giới hạn, quy định hoặc mức giá', 'How it acts: <b>↑</b> adds money · <b>↓</b> removes money · <b>↕</b> either way · <b>≤</b> a limit, rule or price')}</div>
      <div class="fs-lv-t-h">${stT('Tua lại theo thời gian: kéo thanh trượt hoặc bấm ▶ để xem bảng như ở từng tháng từ 1/2023. Ô có viền đậm = điều chỉnh trong tháng đó. Bốn ô trên cùng luôn là số liệu mới nhất.', 'Rewind: drag the slider or press ▶ to see the board as it stood each month since Jan 2023. A heavy outline = a move in that month. The four boxes at the top always show the latest data.')}</div><div id="fs-lv-t"></div>
      <div id="fs-lv" class="fs-lv"></div><div id="fs-lv-det" class="fs-lv-det" aria-live="polite"></div>
-     ${note}<p class="fs-lv-go"><button type="button" class="st-pn-b" data-st-go="fs-st-pipe">${stT('Xem tiền đi qua từng kênh thế nào', 'See how the money moves through each channel')}: <b>${stT('Chương 6', 'Chapter 6')}</b><span aria-hidden="true"> →</span></button></p>
+     ${note}<p class="fs-lv-go"><button type="button" class="st-pn-b" data-fs-jump="fs-b-pipe">${stT('Xem tiền đi qua từng kênh thế nào', 'See how the money moves through each channel')}: <b>${stT('ngay bên dưới', 'just below')}</b><span aria-hidden="true"> →</span></button></p>
      ${fsTbl([stT('Nhóm', 'Group'), stT('Công cụ', 'Lever'), stT('Hiện hành', 'Current setting'), stT('Từ', 'Since'), stT('Văn bản', 'Document'), stT('Lần điều chỉnh gần nhất', 'Latest move')], rows)}
      ${stSrc(stT('Nguồn: dữ liệu chính sách của dashboard (POLICY: văn bản NHNN, Chính phủ, Quốc hội, Bộ Tài chính, kèm ngày hiệu lực); NHNN (M2, tiền mặt/M2, tín dụng); IMF Điều IV (tiền dự trữ); báo cáo tài chính 4 ngân hàng nhà nước (tiền gửi Kho bạc). ≈: tiền mặt = tỷ lệ tiền mặt/M2 × M2, do dashboard tính.', 'Source: the dashboard\'s policy data (POLICY: SBV, Government, National Assembly and MoF documents with effective dates); SBV (M2, cash/M2, credit); IMF Article IV (reserve money); the four state banks\' financial statements (Treasury deposits). ≈: cash = cash/M2 ratio × M2, computed by the dashboard.'))}`);
 }
@@ -7923,7 +7992,7 @@ function fsStTo2030Chap() {
   const cg = fsProj('credit_to_gdp_pct'), cgE = cg ? cg.pts.filter(p => p.b != null).pop() : null, tgs = (PR.targets || []).filter(t => t && fsNum(t.value) != null);
   const cgR = cgE && cgE.lo != null && cgE.hi != null ? ` (${stN(cgE.lo, 0)}–${stN(cgE.hi, 0)}%)` : '', title = cgE ? stT(`Tín dụng/GDP ${stN(cgE.b, 0)}%${cgR} năm ${cgE.y} theo ${fsProjKind(cg)}`, `Credit/GDP at ${stN(cgE.b, 0)}%${cgR} in ${cgE.y} under the ${fsProjKind(cg)}`) : stT(`Đến 2030: ${tgs.length} chỉ tiêu chính thức`, `To 2030: ${tgs.length} official targets`);
   const rows = tgs.map(t => `<li><time>${t.year}</time><b>${ciE(stT(t.label_vi, t.label_en) || '')}: ${fsTgV(t)}</b>${t.doc ? (t.url ? `<a href="${ciE(t.url)}" target="_blank" rel="noopener">${ciE(t.doc)}</a>` : ciE(t.doc)) : ''}</li>`).join('');
-  return stChap('fs-st-2030', stT('Đến 2030 · Chỉ tiêu và kịch bản', 'To 2030 · Targets and scenarios'), title,
+  return fsBlk('fs-b-2030', stT('Đến 2030 · Chỉ tiêu và kịch bản', 'To 2030 · Targets and scenarios'), title,
     stT('Đường liền: số liệu thực tế. Nét đứt, điểm rỗng: dự phóng; dải nhạt: khoảng thấp – cao; hình thoi: mục tiêu chính thức. Dự phóng không phải số liệu và có thể sai.', 'Solid: actual data. Dashed with hollow points: projection; light band: low – high range; diamond: official target. Projections are not data and can be wrong.'),
     `<div class="st-mult fs-pm">${minis.join('')}</div>${(K => stNote(stT(`${K.scenario || 0} kịch bản của dashboard, ${K.institution_forecast || 0} dự báo của tổ chức, ${tgs.length} mục tiêu chính thức${PR.as_of ? ` (cập nhật ${fsDD(PR.as_of)})` : ''}.`, `${K.scenario || 0} dashboard scenarios, ${K.institution_forecast || 0} institution forecasts, ${tgs.length} official targets${PR.as_of ? ` (as of ${fsDD(PR.as_of)})` : ''}.`), stT('Kịch bản của dashboard là phép tính lặp lại được, với giả định và công thức nêu trong phần phương pháp; không phải dự báo của một tổ chức.', 'A dashboard scenario is a reproducible calculation, with the assumptions and formula given under the method; it is not an institution\'s forecast.')))(Object.values(PR.series || {}).reduce((a, x) => (x && x.kind ? (a[x.kind] = (a[x.kind] || 0) + 1) : 0, a), {}))}${rows ? `<div class="st-sub">${stT('Các chỉ tiêu chính thức', 'Official targets')}</div><ol class="st-watch fs-tg">${rows}</ol>` : ''}${fsProjMeta(FS_PROJ_KEYS.map(x => x[0]))}`);
 }
@@ -7940,7 +8009,7 @@ function fsStWhy(id) {
     ${main.length ? `<ol class="fs-why-d">${main.map(li).join('')}</ol>` : ''}${sec.length ? `<details class="fs-why-more"><summary>${stT(`Yếu tố phụ (${sec.length})`, `Secondary factors (${sec.length})`)}</summary><ol class="fs-why-d">${sec.map((d, i) => li(d, main.length + i)).join('')}</ol></details>` : ''}
     ${cav ? `<p class="fs-why-c"><b>${stT('Lưu ý', 'Caveat')}:</b> ${ciE(cav)}</p>` : ''}${(C.sources || []).length ? stSrc(stT('Nguồn: ', 'Sources: ') + fsSrcL(C.sources)) : ''}</aside>`;
 }
-const FS_WHY_MAP = { hero: 'fs-st-hero', depth: 'fs-st-depth', flow: 'fs-st-flow', why: 'fs-st-why', safe: 'fs-st-safe', sbv: 'fs-st-sbv', plumbing: 'fs-st-pipe' };
+const FS_WHY_MAP = { hero: 'fs-b-gap', depth: 'fs-b-depth', flow: 'fs-st-flow', why: 'fs-b-why', safe: 'fs-b-npl', sbv: 'fs-b-res', plumbing: 'fs-b-pipe' };
 function fsStWhyAll(root) { Object.entries(FS_WHY_MAP).forEach(([id, sec]) => { const el = root.querySelector('#' + sec), h = fsStWhy(id); if (el && h) el.insertAdjacentHTML('beforeend', h); }); }
 window.addEventListener('resize', () => { clearTimeout(fsPipeRT); fsPipeRT = setTimeout(() => { const h = document.getElementById('fs-pipe-svg'); if (h && h.isConnected && h.clientWidth && Math.abs(h.clientWidth - (h._w || 0)) > 24) fsPipeDraw(); }, 150); });
 // Overview · deposit alternatives over time (FINSYS.alternatives, Finance agent). "What 100 million VND became" is chained
@@ -8041,6 +8110,652 @@ function fsAltWire() {
 function fsAltRetable() { const el = document.getElementById('fs-alt-chart'), root = document.getElementById('fs-story'); if (!el || !root) return; const nx = el.nextElementSibling; if (nx && nx.classList.contains('st-tbl')) { const o = nx.open; stTables(el.closest('.fs-alt')); const n2 = el.nextElementSibling; if (n2 && n2.classList.contains('st-tbl')) n2.open = o; } }
 let fsAltRT = null;
 window.addEventListener('resize', () => { clearTimeout(fsAltRT); fsAltRT = setTimeout(() => { const c = document.getElementById('fs-alt-chart'); if (c && c.isConnected && c.clientWidth && Math.abs(c.clientWidth - (c._w || 0)) > 8) { fsAltChart(); fsAltRetable(); } const s = document.getElementById('fs-alt-strip'); if (s && s.isConnected && s.clientWidth && (s.clientWidth < 720) !== ((s._w || 0) < 720)) fsAltStrip(); }, 150); });
+// ── SBV-report chapters: shared helpers. Time is placed at the END of each period (a year-end value sits at the year's
+// right edge), so annual, quarterly, monthly and dated points share one axis without shifting. Nulls stay gaps.
+const FS_MN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const fsTE = d => { const s = String(d || '').trim(); let m;
+  if ((m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s))) return +m[1] + (+m[2] - 1 + +m[3] / 31) / 12;
+  if ((m = /^(\d{4})-M?(\d{2})$/.exec(s))) return +m[1] + +m[2] / 12;
+  if ((m = /^(\d{4})-Q([1-4])$/.exec(s))) return +m[1] + +m[2] / 4;
+  if ((m = /^(\d{4})$/.exec(s))) return +m[1] + 1;
+  if ((m = /^T(\d{1,2})\/(\d{2})$/.exec(s))) return 2000 + +m[2] + +m[1] / 12;
+  return null; };
+const fsMS = m => { const [mm, yy] = String(m).replace(/^T/, '').split('/'); return stT(`T${+mm}/${yy}`, `${FS_MN[mm - 1]} ${yy}`); };   // short month 'T7/26' / 'Jul 26'
+const fsDL2 = d => { const s = String(d || ''); return /^\d{4}-\d{2}-\d{2}$/.test(s) ? polDS(s) : /^\d{4}-M?\d{2}$/.test(s) ? fsStDL(s.replace('-M', '-')) : /^\d{4}-Q\d$/.test(s) ? s.replace(/^(\d{4})-(Q\d)$/, '$2/$1') : s; };
+const fsMonths = (a, b) => { const [ya, ma] = String(a).split('-').map(Number), [yb, mb] = String(b).split('-').map(Number); return (yb - ya) * 12 + mb - ma; };
+const fsQ = q => /lower bound|hơn|trên|vượt|at least/i.test(q || '') ? '≥' : /approx|khoảng|gần|rounded/i.test(q || '') ? '≈' : '';
+// axis: nice ticks that cover the data; returns ticks and the domain
+const fsAx = (lo, hi, n = 4) => { const tk = stNice(lo, hi, n); return { tk, a: Math.min(lo, tk[0]), b: Math.max(hi, tk[tk.length - 1]) }; };
+const fsTickF = tk => v => stN(v, tk.some(t => Math.abs(t % 1) > 1e-9) ? (tk.some(t => Math.abs((t * 10) % 1) > 1e-9) ? 2 : 1) : 0);
+// year labels centred on each year span (points sit at period ends, so a year's label sits in the middle of its span)
+function fsYearTicks(sx, t0, t1, y, narrow) { let s = ''; const ys = []; for (let yy = Math.floor(t0); yy < t1; yy++) if (yy + .5 >= t0 && yy + .5 <= t1) ys.push(yy);
+  const st = ys.length > (narrow ? 5 : 12) ? (ys.length > (narrow ? 10 : 24) ? 4 : 2) : 1;
+  ys.forEach((yy, i) => { s += `<line class="st-grid" x1="${sx(yy)}" x2="${sx(yy)}" y1="${y - 14}" y2="${y - 10}"/>`; if (i % st === 0 || i === ys.length - 1) s += `<text class="st-tick" x="${sx(yy + .5)}" y="${y}" text-anchor="middle">${yy}</text>`; }); return s; }
+const fsHatch = (id, c) => `<pattern id="${id}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="${c}" fill-opacity=".22"/><rect width="2.4" height="6" fill="${c}"/></pattern>`;
+const fsHatchKey = c => `repeating-linear-gradient(135deg, ${c} 0 2px, ${ST_SURF} 2px 4px)`;
+// set a block's finding headline (and optional dek) from its chart's own numbers
+const fsHead = (el, title, dek) => { const b = el && el.closest('.fs-blk'); if (!b) return; const h = b.querySelector('.fs-blk-h'); if (h && title) h.innerHTML = title; if (dek != null) { let p = b.querySelector(':scope > .st-dek'); if (!p && dek) { p = document.createElement('p'); p.className = 'st-dek'; h.after(p); } if (p) p.innerHTML = dek; } };
+// ends of lines, nudged apart (ink text)
+function fsEnds(ends, x, minGap = 14) { let s = ''; ends.sort((a, b) => a.y - b.y).forEach((e, i, a) => { if (i && e.y - a[i - 1].y < minGap) e.y = a[i - 1].y + minGap; s += `<text class="st-val" x="${x}" y="${e.y + 4}">${e.t}</text>`; }); return s; }
+// step path through [[t, v], …] held to tEnd
+const fsStepPts = (pts, sx, sy, tEnd) => { const o = []; pts.forEach((p, i) => { if (i) o.push([sx(p[0]), sy(pts[i - 1][1])]); o.push([sx(p[0]), sy(p[1])]); }); if (pts.length && tEnd != null) o.push([sx(tEnd), sy(pts[pts.length - 1][1])]); return o; };
+const fsSrcA = (u, t) => u ? `<a href="${ciE(u)}" target="_blank" rel="noopener">${ciE(t)}</a>` : ciE(t);
+
+// ── 0 · overview chart: M2 (line, top panel) and ≈ cash in circulation (bars, bottom panel); one scale per panel, never a
+// dual axis. The M2 line breaks at the SBV's Oct-2025 method change; bars for months whose dating is uncertain are hatched.
+function fsStM2C() {
+  const el = document.getElementById('fs-st-m2c'); if (!el) return; const M = FINSYS.monthly, me = M.m2_methodology || [], fl = M.cash_in_circulation_flag || [];
+  const I = M.months.map((m, i) => i).filter(i => M.m2_level[i] != null || M.cash_in_circulation_derived_bn[i] != null); if (I.length < 2) return;
+  const mo = I.map(i => M.months[i]), m2 = I.map(i => M.m2_level[i]), ca = I.map(i => M.cash_in_circulation_derived_bn[i]), sh = I.map(i => M.cash_to_m2_pct[i]), amb = I.map(i => fl[i] === 'month_mapping_ambiguous'), mt = I.map(i => me[i]);
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 30 : 40, MR = narrow ? 62 : 96, MT = 22, H1 = narrow ? 118 : 140, G = 50, H2 = narrow ? 150 : 170, MB = 24, y2t = MT + H1 + G, y2b = y2t + H2, H = y2b + MB;
+  const N = mo.length, slot = (W - ML - MR) / N, cx = j => ML + (j + .5) * slot, q = v => v / 1e6, f2 = v => stN(v, 2);
+  const v1 = m2.filter(v => v != null).map(q), A1 = fsAx(Math.min(...v1) - .15, Math.max(...v1), 3), sy1 = stLin(A1.a, A1.b, MT + H1, MT);
+  const A2 = fsAx(0, Math.max(...ca.filter(v => v != null).map(q)), 3), sy2 = stLin(0, A2.b, y2b, y2t);
+  const brk = mt.findIndex((x, j) => j && x && mt[j - 1] && x !== mt[j - 1]);
+  let s = `<defs>${fsHatch('fs-hatch-c', ST.aqua)}</defs>`;
+  s += `<text class="st-lab st-b st-keep" x="0" y="${MT - 9}">${stT('M2 · triệu tỷ đồng', 'M2 · quadrillion VND')}</text>` + stAxisY(sy1, A1.tk.filter(t => t >= A1.a), ML, W - MR, fsTickF(A1.tk));
+  s += `<text class="st-lab st-b st-keep" x="0" y="${y2t - 12}">${stT('≈ Tiền mặt lưu thông · triệu tỷ đồng', '≈ Cash in circulation · quadrillion VND')}</text>` + stAxisY(sy2, A2.tk, ML, W - MR, fsTickF(A2.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${y2b}" y2="${y2b}"/>`;
+  const every = narrow ? 4 : 2; mo.forEach((m, j) => { if ((N - 1 - j) % every === 0) s += `<text class="st-tick" x="${cx(j)}" y="${H - 6}" text-anchor="middle">${fsMS(m)}</text>`; });
+  if (brk > 0) { const xb = (cx(brk - 1) + cx(brk)) / 2; s += `<line class="st-keep" x1="${xb}" x2="${xb}" y1="${MT - 4}" y2="${y2b}" stroke="${ST.ink}" stroke-width="1" stroke-dasharray="4,3"/><text class="st-tick st-keep" x="${xb + 5}" y="${MT + 8}" style="fill:#16181d">${narrow ? stT('cách tính mới →', 'new method →') : stT(`NHNN đổi cách tính M2 từ ${fsMS(mo[brk])} →`, `SBV changes the M2 method from ${fsMS(mo[brk])} →`)}</text>`; }
+  // M2 line, broken where the method changes
+  const pts = []; m2.forEach((v, j) => { if (j === brk) pts.push(null); pts.push(v == null ? null : [cx(j), sy1(q(v))]); });
+  s += stLine(pts, ST.orange);
+  const l1 = fsLi(m2); s += stDot(cx(l1), sy1(q(m2[l1])), 4, ST.orange, null, { cls: '' }) + `<text class="st-val" x="${W - MR + 8}" y="${sy1(q(m2[l1])) + 4}">M2 ${f2(q(m2[l1]))}</text>`;
+  if (brk > 0 && m2[brk - 1] != null && m2[brk] != null) s += `<text class="st-tick" x="${cx(brk) + 6}" y="${sy1(q(m2[brk])) + 16}">${f2(q(m2[brk - 1]))} → ${f2(q(m2[brk]))}</text>`;
+  ca.forEach((v, j) => { if (v == null) return; s += stBarV(cx(j), slot, sy2(q(v)), sy2(0), amb[j] ? 'url(#fs-hatch-c)' : ST.aqua, null, { d: j * 25 }); });
+  const l2 = fsLi(ca); s += `<text class="st-val" x="${W - MR + 8}" y="${sy2(q(ca[l2])) + 4}">≈ ${f2(q(ca[l2]))}</text>`;
+  const pk = ca.reduce((b, v, j) => v != null && (b < 0 || v > ca[b]) ? j : b, -1), tet = /^T[12]\//.test(mo[pk]);
+  if (pk >= 0) { const right = pk > N * .6; s += stAnn(cx(pk), sy2(q(ca[pk])), cx(pk) + (right ? -24 : 24), y2t + 4, `${fsMS(mo[pk])}: ≈ ${f2(q(ca[pk]))}${tet ? stT(' (tháng Tết)', ' (Tết month)') : ''}`, right ? 'end' : 'start'); }
+  el.innerHTML = stSvg(W, H, s, stT('M2 và tiền mặt lưu thông theo tháng', 'M2 and cash in circulation by month'));
+  const xs = mo.map((_, j) => cx(j)), labels = mo.map(fsStMon);
+  stCross(el, { xs, labels, top: MT, bottom: y2b, series: [{ n: 'M2', c: ST.orange, v: m2, f: v => fsU(v, 'bn VND') }, { n: stT('≈ Tiền mặt lưu thông', '≈ Cash in circulation'), c: ST.aqua, v: ca, f: v => '≈ ' + fsU(v, 'bn VND') }, { n: stT('Tiền mặt / M2 (NHNN)', 'Cash / M2 (SBV)'), c: ST.ink, v: sh, f: v => stN(v, 2) + '%' },
+    { n: stT('Cách tính M2', 'M2 method'), c: ST_MUTE, v: mt, f: v => v === 'new' ? stT('mới', 'new') : stT('cũ', 'old') }, { n: stT('Ghi chú', 'Note'), c: ST_MUTE, v: amb.map(a => a ? 1 : null), f: () => stT('chưa chắc tháng', 'month uncertain') }] });
+  document.getElementById('fs-st-m2c-leg').innerHTML = stLegend([{ n: 'M2', c: ST.orange, k: 'line' }, { n: stT('≈ Tiền mặt lưu thông', '≈ Cash in circulation'), c: ST.aqua }, { n: stT('≈ Tiền mặt, chưa chắc thuộc đúng tháng', '≈ Cash, month uncertain'), c: fsHatchKey(ST.aqua) }, { n: stT('Đổi cách tính M2', 'M2 method change'), c: ST.ink, k: 'dash' }]);
+  const b0 = mo.findIndex(m => /^T12\//.test(m) && mo.indexOf(m) < pk), dc = b0 >= 0 && pk > b0 ? ca[pk] - ca[b0] : null, ambN = amb.filter(Boolean).length;
+  document.getElementById('fs-st-m2c-note').innerHTML = stNote(
+    stT(`Tiền mặt lưu thông cao nhất ≈ ${fsU(ca[pk], 'bn VND')} (${fsStMon(mo[pk])})${dc != null && b0 >= 0 && ca[b0] != null ? `, tăng ≈ ${fsU(dc, 'bn VND')} so với ${fsStMon(mo[b0])}` : ''}; mới nhất ≈ ${fsU(ca[l2], 'bn VND')} (${fsStMon(mo[l2])}).`, `Cash in circulation peaked at ≈ ${fsU(ca[pk], 'bn VND')} (${fsStMon(mo[pk])})${dc != null && b0 >= 0 && ca[b0] != null ? `, up ≈ ${fsU(dc, 'bn VND')} on ${fsStMon(mo[b0])}` : ''}; latest ≈ ${fsU(ca[l2], 'bn VND')} (${fsStMon(mo[l2])}).`),
+    (brk > 0 ? stT(`M2 giảm từ ${f2(q(m2[brk - 1]))} xuống ${f2(q(m2[brk]))} triệu tỷ tại ${fsStMon(mo[brk])} chỉ vì NHNN đổi cách tính, nên đường M2 bị ngắt. `, `M2 drops from ${f2(q(m2[brk - 1]))} to ${f2(q(m2[brk]))} quadrillion in ${fsStMon(mo[brk])} only because the SBV changed its method, so the M2 line breaks. `) : '') + (ambN ? stT(`${ambN} cột gạch chéo: chưa chắc tỷ lệ tiền mặt/M2 thuộc đúng tháng nào.`, `${ambN} hatched bars: the cash/M2 ratio may belong to a neighbouring month.`) : ''));
+  stAnim(el, { id: 'F01', labels, last: N - 1, xs, top: MT, bottom: y2b, from: Math.max(0, N - 12), ms: 500, none: stT('Không có dự phóng; chỉ chạy số liệu thực tế', 'No projection: the replay covers actual data only') });
+  stRW(el, fsStM2C);
+}
+
+// ── 1a · explainer: money inside money. M2 as the whole, to scale; cash ≈ (ratio × M2) and the rest ≈ (M2 − cash). A second
+// bar for the last year with M1 (ADB) adds the middle layer as a bracket. Text lines carry the data's own numbers.
+function fsStNest() {
+  const el = document.getElementById('fs-st-nest'); if (!el) return; const MC = fsMoney(), A = FINSYS.annual, M = FINSYS.monthly;
+  const ai = A.years.map((y, i) => i).filter(i => A.m1_adb_bn[i] != null && A.m2_imf_monetary_survey_bn[i] != null && A.currency_outside_banks_imf_bn[i] != null).pop();
+  const rows = [{ lab: stT(`${fsStMon(MC.cm)} · NHNN, ≈ suy ra`, `${fsStMon(MC.cm)} · SBV, ≈ derived`), tot: MC.m2, cash: MC.cash, d: true }];
+  if (ai != null) rows.push({ lab: stT(`Cuối ${A.years[ai]} · IMF (M2, tiền mặt), ADB (M1)`, `End-${A.years[ai]} · IMF (M2, cash), ADB (M1)`), tot: A.m2_imf_monetary_survey_bn[ai], cash: A.currency_outside_banks_imf_bn[ai], m1: A.m1_adb_bn[ai], d: false });
+  const W = stCW(el, 1000), narrow = W < 560, ML = 2, MR = narrow ? 4 : 96, mx = Math.max(...rows.map(r => r.tot)), sx = stLin(0, mx, ML, W - MR), tq = v => fsTq(v);
+  let s = '', y = 0;
+  rows.forEach(r => { const ap = r.d ? '≈ ' : '';
+    y += 16; s += `<text class="st-lab st-b" x="${ML}" y="${y}">${r.lab}</text>`; y += 8;
+    if (r.m1) { const x1 = sx(r.m1); y += 14; s += `<path d="M${sx(0) + .5},${y + 8} V${y + 2} H${x1} V${y + 8}" fill="none" stroke="${ST.ink}" stroke-width="1"/><text class="st-tick" x="${ML}" y="${y - 3}" style="fill:#16181d">M1 = ${stT('tiền mặt + tiền gửi không kỳ hạn', 'cash + demand deposits')}: ${tq(r.m1)} ${stT('triệu tỷ (ADB)', 'quadrillion (ADB)')}</text>`; y += 8; }
+    const cy = y + 14; y += 28;
+    s += stStackH(cy, 26, sx, [{ v: r.cash, c: ST.aqua, key: [`${r.lab} · ${ap}${stT('Tiền mặt lưu thông', 'Cash in circulation')}`, `${ap}${fsU(r.cash, 'bn VND')} · ${ap}${stN(r.cash / r.tot * 100, 2)}%`] }, { v: r.tot - r.cash, c: ST.orange, key: [`${r.lab} · ≈ ${stT('Tiền gửi và giấy tờ có giá (M2 − tiền mặt)', 'Deposits and papers (M2 − cash)')}`, `≈ ${fsU(r.tot - r.cash, 'bn VND')} · ≈ ${stN(100 - r.cash / r.tot * 100, 2)}%`] }]);
+    if (!narrow) s += `<text class="st-val" x="${sx(r.tot) + 8}" y="${cy + 4}">M2 ${tq(r.tot)}</text>`;
+    y += 14; s += `<text class="st-tick" x="${ML}" y="${y}" style="fill:#16181d">${ap}${stN(r.cash / r.tot * 100, 1)}% ${stT('tiền mặt', 'cash')} · ${ap}${tq(r.cash)}</text>`;
+    s += `<text class="st-tick" x="${narrow ? ML : sx(r.tot)}" y="${narrow ? y + 14 : y}" text-anchor="${narrow ? 'start' : 'end'}" style="fill:#16181d">≈ ${stN(100 - r.cash / r.tot * 100, 1)}% ${stT('tiền gửi', 'deposits')} · ≈ ${tq(r.tot - r.cash)}${narrow ? ` · M2 ${tq(r.tot)}` : ''}</text>`;
+    y += narrow ? 26 : 14; });
+  el.innerHTML = stSvg(W, y + 4, s, stT('Tiền mặt và tiền gửi trong M2', 'Cash and deposits inside M2'));
+  document.getElementById('fs-st-nest-leg').innerHTML = stLegend([{ n: stT('Tiền mặt lưu thông (ngoài ngân hàng)', 'Cash in circulation (outside banks)'), c: ST.aqua }, { n: stT('≈ Tiền gửi tại ngân hàng và giấy tờ có giá (M2 − tiền mặt)', '≈ Bank deposits and papers (M2 − cash)'), c: ST.orange }, { n: 'M1 (ADB)', c: ST.ink, k: 'line' }]);
+  // explanation lines, each anchored on a number from the data
+  const B = FINSYS.sbv.balance_sheet, rmi = fsLi(B.series.reserve_money_yoy_pct), cl = fsLi(M.credit_level);
+  const pk = M.cash_in_circulation_derived_bn.reduce((b, v, j) => v != null && (b < 0 || v > M.cash_in_circulation_derived_bn[b]) ? j : b, -1), b0 = pk >= 0 ? M.months.findIndex((m, j) => j < pk && /^T12\//.test(m) && M.cash_in_circulation_derived_bn[j] != null) : -1;
+  const same = b0 >= 0 && (M.m2_methodology || [])[b0] === (M.m2_methodology || [])[pk];
+  const dCash = same ? M.cash_in_circulation_derived_bn[pk] - M.cash_in_circulation_derived_bn[b0] : null, dM2 = same ? (M.m2_level[pk] / M.m2_level[b0] - 1) * 100 : null, dDep = same && M.deposits_level[pk] != null && M.deposits_level[b0] != null ? M.deposits_level[pk] - M.deposits_level[b0] : null;
+  const brk = MC.brk;
+  const L = [
+    stT('<b>Tiền trong lưu thông</b> là tiền mặt nằm ngoài ngân hàng: trong ví người dân và két doanh nghiệp. <b>Tổng cung tiền M2</b> (tổng phương tiện thanh toán) là tiền mặt đó cộng mọi khoản tiền gửi của khách hàng tại các tổ chức tín dụng (và giấy tờ có giá). M1 nằm giữa: tiền mặt và tiền gửi không kỳ hạn.', '<b>Money in circulation</b> is cash outside the banks: in people\'s wallets and firms\' tills. <b>Total money supply M2</b> is that cash plus every customer deposit at credit institutions (and certificates). M1 sits between: cash plus demand deposits.'),
+    stT(`<b>Tiền cơ sở</b> = tiền mặt + dự trữ của ngân hàng gửi tại NHNN: phần tiền NHNN tạo ra trực tiếp. NHNN không công bố số dư${rmi >= 0 ? `; IMF chỉ công bố tốc độ tăng (${B.series.reserve_money_yoy_pct[rmi] >= 0 ? '+' : ''}${stN(B.series.reserve_money_yoy_pct[rmi], 1)}% năm ${B.periods[rmi]})` : ''}.`, `<b>Base money</b> = cash + banks' reserves at the SBV: the money the SBV creates directly. The SBV does not publish the level${rmi >= 0 ? `; the IMF gives only its growth (${B.series.reserve_money_yoy_pct[rmi] >= 0 ? '+' : ''}${stN(B.series.reserve_money_yoy_pct[rmi], 1)}% in ${B.periods[rmi]})` : ''}.`),
+    stT(`<b>Phần lớn M2 do ngân hàng tạo ra khi cho vay</b>: khoản vay được ghi có vào tài khoản người vay, thành một khoản tiền gửi mới. Vì vậy M2 lớn lên cùng tín dụng${cl >= 0 ? ` (dư nợ ${fsU(M.credit_level[cl], 'bn VND')}, ${fsStMon(M.months[cl])})` : ''}.`, `<b>Most of M2 is created when banks lend</b>: the loan is credited to the borrower's account as a new deposit. So M2 grows with credit${cl >= 0 ? ` (loans of ${fsU(M.credit_level[cl], 'bn VND')}, ${fsStMon(M.months[cl])})` : ''}.`),
+    dCash != null ? stT(`<b>Tết</b>: từ ${fsStMon(M.months[b0])} đến ${fsStMon(M.months[pk])} tiền mặt tăng ≈ ${fsU(dCash, 'bn VND')}${dDep != null ? `, tiền gửi ${dDep >= 0 ? 'tăng' : 'giảm'} ${fsU(Math.abs(dDep), 'bn VND')}` : ''}, còn M2 chỉ ${dM2 >= 0 ? 'tăng' : 'giảm'} ${stN(Math.abs(dM2), 2)}%: rút tiền gửi ra tiêu Tết đổi dạng tiền bên trong M2, không làm M2 tăng thêm.`, `<b>Tết</b>: from ${fsStMon(M.months[b0])} to ${fsStMon(M.months[pk])} cash rose ≈ ${fsU(dCash, 'bn VND')}${dDep != null ? `, deposits ${dDep >= 0 ? 'rose' : 'fell'} ${fsU(Math.abs(dDep), 'bn VND')}` : ''}, while M2 ${dM2 >= 0 ? 'rose' : 'fell'} only ${stN(Math.abs(dM2), 2)}%: withdrawing deposits to spend at Tết changes the form of money inside M2 rather than adding to it.`) : '',
+    brk > 0 ? stT(`<b>Đổi cách tính</b>: từ ${fsStMon(M.months[brk])} NHNN tính M2 và tiền gửi theo phương pháp mới; M2 ${fsStMon(M.months[brk - 1])} ${fsU(M.m2_level[brk - 1], 'bn VND')} và ${fsStMon(M.months[brk])} ${fsU(M.m2_level[brk], 'bn VND')} không so sánh được với nhau. Tăng trưởng NHNN công bố (${stN(FINSYS.annual.m2_growth[FINSYS.annual.m2_growth.length - 1], 1)}% năm ${FINSYS.annual.years[FINSYS.annual.years.length - 1]}) là so sánh cùng phương pháp.`, `<b>Method change</b>: from ${fsStMon(M.months[brk])} the SBV compiles M2 and deposits on a new method; M2 in ${fsStMon(M.months[brk - 1])} (${fsU(M.m2_level[brk - 1], 'bn VND')}) and ${fsStMon(M.months[brk])} (${fsU(M.m2_level[brk], 'bn VND')}) are not comparable. The growth the SBV reports (${stN(FINSYS.annual.m2_growth[FINSYS.annual.m2_growth.length - 1], 1)}% in ${FINSYS.annual.years[FINSYS.annual.years.length - 1]}) is like-for-like.`) : '',
+    stT('"Tiền trong lưu thông" ở đây không phải "tiền phát hành": tiền phát hành còn gồm tiền mặt nằm trong quỹ của ngân hàng, và NHNN không công bố số này.', '"Money in circulation" here is not "currency issued": currency issued also counts cash in bank vaults, which the SBV does not publish.')].filter(Boolean);
+  document.getElementById('fs-st-nest-x').innerHTML = L.map(x => `<li>${x}</li>`).join('') + `<li class="fs-expl-s">${stT('Nguồn: NHNN (M2, tỷ lệ tiền mặt/M2, tín dụng, theo tháng); IMF Điều IV (M2, tiền mặt ngoài ngân hàng, tiền dự trữ); ADB Key Indicators (M1).', 'Source: SBV (monthly M2, cash/M2, credit); IMF Article IV (M2, currency outside banks, reserve money); ADB Key Indicators (M1).')}</li>`;
+  stRW(el, fsStNest);
+}
+
+// ── 1b · explainer: what the SBV's buying and selling does to the banks' money (HTML diagram cards + data twin)
+function fsStOps() {
+  const el = document.getElementById('fs-st-ops'); if (!el) return; const o = fsNow();
+  const bills = fsOps('sbv_bills_outstanding'), bPk = bills.length ? bills.reduce((a, b) => b.value > a.value ? b : a) : null, bL = bills.length ? bills[bills.length - 1] : null;
+  const ten = fsOp('other', e => /tenors up to/i.test(e.note || '')), fsale = fsOp('fx_sales'), iss = fsPl('gov_bond_issued_2026_ytd'), tdB = fsPl('treasury_deposits_at_banks');
+  const SBV = stT('NHNN', 'SBV'), BK = stT('Ngân hàng', 'Banks'), TR = stT('Kho bạc', 'Treasury'), dong = stT('tiền đồng', 'dong');
+  const arr = (f, t, k, lab) => `<div class="fs-op-a fs-op-${k}"><span>${f}</span><i>${lab} →</i><span>${t}</span></div>`;
+  const cards = [
+    { k: 'out', t: stT('NHNN bán tín phiếu', 'The SBV sells SBV bills'), a: arr(BK, SBV, 'out', dong),
+      p: [stT('Ngân hàng trả tiền mua tín phiếu (giấy nợ ngắn hạn của chính NHNN): dự trữ của ngân hàng giảm, lãi suất liên ngân hàng thường tăng, tỷ giá được đỡ.', 'Banks pay for the bills (the SBV\'s own short-term IOUs): their reserves fall, interbank rates tend to rise, and the dong gets support.'), stT('Tín phiếu đáo hạn: NHNN trả lại tiền, tiền quay về các ngân hàng.', 'When the bills mature the SBV pays back: the money returns to the banks.')],
+      now: bL ? stT(`Dư nợ tín phiếu ${fsU(bL.value, 'bn VND')} (${fsDD(bL.date)})${bPk ? `; cao nhất trong dữ liệu ${fsU(bPk.value, 'bn VND')} (${fsDD(bPk.date)})` : ''}`, `Bills outstanding ${fsU(bL.value, 'bn VND')} (${fsDD(bL.date)})${bPk ? `; highest in the data ${fsU(bPk.value, 'bn VND')} (${fsDD(bPk.date)})` : ''}`) : '' },
+    { k: 'in', t: stT('NHNN mua có kỳ hạn giấy tờ có giá (thị trường mở, OMO)', 'The SBV buys securities under repo (open-market operations)'), a: arr(SBV, BK, 'in', dong),
+      p: [stT(`NHNN cho ngân hàng vay ngắn hạn${ten ? ` (kỳ hạn tới ${stN(ten.value, 0)} ngày từ ${fsDD(ten.date)})` : ''}, nhận trái phiếu Chính phủ và giấy tờ có giá khác làm tài sản bảo đảm: dự trữ tăng, lãi suất liên ngân hàng thường giảm.`, `The SBV lends to banks short term${ten ? ` (tenors up to ${stN(ten.value, 0)} days since ${fsDD(ten.date)})` : ''}, taking government bonds and other papers as collateral: reserves rise, interbank rates tend to fall.`), stT('Đến hạn, ngân hàng mua lại giấy tờ: tiền quay về NHNN. Chỉ khi lượng cho vay mới lớn hơn lượng đáo hạn thì mới là bơm ròng.', 'At maturity the banks buy the papers back: the money returns to the SBV. Only when new lending exceeds maturities is it a net injection.')],
+      now: o.omo ? stT(`Dư nợ OMO ${fsU(o.omo.value, 'bn VND')} (${fsDD(o.omo.date)})${o.omoPk ? `; cao nhất ${fsU(o.omoPk.value, 'bn VND')} (${fsDD(o.omoPk.date)})` : ''}`, `OMO outstanding ${fsU(o.omo.value, 'bn VND')} (${fsDD(o.omo.date)})${o.omoPk ? `; peak ${fsU(o.omoPk.value, 'bn VND')} (${fsDD(o.omoPk.date)})` : ''}`) : '' },
+    { k: 'fx', t: stT('NHNN mua hoặc bán USD', 'The SBV buys or sells dollars'), a: arr(SBV, BK, 'in', stT('mua USD: tiền đồng', 'buys USD: dong')) + arr(BK, SBV, 'out', stT('bán USD: tiền đồng', 'sells USD: dong')),
+      p: [stT('Mua USD, NHNN trả bằng tiền đồng: bơm tiền, dự trữ ngoại hối tăng. Bán USD, NHNN thu tiền đồng về: hút tiền, dự trữ giảm.', 'Buying dollars, the SBV pays in dong: it injects money and reserves rise. Selling dollars, it takes dong back: it drains money and reserves fall.'), stT('Hoán đổi (mua USD giao ngay, bán lại kỳ hạn) là bơm tiền đồng tạm thời.', 'A swap (buy dollars spot, sell them back forward) is a temporary dong injection.')],
+      now: [fsale ? stT(`bán ≈ ${fsU(fsale.value, 'bn USD')} (${fsDD(fsale.date)}, ước tính của công ty chứng khoán)`, `sold ≈ ${fsU(fsale.value, 'bn USD')} (${fsDD(fsale.date)}, broker estimate)`) : '', o.swap ? stT(`hoán đổi tới ${fsU(o.swap.value, 'bn USD')} (${fsDD(o.swap.date)})`, `swaps up to ${fsU(o.swap.value, 'bn USD')} (${fsDD(o.swap.date)})`) : ''].filter(Boolean).join('; ') },
+    { k: 'mon', t: stT('Kho bạc Nhà nước bán trái phiếu Chính phủ (không phải NHNN)', 'The State Treasury sells government bonds (not the SBV)'), a: arr(BK, TR, 'mon', dong),
+      p: [stT('Trái phiếu Chính phủ do Kho bạc thuộc Bộ Tài chính phát hành; NHNN không phát hành trái phiếu. Tiền thu được nằm trong tài khoản Kho bạc cho tới khi được chi.', 'Government bonds are issued by the State Treasury, part of the Ministry of Finance; the SBV issues no bonds. The proceeds sit in Treasury accounts until they are spent.'), stT('Kho bạc gửi tại NHNN: tiền rời hệ thống ngân hàng. Gửi lại ngân hàng thương mại hoặc chi (giải ngân đầu tư công): tiền quay về.', 'Kept at the SBV, the money leaves the banking system; redeposited at commercial banks or spent (public investment), it comes back.')],
+      now: [iss ? stT(`phát hành ${fsU(iss.value, iss.unit)} từ đầu năm (${fsDD(iss.as_of)})`, `${fsU(iss.value, iss.unit)} issued this year (${fsDD(iss.as_of)})`) : '', tdB ? stT(`tiền gửi Kho bạc tại ngân hàng ${fsU(tdB.value, tdB.unit)} (${fsDD(tdB.as_of)})`, `Treasury deposits at banks ${fsU(tdB.value, tdB.unit)} (${fsDD(tdB.as_of)})`) : ''].filter(Boolean).join('; ') }];
+  const rows = cards.map(c => [fsTxt(c.t), fsTxt(c.a.replace(/<\/span><i>/g, ' ').replace(/<\/i><span>/g, ' ')), c.p.map(fsTxt).join(' '), fsTxt(c.now) || '—']);
+  el.innerHTML = `<div class="fs-ops">${cards.map(c => `<div class="fs-op fs-op-c-${c.k}"><div class="fs-op-t">${c.t}</div>${c.a}${c.p.map(x => `<p>${x}</p>`).join('')}${c.now ? `<div class="fs-op-now"><span>${stT('Số mới nhất', 'Latest')}</span>${c.now}</div>` : ''}</div>`).join('')}</div>`
+    + fsTbl([stT('Nghiệp vụ', 'Operation'), stT('Dòng tiền', 'Flow'), stT('Tác động', 'Effect'), stT('Số mới nhất', 'Latest')], rows);
+}
+// weekly balances: OMO loans (VBMA) above zero, SBV bills below zero; one axis, one unit
+function fsStLiq() {
+  const el = document.getElementById('fs-st-liq'); if (!el) return;
+  const vb = e => /^VBMA/.test(e.note || ''), omo = fsOps('omo_outstanding', vb).map(e => ({ d: fsOpEnd(e.date), v: e.value }));
+  const bl = {}; fsOps('sbv_bills_outstanding').forEach(e => { const d = fsOpEnd(e.date); if (bl[d] == null || vb(e)) bl[d] = e.value; });
+  const bills = Object.entries(bl).map(([d, v]) => ({ d, v })).sort((a, b) => a.d.localeCompare(b.d)); if (omo.length < 2) return;
+  const t0 = Math.min(fsTE(omo[0].d), bills.length ? fsTE(bills[0].d) : 9e9) - .03, t1 = fsTE(omo[omo.length - 1].d) + .03;
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 34 : 44, MR = 14, MT = 16, MB = 24, H = narrow ? 250 : 280;
+  const up = Math.max(...omo.map(x => x.v)) / 1e3, dn = Math.max(0, ...bills.map(x => x.v)) / 1e3, AX = fsAx(-dn, up, 4), sy = stLin(AX.a, AX.b, H - MB, MT), sx = stLin(t0, t1, ML, W - MR), slot = Math.max(3, (W - ML - MR) / ((t1 - t0) * 52.2));
+  let s = stAxisY(sy, AX.tk, ML, W - MR, v => stN(Math.abs(v), 0)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  s += `<text class="st-tick" x="${ML + 4}" y="${MT + 4}" style="fill:#16181d">${stT('↑ bơm: dư nợ cho vay OMO · nghìn tỷ đồng', '↑ injection: OMO loans outstanding · tn VND')}</text><text class="st-tick" x="${ML + 4}" y="${H - MB - 6}" style="fill:#16181d">${stT('↓ hút: dư nợ tín phiếu NHNN', '↓ drain: SBV bills outstanding')}</text>`;
+  for (let y = Math.floor(t0); y <= t1; y++) for (let m = 1; m <= 12; m += narrow ? 6 : 3) { const t = y + (m - 1) / 12; if (t >= t0 && t <= t1) s += `<text class="st-tick" x="${sx(t)}" y="${H - 6}" text-anchor="middle">${fsMS(`T${m}/${String(y).slice(2)}`)}</text>`; }
+  omo.forEach((x, j) => { s += stBarV(sx(fsTE(x.d)), slot, sy(x.v / 1e3), sy(0), ST.blue, [`${stT('Dư nợ OMO', 'OMO outstanding')} · ${fsDD(x.d)}`, fsU(x.v, 'bn VND')], { d: j * 6 }); });
+  bills.forEach((x, j) => { if (x.v > 0) s += stBarV(sx(fsTE(x.d)), slot, sy(-x.v / 1e3), sy(0), ST.red, [`${stT('Dư nợ tín phiếu', 'Bills outstanding')} · ${fsDD(x.d)}`, fsU(x.v, 'bn VND')], { d: j * 6 }); });
+  const pk = omo.reduce((a, b) => b.v > a.v ? b : a), bp = bills.length ? bills.reduce((a, b) => b.v > a.v ? b : a) : null, lo = omo[omo.length - 1];
+  s += stAnn(sx(fsTE(pk.d)), sy(pk.v / 1e3), sx(fsTE(pk.d)) + (fsTE(pk.d) > (t0 + t1) / 2 ? -20 : 20), sy(pk.v / 1e3) + 4, `${fsDD(pk.d)}: ${stN(pk.v / 1e3, 0)}`, fsTE(pk.d) > (t0 + t1) / 2 ? 'end' : 'start');
+  el.innerHTML = stSvg(W, H, s, stT('Dư nợ OMO và tín phiếu NHNN theo tuần', 'Weekly OMO and SBV-bill balances'));
+  const dates = [...new Set(omo.map(x => x.d).concat(bills.map(x => x.d)))].sort(), om = Object.fromEntries(omo.map(x => [x.d, x.v]));
+  el._stRows = { head: [stT('Ngày', 'Date'), stT('Dư nợ OMO (VBMA)', 'OMO outstanding (VBMA)'), stT('Dư nợ tín phiếu', 'Bills outstanding')], rows: dates.map(d => [fsDD(d), om[d] != null ? fsU(om[d], 'bn VND') : '—', bl[d] != null ? fsU(bl[d], 'bn VND') : '—']) };
+  document.getElementById('fs-st-liq-leg').innerHTML = stLegend([{ n: stT('Cho vay OMO: bơm', 'OMO loans: injection'), c: ST.blue }, { n: stT('Tín phiếu NHNN: hút', 'SBV bills: drain'), c: ST.red }]);
+  const z = bills.filter(x => x.v === 0 && bp && x.d > bp.d).pop();
+  document.getElementById('fs-st-liq-note').innerHTML = stNote(stT(`Dư nợ OMO ${fsU(lo.v, 'bn VND')} (${fsDD(lo.d)}), cao nhất ${fsU(pk.v, 'bn VND')} (${fsDD(pk.d)})${bp ? `; tín phiếu cao nhất ${fsU(bp.v, 'bn VND')} (${fsDD(bp.d)})` : ''}${z ? `, về 0 từ ${fsDD(z.d)}` : ''}.`, `OMO loans outstanding ${fsU(lo.v, 'bn VND')} (${fsDD(lo.d)}), peak ${fsU(pk.v, 'bn VND')} (${fsDD(pk.d)})${bp ? `; bills peaked at ${fsU(bp.v, 'bn VND')} (${fsDD(bp.d)})` : ''}${z ? `, zero from ${fsDD(z.d)}` : ''}.`),
+    stT('Số cuối tuần theo VBMA (tín phiếu: VBMA, bổ sung nguồn khác khi VBMA thiếu); các nguồn khác chốt ngày khác nên lệch. Tuần không có số tín phiếu để trống, không coi là 0.', 'Week-end figures from VBMA (bills: VBMA, other sources where VBMA is missing); other sources cut on other days and differ. Weeks with no bill figure are left blank, not read as zero.'))
+    + stSrc(stT('Nguồn: VBMA (báo cáo thị trường trái phiếu hằng tuần), Vietstock, CafeF, theo nhật ký nghiệp vụ NHNN của dashboard.', 'Source: VBMA weekly bond-market reports, Vietstock, CafeF, via the dashboard\'s SBV operations log.'));
+  stRW(el, fsStLiq);
+}
+
+// ── 1c · M2 composition, annual (IMF Monetary Survey = SBV M2, old method): cash + the rest, with ADB M1 marks; cash share below
+function fsStComp() {
+  const el = document.getElementById('fs-st-comp'); if (!el) return; const A = FINSYS.annual, Y = A.years;
+  const I = Y.map((y, i) => i).filter(i => A.m2_imf_monetary_survey_bn[i] != null && A.currency_outside_banks_imf_bn[i] != null); if (I.length < 2) return;
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 30 : 40, MR = narrow ? 8 : 150, MT = 12, H1 = narrow ? 200 : 230, G = 44, H2 = 90, MB = 24, y2t = MT + H1 + G, y2b = y2t + H2, H = y2b + MB;
+  const slot = (W - ML - MR) / I.length, cx = j => ML + (j + .5) * slot, q = v => v / 1e6, m2 = i => A.m2_imf_monetary_survey_bn[i], ca = i => A.currency_outside_banks_imf_bn[i];
+  const AX = fsAx(0, Math.max(...I.map(i => q(m2(i)))), 4), sy = stLin(0, AX.b, MT + H1, MT);
+  let s = `<text class="st-lab st-b" x="0" y="${MT - 2}">${stT('triệu tỷ đồng, cuối năm', 'quadrillion VND, year-end')}</text>` + stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, fsTickF(AX.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  I.forEach((i, j) => { const y = Y[i]; s += stStackV(cx(j), slot, sy, [{ v: q(ca(i)), c: ST.aqua, key: [`${y} · ${stT('Tiền mặt ngoài ngân hàng (IMF)', 'Cash outside banks (IMF)')}`, fsU(ca(i), 'bn VND')] }, { v: q(m2(i) - ca(i)), c: ST.orange, key: [`${y} · ≈ ${stT('Tiền gửi và phần còn lại (M2 − tiền mặt)', 'Deposits and the rest (M2 − cash)')}`, '≈ ' + fsU(m2(i) - ca(i), 'bn VND')] }], { d: j * 50 });
+    if (A.m1_adb_bn[i] != null) { const x = cx(j), yy = sy(q(A.m1_adb_bn[i])); s += `<g class="st-pt st-cell" ${stKey(`${y} · M1 (ADB)`, fsU(A.m1_adb_bn[i], 'bn VND'))}><circle cx="${x}" cy="${yy}" r="12" fill="transparent"/><rect x="${x - 4.5}" y="${yy - 4.5}" width="9" height="9" transform="rotate(45 ${x} ${yy})" fill="${ST.ink}" stroke="${ST_SURF}" stroke-width="1.5"/></g>`; }
+    if (!narrow || j % 2 === 0 || j === I.length - 1) s += `<text class="st-tick" x="${cx(j)}" y="${MT + H1 + 16}" text-anchor="middle">${narrow ? String(y).slice(2) : y}</text>`; });
+  const iL = I[I.length - 1], xl = cx(I.length - 1) + Math.min(ST_BAR, slot - 4) / 2 + 8;
+  if (!narrow) s += fsEnds([{ y: sy(q(m2(iL))), t: `M2 ${fsTq(m2(iL))}` }, { y: sy(q(ca(iL)) / 2), t: stT(`tiền mặt ${fsTq(ca(iL))}`, `cash ${fsTq(ca(iL))}`) }].concat(A.m1_adb_bn[iL] != null ? [{ y: sy(q(A.m1_adb_bn[iL])), t: `◆ M1 ${fsTq(A.m1_adb_bn[iL])}` }] : []), xl);
+  // panel 2: cash share (≈ derived IMF/IMF)
+  const sh = I.map(i => A.cash_to_m2_pct_imf_derived[i]), A2 = fsAx(0, Math.max(...sh.filter(v => v != null)), 2), sy2 = stLin(0, A2.b, y2b, y2t);
+  s += `<text class="st-lab st-b" x="0" y="${y2t - 12}">${stT('≈ Tiền mặt / M2 (%)', '≈ Cash / M2 (%)')}</text>` + stAxisY(sy2, A2.tk, ML, W - MR, v => stN(v, 0)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${y2b}" y2="${y2b}"/>`;
+  s += stLine(sh.map((v, j) => v == null ? null : [cx(j), sy2(v)]), ST.aqua) + sh.map((v, j) => v == null ? '' : stDot(cx(j), sy2(v), 4, ST.aqua, [`${Y[I[j]]} · ≈ ${stT('tiền mặt / M2', 'cash / M2')}`, '≈ ' + stN(v, 2) + '%'], { d: j * 40 })).join('');
+  const s0 = sh.find(v => v != null), sL = sh[sh.length - 1];
+  s += `<text class="st-val" x="${cx(0)}" y="${sy2(s0) - 9}" text-anchor="middle">${stN(s0, 1)}%</text><text class="st-val" x="${cx(I.length - 1)}" y="${sy2(sL) - 9}" text-anchor="middle">${stN(sL, 1)}%</text>`;
+  el.innerHTML = stSvg(W, H, s, stT('Cấu phần M2 theo năm', 'M2 composition by year'));
+  el._stRows = { head: [stT('Năm', 'Year'), 'M2 (IMF)', stT('Tiền mặt (IMF)', 'Cash (IMF)'), stT('Tiền mặt (ADB)', 'Cash (ADB)'), 'M1 (ADB)', stT('≈ Tiền mặt/M2', '≈ Cash/M2')],
+    rows: I.map(i => [String(Y[i]), fsU(m2(i), 'bn VND'), fsU(ca(i), 'bn VND'), A.m0_adb_bn[i] != null ? fsU(A.m0_adb_bn[i], 'bn VND') : '—', A.m1_adb_bn[i] != null ? fsU(A.m1_adb_bn[i], 'bn VND') : '—', A.cash_to_m2_pct_imf_derived[i] != null ? '≈ ' + stN(A.cash_to_m2_pct_imf_derived[i], 2) + '%' : '—']) };
+  document.getElementById('fs-st-comp-leg').innerHTML = stLegend([{ n: stT('Tiền mặt ngoài ngân hàng', 'Cash outside banks'), c: ST.aqua }, { n: stT('≈ Tiền gửi và phần còn lại của M2', '≈ Deposits and the rest of M2'), c: ST.orange }, { n: stT('M1: tiền mặt + tiền gửi không kỳ hạn (ADB)', 'M1: cash + demand deposits (ADB)'), c: ST.ink, k: 'diamond' }]);
+  const y0 = Y[I[0]], y1 = Y[iL];
+  fsHead(el, stT(`M2 tăng gấp ${stN(m2(iL) / m2(I[0]), 1)} lần từ ${y0} đến ${y1}; phần tiền mặt giảm từ ${stN(s0, 1)}% xuống ${stN(sL, 1)}%`, `M2 grew ${stN(m2(iL) / m2(I[0]), 1)}-fold from ${y0} to ${y1}; the cash share fell from ${stN(s0, 1)}% to ${stN(sL, 1)}%`),
+    stT('Cuối mỗi năm: tiền mặt ngoài ngân hàng và phần còn lại của M2 (chủ yếu là tiền gửi). M1 chỉ có cho một số năm.', 'Each year-end: cash outside banks and the rest of M2 (mostly deposits). M1 exists for some years only.'));
+  const cf = I.filter(i => A.m0_adb_bn[i] != null && Math.abs(A.m0_adb_bn[i] / ca(i) - 1) > .01).map(i => stT(`${Y[i]}: IMF ${fsU(ca(i), 'bn VND')}, ADB ${fsU(A.m0_adb_bn[i], 'bn VND')}`, `${Y[i]}: IMF ${fsU(ca(i), 'bn VND')}, ADB ${fsU(A.m0_adb_bn[i], 'bn VND')}`));
+  document.getElementById('fs-st-comp-note').innerHTML = stNote(stT(`Cuối ${y1}: tiền mặt ${fsU(ca(iL), 'bn VND')} trên M2 ${fsU(m2(iL), 'bn VND')}${A.m1_adb_bn[iL] != null ? `; M1 ${fsU(A.m1_adb_bn[iL], 'bn VND')}` : ''}.`, `End-${y1}: cash ${fsU(ca(iL), 'bn VND')} of M2 ${fsU(m2(iL), 'bn VND')}${A.m1_adb_bn[iL] != null ? `; M1 ${fsU(A.m1_adb_bn[iL], 'bn VND')}` : ''}.`),
+    (cf.length ? stT(`Hai nguồn cho tiền mặt khác nhau (${cf.join('; ')}): giữ cả hai trong bảng số liệu, biểu đồ dùng IMF. `, `The two sources for cash disagree (${cf.join('; ')}): both are kept in the data table; the chart uses the IMF. `) : '') + stT('M2 ở đây theo IMF (bằng M2 của NHNN, cách tính cũ), không trộn với chuỗi M2 của World Bank.', 'M2 here is the IMF\'s (equal to the SBV\'s, old method), not mixed with the World Bank series.'))
+    + stSrc(stT('Nguồn: IMF Điều IV, Monetary Survey (M2, tiền mặt ngoài ngân hàng); ADB Key Indicators qua các trang tổng hợp (M0, M1). ≈: tỷ lệ và phần còn lại do dashboard tính.', 'Source: IMF Article IV, Monetary Survey (M2, currency outside banks); ADB Key Indicators via aggregators (M0, M1). ≈: shares and remainders computed by the dashboard.'));
+  stRW(el, fsStComp);
+}
+
+// ── 1d · credit growth against the SBV's target (targets parsed from POLICY credit_growth_target moves; ranges kept as ranges)
+function fsCgTargets() {
+  const I = typeof POLICY !== 'undefined' ? polIns('mon', 'credit_growth_target') : null, o = {}; if (!I) return o;
+  (I.history || []).slice().sort((a, b) => a.date.localeCompare(b.date)).forEach(h => { const m = /(\d+(?:[.,]\d+)?)\s*(?:[–-]\s*(\d+(?:[.,]\d+)?))?\s*%/.exec(String(h.to || '')); const y = +h.date.slice(0, 4); if (!m || o[y]) return;
+    const a = parseFloat(m[1].replace(',', '.')), b = m[2] ? parseFloat(m[2].replace(',', '.')) : a; o[y] = { lo: a, hi: b, approx: /~|khoảng|định hướng/.test(h.to), doc: h.doc, d: h.date }; });
+  return o;
+}
+function fsStCgT() {
+  const el = document.getElementById('fs-st-cgt'); if (!el) return; const A = FINSYS.annual, Y = A.years, M = FINSYS.monthly, T = fsCgTargets();
+  const yi = fsLi(M.credit_ytd), ym = M.months[yi], yy = 2000 + +ym.split('/')[1], part = ym && !/^T12\//.test(ym) && !Y.includes(yy) ? { y: yy, v: M.credit_ytd[yi], m: ym, st: (M.credit_basis || [])[yi] === 'statement' } : null;
+  const X = Y.filter((y, i) => A.credit_growth[i] != null).concat(part ? [part.y] : []);
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 28 : 36, MR = 10, MT = 16, MB = 24, H = 250, slot = (W - ML - MR) / X.length, cx = j => ML + (j + .5) * slot;
+  const vals = X.map(y => y === (part || {}).y ? part.v : A.credit_growth[Y.indexOf(y)]), AX = fsAx(0, Math.max(...vals, ...Object.values(T).map(t => t.hi)), 4), sy = stLin(0, AX.b, H - MB, MT);
+  let s = stAxisY(sy, AX.tk, ML, W - MR, v => v + '%') + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  X.forEach((y, j) => { const v = vals[j], isP = part && y === part.y, t = T[y];
+    s += isP ? stBarV(cx(j), slot, sy(v), sy(0), ST_SURF, [stT(`${y} · tín dụng tăng, lũy kế đến ${fsStMon(part.m)}`, `${y} · credit growth, to ${fsStMon(part.m)}`), stN(v, 2) + '%'], { d: j * 40, style: `stroke:${ST.blue};stroke-width:1.5` })
+      : stBarV(cx(j), slot, sy(v), sy(0), ST.blue, [stT(`${y} · tín dụng tăng cả năm`, `${y} · full-year credit growth`), stN(v, 2) + '%'], { d: j * 40 });
+    if (!narrow) s += `<text class="st-val" x="${cx(j)}" y="${sy(v) - 6}" text-anchor="middle">${stN(v, 1)}</text>`;
+    if (t) { const dm = v => { const x = cx(j) + (narrow ? 0 : Math.min(ST_BAR, slot - 4) / 2 + 7), yv = sy(v); return `<rect x="${x - 4.5}" y="${yv - 4.5}" width="9" height="9" transform="rotate(45 ${x} ${yv})" fill="#16181d" stroke="${ST_SURF}" stroke-width="1.5"/>`; };
+      const x = cx(j) + (narrow ? 0 : Math.min(ST_BAR, slot - 4) / 2 + 7); s += `<g class="st-pt st-cell" ${stKey(`${y} · ${stT('chỉ tiêu NHNN', 'SBV target')} · ${t.doc}`, `${t.approx ? '~' : ''}${stN(t.lo, 0)}${t.hi !== t.lo ? '–' + stN(t.hi, 0) : ''}%`)}><circle cx="${x}" cy="${sy((t.lo + t.hi) / 2)}" r="12" fill="transparent"/>${t.hi !== t.lo ? `<line x1="${x}" x2="${x}" y1="${sy(t.lo)}" y2="${sy(t.hi)}" stroke="#16181d" stroke-width="2"/>` : ''}${dm(t.lo)}${t.hi !== t.lo ? dm(t.hi) : ''}</g>`; }
+    if (!narrow || j % 2 === 0 || j === X.length - 1) s += `<text class="st-tick" x="${cx(j)}" y="${H - 6}" text-anchor="middle">${isP ? (narrow ? fsMS(part.m) : stT(`đến ${fsMS(part.m)}`, `to ${fsMS(part.m)}`)) : (narrow ? String(y).slice(2) : y)}</text>`; });
+  el.innerHTML = stSvg(W, H, s, stT('Tăng trưởng tín dụng và chỉ tiêu', 'Credit growth and target'));
+  document.getElementById('fs-st-cgt-leg').innerHTML = stLegend([{ n: stT('Tăng trưởng cả năm', 'Full-year growth'), c: ST.blue }, ...(part ? [{ n: stT(`${part.y}: lũy kế, chưa hết năm`, `${part.y}: year to date, not a full year`), c: ST.blue, k: 'ring' }] : []), { n: stT('Chỉ tiêu NHNN (~ định hướng)', 'SBV target (~ guidance)'), c: '#16181d', k: 'diamond' }]);
+  const over = Object.keys(T).map(Number).filter(y => Y.includes(y) && A.credit_growth[Y.indexOf(y)] > T[y].hi), withT = Object.keys(T).map(Number).filter(y => Y.includes(y) && A.credit_growth[Y.indexOf(y)] != null);
+  const tp = part && T[part.y];
+  fsHead(el, stT(`Tín dụng vượt chỉ tiêu ở ${over.length}/${withT.length} năm có chỉ tiêu trong dữ liệu${tp ? `; ${part.y} đã đạt ${stN(part.v, 2)}% đến ${fsStMon(part.m)}, chỉ tiêu ~${stN(tp.hi, 0)}%` : ''}`, `Credit beat the target in ${over.length} of ${withT.length} years with a target in the data${tp ? `; ${part.y} reached ${stN(part.v, 2)}% by ${fsStMon(part.m)} against ~${stN(tp.hi, 0)}%` : ''}`),
+    stT('Cột: tăng trưởng tín dụng so với cuối năm trước. Hình thoi: chỉ tiêu NHNN giao đầu năm (đoạn nối = khoảng).', 'Bars: credit growth on the previous year-end. Diamonds: the SBV\'s target set at the start of the year (a line joins a range).'));
+  document.getElementById('fs-st-cgt-note').innerHTML = stNote(over.map(y => stT(`${y}: ${stN(A.credit_growth[Y.indexOf(y)], 2)}% so với ~${stN(T[y].hi, 0)}%`, `${y}: ${stN(A.credit_growth[Y.indexOf(y)], 2)}% against ~${stN(T[y].hi, 0)}%`)).join('; ') + '.',
+    stT('Chỉ tiêu là định hướng NHNN công bố và được điều chỉnh trong năm; tăng trưởng cả năm ở đây theo số liệu năm của dashboard, có thể lệch vài phần trăm so với phát biểu của NHNN.', 'Targets are SBV guidance and are adjusted during the year; full-year growth here follows the dashboard\'s annual data and can differ by a few hundredths from SBV statements.'))
+    + stSrc(stT('Nguồn: NHNN (tăng trưởng tín dụng); chỉ tiêu: dữ liệu chính sách của dashboard (văn bản và họp báo NHNN).', 'Source: SBV (credit growth); targets: the dashboard\'s policy data (SBV documents and briefings).'));
+  stRW(el, fsStCgT);
+}
+// ── 1e · deposits by holder, monthly; both lines break at the method change (a reclassification, not a flow)
+function fsStDepH() {
+  const el = document.getElementById('fs-st-deph'); if (!el) return; const M = FINSYS.monthly, me = M.m2_methodology || [];
+  const I = M.months.map((m, i) => i).filter(i => M.deposits_residents[i] != null && M.deposits_econ_orgs[i] != null); if (I.length < 2) return;
+  const mo = I.map(i => M.months[i]), R = I.map(i => M.deposits_residents[i]), O = I.map(i => M.deposits_econ_orgs[i]), mt = I.map(i => me[i]), brk = mt.findIndex((x, j) => j && x && mt[j - 1] && x !== mt[j - 1]);
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 30 : 40, MR = narrow ? 70 : 110, MT = 14, MB = 24, H = 240, N = mo.length, cx = j => ML + (j + .5) * (W - ML - MR) / N, q = v => v / 1e6;
+  const AX = fsAx(0, Math.max(...R, ...O) / 1e6, 4), sy = stLin(0, AX.b, H - MB, MT);
+  let s = `<text class="st-lab st-b" x="0" y="${MT - 4}">${stT('triệu tỷ đồng', 'quadrillion VND')}</text>` + stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, fsTickF(AX.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+  mo.forEach((m, j) => { if ((N - 1 - j) % (narrow ? 4 : 2) === 0) s += `<text class="st-tick" x="${cx(j)}" y="${H - 6}" text-anchor="middle">${fsMS(m)}</text>`; });
+  if (brk > 0) { const xb = (cx(brk - 1) + cx(brk)) / 2; s += `<line x1="${xb}" x2="${xb}" y1="${MT}" y2="${H - MB}" stroke="${ST.ink}" stroke-width="1" stroke-dasharray="4,3"/><text class="st-tick" x="${xb + 5}" y="${MT + 10}" style="fill:#16181d">${stT('cách tính mới →', 'new method →')}</text>`; }
+  const ln = (V, c, n) => { const p = []; V.forEach((v, j) => { if (j === brk) p.push(null); p.push([cx(j), sy(q(v))]); }); return stLine(p, c) + V.map((v, j) => `<g ${stKey(`${n} · ${fsStMon(mo[j])}`, fsU(v, 'bn VND'))}><circle cx="${cx(j)}" cy="${sy(q(v))}" r="7" fill="transparent"/></g>`).join('') + stDot(cx(N - 1), sy(q(V[N - 1])), 4, c, null, { cls: '' }); };
+  const nR = stT('Dân cư', 'Residents'), nO = stT('Tổ chức kinh tế', 'Economic organisations');
+  s += ln(R, ST.orange, nR) + ln(O, ST.violet, nO) + fsEnds([{ y: sy(q(R[N - 1])), t: `${narrow ? '' : nR + ' '}${stN(q(R[N - 1]), 2)}` }, { y: sy(q(O[N - 1])), t: `${narrow ? '' : nO.split(' ')[0] + ' '}${stN(q(O[N - 1]), 2)}` }], W - MR + 8);
+  el.innerHTML = stSvg(W, H, s, stT('Tiền gửi theo người gửi', 'Deposits by holder'));
+  stCross(el, { xs: mo.map((_, j) => cx(j)), labels: mo.map(fsStMon), top: MT, bottom: H - MB, series: [{ n: nR, c: ST.orange, v: R, f: v => fsU(v, 'bn VND') }, { n: nO, c: ST.violet, v: O, f: v => fsU(v, 'bn VND') }] });
+  document.getElementById('fs-st-deph-leg').innerHTML = stLegend([{ n: nR, c: ST.orange, k: 'line' }, { n: nO, c: ST.violet, k: 'line' }, { n: stT('Đổi cách tính', 'Method change'), c: ST.ink, k: 'dash' }]);
+  const sh = R[N - 1] / (R[N - 1] + O[N - 1]) * 100;
+  fsHead(el, stT(`Dân cư giữ ${stN(sh, 0)}% tiền gửi của khách hàng (${fsStMon(mo[N - 1])})`, `Residents hold ${stN(sh, 0)}% of customer deposits (${fsStMon(mo[N - 1])})`), stT('Tiền gửi của dân cư và của tổ chức kinh tế tại các tổ chức tín dụng, theo tháng.', 'Deposits of residents and of economic organisations at credit institutions, by month.'));
+  document.getElementById('fs-st-deph-note').innerHTML = stNote(brk > 0 && brk < N - 1 ? stT(`Từ ${fsStMon(mo[brk])} đến ${fsStMon(mo[N - 1])}: dân cư ${R[N - 1] >= R[brk] ? '+' : '−'}${stN(Math.abs(R[N - 1] / R[brk] - 1) * 100, 1)}%, tổ chức kinh tế ${O[N - 1] >= O[brk] ? '+' : '−'}${stN(Math.abs(O[N - 1] / O[brk] - 1) * 100, 1)}%.`, `From ${fsStMon(mo[brk])} to ${fsStMon(mo[N - 1])}: residents ${R[N - 1] >= R[brk] ? '+' : '−'}${stN(Math.abs(R[N - 1] / R[brk] - 1) * 100, 1)}%, economic organisations ${O[N - 1] >= O[brk] ? '+' : '−'}${stN(Math.abs(O[N - 1] / O[brk] - 1) * 100, 1)}%.`) : '',
+    brk > 0 ? stT(`Tại ${fsStMon(mo[brk])} dân cư nhảy từ ${stN(q(R[brk - 1]), 2)} lên ${stN(q(R[brk]), 2)} triệu tỷ và tổ chức kinh tế giảm từ ${stN(q(O[brk - 1]), 2)} xuống ${stN(q(O[brk]), 2)}: do NHNN đổi cách phân loại, không phải dòng tiền; không so sánh qua mốc này.`, `In ${fsStMon(mo[brk])} residents jump from ${stN(q(R[brk - 1]), 2)} to ${stN(q(R[brk]), 2)} quadrillion and organisations fall from ${stN(q(O[brk - 1]), 2)} to ${stN(q(O[brk]), 2)}: an SBV reclassification, not a flow; do not compare across it.`) : '')
+    + stSrc(stT('Nguồn: NHNN, thống kê tiền tệ theo tháng.', 'Source: SBV monthly monetary statistics.'));
+  stRW(el, fsStDepH);
+}
+
+// ── 3a · policy rates (steps) with the overnight interbank rate and Vietcombank's posted 12-month deposit rate; one % axis
+function fsPolTitle() {
+  const r = fsPI('refinancing_rate'), dp = fsStPP(FINSYS.why.series.deposit12m_private_banks_mbs); if (!r || !r.d) return stT('Lãi suất và chính sách tiền tệ', 'Rates and monetary policy');
+  const mo = fsMonths(r.d.slice(0, 7), FINSYS.asof.slice(0, 7));
+  return stT(`Lãi suất tái cấp vốn đứng ở ${stN(r.v, 1)}% suốt ${mo} tháng${dp.length ? `; lãi suất huy động 12 tháng lên ${stN(dp[dp.length - 1][1], 2)}%` : ''}`, `The refinancing rate has held at ${stN(r.v, 1)}% for ${mo} months${dp.length ? `; 12-month deposit rates reached ${stN(dp[dp.length - 1][1], 2)}%` : ''}`);
+}
+function fsStPolR() {
+  const el = document.getElementById('fs-st-polr'); if (!el || typeof POLICY === 'undefined') return;
+  const ser = id => { const I = polIns('mon', id), S = I && I.series; return S && S.dates ? S.dates.map((d, i) => [fsTE(d), S.values[i], d]).filter(p => p[1] != null).sort((a, b) => a[0] - b[0]) : []; };
+  const refi = ser('refinancing_rate'), red = ser('rediscount_rate'), omo = ser('omo_rate'), IB = FINSYS.why.series.interbank_on_monthly || {};
+  const ib = (IB.months || []).map((m, i) => [fsTE(m), IB.values[i], m, (IB.types || [])[i]]).filter(p => p[1] != null), vcb = fsScSim('dep12_vcb').map(p => [fsTE(p[0]), p[1], p[0]]).filter(p => p[0] != null && p[0] >= 2023);
+  const t0 = 2023, t1 = Math.max(...[refi, red, omo, ib, vcb].flatMap(a => a.map(p => p[0]))) + .02;
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 26 : 34, MR = narrow ? 70 : 120, MT = 14, MB = 24, H = narrow ? 260 : 290, sx = stLin(t0, t1, ML, W - MR);
+  const AX = fsAx(0, Math.max(...[refi, red, omo, ib, vcb].flatMap(a => a.map(p => p[1]))), 4), sy = stLin(0, AX.b, H - MB, MT);
+  let s = stAxisY(sy, AX.tk, ML, W - MR, v => v + '%') + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>` + fsYearTicks(sx, t0, t1, H - 6, narrow);
+  const S = [{ n: stT('Tái cấp vốn', 'Refinancing'), sh: stT('TCV', 'Refi'), c: ST.ink, p: refi, step: 1 }, { n: stT('Tái chiết khấu', 'Rediscount'), sh: stT('TCK', 'Redisc.'), c: ST.violet, p: red, step: 1 }, { n: 'OMO', sh: 'OMO', c: ST.yellow, p: omo, step: 1 },
+    { n: stT('Liên ngân hàng qua đêm', 'Overnight interbank'), sh: stT('LNH', 'O/N'), c: ST.aqua, p: ib, dots: 1 }, { n: stT('Vietcombank 12 tháng, niêm yết', 'Vietcombank 12-month, posted'), sh: 'VCB', c: ST.orange, p: vcb }].filter(x => x.p.length);
+  const ends = [];
+  S.forEach(x => { const pts = x.step ? fsStepPts(x.p, sx, sy, t1 - .02) : x.p.map(p => [sx(p[0]), sy(p[1])]); s += stLine(pts, x.c);
+    x.p.forEach((p, i) => { const key = [`${x.n} · ${fsDL2(p[2])}${p[3] === 'avg' ? stT(' (bình quân tháng)', ' (monthly average)') : p[3] === 'month_end' ? stT(' (cuối tháng)', ' (month-end)') : ''}`, stN(p[1], 2) + '%'];
+      s += x.dots || i === x.p.length - 1 ? stDot(sx(p[0]), sy(p[1]), x.dots ? 3.5 : 4, x.c, key, { cls: '' }) : `<g ${stKey(...key)}><circle cx="${sx(p[0])}" cy="${sy(p[1])}" r="8" fill="transparent"/></g>`; });
+    const L = x.p[x.p.length - 1]; ends.push({ y: sy(L[1]), t: `${x.sh} ${stN(L[1], L[1] % 1 ? 2 : 1)}` }); });
+  s += fsEnds(ends, W - MR + 8, 13);
+  el.innerHTML = stSvg(W, H, s, stT('Lãi suất điều hành và lãi suất thị trường', 'Policy and market rates'));
+  el._stRows = { head: [stT('Chuỗi', 'Series'), stT('Kỳ', 'Period'), stT('Lãi suất', 'Rate')], rows: S.flatMap(x => x.p.map(p => [x.n, fsDL2(p[2]), stN(p[1], 2) + '%'])) };
+  document.getElementById('fs-st-polr-leg').innerHTML = stLegend(S.map(x => ({ n: x.n, c: x.c, k: x.dots ? 'dot' : 'line' })));
+  const r = fsPI('refinancing_rate'), om = fsPI('omo_rate'), ibMx = ib.length ? ib.reduce((a, b) => b[1] > a[1] ? b : a) : null, ibMn = ib.length ? ib.reduce((a, b) => b[1] < a[1] ? b : a) : null;
+  fsHead(el, ibMx ? stT(`Lãi suất qua đêm liên ngân hàng dao động ${stN(ibMn[1], 2)}–${stN(ibMx[1], 2)}% trong ${ib.length} tháng; OMO ${stN(om.v, 2)}%, tái cấp vốn ${stN(r.v, 1)}%`, `The overnight interbank rate ranged ${stN(ibMn[1], 2)}–${stN(ibMx[1], 2)}% over ${ib.length} months; OMO ${stN(om.v, 2)}%, refinancing ${stN(r.v, 1)}%`) : stT('Lãi suất điều hành', 'Policy rates'),
+    stT('Bậc thang: lãi suất NHNN quyết định. Đường và điểm: lãi suất thị trường.', 'Steps: rates the SBV sets. Lines and dots: market rates.'));
+  document.getElementById('fs-st-polr-note').innerHTML = stNote(stT(`Tái cấp vốn ${stN(r.v, 1)}% và tái chiết khấu ${stN((fsPI('rediscount_rate') || {}).v, 1)}% từ ${polDS(r.d)}; OMO lên ${stN(om.v, 2)}% từ ${polDS(om.d)}.${ibMx ? ` Liên ngân hàng cao nhất ${stN(ibMx[1], 2)}% (${fsDL2(ibMx[2])}).` : ''}`, `Refinancing ${stN(r.v, 1)}% and rediscount ${stN((fsPI('rediscount_rate') || {}).v, 1)}% since ${polDS(r.d)}; OMO raised to ${stN(om.v, 2)}% from ${polDS(om.d)}.${ibMx ? ` Interbank peaked at ${stN(ibMx[1], 2)}% (${fsDL2(ibMx[2])}).` : ''}`),
+    stT('Lãi suất liên ngân hàng trộn số cuối tháng và bình quân tháng (ghi trong bảng); Vietcombank là lãi suất niêm yết, ngân hàng tư nhân trả cao hơn.', 'The interbank series mixes month-end and monthly-average values (marked in the table); Vietcombank\'s is a posted rate, private banks pay more.'))
+    + stSrc(stT('Nguồn: dữ liệu chính sách của dashboard (quyết định NHNN, thông báo đấu thầu OMO); liên ngân hàng: NHNN qua báo chí; Vietcombank: bảng số liệu của tab Mô phỏng.', 'Source: the dashboard\'s policy data (SBV decisions, OMO auction notices); interbank: SBV via the press; Vietcombank: the Simulation tab\'s panel.'));
+  stRW(el, fsStPolR);
+}
+// ── 3b · weekly net injection through OMO and bills (VBMA, "khoảng" = approx); polarity blue in / red out
+function fsStOmoW() {
+  const el = document.getElementById('fs-st-omo'); if (!el) return;
+  const P = fsOps('omo_net_injection', e => /^VBMA/.test(e.note || '') && /\.\./.test(e.date)).map(e => ({ d: fsOpEnd(e.date), r: e.date, v: e.value })); if (P.length < 2) return;
+  const t0 = fsTE(P[0].d) - .03, t1 = fsTE(P[P.length - 1].d) + .03, W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 34 : 44, MR = 14, MT = 14, MB = 24, H = 240;
+  const AX = fsAx(Math.min(...P.map(p => p.v)) / 1e3, Math.max(...P.map(p => p.v)) / 1e3, 4), sy = stLin(AX.a, AX.b, H - MB, MT), sx = stLin(t0, t1, ML, W - MR), slot = Math.max(3, (W - ML - MR) / ((t1 - t0) * 52.2));
+  let s = stAxisY(sy, AX.tk, ML, W - MR, v => stN(v, 0)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/><text class="st-tick" x="${ML + 4}" y="${MT + 2}" style="fill:#16181d">${stT('nghìn tỷ đồng mỗi tuần', 'tn VND per week')}</text>`;
+  for (let y = Math.floor(t0); y <= t1; y++) for (let m = 1; m <= 12; m += narrow ? 6 : 3) { const t = y + (m - 1) / 12; if (t >= t0 && t <= t1) s += `<text class="st-tick" x="${sx(t)}" y="${H - 6}" text-anchor="middle">${fsMS(`T${m}/${String(y).slice(2)}`)}</text>`; }
+  P.forEach((p, j) => { s += stBarV(sx(fsTE(p.d)), slot, sy(p.v / 1e3), sy(0), p.v >= 0 ? ST.blue : ST.red, [`${fsWk(p.r)} · ${p.v >= 0 ? stT('bơm ròng', 'net injection') : stT('hút ròng', 'net drain')}`, '≈ ' + fsU(Math.abs(p.v), 'bn VND')], { d: j * 5 }); });
+  el.innerHTML = stSvg(W, H, s, stT('Bơm, hút ròng qua thị trường mở theo tuần', 'Weekly net injection through open-market operations'));
+  document.getElementById('fs-st-omo-leg').innerHTML = stLegend([{ n: stT('Tuần bơm ròng', 'Net-injection week'), c: ST.blue }, { n: stT('Tuần hút ròng', 'Net-drain week'), c: ST.red }]);
+  const yL = P[P.length - 1].d.slice(0, 4), cur = P.filter(p => p.d.slice(0, 4) === yL), sum = cur.reduce((a, p) => a + p.v, 0), inj = cur.filter(p => p.v > 0).length, mx = P.reduce((a, b) => Math.abs(b.v) > Math.abs(a.v) ? b : a);
+  fsHead(el, stT(`Từ đầu ${yL}, cộng các tuần, NHNN bơm ròng ≈ ${fsU(sum, 'bn VND')} qua thị trường mở; ${inj}/${cur.length} tuần là bơm`, `Since the start of ${yL}, summing the weeks, the SBV injected a net ≈ ${fsU(sum, 'bn VND')} through open-market operations; ${inj} of ${cur.length} weeks were injections`),
+    stT('Mỗi cột là một tuần: lượng cho vay OMO và tín phiếu mới trừ lượng đáo hạn.', 'Each bar is one week: new OMO lending and bills net of maturities.'));
+  document.getElementById('fs-st-omo-note').innerHTML = stNote(stT(`Tuần lớn nhất: ${mx.v >= 0 ? 'bơm' : 'hút'} ≈ ${fsU(Math.abs(mx.v), 'bn VND')} (${fsWk(mx.r)}).`, `Largest week: ${mx.v >= 0 ? 'injection' : 'drain'} of ≈ ${fsU(Math.abs(mx.v), 'bn VND')} (${fsWk(mx.r)}).`),
+    stT('Số tuần của VBMA là "khoảng" (≈); tổng các tuần là phép cộng của dashboard, không phải số NHNN công bố. Dư nợ (số tồn) ở chương 1.', 'VBMA weekly figures are approximate (≈); the year total is the dashboard\'s sum, not an SBV figure. Outstanding balances (the stock) are in chapter 1.'))
+    + stSrc(stT('Nguồn: VBMA, báo cáo thị trường trái phiếu hằng tuần.', 'Source: VBMA weekly bond-market reports.'));
+  stRW(el, fsStOmoW);
+}
+// ── 3c · reserve requirements: tiles from the latest dated RRR entries
+function fsRrrOps() { const R = fsOps('rrr'), d = R.length ? R[R.length - 1].date : null; return d ? R.filter(e => e.date === d) : []; }
+const fsRrrLab = e => { const n = e.note || ''; return /Same 4 banks/i.test(n) ? stT('4 NH nhận chuyển giao, tiền gửi VND từ 12 tháng', '4 receiving banks, VND deposits 12 months+') : /4 banks|50% cut/i.test(n) ? stT('4 NH nhận chuyển giao bắt buộc, tiền gửi VND dưới 12 tháng', '4 banks receiving transferred banks, VND deposits under 12 months') : />=\s*12/.test(n) ? stT('Tiền gửi VND từ 12 tháng trở lên', 'VND deposits of 12 months or more') : /<\s*12/.test(n) ? stT('Tiền gửi VND dưới 12 tháng', 'VND deposits under 12 months') : n; };
+function fsRrrTitle() { const R = fsRrrOps(), a = R.find(e => /Standard.*<\s*12/i.test(e.note || '')), b = R.find(e => /4 banks|50% cut/i.test(e.note || '') && !/Same/i.test(e.note || ''));
+  return a ? stT(`Dự trữ bắt buộc ${stN(a.value, 0)}% với tiền gửi VND dưới 12 tháng${b ? `; ${stN(b.value, 1)}% cho 4 ngân hàng nhận chuyển giao` : ''}`, `A ${stN(a.value, 0)}% reserve requirement on VND deposits under 12 months${b ? `; ${stN(b.value, 1)}% for 4 receiving banks` : ''}`) : stT('Dự trữ bắt buộc', 'Reserve requirements'); }
+function fsStRrr() {
+  const el = document.getElementById('fs-st-rrr'); if (!el) return; const R = fsRrrOps(); if (!R.length) return;
+  el.innerHTML = R.map(e => `<div class="st-fact"><div class="st-mini-v">${stN(e.value, e.value % 1 ? 1 : 0)}%</div><div class="st-mini-h">${fsRrrLab(e)}</div><div class="st-fact-s">${stT('áp dụng', 'as of')} ${fsDD(e.date)}</div></div>`).join('');
+  const h = typeof POLICY !== 'undefined' ? (polIns('mon', 'reserve_requirement').history || []).slice().sort((a, b) => a.date.localeCompare(b.date))[0] : null;
+  document.getElementById('fs-st-rrr-note').innerHTML = stNote(h ? stT(`Mức giảm 50% cho ngân hàng nhận chuyển giao bắt buộc có hiệu lực từ ${polDS(h.date)} (${ciE(h.doc)}).`, `The 50% cut for banks taking over weak banks took effect on ${polDS(h.date)} (${ciE(h.doc)}).`) : '',
+    stT('Mức chuẩn không đổi trong dữ liệu; dự trữ bắt buộc với tiền gửi ngoại tệ nêu trong báo cáo thường niên NHNN, chưa có trong dữ liệu dạng số.', 'The standard rates are unchanged in the data; FX-deposit ratios are in the SBV annual report but not yet in numeric form here.'))
+    + fsTbl([stT('Đối tượng', 'Deposits'), stT('Tỷ lệ', 'Ratio'), stT('Ngày', 'Date')], R.map(e => [fsTxt(fsRrrLab(e)), stN(e.value, 1) + '%', fsDD(e.date)])) + stSrc(stT('Nguồn: NHNN (Thông tư 30/2019, 23/2025 và hướng dẫn 2/2026) theo nhật ký nghiệp vụ của dashboard.', 'Source: SBV (Circulars 30/2019, 23/2025 and Feb-2026 guidance) via the dashboard\'s operations log.'));
+}
+
+// ── 4a · USD/VND inside the ±band: central rate, bank and free-market selling rates; SBV interventions numbered below
+function fsFxTitle() {
+  const B = FINSYS.sbv.balance_sheet.monthly_supplement.fx_reserves_total_busd, v = B.values, li = fsLi(v), pk = v.reduce((b, x, j) => x != null && (b < 0 || x > v[b]) ? j : b, -1);
+  const cr = typeof POLICY !== 'undefined' ? polIns('mon', 'central_rate') : null, crS = cr && cr.series ? cr.series.values : [], crMax = crS.length && cr.current_value >= Math.max(...crS);
+  return stT(`Dự trữ ngoại hối ${stN(v[li], 1)} tỷ USD (${fsDL2(B.periods[li])}), thấp hơn ${stN((1 - v[li] / v[pk]) * 100, 0)}% so với đỉnh ${stN(v[pk], 1)} tỷ (${fsDL2(B.periods[pk])})${cr && crMax ? `; tỷ giá trung tâm ${stN(cr.current_value, 0)}, cao nhất trong dữ liệu` : ''}`,
+    `FX reserves of ${stN(v[li], 1)} bn USD (${fsDL2(B.periods[li])}), ${stN((1 - v[li] / v[pk]) * 100, 0)}% below the ${stN(v[pk], 1)} bn peak (${fsDL2(B.periods[pk])})${cr && crMax ? `; the central rate at ${stN(cr.current_value, 0)}, the highest in the data` : ''}`);
+}
+function fsStBand() {
+  const el = document.getElementById('fs-st-band'); if (!el) return; const X = FINSYS.why.series.usdvnd_monthly || {}; if (!X.months) return;
+  const bI = typeof POLICY !== 'undefined' ? polIns('mon', 'fx_band') : null, band = bI && bI.current_value != null ? bI.current_value : null;
+  const cr = typeof POLICY !== 'undefined' ? polIns('mon', 'central_rate') : null, extra = cr && cr.series ? cr.series.dates.map((d, i) => [d, cr.series.values[i]]).filter(p => p[0].slice(0, 7) > X.months[X.months.length - 1]) : [];
+  const C = X.months.map((m, i) => [fsTE(m), X.central[i], m]).filter(p => p[1] != null).concat(extra.map(p => [fsTE(p[0]), p[1], p[0]]));
+  const V = X.months.map((m, i) => [fsTE(m), X.vcb_sell[i], m]), F = X.months.map((m, i) => [fsTE(m), X.free_sell[i], m]);
+  const t0 = C[0][0] - .02, t1 = C[C.length - 1][0] + .03, W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 40 : 50, MR = narrow ? 64 : 120, MT = 14, MB = 24, H = narrow ? 270 : 300, sx = stLin(t0, t1, ML, W - MR);
+  const all = C.flatMap(p => band != null ? [p[1] * (1 - band / 100), p[1] * (1 + band / 100)] : [p[1]]).concat(V.map(p => p[1]), F.map(p => p[1])).filter(v => v != null), AX = fsAx(Math.min(...all) - 100, Math.max(...all) + 100, 4), sy = stLin(AX.a, AX.b, H - MB, MT);
+  let s = stAxisY(sy, AX.tk.filter(t => t >= AX.a), ML, W - MR, v => stN(v, 0)) + `<text class="st-tick" x="${ML + 4}" y="${MT + 2}" style="fill:#16181d">${stT('đồng / USD', 'VND per USD')}</text>`;
+  for (let y = Math.floor(t0); y <= t1; y++) for (let m = 1; m <= 12; m += narrow ? 6 : 3) { const t = y + (m - 1) / 12; if (t >= t0 && t <= t1) s += `<text class="st-tick" x="${sx(t)}" y="${H - 6}" text-anchor="middle">${fsMS(`T${m}/${String(y).slice(2)}`)}</text>`; }
+  if (band != null) { const up = C.map(p => [sx(p[0]), sy(p[1] * (1 + band / 100))]), dn = C.map(p => [sx(p[0]), sy(p[1] * (1 - band / 100))]);
+    s += `<path d="M${up.map(p => p.join(',')).join(' L')} L${dn.slice().reverse().map(p => p.join(',')).join(' L')} Z" fill="#e9e7e0"/>` + stLine(up, ST.ink3, { w: 1, dash: '3,3', cls: '' }) + stLine(dn, ST.ink3, { w: 1, dash: '3,3', cls: '' });
+    const lu = up[up.length - 1], ld = dn[dn.length - 1]; s += `<text class="st-tick" x="${lu[0] + 6}" y="${lu[1] + 4}">${stT('trần', 'ceiling')} +${stN(band, 0)}%</text><text class="st-tick" x="${ld[0] + 6}" y="${ld[1] + 4}">${stT('sàn', 'floor')} −${stN(band, 0)}%</text>`; }
+  const S = [{ n: stT('Tỷ giá trung tâm (NHNN)', 'Central rate (SBV)'), sh: stT('TT', 'Central'), c: ST.blue, p: C }, { n: stT('Giá bán Vietcombank', 'Vietcombank selling rate'), sh: 'VCB', c: ST.aqua, p: V }, { n: stT('Giá bán tự do', 'Free-market selling rate'), sh: stT('Tự do', 'Free'), c: ST.magenta, p: F, dots: 1 }];
+  const ends = [];
+  S.forEach(x => { s += stLine(x.p.map(p => p[1] == null ? null : [sx(p[0]), sy(p[1])]), x.c);
+    x.p.forEach(p => { if (p[1] == null) return; const k = [`${x.n} · ${fsDL2(p[2])}`, stN(p[1], 0)]; s += x.dots ? stDot(sx(p[0]), sy(p[1]), 3.5, x.c, k, { cls: '' }) : `<g ${stKey(...k)}><circle cx="${sx(p[0])}" cy="${sy(p[1])}" r="7" fill="transparent"/></g>`; });
+    const L = x.p.filter(p => p[1] != null).pop(); s += stDot(sx(L[0]), sy(L[1]), 4, x.c, null, { cls: '' }); ends.push({ y: sy(L[1]), t: `${narrow ? '' : x.sh + ' '}${stN(L[1], 0)}` }); });
+  // band labels sit at the right edge too: keep the line-end labels clear of them by nudging only among themselves
+  s += fsEnds(ends, W - MR + (narrow ? 6 : 64), 13);
+  const EV = typeof POLICY !== 'undefined' ? (polIns('mon', 'fx_intervention').history || []).filter(h => fsTE(h.date) >= t0 && fsTE(h.date) <= t1).sort((a, b) => a.date.localeCompare(b.date)) : [];
+  EV.forEach((h, i) => { const x = sx(fsTE(h.date)), y = H - MB - 2; s += `<g ${stKey(`${polDS(h.date)} · ${stT('NHNN can thiệp', 'SBV intervention')}`, `${h.to || ''}${h.doc ? ' · ' + h.doc : ''}`)}><circle cx="${x}" cy="${y - 8}" r="12" fill="transparent"/><path d="M${x},${y - 14} L${x + 6},${y - 2} L${x - 6},${y - 2} Z" fill="${ST.ink}"/><text class="st-tick" x="${x}" y="${y - 17}" text-anchor="middle" style="fill:#16181d">${i + 1}</text></g>`; });
+  el.innerHTML = stSvg(W, H, s, stT('Tỷ giá USD/VND trong biên độ', 'USD/VND inside the band'));
+  el._stRows = { head: [stT('Kỳ', 'Period'), stT('Trung tâm', 'Central'), band != null ? stT(`Trần +${band}%`, `Ceiling +${band}%`) : '', 'Vietcombank', stT('Tự do', 'Free market')].filter(Boolean),
+    rows: C.map(p => { const j = X.months.indexOf(p[2]); return [fsDL2(p[2]), stN(p[1], 0)].concat(band != null ? [stN(p[1] * (1 + band / 100), 0)] : [], [j >= 0 && X.vcb_sell[j] != null ? stN(X.vcb_sell[j], 0) : '—', j >= 0 && X.free_sell[j] != null ? stN(X.free_sell[j], 0) : '—']); }) };
+  document.getElementById('fs-st-band-leg').innerHTML = stLegend(S.map(x => ({ n: x.n, c: x.c, k: x.dots ? 'dot' : 'line' })).concat(band != null ? [{ n: stT(`Biên độ ±${stN(band, 0)}% quanh tỷ giá trung tâm`, `±${stN(band, 0)}% band around the central rate`), c: '#e9e7e0' }] : [], EV.length ? [{ n: stT('▲ NHNN can thiệp (số thứ tự bên dưới)', '▲ SBV intervention (numbered below)'), c: ST.ink, k: 'diamond' }] : []));
+  document.getElementById('fs-st-band-ev').innerHTML = EV.map(h => `<li><time>${polDS(h.date)}</time> <b>${ciE(h.to || '')}</b> ${ciE(stT(h.note_vi || h.note_en || '', h.note_en || ''))}</li>`).join('');
+  const cL = C[C.length - 1], c12 = C.filter(p => p[0] <= cL[0] - 1 + .01).pop(), vi = fsLi(X.vcb_sell), ceil = band != null ? X.central[vi] * (1 + band / 100) : null, fi = fsLi(X.free_sell);
+  fsHead(el, stT(`Tỷ giá trung tâm ${stN(cL[1], 0)} đồng/USD (${fsDL2(cL[2])})${c12 ? `, tăng ${stN((cL[1] / c12[1] - 1) * 100, 1)}% trong 12 tháng` : ''}`, `Central rate at ${stN(cL[1], 0)} VND/USD (${fsDL2(cL[2])})${c12 ? `, up ${stN((cL[1] / c12[1] - 1) * 100, 1)}% in 12 months` : ''}`),
+    stT('Ngân hàng được mua bán USD trong biên độ quanh tỷ giá trung tâm NHNN công bố hằng ngày; thị trường tự do không bị ràng buộc.', 'Banks may trade USD within a band around the central rate the SBV sets daily; the free market is not bound by it.'));
+  document.getElementById('fs-st-band-note').innerHTML = stNote(ceil != null ? stT(`Giá bán Vietcombank ${stN(X.vcb_sell[vi], 0)} (${fsDL2(X.months[vi])}) cách trần ${stN(ceil, 0)} là ${stN((ceil / X.vcb_sell[vi] - 1) * 100, 2)}%; giá tự do ${stN(X.free_sell[fi], 0)} (${fsDL2(X.months[fi])}).`, `Vietcombank's selling rate of ${stN(X.vcb_sell[vi], 0)} (${fsDL2(X.months[vi])}) is ${stN((ceil / X.vcb_sell[vi] - 1) * 100, 2)}% below the ${stN(ceil, 0)} ceiling; free market ${stN(X.free_sell[fi], 0)} (${fsDL2(X.months[fi])}).`) : '',
+    stT('Số tháng là giá ghi nhận cuối tháng; tháng thiếu giá tự do để trống. Trần, sàn do dashboard tính từ tỷ giá trung tâm × (1 ± biên độ).', 'Monthly figures are end-of-month quotes; months without a free-market quote are left blank. Ceiling and floor are computed by the dashboard as central rate × (1 ± band).'))
+    + stSrc(stT('Nguồn: NHNN (tỷ giá trung tâm, biên độ, can thiệp) qua dữ liệu chính sách; Vietcombank và giá tự do: báo chí (Thanh Niên).', 'Source: SBV (central rate, band, interventions) via the policy data; Vietcombank and free-market quotes: the press (Thanh Nien).'));
+  stRW(el, fsStBand);
+}
+// ── 4b · monthly reserves: foreign currency + gold + other (SDR, IMF position; ≈ the remainder) = total, stacked from zero
+function fsStResM() {
+  const el = document.getElementById('fs-st-resm'); if (!el) return; const MS = FINSYS.sbv.balance_sheet.monthly_supplement, T = MS.fx_reserves_total_busd, Fx = MS.fx_reserves_ex_gold_fx_busd, G = MS.gold_reserves_busd;
+  const P = T.periods.map((p, i) => ({ p, t: fsTE(p), tot: T.values[i], fx: Fx.values[i], g: G.values[i] })).filter(x => x.tot != null && x.fx != null && x.g != null).map(x => ({ ...x, o: Math.max(0, x.tot - x.fx - x.g) })); if (P.length < 2) return;
+  const t0 = P[0].t - 1 / 12, t1 = P[P.length - 1].t, W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 28 : 36, MR = narrow ? 56 : 110, MT = 14, MB = 24, H = 260, sx = stLin(t0, t1, ML, W - MR);
+  const AX = fsAx(0, Math.max(...P.map(x => x.tot)), 4), sy = stLin(0, AX.b, H - MB, MT);
+  let s = stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, v => stN(v, 0)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/><text class="st-tick" x="${ML + 4}" y="${MT + 2}" style="fill:#16181d">${stT('tỷ USD, cuối tháng', 'bn USD, month-end')}</text>` + fsYearTicks(sx, t0, t1, H - 6, narrow);
+  const area = (lo, hi, c) => `<path class="st-fade" style="--o:1" d="M${P.map(x => `${sx(x.t).toFixed(1)},${sy(hi(x)).toFixed(1)}`).join(' L')} L${P.slice().reverse().map(x => `${sx(x.t).toFixed(1)},${sy(lo(x)).toFixed(1)}`).join(' L')} Z" fill="${c}"/>`;
+  s += area(x => 0, x => x.fx, ST.blue) + area(x => x.fx, x => x.fx + x.g, ST.yellow) + area(x => x.fx + x.g, x => x.tot, ST_MUTE);
+  const pk = P.reduce((a, b) => b.tot > a.tot ? b : a), L = P[P.length - 1];
+  s += stAnn(sx(pk.t), sy(pk.tot), sx(pk.t) + 24, sy(pk.tot) + 2, `${fsDL2(pk.p)}: ${stN(pk.tot, 1)}`);
+  s += fsEnds([{ y: sy(L.tot) - 2, t: `${stT('tổng', 'total')} ${stN(L.tot, 1)}` }, { y: sy(L.fx / 2), t: `${narrow ? '' : stT('ngoại tệ ', 'FX ')}${stN(L.fx, 1)}` }], W - MR + 8, 13);
+  el.innerHTML = stSvg(W, H, s, stT('Dự trữ ngoại hối theo tháng', 'FX reserves by month'));
+  stCross(el, { xs: P.map(x => sx(x.t)), labels: P.map(x => fsDL2(x.p)), top: MT, bottom: H - MB, series: [{ n: stT('Tổng (gồm vàng)', 'Total (incl. gold)'), c: ST.ink, v: P.map(x => x.tot), f: v => stN(v, 2) }, { n: stT('Ngoại tệ', 'Foreign currency'), c: ST.blue, v: P.map(x => x.fx), f: v => stN(v, 2) }, { n: stT('Vàng', 'Gold'), c: ST.yellow, v: P.map(x => x.g), f: v => stN(v, 2) }, { n: stT('≈ Khác (SDR, vị thế tại IMF)', '≈ Other (SDR, IMF position)'), c: ST_MUTE, v: P.map(x => x.o), f: v => '≈ ' + stN(v, 2) }] });
+  document.getElementById('fs-st-resm-leg').innerHTML = stLegend([{ n: stT('Ngoại tệ', 'Foreign currency'), c: ST.blue }, { n: stT('Vàng (giá quốc gia)', 'Gold (national valuation)'), c: ST.yellow }, { n: stT('≈ Khác: SDR, vị thế tại IMF (tổng − ngoại tệ − vàng)', '≈ Other: SDR, IMF position (total − FX − gold)'), c: ST_MUTE }]);
+  fsHead(el, stT(`Dự trữ ${stN(L.tot, 1)} tỷ USD (${fsDL2(L.p)}); vàng chỉ chiếm ${stN(L.g / L.tot * 100, 1)}%`, `Reserves of ${stN(L.tot, 1)} bn USD (${fsDL2(L.p)}); gold is only ${stN(L.g / L.tot * 100, 1)}%`), stT('Tổng dự trữ quốc tế gồm vàng, theo IMF, cuối mỗi tháng.', 'Total international reserves including gold, IMF, at each month-end.'));
+  document.getElementById('fs-st-resm-note').innerHTML = stNote(stT(`Đỉnh ${stN(pk.tot, 1)} tỷ USD (${fsDL2(pk.p)}); nay thấp hơn ${stN((1 - L.tot / pk.tot) * 100, 1)}%.`, `Peak of ${stN(pk.tot, 1)} bn USD (${fsDL2(pk.p)}); now ${stN((1 - L.tot / pk.tot) * 100, 1)}% lower.`),
+    stT('Số gồm vàng (IMF); tab Kinh tế dùng số không gồm vàng nên thấp hơn. Dự trữ tính theo tháng nhập khẩu chưa có trong dữ liệu.', 'Includes gold (IMF); the Economy tab uses the figure excluding gold, so it is lower. Reserves in months of imports are not in the data yet.'))
+    + stSrc(stT('Nguồn: IMF International Liquidity (tổng dự trữ gồm vàng, ngoại tệ, vàng).', 'Source: IMF International Liquidity (total reserves incl. gold, foreign currency, gold).'));
+  stRW(el, fsStResM);
+}
+// ── timeline: one row per instrument (or one numbered row with a list below); dots coloured by the move's direction
+// (blue easing, red tightening, grey neutral), hollow = still ahead; a dashed rule marks the data date
+function fsTL(el, rows, o = {}) {
+  if (!el) return; const today = FINSYS.asof, all = rows.flatMap(r => r.ev); if (!all.length) return;
+  const one = rows.length === 1, W = stCW(el, 1000), narrow = W < 560, ts = all.map(e => fsTE(e.d)), t0 = Math.min(o.t0 ?? 9e9, Math.floor(Math.min(...ts) * 4) / 4) - .04, t1 = Math.max(...ts, fsTE(today)) + .12;
+  const LW = one || narrow ? 0 : Math.min(250, W * .3), ML = LW + 10, MR = 14, RH = one ? 52 : narrow ? 42 : 28, MT = one ? 22 : 6, H = MT + rows.length * RH + 24, sx = stLin(t0, t1, ML, W - MR);
+  let s = fsYearTicks(sx, t0, t1, H - 6, narrow);
+  for (let y = Math.ceil(t0); y <= t1; y++) s += `<line class="st-grid" x1="${sx(y)}" x2="${sx(y)}" y1="${MT - 4}" y2="${H - 20}"/>`;
+  const xt = sx(fsTE(today)); s += `<line x1="${xt}" x2="${xt}" y1="${MT - 6}" y2="${H - 20}" stroke="${ST.ink}" stroke-width="1" stroke-dasharray="3,3"/><text class="st-tick" x="${xt + 4}" y="${MT - 8 < 8 ? 8 : MT - 8}" style="fill:#16181d">${stT('dữ liệu đến ', 'data to ')}${polDS(today)}</text>`;
+  const C = d => d === 'easing' ? ST.blue : d === 'tightening' ? ST.red : ST.ink3, rowsT = []; let k = 0;
+  rows.forEach((r, i) => { const y = MT + i * RH + (one ? RH / 2 : narrow ? 30 : RH / 2);
+    if (!one) { const nm = fsWrap(r.n, narrow ? W - 8 : LW - 8, 12)[0] + (fsWrap(r.n, narrow ? W - 8 : LW - 8, 12).length > 1 ? '…' : ''); s += narrow ? `<text class="st-lab" x="2" y="${y - 10}">${ciE(nm)}</text>` : `<text class="st-lab" x="${LW}" y="${y + 4}" text-anchor="end">${ciE(nm)}</text>`; }
+    s += `<line x1="${ML}" x2="${W - MR}" y1="${y}" y2="${y}" stroke="#dedbd2"/>`;
+    let px = -99, alt = 0; r.ev.slice().sort((a, b) => a.d.localeCompare(b.d)).forEach(e => { k++; const x = sx(fsTE(e.d)), fut = e.d > today, c = C(e.dir); alt = x - px < (one ? 15 : 9) ? alt + 1 : 0; px = x; const yy = y + (one ? (alt % 2 ? -14 : alt ? 14 : 0) : 0);
+      rowsT.push([r.n || '', polDS(e.d), fsTxt(e.t), e.doc || '', e.dir ? fsLvDir(e.dir) : '—']);
+      s += stDot(x, yy, one ? 8 : 5, c, [`${r.n ? r.n + ' · ' : ''}${polDS(e.d)}${fut ? stT(' (sắp tới)', ' (ahead)') : ''}`, [fsTxt(e.t), e.doc].filter(Boolean).join(' · ')], { hollow: fut, cls: '' });
+      if (one) s += `<text x="${x}" y="${yy + 4}" text-anchor="middle" style="font:700 10px var(--font-ui);fill:${fut ? '#16181d' : '#fff'};pointer-events:none">${k}</text>`; e._k = k; }); });
+  el.innerHTML = stSvg(W, H, s, o.label || '');
+  el._stRows = { head: [one ? stT('Mục', 'Item') : stT('Công cụ', 'Instrument'), stT('Ngày', 'Date'), stT('Nội dung', 'What'), stT('Văn bản', 'Document'), stT('Hướng', 'Direction')], rows: rowsT };
+  if (o.list) { const L = document.getElementById(o.list); if (L) L.innerHTML = rows.flatMap(r => r.ev).sort((a, b) => a._k - b._k).map(e => `<li value="${e._k}"><time>${polDS(e.d)}</time> <b>${ciE(e.t)}</b>${e.s ? ' ' + ciE(e.s) : ''}${e.doc ? ` <span>${ciE(e.doc)}</span>` : ''}</li>`).join(''); }
+}
+const fsTLLeg = () => stLegend([{ n: stT('Nới', 'Easing'), c: ST.blue, k: 'dot' }, { n: stT('Thắt', 'Tightening'), c: ST.red, k: 'dot' }, { n: stT('Trung tính, quy định, thông tin', 'Neutral, rule, information'), c: ST.ink3, k: 'dot' }, { n: stT('Sắp có hiệu lực', 'Still ahead'), c: ST.ink3, k: 'ring' }]);
+const fsHistEv = id => { const I = typeof POLICY !== 'undefined' ? polIns('mon', id) : null; return I ? (I.history || []).filter(h => h && h.date).map(h => ({ d: h.date, t: `${h.from && h.from !== '—' ? h.from + ' → ' : ''}${h.to || ''}`, s: stT(h.note_vi || '', h.note_en || ''), dir: h.direction, doc: h.doc })) : []; };
+function fsStGold() {
+  const el = document.getElementById('fs-st-gold'); if (!el) return; const ev = fsHistEv('gold_policy'); if (!ev.length) return;
+  fsTL(el, [{ n: '', ev }], { list: 'fs-st-gold-ev', label: stT('Dòng thời gian quản lý vàng', 'Gold-policy timeline') });
+  const e = ev.slice().sort((a, b) => a.d.localeCompare(b.d)), ez = e.filter(x => x.dir === 'easing');
+  fsHead(el, stT(`${e.length} bước điều hành thị trường vàng từ ${fsDL2(e[0].d.slice(0, 7))} đến ${fsDL2(e[e.length - 1].d.slice(0, 7))}; ${ez.length} bước nới`, `${e.length} gold-market steps from ${fsDL2(e[0].d.slice(0, 7))} to ${fsDL2(e[e.length - 1].d.slice(0, 7))}; ${ez.length} of them easing`),
+    stT('Mỗi chấm là một quyết định trong dữ liệu chính sách, đánh số theo thứ tự thời gian (danh sách bên dưới).', 'Each dot is a decision in the policy data, numbered in date order (list below).'));
+  document.getElementById('fs-st-gold-note').innerHTML = stNote(ez.length ? stT(`Bước nới gần nhất: ${ez[ez.length - 1].doc} (${polDS(ez[ez.length - 1].d)}).`, `Latest easing step: ${ez[ez.length - 1].doc} (${polDS(ez[ez.length - 1].d)}).`) : '',
+    stT('Dữ liệu chưa có chuỗi giá vàng SJC theo tháng, nên dòng thời gian không vẽ kèm giá; vàng chỉ là một phần nhỏ của dự trữ (biểu đồ trên).', 'The data has no monthly SJC gold-price series, so the timeline is not drawn over a price; gold is a small part of reserves (chart above).'))
+    + stSrc(stT('Nguồn: dữ liệu chính sách của dashboard (NHNN, Chính phủ: Nghị định 232/2025, Thông tư 34/2025, 82/2025…).', 'Source: the dashboard\'s policy data (SBV, Government: Decree 232/2025, Circulars 34/2025, 82/2025…).'));
+  stRW(el, fsStGold);
+}
+
+// ── 5 · banking-system health
+function fsSafeTitle() { const n = fsStR('npl_onbalance_sbv_pct').filter(x => /^\d{4}-\d{2}$/.test(x.d)).sort((a, b) => a.d.localeCompare(b.d)).pop(), e = fsStR('npl_onbalance_excl_5_weak_banks_pct').sort((a, b) => a.d.localeCompare(b.d)).pop();
+  return n ? stT(`Nợ xấu nội bảng ${stN(n.v, 2)}% (${fsDL2(n.d)})${e ? `; bỏ 5 ngân hàng yếu còn ${stN(e.v, 2)}% (${fsDL2(e.d)})` : ''}`, `On-balance bad loans at ${stN(n.v, 2)}% (${fsDL2(n.d)})${e ? `; ${stN(e.v, 2)}% without the 5 weak banks (${fsDL2(e.d)})` : ''}`) : stT('Sức khỏe hệ thống ngân hàng', 'Banking-system health'); }
+function fsStAssets() {
+  const el = document.getElementById('fs-st-assets'); if (!el) return; const P = fsStR('total_assets_ci_vnd_bn').map(x => ({ d: x.d, t: fsTE(x.d), v: x.v })).sort((a, b) => a.t - b.t); if (P.length < 2) return;
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 26 : 34, MR = narrow ? 50 : 80, MT = 16, MB = 24, H = 240, t0 = Math.floor(P[0].t) - .05, t1 = P[P.length - 1].t + .1, sx = stLin(t0, t1, ML, W - MR), q = v => v / 1e6;
+  const AX = fsAx(0, q(Math.max(...P.map(p => p.v))), 4), sy = stLin(0, AX.b, H - MB, MT);
+  let s = stAxisY(sy, AX.tk.filter(t => t > 0), ML, W - MR, fsTickF(AX.tk)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/><text class="st-tick" x="${ML + 4}" y="${MT - 2}" style="fill:#16181d">${stT('triệu tỷ đồng', 'quadrillion VND')}</text>` + fsYearTicks(sx, t0, t1, H - 6, narrow);
+  const pts = []; P.forEach((p, i) => { if (i && p.t - P[i - 1].t > 13 / 12) { pts.push(null); s += `<text class="st-tick" x="${(sx(p.t) + sx(P[i - 1].t)) / 2}" y="${sy(q((p.v + P[i - 1].v) / 2)) + 22}" text-anchor="middle">${stT('chưa có số', 'no data')}</text>`; } pts.push([sx(p.t), sy(q(p.v))]); });
+  s += stLine(pts, ST.blue) + P.map((p, i) => stDot(sx(p.t), sy(q(p.v)), 3.5, ST.blue, [`${stT('Tổng tài sản', 'Total assets')} · ${fsDL2(p.d)}`, fsU(p.v, 'bn VND')], { d: i * 40, cls: '' })).join('');
+  const f = P[0], L = P[P.length - 1]; s += `<text class="st-val" x="${sx(L.t) + 8}" y="${sy(q(L.v)) + 4}">${stN(q(L.v), 2)}</text><text class="st-val" x="${sx(f.t)}" y="${sy(q(f.v)) - 10}" text-anchor="middle">${stN(q(f.v), 2)}</text>`;
+  el.innerHTML = stSvg(W, H, s, stT('Tổng tài sản các tổ chức tín dụng', 'Total assets of credit institutions'));
+  fsHead(el, stT(`Tổng tài sản các tổ chức tín dụng ${fsU(L.v, 'bn VND')} (${fsDL2(L.d)}), gấp ${stN(L.v / f.v, 1)} lần ${fsDL2(f.d)}`, `Credit institutions' total assets of ${fsU(L.v, 'bn VND')} (${fsDL2(L.d)}), ${stN(L.v / f.v, 1)}× ${fsDL2(f.d)}`), stT('Toàn hệ thống, theo bảng "một số chỉ tiêu cơ bản" của NHNN.', 'Whole system, from the SBV\'s "basic indicators" table.'));
+  const M = FINSYS.monthly, ci = M.months.findIndex(m => fsTE(m) != null && Math.abs(fsTE(m) - L.t) < .01), cc = fsStR('charter_capital_ci_vnd_bn').pop();
+  document.getElementById('fs-st-assets-note').innerHTML = stNote([ci >= 0 && M.credit_level[ci] != null ? stT(`Dư nợ tín dụng ≈ ${stN(M.credit_level[ci] / L.v * 100, 0)}% tổng tài sản (${fsDL2(L.d)}, ≈ hai bảng NHNN khác phạm vi).`, `Credit ≈ ${stN(M.credit_level[ci] / L.v * 100, 0)}% of total assets (${fsDL2(L.d)}, ≈: two SBV tables with different scopes).`) : '', cc ? stT(`Vốn điều lệ toàn hệ thống ${fsU(cc.v, 'bn VND')} (${fsDL2(cc.d)}).`, `System charter capital ${fsU(cc.v, 'bn VND')} (${fsDL2(cc.d)}).`) : ''].filter(Boolean).join(' '),
+    stT('Từ 2023 có cả số giữa năm; khoảng trống là các kỳ chưa có số, không nối. Vốn điều lệ các năm trước chưa có trong dữ liệu.', 'Mid-year points appear from 2023; gaps are periods without data and are not joined. Earlier charter-capital levels are not in the data.'))
+    + stSrc(stT('Nguồn: NHNN, thống kê một số chỉ tiêu cơ bản của hệ thống tổ chức tín dụng; vốn điều lệ 5/2026: NHNN qua báo chí.', 'Source: SBV, basic indicators of the credit-institution system; May-2026 charter capital: SBV via the press.'));
+  stRW(el, fsStAssets);
+}
+function fsStHMult() {
+  const el = document.getElementById('fs-st-hmult'); if (!el) return; const f1 = v => stN(v, 1) + '%', f2 = v => stN(v, 2) + '%', pin = id => typeof POLICY !== 'undefined' ? polIns('mon', id) : null;
+  const dd = k => { const o = {}; fsStR(k).forEach(x => { if (!o[x.d] || /sbv\.gov\.vn/.test(x.u || '')) o[x.d] = x; }); return Object.values(o).sort((a, b) => a.d.localeCompare(b.d)).map(x => [x.d, x.v]); };
+  const yEnd = k => dd(k).filter(p => /^\d{4}(-12|-Q4)?$/.test(p[0])).map(p => [p[0].slice(0, 4), p[1]]);
+  const car = pin('car_basel3'), ldr = pin('ldr_cap'), stm = pin('st_funds_mlt'), ldrN = ldr ? (ldr.history || []).find(h => h.date > FINSYS.asof) : null, stmH = stm ? (stm.history || []).slice().sort((a, b) => a.date.localeCompare(b.date)) : [];
+  const mini = (t, p, f, ref, refL, sub) => { if (p.length < 2) return ''; const vs = p.map(x => x[1]).concat(ref != null ? [ref] : []); return stMini(t, f(p[p.length - 1][1]), stMiniLine(p, f, { name: t, ref, refL, lo: Math.min(...vs), hi: Math.max(...vs), allDots: p.length < 14 }), sub); };
+  el.innerHTML = [
+    mini(stT('Hệ số an toàn vốn, NH theo Basel II', 'Capital adequacy, Basel II banks'), dd('car_basel2_banks_tt41_pct'), f2, car ? car.current_value : null, car ? stT(`tối thiểu ${stN(car.current_value, 0)}%`, `minimum ${stN(car.current_value, 0)}%`) : '', stT('NHNN không công bố số toàn hệ thống từ 2020', 'The SBV has published no system total since 2020')),
+    mini(stT('Dư nợ / tiền gửi (TT22, NHNN)', 'Loans / deposits (Circular 22, SBV)'), dd('ldr_sbv_tt22_pct'), f2, ldr ? ldr.current_value : null, ldr ? stT(`trần ${stN(ldr.current_value, 0)}%`, `cap ${stN(ldr.current_value, 0)}%`) : '', ldrN ? stT(`trần lên ${ldrN.to} từ ${polDS(ldrN.date)}`, `cap rises to ${ldrN.to} from ${polDS(ldrN.date)}`) : ''),
+    mini(stT('Vốn ngắn hạn cho vay trung, dài hạn', 'Short-term funds in medium/long-term loans'), dd('short_term_funds_for_mlt_loans_pct'), f2, stm ? stm.current_value : null, stm ? stT(`trần ${stN(stm.current_value, 0)}%`, `cap ${stN(stm.current_value, 0)}%`) : '', stmH.length > 1 ? stT(`trần ${stmH[stmH.length - 1].from} đến ${polDS(stmH[stmH.length - 1].date)}, nay ${stmH[stmH.length - 1].to}`, `cap ${stmH[stmH.length - 1].from} until ${polDS(stmH[stmH.length - 1].date)}, now ${stmH[stmH.length - 1].to}`) : ''),
+    mini(stT('ROE cả năm (NHNN)', 'Full-year ROE (SBV)'), yEnd('roe_sbv_pct'), f1, null, '', stT('lũy kế cả năm', 'full-year cumulative')),
+    mini(stT('ROE (IMF FSI)', 'ROE (IMF FSI)'), dd('roe_imf_fsi_pct'), f1, 0, '0', stT('khác định nghĩa với NHNN', 'a different definition from the SBV\'s')),
+    mini(stT('Dự phòng / nợ xấu (IMF FSI)', 'Provisions / NPLs (IMF FSI)'), dd('provisions_to_npl_imf_fsi_pct'), f1, null, '', ''),
+    mini(stT('Cho vay BĐS thương mại / dư nợ (IMF FSI)', 'Commercial real-estate loans / loans (IMF FSI)'), dd('commercial_real_estate_loans_share_imf_fsi_pct'), f1, null, '', ''),
+    mini(stT('NIM, ngân hàng niêm yết', 'NIM, listed banks'), dd('nim_listed_banks_pct'), f1, null, '', stT('≈ theo công ty chứng khoán', '≈ per brokers'))].join('');
+}
+// NPL under every definition in the data, never merged: SBV on-balance (year-end 2016–2023 + 2025 on), gross incl. VAMC &
+// potential, IMF FSI, and on-balance without the 5 weak banks. Projections/targets to 2030 on the SBV line (dashed, hollow).
+function fsStNpl() {
+  const el = document.getElementById('fs-st-npl'); if (!el) return;
+  const ser = k => fsStR(k).map(x => ({ d: x.d, t: fsTE(x.d), v: x.v })).filter(x => x.t != null).sort((a, b) => a.t - b.t);
+  const S = [{ k: 'sbv', n: stT('NHNN, nội bảng, toàn hệ thống', 'SBV, on-balance, whole system'), sh: stT('NHNN nội bảng', 'SBV on-balance'), c: ST.orange, p: ser('npl_onbalance_sbv_annual_pct').concat(ser('npl_onbalance_sbv_pct')).sort((a, b) => a.t - b.t) },
+    { k: 'gross', n: stT('NHNN, gồm nợ bán VAMC và nợ tiềm ẩn', 'SBV, incl. loans sold to VAMC and potential NPLs'), sh: stT('gồm VAMC, tiềm ẩn', 'incl. VAMC, potential'), c: ST.aqua, p: ser('npl_incl_vamc_and_potential_pct') },
+    { k: 'imf', n: stT('IMF FSI, tổ chức nhận tiền gửi', 'IMF FSI, deposit takers'), sh: 'IMF', c: ST.blue, p: ser('npl_imf_fsi_pct') },
+    { k: 'ex5', n: stT('NHNN, nội bảng, bỏ 5 ngân hàng yếu', 'SBV, on-balance, excl. the 5 weak banks'), sh: stT('bỏ 5 NH yếu', 'excl. 5 weak'), c: ST.yellow, p: ser('npl_onbalance_excl_5_weak_banks_pct') }].filter(x => x.p.length);
+  const PK = ['npl_pct'], pyM = Math.min(2030, fsProjMaxY(PK) || 0), x0 = Math.min(...S.flatMap(x => x.p.map(p => p.t))) - .4, x1 = Math.max(fsTE(FINSYS.asof) + .3, pyM ? pyM + 1.2 : 0), pj = pyM > 2026;
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 28 : 36, MR = narrow ? 96 : 170, MT = 14, MB = 24, H = narrow ? 260 : 280, sx = stLin(x0, x1, ML, W - MR);
+  const AX = fsAx(0, Math.max(...S.flatMap(x => x.p.map(p => p.v)), ...fsProjVals(PK)), 4), sy = stLin(0, AX.b, H - MB, MT);
+  let s = stAxisY(sy, AX.tk, ML, W - MR, v => v + '%') + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/>` + fsYearTicks(sx, x0, x1, H - 6, narrow);
+  const sxE = y => sx(+y + 1);   // projection years and targets are year-ends
+  if (pj) s += fsProjDiv(sx(fsTE(FINSYS.asof)), MT, H - MB) + fsProjSvg('npl_pct', sxE, sy, ST.orange, null, stT('Nợ xấu (NHNN)', 'NPL ratio (SBV)'), v => stN(v, 2) + '%');
+  const ends = [];
+  S.forEach(x => { const pts = []; x.p.forEach((p, i) => { if (i && p.t - x.p[i - 1].t > 13 / 12) pts.push(null); pts.push([sx(p.t), sy(p.v)]); });
+    s += stLine(pts, x.c) + x.p.map((p, i) => stDot(sx(p.t), sy(p.v), 3.5, x.c, [`${x.n} · ${fsDL2(p.d)}`, stN(p.v, 2) + '%'], { d: i * 30, cls: '' })).join('');
+    const L = x.p[x.p.length - 1]; ends.push({ y: sy(L.v), t: `${narrow ? '' : x.sh + ' '}${stN(L.v, 2)} (${fsDL2(L.d).replace(/^(\d+)\/(\d{4})$/, '$1/$2')})` }); });
+  s += fsEnds(ends, W - MR + 8, 13);
+  el.innerHTML = stSvg(W, H, s, stT('Tỷ lệ nợ xấu theo các định nghĩa', 'Bad-loan ratio under each definition'));
+  el._stRows = { head: [stT('Định nghĩa', 'Definition'), stT('Kỳ', 'Period'), stT('Tỷ lệ', 'Ratio')], rows: S.flatMap(x => x.p.map(p => [x.n, fsDL2(p.d), stN(p.v, 2) + '%'])) };
+  document.getElementById('fs-st-npl-leg').innerHTML = stLegend(S.map(x => ({ n: x.n, c: x.c, k: 'line' })).concat(pj ? fsProjLeg(PK, [stT('Nợ xấu (NHNN)', 'NPL ratio (SBV)')], [ST.orange]) : []));
+  const last = k => { const x = S.find(z => z.k === k); return x ? x.p[x.p.length - 1] : null; }, a = last('sbv'), g = last('gross'), i = last('imf'), e = last('ex5'), cb = fsStR('npl_onbalance_commercial_banks_pct').pop();
+  fsHead(el, stT(`Bốn cách đo, bốn con số: ${[a && `nội bảng ${stN(a.v, 2)}%`, g && `gồm VAMC và tiềm ẩn ${stN(g.v, 2)}%`, i && `IMF ${stN(i.v, 2)}% (${i.d})`, e && `bỏ 5 NH yếu ${stN(e.v, 2)}%`].filter(Boolean).join(', ')}`, `Four measures, four numbers: ${[a && `on-balance ${stN(a.v, 2)}%`, g && `incl. VAMC and potential ${stN(g.v, 2)}%`, i && `IMF ${stN(i.v, 2)}% (${i.d})`, e && `excl. 5 weak banks ${stN(e.v, 2)}%`].filter(Boolean).join(', ')}`),
+    stT('Mỗi định nghĩa một đường, không cộng và không nối với nhau. Khoảng trống là kỳ không có số.', 'One line per definition, never added or joined. Gaps are periods without data.'));
+  document.getElementById('fs-st-npl-note').innerHTML = stNote(stT(`Nợ xấu IMF cao nhất ${(p => `${stN(p.v, 2)}% năm ${p.d}`)(S.find(z => z.k === 'imf').p.reduce((m, p) => p.v > m.v ? p : m))}; 5 ngân hàng yếu kéo tỷ lệ nội bảng lên ≈ ${a && e ? stN(a.v - e.v, 2) : '—'} điểm %.`, `The IMF ratio peaked at ${(p => `${stN(p.v, 2)}% in ${p.d}`)(S.find(z => z.k === 'imf').p.reduce((m, p) => p.v > m.v ? p : m))}; the 5 weak banks add ≈ ${a && e ? stN(a.v - e.v, 2) : '—'} points to the on-balance ratio.`),
+    stT(`Phạm vi tổ chức và loại nợ khác nhau nên không so từng điểm.${cb ? ` Cuối ${cb.d.slice(0, 4)} chưa có số toàn hệ thống; riêng ngân hàng thương mại ${stN(cb.v, 2)}%.` : ''}`, `Institutions and loan types differ, so do not compare point by point.${cb ? ` No whole-system figure for end-${cb.d.slice(0, 4)}; commercial banks alone: ${stN(cb.v, 2)}%.` : ''}`))
+    + (pj ? fsProjMeta(PK) : '') + stSrc(stT('Nguồn: NHNN (nội bảng, gồm VAMC và tiềm ẩn, bỏ 5 ngân hàng yếu; báo chí dẫn NHNN); IMF Financial Soundness Indicators.', 'Source: SBV (on-balance, incl. VAMC and potential, excl. 5 weak banks; press citing the SBV); IMF Financial Soundness Indicators.'));
+  stRW(el, fsStNpl);
+}
+// VAMC and Resolution 42: one panel for 2025 (same year, same unit), one for the cumulative totals (different periods,
+// different mechanisms: never added). Lower bounds carry ≥.
+function fsStVamc() {
+  const el = document.getElementById('fs-st-vamc'); if (!el) return; const R = ((FINSYS.npl_resolution || {}).items || []), it = k => R.find(x => x.key === k); if (!R.length) return;
+  const per = d => { const p = String(d).split('..'); return p.length === 2 ? `${p[0] ? p[0].slice(0, 4) : ''}${p[0] ? '–' : stT('đến ', 'to ')}${p[1].slice(0, 4)}` : String(d).slice(0, 4); };
+  const P1 = [[stT('VAMC mua nợ theo giá thị trường', 'VAMC purchases at market price'), it('vamc_market_price_purchases_2025')], [stT('VAMC xử lý (nợ gốc)', 'VAMC resolved (principal)'), it('vamc_principal_resolved_2025')]].filter(x => x[1]).map(([n, x]) => ({ n, v: x.principal_bn, q: fsQ(x.qualifier), d: x.d, u: x.u, x: x.count ? stT(`${x.count} khoản`, `${x.count} loans`) : '' }));
+  const P2 = [[stT('VAMC mua bằng trái phiếu đặc biệt', 'VAMC purchases for special bonds'), it('vamc_special_bond_purchases_cum'), 'principal_bn'], [stT('… trong đó đã thu hồi', '… of which recovered'), it('vamc_special_bond_purchases_cum'), 'recovered_bn'], [stT('Xử lý theo Nghị quyết 42, toàn hệ thống', 'Resolved under Resolution 42, whole system'), it('resolution_42_system_cum'), 'principal_bn'], [stT('VAMC xử lý lũy kế', 'VAMC resolved, cumulative'), it('vamc_principal_resolved_cum'), 'principal_bn'], [stT('VAMC mua theo giá thị trường, lũy kế', 'VAMC market-price purchases, cumulative'), it('vamc_market_price_purchases_cum'), 'principal_bn']].filter(x => x[1] && x[1][x[2]] != null).map(([n, x, f]) => ({ n, v: x[f], q: fsQ(x.qualifier), d: x.d, u: x.u, x: '' }));
+  const W = stCW(el, 1000), narrow = W < 560, LW = narrow ? 0 : Math.min(320, W * .36), RH = narrow ? 44 : 30, VW = narrow ? 120 : 160;
+  const panel = (title, P) => { if (!P.length) return ''; const mx = Math.max(...P.map(p => p.v)), sx = stLin(0, mx, LW + 4, W - VW), H = P.length * RH + 8; let s = `<line class="st-base" x1="${LW + 4}" x2="${LW + 4}" y1="0" y2="${H}"/>`;
+    P.forEach((p, i) => { const y = 4 + i * RH + (narrow ? 26 : RH / 2); s += narrow ? `<text class="st-lab" x="2" y="${y - 16}">${ciE(p.n)} · ${per(p.d)}</text>` : `<text class="st-lab" x="${LW - 6}" y="${y + 4}" text-anchor="end">${ciE(p.n)} · ${per(p.d)}</text>`;
+      s += stBarH(y, 20, sx(p.v), LW + 4, ST.blue, [`${p.n} · ${per(p.d)}`, `${p.q}${fsU(p.v, 'bn VND')}${p.x ? ' · ' + p.x : ''}`], { d: i * 60 }) + `<text class="st-val" x="${sx(p.v) + 6}" y="${y + 4}">${p.q}${fsU(p.v, 'bn VND')}</text>`; });
+    return `<div class="st-sub">${title}</div>${stSvg(W, H, s, title)}`; };
+  el.innerHTML = panel(stT('Năm 2025 · tỷ đồng nợ gốc', '2025 · bn VND of principal'), P1) + panel(stT('Lũy kế · mỗi dòng một giai đoạn và cơ chế, không cộng lại', 'Cumulative · each row its own period and mechanism, not additive'), P2);
+  const a = P1[0], b = P1[1], sb = P2[0], rc = P2[1];
+  fsHead(el, a && b ? stT(`Năm 2025 VAMC xử lý ${fsU(b.v, 'bn VND')} nợ gốc, gấp ${stN(b.v / a.v, 1)} lần lượng mua mới theo giá thị trường`, `In 2025 VAMC resolved ${fsU(b.v, 'bn VND')} of principal, ${stN(b.v / a.v, 1)}× its new market-price purchases`) : stT('Xử lý nợ xấu', 'Bad-debt resolution'), stT('Công ty quản lý tài sản (VAMC) mua và xử lý nợ xấu của ngân hàng; Nghị quyết 42 (2017–2021) là cơ chế thí điểm cho cả hệ thống.', 'The asset-management company (VAMC) buys and resolves banks\' bad debt; Resolution 42 (2017–2021) was a system-wide pilot.'));
+  document.getElementById('fs-st-vamc-note').innerHTML = stNote(sb && rc ? stT(`Với nợ mua bằng trái phiếu đặc biệt (${per(sb.d)}), đã thu hồi ${fsU(rc.v, 'bn VND')}, ≈ ${stN(rc.v / sb.v * 100, 0)}% nợ gốc đã mua.`, `Of the debt bought for special bonds (${per(sb.d)}), ${fsU(rc.v, 'bn VND')} has been recovered, ≈ ${stN(rc.v / sb.v * 100, 0)}% of principal bought.`) : '',
+    stT('Các số lũy kế có giai đoạn và cơ chế khác nhau nên không cộng lại; một số theo trích dẫn báo chí. ≥: nguồn nói "hơn".', 'Cumulative figures cover different periods and mechanisms, so they are not added; some come from press excerpts. ≥: the source says "more than".'))
+    + stSrc(stT('Nguồn: ', 'Sources: ') + [...new Set(P1.concat(P2).map(p => p.u).filter(Boolean))].map((u, i) => fsSrcA(u, stT(`nguồn ${i + 1}`, `source ${i + 1}`))).join(' · '));
+  stRW(el, fsStVamc);
+}
+function fsStXfer() { const el = document.getElementById('fs-st-xfer'); if (!el) return; const ev = fsHistEv('compulsory_transfer'); if (!ev.length) return;
+  fsTL(el, [{ n: '', ev }], { list: 'fs-st-xfer-ev', label: stT('Chuyển giao bắt buộc', 'Compulsory transfers') }); stRW(el, fsStXfer); }
+// institutions as unit squares (1 square = 1 institution), people's credit funds as a separate figure (1,178 squares would
+// swamp the rest); counts come from different sources and dates, so no total is drawn
+const FS_INST_VI = { state_owned_100pct: 'NH thương mại 100% vốn nhà nước (Agribank)', jsc_banks: 'NH thương mại cổ phần', transferred_single_member: 'NH được chuyển giao bắt buộc (một thành viên)', foreign_owned_banks: 'NH 100% vốn nước ngoài', jv_banks: 'NH liên doanh', policy_banks: 'NH chính sách (VBSP, VDB)', cooperative_bank: 'NH hợp tác xã', foreign_bank_branches: 'Chi nhánh NH nước ngoài', finance_companies: 'Công ty tài chính', leasing_companies: 'Công ty cho thuê tài chính', microfinance: 'Tổ chức tài chính vi mô', peoples_credit_funds: 'Quỹ tín dụng nhân dân' };
+function fsStInst() {
+  const el = document.getElementById('fs-st-inst'); const I = FINSYS.institutions; if (!el || !I || !I.items) return;
+  const fam = t => /branches/.test(t) ? 'br' : /finance_companies|leasing|microfinance/.test(t) ? 'nb' : 'bk', FC = { bk: ST.blue, br: ST.aqua, nb: ST.yellow };
+  const It = I.items.filter(x => x.type !== 'peoples_credit_funds' && typeof x.v === 'number'), pcf = I.items.find(x => x.type === 'peoples_credit_funds');
+  const W = stCW(el, 1000), narrow = W < 560, LW = narrow ? 0 : Math.min(330, W * .38), Q = 10, gap = 3, perRow = Math.max(10, Math.floor((W - LW - 12) / (Q + gap)));
+  let s = '', y = 0; const nm = x => stT(FS_INST_VI[x.type] || x.name_en, x.name_en);
+  It.forEach((x, i) => { const rows = Math.ceil(x.v / perRow), lab = `${nm(x)}: ${x.v}`;
+    if (narrow) { y += 14; s += `<text class="st-lab" x="0" y="${y}">${ciE(lab)}</text>`; y += 6; } else s += `<text class="st-lab" x="${LW - 8}" y="${y + Q}" text-anchor="end">${ciE(lab)}</text>`;
+    let q = ''; for (let k = 0; k < x.v; k++) q += `<rect x="${LW + (k % perRow) * (Q + gap)}" y="${y + Math.floor(k / perRow) * (Q + gap)}" width="${Q}" height="${Q}" rx="2" fill="${FC[fam(x.type)]}"/>`;
+    s += `<g class="st-cell" style="--d:${i * 40}ms" ${stKey(nm(x), `${x.v} · ${fsDL2(x.d)} · ${x.basis}`)}>${q}</g>`; y += rows * (Q + gap) + 9; });
+  el.innerHTML = stSvg(W, y + 2, s, stT('Số tổ chức tín dụng theo loại', 'Credit institutions by type'));
+  document.getElementById('fs-st-inst-leg').innerHTML = stLegend([{ n: stT('Ngân hàng', 'Banks'), c: ST.blue }, { n: stT('Chi nhánh ngân hàng nước ngoài', 'Foreign bank branches'), c: ST.aqua }, { n: stT('Tổ chức tín dụng phi ngân hàng', 'Non-bank credit institutions'), c: ST.yellow }, { n: stT('1 ô = 1 tổ chức', '1 square = 1 institution'), c: ST_MUTE }]);
+  const nb = It.filter(x => fam(x.type) === 'bk').reduce((a, x) => a + x.v, 0), nbr = It.filter(x => fam(x.type) === 'br').reduce((a, x) => a + x.v, 0), nn = It.filter(x => fam(x.type) === 'nb').reduce((a, x) => a + x.v, 0), A = I.pcf_aggregates || {};
+  fsHead(el, stT(`${nb} ngân hàng, ${nbr} chi nhánh ngân hàng nước ngoài, ${nn} tổ chức phi ngân hàng${pcf ? ` và ${stN(pcf.v, 0)} quỹ tín dụng nhân dân` : ''}`, `${nb} banks, ${nbr} foreign bank branches, ${nn} non-bank institutions${pcf ? ` and ${stN(pcf.v, 0)} people's credit funds` : ''}`), stT('Theo loại hình, số đếm mới nhất trong dữ liệu.', 'By type, latest counts in the data.'));
+  document.getElementById('fs-st-inst-note').innerHTML = stNote(pcf ? stT(`${stN(pcf.v, 0)} quỹ tín dụng nhân dân (${fsDL2(pcf.d)}) không vẽ thành ô${A.total_assets_bn ? `; tổng tài sản của cả khối ${fsU(A.total_assets_bn, 'bn VND')}, vốn huy động ${fsU(A.funds_mobilised_bn, 'bn VND')} (${fsDL2(A.d)})` : ''}.`, `${stN(pcf.v, 0)} people's credit funds (${fsDL2(pcf.d)}) are not drawn as squares${A.total_assets_bn ? `; together they hold ${fsU(A.total_assets_bn, 'bn VND')} of assets and ${fsU(A.funds_mobilised_bn, 'bn VND')} of funds (${fsDL2(A.d)})` : ''}.`) : '',
+    stT('Số đếm từ trang tổng hợp và công ty chứng khoán, ngày khác nhau (2024–2026), nên không cộng thành tổng chính thức; danh sách chính thức trên trang NHNN chưa truy cập được.', 'Counts come from an aggregator and a broker with different dates (2024–2026), so they are not summed into an official total; the SBV\'s official lists could not be reached.'))
+    + stSrc(stT('Nguồn: ', 'Sources: ') + [...new Set(I.items.map(x => x.u).filter(Boolean))].map((u, i) => fsSrcA(u, stT(`nguồn ${i + 1}`, `source ${i + 1}`))).join(' · '));
+  stRW(el, fsStInst);
+}
+
+// ── 6 · payments & inclusion
+function fsPayTitle() { const P = FINSYS.payments; if (!P || !P.annual) return stT('Thanh toán và tài chính toàn diện', 'Payments and financial inclusion'); const A = P.annual, n = A.years.length - 1, x = A.value_to_gdp_x[n];
+  return stT(`Thanh toán không dùng tiền mặt ${fsQ(A.value_qualifier[n])}${stN(A.value_bn_vnd[n] / 1e6, 0)} triệu tỷ đồng năm ${A.years[n]}${x ? `, ≈ ${stN(x, 0)} lần GDP` : ''}`, `Non-cash payments of ${fsQ(A.value_qualifier[n])}${stN(A.value_bn_vnd[n] / 1e6, 0)} quadrillion VND in ${A.years[n]}${x ? `, ≈ ${stN(x, 0)}× GDP` : ''}`); }
+function fsStPayV() {
+  const el = document.getElementById('fs-st-payv'), P = FINSYS.payments; if (!el || !P || !P.annual) return; const A = P.annual, yt = (P.ytd_2026 || []).filter(x => x.volume_bn_txn != null && x.value_bn_vnd != null).pop();
+  const ym = yt ? +String(yt.period).split('..').pop().slice(5, 7) : null, yy = yt ? String(yt.period).split('..').pop().slice(0, 4) : '';
+  const X = A.years.map((y, i) => ({ l: String(y), vol: A.volume_bn_txn[i], vq: fsQ(A.volume_qualifier[i]), val: A.value_bn_vnd[i] / 1e6, aq: fsQ(A.value_qualifier[i]), gdp: A.value_to_gdp_x[i] })).concat(yt ? [{ l: stT(`${ym}T/${yy}`, `${ym}M ${yy}`), vol: yt.volume_bn_txn, vq: fsQ(yt.qualifier), val: yt.value_bn_vnd / 1e6, aq: fsQ(yt.qualifier), part: 1 }] : []);
+  const W = stCW(el, 1000), narrow = W < 620, pw = narrow ? W : (W - 36) / 2, H = 230, MT = 20, MB = 34, ML = 10;
+  const panel = (k, q, title, unit, extra) => { const mx = Math.max(...X.map(x => x[k])), sy = stLin(0, mx * 1.15, H - MB, MT), slot = (pw - ML * 2) / X.length, cx = j => ML + (j + .5) * slot;
+    let s = `<text class="st-lab st-b" x="0" y="12">${title}</text><line class="st-base" x1="0" x2="${pw}" y1="${sy(0)}" y2="${sy(0)}"/>`;
+    X.forEach((x, j) => { s += stBarV(cx(j), slot, sy(x[k]), sy(0), x.part ? ST_SURF : ST.blue, [`${title} · ${x.l}`, `${x[q]}${stN(x[k], 1)} ${unit}`], { d: j * 60, style: x.part ? `stroke:${ST.blue};stroke-width:1.5` : '' })
+      + `<text class="st-val" x="${cx(j)}" y="${sy(x[k]) - 6}" text-anchor="middle">${x[q]}${stN(x[k], 1)}</text><text class="st-tick" x="${cx(j)}" y="${H - MB + 14}" text-anchor="middle">${x.l}</text>${extra ? extra(x, cx(j)) : ''}`; });
+    return `<div>${stSvg(pw, H, s, title)}</div>`; };
+  el.innerHTML = `<div class="fs-2col">${panel('vol', 'vq', stT('Số giao dịch, tỷ', 'Transactions, bn'), stT('tỷ giao dịch', 'bn transactions'))}${panel('val', 'aq', stT('Giá trị, triệu tỷ đồng', 'Value, quadrillion VND'), stT('triệu tỷ đồng', 'quadrillion VND'), (x, c) => x.gdp ? `<text class="st-tick" x="${c}" y="${H - MB + 27}" text-anchor="middle" style="fill:#16181d">≈ ${stN(x.gdp, 0)}× GDP</text>` : '')}</div>`;
+  el._stRows = { head: [stT('Kỳ', 'Period'), stT('Số giao dịch (tỷ)', 'Transactions (bn)'), stT('Giá trị', 'Value'), stT('Giá trị / GDP', 'Value / GDP')], rows: X.map(x => [x.l, `${x.vq}${stN(x.vol, 1)}`, `${x.aq}${fsU(x.val * 1e6, 'bn VND')}`, x.gdp ? `≈ ${x.gdp}×` : '—']) };
+  document.getElementById('fs-st-payv-leg').innerHTML = stLegend([{ n: stT('Cả năm', 'Full year'), c: ST.blue }].concat(yt ? [{ n: stT(`${ym} tháng ${yy}, chưa hết năm`, `${ym} months of ${yy}, not a full year`), c: ST.blue, k: 'ring' }] : []));
+  const n = A.years.length - 1;
+  fsHead(el, stT(`Số giao dịch từ ${X[0].vq}${stN(X[0].vol, 1)} tỷ (${X[0].l}) lên ${X[n].vq}${stN(X[n].vol, 1)} tỷ (${X[n].l}), gấp ${stN(X[n].vol / X[0].vol, 1)} lần`, `Transactions rose from ${X[0].vq}${stN(X[0].vol, 1)} bn (${X[0].l}) to ${X[n].vq}${stN(X[n].vol, 1)} bn (${X[n].l}), ${stN(X[n].vol / X[0].vol, 1)}×`), stT('Giao dịch thanh toán không dùng tiền mặt qua mọi kênh, theo Vụ Thanh toán NHNN.', 'Non-cash payment transactions across all channels, per the SBV Payments Department.'));
+  document.getElementById('fs-st-payv-note').innerHTML = stNote(yt ? stT(`${ym} tháng ${yy}: ${fsQ(yt.qualifier)}${stN(yt.volume_bn_txn, 1)} tỷ giao dịch (+${stN(yt.volume_growth_yoy_pct, 2)}% so cùng kỳ), giá trị ${fsQ(yt.qualifier)}${stN(yt.value_bn_vnd / 1e6, 1)} triệu tỷ (+${stN(yt.value_growth_yoy_pct, 2)}%).`, `${ym} months of ${yy}: ${fsQ(yt.qualifier)}${stN(yt.volume_bn_txn, 1)} bn transactions (+${stN(yt.volume_growth_yoy_pct, 2)}% y/y), worth ${fsQ(yt.qualifier)}${stN(yt.value_bn_vnd / 1e6, 1)} quadrillion (+${stN(yt.value_growth_yoy_pct, 2)}%).`) : '',
+    stT('≥: nguồn nói "hơn, trên"; ≈: "khoảng". Một nguồn khác cho giá trị 2024 ≈ 280 triệu tỷ: mâu thuẫn, không dùng. Chưa có tổng 2019–2022.', '≥: the source says "more than"; ≈: "about". Another source gives ≈ 280 quadrillion for 2024: a conflict, not used. No totals for 2019–2022.'))
+    + stSrc(stT('Nguồn: NHNN (Vụ Thanh toán) qua báo chí: ', 'Source: SBV Payments Department via the press: ') + (A.urls || []).map((u, i) => fsSrcA(u, String(A.years[i]))).join(' · ') + (yt && yt.url ? ' · ' + fsSrcA(yt.url, stT(`${ym}T/${yy}`, `${ym}M ${yy}`)) : ''));
+  stRW(el, fsStPayV);
+}
+const FS_CH = { internet: ['Internet', 'Internet'], mobile: ['Điện thoại di động', 'Mobile'], qr: ['Mã QR', 'QR code'], atm: ['ATM', 'ATM'] };
+function fsStPayCh() {
+  const el = document.getElementById('fs-st-paych'), P = FINSYS.payments; if (!el || !P || !P.channels) return; const yr = P.annual.years[P.annual.years.length - 1];
+  const C = P.channels.filter(c => c.period === String(yr) && FS_CH[c.channel]); if (!C.length) return;
+  const W = stCW(el, 1000), narrow = W < 620, pw = narrow ? W : (W - 36) / 2, RH = 30, LW = 120, nm = c => stT(FS_CH[c.channel][0], FS_CH[c.channel][1]);
+  const panel = (k, title) => { const vs = C.map(c => c[k]).filter(v => v != null), lo = Math.min(0, ...vs), hi = Math.max(0, ...vs), sx = stLin(lo, hi, LW, pw - 56), H = C.length * RH + 24;
+    let s = `<text class="st-lab st-b" x="0" y="12">${title}</text><line class="st-base" x1="${sx(0)}" x2="${sx(0)}" y1="18" y2="${H}"/>`;
+    C.forEach((c, i) => { const y = 22 + i * RH + RH / 2, v = c[k]; s += `<text class="st-lab" x="${LW - 8}" y="${y + 4}" text-anchor="end">${nm(c)}</text>`;
+      if (v == null) { s += `<text class="st-tick" x="${sx(0) + 6}" y="${y + 4}">${/conflict/i.test(c.qualifier || '') ? stT('không có số (nguồn mâu thuẫn)', 'no figure (sources conflict)') : stT('không có số', 'no figure')}</text>`; return; }
+      s += stBarH(y, 20, sx(v), sx(0), v >= 0 ? ST.blue : ST.red, [`${nm(c)} · ${title}`, `${fsQ(c.qualifier)}${v >= 0 ? '+' : ''}${stN(v, 1)}%`], { d: i * 60 }) + `<text class="st-val" x="${v >= 0 ? sx(v) + 6 : sx(v) - 6}" y="${y + 4}" text-anchor="${v >= 0 ? 'start' : 'end'}">${v >= 0 ? '+' : '−'}${stN(Math.abs(v), 1)}%</text>`; });
+    return `<div>${stSvg(pw, H, s, title)}</div>`; };
+  // labels sit left of the zero line; with a negative bar the label column moves left of the bars' minimum
+  el.innerHTML = `<div class="fs-2col">${panel('volume_growth_pct', stT(`Số giao dịch, ${yr} so với ${yr - 1}`, `Transactions, ${yr} vs ${yr - 1}`))}${panel('value_growth_pct', stT(`Giá trị, ${yr} so với ${yr - 1}`, `Value, ${yr} vs ${yr - 1}`))}</div>`;
+  document.getElementById('fs-st-paych-leg').innerHTML = stLegend([{ n: stT('Tăng', 'Rose'), c: ST.blue }, { n: stT('Giảm', 'Fell'), c: ST.red }]);
+  const top = C.filter(c => c.volume_growth_pct != null).reduce((a, b) => b.volume_growth_pct > a.volume_growth_pct ? b : a), atm = C.find(c => c.channel === 'atm'), q24 = P.channels.find(c => c.period === String(yr - 1) && c.channel === 'qr');
+  fsHead(el, stT(`Năm ${yr} giao dịch qua ${nm(top)} tăng ${stN(top.volume_growth_pct, 0)}%${atm && atm.volume_growth_pct < 0 ? `; qua ATM giảm ${stN(-atm.volume_growth_pct, 1)}%` : ''}`, `In ${yr} ${nm(top)} transactions rose ${stN(top.volume_growth_pct, 0)}%${atm && atm.volume_growth_pct < 0 ? `; ATM transactions fell ${stN(-atm.volume_growth_pct, 1)}%` : ''}`), stT('Tốc độ tăng so với năm trước theo từng kênh.', 'Growth on the previous year, by channel.'));
+  document.getElementById('fs-st-paych-note').innerHTML = stNote(q24 ? stT(`Năm ${yr - 1} giao dịch QR tăng ${stN(q24.volume_growth_pct, 0)}% về số lượng, ${stN(q24.value_growth_pct, 0)}% về giá trị.`, `In ${yr - 1} QR payments rose ${stN(q24.volume_growth_pct, 0)}% in number and ${stN(q24.value_growth_pct, 0)}% in value.`) : '',
+    stT('Nguồn nói "gần, hơn" nên các số là xấp xỉ; chưa có số tuyệt đối theo kênh, nên không so quy mô giữa các kênh.', 'Sources say "nearly, more than", so figures are approximate; there are no per-channel levels, so channel sizes are not compared.'))
+    + stSrc(stT('Nguồn: NHNN qua báo chí: ', 'Source: SBV via the press: ') + [...new Set(C.map(c => c.url).filter(Boolean))].map((u, i) => fsSrcA(u, stT(`nguồn ${i + 1}`, `source ${i + 1}`))).join(' · '));
+  stRW(el, fsStPayCh);
+}
+// target tracker: one bullet row per target with an actual in the data; the bar is the actual, the ink tick the target
+function fsStPayTg() {
+  const el = document.getElementById('fs-st-paytg'), P = FINSYS.payments; if (!el || !P) return; const A = P.annual, M = FINSYS.monthly;
+  const xT = y => { const t = (P.targets || []).find(t => t.year === y && /x GDP/i.test(t.label_en || '')); const m = t && /(\d+(?:\.\d+)?)x GDP/i.exec(t.label_en); return m ? { v: +m[1], t } : null; };
+  const gI = fsLi(A.value_to_gdp_x), g = gI >= 0 ? { v: A.value_to_gdp_x[gI], y: A.years[gI] } : null, cT = ((FINSYS.projections || {}).targets || []).find(t => t.key === 'cash_to_m2_2025'), cI = M.months.indexOf(`T12/${String(cT ? cT.year : '').slice(2)}`);
+  const R = [];
+  [2025, 2030].forEach(y => { const t = xT(y); if (t && g) R.push({ n: stT(`Giá trị thanh toán không tiền mặt / GDP, mục tiêu ${y}`, `Non-cash payment value / GDP, ${y} target`), act: g.v, actL: `≈ ${stN(g.v, 0)}× (${g.y})`, tg: t.v, tgL: `${stN(t.v, 0)}×`, up: 1, doc: t.t.doc, due: y }); });
+  if (cT && cI >= 0 && M.cash_to_m2_pct[cI] != null) R.push({ n: stT(`Tiền mặt / M2, mục tiêu ${cT.year}: dưới ${stN(cT.value, 0)}%`, `Cash / M2, ${cT.year} target: below ${stN(cT.value, 0)}%`), act: M.cash_to_m2_pct[cI], actL: `${stN(M.cash_to_m2_pct[cI], 2)}% (${fsStMon(M.months[cI])})`, tg: cT.value, tgL: `< ${stN(cT.value, 0)}%`, up: 0, doc: cT.doc || '', due: cT.year });
+  if (!R.length) return;
+  const W = stCW(el, 1000), narrow = W < 560, RH = narrow ? 62 : 50, ML = 2, MR = narrow ? 8 : 200; let s = '';
+  R.forEach((r, i) => { const y = i * RH, mx = Math.max(r.act, r.tg) * 1.2, sx = stLin(0, mx, ML, W - MR), met = r.up ? r.act >= r.tg : r.act < r.tg, ahead = r.due > +FINSYS.asof.slice(0, 4);
+    const st = ahead ? stT('đang tiến tới', 'in progress') : met ? stT('đạt', 'met') : stT('chưa đạt', 'missed');
+    s += `<text class="st-lab st-b" x="${ML}" y="${y + 14}">${ciE(r.n)}</text>` + stBarH(y + 30, 16, sx(r.act), sx(0), ST.blue, [r.n, `${r.actL} · ${stT('mục tiêu', 'target')} ${r.tgL} · ${st}`], { d: i * 80 })
+      + `<line x1="${sx(r.tg)}" x2="${sx(r.tg)}" y1="${y + 19}" y2="${y + 41}" stroke="#16181d" stroke-width="2.5"/><text class="st-tick" x="${sx(r.tg)}" y="${y + 52}" text-anchor="middle" style="fill:#16181d">${stT('mục tiêu', 'target')} ${r.tgL}</text>`
+      + (narrow ? `<text class="st-val" x="${W - 4}" y="${y + 14}" text-anchor="end">${r.actL.split(' (')[0]}: ${st}</text>` : `<text class="st-val" x="${W - MR + 12}" y="${y + 34}">${r.actL}: <tspan style="font-weight:700">${st}</tspan></text>`); });
+  el.innerHTML = stSvg(W, R.length * RH + 4, s, stT('Theo dõi mục tiêu thanh toán', 'Payment target tracker'));
+  const due = R.filter(r => r.due <= +FINSYS.asof.slice(0, 4)), met = due.filter(r => r.up ? r.act >= r.tg : r.act < r.tg), cash = R.find(r => !r.up);
+  fsHead(el, stT(`${met.length}/${due.length} mục tiêu thanh toán 2025 có số đã đạt${cash && !(cash.act < cash.tg) ? `; tiền mặt vẫn ${stN(cash.act, 2)}% M2, trên mức ${stN(cash.tg, 0)}%` : ''}`, `${met.length} of ${due.length} measurable 2025 payment targets met${cash && !(cash.act < cash.tg) ? `; cash is still ${stN(cash.act, 2)}% of M2, above ${stN(cash.tg, 0)}%` : ''}`), stT('Thanh: số thực tế. Vạch đen: mục tiêu trong văn bản.', 'Bar: the actual. Ink tick: the target in the document.'));
+  document.getElementById('fs-st-paytg-note').innerHTML = stNote(stT('Giá trị/GDP là số NHNN công bố ("khoảng"); tỷ lệ tiền mặt/M2 là số tháng 12 của NHNN.', 'Value/GDP is the SBV\'s stated figure ("about"); cash/M2 is the SBV\'s December ratio.'),
+    stT('Mục tiêu tiền mặt dưới 8% M2 theo thông báo văn bản, chưa xác minh số hiệu quyết định. Mục tiêu tài khoản ở biểu đồ dưới.', 'The cash-below-8% target comes from a document notice whose decision number is unverified. The accounts target is in the chart below.'))
+    + stSrc(stT('Nguồn: ', 'Sources: ') + (P.targets || []).filter(t => t.url).map(t => fsSrcA(t.url, t.doc || String(t.year))).join(' · '));
+  stRW(el, fsStPayTg);
+}
+function fsStIncl() {
+  const el = document.getElementById('fs-st-incl'), FI = FINSYS.financial_inclusion, P = FINSYS.payments; if (!el || !FI) return;
+  const B = (FI.adults_with_account_pct || []).filter(x => typeof x.v === 'number'), T = (FI.targets || []).filter(t => typeof t.v === 'number'); if (!B.length) return;
+  const W = stCW(el, 1000), narrow = W < 560, RH = narrow ? 50 : 40, ML = 2, MR = narrow ? 50 : 70, H = B.length * RH + 34, sx = stLin(0, 100, ML, W - MR);
+  const lab = x => /payment account/i.test(x.basis) ? stT('có tài khoản thanh toán (báo cáo NHNN)', 'with a payment account (SBV report)') : /15\+/.test(x.basis) ? stT('người từ 15 tuổi có tài khoản ngân hàng (báo chí dẫn NHNN)', 'aged 15+ with a bank account (press citing the SBV)') : x.basis;
+  let s = '';
+  B.forEach((x, i) => { const y = i * RH; s += `<text class="st-lab" x="${ML}" y="${y + 12}">${ciE(lab(x))} · ${fsDL2(x.d)}</text>` + stBarH(y + 26, 16, sx(x.v), sx(0), ST.blue, [lab(x), stN(x.v, 2) + '%'], { d: i * 80 }) + `<text class="st-val" x="${sx(x.v) + 6}" y="${y + 30}">${stN(x.v, 2)}%</text>`; });
+  T.forEach(t => { const x = sx(t.v); s += `<line x1="${x}" x2="${x}" y1="14" y2="${B.length * RH + 4}" stroke="#16181d" stroke-width="2" stroke-dasharray="${t.year > +FINSYS.asof.slice(0, 4) ? '4,3' : ''}"/><text class="st-tick" x="${x}" y="${B.length * RH + 18}" text-anchor="middle" style="fill:#16181d">${stT('mục tiêu', 'target')} ${t.year}: ${stN(t.v, 0)}%</text>`; });
+  s += `<line class="st-base" x1="${sx(0)}" x2="${sx(0)}" y1="14" y2="${B.length * RH + 4}"/>`;
+  el.innerHTML = stSvg(W, H, s, stT('Người trưởng thành có tài khoản', 'Adults with an account'));
+  document.getElementById('fs-st-incl-leg').innerHTML = stLegend([{ n: stT('Tỷ lệ có tài khoản (hai cách đo, giữ riêng)', 'Share with an account (two measures, kept apart)'), c: ST.blue }, { n: stT('Mục tiêu (nét đứt: còn ở phía trước)', 'Target (dashed: still ahead)'), c: '#16181d', k: 'line' }]);
+  const lo = Math.min(...B.map(x => x.v)), hi = Math.max(...B.map(x => x.v)), t25 = T.find(t => t.year <= +FINSYS.asof.slice(0, 4)), t30 = T.filter(t => t.year > +FINSYS.asof.slice(0, 4)).pop();
+  fsHead(el, stT(`${stN(lo, 2)}–${stN(hi, 2)}% người trưởng thành có tài khoản cuối 2025${t25 ? `, vượt mục tiêu ${stN(t25.v, 0)}%` : ''}${t30 ? `; mục tiêu ${t30.year} là ${stN(t30.v, 0)}%` : ''}`, `${stN(lo, 2)}–${stN(hi, 2)}% of adults had an account at end-2025${t25 ? `, above the ${stN(t25.v, 0)}% target` : ''}${t30 ? `; the ${t30.year} target is ${stN(t30.v, 0)}%` : ''}`), '');
+  const inf = k => ((P || {}).infrastructure || []).find(x => x.key === k), ac = inf('personal_payment_accounts_mn'), cd = inf('cards_in_circulation_mn'), atm = inf('atm_count'), pos = inf('pos_count');
+  const fact = (v, t, sub) => `<div class="st-fact"><div class="st-mini-v">${v}</div><div class="st-mini-h">${t}</div><div class="st-fact-s">${sub}</div></div>`;
+  document.getElementById('fs-st-incl-f').innerHTML = [ac ? fact(`${fsQ(ac.qualifier)}${stN(ac.v, 0)} ${stT('triệu', 'm')}`, stT('tài khoản thanh toán cá nhân', 'personal payment accounts'), `${fsDL2(ac.d)} · +${stN(ac.growth_pct, 2)}%`) : '', cd ? fact(`${fsQ(cd.qualifier)}${stN(cd.v, 0)} ${stT('triệu', 'm')}`, stT('thẻ đang lưu hành', 'cards in circulation'), `${fsDL2(cd.d)} · +${stN(cd.growth_pct, 2)}%`) : '',
+    atm && pos ? fact(`ATM ${atm.growth_pct >= 0 ? '+' : '−'}${stN(Math.abs(atm.growth_pct), 2)}% · POS +${stN(pos.growth_pct, 2)}%`, stT('số máy, so với năm trước', 'number of terminals, on the year before'), stT(`${fsDL2(atm.d)}; chưa có số máy tuyệt đối`, `${fsDL2(atm.d)}; terminal counts not in the data`)) : ''].join('');
+  document.getElementById('fs-st-incl-note').innerHTML = stNote(t30 ? stT(`Còn ${stN(t30.v - hi, 2)}–${stN(t30.v - lo, 2)} điểm % tới mục tiêu ${t30.year}.`, `${stN(t30.v - hi, 2)}–${stN(t30.v - lo, 2)} points short of the ${t30.year} target.`) : '',
+    stT('Hai số cuối 2025 có cơ sở khác nhau nên giữ cả hai, không lấy trung bình; Global Findex của World Bank (khảo sát) là cách đo thứ ba, chưa có trong dữ liệu.', 'The two end-2025 figures rest on different bases, so both are kept and not averaged; the World Bank\'s survey-based Global Findex is a third measure, not in the data.'))
+    + stSrc(stT('Nguồn: ', 'Sources: ') + B.map((x, i) => fsSrcA(x.u, stT(`số ${i + 1}`, `figure ${i + 1}`))).concat(ac && ac.url ? [fsSrcA(ac.url, stT('tài khoản', 'accounts'))] : [], cd && cd.url ? [fsSrcA(cd.url, stT('thẻ, ATM, POS', 'cards, ATM, POS'))] : []).join(' · '));
+  stRW(el, fsStIncl);
+}
+
+// ── 7 · the SBV & rules
+function fsSbvTitle() { const B = FINSYS.sbv.balance_sheet, i = fsLi(B.series.nfa), j = fsLi(B.series.net_claims_govt_sbv);
+  return i >= 0 && j >= 0 ? stT(`NHNN nắm ${fsU(B.series.nfa[i], 'trn VND')} tài sản nước ngoài ròng; ${B.series.net_claims_govt_sbv[j] < 0 ? `Chính phủ gửi ròng ${fsU(-B.series.net_claims_govt_sbv[j], 'trn VND')} tại NHNN` : `NHNN cho Chính phủ vay ròng ${fsU(B.series.net_claims_govt_sbv[j], 'trn VND')}`} (cuối ${B.periods[j]}, IMF)`, `The SBV holds ${fsU(B.series.nfa[i], 'trn VND')} of net foreign assets; ${B.series.net_claims_govt_sbv[j] < 0 ? `the government keeps a net ${fsU(-B.series.net_claims_govt_sbv[j], 'trn VND')} at the SBV` : `the SBV lends the government a net ${fsU(B.series.net_claims_govt_sbv[j], 'trn VND')}`} (end-${B.periods[j]}, IMF)`) : stT('NHNN và luật chơi', 'The SBV and the rules'); }
+function fsStSbvB() {
+  const el = document.getElementById('fs-st-sbvb'); if (!el) return; const B = FINSYS.sbv.balance_sheet, I = B.periods.map((p, i) => i).filter(i => B.series.nfa[i] != null && B.series.net_claims_govt_sbv[i] != null); if (I.length < 2) return;
+  const W = stCW(el, 1000), narrow = W < 560, ML = narrow ? 34 : 44, MR = 10, MT = 14, MB = 24, H = 260, slot = (W - ML - MR) / I.length, cx = j => ML + (j + .5) * slot, bw = Math.max(4, Math.min(ST_BAR, slot / 2 - 3));
+  const nfa = I.map(i => B.series.nfa[i]), nc = I.map(i => B.series.net_claims_govt_sbv[i]), AX = fsAx(Math.min(0, ...nc), Math.max(...nfa), 4), sy = stLin(AX.a, AX.b, H - MB, MT);
+  let s = stAxisY(sy, AX.tk, ML, W - MR, v => stN(v, 0)) + `<line class="st-base" x1="${ML}" x2="${W - MR}" y1="${sy(0)}" y2="${sy(0)}"/><text class="st-tick" x="${ML + 4}" y="${MT - 2}" style="fill:#16181d">${stT('nghìn tỷ đồng, cuối năm', 'tn VND, year-end')}</text>`;
+  I.forEach((i, j) => { const p = B.periods[i]; s += stBarV(cx(j) - bw / 2 - 1, bw + 4, sy(nfa[j]), sy(0), ST.blue, [`${p} · ${stT('Tài sản nước ngoài ròng', 'Net foreign assets')}`, fsU(nfa[j], 'trn VND')], { d: j * 40 })
+    + stBarV(cx(j) + bw / 2 + 1, bw + 4, sy(nc[j]), sy(0), ST.violet, [`${p} · ${stT('NHNN cho Chính phủ vay ròng', 'Net claims on government')}`, fsU(nc[j], 'trn VND')], { d: j * 40 + 20 })
+    + (!narrow || j % 2 === 0 || j === I.length - 1 ? `<text class="st-tick" x="${cx(j)}" y="${H - 6}" text-anchor="middle">${narrow ? String(p).slice(2) : p}</text>` : ''); });
+  el.innerHTML = stSvg(W, H, s, stT('Hai khoản của NHNN theo IMF', 'Two SBV items per the IMF'));
+  document.getElementById('fs-st-sbvb-leg').innerHTML = stLegend([{ n: stT('Tài sản nước ngoài ròng của NHNN', 'SBV net foreign assets'), c: ST.blue }, { n: stT('NHNN cho Chính phủ vay ròng (âm = Chính phủ gửi ròng tại NHNN)', 'SBV net claims on government (negative = the government is a net depositor)'), c: ST.violet }]);
+  const L = I.length - 1, mn = nc.reduce((b, v, j) => v < nc[b] ? j : b, 0), rm = fsLi(B.series.reserve_money_yoy_pct);
+  fsHead(el, stT(`Tài sản nước ngoài ròng ${fsU(nfa[L], 'trn VND')} cuối ${B.periods[I[L]]}, gấp ${stN(nfa[L] / nfa[0], 1)} lần ${B.periods[I[0]]}`, `Net foreign assets of ${fsU(nfa[L], 'trn VND')} at end-${B.periods[I[L]]}, ${stN(nfa[L] / nfa[0], 1)}× ${B.periods[I[0]]}`), stT('Theo IMF Monetary Survey: phần lớn tài sản của NHNN là ngoại tệ; Chính phủ là người gửi ròng, không phải người vay.', 'Per the IMF Monetary Survey: most SBV assets are foreign; the government is a net depositor, not a borrower.'));
+  document.getElementById('fs-st-sbvb-note').innerHTML = stNote(stT(`Chính phủ gửi ròng nhiều nhất cuối ${B.periods[I[mn]]}: ${fsU(-nc[mn], 'trn VND')}${rm >= 0 ? `; tiền dự trữ tăng ${stN(B.series.reserve_money_yoy_pct[rm], 1)}% năm ${B.periods[rm]}` : ''}.`, `The government's net deposit peaked at end-${B.periods[I[mn]]}: ${fsU(-nc[mn], 'trn VND')}${rm >= 0 ? `; reserve money grew ${stN(B.series.reserve_money_yoy_pct[rm], 1)}% in ${B.periods[rm]}` : ''}.`),
+    stT('Đây là số của IMF, không phải báo cáo tài chính của NHNN: báo cáo thường niên NHNN không có bảng cân đối hay báo cáo thu chi của chính NHNN.', 'These are IMF figures, not SBV financial statements: the SBV annual report contains no SBV balance sheet or income statement.'))
+    + stSrc(stT('Nguồn: IMF Điều IV, Monetary Survey (CR 19/235, 21/42, 23/338, 24/306, 25/283).', 'Source: IMF Article IV, Monetary Survey (CR 19/235, 21/42, 23/338, 24/306, 25/283).'));
+  stRW(el, fsStSbvB);
+}
+const FS_LEGAL = ['credit_institutions_law', 'loan_classification', 'car_basel3', 're_risk_weights', 'ldr_cap', 'lcr_nsfr', 'st_funds_mlt', 'treasury_deposits_ldr', 'reserve_requirement', 'debt_restructuring', 'special_loans', 'deposit_insurance', 'payments_biometrics', 'pcf_restructuring', 'banking_modernisation_plan'];
+function fsStLegal() {
+  const el = document.getElementById('fs-st-legal'); if (!el || typeof POLICY === 'undefined') return;
+  const rows = FS_LEGAL.map(id => { const I = polIns('mon', id); return I ? { n: stT(I.name_vi, I.name_en), ev: fsHistEv(id).filter(e => e.d >= '2023-01-01') } : null; }).filter(r => r && r.ev.length); if (!rows.length) return;
+  fsTL(el, rows, { label: stT('Dòng thời gian pháp lý', 'Legal timeline'), t0: 2023 });
+  document.getElementById('fs-st-legal-leg').innerHTML = fsTLLeg();
+  const today = FINSYS.asof, ev = rows.flatMap(r => r.ev.map(e => ({ ...e, n: r.n }))), past = ev.filter(e => e.d <= today), fut = ev.filter(e => e.d > today).sort((a, b) => a.d.localeCompare(b.d));
+  fsHead(el, stT(`${past.length} thay đổi về luật, nghị định, thông tư ngân hàng từ 2023; ${fut.length} mốc còn ở phía trước`, `${past.length} changes to banking laws, decrees and circulars since 2023; ${fut.length} still ahead`), stT('Mỗi hàng một công cụ; mỗi chấm một văn bản có hiệu lực. Rê chuột để xem số hiệu văn bản.', 'One row per instrument; one dot per document taking effect. Hover for the document number.'));
+  document.getElementById('fs-st-legal-note').innerHTML = stNote(fut.length ? stT(`Mốc gần nhất: ${fut[0].n}, ${polDS(fut[0].d)} (${fut[0].doc}).`, `Next: ${fut[0].n}, ${polDS(fut[0].d)} (${fut[0].doc}).`) : '',
+    stT('Màu là hướng của lần điều chỉnh theo dữ liệu chính sách, không đo mức độ. Hợp tác quốc tế (một phần của báo cáo NHNN) không có số liệu nên không vẽ.', 'Colour is the direction of the move in the policy data, not its size. International cooperation (part of the SBV report) has no figures, so it is not drawn.'))
+    + stSrc(stT('Nguồn: dữ liệu chính sách của dashboard (Quốc hội, Chính phủ, NHNN; ngày hiệu lực).', 'Source: the dashboard\'s policy data (National Assembly, Government, SBV; effective dates).'));
+  stRW(el, fsStLegal);
+}
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-fs-jump]'); if (!b) return; const t = document.getElementById(b.dataset.fsJump); if (t) t.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); });
 // ── /STORY Financial system ──
 // ── STORY: Investing (same chapter system; descriptive only — sourced research, never a recommendation) ──
 // Stock identity follows the fixed slot order; the current price is an ink mark (a reference, not a series); published
