@@ -760,6 +760,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-owner { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 6px; margin: -4px 0 12px; font: 400 12px/1.45 var(--font-ui); color: #5b6170; }
   .st-owner b { font-weight: 600; color: #16181d; } .st-owner-f { color: #8a8f99; } .st-owner-s { color: #c3c2b7; }
   .st-bulb { margin: 18px 0 6px; max-width: 80ch; background: #fff8e6; border: 1px solid #f1dfb0; border-left: 4px solid #eda100; border-radius: 6px; padding: 10px 14px 10px 14px; }
+  .pol-m-h { grid-column: 1 / -1; margin: 18px 0 2px; }
   .st-bulb-h { font: 650 13px var(--font-ui); color: #7a5400; letter-spacing: .02em; margin-bottom: 4px; }
   .st-bulb ul { margin: 0; padding-left: 18px; } .st-bulb li { font: 400 13.5px/1.55 var(--font-ui); color: #16181d; margin: 4px 0; }
   .st-h { font: 700 clamp(22px, 2.6vw, 32px)/1.18 var(--font-head); color: #16181d; margin: 0 0 10px; max-width: 30ch; text-wrap: balance; }
@@ -5333,7 +5334,7 @@ const ST_BULBS = {
     ['Nới lỏng không chỉ là hạ lãi suất: giãn, hoãn, giảm thuế, giữ nguyên nhóm nợ khi cơ cấu lại khoản vay và nới trần tín dụng cũng là nới lỏng.', 'Easing is not only rate cuts: tax deferrals and cuts, letting restructured loans keep their risk class and raising credit quotas are easing too.']],
   'pol-st-cliff': [
     ['Thuế GTGT được giảm 2 điểm % (từ 10% xuống 8%) cho nhiều nhóm hàng từ năm 2022 và gia hạn nhiều lần. Khi hết hạn, giá các mặt hàng đó tăng một lần, đẩy CPI lên.', 'VAT has been cut by 2 points (10% to 8%) on many goods since 2022 and extended several times. When it expires, those prices step up once and lift the CPI.']],
-  'pol-st-steps': [
+  'pol-st-explore': [
     ['Lãi suất tái cấp vốn đóng vai trò trần và lãi suất tái chiết khấu là sàn cho lãi suất qua đêm liên ngân hàng; NHNN điều tiết hằng ngày chủ yếu qua nghiệp vụ thị trường mở (OMO).', 'The refinancing rate acts as the ceiling and the rediscount rate as the floor for overnight interbank rates; day to day the SBV steers mainly through open-market operations (OMO).']],
   // ── Hệ thống tài chính / Financial system ──
   'fs-st-hero': [
@@ -7000,7 +7001,12 @@ function socStWaffle() {
 const polIns = (side, id) => POLICY[side].instruments.find(x => x.id === id);
 const polSer = ins => { const s = ins && ins.series; return s && s.dates ? s.dates.map((d, i) => [d, s.values[i]]).filter(p => p[1] != null) : []; };
 const polDS = s => { const [y, m, d] = s.split('-'); return stT(`${+d}/${+m}/${y}`, `${+d} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m - 1]} ${y}`); };
-const POL_MULT = [['mon', 'central_rate', v => stN(v, 0)], ['mon', 'treasury_deposits_ldr', v => stN(v, 0) + '%'], ['mon', 'credit_growth_target', v => stN(v, 1) + '%'], ['mon', 'social_housing_pkg', v => stN(v, 1) + '%'], ['fis', 'vat_cut_2pct', v => stN(v, 0) + '%'], ['fis', 'ept_fuel', v => stN(v, 0)], ['fis', 'budget_deficit_target', v => stN(v, 1) + '%'], ['fis', 'base_salary', v => stN(v / 1e6, 2) + stT(' tr', 'm')]];
+// the dials: every monetary and fiscal instrument with at least two numeric settings in the registry (monetary first)
+const polFmt = u => v => u === '%' ? stN(v, Math.round(v) === v ? 0 : (Math.abs(v * 10 - Math.round(v * 10)) < 1e-9 ? 1 : 2)) + '%'
+  : Math.abs(v) >= 1e12 ? stN(v / 1e12, 1) + stT(' nghìn tỷ', ' tn') : Math.abs(v) >= 1e9 ? stN(v / 1e9, 1) + stT(' tỷ', ' bn') : Math.abs(v) >= 1e6 ? stN(v / 1e6, 2) + stT(' tr', ' m')
+  : stN(v, Math.round(v) === v ? 0 : 1);   // VND amounts by size (some registry units read 'text' but hold amounts)
+const polMultList = () => typeof POLICY === 'undefined' ? [] : ['mon', 'fis'].flatMap(side => POLICY[side].instruments.filter(i => polSer(i).length >= 2).map(i => [side, i.id, polFmt(i.unit)]));
+const POL_MULT = new Proxy([], { get: (t, k) => { const a = polMultList(); const v = a[k]; return typeof v === 'function' ? v.bind(a) : v; } });
 function renderPolStory() {
   const root = document.getElementById('pol-story'); if (!root || typeof POLICY === 'undefined') return;
   const P = POLICY, ref = polIns('mon', 'refinancing_rate'), since = (ref.effective || '2023-06-19'), months = Math.round((pgToday() - pgDate(since)) / 864e5 / 30.44), todayS = pgToday().toISOString().slice(0, 10);
@@ -7019,24 +7025,12 @@ function renderPolStory() {
     `${stLegend([{ n: stT('Tiền tệ (NHNN)', 'Monetary (SBV)'), c: ST.blue }, { n: stT('Tài khoá', 'Fiscal'), c: ST.orange }])}<div id="pol-st-div" class="st-viz"></div><div id="pol-st-div-note"></div>
      <div class="st-sub">${stT('Theo nhóm công cụ: số lần nới lỏng và thắt chặt', 'By instrument group: easing and tightening moves')}</div>${stLegend([{ n: stT('Thắt chặt', 'Tightening'), c: ST.red }, { n: stT('Nới lỏng', 'Easing'), c: ST.blue }])}<div id="pol-st-grp" class="st-viz"></div>
      ${stSrc(stT('Nguồn: dashboard tổng hợp từ văn bản NHNN, Chính phủ, Quốc hội, Bộ Tài chính (mỗi lần điều chỉnh có số hiệu văn bản và đường dẫn trong phần khám phá bên dưới).', 'Source: dashboard registry compiled from SBV, Government, National Assembly and MoF documents (each move carries its document number and link in the explore section below).'))}`);
-  h += stChap('pol-st-cliff', stT('Chương 2 · Vách đá cuối năm', 'Chapter 2 · The year-end cliff'),
-    stT(`${exp26} chính sách hết hạn ngày 31/12/2026, trong đó có giảm thuế GTGT và thuế xăng dầu`, `${exp26} policy settings expire on 31 Dec 2026, including the VAT cut and fuel-tax relief`),
-    stT('Mỗi chấm là một ngày hết hạn, độ lớn theo số chính sách hết hiệu lực vào ngày đó. Trục thời gian tuyến tính; quãng dài không có mốc nào được cắt bớt (dấu //).', 'Each dot is an expiry date, sized by how many measures lapse that day. The time axis is linear; long empty stretches are cut out (marked //).'),
-    `<div id="pol-st-exp" class="st-viz"></div>${stNote(stT('Chưa có văn bản gia hạn giảm thuế GTGT sang 2027 trong dữ liệu.', 'The data holds no document extending the VAT cut into 2027.'), nPlan ? stT(`${nPlan} trong ${exp26} mục cùng ngày là kế hoạch năm (đầu tư công, ngân sách, nợ) sẽ được thay bằng kế hoạch 2027, không phải hỗ trợ bị cắt.`, `${nPlan} of the ${exp26} items on that date are annual plans (public investment, budget, debt) that roll into 2027 plans, not support being withdrawn.`) : '')}`);
-  h += stChap('pol-st-steps', stT('Chương 3 · Các nút vặn', 'Chapter 3 · The dials'),
+  h += stChap('pol-st-explore', stT('Chương 2 · Các nút vặn', 'Chapter 2 · The dials'),
     stT(`${moved} công cụ đã đổi mức cài đặt trong giai đoạn dữ liệu theo dõi`, `${moved} instruments changed their setting over the tracked period`),
-    stT('Mỗi biểu đồ là mức cài đặt của một công cụ qua thời gian (bậc thang: giá trị giữ nguyên đến lần điều chỉnh kế tiếp), cùng trục thời gian từ 2022; thang giá trị riêng; xanh = tiền tệ, cam = tài khoá. Kéo thanh thời gian để đọc cả tám nút vặn tại cùng một ngày.', 'Each chart is one instrument\'s setting over time (step line: the value holds until the next change), on one shared time axis from 2022 with its own value scale; blue = monetary, orange = fiscal. Drag the timeline to read all eight dials on the same day.'),
+    stT('Mỗi biểu đồ là mức cài đặt của một công cụ qua thời gian (bậc thang: giá trị giữ nguyên đến lần điều chỉnh kế tiếp), cùng trục thời gian từ 2022; thang giá trị riêng; xanh = tiền tệ, cam = tài khoá. Kéo thanh thời gian để đọc tất cả nút vặn tiền tệ và tài khoá tại cùng một ngày.', 'Each chart is one instrument\'s setting over time (step line: the value holds until the next change), on one shared time axis from 2022 with its own value scale; blue = monetary, orange = fiscal. Drag the timeline to read every monetary and fiscal dial on the same day.'),
     `<div id="pol-st-mult-ctl"></div><div id="pol-st-mult" class="st-mult"></div>`);
-  // what to watch: future-dated moves in the registry, then the expiry date, then the stance's own next step
-  const fut = H.filter(x => x.date > todayS).sort((a, b) => a.date.localeCompare(b.date)), w = [];
-  fut.slice(0, 2).forEach(x => w.push([polDS(x.date), ciE(polF(x.ins, 'name')), `${ciE(x.from || '')}${x.to ? ' → ' + ciE(x.to) : ''}. ${ciE(oneSentence(polF(x, 'note'), 150))}`]));
-  if (exp26) w.push([polDS('2026-12-31'), stT(`${exp26 - nPlan} biện pháp hỗ trợ hết hạn`, `${exp26 - nPlan} support measures expire`), e26.filter(i => !isPlan(i)).map(i => ciE(polF(i, 'name'))).join('; ') + '.']);
-  h += stChap('pol-st-watch', stT('Tiếp theo · Điều cần theo dõi', 'Next · What to watch'), stT('Các thay đổi đã có ngày hiệu lực', 'Changes that already have a date'), '', `<ol class="st-watch">${w.slice(0, 3).map(([t, b, p]) => `<li><time>${t}</time><b>${b}</b>${p}</li>`).join('')}</ol>`);
-  h += stChap('pol-st-explore', stT('Tự khám phá', 'Explore'),
-    stT(`Toàn bộ ${P.mon.instruments.length + P.fis.instruments.length} công cụ và ${H.length} lần điều chỉnh`, `All ${P.mon.instruments.length + P.fis.instruments.length} instruments and ${H.length} moves`),
-    stT('Định hướng hiện nay, dòng thời gian, bảng công cụ (bấm một dòng để xem lịch sử và văn bản) và tin chính sách mới nhất.', 'Current stance, timeline, the instrument tables (click a row for its history and documents) and the latest policy news.'), '');
   root.innerHTML = h;
-  polStRates(); polStDiv(H); polStGroups(H); polStExpiry(exp); polStMult();
+  polStRates(); polStDiv(H); polStGroups(H); polStMult();   // (year-end cliff and what-to-watch chapters removed at the user's request)
   stFinish(root);
 }
 // hero — the refinancing rate (accent) against the other policy rates (one grey), step lines, crosshair
@@ -7123,12 +7117,14 @@ function polStMult() {
   const L = POL_MULT.map(([side, id, f]) => ({ ins: polIns(side, id), f, c: side === 'mon' ? ST.blue : ST.orange })).filter(x => x.ins && polSer(x.ins).length >= 2);
   const T0 = +pgDate('2022-01-01'), T1 = +pgToday(), W = 240, H = 92, sx = t => 6 + (Math.max(T0, t) - T0) / (T1 - T0) * (W - 12);
   const at = (p, t) => { let v = null; p.forEach(([dt, x]) => { if (+pgDate(dt) <= t) v = x; }); return v; };
+  const sideOf = ins => POLICY.mon.instruments.includes(ins) ? 'mon' : 'fis';
   el.innerHTML = L.map(({ ins, f, c }, k) => { const p = polSer(ins), vs = p.map(x => x[1]), lo = Math.min(...vs), hi = Math.max(...vs), pad = (hi - lo) * 0.2 || Math.abs(hi) * 0.1 || 1, sy = stLin(lo - pad, hi + pad, H - 18, 8);
     const ts = Math.max(T0, +pgDate(p[0][0])); let d = `M${sx(ts)},${sy(at(p, ts) ?? p[0][1])}`; p.forEach(([dt, v]) => { if (+pgDate(dt) > ts) d += ` H${sx(+pgDate(dt))} V${sy(v)}`; }); d += ` H${sx(T1)}`;
     const nm = (ins.series && (polE() ? ins.series.label_en : (ins.series.label_vi || (ins.id === 'credit_growth_target' ? 'Tăng trưởng tín dụng thực tế so với cuối năm trước (%)' : '')))) || polF(ins, 'name');
     const marks = p.map(([dt, v], j) => +pgDate(dt) < T0 ? `<g ${stKey(nm, polDS(dt) + ': ' + f(v))}></g>` : stDot(sx(+pgDate(dt)), sy(v), 4, c, [nm, polDS(dt) + ': ' + f(v)], { d: j * 80 })).join('');
     const s = `<path class="st-draw" d="${d}" fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round"/>` + marks + `<g class="pol-cur" style="pointer-events:none"><line y1="4" y2="${H - 16}" stroke="#16181d" stroke-width="1"/><circle r="5.5" fill="#faf8f3" stroke="#16181d" stroke-width="2"/></g><text class="st-tick" x="4" y="${H}">2022</text><text class="st-tick" x="${W - 4}" y="${H}" text-anchor="end">${stT('nay', 'now')}</text>`;
-    return `<div class="pol-m" data-k="${k}"><div class="st-mini-h">${ciE(nm.length > 44 ? nm.slice(0, 42) + '…' : nm)}</div><div class="st-mini-v">${f(p[p.length - 1][1])}</div>${stSvg(W, H, s, nm)}<div class="st-fact-s">${stT('từ', 'from')} ${f(p[0][1])} (${p[0][0].slice(0, 4)})</div></div>`; }).join('');
+    const hd = k === 0 || sideOf(L[k - 1].ins) !== sideOf(ins) ? `<div class="st-sub pol-m-h">${sideOf(ins) === 'mon' ? stT('Tiền tệ (NHNN)', 'Monetary (SBV)') : stT('Tài khoá (Chính phủ, Quốc hội, Bộ Tài chính)', 'Fiscal (Government, National Assembly, Ministry of Finance)')} · ${L.filter(x => sideOf(x.ins) === sideOf(ins)).length} ${stT('công cụ', 'instruments')}</div>` : '';
+    return hd + `<div class="pol-m" data-k="${k}"><div class="st-mini-h">${ciE(nm.length > 44 ? nm.slice(0, 42) + '…' : nm)}</div><div class="st-mini-v">${f(p[p.length - 1][1])}</div>${stSvg(W, H, s, nm)}<div class="st-fact-s">${stT('từ', 'from')} ${f(p[0][1])} (${p[0][0].slice(0, 4)})</div></div>`; }).join('');
   const M = []; for (let d = new Date(2022, 0, 1); +d <= T1; d.setMonth(d.getMonth() + 1)) M.push(+d); M[M.length - 1] = T1;
   const panels = [...el.querySelectorAll('.pol-m')];
   const lab = i => { const t = M[i], dd = new Date(t), moved = L.filter(x => polSer(x.ins).some((pt, j, p) => j > 0 && +pgDate(pt[0]) <= t && pt[1] !== p[j - 1][1])).length;   // same count as the headline at "today"
