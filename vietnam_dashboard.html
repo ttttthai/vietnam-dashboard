@@ -1012,6 +1012,15 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-tctl input[type=range] { flex: 1 1 220px; max-width: 520px; accent-color: #16181d; min-height: 24px; }
   .st-tctl output { font: 650 15px var(--font-ui); color: #16181d; font-variant-numeric: tabular-nums; min-width: 15ch; }
   .st-tctl output span { font-weight: 400; color: #5b6170; font-size: 13px; }
+  /* shared chart animation (stAnim): note line under the slider, projection zone, period hairline */
+  .st-anim-w { min-width: 0; }
+  .st-anim .st-tctl { margin: 2px 0 6px; gap: 6px 10px; }
+  .st-anim .st-tctl button { width: 30px; height: 30px; font-size: 12px; }
+  .st-tctl-n { flex: 1 1 100%; font: 400 12px/1.4 var(--font-ui); color: #5b6170; }
+  .st-tctl .st-tctl-p { font: 600 11px var(--font-ui); color: #5b6170; border: 1px dashed #8a8f99; border-radius: 3px; padding: 0 4px; }
+  .st-an-zk { display: inline-block; width: 12px; height: 10px; background: rgba(22,24,29,.07); border: 1px dashed #8a8f99; vertical-align: -1px; margin-right: 5px; }
+  .st-an-zone { fill: #16181d; fill-opacity: .045; }
+  .st-an-cur { stroke: #16181d; stroke-width: 1; stroke-dasharray: 2,3; pointer-events: none; }
   .st-tstep { transition: opacity .12s linear; }
   .st-tstep.st-off { opacity: 0 !important; pointer-events: none; }
   .soc-gs-q { font: 400 13.5px/1.5 var(--font-ui); color: #5b6170; margin: 2px 0 6px; max-width: 72ch; }
@@ -5397,17 +5406,73 @@ document.addEventListener('focusin', e => { if (e.target.dataset && e.target.dat
 document.addEventListener('focusout', e => { if (e.target.dataset && e.target.dataset.lk) stLinkOff(e.target.closest('.st-root')); });
 // time control: ▶ replays a chart through its steps, the slider scrubs to any step. The chart is complete at rest (last
 // step), so nothing is hidden unless the reader asks for it. onT(i) redraws step i; label(i) returns the ticking caption.
+// Options (all optional; the defaults keep the original behaviour): o.from = first step a replay starts at (default 0);
+// o.ms = time per step; o.note = one line under the slider (projection source, or why there is none); o.watch = an element
+// whose first sight autoplays the control once — at most one autoplay per chapter, never with prefers-reduced-motion;
+// o.play / o.aria = accessible names. Loop is off: a replay stops on the last step, which is the resting state.
 function stTimeCtl(host, n, label, onT, o = {}) {
   if (!host || n < 2) return null;
-  host.innerHTML = `<div class="st-tctl"><button type="button" aria-label="${ciE(o.play || stT('Phát lại', 'Replay'))}">▶</button><input type="range" min="0" max="${n - 1}" step="1" value="${n - 1}" aria-label="${ciE(o.aria || stT('Chọn thời điểm', 'Pick a date'))}"><output aria-live="polite"></output></div>`;
-  const b = host.querySelector('button'), r = host.querySelector('input'), out = host.querySelector('output'); let timer = null;
-  const set = i => { i = Math.max(0, Math.min(n - 1, i)); r.value = i; out.innerHTML = label(i); onT(i); };
-  const stop = () => { if (timer) clearInterval(timer); timer = null; b.textContent = '▶'; b.setAttribute('aria-label', o.play || stT('Phát lại', 'Replay')); };
-  b.addEventListener('click', () => { if (timer) return stop(); let i = +r.value >= n - 1 ? 0 : +r.value; set(i); b.textContent = '❚❚'; b.setAttribute('aria-label', stT('Tạm dừng', 'Pause'));
-    timer = setInterval(() => { if (!host.isConnected) return stop(); i++; set(i); if (i >= n - 1) stop(); }, o.ms || 160); });
-  r.addEventListener('input', () => { stop(); set(+r.value); });
+  if (host._ctl) host._ctl.stop(); if (host._io) { host._io.disconnect(); host._io = null; }
+  const from = Math.max(0, Math.min(n - 2, o.from ?? 0)), pl = o.play || stT('Phát lại', 'Replay');
+  host.innerHTML = `<div class="st-tctl"><button type="button" aria-label="${ciE(pl)}">▶</button><input type="range" min="0" max="${n - 1}" step="1" value="${n - 1}" aria-label="${ciE(o.aria || stT('Chọn thời điểm', 'Pick a date'))}"><output aria-live="polite"></output>${o.note ? `<span class="st-tctl-n">${o.note}</span>` : ''}</div>`;
+  const b = host.querySelector('button'), r = host.querySelector('input'), out = host.querySelector('output'); let timer = null, paused = false;
+  const set = i => { i = Math.max(0, Math.min(n - 1, i)); r.value = i; r.setAttribute('aria-valuetext', String(label(i)).replace(/<[^>]+>/g, '')); out.innerHTML = label(i); onT(i); };
+  const stop = () => { if (timer) clearInterval(timer); timer = null; b.textContent = '▶'; b.setAttribute('aria-label', pl); out.setAttribute('aria-live', 'polite'); };
+  const play = () => { if (timer) return; let i = paused && +r.value < n - 1 ? +r.value : from; paused = false; set(i); b.textContent = '❚❚'; b.setAttribute('aria-label', stT('Tạm dừng', 'Pause')); out.setAttribute('aria-live', 'off');
+    timer = setInterval(() => { if (!host.isConnected) return stop(); i++; set(i); if (i >= n - 1) stop(); }, o.ms || 160); };
+  b.addEventListener('click', () => { host._used = 1; if (timer) { stop(); paused = true; return; } play(); });
+  r.addEventListener('input', () => { host._used = 1; stop(); paused = true; set(+r.value); });
   set(n - 1);
-  return { set, stop };
+  if (o.watch && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    host._io = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; host._io.disconnect(); host._io = null;
+      const ch = o.watch.closest('.st-chap'); if (host._used || (ch && ch._stAuto)) return; if (ch) ch._stAuto = 1; play(); }), { threshold: 0.45 });
+    host._io.observe(o.watch);
+  }
+  host._ctl = { set, stop, play };
+  return host._ctl;
+}
+// ── shared chart animation (plan: data/research/animation_plan.json). One call at the end of a chart's draw function:
+//   stAnim(el, { id, labels, last, xs | step, val, zone, src, none, from, ms, host })
+// labels[i] = period caption; last = index of the latest ACTUAL period (later frames are projections); from = first frame of
+// a replay (default: the 8th-latest actual period, or the first). Two modes:
+//  · sweep (time series, xs[i] = the period's x in the svg): marks are clipped to the left of the current period while axes,
+//    grid, ticks, targets (.st-keep) and the projection zone stay put, so the frame never jumps; a hairline marks the period.
+//  · step (cross-sections, step(i) redraws the chart for period i).
+// zone = {x0, x1, top, bottom}: a shaded "projection" band drawn once, behind the marks; src = who made the projection (shown
+// under the slider); without a projection the slider says so (none, default "no credible projection"). At rest the chart is
+// complete (last frame); it autoplays once when its chapter is first seen, never with reduced motion; the slider always works.
+let stAnimN = 0;
+function stAnim(el, c) {
+  if (!el || !c || !c.labels || c.labels.length < 2) return null;
+  const n = c.labels.length, last = Math.min(n - 1, c.last ?? n - 1), rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let host = c.host || el._anHost;
+  if (!host || !host.isConnected) { host = document.createElement('div'); host.className = 'st-anim'; const w = document.createElement('div'); w.className = 'st-anim-w'; el.before(w); w.append(host, el); el._anHost = host; }   // one wrapper keeps grid layouts intact
+  host.dataset.anim = c.id || '';
+  let onT = c.step;
+  if (!onT) {   // sweep: wrap the marks of every chart svg in one clip group
+    const NS = 'http://www.w3.org/2000/svg', svgs = [...el.querySelectorAll('svg')].filter(s => !s.closest('.st-legend, .st-anim')).slice(0, c.all ? 99 : 1), sw = [];
+    const keep = x => x.matches('.st-grid, .st-tick, .st-base, .st-keep, defs, title') || !!x.querySelector('.st-xh-line');
+    const dx = c.xs.slice(1).map((x, i) => Math.abs(x - c.xs[i])).filter(v => v > 0), pad = c.pad ?? (dx.length ? Math.min(...dx) / 2 : 10);
+    svgs.forEach(svg => { const vb = svg.viewBox.baseVal, W = vb && vb.width ? vb.width : 1000, H = vb && vb.height ? vb.height : 300, id = 'st-an-' + (++stAnimN);
+      const defs = document.createElementNS(NS, 'defs'), cp = document.createElementNS(NS, 'clipPath'), rc = document.createElementNS(NS, 'rect');
+      cp.id = id; rc.setAttribute('x', -2000); rc.setAttribute('y', -2000); rc.setAttribute('height', H + 4000); rc.setAttribute('width', W + 4000); cp.appendChild(rc); defs.appendChild(cp);
+      const kids = [...svg.children], ref = kids.find(x => !keep(x)), g = document.createElementNS(NS, 'g'); g.setAttribute('clip-path', `url(#${id})`); g.setAttribute('class', 'st-an-g');
+      if (ref) { svg.insertBefore(g, ref); kids.filter(x => !keep(x)).forEach(x => g.appendChild(x)); }
+      svg.insertBefore(defs, svg.firstChild);
+      if (c.zone && svg === svgs[0]) { const z = c.zone, zr = document.createElementNS(NS, 'rect'); zr.setAttribute('class', 'st-keep st-an-zone'); zr.setAttribute('x', z.x0); zr.setAttribute('width', Math.max(0, z.x1 - z.x0)); zr.setAttribute('y', z.top ?? 0); zr.setAttribute('height', (z.bottom ?? H) - (z.top ?? 0)); defs.after(zr); }
+      const cur = document.createElementNS(NS, 'line'); cur.setAttribute('class', 'st-an-cur'); cur.setAttribute('y1', c.top ?? 0); cur.setAttribute('y2', c.bottom ?? H); cur.style.display = 'none'; svg.appendChild(cur);
+      sw.push({ rc, cur, W, x: W + 2000 }); });
+    const dur = rm ? 0 : Math.min(600, (c.ms || 700) * .8);
+    onT = i => { sw.forEach(S => { const to = i >= n - 1 ? S.W + 2000 : c.xs[i] + pad, x0 = S.x === S.W + 2000 ? to : S.x; cancelAnimationFrame(S.raf); S.x = to;
+      S.cur.style.display = i >= n - 1 ? 'none' : ''; S.cur.setAttribute('x1', c.xs[i]); S.cur.setAttribute('x2', c.xs[i]);
+      const put = x => S.rc.setAttribute('width', x + 2000);
+      if (!dur || to === S.W + 2000) { put(to); return; }
+      const t0 = performance.now(), tick = t => { const k = Math.min(1, (t - t0) / dur); put(x0 + (to - x0) * k); if (k < 1) S.raf = requestAnimationFrame(tick); }; S.raf = requestAnimationFrame(tick); }); };
+  }
+  const pj = stT('dự phóng', 'projection'), lab = i => `${c.labels[i]}${i > last ? ` <span class="st-tctl-p">${pj}</span>` : ''}${c.val ? ` <span>· ${c.val(i)}</span>` : ''}`;
+  const note = c.src ? `<i class="st-an-zk" aria-hidden="true"></i>${stT('Vùng tô: dự phóng', 'Shaded: projection')} · ${c.src}` : (c.none || stT('Chưa có dự phóng đáng tin cậy, chỉ chạy số liệu thực tế', 'No credible projection: the replay covers actual data only'));
+  const from = c.from ?? Math.max(0, last - 7);
+  return stTimeCtl(host, n, lab, onT, { from, ms: c.ms || 700, note, watch: el, aria: c.aria || stT('Chọn kỳ', 'Pick a period'), play: stT(`Phát: ${String(c.labels[from]).replace(/<[^>]+>/g, '')} → ${String(c.labels[n - 1]).replace(/<[^>]+>/g, '')}`, `Play: ${String(c.labels[from]).replace(/<[^>]+>/g, '')} → ${String(c.labels[n - 1]).replace(/<[^>]+>/g, '')}`) });
 }
 
 // 0 — growth columns 2011–2025 + 9M-2026 with the forecasts to 2030: see stGrowth in the "projections to 2030" block below
@@ -5620,7 +5685,7 @@ function stWaffle(el, parts, total, title, ctx) {
   const cnt = cellP.map(p => sh(p.v)), fl = cnt.map(Math.floor); let rem = 100 - fl.reduce((t, v) => t + v, 0);
   cnt.map((v, i) => [v - fl[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rem > 0) { fl[i]++; rem--; } });
   const cells = []; fl.forEach((n, i) => { for (let k = 0; k < n; k++) cells.push(i); });
-  const C = 22, G2 = 3, W = 10 * (C + G2), H = W, val = p => `${stN(p.v / 1e3, p.v < 1e4 ? 1 : 0)} ${stT('nghìn tỷ', 'tn VND')} · ${stN(sh(p.v), sh(p.v) < 1 ? 2 : 1)}%`;
+  const C = 22, G2 = 3, W = 10 * (C + G2), H = W, val = p => `${stN(p.v / 1e3, p.v < 1e4 ? 1 : 0)} ${stT('nghìn tỷ', 'tn VND')} · ${sh(p.v) < .005 ? '<' + stN(.01, 2) : stN(sh(p.v), sh(p.v) < 1 ? 2 : 1)}%`;
   const s = cells.map((pi, k) => { const p = cellP[pi], r = Math.floor(k / 10), c = k % 10, dd = !p.gap && !p.poolAll && G[p.grp] ? G[p.grp][3] : null;
     return `<rect class="st-cell${dd ? ' st-dd-cell' : ''}" style="--d:${k * 6}ms" x="${c * (C + G2)}" y="${r * (C + G2)}" width="${C}" height="${C}" rx="3" fill="${p.c}"${p.gap ? ' stroke="#8a8f99" stroke-width="1" stroke-dasharray="3,2"' : ''}${dd ? ` data-st-dd="${dd}"` : ''} ${stKey(`${p.full || p.n} · ${ctx.yl}`, `${val(p)} · ${ctx.bl}`)}/>`; }).join('');
   const sw = p => `<i style="background:${p.c}${p.gap ? ';outline:1px dashed #8a8f99;outline-offset:-1px' : ''}"></i>`;
@@ -5968,8 +6033,8 @@ function ecTgV(t) {
   const U = /^%\/năm$/.test(u) ? stT('%/năm', '%/yr') : /^% GDP$/i.test(u) ? stT('% GDP', '% of GDP') : u === '%' ? '%' : /^USD$/.test(u) ? ' USD' : /^tỷ USD/.test(u) ? stT(' tỷ USD', ' bn USD') : /^tỷ đồng/.test(u) ? stT(' tỷ đồng', ' bn VND') : u ? ' ' + u : '';
   return v + U;
 }
-const ecDiv = (x, top, bottom) => `<line x1="${x}" x2="${x}" y1="${top}" y2="${bottom}" stroke="#c3c2b7" stroke-width="1"/><text class="st-tick" x="${x + 5}" y="${top + 10}">${stT('Dự phóng →', 'Projection →')}</text>`;
-const ecDia = (x, y, key) => `<g class="st-pt st-cell" ${key ? stKey(...key) : ''}><circle cx="${x}" cy="${y}" r="12" fill="transparent"/><rect x="${x - 4.5}" y="${y - 4.5}" width="9" height="9" transform="rotate(45 ${x} ${y})" fill="${ST.ink}" stroke="${ST_SURF}" stroke-width="1.5"/></g>`;
+const ecDiv = (x, top, bottom) => `<line class="st-keep" x1="${x}" x2="${x}" y1="${top}" y2="${bottom}" stroke="#c3c2b7" stroke-width="1"/><text class="st-tick" x="${x + 5}" y="${top + 10}">${stT('Dự phóng →', 'Projection →')}</text>`;
+const ecDia = (x, y, key) => `<g class="st-pt st-cell st-keep" ${key ? stKey(...key) : ''}><circle cx="${x}" cy="${y}" r="12" fill="transparent"/><rect x="${x - 4.5}" y="${y - 4.5}" width="9" height="9" transform="rotate(45 ${x} ${y})" fill="${ST.ink}" stroke="${ST_SURF}" stroke-width="1.5"/></g>`;
 // container width (clamped) — every new chart draws in real pixels so text stays legible on phones
 const ecW = (el, max = 1200) => { const w = Math.round(el.clientWidth || (el.parentNode && el.parentNode.clientWidth) || 1000); el._w = w; return Math.max(300, Math.min(max, w)); };
 // one projected path: dashed 2px line through the base points (a null breaks it) + hollow points; a lone point gets a dashed ring
@@ -6008,6 +6073,9 @@ function ecMeta(keys, tks = [], lead = false) {
   return out.length ? `<details class="st-tbl ec-pmeta"><summary>${stT('Phương pháp và nguồn dự phóng', 'Projection method and sources')}</summary><div class="st-src">${out.join('<br>')}</div></details>` : '';
 }
 const ecLegInst = PS => [{ n: stT('Dự báo của tổ chức:', 'Institution forecasts:'), c: '', k: 'none' }].concat(PS.filter(P => P.kind === 'institution_forecast').map(P => ({ n: ecName(P), c: ecInstC(P.k), k: P.pts.filter(p => p.b != null).length > 1 ? 'dash' : 'ring' })));
+// stAnim source line for a set of projection series: each institution with its vintage, then the target (a target, not a forecast)
+const ecAnSrc = (PS, tk) => { const I = PS.filter(P => P.kind === 'institution_forecast'), T = tk ? ecTg(tk) : null, ys = I.flatMap(P => P.pts.filter(p => p.b != null).map(p => p.y)), y1 = ys.length ? Math.max(...ys) : null;
+  return [...new Set(I.map(ecName))].join('; ') + (y1 && y1 < 2030 ? stT(` (đến ${y1}; chưa có dự phóng đến 2030)`, ` (to ${y1}; no projection to 2030 yet)`) : '') + (T && T.doc ? stT(`; ◇ mục tiêu ${ciE(T.doc)}, không phải dự báo`, `; ◇ target, ${ciE(T.doc)}, not a forecast`) : ''); };
 const ecPv = (P, ys) => ys.map(y => { const p = P && P.pts.find(q => q.y === y); return p ? p.b : null; });
 
 // 0 — GDP growth: actual columns 2011–2025 + 9M-2026, then each institution's forecast to 2030 (dashed) and the ≥10% target
@@ -6032,7 +6100,7 @@ function stGrowth() {
     s += ecDiv(ML + na * slot, 6, H - MB);
     pys.forEach(y => { s += `<text class="st-tick" x="${px(y)}" y="${H - 6}" text-anchor="middle">${y === pys[0] || y === pys[pys.length - 1] ? String(y).slice(2) : ''}</text>`; });
     if (tg) { tg.pts.filter(p => p.b != null).forEach(p => { s += ecDia(px(p.y), sy(p.b), null); });
-      const p0 = tg.pts.find(p => p.b != null); if (p0) s += `<text class="st-lab" x="${px(p0.y) - 6}" y="${sy(p0.b) - 11}">${stT('mục tiêu', 'target')} ${ecQ(tg)}${stN(p0.b, 0)}%</text>`; }
+      const p0 = tg.pts.find(p => p.b != null); if (p0) s += `<text class="st-lab st-keep" x="${px(p0.y) - 6}" y="${sy(p0.b) - 11}">${stT('mục tiêu', 'target')} ${ecQ(tg)}${stN(p0.b, 0)}%</text>`; }
     const ends = [];
     inst.forEach((P, j) => { const dx = (j - (inst.length - 1) / 2) * Math.min(3, slot / 7), c = ecInstC(P.k); s += ecPath(P, y => px(y) + dx, sy, c, f, 1100 + j * 80);
       const bp = P.pts.filter(p => p.b != null), l = bp[bp.length - 1]; if (bp.length > 1) ends.push({ x: px(l.y) + dx, y: sy(l.b), t: `${ecShort(P)} ${f(l.b)}${narrow ? '' : ` (${l.y})`}` }); });
@@ -6044,6 +6112,10 @@ function stGrowth() {
     series: [{ n: stT('Thực tế', 'Actual'), c: ST.blue, v: act.map(a => a.v).concat(pys.map(() => null)), f: v => stN(v, 2) + '%' }]
       .concat(inst.map(P => ({ n: ecTipN(P), c: ecInstC(P.k), v: act.map(() => null).concat(ecPv(P, pys)), f })),
         tg ? [{ n: `${ecName(tg)} · ${ecKind(tg)}`, c: ST.ink, v: act.map(() => null).concat(ecPv(tg, pys)), f: v => ecQ(tg) + stN(v, 0) + '%' }] : []) });
+  // E01 · replay the last 8 actual periods, then the forecasts to 2030 in the shaded zone
+  stAnim(el, { id: 'E01', labels: act.map(a => a.y == null ? (YL.s || a.l) : String(a.y)).concat(pys.map(String)), last: na - 1, xs: act.map((_, i) => cx(i)).concat(pys.map(px)), top: MT, bottom: H - MB,
+    val: i => i < na ? stN(act[i].v, 2) + '%' : inst.map(P => { const p = P.pts.find(q => q.y === pys[i - na]); return p && p.b != null ? `${ecShort(P)} ${f(p.b)}` : ''; }).filter(Boolean).join(', ') || '—',
+    zone: pys.length ? { x0: ML + na * slot, x1: W - MR, top: 4, bottom: H - MB } : null, src: pys.length ? ecAnSrc(PS, 'gdp_growth_avg_2026_2030') : null });
 }
 
 // 6a — GDP per capita (USD): NSO actual, IMF path to 2030, the 2030 target and the 2026 target range; the gap is computed
@@ -6065,14 +6137,18 @@ function ecPcChart() {
     if (pE) s += `<text class="st-lab" x="${sx(pE.y) + 8}" y="${sy(pE.b) + 4}">${narrow ? stN(pE.b, 0) : 'IMF ' + f(pE.b)}</text>`; }
   let tE = null;
   if (T) { T.pts.forEach(p => { const x = sx(p.y), lab = `${ecName(T)} · ${p.y} · ${ecKind(T)}`;
-      if (p.b != null) { tE = p; s += ecDia(x, sy(p.b), [lab, ecQ(T) + f(p.b)]) + `<text class="st-lab" x="${x - 10}" y="${sy(p.b) + 4}" text-anchor="end">${stT('mục tiêu', 'target')} ${ecQ(T)}${f(p.b)}</text>`; }
-      else if (p.lo != null && p.hi != null) s += `<g class="st-pt st-cell" ${stKey(lab, `${stN(p.lo, 0)}–${f(p.hi)}`)}><circle cx="${x}" cy="${sy((p.lo + p.hi) / 2)}" r="12" fill="transparent"/><line x1="${x}" x2="${x}" y1="${sy(p.hi) - 3}" y2="${sy(p.lo) + 3}" stroke="${ST.ink}" stroke-width="7" stroke-linecap="round" opacity=".28"/></g>`; }); }
+      if (p.b != null) { tE = p; s += ecDia(x, sy(p.b), [lab, ecQ(T) + f(p.b)]) + `<text class="st-lab st-keep" x="${x - 10}" y="${sy(p.b) + 4}" text-anchor="end">${stT('mục tiêu', 'target')} ${ecQ(T)}${f(p.b)}</text>`; }
+      else if (p.lo != null && p.hi != null) s += `<g class="st-pt st-cell st-keep" ${stKey(lab, `${stN(p.lo, 0)}–${f(p.hi)}`)}><circle cx="${x}" cy="${sy((p.lo + p.hi) / 2)}" r="12" fill="transparent"/><line x1="${x}" x2="${x}" y1="${sy(p.hi) - 3}" y2="${sy(p.lo) + 3}" stroke="${ST.ink}" stroke-width="7" stroke-linecap="round" opacity=".28"/></g>`; }); }
   if (pE && tE && pE.y === tE.y && tE.b > pE.b) { const x = sx(tE.y) - 8, ya = sy(tE.b) + 8, yb = sy(pE.b) - 7, gap = tE.b - pE.b;
     s += `<path d="M${x + 4},${ya} H${x} V${yb} H${x + 4}" fill="none" stroke="${ST.ink}" stroke-width="1"/><text class="st-lab st-b" x="${x - 5}" y="${(ya + yb) / 2 + 4}" text-anchor="end">${stT(`thiếu ≈${stN(gap, 0)} USD`, `≈${stN(gap, 0)} USD short`)}</text>`; }
   el.innerHTML = stSvg(W, H, s, stT('GDP bình quân đầu người và mục tiêu 2030', 'GDP per capita and the 2030 target'));
   const xs = []; for (let y = A[0][0]; y <= x1; y++) xs.push(y);
   stCross(el, { xs: xs.map(sx), labels: xs, top: MT, bottom: H - MB, series: [{ n: `${stT('Thực tế', 'Actual')} (NSO)`, c: ST.blue, v: xs.map(y => (A.find(p => p[0] === y) || [])[1] ?? null), f }]
     .concat(P ? [{ n: ecTipN(P), c: ST.orange, v: ecPv(P, xs), f }] : [], T ? [{ n: `${ecName(T)} · ${ecKind(T)}`, c: ST.ink, v: xs.map(y => { const p = T.pts.find(q => q.y === y); return !p ? null : p.b != null ? p.b : `${stN(p.lo, 0)}–${stN(p.hi, 0)}`; }), f: v => typeof v === 'string' ? v + ' USD' : ecQ(T) + f(v) }] : []) });
+  // E20 · last 8 actual years, then the IMF path to 2030 (shaded); the 2030 target stays drawn as a target throughout
+  stAnim(el, { id: 'E20', labels: xs.map(String), last: xs.indexOf(la[0]), xs: xs.map(sx), top: MT, bottom: H - MB,
+    val: i => { const a = A.find(p => p[0] === xs[i]); if (a) return f(a[1]); const p = P && P.pts.find(q => q.y === xs[i] && q.b != null); return p ? `IMF ${f(p.b)}` : '—'; },
+    zone: x1 > la[0] ? { x0: sx(la[0] + .5), x1: W - MR, top: 4, bottom: H - MB } : null, src: P ? ecAnSrc([P], T ? 'gdp_per_capita_2030' : null) : null });
 }
 // 6b — GDP in USD: ≈ actual (NSO GDP at current prices ÷ average VND/USD rate) and the IMF path
 const ecUsdAct = () => { const E = ECON_OFFICIAL; return (E.gdp_vnd_bn || []).map((v, i) => { const fx = fxYear(E.y0 + i); return [E.y0 + i, v != null && fx ? v / fx : null]; }).filter(p => p[1] != null && p[0] >= 2015); };
@@ -6088,6 +6164,10 @@ function ecUsdChart() {
   el.innerHTML = stSvg(W, H, s, stT('GDP danh nghĩa tính bằng USD', 'Nominal GDP in USD'));
   const xs = []; for (let y = A[0][0]; y <= x1; y++) xs.push(y);
   stCross(el, { xs: xs.map(sx), labels: xs, top: MT, bottom: H - MB, series: [{ n: stT('Thực tế ≈ (quy đổi)', 'Actual ≈ (converted)'), c: ST.blue, v: xs.map(y => (A.find(p => p[0] === y) || [])[1] ?? null), f: v => '≈' + f(v) }].concat(P ? [{ n: ecTipN(P), c: ST.orange, v: ecPv(P, xs), f }] : []) });
+  // E21 · last 8 actual years (≈ converted), then the IMF path (shaded)
+  stAnim(el, { id: 'E21', labels: xs.map(String), last: xs.indexOf(la[0]), xs: xs.map(sx), top: MT, bottom: H - MB,
+    val: i => { const a = A.find(p => p[0] === xs[i]); if (a) return '≈' + f(a[1]); const p = P && P.pts.find(q => q.y === xs[i] && q.b != null); return p ? `IMF ${f(p.b)}` : '—'; },
+    zone: x1 > la[0] ? { x0: sx(la[0] + .5), x1: W - MR, top: 4, bottom: H - MB } : null, src: P ? ecAnSrc([P]) : null });
 }
 
 // 3b — deficit (% GDP): final / estimate / plan columns, the 2026 target and the 2026–2030 average ceiling
