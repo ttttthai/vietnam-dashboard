@@ -5699,7 +5699,16 @@ function stBudgetParts(yi) {
   const nI = stT('chưa tách chi tiết', 'not itemised'), add = (arr, list, grp, gap, whole, total) => {
     if (list.length) { list.forEach(x => arr.push({ ...x, grp })); if (gap) arr.push({ n: `${stWafG()[grp][0]}: ${nI}`, full: `${stWafG()[grp][0]} — ${stT('phần chưa tách chi tiết trong nguồn công bố, không gán cho dòng nào', 'part not itemised in the published source, not assigned to any line')}`, v: gap, grp, gap: 1 }); }
     else if (total > 0) { arr.push({ n: whole[0], full: whole[1], v: total, grp, whole: 1 }); if (whole[2]) miss.push(whole[2]); } };
-  const IN = [], OUT = [], domT = g(R, 'domestic'), dI = items(DS), oI = items(OR);
+  // items above 10% of the side's total are split into their published "of which" lines when those fit inside the
+  // parent (never added on top); the parent's remainder stays as "<parent> – còn lại"
+  const big = (T, list, total) => list.flatMap(x => {
+    const kids = j < 0 || !T || !(x.v > 0.10 * total) ? [] : (T.of_which || []).filter(o => o.parent === x.key && typeof (o.values || [])[j] === 'number' && o.values[j] > 0);
+    const ks = kids.reduce((t, o) => t + o.values[j], 0);
+    if (!kids.length || ks > x.v + 1) return [x];
+    const out = kids.map(o => ({ n: stDDNm(o).replace(/^trong đó:\s*/i, ''), full: stDDFull(o), v: o.values[j], key: o.key, sub: x.n }));
+    if (x.v - ks > 1) out.push({ n: `${x.n}: ${stT('còn lại', 'rest')}`, full: `${x.full || x.n} — ${stT('phần còn lại ngoài các dòng "trong đó" đã công bố', 'remainder after the published "of which" lines')}`, v: x.v - ks, key: x.key + '_rest', sub: x.n });
+    return out; });
+  const IN = [], OUT = [], domT = g(R, 'domestic'), dI = big(DS, items(DS), rev), oI = big(OR, items(OR), rev);
   add(IN, dI, 'dom', dI.length ? gapOf(DS, dI, domT) : 0, [stT('Thu nội địa', 'Domestic revenue'), stT('Thu nội địa (nguồn công bố chưa tách theo dòng)', 'Domestic revenue (the release does not split it by line)'), stT('thu nội địa', 'domestic revenue')], domT);
   add(IN, oI, 'orev', oI.length ? gapOf(OR, oI, rev) : 0, [stT('Dầu thô, xuất nhập khẩu, viện trợ', 'Crude oil, trade, grants'), stT('Thu ngoài nội địa (chưa tách theo dòng)', 'Non-domestic revenue (not split by line)'), stT('thu dầu thô, xuất nhập khẩu', 'crude oil and trade revenue')], rev - domT);
   const dev = g(X, 'development_investment'), rc = g(X, 'recurrent'), it = g(X, 'interest'), oS = Math.max(0, exp - dev - rc - it);
