@@ -6884,17 +6884,27 @@ function socStConv() {
 }
 // ch3 — province tile map ↔ ranked dot strip. 34 equal hexagons in rough geographic position (a schematic, not a map: every
 // province gets the same weight, unlike a Mercator map where the Highlands outweigh Hà Nội and HCMC). Hand-placed grid,
-// pointy-top hexes, rows 0 (north) → 17 (south); x in half-column steps (odd rows sit half a column right). Placement notes:
-// row 0 Lai Châu · Lào Cai · Tuyên Quang (+Hà Giang) · Cao Bằng; row 1 Điện Biên · Sơn La · Phú Thọ (+Vĩnh Phúc, Hòa Bình) ·
-// Thái Nguyên (+Bắc Kạn) · Lạng Sơn; row 2 Hà Nội · Bắc Ninh (+Bắc Giang) · Quảng Ninh; row 3 Ninh Bình (+Hà Nam, Nam Định) ·
-// Hưng Yên (+Thái Bình) · Hải Phòng (+Hải Dương); rows 4–10 the coast Thanh Hóa → Quảng Ngãi (+Kon Tum); rows 11–13 Gia Lai
-// (+Bình Định), Đắk Lắk (+Phú Yên), Lâm Đồng (+Đắk Nông, Bình Thuận) · Khánh Hòa (+Ninh Thuận); row 14 Tây Ninh (+Long An) ·
-// Đồng Nai (+Bình Phước); row 15 An Giang (+Kiên Giang) · Đồng Tháp (+Tiền Giang) · TP.HCM (+Bình Dương, BR-VT); row 16 Cần Thơ
-// (+Sóc Trăng, Hậu Giang) · Vĩnh Long (+Bến Tre, Trà Vinh); row 17 Cà Mau (+Bạc Liêu). Keyed by PROVS id; [x, row, code].
-const SOC_HEX = { 3: [1, 0, 'LCh'], 4: [2, 0, 'LCa'], 1: [3, 0, 'TQ'], 2: [4, 0, 'CB'], 6: [.5, 1, 'ĐB'], 8: [1.5, 1, 'SL'], 9: [2.5, 1, 'PT'], 5: [3.5, 1, 'TN'], 7: [4.5, 1, 'LS'],
-  12: [2, 2, 'HN'], 10: [3, 2, 'BN'], 11: [4, 2, 'QN'], 15: [2.5, 3, 'NB'], 14: [3.5, 3, 'HY'], 13: [4.5, 3, 'HP'], 16: [2, 4, 'TH'], 17: [1.5, 5, 'NA'], 18: [2, 6, 'HT'],
-  19: [2.5, 7, 'QT'], 20: [3, 8, 'Huế'], 21: [3.5, 9, 'ĐN'], 22: [4, 10, 'QNg'], 23: [3.5, 11, 'GL'], 24: [4, 12, 'ĐL'], 26: [3.5, 13, 'LĐ'], 25: [4.5, 13, 'KH'],
-  28: [2, 14, 'TNi'], 27: [3, 14, 'ĐNa'], 31: [.5, 15, 'AG'], 30: [1.5, 15, 'ĐT'], 29: [2.5, 15, 'HCM'], 33: [1, 16, 'CT'], 32: [2, 16, 'VL'], 34: [.5, 17, 'CM'] };
+// pointy-top hexes on one offset grid: even rows sit on whole columns, odd rows half a column right, so every placed tile touches
+// its neighbours (no holes). Placed from each post-merger province's centroid (≈1° of longitude per column, ≈0.83° of latitude
+// per row), then nudged so tiles that touch share a real border where possible — the outline keeps Vietnam's S: the wide north,
+// the narrow central coast stepping south-east, the Highlands provinces (merged with their coast) running down to Khánh Hòa, and
+// the south swinging back west to the Mekong. Keyed by PROVS id; [x, row, code].
+// row 0 Lai Châu · Lào Cai (+Yên Bái) · Tuyên Quang (+Hà Giang) · Cao Bằng; row 1 Điện Biên · Sơn La · Phú Thọ (+Vĩnh Phúc,
+// Hòa Bình) · Thái Nguyên (+Bắc Kạn) · Lạng Sơn; row 2 Thanh Hóa · Hà Nội · Bắc Ninh (+Bắc Giang) · Quảng Ninh; row 3 Nghệ An ·
+// Ninh Bình (+Hà Nam, Nam Định) · Hưng Yên (+Thái Bình) · Hải Phòng (+Hải Dương); rows 4–10 the coast Hà Tĩnh → Quảng Trị
+// (+Quảng Bình) → Huế → Đà Nẵng (+Quảng Nam) → Quảng Ngãi (+Kon Tum) → Gia Lai (+Bình Định) → Đắk Lắk (+Phú Yên); row 11 Lâm
+// Đồng (+Đắk Nông, Bình Thuận) · Khánh Hòa (+Ninh Thuận); row 12 Tây Ninh (+Long An) · Đồng Nai (+Bình Phước); row 13 An Giang
+// (+Kiên Giang) · Đồng Tháp (+Tiền Giang) · TP.HCM (+Bình Dương, BR-VT); row 14 Cần Thơ (+Sóc Trăng, Hậu Giang) · Vĩnh Long
+// (+Bến Tre, Trà Vinh); row 15 Cà Mau (+Bạc Liêu). Hoàng Sa (Đà Nẵng) and Trường Sa (Khánh Hòa) are drawn as island marks.
+const SOC_HEX = { 3: [1, 0, 'LCh'], 4: [2, 0, 'LCa'], 1: [3, 0, 'TQ'], 2: [4, 0, 'CB'],
+  6: [.5, 1, 'ĐB'], 8: [1.5, 1, 'SL'], 9: [2.5, 1, 'PT'], 5: [3.5, 1, 'TN'], 7: [4.5, 1, 'LS'],
+  16: [2, 2, 'TH'], 12: [3, 2, 'HN'], 10: [4, 2, 'BN'], 11: [5, 2, 'QN'],
+  17: [1.5, 3, 'NA'], 15: [2.5, 3, 'NB'], 14: [3.5, 3, 'HY'], 13: [4.5, 3, 'HP'],
+  18: [2, 4, 'HT'], 19: [2.5, 5, 'QT'], 20: [3, 6, 'Huế'], 21: [3.5, 7, 'ĐN'], 22: [4, 8, 'QNg'], 23: [4.5, 9, 'GL'], 24: [5, 10, 'ĐL'],
+  26: [4.5, 11, 'LĐ'], 25: [5.5, 11, 'KH'], 28: [3, 12, 'TNi'], 27: [4, 12, 'ĐNa'],
+  31: [1.5, 13, 'AG'], 30: [2.5, 13, 'ĐT'], 29: [3.5, 13, 'HCM'], 33: [2, 14, 'CT'], 32: [3, 14, 'VL'], 34: [1.5, 15, 'CM'] };
+// island marks [x, row, VI, EN] — east of their province, outside the tile grid
+const SOC_HEX_ISL = [[5.1, 6.4, 'QĐ Hoàng Sa', 'Hoàng Sa Is.'], [6.3, 11.9, 'QĐ Trường Sa', 'Trường Sa Is.']];
 let socMapMode = 'grdp', socHxView = 'map';
 const SOC_RAMP = ['#6da7ec', '#3987e5', '#256abf', '#184f95', '#0d366b'];   // blue steps 300–700, validated --ordinal on #faf8f3
 const SOC_MAP = { grdp: { brk: [3000, 4000, 5000, 7000], col: SOC_RAMP },
@@ -6925,13 +6935,17 @@ function socHxMetric(k) {
 const socHxLum = c => { const n = parseInt(c.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255; return (0.299 * r + 0.587 * g + 0.114 * b) / 255; };
 function socStMap() {
   const host = document.getElementById('soc-st-map'); if (!host || !host.classList.contains('st-viz')) return;   // the Explore chapter section shares this id
-  const W = stCW(host, 360, 260), xs = Object.values(SOC_HEX).map(p => p[0]), rows = Object.values(SOC_HEX).map(p => p[1]), cx0 = Math.min(...xs), cx1 = Math.max(...xs), R1 = Math.max(...rows);
-  const r = Math.min(23, (Math.min(W, 340) * .62) / ((cx1 - cx0 + 1) * Math.sqrt(3))), hw = Math.sqrt(3) * r, ox = 4 + hw / 2, oy = 6 + r, hexH = oy + R1 * 1.5 * r + r + 6;
-  const RH = 17, rankH = 34 + 34 * RH + 6, H = Math.round(Math.max(hexH, rankH));
+  const W = stCW(host, 360, 260), xs = Object.values(SOC_HEX).map(p => p[0]).concat(SOC_HEX_ISL.map(p => p[0])), rows = Object.values(SOC_HEX).map(p => p[1]), cx0 = Math.min(...xs), cx1 = Math.max(...xs), R1 = Math.max(...rows);
+  // tiles + island marks take ~68% of the width; the rest is the gutter that names the highest and lowest province
+  const r = Math.min(26, (Math.min(W, 380) * .68) / ((cx1 - cx0 + 1) * Math.sqrt(3))), hw = Math.sqrt(3) * r, ox = 4 + hw / 2, oy = 6 + r, hexH = oy + R1 * 1.5 * r + r + 6;
+  const RH = 17, rankH = 34 + 34 * RH + 22, H = Math.round(Math.max(hexH, rankH));
   const hex = `M${[0, 1, 2, 3, 4, 5].map(i => { const a = Math.PI / 180 * (60 * i - 90), q = r - 1.2; return `${(q * Math.cos(a)).toFixed(1)},${(q * Math.sin(a)).toFixed(1)}`; }).join(' L')} Z`;
-  host._hx = { W, H, r, RH, pos: Object.fromEntries(Object.entries(SOC_HEX).map(([id, p]) => [id, [ox + (p[0] - cx0) * hw, oy + p[1] * 1.5 * r]])), gx: ox + (cx1 - cx0) * hw + hw / 2 + 12 };
+  host._hx = { W, H, hexH: Math.round(hexH), rankH: Math.round(rankH), r, RH, pos: Object.fromEntries(Object.entries(SOC_HEX).map(([id, p]) => [id, [ox + (p[0] - cx0) * hw, oy + p[1] * 1.5 * r]])), gx: ox + (cx1 - cx0) * hw + hw / 2 + 12 };
   const g = PROVS.filter(p => SOC_HEX[p.id]).map(p => `<g class="hx" data-pid="${p.id}" data-lk="pv:${p.id}"><path class="hx-h" d="${hex}" fill="#e1e0d9"/><circle class="hx-c" r="6" fill="#e1e0d9" stroke="${ST_SURF}" stroke-width="2"/><circle r="12" fill="transparent"/><text class="hx-t" text-anchor="middle" y="4">${ciE(SOC_HEX[p.id][2])}</text></g>`).join('');
-  host.innerHTML = `<svg class="soc-hx" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ciE(stT('Bản đồ ô 34 tỉnh, thành (mỗi tỉnh một ô bằng nhau)', 'Tile map of the 34 provinces (one equal tile each)'))}"><g class="hx-axis"></g><g class="hx-tiles">${g}</g><g class="hx-labs"></g></svg>`;
+  const isl = SOC_HEX_ISL.map(([x, row, vi, en]) => { const cx = ox + (x - cx0) * hw, cy = oy + row * 1.5 * r;
+    return [[-5, -3], [1, -6], [5, 1], [-1, 4], [6, 6]].map(([dx, dy]) => `<circle cx="${(cx + dx * r / 20).toFixed(1)}" cy="${(cy + dy * r / 20).toFixed(1)}" r="1.6" fill="#8a8f99"/>`).join('')
+      + `<text class="st-tick" x="${cx.toFixed(1)}" y="${(cy + r * .55 + 9).toFixed(1)}" text-anchor="middle" style="font-size:9.5px">${ciE(stT(vi, en))}</text>`; }).join('');
+  host.innerHTML = `<svg class="soc-hx" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ciE(stT('Bản đồ ô 34 tỉnh, thành (mỗi tỉnh một ô bằng nhau)', 'Tile map of the 34 provinces (one equal tile each)'))}"><g class="hx-axis"></g><g class="hx-isl" aria-hidden="true">${isl}</g><g class="hx-lead" aria-hidden="true"></g><g class="hx-tiles">${g}</g><g class="hx-labs"></g></svg>`;
   socStMapPaint(true);
   stRW(host, socStMap);
 }
@@ -6948,7 +6962,8 @@ function socStMapPaint(first) {
   const ML = Math.min(118, X.W * .36), MR = 46, x0 = ML, x1 = X.W - MR, vs = rows.map(r => r.v), vmin = Math.min(...vs), vmax = Math.max(...vs);
   const [d0, d1] = M.log ? [vmin * .9, vmax * 1.1] : socMapMode === 'grdp' || socMapMode === 'urban' ? [0, vmax * 1.04] : [vmin - (vmax - vmin) * .08, vmax + (vmax - vmin) * .08];
   const sxv = M.log ? (v => x0 + (Math.log10(v) - Math.log10(d0)) / (Math.log10(d1) - Math.log10(d0)) * (x1 - x0)) : stLin(d0, d1, x0, x1), ry = i => 34 + i * X.RH + X.RH / 2;
-  svg.classList.toggle('hx-rank', isR); svg.style.height = '';
+  svg.classList.toggle('hx-rank', isR); svg.style.height = ''; svg.querySelector('.hx-isl').style.display = isR ? 'none' : '';
+  svg.setAttribute('viewBox', `0 0 ${X.W} ${isR ? X.rankH : X.hexH}`);   // each view is as tall as its content
   svg.setAttribute('aria-label', isR ? stT(`Xếp hạng 34 tỉnh, thành theo ${M.n}`, `The 34 provinces ranked by ${M.n}`) : stT(`Bản đồ ô 34 tỉnh, thành theo ${M.n} (sơ đồ, không theo tỷ lệ)`, `Tile map of the 34 provinces by ${M.n} (schematic, not to scale)`));
   svg.querySelectorAll('g.hx').forEach(gg => { const id = gg.dataset.pid, rr = by[id], c = rr ? M.col[bin(rr.v)] : '#e1e0d9', i = rr ? rk[id] : 33;
     const [mx, my] = X.pos[id], p = isR && rr ? [sxv(rr.v), ry(i)] : [mx, my];
@@ -6963,8 +6978,13 @@ function socStMapPaint(first) {
     ax += rank.map((rr, i) => `<text class="st-lab" x="${ML - 10}" y="${ry(i) + 4}" text-anchor="end" style="font-size:11.5px" data-lk="pv:${rr.id}">${ciE(rr.n)}</text><text class="st-tick" x="${X.W - 2}" y="${ry(i) + 4}" text-anchor="end" data-lk="pv:${rr.id}">${(M.fv || M.fb)(rr.v)}</text>`).join(''); }
   svg.querySelector('.hx-axis').innerHTML = ax;
   // tile view: the highest and lowest named in the gutter with a leader, never on the tiles
-  const L = (rr, k) => { const [x, y] = X.pos[rr.id], lx = X.gx, ly = k ? Math.max(y + 4, 60) : Math.min(y, X.H - 40); return `<path d="M${x + X.r * .7},${y} L${lx - 4},${ly - 4}" stroke="#5b6170" stroke-width=".8" fill="none"/><text class="soc-map-lab" x="${lx}" y="${ly}"><tspan x="${lx}">${ciE(rr.n)}</tspan><tspan x="${lx}" dy="15" style="font-weight:500">${M.f(rr.v)}</tspan></text>`; };
-  svg.querySelector('.hx-labs').innerHTML = isR ? '' : `<text class="st-tick" x="${X.gx}" y="${X.H - 6}">${stT('Sơ đồ, không theo tỷ lệ', 'Schematic, not to scale')}</text>` + L(hi, 0) + L(lo, 1);
+  // labels sit level with their tile; when both tiles are close (e.g. two northern provinces) the lowest moves down clear of the highest
+  const yHi = Math.max(14, Math.min(X.pos[hi.id][1], X.hexH - 60)), yLo0 = Math.max(14, Math.min(X.pos[lo.id][1], X.hexH - 60)), yLo = Math.abs(yLo0 - yHi) < 40 ? (yLo0 >= yHi ? yHi + 40 : Math.max(14, yHi - 40)) : yLo0;
+  // leaders run beneath the tiles (visible only in the gaps), so they never cross a tile's label
+  const Ld = (rr, k) => { const [x, y] = X.pos[rr.id], ly = k ? yLo : yHi; return `<path d="M${x},${y} L${X.gx - 4},${ly - 4}" stroke="#5b6170" stroke-width=".8" fill="none"/>`; };
+  svg.querySelector('.hx-lead').innerHTML = isR ? '' : Ld(hi, 0) + Ld(lo, 1);
+  const L = (rr, k) => { const lx = X.gx, ly = k ? yLo : yHi; return `<text class="soc-map-lab" x="${lx}" y="${ly}"><tspan x="${lx}">${ciE(rr.n)}</tspan><tspan x="${lx}" dy="15" style="font-weight:500">${M.f(rr.v)}</tspan></text>`; };
+  svg.querySelector('.hx-labs').innerHTML = isR ? '' : `<text class="st-tick" x="${X.W - 2}" y="${X.hexH - 6}" text-anchor="end">${stT('Sơ đồ, không theo tỷ lệ', 'Schematic, not to scale')}</text>` + L(hi, 0) + L(lo, 1);
   let note;
   if (socMapMode === 'tfr') { const inR = rs => rows.filter(r => rs.includes(r.r)), S = inR([5, 6]), N = inR([1, 2, 3]), bS = S.filter(r => r.v < 2.1).length, bN = N.filter(r => r.v < 2.1).length;
     note = stNote(stT(`${bS === S.length ? 'Cả' : ''} ${bS}/${S.length} tỉnh, thành Đông Nam Bộ và ĐB sông Cửu Long sinh dưới mức thay thế; ở ba vùng phía Bắc là ${bN}/${N.length}.`.trim(), `${bS === S.length ? `All ${bS}` : `${bS} of ${S.length}`} provinces in the Southeast and Mekong Delta are below replacement; in the three northern regions, ${bN} of ${N.length}.`), stT(`Thấp nhất ${lo.n} (${M.f(lo.v)}), cao nhất ${hi.n} (${M.f(hi.v)}); số liệu 2024 quy đổi về 34 tỉnh, thành.`, `Lowest ${lo.n} (${M.f(lo.v)}), highest ${hi.n} (${M.f(hi.v)}); 2024 data mapped onto the 34 provinces.`)); }
