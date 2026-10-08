@@ -759,6 +759,9 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-kicker { font: 600 11.5px/1 var(--font-ui); letter-spacing: .12em; text-transform: uppercase; color: #c2362f; margin-bottom: 10px; }
   .st-owner { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 6px; margin: -4px 0 12px; font: 400 12px/1.45 var(--font-ui); color: #5b6170; }
   .st-owner b { font-weight: 600; color: #16181d; } .st-owner-f { color: #8a8f99; } .st-owner-s { color: #c3c2b7; }
+  .st-bulb { margin: 18px 0 6px; max-width: 80ch; background: #fff8e6; border: 1px solid #f1dfb0; border-left: 4px solid #eda100; border-radius: 6px; padding: 10px 14px 10px 14px; }
+  .st-bulb-h { font: 650 13px var(--font-ui); color: #7a5400; letter-spacing: .02em; margin-bottom: 4px; }
+  .st-bulb ul { margin: 0; padding-left: 18px; } .st-bulb li { font: 400 13.5px/1.55 var(--font-ui); color: #16181d; margin: 4px 0; }
   .st-h { font: 700 clamp(22px, 2.6vw, 32px)/1.18 var(--font-head); color: #16181d; margin: 0 0 10px; max-width: 30ch; text-wrap: balance; }
   .st-dek { font: 400 15px/1.55 var(--font-ui); color: #5b6170; margin: 0 0 18px; max-width: 68ch; }
   .st-dek b { color: #16181d; }
@@ -5271,7 +5274,116 @@ function stOwner(root) {
     + ` <span class="st-owner-s">·</span> <b>Research</b> <span class="st-owner-f">${stT('lịch cập nhật & đối chiếu', 'update schedule & cross-checks')}</span>`;
   if (k) k.after(p); else h.prepend(p);
 }
-function stFinish(root) { stObserve(root); stTables(root); stFresh(root); stFlourish(root); stOwner(root); stChapters(root); }
+// "💡 Bạn có biết? / Did you know?" — one box per chapter: mechanisms and context that help a reader understand the
+// chart. Each entry: list of [vi, en] points. Figures used here are ones the dashboard's data holds or well-established
+// facts; anything model-based says so. Rendered by stBulbs(root) from stFinish, before the chapter's sources.
+const ST_BULBS = {
+  // ── Xã hội / Society ──
+  'soc-st-tfr': [
+    ['Mức sinh thay thế là khoảng 2,1 con/phụ nữ: 2 con thay thế cha mẹ, phần 0,1 bù cho trẻ em không sống đến tuổi sinh con và cho việc số bé trai sinh ra nhiều hơn bé gái.', 'Replacement fertility is about 2.1 children per woman: two replace the parents, the extra 0.1 covers children who do not reach childbearing age and the fact that more boys than girls are born.'],
+    ['Dân số vẫn tăng nhiều năm sau khi mức sinh xuống dưới 2,1, vì số phụ nữ đang trong tuổi sinh con còn đông — gọi là “quán tính dân số”.', 'Population keeps growing for years after fertility falls below 2.1, because the number of women of childbearing age is still large — “population momentum”.'],
+    ['Từ tháng 6/2025, Việt Nam bỏ quy định mỗi cặp vợ chồng chỉ nên có 1–2 con; các gia đình tự quyết định số con.', 'Since June 2025 Vietnam no longer limits couples to one or two children; families decide how many to have.']],
+  'soc-st-age': [
+    ['Việt Nam bước vào thời kỳ “dân số vàng” (cứ 2 người trong tuổi lao động trở lên mới có 1 người phụ thuộc) từ khoảng năm 2007; thời kỳ này dự kiến kết thúc quanh năm 2040.', 'Vietnam entered its “demographic bonus” (two or more working-age people per dependant) around 2007; it is expected to end around 2040.'],
+    ['Già hoá nhanh: tỷ lệ người từ 65 tuổi tăng từ 7% lên 14% chỉ trong khoảng 20 năm ở Việt Nam, trong khi Pháp mất hơn một thế kỷ.', 'Ageing is fast: the share aged 65+ goes from 7% to 14% in about 20 years in Vietnam; France took more than a century.'],
+    ['Hệ quả trực tiếp: quỹ hưu trí phải trả cho nhiều người hơn với ít người đóng hơn, và nhu cầu y tế, chăm sóc người già tăng nhanh.', 'The direct consequence: pension funds pay more people from fewer contributors, and demand for health and elderly care rises quickly.']],
+  'soc-st-rich': [
+    ['GRDP đo giá trị sản xuất diễn ra trong tỉnh, không phải thu nhập của người dân: một tỉnh có mỏ than, nhà máy FDI hay cảng lớn có GRDP/người cao dù lợi nhuận chảy về nơi khác.', 'GRDP measures output produced in the province, not residents’ income: a province with a mine, foreign factories or a big port shows high GRDP per person even when profits flow elsewhere.'],
+    ['Tỉnh nghèo tăng nhanh hơn chưa chắc làm khoảng cách tuyệt đối thu hẹp: tăng 8% trên 50 triệu là 4 triệu đồng, tăng 6% trên 200 triệu là 12 triệu đồng.', 'Poorer provinces growing faster does not always shrink the absolute gap: 8% of 50 million is 4 million dong, 6% of 200 million is 12 million.']],
+  'soc-st-rank': [
+    ['GDP/người xếp hạng theo tỷ giá thị trường. Tính theo sức mua tương đương (PPP), một đồng ở Việt Nam mua được nhiều hàng hơn ở nước giàu, nên GDP/người PPP cao hơn khoảng 3 lần.', 'GDP per person is ranked at market exchange rates. At purchasing-power parity (PPP) a dong buys more than in rich countries, so GDP per person at PPP is roughly three times higher.'],
+    ['Đứng thứ 16 thế giới về dân số trên một diện tích nhỏ hơn nhiều: mật độ khoảng 309 người/km², gấp khoảng 5 lần mức trung bình thế giới.', 'Sixteenth in the world by population on a much smaller area: about 309 people per km², roughly five times the world average.']],
+  'soc-st-rel': [
+    ['13,7% chỉ tính người tự khai theo một tôn giáo được công nhận. Thờ cúng tổ tiên và tín ngưỡng dân gian — phổ biến ở đa số gia đình — không được tính là tôn giáo trong điều tra.', 'The 13.7% counts only people who declare a recognised religion. Ancestor worship and folk beliefs — practised in most households — are not counted as a religion in the census.']],
+  // ── Đảng & Chính phủ / Party & Government ──
+  'pg-st-gap': [
+    ['Phần lớn mục tiêu của Đại hội là mức bình quân 5 năm, nên một năm vượt mục tiêu chưa có nghĩa cả giai đoạn sẽ đạt.', 'Most Congress targets are five-year averages, so beating the target in one year does not mean the whole period will.'],
+    ['Đầu tư toàn xã hội = Nhà nước + tư nhân trong nước + FDI. Nhà nước chỉ trực tiếp quyết định chưa tới một phần ba, nên mục tiêu này phụ thuộc nhiều vào niềm tin của doanh nghiệp.', 'Total investment = State + domestic private + FDI. The State directly decides less than a third of it, so this target depends heavily on business confidence.']],
+  'pg-st-wave': [
+    ['Một nghị quyết của Bộ Chính trị thường kéo theo hàng chục văn bản: Quốc hội thể chế hoá bằng luật, nghị quyết; Chính phủ ban hành nghị định và chương trình hành động; bộ, tỉnh ra thông tư và kế hoạch.', 'One Politburo resolution usually triggers dozens of documents: the National Assembly turns it into laws and resolutions; the Government issues decrees and action programmes; ministries and provinces add circulars and plans.']],
+  'pg-st-pil': [
+    ['“Bộ tứ trụ cột” 2024–2025 gồm Nghị quyết 57 (khoa học, công nghệ, chuyển đổi số), 59 (hội nhập quốc tế), 66 (xây dựng và thi hành pháp luật) và 68 (kinh tế tư nhân).', 'The 2024–2025 “four pillars” are Resolutions 57 (science, technology, digital transformation), 59 (international integration), 66 (law-making and enforcement) and 68 (the private economy).'],
+    ['Nghị quyết 57 đặt mục tiêu chi cho nghiên cứu và phát triển đạt 2% GDP vào năm 2030.', 'Resolution 57 targets research and development spending of 2% of GDP by 2030.']],
+  'pg-st-chain': [
+    ['Nghị quyết của Đảng định hướng và đặt mục tiêu nhưng không trực tiếp có hiệu lực pháp lý với người dân, doanh nghiệp; muốn áp dụng phải qua luật của Quốc hội và nghị định của Chính phủ.', 'Party resolutions set direction and targets but do not bind citizens or firms directly; to apply they must pass through National Assembly laws and Government decrees.'],
+    ['Vì vậy khoảng cách ngày từ nghị quyết đến văn bản thực thi là một thước đo tốc độ chính sách đi vào đời sống.', 'That is why the number of days from a resolution to its implementing documents is a measure of how fast policy reaches daily life.']],
+  'pg-st-pipe': [
+    ['Trước đây một dự án luật thường qua hai kỳ họp Quốc hội (thảo luận rồi thông qua). Từ 2025, nhiều luật được thông qua ngay trong một kỳ họp theo quy trình rút gọn.', 'A draft law used to take two National Assembly sessions (debate, then vote). Since 2025 many laws pass within a single session under a shortened procedure.']],
+  // ── Kinh tế / Economy ──
+  'st-formula': [
+    ['GDP = C + I + G + (X − M). Hàng nhập khẩu bị trừ đi vì chúng đã nằm trong tiêu dùng, đầu tư và xuất khẩu nhưng không do Việt Nam sản xuất.', 'GDP = C + I + G + (X − M). Imports are subtracted because they are already inside consumption, investment and exports but were not produced in Vietnam.'],
+    ['Xuất khẩu của Việt Nam gần bằng cả GDP (khoảng 98% năm 2025), nhưng phần giá trị tạo ra trong nước nhỏ hơn nhiều vì nhiều linh kiện, nguyên liệu là hàng nhập.', 'Vietnam’s exports are almost as large as GDP (about 98% in 2025), but the value added at home is much smaller because many parts and materials are imported.']],
+  'st-bop': [
+    ['Thặng dư vãng lai lớn mà dự trữ ngoại hối chỉ tăng ít nghĩa là ngoại tệ ra đi theo đường khác — thường thấy ở khoản “lỗi và sai sót” âm lớn, gắn với vàng và ngoại tệ đi ra ngoài kênh chính thức.', 'A big current-account surplus with only a small rise in reserves means foreign currency is leaving another way — often visible as large negative “errors and omissions”, linked to gold and cash moving outside official channels.'],
+    ['Kiều hối là chuyển giao vãng lai, không phải vốn vay hay đầu tư: nó hỗ trợ tỷ giá mà không tạo nợ.', 'Remittances are current transfers, not loans or investment: they support the exchange rate without creating debt.']],
+  'st-budget': [
+    ['Tiền sử dụng đất là nguồn thu lớn nhưng không bền: mỗi lô đất chỉ thu một lần và số thu đi theo chu kỳ bất động sản.', 'Land-use fees are a big but unreliable source: each plot pays once, and the revenue follows the property cycle.'],
+    ['Thu ngân sách vượt dự toán gần như mọi năm vì dự toán được lập thận trọng — vượt dự toán không có nghĩa thu tăng đột biến.', 'Revenue beats the plan almost every year because plans are set conservatively — beating the plan does not mean revenue surged.'],
+    ['Bội chi chính thức khác “thu trừ chi” theo tiền mặt: nó tính cả khoản chi chuyển nguồn sang năm sau.', 'The official deficit differs from cash “revenue minus spending”: it also counts spending carried over to the next year.']],
+  'st-inv': [
+    ['FDI “đăng ký” là cam kết; FDI “thực hiện” mới là tiền thật vào nền kinh tế. Số đăng ký còn gồm góp vốn, mua cổ phần — không tạo thêm nhà máy mới.', 'Registered FDI is a pledge; disbursed FDI is the money that actually arrives. Registered figures also include share purchases — which build no new factory.'],
+    ['Khu vực ngoài nhà nước bỏ hơn một nửa tổng vốn đầu tư (54% năm 2025), lớn hơn cả Nhà nước và FDI.', 'The non-state sector supplies more than half of all investment (54% in 2025), more than the State or FDI.']],
+  'st-cpi': [
+    ['CPI theo dõi giá của khoảng 750 mặt hàng, dịch vụ với quyền số theo chi tiêu của hộ gia đình. Giá thịt lợn, xăng dầu và các giá do Nhà nước điều chỉnh (điện, y tế, học phí) thường tạo các bước nhảy.', 'The CPI tracks about 750 goods and services weighted by household spending. Pork, fuel and State-set prices (electricity, health care, tuition) cause most of the jumps.'],
+    ['Lạm phát cơ bản loại bỏ lương thực, năng lượng và giá do Nhà nước quản lý, nên cho thấy xu hướng nền mà ngân hàng trung ương quan tâm.', 'Core inflation excludes food, energy and State-administered prices, so it shows the underlying trend a central bank watches.']],
+  'st-2030': [
+    ['Để GDP/người tăng từ khoảng 5.000 lên 8.500 USD trong 5 năm, con số tính bằng USD phải tăng khoảng 11% mỗi năm — gộp cả tăng trưởng thực, lạm phát và biến động tỷ giá.', 'To lift GDP per person from about 5,000 to 8,500 USD in five years, the dollar figure must rise about 11% a year — real growth, inflation and the exchange rate combined.']],
+  // ── Chính sách / Policies ──
+  'pol-st-moves': [
+    ['Nới lỏng không chỉ là hạ lãi suất: giãn, hoãn, giảm thuế, giữ nguyên nhóm nợ khi cơ cấu lại khoản vay và nới trần tín dụng cũng là nới lỏng.', 'Easing is not only rate cuts: tax deferrals and cuts, letting restructured loans keep their risk class and raising credit quotas are easing too.']],
+  'pol-st-cliff': [
+    ['Thuế GTGT được giảm 2 điểm % (từ 10% xuống 8%) cho nhiều nhóm hàng từ năm 2022 và gia hạn nhiều lần. Khi hết hạn, giá các mặt hàng đó tăng một lần, đẩy CPI lên.', 'VAT has been cut by 2 points (10% to 8%) on many goods since 2022 and extended several times. When it expires, those prices step up once and lift the CPI.']],
+  'pol-st-steps': [
+    ['Lãi suất tái cấp vốn đóng vai trò trần và lãi suất tái chiết khấu là sàn cho lãi suất qua đêm liên ngân hàng; NHNN điều tiết hằng ngày chủ yếu qua nghiệp vụ thị trường mở (OMO).', 'The refinancing rate acts as the ceiling and the rediscount rate as the floor for overnight interbank rates; day to day the SBV steers mainly through open-market operations (OMO).']],
+  // ── Hệ thống tài chính / Financial system ──
+  'fs-st-hero': [
+    ['Tiền mặt là loại tiền duy nhất NHNN tự in. Phần lớn M2 do ngân hàng thương mại tạo ra: khi ngân hàng cho vay, họ ghi có vào tài khoản người vay, và khoản tiền gửi mới đó là tiền mới.', 'Cash is the only money the SBV prints itself. Most of M2 is created by commercial banks: when a bank makes a loan it credits the borrower’s account, and that new deposit is new money.'],
+    ['Vì vậy M2 tăng chủ yếu nhờ tín dụng: tăng trưởng tín dụng và M2 đi cùng nhau, và chỉ tiêu tăng trưởng tín dụng thực chất là chỉ tiêu cung tiền.', 'So M2 grows mainly through credit: credit growth and M2 growth move together, and a credit-growth target is in effect a money-supply target.'],
+    ['Tiền của chính NHNN là “tiền cơ sở”: tiền mặt cộng tiền dự trữ các ngân hàng gửi tại NHNN — chỉ khoảng 1/8 M2. NHNN điều hành M2 bằng lượng và giá của tiền cơ sở (lãi suất), không phải bằng in tiền mặt.', 'The SBV’s own money is “base money”: cash plus the reserves banks hold at the SBV — only about an eighth of M2. The SBV steers M2 through the quantity and price (interest rate) of base money, not by printing cash.'],
+    ['Tiền mặt tăng vọt dịp Tết (khoảng 2,375 triệu tỷ đồng tháng 2/2026) vì người dân rút tiền gửi: tiền chuyển từ tài khoản ra túi, còn M2 không đổi.', 'Cash jumps at Tết (about 2,375 trillion dong in February 2026) because people withdraw deposits: money moves from accounts to pockets, and M2 itself does not change.']],
+  'fs-st-money': [
+    ['Tín dụng/GDP khoảng 146% là cao so với các nước cùng mức thu nhập: doanh nghiệp Việt Nam vay ngân hàng là chính vì thị trường trái phiếu và cổ phiếu còn nhỏ.', 'Credit at about 146% of GDP is high for a country at Vietnam’s income level: firms borrow mostly from banks because bond and stock markets are still small.'],
+    ['Khi tín dụng tăng nhanh hơn huy động, các ngân hàng phải tranh nhau tiền gửi — một lý do lãi suất huy động tăng dù lãi suất điều hành đứng yên.', 'When credit grows faster than deposits, banks compete for deposits — one reason deposit rates rise even with policy rates unchanged.']],
+  'fs-st-flow': [
+    ['“Dịch vụ khác” lớn nhất vì gồm cho vay tiêu dùng và cho vay cá nhân mua nhà — không chỉ dịch vụ doanh nghiệp.', '“Other services” is the biggest block because it includes consumer loans and household mortgages — not just business services.']],
+  'fs-st-rates': [
+    ['Lãi suất điều hành đứng yên không có nghĩa lãi suất thị trường đứng yên: ngân hàng định giá tiền gửi theo nhu cầu vốn của chính họ.', 'An unchanged policy rate does not freeze market rates: banks price deposits by their own need for funds.'],
+    ['Lãi suất thực = lãi suất danh nghĩa − lạm phát. Gửi tiết kiệm 5,9% khi CPI tăng 5% chỉ giữ được sức mua tăng khoảng 0,9%/năm, trước thuế.', 'Real rate = nominal rate − inflation. A 5.9% deposit with CPI at 5% only grows purchasing power by about 0.9% a year, before tax.']],
+  'fs-st-fx': [
+    ['Dự trữ ngoại hối thường được đo bằng số tháng nhập khẩu; mức tối thiểu IMF hay dùng là khoảng 3 tháng.', 'Reserves are often measured in months of imports; the rule of thumb the IMF uses is at least about three months.'],
+    ['Khi NHNN bán USD để giữ tỷ giá, dự trữ giảm và tiền đồng được hút về — cùng lúc làm lãi suất liên ngân hàng tăng.', 'When the SBV sells dollars to hold the exchange rate, reserves fall and dong is drained — which also pushes interbank rates up.']],
+  'fs-st-safe': [
+    ['Nợ xấu nội bảng chỉ là phần nhìn thấy; cộng nợ đã bán cho VAMC và nợ tiềm ẩn thì tỷ lệ cao hơn nhiều — chương này cho thấy cả ba cách đo.', 'On-balance-sheet bad loans are only the visible part; add loans sold to VAMC and potential bad loans and the ratio is much higher — this chapter shows all three measures.'],
+    ['Hệ số an toàn vốn (CAR) tối thiểu theo Basel II là 8%: cứ 100 đồng tài sản có rủi ro, ngân hàng phải có ít nhất 8 đồng vốn để chịu lỗ.', 'The Basel II minimum capital adequacy ratio is 8%: for every 100 dong of risk-weighted assets a bank must hold at least 8 dong of capital to absorb losses.']],
+  'fs-st-pay': [
+    ['Giá trị thanh toán không dùng tiền mặt gấp khoảng 28 lần GDP vì mỗi đồng được chuyển đi chuyển lại nhiều lần trong năm, giữa người dân, doanh nghiệp và ngân hàng.', 'Non-cash payments are worth about 28 times GDP because each dong moves many times a year between people, firms and banks.'],
+    ['Chuyển tiền nhanh 24/7 qua Napas và mã QR là động lực chính khiến thanh toán điện tử tăng bùng nổ.', 'Instant 24/7 transfers via Napas and QR codes are the main reason electronic payments exploded.']],
+  'fs-st-sbv': [
+    ['Thu nhập của NHNN đến chủ yếu từ dự trữ ngoại hối đầu tư ở nước ngoài; một phần chênh lệch thu chi được nộp vào ngân sách nhà nước.', 'The SBV earns mainly on its foreign reserves invested abroad; part of its surplus is paid into the State budget.'],
+    ['Kho bạc gửi tiền tại NHNN: khi chi tiêu công chậm, tiền “nằm” ở NHNN và rút bớt tiền khỏi hệ thống ngân hàng.', 'The Treasury keeps money at the SBV: when public spending is slow, that money sits there and drains liquidity from the banks.']],
+  // ── Đầu tư / Investing ──
+  'iv-st-macro': [
+    ['Quý 4 thường tăng trưởng cao nhất năm vì mùa mua sắm cuối năm và vì giải ngân đầu tư công dồn vào những tháng cuối.', 'The fourth quarter is usually the strongest of the year: year-end shopping, and public investment disbursement bunching in the last months.']],
+  'iv-st-market': [
+    ['VN-Index là chỉ số giá, không gồm cổ tức; tổng lợi suất của người nắm giữ cổ phiếu cao hơn mức tăng của chỉ số.', 'The VN-Index is a price index without dividends; the total return to shareholders is higher than the index’s rise.']],
+  'iv-st-stocks': [
+    ['Giá mục tiêu là ước tính của một công ty chứng khoán tại một thời điểm, không phải lời hứa; các tổ chức thường đưa ra mức khác nhau đáng kể. Không phải khuyến nghị đầu tư.', 'A target price is one broker’s estimate at one moment, not a promise; brokers often differ widely. Not investment advice.']],
+  // ── Mô phỏng / Simulation ──
+  'sim-st-story': [
+    ['Ngân hàng không thể mãi cho vay nhiều hơn khả năng huy động: trần tỷ lệ cho vay/huy động (LDR) buộc họ hút thêm tiền gửi khi tín dụng tăng nhanh — và trả lãi cao hơn để làm việc đó.', 'Banks cannot lend beyond their deposits forever: the loan-to-deposit (LDR) cap forces them to attract more deposits when credit grows fast — and to pay more to do it.']],
+  'sim-st-proj': [
+    ['Đây là mô hình minh hoạ cơ chế của dashboard, không phải dự báo. Kéo từng thanh trượt để thấy nhóm yếu tố nào đẩy lãi suất nhiều nhất.', 'This is the dashboard’s illustrative model of the mechanism, not a forecast. Move one slider at a time to see which forces push rates the most.']]
+};
+function stBulbs(root) {
+  root.querySelectorAll('.st-chap').forEach(c => {
+    const pts = ST_BULBS[c.id]; if (!pts || c.querySelector(':scope > .st-bulb')) return;
+    const a = document.createElement('aside'); a.className = 'st-bulb'; a.setAttribute('aria-label', stT('Bạn có biết?', 'Did you know?'));
+    a.innerHTML = `<div class="st-bulb-h"><span aria-hidden="true">💡</span> ${stT('Bạn có biết?', 'Did you know?')}</div><ul>${pts.map(p => `<li>${stT(p[0], p[1])}</li>`).join('')}</ul>`;
+    const srcs = [...c.children].filter(x => x.classList.contains('st-src')), last = srcs[srcs.length - 1];
+    if (last) last.before(a); else c.appendChild(a);
+  });
+}
+function stFinish(root) { stObserve(root); stTables(root); stFresh(root); stFlourish(root); stOwner(root); stBulbs(root); stChapters(root); }
 // ── chapter sub-tabs: one chapter on screen at a time. Built from the rendered .st-chap sections of a story root (hero =
 // "Overview"); ARIA tabs with arrow/Home/End keys; the bar sits just before the root (sticky inside the scrolling panel,
 // so it stays in view over the tab's explore content too). The explore chapter also owns the panel's content after the
