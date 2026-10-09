@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Society agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "qc": "QC/freshness run 2026-10-06; 2026-10-07 added tfr_2025 (6 provinces, excerpt-verified) and null *_2025 vital-rate keys per audit S03/S04; GRDP 9M-2026 for Điện Biên, Quảng Trị, Huế, Gia Lai rechecked - still not published as 9-month figures (null). Data status as of 7 Oct 2026.",
+  "qc": "QC/freshness run 2026-10-06; 2026-10-07 added tfr_2025 (6 provinces, excerpt-verified) and null *_2025 vital-rate keys per audit S03/S04; GRDP 9M-2026 for Điện Biên, Quảng Trị, Huế, Gia Lai rechecked - still not published as 9-month figures (null). Data status as of 7 Oct 2026.; 2026-10-09 (animation history, user request): POP_SERIES.age_sex single years 2017-2030, POP_SERIES.un_annual (31 Dec), POP_SERIES.nat_series 2017-2025 + POP_SERIES.targets, SOC_GRDP.*_series 2018-2025, WORLD_RANK.*.history / history_wpp / history_imf / history_wdi",
   "sources": {
    "POP_SERIES.actual": "NSO PX V02.02 average population (2025 = Sơ bộ) https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.02.px/",
    "POP_SERIES.nat": "NSO PX V02.02/V02.08/V02.11/V02.15/V02.24, reference year 2024 (population change survey 1/4/2024)",
@@ -14,9 +14,14 @@
    "PROV_PREV": "NSO PLV02 tables, reference 2020 (pop = 2020 average population on 34-unit basis).",
    "RELIGION": "Census 2019 Biểu 3 and Census 2009 religion table (NSO); btg = Ban Tôn giáo Chính phủ figure as reported by danviet.vn (31-12-2023), unchanged in 2025 statements (27.7m followers, 16 religions, 43 organisations).",
    "POP_SERIES.age_sex": "UN WPP 2024 single-age population by sex (31 Dec stocks), Viet Nam, via UN Population Division R package wpp2024 v1.1-3 https://raw.githubusercontent.com/PPgp/wpp2024/main/data/popAge1dt.rda , .../popprojAge1dt.rda ; 2025-2050 = PROJECTION (medium). Added 2026-10-06.",
-   "SOC_PROV_DATA.*_2025": "Reference 2025 (NSO population-change survey 1/4/2025, 34 provinces). Existing unsuffixed keys (tfr, cbr, cdr, life_exp, urban_pct, sex_ratio) stay at reference 2024 (vitals_ref_year). tfr_2025 filled only where a press excerpt quotes the survey value (6 of 34); search-excerpt verified only - the NSO tables could not be fetched (thuvienso.quochoi.vn, nso.gov.vn and the press hosts are blocked from the sandbox). Other *_2025 keys null (provincial values not found). Publications: https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf ; https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf. National TFR 2025 = 1.93 (POP_SERIES.nat_latest)."
+   "SOC_PROV_DATA.*_2025": "Reference 2025 (NSO population-change survey 1/4/2025, 34 provinces). Existing unsuffixed keys (tfr, cbr, cdr, life_exp, urban_pct, sex_ratio) stay at reference 2024 (vitals_ref_year). tfr_2025 filled only where a press excerpt quotes the survey value (6 of 34); search-excerpt verified only - the NSO tables could not be fetched (thuvienso.quochoi.vn, nso.gov.vn and the press hosts are blocked from the sandbox). Other *_2025 keys null (provincial values not found). Publications: https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf ; https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf. National TFR 2025 = 1.93 (POP_SERIES.nat_latest).",
+   "POP_SERIES.un_annual": "PROJECTION from 2024. UN WPP 2024 wpp2024 R package (popAge1dt, popprojAge1dt, popproj1dt), 31 December stocks https://raw.githubusercontent.com/PPgp/wpp2024/main/data/",
+   "POP_SERIES.nat_series": "NSO PX-Web V02.02/V02.08/V02.11/V02.15/V02.24 national series 2017-2025 (2025 Sơ bộ), cached 2026-10-04 in tools/build/demo/demo.json; WDI cross-check separate",
+   "POP_SERIES.targets": "QĐ 1679/QĐ-TTg (TFR 2.1, e0 75, pop ~104 m, SRB natural balance), NQ 72-NQ/TW (e0 75.5), NQ 148/NQ-CP + NQ 06-NQ/TW (urbanisation >=45% 2025, >50% 2030); search-excerpt verified, see each entry",
+   "SOC_GRDP.*_series": "grdp_pc_mvnd_series / growth_series 2020-2025 = NSO PL.V03.02 / PL.V03.01 (34 units, official 2020-2023, 2024 Sơ bộ, 2025 Ước tính) https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; 2018-2019 only for the 11 unmerged provinces = NSO old-basis V03.12 / V03.10 (same values as the 34-unit table for 2020-2025, checked) https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; merged provinces 2018-2019 null (needs old-province average population, NSO V02 provincial table, blocked). grdp_bn_series / pop_avg_thousand_series: only 2020, 2024, 2025 held; 2018-2019, 2021-2023 null (34-unit population PL.V02.02-04 not cached, pxweb blocked). series_basis per year: nso_34 | nso_63_unchanged_boundary | null.",
+   "WORLD_RANK.*.history*": "pop: WDI via datahub GitHub mirror; tfr/life_exp/srb: UN WPP 2024 ranked over the 217 WB economies; g_*: IMF WEO April 2026 (+ g_gdp WDI April-2026 mirror 2017-2023). density/urban: gap."
   },
-  "as_of": "2026-10-06"
+  "as_of": "2026-10-09"
  },
  "SOC_PROV_DATA": {
   "Tuyên Quang": {
@@ -942,10 +947,19 @@
     2005,
     2010,
     2015,
+    2017,
+    2018,
     2019,
     2020,
+    2021,
+    2022,
     2023,
+    2024,
     2025,
+    2026,
+    2027,
+    2028,
+    2029,
     2030,
     2035,
     2040,
@@ -957,10 +971,19 @@
     "2005": "estimate (UN WPP 2024)",
     "2010": "estimate (UN WPP 2024)",
     "2015": "estimate (UN WPP 2024)",
+    "2017": "estimate (UN WPP 2024)",
+    "2018": "estimate (UN WPP 2024)",
     "2019": "estimate (UN WPP 2024)",
     "2020": "estimate (UN WPP 2024)",
+    "2021": "estimate (UN WPP 2024)",
+    "2022": "estimate (UN WPP 2024)",
     "2023": "estimate (UN WPP 2024)",
+    "2024": "projection (UN WPP 2024 medium variant)",
     "2025": "projection (UN WPP 2024 medium variant)",
+    "2026": "projection (UN WPP 2024 medium variant)",
+    "2027": "projection (UN WPP 2024 medium variant)",
+    "2028": "projection (UN WPP 2024 medium variant)",
+    "2029": "projection (UN WPP 2024 medium variant)",
     "2030": "projection (UN WPP 2024 medium variant)",
     "2035": "projection (UN WPP 2024 medium variant)",
     "2040": "projection (UN WPP 2024 medium variant)",
@@ -1064,6 +1087,44 @@
      404.728,
      418.65
     ],
+    "2017": [
+     4313.139,
+     4134.736,
+     3618.663,
+     3261.637,
+     3780.445,
+     4399.465,
+     4216.409,
+     3651.571,
+     3249.26,
+     3055.03,
+     2720.436,
+     2258.501,
+     1681.029,
+     1070.13,
+     603.977,
+     402.846,
+     422.731
+    ],
+    "2018": [
+     4144.965,
+     4328.951,
+     3669.7,
+     3284.871,
+     3489.282,
+     4404.549,
+     4330.082,
+     3826.086,
+     3306.66,
+     3080.714,
+     2736.789,
+     2357.174,
+     1757.668,
+     1150.001,
+     649.925,
+     399.857,
+     422.107
+    ],
     "2019": [
      4040.703,
      4394.801,
@@ -1102,6 +1163,44 @@
      416.281,
      425.108
     ],
+    "2021": [
+     3863.064,
+     4477.949,
+     3956.166,
+     3436.848,
+     3199.653,
+     3850.037,
+     4439.796,
+     4222.503,
+     3473.517,
+     3165.166,
+     2872.953,
+     2588.282,
+     2007.45,
+     1396.321,
+     844.247,
+     431.376,
+     424.163
+    ],
+    "2022": [
+     3786.284,
+     4281.972,
+     4176.898,
+     3559.91,
+     3165.49,
+     3644.02,
+     4412.955,
+     4253.696,
+     3609.19,
+     3177.698,
+     2953.944,
+     2593.94,
+     2097.266,
+     1492.71,
+     903.002,
+     459.199,
+     424.75
+    ],
     "2023": [
      3751.274,
      4112.103,
@@ -1121,6 +1220,25 @@
      494.292,
      422.19
     ],
+    "2024": [
+     3669.176,
+     4006.837,
+     4369.44,
+     3749.606,
+     3267.129,
+     3287.902,
+     4186.542,
+     4276.023,
+     3913.736,
+     3296.921,
+     2994.269,
+     2633.245,
+     2292.425,
+     1656.367,
+     1047.11,
+     543.455,
+     423.603
+    ],
     "2025": [
      3578.593,
      3892.476,
@@ -1139,6 +1257,82 @@
      1098.99,
      604.564,
      431.469
+    ],
+    "2026": [
+     3496.078,
+     3827.203,
+     4451.203,
+     3920.748,
+     3360.962,
+     3133.694,
+     3784.587,
+     4366.3,
+     4144.189,
+     3394.646,
+     3063.813,
+     2742.593,
+     2420.479,
+     1801.997,
+     1179.604,
+     641.797,
+     442.444
+    ],
+    "2027": [
+     3426.196,
+     3751.377,
+     4256.156,
+     4141.626,
+     3481.632,
+     3102.379,
+     3587.896,
+     4345.34,
+     4178.776,
+     3530.406,
+     3078.331,
+     2821.975,
+     2427.455,
+     1885.462,
+     1262.993,
+     687.834,
+     463.321
+    ],
+    "2028": [
+     3368.977,
+     3717.489,
+     4087.237,
+     4269.137,
+     3558.757,
+     3169.171,
+     3385.283,
+     4278.559,
+     4190.901,
+     3676.643,
+     3131.545,
+     2848.402,
+     2444.322,
+     1983.299,
+     1336.555,
+     740.796,
+     486.815
+    ],
+    "2029": [
+     3325.481,
+     3637.249,
+     3983.292,
+     4334.711,
+     3670.662,
+     3206.037,
+     3245.229,
+     4129.818,
+     4206.762,
+     3833.415,
+     3198.011,
+     2864.577,
+     2469.969,
+     2067.516,
+     1407.28,
+     802.75,
+     522.269
     ],
     "2030": [
      3296.846,
@@ -1313,6 +1507,44 @@
      698.384,
      1019.452
     ],
+    "2017": [
+     4022.461,
+     3917.359,
+     3510.679,
+     3184.989,
+     3729.67,
+     4370.665,
+     4235.246,
+     3719.743,
+     3322.739,
+     3170.529,
+     2933.588,
+     2664.8,
+     2052.404,
+     1436.806,
+     878.863,
+     704.977,
+     1051.969
+    ],
+    "2018": [
+     3914.791,
+     4155.269,
+     3585.423,
+     3226.672,
+     3454.708,
+     4339.84,
+     4264.171,
+     3843.559,
+     3359.033,
+     3162.841,
+     2932.236,
+     2734.156,
+     2171.409,
+     1530.723,
+     948.415,
+     701.963,
+     1062.557
+    ],
     "2019": [
      3779.558,
      4206.461,
@@ -1351,6 +1583,44 @@
      716.345,
      1095.418
     ],
+    "2021": [
+     3536.957,
+     4271.385,
+     3826.217,
+     3392.613,
+     3152.449,
+     3843.904,
+     4383.087,
+     4205.594,
+     3533.092,
+     3246.065,
+     3038.415,
+     2872.986,
+     2491.303,
+     1832.481,
+     1233.956,
+     729.033,
+     1093.191
+    ],
+    "2022": [
+     3436.751,
+     4073.973,
+     4029.272,
+     3503.587,
+     3126.277,
+     3639.166,
+     4368.686,
+     4230.088,
+     3668.747,
+     3265.082,
+     3107.05,
+     2867.412,
+     2576.974,
+     1949.477,
+     1324.547,
+     763.194,
+     1105.884
+    ],
     "2023": [
      3382.4,
      3897.134,
@@ -1370,6 +1640,25 @@
      824.396,
      1109.009
     ],
+    "2024": [
+     3312.478,
+     3760.104,
+     4195.916,
+     3666.819,
+     3244.944,
+     3272.613,
+     4172.928,
+     4256.149,
+     3957.45,
+     3407.078,
+     3116.67,
+     2895.177,
+     2705.717,
+     2196.642,
+     1501.228,
+     909.215,
+     1115.167
+    ],
     "2025": [
      3240.224,
      3611.601,
@@ -1388,6 +1677,82 @@
      1578.006,
      1003.645,
      1128.441
+    ],
+    "2026": [
+     3176.053,
+     3513.929,
+     4258.431,
+     3805.245,
+     3339.987,
+     3110.902,
+     3809.991,
+     4350.291,
+     4170.141,
+     3496.187,
+     3200.922,
+     2979.467,
+     2793.318,
+     2375.59,
+     1689.015,
+     1070.657,
+     1145.426
+    ],
+    "2027": [
+     3119.759,
+     3413.881,
+     4060.875,
+     4008.924,
+     3449.255,
+     3086.778,
+     3612.122,
+     4340.622,
+     4197.518,
+     3632.641,
+     3221.058,
+     3047.783,
+     2788.619,
+     2458.295,
+     1797.977,
+     1149.929,
+     1181.711
+    ],
+    "2028": [
+     3074.994,
+     3359.962,
+     3883.995,
+     4125.879,
+     3513.453,
+     3159.602,
+     3405.296,
+     4287.473,
+     4206.223,
+     3777.39,
+     3281.202,
+     3060.373,
+     2796.963,
+     2537.219,
+     1911.888,
+     1226.199,
+     1232.587
+    ],
+    "2029": [
+     3042.727,
+     3291.3,
+     3747.77,
+     4176.339,
+     3612.676,
+     3207.488,
+     3255.134,
+     4152.337,
+     4227.99,
+     3921.96,
+     3363.52,
+     3059.176,
+     2818.187,
+     2584.398,
+     2029.706,
+     1307.113,
+     1304.878
     ],
     "2030": [
      3023.909,
@@ -1490,10 +1855,19 @@
     "2005": 81455.179,
     "2010": 87955.706,
     "2015": 93393.771,
+    "2017": 95747.492,
+    "2018": 96727.147,
     "2019": 97620.404,
     "2020": 98537.978,
+    "2021": 99332.219,
+    "2022": 100029.091,
     "2023": 100675.292,
+    "2024": 101300.081,
     "2025": 101896.973,
+    "2026": 102457.889,
+    "2027": 102996.902,
+    "2028": 103514.586,
+    "2029": 104007.727,
     "2030": 104502.078,
     "2035": 106743.875,
     "2040": 108599.723,
@@ -1521,6 +1895,16 @@
      "15-64": 69.47,
      "65+": 6.55
     },
+    "2017": {
+     "0-14": 24.56,
+     "15-64": 68.57,
+     "65+": 6.86
+    },
+    "2018": {
+     "0-14": 24.6,
+     "15-64": 68.3,
+     "65+": 7.1
+    },
     "2019": {
      "0-14": 24.48,
      "15-64": 68.12,
@@ -1531,15 +1915,50 @@
      "15-64": 67.96,
      "65+": 7.73
     },
+    "2021": {
+     "0-14": 24.09,
+     "15-64": 67.87,
+     "65+": 8.04
+    },
+    "2022": {
+     "0-14": 23.78,
+     "15-64": 67.8,
+     "65+": 8.42
+    },
     "2023": {
      "0-14": 23.43,
      "15-64": 67.74,
      "65+": 8.82
     },
+    "2024": {
+     "0-14": 23.01,
+     "15-64": 67.71,
+     "65+": 9.27
+    },
     "2025": {
      "0-14": 22.7,
      "15-64": 67.59,
      "65+": 9.72
+    },
+    "2026": {
+     "0-14": 22.18,
+     "15-64": 67.72,
+     "65+": 10.1
+    },
+    "2027": {
+     "0-14": 21.39,
+     "15-64": 68.04,
+     "65+": 10.57
+    },
+    "2028": {
+     "0-14": 20.76,
+     "15-64": 68.17,
+     "65+": 11.07
+    },
+    "2029": {
+     "0-14": 20.22,
+     "15-64": 68.22,
+     "65+": 11.56
     },
     "2030": {
      "0-14": 19.67,
@@ -1572,18 +1991,334 @@
     "2005": 95.3,
     "2010": 94.8,
     "2015": 95.4,
+    "2017": 95.8,
+    "2018": 95.9,
     "2019": 95.9,
     "2020": 95.9,
+    "2021": 96.0,
+    "2022": 96.0,
     "2023": 96.0,
+    "2024": 96.0,
     "2025": 96.0,
+    "2026": 96.0,
+    "2027": 95.9,
+    "2028": 95.9,
+    "2029": 95.9,
     "2030": 95.8,
     "2035": 95.6,
     "2040": 95.4,
     "2045": 95.2,
     "2050": 95.2
    },
-   "note": "One source for every year (UN WPP 2024); no NSO values are mixed in. 5-year bands are plain sums of the official single-age values. Years 2025-2050 are PROJECTIONS (medium variant); 2000-2023 are WPP estimates (modelled by the UN from censuses/surveys, not NSO counts). Totals differ from WPP's 1 July series (e.g. 2025: 101.897 m here at 31 Dec vs 101.599 m at 1 July) and from NSO average population (2025p: 102.345 m). NSO cross-check (broad ages, from NSO press-release excerpts via web search; pages not fetchable): census 1/4/2019 0-14 24.0%, 15-64 68.4%, 65+ 7.6% (WPP 31 Dec 2019: 24.48/68.12/7.40); mid-term census 1/4/2024 23.3/67.4/9.3 (WPP 31 Dec 2023: 23.43/67.74/8.82; 31 Dec 2024 not stored). WPP's sex ratio (~96 males per 100 females) is lower than NSO's (census 2019: 99.1; 1/4/2024: 99.2 from 50,346,030 M / 50,766,626 F) - label the chart 'UN WPP 2024'. POP_SERIES.gso.age_2050 is a different source (GSO 2019-2069 projection: 65+ 18.81% in 2050 vs WPP 20.27%); do not combine. NSO 5-year age-sex tables (census 2019 / DSGK 1/4/2024) were not reachable (nso.gov.vn, gso.gov.vn, vietnam.unfpa.org blocked) - preferred replacement for the estimate years when a runner can reach them."
-  }
+   "note": "One source for every year (UN WPP 2024); no NSO values are mixed in. 5-year bands are plain sums of the official single-age values. Years 2025-2050 are PROJECTIONS (medium variant); 2000-2023 are WPP estimates (modelled by the UN from censuses/surveys, not NSO counts). Totals differ from WPP's 1 July series (e.g. 2025: 101.897 m here at 31 Dec vs 101.599 m at 1 July) and from NSO average population (2025p: 102.345 m). NSO cross-check (broad ages, from NSO press-release excerpts via web search; pages not fetchable): census 1/4/2019 0-14 24.0%, 15-64 68.4%, 65+ 7.6% (WPP 31 Dec 2019: 24.48/68.12/7.40); mid-term census 1/4/2024 23.3/67.4/9.3 (WPP 31 Dec 2023: 23.43/67.74/8.82; 31 Dec 2024 not stored). WPP's sex ratio (~96 males per 100 females) is lower than NSO's (census 2019: 99.1; 1/4/2024: 99.2 from 50,346,030 M / 50,766,626 F) - label the chart 'UN WPP 2024'. POP_SERIES.gso.age_2050 is a different source (GSO 2019-2069 projection: 65+ 18.81% in 2050 vs WPP 20.27%); do not combine. NSO 5-year age-sex tables (census 2019 / DSGK 1/4/2024) were not reachable (nso.gov.vn, gso.gov.vn, vietnam.unfpa.org blocked) - preferred replacement for the estimate years when a runner can reach them. 2026-10-09: single years 2017-2030 added from the same files (popAge1dt to 2023, popprojAge1dt medium from 2024) so the 2018-2030 frames are annual; recomputed bands match the held years exactly (2019, 2020, 2023, 2025, 2030)."
+  },
+  "un_annual": {
+   "label": "PROJECTION from 2024. UN WPP 2024, Viet Nam, total population at 31 December of each year (= 1 January of the next year), million persons",
+   "ref_date": "31 December (NOT 1 July). Do not splice with POP_SERIES.un (1 July, 5-year points) or POP_SERIES.actual (NSO average population).",
+   "unit": "million persons",
+   "medium": {
+    "2017": 95.747,
+    "2018": 96.727,
+    "2019": 97.62,
+    "2020": 98.538,
+    "2021": 99.332,
+    "2022": 100.029,
+    "2023": 100.675,
+    "2024": 101.3,
+    "2025": 101.897,
+    "2026": 102.458,
+    "2027": 102.997,
+    "2028": 103.515,
+    "2029": 104.008,
+    "2030": 104.502
+   },
+   "low": {
+    "2024": 101.124,
+    "2025": 101.546,
+    "2026": 101.935,
+    "2027": 102.302,
+    "2028": 102.649,
+    "2029": 102.868,
+    "2030": 103.086
+   },
+   "high": {
+    "2024": 101.477,
+    "2025": 102.248,
+    "2026": 102.981,
+    "2027": 103.691,
+    "2028": 104.38,
+    "2029": 105.147,
+    "2030": 105.915
+   },
+   "status": {
+    "2017": "estimate",
+    "2018": "estimate",
+    "2019": "estimate",
+    "2020": "estimate",
+    "2021": "estimate",
+    "2022": "estimate",
+    "2023": "estimate",
+    "2024": "projection (medium; low/high = WPP +/-0.5 child variants)",
+    "2025": "projection (medium; low/high = WPP +/-0.5 child variants)",
+    "2026": "projection (medium; low/high = WPP +/-0.5 child variants)",
+    "2027": "projection (medium; low/high = WPP +/-0.5 child variants)",
+    "2028": "projection (medium; low/high = WPP +/-0.5 child variants)",
+    "2029": "projection (medium; low/high = WPP +/-0.5 child variants)",
+    "2030": "projection (medium; low/high = WPP +/-0.5 child variants)"
+   },
+   "source": "UN DESA Population Division, World Population Prospects 2024, official R data package wpp2024 v1.1-3 (2024-11-26): popAge1dt (estimates, summed over single ages) and popprojAge1dt/popproj1dt (projections).",
+   "url": "https://raw.githubusercontent.com/PPgp/wpp2024/main/data/popAge1dt.rda ; https://raw.githubusercontent.com/PPgp/wpp2024/main/data/popprojAge1dt.rda ; https://raw.githubusercontent.com/PPgp/wpp2024/main/data/popproj1dt.rda",
+   "note": "Same edition as POP_SERIES.un, but a different reference date: the 1 July annual series (UN CSV) is on population.un.org, blocked from the sandbox, so 1 July single years 2026-2029 are NOT filled (no interpolation). Check: 31 Dec 2025 = 101.897 m vs 1 July 2025 = 101.599 m (POP_SERIES.un.medium). medium = POP_SERIES.age_sex.total_thousand / 1000."
+  },
+  "nat_series": {
+   "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "tfr": {
+    "2017": 2.04,
+    "2018": 2.05,
+    "2019": 2.09,
+    "2020": 2.12,
+    "2021": 2.11,
+    "2022": 2.01,
+    "2023": 1.96,
+    "2024": 1.91,
+    "2025": 1.93
+   },
+   "srb": {
+    "2017": 112.1,
+    "2018": 114.8,
+    "2019": 111.5,
+    "2020": 112.1,
+    "2021": 112,
+    "2022": 111.6,
+    "2023": 111.8,
+    "2024": 111.4,
+    "2025": 110
+   },
+   "life_exp": {
+    "2017": 73.5,
+    "2018": 73.5,
+    "2019": 73.6,
+    "2020": 73.7,
+    "2021": 73.64,
+    "2022": 73.64,
+    "2023": 74.5,
+    "2024": 74.7,
+    "2025": 74.7
+   },
+   "urban_pct": {
+    "2017": 33.86,
+    "2018": 34.22,
+    "2019": 35.05,
+    "2020": 36.8,
+    "2021": 37.11,
+    "2022": 37.55,
+    "2023": 38.1,
+    "2024": 38.49,
+    "2025": 38.64
+   },
+   "cbr": {
+    "2017": 14.9,
+    "2018": 14.55,
+    "2019": 16.28,
+    "2020": 16.3,
+    "2021": 15.74,
+    "2022": 15.2,
+    "2023": 14.2,
+    "2024": 13.5,
+    "2025": 13.7
+   },
+   "cdr": {
+    "2017": 6.84,
+    "2018": 6.82,
+    "2019": 6.32,
+    "2020": 6.06,
+    "2021": 6.38,
+    "2022": 6.1,
+    "2023": 5.7,
+    "2024": 5.6,
+    "2025": 6.1
+   },
+   "growth_pct": {
+    "2017": 1.11,
+    "2018": 1.17,
+    "2019": 1.15,
+    "2020": 1.14,
+    "2021": 0.94,
+    "2022": 0.98,
+    "2023": 0.85,
+    "2024": 1.03,
+    "2025": 0.99
+   },
+   "units": {
+    "tfr": "children per woman",
+    "srb": "boys per 100 girls at birth",
+    "life_exp": "years at birth",
+    "urban_pct": "% of average population",
+    "cbr": "per 1,000",
+    "cdr": "per 1,000",
+    "growth_pct": "% per year"
+   },
+   "status": {
+    "2017": "official",
+    "2018": "official",
+    "2019": "official",
+    "2020": "official",
+    "2021": "official",
+    "2022": "official",
+    "2023": "official",
+    "2024": "official",
+    "2025": "Sơ bộ (preliminary)"
+   },
+   "ref": "Vital rates refer to the 12 months before the 1 April population-change survey of each year (census 1/4/2019; mid-term census 1/4/2024); urban % and growth from average population.",
+   "source": "NSO PX-Web (fetched 2026-10-04 by tools/build/demo/build.py; cache tools/build/demo/demo.json): V02.15 (TFR), V02.08 (SRB), V02.24 (life expectancy), V02.02 (urban share, growth), V02.11 (CBR, CDR)",
+   "url": {
+    "tfr": "https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.15.px/",
+    "srb": "https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.08.px/",
+    "life_exp": "https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.24.px/",
+    "urban_pct": "https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.02.px/ (Cơ cấu % thành thị)",
+    "cbr": "https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.11.px/",
+    "cdr": "https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.11.px/",
+    "growth_pct": "https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.02.px/"
+   },
+   "note": "National only; provincial rates are not re-aggregated to the 34 units (user decision 2026-10-07). 2024 values equal POP_SERIES.nat; 2025 equal POP_SERIES.nat_latest (SRB 2025: PX V02.08 110.0 vs NSO Jan-2026 press excerpt 109.0, unresolved). Life expectancy steps 73.64 (2022) -> 74.5 (2023) with the new life table; not a one-year gain. Urban % 2019->2020 jump follows reclassification of urban areas.",
+   "wb_crosscheck": {
+    "note": "World Bank WDI (values = UN WPP 2024 estimates; urban = UN WUP) - a different source; for comparison only, never mixed into the NSO arrays.",
+    "url": "https://api.worldbank.org/v2/country/VNM/indicator/{SP.DYN.TFRT.IN|SP.DYN.LE00.IN|SP.URB.TOTL.IN.ZS}?format=json (fetched 2026-10-04)",
+    "tfr": {
+     "2017": 1.985,
+     "2018": 1.88,
+     "2019": 1.943,
+     "2020": 1.957,
+     "2021": 1.942,
+     "2022": 1.927,
+     "2023": 1.913,
+     "2024": 1.895,
+     "2025": null
+    },
+    "life_exp": {
+     "2017": 74.026,
+     "2018": 74.1,
+     "2019": 74.211,
+     "2020": 75.383,
+     "2021": 74.145,
+     "2022": 74.502,
+     "2023": 74.588,
+     "2024": 74.736,
+     "2025": null
+    },
+    "urban_pct": {
+     "2017": 33.363,
+     "2018": 33.941,
+     "2019": 34.624,
+     "2020": 35.571,
+     "2021": 36.654,
+     "2022": 37.548,
+     "2023": 38.13,
+     "2024": 38.49,
+     "2025": 38.83
+    }
+   }
+  },
+  "targets": [
+   {
+    "key": "tfr_2030",
+    "indicator": "tfr",
+    "value": 2.1,
+    "op": "=",
+    "year": 2030,
+    "kind": "target",
+    "text_vi": "Duy trì vững chắc mức sinh thay thế (bình quân mỗi phụ nữ trong độ tuổi sinh đẻ có 2,1 con)",
+    "doc": "Quyết định 1679/QĐ-TTg (22/11/2019), Chiến lược Dân số Việt Nam đến năm 2030",
+    "url": "https://hoatieu.vn/phap-luat/quyet-dinh-1679-qd-ttg-2019-189004",
+    "verified": "search excerpt (hoatieu.vn, sggp.org.vn); full text not fetchable"
+   },
+   {
+    "key": "life_exp_2030",
+    "indicator": "life_exp",
+    "value": 75,
+    "op": ">=",
+    "year": 2030,
+    "kind": "target",
+    "text_vi": "Tuổi thọ bình quân đạt 75 tuổi, trong đó thời gian sống khỏe mạnh tối thiểu 68 năm",
+    "doc": "Quyết định 1679/QĐ-TTg (22/11/2019)",
+    "url": "https://hoatieu.vn/phap-luat/quyet-dinh-1679-qd-ttg-2019-189004",
+    "verified": "search excerpt; full text not fetchable"
+   },
+   {
+    "key": "life_exp_2030_nq72",
+    "indicator": "life_exp",
+    "value": 75.5,
+    "op": ">=",
+    "year": 2030,
+    "kind": "target",
+    "text_vi": "Tuổi thọ trung bình đạt 75,5 tuổi, số năm sống khỏe mạnh tối thiểu 68 năm",
+    "doc": "Nghị quyết 72-NQ/TW (2025) - newer Party target, supersedes the 75 aim in practice",
+    "url": "https://thuvienphapluat.vn/hoi-dap-phap-luat/theo-nghi-quyet-72nqtw-muc-tieu-den-nam-2030-la-gi-138069197.html",
+    "verified": "search excerpt only"
+   },
+   {
+    "key": "srb_2030",
+    "indicator": "srb",
+    "value": null,
+    "op": null,
+    "year": 2030,
+    "kind": "target",
+    "text_vi": "Đưa tỷ số giới tính khi sinh về mức cân bằng tự nhiên (~105)",
+    "doc": "Quyết định 1679/QĐ-TTg (22/11/2019)",
+    "url": "https://hoatieu.vn/phap-luat/quyet-dinh-1679-qd-ttg-2019-189004",
+    "verified": "qualitative goal confirmed by excerpt; a numeric \"<109 boys/100 girls by 2030\" is quoted from NQ 21-NQ/TW (2017) by quanlynhanuoc.vn but NOT confirmed in the 1679 text -> value left null. Draft MoH plan (Reuters, 17/08/2026): <109 by 2030, natural level by 2035 (draft, not adopted).",
+    "url_alt": "https://www.quanlynhanuoc.vn/2020/11/26/cong-tac-dan-so-trong-tinh-hinh-moi-va-chien-luoc-dan-so-den-nam-2030/"
+   },
+   {
+    "key": "urban_2025",
+    "indicator": "urban_pct",
+    "value": 45,
+    "op": ">=",
+    "year": 2025,
+    "kind": "target",
+    "text_vi": "Tỷ lệ đô thị hoá toàn quốc tối thiểu 45% năm 2025",
+    "doc": "Nghị quyết 148/NQ-CP (11/11/2022), Chương trình hành động thực hiện NQ 06-NQ/TW",
+    "url": "https://luatvietnam.vn/xay-dung/nghi-quyet-148-nq-cp-234783-d1.html",
+    "verified": "search excerpt only",
+    "note": "Urbanisation rate (đô thị hoá, by urban administrative units) is not the same measure as NSO urban share of average population (38.64% in 2025); show as a reference marker, not a miss/hit."
+   },
+   {
+    "key": "urban_2030",
+    "indicator": "urban_pct",
+    "value": 50,
+    "op": ">",
+    "year": 2030,
+    "kind": "target",
+    "text_vi": "Tỷ lệ đô thị hoá toàn quốc đạt trên 50% năm 2030",
+    "doc": "Nghị quyết 06-NQ/TW (24/01/2022); same entry as economy.json targets urbanisation_2030",
+    "url": "https://luatvietnam.vn/xay-dung/nghi-quyet-06-nq-tw-cua-bo-chinh-tri-ve-quy-hoach-xay-dung-quan-ly-va-phat-trien-ben-vung-do-thi-viet-nam-den-nam-2030-tam-nhin-den-nam-2045-216381-d1.html",
+    "verified": "as held in economy.json; NQ 148/NQ-CP excerpt confirms 50% by 2030",
+    "note": "See urban_2025 note on definitions."
+   },
+   {
+    "key": "pop_2030",
+    "indicator": "pop",
+    "value": 104,
+    "op": "~",
+    "year": 2030,
+    "kind": "target",
+    "unit": "million",
+    "text_vi": "Quy mô dân số khoảng 104 triệu người; trẻ dưới 15 tuổi ~22%, 65+ ~11%",
+    "doc": "Quyết định 1679/QĐ-TTg (22/11/2019)",
+    "url": "https://hoatieu.vn/phap-luat/quyet-dinh-1679-qd-ttg-2019-189004",
+    "verified": "search excerpt only"
+   }
+  ]
  },
  "SOC_GRDP": {
   "Tuyên Quang": {
@@ -1623,6 +2358,56 @@
    },
    "growth_9m_src": {
     "2026": "https://baove.congly.vn/tuyen-quang-khoi-du-dia-dich-vu-tang-luc-cho-chang-cuoi-nam-541745.html"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 36.34,
+    "2021": 37.63,
+    "2022": 41.59,
+    "2023": 43.74,
+    "2024": 48.34,
+    "2025": 54.61
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 4.5,
+    "2021": 6.37,
+    "2022": 7.49,
+    "2023": 4.62,
+    "2024": 7.26,
+    "2025": 6.4
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 60439,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 83704,
+    "2025": 95471
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1663.14,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1731.66,
+    "2025": 1748.25
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Cao Bằng": {
@@ -1662,6 +2447,56 @@
    },
    "growth_9m_src": {
     "2026": "https://nhandan.vn/cao-bang-don-luc-hoan-thanh-muc-tieu-tang-truong-nam-2026-post992996.html"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 30.63,
+    "2019": 32.89,
+    "2020": 35.81,
+    "2021": 35.85,
+    "2022": 38.71,
+    "2023": 40.98,
+    "2024": 44.25,
+    "2025": 49.59
+   },
+   "growth_series": {
+    "2018": 7.01,
+    "2019": 4.17,
+    "2020": 6.02,
+    "2021": -0.62,
+    "2022": 4.46,
+    "2023": 4.52,
+    "2024": 6.14,
+    "2025": 7.22
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 19090,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 24711,
+    "2025": 27914
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 533.09,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 558.46,
+    "2025": 562.93
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Lai Châu": {
@@ -1701,6 +2536,56 @@
    },
    "growth_9m_src": {
     "2026": "https://congly.vn/dien-bien-lao-cai-vao-top-10-tang-truong-quy-iii-2026-541897.html"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 40.5,
+    "2019": 38.86,
+    "2020": 43.33,
+    "2021": 44.66,
+    "2022": 49.62,
+    "2023": 50.8,
+    "2024": 60.38,
+    "2025": 79.43
+   },
+   "growth_series": {
+    "2018": 6.7,
+    "2019": -0.95,
+    "2020": 8.19,
+    "2021": 4.2,
+    "2022": 8.24,
+    "2023": -3.41,
+    "2024": 10.56,
+    "2025": 7.52
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 20357,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 29917,
+    "2025": 39807
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 469.81,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 495.47,
+    "2025": 501.16
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Lào Cai": {
@@ -1740,6 +2625,56 @@
    },
    "growth_9m_src": {
     "2026": "https://congluan.vn/lao-cai-tang-truong-grdp-9-thang-dat-909-phan-dau-tang-truong-ca-nam-tren-10-post362711.html"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 55.06,
+    "2021": 57.71,
+    "2022": 64.58,
+    "2023": 66.9,
+    "2024": 73.33,
+    "2025": 84.68
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 4.06,
+    "2021": 5.27,
+    "2022": 8.37,
+    "2023": 4.94,
+    "2024": 7.53,
+    "2025": 8.14
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 86874,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 121485,
+    "2025": 141887
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1577.94,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1656.59,
+    "2025": 1675.67
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Thái Nguyên": {
@@ -1779,6 +2714,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 83.95,
+    "2021": 88.66,
+    "2022": 96.21,
+    "2023": 99.03,
+    "2024": 103.33,
+    "2025": 112.4
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3.44,
+    "2021": 6.06,
+    "2022": 5.41,
+    "2023": 1.79,
+    "2024": 3.77,
+    "2025": 6.33
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 136366,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 175090,
+    "2025": 192385
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1624.33,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1694.51,
+    "2025": 1711.58
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Điện Biên": {
@@ -1818,6 +2803,56 @@
    },
    "growth_9m_src": {
     "2026": null
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 30.65,
+    "2019": 32.14,
+    "2020": 33.09,
+    "2021": 35.3,
+    "2022": 39.5,
+    "2023": 43.19,
+    "2024": 47.74,
+    "2025": 53.39
+   },
+   "growth_series": {
+    "2018": 5.54,
+    "2019": 4,
+    "2020": 2.49,
+    "2021": 6.65,
+    "2022": 10.05,
+    "2023": 9.15,
+    "2024": 8.57,
+    "2025": 7.34
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 20302,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 31348,
+    "2025": 35631
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 613.48,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 656.71,
+    "2025": 667.42
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Lạng Sơn": {
@@ -1857,6 +2892,56 @@
    },
    "growth_9m_src": {
     "2026": "https://dantocphattrien.vietnamnet.vn/lang-son-thu-ngan-sach-vuot-moc-21-900-ty-dong-sau-3-quy-79048.html"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 38.25,
+    "2019": 41.9,
+    "2020": 44.23,
+    "2021": 47.17,
+    "2022": 50.98,
+    "2023": 57.83,
+    "2024": 62.36,
+    "2025": 70.95
+   },
+   "growth_series": {
+    "2018": 7.75,
+    "2019": 6.57,
+    "2020": 3.9,
+    "2021": 6.75,
+    "2022": 6.63,
+    "2023": 6.84,
+    "2024": 5.67,
+    "2025": 8.06
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 34887,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 50764,
+    "2025": 58223
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 788.71,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 813.99,
+    "2025": 820.63
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Sơn La": {
@@ -1891,6 +2976,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 40.37,
+    "2019": 39.68,
+    "2020": 43.32,
+    "2021": 44.25,
+    "2022": 48.84,
+    "2023": 50.84,
+    "2024": 57.38,
+    "2025": 71.38
+   },
+   "growth_series": {
+    "2018": 5.83,
+    "2019": -2.58,
+    "2020": 7.21,
+    "2021": 2.72,
+    "2022": 7.85,
+    "2023": 0.51,
+    "2024": 6.24,
+    "2025": 8.03
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 55040,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 76353,
+    "2025": 95738
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1270.56,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1330.58,
+    "2025": 1341.22
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Phú Thọ": {
@@ -1930,6 +3065,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 70.82,
+    "2021": 75.41,
+    "2022": 84.32,
+    "2023": 87.81,
+    "2024": 97.37,
+    "2025": 111.35
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3.08,
+    "2021": 6.87,
+    "2022": 9.39,
+    "2023": 3.54,
+    "2024": 9.27,
+    "2025": 10.52
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 248899,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 356722,
+    "2025": 412151
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3514.33,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3663.67,
+    "2025": 3701.53
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Bắc Ninh": {
@@ -1969,6 +3154,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 101.17,
+    "2021": 108.61,
+    "2022": 120.6,
+    "2023": 122.91,
+    "2024": 131.17,
+    "2025": 146.15
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 7.15,
+    "2021": 8.01,
+    "2022": 11.07,
+    "2023": 4.98,
+    "2024": 10.32,
+    "2025": 10.27
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 329876,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 460316,
+    "2025": 522116
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3260.75,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3509.19,
+    "2025": 3572.35
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Quảng Ninh": {
@@ -2008,6 +3243,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 126.81,
+    "2019": 143.31,
+    "2020": 155.6,
+    "2021": 170.19,
+    "2022": 195.27,
+    "2023": 213.15,
+    "2024": 234.1,
+    "2025": 261.2
+   },
+   "growth_series": {
+    "2018": 10.77,
+    "2019": 12.05,
+    "2020": 8.04,
+    "2021": 9.5,
+    "2022": 9.52,
+    "2023": 9.26,
+    "2024": 8.26,
+    "2025": 11.89
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 208137,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 326930,
+    "2025": 368707
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1337.61,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1396.52,
+    "2025": 1411.58
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Hà Nội": {
@@ -2047,6 +3332,56 @@
    },
    "growth_9m_src": {
     "2026": "https://baodautu.vn/grdp-ha-noi-tang-885-trong-9-thang-nam-2026-d710953.html"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 111.6,
+    "2019": 120.32,
+    "2020": 123.4,
+    "2021": 128.33,
+    "2022": 141.12,
+    "2023": 149.69,
+    "2024": 162.92,
+    "2025": 179.29
+   },
+   "growth_series": {
+    "2018": 7.32,
+    "2019": 7.75,
+    "2020": 4.11,
+    "2021": 2.94,
+    "2022": 8.96,
+    "2023": 6.21,
+    "2024": 6.54,
+    "2025": 8.16
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1017595,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1420313,
+    "2025": 1588060
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 8246.54,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 8717.63,
+    "2025": 8857.53
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Hải Phòng": {
@@ -2086,6 +3421,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 102.28,
+    "2021": 115.46,
+    "2022": 131.11,
+    "2023": 141.61,
+    "2024": 158.01,
+    "2025": 177.0
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 8.09,
+    "2021": 11.54,
+    "2022": 10.08,
+    "2023": 8.46,
+    "2024": 10.5,
+    "2025": 11.81
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 406063,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 648266,
+    "2025": 734519
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3970.27,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 4102.75,
+    "2025": 4149.87
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Hưng Yên": {
@@ -2125,6 +3510,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 60.49,
+    "2021": 66.42,
+    "2022": 75.97,
+    "2023": 81.91,
+    "2024": 88.98,
+    "2025": 98.86
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3.93,
+    "2021": 8.01,
+    "2022": 11.69,
+    "2023": 7.74,
+    "2024": 6.96,
+    "2025": 8.78
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 189904,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 285491,
+    "2025": 319824
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3139.33,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3208.44,
+    "2025": 3235.17
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Ninh Bình": {
@@ -2164,6 +3599,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 55.84,
+    "2021": 59.03,
+    "2022": 65.31,
+    "2023": 70.4,
+    "2024": 78.96,
+    "2025": 89.18
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 6.28,
+    "2021": 6.45,
+    "2022": 8.54,
+    "2023": 5.98,
+    "2024": 9.49,
+    "2025": 10.65
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 203044,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 301534,
+    "2025": 342779
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3636.09,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3818.76,
+    "2025": 3843.77
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Thanh Hóa": {
@@ -2203,6 +3688,56 @@
    },
    "growth_9m_src": {
     "2026": "https://nhandan.vn/quy-iii2026-grdp-cua-thanh-hoa-tang-truong-hon-10-post992529.html"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 40.26,
+    "2019": 48.33,
+    "2020": 51.26,
+    "2021": 57.6,
+    "2022": 69.08,
+    "2023": 72.62,
+    "2024": 81.32,
+    "2025": 88.49
+   },
+   "growth_series": {
+    "2018": 16.58,
+    "2019": 16.43,
+    "2020": 5.06,
+    "2021": 9.67,
+    "2022": 11.53,
+    "2023": 5.38,
+    "2024": 10.49,
+    "2025": 8.27
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 187876,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 306098,
+    "2025": 333754
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3664.94,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3764.24,
+    "2025": 3771.77
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Nghệ An": {
@@ -2242,6 +3777,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vneconomy.vn/nghe-an-grdp-9-thang-nam-2026-tien-sat-10.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 36.52,
+    "2019": 39.85,
+    "2020": 43.06,
+    "2021": 46.21,
+    "2022": 51.2,
+    "2023": 54.94,
+    "2024": 60.75,
+    "2025": 67.61
+   },
+   "growth_series": {
+    "2018": 8.73,
+    "2019": 6.87,
+    "2020": 4.44,
+    "2021": 6.31,
+    "2022": 9.36,
+    "2023": 4.83,
+    "2024": 8.36,
+    "2025": 8.44
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 144902,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 210932,
+    "2025": 236488
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3365.2,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3472.29,
+    "2025": 3497.75
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Hà Tĩnh": {
@@ -2281,6 +3866,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 54.73,
+    "2019": 60.54,
+    "2020": 63.55,
+    "2021": 68.9,
+    "2022": 71.89,
+    "2023": 76.5,
+    "2024": 82.81,
+    "2025": 90.51
+   },
+   "growth_series": {
+    "2018": 20.85,
+    "2019": 9.27,
+    "2020": 2.85,
+    "2021": 6.11,
+    "2022": 1.33,
+    "2023": 8.19,
+    "2024": 7.14,
+    "2025": 8.78
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 82405,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 110126,
+    "2025": 120845
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1296.62,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1329.83,
+    "2025": 1335.14
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Quảng Trị": {
@@ -2320,6 +3955,56 @@
    },
    "growth_9m_src": {
     "2026": null
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 49.02,
+    "2021": 52.87,
+    "2022": 59.66,
+    "2023": 64.11,
+    "2024": 69.84,
+    "2025": 77.41
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3.42,
+    "2021": 5.3,
+    "2022": 7.28,
+    "2023": 6.52,
+    "2024": 6.33,
+    "2025": 8.0
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 75461,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 110628,
+    "2025": 123401
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1539.37,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1583.97,
+    "2025": 1594.13
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Huế": {
@@ -2354,6 +4039,56 @@
    },
    "growth_9m_src": {
     "2026": null
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": 42.54,
+    "2019": 46.81,
+    "2020": 48.56,
+    "2021": 50.83,
+    "2022": 56.8,
+    "2023": 62.01,
+    "2024": 67.72,
+    "2025": 75.27
+   },
+   "growth_series": {
+    "2018": 6.72,
+    "2019": 7.25,
+    "2020": 2.04,
+    "2021": 4.24,
+    "2022": 8.4,
+    "2023": 6.52,
+    "2024": 7.19,
+    "2025": 8.5
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 55052,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 79814,
+    "2025": 89600
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1133.59,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1178.55,
+    "2025": 1190.34
+   },
+   "series_basis": {
+    "2018": "nso_63_unchanged_boundary",
+    "2019": "nso_63_unchanged_boundary",
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Đà Nẵng": {
@@ -2393,6 +4128,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 75.66,
+    "2021": 78.87,
+    "2022": 89.45,
+    "2023": 90.57,
+    "2024": 99.48,
+    "2025": 110.65
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": -4.61,
+    "2021": 3.15,
+    "2022": 12.07,
+    "2023": -2.3,
+    "2024": 7.58,
+    "2025": 9.18
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 202360,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 280540,
+    "2025": 316054
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 2674.52,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 2819.94,
+    "2025": 2856.38
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Quảng Ngãi": {
@@ -2432,6 +4217,56 @@
    },
    "growth_9m_src": {
     "2026": "http://vov.vn/kinh-te/9-thang-grdp-tinh-quang-ngai-tang-916-so-voi-cung-ky-post1338093.vov"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 61.26,
+    "2021": 70.91,
+    "2022": 85.07,
+    "2023": 87.42,
+    "2024": 92.47,
+    "2025": 101.85
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1.02,
+    "2021": 6.86,
+    "2022": 8.95,
+    "2023": 5.2,
+    "2024": 5.04,
+    "2025": 10.02
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 109595,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 172151,
+    "2025": 191614
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1789.04,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1861.72,
+    "2025": 1881.24
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Gia Lai": {
@@ -2471,6 +4306,56 @@
    },
    "growth_9m_src": {
     "2026": null
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 51.18,
+    "2021": 55.77,
+    "2022": 62.62,
+    "2023": 67.61,
+    "2024": 75.63,
+    "2025": 85.04
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3.79,
+    "2021": 6.59,
+    "2022": 7.32,
+    "2023": 5.24,
+    "2024": 5.49,
+    "2025": 7.2
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 155065,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 238477,
+    "2025": 270640
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3029.73,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3153.35,
+    "2025": 3182.65
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Đắk Lắk": {
@@ -2510,6 +4395,56 @@
    },
    "growth_9m_src": {
     "2026": "http://vov.vn/kinh-te/dak-lak-tang-truong-9-thang-822-ap-luc-quy-iv-lon-post1337422.vov"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 47.48,
+    "2021": 51.14,
+    "2022": 56.91,
+    "2023": 61.32,
+    "2024": 71.14,
+    "2025": 80.56
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 5.05,
+    "2021": 3.74,
+    "2022": 7.97,
+    "2023": 5.3,
+    "2024": 5.41,
+    "2025": 6.68
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 131102,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 201432,
+    "2025": 229539
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 2761.23,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 2831.33,
+    "2025": 2849.2
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Khánh Hòa": {
@@ -2549,6 +4484,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 62.6,
+    "2021": 65.51,
+    "2022": 77.36,
+    "2023": 87.56,
+    "2024": 101.19,
+    "2025": 110.32
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": -4.95,
+    "2021": -1.07,
+    "2022": 15.43,
+    "2023": 9.59,
+    "2024": 10.84,
+    "2025": 7.11
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 114811,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 190434,
+    "2025": 209446
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 1834.08,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 1881.98,
+    "2025": 1898.55
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Lâm Đồng": {
@@ -2588,6 +4573,56 @@
    },
    "growth_9m_src": {
     "2026": "https://thanhnien.vn/lam-dong-tang-toc-quy-4-can-tang-truong-tren-1288-185261002164819471.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 62.4,
+    "2021": 66.67,
+    "2022": 75.3,
+    "2023": 79.85,
+    "2024": 93.39,
+    "2025": 105.25
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3.87,
+    "2021": 4.22,
+    "2022": 7.92,
+    "2023": 5.65,
+    "2024": 5.64,
+    "2025": 6.42
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 198867,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 310479,
+    "2025": 353258
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3186.95,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3324.38,
+    "2025": 3356.38
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Đồng Nai": {
@@ -2627,6 +4662,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 103.64,
+    "2021": 108.6,
+    "2022": 119.08,
+    "2023": 123.74,
+    "2024": 133.98,
+    "2025": 150.8
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3.36,
+    "2021": 2.67,
+    "2022": 8.84,
+    "2023": 4.71,
+    "2024": 7.27,
+    "2025": 9.63
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 434097,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 593232,
+    "2025": 677638
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 4188.48,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 4427.74,
+    "2025": 4493.7
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Tây Ninh": {
@@ -2661,6 +4746,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 75.41,
+    "2021": 78.52,
+    "2022": 88.9,
+    "2023": 93.44,
+    "2024": 103.53,
+    "2025": 115.61
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3.77,
+    "2021": 1.08,
+    "2022": 9.54,
+    "2023": 3.89,
+    "2024": 8.09,
+    "2025": 9.52
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 218077,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 306354,
+    "2025": 344556
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 2891.99,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 2959.01,
+    "2025": 2980.28
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "TP. Hồ Chí Minh": {
@@ -2700,6 +4835,56 @@
    },
    "growth_9m_src": {
     "2026": "https://www.vietnamplus.vn/thanh-pho-ho-chi-minh-no-luc-vuot-kho-gop-phan-vao-tang-truong-chung-ca-nuoc-post1140001.vnp"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 158.23,
+    "2021": 162.06,
+    "2022": 179.15,
+    "2023": 183.4,
+    "2024": 196.63,
+    "2025": 215.34
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 0.33,
+    "2021": -3.03,
+    "2022": 8.41,
+    "2023": 2.88,
+    "2024": 5.86,
+    "2025": 7.53
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 2053176,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 2675951,
+    "2025": 2972536
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 12976.09,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 13608.89,
+    "2025": 13803.8
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Đồng Tháp": {
@@ -2739,6 +4924,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 54.64,
+    "2021": 55.13,
+    "2022": 62.57,
+    "2023": 68.96,
+    "2024": 76.82,
+    "2025": 84.02
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 0.73,
+    "2021": -0.83,
+    "2022": 7.83,
+    "2023": 6.19,
+    "2024": 6.76,
+    "2025": 7.38
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 184284,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 260972,
+    "2025": 285983
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3372.56,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3397.18,
+    "2025": 3403.78
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "An Giang": {
@@ -2773,6 +5008,56 @@
    },
    "growth_9m_src": {
     "2026": "https://mekongasean.vn/kinh-te-an-giang-9-thang-grdp-tang-923-von-dau-tu-hon-80000-ty-dong-60331.html"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 50.93,
+    "2021": 53.13,
+    "2022": 59.25,
+    "2023": 65.32,
+    "2024": 73.22,
+    "2025": 80.22
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 2.98,
+    "2021": 0.29,
+    "2022": 6.82,
+    "2023": 5.76,
+    "2024": 6.9,
+    "2025": 8.39
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 185038,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 269396,
+    "2025": 296383
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3633.4,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3679.24,
+    "2025": 3694.6
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Vĩnh Long": {
@@ -2812,6 +5097,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 52.44,
+    "2021": 54.21,
+    "2022": 61.93,
+    "2023": 67.7,
+    "2024": 75.67,
+    "2025": 82.4
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 2.96,
+    "2021": 0.05,
+    "2022": 8.12,
+    "2023": 4.69,
+    "2024": 7.51,
+    "2025": 5.84
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 174384,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 254830,
+    "2025": 278466
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3325.31,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3367.43,
+    "2025": 3379.61
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Cần Thơ": {
@@ -2846,6 +5181,56 @@
    },
    "growth_9m_src": {
     "2026": "https://www.vietnamplus.vn/can-tho-ra-soat-dieu-chinh-tang-truong-kinh-te-quy-4-va-nam-2026-post1140343.vnp"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 57.55,
+    "2021": 59.64,
+    "2022": 70.52,
+    "2023": 77.99,
+    "2024": 86.53,
+    "2025": 94.92
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 0.62,
+    "2021": 1.56,
+    "2022": 11.95,
+    "2023": 6.42,
+    "2024": 7.42,
+    "2025": 7.23
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 182226,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 277520,
+    "2025": 306118
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 3166.25,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 3207.08,
+    "2025": 3224.94
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   },
   "Cà Mau": {
@@ -2885,6 +5270,56 @@
    },
    "growth_9m_src": {
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
+   },
+   "grdp_pc_mvnd_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 49.83,
+    "2021": 51.65,
+    "2022": 59.38,
+    "2023": 64.41,
+    "2024": 71.1,
+    "2025": 78.61
+   },
+   "growth_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 2.3,
+    "2021": 0.66,
+    "2022": 7.6,
+    "2023": 7.37,
+    "2024": 7.82,
+    "2025": 7.23
+   },
+   "grdp_bn_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 105007,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 152207,
+    "2025": 169047
+   },
+   "pop_avg_thousand_series": {
+    "2018": null,
+    "2019": null,
+    "2020": 2107.37,
+    "2021": null,
+    "2022": null,
+    "2023": null,
+    "2024": 2140.68,
+    "2025": 2150.44
+   },
+   "series_basis": {
+    "2018": null,
+    "2019": null,
+    "2020": "nso_34",
+    "2021": "nso_34",
+    "2022": "nso_34",
+    "2023": "nso_34",
+    "2024": "nso_34",
+    "2025": "nso_34"
    }
   }
  },
@@ -2906,7 +5341,60 @@
     "rank_all": 15,
     "of_all": 217
    },
-   "label": "Population, total"
+   "label": "Population, total",
+   "history": {
+    "source": "World Bank WDI SP.POP.TOTL via the datahub.io GitHub mirror (same values as the July-2026 WDI held in now/prev: 2025 = 101,598,527, 2020 = 98,079,191)",
+    "url": "https://raw.githubusercontent.com/datasets/population/main/data/population.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json); 1 = highest; of = economies with data",
+    "years": {
+     "2017": {
+      "value": 95176977,
+      "rank": 15,
+      "of": 217
+     },
+     "2018": {
+      "value": 96237319,
+      "rank": 15,
+      "of": 217
+     },
+     "2019": {
+      "value": 97173776,
+      "rank": 15,
+      "of": 217
+     },
+     "2020": {
+      "value": 98079191,
+      "rank": 15,
+      "of": 217
+     },
+     "2021": {
+      "value": 98935098,
+      "rank": 16,
+      "of": 217
+     },
+     "2022": {
+      "value": 99680655,
+      "rank": 16,
+      "of": 217
+     },
+     "2023": {
+      "value": 100352192,
+      "rank": 16,
+      "of": 217
+     },
+     "2024": {
+      "value": 100987686,
+      "rank": 16,
+      "of": 217
+     },
+     "2025": {
+      "value": 101598527,
+      "rank": 16,
+      "of": 217
+     }
+    },
+    "check": "reproduces held ranks 2020 (15/217) and 2025 (16/217)"
+   }
   },
   "area": {
    "now": {
@@ -2944,7 +5432,8 @@
     "rank_all": 37,
     "of_all": 216
    },
-   "label": "Population density (people per sq. km of land area)"
+   "label": "Population density (people per sq. km of land area)",
+   "history_gap": "No yearly ranks: WDI EN.POP.DNST (all countries) not reachable from the sandbox (api.worldbank.org blocked; no mirror found). Needs a runner: tools/build/rank/fetch.py with date=2017:2025."
   },
   "urban": {
    "now": {
@@ -2963,7 +5452,8 @@
     "rank_all": 179,
     "of_all": 217
    },
-   "label": "Urban population (% of total population)"
+   "label": "Urban population (% of total population)",
+   "history_gap": "No yearly ranks: WDI SP.URB.TOTL.IN.ZS (UN WUP 2018) not reachable from the sandbox; not in the WPP package. Needs a runner: tools/build/rank/fetch.py."
   },
   "tfr": {
    "now": {
@@ -2982,7 +5472,100 @@
     "rank_all": 118,
     "of_all": 217
    },
-   "label": "Fertility rate, total (births per woman)"
+   "label": "Fertility rate, total (births per woman)",
+   "history_wpp": {
+    "source": "UN WPP 2024 (tfr1dt/tfrproj1dt, wpp2024 R package v1.1-3), ranked by Society among the 217 WB economies (Channel Islands: no WPP value -> of = 216); values rounded to 3 decimals as in WDI",
+    "url": "https://raw.githubusercontent.com/PPgp/wpp2024/main/data/",
+    "basis": "rank 1 = highest value; of = economies with data",
+    "years": {
+     "2017": {
+      "value": 1.985,
+      "rank": 121,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2018": {
+      "value": 1.88,
+      "rank": 125,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2019": {
+      "value": 1.943,
+      "rank": 118,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2020": {
+      "value": 1.957,
+      "rank": 118,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2021": {
+      "value": 1.942,
+      "rank": 114,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2022": {
+      "value": 1.927,
+      "rank": 113,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2023": {
+      "value": 1.913,
+      "rank": 112,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2024": {
+      "value": 1.895,
+      "rank": 111,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2025": {
+      "value": 1.878,
+      "rank": 112,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2026": {
+      "value": 1.864,
+      "rank": 112,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2027": {
+      "value": 1.85,
+      "rank": 112,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2028": {
+      "value": 1.838,
+      "rank": 113,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2029": {
+      "value": 1.828,
+      "rank": 112,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2030": {
+      "value": 1.82,
+      "rank": 112,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     }
+    },
+    "check": "WDI ranks held: 2019 118/217 (WPP 118/216 - match), 2024 109/217 (WPP 111/216 - differs: WDI uses national/Eurostat TFR for some countries)",
+    "note": "Different source from now/prev (WDI): do not draw both on one timeline without labelling. Years 2024-2030 are WPP projections."
+   }
   },
   "life_exp": {
    "now": {
@@ -3001,7 +5584,100 @@
     "rank_all": 108,
     "of_all": 217
    },
-   "label": "Life expectancy at birth, total (years)"
+   "label": "Life expectancy at birth, total (years)",
+   "history_wpp": {
+    "source": "UN WPP 2024 (e01dt/e0proj1dt (e0B), wpp2024 R package v1.1-3), ranked by Society among the 217 WB economies (Channel Islands: no WPP value -> of = 216); values rounded to 3 decimals as in WDI",
+    "url": "https://raw.githubusercontent.com/PPgp/wpp2024/main/data/",
+    "basis": "rank 1 = highest value; of = economies with data",
+    "years": {
+     "2017": {
+      "value": 74.026,
+      "rank": 107,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2018": {
+      "value": 74.1,
+      "rank": 106,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2019": {
+      "value": 74.211,
+      "rank": 106,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2020": {
+      "value": 75.383,
+      "rank": 83,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2021": {
+      "value": 74.145,
+      "rank": 84,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2022": {
+      "value": 74.502,
+      "rank": 102,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2023": {
+      "value": 74.588,
+      "rank": 107,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2024": {
+      "value": 74.736,
+      "rank": 107,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2025": {
+      "value": 74.881,
+      "rank": 107,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2026": {
+      "value": 75.049,
+      "rank": 109,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2027": {
+      "value": 75.211,
+      "rank": 109,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2028": {
+      "value": 75.37,
+      "rank": 109,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2029": {
+      "value": 75.523,
+      "rank": 109,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2030": {
+      "value": 75.68,
+      "rank": 109,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     }
+    },
+    "check": "WDI ranks held: 2019 108/217 (WPP 106/216), 2024 108/217 (WPP 107/216) - differ by 1-2 places (WDI uses national/Eurostat values for some countries). WPP 2020 VN value 75.38 is a WPP artefact (rank 83) - show with care",
+    "note": "Different source from now/prev (WDI): do not draw both on one timeline without labelling. Years 2024-2030 are WPP projections."
+   }
   },
   "cbr": {
    "now": {
@@ -3058,7 +5734,100 @@
     "rank_all": 5,
     "of_all": 217
    },
-   "label": "Sex ratio at birth (male births per female births)"
+   "label": "Sex ratio at birth (male births per female births)",
+   "history_wpp": {
+    "source": "UN WPP 2024 (sexRatio1dt, wpp2024 R package v1.1-3), ranked by Society among the 217 WB economies (Channel Islands: no WPP value -> of = 216); values rounded to 3 decimals as in WDI",
+    "url": "https://raw.githubusercontent.com/PPgp/wpp2024/main/data/",
+    "basis": "rank 1 = highest value; of = economies with data",
+    "years": {
+     "2017": {
+      "value": 1.121,
+      "rank": 5,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2018": {
+      "value": 1.148,
+      "rank": 3,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2019": {
+      "value": 1.115,
+      "rank": 5,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2020": {
+      "value": 1.121,
+      "rank": 4,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2021": {
+      "value": 1.12,
+      "rank": 4,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2022": {
+      "value": 1.111,
+      "rank": 4,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2023": {
+      "value": 1.109,
+      "rank": 4,
+      "of": 216,
+      "status": "estimate"
+     },
+     "2024": {
+      "value": 1.106,
+      "rank": 4,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2025": {
+      "value": 1.103,
+      "rank": 4,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2026": {
+      "value": 1.101,
+      "rank": 4,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2027": {
+      "value": 1.098,
+      "rank": 4,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2028": {
+      "value": 1.095,
+      "rank": 4,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2029": {
+      "value": 1.092,
+      "rank": 4,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     },
+     "2030": {
+      "value": 1.09,
+      "rank": 3,
+      "of": 216,
+      "status": "projection (WPP medium; WDI shows these as data for 2024-2025)"
+     }
+    },
+    "check": "WDI ranks held: 2019 5/217, 2024 4/217 - WPP matches both",
+    "note": "Different source from now/prev (WDI): do not draw both on one timeline without labelling. Years 2024-2030 are WPP projections."
+   }
   },
   "age65": {
    "now": {
@@ -3127,7 +5896,145 @@
     "of": 210
    },
    "label": "GDP (current US$)",
-   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)"
+   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
+   "history_imf": {
+    "source": "IMF World Economic Outlook April 2026 (NGDPD), DataMapper API cache tools/build/grdp/imf_NGDPD.json (fetched 2026-10-05); October 2026 WEO due 13/10/2026 - refresh then",
+    "url": "https://www.imf.org/external/datamapper/api/v1/NGDPD",
+    "unit": "bn US$",
+    "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
+    "years": {
+     "2017": {
+      "value": 277.076,
+      "rank": 43,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2018": {
+      "value": 304.474,
+      "rank": 43,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2019": {
+      "value": 331.811,
+      "rank": 40,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2020": {
+      "value": 346.283,
+      "rank": 38,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2021": {
+      "value": 370.065,
+      "rank": 40,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2022": {
+      "value": 411.031,
+      "rank": 36,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2023": {
+      "value": 432.981,
+      "rank": 36,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2024": {
+      "value": 459.448,
+      "rank": 34,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2025": {
+      "value": 494.046,
+      "rank": 33,
+      "of": 193,
+      "status": "IMF estimate"
+     },
+     "2026": {
+      "value": 527.266,
+      "rank": 34,
+      "of": 190,
+      "status": "IMF projection"
+     },
+     "2027": {
+      "value": 557.405,
+      "rank": 33,
+      "of": 189,
+      "status": "IMF projection"
+     },
+     "2028": {
+      "value": 594.826,
+      "rank": 34,
+      "of": 188,
+      "status": "IMF projection"
+     },
+     "2029": {
+      "value": 631.081,
+      "rank": 32,
+      "of": 188,
+      "status": "IMF projection"
+     },
+     "2030": {
+      "value": 667.52,
+      "rank": 34,
+      "of": 188,
+      "status": "IMF projection"
+     }
+    },
+    "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed)."
+   },
+   "history_wdi": {
+    "source": "World Bank WDI NY.GDP.MKTP.CD via the datahub.io GitHub mirror (datapackage last_updated 2026-04-08, i.e. the April-2026 WDI vintage; 2024-2025 not in the mirror)",
+    "url": "https://raw.githubusercontent.com/datasets/gdp/main/data/gdp.csv",
+    "unit": "current US$",
+    "basis": "rank among the 217 WB economies with data that year; 1 = highest",
+    "years": {
+     "2017": {
+      "value": 281353605986.90344,
+      "rank": 42,
+      "of": 210
+     },
+     "2018": {
+      "value": 310106478394.6589,
+      "rank": 42,
+      "of": 210
+     },
+     "2019": {
+      "value": 334365270496.66705,
+      "rank": 39,
+      "of": 210
+     },
+     "2020": {
+      "value": 346615738537.7963,
+      "rank": 37,
+      "of": 209
+     },
+     "2021": {
+      "value": 366474752771.00934,
+      "rank": 40,
+      "of": 208
+     },
+     "2022": {
+      "value": 410324028883.32526,
+      "rank": 36,
+      "of": 202
+     },
+     "2023": {
+      "value": 429716969049.5928,
+      "rank": 34,
+      "of": 185
+     }
+    },
+    "note": "Older WDI vintage than now/prev (July 2026): 2020 here 37/209 vs held prev 37/210. 2024 missing."
+   }
   },
   "g_gdp_pc": {
    "now": {
@@ -3143,7 +6050,102 @@
     "of": 210
    },
    "label": "GDP per capita (current US$)",
-   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)"
+   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
+   "history_imf": {
+    "source": "IMF World Economic Outlook April 2026 (NGDPDPC), DataMapper API cache tools/build/grdp/imf_NGDPDPC.json (fetched 2026-10-05); October 2026 WEO due 13/10/2026 - refresh then",
+    "url": "https://www.imf.org/external/datamapper/api/v1/NGDPDPC",
+    "unit": "US$",
+    "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
+    "years": {
+     "2017": {
+      "value": 2957.955,
+      "rank": 136,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2018": {
+      "value": 3216.297,
+      "rank": 137,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2019": {
+      "value": 3439.028,
+      "rank": 133,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2020": {
+      "value": 3548.611,
+      "rank": 131,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2021": {
+      "value": 3756.77,
+      "rank": 130,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2022": {
+      "value": 4132.552,
+      "rank": 129,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2023": {
+      "value": 4316.469,
+      "rank": 125,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2024": {
+      "value": 4535.521,
+      "rank": 126,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2025": {
+      "value": 4829.379,
+      "rank": 127,
+      "of": 193,
+      "status": "IMF estimate"
+     },
+     "2026": {
+      "value": 5115.236,
+      "rank": 125,
+      "of": 190,
+      "status": "IMF projection"
+     },
+     "2027": {
+      "value": 5372.28,
+      "rank": 125,
+      "of": 189,
+      "status": "IMF projection"
+     },
+     "2028": {
+      "value": 5698.382,
+      "rank": 126,
+      "of": 188,
+      "status": "IMF projection"
+     },
+     "2029": {
+      "value": 6010.054,
+      "rank": 127,
+      "of": 188,
+      "status": "IMF projection"
+     },
+     "2030": {
+      "value": 6322.787,
+      "rank": 128,
+      "of": 188,
+      "status": "IMF projection"
+     }
+    },
+    "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed)."
+   },
+   "history_gap": "WDI yearly ranks not reachable (api.worldbank.org blocked); IMF WEO ranks given in history_imf."
   },
   "g_gdp_pc_ppp": {
    "now": {
@@ -3159,7 +6161,102 @@
     "of": 199
    },
    "label": "GDP per capita, PPP (current international $)",
-   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.PP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)"
+   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.PP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
+   "history_imf": {
+    "source": "IMF World Economic Outlook April 2026 (PPPPC), DataMapper API cache tools/build/grdp/imf_PPPPC.json (fetched 2026-10-05); October 2026 WEO due 13/10/2026 - refresh then",
+    "url": "https://www.imf.org/external/datamapper/api/v1/PPPPC",
+    "unit": "intl $",
+    "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
+    "years": {
+     "2017": {
+      "value": 9317.097,
+      "rank": 123,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2018": {
+      "value": 10176.123,
+      "rank": 120,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2019": {
+      "value": 11108.123,
+      "rank": 118,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2020": {
+      "value": 11668.385,
+      "rank": 112,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2021": {
+      "value": 12101.363,
+      "rank": 115,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2022": {
+      "value": 13933.544,
+      "rank": 113,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2023": {
+      "value": 15052.708,
+      "rank": 112,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2024": {
+      "value": 16337.37,
+      "rank": 109,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2025": {
+      "value": 17970.652,
+      "rank": 108,
+      "of": 193,
+      "status": "IMF estimate"
+     },
+     "2026": {
+      "value": 19648.624,
+      "rank": 107,
+      "of": 191,
+      "status": "IMF projection"
+     },
+     "2027": {
+      "value": 21285.389,
+      "rank": 104,
+      "of": 190,
+      "status": "IMF projection"
+     },
+     "2028": {
+      "value": 22837.619,
+      "rank": 103,
+      "of": 189,
+      "status": "IMF projection"
+     },
+     "2029": {
+      "value": 24400.617,
+      "rank": 102,
+      "of": 189,
+      "status": "IMF projection"
+     },
+     "2030": {
+      "value": 26047.066,
+      "rank": 101,
+      "of": 189,
+      "status": "IMF projection"
+     }
+    },
+    "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed)."
+   },
+   "history_gap": "WDI yearly ranks not reachable (api.worldbank.org blocked); IMF WEO ranks given in history_imf."
   },
   "g_growth": {
    "now": {
@@ -3175,7 +6272,102 @@
     "of": 210
    },
    "label": "GDP growth (annual %)",
-   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.KD.ZG?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)"
+   "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.KD.ZG?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
+   "history_imf": {
+    "source": "IMF World Economic Outlook April 2026 (NGDP_RPCH), DataMapper API cache tools/build/grdp/imf_NGDP_RPCH.json (fetched 2026-10-05); October 2026 WEO due 13/10/2026 - refresh then",
+    "url": "https://www.imf.org/external/datamapper/api/v1/NGDP_RPCH",
+    "unit": "%",
+    "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
+    "years": {
+     "2017": {
+      "value": 6.9,
+      "rank": 19,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2018": {
+      "value": 7.5,
+      "rank": 12,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2019": {
+      "value": 7.4,
+      "rank": 11,
+      "of": 196,
+      "status": "IMF data"
+     },
+     "2020": {
+      "value": 2.9,
+      "rank": 13,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2021": {
+      "value": 2.6,
+      "rank": 152,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2022": {
+      "value": 8.5,
+      "rank": 24,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2023": {
+      "value": 5.1,
+      "rank": 41,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2024": {
+      "value": 7,
+      "rank": 14,
+      "of": 195,
+      "status": "IMF data"
+     },
+     "2025": {
+      "value": 8,
+      "rank": 9,
+      "of": 193,
+      "status": "IMF estimate"
+     },
+     "2026": {
+      "value": 7.1,
+      "rank": 7,
+      "of": 191,
+      "status": "IMF projection"
+     },
+     "2027": {
+      "value": 6.7,
+      "rank": 9,
+      "of": 190,
+      "status": "IMF projection"
+     },
+     "2028": {
+      "value": 6.2,
+      "rank": 12,
+      "of": 189,
+      "status": "IMF projection"
+     },
+     "2029": {
+      "value": 5.6,
+      "rank": 18,
+      "of": 189,
+      "status": "IMF projection"
+     },
+     "2030": {
+      "value": 5.4,
+      "rank": 21,
+      "of": 189,
+      "status": "IMF projection"
+     }
+    },
+    "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed)."
+   },
+   "history_gap": "WDI yearly ranks not reachable (api.worldbank.org blocked); IMF WEO ranks given in history_imf."
   }
  },
  "PROV_PREV": {
