@@ -955,9 +955,9 @@
      null,
      null,
      null,
-     null,
+     8.18,
      3.96,
-     8.72,
+     8.723,
      12.459,
      7.654,
      2.716
@@ -967,12 +967,24 @@
      null,
      null,
      null,
-     null,
-     null,
-     null,
-     null,
+     8.99,
+     7.94,
+     9.911,
+     14.617,
      9.135,
      2.434
+    ],
+    "services_net": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -3.127,
+     null,
+     -2.287,
+     -1.674
     ],
     "secondary_income_net": [
      null,
@@ -981,7 +993,7 @@
      null,
      null,
      null,
-     null,
+     4.302,
      null,
      null,
      3.187
@@ -992,8 +1004,8 @@
      null,
      null,
      null,
-     null,
-     null,
+     -5.9,
+     -2.363,
      null,
      -2.975,
      -1.231
@@ -1001,11 +1013,11 @@
     "financial_account_net": [
      null,
      null,
+     -7.3,
      null,
      null,
-     null,
-     null,
-     null,
+     -3.51,
+     -4.8,
      null,
      7.076,
      0.893
@@ -1015,9 +1027,9 @@
      null,
      null,
      null,
+     6.29,
      null,
-     null,
-     null,
+     5.26,
      null,
      null,
      5.38
@@ -1048,7 +1060,7 @@
     ],
     "source": "SBV quarterly BoP release for Q1-2026, as reported by VnEconomy",
     "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm",
-    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06",
+    "verified": "search-engine excerpts (SBV, vneconomy, Viet Nam News; page fetch blocked by egress proxy), 2026-10-07 and 2026-10-09",
     "note": "Q1-2026 overall balance −1.078 bn ended three consecutive quarterly surpluses. Q4-2025 values are the comparison figures quoted in the same article. Errors & omissions not quoted (not derived). Q2-2026: only a secondary claim found — \"SBV Q2 BoP shows a current-account deficit of US$11.1bn (~8% of GDP)\" (ASEAN Macro Monitor, https://aseanmacromonitor.substack.com/p/state-of-the-buffers-thin-spreads-to-current-accounts); not confirmed by SBV or Vietnamese press, so not stored.",
     "point_sources": {
      "Q1-2024.overall_balance, Q2-2024.overall_balance": {
@@ -1067,12 +1079,40 @@
       "provider": "Trading Economics (SBV data) — secondary aggregator, not SBV's own table",
       "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
      },
-     "Q4-2025, Q1-2026": "as before (SBV Q1-2026 release via VnEconomy, see url)"
+     "Q4-2025, Q1-2026": "as before (SBV Q1-2026 release via VnEconomy, see url)",
+     "Q4-2024.current_account, Q4-2024.goods_balance, Q1-2025.goods_balance, Q1-2025.investment_income_net, Q2-2025 lines": {
+      "v": "Q4-2024: CA 8.18, goods 8.99; Q1-2025: goods 7.94, investment income −5.90; Q2-2025: goods 9.91, services −3.13, investment income −2.36 (comparisons quoted in the Q2-2025 article)",
+      "url": "https://vneconomy.vn/can-can-thanh-toan-tong-the-thang-du-sau-5-quy-tham-hut-lien-tiep.htm",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-09"
+     },
+     "Q2-2025 full current-account table": {
+      "v": "CA 8,723; goods 9,911 (X 117,025 FOB, M 107,114); services −3,127 (X 7,154, M 10,281); primary income −2,363; secondary income +4,302 (credit 5,212, debit 910); capital account 0 — million USD; lines sum exactly to the CA",
+      "url": "https://sbv.gov.vn/en/balance-of-international-payment",
+      "provider": "SBV quarterly BoP table (primary source)",
+      "verified": "search-engine excerpt of the SBV page (page fetch blocked by egress proxy), 2026-10-09"
+     },
+     "Q2-2024/Q1-2025/Q2-2025.financial_account_net, Q4-2024/Q2-2025.fdi_net": {
+      "v": "financial account −4.8 (Q2-2025, 'deficit'), −3.51 (Q1-2025), −7.3 (Q2-2024); net FDI 5.26 (Q2-2025, +45% q/q), 6.29 (Q4-2024). Sign: + = net inflow, as in SBV's table and the Q4-2025/Q1-2026 values",
+      "url": "https://vietnamnews.vn/economy/1726146/viet-nam-turns-the-tide-with-strong-trade-surplus.html",
+      "alt_url": "https://bizhub.vietnamnews.vn/viet-nam-turns-the-tide-with-strong-trade-surplus-post385202.html",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-09"
+     },
+     "Q3-2025.goods_balance": {
+      "v": "goods 14.617 (exports 128.521, imports 113.904; SBV release for Q3-2025)",
+      "url": "https://vneconomy.vn/trien-vong-ty-gia-nam-2026-nhin-tu-can-can-thanh-toan-tong-the.htm",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-09"
+     },
+     "Q4-2025.services_net, Q1-2026.services_net": {
+      "v": "services −2.287 (Q4-2025), −1.674 (Q1-2026)",
+      "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-09"
+     }
     },
     "signs_only": "Overall balance was negative in each of Q3-2024, Q4-2024 and Q1-2025 (five consecutive deficits Q1-2024…Q1-2025, vneconomy) — values not found, kept null. Q3-2024 had the highest current-account surplus of the six quarters to Q2-2025 (value not pinned).",
-    "conflicts": "(1) Q2-2025 current account: 8.72 (SBV first release via vneconomy, kept) vs 7.438 (Trading Economics, probably a later SBV revision). (2) Trading Economics excerpt shows Q2-2024 4.5 and Q3-2024 7.8, which contradicts vneconomy (Q3-2024 > 8.72) — not stored. (3) An excerpt put Q4-2024 CA at 8.18 — outlet not identifiable, not stored. (4) Q1–Q4 2025 sum 32.79 vs annual bop.s.current_account 2025 33.135 (vintages differ).",
-    "missing": "Q4-2023 (all items), Q3/Q4-2024 values, goods/transfers/income/financial-account lines before Q4-2025, and Q2-2026: no SBV Q2-2026 release found in search on 2026-10-07 (only an unconfirmed secondary claim, see note). History only — no quarterly BoP projection exists.",
-    "as_of": "2026-10-07"
+    "conflicts": "(1) Q2-2025 current account: 8.723 (SBV table; vneconomy 8.72, kept) vs 7.438 (Trading Economics/IMF series, probably a later SBV revision). (2) Trading Economics/CEIC show Q2-2024 4.5 and Q3-2024 7.8, which contradicts SBV as reported by vneconomy (Q3-2024 was the only quarter of the six to Q2-2025 above 8.72) — not stored. (3) Q4-2024 CA 8.18 is now pinned to vneconomy (Q2-2025 article: 8.72 = +6.7% on Q4-2024) and stored. (4) Q1–Q4 2025 sum 32.80 vs annual bop.s.current_account 2025 33.135 (vintages differ). (5) One search summary labelled Q4-2025 7.654 the overall balance; the Q1-2026 article's −65% q/q for the CA (2.716 / 7.654) shows it is the current account — kept as current_account.",
+    "missing": "Q4-2023 (all lines); Q1–Q3 2024 current account and goods; Q3-2024 overall balance value; secondary income before Q2-2025 and for Q3-2025/Q4-2025; Q3-2025 services, income, financial account, overall balance; travel (not a separate line in SBV's published quarterly table — only 'services'; IMF BOP quarterly travel is unreachable from the sandbox). Q2-2026: SBV's site lists a 'Quý II năm 2026' BoP table, but no search excerpt shows its figures (checked 2026-10-09); not appended, so the tiles still show Q1-2026 as the latest quarter. History only — no quarterly BoP projection exists.",
+    "as_of": "2026-10-09",
+    "derived_not_stored": "Q3-2025 overall balance: vneconomy says +14.25% q/q on Q2-2025 (1.49) → ≈1.70, and 'nearly 30×' the Q3-2024 deficit (→ ≈ −0.06); SBV net FX purchases ≈1.7 bn in Q3-2025. These are arithmetic on quoted ratios, not published values — not stored."
    }
   },
   "tour": {
@@ -3930,7 +3970,7 @@
      null,
      null,
      50.0,
-     null,
+     48.0,
      49.9,
      38.7,
      34.0,
@@ -3954,7 +3994,7 @@
      "MoF actual (pre-revision GDP)",
      "MoF actual (pre-revision GDP)",
      "MoF actual (pre-revision GDP)",
-     "MoF estimate 'khoảng 55%' (pre-revision GDP)",
+     "MoF estimate: public debt 'khoảng 55%', government debt 'khoảng 48%' (pre-revision GDP)",
      "MoF QĐ 2823/QĐ-BTC (pre-revision GDP denominator)",
      "MoF QĐ 2823/QĐ-BTC",
      "MoF QĐ 2823/QĐ-BTC",
@@ -3989,11 +4029,18 @@
       "url": "https://thuvienphapluat.vn/van-ban/Tai-chinh-nha-nuoc/Quyet-dinh-2823-QD-BTC-2025-cong-bo-thong-tin-no-cong-669672.aspx",
       "alt_url": "https://luatvietnam.vn/tai-chinh/quyet-dinh-2823-qd-btc-cua-bo-tai-chinh-ve-viec-cong-bo-thong-tin-no-cong-408773-d1.html",
       "text": "QĐ 2823/QĐ-BTC (14/08/2025), public-debt information 2020–2024"
+     },
+     "2019.government_debt": {
+      "url": "https://baodauthau.vn/den-cuoi-nam-2019-no-cong-khoang-55-gdp-post83562.html",
+      "text": "MoF report on 2019 borrowing and debt repayment: end-2019 public debt about 55% of GDP, government debt about 48%",
+      "conflict": "MPI's later reassessment put 2019 at public 54.7%, government 47.7%, external 47% (https://vietnamfinance.vn/bo-ke-hoach-va-dau-tu-danh-gia-lai-no-cong-nam-2019-giam-tu-57-xuong-547-d48779.html) — different agency, not stored; MoF kept as primary",
+      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-09"
      }
     },
     "plan_and_ceiling": "2026 plan 36–37% and ceilings/warning levels in ECONFLOW.projections.series.public_debt_pct_gdp_plan (ceilings_2026_2030)",
     "imf": "IMF WEO general-government gross debt (GGXWDG_NGDP) — pending the 13/10/2026 WEO; a different definition from MoF public debt",
-    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07"
+    "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07",
+    "gaps": "government_debt 2016–2017 and national_external_debt 2016–2019: only conflicting vintages found (e.g. government debt 2017 51.7 vs 51.8; external debt 2017–2019 45.2/49.7/49.9 in one excerpt vs 46–47 in another) — kept null. 2025: only the MoF Jan-2026 range estimate (estimate_2025); the MoF bulletin with the 2025 actual (Thông tư 42/2026/TT-BTC templates) not found as of 2026-10-09."
    }
   },
   "projections": {

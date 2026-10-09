@@ -63,10 +63,12 @@
     "urls": [
      "https://tapchicongthuong.vn/vuot-muc-tieu--gdp-nam-2024-tang-truong-7-09--so-voi-nam-truoc-132041.htm",
      "https://tapchicongthuong.vn/gdp-nam-2025-dat-muc-tieu--uoc-tang-8-02--so-voi-nam-2024-386035.htm",
-     "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+     "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+     "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/01/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iv-va-nam-2025/"
     ],
     "as_of": "2026-10-07",
-    "verified": "search-engine excerpt, 2026-10-07"
+    "verified": "search-engine excerpt, 2026-10-07; 2025 quarters (7.05 / 8.16 / 8.25 / 8.46) re-checked against the NSO Q4-2025 report (05/01/2026) on 2026-10-09",
+    "render_note": "The I01 chart (ivStGdp, #iv-st-gdp) reads invest_research.json _macro.financials.rows ('GDP Q1/2026'… rows), served by /api/invest/research — not this file. To animate Q1-2024 → Q3-2026 the page (or the Investing owner) must read MACRO.gdp.history_quarterly from /api/invest/context or copy these rows."
    }
   },
   "public_invest": {

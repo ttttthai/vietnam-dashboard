@@ -10722,7 +10722,8 @@
    },
    "alternatives": "see FINSYS.alternatives.series.*.source / points / observations (added 2026-10-06)",
    "corporate_bond_issuance_2026": "VBMA (from HNX/SSC disclosures) via press. Monthly figures are 'as disclosed by the month-end report date'; VBMA's cumulative totals are revised upward as late disclosures arrive, so monthly values do NOT sum to the cumulative (Jan-Jun months known = 127.4k vs 7M cumulative 289.9k). Conflict, not reconciled: 5M 127,351 + Jun 43,876 = 171,227 vs 7M 289,911 (implies July ~119k or large late additions). Other providers differ: H1-2026 ~273,500 (+1.8% y/y) and 7M ~322,300 (+2.7% y/y) per non-VBMA tallies (https://vneconomy.vn/trai-phieu-dao-han-giam-nhe-trong-thang-7-uoc-khoang-17700-ty-dong.htm, search excerpt) - not mixed.",
-   "sbv_annual_report_revision_2026_10_08": "Added annual money aggregates (IMF currency outside banks & M2 memo, ADB M0/M1), monthly derived cash in circulation + methodology flags, annual SBV on-balance NPL, commercial-bank NPL, gross NPL points, charter capital, payments, financial_inclusion, institutions, npl_resolution, sbv_annual_report. All verified via WebSearch excerpts on 2026-10-08 (primary sites blocked)."
+   "sbv_annual_report_revision_2026_10_08": "Added annual money aggregates (IMF currency outside banks & M2 memo, ADB M0/M1), monthly derived cash in circulation + methodology flags, annual SBV on-balance NPL, commercial-bank NPL, gross NPL points, charter capital, payments, financial_inclusion, institutions, npl_resolution, sbv_annual_report. All verified via WebSearch excerpts on 2026-10-08 (primary sites blocked).",
+   "timelines_2026_10_09": "FINSYS.timelines added 2026-10-09 for the animation/timeline request (user-approved data collection). Sources per point inside each block; all via search-engine excerpts because sbv.gov.vn, worldbank.org, imf.org, mbs.com.vn and press sites were blocked from the sandbox. Points whose URL is the most likely result rather than a confirmed page carry url_note. No interpolation; nulls are gaps."
   },
   "other_services_breakdown": {
    "as_of": "2026-10-06",
@@ -14536,6 +14537,775 @@
    "access": "sbv.gov.vn, archive.org, economica.vn mirror (AR2010) all blocked from the sandbox on 2026-10-08. Not re-read this session. Content known from: prior session notes (AR2024 Parts I-IV + Appendices 1-2: SBV rates, OMO; RRR; BOP), sbv.operations entries citing AR2024, and search excerpts of AR2010/AR2021 tables of contents.",
    "map": "data/research/sbv_annual_report_map.md",
    "financial_statements": "SBV annual reports contain no SBV balance sheet or income statement (prior check of AR2024 contents); see sbv.notes."
+  },
+  "timelines": {
+   "as_of": "2026-10-09",
+   "note_en": "History collected for story charts that were single-period snapshots, so they can get an honest timeline (animation request 2026-10-09). Every point carries its own period, unit, source URL and vintage; null = not found (never interpolated). All primary sites (sbv.gov.vn, worldbank.org, imf.org, mbs.com.vn, press) were blocked from the sandbox, so figures come from search-engine excerpts; \"url_note\" flags points where the URL is the most likely result rather than a confirmed page.",
+   "note_vi": "Lịch sử cho các biểu đồ trước đây chỉ có một kỳ, để có dòng thời gian trung thực. Mỗi điểm có kỳ, đơn vị, nguồn và ngày thu thập; null = chưa tìm thấy (không nội suy).",
+   "institutions": {
+    "chart": "fs-st-inst",
+    "unit": "number of institutions",
+    "status": "thin: only two dated bank-count snapshots (end-2016, end-2023) plus PCF counts; non-bank counts by year not found. Recommend a 3-frame step (2016-12, 2023-12, latest in institutions.items) or no timeline.",
+    "definition_note_en": "SBV groups changed over time: \"NHTM Nha nuoc\" (state commercial banks) counted 7 in 2015 (Agribank, VCB, BIDV, VietinBank + the 3 zero-dong banks CB, OceanBank, GPBank), but the end-2016/end-2023 snapshots below count 4 under a 100%-state definition (Agribank + CB, OceanBank, GPBank) with VCB/BIDV/VietinBank among the 31 joint-stock banks. After the 2024-2025 compulsory transfers (CB->VCBNeo, OceanBank->MBV, DongA->Vikki, GPBank) institutions.items counts 1 state-owned + 4 transferred single-member banks. Do not compare groups across these frames without this note.",
+    "frames": [
+     {
+      "d": "2016-12-31",
+      "state_owned_100pct": 4,
+      "jsc_banks": 31,
+      "foreign_owned_banks": 8,
+      "jv_banks": 2,
+      "policy_banks": 2,
+      "cooperative_bank": 1,
+      "foreign_bank_branches": null,
+      "finance_companies": null,
+      "leasing_companies": null,
+      "microfinance": null,
+      "peoples_credit_funds": null,
+      "total_banks_stated": 45,
+      "basis": "SBV list \"Danh sach cac NHTM co phan (den 31/12/2016)\" as quoted in a search excerpt; total 45 commercial banks + policy/co-op as listed",
+      "u": "https://sbv.gov.vn/en/w/sbv294610",
+      "vintage": "2026-10-09",
+      "verification": "search-excerpt; URL is the result the excerpt was attached to, page itself not opened"
+     },
+     {
+      "d": "2023-12-31",
+      "state_owned_100pct": 4,
+      "jsc_banks": 31,
+      "foreign_owned_banks": 9,
+      "jv_banks": 2,
+      "policy_banks": 2,
+      "cooperative_bank": 1,
+      "foreign_bank_branches": null,
+      "finance_companies": null,
+      "leasing_companies": null,
+      "microfinance": null,
+      "peoples_credit_funds": null,
+      "total_banks_stated": 49,
+      "basis": "legal Q&A site citing \"Thong ke cua NHNN den 31/12/2023\": 49 banks",
+      "u": "https://thuvienphapluat.vn/hoi-dap-phap-luat/viet-nam-co-cac-loai-hinh-ngan-hang-nao-hien-nay-viet-nam-co-bao-nhieu-ngan-hang-138033838.html",
+      "vintage": "2026-10-09",
+      "verification": "search-excerpt (page fetch blocked from sandbox)"
+     }
+    ],
+    "peoples_credit_funds": [
+     {
+      "d": "2020-10",
+      "v": 1182,
+      "qualifier": "lower bound (\"tren 1.182\")",
+      "u": "https://thitruongtaichinhtiente.vn/he-thong-to-chuc-tin-dung-tiep-tuc-phat-trien-ben-vung-sau-mot-nam-chiu-anh-huong-cua-dai-dich-covid-19-37510.html",
+      "vintage": "2026-10-09",
+      "verification": "search-excerpt (page fetch blocked from sandbox)"
+     },
+     {
+      "d": "2021-12-31",
+      "v": 1183,
+      "qualifier": "exact; 57 provinces",
+      "u": null,
+      "url_note": "excerpt cited \"so lieu NHNN 31/12/2021\" without a usable URL; kept for reference only, do not draw",
+      "vintage": "2026-10-09",
+      "verification": "search-excerpt (page fetch blocked from sandbox)"
+     },
+     {
+      "d": "2024-12-31",
+      "v": 1178,
+      "qualifier": "exact; 58 provinces",
+      "u": "https://www.quanlynhanuoc.vn/2026/01/26/tai-co-cau-he-thong-quy-tin-dung-nhan-dan-de-phat-trien-ben-vung/",
+      "vintage": "2026-10-08",
+      "verification": "search-excerpt (page fetch blocked from sandbox)",
+      "note": "same as institutions.items"
+     }
+    ],
+    "conflicts": [
+     "Japan FSA country profile (c.2020) lists 28 joint-stock banks, 49 foreign branches, 26 non-bank CIs, 1,182 PCFs (different grouping: state-majority banks outside the JSC count). https://www.fsa.go.jp/en/glopac/assets/participants/current/17th_vietnam.pdf",
+     "US trade guide (undated, citing SBV) gives 4 joint-venture banks vs 2 elsewhere; not used. https://trade.gov/country-commercial-guides/vietnam-trade-financing",
+     "A press source (undated) says 9 leasing companies (8 operating) vs Vietcap 10 for FY2024; not used. https://www.sggp.org.vn/cho-thue-tai-chinh-o-viet-nam-moi-chiem-chua-den-03-tong-du-no-tin-dung-post808175.html"
+    ],
+    "gaps": "Year-end counts 2018-2022, 2024, 2025 by type, and all non-bank / foreign-branch counts by year: not found (SBV annual reports and sbv.gov.vn lists unreachable). Fill from SBV Annual Report \"credit institution system\" paragraph when sbv.gov.vn is reachable."
+   },
+   "vamc": {
+    "chart": "fs-st-vamc",
+    "unit": "bn VND",
+    "years": [
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "principal_resolved_bn": [
+     78000,
+     69778,
+     47515,
+     null,
+     null,
+     16109,
+     null,
+     19560
+    ],
+    "principal_resolved_qualifier": [
+     "exact; 226% of plan; recovery value 37,250",
+     "provisional (tam tinh); 140% of plan; recovery value 32,480",
+     "provisional; 95.03% of plan. Conflict: another source says \"tren 46.000\"",
+     "not found: only partial (special-bond loans 19,634 for 1/1-15/11/2021; market-price loans 2,632 principal) and \"about 83% of plan\"; not summed",
+     "not found; 2023 article says 2023 was +49% y/y (implies ~10,800) - not stored, derived",
+     "exact; 117% of plan; +49% y/y",
+     "not found; plan was 11,586",
+     "exact; 168% of plan"
+    ],
+    "principal_resolved_url": [
+     "https://theleader.vn/vamc-xu-ly-78000-ty-dong-no-xau-trong-nam-2018-d27994.html",
+     "https://thitruongtaichinhtiente.vn/nam-2020-vamc-du-kien-xu-ly-50-000-ty-dong-no-xau-27804.html",
+     "https://vneconomy.vn/vamc-mua-them-hon-15200-ty-dong-no-xau.htm",
+     null,
+     null,
+     "https://vietstock.vn/2024/07/xu-ly-thu-hoi-no-hon-16-ngan-ty-vamc-lai-sau-thue-176-ty-737-1205419.htm",
+     null,
+     "https://vnba.org.vn/vi/vamc-khang-dinh-vai-tro-tru-cot-trong-xu-ly-no-xau--gop-phan-phat-trien-nganh-ngan-hang-va-nen-kinh-te-20691.htm"
+    ],
+    "special_bond_purchases_principal_bn": [
+     null,
+     20544,
+     15218,
+     21000,
+     null,
+     null,
+     null,
+     null
+    ],
+    "special_bond_purchases_qualifier": [
+     null,
+     "on-balance principal; 381 loans of 9 CIs; price 19,846; 99.23% of plan",
+     "on-balance principal; 281 loans; ~100% of plan",
+     "approx (\"gan 21.000\")",
+     null,
+     "met 117% of plan; amount not in excerpt",
+     "plan 10,000 (price); actual not found",
+     null
+    ],
+    "special_bond_purchases_url": [
+     null,
+     "https://thitruongtaichinhtiente.vn/nam-2020-vamc-du-kien-xu-ly-50-000-ty-dong-no-xau-27804.html",
+     "https://vneconomy.vn/vamc-mua-them-hon-15200-ty-dong-no-xau.htm",
+     "https://vneconomy.vn/vamc-mua-them-gan-21-000-ty-dong-no-bang-trai-phieu-dac-biet-trong-nam-2021.htm",
+     null,
+     null,
+     null,
+     null
+    ],
+    "market_price_purchases_price_bn": [
+     null,
+     2247,
+     null,
+     null,
+     null,
+     1755,
+     null,
+     1386
+    ],
+    "market_price_purchases_qualifier": [
+     null,
+     "purchase price; 37 loans; 112% of target",
+     "plan 5,000; actual not found",
+     "+41.32% y/y; level not found",
+     "not found (cumulative price 12,885 at end-2022 vs 11,822 at end-2021 - the 11,822 date conflicts, so no difference taken)",
+     "purchase price; +65% y/y",
+     "plan 2,000; actual not found (\"tang manh\" in 2025 vs 2024)",
+     "purchase price (principal 1,357; 115 loans); same as npl_resolution item"
+    ],
+    "market_price_purchases_url": [
+     null,
+     "https://thitruongtaichinhtiente.vn/nam-2020-vamc-du-kien-xu-ly-50-000-ty-dong-no-xau-27804.html",
+     null,
+     "https://vneconomy.vn/vamc-va-hanh-trinh-10-nam-xu-ly-no-xau-cho-cac-ngan-hang.htm",
+     null,
+     "https://vietstock.vn/2024/07/xu-ly-thu-hoi-no-hon-16-ngan-ty-vamc-lai-sau-thue-176-ty-737-1205419.htm",
+     null,
+     "https://vnba.org.vn/vi/vamc-khang-dinh-vai-tro-tru-cot-trong-xu-ly-no-xau--gop-phan-phat-trien-nganh-ngan-hang-va-nen-kinh-te-20691.htm"
+    ],
+    "cumulative_points": [
+     {
+      "d": "2020-12-31",
+      "key": "special_bond_purchases_cum_principal",
+      "v": 374622,
+      "u": "https://thitruongtaichinhtiente.vn/vamc-mua-no-bang-trai-phieu-dac-biet-dat-374-622-ty-dong-33208.html",
+      "note": "since 2013; resolved 167,019 of it"
+     },
+     {
+      "d": "2021-12-31",
+      "key": "market_price_purchases_cum_price",
+      "v": 11822,
+      "u": "https://vneconomy.vn/vamc-va-hanh-trinh-10-nam-xu-ly-no-xau-cho-cac-ngan-hang.htm",
+      "note": "339 loans since 2017. Conflict: another article dates 11,822 to 30/06/2022."
+     },
+     {
+      "d": "2022-12-31",
+      "key": "market_price_purchases_cum_price",
+      "v": 12885,
+      "u": "https://vneconomy.vn/vamc-va-hanh-trinh-10-nam-xu-ly-no-xau-cho-cac-ngan-hang.htm",
+      "note": "393 loans of 201 customers; principal 12,183"
+     },
+     {
+      "d": "2022-12-31",
+      "key": "principal_resolved_cum_all",
+      "v": 332972,
+      "u": "https://vneconomy.vn/vamc-va-hanh-trinh-10-nam-xu-ly-no-xau-cho-cac-ngan-hang.htm",
+      "note": "special-bond + market-price, since 2013; 79% of principal bought"
+     },
+     {
+      "d": "2025-12-31",
+      "key": "principal_resolved_cum_all",
+      "v": 384000,
+      "qualifier": "lower bound (hon)",
+      "u": "https://tapchikinhtetaichinh.vn/nghi-quyet-so-79-nqtw-va-yeu-cau-nang-tam-thi-truong-mua-ban-no-150018.html",
+      "note": "same as npl_resolution vamc_principal_resolved_cum"
+     }
+    ],
+    "vintage": "2026-10-09",
+    "verification": "search-excerpt; URL is the result the excerpt was attached to, page itself not opened. URLs for 2020 resolved (vneconomy Jan-2021) and 2021/2022 cumulative (vneconomy 10-year article) are the most likely of the results returned.",
+    "gaps": "2021, 2022, 2024 annual principal resolved; market-price purchases 2018, 2020-2022, 2024; special-bond purchases 2018, 2022-2025. Source to fill: VAMC year-end conference reports (sbvamc.vn) or SBV.",
+    "chart_note_en": "Annual principal resolved is VAMC only (special-bond + market-price loans); it is not the system-wide Resolution-42 total. Do not add rows."
+   },
+   "payment_channels": {
+    "chart": "fs-st-paych",
+    "unit": "% growth y/y (or vs same period of previous year)",
+    "periods": [
+     "2021-01..2021-11",
+     "2022-01..2022-11",
+     "2023",
+     "2024-01..2024-04",
+     "2024-01..2024-06",
+     "2025"
+    ],
+    "full_year": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "internet_volume_growth_pct": [
+     49.3,
+     89.36,
+     56,
+     47.48,
+     49.97,
+     54
+    ],
+    "internet_value_growth_pct": [
+     31.34,
+     40.55,
+     null,
+     30.2,
+     32.13,
+     36
+    ],
+    "mobile_volume_growth_pct": [
+     74.64,
+     116.1,
+     61,
+     59.26,
+     59.3,
+     37
+    ],
+    "mobile_value_growth_pct": [
+     86.58,
+     92.3,
+     null,
+     35.91,
+     38.53,
+     20
+    ],
+    "qr_volume_growth_pct": [
+     50.36,
+     182.5,
+     172,
+     null,
+     104.2,
+     50.94
+    ],
+    "qr_value_growth_pct": [
+     130.97,
+     210.6,
+     null,
+     null,
+     99.5,
+     null
+    ],
+    "atm_volume_growth_pct": [
+     null,
+     null,
+     null,
+     -14.15,
+     null,
+     -17.3
+    ],
+    "atm_value_growth_pct": [
+     null,
+     null,
+     -9,
+     -7.84,
+     null,
+     -6.02
+    ],
+    "qualifiers": [
+     "11 months y/y, SBV via Government portal excerpt",
+     "11 months y/y, SBV via aggregator blog",
+     "full year: \"hon 56%\", \"hon 61%\", \"gan 172%\"; ATM value \"giam hon 9%\"",
+     "4 months y/y (SBV Payments Dept press briefing 28/5/2024)",
+     "H1 y/y (already in payments.channels)",
+     "full year (already in payments.channels; QR value conflict not stored)"
+    ],
+    "urls": [
+     null,
+     "https://www.sapo.vn/blog/thanh-toan-khong-tien-mat-thanh-xu-huong-tat-yeu",
+     "https://vnbusiness.vn/thanh-toan-khong-dung-tien-mat-dat-khoang-11-ty-giao-dich-trong-nam-2023.html",
+     "https://www.sggp.org.vn/4-thang-dau-nam-thanh-toan-khong-tien-mat-tang-5711-post741973.html",
+     "https://thitruongtaichinhtiente.vn/thanh-toan-khong-dung-tien-mat-va-chuyen-doi-so-ngan-hang-tiep-tuc-dat-ket-qua-tich-cuc-60380.html",
+     "https://dttc.sggp.org.vn/thanh-toan-khong-dung-tien-mat-tang-gap-28-lan-gdp-post130092.html"
+    ],
+    "url_notes": [
+     "no URL captured for the 11M-2021 figures (Government e-portal per excerpt): show as \"source pending\" or drop this frame",
+     "aggregator blog citing SBV; secondary",
+     null,
+     null,
+     null,
+     "ATM from tapchikinhtetaichinh 144649; QR from htv (see payments.channels)"
+    ],
+    "vintage": "2026-10-09",
+    "verification": "search-excerpt; URL is the result the excerpt was attached to, page itself not opened",
+    "chart_note_en": "Only 2023 and 2025 are full years; the others are partial-year y/y windows and must be labelled as such (never compared as annual). Full-year 2021, 2022 and 2024 channel growth not found.",
+    "gaps": "Full-year 2019-2022 and 2024 by channel; ATM volume 2021-2023; QR value 2023-2025."
+   },
+   "cash_to_m2": {
+    "chart": "fs-st-paytg",
+    "unit": "% of M2",
+    "annual_series_key": "annual.cash_to_m2_pct_imf_derived",
+    "annual_note_en": "Year-end history 2015-2024 is already held in annual.cash_to_m2_pct_imf_derived (IMF currency outside depository corporations / IMF M2, derived). It is a different definition from the SBV ratio used for Dec-2025 (monthly.cash_to_m2_pct, 10.78%; SBV M2 methodology changed Oct-2025), so draw the two as separate labelled series; do not splice.",
+    "sbv_press_points": [
+     {
+      "d": "2019-05",
+      "v": 11.67,
+      "u": "https://doanhnghiephoinhap.vn/viet-nam-dang-co-bao-nhieu-tien-mat-trong-luu-thong-10246.html",
+      "basis": "SBV ratio via press",
+      "vintage": "2026-10-09",
+      "verification": "search-excerpt (page fetch blocked from sandbox)"
+     },
+     {
+      "d": "2019-12",
+      "v": 11.33,
+      "u": null,
+      "url_note": "excerpt quoted \"11,33% tinh den cuoi nam 2019\" without a usable URL; equals the IMF-derived 2019 value",
+      "basis": "SBV ratio via press",
+      "vintage": "2026-10-09",
+      "verification": "search-excerpt (page fetch blocked from sandbox)"
+     },
+     {
+      "d": "2020-08",
+      "v": 11.35,
+      "u": "https://cafef.vn/phuong-tien-thanh-toan/trang-3.html",
+      "url_note": "cafef tag page, not the article",
+      "basis": "SBV ratio via press",
+      "vintage": "2026-10-09",
+      "verification": "search-excerpt (page fetch blocked from sandbox)"
+     },
+     {
+      "d": "2022-01",
+      "v": 13.29,
+      "u": "https://nguoiquansat.vn/luong-tien-mat-luu-thong-trong-thang-1-2022-tang-hon-307-nghin-ty-dong-54390.html",
+      "basis": "SBV ratio via press; seasonal Tet peak",
+      "vintage": "2026-10-09",
+      "verification": "search-excerpt; URL is the result the excerpt was attached to, page itself not opened"
+     }
+    ],
+    "targets": [
+     {
+      "year": 2020,
+      "value": 10,
+      "op": "<",
+      "doc": "Decision 2545/QD-TTg (30/12/2016), non-cash payment scheme 2016-2020",
+      "u": "https://caselaw.vn/van-ban-phap-luat/137794-quyet-dinh-so-2545-qd-ttg-ngay-30-12-2016-cua-thu-tuong-chinh-phu-phe-duyet-de-an-phat-trien-thanh-toan-khong-dung-tien-mat-tai-viet-nam-giai-doan-2016-2020",
+      "outcome": "missed (IMF-derived 11.05% end-2020)",
+      "verification": "search-excerpt (page fetch blocked from sandbox)"
+     },
+     {
+      "year": 2025,
+      "value": 8,
+      "op": "<",
+      "doc": "Decision 986/QD-TTg (08/08/2018), Banking Sector Development Strategy to 2025 with orientations to 2030 (per search excerpt; the strategy also restates <10% by end-2020). Not 1813/QD-TTg, which sets the 25x GDP target.",
+      "u": "https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/thong-bao-van-ban-moi/email/21043/den-2025-giam-ty-trong-thanh-toan-tien-mat-con-duoi-8",
+      "outcome": "missed (SBV 10.78% Dec-2025)",
+      "verification": "search-excerpt (page fetch blocked from sandbox); decision number from a search summary, text of 986/QD-TTg not opened - verify before citing the number on the page"
+     }
+    ],
+    "gaps": "SBV-definition December ratios 2018-2024 (sbv.gov.vn page \"Tien mat luu thong tren tong phuong tien thanh toan\" unreachable)."
+   },
+   "financial_inclusion": {
+    "chart": "fs-st-incl",
+    "unit": "% of adults",
+    "findex": {
+     "definition": "World Bank Global Findex: account at a financial institution or mobile-money provider, % age 15+ (survey). Third definition; never merge with SBV administrative ratios.",
+     "points": [
+      {
+       "year": 2014,
+       "v": 30.9,
+       "u": "https://bbw.vn/viet-nam-tang-gap-doi-ti-le-tiep-can-tai-chinh-sau-10-nam-53844.html",
+       "note": "press citing Findex; another rounds to 31%",
+       "vintage": "2026-10-09",
+       "verification": "search-excerpt (page fetch blocked from sandbox)"
+      },
+      {
+       "year": 2017,
+       "v": 30.8,
+       "u": "https://cashmatters.org/blog/in-vietnam-69-of-the-population-is-unbanked--world-bank-2018",
+       "note": "Findex 2017 (\"69% unbanked\"); excerpt says bank account",
+       "vintage": "2026-10-09",
+       "verification": "search-excerpt (page fetch blocked from sandbox)"
+      },
+      {
+       "year": 2021,
+       "v": null,
+       "u": null,
+       "note": "Vietnam surveyed (WB microdata catalog 5861) but headline % not found in excerpts",
+       "vintage": "2026-10-09"
+      },
+      {
+       "year": 2024,
+       "v": 71,
+       "u": "https://bbw.vn/viet-nam-tang-gap-doi-ti-le-tiep-can-tai-chinh-sau-10-nam-53844.html",
+       "note": "press citing Global Findex 2025 report; 60% have a digital account",
+       "vintage": "2026-10-09",
+       "verification": "search-excerpt (page fetch blocked from sandbox)"
+      }
+     ]
+    },
+    "sbv": {
+     "definition": "SBV administrative statements: share of adults with a bank / payment account. Wording varies (\"tai khoan ngan hang\" vs \"tai khoan thanh toan\"); dates are the statement date unless a cut-off is given.",
+     "points": [
+      {
+       "d": "2019-12",
+       "v": 63,
+       "basis": "bank account; 43 million adults",
+       "u": "https://www.brandsvietnam.com/19792-63-nguoi-truong-thanh-co-tai-khoan-ngan-hang",
+       "vintage": "2026-10-09",
+       "verification": "search-excerpt (page fetch blocked from sandbox)"
+      },
+      {
+       "d": "2022-06-17",
+       "v": 66,
+       "qualifier": "approx (\"gan 66%\")",
+       "basis": "payment account; stated at a 17/6 conference (year inferred 2022 from context, not explicit)",
+       "u": "https://thoibaotaichinhvietnam.vn/da-co-66-nguoi-truong-thanh-co-tai-khoan-thanh-toan-120544.html",
+       "vintage": "2026-10-09",
+       "verification": "search-excerpt (page fetch blocked from sandbox); date uncertain"
+      },
+      {
+       "d": "2023-05-18",
+       "v": 74.63,
+       "basis": "bank account; Governor at Banking Digital Transformation Day",
+       "u": "https://nhadautu.vn/gan-75-nguoi-truong-thanh-da-co-tai-khoan-ngan-hang-d76566.html",
+       "vintage": "2026-10-09",
+       "verification": "search-excerpt (page fetch blocked from sandbox)"
+      },
+      {
+       "d": "2024-01-09",
+       "v": 77.41,
+       "basis": "payment account; Deputy Governor at payments conference (statement date, likely end-2023 data)",
+       "u": "https://thitruongtaichinhtiente.vn/so-nguoi-truong-thanh-co-tai-khoan-thanh-toan-dat-77-41-55449.html",
+       "vintage": "2026-10-09",
+       "verification": "search-excerpt (page fetch blocked from sandbox)"
+      },
+      {
+       "d": "2024-12",
+       "v": 87,
+       "qualifier": "lower bound (\"hon 87%\" / \"gan 87%\")",
+       "basis": "bank account; with 204.5 million personal payment accounts at end-2024",
+       "u": "https://baodauthau.vn/87-nguoi-truong-thanh-tai-viet-nam-co-tai-khoan-tai-ngan-hang-post191567.html",
+       "vintage": "2026-10-09",
+       "verification": "search-excerpt (page fetch blocked from sandbox); one excerpt dates the statement 26/12/2025, so the period may be 2025 - check"
+      },
+      {
+       "d": "2025-12",
+       "v": 86.97,
+       "basis": "payment account (SBV report, 24/02/2026)",
+       "u": "https://thitruongtaichinhtiente.vn/co-ban-hoan-thanh-62-62-nhiem-vu-chien-luoc-tai-chinh-toan-dien-giai-doan-2020-2025-77935.html",
+       "vintage": "2026-10-08",
+       "note": "same as financial_inclusion.adults_with_account_pct"
+      },
+      {
+       "d": "2025-12",
+       "v": 88.96,
+       "basis": "aged 15+ with a bank account (press citing SBV)",
+       "u": "https://tapchikinhtetaichinh.vn/tu-89-len-95-nguoi-truong-thanh-co-tai-khoan-ngan-hang-trong-5-nam-toi-157493.html",
+       "vintage": "2026-10-08",
+       "note": "same as financial_inclusion.adults_with_account_pct"
+      }
+     ]
+    },
+    "targets": [
+     {
+      "year": 2025,
+      "v": 80,
+      "op": ">=",
+      "doc": "National Financial Inclusion Strategy to 2025 (Decision 149/QD-TTg, 22/01/2020); restated in Decision 1813/QD-TTg",
+      "u": "https://luatvietnam.vn/tai-chinh/quyet-dinh-1813-qd-ttg-211698-d1.html",
+      "kind": "target"
+     },
+     {
+      "year": 2030,
+      "v": 95,
+      "op": ">=",
+      "doc": "Financial inclusion strategy 2026-2030 (press)",
+      "u": "https://mekongasean.vn/dat-muc-tieu-95-nguoi-truong-thanh-co-tai-khoan-ngan-hang-vao-nam-2030-52093.html",
+      "kind": "target"
+     }
+    ],
+    "chart_note_en": "Two SBV wordings (bank vs payment account) and Findex are three measures: draw separately; the 2019-2025 SBV points are statement dates, not uniform year-ends.",
+    "gaps": "Findex 2021 headline; SBV year-end 2020, 2021, 2022."
+   },
+   "compulsory_transfers": {
+    "chart": "fs-st-xfer",
+    "status": "no Finance data needed: the chart is an event timeline read from policy.json POLICY.mon instrument \"compulsory_transfer\" (history[].date). It already has dated history; animate by stepping through the events. Owner: Policy."
+   },
+   "other_services": {
+    "chart": "fs-st-os",
+    "status": "one-off: the SBV publishes no official breakdown of \"Cac hoat dong dich vu khac\" for any period; the chart is an estimate from components of different months (Jun-Aug 2026). No timeline; components (real-estate credit, consumer credit) have their own histories in flows and could be shown as separate series, not as a breakdown."
+   },
+   "npl_onbalance_sbv_2023_2024": {
+    "chart": "fs-st-npl / fs-ch-npl (plan F15/F29)",
+    "unit": "% of credit, whole CI system, on-balance (SBV)",
+    "definition_note": "SBV whole-system on-balance NPL incl. the 5 weak banks; same family as ratios.npl_onbalance_sbv_annual_pct. Not the commercial-bank-only 4.89%/4.35% (ratios.npl_onbalance_commercial_banks_pct). Quarter-ends where found; month-ends kept with their month, never relabelled as quarters.",
+    "points": [
+     {
+      "d": "2022-12",
+      "v": 2.03,
+      "u": "https://nguoiquansat.vn/ty-le-no-xau-noi-bang-tang-len-4-75-vao-cuoi-thang-7-2024-160061.html",
+      "note": "conflict with 2.0% held in annual series (different SBV statements)"
+     },
+     {
+      "d": "2023-02",
+      "v": 2.91,
+      "u": "https://baodauthau.vn/den-cuoi-thang-22023-ty-le-no-xau-noi-bang-o-muc-291-post138003.html"
+     },
+     {
+      "d": "2023-07",
+      "v": 3.56,
+      "u": "https://baodauthau.vn/no-xau-noi-bang-len-muc-356-post144894.html"
+     },
+     {
+      "d": "2023-Q3",
+      "v": null,
+      "u": null,
+      "note": "not found"
+     },
+     {
+      "d": "2023-12",
+      "v": 4.55,
+      "u": "https://vneconomy.vn/canh-bao-no-xau-noi-bang-toan-he-thong-la-4-55-va-ty-le-tin-dung-gdp-.htm",
+      "note": "same as annual series; URL as held there"
+     },
+     {
+      "d": "2024-01",
+      "v": 4.79,
+      "u": "https://vnbusiness.vn/lieu-co-dot-pha-trong-xu-ly-no-xau-nam-2024.html",
+      "url_note": "most likely result"
+     },
+     {
+      "d": "2024-Q1",
+      "v": null,
+      "u": null,
+      "note": "not found"
+     },
+     {
+      "d": "2024-05",
+      "v": 4.94,
+      "u": "https://vneconomy.vn/gan-97-nghin-ty-dong-no-xau-duoc-xu-ly-trong-5-thang-dau-nam-2024.htm",
+      "note": "NPL 833.3 trillion; higher than end-June 4.56% - sources do not explain"
+     },
+     {
+      "d": "2024-06",
+      "v": 4.56,
+      "u": "https://thoibaotaichinhvietnam.vn/no-xau-gia-tang-bo-dem-mong-ve-day-6-nam-164141-164141.html",
+      "note": "NPL ~795.5 trillion, +5.77% YTD",
+      "url_note": "most likely result"
+     },
+     {
+      "d": "2024-07",
+      "v": 4.75,
+      "u": "https://nguoiquansat.vn/ty-le-no-xau-noi-bang-tang-len-4-75-vao-cuoi-thang-7-2024-160061.html"
+     },
+     {
+      "d": "2024-09",
+      "v": 4.55,
+      "u": "https://vietnamfinance.vn/thong-doc-nguyen-thi-hong-no-xau-xu-huong-gia-tang-lai-suat-kho-giam-them-d118654.html",
+      "note": "Governor at NA Q&A 11/11/2024"
+     },
+     {
+      "d": "2024-12",
+      "v": null,
+      "u": null,
+      "note": "whole-system figure not found; commercial banks 4.35% held separately"
+     }
+    ],
+    "vintage": "2026-10-09",
+    "verification": "search-excerpt; URL is the result the excerpt was attached to, page itself not opened",
+    "gaps": "2023-Q3 (Sep-2023), 2024-Q1 (Mar-2024), 2024-Q4 whole-system. The SBV chart \"Ty le no xau theo quy\" (source of ratios.npl_onbalance_sbv_pct from 2025-Q1) would fill them when reachable."
+   },
+   "bank_metrics_backfill": {
+    "chart": "fs-st-wmult (plan F13/M22)",
+    "note_en": "Kept apart from why.series.* because the page reads those with a fixed 2025-2026.75 axis and uses values[0] as the start point; merge only when the chart axis is data-driven. Provider differs per point; do not draw as one continuous line without the provider label.",
+    "cof": [
+     {
+      "d": "2023-Q3",
+      "v": 5.2,
+      "provider": "VPBank Securities",
+      "u": "https://www.tinnhanhchungkhoan.vn/casa-cua-hau-het-ngan-hang-trong-xu-huong-giam-post374425.html",
+      "url_note": "most likely result",
+      "unit": "% cost of funds, listed banks"
+     },
+     {
+      "d": "2024-Q3",
+      "v": 3.9,
+      "provider": "VPBank Securities",
+      "u": "https://www.tinnhanhchungkhoan.vn/casa-cua-hau-het-ngan-hang-trong-xu-huong-giam-post374425.html",
+      "url_note": "most likely result",
+      "unit": "% cost of funds, listed banks"
+     },
+     {
+      "d": "2024-Q4",
+      "v": null,
+      "note": "not found"
+     },
+     {
+      "d": "2025-Q1",
+      "v": null,
+      "note": "Timvest: +3 bps q/q, level not given"
+     }
+    ],
+    "casa": [
+     {
+      "d": "2023-Q3",
+      "v": 19.3,
+      "provider": "VPBank Securities",
+      "u": "https://www.tinnhanhchungkhoan.vn/casa-cua-hau-het-ngan-hang-trong-xu-huong-giam-post374425.html",
+      "url_note": "most likely result",
+      "unit": "% of customer deposits, listed banks"
+     },
+     {
+      "d": "2024-Q2",
+      "v": 21.4,
+      "provider": "VPBank Securities",
+      "u": "https://www.tinnhanhchungkhoan.vn/casa-cua-hau-het-ngan-hang-trong-xu-huong-giam-post374425.html",
+      "url_note": "most likely result",
+      "unit": "% of customer deposits, listed banks"
+     },
+     {
+      "d": "2024-Q3",
+      "v": 20.7,
+      "provider": "VPBank Securities",
+      "u": "https://www.tinnhanhchungkhoan.vn/casa-cua-hau-het-ngan-hang-trong-xu-huong-giam-post374425.html",
+      "url_note": "most likely result",
+      "unit": "% of customer deposits, listed banks"
+     },
+     {
+      "d": "2025-Q1",
+      "v": null,
+      "note": "VNBA/Vietstock: 22 of 28 banks lower YTD, CASA total ~2.32 quadrillion (-4% YTD); no ratio"
+     }
+    ],
+    "nim": [
+     {
+      "d": "2024-H1",
+      "v": 3.87,
+      "provider": "MBS (6-month, listed banks; -18 bps y/y)",
+      "u": "https://www.mbs.com.vn/media/trnhn12j/banking_20240828.pdf",
+      "unit": "% (annualised, H1)"
+     },
+     {
+      "d": "2024-Q3",
+      "v": 3.37,
+      "provider": "VCBS sector report (\"-3 bps vs end-2023\"; likely 9M cumulative)",
+      "u": "https://www.vcbs.com.vn/api/v1/ttpt-reports/download-with-token?download_token=911f0983-6432-49aa-b1fb-24ce37c2eba4&locale=vi",
+      "unit": "%",
+      "note": "basis (quarter vs YTD) unclear"
+     },
+     {
+      "d": "2024-FY",
+      "v": 3.5,
+      "qualifier": "approx",
+      "provider": "FiinRatings",
+      "u": "https://fiinratings.vn/Data/2026/Report/FiinRatings_Vietnam-Banking-2026-Outlook.pdf",
+      "unit": "%",
+      "note": "conflict: why.series.nim holds 3.26 for 2024-FY (other provider)"
+     }
+    ],
+    "ldr": [
+     {
+      "d": "2024-Q3",
+      "v": null,
+      "note": "listed-bank simple LDR before 2025-Q2 not found"
+     }
+    ],
+    "vintage": "2026-10-09",
+    "verification": "search-excerpt; URL is the result the excerpt was attached to, page itself not opened",
+    "gaps": "Q4-2024 and Q1-2025 COF, CASA ratio, NIM (quarterly), simple LDR before 2025-Q2. Broker PDFs (mbs.com.vn, yuanta, vdsc) blocked."
+   },
+   "deposit12m_backfill": {
+    "chart": "fs-ch-rates / fs-st-wmult (plan P08/F28)",
+    "unit": "% p.a., average 12-month deposit rate (MBS)",
+    "note_en": "MBS groups vary between reports (joint-stock vs private vs large/small); each point keeps its group. Not appended to why.series.deposit12m_private_banks_mbs (that series uses values[0] as the start point and private-bank group only).",
+    "points": [
+     {
+      "d": "2024-12",
+      "v": 5.1,
+      "group": "joint-stock commercial banks (+0.2 pp YTD); SOCBs 4.7",
+      "u": "https://mbs.com.vn/media/irlixpea/bctt-tiền-tệ_20250109_tv.pdf",
+      "url_note": "most likely result (MBS PDF, blocked)"
+     },
+     {
+      "d": "2025-06",
+      "v": 4.87,
+      "group": "joint-stock commercial banks (-17 bps YTD); SOCBs 4.7",
+      "u": "https://thoibaotaichinhvietnam.vn/lai-suat-huy-dong-lang-song-lai-vay-tiep-da-ha-nhiet-180051-180051.html",
+      "url_note": "most likely result"
+     },
+     {
+      "d": "2025-09",
+      "v": 4.89,
+      "group": "private banks (-16 bps YTD); system 4.78",
+      "u": "https://nguoiquansat.vn/mbs-du-bao-lai-suat-huy-dong-neo-thap-den-cuoi-2025-247338.html",
+      "url_note": "most likely result"
+     },
+     {
+      "d": "2025-10",
+      "v": 5.34,
+      "group": "private banks",
+      "u": "https://mbs.com.vn/files/uploads/2025/11/BC_TTTiente_20251104.pdf",
+      "url_note": "MBS PDF (blocked); figure from search excerpt"
+     },
+     {
+      "d": "2025-12-15",
+      "v": 5.82,
+      "group": "private banks",
+      "u": "https://thoibaotaichinhvietnam.vn/mbs-du-bao-ba-nhan-to-gay-suc-ep-day-lai-suat-huy-dong-tang-nam-2026-189573.html",
+      "note": "already in why.series"
+     },
+     {
+      "d": "2026-04",
+      "v": null,
+      "group": "private banks",
+      "note": "only size groups found: large banks 8.16, small/mid 8.45 (different grouping, not stored as private)",
+      "u": "https://vneconomy.vn/lai-suat-huy-dong-ky-han-12-thang-binh-quan-84nam.htm",
+      "url_note": "most likely result"
+     }
+    ],
+    "vintage": "2026-10-09",
+    "verification": "search-excerpt; URL is the result the excerpt was attached to, page itself not opened",
+    "gaps": "Monthly Oct-2024..Jun-2026 is mostly missing (only 2024-12, 2025-06, 2025-09, 2025-10, 2025-12 found). MBS monthly money-market PDFs (mbs.com.vn) would fill it but are blocked from the sandbox."
+   }
   }
  }
 }
