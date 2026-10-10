@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Society agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "qc": "QC/freshness run 2026-10-06; 2026-10-07 added tfr_2025 (6 provinces, excerpt-verified) and null *_2025 vital-rate keys per audit S03/S04; GRDP 9M-2026 for Điện Biên, Quảng Trị, Huế, Gia Lai rechecked - still not published as 9-month figures (null). Data status as of 7 Oct 2026.; 2026-10-09 (animation history, user request): POP_SERIES.age_sex single years 2017-2030, POP_SERIES.un_annual (31 Dec), POP_SERIES.nat_series 2017-2025 + POP_SERIES.targets, SOC_GRDP.*_series 2018-2025, WORLD_RANK.*.history / history_wpp / history_imf / history_wdi",
+  "qc": "QC/freshness run 2026-10-06; 2026-10-07 added tfr_2025 (6 provinces, excerpt-verified) and null *_2025 vital-rate keys per audit S03/S04; GRDP 9M-2026 for Điện Biên, Quảng Trị, Huế, Gia Lai rechecked - still not published as 9-month figures (null). Data status as of 7 Oct 2026.; 2026-10-09 (animation history, user request): POP_SERIES.age_sex single years 2017-2030, POP_SERIES.un_annual (31 Dec), POP_SERIES.nat_series 2017-2025 + POP_SERIES.targets, SOC_GRDP.*_series 2018-2025, WORLD_RANK.*.history / history_wpp / history_imf / history_wdi; 2026-10-10 (user request): SOC_GRDP 2018-2019 per capita for the 23 merged provinces and 2018-2019/2021-2023 GRDP levels + population for all 34 (old-63 sum, NSO tables via GitHub mirror); WORLD_RANK.*.history_wb (WDI 2017-latest) for 11 demographic/size indicators",
   "sources": {
    "POP_SERIES.actual": "NSO PX V02.02 average population (2025 = Sơ bộ) https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.02.px/",
    "POP_SERIES.nat": "NSO PX V02.02/V02.08/V02.11/V02.15/V02.24, reference year 2024 (population change survey 1/4/2024)",
@@ -19,7 +19,9 @@
    "POP_SERIES.nat_series": "NSO PX-Web V02.02/V02.08/V02.11/V02.15/V02.24 national series 2017-2025 (2025 Sơ bộ), cached 2026-10-04 in tools/build/demo/demo.json; WDI cross-check separate",
    "POP_SERIES.targets": "QĐ 1679/QĐ-TTg (TFR 2.1, e0 75, pop ~104 m, SRB natural balance), NQ 72-NQ/TW (e0 75.5), NQ 148/NQ-CP + NQ 06-NQ/TW (urbanisation >=45% 2025, >50% 2030); search-excerpt verified, see each entry",
    "SOC_GRDP.*_series": "grdp_pc_mvnd_series / growth_series 2020-2025 = NSO PL.V03.02 / PL.V03.01 (34 units, official 2020-2023, 2024 Sơ bộ, 2025 Ước tính) https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; 2018-2019 only for the 11 unmerged provinces = NSO old-basis V03.12 / V03.10 (same values as the 34-unit table for 2020-2025, checked) https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; merged provinces 2018-2019 null (needs old-province average population, NSO V02 provincial table, blocked). grdp_bn_series / pop_avg_thousand_series: only 2020, 2024, 2025 held; 2018-2019, 2021-2023 null (34-unit population PL.V02.02-04 not cached, pxweb blocked). series_basis per year: nso_34 | nso_63_unchanged_boundary | null.",
-   "WORLD_RANK.*.history*": "pop: WDI via datahub GitHub mirror; tfr/life_exp/srb: UN WPP 2024 ranked over the 217 WB economies; g_*: IMF WEO April 2026 (+ g_gdp WDI April-2026 mirror 2017-2023). density/urban: gap."
+   "WORLD_RANK.*.history*": "pop: WDI via datahub GitHub mirror; tfr/life_exp/srb: UN WPP 2024 ranked over the 217 WB economies; g_*: IMF WEO April 2026 (+ g_gdp WDI April-2026 mirror 2017-2023). density/urban: gap.",
+   "SOC_GRDP.series_old63": "2018-2019 per capita for the 23 merged provinces (series_basis 'old63_sum') and grdp_bn_series / pop_avg_thousand_series 2018, 2019, 2021-2023 for all 34 (level_basis): for each of the 63 old provinces GRDP (bn VND, current prices) = NSO E03.12 GRDP per capita (mill. VND; 2018-2023 official) x NSO E02.03-07 average population (thous.), summed over the old provinces in series_old63_members (merger list = HC_KEY_MAP / NAME_FRAG_MAP in the page); per capita = summed GRDP / summed population. Source tables: NSO PX E03.12 and E02.03-07 (English PX; https://www.nso.gov.vn/en/px-web?pxid=E0312 , pxid=E0203-07), read from the GitHub mirror QuocAnhHo/Vietnam-socioeconomic-statistics (snapshot collected Sept 2026, values checked against source cells by the mirror) https://raw.githubusercontent.com/QuocAnhHo/Vietnam-socioeconomic-statistics/main/data/by_table/E0312.csv ; https://raw.githubusercontent.com/QuocAnhHo/Vietnam-socioeconomic-statistics/main/data/by_table/E0203-07.csv ; E03.12 values equal the NSO Vietnamese PX V03.12 cache (tools/build/grdp/o_V03.12.json, updated 2026-08-15) to 2 dp. Validation: the same method reproduces NSO's own 34-province per capita (PL.V03.02) for 2020-2025 within 0.01 mill. VND for all 34 and the 34-unit average population exactly; the 11 unmerged provinces' 2018-2019 values are identical. Cross-check, sum of 63 old-province GRDP vs NSO GDP (current prices, ECONFLOW.gdp.GDP): 2018 7,028,190 vs 7,009,042 bn (+0.27%); 2019 7,711,469 vs 7,707,200 bn (+0.06%); 2020 8,030,636 vs 8,044,386 bn (-0.17%); 2021 8,521,564 vs 8,487,476 bn (+0.40%); 2022 9,665,253 vs 9,621,372 bn (+0.46%); 2023 10,287,121 vs 10,319,059 bn (-0.31%); 2024 11,394,534 vs 11,510,329 bn (-1.01%); 2025 12,780,572 vs 12,847,571 bn (-0.52%). Growth 2018-2019 for merged provinces left null (needs constant-price levels; not interpolated).",
+   "WORLD_RANK.history_wb": "Demographic/size rank timelines 2017-latest: World Bank WDI via GitHub mirrors (api.worldbank.org is blocked from the sandbox): Open Numbers ddf--open_numbers--world_development_indicators (created 2026-05-06; to 2024, area/density to 2023), datahub population.csv for SP.POP.TOTL (to 2025); 2025 points for urban/age65/dependency = held now (WDI API July 2026). Universe = the 217 WB economies used by now/prev; Puerto Rico and US Virgin Islands (missing from the Open Numbers mirror) placed from UN WPP 2024 / WDI values as described per indicator. All 22 held now/prev ranks reproduced. GDP indicators: history_imf (IMF WEO April 2026, 2017-2030, 2026+ projections) re-verified against tools/build/grdp/imf_*.json - unchanged."
   },
   "as_of": "2026-10-09"
  },
@@ -2360,8 +2362,8 @@
     "2026": "https://baove.congly.vn/tuyen-quang-khoi-du-dia-dich-vu-tang-luc-cho-chang-cuoi-nam-541745.html"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 30.92,
+    "2019": 33.64,
     "2020": 36.34,
     "2021": 37.63,
     "2022": 41.59,
@@ -2380,34 +2382,48 @@
     "2025": 6.4
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 50235,
+    "2019": 55312,
     "2020": 60439,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 63546,
+    "2022": 70637,
+    "2023": 74882,
     "2024": 83704,
     "2025": 95471
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1624.8,
+    "2019": 1644.4,
     "2020": 1663.14,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1688.76,
+    "2022": 1698.5,
+    "2023": 1712.11,
     "2024": 1731.66,
     "2025": 1748.25
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Ha Giang",
+    "Tuyen Quang"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Cao Bằng": {
@@ -2469,22 +2485,22 @@
     "2025": 7.22
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 16194,
+    "2019": 17461,
     "2020": 19090,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 19439,
+    "2022": 21021,
+    "2023": 22451,
     "2024": 24711,
     "2025": 27914
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 528.7,
+    "2019": 530.9,
     "2020": 533.09,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 542.22,
+    "2022": 543.05,
+    "2023": 547.86,
     "2024": 558.46,
     "2025": 562.93
    },
@@ -2497,6 +2513,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Cao Bang"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Lai Châu": {
@@ -2558,22 +2587,22 @@
     "2025": 7.52
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 18363,
+    "2019": 17977,
     "2020": 20357,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 21367,
+    "2022": 23922,
+    "2023": 24855,
     "2024": 29917,
     "2025": 39807
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 453.4,
+    "2019": 462.6,
     "2020": 469.81,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 478.43,
+    "2022": 482.1,
+    "2023": 489.28,
     "2024": 495.47,
     "2025": 501.16
    },
@@ -2586,6 +2615,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Lai Chau"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Lào Cai": {
@@ -2627,8 +2669,8 @@
     "2026": "https://congluan.vn/lao-cai-tang-truong-grdp-9-thang-dat-909-phan-dau-tang-truong-ca-nam-tren-10-post362711.html"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 47.16,
+    "2019": 51.71,
     "2020": 55.06,
     "2021": 57.71,
     "2022": 64.58,
@@ -2647,34 +2689,48 @@
     "2025": 8.14
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 72403,
+    "2019": 80470,
     "2020": 86874,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 92604,
+    "2022": 104480,
+    "2023": 109422,
     "2024": 121485,
     "2025": 141887
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1535.4,
+    "2019": 1556.3,
     "2020": 1577.94,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1604.56,
+    "2022": 1617.84,
+    "2023": 1635.45,
     "2024": 1656.59,
     "2025": 1675.67
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Lao Cai",
+    "Yen Bai"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Thái Nguyên": {
@@ -2716,8 +2772,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 75.04,
+    "2019": 80.57,
     "2020": 83.95,
     "2021": 88.66,
     "2022": 96.21,
@@ -2736,34 +2792,48 @@
     "2025": 6.33
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 118976,
+    "2019": 129343,
     "2020": 136366,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 146007,
+    "2022": 159735,
+    "2023": 166051,
     "2024": 175090,
     "2025": 192385
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1585.6,
+    "2019": 1605.3,
     "2020": 1624.33,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1646.86,
+    "2022": 1660.34,
+    "2023": 1676.85,
     "2024": 1694.51,
     "2025": 1711.58
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Bac Kan",
+    "Thai Nguyen"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Điện Biên": {
@@ -2825,22 +2895,22 @@
     "2025": 7.34
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 18099,
+    "2019": 19339,
     "2020": 20302,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 22066,
+    "2022": 25119,
+    "2023": 27909,
     "2024": 31348,
     "2025": 35631
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 590.5,
+    "2019": 601.7,
     "2020": 613.48,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 625.09,
+    "2022": 635.92,
+    "2023": 646.18,
     "2024": 656.71,
     "2025": 667.42
    },
@@ -2853,6 +2923,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Dien Bien"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Lạng Sơn": {
@@ -2914,22 +2997,22 @@
     "2025": 8.06
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 29678,
+    "2019": 32799,
     "2020": 34887,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 37592,
+    "2022": 40891,
+    "2023": 46687,
     "2024": 50764,
     "2025": 58223
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 775.9,
+    "2019": 782.8,
     "2020": 788.71,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 796.94,
+    "2022": 802.09,
+    "2023": 807.31,
     "2024": 813.99,
     "2025": 820.63
    },
@@ -2942,6 +3025,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Lang Son"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Sơn La": {
@@ -2998,22 +3094,22 @@
     "2025": 8.03
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 49780,
+    "2019": 49707,
     "2020": 55040,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 56982,
+    "2022": 63498,
+    "2023": 66770,
     "2024": 76353,
     "2025": 95738
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1233.1,
+    "2019": 1252.7,
     "2020": 1270.56,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1287.72,
+    "2022": 1300.13,
+    "2023": 1313.34,
     "2024": 1330.58,
     "2025": 1341.22
    },
@@ -3026,6 +3122,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Son La"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Phú Thọ": {
@@ -3067,8 +3176,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 62.69,
+    "2019": 67.33,
     "2020": 70.82,
     "2021": 75.41,
     "2022": 84.32,
@@ -3087,34 +3196,49 @@
     "2025": 10.52
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 215555,
+    "2019": 234091,
     "2020": 248899,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 269285,
+    "2022": 302719,
+    "2023": 318082,
     "2024": 356722,
     "2025": 412151
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3438.4,
+    "2019": 3477.0,
     "2020": 3514.33,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3571.02,
+    "2022": 3589.92,
+    "2023": 3622.67,
     "2024": 3663.67,
     "2025": 3701.53
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Hoa Binh",
+    "Phu Tho",
+    "Vinh Phuc"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Bắc Ninh": {
@@ -3156,8 +3280,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 91.25,
+    "2019": 95.45,
     "2020": 101.17,
     "2021": 108.61,
     "2022": 120.6,
@@ -3176,34 +3300,48 @@
     "2025": 10.27
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 284228,
+    "2019": 304380,
     "2020": 329876,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 362549,
+    "2022": 407526,
+    "2023": 422830,
     "2024": 460316,
     "2025": 522116
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3114.8,
+    "2019": 3189.0,
     "2020": 3260.75,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3338.14,
+    "2022": 3379.18,
+    "2023": 3440.18,
     "2024": 3509.19,
     "2025": 3572.35
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Bac Giang",
+    "Bac Ninh"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Quảng Ninh": {
@@ -3265,22 +3403,22 @@
     "2025": 11.89
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 165348,
+    "2019": 189857,
     "2020": 208137,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 229893,
+    "2022": 266130,
+    "2023": 294396,
     "2024": 326930,
     "2025": 368707
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1303.9,
+    "2019": 1324.8,
     "2020": 1337.61,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1350.8,
+    "2022": 1362.88,
+    "2023": 1381.17,
     "2024": 1396.52,
     "2025": 1411.58
    },
@@ -3293,6 +3431,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Quang Ninh"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Hà Nội": {
@@ -3354,22 +3505,22 @@
     "2025": 8.16
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 883258,
+    "2019": 973858,
     "2020": 1017595,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1069092,
+    "2022": 1190439,
+    "2023": 1285400,
     "2024": 1420313,
     "2025": 1588060
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 7914.5,
+    "2019": 8093.9,
     "2020": 8246.54,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 8330.8,
+    "2022": 8435.65,
+    "2023": 8587.08,
     "2024": 8717.63,
     "2025": 8857.53
    },
@@ -3382,6 +3533,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Ha Noi"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Hải Phòng": {
@@ -3423,8 +3587,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 83.58,
+    "2019": 95.44,
     "2020": 102.28,
     "2021": 115.46,
     "2022": 131.11,
@@ -3443,34 +3607,48 @@
     "2025": 11.81
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 325487,
+    "2019": 375083,
     "2020": 406063,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 462916,
+    "2022": 528997,
+    "2023": 575189,
     "2024": 648266,
     "2025": 734519
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3894.1,
+    "2019": 3930.2,
     "2020": 3970.27,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 4009.2,
+    "2022": 4034.84,
+    "2023": 4061.92,
     "2024": 4102.75,
     "2025": 4149.87
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Hai Duong",
+    "Hai Phong"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Hưng Yên": {
@@ -3512,8 +3690,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 50.78,
+    "2019": 56.69,
     "2020": 60.49,
     "2021": 66.42,
     "2022": 75.97,
@@ -3532,34 +3710,48 @@
     "2025": 8.78
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 157243,
+    "2019": 176774,
     "2020": 189904,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 209789,
+    "2022": 240780,
+    "2023": 260733,
     "2024": 285491,
     "2025": 319824
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3096.5,
+    "2019": 3118.0,
     "2020": 3139.33,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3158.5,
+    "2022": 3169.39,
+    "2023": 3183.35,
     "2024": 3208.44,
     "2025": 3235.17
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Hung Yen",
+    "Thai Binh"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Ninh Bình": {
@@ -3601,8 +3793,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 45.19,
+    "2019": 51.39,
     "2020": 55.84,
     "2021": 59.03,
     "2022": 65.31,
@@ -3621,34 +3813,49 @@
     "2025": 10.65
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 162940,
+    "2019": 186037,
     "2020": 203044,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 219555,
+    "2022": 245946,
+    "2023": 266832,
     "2024": 301534,
     "2025": 342779
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3606.0,
+    "2019": 3619.9,
     "2020": 3636.09,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3719.1,
+    "2022": 3765.65,
+    "2023": 3790.11,
     "2024": 3818.76,
     "2025": 3843.77
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Ha Nam",
+    "Nam Dinh",
+    "Ninh Binh"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Thanh Hóa": {
@@ -3710,22 +3917,22 @@
     "2025": 8.27
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 146196,
+    "2019": 176202,
     "2020": 187876,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 214066,
+    "2022": 257120,
+    "2023": 271561,
     "2024": 306098,
     "2025": 333754
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3631.3,
+    "2019": 3645.8,
     "2020": 3664.94,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3716.43,
+    "2022": 3722.06,
+    "2023": 3739.48,
     "2024": 3764.24,
     "2025": 3771.77
    },
@@ -3738,6 +3945,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Thanh Hoa"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Nghệ An": {
@@ -3799,22 +4019,22 @@
     "2025": 8.44
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 120202,
+    "2019": 132987,
     "2020": 144902,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 157567,
+    "2022": 175103,
+    "2023": 189102,
     "2024": 210932,
     "2025": 236488
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3291.4,
+    "2019": 3337.2,
     "2020": 3365.2,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3409.81,
+    "2022": 3419.99,
+    "2023": 3441.97,
     "2024": 3472.29,
     "2025": 3497.75
    },
@@ -3827,6 +4047,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Nghe An"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Hà Tĩnh": {
@@ -3888,22 +4121,22 @@
     "2025": 8.78
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 70082,
+    "2019": 78115,
     "2020": 82405,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 90539,
+    "2022": 94697,
+    "2023": 101267,
     "2024": 110126,
     "2025": 120845
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1280.5,
+    "2019": 1290.3,
     "2020": 1296.62,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1314.06,
+    "2022": 1317.25,
+    "2023": 1323.75,
     "2024": 1329.83,
     "2025": 1335.14
    },
@@ -3916,6 +4149,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Ha Tinh"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Quảng Trị": {
@@ -3957,8 +4203,8 @@
     "2026": null
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 42.11,
+    "2019": 46.48,
     "2020": 49.02,
     "2021": 52.87,
     "2022": 59.66,
@@ -3977,34 +4223,48 @@
     "2025": 8.0
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 64040,
+    "2019": 71112,
     "2020": 75461,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 82393,
+    "2022": 93360,
+    "2023": 100849,
     "2024": 110628,
     "2025": 123401
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1520.8,
+    "2019": 1530.0,
     "2020": 1539.37,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1558.45,
+    "2022": 1564.81,
+    "2023": 1572.86,
     "2024": 1583.97,
     "2025": 1594.13
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Quang Binh",
+    "Quang Tri"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Huế": {
@@ -4061,22 +4321,22 @@
     "2025": 8.5
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 47875,
+    "2019": 52872,
     "2020": 55052,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 58648,
+    "2022": 65900,
+    "2023": 72338,
     "2024": 79814,
     "2025": 89600
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1125.4,
+    "2019": 1129.5,
     "2020": 1133.59,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1153.8,
+    "2022": 1160.22,
+    "2023": 1166.55,
     "2024": 1178.55,
     "2025": 1190.34
    },
@@ -4089,6 +4349,19 @@
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Thua Thien-Hue"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population (single old province)",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Đà Nẵng": {
@@ -4130,8 +4403,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 74.15,
+    "2019": 79.63,
     "2020": 75.66,
     "2021": 78.87,
     "2022": 89.45,
@@ -4150,34 +4423,48 @@
     "2025": 9.18
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 193169,
+    "2019": 210099,
     "2020": 202360,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 214029,
+    "2022": 245063,
+    "2023": 250989,
     "2024": 280540,
     "2025": 316054
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 2605.2,
+    "2019": 2638.6,
     "2020": 2674.52,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 2713.97,
+    "2022": 2739.57,
+    "2023": 2771.27,
     "2024": 2819.94,
     "2025": 2856.38
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Da Nang",
+    "Quang Nam"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Quảng Ngãi": {
@@ -4219,8 +4506,8 @@
     "2026": "http://vov.vn/kinh-te/9-thang-grdp-tinh-quang-ngai-tang-916-so-voi-cung-ky-post1338093.vov"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 58.69,
+    "2019": 61.29,
     "2020": 61.26,
     "2021": 70.91,
     "2022": 85.07,
@@ -4239,34 +4526,48 @@
     "2025": 10.02
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 103472,
+    "2019": 108801,
     "2020": 109595,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 128551,
+    "2022": 155297,
+    "2023": 160801,
     "2024": 172151,
     "2025": 191614
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1762.9,
+    "2019": 1775.3,
     "2020": 1789.04,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1812.91,
+    "2022": 1825.56,
+    "2023": 1839.38,
     "2024": 1861.72,
     "2025": 1881.24
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Kon Tum",
+    "Quang Ngai"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Gia Lai": {
@@ -4308,8 +4609,8 @@
     "2026": null
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 44.79,
+    "2019": 47.88,
     "2020": 51.18,
     "2021": 55.77,
     "2022": 62.62,
@@ -4328,34 +4629,48 @@
     "2025": 7.2
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 133618,
+    "2019": 144014,
     "2020": 155065,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 171680,
+    "2022": 193823,
+    "2023": 210960,
     "2024": 238477,
     "2025": 270640
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 2983.5,
+    "2019": 3008.0,
     "2020": 3029.73,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3078.04,
+    "2022": 3095.27,
+    "2023": 3120.23,
     "2024": 3153.35,
     "2025": 3182.65
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Binh Dinh",
+    "Gia Lai"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Đắk Lắk": {
@@ -4397,8 +4712,8 @@
     "2026": "http://vov.vn/kinh-te/dak-lak-tang-truong-9-thang-822-ap-luc-quy-iv-lon-post1337422.vov"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 40.79,
+    "2019": 43.88,
     "2020": 47.48,
     "2021": 51.14,
     "2022": 56.91,
@@ -4417,34 +4732,48 @@
     "2025": 6.68
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 111467,
+    "2019": 120495,
     "2020": 131102,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 142399,
+    "2022": 159066,
+    "2023": 172240,
     "2024": 201432,
     "2025": 229539
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 2733.0,
+    "2019": 2745.8,
     "2020": 2761.23,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 2784.54,
+    "2022": 2795.06,
+    "2023": 2809.16,
     "2024": 2831.33,
     "2025": 2849.2
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Dak Lak",
+    "Phu Yen"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Khánh Hòa": {
@@ -4486,8 +4815,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 57.32,
+    "2019": 64.64,
     "2020": 62.6,
     "2021": 65.51,
     "2022": 77.36,
@@ -4506,34 +4835,48 @@
     "2025": 7.11
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 103945,
+    "2019": 117886,
     "2020": 114811,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 120803,
+    "2022": 143324,
+    "2023": 163019,
     "2024": 190434,
     "2025": 209446
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1813.4,
+    "2019": 1823.8,
     "2020": 1834.08,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 1844.11,
+    "2022": 1852.65,
+    "2023": 1861.84,
     "2024": 1881.98,
     "2025": 1898.55
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Khanh Hoa",
+    "Ninh Thuan"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Lâm Đồng": {
@@ -4575,8 +4918,8 @@
     "2026": "https://thanhnien.vn/lam-dong-tang-toc-quy-4-can-tang-truong-tren-1288-185261002164819471.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 52.64,
+    "2019": 58.98,
     "2020": 62.4,
     "2021": 66.67,
     "2022": 75.3,
@@ -4595,34 +4938,49 @@
     "2025": 6.42
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 164992,
+    "2019": 186226,
     "2020": 198867,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 215516,
+    "2022": 245120,
+    "2023": 262358,
     "2024": 310479,
     "2025": 353258
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3134.1,
+    "2019": 3157.4,
     "2020": 3186.95,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3232.63,
+    "2022": 3255.15,
+    "2023": 3285.74,
     "2024": 3324.38,
     "2025": 3356.38
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Binh Thuan",
+    "Dak Nong",
+    "Lam Dong"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Đồng Nai": {
@@ -4664,8 +5022,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 91.62,
+    "2019": 99.01,
     "2020": 103.64,
     "2021": 108.6,
     "2022": 119.08,
@@ -4684,34 +5042,48 @@
     "2025": 9.63
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 370153,
+    "2019": 407097,
     "2020": 434097,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 455409,
+    "2022": 510909,
+    "2023": 539058,
     "2024": 593232,
     "2025": 677638
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 4040.0,
+    "2019": 4111.5,
     "2020": 4188.48,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 4193.39,
+    "2022": 4290.48,
+    "2023": 4356.35,
     "2024": 4427.74,
     "2025": 4493.7
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Binh Phuoc",
+    "Dong Nai"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Tây Ninh": {
@@ -4748,8 +5120,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 64.35,
+    "2019": 71.9,
     "2020": 75.41,
     "2021": 78.52,
     "2022": 88.9,
@@ -4768,34 +5140,48 @@
     "2025": 9.52
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 182719,
+    "2019": 206114,
     "2020": 218077,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 228312,
+    "2022": 259847,
+    "2023": 274567,
     "2024": 306354,
     "2025": 344556
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 2839.6,
+    "2019": 2866.8,
     "2020": 2891.99,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 2907.66,
+    "2022": 2923.02,
+    "2023": 2938.34,
     "2024": 2959.01,
     "2025": 2980.28
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Long An",
+    "Tay Ninh"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "TP. Hồ Chí Minh": {
@@ -4837,8 +5223,8 @@
     "2026": "https://www.vietnamplus.vn/thanh-pho-ho-chi-minh-no-luc-vuot-kho-gop-phan-vao-tang-truong-chung-ca-nuoc-post1140001.vnp"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 154.33,
+    "2019": 162.23,
     "2020": 158.23,
     "2021": 162.06,
     "2022": 179.15,
@@ -4857,34 +5243,49 @@
     "2025": 7.53
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 1902387,
+    "2019": 2051786,
     "2020": 2053176,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 2097050,
+    "2022": 2388356,
+    "2023": 2469956,
     "2024": 2675951,
     "2025": 2972536
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 12326.7,
+    "2019": 12647.1,
     "2020": 12976.09,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 12939.71,
+    "2022": 13331.54,
+    "2023": 13467.59,
     "2024": 13608.89,
     "2025": 13803.8
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Ba Ria - Vung Tau",
+    "Binh Duong",
+    "Ho Chi Minh city"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Đồng Tháp": {
@@ -4926,8 +5327,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 49.02,
+    "2019": 53.1,
     "2020": 54.64,
     "2021": 55.13,
     "2022": 62.57,
@@ -4946,34 +5347,48 @@
     "2025": 7.38
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 164954,
+    "2019": 178677,
     "2020": 184284,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 186373,
+    "2022": 211846,
+    "2023": 233839,
     "2024": 260972,
     "2025": 285983
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3365.2,
+    "2019": 3365.1,
     "2020": 3372.56,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3380.73,
+    "2022": 3385.41,
+    "2023": 3390.9,
     "2024": 3397.18,
     "2025": 3403.78
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Dong Thap",
+    "Tien Giang"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "An Giang": {
@@ -5010,8 +5425,8 @@
     "2026": "https://mekongasean.vn/kinh-te-an-giang-9-thang-grdp-tang-923-von-dau-tu-hon-80000-ty-dong-60331.html"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 45.9,
+    "2019": 49.56,
     "2020": 50.93,
     "2021": 53.13,
     "2022": 59.25,
@@ -5030,34 +5445,48 @@
     "2025": 8.39
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 167480,
+    "2019": 179957,
     "2020": 185038,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 194542,
+    "2022": 216681,
+    "2023": 239191,
     "2024": 269396,
     "2025": 296383
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3649.1,
+    "2019": 3631.1,
     "2020": 3633.4,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3661.83,
+    "2022": 3657.28,
+    "2023": 3661.61,
     "2024": 3679.24,
     "2025": 3694.6
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "An Giang",
+    "Kien Giang"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Vĩnh Long": {
@@ -5099,8 +5528,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 45.35,
+    "2019": 49.83,
     "2020": 52.44,
     "2021": 54.21,
     "2022": 61.93,
@@ -5119,34 +5548,49 @@
     "2025": 5.84
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 150453,
+    "2019": 165497,
     "2020": 174384,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 181248,
+    "2022": 207215,
+    "2023": 226722,
     "2024": 254830,
     "2025": 278466
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3317.5,
+    "2019": 3321.0,
     "2020": 3325.31,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3343.35,
+    "2022": 3346.09,
+    "2023": 3348.84,
     "2024": 3367.43,
     "2025": 3379.61
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Ben Tre",
+    "Tra Vinh",
+    "Vinh Long"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Cần Thơ": {
@@ -5183,8 +5627,8 @@
     "2026": "https://www.vietnamplus.vn/can-tho-ra-soat-dieu-chinh-tang-truong-kinh-te-quy-4-va-nam-2026-post1140343.vnp"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 52.3,
+    "2019": 56.44,
     "2020": 57.55,
     "2021": 59.64,
     "2022": 70.52,
@@ -5203,34 +5647,49 @@
     "2025": 7.23
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 165876,
+    "2019": 178800,
     "2020": 182226,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 189884,
+    "2022": 224243,
+    "2023": 248457,
     "2024": 277520,
     "2025": 306118
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 3171.4,
+    "2019": 3167.7,
     "2020": 3166.25,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 3183.7,
+    "2022": 3179.64,
+    "2023": 3185.97,
     "2024": 3207.08,
     "2025": 3224.94
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Can Tho",
+    "Hau Giang",
+    "Soc Trang"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   },
   "Cà Mau": {
@@ -5272,8 +5731,8 @@
     "2026": "https://vietnambiz.vn/tang-truong-grdp-9-thang-2026-cua-34-tinh-thanh-12-dia-phuong-tang-hai-con-so-2026105144437644.htm"
    },
    "grdp_pc_mvnd_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 46.38,
+    "2019": 48.63,
     "2020": 49.83,
     "2021": 51.65,
     "2022": 59.38,
@@ -5292,34 +5751,48 @@
     "2025": 7.23
    },
    "grdp_bn_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 97327,
+    "2019": 102247,
     "2020": 105007,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 109873,
+    "2022": 126445,
+    "2023": 137358,
     "2024": 152207,
     "2025": 169047
    },
    "pop_avg_thousand_series": {
-    "2018": null,
-    "2019": null,
+    "2018": 2098.6,
+    "2019": 2102.5,
     "2020": 2107.37,
-    "2021": null,
-    "2022": null,
-    "2023": null,
+    "2021": 2127.26,
+    "2022": 2129.44,
+    "2023": 2132.54,
     "2024": 2140.68,
     "2025": 2150.44
    },
    "series_basis": {
-    "2018": null,
-    "2019": null,
+    "2018": "old63_sum",
+    "2019": "old63_sum",
     "2020": "nso_34",
     "2021": "nso_34",
     "2022": "nso_34",
     "2023": "nso_34",
     "2024": "nso_34",
     "2025": "nso_34"
+   },
+   "series_old63_members": [
+    "Bac Lieu",
+    "Ca Mau"
+   ],
+   "level_basis": {
+    "2018": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2019": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2020": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2021": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2022": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2023": "old63_sum: sum over old provinces of NSO E03.12 GRDP per capita x NSO E02.03-07 average population",
+    "2024": "nso_34 per capita x NSO PLV02 average population (as before)",
+    "2025": "nso_34 per capita x NSO PLV02 average population (as before)"
    }
   }
  },
@@ -5394,6 +5867,68 @@
      }
     },
     "check": "reproduces held ranks 2020 (15/217) and 2025 (16/217)"
+   },
+   "history_wb": {
+    "source": "World Bank WDI SP.POP.TOTL via the datahub.io GitHub mirror (all 217 WB economies, 2017-2025; same values as the July-2026 WDI held in now/prev)",
+    "url": "https://raw.githubusercontent.com/datasets/population/main/data/population.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json); 1 = highest; of = economies with data that year",
+    "years": {
+     "2017": {
+      "value": 95176977,
+      "rank": 15,
+      "of": 217,
+      "status": "WDI data"
+     },
+     "2018": {
+      "value": 96237319,
+      "rank": 15,
+      "of": 217,
+      "status": "WDI data"
+     },
+     "2019": {
+      "value": 97173776,
+      "rank": 15,
+      "of": 217,
+      "status": "WDI data"
+     },
+     "2020": {
+      "value": 98079191,
+      "rank": 15,
+      "of": 217,
+      "status": "WDI data"
+     },
+     "2021": {
+      "value": 98935098,
+      "rank": 16,
+      "of": 217,
+      "status": "WDI data"
+     },
+     "2022": {
+      "value": 99680655,
+      "rank": 16,
+      "of": 217,
+      "status": "WDI data"
+     },
+     "2023": {
+      "value": 100352192,
+      "rank": 16,
+      "of": 217,
+      "status": "WDI data"
+     },
+     "2024": {
+      "value": 100987686,
+      "rank": 16,
+      "of": 217,
+      "status": "WDI (value is a UN WPP 2024 projection)"
+     },
+     "2025": {
+      "value": 101598527,
+      "rank": 16,
+      "of": 217,
+      "status": "WDI (value is a UN WPP 2024 projection)"
+     }
+    },
+    "check": "reproduces held prev 2020 15/217 = held 15/217; now 2025 16/217 = held 16/217"
    }
   },
   "area": {
@@ -5413,7 +5948,121 @@
     "rank_all": 67,
     "of_all": 216
    },
-   "label": "Surface area (sq. km)"
+   "label": "Surface area (sq. km)",
+   "history_wb": {
+    "source": "World Bank WDI AG.SRF.TOTL.K2 via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--ag_srf_totl_k2--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; both are far smaller than Vietnam (rank unchanged; of + 2). rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 331230.0,
+      "rank": 67,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 67,
+      "of_mirror": 214
+     },
+     "2018": {
+      "value": 331240.0,
+      "rank": 67,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 67,
+      "of_mirror": 214
+     },
+     "2019": {
+      "value": 331310.0,
+      "rank": 67,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 67,
+      "of_mirror": 214
+     },
+     "2020": {
+      "value": 331340.0,
+      "rank": 67,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 67,
+      "of_mirror": 214
+     },
+     "2021": {
+      "value": 331344.8,
+      "rank": 67,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 67,
+      "of_mirror": 214
+     },
+     "2022": {
+      "value": 331340.0,
+      "rank": 67,
+      "of": 215,
+      "status": "WDI data",
+      "rank_mirror": 67,
+      "of_mirror": 213
+     },
+     "2023": {
+      "value": 331338.31,
+      "rank": 67,
+      "of": 215,
+      "status": "WDI data",
+      "rank_mirror": 67,
+      "of_mirror": 213
+     }
+    },
+    "check": "reproduces held prev 2018 67/216 = held 67/216; now 2023 67/215 = held 67/215"
+   },
+   "history_wb_land": {
+    "source": "World Bank WDI AG.LND.TOTL.K2 via the Open Numbers GitHub mirror (created 2026-05-06)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--ag_lnd_totl_k2--by--geo--time.csv",
+    "basis": "rank among WB economies with data; Puerto Rico and US Virgin Islands absent from the mirror and smaller than Vietnam (of + 2); 1 = highest",
+    "years": {
+     "2017": {
+      "value": 313403.0,
+      "rank": 68,
+      "of": 216,
+      "status": "WDI data"
+     },
+     "2018": {
+      "value": 313429.0,
+      "rank": 68,
+      "of": 216,
+      "status": "WDI data"
+     },
+     "2019": {
+      "value": 313429.0,
+      "rank": 68,
+      "of": 216,
+      "status": "WDI data"
+     },
+     "2020": {
+      "value": 313429.0,
+      "rank": 68,
+      "of": 216,
+      "status": "WDI data"
+     },
+     "2021": {
+      "value": 313429.0,
+      "rank": 68,
+      "of": 216,
+      "status": "WDI data"
+     },
+     "2022": {
+      "value": 313429.0,
+      "rank": 68,
+      "of": 215,
+      "status": "WDI data"
+     },
+     "2023": {
+      "value": 313429.0,
+      "rank": 68,
+      "of": 215,
+      "status": "WDI data"
+     }
+    },
+    "check": "matches the held note: land area 313,429 km2, rank 68/215 (2023) and 68/215 (2018)"
+   }
   },
   "density": {
    "now": {
@@ -5433,7 +6082,71 @@
     "of_all": 216
    },
    "label": "Population density (people per sq. km of land area)",
-   "history_gap": "No yearly ranks: WDI EN.POP.DNST (all countries) not reachable from the sandbox (api.worldbank.org blocked; no mirror found). Needs a runner: tools/build/rank/fetch.py with date=2017:2025."
+   "history_gap": "No yearly ranks: WDI EN.POP.DNST (all countries) not reachable from the sandbox (api.worldbank.org blocked; no mirror found). Needs a runner: tools/build/rank/fetch.py with date=2017:2025. [2026-10-10: resolved - see history_wb (WDI via Open Numbers GitHub mirror).]",
+   "history_wb": {
+    "source": "World Bank WDI EN.POP.DNST via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--en_pop_dnst--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; Puerto Rico (WDI ~360/km2) is counted above Vietnam every year; US Virgin Islands density = WDI population (datahub mirror) / WDI land area 350 km2 (306.5 in 2017, above Vietnam; below in 2018-2023). rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 303.6888,
+      "rank": 38,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 36,
+      "of_mirror": 214
+     },
+     "2018": {
+      "value": 307.0466,
+      "rank": 37,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 36,
+      "of_mirror": 214
+     },
+     "2019": {
+      "value": 310.0344,
+      "rank": 37,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 36,
+      "of_mirror": 214
+     },
+     "2020": {
+      "value": 312.9232,
+      "rank": 37,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 36,
+      "of_mirror": 214
+     },
+     "2021": {
+      "value": 315.6539,
+      "rank": 37,
+      "of": 216,
+      "status": "WDI data",
+      "rank_mirror": 36,
+      "of_mirror": 214
+     },
+     "2022": {
+      "value": 318.0326,
+      "rank": 36,
+      "of": 215,
+      "status": "WDI data",
+      "rank_mirror": 35,
+      "of_mirror": 213
+     },
+     "2023": {
+      "value": 320.1752,
+      "rank": 37,
+      "of": 215,
+      "status": "WDI data",
+      "rank_mirror": 36,
+      "of_mirror": 213
+     }
+    },
+    "check": "reproduces held prev 2018 37/216 = held 37/216; now 2023 37/215 = held 37/215 (held now/prev 'rank' is over economies with data in both years: 2018 = 36/215; history uses that year's set like rank_all)"
+   }
   },
   "urban": {
    "now": {
@@ -5453,7 +6166,85 @@
     "of_all": 217
    },
    "label": "Urban population (% of total population)",
-   "history_gap": "No yearly ranks: WDI SP.URB.TOTL.IN.ZS (UN WUP 2018) not reachable from the sandbox; not in the WPP package. Needs a runner: tools/build/rank/fetch.py."
+   "history_gap": "No yearly ranks: WDI SP.URB.TOTL.IN.ZS (UN WUP 2018) not reachable from the sandbox; not in the WPP package. Needs a runner: tools/build/rank/fetch.py. [2026-10-10: resolved - see history_wb (WDI via Open Numbers GitHub mirror).]",
+   "history_wb": {
+    "source": "World Bank WDI SP.URB.TOTL.IN.ZS via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023) ; 2025 point = held WORLD_RANK.now (WDI API, July-2026 update)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--sp_urb_totl_in_zs--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; both are >90% urban in WDI (UN WUP 2018), so both are counted above Vietnam every year (of = 217). rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 33.3626,
+      "rank": 182,
+      "of": 217,
+      "status": "WDI (UN World Urbanization Prospects 2018 basis)",
+      "rank_mirror": 180,
+      "of_mirror": 215
+     },
+     "2018": {
+      "value": 33.941,
+      "rank": 182,
+      "of": 217,
+      "status": "WDI (UN World Urbanization Prospects 2018 basis)",
+      "rank_mirror": 180,
+      "of_mirror": 215
+     },
+     "2019": {
+      "value": 34.6239,
+      "rank": 181,
+      "of": 217,
+      "status": "WDI (UN World Urbanization Prospects 2018 basis)",
+      "rank_mirror": 179,
+      "of_mirror": 215
+     },
+     "2020": {
+      "value": 35.5707,
+      "rank": 179,
+      "of": 217,
+      "status": "WDI (UN World Urbanization Prospects 2018 basis)",
+      "rank_mirror": 177,
+      "of_mirror": 215
+     },
+     "2021": {
+      "value": 36.6541,
+      "rank": 177,
+      "of": 217,
+      "status": "WDI (UN World Urbanization Prospects 2018 basis)",
+      "rank_mirror": 175,
+      "of_mirror": 215
+     },
+     "2022": {
+      "value": 37.5478,
+      "rank": 176,
+      "of": 217,
+      "status": "WDI (UN World Urbanization Prospects 2018 basis)",
+      "rank_mirror": 174,
+      "of_mirror": 215
+     },
+     "2023": {
+      "value": 38.1299,
+      "rank": 176,
+      "of": 217,
+      "status": "WDI (UN World Urbanization Prospects 2018 basis)",
+      "rank_mirror": 174,
+      "of_mirror": 215
+     },
+     "2024": {
+      "value": 38.4901,
+      "rank": 176,
+      "of": 217,
+      "status": "WDI (UN World Urbanization Prospects 2018 basis)",
+      "rank_mirror": 174,
+      "of_mirror": 215
+     },
+     "2025": {
+      "value": 38.8299,
+      "rank": 176,
+      "of": 217,
+      "status": "WDI July-2026 API (held WORLD_RANK.now; mirror ends 2024)"
+     }
+    },
+    "check": "reproduces held prev 2020 179/217 = held 179/217; now 2025 176/217 = held 176/217"
+   }
   },
   "tfr": {
    "now": {
@@ -5565,6 +6356,79 @@
     },
     "check": "WDI ranks held: 2019 118/217 (WPP 118/216 - match), 2024 109/217 (WPP 111/216 - differs: WDI uses national/Eurostat TFR for some countries)",
     "note": "Different source from now/prev (WDI): do not draw both on one timeline without labelling. Years 2024-2030 are WPP projections."
+   },
+   "history_wb": {
+    "source": "World Bank WDI SP.DYN.TFRT.IN via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--sp_dyn_tfrt_in--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; their values are taken from UN WPP 2024 (wpp2024 R package, https://raw.githubusercontent.com/PPgp/wpp2024/main/data/), the series WDI itself carries for them (WPP values for Vietnam equal WDI to the digit), so of = 217. rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 1.985,
+      "rank": 121,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 120,
+      "of_mirror": 215
+     },
+     "2018": {
+      "value": 1.88,
+      "rank": 124,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 123,
+      "of_mirror": 215
+     },
+     "2019": {
+      "value": 1.943,
+      "rank": 118,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 117,
+      "of_mirror": 215
+     },
+     "2020": {
+      "value": 1.957,
+      "rank": 118,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 117,
+      "of_mirror": 215
+     },
+     "2021": {
+      "value": 1.942,
+      "rank": 114,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 113,
+      "of_mirror": 215
+     },
+     "2022": {
+      "value": 1.927,
+      "rank": 112,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 111,
+      "of_mirror": 215
+     },
+     "2023": {
+      "value": 1.913,
+      "rank": 110,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 109,
+      "of_mirror": 215
+     },
+     "2024": {
+      "value": 1.895,
+      "rank": 109,
+      "of": 217,
+      "status": "WDI (value is a UN WPP 2024 medium projection)",
+      "rank_mirror": 108,
+      "of_mirror": 215
+     }
+    },
+    "check": "reproduces held prev 2019 118/217 = held 118/217; now 2024 109/217 = held 109/217",
+    "note": "WDI basis; supersedes nothing - history_wpp (UN WPP 2024 incl. projections to 2030) is kept alongside."
    }
   },
   "life_exp": {
@@ -5677,6 +6541,79 @@
     },
     "check": "WDI ranks held: 2019 108/217 (WPP 106/216), 2024 108/217 (WPP 107/216) - differ by 1-2 places (WDI uses national/Eurostat values for some countries). WPP 2020 VN value 75.38 is a WPP artefact (rank 83) - show with care",
     "note": "Different source from now/prev (WDI): do not draw both on one timeline without labelling. Years 2024-2030 are WPP projections."
+   },
+   "history_wb": {
+    "source": "World Bank WDI SP.DYN.LE00.IN via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--sp_dyn_le00_in--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; their values are taken from UN WPP 2024 (wpp2024 R package, https://raw.githubusercontent.com/PPgp/wpp2024/main/data/), the series WDI itself carries for them (WPP values for Vietnam equal WDI to the digit), so of = 217. rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 74.026,
+      "rank": 109,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 107,
+      "of_mirror": 215
+     },
+     "2018": {
+      "value": 74.1,
+      "rank": 107,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 105,
+      "of_mirror": 215
+     },
+     "2019": {
+      "value": 74.211,
+      "rank": 108,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 106,
+      "of_mirror": 215
+     },
+     "2020": {
+      "value": 75.383,
+      "rank": 84,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 83,
+      "of_mirror": 215
+     },
+     "2021": {
+      "value": 74.145,
+      "rank": 83,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 81,
+      "of_mirror": 215
+     },
+     "2022": {
+      "value": 74.502,
+      "rank": 102,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 100,
+      "of_mirror": 215
+     },
+     "2023": {
+      "value": 74.588,
+      "rank": 108,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 106,
+      "of_mirror": 215
+     },
+     "2024": {
+      "value": 74.736,
+      "rank": 108,
+      "of": 217,
+      "status": "WDI (value is a UN WPP 2024 medium projection)",
+      "rank_mirror": 106,
+      "of_mirror": 215
+     }
+    },
+    "check": "reproduces held prev 2019 108/217 = held 108/217; now 2024 108/217 = held 108/217",
+    "note": "WDI basis; supersedes nothing - history_wpp (UN WPP 2024 incl. projections to 2030) is kept alongside."
    }
   },
   "cbr": {
@@ -5696,7 +6633,79 @@
     "rank_all": 110,
     "of_all": 217
    },
-   "label": "Birth rate, crude (per 1,000 people)"
+   "label": "Birth rate, crude (per 1,000 people)",
+   "history_wb": {
+    "source": "World Bank WDI SP.DYN.CBRT.IN via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--sp_dyn_cbrt_in--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; their values are taken from UN WPP 2024 (wpp2024 R package, https://raw.githubusercontent.com/PPgp/wpp2024/main/data/), the series WDI itself carries for them (WPP values for Vietnam equal WDI to the digit), so of = 217. rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 16.764,
+      "rank": 112,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 112,
+      "of_mirror": 215
+     },
+     "2018": {
+      "value": 15.438,
+      "rank": 112,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 112,
+      "of_mirror": 215
+     },
+     "2019": {
+      "value": 15.513,
+      "rank": 110,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 110,
+      "of_mirror": 215
+     },
+     "2020": {
+      "value": 15.234,
+      "rank": 110,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 110,
+      "of_mirror": 215
+     },
+     "2021": {
+      "value": 14.735,
+      "rank": 110,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 110,
+      "of_mirror": 215
+     },
+     "2022": {
+      "value": 14.272,
+      "rank": 108,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 108,
+      "of_mirror": 215
+     },
+     "2023": {
+      "value": 13.831,
+      "rank": 108,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 108,
+      "of_mirror": 215
+     },
+     "2024": {
+      "value": 13.423,
+      "rank": 108,
+      "of": 217,
+      "status": "WDI (value is a UN WPP 2024 medium projection)",
+      "rank_mirror": 108,
+      "of_mirror": 215
+     }
+    },
+    "check": "reproduces held prev 2019 110/217 = held 110/217; now 2024 108/217 = held 108/217"
+   }
   },
   "cdr": {
    "now": {
@@ -5715,7 +6724,79 @@
     "rank_all": 150,
     "of_all": 217
    },
-   "label": "Death rate, crude (per 1,000 people)"
+   "label": "Death rate, crude (per 1,000 people)",
+   "history_wb": {
+    "source": "World Bank WDI SP.DYN.CDRT.IN via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--sp_dyn_cdrt_in--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; their values are taken from UN WPP 2024 (wpp2024 R package, https://raw.githubusercontent.com/PPgp/wpp2024/main/data/), the series WDI itself carries for them (WPP values for Vietnam equal WDI to the digit), so of = 217. rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 6.238,
+      "rank": 153,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 151,
+      "of_mirror": 215
+     },
+     "2018": {
+      "value": 6.263,
+      "rank": 153,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 151,
+      "of_mirror": 215
+     },
+     "2019": {
+      "value": 6.3,
+      "rank": 150,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 148,
+      "of_mirror": 215
+     },
+     "2020": {
+      "value": 5.813,
+      "rank": 190,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 188,
+      "of_mirror": 215
+     },
+     "2021": {
+      "value": 6.653,
+      "rank": 164,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 162,
+      "of_mirror": 215
+     },
+     "2022": {
+      "value": 6.488,
+      "rank": 147,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 145,
+      "of_mirror": 215
+     },
+     "2023": {
+      "value": 6.577,
+      "rank": 138,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 136,
+      "of_mirror": 215
+     },
+     "2024": {
+      "value": 6.646,
+      "rank": 133,
+      "of": 217,
+      "status": "WDI (value is a UN WPP 2024 medium projection)",
+      "rank_mirror": 131,
+      "of_mirror": 215
+     }
+    },
+    "check": "reproduces held prev 2019 150/217 = held 150/217; now 2024 133/217 = held 133/217"
+   }
   },
   "srb": {
    "now": {
@@ -5827,6 +6908,79 @@
     },
     "check": "WDI ranks held: 2019 5/217, 2024 4/217 - WPP matches both",
     "note": "Different source from now/prev (WDI): do not draw both on one timeline without labelling. Years 2024-2030 are WPP projections."
+   },
+   "history_wb": {
+    "source": "World Bank WDI SP.POP.BRTH.MF via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--sp_pop_brth_mf--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; their values are taken from UN WPP 2024 (wpp2024 R package, https://raw.githubusercontent.com/PPgp/wpp2024/main/data/), the series WDI itself carries for them (WPP values for Vietnam equal WDI to the digit), so of = 217. rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 1.121,
+      "rank": 5,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 5,
+      "of_mirror": 215
+     },
+     "2018": {
+      "value": 1.148,
+      "rank": 3,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 3,
+      "of_mirror": 215
+     },
+     "2019": {
+      "value": 1.115,
+      "rank": 5,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 5,
+      "of_mirror": 215
+     },
+     "2020": {
+      "value": 1.121,
+      "rank": 4,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 4,
+      "of_mirror": 215
+     },
+     "2021": {
+      "value": 1.12,
+      "rank": 4,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 4,
+      "of_mirror": 215
+     },
+     "2022": {
+      "value": 1.111,
+      "rank": 4,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 4,
+      "of_mirror": 215
+     },
+     "2023": {
+      "value": 1.109,
+      "rank": 4,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 4,
+      "of_mirror": 215
+     },
+     "2024": {
+      "value": 1.106,
+      "rank": 4,
+      "of": 217,
+      "status": "WDI (value is a UN WPP 2024 medium projection)",
+      "rank_mirror": 4,
+      "of_mirror": 215
+     }
+    },
+    "check": "reproduces held prev 2019 5/217 = held 5/217; now 2024 4/217 = held 4/217",
+    "note": "WDI basis; supersedes nothing - history_wpp (UN WPP 2024 incl. projections to 2030) is kept alongside."
    }
   },
   "age65": {
@@ -5846,7 +7000,85 @@
     "rank_all": 106,
     "of_all": 217
    },
-   "label": "Population ages 65 and above (% of total population)"
+   "label": "Population ages 65 and above (% of total population)",
+   "history_wb": {
+    "source": "World Bank WDI SP.POP.65UP.TO.ZS via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023) ; 2025 point = held WORLD_RANK.now (WDI API, July-2026 update)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--sp_pop_65up_to_zs--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; their values are taken from UN WPP 2024 (wpp2024 R package, https://raw.githubusercontent.com/PPgp/wpp2024/main/data/), the series WDI itself carries for them (WPP values for Vietnam equal WDI to the digit), so of = 217. rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 6.7677,
+      "rank": 108,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 106,
+      "of_mirror": 215
+     },
+     "2018": {
+      "value": 6.9816,
+      "rank": 108,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 106,
+      "of_mirror": 215
+     },
+     "2019": {
+      "value": 7.2502,
+      "rank": 108,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 106,
+      "of_mirror": 215
+     },
+     "2020": {
+      "value": 7.5672,
+      "rank": 106,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 104,
+      "of_mirror": 215
+     },
+     "2021": {
+      "value": 7.8857,
+      "rank": 104,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 102,
+      "of_mirror": 215
+     },
+     "2022": {
+      "value": 8.2301,
+      "rank": 103,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 101,
+      "of_mirror": 215
+     },
+     "2023": {
+      "value": 8.6212,
+      "rank": 104,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 102,
+      "of_mirror": 215
+     },
+     "2024": {
+      "value": 9.0472,
+      "rank": 104,
+      "of": 217,
+      "status": "WDI (value is a UN WPP 2024 medium projection)",
+      "rank_mirror": 102,
+      "of_mirror": 215
+     },
+     "2025": {
+      "value": 9.4945,
+      "rank": 104,
+      "of": 217,
+      "status": "WDI July-2026 API (held WORLD_RANK.now; mirror ends 2024)"
+     }
+    },
+    "check": "reproduces held prev 2020 106/217 = held 106/217; now 2025 104/217 = held 104/217"
+   }
   },
   "dependency": {
    "now": {
@@ -5865,7 +7097,85 @@
     "rank_all": 167,
     "of_all": 217
    },
-   "label": "Age dependency ratio (% of working-age population)"
+   "label": "Age dependency ratio (% of working-age population)",
+   "history_wb": {
+    "source": "World Bank WDI SP.POP.DPND via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023) ; 2025 point = held WORLD_RANK.now (WDI API, July-2026 update)",
+    "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--sp_pop_dpnd--by--geo--time.csv",
+    "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; their values are taken from UN WPP 2024 (wpp2024 R package, https://raw.githubusercontent.com/PPgp/wpp2024/main/data/), the series WDI itself carries for them (WPP values for Vietnam equal WDI to the digit), so of = 217. rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
+    "years": {
+     "2017": {
+      "value": 45.3222,
+      "rank": 175,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 173,
+      "of_mirror": 215
+     },
+     "2018": {
+      "value": 46.1234,
+      "rank": 170,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 168,
+      "of_mirror": 215
+     },
+     "2019": {
+      "value": 46.6054,
+      "rank": 169,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 167,
+      "of_mirror": 215
+     },
+     "2020": {
+      "value": 46.9641,
+      "rank": 167,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 165,
+      "of_mirror": 215
+     },
+     "2021": {
+      "value": 47.2393,
+      "rank": 167,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 165,
+      "of_mirror": 215
+     },
+     "2022": {
+      "value": 47.4164,
+      "rank": 167,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 165,
+      "of_mirror": 215
+     },
+     "2023": {
+      "value": 47.5514,
+      "rank": 166,
+      "of": 217,
+      "status": "WDI data",
+      "rank_mirror": 164,
+      "of_mirror": 215
+     },
+     "2024": {
+      "value": 47.6476,
+      "rank": 166,
+      "of": 217,
+      "status": "WDI (value is a UN WPP 2024 medium projection)",
+      "rank_mirror": 164,
+      "of_mirror": 215
+     },
+     "2025": {
+      "value": 47.8209,
+      "rank": 164,
+      "of": 217,
+      "status": "WDI July-2026 API (held WORLD_RANK.now; mirror ends 2024)"
+     }
+    },
+    "check": "reproduces held prev 2020 167/217 = held 167/217; now 2025 164/217 = held 164/217"
+   }
   },
   "religion_unaffiliated": {
    "now": {
