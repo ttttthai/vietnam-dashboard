@@ -6945,25 +6945,45 @@ document.addEventListener('click', e => { const b = e.target.closest && e.target
   if (b.dataset.socMap) { if (b.dataset.socMap === socMapMode) return; socMapMode = b.dataset.socMap; } else { if (b.dataset.socView === socHxView) return; socHxView = b.dataset.socView; }
   socStMapPaint(); const n = document.querySelector(b.dataset.socMap ? `[data-soc-map="${socMapMode}"]` : `[data-soc-view="${socHxView}"]`); if (n) n.focus({ preventScroll: true }); });
 // ch4 — rank positions among nations; the three headline indicators accented, the rest grey
+// rank timeline (user, 10/10: "use WB and IMF"): GDP rows read the IMF WEO history (history_imf), every other row the World Bank
+// WDI history (history_wb) — one source per row, never spliced; the resting frame is the latest year (WORLD_RANK[k].now).
+// A row with no point for the frame year is drawn as "no data" rather than carried over.
+const socRkSrc = k => /^g_/.test(k) ? 'history_imf' : 'history_wb';
+const socRkAt = (k, y) => { const W0 = WORLD_RANK[k] || {}, H = W0[socRkSrc(k)] || (k === 'pop' ? W0.history : null), o = H && H.years && H.years[y]; return o && o.rank != null && o.of ? { ...o, year: +y } : null; };
 function socStRanks() {
-  const el = document.getElementById('soc-st-ranks'), R = WORLD_RANK, acc = new Set(['pop', 'g_growth', 'g_gdp_pc']);
+  const el = document.getElementById('soc-st-ranks'), acc = new Set(['pop', 'g_growth', 'g_gdp_pc']);
+  const ks0 = ['pop', 'g_growth', 'g_gdp', 'density', 'srb', 'life_exp', 'tfr', 'g_gdp_pc', 'urban'].filter(k => WORLD_RANK[k]);
+  const yrsR = [...new Set(ks0.flatMap(k => Object.keys((((WORLD_RANK[k] || {})[socRkSrc(k)]) || (k === 'pop' ? (WORLD_RANK[k] || {}).history : null) || {}).years || {})))].map(Number).filter(y => y >= 2017).sort((a, b) => a - b);
+  const yR = el._yi == null ? null : yrsR[el._yi], nowY = new Date().getFullYear() - 1;
+  const R = yR == null ? WORLD_RANK : Object.fromEntries(ks0.map(k => [k, { now: socRkAt(k, yR) || { gap: 1, year: yR } }]));
   const L = [['pop', stT('Dân số', 'Population'), v => stN(v / 1e6, 1) + stT(' triệu', 'm')], ['g_growth', stT('Tăng trưởng GDP', 'GDP growth'), v => stN(v, 1) + '%'], ['g_gdp', stT('Quy mô GDP', 'GDP size'), v => stN(v / 1e9, 0) + stT(' tỷ USD', ' bn USD')], ['density', stT('Mật độ dân số', 'Population density'), v => stN(v, 0) + '/km²'], ['srb', stT('Tỷ số giới tính khi sinh', 'Sex ratio at birth'), v => stN(v * 100, 1) + stT(' bé trai/100 bé gái', ' boys/100 girls')], ['life_exp', stT('Tuổi thọ', 'Life expectancy'), v => stN(v, 1)], ['tfr', stT('Mức sinh', 'Fertility rate'), v => stN(v, 2)], ['g_gdp_pc', stT('GDP bình quân đầu người', 'GDP per person'), v => stN(v, 0) + ' USD'], ['urban', stT('Tỷ lệ đô thị hoá', 'Urbanisation'), v => stN(v, 1) + '%']].filter(x => R[x[0]]);
   const W = stCW(el), narrow = W < 640;
   if (narrow) { const RH = 54, ML = 12, MR = 12, H = L.length * RH + 20, sx = stLin(0, 1, ML, W - MR);
     let s = `<text class="st-tick" x="${ML}" y="12">${stT('cao nhất', 'highest')}</text><text class="st-tick" x="${W - MR}" y="12" text-anchor="end">${stT('thấp nhất', 'lowest')}</text>`;
-    L.forEach(([k, n, f], i) => { const o = R[k].now, y0 = 30 + i * RH, y = y0 + 22, x = sx((o.rank - 1) / (o.of - 1)), a = acc.has(k);
+    L.forEach(([k, n, f], i) => { const o = R[k].now, y0 = 30 + i * RH, y = y0 + 22, a = acc.has(k);
+      if (o.gap) { s += `<text class="st-lab" x="${ML}" y="${y0 + 4}" style="fill:#8a8f99">${n} · ${stT('chưa có số', 'no data')} ${o.year}</text><line class="st-grid" x1="${ML}" x2="${W - MR}" y1="${y}" y2="${y}"/>`; return; }
+      const x = sx((o.rank - 1) / (o.of - 1));
       s += `<text class="st-lab${a ? ' st-b' : ''}" x="${ML}" y="${y0 + 4}">${n} · #${o.rank}/${o.of}</text><text class="st-val" x="${W - MR}" y="${y0 + 4}" text-anchor="end">${f(o.value)}</text><line class="st-grid" x1="${ML}" x2="${W - MR}" y1="${y}" y2="${y}"/>`;
       s += stDot(x, y, 6, a ? ST.blue : ST_MUTE, [n + ' (' + o.year + ')', f(o.value) + ' · ' + stT('hạng ', 'rank ') + o.rank + '/' + o.of], { d: i * 80 }); });
-    el.innerHTML = stSvg(W, H, s, stT('Thứ hạng của Việt Nam', 'Vietnam\'s world ranks')); stRW(el, socStRanks); return; }
+    el.innerHTML = stSvg(W, H, s, stT('Thứ hạng của Việt Nam', 'Vietnam\'s world ranks')); stRW(el, socStRanks); socRkCtl(el, yrsR, nowY); return; }
   const ML = 230, MR = 210, RH = 34, H = L.length * RH + 30, sx = stLin(0, 1, ML, W - MR);
   let s = `<text class="st-tick" x="${ML}" y="12">${stT('cao nhất', 'highest')}</text><text class="st-tick" x="${W - MR}" y="12" text-anchor="end">${stT('thấp nhất', 'lowest')}</text>`;
-  L.forEach(([k, n, f], i) => { const o = R[k].now, y = 32 + i * RH, x = sx((o.rank - 1) / (o.of - 1)), a = acc.has(k);
+  L.forEach(([k, n, f], i) => { const o = R[k].now, y = 32 + i * RH, a = acc.has(k);
+    if (o.gap) { s += `<text class="st-lab" x="${ML - 12}" y="${y + 4}" text-anchor="end" style="fill:#8a8f99">${n}</text><line class="st-grid" x1="${ML}" x2="${W - MR}" y1="${y}" y2="${y}"/><text class="st-tick" x="${W - MR + 12}" y="${y + 4}">${stT('chưa có số', 'no data')} ${o.year}</text>`; return; }
+    const x = sx((o.rank - 1) / (o.of - 1));
     s += `<text class="st-lab${a ? ' st-b' : ''}" x="${ML - 12}" y="${y + 4}" text-anchor="end">${n}</text><line class="st-grid" x1="${ML}" x2="${W - MR}" y1="${y}" y2="${y}"/>`;
     s += stDot(x, y, 7, a ? ST.blue : ST_MUTE, [n + ' (' + o.year + ')', f(o.value) + ' · ' + stT('hạng ', 'rank ') + o.rank + '/' + o.of], { d: i * 80 });
     s += `<text class="st-lab${a ? ' st-b' : ''}" x="${x}" y="${y - 12}" text-anchor="middle">#${o.rank}</text><text class="st-val" x="${W - MR + 12}" y="${y + 4}">${f(o.value)} <tspan class="st-tick">(${o.year})</tspan></text>`; });
-  const si = L.findIndex(x => x[0] === 'srb'); if (si >= 0) { const o = R.srb.now, y = 32 + si * RH; s += stAnn(sx((o.rank - 1) / (o.of - 1)) + 9, y, sx(0.06), y - 12, stT(`hạng ${o.rank}/${o.of} về lệch giới tính khi sinh`, `rank ${o.rank} of ${o.of} for skewed sex ratio at birth`), 'start', 'sup'); }
+  const si = L.findIndex(x => x[0] === 'srb'); if (si >= 0 && !R.srb.now.gap) { const o = R.srb.now, y = 32 + si * RH; s += stAnn(sx((o.rank - 1) / (o.of - 1)) + 9, y, sx(0.06), y - 12, stT(`hạng ${o.rank}/${o.of} về lệch giới tính khi sinh`, `rank ${o.rank} of ${o.of} for skewed sex ratio at birth`), 'start', 'sup'); }
   el.innerHTML = stSvg(W, H, s, stT('Thứ hạng của Việt Nam', 'Vietnam\'s world ranks'));
-  stRW(el, socStRanks);
+  stRW(el, socStRanks); socRkCtl(el, yrsR, nowY);
+}
+function socRkCtl(el, yrsR, nowY) {
+  if (yrsR.length < 2) return;
+  const rest = Math.max(0, yrsR.filter(y => y <= nowY).length - 1);
+  stYears(el, 'S09', yrsR.map(String), rest, socStRanks, { rest, from: Math.max(0, rest - 8), ms: 900,
+    none: stT(`GDP: IMF WEO (sau ${yrsR[rest]}: dự phóng của IMF); các chỉ số khác: Ngân hàng Thế giới (WDI). Mỗi dòng một nguồn, không nối nguồn`, `GDP: IMF WEO (after ${yrsR[rest]}: IMF projections); other rows: World Bank (WDI). One source per row, never spliced`),
+    step: i => { const v = i === rest ? null : i; if (el._yi === v) return; el._yi = v; socStRanks(); } });
 }
 // ch5 — religion waffles; colour follows the religion in both waffles, "no religion" is the muted residual
 function socStWaffle() {
