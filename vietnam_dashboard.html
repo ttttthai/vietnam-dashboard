@@ -1392,8 +1392,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
   html, body { font-family: var(--font-ui); -webkit-font-smoothing: antialiased; }
   body, .kpi-val, .iv-table, .ci-tbl, .bk-table, .cpi-row { font-variant-numeric: tabular-nums; }
   #header { border-bottom: 3px solid var(--rule); padding: 10px 20px; box-shadow: none; flex-wrap: wrap; row-gap: 6px; }
-  #header h1 { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; text-transform: none; }
-  #header h1 .h1-sub { font-size: 0.72em; font-weight: 600; color: var(--text2); }
+  #header h1 { font-family: var(--font-head); font-size: 44px; line-height: 1.05; font-weight: 700; color: var(--text); letter-spacing: -0.6px; text-transform: none; }   /* title doubled (22 → 44px) at the user's request */
+  #header h1 .h1-sub { display: block; font-size: 0.41em; font-weight: 600; color: var(--text2); letter-spacing: -0.1px; margin-top: 3px; }
   #header h1::after { content: 'Báo cáo kinh tế · ngân hàng · đầu tư'; display: block; font-family: var(--font-ui); font-size: 10.5px; font-weight: 500; letter-spacing: 0.6px; text-transform: uppercase; color: var(--text3); margin-top: 1px; }
   .hbadge { background: transparent; border-color: var(--border); color: var(--text2); }
   .live-badge { color: var(--accent2); font-weight: 600; }
@@ -1443,13 +1443,13 @@ if (window.APP_LANG === 'en') window.I18N_START();
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
   html[lang=en] #header h1::after { content: 'Economy · Banking · Investing report'; }
-  @media (max-width: 720px) { #header h1 { font-size: 18px; } #header h1::after { display: none; } .panel { padding: 10px; } }
+  @media (max-width: 720px) { #header h1 { font-size: 36px; white-space: normal; } #header h1 .h1-sub { font-size: 0.42em; } #header h1::after { display: none; } .panel { padding: 10px; } }
 </style>
 </head>
 <body>
 <div id="shell">
   <div id="header">
-    <h1>Vietnam Dashboard <span class="h1-sub">- Intelligent Investment Advisory Agent (IIAA)</span></h1>
+    <h1>Vietnam Dashboard <span class="h1-sub">Intelligent Investment Advisory Agent (IIAA)</span></h1>
     <button id="bk-log-btn" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:4px;padding:3px 10px;font-size:11px;cursor:pointer;font-weight:700;letter-spacing:0.3px;margin-left:6px">Nhật ký</button>
     <span id="fx-live-badge" class="live-badge" style="margin-left:auto"></span>
     <span id="bond-live-badge" class="live-badge" style="margin-left:4px"></span>
