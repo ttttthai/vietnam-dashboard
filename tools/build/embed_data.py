@@ -20,7 +20,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 PAGE = os.path.join(ROOT, 'vietnam_dashboard.html')
 DATA = os.path.join(ROOT, 'data')
 OWNERS = {   # file → constants it owns (and the agent that maintains it)
-    'economy': (['ECONFLOW', 'ECON_OFFICIAL', 'CPI_YOY_24', 'CPI_LATEST', 'CPI_DETAIL', 'CPI_FC_INST'], 'Economy'),
+    'economy': (['ECONFLOW', 'ECON_OFFICIAL', 'CPI_YOY_24', 'CPI_LATEST', 'CPI_DETAIL', 'CPI_FC_INST', 'CPI_BASKET', 'CPI_FC_SCEN', 'CPI_FC_TEMPLATE', 'CPI_FC_VAT_JAN27', 'CPI_FC_DRIVERS'], 'Economy'),
     'society': (['SOC_PROV_DATA', 'POP_SERIES', 'SOC_GRDP', 'WORLD_RANK', 'PROV_PREV', 'RELIGION'], 'Society'),
     'policy': (['POLICY'], 'Policy'),
     'finance': (['FINSYS'], 'Finance'),

@@ -14,6 +14,8 @@ Dashboard (project root: the folder containing `vietnam_dashboard.html`). Your o
 | `ECON_OFFICIAL` | annual official series from `y0` (GDP growth, FDI registered/disbursed, budget revenue/spending, unemployment, active firms…) — hero growth bars, Party-tab gap chart |
 | `CPI_YOY_24`, `CPI_LATEST`, `CPI_DETAIL` | 24-month headline CPI, latest release and group detail — heat strip and fan chart |
 | `CPI_FC_INST` | institutional CPI forecasts used by the projection |
+| `CPI_BASKET` | CPI groups: 2020 basket weights, monthly y/y, sub-items (moved from the page 2026-10-10) |
+| `CPI_FC_SCEN`, `CPI_FC_TEMPLATE`, `CPI_FC_VAT_JAN27`, `CPI_FC_DRIVERS` | CPI projection inputs: Q4 m/m scenarios and 2027 averages, seasonal m/m template, VAT-reversion add-on, dated drivers (moved from the page 2026-10-10) — refresh each month with the NSO CPI release |
 
 The tab's chapters: hero (GDP, growth bars) · 1 GDP formula blocks, exports/imports vs GDP, mix 2015–2025 ·
 2 balance-of-payments sankey + four-flow multiples + remittances/labour/tourism facts · 3 budget waffles

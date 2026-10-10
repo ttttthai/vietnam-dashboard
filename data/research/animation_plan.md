@@ -386,3 +386,21 @@ Columns: kind · animation · frequency · periods held (first–last, count) ·
 3. Provinces: animate on the 34-province basis, totals only (GRDP, population…); rates only for years with 34-province figures.
 4. Monthly charts: "8 periods" = 8 of the chart's own periods.
 Defaults applied by the main session (user may overrule): E27 FDI province drill-down = no animation, labelled "model"; CPI model inputs/basket move to economy.json (Economy owner); unsourced 2026–2045 sector constants left untouched; FX reserves kept as two labelled series (with/without gold), animated separately.
+
+## Close-out (2026-10-10)
+Done:
+- Every story chart with a time axis has a timeline: `stAutoAnim` reads the chart's own axis labels. The same applies to the Explore/appendix `.fs-ch` charts.
+- Multi-year snapshots step through their years: `stYears` covers E03, E10, F06, the M2 nest, S05, P03, G06, S06 (GRDP 2020–2025) and the cash/M2 row.
+- Decisions applied:
+  - 1: bank statement/breakdown timelines OFF while the server history is synthetic. FY2024 only, with a note.
+  - 2: Finance paths labelled "dashboard scenario, not a forecast".
+  - E27: provincial FDI/trade labelled as a model, not animated.
+  - CPI_BASKET and CPI_FC_* moved to data/economy.json (Economy agent owns them).
+  - FX reserves: already drawn as total / ex-gold FX / gold.
+
+Open, blocked or waiting:
+- IMF WEO October 2026 refresh: published 13/10/2026.
+- Provincial GRDP 2018–2019 for the 23 merged provinces: needs NSO tables (site blocked from the sandbox; `tools/build/grdp/pxget.py`).
+- World-rank timelines: history mixes WB, WPP and IMF sources; kept as a snapshot until one source per indicator is chosen.
+- Finance histories in `FINSYS.timelines`: stored, too thin to draw (2–5 points, search excerpts).
+- Budget of-which for non-state, FDI, import duties and other recurrent: not published at line level. Development investment is split central/local for 2023–2024 only.
