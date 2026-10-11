@@ -1,6 +1,7 @@
 {
 "lang": "en",
 "exact": {
+"Chính trị": "Politics",
 "${a.name} · Click để xem công ty con": "${a.name} · Click to view subsidiaries",
 "${tile('GDP 9 tháng', ivPct(g.ytd9m, 2, false),": "${tile('GDP 9M', ivPct(g.ytd9m, 2, false),",
 "% (ước tính)": "% (estimate)",
