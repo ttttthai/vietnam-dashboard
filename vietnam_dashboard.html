@@ -1075,6 +1075,24 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .pg-how-x li time { color: #5b6170; font-variant-numeric: tabular-nums; } .pg-how-x li.off { opacity: .3; } .pg-how-x li.on { font-weight: 600; } .pg-how-x li.on time { color: #16181d; }
   .pg-how-clock { font: 700 14px var(--font-ui); color: #e34948; }
   @media (prefers-reduced-motion: reduce) { .pg-how-vb i { animation: none; } }
+  .pg-face { display: inline-flex; align-items: center; justify-content: center; flex: none; border-radius: 50%; background: var(--c); color: #fff; font-family: var(--font-ui); font-weight: 700; letter-spacing: .3px; box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--c); overflow: hidden; }
+  .pg-org-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px 18px; margin-top: 8px; }
+  .pg-org-tree, .pg-org-tree ul { list-style: none; margin: 0; padding: 0; } .pg-org-tree ul { padding-left: 16px; margin-left: 11px; border-left: 1.5px solid #d6d2c7; }
+  .pg-org-li { margin: 5px 0; animation: pgOrgIn .45s ease both; animation-delay: var(--d); } @keyframes pgOrgIn { from { opacity: 0; transform: translateX(-8px); } }
+  .pg-org-n { display: flex; gap: 6px; align-items: flex-start; } .pg-org-b { border-left: 3px solid var(--c); background: #fff; border-radius: 4px; padding: 5px 9px; min-width: 0; flex: 1; box-shadow: 0 1px 0 #e6e3db; }
+  .pg-org-t, .pg-org-t0 { flex: none; width: 22px; height: 22px; margin-top: 4px; } .pg-org-t { border: 1px solid #c9ccd2; background: #fff; border-radius: 50%; font: 700 13px var(--font-ui); cursor: pointer; color: #16181d; line-height: 1; }
+  .pg-org-h { font: 600 13px/1.35 var(--font-ui); color: #16181d; } .pg-org-s { font: 700 11px var(--font-ui); background: var(--c); color: #fff; border-radius: 9px; padding: 0 6px; margin-left: 2px; }
+  .pg-org-l { display: flex; gap: 7px; align-items: center; margin-top: 4px; font: 400 12px/1.35 var(--font-ui); color: #33363d; } .pg-org-x { font: 400 11.5px/1.4 var(--font-ui); color: #5b6170; margin-top: 3px; }
+  .pg-tm { animation: pgTm .5s ease both; animation-delay: var(--d); } @keyframes pgTm { from { opacity: 0; } }
+  .pg-pict { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px 20px; margin: 10px 0; font: 400 12.5px var(--font-ui); color: #16181d; }
+  .pg-pict b { font-weight: 600; } .pg-pict span { font: 700 18px var(--font-head); margin-left: 4px; }
+  .pg-sq { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; } .pg-sq i { width: 11px; height: 11px; border-radius: 2px; background: #2a78d6; animation: pgOrgIn .3s ease both; animation-delay: var(--d); } .pg-sq.p i { width: 9px; height: 9px; border-radius: 50%; background: #d6409f; }
+  .pg-bar { height: 12px; background: #e6e3db; border-radius: 6px; margin-top: 7px; overflow: hidden; } .pg-bar i { display: block; height: 100%; background: #eb6834; transition: width .8s ease; }
+  .pg-ld { animation: pgTm .5s ease both; animation-delay: var(--d); }
+  .pg-hold { margin-top: 8px; } .pg-hold-r { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 6px; }
+  .pg-hold-c { display: flex; gap: 10px; align-items: center; background: #fff; border: 1px solid #e6e3db; border-radius: 8px; padding: 8px 10px; animation: pgOrgIn .45s ease both; }
+  .pg-hold-c b { display: block; font: 600 14px var(--font-ui); } .pg-hold-c > div > span { display: block; font: 400 12px var(--font-ui); color: #5b6170; }
+  @media (prefers-reduced-motion: reduce) { .pg-org-li, .pg-tm, .pg-sq i, .pg-ld, .pg-hold-c { animation: none; } }
   .pg-how-full { font: 600 13px var(--font-ui); color: #16181d; margin: 2px 0 6px; }
   .pg-how-m { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 6px; }
   .pg-how-m li { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font: 400 13px var(--font-ui); opacity: .55; animation: pgHowIn .45s ease; }
@@ -5378,7 +5396,7 @@ function stBulbs(root) {
 // inner chapters keep their ids, charts, boxes and reveal animation. A group whose id ends in -explore owns the panel tail.
 const ST_GROUPS = [
   ['pg-g-goals', '1 · Mục tiêu & ưu tiên', '1 · Goals & priorities', ['pg-st-gap', 'pg-st-pil']],
-  ['pg-g-docs', '2 · Quyết định & thực thi', '2 · Decisions & delivery', ['pg-st-dec', 'pg-st-wave', 'pg-st-chain', 'pg-st-pipe', 'pg-st-watch']],
+  ['pg-g-docs', '2 · Bộ máy & quyết định', '2 · Structure & decisions', ['pg-st-machine', 'pg-st-dec', 'pg-st-wave', 'pg-st-chain', 'pg-st-pipe', 'pg-st-watch']],
   ['soc-g-people', '1 · Dân số', '1 · Population', ['soc-st-tfr', 'soc-st-age']],
   ['soc-g-place', '2 · Vùng miền & thế giới', '2 · Regions & the world', ['soc-st-rich', 'soc-st-rank', 'soc-st-rel']],
   ['st-g-growth', '1 · Tăng trưởng & dòng tiền', '1 · Growth & money flows', ['st-formula', 'st-bop', 'st-inv']],
@@ -12012,6 +12030,14 @@ function renderPartyStory() {
     stT(`${pgPilName(pil[0].p)}: ${pil[0].n} văn bản, nhiều nhất trong ${pil.length} trụ cột`, `${pgPilName(pil[0].p)}: ${pil[0].n} documents, the most of ${pil.length} pillars`),
     stT('Số văn bản theo trụ cột chính sách (cách nhóm của dashboard), chia theo cấp ban hành.', 'Documents per policy pillar (the dashboard\'s grouping), split by issuing level.'),
     `${stLegend(PG_LV.map(l => ({ n: pgLvName(l), c: PG_LVC[l] })))}<div id="pg-st-pilbars" class="st-viz"></div>`);
+  if (pgGov() && pgGov().org) { const Gv = pgGov(), H = Gv.org_history || [], h0 = H[0] || {}, hL = H[H.length - 1] || {};
+    h += stChap('pg-st-machine', stT('Bộ máy · Ai là ai', 'The machinery · Who is who'),
+      stT(`Bộ máy năm 2026: ${hL.ministries} bộ và ${hL.ministry_level_agencies} cơ quan ngang bộ, ${hL.provinces} tỉnh, thành, chính quyền địa phương 2 cấp`, `The 2026 machinery: ${hL.ministries} ministries and ${hL.ministry_level_agencies} ministry-level agencies, ${hL.provinces} provinces, two-tier local government`),
+      stT('Sơ đồ bộ máy Đảng, Nhà nước, chính quyền địa phương và Mặt trận, với người đứng đầu; bấm + để mở nhánh, hoặc xem dạng bản đồ khối. Bên dưới: bộ máy thay đổi thế nào từ 1986, và những người giữ bốn chức vụ cao nhất.', 'The Party, State, local government and Fatherland Front, with who leads each; press + to open a branch, or switch to the treemap. Below: how the machinery changed since 1986, and who held the four top posts.'),
+      `<div id="pg-st-org" class="st-viz" data-noanim></div>
+       <div class="st-sub" style="margin-top:22px">${stT(`Bộ máy thay đổi thế nào, ${h0.year}–${hL.year}`, `How the machinery changed, ${h0.year}–${hL.year}`)}</div><div id="pg-st-orgevo"></div>
+       <div class="st-sub" style="margin-top:22px">${stT('Tứ trụ từ 1986: Tổng Bí thư, Chủ tịch nước, Thủ tướng, Chủ tịch Quốc hội', 'The top four posts since 1986')}</div><div id="pg-st-leaders" class="st-viz" data-noanim></div>
+       ${stSrc(stT(`Nguồn: agent Strategy tổng hợp từ thông báo của Đảng, Quốc hội, Chính phủ và báo chí chính thống (${(Gv.org || {}).as_of || ''}); từng cơ quan, từng mốc ghi nguồn riêng.`, `Source: Strategy agent, from Party, NA and Government announcements and official media (${(Gv.org || {}).as_of || ''}); every body and snapshot carries its own source.`))}`); }
   if (pgGov()) { const Gv = pgGov(), V = pgHowVotes(), c13 = V.find(x => x.two3);
     h += stChap('pg-st-dec', stT('Bộ máy · Quyết định được làm ra thế nào', 'The machinery · How a decision is made'),
       stT('Đảng quyết định chủ trương; Quốc hội biểu quyết luật khi quá nửa tổng số đại biểu tán thành, Hiến pháp cần hai phần ba', 'The Party sets the course; the National Assembly passes a law with more than half of all deputies, the Constitution needs two-thirds'),
@@ -12038,7 +12064,7 @@ function renderPartyStory() {
   h += stChap('pg-st-map', stT('Tự khám phá', 'Explore'), stT('Bản đồ đầy đủ: mọi văn bản, mọi liên kết', 'The full map: every document, every link'),
     stT('Lọc theo trụ cột, kéo thanh thời gian, rê chuột vào một văn bản để thấy chuỗi triển khai, bấm để đọc chi tiết.', 'Filter by pillar, drag the timeline, hover a document to see its chain, click to read the details.'), '');
   root.innerHTML = h;
-  pgStGrowth(avg5, g9); pgStDumb(gaps); pgStTargets(); pgStBars(M); pgStMult(); pgStWaveCtl(M); pgStPillars(); pgStFlow(hops); pgStRows(); pgStDrafts(); pgStHow(); pgStHowVote(); pgStHowEvo();
+  pgStGrowth(avg5, g9); pgStDumb(gaps); pgStTargets(); pgStBars(M); pgStMult(); pgStWaveCtl(M); pgStPillars(); pgStFlow(hops); pgStRows(); pgStDrafts(); pgStOrg(); pgStOrgEvo(); pgStLeaders(); pgStHow(); pgStHowVote(); pgStHowEvo();
   stFinish(root);
 }
 // hero — growth columns 2016–2025 + 9M-2026 against the ≥10% target (reference line in ink, label in ink)
@@ -12288,6 +12314,100 @@ function pgStHowEvo() {
 document.addEventListener('click', e => {
   const b = e.target.closest && e.target.closest('[data-pg-how]'); if (b) { pgHowFlow = +b.dataset.pgHow; pgHowStep = null; pgStHow(); const h = document.getElementById('pg-st-how-ctl'); if (h && h._ctl) h._ctl.play(); return; }
   const v = e.target.closest && e.target.closest('[data-pg-vote]'); if (v) { pgHowVote = +v.dataset.pgVote; pgStHowVote(); }
+});
+// ── Politics · "The machinery": org chart (tree or treemap), how it changed 1986 → 2026, and the top leaders since 1986.
+// Data: strategy_directives.json → governance.org / org_history / leaders (Strategy agent). Portraits: a leader's
+// portrait.data_uri when one has been embedded (freely licensed Commons files only); until then an initials badge.
+const PG_ORG_KIND = { party: ST.red, state: '#16181d', legislature: ST.orange, executive: ST.aqua, judiciary: ST.violet, audit: ST.violet, local: ST.magenta, front: ST.yellow };
+const PG_ROLE = { general_secretary: ['Tổng Bí thư', 'General Secretary', ST.red], president: ['Chủ tịch nước', 'President', '#16181d'], prime_minister: ['Thủ tướng', 'Prime Minister', ST.aqua], na_chair: ['Chủ tịch Quốc hội', 'NA Chair', ST.orange] };
+const PG_ROLE_S = { general_secretary: ['Tổng Bí thư', 'Gen. Sec.'], president: ['Chủ tịch nước', 'President'], prime_minister: ['Thủ tướng', 'PM'], na_chair: ['Chủ tịch QH', 'NA Chair'] };
+let pgOrgView = 'tree', pgOrgOpen = new Set(['dang', 'dai_hoi', 'bch_tw', 'nha_nuoc', 'chinh_phu', 'dia_phuong', 'mttq']), pgOrgYi = null;
+const pgInit = n => String(n || '').split(/\s+/).filter(Boolean).slice(-2).map(w => w[0]).join('').toUpperCase();
+function pgFace(name, c, size, por) {   // portrait or initials badge
+  const img = por && por.data_uri ? `<img src="${por.data_uri}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : ciE(pgInit(name));
+  return `<span class="pg-face" style="--c:${c};width:${size}px;height:${size}px;font-size:${Math.round(size * .36)}px" title="${ciE(name)}${por && por.license ? ' · ' + ciE(por.license) : ''}">${img}</span>`;
+}
+function pgPortrait(name) { const L = ((pgGov() || {}).leaders || []).find(l => l.name === name && l.portrait && l.portrait.data_uri); return L ? L.portrait : null; }
+function pgStOrg() {
+  const el = document.getElementById('pg-st-org'), G = pgGov(); if (!el || !G || !G.org) return;
+  const roots = G.org.children || [G.org];
+  const sw = `<div class="st-ctrl" role="group" aria-label="${ciE(stT('Cách xem', 'View'))}">${[['tree', stT('Sơ đồ cây', 'Tree')], ['map', stT('Bản đồ khối (treemap)', 'Treemap')]].map(([k, n]) => `<button type="button" data-pg-orgv="${k}" class="${k === pgOrgView ? 'on' : ''}" aria-pressed="${k === pgOrgView}">${n}</button>`).join('')}
+    ${pgOrgView === 'tree' ? `<button type="button" data-pg-orgx="all">${stT('Mở tất cả', 'Expand all')}</button><button type="button" data-pg-orgx="none">${stT('Thu gọn', 'Collapse')}</button>` : ''}</div>`;
+  if (pgOrgView === 'tree') {
+    let k = 0;
+    const node = (n, d) => { const kids = n.children || [], open = pgOrgOpen.has(n.id), c = PG_ORG_KIND[n.kind] || '#16181d', L = n.leader, delay = (k++) * 18;
+      return `<li class="pg-org-li" style="--d:${Math.min(delay, 900)}ms"><div class="pg-org-n" style="--c:${c}">${kids.length ? `<button type="button" class="pg-org-t" data-pg-org="${ciE(n.id)}" aria-expanded="${open}">${open ? '−' : '+'}</button>` : '<span class="pg-org-t0"></span>'}
+        <div class="pg-org-b"><div class="pg-org-h">${ciE(stT(n.vi, n.en || n.vi))}${n.size != null ? ` <span class="pg-org-s">${stN(n.size, 0)}</span>` : ''}</div>
+        ${L && L.name ? `<div class="pg-org-l">${pgFace(L.name, c, 26, pgPortrait(L.name))}<span><b>${ciE(L.name)}</b> · ${ciE(stT(L.title_vi || '', L.title_en || L.title_vi || ''))}${L.since ? ` · ${stT('từ', 'since')} ${ciE(String(L.since).slice(0, 7).split('-').reverse().join('/'))}` : ''}</span></div>` : ''}
+        ${n.size_note && d < 3 ? `<div class="pg-org-x">${ciE(n.size_note)}</div>` : ''}</div></div>
+        ${kids.length && open ? `<ul>${kids.map(x => node(x, d + 1)).join('')}</ul>` : ''}</li>`; };
+    el.innerHTML = sw + `<div class="pg-org-cols">${roots.map(r => `<ul class="pg-org-tree">${node(r, 0)}</ul>`).join('')}</div>`;
+  } else {
+    // treemap: area ∝ members where the data has a size (others get a small share), nested two levels deep; squarified
+    const W = stCW(el, 1000), H = Math.round(Math.min(620, Math.max(420, W * .62))), wt = n => (n.children || []).length ? (n.children || []).reduce((a, c) => a + wt(c), 0) : Math.max(1, Math.sqrt(n.size || 4));
+    const sq = (items, x, y, w, h) => {   // squarified layout of [{v, ...}] into a rect
+      const out = [], tot = items.reduce((a, b) => a + b.v, 0) || 1; let rest = items.slice().sort((a, b) => b.v - a.v), X = x, Y = y, Wr = w, Hr = h, R = tot;
+      while (rest.length) { const short = Math.min(Wr, Hr), row = []; let best = Infinity;
+        for (const it of rest) { const tr = row.concat(it), s = tr.reduce((a, b) => a + b.v, 0) / R * Wr * Hr, side = s / short, worst = Math.max(...tr.map(t => { const a = t.v / R * Wr * Hr, o = a / side; return Math.max(side / o, o / side); }));
+          if (worst > best && row.length) break; best = worst; row.push(it); }
+        rest = rest.slice(row.length); const s = row.reduce((a, b) => a + b.v, 0) / R * Wr * Hr, side = s / short; let off = 0;
+        row.forEach(t => { const a = t.v / R * Wr * Hr, len = a / side; if (Wr >= Hr) out.push({ ...t, x: X, y: Y + off, w: side, h: len }); else out.push({ ...t, x: X + off, y: Y, w: len, h: side }); off += len; });
+        R -= row.reduce((a, b) => a + b.v, 0); if (Wr >= Hr) { X += side; Wr -= side; } else { Y += side; Hr -= side; } }
+      return out; };
+    let s = '', k = 0;
+    sq(roots.map(n => ({ n, v: wt(n) })), 0, 0, W, H).forEach(b => { const c = PG_ORG_KIND[b.n.kind] || '#16181d';
+      s += `<g class="pg-tm" style="--d:${k++ * 120}ms"><rect x="${b.x + 1}" y="${b.y + 1}" width="${Math.max(0, b.w - 2)}" height="${Math.max(0, b.h - 2)}" fill="${c}" fill-opacity=".1" stroke="${c}" stroke-width="2" rx="4"/><text x="${b.x + 8}" y="${b.y + 18}" style="font:700 13px var(--font-ui);fill:${c}">${ciE(stT(b.n.vi, b.n.en || b.n.vi).slice(0, Math.floor(b.w / 7.5)))}</text></g>`;
+      const inner = (b.n.children || []).flatMap(c1 => (c1.children || []).length && wt(c1) > 30 ? c1.children : [c1]);
+      sq(inner.map(n => ({ n, v: wt(n) })), b.x + 6, b.y + 26, b.w - 12, b.h - 32).forEach(t => { const cc = PG_ORG_KIND[t.n.kind] || c, L = t.n.leader, big = t.w > 110 && t.h > 44;
+        s += `<g class="pg-tm" style="--d:${k++ * 60}ms" ${stKey(stT(t.n.vi, t.n.en || t.n.vi), (t.n.size != null ? stN(t.n.size, 0) + ' · ' : '') + (L && L.name ? L.name : ''))}><rect x="${t.x + 1}" y="${t.y + 1}" width="${Math.max(0, t.w - 2)}" height="${Math.max(0, t.h - 2)}" fill="${cc}" fill-opacity=".72" rx="3"/>`
+          + (t.w > 46 && t.h > 20 ? `<text x="${t.x + 6}" y="${t.y + 15}" style="font:600 ${big ? 12 : 10.5}px var(--font-ui);fill:#fff">${ciE(stT(t.n.vi, t.n.en || t.n.vi).slice(0, Math.floor(t.w / (big ? 6.6 : 6))))}</text>` : '')
+          + (big && t.n.size != null ? `<text x="${t.x + 6}" y="${t.y + 31}" style="font:700 15px var(--font-ui);fill:#fff">${stN(t.n.size, 0)}</text>` : '')
+          + (big && L && L.name && t.h > 60 ? `<text x="${t.x + 6}" y="${t.y + t.h - 8}" style="font:500 11px var(--font-ui);fill:#fff">${ciE(L.name)}</text>` : '') + `</g>`; }); });
+    el.innerHTML = sw + `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ciE(stT('Bản đồ khối bộ máy Đảng, Nhà nước', 'Treemap of the Party and State machinery'))}">${s}</svg><p class="st-tick" style="margin:4px 0 0">${stT('Diện tích ô ∝ căn bậc hai số thành viên khi có số liệu (để cơ quan nhỏ vẫn đọc được); ô không có số liệu nhận phần tối thiểu.', 'Box area ∝ square root of members where known (so small bodies stay readable); bodies without a count get a minimum share.')}</p>`;
+    stRW(el, pgStOrg);
+  }
+}
+// how the machinery changed: one snapshot per Congress term / reform, pictograms that shrink with mergers
+function pgStOrgEvo() {
+  const el = document.getElementById('pg-st-orgevo'), G = pgGov(); if (!el || !G || !G.org_history) return;
+  const H = G.org_history, L = H.length - 1, i = pgOrgYi ?? L, h = H[i], last = (k, j) => { for (let q = j; q >= 0; q--) if (H[q][k] != null) return H[q][k]; return null; };
+  const v = k => h[k] != null ? h[k] : null, tile = (n, k, fmt) => { const x = v(k), prev = i ? last(k, i - 1) : null, d = x != null && prev != null ? x - prev : null;
+    return `<div class="pg-evo-t"><div class="pg-evo-n">${n}</div><div class="pg-evo-v">${x != null ? (fmt || stN)(x, 0) : '—'}</div><div class="pg-evo-y">${d ? `${d > 0 ? '+' : '−'}${stN(Math.abs(d), 0)} ${stT('so với kỳ trước', 'vs previous')}` : x == null ? stT('chưa có số', 'no data') : '&nbsp;'}</div></div>`; };
+  const mins = (v('ministries') || 0) + (v('ministry_level_agencies') || 0), pv = v('provinces'), dist = v('districts'), com = v('communes');
+  const sqs = n => Array.from({ length: n }, (_, j) => `<i style="--d:${j * 25}ms"></i>`).join('');
+  el.innerHTML = `<div class="pg-evo-tiles">${tile(stT('Bộ Chính trị', 'Politburo'), 'politburo')}${tile(stT('Ủy viên TW (chính thức)', 'Central Committee (full)'), 'cc_full')}${tile(stT('Bộ, cơ quan ngang bộ', 'Ministries & equivalents'), 'ministries', () => mins ? `${v('ministries')} + ${v('ministry_level_agencies')}` : '—')}${tile(stT('Đại biểu Quốc hội', 'NA deputies'), 'na_deputies')}</div>
+    <div class="pg-pict"><div><b>${stT('Bộ, ngang bộ', 'Ministries & equiv.')}</b> <span>${mins || '—'}</span><div class="pg-sq m">${sqs(mins)}</div></div>
+      <div><b>${stT('Tỉnh, thành', 'Provinces')}</b> <span>${pv ?? '—'}</span><div class="pg-sq p">${sqs(pv || 0)}</div></div>
+      <div><b>${stT('Cấp huyện', 'Districts')}</b> <span>${dist != null ? stN(dist, 0) : stT('chưa có số', 'no data')}</span>${dist != null ? `<div class="pg-bar"><i style="width:${Math.min(100, dist / 720 * 100)}%"></i></div>` : ''}</div>
+      <div><b>${stT('Cấp xã', 'Communes')}</b> <span>${com != null ? stN(com, 0) : stT('chưa có số', 'no data')}</span>${com != null ? `<div class="pg-bar"><i style="width:${Math.min(100, com / 10600 * 100)}%"></i></div>` : ''}</div></div>
+    <div class="pg-how-x"><div class="pg-how-k">${h.year} · ${ciE(stT(h.label_vi, h.label_en || h.label_vi))}</div><p style="margin:4px 0 0;font:400 13.5px/1.5 var(--font-ui)">${ciE(stT(h.changes_vi || '', h.changes_en || h.changes_vi || ''))}</p>${h.url ? `<a class="st-src" href="${ciE(h.url)}" target="_blank" rel="noopener">${ciE(h.src || stT('nguồn', 'source'))}</a>` : ''}${h.verified === false ? ` <i class="st-src">· ${stT('chưa đối chiếu', 'unverified')}</i>` : ''}</div>`;
+  stYears(el, 'G-org', H.map(x => String(x.year)), L, pgStOrgEvo, { from: 0, ms: 2200, none: stT('Mỗi khung: một kỳ Đại hội hoặc cải cách; ô vuông = bộ, chấm = tỉnh; thanh = số huyện, số xã.', 'Each frame: a Congress term or reform; squares = ministries, dots = provinces; bars = districts and communes.'),
+    step: j => { const v2 = j >= L ? null : j; if (pgOrgYi === v2) return; pgOrgYi = v2; pgStOrgEvo(); pgStLeaders(); } });
+}
+// the four top posts since 1986, one row each; the evolution slider's year is marked, and its holders are listed with portraits
+function pgStLeaders() {
+  const el = document.getElementById('pg-st-leaders'), G = pgGov(); if (!el || !G || !G.leaders) return;
+  const H = G.org_history || [], Y = pgOrgYi == null ? new Date().getFullYear() + (new Date().getMonth()) / 12 : H[pgOrgYi].year + .5;
+  const d = s => { if (!s) return null; const [y, m = '07', dd = '01'] = String(s).split('-'); return +y + (+m - 1) / 12 + (+dd - 1) / 365; };
+  const now = new Date().getFullYear() + new Date().getMonth() / 12, W = stCW(el, 1000), narrow = W < 640, ML = narrow ? 92 : 140, MR = 10, RH = narrow ? 44 : 50, x0 = 1986, x1 = Math.max(2027, Math.ceil(now)), sx = stLin(x0, x1, ML, W - MR);
+  const roles = Object.keys(PG_ROLE), Hh = 22 + roles.length * RH + 8;
+  let s = [1990, 2000, 2010, 2020].map(y => `<line class="st-grid" x1="${sx(y)}" x2="${sx(y)}" y1="16" y2="${Hh - 8}"/><text class="st-tick" x="${sx(y)}" y="11" text-anchor="middle">${y}</text>`).join('');
+  roles.forEach((r, ri) => { const [vi, en, c] = PG_ROLE[r], y = 22 + ri * RH;
+    s += `<text class="st-lab st-b" x="${ML - 8}" y="${y + RH / 2 + 4}" text-anchor="end" style="font-size:${narrow ? 11 : 12.5}px">${ciE(narrow ? stT(PG_ROLE_S[r][0], PG_ROLE_S[r][1]) : stT(vi, en))}</text>`;
+    G.leaders.filter(l => l.role === r).forEach((l, k) => { const a = Math.max(x0, d(l.from) || x0), b = Math.min(x1, d(l.to) || now), xa = sx(a), xb = Math.max(xa + 2, sx(b)), on = Y >= a && Y < b + .01;
+      s += `<g ${stKey(stT(vi, en) + ' · ' + l.name, `${String(l.from || '').slice(0, 7)} → ${l.to ? String(l.to).slice(0, 7) : stT('nay', 'now')}`)}><rect x="${xa}" y="${y + 8}" width="${xb - xa}" height="${RH - 16}" rx="4" fill="${c}" fill-opacity="${on ? 1 : .28}" stroke="#fff" stroke-width="1" class="pg-ld" style="--d:${k * 80}ms"/>`
+        + (xb - xa > 46 && !narrow ? `<text x="${xa + 5}" y="${y + RH / 2 + 4}" style="font:600 11px var(--font-ui);fill:${on ? '#fff' : '#16181d'}">${ciE(l.name.split(' ').slice(-2).join(' ').slice(0, Math.floor((xb - xa - 8) / 6)))}</text>` : '') + `</g>`; }); });
+  s += `<line x1="${sx(Y)}" x2="${sx(Y)}" y1="14" y2="${Hh - 4}" stroke="${ST.ink}" stroke-width="2" stroke-dasharray="4,3"/>`;
+  const holders = roles.map(r => { const l = G.leaders.filter(l => l.role === r).find(l => Y >= (d(l.from) || 0) && Y < (d(l.to) || 9999) + .01); return l ? { r, l } : null; }).filter(Boolean);
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${Hh}" width="100%" role="img" aria-label="${ciE(stT('Tứ trụ từ 1986', 'Top four posts since 1986'))}">${s}</svg>
+    <div class="pg-hold"><div class="pg-how-k">${stT('Giữ chức năm', 'In office in')} ${Math.floor(Y)}</div><div class="pg-hold-r">${holders.map(({ r, l }) => `<div class="pg-hold-c">${pgFace(l.name, PG_ROLE[r][2], 54, l.portrait && l.portrait.data_uri ? l.portrait : null)}<div><b>${ciE(l.name)}</b><span>${ciE(stT(PG_ROLE[r][0], PG_ROLE[r][1]))}</span><span>${String(l.from || '').slice(0, 4)}–${l.to ? String(l.to).slice(0, 4) : stT('nay', 'now')}</span></div></div>`).join('')}</div>
+    <p class="st-tick" style="margin:6px 0 0">${stT('Ảnh chân dung chỉ dùng tệp có giấy phép tự do trên Wikimedia Commons; hiện hiển thị chữ cái đầu cho đến khi tải được ảnh.', 'Portraits use only freely licensed Wikimedia Commons files; initials are shown until the photos can be fetched.')}</p></div>`;
+  stRW(el, pgStLeaders);
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest && e.target.closest('[data-pg-org]'); if (t) { const id = t.dataset.pgOrg; pgOrgOpen.has(id) ? pgOrgOpen.delete(id) : pgOrgOpen.add(id); pgStOrg(); return; }
+  const v = e.target.closest && e.target.closest('[data-pg-orgv]'); if (v) { pgOrgView = v.dataset.pgOrgv; pgStOrg(); return; }
+  const x = e.target.closest && e.target.closest('[data-pg-orgx]'); if (x) { const G = pgGov(), all = []; (function w(n) { all.push(n.id); (n.children || []).forEach(w); })(G.org); pgOrgOpen = x.dataset.pgOrgx === 'all' ? new Set(all) : new Set(['dang', 'nha_nuoc', 'dia_phuong', 'mttq']); pgStOrg(); }
 });
 function pgStFlow(hops) {
   const el = document.getElementById('pg-st-flow'), keep = hops.filter(h => h.n >= 5);
