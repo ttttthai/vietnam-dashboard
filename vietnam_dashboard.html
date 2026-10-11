@@ -286,6 +286,9 @@ if (window.APP_LANG === 'en') window.I18N_START();
   #top-row { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; }
   #panel-map { flex: 1; min-width: 0; display: flex; flex-direction: column; background: var(--bg); border-right: 1px solid var(--border); overflow: hidden; }
   #map-wrap { flex: 1; overflow: hidden; position: relative; min-height: 0; min-width: 0; }
+  #map-m63 { flex: none; padding: 0 8px; } #map-m63 .st-tctl { margin: 2px 0 2px; gap: 4px 8px; } #map-m63 .st-tctl button { width: 28px; height: 28px; font-size: 11px; }
+  #map-m63 .st-tctl input[type=range] { flex: 1 1 120px; } #map-m63 .st-tctl output { font-size: 12.5px; min-width: 0; } #map-m63 .st-tctl output span { font-size: 11.5px; }
+  #map-svg .m63-old { transition: opacity .7s ease; } #map-svg .m63-in { transition: opacity .7s ease, stroke-width .7s ease; }
   #map-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   /* Region selector: dropdown, top right of the map card */
   #map-legend { flex: none; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 8px 10px; border-bottom: 1px solid var(--border); background: var(--bg2); }
@@ -1498,6 +1501,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
           </select>
           <div id="map-region-key" aria-hidden="true"><span title="V1 – Trung du & MN Bắc"><i style="background:#1baf7a"></i>V1</span><span title="V2 – Đồng bằng S.Hồng"><i style="background:#008300"></i>V2</span><span title="V3 – Bắc Trung Bộ"><i style="background:#2a78d6"></i>V3</span><span title="V4 – Nam TB & Tây Nguyên"><i style="background:#d6409f"></i>V4</span><span title="V5 – Đông Nam Bộ"><i style="background:#eb6834"></i>V5</span><span title="V6 – Đồng bằng S.CL"><i style="background:#eda100"></i>V6</span></div>
         </div>
+        <!-- 63 → 34 merger replay (▶ + slider), drawn by m63Ctl() -->
+        <div id="map-m63"></div>
         <!-- Map fills the rest of the panel -->
         <div id="map-wrap">
           <svg id="map-svg"></svg>
@@ -2367,6 +2372,16 @@ const MAP_ARCHIPELAGOS = [
 let __mapSvgD3 = null;
 let __map34    = null;  // Array of {pid, feature} — 34 merged province shapes
 let __overlays = [];    // Region outline features drawn as overlay
+let __topo = null, __old63 = null, __m63i = null;   // 63 → 34 replay: the topology, old-province geometries by new id, current frame
+// the 63 provinces before the 1/7/2025 merger (NQ 202/2025/QH15), by Highcharts key; vn-3655 is Cù Lao Chàm (part of Quảng Nam)
+const HK_OLD = { 'vn-hg': 'Hà Giang', 'vn-tq': 'Tuyên Quang', 'vn-cb': 'Cao Bằng', 'vn-li': 'Lai Châu', 'vn-yb': 'Yên Bái', 'vn-lo': 'Lào Cai', 'vn-ty': 'Thái Nguyên', 'vn-307': 'Bắc Kạn',
+  'vn-db': 'Điện Biên', 'vn-ls': 'Lạng Sơn', 'vn-311': 'Sơn La', 'vn-pt': 'Phú Thọ', 'vn-ho': 'Hòa Bình', 'vn-vc': 'Vĩnh Phúc', 'vn-bn': 'Bắc Ninh', 'vn-bg': 'Bắc Giang', 'vn-qn': 'Quảng Ninh',
+  'vn-318': 'Hà Nội', 'vn-hd': 'Hải Dương', 'vn-3623': 'Hải Phòng', 'vn-317': 'Hưng Yên', 'vn-tb': 'Thái Bình', 'vn-nb': 'Ninh Bình', 'vn-hm': 'Hà Nam', 'vn-nd': 'Nam Định', 'vn-th': 'Thanh Hóa',
+  'vn-na': 'Nghệ An', 'vn-328': 'Hà Tĩnh', 'vn-qb': 'Quảng Bình', 'vn-qt': 'Quảng Trị', 'vn-tt': 'Thừa Thiên Huế', 'vn-300': 'Quảng Nam', 'vn-3655': null, 'vn-da': 'Đà Nẵng', 'vn-qg': 'Quảng Ngãi',
+  'vn-299': 'Kon Tum', 'vn-bd': 'Bình Định', 'vn-724': 'Gia Lai', 'vn-py': 'Phú Yên', 'vn-723': 'Đắk Lắk', 'vn-kh': 'Khánh Hòa', 'vn-nt': 'Ninh Thuận', 'vn-bu': 'Bình Thuận', 'vn-ld': 'Lâm Đồng',
+  'vn-6365': 'Đắk Nông', 'vn-bp': 'Bình Phước', 'vn-331': 'Đồng Nai', 'vn-la': 'Long An', 'vn-tn': 'Tây Ninh', 'vn-bv': 'Bà Rịa – Vũng Tàu', 'vn-hc': 'TP. Hồ Chí Minh', 'vn-bi': 'Bình Dương',
+  'vn-tg': 'Tiền Giang', 'vn-dt': 'Đồng Tháp', 'vn-ag': 'An Giang', 'vn-kg': 'Kiên Giang', 'vn-br': 'Bến Tre', 'vn-vl': 'Vĩnh Long', 'vn-tv': 'Trà Vinh', 'vn-st': 'Sóc Trăng', 'vn-337': 'Hậu Giang',
+  'vn-333': 'Cần Thơ', 'vn-bl': 'Bạc Liêu', 'vn-cm': 'Cà Mau' };
 
 async function initMap() {
   const mapEl = document.getElementById('map-svg');
@@ -2400,6 +2415,7 @@ async function initMap() {
     groups[pid].push(g);
   });
 
+  __topo = topo; __old63 = Object.fromEntries(Object.entries(groups).map(([pid, gl]) => [pid, gl.map(g => ({ hk: (g.properties['hc-key'] || '').toLowerCase(), g }))]));
   // Merge each group into one GeoJSON feature using topojson.merge()
   __map34 = [];
   for (const [pidStr, gList] of Object.entries(groups)) {
@@ -2547,6 +2563,7 @@ function drawMap() {
     });
   }
 
+  m63Layer(svg, path, getColor);
   // archipelagos: island dots + label, coloured and selectable like their province
   MAP_ARCHIPELAGOS.forEach(a => {
     const p = PROV_BY_ID[a.pid]; if (!p) return;
@@ -2570,8 +2587,48 @@ function drawMap() {
 }
 
 
+// ── 63 → 34 replay: each merged province's old provinces are drawn on top in shades of its colour, with the old borders
+// between them; frame i dissolves the first i mergers (north → south). At rest (last frame) the layer is empty and the map is
+// the 34-province map underneath, so nothing changes for a reader who never presses ▶.
+function m63Shade(c, k) { if (!/^#[0-9a-f]{6}$/i.test(c) || !k) return c; const n = parseInt(c.slice(1), 16), t = [0, .3, .52][Math.min(k, 2)];
+  const m = v => Math.round(v + (255 - v) * t); return '#' + [n >> 16, (n >> 8) & 255, n & 255].map(m).map(v => v.toString(16).padStart(2, '0')).join(''); }
+function m63Groups() {   // merged provinces with ≥2 old provinces, ordered north → south by their projected centroid
+  if (!__old63) return [];
+  return Object.entries(__old63).map(([pid, L]) => ({ pid: +pid, L, names: L.map(x => HK_OLD[x.hk]).filter(Boolean) })).filter(G => G.names.length > 1);
+}
+function m63Layer(svg, path, getColor) {
+  if (!__topo || !__old63) return;
+  const G = m63Groups(), g0 = svg.append('g').attr('class', 'm63').style('pointer-events', 'none');
+  G.forEach(Gp => { const f = (__map34.find(d => d.pid === Gp.pid) || {}).feature; Gp.cy = f ? path.centroid(f)[1] : 0; });
+  G.sort((a, b) => a.cy - b.cy);
+  G.forEach((Gp, j) => { const gg = g0.append('g').attr('class', 'm63-g').attr('data-j', j).attr('data-pid', Gp.pid); let k = 0;
+    Gp.L.forEach(x => { const f = topojson.feature(__topo, { type: 'GeometryCollection', geometries: [x.g] }).features[0], kk = HK_OLD[x.hk] ? k++ : Math.max(0, k - 1);
+      gg.append('path').attr('class', 'm63-old').attr('d', path(f)).attr('data-k', kk).attr('fill', m63Shade(getColor(Gp.pid), kk)).attr('stroke', '#ffffff').attr('stroke-width', 0.6); });
+    const mesh = topojson.mesh(__topo, { type: 'GeometryCollection', geometries: Gp.L.map(x => x.g) }, (a, b) => a !== b);
+    gg.append('path').attr('class', 'm63-in').attr('d', path(mesh)).attr('fill', 'none').attr('stroke', '#16181d').attr('stroke-width', 1.3).attr('stroke-dasharray', '3,2'); });
+  svg.node()._m63 = G;
+  m63Paint(true); m63Ctl(G);
+}
+function m63Paint(instant) {
+  const svg = document.getElementById('map-svg'); if (!svg || !svg._m63) return; const n = svg._m63.length, i = __m63i == null ? n : __m63i;
+  svg.querySelectorAll('g.m63-g').forEach(g => { const on = +g.dataset.j >= i;
+    g.querySelectorAll('.m63-old, .m63-in').forEach(e => { if (instant) e.style.transition = 'none'; e.style.opacity = on ? 1 : 0; if (instant) { void e.getBoundingClientRect(); e.style.transition = ''; } }); });
+}
+function m63Ctl(G) {
+  const host = document.getElementById('map-m63'); if (!host) return; const n = G.length, lang = typeof APP_LANG !== 'undefined' ? APP_LANG : 'vi';
+  if (host._ctl && host._n === n && host._lang === lang) return;   // the control survives map redraws (resize, selection)
+  host._n = n; host._lang = lang;
+  const cnt = i => 63 - G.slice(0, i).reduce((t, Gp) => t + Gp.names.length - 1, 0);
+  const lab = i => i === 0 ? `63 <span>${stT('tỉnh, thành trước 1/7/2025', 'provinces before 1 Jul 2025')}</span>`
+    : i === n ? `34 <span>${stT('tỉnh, thành từ 1/7/2025 (NQ 202/2025/QH15)', 'provinces from 1 Jul 2025 (Res. 202/2025/QH15)')}</span>`
+    : `${cnt(i)} <span>· ${G[i - 1].names.join(' + ')} → ${(PROV_BY_ID[G[i - 1].pid] || {}).n || ''}</span>`;
+  host._ctl = stTimeCtl(host, n + 1, lab, i => { __m63i = i >= n ? null : i; m63Paint(); },
+    { from: 0, ms: 650, watch: document.getElementById('map-wrap'), aria: stT('Sáp nhập 63 → 34 tỉnh, thành', 'Merger 63 → 34 provinces'), play: stT('Phát: 63 tỉnh → 34 tỉnh', 'Play: 63 provinces → 34') });
+}
 function updateMapColors() {
   if (!__mapSvgD3) return;
+  __mapSvgD3.selectAll('g.m63-g').each(function() { const c = (() => { const p = PROV_BY_ID[+this.dataset.pid]; if (!p) return '#e5e9ef'; return selType === 'all' || (selType === 'v' && p.v === parseInt(selKey)) || (selType === 'p' && p.id === parseInt(selKey)) ? VCOL[p.v] : '#e5e9ef'; })();
+    d3.select(this).selectAll('path.m63-old').attr('fill', function() { return m63Shade(c, +this.dataset.k); }); });
   __mapSvgD3.selectAll('path.prov-path')
     .attr('fill', function(d) {
       const p = PROV_BY_ID[d.pid];
