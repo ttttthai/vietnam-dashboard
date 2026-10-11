@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-06",
+ "as_of": "2026-10-11",
  "built_by": "Research agent",
  "append_only": "Add new hosts and new observations with dates; never delete history — mark superseded entries.",
  "probe": {
@@ -194,7 +194,13 @@
    },
    "access_tips": "Blocked; search excerpts usually show \"Ngày hiệu lực\" and số hiệu.",
    "conflicts_seen": [],
-   "last_used": "2026-10-06"
+   "last_used": "2026-10-11",
+   "observations": [
+    {
+     "date": "2026-10-11",
+     "note": "NQ 306/NQ-CP (05/10/2025) six socio-economic regions for the 34 provinces confirmed via search excerpts (thuvienphapluat Q&A 138065840, luatvietnam article 104592); WebFetch getaddrinfo ENOTFOUND for thuvienphapluat.vn and luatvietnam.vn on 2026-10-11 — use search snippets."
+    }
+   ]
   },
   {
    "host": "tulieuvankien.dangcongsan.vn / dangcongsan.vn / nhandan.vn",
@@ -530,8 +536,14 @@
    "conflicts_seen": [
     "Merged-HCMC territory from 01/07/2025 — yoy base to verify"
    ],
-   "last_used": "2026-10-06",
-   "pages": []
+   "last_used": "2026-10-11",
+   "pages": [],
+   "observations": [
+    {
+     "date": "2026-10-11",
+     "note": "2025 HCMC remittances 10.34 bn (+8.3% vs 9.55 bn 2024) — no excerpt states whether post-1/7/2025 figures cover merged HCMC (Bình Dương, BR-VT); boundary basis still open (qc_34_provinces F8)."
+    }
+   ]
   },
   {
    "host": "vietnamtourism.gov.vn",
@@ -549,6 +561,46 @@
    "conflicts_seen": [],
    "last_used": "2026-10-06",
    "pages": []
+  },
+  {
+   "host": "nongnghiepmoitruong.vn",
+   "publisher": "Báo Nông nghiệp và Môi trường (MAE newspaper)",
+   "what_it_holds": "national land statistics/inventory results (e.g. 2024 inventory, QĐ 456/QĐ-BNNMT: 33,214,437 ha)",
+   "best_for_agent": "Society (area totals), Research (reconciliation)",
+   "reliability": "press (ministry newspaper)",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": null,
+    "checked": "2026-10-11",
+    "detail": "not probed; used via search excerpt"
+   },
+   "access_tips": "Land totals have vintages: 2023 statistics 33,133,831 ha (QĐ 3411/QĐ-BTNMT) vs 2024 inventory 33,214,437 ha. NQ 202 provincial areas sum to 331,351.7 km2 (matches the 2023 vintage).",
+   "conflicts_seen": [
+    "2024 inventory total is ~793 km2 larger than the sum of NQ 202 provincial areas"
+   ],
+   "last_used": "2026-10-11",
+   "pages": [
+    "https://nongnghiepmoitruong.vn/ca-nuoc-con-gan-955-nghin-ha-dat-chua-su-dung-d797116.html"
+   ]
+  },
+  {
+   "host": "baolamdong.vn",
+   "publisher": "Báo Lâm Đồng (provincial Party newspaper)",
+   "what_it_holds": "list of the 34 provinces by socio-economic region (post NQ 306/NQ-CP)",
+   "best_for_agent": "Society, Research",
+   "reliability": "press",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": null,
+    "checked": "2026-10-11",
+    "detail": "not probed; search excerpt only"
+   },
+   "access_tips": "Secondary confirmation of the NQ 306 region list; prefer the NQ 306 text on chinhphu.vn when reachable.",
+   "conflicts_seen": [],
+   "last_used": "2026-10-11",
+   "pages": [
+    "https://baolamdong.vn/print/394955.html"
+   ]
   }
  ]
 }

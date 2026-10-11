@@ -175,3 +175,21 @@ Both keep their structure and ownership rules.
 
 ### Files written
 - New: `data/research/animation_plan.json` (142 entries), `data/research/animation_plan.md`. No data, agent or page file edited.
+
+## 2026-10-11 — QC: every provincial figure on the 34-province basis (user request, read-only audit)
+
+### Learned
+1. **Regions after the merger are defined by NQ 306/NQ-CP (05/10/2025)**, not NQ 202: V1 9, V2 6, V3 5, V4 (DH Nam Trung Bộ &
+   Tây Nguyên) 6, V5 3, V6 5. `PROVS.v` matches exactly (search-excerpt verified; legal hosts unresolvable from the sandbox).
+2. **`PROVS.pop` is a hand-typed mix** (some NQ 202 "quy mô dân số", some guesses; Σ 103.04 m) and still feeds the map tooltip and
+   the `CI.map` pop-up; `SOC_PROV_DATA.pop` (NSO 2025p, Σ = national exactly) is the correct field.
+3. **`PROVS.econ` model vs NSO 34-unit GRDP 2025:** errors up to ±60% per province (HCMC +49%, Hà Nội +57%, Lai Châu −60%);
+   regional shares off by up to 11 pts (V5 42.1% vs 31.3%). Official 2018–2025 values already sit in `SOC_GRDP`.
+4. In `calcEconModel`, unemployment/IIP/PCI do not depend on the province list → every province shows the national value.
+5. `pop_nq` for the 11 unchanged units = NSO 2024 average population, not an NQ 202 figure.
+6. Σ34 GRDP vs GDP: −1.01% (2024), −0.52% (2025); population sums exact 2018–2025; area Σ 331,351.7 km² ≈ 2023 land statistics.
+7. HCMC remittance (SBV Khu vực 2) boundary basis after 1/7/2025 still unconfirmed.
+
+### Files written
+- New: `data/research/qc_34_provinces.md` (16 findings + C1 data gaps). `source_log.json`: 2 hosts added, 2 observations appended.
+  No page, data or agent-definition file edited.
