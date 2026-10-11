@@ -6641,7 +6641,7 @@ function renderSocStory() {
   const CV = socConvData(), cvR = CV && CV.ratio, cvUp = cvR && cvR.b.v > cvR.a.v;
   if (CV) h += stChap('soc-st-rich', stT('Chương 3 · Khoảng cách vùng miền', 'Chapter 3 · The regional gap'),
     stT(`GRDP/người: tỉnh giàu nhất gấp ${stN(cvR.b.v, 1)} lần tỉnh nghèo nhất, ${cvUp ? 'tăng' : 'giảm'} từ ${stN(cvR.a.v, 1)} lần năm ${CV.y0}`, `The richest province's GRDP per person is ${stN(cvR.b.v, 1)}× the poorest's, ${cvUp ? 'up' : 'down'} from ${stN(cvR.a.v, 1)}× in ${CV.y0}`),
-    stT('Bản đồ ô cho mỗi tỉnh, thành một ô bằng nhau, đặt gần đúng vị trí; bấm “Xếp hạng” để xếp các ô theo giá trị, hoặc đổi chỉ số. Biểu đồ bong bóng hỏi: tỉnh nghèo có đuổi kịp không? Mỗi bong bóng là một tỉnh — trục ngang là GRDP/người năm ' + CV.y0 + ', trục dọc là mức tăng bình quân mỗi năm đến ' + CV.y1 + ', diện tích là dân số. Rê chuột vào một ô hoặc bong bóng để thấy tỉnh đó trên mọi biểu đồ của trang.', 'The tile map gives every province one equal tile in roughly its place; press “Ranked” to line the tiles up by value, or switch the measure. The bubble chart asks: are poorer provinces catching up? Each bubble is a province — across, GRDP per person in ' + CV.y0 + '; up, its average yearly growth to ' + CV.y1 + '; area, its population. Hover a tile or a bubble to pick the province out on every chart on this page.'),
+    stT('Bản đồ ô giữ hình chữ S của Việt Nam: mỗi tỉnh, thành một ô lục giác ở gần đúng vị trí, diện tích ô tỉ lệ với diện tích tự nhiên; bấm “Xếp hạng” để xếp các ô theo giá trị, hoặc đổi chỉ số. Biểu đồ bong bóng hỏi: tỉnh nghèo có đuổi kịp không? Mỗi bong bóng là một tỉnh — trục ngang là GRDP/người năm ' + CV.y0 + ', trục dọc là mức tăng bình quân mỗi năm đến ' + CV.y1 + ', diện tích là dân số. Rê chuột vào một ô hoặc bong bóng để thấy tỉnh đó trên mọi biểu đồ của trang.', 'The tile map keeps Vietnam\'s S shape: each province is a hexagon in roughly its place, its area proportional to land area; press “Ranked” to line the tiles up by value, or switch the measure. The bubble chart asks: are poorer provinces catching up? Each bubble is a province — across, GRDP per person in ' + CV.y0 + '; up, its average yearly growth to ' + CV.y1 + '; area, its population. Hover a tile or a bubble to pick the province out on every chart on this page.'),
     `<div class="soc-geo"><div class="soc-geo-map"><div class="st-ctrl" id="soc-st-map-ctl"></div><div id="soc-st-map-leg"></div><div id="soc-st-map" class="st-viz"></div><div id="soc-st-map-note"></div></div>
      <div class="soc-geo-cv"><div class="soc-cv-h">${stT(`Tỉnh nghèo có đuổi kịp không? GRDP/người ${CV.y0} và mức tăng bình quân mỗi năm ${CV.y0}–${CV.y1}`, `Are poorer provinces catching up? GRDP per person in ${CV.y0} and its average yearly growth, ${CV.y0}–${CV.y1}`)}</div>
      ${stLegend([1, 2, 3, 4, 5, 6].map(v => ({ n: socRegName(v), c: VCOL[v], k: 'dot' })))}${stLegend([{ n: stT(`Cả nước ≈ ${stN(CV.nat, 1)}%/năm`, `National ≈ ${stN(CV.nat, 1)}% a year`), c: ST.ink, k: 'dash' }, { n: stT('Đường xu hướng', 'Trend line'), c: ST.ink3, k: 'line' }, { n: stT(`Diện tích = dân số ${CV.y1}`, `Area = population ${CV.y1}`), c: ST.ink3, k: 'ring' }])}
@@ -6876,8 +6876,11 @@ function socStConv() {
   el.onpointermove = tip; el.onpointerover = tip; el.onpointerleave = () => dotTipHide();
   stRW(el, socStConv);
 }
-// ch3 — province tile map ↔ ranked dot strip. 34 equal hexagons in rough geographic position (a schematic, not a map: every
-// province gets the same weight, unlike a Mercator map where the Highlands outweigh Hà Nội and HCMC).
+// ch3 — province tile map ↔ ranked dot strip. 34 hexagons in geographic position (the outline keeps Vietnam's S shape); each
+// hexagon's AREA is proportional to the province's land area (SOC_PROV_DATA.area_km2; the largest, Lâm Đồng, fills its cell),
+// so the Highlands read large and the Red River Delta provinces small, as on the ground (user request 11/10).
+// SOC_HEX below now supplies each tile's code (and the old grid, kept for reference); positions and sizes come from
+// SOC_HEX_GEO (true centroids, area-scaled tiles) in socStMap.
 // pointy-top hexes on one offset grid (even rows on whole columns, odd rows half a column right), so tiles that are placed
 // next to each other touch. Placement is fitted to the real map, not drawn by eye: each merged province's centroid comes from the
 // vn-all boundaries (old provinces combined by HC_KEY_MAP), its real neighbours from shared borders, and a search over the grid
@@ -6943,20 +6946,30 @@ function socHxMetric(k) {
   return M;
 }
 const socHxLum = c => { const n = parseInt(c.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255; return (0.299 * r + 0.587 * g + 0.114 * b) / 255; };
+// tile positions: each province's real centroid (vn-all boundaries, old provinces combined by HC_KEY_MAP), projected as
+// x = lon · cos 16°, y = −lat (degrees), then nudged apart (≤ 56 km) so hexagons sized by land area do not overlap. Hexagon
+// area = land area on the same scale (1° ≈ 111 km), so the tiles fill roughly the real outline of Vietnam. Keyed by PROVS id.
+const SOC_HEX_GEO = { 1: [101.07, -22.802], 2: [102.101, -22.727], 3: [99.148, -22.595], 4: [100.112, -22.08], 5: [101.702, -21.923], 6: [98.942, -21.621], 7: [102.643, -22.008], 8: [99.889, -20.895], 9: [100.952, -21.245], 10: [102.241, -21.288], 11: [103.154, -21.286], 12: [101.679, -20.942], 13: [102.653, -20.796], 14: [102.14, -20.616], 15: [102.024, -20.048], 16: [101.173, -20.223], 17: [100.815, -19.069], 18: [101.628, -18.288], 19: [102.397, -17.231], 20: [103.243, -16.409], 21: [103.958, -15.816], 22: [103.535, -14.706], 23: [104.723, -13.998], 24: [103.956, -12.768], 25: [104.966, -12.167], 26: [104.046, -11.273], 27: [102.78, -11.825], 28: [101.85, -11.317], 29: [102.699, -10.819], 30: [101.752, -10.448], 31: [100.878, -10.177], 32: [102.398, -9.965], 33: [101.643, -9.65], 34: [101.015, -9.038] };
+const SOC_HEX_ISL_GEO = [[105.75, -16.45, 'QĐ Hoàng Sa', 'Hoàng Sa Is.'], [106.05, -10.55, 'QĐ Trường Sa', 'Trường Sa Is.']];   // marks only: real islands lie further east
 function socStMap() {
   const host = document.getElementById('soc-st-map'); if (!host || !host.classList.contains('st-viz')) return;   // the Explore chapter section shares this id
-  const W = stCW(host, 360, 260), xs = Object.values(SOC_HEX).map(p => p[0]).concat(SOC_HEX_ISL.map(p => p[0])), rows = Object.values(SOC_HEX).map(p => p[1]), cx0 = Math.min(...xs), cx1 = Math.max(...xs), R1 = Math.max(...rows);
-  // tiles + island marks take the full width; the highest and lowest province are named in the empty space west of the
-  // central coast (Laos on a real map), so no side gutter is needed
-  const r = Math.min(24, (W - 8) / ((cx1 - cx0 + 1) * Math.sqrt(3))), hw = Math.sqrt(3) * r, ox = 4 + hw / 2, oy = 6 + r, hexH = oy + R1 * 1.5 * r + r + 6;
-  const RH = 17, rankH = 34 + 34 * RH + 22, H = Math.round(Math.max(hexH, rankH));
-  const hex = `M${[0, 1, 2, 3, 4, 5].map(i => { const a = Math.PI / 180 * (60 * i - 90), q = r - 1.2; return `${(q * Math.cos(a)).toFixed(1)},${(q * Math.sin(a)).toFixed(1)}`; }).join(' L')} Z`;
-  host._hx = { W, H, hexH: Math.round(hexH), rankH: Math.round(rankH), r, RH, pos: Object.fromEntries(Object.entries(SOC_HEX).map(([id, p]) => [id, [ox + (p[0] - cx0) * hw, oy + p[1] * 1.5 * r]])), hex, lx: 4, ly: row => oy + row * 1.5 * r };
-  const g = PROVS.filter(p => SOC_HEX[p.id]).map(p => `<g class="hx" data-pid="${p.id}" data-lk="pv:${p.id}"><path class="hx-h" d="${hex}" fill="#e1e0d9"/><circle class="hx-c" r="6" fill="#e1e0d9" stroke="${ST_SURF}" stroke-width="2"/><circle r="12" fill="transparent"/><text class="hx-t" text-anchor="middle" y="4">${ciE(SOC_HEX[p.id][2])}</text></g>`).join('');
-  const isl = SOC_HEX_ISL.map(([x, row, vi, en]) => { const cx = ox + (x - cx0) * hw, cy = oy + row * 1.5 * r;
-    return [[-5, -3], [1, -6], [5, 1], [-1, 4], [6, 6]].map(([dx, dy]) => `<circle cx="${(cx + dx * r / 20).toFixed(1)}" cy="${(cy + dy * r / 20).toFixed(1)}" r="1.6" fill="#8a8f99"/>`).join('')
-      + `<text class="st-tick" x="${Math.min(cx, W - 36).toFixed(1)}" y="${(cy + r * .55 + 9).toFixed(1)}" text-anchor="middle" style="font-size:9.5px">${ciE(stT(vi, en))}</text>`; }).join('');
-  host.innerHTML = `<svg class="soc-hx" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ciE(stT('Bản đồ ô 34 tỉnh, thành (mỗi tỉnh một ô bằng nhau)', 'Tile map of the 34 provinces (one equal tile each)'))}"><g class="hx-axis"></g><g class="hx-isl" aria-hidden="true">${isl}</g><g class="hx-lead" aria-hidden="true"></g><g class="hx-tiles">${g}</g><g class="hx-labs"></g></svg>`;
+  const W = stCW(host, 360, 260), HX = 3 * Math.sqrt(3) / 2, KM = 111;
+  const arA = Object.fromEntries(PROVS.map(p => [p.id, +((SOC_PROV_DATA[p.n] || {}).area_km2) || 0])), arMax = Math.max(...Object.values(arA)) || 1;
+  const Rg = id => Math.sqrt((arA[id] || arMax * .1) / (KM * KM) / HX), Rmax = Math.sqrt(arMax / (KM * KM) / HX);   // hexagon circumradius in degrees
+  const ids = Object.keys(SOC_HEX_GEO).map(Number).filter(id => SOC_HEX[id]);
+  const x0 = Math.min(...ids.map(id => SOC_HEX_GEO[id][0] - Rg(id))), x1 = Math.max(...ids.map(id => SOC_HEX_GEO[id][0] + Rg(id)).concat(SOC_HEX_ISL_GEO.map(a => a[0] + .5)));
+  const y0 = Math.min(...ids.map(id => SOC_HEX_GEO[id][1] - Rg(id))), y1 = Math.max(...ids.map(id => SOC_HEX_GEO[id][1] + Rg(id)));
+  const k = Math.min((W - 8) / (x1 - x0), 1000 / (y1 - y0)), r = Rmax * k, hexH = (y1 - y0) * k + 12;   // r = the largest tile's radius in px
+  const RH = 17, rankH = 34 + 34 * RH + 22, H = Math.round(Math.max(hexH, rankH)), P = (x, y) => [4 + (x - x0) * k, 6 + (y - y0) * k];
+  const hex = `M${[0, 1, 2, 3, 4, 5].map(i => { const a = Math.PI / 180 * (60 * i - 90), q = r - .8; return `${(q * Math.cos(a)).toFixed(1)},${(q * Math.sin(a)).toFixed(1)}`; }).join(' L')} Z`;
+  const sc = Object.fromEntries(ids.map(id => [id, Rg(id) / Rmax]));
+  host._hx = { W, H, hexH: Math.round(hexH), rankH: Math.round(rankH), r, RH, sc, arMax, hex, lx: 4,
+    pos: Object.fromEntries(ids.map(id => [id, P(...SOC_HEX_GEO[id])])), ly: row => P(0, -(22.8 - row * .92))[1] };   // label slots by latitude (row ≈ the old grid row)
+  const g = PROVS.filter(p => SOC_HEX[p.id] && SOC_HEX_GEO[p.id]).map(p => `<g class="hx" data-pid="${p.id}" data-lk="pv:${p.id}" data-sc="${sc[p.id].toFixed(3)}"><path class="hx-h" d="${hex}" fill="#e1e0d9" transform="scale(${sc[p.id].toFixed(3)})"/><circle class="hx-c" r="6" fill="#e1e0d9" stroke="${ST_SURF}" stroke-width="2"/><circle r="12" fill="transparent"/><text class="hx-t" text-anchor="middle" y="4" style="font-size:${Math.max(8.5, Math.min(12.5, r * sc[p.id] * .6)).toFixed(1)}px">${ciE(SOC_HEX[p.id][2])}</text></g>`).join('');
+  const isl = SOC_HEX_ISL_GEO.map(([x, y, vi, en]) => { const [cx, cy] = P(x, y), d = Math.max(6, r * .35);
+    return [[-5, -3], [1, -6], [5, 1], [-1, 4], [6, 6]].map(([dx, dy]) => `<circle cx="${(cx + dx * d / 6).toFixed(1)}" cy="${(cy + dy * d / 6).toFixed(1)}" r="1.6" fill="#8a8f99"/>`).join('')
+      + `<text class="st-tick" x="${Math.min(cx, W - 36).toFixed(1)}" y="${(cy + d * 1.3 + 9).toFixed(1)}" text-anchor="middle" style="font-size:9.5px">${ciE(stT(vi, en))}</text>`; }).join('');
+  host.innerHTML = `<svg class="soc-hx" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ciE(stT('Bản đồ ô 34 tỉnh, thành (vị trí thật, diện tích ô tỉ lệ diện tích tự nhiên)', 'Tile map of the 34 provinces (true positions, tile area proportional to land area)'))}"><g class="hx-axis"></g><g class="hx-isl" aria-hidden="true">${isl}</g><g class="hx-lead" aria-hidden="true"></g><g class="hx-tiles">${g}</g><g class="hx-labs"></g></svg>`;
   socStMapPaint(true);
   stRW(host, socStMap);
 }
@@ -6991,11 +7004,12 @@ function socStMapPaint(first) {
   // tile view: the highest and lowest named in the gutter with a leader, never on the tiles
   // tile view: the highest and lowest are ringed and named in the open space west of the central coast (rows ≈7–11, where no
   // tile sits left of column 3), with leaders that run beneath the tiles; the schematic note sits below them
-  const ring = (rr, dash) => { const [x, y] = X.pos[rr.id]; return `<path d="${X.hex}" transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(1.08)" fill="none" stroke="${ST.ink}" stroke-width="2.4"${dash ? ' stroke-dasharray="4,2.5"' : ''}/>`; };
+  const ring = (rr, dash) => { const [x, y] = X.pos[rr.id], k = ((X.sc || {})[rr.id] || 1) * 1.08 + .06; return `<path d="${X.hex}" transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${k.toFixed(3)})" fill="none" stroke="${ST.ink}" stroke-width="2.4"${dash ? ' stroke-dasharray="4,2.5"' : ''}/>`; };
   const hlLab = (rr, row, k) => `<text class="soc-map-lab" x="${X.lx}" y="${X.ly(row).toFixed(1)}" data-hx-lab="${k}"><tspan x="${X.lx}" style="font-weight:500;fill:#5b6170;font-size:11px">${k ? stT('Thấp nhất', 'Lowest') : stT('Cao nhất', 'Highest')}</tspan><tspan x="${X.lx}" dy="15">${ciE(rr.n)}</tspan><tspan x="${X.lx}" dy="15" style="font-weight:500">${M.f(rr.v)}</tspan></text>`;
   svg.querySelector('.hx-lead').innerHTML = '';
   svg.querySelector('.hx-labs').innerHTML = isR ? '' : ring(hi, 0) + ring(lo, 1) + hlLab(hi, 7.3, 0) + hlLab(lo, 9.6, 1)
-    + `<text class="st-tick" x="${X.lx}" y="${X.ly(11.6).toFixed(1)}">${stT('Sơ đồ, không theo tỷ lệ', 'Schematic, not to scale')}</text>`;
+    + (() => { const y0 = X.ly(11.0), kk = Math.sqrt(10000 / (X.arMax || 1)), rr = X.r * kk, cx = X.lx + rr + 1, cy = y0 + 8 + rr;   // one reference tile: 10,000 km²
+      return `<text class="st-tick" x="${X.lx}" y="${y0.toFixed(1)}">${stT('Diện tích ô ∝ diện tích tự nhiên', 'Tile area ∝ land area')}</text><path d="${X.hex}" transform="translate(${cx.toFixed(1)},${cy.toFixed(1)}) scale(${kk.toFixed(3)})" fill="none" stroke="#5b6170" stroke-width="1"/><text class="st-tick" x="${(cx + rr + 6).toFixed(1)}" y="${(cy + 4).toFixed(1)}">${stN(10000, 0)} km²</text>`; })();
   if (!isR) { // leaders from the end of each name to its tile, drawn under the tiles
     svg.querySelector('.hx-lead').innerHTML = [[hi, 0], [lo, 1]].map(([rr, k]) => { const t = svg.querySelector(`[data-hx-lab="${k}"]`), [x, y] = X.pos[rr.id];
       let bw = 0; try { bw = t.getBBox().width; } catch (e) {} if (!bw) bw = 7 * Math.max(rr.n.length, 10);
