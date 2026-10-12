@@ -2,7 +2,7 @@
 
 Errors (exit 1): bad structure, unknown tab, a chapter or target that is not on the page (per
 data/research/story_map.json — rebuild it with tools/qa/story_map.py after story changes), a scene without both
-languages. Warnings: a number in the narration that appears in no data file (data/*.json, strategy_directives.json,
+languages. Warnings: a number in the narration that appears in no data file (data/*.json, strategy_directives.json, invest_research.json,
 the story map's own text) — every figure the narrator speaks must come from the dashboard's data; overlong scenes;
 VI and EN scenes that disagree on their numbers.
 
@@ -46,7 +46,7 @@ def corpus():
         elif isinstance(v, dict): [walk(x) for x in v.values()]
         elif isinstance(v, list): [walk(x) for x in v]
     files = [os.path.join(ROOT, 'data', f) for f in os.listdir(os.path.join(ROOT, 'data')) if f.endswith('.json') and f != 'narration.json']
-    files += [os.path.join(ROOT, 'strategy_directives.json'), os.path.join(ROOT, 'data', 'research', 'story_map.json')]
+    files += [os.path.join(ROOT, 'strategy_directives.json'), os.path.join(ROOT, 'invest_research.json'), os.path.join(ROOT, 'data', 'research', 'story_map.json')]
     for f in files:
         if os.path.exists(f):
             try: walk(json.load(open(f, encoding='utf-8')))
