@@ -1,0 +1,6 @@
+{"_meta": {"owner": "Narrator agent", "as_of": "2026-10-12", "note": "Seed for the player test; the Narrator agent replaces it. Run tools/qa/narration_check.py then tools/build/embed_data.py narration."},
+ "NARRATION": {"films": {"overview": {"title": {"vi": "Việt Nam toàn cảnh", "en": "Vietnam: the big picture"}, "scenes": [
+  {"tab": "social", "chap": "soc-st-tfr", "target": "#soc-st-strip", "k": {"vi": "CON NGƯỜI", "en": "THE PEOPLE"}, "vi": "13 trên 34 tỉnh, thành đã sinh dưới mức thay thế 2,1 con.", "en": "13 of 34 provinces now have fertility below the replacement level of 2.1.", "big": true},
+  {"tab": "party", "chap": "pg-st-gap", "target": "#pg-st-dumb", "k": {"vi": "CHÍNH TRỊ", "en": "POLITICS"}, "vi": "Đầu tư toàn xã hội còn thiếu 7,7 điểm phần trăm GDP so với mục tiêu.", "en": "Total investment is still 7.7 points of GDP short of its target."},
+  {"tab": "econ", "chap": "st-formula", "target": "#st-mix", "k": {"vi": "KINH TẾ", "en": "ECONOMY"}, "vi": "Hộ gia đình chi tiêu 53,2% GDP.", "en": "Households spend 53.2% of GDP."}
+ ]}}}}
