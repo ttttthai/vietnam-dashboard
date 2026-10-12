@@ -974,6 +974,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-mv-c { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; font: 400 12px var(--font-ui); color: #c9ccd2; }
   .st-mv-c button { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; min-width: 32px; height: 30px; cursor: pointer; font-size: 13px; } .st-mv-c button:hover { background: rgba(255,255,255,.25); }
   .st-mv-c select { font: 12px var(--font-ui); } .st-mv-n { margin-left: auto; font-variant-numeric: tabular-nums; }
+  .st-mv-vo select { max-width: 150px; margin-left: 4px; } .st-mv-vh { margin-left: 6px; opacity: .7; font-size: 11px; }
   body.st-mv-on .st-mv-focus { outline: 3px solid #e34948; outline-offset: 6px; border-radius: 6px; transition: outline-color .3s; }
   body.st-mv-on .st-mv-pop { animation: mvPop .6s ease; }
   body.st-mv-on { scroll-padding-bottom: 220px; }
@@ -5447,9 +5448,29 @@ const stSubScroller = el => { for (let e = el.parentElement; e; e = e.parentElem
 // scene waits for the replay to finish; other charts get a highlight), every note, and each "Did you know?" point as a pop-up.
 // A caption card at the bottom carries the narration; optional voice (Web Speech, when the browser has a voice for the page
 // language). Controls: ⏮ ⏯ ⏭ ✕, speed, voice; Esc stops; any sub-tab click stops. Nothing plays unless the reader presses ▶.
-const MV = { on: false, root: null, sc: [], k: 0, paused: false, speed: 1, voice: false, tok: 0 };
+const MV = { on: false, root: null, sc: [], k: 0, paused: false, speed: 1, voice: true, vname: '', tok: 0 };
+// narrator: a female voice for the page language when the browser has one (names of the common female system/online voices);
+// the reader can pick another from the card. Known male voices are ranked last.
+const MV_FEM = /(female|woman|hoai ?my|hoàimy|linh|google tiếng việt|google vietnamese|samantha|zira|aria|jenny|ava|allison|susan|karen|moira|tessa|victoria|serena|libby|sonia|emma|michelle|natasha|clara|joanna|salli|kendra|kimberly|ivy|google us english|google uk english female)/i;
+const MV_MALE = /(male|nam ?minh|microsoft an\b|david|mark|guy|daniel|alex\b|fred|ryan|christopher|eric|george|james|thomas|google uk english male)/i;
+function mvVoices() { try { const L = APP_LANG === 'en' ? 'en' : 'vi'; return speechSynthesis.getVoices().filter(v => v.lang.toLowerCase().replace('_', '-').startsWith(L))
+  .map(v => ({ v, s: (MV_FEM.test(v.name) && !/\bmale\b/i.test(v.name.replace(/female/i, '')) ? 10 : 0) - (MV_MALE.test(v.name.replace(/female/i, '')) ? 10 : 0) + (/natural|online|neural|premium|enhanced/i.test(v.name) ? 3 : 0) + (/^en-us/i.test(v.lang) ? 1 : 0) }))
+  .sort((a, b) => b.s - a.s).map(x => x.v); } catch (e) { return []; } }
+function mvVoice() { const V = mvVoices(); return V.find(v => v.name === MV.vname) || V[0] || null; }
+const mvFem = v => !!v && MV_FEM.test(v.name) && !MV_MALE.test(v.name.replace(/female/i, ''));
 const mvSleep = ms => new Promise(r => setTimeout(r, ms));
-function mvVoiceOk() { try { const L = APP_LANG === 'en' ? 'en' : 'vi'; return 'speechSynthesis' in window && speechSynthesis.getVoices().some(v => v.lang.toLowerCase().startsWith(L)); } catch (e) { return false; } }
+function mvVoiceOk() { return 'speechSynthesis' in window && mvVoices().length > 0; }
+// fill the voice picker (voices load asynchronously in Chrome, so this also runs on 'voiceschanged')
+function mvVoiceUI() { const u = document.getElementById('st-mv'); if (!u) return; const vo = u.querySelector('.st-mv-vo'), sel = u.querySelector('[data-mv="vname"]'), hint = u.querySelector('.st-mv-vh'), V = mvVoices();
+  vo.style.display = 'speechSynthesis' in window ? '' : 'none'; sel.hidden = !V.length; hint.textContent = V.length ? '' : stT('máy chưa có giọng tiếng Việt', 'no English voice on this device');
+  const cur = mvVoice(); sel.innerHTML = V.map(v => `<option value="${ciE(v.name)}"${cur && v.name === cur.name ? ' selected' : ''}>${mvFem(v) ? '♀ ' : ''}${ciE(v.name.replace(/^(Microsoft|Google|Apple)\s+/, '').replace(/\s*[-–(].*$/, '').slice(0, 24))}</option>`).join(''); }
+if ('speechSynthesis' in window) try { speechSynthesis.addEventListener('voiceschanged', mvVoiceUI); } catch (e) {}
+// speak one scene sentence by sentence (Chrome stops long utterances after ~15 s); resolves when done or cancelled
+function mvSpeak(text, tok) { return new Promise(r => { try {
+  const parts = (text.match(/[^.!?;:…]+[.!?;:…]*\s*/g) || [text]).reduce((a, x) => { if (a.length && (a[a.length - 1] + x).length < 180) a[a.length - 1] += x; else a.push(x); return a; }, []).map(x => x.trim()).filter(Boolean);
+  const v = mvVoice(), L = APP_LANG === 'en' ? 'en-US' : 'vi-VN'; let i = 0;
+  const next = () => { if (tok !== MV.tok || i >= parts.length) return r(); const ut = new SpeechSynthesisUtterance(parts[i++]); ut.lang = v ? v.lang : L; ut.voice = v; ut.rate = Math.min(1.4, .95 * MV.speed); ut.pitch = v && !mvFem(v) ? 1.15 : 1.02; ut.onend = next; ut.onerror = () => r(); speechSynthesis.speak(ut); };
+  next(); } catch (e) { r(); } }); }
 function mvScenes(root) {
   const S = root._stSub; if (!S) return [];
   const out = [], txt = e => (e ? [...e.childNodes].map(n => n.textContent).join(' ') : '').replace(/\s+/g, ' ').replace(/ ([.,;:])/g, '$1').trim();
@@ -5476,12 +5497,12 @@ function mvUI() {
   u.innerHTML = `<div class="st-mv-card"><div class="st-mv-k"></div><div class="st-mv-t" aria-live="polite"></div><div class="st-mv-live"></div><div class="st-mv-bar"><i></i></div>
     <div class="st-mv-c"><button type="button" data-mv="prev" aria-label="${ciE(stT('Cảnh trước', 'Previous scene'))}">⏮</button><button type="button" data-mv="pause" aria-label="${ciE(stT('Tạm dừng', 'Pause'))}">⏸</button><button type="button" data-mv="next" aria-label="${ciE(stT('Cảnh sau', 'Next scene'))}">⏭</button>
     <label>${stT('Tốc độ', 'Speed')} <select data-mv="speed"><option value="0.6">0,6×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option></select></label>
-    <label class="st-mv-vo"><input type="checkbox" data-mv="voice"> ${stT('Đọc thuyết minh', 'Narrate aloud')}</label><span class="st-mv-n"></span><button type="button" data-mv="stop" aria-label="${ciE(stT('Dừng phim', 'Stop'))}">✕</button></div></div>`;
+    <label class="st-mv-vo"><input type="checkbox" data-mv="voice" checked> 🎙 ${stT('Thuyết minh', 'Narration')} <select data-mv="vname" aria-label="${ciE(stT('Giọng đọc', 'Voice'))}"></select><span class="st-mv-vh"></span></label><span class="st-mv-n"></span><button type="button" data-mv="stop" aria-label="${ciE(stT('Dừng phim', 'Stop'))}">✕</button></div></div>`;
   document.body.appendChild(u);
   u.addEventListener('click', e => { const b = e.target.closest('[data-mv]'); if (!b || b.tagName !== 'BUTTON') return; const a = b.dataset.mv;
     if (a === 'stop') mvStop(); else if (a === 'pause') { MV.paused = !MV.paused; b.textContent = MV.paused ? '▶' : '⏸'; if (MV.paused && 'speechSynthesis' in window) speechSynthesis.pause(); else if ('speechSynthesis' in window) speechSynthesis.resume(); }
     else if (a === 'next') mvGo(MV.k + 1); else if (a === 'prev') mvGo(Math.max(0, MV.k - 1)); });
-  u.addEventListener('change', e => { const t = e.target; if (t.dataset.mv === 'speed') MV.speed = +t.value; if (t.dataset.mv === 'voice') { MV.voice = t.checked; if (!t.checked && 'speechSynthesis' in window) speechSynthesis.cancel(); } });
+  u.addEventListener('change', e => { const t = e.target; if (t.dataset.mv === 'speed') MV.speed = +t.value; if (t.dataset.mv === 'voice') { MV.voice = t.checked; if (!t.checked && 'speechSynthesis' in window) speechSynthesis.cancel(); } if (t.dataset.mv === 'vname') { MV.vname = t.value; try { localStorage.setItem('mvVoice', t.value); } catch (e) {} } });
   return u;
 }
 function mvStart(root) {
@@ -5489,7 +5510,7 @@ function mvStart(root) {
   MV.root = root; MV.sc = mvScenes(root); if (!MV.sc.length) return; document.documentElement.scrollTop = 0;
   MV.on = true; MV.paused = false; document.body.classList.add('st-mv-on');
   const u = mvUI(); u.hidden = false; u.querySelector('[data-mv="pause"]').textContent = '⏸';
-  const vo = u.querySelector('.st-mv-vo'), ok = mvVoiceOk(); vo.style.display = ok ? '' : 'none';
+  try { MV.vname = localStorage.getItem('mvVoice') || MV.vname; } catch (e) {} u.querySelector('[data-mv="voice"]').checked = MV.voice; mvVoiceUI();
   window.__stSlow = 2;   // every timeline the film plays runs at half speed
   mvGo(0);
 }
@@ -5520,7 +5541,7 @@ async function mvGo(k) {
   T.innerHTML = s.t.split(' ').map((w, j) => `<span style="--d:${Math.min(j * 45, 2400)}ms">${ciE(w)}</span>`).join(' ');
   u.querySelector('.st-mv-n').textContent = `${k + 1}/${MV.sc.length}`; u.querySelector('.st-mv-bar i').style.width = ((k + 1) / MV.sc.length * 100) + '%';
   let spoken = Promise.resolve();
-  if (MV.voice && mvVoiceOk()) spoken = new Promise(r => { try { const ut = new SpeechSynthesisUtterance(s.t), L = APP_LANG === 'en' ? 'en' : 'vi'; ut.lang = L === 'en' ? 'en-US' : 'vi-VN'; ut.voice = speechSynthesis.getVoices().find(v => v.lang.toLowerCase().startsWith(L)) || null; ut.rate = Math.min(1.4, .95 * MV.speed); ut.onend = r; ut.onerror = r; speechSynthesis.speak(ut); } catch (e) { r(); } });
+  if (MV.voice && mvVoiceOk()) spoken = mvSpeak(s.t, tok);
   const read = Math.max(3200, Math.min(14000, s.t.length * 62));
   await mvWait(900, tok);
   // a chart with a timeline: replay it from its first frame at half speed and wait for the replay to end
@@ -5530,7 +5551,7 @@ async function mvGo(k) {
     while (tok === MV.tok && c.playing && c.playing() && t < 90000) { if (o) live.textContent = '▶ ' + o.textContent.replace(/\s+/g, ' ').trim(); await mvSleep(200); t += 200; }
     if (o && tok === MV.tok) live.textContent = '■ ' + o.textContent.replace(/\s+/g, ' ').trim(); await mvWait(1500, tok); }
   else await mvWait(read, tok);
-  await Promise.race([spoken, mvSleep(15000)]);
+  await Promise.race([spoken, mvWait(60000, tok)]);   // let the narrator finish the scene (pauses count as paused)
   if (tok === MV.tok && MV.on) mvGo(k + 1);
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && MV.on) mvStop(); });
