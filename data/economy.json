@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Economy agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-10-10",
+  "as_of": "2026-10-13",
   "cpi_model_note": "CPI_BASKET (CPI groups: 2020 basket weights, y/y by month, sub-items) and the CPI projection inputs CPI_FC_SCEN, CPI_FC_TEMPLATE, CPI_FC_VAT_JAN27, CPI_FC_DRIVERS moved here from the page on 2026-10-10 (user decision recorded in data/research/animation_plan.md); the Economy agent owns and refreshes them."
  },
  "ECONFLOW": {
@@ -5808,6 +5808,356 @@
     "what": "IMF WEO October 2026 (due 13/10/2026): refresh every *_imf series (gdp_growth_pct_imf, gdp_usd_bn_imf, gdp_per_capita_usd_imf, cpi_pct_imf), add 2031, fill cpi_pct_imf 2028–2030, and add IMF general-government gross debt (GGXWDG_NGDP), net lending (GGXCNL_NGDP) and investment (NID_NGDP) as labelled institution lines (general government ≠ state budget).",
     "status": "pending — not yet published on 2026-10-07; nothing estimated in its place",
     "noted": "2026-10-07"
+   },
+   "why_gap": {
+    "asof": "2026-10-13",
+    "verified": "All facts from search-engine excerpts on 2026-10-13 (imf.org, worldbank.org, adb.org, amro-asia.org and press are blocked by the sandbox proxy); quotes are as reported in those excerpts and should be read against the original before publication.",
+    "target": {
+     "value_min": 10.0,
+     "years": "2026–2030",
+     "y2026_min": 10.0,
+     "text_vi": "Tăng trưởng GDP bình quân \"từ 10%/năm trở lên\" giai đoạn 2026–2030 (Nghị quyết Đại hội XIV; NQ 25/2026/QH16); năm 2026 \"từ 10% trở lên\" (NQ 244/2025/QH15). Đây là mục tiêu phấn đấu (mức sàn), không phải dự báo.",
+     "text_en": "Average GDP growth of \"10% a year or more\" over 2026–2030 (14th Party Congress Resolution; NQ 25/2026/QH16); 2026 \"10% or more\" (NQ 244/2025/QH15). It is a policy target (a floor), not a forecast.",
+     "source": {
+      "name": "NQ 25/2026/QH16; NQ 244/2025/QH15",
+      "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html",
+      "alt_url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm"
+     },
+     "actual_9M_2026_yoy": 9.01,
+     "actual_note_vi": "Thực tế 9 tháng 2026 (NSO, 03/10/2026): 9,01% (Q1 8,15; Q2 8,81; Q3 9,95) — xem ECONFLOW.gdp.growth_real_pct. Phần lớn dự báo dưới đây được chốt trước khi có số 9 tháng.",
+     "actual_note_en": "Actual 9M-2026 (NSO, 03/10/2026): 9.01% (Q1 8.15, Q2 8.81, Q3 9.95) — see ECONFLOW.gdp.growth_real_pct. Most forecasts below were finalised before the 9M figure was released."
+    },
+    "forecasts": [
+     {
+      "inst": "imf",
+      "name": "IMF",
+      "pub_date": "2026-07-08",
+      "vintage": "WEO Update July 2026 (latest vintage verified in series); April 2026 WEO for 2027",
+      "y2026": 7.5,
+      "y2027": 6.7,
+      "y2027_vintage": "WEO April 2026 (the July update did not publish a 2027 figure for Vietnam)",
+      "series_ref": [
+       "gdp_growth_pct_imf_jul2026",
+       "gdp_growth_pct_imf"
+      ],
+      "vintages": [
+       {
+        "label": "WEO Apr 2026",
+        "pub_date": "2026-04-14",
+        "y2026": 7.1,
+        "y2027": 6.7,
+        "status": "verified (series)",
+        "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf"
+       },
+       {
+        "label": "WEO Update Jul 2026",
+        "pub_date": "2026-07-08",
+        "y2026": 7.5,
+        "y2027": null,
+        "status": "verified (series)",
+        "url": "https://www.imf.org/-/media/files/publications/weo/2026/update/july/english/text.pdf",
+        "alt_url": "https://dantri.com.vn/kinh-doanh/imf-nang-du-bao-tang-truong-gdp-viet-nam-len-75-cao-nhat-asean-20260712202724515.htm"
+       },
+       {
+        "label": "IMF update reported Aug–Sep 2026",
+        "pub_date": null,
+        "y2026": 8.2,
+        "y2027": null,
+        "status": "press-reported only; IMF document and exact date not identified (press says August or September)",
+        "url": "https://znews.vn/imf-nang-du-bao-tang-truong-gdp-viet-nam-nam-2026-len-8-2-post1680987.html",
+        "alt_url": "https://thanhnien.vn/imf-nang-du-bao-tang-truong-cua-viet-nam-len-82-185260903185055461.htm"
+       },
+       {
+        "label": "WEO Oct 2026",
+        "pub_date": "2026-10-13",
+        "y2026": 8.4,
+        "y2027": 7.5,
+        "status": "reported by one secondary source on release day (TNGlobal); not yet verified against imf.org — pending; series not updated",
+        "url": "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/"
+       }
+      ],
+      "potential_growth": null,
+      "potential_growth_text_vi": "IMF không công bố một con số tăng trưởng tiềm năng mới trong các bản tìm được. Báo cáo Điều IV 2024 đặt tăng trưởng trung hạn ở 4,5–5,5%/năm trong thập kỷ (dựa trên các nước tương đồng); Điều IV 2025 cho rằng tăng trưởng tiềm năng sẽ giảm dần trong trung hạn do biến đổi nhân khẩu học và bất định thương mại kéo dài đè nặng lên đầu tư.",
+      "potential_growth_text_en": "No new IMF potential-growth number was found. The 2024 Article IV put medium-term growth at 4.5–5.5% a year over the decade (based on comparator countries); the 2025 Article IV expects potential growth to decline over the medium term because of demographic change and a lasting drag on investment from trade-policy uncertainty.",
+      "reasons_vi": [
+       "Các lần nâng dự báo năm 2026 được giải thích bằng xuất khẩu công nghệ mạnh hơn dự kiến và cầu trong nước vững.",
+       "Môi trường thương mại toàn cầu bất lợi và bất định hơn là thách thức lớn với mô hình tăng trưởng dựa vào xuất khẩu (Điều IV 2025 giả định thuế bổ sung của Mỹ bình quân 20% từ 8/2025).",
+       "Dư địa nới lỏng tiền tệ hạn chế; cần tỷ giá linh hoạt hơn và tăng sức chống chịu của khu vực tài chính.",
+       "Cải cách (thể chế, nợ, vốn, thị trường lao động, quản trị, môi trường kinh doanh) và tăng đầu tư công là cơ hội nâng tăng trưởng trung hạn."
+      ],
+      "reasons_en": [
+       "Upgrades to 2026 were explained by stronger-than-expected technology exports and resilient domestic demand.",
+       "A more adverse and uncertain global trade environment is a significant challenge to the export-led model (the 2025 Article IV assumed additional US tariffs averaging 20% from August 2025).",
+       "Limited room for monetary easing; more exchange-rate flexibility and a more resilient financial sector are needed.",
+       "Reforms (institutions; debt, capital and labour markets; governance; business environment) and scaled-up public investment are an opportunity to raise medium-term growth."
+      ],
+      "quote_en": "The reform agenda presents an opportunity to raise medium-term growth and reduce external vulnerabilities.",
+      "quote_source": "IMF Executive Board, 2025 Article IV (press release 15/09/2025, as reported in search excerpt)",
+      "url": "https://www.imf.org/en/publications/cr/issues/2025/10/03/vietnam-2025-article-iv-consultation-press-release-staff-report-and-statement-by-the-570895",
+      "alt_url": "https://www.imf.org/en/news/articles/2025/09/15/pr-25296-vietnam-imf-executive-board-concludes-2025-article-iv-consultation",
+      "alt_url_2": "https://www.elibrary.imf.org/view/journals/002/2024/306/article-A001-en.xml",
+      "verified": "search-excerpt verified 2026-10-13; no 2026 Article IV document for Vietnam found"
+     },
+     {
+      "inst": "wb",
+      "name": "World Bank",
+      "pub_date": "2026-10-06",
+      "vintage": "East Asia & Pacific Economic Update, October 2026",
+      "y2026": 7.4,
+      "y2027": 7.3,
+      "series_ref": [
+       "gdp_growth_pct_wb"
+      ],
+      "potential_growth": null,
+      "potential_growth_text_vi": "Không tìm thấy ước tính tăng trưởng tiềm năng của WB trong các bản 2026.",
+      "potential_growth_text_en": "No World Bank potential-growth estimate found in the 2026 publications.",
+      "reasons_vi": [
+       "Nâng 1,1 điểm % (từ 6,3% tháng 4) nhờ xuất khẩu hàng công nghệ cao, điện tử và sản phẩm liên quan AI; FDI nửa đầu năm cao nhất 5 năm.",
+       "Rủi ro: tăng trưởng dựa nhiều vào chu kỳ AI, dễ tổn thương nếu chi tiêu công nghệ toàn cầu đảo chiều; thương mại ngoài hàng AI trong khu vực yếu hoặc âm; Việt Nam chịu tác động lớn hơn từ các cú sốc chuỗi cung ứng bên ngoài.",
+       "Trung hạn (Báo cáo cập nhật 5/2026): khả năng giữ lại nhiều giá trị gia tăng trong nước, tăng liên kết giữa doanh nghiệp FDI và doanh nghiệp trong nước, và nâng năng suất là yếu tố quyết định.",
+       "Các áp lực dài hạn: biến đổi khí hậu, thay đổi công nghệ, chuyển dịch nhân khẩu học và nhu cầu hạ tầng tăng."
+      ],
+      "reasons_en": [
+       "Raised by 1.1 pp (from 6.3% in April) on high-tech, electronics and AI-related exports; H1 FDI at a five-year high.",
+       "Risks: heavy reliance on the AI cycle, vulnerable to a reversal in global tech spending; regional trade outside AI-related goods 'weak or negative'; Vietnam more exposed to external supply-chain shocks.",
+       "Medium term (May 2026 Viet Nam Economic Update): retaining more value domestically, deepening links between foreign-invested and domestic firms and raising productivity are critical.",
+       "Long-term pressures: climate shocks, technological change, demographic shifts and rising infrastructure needs."
+      ],
+      "quote_en": "The economy's ability to retain more value domestically, deepen linkages between foreign-invested and domestic firms and raise productivity will be critical for sustaining momentum over the medium term.",
+      "quote_source": "World Bank press release, Viet Nam Economic Update, 15/05/2026 (search excerpt)",
+      "url": "https://vietnamnews.vn/economy/1801368/wb-raises-viet-nam-s-2026-growth-forecast-to-7-4-per-cent-on-strong-ai-related-exports.html",
+      "alt_url": "https://www.cnbc.com/2026/10/06/world-bank-east-asia-growth-inflation-ai-exports-.html",
+      "alt_url_2": "https://www.worldbank.org/en/news/press-release/2026/05/15/viet-nam-s-economy-remains-resilient-but-sustained-reforms-are-key-to-navigating-heightened-uncertainty-wb",
+      "alt_url_3": "https://english.vov.vn/en/economy/world-bank-raises-vietnams-2026-growth-outlook-as-high-tech-exports-surge-post1338918.vov",
+      "verified": "search-excerpt verified 2026-10-13"
+     },
+     {
+      "inst": "adb",
+      "name": "ADB",
+      "pub_date": "2026-09-23",
+      "vintage": "Asian Development Outlook, September 2026",
+      "y2026": 7.8,
+      "y2027": 7.6,
+      "series_ref": [
+       "gdp_growth_pct_adb"
+      ],
+      "potential_growth": null,
+      "potential_growth_text_vi": "Không tìm thấy ước tính tăng trưởng tiềm năng của ADB.",
+      "potential_growth_text_en": "No ADB potential-growth estimate found.",
+      "reasons_vi": [
+       "Nâng từ 7,2% (7/2026) nhờ kết quả nửa đầu năm tốt hơn dự kiến (GDP 6 tháng +8,2%).",
+       "Rủi ro nghiêng về phía giảm: cầu toàn cầu yếu đi, bất định bên ngoài, giá năng lượng và điều kiện tài chính toàn cầu thắt chặt gây áp lực lạm phát và tỷ giá.",
+       "Tín dụng tăng nhanh (dư nợ khoảng 145% GDP cuối 2025) làm tăng rủi ro hệ thống tài chính: thanh khoản, lệch kỳ hạn, tập trung tín dụng khi tài trợ dự án lớn; doanh nghiệp nhỏ vẫn khó tiếp cận vốn.",
+       "Đầu tư công cần đẩy nhanh nhưng chú trọng hiệu quả và chất lượng; sản xuất còn phụ thuộc đầu vào nhập khẩu và đơn hàng xuất khẩu, cần tăng liên kết doanh nghiệp trong nước với khu vực FDI."
+      ],
+      "reasons_en": [
+       "Raised from 7.2% (July) on a stronger-than-expected first half (H1 GDP +8.2%).",
+       "Risks tilted to the downside: weaker global demand, external uncertainty, energy prices and tighter global financial conditions adding to inflation and exchange-rate pressure.",
+       "Rapid credit growth (bank credit about 145% of GDP at end-2025) raises financial-system risk: liquidity, maturity mismatch and concentration when large projects are credit-financed; small firms still struggle to get capital.",
+       "Public investment should be accelerated with attention to efficiency and quality; manufacturing still relies on imported inputs and export orders, and stronger domestic–FDI linkages are needed."
+      ],
+      "quote_en": "Weakening global demand and heightened external uncertainty could weigh on growth.",
+      "quote_source": "ADB ADO September 2026 as reported by Nhân Dân / Viet Nam News (search excerpt)",
+      "url": "https://en.nhandan.vn/adb-raises-viet-nams-2026-growth-forecast-to-78-post166941.html",
+      "alt_url": "https://vietnamnews.vn/economy/1800366/adb-raises-viet-nam-growth-forecast-but-flags-rising-risks.html",
+      "alt_url_2": "https://www.vietnamplus.vn/adb-nang-du-bao-tang-truong-viet-nam-luu-y-rui-ro-tin-dung-va-lam-phat-post1137929.vnp",
+      "alt_url_3": "https://vn.investing.com/news/economy-news/adb-nang-du-bao-tang-truong-viet-nam-len-78-canh-bao-ap-luc-lam-phat-tin-dung-2719471",
+      "verified": "search-excerpt verified 2026-10-13"
+     },
+     {
+      "inst": "amro",
+      "name": "AMRO",
+      "pub_date": "2026-09-23",
+      "pub_date_note": "AMRO lists the 2026 Vietnam report as 23/09/2026; press coverage 26/09/2026 (date not checked on amro-asia.org)",
+      "vintage": "AMRO 2026 Annual Consultation (Vietnam)",
+      "y2026": 7.5,
+      "y2027": 7.3,
+      "series_ref": [
+       "gdp_growth_pct_amro"
+      ],
+      "potential_growth": {
+       "low": 7.3,
+       "high": 7.5,
+       "period": "2026–2030",
+       "unit": "% yoy, real"
+      },
+      "potential_growth_text_vi": "AMRO ước tính tăng trưởng tiềm năng trung hạn 7,3–7,5%/năm giai đoạn 2026–2030. Để đạt quỹ đạo 8,5%/năm cần tích lũy tài sản cố định lên 35,6% GDP (từ 34,3% năm 2025) và tăng trưởng TFP 3,6%/năm; duy trì từ 10% trở lên đòi hỏi tăng mạnh hơn nữa cả đầu tư lẫn năng suất.",
+      "potential_growth_text_en": "AMRO estimates medium-term potential growth at 7.3–7.5% a year over 2026–2030. An 8.5% path would require gross fixed capital formation of 35.6% of GDP (from 34.3% in 2025) and TFP growth of 3.6%; sustaining 10% or more would need a sharper rise in both investment and productivity.",
+      "reasons_vi": [
+       "Dự báo cơ sở 7,5% (2026) và 7,3% (2027) sẽ khép lại chênh lệch sản lượng (output gap) đã mở rộng lên khoảng 1% năm 2025.",
+       "Áp lực tài chính – vĩ mô gia tăng, giới hạn năng lực cấu trúc và việc mô hình thương mại bị giám sát chặt hơn làm mục tiêu hai con số khó khăn hơn.",
+       "Tín dụng mở rộng kéo dài làm thanh khoản căng, chi phí vốn tăng; một số ngân hàng vay nước ngoài, tăng phơi nhiễm với điều kiện tài chính toàn cầu và tỷ giá; rủi ro tích tụ ở bất động sản và hộ gia đình."
+      ],
+      "reasons_en": [
+       "The 7.5% (2026) and 7.3% (2027) baseline would close an output gap that widened to about 1% in 2025.",
+       "Rising macro-financial pressures, structural capacity constraints and greater scrutiny of the trade model complicate the double-digit target.",
+       "Prolonged credit expansion has tightened liquidity and raised funding costs; some banks borrow offshore, adding exposure to global financial conditions and the exchange rate; risks accumulate in real estate and household lending."
+      ],
+      "quote_en": "These risks require close monitoring, accompanied by a more measured pace of credit expansion to prevent near-term growth ambitions from undermining financial stability.",
+      "quote_source": "AMRO, \"Vietnam's Resilience Amid Global Turbulence\" (amro-asia.org, ~late Sep 2026; date from search listing, not checked on the page)",
+      "url": "https://theinvestor.vn/vietnams-10-gdp-growth-target-faces-rising-macro-financial-constraints-amro-d20101.html",
+      "alt_url": "https://www.amro-asia.org/vietnams-resilience-amid-global-turbulence",
+      "alt_url_2": "https://vietnamnews.vn/economy/1796311/amro-lifts-viet-nam-growth-forecast-to-7-5-per-cent-amid-improving-regional-outlook.html",
+      "alt_url_3": "https://www.amro-asia.org/annual-consultation-reports/",
+      "verified": "search-excerpt verified 2026-10-13 (The Investor republication; not checked against the AMRO PDF)"
+     }
+    ],
+    "official_basis": {
+     "drivers_vi": [
+      "Mô hình tăng trưởng mới lấy khoa học – công nghệ, đổi mới sáng tạo và chuyển đổi số làm động lực chính (Nghị quyết 57-NQ/TW); kinh tế số khoảng 30% GDP năm 2030.",
+      "Kinh tế tư nhân là động lực quan trọng nhất (Nghị quyết 68-NQ/TW ngày 04/5/2025); thêm khoảng 2 triệu doanh nghiệp.",
+      "Thể chế được xác định là một động lực tăng trưởng: đột phá thể chế, trong đó có PPP, thị trường chứng khoán và trái phiếu doanh nghiệp (Chương trình hành động của Chính phủ thực hiện Nghị quyết Đại hội XIV); bốn nghị quyết trụ cột 57, 59, 66, 68.",
+      "Đầu tư công là \"neo\" tăng trưởng: kế hoạch vốn ngân sách năm 2026 hơn 1,04 triệu tỷ đồng, các dự án hạ tầng lớn (cao tốc, sân bay, cảng biển, năng lượng).",
+      "Chỉ tiêu chất lượng tăng trưởng 2026–2030: TFP đóng góp trên 55%, năng suất lao động tăng khoảng 8,5%/năm; GDP bình quân đầu người khoảng 8.500 USD năm 2030.",
+      "Bộ Tài chính xây dựng nhiều kịch bản điều hành, không kịch bản nào dưới 10%; giao chỉ tiêu tăng trưởng cho địa phương và doanh nghiệp nhà nước (NQ 01/NQ-CP)."
+     ],
+     "drivers_en": [
+      "A new growth model with science & technology, innovation and digital transformation as the main driver (Resolution 57-NQ/TW); digital economy about 30% of GDP by 2030.",
+      "The private sector as the most important driver (Resolution 68-NQ/TW of 4 May 2025); about 2 million more firms.",
+      "Institutions named as a growth driver: institutional breakthroughs incl. PPP, stock and corporate-bond markets (Government action programme for the 14th Congress Resolution); the four 'pillar' resolutions 57, 59, 66, 68.",
+      "Public investment as the growth 'anchor': 2026 state-budget capital plan above 1.04 million bn VND; large infrastructure (expressways, airports, seaports, energy).",
+      "Growth-quality indicators 2026–2030: TFP contributing over 55%, labour productivity growth about 8.5% a year; GDP per capita about 8,500 USD in 2030.",
+      "MoF built several operating scenarios, none below 10%; growth targets assigned to provinces and SOEs (NQ 01/NQ-CP)."
+     ],
+     "uncertain_vi": "Tổng vốn đầu tư toàn xã hội bình quân ~40% GDP (một nguồn) và tích lũy tài sản 35–36% GDP (nguồn khác) có thể là hai thước đo khác nhau — chưa đối chiếu văn bản gốc nên không đưa vào. Cải cách chính quyền địa phương hai cấp chưa tìm thấy trong văn bản như một động lực tăng trưởng định lượng.",
+     "uncertain_en": "Total social investment averaging ~40% of GDP (one source) vs asset accumulation 35–36% of GDP (another) may be different measures; not checked against the original text, so not included. The two-level local-government reform was not found stated as a quantified growth driver.",
+     "sources": [
+      {
+       "name": "Nghị quyết Đại hội XIV (Báo Chính phủ, 24/01/2026)",
+       "url": "https://baochinhphu.vn/nghi-quyet-dai-hoi-xiv-quyet-sach-cho-khat-vong-tang-truong-hai-con-so-102260124180229882.htm"
+      },
+      {
+       "name": "Mục tiêu 2026–2030 trong văn kiện Đại hội XIV (Thư viện Pháp luật)",
+       "url": "https://thuvienphapluat.vn/phap-luat/dai-hoi-dai-bieu-toan-quoc-lan-thu-xiv-xac-dinh-muc-tieu-phat-trien-kinh-te-5-nam-2026-2030-the-nao-335964-257106.html"
+      },
+      {
+       "name": "Báo Công Thương — tăng trưởng 2 con số theo NQ Đại hội XIV",
+       "url": "https://congthuong.vn/tang-truong-kinh-te-2-con-so-menh-lenh-tu-nghi-quyet-dai-hoi-xiv-cua-dang-452075.html"
+      },
+      {
+       "name": "NQ 25/2026/QH16",
+       "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html"
+      },
+      {
+       "name": "Nghị quyết 68-NQ/TW (04/5/2025)",
+       "url": "https://tulieuvankien.dangcongsan.vn/he-thong-van-ban/van-ban-cua-dang/nghi-quyet-so-68-nqtw-ngay-452025-cua-bo-chinh-tri-ve-phat-trien-kinh-te-tu-nhan-11562"
+      },
+      {
+       "name": "Chương trình hành động của Chính phủ thực hiện NQ Đại hội XIV (LSVN)",
+       "url": "https://lsvn.vn/chuong-trinh-hanh-dong-cua-chinh-phu-thuc-hien-nghi-quyet-dai-hoi-xiv-cua-dang-a170345.html"
+      },
+      {
+       "name": "Báo Chính phủ 09/4/2026 — phấn đấu GDP 2026 và bình quân 2026–2030 từ 10% trở lên",
+       "url": "https://baochinhphu.vn/phan-dau-tang-truong-gdp-nam-2026-va-binh-quan-5-nam-2026-2030-tu-10-tro-len-102260409145132244.htm"
+      },
+      {
+       "name": "BNEWS — Bộ Tài chính rà soát kịch bản tăng trưởng",
+       "url": "https://bnews.vn/bo-tai-chinh-ra-soat-kich-ban-tang-truong-quyet-hoan-thanh-muc-tieu-10/425466.html"
+      },
+      {
+       "name": "Thanh Niên 08/7/2026 — kế hoạch vốn đầu tư công 2026 hơn 1,04 triệu tỷ",
+       "url": "https://thanhnien.vn/lam-gi-de-keo-tang-truong-6-thang-cuoi-nam-len-chien-dich-giai-ngan-dau-tu-cong-185260708232004701.htm"
+      }
+     ],
+     "verified": "search-excerpt verified 2026-10-13 (press reports of the documents; Party and NA texts not opened)"
+    },
+    "methodology": {
+     "text_vi": "Mục tiêu chính thức là mức phấn đấu dùng để huy động nguồn lực và giao chỉ tiêu; dự báo của các tổ chức là kịch bản cơ sở dựa trên chính sách hiện hành và giả định bên ngoài (ví dụ IMF 2025 giả định thuế Mỹ 20%), thường neo vào ước tính năng lực tăng trưởng (tiềm năng). Các dự báo có thời điểm chốt khác nhau: IMF 7/2026 và WB 10/2026 được chốt trước khi có số 9 tháng (9,01%). AMRO là tổ chức duy nhất trong nhóm công bố con số tiềm năng (7,3–7,5%).",
+     "text_en": "The official figure is an aspiration used to mobilise resources and assign targets; institutional forecasts are baseline projections under current policies and stated external assumptions (e.g. the IMF's 2025 assumption of 20% US tariffs), usually anchored on an estimate of potential growth. Cut-off dates differ: the IMF July 2026 and World Bank October 2026 numbers were set before the 9M actual (9.01%). AMRO is the only one of the four found to publish a potential-growth number (7.3–7.5%)."
+    },
+    "themes": [
+     {
+      "id": "external_demand",
+      "label_vi": "Cầu bên ngoài, thuế quan và chu kỳ công nghệ",
+      "label_en": "External demand, tariffs and the tech cycle",
+      "text_vi": "Tăng trưởng 2026 dựa nhiều vào xuất khẩu điện tử và hàng liên quan AI. Các tổ chức coi cầu toàn cầu, chính sách thương mại của Mỹ và khả năng chu kỳ chi tiêu công nghệ đảo chiều là rủi ro chính.",
+      "text_en": "2026 growth leans on electronics and AI-related exports. The institutions treat global demand, US trade policy and a possible reversal of the tech-spending cycle as the main risks.",
+      "cited_by": [
+       "imf",
+       "wb",
+       "adb",
+       "amro"
+      ],
+      "refs": [
+       "https://www.imf.org/en/publications/cr/issues/2025/10/03/vietnam-2025-article-iv-consultation-press-release-staff-report-and-statement-by-the-570895",
+       "https://www.cnbc.com/2026/10/06/world-bank-east-asia-growth-inflation-ai-exports-.html",
+       "https://vietnamnews.vn/economy/1800366/adb-raises-viet-nam-growth-forecast-but-flags-rising-risks.html",
+       "https://theinvestor.vn/vietnams-10-gdp-growth-target-faces-rising-macro-financial-constraints-amro-d20101.html"
+      ]
+     },
+     {
+      "id": "potential_growth",
+      "label_vi": "Năng lực tăng trưởng tiềm năng, đầu tư và năng suất",
+      "label_en": "Potential growth, investment and productivity",
+      "text_vi": "AMRO ước tính tiềm năng 7,3–7,5%/năm và tính rằng mức 8,5% đã cần thêm đầu tư và TFP 3,6%/năm; IMF dự kiến tiềm năng giảm dần do nhân khẩu học. Phía chính thức đặt kỳ vọng TFP đóng góp trên 55% và năng suất lao động tăng khoảng 8,5%/năm.",
+      "text_en": "AMRO puts potential growth at 7.3–7.5% a year and estimates that even 8.5% needs more investment and 3.6% TFP growth; the IMF expects potential growth to edge down with demographics. The official plan expects TFP to contribute over 55% and labour productivity to grow about 8.5% a year.",
+      "cited_by": [
+       "amro",
+       "imf",
+       "wb"
+      ],
+      "refs": [
+       "https://theinvestor.vn/vietnams-10-gdp-growth-target-faces-rising-macro-financial-constraints-amro-d20101.html",
+       "https://www.imf.org/en/publications/cr/issues/2025/10/03/vietnam-2025-article-iv-consultation-press-release-staff-report-and-statement-by-the-570895",
+       "https://www.worldbank.org/en/news/press-release/2026/05/15/viet-nam-s-economy-remains-resilient-but-sustained-reforms-are-key-to-navigating-heightened-uncertainty-wb",
+       "https://thuvienphapluat.vn/phap-luat/dai-hoi-dai-bieu-toan-quoc-lan-thu-xiv-xac-dinh-muc-tieu-phat-trien-kinh-te-5-nam-2026-2030-the-nao-335964-257106.html"
+      ]
+     },
+     {
+      "id": "credit_financial",
+      "label_vi": "Tăng trưởng dựa vào tín dụng và ổn định tài chính",
+      "label_en": "Credit-led growth and financial stability",
+      "text_vi": "Dư nợ tín dụng khoảng 145% GDP và vẫn tăng nhanh. ADB và AMRO nêu rủi ro thanh khoản, lệch kỳ hạn, bất động sản và hộ gia đình; AMRO khuyến nghị giảm tốc độ mở rộng tín dụng, IMF lưu ý dư địa nới lỏng tiền tệ hạn chế.",
+      "text_en": "Bank credit is about 145% of GDP and still growing fast. ADB and AMRO point to liquidity, maturity-mismatch, real-estate and household risks; AMRO recommends a slower pace of credit expansion and the IMF notes limited room for monetary easing.",
+      "cited_by": [
+       "adb",
+       "amro",
+       "imf"
+      ],
+      "refs": [
+       "https://www.vietnamplus.vn/adb-nang-du-bao-tang-truong-viet-nam-luu-y-rui-ro-tin-dung-va-lam-phat-post1137929.vnp",
+       "https://www.amro-asia.org/vietnams-resilience-amid-global-turbulence",
+       "https://www.imf.org/en/news/articles/2025/09/15/pr-25296-vietnam-imf-executive-board-concludes-2025-article-iv-consultation"
+      ]
+     },
+     {
+      "id": "fdi_value_added",
+      "label_vi": "Phụ thuộc khu vực FDI và giá trị gia tăng trong nước",
+      "label_en": "FDI dependence and domestic value added",
+      "text_vi": "Xuất khẩu và sản xuất chủ yếu do doanh nghiệp FDI dẫn dắt, phụ thuộc đầu vào nhập khẩu. WB và ADB cho rằng giữ lại nhiều giá trị trong nước và tăng liên kết với doanh nghiệp Việt là điều kiện để duy trì đà tăng.",
+      "text_en": "Exports and manufacturing are led by foreign-invested firms and rely on imported inputs. The World Bank and ADB see retaining more value at home and stronger links with domestic firms as conditions for sustaining momentum.",
+      "cited_by": [
+       "wb",
+       "adb"
+      ],
+      "refs": [
+       "https://www.worldbank.org/en/news/press-release/2026/05/15/viet-nam-s-economy-remains-resilient-but-sustained-reforms-are-key-to-navigating-heightened-uncertainty-wb",
+       "https://vn.investing.com/news/economy-news/adb-nang-du-bao-tang-truong-viet-nam-len-78-canh-bao-ap-luc-lam-phat-tin-dung-2719471"
+      ]
+     },
+     {
+      "id": "implementation",
+      "label_vi": "Năng lực triển khai: đầu tư công và cải cách thể chế",
+      "label_en": "Implementation capacity: public investment and reforms",
+      "text_vi": "Phía chính thức coi đầu tư công và đột phá thể chế là động lực chính. Các tổ chức ghi nhận cải cách có thể nâng tăng trưởng trung hạn, đồng thời nhấn mạnh tốc độ giải ngân, hiệu quả đầu tư và việc duy trì cải cách.",
+      "text_en": "The official side treats public investment and institutional breakthroughs as key drivers. The institutions agree reforms can raise medium-term growth, while stressing disbursement speed, investment efficiency and sustained implementation.",
+      "cited_by": [
+       "adb",
+       "imf",
+       "wb",
+       "amro"
+      ],
+      "refs": [
+       "https://en.nhandan.vn/adb-raises-viet-nams-2026-growth-forecast-to-78-post166941.html",
+       "https://www.imf.org/en/publications/cr/issues/2025/10/03/vietnam-2025-article-iv-consultation-press-release-staff-report-and-statement-by-the-570895",
+       "https://www.worldbank.org/en/news/press-release/2026/05/15/viet-nam-s-economy-remains-resilient-but-sustained-reforms-are-key-to-navigating-heightened-uncertainty-wb",
+       "https://theinvestor.vn/vietnams-10-gdp-growth-target-faces-rising-macro-financial-constraints-amro-d20101.html",
+       "https://thanhnien.vn/lam-gi-de-keo-tang-truong-6-thang-cuoi-nam-len-chien-dich-giai-ngan-dau-tu-cong-185260708232004701.htm"
+      ]
+     }
+    ],
+    "note_vi": "Phần giải thích vì sao dự báo của IMF, WB, ADB, AMRO (7,3–8,4% cho 2026) thấp hơn mục tiêu từ 10%/năm. Trình bày trung lập quan điểm của từng bên; không đánh giá bên nào đúng. Số liệu dự báo lấy từ ECONFLOW.projections.series (không thay đổi); IMF WEO 10/2026 (13/10/2026) mới chỉ có một nguồn thứ cấp (8,4%/7,5%) nên để trạng thái \"chờ xác minh\".",
+    "note_en": "Explains why IMF, World Bank, ADB and AMRO forecasts (7.3–8.4% for 2026) sit below the 10%-plus target. Each side's view is described neutrally; no judgement of who is right. Forecast numbers reuse ECONFLOW.projections.series (unchanged); the IMF October 2026 WEO (13/10/2026) has only one secondary report (8.4%/7.5%) and is marked pending verification. Schema: target{} · forecasts[] (inst, pub_date, y2026, y2027, vintages[] for IMF, potential_growth{low,high}|null + text, reasons_vi/en[], quote_en + quote_source, url/alt_url*) · official_basis{drivers_vi/en[], uncertain_*, sources[]} · methodology{} · themes[] (id, label_*, text_*, cited_by[inst], refs[url])."
    }
   },
   "cpi_model": {

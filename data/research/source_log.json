@@ -601,6 +601,27 @@
    "pages": [
     "https://baolamdong.vn/print/394955.html"
    ]
+  },
+  {
+   "host": "technode.global",
+   "publisher": "TNGlobal (tech/business news, Singapore)",
+   "what_it_holds": "same-day summary of IMF WEO October 2026 regional numbers (Vietnam 2026 8.4%, 2027 7.5%; world 3.1%)",
+   "best_for_agent": "Economy, Finance",
+   "reliability": "press (secondary, single source)",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": null,
+    "checked": "2026-10-13",
+    "detail": "not probed; search excerpt only"
+   },
+   "access_tips": "Use only as a pointer to the IMF WEO October 2026 tables; verify Vietnam figures on imf.org (WEO database) before using.",
+   "conflicts_seen": [
+    "IMF Vietnam 2026: 8.4% (TNGlobal, Oct WEO, 13/10/2026) vs 8.2% (znews/thanhnien, IMF update reported Aug–Sep 2026, IMF document not identified) vs 7.5% (WEO Jul 2026)"
+   ],
+   "last_used": "2026-10-13",
+   "pages": [
+    "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/"
+   ]
   }
  ]
 }
