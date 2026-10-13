@@ -386,6 +386,19 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .chart-wrap-sm { position: relative; height: 155px; }
   .chart-abs { position: absolute; inset: 0; }
   .live-badge { font-size: 10px; color: var(--accent2); font-weight: 700; }
+  /* header "Agents" button: hover or click shows who maintains what */
+  .ag-wrap { position: relative; display: inline-flex; }
+  #ag-btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 3px 10px; font-size: 11px; font-weight: 700; letter-spacing: .3px; cursor: pointer; white-space: nowrap; }
+  #ag-btn:hover, #ag-btn[aria-expanded="true"] { border-color: var(--accent2); color: var(--accent2); }
+  #ag-pop { position: absolute; top: calc(100% + 6px); right: 0; z-index: 9000; width: min(460px, calc(100vw - 32px)); max-height: min(72vh, 640px); overflow: auto; background: var(--bg2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,.25); padding: 12px 14px; text-align: left; }
+  #ag-pop h3 { margin: 0 0 2px; font-size: 13px; } #ag-pop .ag-sub { margin: 0 0 10px; font-size: 11px; color: var(--text2); line-height: 1.45; }
+  #ag-pop ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  #ag-pop li { display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: start; padding-top: 8px; border-top: 1px solid var(--border); }
+  #ag-pop li:first-child { border-top: 0; padding-top: 0; }
+  #ag-pop .ag-ic { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; background: var(--bg3); }
+  #ag-pop b { font-size: 12.5px; } #ag-pop .ag-tab { font-size: 10.5px; font-weight: 700; color: var(--accent2); margin-left: 6px; letter-spacing: .3px; }
+  #ag-pop p { margin: 2px 0 0; font-size: 11.5px; line-height: 1.45; color: var(--text2); } #ag-pop code { font-size: 10.5px; color: var(--text); }
+  @media (max-width: 720px) { #ag-pop { position: fixed; top: 52px; left: 16px; right: 16px; width: auto; } }
   .pn-label { font-size: 10px; color: var(--violet); }
 
   /* CPI basket list */
@@ -1531,6 +1544,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
     <button type="button" id="hdr-film-btn" hidden title="Bộ phim có thuyết minh đi qua mọi tab: kinh tế, chính trị, con người và hướng đi"><span aria-hidden="true">▶ </span><span>Phim toàn cảnh</span></button>
     <span id="fx-live-badge" class="live-badge" style="margin-left:auto"></span>
     <span id="bond-live-badge" class="live-badge" style="margin-left:4px"></span>
+    <span class="ag-wrap" id="ag-wrap"><button type="button" id="ag-btn" aria-expanded="false" aria-controls="ag-pop">Agents</button><div id="ag-pop" role="dialog" aria-label="Agents" hidden></div></span>
     <span id="hdr-last-update" class="hbadge" title="Lần cập nhật dữ liệu gần nhất">—</span>
     <span class="lang-seg" role="group" aria-label="Ngôn ngữ / Language"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></span>
     <button id="hdr-update-btn" title="Tải lại dữ liệu mới nhất từ máy chủ">↻ Cập nhật</button>
@@ -5581,6 +5595,32 @@ async function mvGo(k) {
   if (tok === MV.tok && MV.on) mvGo(k + 1);
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && MV.on) mvStop(); });
+// ── Header "Agents": the AI agents that maintain the dashboard and what each one owns (hover or click; Esc closes)
+const AGENTS = [
+  ['🏛', 'Strategy', 'Chính trị', 'Politics', 'Văn bản chiến lược của Đảng, Quốc hội, Chính phủ (cả dự thảo), quy trình ra quyết định và biểu quyết, sơ đồ bộ máy, lãnh đạo, tin tức.', 'Party, National Assembly and Government strategic documents (drafts too), how decisions and votes work, the org chart, leaders, news.', 'strategy_directives.json'],
+  ['📈', 'Economy', 'Kinh tế', 'Economy', 'GDP và cơ cấu chi tiêu, tăng trưởng theo quý, cán cân thanh toán, ngân sách Nhà nước, vốn đầu tư, CPI và dự báo CPI.', 'GDP and its spending mix, quarterly growth, the balance of payments, the State budget, investment, CPI and the CPI outlook.', 'data/economy.json'],
+  ['👥', 'Society', 'Xã hội', 'Society', 'Dân số và dự báo, mức sinh, cơ cấu tuổi của 34 tỉnh, thành; GRDP bình quân đầu người theo tỉnh; thứ hạng thế giới; tôn giáo.', 'Population and projections, fertility and age structure of the 34 provinces, GRDP per person by province, world ranks, religion.', 'data/society.json'],
+  ['⚖️', 'Policy', 'Chính sách', 'Policies', 'Sổ đăng ký công cụ chính sách tiền tệ và tài khóa: từng lần điều chỉnh, văn bản pháp lý, hướng nới/thắt, thời hạn, lập trường hiện tại.', 'Registry of monetary and fiscal instruments: every move with its legal document, easing or tightening, expiry dates, the current stance.', 'data/policy.json'],
+  ['🏦', 'Finance', 'Hệ thống tài chính · Mô phỏng', 'Financial system · Simulation', 'Cung tiền, tiền gửi và tín dụng, trái phiếu doanh nghiệp, lãi suất, an toàn ngân hàng (nợ xấu, CAR), báo cáo của Ngân hàng Nhà nước; mô hình mô phỏng.', 'Money supply, deposits and credit, corporate bonds, interest rates, bank soundness (NPLs, CAR), the State Bank\'s accounts; the simulation model.', 'data/finance.json · data/simulation.json'],
+  ['🔎', 'Investing', 'Đầu tư', 'Investing', 'Bối cảnh vĩ mô cho nhà đầu tư và ghi chú mô tả về các mã theo dõi. Chỉ mô tả, không khuyến nghị đầu tư.', 'Macro context for investors and descriptive notes on the focus list. Descriptive only, never investment advice.', 'data/invest_macro.json'],
+  ['🧭', 'Research', 'Mọi tab', 'All tabs', 'Lên lịch cập nhật theo nhịp công bố của từng chuỗi số liệu, kiểm tra chéo số liệu giữa các tab, giữ nhật ký nguồn.', 'Plans and schedules updates by each series\' release rhythm, cross-checks figures between tabs, keeps the source log.', 'data/research/'],
+  ['✍️', 'Ed', 'Biên tập & thiết kế', 'Editor & design', 'Tổng biên tập: thứ tự chương, tiêu đề, chú thích, hình thức biểu đồ, chuyển động và nhận diện của trang. Không sở hữu số liệu.', 'Chief editor: chapter order, headlines, notes, chart forms, motion and the page\'s identity. Owns no data.', 'vietnam_dashboard.html (story layer)'],
+  ['🎙', 'Narrator', 'Phim có thuyết minh', 'Narrated films', 'Viết kịch bản cho "Xem như phim" và "Phim toàn cảnh": chọn cảnh, biểu đồ và lời kể về kinh tế, chính trị, con người và hướng đi của Việt Nam.', 'Writes the scripts for "Watch as a film" and "The big picture film": the scenes, the charts and the story of Vietnam\'s economy, politics, people and direction.', 'data/narration.json'],
+];
+(() => {
+  const w = document.getElementById('ag-wrap'), b = document.getElementById('ag-btn'), pop = document.getElementById('ag-pop'); if (!w || !b || !pop) return;
+  let pinned = false, tm = 0;
+  const fill = () => { if (pop.dataset.lang === APP_LANG) return; pop.dataset.lang = APP_LANG;
+    pop.innerHTML = `<h3>${stT('Các tác tử AI của bảng điều khiển', 'The dashboard\'s AI agents')}</h3><p class="ag-sub">${stT(`${AGENTS.length} tác tử Claude, mỗi tác tử phụ trách một phần. Tác tử đề xuất cập nhật trước khi thay đổi dữ liệu; mọi số liệu đều ghi nguồn.`, `${AGENTS.length} Claude agents, each in charge of one part. Agents propose data updates before changing anything; every figure carries its source.`)}</p><ul>${AGENTS.map(([ic, n, tv, te, rv, re, f]) =>
+      `<li><span class="ag-ic" aria-hidden="true">${ic}</span><div><b>${n}</b><span class="ag-tab">${ciE(stT(tv, te))}</span><p>${ciE(stT(rv, re))}</p><p><code>${ciE(f)}</code></p></div></li>`).join('')}</ul>`; };
+  const show = () => { clearTimeout(tm); fill(); pop.hidden = false; b.setAttribute('aria-expanded', 'true'); };
+  const hide = () => { pinned = false; pop.hidden = true; b.setAttribute('aria-expanded', 'false'); };
+  w.addEventListener('mouseenter', () => { if (matchMedia('(hover: hover)').matches) show(); });
+  w.addEventListener('mouseleave', () => { if (!pinned) tm = setTimeout(hide, 250); });
+  b.addEventListener('click', () => { if (pinned) hide(); else { pinned = true; show(); } });
+  document.addEventListener('click', e => { if (!pop.hidden && !w.contains(e.target)) hide(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !pop.hidden) { hide(); b.focus(); } });
+})();
 // header: the cross-tab "big picture" film (shown only when the Narrator has written films.overview)
 (() => { const b = document.getElementById('hdr-film-btn'); if (!b) return; b.hidden = !mvScript('overview');
   if (APP_LANG === 'en') b.title = 'A narrated film across every tab: the economy, politics, the people and where Vietnam is heading';
