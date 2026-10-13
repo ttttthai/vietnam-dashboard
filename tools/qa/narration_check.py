@@ -6,7 +6,8 @@ languages. Warnings: a number in the narration that appears in no data file (dat
 the story map's own text) — every figure the narrator speaks must come from the dashboard's data; overlong scenes;
 VI and EN scenes that disagree on their numbers.
 
-Usage: python3 tools/qa/narration_check.py [--strict]   (--strict: warnings also fail)
+Usage: python3 tools/qa/narration_check.py [--strict] [--figs]   (--strict: warnings also fail; --figs: a spoken number
+without a figure card in the scene's "figs" list is an error)
 """
 import json, os, re, sys
 
@@ -85,6 +86,15 @@ def main():
                 if not set(canon(x)) & known: warn.append(f'{at}: number {x} not found in any data file')
             if {x for x in nv if not re.fullmatch(r'(19|20)\d\d', x)} != {x for x in ne if not re.fullmatch(r'(19|20)\d\d', x)}:
                 warn.append(f'{at}: VI and EN carry different numbers ({sorted(nv ^ ne)})')
+            # every figure spoken is shown: each non-year number must sit in one of the scene's "figs" cards (both languages)
+            figs = sc.get('figs') or []
+            for f in figs:
+                if not (isinstance(f.get('v'), dict) and f['v'].get('vi') and f['v'].get('en')): err.append(f'{at}: figs entry needs v.vi and v.en'); break
+            fv = set().union(*[nums_vi(f['v']['vi']) for f in figs if isinstance(f.get('v'), dict) and f['v'].get('vi')]) if figs else set()
+            fe = set().union(*[nums_en(f['v']['en']) for f in figs if isinstance(f.get('v'), dict) and f['v'].get('en')]) if figs else set()
+            miss_v = {x for x in nv if not re.fullmatch(r'(19|20)\d\d', x)} - fv
+            miss_e = {x for x in ne if not re.fullmatch(r'(19|20)\d\d', x)} - fe
+            if miss_v or miss_e: (err if '--figs' in sys.argv else warn).append(f'{at}: spoken number(s) without a figure card: {sorted(miss_v | miss_e)}')
     for e in err: print('ERROR', e)
     for w in warn: print('warn ', w)
     print(f'{len(films)} films, {n} scenes · {len(err)} errors, {len(warn)} warnings')

@@ -24,13 +24,19 @@ where it is heading* — the economy, politics, the people, and the future (targ
    }}}
   ```
   SCENE = `{"tab": "econ", "chap": "st-formula", "target": "#st-mix", "k": {"vi": "KINH TẾ · CƠ CẤU", "en": "ECONOMY · STRUCTURE"},
-  "vi": "…", "en": "…", "big": false, "pop": false, "play": true, "src": "data/economy.json ECONFLOW…"}`
+  "vi": "…", "en": "…", "big": false, "pop": false, "play": true, "src": "data/economy.json ECONFLOW…",
+  "figs": [{"v": {"vi": "53,2%", "en": "53.2%"}, "l": {"vi": "chi tiêu hộ gia đình / GDP, 2025", "en": "household spending / GDP, 2025"}}]}`
   - `tab` one of party, social, econ, money (Policies), banks (Financial system), invest, sim (Simulation).
   - `chap` a chapter id and `target` (optional) a chart id from `data/research/story_map.json`. Without a target
     the scene shows the chapter's headline. `big: true` = chapter-opening scene (scrolls the headline to the top);
     `pop: true` = a "did you know" pop-up; `play: false` = don't replay the chart's timeline.
   - `k` is the small kicker over the caption (TAB · TOPIC, upper case); `vi`/`en` the spoken text.
   - `src` (not shown) names where each number comes from — the reviewer's audit trail.
+  - `figs` — **every figure you say is shown on screen.** One card per number spoken (years alone excepted): `v` is the
+    number with its unit exactly as spoken (same digits as the text, VI and EN formats), `l` a 3–7 word label (what,
+    where, when). The film pops each card up the moment the sentence that says it is read aloud, and the number is
+    highlighted in the caption. A scene that speaks a number without a matching card fails
+    `narration_check.py --figs`.
   - A tab without a film in `films` falls back to the automatic scene list read from the page.
 
 ## What you do not own
@@ -65,7 +71,7 @@ in narration that is not in the data.
    tab's sub-tabs, chapters (id, kicker, headline, dek, notes) and charts (target id, caption, timeline yes/no).
    Read the headlines and notes; open data files for the figures you need.
 3. Write or update `data/narration.json`; set `_meta.as_of` to today.
-4. Check: `python3 tools/qa/narration_check.py` — fix every ERROR; resolve every "number not found" warning
+4. Check: `python3 tools/qa/narration_check.py --figs` — fix every ERROR (a spoken number without a figure card is one); resolve every "number not found" warning
    (use the data's figure or drop it).
 5. Embed: `python3 tools/build/embed_data.py narration`.
 6. Watch it: `python3 tools/qa/shot.py --tab econ --js "document.querySelector('.st-mv-btn').click()" --out film.png`
@@ -73,6 +79,16 @@ in narration that is not in the data.
    `--js "mvScript('overview').length"`.
 7. Report: films written, scene counts, anything you need from the tab agents. Do not commit; the main session
    commits and publishes.
+
+## Full refresh after every Fed (FOMC) meeting
+The user's standing instruction: **after each US Federal Reserve FOMC meeting concludes, update the films completely**
+— re-map the page, re-read every tab's current data and headlines, and rewrite all eight films (not just patch
+numbers): the hook, the arc, the "what to watch" close (drop past dates, add the next ones, including the next FOMC
+meeting), and every figure card. Mention the Fed's decision only if the dashboard's data carries it (Policy / Finance
+own that data; if it is missing, request it). FOMC decisions are announced at 2:00 p.m. US Eastern on the second
+meeting day. Remaining dates: 2026 — Oct 27–28, Dec 8–9; 2027 (tentative) — Jan 26–27, Mar 16–17, Apr 27–28,
+Jun 8–9, Jul 27–28, Sep 14–15, Oct 26–27, Dec 7–8 (check federalreserve.gov/monetarypolicy/fomccalendars.htm).
+A scheduled routine wakes the main session the morning after each meeting (Vietnam time) to run this refresh.
 
 ## When the data changes
 After any tab agent's refresh, re-run `story_map.py` and `narration_check.py`; update scenes whose numbers or
