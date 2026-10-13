@@ -6878,9 +6878,9 @@ function ecWhyChap() {
   return stChap('st-why', stT('Chương 6b · Vì sao dự báo thấp hơn mục tiêu', 'Chapter 6b · Why forecasts sit below the target'), title,
     stT('Chấm đặc: dự báo 2026; chấm rỗng: dự báo 2027; vùng tô: mục tiêu từ 10% trở lên; vạch đứt: thực tế chín tháng 2026. Mỗi tổ chức một hàng, không lấy trung bình.', 'Solid dot: 2026 forecast; hollow dot: 2027 forecast; shaded zone: the 10%+ target; dashed line: actual growth in the first nine months of 2026. One row per institution; nothing is averaged.'),
     `<div class="st-sub">${stT('Dự báo tăng trưởng GDP so với mục tiêu (%)', 'GDP growth forecasts against the target (%)')}</div><div id="ec-why" class="st-viz"></div>${note}
-     <div class="st-sub">${stT('Vì sao các tổ chức thấy thấp hơn: 5 lý do họ nêu', 'Why the institutions see less: the reasons they give')}</div><div class="ec-why-g">${themes}</div>
-     <div class="ec-2"><div><div class="st-sub">${stT('Mục tiêu dựa vào đâu (theo văn kiện chính thức)', 'What the target rests on (official documents)')}</div><ul class="ec-why-l">${drv}</ul></div>
-       <div><div class="st-sub">${stT('Tăng trưởng tiềm năng: năng lực tăng trưởng bền vững', 'Potential growth: what the economy can sustain')}</div><ul class="ec-why-l">${pot}</ul></div></div>
+     <div class="st-sub">${stT('Vì sao các tổ chức thấy thấp hơn: 5 lý do họ nêu', 'Why the institutions see less: the reasons they give')}</div><div id="ec-why-themes" class="ec-why-g st-viz" data-noanim aria-label="${ciE(stT('5 lý do', 'Five reasons'))}">${themes}</div>
+     <div class="ec-2"><div><div class="st-sub">${stT('Mục tiêu dựa vào đâu (theo văn kiện chính thức)', 'What the target rests on (official documents)')}</div><ul id="ec-why-basis" class="ec-why-l st-viz" data-noanim>${drv}</ul></div>
+       <div><div class="st-sub">${stT('Tăng trưởng tiềm năng: năng lực tăng trưởng bền vững', 'Potential growth: what the economy can sustain')}</div><ul id="ec-why-pot" class="ec-why-l st-viz" data-noanim>${pot}</ul></div></div>
      ${M.text_vi ? `<p class="st-tick ec-why-m">${ciE(stT(M.text_vi, M.text_en))}</p>` : ''}
      ${quotes ? `<details class="st-meta"><summary>${stT('Trích dẫn của các tổ chức (tiếng Anh, theo bản tin)', 'Quotes from the institutions (as reported)')}</summary><ul class="ec-why-l">${quotes}</ul></details>` : ''}
      ${stSrc(`${stT('Nguồn', 'Sources')}: ${src}. ${ciE(stT('Dữ kiện lấy từ trích đoạn kết quả tìm kiếm ngày 13/10/2026; nên đối chiếu bản gốc.', 'Facts taken from search excerpts on 13 Oct 2026; check against the originals.'))}`)}`);
