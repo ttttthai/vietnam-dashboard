@@ -1478,22 +1478,287 @@
        "vi": "TƯƠNG LAI · NĂM 2045",
        "en": "THE FUTURE · BY 2045"
       },
-      "vi": "Xa hơn nữa: đến 2030, Việt Nam muốn thành nước thu nhập trung bình cao; đến 2045, nước phát triển, thu nhập cao. Các tổ chức quốc tế hiện dự báo cả năm 2026 tăng từ 7,1% đến 7,8%, thấp hơn mục tiêu.",
-      "en": "Further out: by 2030 Vietnam aims to be upper-middle income; by 2045, a developed, high-income country. International institutions currently forecast 7.1% to 7.8% growth for all of 2026, below the target.",
+      "vi": "Xa hơn nữa: đến 2030, Việt Nam muốn thành nước thu nhập trung bình cao; đến 2045, nước phát triển, thu nhập cao. Các tổ chức quốc tế hiện dự báo cả năm 2026 tăng từ 7,4% đến 7,8%, thấp hơn mục tiêu.",
+      "en": "Further out: by 2030 Vietnam aims to be upper-middle income; by 2045, a developed, high-income country. International institutions currently forecast 7.4% to 7.8% growth for all of 2026, below the target.",
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "7,1% – 7,8%",
-         "en": "7.1% – 7.8%"
+         "vi": "7,4% – 7,8%",
+         "en": "7.4% – 7.8%"
         },
         "l": {
-         "vi": "dự báo quốc tế, tăng trưởng 2026",
-         "en": "international forecasts, 2026 growth"
+         "vi": "dự báo 2026 của IMF, WB, ADB, AMRO",
+         "en": "2026 forecasts: IMF, WB, ADB, AMRO"
         }
        }
       ],
-      "src": "story_map pg-st-hero dek (2030/2045 goals); econ st-hero dek (IMF, WB, ADB, AMRO 7.1–7.8%)"
+      "src": "story_map pg-st-hero dek (2030/2045 goals); data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 (st-why headline 7.4–7.8%)"
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why",
+      "k": {
+       "vi": "TƯƠNG LAI · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "THE FUTURE · WHY FORECASTS DIFFER"
+      },
+      "vi": "Vì sao chênh lệch lớn vậy? Mỗi chấm đặc là dự báo 2026 của một tổ chức: IMF 7,5%, Ngân hàng Thế giới 7,4%, ADB 7,8%, AMRO 7,5%. Ngay cả mức cao nhất cũng thấp hơn mục tiêu từ 10% ít nhất 2,2 điểm phần trăm.",
+      "en": "Why such a gap? Each solid dot is one institution's 2026 forecast: the IMF 7.5%, the World Bank 7.4%, the ADB 7.8%, AMRO 7.5%. Even the highest sits at least 2.2 points below the target of 10% or more.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "7,5%",
+         "en": "7.5%"
+        },
+        "l": {
+         "vi": "dự báo IMF 2026 (tháng 7/2026)",
+         "en": "IMF 2026 forecast (July 2026)"
+        }
+       },
+       {
+        "v": {
+         "vi": "7,4%",
+         "en": "7.4%"
+        },
+        "l": {
+         "vi": "dự báo Ngân hàng Thế giới 2026 (10/2026)",
+         "en": "World Bank 2026 forecast (Oct 2026)"
+        }
+       },
+       {
+        "v": {
+         "vi": "7,8%",
+         "en": "7.8%"
+        },
+        "l": {
+         "vi": "dự báo ADB 2026 (9/2026)",
+         "en": "ADB 2026 forecast (Sept 2026)"
+        }
+       },
+       {
+        "v": {
+         "vi": "7,5%",
+         "en": "7.5%"
+        },
+        "l": {
+         "vi": "dự báo AMRO 2026 (9/2026)",
+         "en": "AMRO 2026 forecast (Sept 2026)"
+        }
+       },
+       {
+        "v": {
+         "vi": "từ 10%",
+         "en": "10%+"
+        },
+        "l": {
+         "vi": "mục tiêu tăng trưởng 2026",
+         "en": "growth target, 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "≥2,2 điểm",
+         "en": "≥2.2 points"
+        },
+        "l": {
+         "vi": "cách mục tiêu; tính: 10% − 7,8%",
+         "en": "short of target; computed: 10% − 7.8%"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 (IMF = July 2026 WEO Update, as charted); target.value_min; gap computed 10 − 7.8 (chapter headline)",
+      "big": true
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why",
+      "k": {
+       "vi": "TƯƠNG LAI · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "THE FUTURE · WHY FORECASTS DIFFER"
+      },
+      "vi": "Hãy nhìn vạch đứt: chín tháng đầu năm, kinh tế thực tế tăng 9,01%, cao hơn mọi dự báo cả năm nhưng vẫn dưới mục tiêu. Phần lớn các dự báo được chốt trước khi có con số này.",
+      "en": "Now the dashed line: actual growth in the first nine months was 9.01%, above every full-year forecast but still below the target. Most of the forecasts were finalised before that figure came out.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "9,01%",
+         "en": "9.01%"
+        },
+        "l": {
+         "vi": "tăng trưởng thực tế, 9 tháng 2026",
+         "en": "actual growth, 9 months 2026"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap target.actual_9M_2026_yoy + actual_note; methodology (cut-off dates)"
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why-pot",
+      "k": {
+       "vi": "TƯƠNG LAI · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "THE FUTURE · WHY FORECASTS DIFFER"
+      },
+      "vi": "Mục tiêu và dự báo vốn khác nhau. Mục tiêu là mức phấn đấu để huy động nguồn lực. Dự báo là kịch bản cơ sở theo chính sách hiện hành, neo vào tăng trưởng tiềm năng. AMRO ước tính mức này từ 7,3% đến 7,5% mỗi năm đến 2030; IMF cho rằng nó sẽ giảm dần.",
+      "en": "A target and a forecast are different things. A target is an aspiration that mobilises resources. A forecast is a baseline under current policies, anchored to potential growth. AMRO puts that at 7.3% to 7.5% a year to 2030; the IMF expects it to edge down.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "7,3% – 7,5%",
+         "en": "7.3% – 7.5%"
+        },
+        "l": {
+         "vi": "tăng trưởng tiềm năng 2026–2030, ước tính AMRO",
+         "en": "potential growth 2026–30, AMRO estimate"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap methodology; forecasts[amro].potential_growth; forecasts[imf].potential_growth_text (2025 Article IV)"
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why-themes",
+      "k": {
+       "vi": "TƯƠNG LAI · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "THE FUTURE · WHY FORECASTS DIFFER"
+      },
+      "vi": "Các tổ chức nêu lý do gì? Cả bốn nhắc tới cầu bên ngoài: tăng trưởng dựa vào xuất khẩu điện tử và hàng liên quan AI, dễ chịu tác động của thuế quan và chu kỳ công nghệ. Rồi năng lực: theo AMRO, tăng 8,5% mỗi năm đã cần đầu tư 35,6% GDP và năng suất tăng 3,6% mỗi năm.",
+      "en": "What reasons do they give? All four cite outside demand: growth leans on electronics and AI-related exports, exposed to tariffs and the tech cycle. Then capacity: AMRO estimates that even 8.5% a year would need investment of 35.6% of GDP and productivity growth of 3.6%.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "8,5%/năm",
+         "en": "8.5% a year"
+        },
+        "l": {
+         "vi": "quỹ đạo giả định trong tính toán AMRO",
+         "en": "path assumed in AMRO's estimate"
+        }
+       },
+       {
+        "v": {
+         "vi": "35,6% GDP",
+         "en": "35.6% of GDP"
+        },
+        "l": {
+         "vi": "đầu tư tài sản cố định cần có, AMRO",
+         "en": "fixed investment needed, AMRO"
+        }
+       },
+       {
+        "v": {
+         "vi": "3,6%/năm",
+         "en": "3.6% a year"
+        },
+        "l": {
+         "vi": "tăng năng suất nhân tố tổng hợp cần có, AMRO",
+         "en": "productivity (TFP) growth needed, AMRO"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap themes[external_demand].cited_by (all four); themes[potential_growth]; forecasts[amro].potential_growth_text"
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why-themes",
+      "k": {
+       "vi": "TƯƠNG LAI · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "THE FUTURE · WHY FORECASTS DIFFER"
+      },
+      "vi": "Thứ ba là tín dụng: dư nợ khoảng 145% GDP và vẫn tăng nhanh; ADB, AMRO và IMF lưu ý rủi ro cho ổn định tài chính. Ngân hàng Thế giới và ADB nêu sự phụ thuộc vào doanh nghiệp FDI và đầu vào nhập khẩu. Cả bốn đều nhấn mạnh khâu thực thi đầu tư công và cải cách.",
+      "en": "Third, credit: bank loans are about 145% of GDP and still growing fast; the ADB, AMRO and the IMF flag risks to financial stability. The World Bank and the ADB point to reliance on foreign firms and imported inputs. All four stress delivering public investment and reforms.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "≈145% GDP",
+         "en": "≈145% of GDP"
+        },
+        "l": {
+         "vi": "dư nợ tín dụng cuối 2025, theo ADB",
+         "en": "bank credit, end-2025, per ADB"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap themes[credit_financial|fdi_value_added|implementation].cited_by; forecasts[adb].reasons (145%)"
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why-basis",
+      "k": {
+       "vi": "TƯƠNG LAI · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "THE FUTURE · WHY FORECASTS DIFFER"
+      },
+      "vi": "Phía chính thức dựa vào những động lực mới: khoa học, công nghệ và đổi mới sáng tạo theo Nghị quyết 57, kinh tế tư nhân theo Nghị quyết 68, đột phá thể chế và đầu tư công. Kế hoạch đặt mục tiêu năng suất các nhân tố tổng hợp đóng góp trên 55% tăng trưởng, năng suất lao động tăng khoảng 8,5% mỗi năm.",
+      "en": "The official side counts on new engines: science, technology and innovation under Resolution 57, the private sector under Resolution 68, institutional reform and public investment. The plan aims for productivity to supply over 55% of growth, and labour productivity to rise about 8.5% a year.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "Nghị quyết 57",
+         "en": "Resolution 57"
+        },
+        "l": {
+         "vi": "khoa học, công nghệ, đổi mới sáng tạo",
+         "en": "science, technology, innovation"
+        }
+       },
+       {
+        "v": {
+         "vi": "Nghị quyết 68",
+         "en": "Resolution 68"
+        },
+        "l": {
+         "vi": "phát triển kinh tế tư nhân",
+         "en": "private-sector development"
+        }
+       },
+       {
+        "v": {
+         "vi": "trên 55%",
+         "en": "over 55%"
+        },
+        "l": {
+         "vi": "mục tiêu đóng góp của TFP, 2026–2030",
+         "en": "target TFP share of growth, 2026–30"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈8,5%/năm",
+         "en": "≈8.5% a year"
+        },
+        "l": {
+         "vi": "mục tiêu tăng năng suất lao động",
+         "en": "target labour productivity growth"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap official_basis.drivers"
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why",
+      "k": {
+       "vi": "TƯƠNG LAI · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "THE FUTURE · WHY FORECASTS DIFFER"
+      },
+      "vi": "Hai cách nhìn cùng một nền kinh tế: mục tiêu đặt ra nhịp độ phấn đấu, dự báo đo con đường hiện tại. Số liệu các quý tới, cùng các bản cập nhật dự báo tiếp theo, sẽ cho thấy nền kinh tế đi theo hướng nào.",
+      "en": "Two ways of reading one economy: the target sets the pace to aim for, the forecasts measure the current path. The coming quarters, and the institutions' next updates, will show which path the economy follows.",
+      "play": false,
+      "figs": [],
+      "src": "data/economy.json ECONFLOW.projections.why_gap methodology; note (neutral, no judgement)"
      },
      {
       "tab": "sim",
@@ -2408,8 +2673,8 @@
        "vi": "KINH TẾ · DỰ BÁO",
        "en": "ECONOMY · FORECASTS"
       },
-      "vi": "Mục tiêu là từ 10% mỗi năm đến 2030. Còn IMF, Ngân hàng Thế giới, ADB và AMRO dự báo cả năm 2026 chỉ từ 7,1% đến 7,8%.",
-      "en": "The target is 10% or more a year to 2030. The IMF, the World Bank, the ADB and AMRO forecast 7.1% to 7.8% for all of 2026.",
+      "vi": "Mục tiêu là từ 10% mỗi năm đến 2030. Còn IMF, Ngân hàng Thế giới, ADB và AMRO dự báo cả năm 2026 chỉ từ 7,4% đến 7,8%.",
+      "en": "The target is 10% or more a year to 2030. The IMF, the World Bank, the ADB and AMRO forecast 7.4% to 7.8% for all of 2026.",
       "play": false,
       "figs": [
        {
@@ -2424,16 +2689,16 @@
        },
        {
         "v": {
-         "vi": "7,1% – 7,8%",
-         "en": "7.1% – 7.8%"
+         "vi": "7,4% – 7,8%",
+         "en": "7.4% – 7.8%"
         },
         "l": {
-         "vi": "dự báo quốc tế, tăng trưởng 2026",
-         "en": "international forecasts, 2026 growth"
+         "vi": "dự báo 2026 của IMF, WB, ADB, AMRO",
+         "en": "2026 forecasts: IMF, WB, ADB, AMRO"
         }
        }
       ],
-      "src": "story_map st-hero dek"
+      "src": "data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 (st-why headline); story_map st-hero dek still reads 7.1–7.8 (stale)"
      },
      {
       "tab": "econ",
@@ -3114,6 +3379,207 @@
        }
       ],
       "src": "rendered ec-usd (IMF WEO Apr-2026); st-hero dek"
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why",
+      "k": {
+       "vi": "KINH TẾ · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "ECONOMY · WHY FORECASTS DIFFER"
+      },
+      "vi": "Vì sao dự báo thấp hơn mục tiêu? Cho năm 2026, IMF dự báo 7,5%, Ngân hàng Thế giới 7,4%, ADB 7,8%, AMRO 7,5%, thấp hơn mục tiêu ít nhất 2,2 điểm. Thực tế chín tháng tăng 9,01%, cao hơn mọi dự báo; phần lớn dự báo được chốt trước con số này.",
+      "en": "Why do forecasts sit below the target? For 2026 the IMF forecasts 7.5%, the World Bank 7.4%, the ADB 7.8% and AMRO 7.5%, at least 2.2 points short. Actual nine-month growth, 9.01%, beat them all; most were set before that figure.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "7,5%",
+         "en": "7.5%"
+        },
+        "l": {
+         "vi": "dự báo IMF 2026 (tháng 7/2026)",
+         "en": "IMF 2026 forecast (July 2026)"
+        }
+       },
+       {
+        "v": {
+         "vi": "7,4%",
+         "en": "7.4%"
+        },
+        "l": {
+         "vi": "dự báo Ngân hàng Thế giới 2026 (10/2026)",
+         "en": "World Bank 2026 forecast (Oct 2026)"
+        }
+       },
+       {
+        "v": {
+         "vi": "7,8%",
+         "en": "7.8%"
+        },
+        "l": {
+         "vi": "dự báo ADB 2026 (9/2026)",
+         "en": "ADB 2026 forecast (Sept 2026)"
+        }
+       },
+       {
+        "v": {
+         "vi": "7,5%",
+         "en": "7.5%"
+        },
+        "l": {
+         "vi": "dự báo AMRO 2026 (9/2026)",
+         "en": "AMRO 2026 forecast (Sept 2026)"
+        }
+       },
+       {
+        "v": {
+         "vi": "≥2,2 điểm",
+         "en": "≥2.2 points"
+        },
+        "l": {
+         "vi": "cách mục tiêu; tính: 10% − 7,8%",
+         "en": "short of target; computed: 10% − 7.8%"
+        }
+       },
+       {
+        "v": {
+         "vi": "9,01%",
+         "en": "9.01%"
+        },
+        "l": {
+         "vi": "tăng trưởng thực tế, 9 tháng 2026",
+         "en": "actual growth, 9 months 2026"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026; target; gap computed 10 − 7.8",
+      "big": true
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why-pot",
+      "k": {
+       "vi": "KINH TẾ · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "ECONOMY · WHY FORECASTS DIFFER"
+      },
+      "vi": "Mục tiêu là mức phấn đấu; dự báo là kịch bản cơ sở, neo vào tăng trưởng tiềm năng. AMRO ước tính tiềm năng từ 7,3% đến 7,5% mỗi năm đến 2030, và tính rằng tăng 8,5% đã cần đầu tư 35,6% GDP cùng năng suất tăng 3,6% mỗi năm.",
+      "en": "A target is an aspiration; a forecast is a baseline anchored to potential growth. AMRO puts potential at 7.3% to 7.5% a year to 2030, and estimates that even 8.5% would need investment of 35.6% of GDP and productivity growth of 3.6% a year.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "7,3% – 7,5%",
+         "en": "7.3% – 7.5%"
+        },
+        "l": {
+         "vi": "tăng trưởng tiềm năng 2026–2030, ước tính AMRO",
+         "en": "potential growth 2026–30, AMRO estimate"
+        }
+       },
+       {
+        "v": {
+         "vi": "8,5%/năm",
+         "en": "8.5% a year"
+        },
+        "l": {
+         "vi": "quỹ đạo giả định trong tính toán AMRO",
+         "en": "path assumed in AMRO's estimate"
+        }
+       },
+       {
+        "v": {
+         "vi": "35,6% GDP",
+         "en": "35.6% of GDP"
+        },
+        "l": {
+         "vi": "đầu tư tài sản cố định cần có, AMRO",
+         "en": "fixed investment needed, AMRO"
+        }
+       },
+       {
+        "v": {
+         "vi": "3,6%/năm",
+         "en": "3.6% a year"
+        },
+        "l": {
+         "vi": "tăng năng suất nhân tố tổng hợp cần có, AMRO",
+         "en": "productivity (TFP) growth needed, AMRO"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap methodology; forecasts[amro].potential_growth + text"
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why-themes",
+      "k": {
+       "vi": "KINH TẾ · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "ECONOMY · WHY FORECASTS DIFFER"
+      },
+      "vi": "Năm lý do được nêu. Cả bốn tổ chức nhắc tới cầu bên ngoài, thuế quan, chu kỳ công nghệ và khâu thực thi cải cách. ADB, AMRO và IMF lo tín dụng, khoảng 145% GDP. AMRO, IMF và Ngân hàng Thế giới nói về giới hạn năng suất; Ngân hàng Thế giới và ADB về sự phụ thuộc vào FDI.",
+      "en": "Five reasons recur. All four cite outside demand, tariffs and the tech cycle, and delivering reforms. The ADB, AMRO and the IMF worry about credit, about 145% of GDP. AMRO, the IMF and the World Bank cite productivity limits; the World Bank and the ADB, reliance on foreign firms.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "≈145% GDP",
+         "en": "≈145% of GDP"
+        },
+        "l": {
+         "vi": "dư nợ tín dụng cuối 2025, theo ADB",
+         "en": "bank credit, end-2025, per ADB"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap themes[].cited_by; forecasts[adb].reasons (145%)"
+     },
+     {
+      "tab": "econ",
+      "chap": "st-why",
+      "target": "#ec-why-basis",
+      "k": {
+       "vi": "KINH TẾ · VÌ SAO DỰ BÁO THẤP HƠN",
+       "en": "ECONOMY · WHY FORECASTS DIFFER"
+      },
+      "vi": "Phía chính thức dựa vào khoa học công nghệ theo Nghị quyết 57, kinh tế tư nhân theo Nghị quyết 68, đột phá thể chế và đầu tư công, với năng suất các nhân tố tổng hợp đóng góp trên 55% tăng trưởng. Các quý tới sẽ cho thấy nền kinh tế đi theo hướng nào.",
+      "en": "The official side counts on science and technology under Resolution 57, the private sector under Resolution 68, institutional reform and public investment, with productivity supplying over 55% of growth. The coming quarters will show which path the economy follows.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "Nghị quyết 57",
+         "en": "Resolution 57"
+        },
+        "l": {
+         "vi": "khoa học, công nghệ, đổi mới sáng tạo",
+         "en": "science, technology, innovation"
+        }
+       },
+       {
+        "v": {
+         "vi": "Nghị quyết 68",
+         "en": "Resolution 68"
+        },
+        "l": {
+         "vi": "phát triển kinh tế tư nhân",
+         "en": "private-sector development"
+        }
+       },
+       {
+        "v": {
+         "vi": "trên 55%",
+         "en": "over 55%"
+        },
+        "l": {
+         "vi": "mục tiêu đóng góp của TFP, 2026–2030",
+         "en": "target TFP share of growth, 2026–30"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.projections.why_gap official_basis.drivers"
      },
      {
       "tab": "econ",
