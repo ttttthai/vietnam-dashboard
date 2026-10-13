@@ -993,7 +993,11 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .st-mv-t { font: 400 16px/1.5 var(--font-ui); margin: 4px 0 8px; max-height: 40vh; overflow: auto; } .st-mv-t.big { font: 600 21px/1.3 var(--font-head); } .st-mv-t.pop { color: #ffe08a; }
   .st-mv-t span { opacity: 0; animation: mvWord .35s ease forwards; animation-delay: var(--d); }
   .st-mv-live { font: 600 14px var(--font-ui); color: #ffe08a; min-height: 0; margin: -2px 0 6px; font-variant-numeric: tabular-nums; } .st-mv-live:empty { display: none; }
-  .st-mv-bar { height: 3px; background: rgba(255,255,255,.18); border-radius: 2px; } .st-mv-bar i { display: block; height: 100%; background: #ff8a80; border-radius: 2px; transition: width .5s; }
+  .st-mv-bar { position: relative; height: 6px; background: rgba(255,255,255,.18); border-radius: 3px; cursor: pointer; } .st-mv-bar::before { content: ''; position: absolute; inset: -7px 0; }
+  .st-mv-bar > i { display: block; height: 100%; background: #ff8a80; border-radius: 3px; transition: width .3s linear; pointer-events: none; }
+  .st-mv-bar .st-mv-mk { position: absolute; top: -3px; width: 2px; height: 12px; background: rgba(255,255,255,.55); border-radius: 1px; pointer-events: none; }
+  .st-mv-tl { display: flex; justify-content: space-between; margin-top: 3px; font: 500 10.5px var(--font-ui); color: #9aa0ab; gap: 8px; } .st-mv-tl b { color: #fff; font-weight: 600; }
+  .st-mv-tm { font: 600 12px var(--font-ui); color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .st-mv-c { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; font: 400 12px var(--font-ui); color: #c9ccd2; }
   .st-mv-c button { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; min-width: 32px; height: 30px; cursor: pointer; font-size: 13px; } .st-mv-c button:hover { background: rgba(255,255,255,.25); }
   .st-mv-c select { font: 12px var(--font-ui); } .st-mv-n { margin-left: auto; font-variant-numeric: tabular-nums; }
@@ -5502,7 +5506,28 @@ async function mvResolve(s, tok) {
   else s.el = sec.querySelector(s.big ? '.st-h' : '.st-h, .st-dek') || sec;
   return true;
 }
-const MV = { on: false, root: null, sc: [], k: 0, paused: false, speed: 1, voice: true, vname: '', tok: 0 };
+// ── film clock: position = finished scenes (measured, else estimated) + time in the current scene; estimates are
+// calibrated by the scenes already played. The bar is time-based, marks where the film changes tab, and seeks on click.
+const mvFmt = ms => { const t = Math.max(0, Math.round(ms / 1000)), h = Math.floor(t / 3600), m = Math.floor(t / 60) % 60, s = t % 60; return (h ? h + ':' + String(m).padStart(2, '0') : m) + ':' + String(s).padStart(2, '0'); };
+function mvEst(s, prev) { const n = (s.t || '').length, read = Math.max(3200, Math.min(14000, n * 62)), talk = MV.voice ? n / 14 * 1000 / .95 : 0;
+  return (900 + Math.max(read, talk) + (s.ctl || (s.script && s.chart && s.play) ? 5000 : 0) + (prev && prev.tab && s.tab && prev.tab !== s.tab ? 1400 : 0)) / (MV.speed || 1); }
+function mvDurs() { const est = MV.sc.map((s, i) => mvEst(s, MV.sc[i - 1])); let a = 0, e = 0; MV.dur.forEach((d, i) => { if (d) { a += d; e += est[i]; } });
+  const cal = e > 0 ? Math.min(2.5, Math.max(.5, a / e)) : 1; return est.map((x, i) => MV.dur[i] || x * cal); }
+function mvClock() { const u = document.getElementById('st-mv'); if (!u || !MV.on || !MV.sc.length) return;
+  const D = mvDurs(), tot = D.reduce((a, b) => a + b, 0), pos = D.slice(0, MV.k).reduce((a, b) => a + b, 0) + Math.min(MV.inScene, D[MV.k] * 1.5);
+  u.querySelector('.st-mv-tm').textContent = `${mvFmt(pos)} / ${MV.dur.filter(Boolean).length >= MV.sc.length ? '' : '≈'}${mvFmt(Math.max(tot, pos))}`;
+  u.querySelector('.st-mv-bar > i').style.width = Math.min(100, pos / Math.max(tot, 1) * 100) + '%';
+  const bar = u.querySelector('.st-mv-bar'); bar.setAttribute('aria-valuenow', Math.round(pos / 1000)); bar.setAttribute('aria-valuemax', Math.round(tot / 1000)); bar.setAttribute('aria-valuetext', `${mvFmt(pos)} / ${mvFmt(tot)}`);
+  u.querySelector('.st-mv-left').textContent = stT('còn ≈ ', '≈ ') + mvFmt(Math.max(0, tot - pos)) + stT('', ' left');
+  // tab marks + the current section's name (cross-tab film) — rebuilt only when the durations shift
+  const key = D.map(x => Math.round(x / 500)).join(','); if (bar.dataset.k !== key) { bar.dataset.k = key; bar.querySelectorAll('.st-mv-mk').forEach(x => x.remove()); let c = 0;
+    MV.sc.forEach((s, i) => { if (i && s.tab && MV.sc[i - 1].tab && s.tab !== MV.sc[i - 1].tab) { const m = document.createElement('i'); m.className = 'st-mv-mk'; m.style.left = (c / tot * 100) + '%'; bar.appendChild(m); } c += D[i]; }); }
+  const sc = MV.sc[MV.k], tb = sc && sc.tab && document.querySelector(`#tabs-bottom .tab-btn[data-tab="${sc.tab}"]`);
+  u.querySelector('.st-mv-sec').innerHTML = tb ? `<b>${ciE(tb.textContent.trim())}</b>` + (sc.k ? ' · ' + ciE(sc.k.split('·').slice(1).join('·').trim()) : '') : ciE(sc && sc.k || ''); }
+setInterval(() => { if (MV.on && !MV.paused) { MV.inScene += 250; mvClock(); } }, 250);
+function mvSeekX(e) { const bar = e.currentTarget, r = bar.getBoundingClientRect(), f = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), D = mvDurs(), tot = D.reduce((a, b) => a + b, 0);
+  let c = 0, k = 0; for (; k < D.length - 1; k++) { if (c + D[k] > f * tot) break; c += D[k]; } mvGo(k, { seek: 1 }); }
+const MV = { on: false, dur: [], inScene: 0, prevK: null, root: null, sc: [], k: 0, paused: false, speed: 1, voice: true, vname: '', tok: 0 };
 // narrator: a female voice for the page language when the browser has one (names of the common female system/online voices);
 // the reader can pick another from the card. Known male voices are ranked last.
 const MV_FEM = /(female|woman|hoai ?my|hoàimy|linh|google tiếng việt|google vietnamese|samantha|zira|aria|jenny|ava|allison|susan|karen|moira|tessa|victoria|serena|libby|sonia|emma|michelle|natasha|clara|joanna|salli|kendra|kimberly|ivy|google us english|google uk english female)/i;
@@ -5548,14 +5573,16 @@ function mvScenes(root) {
 function mvUI() {
   let u = document.getElementById('st-mv'); if (u) return u;
   u = document.createElement('div'); u.id = 'st-mv'; u.hidden = true; u.setAttribute('role', 'region'); u.setAttribute('aria-label', stT('Chế độ phim', 'Movie mode'));
-  u.innerHTML = `<div class="st-mv-figs" aria-live="polite"></div><div class="st-mv-card"><div class="st-mv-k"></div><div class="st-mv-t" aria-live="polite"></div><div class="st-mv-live"></div><div class="st-mv-bar"><i></i></div>
+  u.innerHTML = `<div class="st-mv-figs" aria-live="polite"></div><div class="st-mv-card"><div class="st-mv-k"></div><div class="st-mv-t" aria-live="polite"></div><div class="st-mv-live"></div><div class="st-mv-bar" role="slider" tabindex="0" aria-label="${ciE(stT('Vị trí trong phim', 'Position in the film'))}"><i></i></div><div class="st-mv-tl"><span class="st-mv-sec"></span><span class="st-mv-left"></span></div>
     <div class="st-mv-c"><button type="button" data-mv="prev" aria-label="${ciE(stT('Cảnh trước', 'Previous scene'))}">⏮</button><button type="button" data-mv="pause" aria-label="${ciE(stT('Tạm dừng', 'Pause'))}">⏸</button><button type="button" data-mv="next" aria-label="${ciE(stT('Cảnh sau', 'Next scene'))}">⏭</button>
     <label>${stT('Tốc độ', 'Speed')} <select data-mv="speed"><option value="0.6">0,6×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option></select></label>
-    <label class="st-mv-vo"><input type="checkbox" data-mv="voice" checked> 🎙 ${stT('Thuyết minh', 'Narration')} <select data-mv="vname" aria-label="${ciE(stT('Giọng đọc', 'Voice'))}"></select><span class="st-mv-vh"></span></label><span class="st-mv-n"></span><button type="button" data-mv="stop" aria-label="${ciE(stT('Dừng phim', 'Stop'))}">✕</button></div></div>`;
+    <label class="st-mv-vo"><input type="checkbox" data-mv="voice" checked> 🎙 ${stT('Thuyết minh', 'Narration')} <select data-mv="vname" aria-label="${ciE(stT('Giọng đọc', 'Voice'))}"></select><span class="st-mv-vh"></span></label><span class="st-mv-tm" title="${ciE(stT('Thời gian đã xem / tổng thời lượng ước tính', 'Time elapsed / estimated running time'))}">0:00 / 0:00</span><span class="st-mv-n"></span><button type="button" data-mv="stop" aria-label="${ciE(stT('Dừng phim', 'Stop'))}">✕</button></div></div>`;
   document.body.appendChild(u);
   u.addEventListener('click', e => { const b = e.target.closest('[data-mv]'); if (!b || b.tagName !== 'BUTTON') return; const a = b.dataset.mv;
     if (a === 'stop') mvStop(); else if (a === 'pause') { MV.paused = !MV.paused; b.textContent = MV.paused ? '▶' : '⏸'; if (MV.paused && 'speechSynthesis' in window) speechSynthesis.pause(); else if ('speechSynthesis' in window) speechSynthesis.resume(); }
-    else if (a === 'next') mvGo(MV.k + 1); else if (a === 'prev') mvGo(Math.max(0, MV.k - 1)); });
+    else if (a === 'next') mvGo(MV.k + 1, { seek: 1 }); else if (a === 'prev') mvGo(Math.max(0, MV.k - 1), { seek: 1 }); });
+  const bar = u.querySelector('.st-mv-bar'); bar.addEventListener('click', mvSeekX);
+  bar.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); mvGo(Math.min(MV.sc.length - 1, MV.k + 1), { seek: 1 }); } if (e.key === 'ArrowLeft') { e.preventDefault(); mvGo(Math.max(0, MV.k - 1), { seek: 1 }); } });
   u.addEventListener('change', e => { const t = e.target; if (t.dataset.mv === 'speed') MV.speed = +t.value; if (t.dataset.mv === 'voice') { MV.voice = t.checked; if (!t.checked && 'speechSynthesis' in window) speechSynthesis.cancel(); } if (t.dataset.mv === 'vname') { MV.vname = t.value; try { localStorage.setItem('mvVoice', t.value); } catch (e) {} } });
   return u;
 }
@@ -5563,7 +5590,7 @@ function mvStart(root, film) {
   if (MV.on) mvStop();
   const tab = film || (root && root.closest('.panel') ? root.closest('.panel').id.replace(/^panel-/, '') : '');
   MV.root = root; MV.sc = mvScript(tab) || (root ? mvScenes(root) : []); if (!MV.sc.length) return; document.documentElement.scrollTop = 0;
-  MV.on = true; MV.paused = false; document.body.classList.add('st-mv-on');
+  MV.on = true; MV.paused = false; MV.dur = []; MV.inScene = 0; MV.prevK = null; document.body.classList.add('st-mv-on');
   const u = mvUI(); u.hidden = false; u.querySelector('[data-mv="pause"]').textContent = '⏸';
   try { MV.vname = localStorage.getItem('mvVoice') || MV.vname; } catch (e) {} u.querySelector('[data-mv="voice"]').checked = MV.voice; mvVoiceUI();
   window.__stSlow = 2;   // every timeline the film plays runs at half speed
@@ -5583,8 +5610,10 @@ function mvScroll(el, top) {
   sc.scrollTo({ top: Math.max(0, y), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
 }
 async function mvWait(ms, tok) { let t = 0; while (t < ms) { if (tok !== MV.tok) return false; await mvSleep(100); if (!MV.paused) t += 100 * MV.speed; } return tok === MV.tok; }
-async function mvGo(k) {
+async function mvGo(k, o) {
   const tok = ++MV.tok; if (!MV.on) return; if (k >= MV.sc.length) { mvStop(); return; }
+  if (MV.prevK != null && !(o && o.seek) && k === MV.prevK + 1 && MV.inScene > 1000) MV.dur[MV.prevK] = MV.inScene;   // a scene played to its end: keep its real length
+  MV.prevK = k; MV.inScene = 0;
   MV.k = k; const s = MV.sc[k], u = mvUI();
   try { speechSynthesis.cancel(); } catch (e) {}
   if (s.script) { document.querySelectorAll('.st-mv-focus').forEach(x => x.classList.remove('st-mv-focus', 'st-mv-pop')); u.querySelector('.st-mv-live').textContent = ''; }
@@ -5596,14 +5625,14 @@ async function mvGo(k) {
   const el = s.el && s.el.isConnected ? s.el : null;
   if (el) { mvScroll(el, s.big); el.classList.add('st-mv-focus'); if (s.pop) el.classList.add('st-mv-pop'); }
   u.querySelector('.st-mv-k').textContent = s.k || ''; const T = u.querySelector('.st-mv-t'); T.className = 'st-mv-t' + (s.big ? ' big' : '') + (s.pop ? ' pop' : '');
-  T.innerHTML = s.t.split(' ').map((w, j) => `<span${/\d/.test(w) && !mvIsYear(w.replace(/[^\d]/g, '')) ? ' class="st-mv-num"' : ''} style="--d:${Math.min(j * 45, 2400)}ms">${ciE(w)}</span>`).join(' ');
+  T.innerHTML = s.t.split(' ').map((w, j) => `<span${/\d/.test(w) && !mvIsYear(w.replace(/^[^\d]+|[^\d]+$/g, '')) ? ' class="st-mv-num"' : ''} style="--d:${Math.min(j * 45, 2400)}ms">${ciE(w)}</span>`).join(' ');
   // figure cards: shown as the sentence that says them is spoken (or paced through the reading time without voice)
   const FG = u.querySelector('.st-mv-figs'), figs = mvFigs(s), shown = new Set(); FG.innerHTML = '';
   const showFig = i => { if (shown.has(i) || tok !== MV.tok) return; shown.add(i); FG.querySelectorAll('.st-mv-fig').forEach(x => x.classList.add('old'));
     const f = figs[i], d = document.createElement('div'); d.className = 'st-mv-fig'; d.innerHTML = `<b>${ciE(f.v)}</b>${f.l ? `<span>${ciE(f.l)}</span>` : ''}`; FG.appendChild(d);
     const max = innerWidth < 560 ? 2 : 4; while (FG.children.length > max) FG.firstElementChild.remove(); };
   const figPart = part => { const pd = new Set(mvDigits(part)); figs.forEach((f, i) => { const fd = mvDigits(f.v); if (fd.length && fd.every(x => pd.has(x))) showFig(i); }); };
-  u.querySelector('.st-mv-n').textContent = `${k + 1}/${MV.sc.length}`; u.querySelector('.st-mv-bar i').style.width = ((k + 1) / MV.sc.length * 100) + '%';
+  u.querySelector('.st-mv-n').textContent = `${k + 1}/${MV.sc.length}`; mvClock();
   let spoken = Promise.resolve();
   const voiced = MV.voice && mvVoiceOk();
   if (voiced) spoken = mvSpeak(s.t, tok, figPart);
