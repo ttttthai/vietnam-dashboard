@@ -11415,8 +11415,8 @@
   },
   "projections": {
    "as_of": "2026-10-14",
-   "note_vi": "Ba loại: mục tiêu chính thức, dự báo của tổ chức (ghi rõ kỳ công bố) và kịch bản (do nhóm dữ liệu tính, nêu đầu vào và công thức để tái lập). Kịch bản không phải dự báo. Số liệu IMF WEO (kỳ 10/2026) lấy qua trích đoạn báo chí (trang IMF/FRED bị chặn), mâu thuẫn được ghi chú. GDP danh nghĩa và tín dụng/GDP (kịch bản) vẫn dựa trên kỳ IMF 4/2026 cho tới khi có đủ chuỗi 10/2026 đến 2030.",
-   "note_en": "Three kinds: official targets, institutional forecasts (with vintage) and scenarios (computed here, with stated inputs and formula so they can be reproduced). Scenarios are not forecasts. IMF WEO values (Oct-2026 vintage) come from press excerpts (IMF/FRED pages blocked) and conflicts are noted. The nominal-GDP and credit-to-GDP scenarios still use the Apr-2026 IMF vintage until the Oct-2026 path to 2030 is available.",
+   "note_vi": "Ba loại: mục tiêu chính thức, dự báo của tổ chức (ghi rõ kỳ công bố) và kịch bản (do nhóm dữ liệu tính, nêu đầu vào và công thức để tái lập). Kịch bản không phải dự báo. Tăng trưởng GDP thực của IMF theo kỳ WEO 10/2026; CPI của IMF vẫn theo kỳ 4/2026 (số 10/2026 chưa được kiểm chứng). Số liệu IMF lấy qua trích đoạn báo chí (trang IMF/FRED bị chặn), mâu thuẫn được ghi chú. GDP danh nghĩa và tín dụng/GDP (kịch bản) vẫn dựa trên kỳ IMF 4/2026 cho tới khi có đủ chuỗi 10/2026 đến 2030.",
+   "note_en": "Three kinds: official targets, institutional forecasts (with vintage) and scenarios (computed here, with stated inputs and formula so they can be reproduced). Scenarios are not forecasts. IMF real GDP growth is the Oct-2026 WEO; IMF CPI stays on the Apr-2026 WEO (Oct-2026 CPI unverified). IMF values come from press excerpts (IMF/FRED pages blocked) and conflicts are noted. The nominal-GDP and credit-to-GDP scenarios still use the Apr-2026 IMF vintage until the Oct-2026 path to 2030 is available.",
    "series": {
     "credit_growth_pct": {
      "years": [
@@ -11601,8 +11601,8 @@
       2030
      ],
      "base": [
-      4.7,
       4.9,
+      4.6,
       null,
       null,
       null
@@ -11612,21 +11612,14 @@
      "kind": "institution_forecast",
      "unit": "% (annual average)",
      "source": {
-      "name": "IMF World Economic Outlook, October 2026 (13/10/2026; via press excerpts — imf.org blocked)",
-      "url": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
-      "verified_via": [
-       "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
-       "https://kevesko.vn/20261013/kinh-te-viet-nam-co-the-tang-gap-4-lan-thai-lan-gan-gap-doi-trung-quoc-44534645.html"
-      ],
-      "verified_on": "2026-10-14"
+      "name": "IMF World Economic Outlook, April 2026 (WEO Apr-2026), Statistical Appendix Table A7 — same values as Economy ECONFLOW.projections.series.cpi_pct_imf",
+      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf"
      },
-     "method_vi": "WEO 10/2026: CPI bình quân 4,7% (2026), 4,9% (2027); 2025 = 3,3%. Cùng bài báo nêu cán cân vãng lai 0,3% GDP (2026) và 3,4% (2027), tức là số riêng của Việt Nam. LƯU Ý: lạm phát TOÀN CẦU của WEO 10/2026 cũng là 4,7% (2026) và 4,1% (2027); một bài báo ghi Việt Nam 2027 = 4,1% — nhiều khả năng nhầm với số toàn cầu, không dùng. Số 2026 = 4,7% của Việt Nam trùng với số toàn cầu nên cần đối chiếu bảng gốc. Trang quốc gia của IMF vẫn ghi 4,9% cho 2026 (kỳ 4/2026). 2028–2030 để null (chưa tìm được). Kỳ trước (WEO 4/2026): 4,9; 3,76; 3,6; 3,6; 3,6. Mục tiêu chính thức 2026–2030: CPI bình quân khoảng 4,5% (NQ 25/2026/QH16). Thực tế CPI bình quân 9T/2026: 4,52%.",
-     "method_en": "WEO Oct-2026: average CPI 4.7% (2026), 4.9% (2027); 2025 = 3.3%. The same report gives the current account at 0.3% of GDP (2026) and 3.4% (2027), so these are Vietnam-specific rows. CAUTION: the WEO Oct-2026 GLOBAL inflation is also 4.7% (2026) and 4.1% (2027); one article gives Vietnam 2027 = 4.1%, most likely confused with the global figure, and is not used. Vietnam's 2026 value of 4.7% equals the global figure, so it should be checked against the original table. The IMF country page still shows 4.9% for 2026 (April vintage). 2028-2030 left null (not found). Previous (WEO Apr-2026): 4.9, 3.76, 3.6, 3.6, 3.6. Official 2026-2030 target: average CPI about 4.5% (Resolution 25/2026/QH16). Actual 9M-2026 average CPI: 4.52%.",
-     "vintage": "IMF WEO October 2026",
-     "pub": "2026-10-13",
-     "previous_vintage": {
-      "vintage": "IMF WEO April 2026",
-      "pub": "2026-04-14",
+     "method_vi": "WEO 4/2026 (Phụ lục thống kê, Bảng A7): 4,9 (2026), 4,6 (2027); 2028–2030 để null như tab Kinh tế (bản sao thứ cấp ghi 3,3% cho 2027–2030, mâu thuẫn với 4,6% nên không dùng). Trước đây tab này ghi 2027 = 3,76 và 2028–2030 = 3,6 theo FRED (VNMPCPIPCPPPT) — mâu thuẫn với 4,6% của bảng IMF; dùng bảng IMF, không lấy trung bình. Kỳ 10/2026 (13/10/2026) CHƯA áp dụng: chỉ một tờ báo (Thời báo Ngân hàng) đưa tin 4,7% (2026) và vừa 4,9% vừa 4,1% (2027) — xem oct2026_reported. Mục tiêu chính thức 2026–2030: CPI bình quân khoảng 4,5% (NQ 25/2026/QH16). Thực tế CPI bình quân 9T/2026: 4,52%.",
+     "method_en": "WEO Apr-2026 (Statistical Appendix Table A7): 4.9 (2026), 4.6 (2027); 2028-2030 null, as on the Economy tab (a secondary mirror shows 3.3% for 2027-2030, conflicting with 4.6, so not used). This tab previously held 2027 = 3.76 and 2028-2030 = 3.6 from FRED (VNMPCPIPCPPPT), which conflicts with the IMF table's 4.6; the IMF table is used, not averaged. The Oct-2026 vintage (13/10/2026) is NOT applied: only one outlet (Thoi bao Ngan hang) reports it, giving 4.7% for 2026 and both 4.9% and 4.1% for 2027 - see oct2026_reported. Official 2026-2030 target: average CPI about 4.5% (Resolution 25/2026/QH16). Actual 9M-2026 average CPI: 4.52%.",
+     "vintage": "IMF WEO April 2026",
+     "pub": "2026-04-14",
+     "superseded_values": {
       "years": [
        2026,
        2027,
@@ -11641,24 +11634,21 @@
        3.6,
        3.6
       ],
+      "source": "FRED VNMPCPIPCPPPT (WEO Apr-2026 as mirrored, updated 22/4/2026)",
       "url": "https://fred.stlouisfed.org/series/VNMPCPIPCPPPT",
-      "note": "Superseded; kept as a note only. Conflict at the time: Economy's Table A7 reading gave 2027 = 4.6; FRED gave 3.76."
+      "note": "Replaced 2026-10-14 to match the IMF appendix used by Economy; 2027 3.76 conflicts with Table A7 4.6."
      },
-     "conflicts": [
-      {
-       "value": 4.1,
-       "year": 2027,
-       "note": "One article's Vietnam 2027 = 4.1% matches the WEO global CPI 2027; treated as a mix-up, not used",
-       "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-1310-188974-188974.html"
-      },
-      {
-       "value": 4.9,
-       "year": 2026,
-       "note": "IMF Vietnam country page shows 4.9 for 2026 — April-2026 vintage",
-       "url": "https://www.imf.org/en/countries/vnm"
-      }
-     ],
-     "pending": "Confirm 4.7 (2026) against WEO Oct-2026 Table A7/database; 2028-2030 (and 2031) values."
+     "oct2026_reported": {
+      "status": "unverified — not in the series",
+      "y2026": 4.7,
+      "y2027": null,
+      "y2027_conflict": "the same outlet gives both 4.9% and 4.1% for 2027; 4.1% equals the WEO Oct-2026 global CPI for 2027 and 4.7% equals the global figure for 2026, so a mix-up with global aggregates cannot be ruled out",
+      "y2025_actual_cited": 3.3,
+      "source": "Thời báo Ngân hàng, 13/10/2026 (two articles, one outlet)",
+      "url": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
+      "alt_url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-1310-188974-188974.html",
+      "pending": "Apply only when confirmed by the IMF table/database or a second independent report."
+     }
     },
     "real_gdp_growth_pct": {
      "years": [
@@ -11684,7 +11674,6 @@
       "url": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
       "verified_via": [
        "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
-       "https://kevesko.vn/20261013/kinh-te-viet-nam-co-the-tang-gap-4-lan-thai-lan-gan-gap-doi-trung-quoc-44534645.html",
        "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/"
       ],
       "verified_on": "2026-10-14"
