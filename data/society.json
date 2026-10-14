@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Society agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "qc": "QC/freshness run 2026-10-06; 2026-10-07 added tfr_2025 (6 provinces, excerpt-verified) and null *_2025 vital-rate keys per audit S03/S04; GRDP 9M-2026 for Điện Biên, Quảng Trị, Huế, Gia Lai rechecked - still not published as 9-month figures (null). Data status as of 7 Oct 2026.; 2026-10-09 (animation history, user request): POP_SERIES.age_sex single years 2017-2030, POP_SERIES.un_annual (31 Dec), POP_SERIES.nat_series 2017-2025 + POP_SERIES.targets, SOC_GRDP.*_series 2018-2025, WORLD_RANK.*.history / history_wpp / history_imf / history_wdi; 2026-10-10 (user request): SOC_GRDP 2018-2019 per capita for the 23 merged provinces and 2018-2019/2021-2023 GRDP levels + population for all 34 (old-63 sum, NSO tables via GitHub mirror); WORLD_RANK.*.history_wb (WDI 2017-latest) for 11 demographic/size indicators",
+  "qc": "QC/freshness run 2026-10-06; 2026-10-07 added tfr_2025 (6 provinces, excerpt-verified) and null *_2025 vital-rate keys per audit S03/S04; GRDP 9M-2026 for Điện Biên, Quảng Trị, Huế, Gia Lai rechecked - still not published as 9-month figures (null). Data status as of 7 Oct 2026.; 2026-10-09 (animation history, user request): POP_SERIES.age_sex single years 2017-2030, POP_SERIES.un_annual (31 Dec), POP_SERIES.nat_series 2017-2025 + POP_SERIES.targets, SOC_GRDP.*_series 2018-2025, WORLD_RANK.*.history / history_wpp / history_imf / history_wdi; 2026-10-10 (user request): SOC_GRDP 2018-2019 per capita for the 23 merged provinces and 2018-2019/2021-2023 GRDP levels + population for all 34 (old-63 sum, NSO tables via GitHub mirror); WORLD_RANK.*.history_wb (WDI 2017-latest) for 11 demographic/size indicators; 2026-10-14 (scheduled IMF WEO Oct-2026 refresh, approved 'imf: ok' 2026-10-10): WORLD_RANK.g_*.history_imf NOT refreshed - Oct-2026 database unreachable (imf.org blocked, no mirror); April-2026 values/ranks kept, vintage + refresh_status added; g_growth Oct-2026 press figures (8.4/7.5) logged as unverified, not used",
   "sources": {
    "POP_SERIES.actual": "NSO PX V02.02 average population (2025 = Sơ bộ) https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.02.px/",
    "POP_SERIES.nat": "NSO PX V02.02/V02.08/V02.11/V02.15/V02.24, reference year 2024 (population change survey 1/4/2024)",
@@ -19,11 +19,11 @@
    "POP_SERIES.nat_series": "NSO PX-Web V02.02/V02.08/V02.11/V02.15/V02.24 national series 2017-2025 (2025 Sơ bộ), cached 2026-10-04 in tools/build/demo/demo.json; WDI cross-check separate",
    "POP_SERIES.targets": "QĐ 1679/QĐ-TTg (TFR 2.1, e0 75, pop ~104 m, SRB natural balance), NQ 72-NQ/TW (e0 75.5), NQ 148/NQ-CP + NQ 06-NQ/TW (urbanisation >=45% 2025, >50% 2030); search-excerpt verified, see each entry",
    "SOC_GRDP.*_series": "grdp_pc_mvnd_series / growth_series 2020-2025 = NSO PL.V03.02 / PL.V03.01 (34 units, official 2020-2023, 2024 Sơ bộ, 2025 Ước tính) https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; 2018-2019 only for the 11 unmerged provinces = NSO old-basis V03.12 / V03.10 (same values as the 34-unit table for 2020-2025, checked) https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; merged provinces 2018-2019 null (needs old-province average population, NSO V02 provincial table, blocked). grdp_bn_series / pop_avg_thousand_series: only 2020, 2024, 2025 held; 2018-2019, 2021-2023 null (34-unit population PL.V02.02-04 not cached, pxweb blocked). series_basis per year: nso_34 | nso_63_unchanged_boundary | null.",
-   "WORLD_RANK.*.history*": "pop: WDI via datahub GitHub mirror; tfr/life_exp/srb: UN WPP 2024 ranked over the 217 WB economies; g_*: IMF WEO April 2026 (+ g_gdp WDI April-2026 mirror 2017-2023). density/urban: gap.",
+   "WORLD_RANK.*.history*": "pop: WDI via datahub GitHub mirror; tfr/life_exp/srb: UN WPP 2024 ranked over the 217 WB economies; g_*: IMF WEO April 2026 (Oct-2026 WEO released 13/10/2026, not yet pulled - imf.org blocked; see history_imf.refresh_status) (+ g_gdp WDI April-2026 mirror 2017-2023). density/urban: gap.",
    "SOC_GRDP.series_old63": "2018-2019 per capita for the 23 merged provinces (series_basis 'old63_sum') and grdp_bn_series / pop_avg_thousand_series 2018, 2019, 2021-2023 for all 34 (level_basis): for each of the 63 old provinces GRDP (bn VND, current prices) = NSO E03.12 GRDP per capita (mill. VND; 2018-2023 official) x NSO E02.03-07 average population (thous.), summed over the old provinces in series_old63_members (merger list = HC_KEY_MAP / NAME_FRAG_MAP in the page); per capita = summed GRDP / summed population. Source tables: NSO PX E03.12 and E02.03-07 (English PX; https://www.nso.gov.vn/en/px-web?pxid=E0312 , pxid=E0203-07), read from the GitHub mirror QuocAnhHo/Vietnam-socioeconomic-statistics (snapshot collected Sept 2026, values checked against source cells by the mirror) https://raw.githubusercontent.com/QuocAnhHo/Vietnam-socioeconomic-statistics/main/data/by_table/E0312.csv ; https://raw.githubusercontent.com/QuocAnhHo/Vietnam-socioeconomic-statistics/main/data/by_table/E0203-07.csv ; E03.12 values equal the NSO Vietnamese PX V03.12 cache (tools/build/grdp/o_V03.12.json, updated 2026-08-15) to 2 dp. Validation: the same method reproduces NSO's own 34-province per capita (PL.V03.02) for 2020-2025 within 0.01 mill. VND for all 34 and the 34-unit average population exactly; the 11 unmerged provinces' 2018-2019 values are identical. Cross-check, sum of 63 old-province GRDP vs NSO GDP (current prices, ECONFLOW.gdp.GDP): 2018 7,028,190 vs 7,009,042 bn (+0.27%); 2019 7,711,469 vs 7,707,200 bn (+0.06%); 2020 8,030,636 vs 8,044,386 bn (-0.17%); 2021 8,521,564 vs 8,487,476 bn (+0.40%); 2022 9,665,253 vs 9,621,372 bn (+0.46%); 2023 10,287,121 vs 10,319,059 bn (-0.31%); 2024 11,394,534 vs 11,510,329 bn (-1.01%); 2025 12,780,572 vs 12,847,571 bn (-0.52%). Growth 2018-2019 for merged provinces left null (needs constant-price levels; not interpolated).",
    "WORLD_RANK.history_wb": "Demographic/size rank timelines 2017-latest: World Bank WDI via GitHub mirrors (api.worldbank.org is blocked from the sandbox): Open Numbers ddf--open_numbers--world_development_indicators (created 2026-05-06; to 2024, area/density to 2023), datahub population.csv for SP.POP.TOTL (to 2025); 2025 points for urban/age65/dependency = held now (WDI API July 2026). Universe = the 217 WB economies used by now/prev; Puerto Rico and US Virgin Islands (missing from the Open Numbers mirror) placed from UN WPP 2024 / WDI values as described per indicator. All 22 held now/prev ranks reproduced. GDP indicators: history_imf (IMF WEO April 2026, 2017-2030, 2026+ projections) re-verified against tools/build/grdp/imf_*.json - unchanged."
   },
-  "as_of": "2026-10-09"
+  "as_of": "2026-10-14"
  },
  "SOC_PROV_DATA": {
   "Tuyên Quang": {
@@ -7208,7 +7208,7 @@
    "label": "GDP (current US$)",
    "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
    "history_imf": {
-    "source": "IMF World Economic Outlook April 2026 (NGDPD), DataMapper API cache tools/build/grdp/imf_NGDPD.json (fetched 2026-10-05); October 2026 WEO due 13/10/2026 - refresh then",
+    "source": "IMF World Economic Outlook April 2026 (NGDPD), DataMapper API cache tools/build/grdp/imf_NGDPD.json (fetched 2026-10-05)",
     "url": "https://www.imf.org/external/datamapper/api/v1/NGDPD",
     "unit": "bn US$",
     "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
@@ -7299,7 +7299,9 @@
      }
     },
     "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
-    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed)."
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
+    "vintage": "IMF WEO April 2026",
+    "refresh_status": "2026-10-14: IMF WEO October 2026 released 13/10/2026 ('Resilience Under Strain, Urgent Choices'), but its database could not be read: imf.org (DataMapper API, WEO database) is blocked from the sandbox (CONNECT 403), no GitHub mirror reachable, and search excerpts carry no Oct-2026 cross-country table. Ranks need every country's Oct-2026 value, so they cannot be recomputed from press excerpts. April-2026 values and ranks kept unchanged (still the latest verified vintage). Pending: server-side DataMapper pull of NGDPD (tools/build/grdp/imf_NGDPD.json), then recompute ranks 2017-2031 with the same basis; move the April-2026 vintage into a note."
    },
    "history_wdi": {
     "source": "World Bank WDI NY.GDP.MKTP.CD via the datahub.io GitHub mirror (datapackage last_updated 2026-04-08, i.e. the April-2026 WDI vintage; 2024-2025 not in the mirror)",
@@ -7362,7 +7364,7 @@
    "label": "GDP per capita (current US$)",
    "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
    "history_imf": {
-    "source": "IMF World Economic Outlook April 2026 (NGDPDPC), DataMapper API cache tools/build/grdp/imf_NGDPDPC.json (fetched 2026-10-05); October 2026 WEO due 13/10/2026 - refresh then",
+    "source": "IMF World Economic Outlook April 2026 (NGDPDPC), DataMapper API cache tools/build/grdp/imf_NGDPDPC.json (fetched 2026-10-05)",
     "url": "https://www.imf.org/external/datamapper/api/v1/NGDPDPC",
     "unit": "US$",
     "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
@@ -7453,7 +7455,9 @@
      }
     },
     "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
-    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed)."
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
+    "vintage": "IMF WEO April 2026",
+    "refresh_status": "2026-10-14: IMF WEO October 2026 released 13/10/2026 ('Resilience Under Strain, Urgent Choices'), but its database could not be read: imf.org (DataMapper API, WEO database) is blocked from the sandbox (CONNECT 403), no GitHub mirror reachable, and search excerpts carry no Oct-2026 cross-country table. Ranks need every country's Oct-2026 value, so they cannot be recomputed from press excerpts. April-2026 values and ranks kept unchanged (still the latest verified vintage). Pending: server-side DataMapper pull of NGDPDPC (tools/build/grdp/imf_NGDPDPC.json), then recompute ranks 2017-2031 with the same basis; move the April-2026 vintage into a note."
    },
    "history_gap": "WDI yearly ranks not reachable (api.worldbank.org blocked); IMF WEO ranks given in history_imf."
   },
@@ -7473,7 +7477,7 @@
    "label": "GDP per capita, PPP (current international $)",
    "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.PP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
    "history_imf": {
-    "source": "IMF World Economic Outlook April 2026 (PPPPC), DataMapper API cache tools/build/grdp/imf_PPPPC.json (fetched 2026-10-05); October 2026 WEO due 13/10/2026 - refresh then",
+    "source": "IMF World Economic Outlook April 2026 (PPPPC), DataMapper API cache tools/build/grdp/imf_PPPPC.json (fetched 2026-10-05)",
     "url": "https://www.imf.org/external/datamapper/api/v1/PPPPC",
     "unit": "intl $",
     "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
@@ -7564,7 +7568,9 @@
      }
     },
     "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
-    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed)."
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
+    "vintage": "IMF WEO April 2026",
+    "refresh_status": "2026-10-14: IMF WEO October 2026 released 13/10/2026 ('Resilience Under Strain, Urgent Choices'), but its database could not be read: imf.org (DataMapper API, WEO database) is blocked from the sandbox (CONNECT 403), no GitHub mirror reachable, and search excerpts carry no Oct-2026 cross-country table. Ranks need every country's Oct-2026 value, so they cannot be recomputed from press excerpts. April-2026 values and ranks kept unchanged (still the latest verified vintage). Pending: server-side DataMapper pull of PPPPC (tools/build/grdp/imf_PPPPC.json), then recompute ranks 2017-2031 with the same basis; move the April-2026 vintage into a note."
    },
    "history_gap": "WDI yearly ranks not reachable (api.worldbank.org blocked); IMF WEO ranks given in history_imf."
   },
@@ -7584,7 +7590,7 @@
    "label": "GDP growth (annual %)",
    "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.KD.ZG?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
    "history_imf": {
-    "source": "IMF World Economic Outlook April 2026 (NGDP_RPCH), DataMapper API cache tools/build/grdp/imf_NGDP_RPCH.json (fetched 2026-10-05); October 2026 WEO due 13/10/2026 - refresh then",
+    "source": "IMF World Economic Outlook April 2026 (NGDP_RPCH), DataMapper API cache tools/build/grdp/imf_NGDP_RPCH.json (fetched 2026-10-05)",
     "url": "https://www.imf.org/external/datamapper/api/v1/NGDP_RPCH",
     "unit": "%",
     "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
@@ -7675,7 +7681,19 @@
      }
     },
     "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
-    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed)."
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
+    "vintage": "IMF WEO April 2026",
+    "refresh_status": "2026-10-14: IMF WEO October 2026 released 13/10/2026 ('Resilience Under Strain, Urgent Choices'), but its database could not be read: imf.org (DataMapper API, WEO database) is blocked from the sandbox (CONNECT 403), no GitHub mirror reachable, and search excerpts carry no Oct-2026 cross-country table. Ranks need every country's Oct-2026 value, so they cannot be recomputed from press excerpts. April-2026 values and ranks kept unchanged (still the latest verified vintage). Pending: server-side DataMapper pull of NGDP_RPCH (tools/build/grdp/imf_NGDP_RPCH.json), then recompute ranks 2017-2031 with the same basis; move the April-2026 vintage into a note.",
+    "oct2026_reported_unverified": {
+     "status": "NOT USED - secondary reports only, conflicting excerpts; not in years{}",
+     "2026": 8.4,
+     "2027": 7.5,
+     "reported_by": [
+      "TNGlobal 13/10/2026 https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/",
+      "Lao Dong 14/10/2026 as relayed by Thoi bao Ngan hang (search excerpt; article page not identified)"
+     ],
+     "conflicts": "Other search excerpts on 14/10/2026 found no IMF 8.4% figure; znews/investing.com report 8.2% for 2026 from an earlier IMF statement (Aug-Sep 2026). Hosts blocked (technode.global unresolvable from sandbox); not verified on imf.org. No world rank reported."
+    }
    },
    "history_gap": "WDI yearly ranks not reachable (api.worldbank.org blocked); IMF WEO ranks given in history_imf."
   }
