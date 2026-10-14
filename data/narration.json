@@ -1,7 +1,7 @@
 {
  "_meta": {
   "owner": "Narrator agent",
-  "as_of": "2026-10-13",
+  "as_of": "2026-10-14",
   "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py, embed with tools/build/embed_data.py narration."
  },
  "NARRATION": {
@@ -1423,8 +1423,8 @@
        "vi": "TƯƠNG LAI · THU NHẬP 2030",
        "en": "THE FUTURE · INCOME BY 2030"
       },
-      "vi": "Mục tiêu GDP bình quân đầu người là 8.500 USD năm 2030, từ 5.026 USD năm 2025. Muốn vậy cần tăng khoảng 11,1% mỗi năm tính bằng USD. Dự báo của IMF chỉ là 6.323 USD. Mục tiêu không phải dự báo, và dự báo có thể sai.",
-      "en": "The target is GDP per person of 8,500 dollars in 2030, from 5,026 in 2025. That takes about 11.1% a year in dollar terms. The IMF forecasts 6,323. Targets are not forecasts, and forecasts can be wrong.",
+      "vi": "Mục tiêu GDP bình quân đầu người là 8.500 USD năm 2030, từ 5.026 USD năm 2025. Muốn vậy cần tăng khoảng 11,1% mỗi năm tính bằng USD. Dự báo tháng Tư của IMF là 6.323 USD. Mục tiêu không phải dự báo, và dự báo có thể sai.",
+      "en": "The target is GDP per person of 8,500 dollars in 2030, from 5,026 in 2025. That takes about 11.1% a year in dollar terms. The IMF's April forecast is 6,323. Targets are not forecasts, and forecasts can be wrong.",
       "big": true,
       "figs": [
        {
@@ -1463,12 +1463,12 @@
          "en": "$6,323"
         },
         "l": {
-         "vi": "dự báo IMF, 2030",
-         "en": "IMF forecast, 2030"
+         "vi": "dự báo IMF 2030 (WEO 4/2026)",
+         "en": "IMF forecast, 2030 (WEO Apr-2026)"
         }
        }
       ],
-      "src": "story_map st-2030 headline + note (11.1% computed by the page)"
+      "src": "story_map st-2030 headline + note (11.1% computed by the page); 6,323 = ECONFLOW.projections.series.gdp_per_capita_usd_imf, IMF WEO Apr-2026 vintage"
      },
      {
       "tab": "econ",
@@ -1478,14 +1478,14 @@
        "vi": "TƯƠNG LAI · NĂM 2045",
        "en": "THE FUTURE · BY 2045"
       },
-      "vi": "Xa hơn nữa: đến 2030, Việt Nam muốn thành nước thu nhập trung bình cao; đến 2045, nước phát triển, thu nhập cao. Các tổ chức quốc tế hiện dự báo cả năm 2026 tăng từ 7,4% đến 7,8%, thấp hơn mục tiêu.",
-      "en": "Further out: by 2030 Vietnam aims to be upper-middle income; by 2045, a developed, high-income country. International institutions currently forecast 7.4% to 7.8% growth for all of 2026, below the target.",
+      "vi": "Xa hơn nữa: đến 2030, Việt Nam muốn thành nước thu nhập trung bình cao; đến 2045, nước phát triển, thu nhập cao. Các tổ chức quốc tế hiện dự báo cả năm 2026 tăng từ 7,4% đến 8,4%, thấp hơn mục tiêu.",
+      "en": "Further out: by 2030 Vietnam aims to be upper-middle income; by 2045, a developed, high-income country. International institutions currently forecast 7.4% to 8.4% growth for all of 2026, below the target.",
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "7,4% – 7,8%",
-         "en": "7.4% – 7.8%"
+         "vi": "7,4% – 8,4%",
+         "en": "7.4% – 8.4%"
         },
         "l": {
          "vi": "dự báo 2026 của IMF, WB, ADB, AMRO",
@@ -1493,7 +1493,7 @@
         }
        }
       ],
-      "src": "story_map pg-st-hero dek (2030/2045 goals); data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 (st-why headline 7.4–7.8%)"
+      "src": "story_map pg-st-hero dek (2030/2045 goals; 7.4–8.4%); data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 (IMF = WEO Oct-2026, as reported)"
      },
      {
       "tab": "econ",
@@ -1503,18 +1503,18 @@
        "vi": "TƯƠNG LAI · VÌ SAO DỰ BÁO THẤP HƠN",
        "en": "THE FUTURE · WHY FORECASTS DIFFER"
       },
-      "vi": "Vì sao chênh lệch lớn vậy? Mỗi chấm đặc là dự báo 2026 của một tổ chức: IMF 7,5%, Ngân hàng Thế giới 7,4%, ADB 7,8%, AMRO 7,5%. Ngay cả mức cao nhất cũng thấp hơn mục tiêu từ 10% ít nhất 2,2 điểm phần trăm.",
-      "en": "Why such a gap? Each solid dot is one institution's 2026 forecast: the IMF 7.5%, the World Bank 7.4%, the ADB 7.8%, AMRO 7.5%. Even the highest sits at least 2.2 points below the target of 10% or more.",
+      "vi": "Vì sao chênh lệch lớn vậy? Mỗi chấm đặc là dự báo 2026 của một tổ chức: IMF 8,4%, Ngân hàng Thế giới 7,4%, ADB 7,8%, AMRO 7,5%. Ngay cả mức cao nhất cũng thấp hơn mục tiêu từ 10% ít nhất 1,6 điểm phần trăm.",
+      "en": "Why such a gap? Each solid dot is one institution's 2026 forecast: the IMF 8.4%, the World Bank 7.4%, the ADB 7.8%, AMRO 7.5%. Even the highest sits at least 1.6 points below the target of 10% or more.",
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "7,5%",
-         "en": "7.5%"
+         "vi": "8,4%",
+         "en": "8.4%"
         },
         "l": {
-         "vi": "dự báo IMF 2026 (tháng 7/2026)",
-         "en": "IMF 2026 forecast (July 2026)"
+         "vi": "dự báo IMF 2026, IMF WEO 10/2026 (theo báo chí)",
+         "en": "IMF 2026 forecast, IMF WEO Oct-2026 (as reported)"
         }
        },
        {
@@ -1559,16 +1559,16 @@
        },
        {
         "v": {
-         "vi": "≥2,2 điểm",
-         "en": "≥2.2 points"
+         "vi": "≥1,6 điểm",
+         "en": "≥1.6 points"
         },
         "l": {
-         "vi": "cách mục tiêu; tính: 10% − 7,8%",
-         "en": "short of target; computed: 10% − 7.8%"
+         "vi": "cách mục tiêu; tính: 10% − 8,4%",
+         "en": "short of target; computed: 10% − 8.4%"
         }
        }
       ],
-      "src": "data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 (IMF = July 2026 WEO Update, as charted); target.value_min; gap computed 10 − 7.8 (chapter headline)",
+      "src": "data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 (IMF = WEO Oct-2026, pub 2026-10-13, as reported); target.value_min; gap computed 10 − 8.4 (st-why headline)",
       "big": true
      },
      {
@@ -1579,8 +1579,8 @@
        "vi": "TƯƠNG LAI · VÌ SAO DỰ BÁO THẤP HƠN",
        "en": "THE FUTURE · WHY FORECASTS DIFFER"
       },
-      "vi": "Hãy nhìn vạch đứt: chín tháng đầu năm, kinh tế thực tế tăng 9,01%, cao hơn mọi dự báo cả năm nhưng vẫn dưới mục tiêu. Phần lớn các dự báo được chốt trước khi có con số này.",
-      "en": "Now the dashed line: actual growth in the first nine months was 9.01%, above every full-year forecast but still below the target. Most of the forecasts were finalised before that figure came out.",
+      "vi": "Hãy nhìn vạch đứt: chín tháng đầu năm, kinh tế thực tế tăng 9,01%, cao hơn mọi dự báo cả năm nhưng vẫn dưới mục tiêu. Dự báo của Ngân hàng Thế giới, ADB và AMRO có trước con số này; dự báo tháng Mười của IMF ra sau.",
+      "en": "Now the dashed line: actual growth in the first nine months was 9.01%, above every full-year forecast but still below the target. The World Bank, ADB and AMRO forecasts came before that figure; the IMF's October forecast came after it.",
       "play": false,
       "figs": [
        {
@@ -1594,7 +1594,7 @@
         }
        }
       ],
-      "src": "data/economy.json ECONFLOW.projections.why_gap target.actual_9M_2026_yoy + actual_note; methodology (cut-off dates)"
+      "src": "data/economy.json ECONFLOW.projections.why_gap target.actual_9M_2026_yoy; methodology.text_* (WB 06/10 before 9M 03/10; IMF WEO 13/10 after); forecasts[adb|amro].pub_date 2026-09-23"
      },
      {
       "tab": "econ",
@@ -2673,8 +2673,8 @@
        "vi": "KINH TẾ · DỰ BÁO",
        "en": "ECONOMY · FORECASTS"
       },
-      "vi": "Mục tiêu là từ 10% mỗi năm đến 2030. Còn IMF, Ngân hàng Thế giới, ADB và AMRO dự báo cả năm 2026 chỉ từ 7,4% đến 7,8%.",
-      "en": "The target is 10% or more a year to 2030. The IMF, the World Bank, the ADB and AMRO forecast 7.4% to 7.8% for all of 2026.",
+      "vi": "Mục tiêu là từ 10% mỗi năm đến 2030. Còn IMF, Ngân hàng Thế giới, ADB và AMRO dự báo cả năm 2026 từ 7,4% đến 8,4%.",
+      "en": "The target is 10% or more a year to 2030. The IMF, the World Bank, the ADB and AMRO forecast 7.4% to 8.4% for all of 2026.",
       "play": false,
       "figs": [
        {
@@ -2689,8 +2689,8 @@
        },
        {
         "v": {
-         "vi": "7,4% – 7,8%",
-         "en": "7.4% – 7.8%"
+         "vi": "7,4% – 8,4%",
+         "en": "7.4% – 8.4%"
         },
         "l": {
          "vi": "dự báo 2026 của IMF, WB, ADB, AMRO",
@@ -2698,7 +2698,7 @@
         }
        }
       ],
-      "src": "data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 (st-why headline); story_map st-hero dek still reads 7.1–7.8 (stale)"
+      "src": "story_map st-hero dek (7.4–8.4%); data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 (IMF = WEO Oct-2026, as reported)"
      },
      {
       "tab": "econ",
@@ -3289,8 +3289,8 @@
        "vi": "KINH TẾ · ĐẾN 2030",
        "en": "ECONOMY · TO 2030"
       },
-      "vi": "Mục tiêu GDP bình quân đầu người 8.500 USD năm 2030, từ 5.026 USD năm 2025, đòi hỏi khoảng 11,1% mỗi năm tính bằng USD. Đường IMF chỉ khoảng 4,7% mỗi năm, tới 6.323 USD. Mục tiêu không phải dự báo, và dự báo có thể sai.",
-      "en": "A target of 8,500 dollars per person in 2030, from 5,026 in 2025, takes about 11.1% a year in dollar terms. The IMF path implies about 4.7% a year, to 6,323. Targets are not forecasts, and forecasts can be wrong.",
+      "vi": "Mục tiêu GDP bình quân đầu người 8.500 USD năm 2030, từ 5.026 USD năm 2025, đòi hỏi khoảng 11,1% mỗi năm tính bằng USD. Đường dự báo tháng Tư của IMF chỉ khoảng 4,7% mỗi năm, tới 6.323 USD. Mục tiêu không phải dự báo, và dự báo có thể sai.",
+      "en": "A target of 8,500 dollars per person in 2030, from 5,026 in 2025, takes about 11.1% a year in dollar terms. The IMF's April forecast path implies about 4.7% a year, to 6,323. Targets are not forecasts, and forecasts can be wrong.",
       "big": true,
       "figs": [
        {
@@ -3329,8 +3329,8 @@
          "en": "≈4.7% a year"
         },
         "l": {
-         "vi": "đường IMF; ≈, tính từ số liệu trang",
-         "en": "IMF path; ≈, computed from the page's data"
+         "vi": "đường IMF (WEO 4/2026); ≈, tính từ số liệu trang",
+         "en": "IMF path (WEO Apr-2026); ≈, computed from page data"
         }
        },
        {
@@ -3339,12 +3339,12 @@
          "en": "$6,323"
         },
         "l": {
-         "vi": "dự báo IMF, 2030",
-         "en": "IMF forecast, 2030"
+         "vi": "dự báo IMF 2030 (WEO 4/2026)",
+         "en": "IMF forecast, 2030 (WEO Apr-2026)"
         }
        }
       ],
-      "src": "story_map st-2030 headline + note (rates computed by the page)"
+      "src": "story_map st-2030 headline + note (rates computed by the page); gdp_per_capita_usd_imf = IMF WEO Apr-2026 vintage"
      },
      {
       "tab": "econ",
@@ -3354,8 +3354,8 @@
        "vi": "KINH TẾ · QUY MÔ",
        "en": "ECONOMY · SIZE"
       },
-      "vi": "Theo IMF, quy mô nền kinh tế lên khoảng 668 tỷ USD năm 2030, từ khoảng 514 tỷ năm 2025. Hãy xem phần nét đứt: đó là dự báo.",
-      "en": "On the IMF's path, the economy grows to about 668 billion dollars in 2030, from about 514 billion in 2025. Watch the dashed part: that is the forecast.",
+      "vi": "Theo dự báo tháng Tư của IMF, quy mô nền kinh tế lên khoảng 668 tỷ USD năm 2030, từ khoảng 514 tỷ năm 2025. Hãy xem phần nét đứt: đó là dự báo.",
+      "en": "On the IMF's April forecast path, the economy grows to about 668 billion dollars in 2030, from about 514 billion in 2025. Watch the dashed part: that is the forecast.",
       "figs": [
        {
         "v": {
@@ -3363,8 +3363,8 @@
          "en": "≈$668 billion"
         },
         "l": {
-         "vi": "quy mô GDP 2030, dự báo IMF",
-         "en": "GDP in 2030, IMF forecast"
+         "vi": "GDP 2030, dự báo IMF 4/2026",
+         "en": "GDP in 2030, IMF Apr-2026 forecast"
         }
        },
        {
@@ -3388,18 +3388,18 @@
        "vi": "KINH TẾ · VÌ SAO DỰ BÁO THẤP HƠN",
        "en": "ECONOMY · WHY FORECASTS DIFFER"
       },
-      "vi": "Vì sao dự báo thấp hơn mục tiêu? Cho năm 2026, IMF dự báo 7,5%, Ngân hàng Thế giới 7,4%, ADB 7,8%, AMRO 7,5%, thấp hơn mục tiêu ít nhất 2,2 điểm. Thực tế chín tháng tăng 9,01%, cao hơn mọi dự báo; phần lớn dự báo được chốt trước con số này.",
-      "en": "Why do forecasts sit below the target? For 2026 the IMF forecasts 7.5%, the World Bank 7.4%, the ADB 7.8% and AMRO 7.5%, at least 2.2 points short. Actual nine-month growth, 9.01%, beat them all; most were set before that figure.",
+      "vi": "Vì sao dự báo thấp hơn mục tiêu? Cho năm 2026, IMF dự báo 8,4%, Ngân hàng Thế giới 7,4%, ADB 7,8%, AMRO 7,5%, thấp hơn mục tiêu ít nhất 1,6 điểm. Thực tế chín tháng tăng 9,01%, cao hơn mọi dự báo; riêng IMF công bố sau con số này.",
+      "en": "Why do forecasts sit below the target? For 2026 the IMF forecasts 8.4%, the World Bank 7.4%, the ADB 7.8% and AMRO 7.5%, at least 1.6 points short. Actual nine-month growth, 9.01%, beat them all; only the IMF published after that figure.",
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "7,5%",
-         "en": "7.5%"
+         "vi": "8,4%",
+         "en": "8.4%"
         },
         "l": {
-         "vi": "dự báo IMF 2026 (tháng 7/2026)",
-         "en": "IMF 2026 forecast (July 2026)"
+         "vi": "dự báo IMF 2026, IMF WEO 10/2026 (theo báo chí)",
+         "en": "IMF 2026 forecast, IMF WEO Oct-2026 (as reported)"
         }
        },
        {
@@ -3434,12 +3434,12 @@
        },
        {
         "v": {
-         "vi": "≥2,2 điểm",
-         "en": "≥2.2 points"
+         "vi": "≥1,6 điểm",
+         "en": "≥1.6 points"
         },
         "l": {
-         "vi": "cách mục tiêu; tính: 10% − 7,8%",
-         "en": "short of target; computed: 10% − 7.8%"
+         "vi": "cách mục tiêu; tính: 10% − 8,4%",
+         "en": "short of target; computed: 10% − 8.4%"
         }
        },
        {
@@ -3453,7 +3453,7 @@
         }
        }
       ],
-      "src": "data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026; target; gap computed 10 − 7.8",
+      "src": "data/economy.json ECONFLOW.projections.why_gap forecasts[].y2026 + pub_date (IMF WEO Oct-2026 13/10, as reported; 9M figure 03/10); target; gap computed 10 − 8.4",
       "big": true
      },
      {
