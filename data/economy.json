@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Economy agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-10-13",
+  "as_of": "2026-10-14",
   "cpi_model_note": "CPI_BASKET (CPI groups: 2020 basket weights, y/y by month, sub-items) and the CPI projection inputs CPI_FC_SCEN, CPI_FC_TEMPLATE, CPI_FC_VAT_JAN27, CPI_FC_DRIVERS moved here from the page on 2026-10-10 (user decision recorded in data/research/animation_plan.md); the Economy agent owns and refreshes them."
  },
  "ECONFLOW": {
@@ -4800,10 +4800,10 @@
    }
   },
   "projections": {
-   "as_of": "2026-10-07",
-   "note_vi": "Dự báo của các tổ chức (IMF, World Bank, ADB, AMRO) và mục tiêu chính thức cho 2026–2030. Mục tiêu không phải dự báo. Mỗi tổ chức một chuỗi riêng, không lấy trung bình. IMF WEO tháng 10/2026 chưa công bố tại ngày cập nhật. Không có chuỗi \"scenario\" do dashboard tự tính.",
-   "note_en": "Institutional forecasts (IMF, World Bank, ADB, AMRO) and official targets for 2026–2030. Targets are not forecasts. Each institution is a separate series; nothing is averaged. The IMF October 2026 WEO was not yet published at the update date. No dashboard-computed \"scenario\" series are included.",
-   "verified": "All values from search-engine excerpts (imf.org, worldbank.org, nso.gov.vn and press pages blocked by the egress proxy), 2026-10-06. IMF 2027–2030 levels were read from a WEO mirror (statisticsoftheworld.com) and are internally consistent (GDP / GDP per capita imply population 103.1→105.6 mn).",
+   "as_of": "2026-10-14",
+   "note_vi": "Dự báo của các tổ chức (IMF, World Bank, ADB, AMRO) và mục tiêu chính thức cho 2026–2030. Mục tiêu không phải dự báo. Mỗi tổ chức một chuỗi riêng, không lấy trung bình. IMF WEO 10/2026 (13/10/2026): đã cập nhật tăng trưởng 2026–2027 (8,4% / 7,5%, theo báo chí); GDP USD, GDP/người và CPI của bản 10/2026 chưa xác minh được nên vẫn là bản 4/2026 (có ghi nhãn). Không có chuỗi \"scenario\" do dashboard tự tính.",
+   "note_en": "Institutional forecasts (IMF, World Bank, ADB, AMRO) and official targets for 2026–2030. Targets are not forecasts. Each institution is a separate series; nothing is averaged. IMF WEO October 2026 (13/10/2026): growth for 2026–2027 refreshed (8.4% / 7.5%, as reported); its USD GDP, GDP per capita and CPI values could not be verified, so those rows remain April 2026 (labelled). No dashboard-computed \"scenario\" series are included.",
+   "verified": "All values from search-engine excerpts (imf.org, worldbank.org, nso.gov.vn and press pages blocked by the egress proxy), 2026-10-06. IMF 2027–2030 levels were read from a WEO mirror (statisticsoftheworld.com) and are internally consistent (GDP / GDP per capita imply population 103.1→105.6 mn). IMF Oct-2026 refresh: search-excerpt verified 2026-10-14 (imf.org and press blocked from the sandbox; WebFetch of imf.org and statisticsoftheworld.com failed: ENOTFOUND).",
    "gaps": "current_account_pct_gdp (IMF values in search excerpts were contradictory), exports_busd (no published level forecast or level target; only the 6–7%/yr growth target), IMF general-government balance/debt by year (only a single-year excerpt).",
    "series": {
     "gdp_growth_pct_target": {
@@ -4843,24 +4843,65 @@
       2030
      ],
      "base": [
-      7.1,
-      6.7,
-      6.2,
-      5.6,
-      5.4
+      8.4,
+      7.5,
+      null,
+      null,
+      null
      ],
      "low": null,
      "high": null,
      "kind": "institution_forecast",
      "unit": "% yoy, real",
      "source": {
-      "name": "IMF World Economic Outlook, April 2026 (database)",
-      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
-      "retrieved_via": "https://statisticsoftheworld.com/country/vietnam/forecast"
+      "name": "IMF World Economic Outlook, October 2026 (as reported)",
+      "url": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
+      "reported_by": "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/",
+      "alt_url": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
+      "alt_url_2": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-1310-188974-188974.html"
      },
-     "method_vi": "Dự báo IMF WEO 4/2026 (2031: 5,4%). WEO 7/2026 nâng 2026 lên 7,5% (xem gdp_growth_pct_imf_jul2026). WEO 10/2026 dự kiến công bố giữa tháng 10/2026 — chưa có.",
-     "method_en": "IMF WEO April 2026 (2031: 5.4%). The July 2026 WEO Update raised 2026 to 7.5% (see gdp_growth_pct_imf_jul2026). The October 2026 WEO is due mid-October 2026 and is not yet out.",
-     "pub": "2026-04-14"
+     "method_vi": "IMF WEO 10/2026 (công bố 13/10/2026): 2026 là 8,4% (+0,9 điểm % so với 7,5% của WEO cập nhật 7/2026), 2027 là 7,5%. Số liệu lấy từ hai nguồn báo chí độc lập (TNGlobal 13/10; Thời báo Ngân hàng 13/10), chưa đối chiếu được với bảng của IMF (imf.org bị chặn). 2028–2030 (và 2031) để trống: chưa tìm thấy số của bản 10/2026 cho các năm này; không ghép số của bản 4/2026 vào. Bản trước (WEO 4/2026): 7,1 / 6,7 / 6,2 / 5,6 / 5,4 (2031: 5,4) — xem previous_vintages.",
+     "method_en": "IMF WEO October 2026 (released 13/10/2026): 2026 8.4% (+0.9 pp vs 7.5% in the July 2026 Update), 2027 7.5%. Taken from two independent press reports (TNGlobal 13/10; Thời báo Ngân hàng 13/10); not yet checked against the IMF table (imf.org blocked). 2028–2030 (and 2031) left null: the October-vintage values for those years were not found; April-vintage values are not spliced in. Previous vintage (WEO April 2026): 7.1 / 6.7 / 6.2 / 5.6 / 5.4 (2031: 5.4) — see previous_vintages.",
+     "pub": "2026-10-13",
+     "vintage": "WEO Oct-2026",
+     "verified": "search-excerpt verified 2026-10-14 (imf.org and press blocked from the sandbox; WebFetch of imf.org and statisticsoftheworld.com failed: ENOTFOUND); 8.4/7.5 found in TNGlobal and in two Thời báo Ngân hàng articles; a third report (Báo Lao Động, 14/10) appeared in one search summary but its URL was not found",
+     "previous_vintages": [
+      {
+       "label": "WEO Apr 2026",
+       "pub": "2026-04-14",
+       "years": [
+        2026,
+        2027,
+        2028,
+        2029,
+        2030,
+        2031
+       ],
+       "base": [
+        7.1,
+        6.7,
+        6.2,
+        5.6,
+        5.4,
+        5.4
+       ],
+       "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+       "retrieved_via": "https://statisticsoftheworld.com/country/vietnam/forecast",
+       "note": "superseded by WEO Oct-2026 for 2026–2027; kept as a note only, not drawn"
+      },
+      {
+       "label": "WEO Update Jul 2026",
+       "pub": "2026-07-08",
+       "years": [
+        2026
+       ],
+       "base": [
+        7.5
+       ],
+       "url": "https://www.imf.org/-/media/files/publications/weo/2026/update/july/english/text.pdf",
+       "note": "superseded; the row gdp_growth_pct_imf_jul2026 is kept with kind = superseded_forecast so the charts no longer draw it"
+      }
+     ]
     },
     "gdp_growth_pct_imf_jul2026": {
      "years": [
@@ -4879,16 +4920,18 @@
      ],
      "low": null,
      "high": null,
-     "kind": "institution_forecast",
+     "kind": "superseded_forecast",
      "unit": "% yoy, real",
      "source": {
       "name": "IMF WEO Update, July 2026 (as reported)",
       "url": "https://dantri.com.vn/kinh-doanh/imf-nang-du-bao-tang-truong-gdp-viet-nam-len-75-cao-nhat-asean-20260712202724515.htm",
       "alt_url": "https://baoquocte.vn/imf-viet-nam-tiep-tuc-thuoc-nhom-nen-kinh-te-tang-truong-nhanh-nhat-chau-a-va-dan-dau-asean-418025.html"
      },
-     "method_vi": "IMF chỉ cập nhật năm 2026 (+0,4 điểm % so với 4/2026).",
-     "method_en": "IMF updated 2026 only (+0.4 pp vs April).",
-     "pub": "2026-07-08"
+     "method_vi": "IMF chỉ cập nhật năm 2026 (+0,4 điểm % so với 4/2026). Đã bị thay bởi WEO 10/2026 (8,4%); giữ lại làm ghi chú, các biểu đồ chỉ vẽ dòng kind = institution_forecast nên không vẽ dòng này.",
+     "method_en": "IMF updated 2026 only (+0.4 pp vs April). Superseded by the October 2026 WEO (8.4%); kept as a note. The charts draw only kind = institution_forecast rows, so this row is no longer drawn.",
+     "pub": "2026-07-08",
+     "superseded_by": "gdp_growth_pct_imf (WEO Oct-2026, 13/10/2026)",
+     "superseded_on": "2026-10-14"
     },
     "gdp_growth_pct_wb": {
      "years": [
@@ -5001,9 +5044,12 @@
       "retrieved_via": "https://statisticsoftheworld.com/country/vietnam/forecast",
       "alt_url": "https://vietnamnet.vn/imf-du-bao-viet-nam-dat-quy-mo-kinh-te-668-ty-usd-vao-nam-2030-pre2549997.html"
      },
-     "method_vi": "IMF WEO 4/2026, GDP danh nghĩa (USD). 2030 ≈ 668 tỷ USD (hạng 34 thế giới) khớp với báo chí trích IMF. Mục tiêu Chính phủ 2030: 780–800 tỷ USD (phát biểu Thủ tướng 2024, không có số văn bản).",
-     "method_en": "IMF WEO April 2026 nominal GDP (USD). 2030 ≈ 668 bn (34th in the world) matches press reports citing the IMF. Government aspiration 780–800 bn USD by 2030 (PM statement 2024, no document number).",
-     "pub": "2026-04-14"
+     "method_vi": "IMF WEO 4/2026, GDP danh nghĩa (USD). 2030 ≈ 668 tỷ USD (hạng 34 thế giới) khớp với báo chí trích IMF. Mục tiêu Chính phủ 2030: 780–800 tỷ USD (phát biểu Thủ tướng 2024, không có số văn bản). Chưa có số bản 10/2026 (chờ đối chiếu, 14/10/2026).",
+     "method_en": "IMF WEO April 2026 nominal GDP (USD). 2030 ≈ 668 bn (34th in the world) matches press reports citing the IMF. Government aspiration 780–800 bn USD by 2030 (PM statement 2024, no document number). October 2026 vintage not yet available to us (pending, 14/10/2026).",
+     "pub": "2026-04-14",
+     "vintage": "WEO Apr-2026",
+     "oct2026_status": "pending — the October 2026 WEO values for this series were not found in search excerpts on 2026-10-14 (imf.org, the WEO database and the statisticsoftheworld mirror unreachable). April values kept, labelled April; the October vintage (with 2026 growth raised to 8.4%) will likely differ. Replace when the WEO database can be read.",
+     "apr2026_2031_note": "WEO Apr-2026 2031 value ≈705 bn USD per worldometers.info (secondary, rounded); not added to the arrays because it is approximate, from an aggregator, and from the superseded vintage."
     },
     "gdp_per_capita_usd_imf": {
      "years": [
@@ -5030,9 +5076,12 @@
       "retrieved_via": "https://statisticsoftheworld.com/country/vietnam/forecast",
       "alt_url": "https://vietnamnet.vn/5-nam-va-8-500-usd-2489647.html"
      },
-     "method_vi": "IMF WEO 4/2026. So với mục tiêu 8.500 USD năm 2030 (NQ 25/2026/QH16) chênh khoảng 2.200 USD.",
-     "method_en": "IMF WEO April 2026. About 2,200 USD short of the 8,500 USD 2030 target (NQ 25/2026/QH16).",
-     "pub": "2026-04-14"
+     "method_vi": "IMF WEO 4/2026. So với mục tiêu 8.500 USD năm 2030 (NQ 25/2026/QH16) chênh khoảng 2.200 USD. Chưa có số bản 10/2026 (chờ đối chiếu, 14/10/2026).",
+     "method_en": "IMF WEO April 2026. About 2,200 USD short of the 8,500 USD 2030 target (NQ 25/2026/QH16). October 2026 vintage not yet available to us (pending, 14/10/2026).",
+     "pub": "2026-04-14",
+     "vintage": "WEO Apr-2026",
+     "oct2026_status": "pending — the October 2026 WEO values for this series were not found in search excerpts on 2026-10-14 (imf.org, the WEO database and the statisticsoftheworld mirror unreachable). April values kept, labelled April; the October vintage (with 2026 growth raised to 8.4%) will likely differ. Replace when the WEO database can be read.",
+     "apr2026_2031_note": "WEO Apr-2026 2031 value ≈6,652 USD per worldometers.info (secondary, rounded); not added to the arrays because it is approximate, from an aggregator, and from the superseded vintage."
     },
     "gdp_per_capita_usd_target": {
      "years": [
@@ -5097,9 +5146,20 @@
       "name": "IMF WEO April 2026, Statistical Appendix Table A7",
       "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf"
      },
-     "method_vi": "Như CPI_FC_INST. 2028–2030 để trống: một bản sao dữ liệu thứ cấp ghi 3,3% cho 2027–2030, mâu thuẫn với 4,6% của bảng gốc cho 2027 nên không dùng.",
-     "method_en": "As in CPI_FC_INST. 2028–2030 left null: a secondary mirror shows 3.3% for 2027–2030, which conflicts with the 4.6% for 2027 in the IMF table, so it was not used.",
-     "pub": "2026-04-14"
+     "method_vi": "Như CPI_FC_INST — vẫn là bản WEO 4/2026. WEO 10/2026 được báo chí đưa tin CPI 2026 là 4,7% (chỉ một tờ báo; năm 2027 mâu thuẫn 4,9% hay 4,1%) nên chưa thay; xem oct2026_reported. 2028–2030 để trống: không tìm thấy số của bản 10/2026; bản sao thứ cấp ghi 3,3% cho 2027–2030 mâu thuẫn với bảng gốc nên không dùng.",
+     "method_en": "As in CPI_FC_INST — still the April 2026 WEO. The October 2026 WEO is reported with 2026 CPI 4.7% (one outlet only; 2027 given as both 4.9% and 4.1%), so the row is not replaced; see oct2026_reported. 2028–2030 null: no October-vintage values found; a secondary mirror's 3.3% for 2027–2030 conflicts with the IMF table and is not used.",
+     "pub": "2026-04-14",
+     "vintage": "WEO Apr-2026",
+     "oct2026_reported": {
+      "y2026": 4.7,
+      "y2027": null,
+      "y2027_conflict": "the same outlet gives both 4.9% and 4.1% for 2027 (4.1% may be a global/EM aggregate); unresolved",
+      "y2025_actual_cited": 3.3,
+      "source": "Thời báo Ngân hàng, 13/10/2026 (two articles, one outlet)",
+      "url": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
+      "alt_url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-1310-188974-188974.html",
+      "status": "not applied: single outlet and internally inconsistent; no second report or IMF table found (2026-10-14)"
+     }
     },
     "cpi_pct_wb": {
      "years": [
@@ -5806,12 +5866,13 @@
    ],
    "pending_refresh": {
     "what": "IMF WEO October 2026 (due 13/10/2026): refresh every *_imf series (gdp_growth_pct_imf, gdp_usd_bn_imf, gdp_per_capita_usd_imf, cpi_pct_imf), add 2031, fill cpi_pct_imf 2028–2030, and add IMF general-government gross debt (GGXWDG_NGDP), net lending (GGXCNL_NGDP) and investment (NID_NGDP) as labelled institution lines (general government ≠ state budget).",
-    "status": "pending — not yet published on 2026-10-07; nothing estimated in its place",
-    "noted": "2026-10-07"
+    "status": "partly done 2026-10-14: gdp_growth_pct_imf 2026–2027 refreshed to WEO Oct-2026 (press-verified). Still pending: Oct-2026 values for gdp_growth_pct_imf 2028–2031, gdp_usd_bn_imf, gdp_per_capita_usd_imf, cpi_pct_imf (2026 reported 4.7% by one outlet; 2027 conflicting), 2031 for all rows, and the general-government lines — need the WEO database/statistical appendix (main session fetch or a later search once indexed).",
+    "noted": "2026-10-14",
+    "first_noted": "2026-10-07"
    },
    "why_gap": {
-    "asof": "2026-10-13",
-    "verified": "All facts from search-engine excerpts on 2026-10-13 (imf.org, worldbank.org, adb.org, amro-asia.org and press are blocked by the sandbox proxy); quotes are as reported in those excerpts and should be read against the original before publication.",
+    "asof": "2026-10-14",
+    "verified": "All facts from search-engine excerpts on 2026-10-13 (imf.org, worldbank.org, adb.org, amro-asia.org and press are blocked by the sandbox proxy); quotes are as reported in those excerpts and should be read against the original before publication. IMF row refreshed 2026-10-14 from search excerpts (TNGlobal 13/10; Thời báo Ngân hàng 13/10).",
     "target": {
      "value_min": 10.0,
      "years": "2026–2030",
@@ -5831,13 +5892,11 @@
      {
       "inst": "imf",
       "name": "IMF",
-      "pub_date": "2026-07-08",
-      "vintage": "WEO Update July 2026 (latest vintage verified in series); April 2026 WEO for 2027",
-      "y2026": 7.5,
-      "y2027": 6.7,
-      "y2027_vintage": "WEO April 2026 (the July update did not publish a 2027 figure for Vietnam)",
+      "pub_date": "2026-10-13",
+      "vintage": "WEO October 2026 (as reported by TNGlobal and Thời báo Ngân hàng; IMF table not seen)",
+      "y2026": 8.4,
+      "y2027": 7.5,
       "series_ref": [
-       "gdp_growth_pct_imf_jul2026",
        "gdp_growth_pct_imf"
       ],
       "vintages": [
@@ -5846,7 +5905,7 @@
         "pub_date": "2026-04-14",
         "y2026": 7.1,
         "y2027": 6.7,
-        "status": "verified (series)",
+        "status": "verified (series); superseded by WEO Oct 2026",
         "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf"
        },
        {
@@ -5854,7 +5913,7 @@
         "pub_date": "2026-07-08",
         "y2026": 7.5,
         "y2027": null,
-        "status": "verified (series)",
+        "status": "verified (series); superseded by WEO Oct 2026",
         "url": "https://www.imf.org/-/media/files/publications/weo/2026/update/july/english/text.pdf",
         "alt_url": "https://dantri.com.vn/kinh-doanh/imf-nang-du-bao-tang-truong-gdp-viet-nam-len-75-cao-nhat-asean-20260712202724515.htm"
        },
@@ -5863,40 +5922,53 @@
         "pub_date": null,
         "y2026": 8.2,
         "y2027": null,
-        "status": "press-reported only; IMF document and exact date not identified (press says August or September)",
+        "status": "press-reported only; IMF document and exact date not identified (press says August or September); VTC News (03/09/2026) says the 8.2% was given in August 2026 — still no IMF document identified",
         "url": "https://znews.vn/imf-nang-du-bao-tang-truong-gdp-viet-nam-nam-2026-len-8-2-post1680987.html",
-        "alt_url": "https://thanhnien.vn/imf-nang-du-bao-tang-truong-cua-viet-nam-len-82-185260903185055461.htm"
+        "alt_url": "https://thanhnien.vn/imf-nang-du-bao-tang-truong-cua-viet-nam-len-82-185260903185055461.htm",
+        "alt_url_2": "https://vtcnews.vn/viet-nam-tiep-tuc-duoc-ky-vong-tang-truong-tich-cuc-ar1037817.html"
        },
        {
         "label": "WEO Oct 2026",
         "pub_date": "2026-10-13",
         "y2026": 8.4,
         "y2027": 7.5,
-        "status": "reported by one secondary source on release day (TNGlobal); not yet verified against imf.org — pending; series not updated",
-        "url": "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/"
+        "status": "confirmed by two independent press reports (TNGlobal 13/10/2026; Thời báo Ngân hàng 13/10/2026, two articles: \"8,4% năm 2026 … 7,5% năm 2027\", +0.9 pp vs July); IMF WEO table/statistical appendix not seen (imf.org blocked) — search-excerpt verified 2026-10-14; series updated",
+        "url": "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/",
+        "alt_url": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
+        "alt_url_2": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-1310-188974-188974.html",
+        "url_canonical": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
+        "ca_pct_gdp_reported": {
+         "y2025": 6.7,
+         "y2026": 0.3,
+         "y2027": 3.4,
+         "source": "Thời báo Ngân hàng 13/10/2026 only (unverified, single outlet)"
+        }
        }
       ],
       "potential_growth": null,
       "potential_growth_text_vi": "IMF không công bố một con số tăng trưởng tiềm năng mới trong các bản tìm được. Báo cáo Điều IV 2024 đặt tăng trưởng trung hạn ở 4,5–5,5%/năm trong thập kỷ (dựa trên các nước tương đồng); Điều IV 2025 cho rằng tăng trưởng tiềm năng sẽ giảm dần trong trung hạn do biến đổi nhân khẩu học và bất định thương mại kéo dài đè nặng lên đầu tư.",
       "potential_growth_text_en": "No new IMF potential-growth number was found. The 2024 Article IV put medium-term growth at 4.5–5.5% a year over the decade (based on comparator countries); the 2025 Article IV expects potential growth to decline over the medium term because of demographic change and a lasting drag on investment from trade-policy uncertainty.",
       "reasons_vi": [
-       "Các lần nâng dự báo năm 2026 được giải thích bằng xuất khẩu công nghệ mạnh hơn dự kiến và cầu trong nước vững.",
+       "Các lần nâng dự báo năm 2026 (7,1% tháng 4 → 7,5% tháng 7 → 8,4% tháng 10) được giải thích bằng xuất khẩu công nghệ mạnh hơn dự kiến và cầu trong nước vững (lý do của bản 10/2026 theo báo chí: vị trí trong chuỗi giá trị công nghệ/AI).",
        "Môi trường thương mại toàn cầu bất lợi và bất định hơn là thách thức lớn với mô hình tăng trưởng dựa vào xuất khẩu (Điều IV 2025 giả định thuế bổ sung của Mỹ bình quân 20% từ 8/2025).",
        "Dư địa nới lỏng tiền tệ hạn chế; cần tỷ giá linh hoạt hơn và tăng sức chống chịu của khu vực tài chính.",
        "Cải cách (thể chế, nợ, vốn, thị trường lao động, quản trị, môi trường kinh doanh) và tăng đầu tư công là cơ hội nâng tăng trưởng trung hạn."
       ],
       "reasons_en": [
-       "Upgrades to 2026 were explained by stronger-than-expected technology exports and resilient domestic demand.",
+       "The 2026 upgrades (7.1% in April → 7.5% in July → 8.4% in October) were explained by stronger-than-expected technology exports and resilient domestic demand (October reason as reported: Vietnam's place in the technology/AI value chain).",
        "A more adverse and uncertain global trade environment is a significant challenge to the export-led model (the 2025 Article IV assumed additional US tariffs averaging 20% from August 2025).",
        "Limited room for monetary easing; more exchange-rate flexibility and a more resilient financial sector are needed.",
        "Reforms (institutions; debt, capital and labour markets; governance; business environment) and scaled-up public investment are an opportunity to raise medium-term growth."
       ],
       "quote_en": "The reform agenda presents an opportunity to raise medium-term growth and reduce external vulnerabilities.",
       "quote_source": "IMF Executive Board, 2025 Article IV (press release 15/09/2025, as reported in search excerpt)",
-      "url": "https://www.imf.org/en/publications/cr/issues/2025/10/03/vietnam-2025-article-iv-consultation-press-release-staff-report-and-statement-by-the-570895",
+      "url": "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/",
       "alt_url": "https://www.imf.org/en/news/articles/2025/09/15/pr-25296-vietnam-imf-executive-board-concludes-2025-article-iv-consultation",
       "alt_url_2": "https://www.elibrary.imf.org/view/journals/002/2024/306/article-A001-en.xml",
-      "verified": "search-excerpt verified 2026-10-13; no 2026 Article IV document for Vietnam found"
+      "verified": "search-excerpt verified 2026-10-13; no 2026 Article IV document for Vietnam found",
+      "quote_url": "https://www.imf.org/en/publications/cr/issues/2025/10/03/vietnam-2025-article-iv-consultation-press-release-staff-report-and-statement-by-the-570895",
+      "url_canonical": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
+      "alt_url_3": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html"
      },
      {
       "inst": "wb",
@@ -6062,8 +6134,8 @@
      "verified": "search-excerpt verified 2026-10-13 (press reports of the documents; Party and NA texts not opened)"
     },
     "methodology": {
-     "text_vi": "Mục tiêu chính thức là mức phấn đấu dùng để huy động nguồn lực và giao chỉ tiêu; dự báo của các tổ chức là kịch bản cơ sở dựa trên chính sách hiện hành và giả định bên ngoài (ví dụ IMF 2025 giả định thuế Mỹ 20%), thường neo vào ước tính năng lực tăng trưởng (tiềm năng). Các dự báo có thời điểm chốt khác nhau: IMF 7/2026 và WB 10/2026 được chốt trước khi có số 9 tháng (9,01%). AMRO là tổ chức duy nhất trong nhóm công bố con số tiềm năng (7,3–7,5%).",
-     "text_en": "The official figure is an aspiration used to mobilise resources and assign targets; institutional forecasts are baseline projections under current policies and stated external assumptions (e.g. the IMF's 2025 assumption of 20% US tariffs), usually anchored on an estimate of potential growth. Cut-off dates differ: the IMF July 2026 and World Bank October 2026 numbers were set before the 9M actual (9.01%). AMRO is the only one of the four found to publish a potential-growth number (7.3–7.5%)."
+     "text_vi": "Mục tiêu chính thức là mức phấn đấu dùng để huy động nguồn lực và giao chỉ tiêu; dự báo của các tổ chức là kịch bản cơ sở dựa trên chính sách hiện hành và giả định bên ngoài (ví dụ IMF 2025 giả định thuế Mỹ 20%), thường neo vào ước tính năng lực tăng trưởng (tiềm năng). Các dự báo có thời điểm chốt khác nhau: WB 10/2026 (06/10) được chốt trước khi có số 9 tháng (9,01%, 03/10); IMF WEO 10/2026 công bố 13/10, sau số 9 tháng, nhưng ngày chốt số liệu của IMF chưa được kiểm tra. AMRO là tổ chức duy nhất trong nhóm công bố con số tiềm năng (7,3–7,5%).",
+     "text_en": "The official figure is an aspiration used to mobilise resources and assign targets; institutional forecasts are baseline projections under current policies and stated external assumptions (e.g. the IMF's 2025 assumption of 20% US tariffs), usually anchored on an estimate of potential growth. Cut-off dates differ: the World Bank October 2026 number (06/10) was set before the 9M actual (9.01%, 03/10); the IMF October 2026 WEO came out on 13/10, after it, but the IMF's data cut-off date was not checked. AMRO is the only one of the four found to publish a potential-growth number (7.3–7.5%)."
     },
     "themes": [
      {
@@ -6156,8 +6228,8 @@
       ]
      }
     ],
-    "note_vi": "Phần giải thích vì sao dự báo của IMF, WB, ADB, AMRO (7,3–8,4% cho 2026) thấp hơn mục tiêu từ 10%/năm. Trình bày trung lập quan điểm của từng bên; không đánh giá bên nào đúng. Số liệu dự báo lấy từ ECONFLOW.projections.series (không thay đổi); IMF WEO 10/2026 (13/10/2026) mới chỉ có một nguồn thứ cấp (8,4%/7,5%) nên để trạng thái \"chờ xác minh\".",
-    "note_en": "Explains why IMF, World Bank, ADB and AMRO forecasts (7.3–8.4% for 2026) sit below the 10%-plus target. Each side's view is described neutrally; no judgement of who is right. Forecast numbers reuse ECONFLOW.projections.series (unchanged); the IMF October 2026 WEO (13/10/2026) has only one secondary report (8.4%/7.5%) and is marked pending verification. Schema: target{} · forecasts[] (inst, pub_date, y2026, y2027, vintages[] for IMF, potential_growth{low,high}|null + text, reasons_vi/en[], quote_en + quote_source, url/alt_url*) · official_basis{drivers_vi/en[], uncertain_*, sources[]} · methodology{} · themes[] (id, label_*, text_*, cited_by[inst], refs[url])."
+    "note_vi": "Phần giải thích vì sao dự báo của IMF, WB, ADB, AMRO (7,4–8,4% cho 2026) thấp hơn mục tiêu từ 10%/năm. Trình bày trung lập quan điểm của từng bên; không đánh giá bên nào đúng. Số liệu dự báo lấy từ ECONFLOW.projections.series; IMF là WEO 10/2026 (13/10/2026: 8,4% / 7,5%), xác nhận qua hai nguồn báo chí độc lập, chưa đối chiếu bảng gốc của IMF.",
+    "note_en": "Explains why IMF, World Bank, ADB and AMRO forecasts (7.4–8.4% for 2026) sit below the 10%-plus target. Each side's view is described neutrally; no judgement of who is right. Forecast numbers reuse ECONFLOW.projections.series; IMF is the October 2026 WEO (13/10/2026: 8.4% / 7.5%), confirmed by two independent press reports, not yet checked against the IMF table. Schema: target{} · forecasts[] (inst, pub_date, y2026, y2027, vintages[] for IMF, potential_growth{low,high}|null + text, reasons_vi/en[], quote_en + quote_source (+ quote_url), url = forecast source, alt_url*) · official_basis{drivers_vi/en[], uncertain_*, sources[]} · methodology{} · themes[] (id, label_*, text_*, cited_by[inst], refs[url])."
    }
   },
   "cpi_model": {
@@ -10346,7 +10418,8 @@
     null
    ],
    "dec2026": 5.8,
-   "dec2027": 3.8
+   "dec2027": 3.8,
+   "vintage_note": "Kept on WEO Apr-2026 (4.9 / 4.6; Dec 5.8 / 3.8). The Oct-2026 WEO (13/10/2026) is reported with 2026 CPI 4.7% by one outlet (Thời báo Ngân hàng, 13/10/2026, https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html), which gives 2027 as both 4.9% and 4.1%; not applied until a second source or the IMF table confirms. Checked 2026-10-14."
   },
   {
    "inst": "World Bank",
