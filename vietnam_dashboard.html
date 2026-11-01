@@ -1005,6 +1005,15 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .ec-why-d { animation: ecWhyD .6s cubic-bezier(.2,1.4,.4,1) both; animation-delay: var(--d); transform-box: fill-box; transform-origin: center; }
   @keyframes ecWhyD { from { opacity: 0; transform: scale(.2); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: reduce) { .ec-why-t, .ec-why-d { animation: none; } }
+  .pol-six-f { display: flex; gap: 6px; margin: 10px 0 6px; } .pol-six-f button { font: 600 12px var(--font-ui); padding: 4px 12px; border-radius: 14px; border: 1px solid #d8d5cc; background: #fff; color: #16181d; cursor: pointer; } .pol-six-f button[aria-pressed="true"] { background: #16181d; color: #fff; border-color: #16181d; }
+  .pol-six-l { list-style: none; margin: 4px 0 12px; padding: 0; max-height: 520px; overflow: auto; border-top: 1px solid #e6e3db; }
+  .pol-six-l li { padding: 8px 2px; border-bottom: 1px solid #eeebe3; font: 400 13px/1.45 var(--font-ui); } .pol-six-l time { display: inline-block; min-width: 82px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pol-six-l p { margin: 3px 0 0 0; color: #3d4250; } .pol-six-ft { font-variant-numeric: tabular-nums; color: #3d4250; }
+  .pol-six-side, .pol-six-dir { display: inline-block; font: 600 10.5px var(--font-ui); padding: 1px 7px; border-radius: 9px; margin-right: 6px; }
+  .pol-six-side.mon { background: #e8eefa; color: #1d4f9c; } .pol-six-side.fis { background: #fdeee6; color: #9a3d12; } .pol-six-dir { border: 1.5px solid var(--c); color: #16181d; }
+  .pol-six-c { position: relative; background: #fff; border: 1px solid #e6e3db; border-left: 4px solid #16181d; border-radius: 8px; padding: 10px 14px; margin: 8px 0; } .pol-six-c [data-pol-six-close] { position: absolute; right: 8px; top: 6px; border: 0; background: none; cursor: pointer; font-size: 14px; }
+  .pol-six-dot { animation: pgOrgIn .4s ease both; animation-delay: var(--d); }
+  @media (prefers-reduced-motion: reduce) { .pol-six-dot { animation: none; } }
   .st-mv-tm { font: 600 12px var(--font-ui); color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .st-mv-c { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; font: 400 12px var(--font-ui); color: #c9ccd2; }
   .st-mv-c button { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; min-width: 32px; height: 30px; cursor: pointer; font-size: 13px; } .st-mv-c button:hover { background: rgba(255,255,255,.25); }
@@ -7544,11 +7553,100 @@ function renderPolStory() {
   h += stChap('pol-st-explore', stT('Chương 2 · Các nút vặn', 'Chapter 2 · The dials'),
     stT(`${moved} công cụ đã đổi mức cài đặt trong giai đoạn dữ liệu theo dõi`, `${moved} instruments changed their setting over the tracked period`),
     stT('Mỗi biểu đồ là mức cài đặt của một công cụ qua thời gian (bậc thang: giá trị giữ nguyên đến lần điều chỉnh kế tiếp), cùng trục thời gian từ 2022; thang giá trị riêng; xanh = tiền tệ, cam = tài khoá. Kéo thanh thời gian để đọc tất cả nút vặn tiền tệ và tài khoá tại cùng một ngày.', 'Each chart is one instrument\'s setting over time (step line: the value holds until the next change), on one shared time axis from 2022 with its own value scale; blue = monetary, orange = fiscal. Drag the timeline to read every monetary and fiscal dial on the same day.'),
-    `<div id="pol-st-mult-ctl"></div><div id="pol-st-mult" class="st-mult"></div>`);
+    `${polSixBlock(H)}<div class="st-sub" style="margin-top:22px">${stT('Mức cài đặt của từng công cụ từ 2022', 'Each instrument\'s setting since 2022')}</div><div id="pol-st-mult-ctl"></div><div id="pol-st-mult" class="st-mult"></div>`);
   root.innerHTML = h;
-  polStRates(); polStDiv(H); polStGroups(H); polStMult();   // (year-end cliff and what-to-watch chapters removed at the user's request)
+  polStRates(); polStDiv(H); polStGroups(H); polStMult(); polSix(H);   // (year-end cliff and what-to-watch chapters removed at the user's request)
   stFinish(root);
 }
+// ── Dials · the last six months: every fiscal (Government/MoF/NA) and monetary (SBV) move on one time axis, side by side
+// with the VN-Index, interest rates and USD/VND (weekly, FINSYS.market_6m — Finance agent; moves — POLICY, Policy agent).
+// Lanes: monetary ● and fiscal ◆, coloured by direction (blue easing, red tightening, grey neutral); a guide line runs
+// from each move through the three market panels; hover for the values that week, click a move for its documents.
+let polSixF = 'all', polSixSel = null;
+const POL_SIX_D0 = '2026-05-01';
+function polSixData(H) {
+  const M = (typeof FINSYS !== 'undefined' && FINSYS.market_6m) || null, today = pgToday().toISOString().slice(0, 10);
+  const moves = H.filter(h => h.date >= POL_SIX_D0).sort((a, b) => a.date < b.date ? -1 : 1);
+  return { M, today, moves, past: moves.filter(h => h.date <= today), next: moves.filter(h => h.date > today) };
+}
+function polSixBlock(H) {
+  const { M, past, next } = polSixData(H); if (!M || !past.length) return '';
+  const nm = past.filter(h => h.side === 'mon').length, nf = past.length - nm;
+  return `<div class="st-sub">${stT(`Sáu tháng qua: ${nm} điều chỉnh tiền tệ của NHNN và ${nf} điều chỉnh tài khoá của Chính phủ, cạnh VN-Index, lãi suất và tỷ giá`, `The last six months: ${nm} monetary moves by the SBV and ${nf} fiscal moves by the Government, beside the VN-Index, interest rates and USD/VND`)}</div>
+    ${stLegend([{ n: stT('Nới lỏng', 'Easing'), c: ST.blue }, { n: stT('Thắt chặt', 'Tightening'), c: ST.red }, { n: stT('Trung tính', 'Neutral'), c: '#9aa0ab' }])}
+    <p class="st-tick" style="margin:2px 0 6px">${stT('● tiền tệ (NHNN) · ◆ tài khoá (Chính phủ, Bộ Tài chính, Quốc hội). Rê chuột để xem số liệu từng tuần; bấm vào một điều chỉnh để xem văn bản.', '● monetary (SBV) · ◆ fiscal (Government, Finance Ministry, National Assembly). Hover for each week\'s values; click a move for its documents.')}</p>
+    <div id="pol-six" class="st-viz" data-noanim></div><div id="pol-six-card"></div>
+    <div class="pol-six-f" role="group">${[['all', stT('Tất cả', 'All')], ['mon', stT('Tiền tệ', 'Monetary')], ['fis', stT('Tài khoá', 'Fiscal')]].map(([k, l]) => `<button type="button" data-pol-six="${k}"${k === polSixF ? ' aria-pressed="true"' : ''}>${l}</button>`).join('')}</div>
+    <div id="pol-six-list"></div>
+    ${next.length ? `<p class="st-tick">${stT(`Thêm ${next.length} điều chỉnh đã ban hành, có hiệu lực sau hôm nay (liệt kê cuối danh sách).`, `${next.length} more moves are decided but take effect after today (listed at the end).`)}</p>` : ''}
+    ${stSrc(stT(`Nguồn thị trường: ${ciE(M.src_line_vi || 'HOSE, NHNN, Vietcombank qua báo chí')} (theo tuần, giá đóng cửa cuối tuần). Điều chỉnh chính sách: sổ đăng ký của dashboard, mỗi dòng có số hiệu văn bản. Đặt cạnh nhau để đối chiếu thời điểm, không hàm ý quan hệ nhân quả.`, `Market sources: ${ciE(M.src_line_en || 'HOSE, SBV, Vietcombank via press')} (weekly, end-of-week close). Policy moves: the dashboard registry, each with its document number. Shown side by side to compare timing; no causal link is implied.`))}`;
+}
+function polSix(H) {
+  const el = document.getElementById('pol-six'); if (!el) return; const { M, today, past, next } = polSixData(H); if (!M) return;
+  const W = stCW(el, 1100), narrow = W < 600, ML = narrow ? 64 : 92, MR = narrow ? 58 : 96, LH = 22, PH = narrow ? 92 : 112, GAP = 14;
+  const t0 = +pgDate(POL_SIX_D0), wk = M.weeks || [], t1 = Math.max(+pgDate(today), +pgDate(wk[wk.length - 1] || today)), sx = t => ML + (t - t0) / (t1 - t0) * (W - ML - MR);
+  const dirC = d => d === 'easing' ? ST.blue : d === 'tightening' ? ST.red : '#9aa0ab', f0 = v => stN(v, 0), f2 = v => stN(v, 2);
+  const yL1 = 14, yL2 = yL1 + LH + 4, top = yL2 + LH;
+  const P = [
+    { k: 'vnindex', n: 'VN-Index', u: stT('điểm', 'points'), S: [{ key: 'vnindex', c: ST.ink, n: 'VN-Index' }], f: f0 },
+    { k: 'rate', n: stT('Lãi suất (%/năm)', 'Interest rates (% a year)'), S: [{ key: 'interbank_on', c: ST.orange, n: stT('Liên ngân hàng qua đêm', 'Interbank overnight') }, { key: 'deposit_12m', c: ST.aqua, n: stT('Tiền gửi 12 tháng', '12-month deposit') }, { key: '_refi', c: ST.blue, n: stT('Tái cấp vốn (NHNN)', 'Refinancing (SBV)'), step: 1 }], f: f2 },
+    { k: 'fx', n: stT('Tỷ giá USD/VND', 'USD/VND'), S: [{ key: 'usdvnd_central', c: ST.violet, n: stT('Trung tâm (NHNN)', 'Central (SBV)') }, { key: 'usdvnd_bank', c: ST.magenta, n: stT('Bán ra Vietcombank', 'Vietcombank selling') }], f: f0 }];
+  // refinancing rate as a weekly step from the registry
+  const ref = (polIns('mon', 'refinancing_rate') || {}), rh = (ref.history || []).filter(h => h.to != null).map(h => [h.date, parseFloat(String(h.to).replace(',', '.'))]).filter(x => isFinite(x[1])).sort();
+  const refAt = d => { let v = ref.current_value ?? null; rh.forEach(([dt, x]) => { if (dt <= d) v = x; }); return v; };
+  const ser = key => key === '_refi' ? wk.map(refAt) : (M[key] || []);
+  let s = '', y = top + GAP;
+  // lane labels and guide lines for every move
+  s += `<text class="st-lab st-b" x="${ML - 8}" y="${yL1 + 4}" text-anchor="end">${stT('Tiền tệ', 'Monetary')}</text><text class="st-lab st-b" x="${ML - 8}" y="${yL2 + 4}" text-anchor="end">${stT('Tài khoá', 'Fiscal')}</text>`;
+  s += `<line class="st-grid" x1="${ML}" x2="${W - MR}" y1="${yL1}" y2="${yL1}"/><line class="st-grid" x1="${ML}" x2="${W - MR}" y1="${yL2}" y2="${yL2}"/>`;
+  const Hgt = top + GAP + P.length * (PH + GAP) + 18;
+  // months on the axis
+  for (let d = new Date(2026, 4, 1); +d <= t1; d.setMonth(d.getMonth() + 1)) { const x = sx(+d); s += `<line class="st-grid" x1="${x}" x2="${x}" y1="${yL1 - 8}" y2="${Hgt - 18}"/><text class="st-tick" x="${x + 3}" y="${Hgt - 4}">${stT('T', '')}${d.getMonth() + 1}${narrow ? '' : '/' + d.getFullYear()}</text>`; }
+  // group moves by date and lane
+  const G = {}; past.filter(h => polSixF === 'all' || h.side === polSixF).forEach(h => { const k = h.side + '|' + h.date; (G[k] = G[k] || []).push(h); });
+  Object.entries(G).forEach(([k, arr], gi) => { const [side, d] = k.split('|'), x = sx(+pgDate(d)), yy = side === 'mon' ? yL1 : yL2, dir = arr.some(h => h.direction === 'tightening') && arr.some(h => h.direction === 'easing') ? 'mixed' : (arr.find(h => h.direction !== 'neutral') || arr[0]).direction, c = dir === 'mixed' ? ST.ink3 : dirC(dir), on = polSixSel === k;
+    const tip = arr.map(h => `${stT(h.ins.name_vi, h.ins.name_en)}: ${h.from ?? ''}${h.to != null ? ' → ' + h.to : ''}`).join(' · ');
+    s += `<line x1="${x}" x2="${x}" y1="${yy}" y2="${Hgt - 18}" stroke="${c}" stroke-width="${on ? 2 : 1}" stroke-opacity="${on ? .9 : .22}" stroke-dasharray="${on ? '' : '2,3'}"/>`;
+    s += `<g class="st-pt pol-six-m" data-pol-six-k="${ciE(k)}" style="cursor:pointer" ${stKey(`${polDS(d)} · ${side === 'mon' ? stT('Tiền tệ', 'Monetary') : stT('Tài khoá', 'Fiscal')} (${arr.length})`, tip.slice(0, 220))}><circle cx="${x}" cy="${yy}" r="12" fill="transparent"/>`
+      + (side === 'mon' ? `<circle cx="${x}" cy="${yy}" r="${arr.length > 1 ? 7 : 5.5}" fill="${c}" stroke="#fff" stroke-width="${on ? 2.5 : 1.5}" class="pol-six-dot" style="--d:${gi * 25}ms"/>` : `<rect x="${x - 5.5}" y="${yy - 5.5}" width="11" height="11" transform="rotate(45 ${x} ${yy})" fill="${c}" stroke="#fff" stroke-width="${on ? 2.5 : 1.5}" class="pol-six-dot" style="--d:${gi * 25}ms"/>`)
+      + (arr.length > 1 ? `<text x="${x}" y="${yy + 3.5}" text-anchor="middle" style="font:700 8.5px var(--font-ui);fill:#fff;pointer-events:none">${arr.length}</text>` : '') + `</g>`; });
+  // market panels
+  const xs = wk.map(d => sx(+pgDate(d)));
+  P.forEach(p => { const vals = p.S.flatMap(q => ser(q.key)).filter(v => v != null && isFinite(v)); if (!vals.length) { y += PH + GAP; return; }
+    let lo = Math.min(...vals), hi = Math.max(...vals), pad = (hi - lo) * .12 || Math.abs(hi) * .02 || 1; lo -= pad; hi += pad; const sy = stLin(lo, hi, y + PH, y);
+    s += `<text class="st-lab st-b" x="${ML}" y="${y - 3}">${ciE(p.n)}</text>` + stNice(lo, hi, 3).filter(v => v >= lo && v <= hi).map(v => `<line class="st-grid" x1="${ML}" x2="${W - MR}" y1="${sy(v)}" y2="${sy(v)}"/><text class="st-tick" x="${ML - 6}" y="${sy(v) + 4}" text-anchor="end">${p.f(v)}</text>`).join('');
+    p.S.forEach(q => { const v = ser(q.key); if (!v.some(x => x != null)) return; let d = '', pen = false;
+      v.forEach((val, i) => { if (val == null) { pen = false; return; } const X = xs[i], Y = sy(val); if (q.step && pen) d += ` H${X} V${Y}`; else d += (pen ? ' L' : ' M') + X + ',' + Y; pen = true; });
+      s += `<path class="st-draw" d="${d}" fill="none" stroke="${q.c}" stroke-width="${q.step ? 2 : 2}" stroke-linejoin="round"${q.step ? ' stroke-dasharray="5,3"' : ''}/>`;
+      const li = v.map((x, i) => x != null ? i : -1).filter(i => i >= 0).pop(); if (li != null) s += `<circle cx="${xs[li]}" cy="${sy(v[li])}" r="3.5" fill="${q.c}"/><text class="st-lab" x="${W - MR + 6}" y="${sy(v[li]) + 4}" style="fill:${q.c === ST.ink ? '#16181d' : q.c}">${p.f(v[li])}</text>`; });
+    p.y0 = y; y += PH + GAP; });
+  el.innerHTML = stSvg(W, Hgt, s, stT('Chính sách và thị trường, 6 tháng', 'Policy and markets, six months'));
+  stCross(el, { xs, labels: wk.map(d => polDS(d)), top: yL1 - 8, bottom: Hgt - 18, series: P.flatMap(p => p.S.filter(q => ser(q.key).some(x => x != null)).map(q => ({ n: q.n, c: q.c, v: ser(q.key), f: p.f }))) });
+  polSixList(past, next); polSixCard();
+  stRW(el, () => polSix(H));
+}
+function polSixRow(h) {
+  const dl = { easing: stT('Nới lỏng', 'Easing'), tightening: stT('Thắt chặt', 'Tightening'), neutral: stT('Trung tính', 'Neutral') }[h.direction] || h.direction;
+  return `<li><time>${polDS(h.date)}</time><span class="pol-six-side ${h.side}">${h.side === 'mon' ? stT('Tiền tệ', 'Monetary') : stT('Tài khoá', 'Fiscal')}</span><span class="pol-six-dir" style="--c:${h.direction === 'easing' ? ST.blue : h.direction === 'tightening' ? ST.red : '#9aa0ab'}">${dl}</span>
+    <b>${ciE(stT(h.ins.name_vi, h.ins.name_en))}</b>${h.from != null || h.to != null ? ` <span class="pol-six-ft">${ciE(String(h.from ?? ''))}${h.to != null ? ' → ' + ciE(String(h.to)) : ''}</span>` : ''}
+    <p>${ciE(stT(h.note_vi, h.note_en) || '')} ${h.doc ? `<span class="st-tick">${h.url ? `<a href="${ciE(h.url)}" target="_blank" rel="noopener">${ciE(h.doc)}</a>` : ciE(h.doc)}</span>` : ''}</p></li>`;
+}
+function polSixList(past, next) {
+  const el = document.getElementById('pol-six-list'); if (!el) return; const ok = h => polSixF === 'all' || h.side === polSixF;
+  const P = past.filter(ok).slice().reverse(), N = next.filter(ok);
+  el.innerHTML = `<ol class="pol-six-l">${P.map(polSixRow).join('')}</ol>${N.length ? `<div class="st-sub">${stT('Đã quyết định, có hiệu lực sắp tới', 'Decided, taking effect soon')}</div><ol class="pol-six-l">${N.map(polSixRow).join('')}</ol>` : ''}`;
+}
+function polSixCard() {
+  const el = document.getElementById('pol-six-card'); if (!el) return; if (!polSixSel) { el.innerHTML = ''; return; }
+  const H = typeof POLICY === 'undefined' ? [] : [...POLICY.mon.instruments.map(i => ({ i, side: 'mon' })), ...POLICY.fis.instruments.map(i => ({ i, side: 'fis' }))].flatMap(o => (o.i.history || []).map(h => ({ ...h, side: o.side, ins: o.i })));
+  const [side, d] = polSixSel.split('|'), arr = H.filter(h => h.side === side && h.date === d);
+  el.innerHTML = arr.length ? `<div class="pol-six-c"><button type="button" data-pol-six-close aria-label="${ciE(stT('Đóng', 'Close'))}">✕</button><div class="st-mini-h">${polDS(d)} · ${side === 'mon' ? stT('Tiền tệ (NHNN)', 'Monetary (SBV)') : stT('Tài khoá', 'Fiscal')}</div><ol class="pol-six-l">${arr.map(polSixRow).join('')}</ol></div>` : '';
+}
+document.addEventListener('click', e => {
+  const m = e.target.closest && e.target.closest('[data-pol-six-k]'); if (m) { polSixSel = polSixSel === m.dataset.polSixK ? null : m.dataset.polSixK; if (typeof POLICY !== 'undefined') { const el = document.getElementById('pol-six'); el && el._rd && el._rd(); } return; }
+  const f = e.target.closest && e.target.closest('[data-pol-six]'); if (f) { polSixF = f.dataset.polSix; polSixSel = null; document.querySelectorAll('[data-pol-six]').forEach(b => b.setAttribute('aria-pressed', b === f ? 'true' : 'false')); const el = document.getElementById('pol-six'); el && el._rd && el._rd(); return; }
+  if (e.target.closest && e.target.closest('[data-pol-six-close]')) { polSixSel = null; polSixCard(); const el = document.getElementById('pol-six'); el && el._rd && el._rd(); }
+});
 // hero — the refinancing rate (accent) against the other policy rates (one grey), step lines, crosshair
 function polStRates() {
   const el = document.getElementById('pol-st-rates'), L = [['refinancing_rate', stT('Tái cấp vốn', 'Refinancing'), ST.blue], ['omo_rate', 'OMO', ST_MUTE], ['overnight_rate', stT('Qua đêm', 'Overnight'), ST_MUTE], ['rediscount_rate', stT('Tái chiết khấu', 'Rediscount'), ST_MUTE], ['deposit_cap_1_6m', stT('Trần huy động 1–6T', 'Deposit cap 1–6m'), ST_MUTE], ['lending_cap_priority', stT('Trần cho vay ưu tiên', 'Priority lending cap'), ST_MUTE]].map(([id, n, c]) => ({ n, c, p: polSer(polIns('mon', id)) })).filter(x => x.p.length);
