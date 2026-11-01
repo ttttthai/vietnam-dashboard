@@ -10,7 +10,7 @@ import html, json, os, sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 TAB = {'overview': ('Phim toàn cảnh', 'The big picture'), 'party': ('Chính trị', 'Politics'), 'social': ('Xã hội', 'Society'),
-       'econ': ('Kinh tế', 'Economy'), 'banks': ('Hệ thống tài chính', 'Financial system'), 'invest': ('Đầu tư', 'Investing'),
+       'econ': ('Kinh tế', 'Economy'), 'banks': ('Hệ thống tài chính', 'Financial system'), 'invest': ('Thị trường chứng khoán', 'Stock Market'),
        'sim': ('Mô phỏng', 'Simulation'), 'geo': ('Địa chính trị', 'Geopolitics')}
 
 

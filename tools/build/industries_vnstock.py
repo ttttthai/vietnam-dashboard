@@ -491,6 +491,18 @@ def main() -> None:
         s["mcap"] = s["px"] * s["ls"] / 1e9 if s["px"] and s["ls"] else None
         s["r_ytd"] = r["c"] / r["ytd"] - 1 if r.get("c") and r.get("ytd") else None
         s["r_m1"] = r["c"] / r["m1"] - 1 if r.get("c") and r.get("m1") else None
+        h = raw.get(s["sym"])                        # same data screen as history_block: skip feed artefacts
+        if h and h.get("t"):
+            t = [str(x)[:10] for x in h["t"]]
+            fw = _flip_windows(t, h["c"])
+            inside = lambda day: (lambda i: i >= 0 and any(a <= t[i] < b for a, b in fw))(bisect.bisect_right(t, day) - 1)  # noqa: E731
+            if len(fw) >= FLIP_MAX or inside(as_of):
+                s["r_ytd"] = s["r_m1"] = None
+            else:
+                if inside(bases["ytd_base"]):
+                    s["r_ytd"] = None
+                if inside(bases["m1_base"]):
+                    s["r_m1"] = None
         l5 = r.get("last5") or []
         if len(l5) >= 2 and l5[0] and l5[-1] / l5[0] < 0.8:
             print(f"  check {s['sym']}: −{100 * (1 - l5[-1] / l5[0]):.0f}% over 5 sessions — ex-rights with unlisted "

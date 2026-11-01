@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Narrator agent",
   "as_of": "2026-11-01",
-  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed's 28 Oct hold at 3.75–4.00% entered the dashboard data on 2026-11-01 and is narrated in the Fed scenes; next FOMC 8–9 Dec 2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration. 2026-11-01: Policies tab merged into Financial system; money scenes retargeted to tab banks and the money film appended to the banks film. 2026-11-01: NA session close corrected to 21 Nov 2026 (phase 2 20–21 Nov; reserve 23 Nov)."
+  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed's 28 Oct hold at 3.75–4.00% entered the dashboard data on 2026-11-01 and is narrated in the Fed scenes; next FOMC 8–9 Dec 2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration. 2026-11-01: Policies tab merged into Financial system; money scenes retargeted to tab banks and the money film appended to the banks film. 2026-11-01: NA session close corrected to 21 Nov 2026 (phase 2 20–21 Nov; reserve 23 Nov). 2026-11-01: invest film rewritten for the revamped Stock Market tab (industries first: overview, industries today, the race, revenue/profit/assets; short macro/forecast close); overview scene on #iv-st-gdp moved to chapter iv-st-macro."
  },
  "NARRATION": {
   "films": {
@@ -49,7 +49,7 @@
      },
      {
       "tab": "invest",
-      "chap": "iv-st-hero",
+      "chap": "iv-st-macro",
       "target": "#iv-st-gdp",
       "k": {
        "vi": "KINH TẾ · TỪNG QUÝ",
@@ -5195,20 +5195,573 @@
    },
    "invest": {
     "title": {
-     "vi": "Đầu tư: bối cảnh và luận điểm, không phải khuyến nghị",
-     "en": "Investing: the backdrop and the arguments, not advice"
+     "vi": "Thị trường chứng khoán",
+     "en": "The stock market"
     },
     "scenes": [
      {
       "tab": "invest",
       "chap": "iv-st-hero",
+      "target": "#iv-st-mline",
+      "k": {
+       "vi": "CHỨNG KHOÁN · TỔNG QUAN",
+       "en": "STOCK MARKET · OVERVIEW"
+      },
+      "vi": "Toàn bộ thị trường chứng khoán Việt Nam có vốn hóa khoảng 9.989 nghìn tỷ đồng. Đó là 1.518 mã trên ba sàn HOSE, HNX và UPCoM, chia thành 19 ngành. Số liệu ngày 30 tháng Mười năm 2026; mọi thứ ở đây chỉ mô tả, không phải khuyến nghị.",
+      "en": "The whole Vietnamese stock market is worth about 9,989 trillion dong. That is 1,518 stocks on three exchanges, HOSE, HNX and UPCoM, in 19 industries. Data as of 30 October 2026; everything here describes, it does not recommend.",
+      "big": true,
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "9.989 nghìn tỷ đồng",
+         "en": "9,989 trillion dong"
+        },
+        "l": {
+         "vi": "vốn hóa toàn thị trường, 30/10/2026",
+         "en": "whole-market cap, 30 Oct 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "1.518 mã",
+         "en": "1,518 stocks"
+        },
+        "l": {
+         "vi": "trên HOSE, HNX, UPCoM",
+         "en": "on HOSE, HNX, UPCoM"
+        }
+       },
+       {
+        "v": {
+         "vi": "19 ngành",
+         "en": "19 industries"
+        },
+        "l": {
+         "vi": "phân ngành ICB cấp 2",
+         "en": "ICB level-2 industries"
+        }
+       },
+       {
+        "v": {
+         "vi": "30/10/2026",
+         "en": "30 Oct 2026"
+        },
+        "l": {
+         "vi": "ngày chốt số liệu",
+         "en": "data as of"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.market (mcap_bn_vnd 9,988,506; n_listed 1,518); 19 industries; as_of 2026-10-30"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-hero",
+      "target": "#iv-st-mline",
+      "k": {
+       "vi": "CHỨNG KHOÁN · TỔNG QUAN",
+       "en": "STOCK MARKET · OVERVIEW"
+      },
+      "vi": "Hai đường cùng xuất phát từ 100 vào cuối tháng Mười Một năm 2024: đường xanh là toàn thị trường, đường xám là VN-Index. Đến cuối tháng Mười năm nay, toàn thị trường ở mức 136. Riêng từ đầu năm: toàn thị trường tăng 0,3%, còn VN-Index giảm 2,4%.",
+      "en": "Both lines start at 100 at the end of November 2024: blue is the whole market, grey is the VN-Index. By the end of this October the whole market stands at 136. This year alone: the whole market is up 0.3%, while the VN-Index is down 2.4%.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "100",
+         "en": "100"
+        },
+        "l": {
+         "vi": "mốc cuối tháng 11/2024",
+         "en": "base, end-Nov 2024"
+        }
+       },
+       {
+        "v": {
+         "vi": "136",
+         "en": "136"
+        },
+        "l": {
+         "vi": "toàn thị trường, 30/10/2026",
+         "en": "whole market, 30 Oct 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "+0,3%",
+         "en": "+0.3%"
+        },
+        "l": {
+         "vi": "toàn thị trường từ đầu năm",
+         "en": "whole market, year to date"
+        }
+       },
+       {
+        "v": {
+         "vi": "−2,4%",
+         "en": "−2.4%"
+        },
+        "l": {
+         "vi": "VN-Index từ đầu năm",
+         "en": "VN-Index, year to date"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.history.monthly.market (last 136.21, base 100 = 2024-11); IND_ICB.market ret_ytd_pct 0.33, vnindex_ytd_pct -2.4"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-hero",
+      "target": "#iv-st-heat",
+      "k": {
+       "vi": "CHỨNG KHOÁN · TỪNG NĂM",
+       "en": "STOCK MARKET · YEAR BY YEAR"
+      },
+      "vi": "Bảng màu: mỗi hàng là một ngành, mỗi cột là một năm; xanh là tăng, đỏ là giảm. Năm 2022 gần như đỏ cả bảng: toàn thị trường giảm 33,7%. Năm 2025 có ô xanh đậm nhất: Bất động sản tăng 182,6%.",
+      "en": "The colour grid: each row is an industry, each column a year; blue is up, red is down. 2022 is red almost everywhere: the whole market fell 33.7%. 2025 has the deepest blue: Real Estate up 182.6%.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "−33,7%",
+         "en": "−33.7%"
+        },
+        "l": {
+         "vi": "toàn thị trường, năm 2022",
+         "en": "whole market, 2022"
+        }
+       },
+       {
+        "v": {
+         "vi": "+182,6%",
+         "en": "+182.6%"
+        },
+        "l": {
+         "vi": "Bất động sản, năm 2025",
+         "en": "Real Estate, 2025"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.history market.ret_pct 2022 -33.66; by_icb 8600 ret_pct 2025 182.62"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-ind",
+      "target": "#iv-st-indg",
+      "k": {
+       "vi": "CHỨNG KHOÁN · CÁC NGÀNH HÔM NAY",
+       "en": "STOCK MARKET · INDUSTRIES TODAY"
+      },
+      "vi": "Mười chín ngành, mỗi ngành một thẻ. Từ đầu năm đến nay: 8 ngành tăng, 11 ngành giảm. Dẫn đầu là Dầu khí, tăng 34,9%. Cuối bảng là Công nghệ thông tin, giảm 38,5%.",
+      "en": "Nineteen industries, one card each. So far this year: 8 industries up, 11 down. Oil and Gas leads, up 34.9%. Technology is last, down 38.5%.",
+      "big": true,
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "8 tăng · 11 giảm",
+         "en": "8 up · 11 down"
+        },
+        "l": {
+         "vi": "số ngành, từ đầu năm 2026",
+         "en": "industries, 2026 year to date"
+        }
+       },
+       {
+        "v": {
+         "vi": "+34,9%",
+         "en": "+34.9%"
+        },
+        "l": {
+         "vi": "Dầu khí, từ đầu năm",
+         "en": "Oil & Gas, year to date"
+        }
+       },
+       {
+        "v": {
+         "vi": "−38,5%",
+         "en": "−38.5%"
+        },
+        "l": {
+         "vi": "Công nghệ thông tin, từ đầu năm",
+         "en": "Technology, year to date"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.industries ret_ytd_pct (0500 34.9; 9500 -38.47); story_map iv-st-ind headline"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-ind",
+      "target": "#iv-st-indg",
+      "k": {
+       "vi": "CHỨNG KHOÁN · AI LỚN NHẤT",
+       "en": "STOCK MARKET · THE GIANTS"
+      },
+      "vi": "Hai ngành chiếm hơn một nửa vốn hóa: Bất động sản 29,5%, Ngân hàng 24,8%. Trong Bất động sản, riêng VIC chiếm khoảng 63%. Mức tăng 17,9% của ngành chủ yếu đến từ VIC, mã tăng 42,1% từ đầu năm.",
+      "en": "Two industries hold more than half of the market's value: Real Estate 29.5%, Banks 24.8%. Within Real Estate, VIC alone is about 63%. The industry's 17.9% gain comes mostly from VIC, up 42.1% this year.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "29,5%",
+         "en": "29.5%"
+        },
+        "l": {
+         "vi": "Bất động sản / vốn hóa thị trường",
+         "en": "Real Estate / market cap"
+        }
+       },
+       {
+        "v": {
+         "vi": "24,8%",
+         "en": "24.8%"
+        },
+        "l": {
+         "vi": "Ngân hàng / vốn hóa thị trường",
+         "en": "Banks / market cap"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈ 63%",
+         "en": "≈ 63%"
+        },
+        "l": {
+         "vi": "VIC / vốn hóa ngành Bất động sản",
+         "en": "VIC / Real Estate cap"
+        }
+       },
+       {
+        "v": {
+         "vi": "+17,9%",
+         "en": "+17.9%"
+        },
+        "l": {
+         "vi": "Bất động sản, từ đầu năm",
+         "en": "Real Estate, year to date"
+        }
+       },
+       {
+        "v": {
+         "vi": "+42,1%",
+         "en": "+42.1%"
+        },
+        "l": {
+         "vi": "VIC, từ đầu năm",
+         "en": "VIC, year to date"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.industries 8600 (mcap_share_pct 29.51, note_vi/en, VIC ret_ytd 42.1, ret_ytd 17.92), 8300 mcap_share_pct 24.76"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-race",
+      "target": "#iv-st-indyr",
+      "k": {
+       "vi": "CHỨNG KHOÁN · CUỘC ĐUA",
+       "en": "STOCK MARKET · THE RACE"
+      },
+      "vi": "Giờ là cuộc đua của các ngành, đo bằng vốn hóa ước tính. Năm 2018, Bất động sản dẫn đầu với khoảng 863 nghìn tỷ đồng; Ngân hàng đứng thứ hai. Hãy xem Ngân hàng vượt lên năm 2020 và giữ ngôi đầu đến hết 2025.",
+      "en": "Now the industry race, measured by estimated market value. In 2018 Real Estate leads with about 863 trillion dong; Banks are second. Watch Banks move ahead in 2020 and hold first place through 2025.",
+      "big": true,
+      "figs": [
+       {
+        "v": {
+         "vi": "≈ 863 nghìn tỷ đồng",
+         "en": "≈ 863 trillion dong"
+        },
+        "l": {
+         "vi": "Bất động sản, cuối 2018 (ước)",
+         "en": "Real Estate, end-2018 (approx.)"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.history.by_icb mcap_bn_vnd (8600 2018 862,788; 8300 ranks first 2020–2025)"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-race",
+      "target": "#iv-st-indyr",
+      "k": {
+       "vi": "CHỨNG KHOÁN · CUỘC ĐUA",
+       "en": "STOCK MARKET · THE RACE"
+      },
+      "vi": "Năm 2026, Bất động sản trở lại ngôi đầu: khoảng 2.947 nghìn tỷ đồng, so với 2.474 nghìn tỷ của Ngân hàng. Lưu ý: vốn hóa quá khứ chỉ là ước tính theo số cổ phiếu hiện nay, và chỉ gồm các mã còn niêm yết hôm nay.",
+      "en": "In 2026 Real Estate is back on top: about 2,947 trillion dong, against 2,474 trillion for Banks. Note: past values are estimates using today's share counts, and only stocks still listed today are included.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "≈ 2.947 nghìn tỷ đồng",
+         "en": "≈ 2,947 trillion dong"
+        },
+        "l": {
+         "vi": "Bất động sản, 30/10/2026",
+         "en": "Real Estate, 30 Oct 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈ 2.474 nghìn tỷ đồng",
+         "en": "≈ 2,474 trillion dong"
+        },
+        "l": {
+         "vi": "Ngân hàng, 30/10/2026",
+         "en": "Banks, 30 Oct 2026"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.history.by_icb mcap_bn_vnd 2026 (8600 2,946,686; 8300 2,473,615); history.caveats (survivorship, current share counts)"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-fund",
+      "target": "#iv-st-fmkt",
+      "k": {
+       "vi": "CHỨNG KHOÁN · LỢI NHUẬN",
+       "en": "STOCK MARKET · PROFIT"
+      },
+      "vi": "Các công ty niêm yết làm ra bao nhiêu? Năm 2025, cộng lại khoảng 698 nghìn tỷ đồng lợi nhuận, tăng 34% trên cùng nhóm công ty. Đây là tổng mô tả: khi công ty mẹ và công ty con cùng niêm yết, lợi nhuận bị cộng hai lần, ví dụ VIC hợp nhất VHM.",
+      "en": "How much do listed companies earn? In 2025 they made about 698 trillion dong in profit together, up 34% like for like. This is a descriptive total: where a parent and its subsidiary are both listed, profit is counted twice; VIC, for example, consolidates VHM.",
+      "big": true,
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "≈ 698 nghìn tỷ đồng",
+         "en": "≈ 698 trillion dong"
+        },
+        "l": {
+         "vi": "lợi nhuận ròng toàn thị trường, 2025",
+         "en": "whole-market net profit, 2025"
+        }
+       },
+       {
+        "v": {
+         "vi": "+34%",
+         "en": "+34%"
+        },
+        "l": {
+         "vi": "so với 2024, cùng mẫu",
+         "en": "vs 2024, like for like"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.fundamentals.market net_profit_bn_vnd 2025 698,315; net_profit_yoy_pct 34.34; caveats (double counting VIC/VHM)"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-fund",
+      "target": "#iv-st-fmkt",
+      "k": {
+       "vi": "CHỨNG KHOÁN · LỢI NHUẬN",
+       "en": "STOCK MARKET · PROFIT"
+      },
+      "vi": "Mức tăng ấy cao một phần nhờ các khoản bất thường và phần cộng trùng. Tăng nhiều nhất là VEF, khoảng 14,5 nghìn tỷ đồng, rồi VHM, khoảng 10,1 nghìn tỷ.",
+      "en": "Part of that rise comes from one-off items and double counting. The largest increases: VEF, about 14.5 trillion dong, then VHM, about 10.1 trillion.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "≈ +14,5 nghìn tỷ đồng",
+         "en": "≈ +14.5 trillion dong"
+        },
+        "l": {
+         "vi": "VEF, tăng lợi nhuận 2025",
+         "en": "VEF, profit increase 2025"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈ +10,1 nghìn tỷ đồng",
+         "en": "≈ +10.1 trillion dong"
+        },
+        "l": {
+         "vi": "VHM, tăng lợi nhuận 2025",
+         "en": "VHM, profit increase 2025"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.fundamentals.cross_checks.market.note (one-offs and group double counting; VEF +14.5 tn, VHM +10.1 tn)"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-fund",
+      "target": "#iv-st-fmkt",
+      "k": {
+       "vi": "CHỨNG KHOÁN · LỢI NHUẬN",
+       "en": "STOCK MARKET · PROFIT"
+      },
+      "vi": "Cột viền đứt là 12 tháng gần nhất, đến quý ba năm 2026: khoảng 843 nghìn tỷ đồng. Con số này mới phủ khoảng 91% vốn hóa, vì chưa phải công ty nào cũng đã nộp báo cáo quý ba.",
+      "en": "The dashed column is the latest 12 months, to the third quarter of 2026: about 843 trillion dong. It covers only about 91% of market value, because not every company has filed its third-quarter report yet.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "12 tháng",
+         "en": "12 months"
+        },
+        "l": {
+         "vi": "đến quý 3/2026",
+         "en": "to Q3 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈ 843 nghìn tỷ đồng",
+         "en": "≈ 843 trillion dong"
+        },
+        "l": {
+         "vi": "lợi nhuận ròng 12 tháng đến Q3/2026",
+         "en": "net profit, TTM Q3 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈ 91%",
+         "en": "≈ 91%"
+        },
+        "l": {
+         "vi": "độ phủ vốn hóa của số liệu",
+         "en": "share of market cap covered"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.fundamentals.market net_profit_bn_vnd TTM 843,208; coverage_pct TTM 91.2"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-fund",
+      "target": "#iv-st-fshare",
+      "k": {
+       "vi": "CHỨNG KHOÁN · AI LÀM RA LỢI NHUẬN",
+       "en": "STOCK MARKET · WHO MAKES THE PROFIT"
+      },
+      "vi": "Ai làm ra lợi nhuận năm 2025? Riêng Ngân hàng chiếm 40,6%. Bất động sản đứng thứ hai với 15,4%. Ngành thứ ba, Thực phẩm và đồ uống, chỉ khoảng 6,1%.",
+      "en": "Who made the profit in 2025? Banks alone made 40.6%. Real Estate is second with 15.4%. The third, Food and Beverage, made only about 6.1%.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "40,6%",
+         "en": "40.6%"
+        },
+        "l": {
+         "vi": "Ngân hàng / lợi nhuận 2025",
+         "en": "Banks / 2025 profit"
+        }
+       },
+       {
+        "v": {
+         "vi": "15,4%",
+         "en": "15.4%"
+        },
+        "l": {
+         "vi": "Bất động sản / lợi nhuận 2025",
+         "en": "Real Estate / 2025 profit"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈ 6,1%",
+         "en": "≈ 6.1%"
+        },
+        "l": {
+         "vi": "Thực phẩm và đồ uống / lợi nhuận 2025",
+         "en": "Food & Beverage / 2025 profit"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.fundamentals.market.profit_share_by_icb_2025 (8300 40.56, 8600 15.39, 3500 6.12)"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-fund",
+      "target": "#iv-st-fgrid",
+      "k": {
+       "vi": "CHỨNG KHOÁN · TỪNG NGÀNH",
+       "en": "STOCK MARKET · INDUSTRY BY INDUSTRY"
+      },
+      "vi": "Từng ngành một. Ngân hàng lãi khoảng 283 nghìn tỷ đồng năm 2025, tăng 20%. Bất động sản khoảng 107 nghìn tỷ, tăng 82%; trong đó VHM góp 39%, VEF 14%. Vì VIC hợp nhất VHM, tổng ngành này bị cộng trùng.",
+      "en": "Industry by industry. Banks earned about 283 trillion dong in 2025, up 20%. Real Estate about 107 trillion, up 82%; VHM contributed 39% of it, VEF 14%. Because VIC consolidates VHM, this industry's total is double-counted.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "≈ 283 nghìn tỷ đồng",
+         "en": "≈ 283 trillion dong"
+        },
+        "l": {
+         "vi": "lợi nhuận Ngân hàng, 2025",
+         "en": "Banks' profit, 2025"
+        }
+       },
+       {
+        "v": {
+         "vi": "+20%",
+         "en": "+20%"
+        },
+        "l": {
+         "vi": "Ngân hàng, so với 2024",
+         "en": "Banks, vs 2024"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈ 107 nghìn tỷ đồng",
+         "en": "≈ 107 trillion dong"
+        },
+        "l": {
+         "vi": "lợi nhuận Bất động sản, 2025",
+         "en": "Real Estate profit, 2025"
+        }
+       },
+       {
+        "v": {
+         "vi": "+82%",
+         "en": "+82%"
+        },
+        "l": {
+         "vi": "Bất động sản, so với 2024",
+         "en": "Real Estate, vs 2024"
+        }
+       },
+       {
+        "v": {
+         "vi": "39%",
+         "en": "39%"
+        },
+        "l": {
+         "vi": "VHM / lợi nhuận ngành, 2025",
+         "en": "VHM / industry profit, 2025"
+        }
+       },
+       {
+        "v": {
+         "vi": "14%",
+         "en": "14%"
+        },
+        "l": {
+         "vi": "VEF / lợi nhuận ngành, 2025",
+         "en": "VEF / industry profit, 2025"
+        }
+       }
+      ],
+      "src": "data/industries.json IND_ICB.fundamentals.by_icb 8300 (np 2025 283,239, yoy 19.67), 8600 (np 107,482, yoy 81.67, top_profit_2025 VHM 38.98, VEF 14.33); caveats (VIC consolidates VHM)"
+     },
+     {
+      "tab": "invest",
+      "chap": "iv-st-macro",
       "target": "#iv-st-gdp",
       "k": {
-       "vi": "ĐẦU TƯ · BỐI CẢNH",
-       "en": "INVESTING · THE BACKDROP"
+       "vi": "BỐI CẢNH · VĨ MÔ",
+       "en": "CONTEXT · THE MACRO BACKDROP"
       },
-      "vi": "Hãy xem tăng trưởng tăng tốc qua từng quý của năm 2026: 8,15%, 8,81%, rồi 9,95% trong quý ba. Trang này đặt bối cảnh ấy cạnh các luận điểm đã công bố về thị trường, cả ủng hộ lẫn rủi ro.",
-      "en": "Watch growth speed up through each quarter of 2026: 8.15%, 8.81%, then 9.95% in the third quarter. This page sets that backdrop beside the published arguments about the market, for and against.",
+      "vi": "Bối cảnh vĩ mô: hãy xem tăng trưởng GDP tăng tốc qua từng quý năm 2026: 8,15%, 8,81%, rồi 9,95%. Chín tháng tăng 9,01%. Để cả năm đạt mục tiêu 10%, quý bốn cần khoảng 12,5%, theo ước tính của dashboard.",
+      "en": "The macro backdrop: watch GDP growth speed up through each quarter of 2026: 8.15%, 8.81%, then 9.95%. Nine months: 9.01%. For the full year to reach the 10% target, the fourth quarter needs about 12.5%, on the dashboard's estimate.",
       "big": true,
       "figs": [
        {
@@ -5240,68 +5793,17 @@
          "vi": "GDP quý 3/2026",
          "en": "GDP, Q3 2026"
         }
-       }
-      ],
-      "src": "data/invest_macro.json MACRO.gdp q1–q3 (NSO 03/10/2026)"
-     },
-     {
-      "tab": "invest",
-      "chap": "iv-st-hero",
-      "target": "#iv-st-gdp",
-      "k": {
-       "vi": "ĐẦU TƯ · KHUNG SÀNG LỌC",
-       "en": "INVESTING · THE SCREEN"
-      },
-      "vi": "Đây là một khung sàng lọc, không phải khuyến nghị. Mỗi mã cần khối lượng khớp ít nhất 100.000 cổ phiếu một phiên và vốn điều lệ từ 5.000 tỷ đồng; một tín hiệu chỉ được tính khi đúng ít nhất 80% số lần trong lịch sử của chính mã đó.",
-      "en": "This is a screening frame, not a recommendation. Each stock needs matched volume of at least 100,000 shares a session and charter capital of at least 5,000 billion dong; a signal only counts if it was right at least 80% of the time in that stock's own history.",
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "≥ 100.000 cp/phiên",
-         "en": "≥ 100,000 shares/session"
-        },
-        "l": {
-         "vi": "khối lượng khớp tối thiểu",
-         "en": "minimum matched volume"
-        }
        },
        {
         "v": {
-         "vi": "≥ 5.000 tỷ đồng",
-         "en": "≥ 5,000 bn dong"
+         "vi": "9,01%",
+         "en": "9.01%"
         },
         "l": {
-         "vi": "vốn điều lệ tối thiểu",
-         "en": "minimum charter capital"
+         "vi": "GDP chín tháng 2026",
+         "en": "GDP, nine months 2026"
         }
        },
-       {
-        "v": {
-         "vi": "≥ 80%",
-         "en": "≥ 80%"
-        },
-        "l": {
-         "vi": "tỷ lệ đúng của tín hiệu",
-         "en": "signal hit rate"
-        }
-       }
-      ],
-      "src": "story_map invest iv-st-hero dek"
-     },
-     {
-      "tab": "invest",
-      "chap": "iv-st-macro",
-      "target": "#iv-st-demand",
-      "k": {
-       "vi": "ĐẦU TƯ · VĨ MÔ",
-       "en": "INVESTING · MACRO"
-      },
-      "vi": "Để cả năm đạt 10%, quý bốn cần khoảng 12,5%, theo ước tính. Phía cầu chín tháng 2026: tiêu dùng cuối cùng tăng 8,51%, tích lũy tài sản 17,88%, xuất khẩu 21,29%, và nhập khẩu nhanh nhất, 27,19%.",
-      "en": "For the full year to reach 10%, the fourth quarter needs about 12.5%, on an estimate. On the demand side, nine months of 2026: final consumption up 8.51%, capital formation 17.88%, exports 21.29%, and imports fastest, 27.19%.",
-      "big": true,
-      "play": false,
-      "figs": [
        {
         "v": {
          "vi": "10%",
@@ -5321,115 +5823,20 @@
          "vi": "quý 4 cần đạt (ước tính)",
          "en": "Q4 needed (estimate)"
         }
-       },
-       {
-        "v": {
-         "vi": "8,51%",
-         "en": "8.51%"
-        },
-        "l": {
-         "vi": "tiêu dùng cuối cùng",
-         "en": "final consumption"
-        }
-       },
-       {
-        "v": {
-         "vi": "17,88%",
-         "en": "17.88%"
-        },
-        "l": {
-         "vi": "tích lũy tài sản",
-         "en": "capital formation"
-        }
-       },
-       {
-        "v": {
-         "vi": "21,29%",
-         "en": "21.29%"
-        },
-        "l": {
-         "vi": "xuất khẩu (giá so sánh)",
-         "en": "exports (real)"
-        }
-       },
-       {
-        "v": {
-         "vi": "27,19%",
-         "en": "27.19%"
-        },
-        "l": {
-         "vi": "nhập khẩu (giá so sánh)",
-         "en": "imports (real)"
-        }
        }
       ],
-      "src": "story_map invest iv-st-macro headline; data/invest_macro.json demand side 9M/2026"
-     },
-     {
-      "tab": "invest",
-      "chap": "iv-st-macro",
-      "target": "#iv-st-mreason",
-      "k": {
-       "vi": "ĐẦU TƯ · ỦNG HỘ VÀ RỦI RO",
-       "en": "INVESTING · FOR AND AGAINST"
-      },
-      "vi": "Một luận điểm ủng hộ được công bố: còn khoảng 349 nghìn tỷ đồng đầu tư công cần giải ngân trong quý bốn. Rủi ro được công bố: lạm phát 5,08%, trên mục tiêu, và nhập khẩu tăng 36,7% theo trị giá, nhanh hơn xuất khẩu 24,5%, gây áp lực lên tỷ giá.",
-      "en": "A published supporting point: about 349 trillion dong of public investment left to disburse in the fourth quarter. Published risks: inflation of 5.08%, above target, and imports up 36.7% by value, faster than exports at 24.5%, pressing on the exchange rate.",
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "≈ 349 nghìn tỷ đồng",
-         "en": "≈ 349 trillion dong"
-        },
-        "l": {
-         "vi": "đầu tư công còn phải giải ngân, quý 4",
-         "en": "public investment left, Q4"
-        }
-       },
-       {
-        "v": {
-         "vi": "5,08%",
-         "en": "5.08%"
-        },
-        "l": {
-         "vi": "CPI, 9/2026",
-         "en": "CPI, Sep 2026"
-        }
-       },
-       {
-        "v": {
-         "vi": "+36,7%",
-         "en": "+36.7%"
-        },
-        "l": {
-         "vi": "nhập khẩu theo trị giá, chín tháng",
-         "en": "imports by value, nine months"
-        }
-       },
-       {
-        "v": {
-         "vi": "+24,5%",
-         "en": "+24.5%"
-        },
-        "l": {
-         "vi": "xuất khẩu theo trị giá, chín tháng",
-         "en": "exports by value, nine months"
-        }
-       }
-      ],
-      "src": "invest_research / rendered iv-st-mreason; data/invest_macro.json public_invest"
+      "src": "data/invest_macro.json MACRO.gdp q1–q3; story_map invest iv-st-macro headline (9,01%; quý 4 cần khoảng 12,5%)"
      },
      {
       "tab": "invest",
       "chap": "iv-st-market",
       "target": "#iv-st-vni",
       "k": {
-       "vi": "ĐẦU TƯ · DỰ BÁO CHỈ SỐ",
-       "en": "INVESTING · INDEX FORECASTS"
+       "vi": "BỐI CẢNH · DỰ BÁO",
+       "en": "CONTEXT · FORECASTS"
       },
-      "vi": "Mỗi chấm là một dự báo VN-Index cuối năm đã được công bố, từ 1.750 đến 2.000 điểm. Vạch đen là mức đóng cửa cuối tháng Chín: 1.769 điểm.",
-      "en": "Each dot is a published year-end VN-Index forecast, from 1,750 to 2,000 points. The black mark is the end-September close: 1,769.",
+      "vi": "Mỗi chấm là một dự báo VN-Index cuối năm đã công bố, từ 1.750 đến 2.000 điểm; vạch đen là mức đóng cửa cuối tháng Chín, 1.769 điểm. Cả 6 dự báo đều ra trước đợt giảm tháng Chín. Đó là ý kiến của các tổ chức, không phải của dashboard.",
+      "en": "Each dot is a published year-end VN-Index forecast, from 1,750 to 2,000 points; the black mark is the end-September close, 1,769. All 6 forecasts came out before the September decline. They are the publishers' opinions, not the dashboard's.",
       "big": true,
       "play": false,
       "figs": [
@@ -5452,105 +5859,29 @@
          "vi": "đóng cửa cuối tháng 9/2026",
          "en": "end-Sep 2026 close"
         }
-       }
-      ],
-      "src": "story_map invest iv-st-market headline"
-     },
-     {
-      "tab": "invest",
-      "chap": "iv-st-market",
-      "target": "#iv-st-vni",
-      "k": {
-       "vi": "ĐẦU TƯ · AI DỰ BÁO",
-       "en": "INVESTING · WHOSE FORECASTS"
-      },
-      "vi": "Cả 6 trên 6 dự báo đều được công bố trước ngày 1 tháng Chín năm 2026, tức trước đợt giảm của tháng Chín. Đó là ý kiến của các tổ chức công bố, không phải của dashboard.",
-      "en": "All 6 of the 6 forecasts were published before September 1, 2026, that is, before the September decline. They are the publishers' opinions, not the dashboard's.",
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "6 / 6",
-         "en": "6 / 6"
-        },
-        "l": {
-         "vi": "dự báo công bố trước 1/9/2026",
-         "en": "forecasts published before Sep 1, 2026"
-        }
        },
        {
         "v": {
-         "vi": "1/9/2026",
-         "en": "Sep 1, 2026"
+         "vi": "6 dự báo",
+         "en": "6 forecasts"
         },
         "l": {
-         "vi": "trước đợt giảm tháng 9",
-         "en": "before the September decline"
+         "vi": "công bố trước 1/9/2026",
+         "en": "published before 1 Sep 2026"
         }
        }
       ],
-      "src": "story_map invest iv-st-market note"
-     },
-     {
-      "tab": "invest",
-      "chap": "iv-st-market",
-      "target": "#iv-st-kreason",
-      "k": {
-       "vi": "ĐẦU TƯ · RỦI RO ĐƯỢC NÊU",
-       "en": "INVESTING · RISKS CITED"
-      },
-      "vi": "Các rủi ro được nêu: khối ngoại bán ròng kỷ lục, thanh khoản thấp nhất 19 tháng, dư nợ ký quỹ kỷ lục. Bạn có biết? VN-Index là chỉ số giá, không tính cổ tức.",
-      "en": "Risks cited: record foreign net selling, the lowest liquidity in 19 months, record margin debt. Did you know? The VN-Index is a price index, without dividends.",
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "19 tháng",
-         "en": "19 months"
-        },
-        "l": {
-         "vi": "thanh khoản thấp nhất",
-         "en": "lowest liquidity"
-        }
-       }
-      ],
-      "src": "invest_research.json market risks (rendered iv-st-kreason)"
-     },
-     {
-      "tab": "invest",
-      "chap": "iv-st-stocks",
-      "k": {
-       "vi": "ĐẦU TƯ · BỐN MÃ",
-       "en": "INVESTING · FOUR STOCKS"
-      },
-      "vi": "Bốn mã trong danh sách theo dõi, mỗi mã có giá mục tiêu 12 tháng do các công ty chứng khoán công bố, kèm luận điểm ủng hộ và rủi ro. Dashboard trình bày, không khuyến nghị mua hay bán.",
-      "en": "Four stocks on the watchlist, each with 12-month target prices published by brokers, alongside the supporting points and the risks. The dashboard lays them out; it does not recommend buying or selling.",
-      "big": true,
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "12 tháng",
-         "en": "12 months"
-        },
-        "l": {
-         "vi": "kỳ hạn giá mục tiêu",
-         "en": "target-price horizon"
-        }
-       }
-      ],
-      "src": "story_map invest iv-st-stocks headline and dek"
+      "src": "story_map invest iv-st-market headline and note"
      },
      {
       "tab": "invest",
       "chap": "iv-st-cal",
       "k": {
-       "vi": "ĐẦU TƯ · LỊCH SỰ KIỆN",
-       "en": "INVESTING · CALENDAR"
+       "vi": "CHỨNG KHOÁN · CẦN THEO DÕI",
+       "en": "STOCK MARKET · WHAT TO WATCH"
       },
-      "vi": "Phần lớn sự kiện trong lịch thuộc tháng Mười, nay đã qua hoặc đang khép lại. Mốc kế tiếp: ngày 3 tháng Mười Một, Cục Thống kê công bố số liệu tháng Mười; và ngày 31 tháng Mười Hai, các dự báo VN-Index cuối năm sẽ gặp con số thực tế.",
-      "en": "Most events in the calendar fall in October and have passed or are wrapping up. Next markers: on November 3, the statistics office releases October data; and on December 31, the year-end VN-Index forecasts meet the actual figure.",
-      "big": true,
+      "vi": "Cần theo dõi: ngày 3 tháng Mười Một, Cục Thống kê công bố số liệu tháng Mười. Ngày 31 tháng Mười Hai, các dự báo VN-Index cuối năm sẽ gặp con số thực tế. Và ngày 22 tháng Ba năm 2027, đợt giải ngân thứ hai của FTSE.",
+      "en": "What to watch: on November 3, the statistics office releases October data. On December 31, the year-end VN-Index forecasts meet the actual figure. And on March 22, 2027, FTSE's second tranche of inflows.",
       "play": false,
       "figs": [
        {
@@ -5559,8 +5890,8 @@
          "en": "Nov 3, 2026"
         },
         "l": {
-         "vi": "Cục Thống kê công bố số liệu",
-         "en": "statistics office release"
+         "vi": "Cục Thống kê công bố số liệu tháng 10",
+         "en": "statistics office, October data"
         }
        },
        {
@@ -5572,34 +5903,19 @@
          "vi": "đối chiếu dự báo cuối năm",
          "en": "year-end forecasts tested"
         }
-       }
-      ],
-      "src": "rendered iv-st-cal (October items); data/invest_macro.json _meta (next NSO release 03/11/2026); story_map iv-st-market (year-end forecasts)"
-     },
-     {
-      "tab": "invest",
-      "chap": "iv-st-explore",
-      "k": {
-       "vi": "ĐẦU TƯ · CÔNG CỤ",
-       "en": "INVESTING · THE TOOL"
-      },
-      "vi": "Cuối cùng là công cụ: chọn tối đa 4 mã, thời gian nắm giữ và ngưỡng thắng, rồi xem mỗi tín hiệu đã đúng bao nhiêu lần trong quá khứ. Quá khứ không bảo đảm tương lai.",
-      "en": "Finally, the tool: pick up to 4 stocks, a holding period and a win threshold, and see how often each signal delivered in the past. The past does not guarantee the future.",
-      "big": true,
-      "play": false,
-      "figs": [
+       },
        {
         "v": {
-         "vi": "4",
-         "en": "4"
+         "vi": "22/3/2027",
+         "en": "Mar 22, 2027"
         },
         "l": {
-         "vi": "số mã tối đa",
-         "en": "maximum stocks"
+         "vi": "FTSE giải ngân đợt 2",
+         "en": "FTSE second tranche"
         }
        }
       ],
-      "src": "story_map invest iv-st-explore dek"
+      "src": "data/invest_macro.json _meta (next NSO release 03/11/2026); story_map iv-st-market; invest_research.json _market events (22/03/2027 FTSE đợt 2)"
      }
     ]
    },

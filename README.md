@@ -128,11 +128,11 @@ Each tab's data lives in one JSON file owned by one agent; top-level keys are th
 | `data/society.json` | Society | `SOC_PROV_DATA`, `POP_SERIES`, `SOC_GRDP`, `WORLD_RANK`, `PROV_PREV`, `RELIGION` |
 | `data/policy.json` | Policy | `POLICY` (also `/api/rates`) |
 | `data/finance.json` | Finance | `FINSYS` (also `/api/rates`, `/api/banks` loans, `/api/banks/bs_history` via `listed_banks_latest`) |
-| `data/invest_macro.json` | Economy | `MACRO` for the Đầu tư tab, read by `invest.py` at call time (in-file fallback) |
+| `data/invest_macro.json` | Economy | `MACRO` for the Stock Market tab (Thị trường chứng khoán, formerly Đầu tư), read by `invest.py` at call time (in-file fallback) |
 | `strategy_directives.json` | Strategy | `/api/strategy` |
 | `data/simulation.json` | Finance | `SIM` (Mô phỏng tab) |
 | `data/geopolitics.json` | Geopolitics | `GEOPOL` (Địa chính trị tab) |
-| `data/industries.json` | Investing | `IND_ICB` (ICB industry cards, Đầu tư · Thị trường; rebuilt with vnstock by `tools/build/industries_vnstock.py`) |
+| `data/industries.json` | Investing | `IND_ICB` (ICB industry cards, price history, the industry race and revenue/profit/assets by industry — Stock Market tab; fundamentals rebuilt by `tools/build/industries_fundamentals.py`; rebuilt with vnstock by `tools/build/industries_vnstock.py`) |
 | `data/narration.json` | Narrator | `NARRATION` (film scripts) |
 | `data/research/*` | Research | inventory, release calendar, source log, plans — ops files, served by `/api/freshness`, not embedded |
 | `data/banks_vnstock.json` | server (vnstock) | `/api/banks`, `/api/banks/universe`, `/api/banks/bs_history` (built by `tools/build/banks_vnstock.py`) |
@@ -159,7 +159,7 @@ Agent definitions live in `.claude/agents/`:
 - **Society** (`society.md`) — Xã hội tab: population, provinces, GRDP, world ranks, religion → `data/society.json`
 - **Policy** (`policy.md`) — Chính sách chapters (sub-tab 3 of the Hệ thống tài chính tab since 2026-11-01): monetary/fiscal instrument registry → `data/policy.json`
 - **Finance** (`finance.md`) — Hệ thống tài chính tab: money, credit, banks, rates, weekly markets; Mô phỏng (Simulation) model → `data/finance.json`, `data/simulation.json`
-- **Investing** (`investing.md`) — Đầu tư tab: macro context and descriptive notes on the focus list (never investment advice) → `data/invest_macro.json`
+- **Investing** (`investing.md`) — Stock Market tab (Thị trường chứng khoán): industries (cards, history, race, fundamentals), macro context and descriptive notes on the focus list (never investment advice) → `data/invest_macro.json`
 - **Geopolitics** (`geopolitics.md`) — Địa chính trị tab: the US, China, the Middle East and Russia — what is happening, why, and what it means for Vietnam's interests, with Vietnam's options; reads Ground News (in the user's Chrome when run locally with `claude --chrome`) and official sources → `data/geopolitics.json`
 - **Research** (`research.md`) — update planning, release calendar, consistency checks → `data/research/`
 - **Ed** (`ed.md`) — chief editor: story layer, design and the published page (no data ownership)

@@ -945,15 +945,20 @@
    "chapters": [
     {
      "chap": "iv-st-hero",
-     "kicker": "Đầu tư · khung sàng lọc — không phải khuyến nghị",
+     "kicker": "Thị trường chứng khoán · theo ngành — chỉ mô tả, không phải khuyến nghị",
      "headline": "",
-     "dek": "Mỗi mã cần khối lượng khớp ≥ 100.000 cp/phiên và vốn điều lệ ≥ 5.000 tỷ; một tín hiệu chỉ được tính khi trong lịch sử của chính mã đó nó đúng ít nhất 80% số lần. Trang này trình bày bối cảnh và các luận điểm đã công bố, cả ủng hộ lẫn rủi ro.",
+     "dek": "1.518 mã trên HOSE, HNX và UPCoM, chia thành 19 ngành. Từ đầu năm đến 30/10/2026: toàn thị trường +0,3%, VN-Index -2,4%; 8 ngành tăng, 11 ngành giảm. Bảng màu bên dưới cho thấy từng ngành đã đi thế nào qua mỗi năm kể từ 2019.",
      "notes": [],
      "charts": [
       {
-       "target": "#iv-st-gdp",
-       "caption": "Tăng trưởng GDP theo quý, 2024–2026",
-       "timeline": true
+       "target": "#iv-st-mline",
+       "caption": "Toàn thị trường và VN-Index theo tháng",
+       "timeline": false
+      },
+      {
+       "target": "#iv-st-heat",
+       "caption": "Lợi suất từng năm theo ngành",
+       "timeline": false
       }
      ]
     }
@@ -961,31 +966,113 @@
   },
   {
    "subtab": 1,
-   "subtab_id": "iv-g-mkt",
-   "label": "1 · Vĩ mô & thị trường",
+   "subtab_id": "iv-st-ind",
+   "label": "1 · Các ngành hôm nay",
    "chapters": [
     {
-     "chap": "iv-st-macro",
-     "kicker": "Chương 1 · Bối cảnh vĩ mô",
-     "headline": "GDP 9 tháng tăng 9,01%; quý 4 cần khoảng 12,5% để cả năm đạt 10%",
-     "dek": "Phía cầu, chín tháng 2026: tăng so cùng kỳ của từng thành phần.",
+     "chap": "iv-st-ind",
+     "kicker": "Chương 1 · Các ngành hôm nay",
+     "headline": "19 ngành: 8 ngành tăng từ đầu năm, mạnh nhất là Dầu khí (+34,9%)",
+     "dek": "Phân loại ngành ICB cấp 2 như vnstock (nguồn Vietcap). Mỗi thẻ: quy mô, biến động giá, định giá, khả năng sinh lời và tăng trưởng, sở hữu nước ngoài và ba mã lớn nhất. Số liệu ngày 30/10/2026. Chỉ mô tả, không phải khuyến nghị đầu tư.",
      "notes": [],
      "charts": [
       {
+       "target": "#iv-st-indg",
+       "caption": "Thẻ từng ngành",
+       "timeline": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "subtab": 2,
+   "subtab_id": "iv-st-race",
+   "label": "2 · Cuộc đua các ngành",
+   "chapters": [
+    {
+     "chap": "iv-st-race",
+     "kicker": "Chương 2 · Cuộc đua các ngành",
+     "headline": "Các ngành đổi ngôi qua từng năm, 2018–2026",
+     "dek": "Bấm ▶ để xem các ngành xếp lại hạng theo năm. Chọn thước đo: vốn hoá, lợi suất, chỉ số tích luỹ, theo tháng, doanh thu, lợi nhuận, tổng tài sản. Kéo thanh thời gian để dừng ở một năm.",
+     "notes": [
+      "Cách tính và lưu ý về dữ liệuChỉ số giá ngành tự tính, gia quyền vốn hóa, theo các mã niêm yết HIỆN NAY (HOSE/HNX/UPCoM, phân ngành ICB cấp 2 của Vietcap). Giá: giá đóng cửa điều chỉnh hằng ngày của Vietcap (chart gap-chart; cùng nguồn vnstock Quote VCI) tại phiên cuối mỗi năm (năm 2026 = phiên 2026"
+     ],
+     "charts": [
+      {
+       "target": "#iv-st-indyr",
+       "caption": "",
+       "timeline": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "subtab": 3,
+   "subtab_id": "iv-st-fund",
+   "label": "3 · Doanh thu, lợi nhuận, tài sản",
+   "chapters": [
+    {
+     "chap": "iv-st-fund",
+     "kicker": "Chương 3 · Doanh thu, lợi nhuận, tài sản",
+     "headline": "Các công ty niêm yết lãi 698 nghìn tỷ đồng năm 2025, tăng 34% (cùng mẫu); riêng Ngân hàng chiếm 41%",
+     "dek": "Cộng báo cáo tài chính hợp nhất của các mã niêm yết hôm nay, theo ngành, 2018–2025 và 12 tháng gần nhất. Tổng toàn thị trường cộng trùng các tập đoàn có công ty con cũng niêm yết (VIC gồm VHM, VRE…), nên đọc như số mô tả. Chọn thước đo:",
+     "notes": [
+      "Cách tính và lưu ý về dữ liệuTổng hợp báo cáo tài chính theo ngành ICB cấp 2, gồm các mã đang niêm yết HÔM NAY trên HOSE/HNX/UPCoM (cùng danh sách và vốn hóa với IND_ICB.industries). Nguồn: báo cáo tài chính trên Vietcap IQ (số liệu VND, đổi sang tỷ đồng). Doanh thu: doanh thu thuần (DN thường); tổn"
+     ],
+     "charts": [
+      {
+       "target": "#iv-st-fmkt",
+       "caption": "Toàn thị trường · Lợi nhuận ròng, nghìn tỷ đồng",
+       "timeline": false
+      },
+      {
+       "target": "#iv-st-fshare",
+       "caption": "Ai làm ra lợi nhuận năm 2025: tỷ trọng từng ngành",
+       "timeline": false
+      },
+      {
+       "target": "#iv-st-fgrid",
+       "caption": "Từng ngành · Lợi nhuận ròng, 2018–2025 và 12 tháng gần nhất (xếp theo năm 2025)",
+       "timeline": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "subtab": 4,
+   "subtab_id": "iv-g-tools",
+   "label": "4 · Công cụ & bối cảnh",
+   "chapters": [
+    {
+     "chap": "iv-st-macro",
+     "kicker": "Bối cảnh · Vĩ mô",
+     "headline": "GDP 9 tháng tăng 9,01%; quý 4 cần khoảng 12,5% để cả năm đạt 10%",
+     "dek": "Tăng trưởng GDP theo quý so với mục tiêu 10%; bên dưới là phía cầu chín tháng 2026 (tăng so cùng kỳ của từng thành phần).",
+     "notes": [],
+     "charts": [
+      {
+       "target": "#iv-st-gdp",
+       "caption": "Tăng trưởng GDP theo quý, 2024–2026",
+       "timeline": true
+      },
+      {
        "target": "#iv-st-demand",
-       "caption": "Tăng trưởng phía cầu 9T/2026",
+       "caption": "Phía cầu",
        "timeline": false
       },
       {
        "target": "#iv-st-mreason",
-       "caption": "",
+       "caption": "Phía cầu",
        "timeline": false
       }
      ]
     },
     {
      "chap": "iv-st-market",
-     "kicker": "Chương 2 · Thị trường chung",
+     "kicker": "Bối cảnh · Dự báo VN-Index",
      "headline": "Dự báo VN-Index cuối năm 1.750–2.000 điểm; chỉ số đóng tháng 9 ở 1.769",
      "dek": "Mỗi chấm là một dự báo đã công bố; vạch đen là mức đóng cửa cuối tháng 9.",
      "notes": [
@@ -1003,39 +1090,18 @@
        "timeline": false
       }
      ]
-    }
-   ]
-  },
-  {
-   "subtab": 2,
-   "subtab_id": "iv-g-explore",
-   "label": "2 · Thị trường",
-   "chapters": [
+    },
     {
      "chap": "iv-st-stocks",
-     "kicker": "Thị trường · Bốn mã đang theo dõi",
+     "kicker": "Công cụ · Bốn mã đang theo dõi",
      "headline": "Giá mục tiêu, luận điểm ủng hộ và rủi ro của từng mã",
      "dek": "Chấm: giá mục tiêu 12 tháng do công ty chứng khoán công bố, thang đo riêng từng mã. Vạch đen: giá hiện tại, hiện khi đã chạy phân tích ở phần dưới.",
      "notes": [],
      "charts": []
     },
     {
-     "chap": "iv-st-ind",
-     "kicker": "Thị trường · Ngành (phân loại ICB)",
-     "headline": "19 ngành: 8 ngành tăng từ đầu năm, mạnh nhất là Dầu khí (+34,9%)",
-     "dek": "Phân loại ngành ICB cấp 2 như vnstock (nguồn Vietcap). Mỗi thẻ: quy mô, biến động giá, định giá, khả năng sinh lời và tăng trưởng, sở hữu nước ngoài và ba mã lớn nhất. Số liệu ngày 30/10/2026. Chỉ mô tả, không phải khuyến nghị đầu tư.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#iv-st-indg",
-       "caption": "Thẻ từng ngành",
-       "timeline": false
-      }
-     ]
-    },
-    {
      "chap": "iv-st-cal",
-     "kicker": "Thị trường · Lịch sự kiện",
+     "kicker": "Công cụ · Lịch sự kiện",
      "headline": "Các mốc đã được công bố trong dữ liệu nghiên cứu",
      "dek": "",
      "notes": [],
@@ -1043,7 +1109,7 @@
     },
     {
      "chap": "iv-st-explore",
-     "kicker": "Thị trường · Công cụ sàng lọc",
+     "kicker": "Công cụ · Sàng lọc",
      "headline": "Kiểm tra từng tín hiệu với dữ liệu giá của chính mã đó",
      "dek": "Chọn tối đa 4 mã, thời gian nắm giữ và ngưỡng \"thắng\"; hệ thống đếm tỷ lệ số lần tín hiệu (RSI quá bán, hai đáy, chu kỳ cuối năm, đầu tư công, tăng trưởng) cho kết quả đạt mục tiêu.",
      "notes": [],
