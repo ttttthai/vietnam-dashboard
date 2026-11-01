@@ -40,6 +40,7 @@ same schema from vnstock and additionally fills the fundamentals (P/E, P/B, ROE,
 from __future__ import annotations
 
 import argparse
+import bisect
 import calendar
 import json
 import os
@@ -254,20 +255,35 @@ HISTORY_BASIS = {
 
 def _cob(t: list[str], c: list, day: str):
     """Last close on/before day (t ascending ISO dates); None when no bar on/before day."""
-    lo, hi = 0, len(t)
-    while lo < hi:
-        mid = (lo + hi) // 2
-        if t[mid] <= day:
-            lo = mid + 1
-        else:
-            hi = mid
-    return c[lo - 1] if lo and c[lo - 1] else None
+    i = bisect.bisect_right(t, day) - 1
+    return c[i] if i >= 0 and c[i] else None
+
+
+FLIP_JUMP, FLIP_REVERT, FLIP_MAX = 1.5, 5, 3
+
+
+def _flip_windows(t: list[str], c: list) -> list[tuple[str, str]]:
+    """Feed artefacts: a daily move beyond ×1.5 / ÷1.5 that returns to within 1 % of the pre-jump close within
+    FLIP_REVERT sessions (seen on a few illiquid UPCoM series, e.g. DNN oscillating between two levels).
+    → [(first bad date, first good date again)]."""
+    out = []
+    for i in range(1, len(c) - 1):
+        a, b = c[i - 1], c[i]
+        if not a or not b or 1 / FLIP_JUMP <= b / a <= FLIP_JUMP:
+            continue
+        for k in range(i + 1, min(i + 1 + FLIP_REVERT, len(c))):
+            if c[k] and abs(c[k] / a - 1) < 0.01:
+                out.append((t[i], t[k]))
+                break
+    return out
 
 
 def history_block(stocks: list[dict], hist: dict, as_of: str, first_year: int = 2018, n_months: int = 24,
                   index_hist: dict | None = None) -> dict:
     """Pure function (no network). stocks: [{sym, icb, mcap (bn VND, today), ls (listed shares today)}];
-    hist: {sym: {t: [ISO dates ascending], c: [adjusted closes]}}; index_hist: {"VNINDEX": {t, c}}."""
+    hist: {sym: {t: [ISO dates ascending], c: [adjusted closes]}}; index_hist: {"VNINDEX": {t, c}}.
+    Data screen (skip, never repair): series with ≥ FLIP_MAX flips are dropped; a single checkpoint close that falls
+    inside a flip window is treated as missing for that checkpoint."""
     d = date.fromisoformat(as_of)
     years = list(range(first_year, d.year + 1))
     yend = [f"{y}-12-31" for y in years[:-1]] + [as_of]
@@ -278,14 +294,31 @@ def history_block(stocks: list[dict], hist: dict, as_of: str, first_year: int = 
         y, m = (y + 1, 1) if m == 12 else (y, m + 1)
     mend = [f"{x}-{calendar.monthrange(int(x[:4]), int(x[5:]))[1]:02d}" for x in months]
     mend[-1] = min(mend[-1], as_of)
-    mem_all = []
+    mem_all, dropped_series, dropped_closes = [], [], []
     for s in stocks:
         h = hist.get(s["sym"])
         if not s.get("mcap") or not s.get("ls") or not h or not h.get("t"):
-            mem_all.append({**s, "y": [None] * len(yend), "m": [None] * len(mend)})
+            mem_all.append({**s, "mcap": s.get("mcap") or 0, "y": [None] * len(yend), "m": [None] * len(mend)})
             continue
         t = [str(x)[:10] for x in h["t"]]
-        mem_all.append({**s, "y": [_cob(t, h["c"], x) for x in yend], "m": [_cob(t, h["c"], x) for x in mend]})
+        fw = _flip_windows(t, h["c"])
+        if len(fw) >= FLIP_MAX:
+            dropped_series.append({"ticker": s["sym"], "icb": s["icb"], "flips": len(fw),
+                                   "mcap_bn_vnd": round(s["mcap"])})
+            mem_all.append({**s, "y": [None] * len(yend), "m": [None] * len(mend)})
+            continue
+
+        def get(day, t=t, c=h["c"], fw=fw, sym=s["sym"]):
+            i = bisect.bisect_right(t, day) - 1           # bar actually used for this checkpoint
+            if i < 0 or not c[i]:
+                return None
+            if any(a <= t[i] < b for a, b in fw):
+                rec = {"ticker": sym, "checkpoint": day, "bar": t[i]}
+                if rec not in dropped_closes:
+                    dropped_closes.append(rec)
+                return None
+            return c[i]
+        mem_all.append({**s, "y": [get(x) for x in yend], "m": [get(x) for x in mend]})
 
     def series(mem, key, nper, full=True):
         cap_now = sum(r["mcap"] or 0 for r in mem)
@@ -311,7 +344,8 @@ def history_block(stocks: list[dict], hist: dict, as_of: str, first_year: int = 
         idx = [None if v is None else round(v, 2) for v in idx]
         if not full:
             return idx
-        return {"index": idx, "ret_pct": ret, "mcap_bn_vnd": mc, "n_with_data": n, "cap_coverage_pct": cov}
+        return {"index": idx, "ret_pct": ret, "mcap_bn_vnd": mc, "n_with_data": n, "cap_coverage_pct": cov,
+                "low_coverage_years": [years[k] for k, v in enumerate(cov) if v is not None and v < 60]}
 
     codes = sorted({r["icb"] for r in mem_all})
     by_icb = {c: series([r for r in mem_all if r["icb"] == c], "y", len(years)) for c in codes}
@@ -319,11 +353,24 @@ def history_block(stocks: list[dict], hist: dict, as_of: str, first_year: int = 
     vh = (index_hist or {}).get("VNINDEX")
     vt = [str(x)[:10] for x in vh["t"]] if vh else []
     market["vnindex"] = [_cob(vt, vh["c"], x) for x in yend] if vh else [None] * len(yend)
+    vv = market["vnindex"]
+    market["vnindex_ret_pct"] = [None] + [round(100 * (b / a - 1), 2) if a and b else None for a, b in zip(vv, vv[1:])]
+    dd = f"{as_of[8:10]}/{as_of[5:7]}"
     return {
-        "years": years, "year_end_dates": yend, "ytd_year": years[-1], "basis_vi": HISTORY_BASIS["vi"].format(
+        "years": years, "year_end_dates": yend, "ytd_year": years[-1],
+        "labels_vi": [str(y) for y in years[:-1]] + [f"{years[-1]} (đến {dd})"],
+        "labels_en": [str(y) for y in years[:-1]] + [f"{years[-1]} YTD"],
+        "source": "Vietcap chart/OHLCChart/gap-chart adjusted daily closes (vnstock Quote(source='VCI').history); "
+                  "current listed shares and ICB codes as in IND_ICB.industries. vnindex = VN-Index close at each "
+                  "year-end (same feed); vnindex_ret_pct ≈ derived from those closes.",
+        "basis_vi": HISTORY_BASIS["vi"].format(
             first=first_year, last=years[-1], as_of=as_of),
         "basis_en": HISTORY_BASIS["en"].format(first=first_year, last=years[-1], as_of=as_of),
         "by_icb": by_icb, "market": market,
+        "data_screen": {"rule": f"daily move beyond ×{FLIP_JUMP} or ÷{FLIP_JUMP} that reverts to within 1% of the "
+                                f"prior close within {FLIP_REVERT} sessions = feed artefact; ≥{FLIP_MAX} such flips → "
+                                "series dropped; otherwise a year-/month-end close inside a flip is treated as missing",
+                        "series_dropped": dropped_series, "closes_dropped": dropped_closes},
         "monthly": {"months": months, "month_end_dates": mend, "base": f"100 = {months[0]} month-end",
                     "by_icb": {c: series([r for r in mem_all if r["icb"] == c], "m", len(months), False) for c in codes},
                     "market": series(mem_all, "m", len(months), False),
