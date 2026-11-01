@@ -945,15 +945,20 @@
    "chapters": [
     {
      "chap": "iv-st-hero",
-     "kicker": "Investing · a screening frame — not a recommendation",
+     "kicker": "The stock market · by industry — descriptive, not a recommendation",
      "headline": "",
-     "dek": "Each stock needs matched volume of at least 100,000 shares a session and charter capital of at least VND 5,000 bn; a signal only counts if it was right at least 80% of the time in that stock's own history. This page lays out the backdrop and the published arguments, for and against.",
+     "dek": "1,518 stocks on HOSE, HNX and UPCoM in 19 industries. Year to date (30 Oct 2026): the whole market +0.3%, VN-Index -2.4%; 8 industries up, 11 down. The grid below shows how each industry did in every year since 2019.",
      "notes": [],
      "charts": [
       {
-       "target": "#iv-st-gdp",
-       "caption": "GDP growth by quarter, 2024–2026",
-       "timeline": true
+       "target": "#iv-st-mline",
+       "caption": "Whole market and VN-Index by month",
+       "timeline": false
+      },
+      {
+       "target": "#iv-st-heat",
+       "caption": "Each industry, year by year",
+       "timeline": false
       }
      ]
     }
@@ -961,31 +966,113 @@
   },
   {
    "subtab": 1,
-   "subtab_id": "iv-g-mkt",
-   "label": "1 · Macro & market",
+   "subtab_id": "iv-st-ind",
+   "label": "1 · Industries today",
    "chapters": [
     {
-     "chap": "iv-st-macro",
-     "kicker": "Chapter 1 · The macro backdrop",
-     "headline": "GDP grew 9.01% in nine months; Q4 needs about 12.5% for a 10% year",
-     "dek": "Demand side, first nine months of 2026: year-on-year growth of each component.",
+     "chap": "iv-st-ind",
+     "kicker": "Chapter 1 · Industries today",
+     "headline": "19 industries: 8 up year to date, led by Oil & Gas (+34.9%)",
+     "dek": "ICB level-2 industries as vnstock classifies them (Vietcap data). Each card: size, price performance, valuation, profitability and growth, foreign ownership and the three largest stocks. Data as of 30 Oct 2026. Descriptive only, not investment advice.",
      "notes": [],
      "charts": [
       {
+       "target": "#iv-st-indg",
+       "caption": "Industry cards",
+       "timeline": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "subtab": 2,
+   "subtab_id": "iv-st-race",
+   "label": "2 · Industry race",
+   "chapters": [
+    {
+     "chap": "iv-st-race",
+     "kicker": "Chapter 2 · The industry race",
+     "headline": "How the industries changed places, 2018–2026",
+     "dek": "Press ▶ to watch the industries re-rank year by year. Choose a measure: market cap, return, cumulative index, monthly, revenue, profit, total assets. Drag the timeline to stop on a year.",
+     "notes": [
+      "Method and data caveatsSelf-computed cap-weighted industry price indices over TODAY's listed constituents (HOSE/HNX/UPCoM, Vietcap ICB level 2). Prices: Vietcap adjusted daily closes (chart gap-chart; the same feed as vnstock Quote VCI) on the last session of each year (2026 = session of 2026-10-30,"
+     ],
+     "charts": [
+      {
+       "target": "#iv-st-indyr",
+       "caption": "",
+       "timeline": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "subtab": 3,
+   "subtab_id": "iv-st-fund",
+   "label": "3 · Revenue, profit, assets",
+   "chapters": [
+    {
+     "chap": "iv-st-fund",
+     "kicker": "Chapter 3 · Revenue, profit, assets",
+     "headline": "Listed companies earned VND 698 trillion in 2025, up 34% like for like; Banks alone made 41% of it",
+     "dek": "Consolidated statements of today's listed companies, summed by industry, 2018–2025 and the latest twelve months. Market totals double-count groups whose subsidiaries are also listed (VIC includes VHM, VRE…), so read them as descriptive. Choose a measure:",
+     "notes": [
+      "Method and data caveatsFinancial statements aggregated by ICB level-2 industry over stocks listed TODAY on HOSE/HNX/UPCoM (same constituents and caps as IND_ICB.industries). Source: Vietcap IQ financial statements (VND, converted to bn VND). Revenue: net sales (corporates); total operating income (b"
+     ],
+     "charts": [
+      {
+       "target": "#iv-st-fmkt",
+       "caption": "Whole market · Net profit, VND trillion",
+       "timeline": false
+      },
+      {
+       "target": "#iv-st-fshare",
+       "caption": "Who made the profit in 2025: each industry's share",
+       "timeline": false
+      },
+      {
+       "target": "#iv-st-fgrid",
+       "caption": "Each industry · Net profit, 2018–2025 and the latest twelve months (sorted by 2025)",
+       "timeline": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "subtab": 4,
+   "subtab_id": "iv-g-tools",
+   "label": "4 · Tools & context",
+   "chapters": [
+    {
+     "chap": "iv-st-macro",
+     "kicker": "Context · The macro backdrop",
+     "headline": "GDP grew 9.01% in nine months; Q4 needs about 12.5% for a 10% year",
+     "dek": "Quarterly GDP growth against the 10% target; below, the demand side in the first nine months of 2026 (year-on-year growth of each component).",
+     "notes": [],
+     "charts": [
+      {
+       "target": "#iv-st-gdp",
+       "caption": "GDP growth by quarter, 2024–2026",
+       "timeline": true
+      },
+      {
        "target": "#iv-st-demand",
-       "caption": "Demand-side growth, 9M 2026",
+       "caption": "The demand side",
        "timeline": false
       },
       {
        "target": "#iv-st-mreason",
-       "caption": "",
+       "caption": "The demand side",
        "timeline": false
       }
      ]
     },
     {
      "chap": "iv-st-market",
-     "kicker": "Chapter 2 · The market",
+     "kicker": "Context · VN-Index forecasts",
      "headline": "Year-end VN-Index forecasts of 1,750–2,000; the index closed September at 1,769",
      "dek": "Each dot is a published forecast; the black mark is the end-September close.",
      "notes": [
@@ -1003,39 +1090,18 @@
        "timeline": false
       }
      ]
-    }
-   ]
-  },
-  {
-   "subtab": 2,
-   "subtab_id": "iv-g-explore",
-   "label": "2 · Market",
-   "chapters": [
+    },
     {
      "chap": "iv-st-stocks",
-     "kicker": "Market · The four on the watchlist",
+     "kicker": "Tools · The four on the watchlist",
      "headline": "Target prices, supporting points and risks for each stock",
      "dek": "Dots: 12-month target prices published by brokers, on each stock's own scale. Black mark: the current price, shown once the analysis below has run.",
      "notes": [],
      "charts": []
     },
     {
-     "chap": "iv-st-ind",
-     "kicker": "Market · Industries (ICB classification)",
-     "headline": "19 industries: 8 up year to date, led by Oil & Gas (+34.9%)",
-     "dek": "ICB level-2 industries as vnstock classifies them (Vietcap data). Each card: size, price performance, valuation, profitability and growth, foreign ownership and the three largest stocks. Data as of 30 Oct 2026. Descriptive only, not investment advice.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#iv-st-indg",
-       "caption": "Industry cards",
-       "timeline": false
-      }
-     ]
-    },
-    {
      "chap": "iv-st-cal",
-     "kicker": "Market · Event calendar",
+     "kicker": "Tools · Event calendar",
      "headline": "Dated events in the research data",
      "dek": "",
      "notes": [],
@@ -1043,7 +1109,7 @@
     },
     {
      "chap": "iv-st-explore",
-     "kicker": "Market · The screening tool",
+     "kicker": "Tools · The screening tool",
      "headline": "Test each signal against the stock's own price history",
      "dek": "Pick up to 4 stocks, a holding period and a \"win\" threshold; the tool counts how often each signal (RSI oversold, double bottom, year-end cycle, public investment, growth) delivered.",
      "notes": [],
