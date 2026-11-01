@@ -99,10 +99,12 @@ def _fetch(sym: str, sec: str, raw_dir: str, stats: dict) -> str:
     return f"ERR {last}"
 
 
-def pull(stocks_path: str, raw_dir: str, threads: int) -> None:
+def pull(stocks_path: str, raw_dir: str, threads: int, sections=SECTIONS, only=None) -> None:
     os.makedirs(raw_dir, exist_ok=True)
     syms = [r["sym"] for r in json.load(open(stocks_path, encoding="utf-8"))]
-    jobs = [(s, sec) for s in syms for sec in SECTIONS]
+    if only:
+        syms = [s for s in syms if s in set(only)]
+    jobs = [(s, sec) for s in syms for sec in sections]
     stats = collections.Counter()
     with cf.ThreadPoolExecutor(max(1, min(threads, 6))) as ex:
         futs = [ex.submit(_fetch, s, sec, raw_dir, stats) for s, sec in jobs]
@@ -689,6 +691,9 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("pull"); a.add_argument("--stocks", required=True); a.add_argument("--raw", required=True)
     a.add_argument("--threads", type=int, default=5)
+    a.add_argument("--sections", default=",".join(SECTIONS),
+                   help="comma list; CASH_FLOW is needed by `valuation` for div_yield_pct")
+    a.add_argument("--only", default=None, help="comma list of symbols (test pulls)")
     b = sub.add_parser("build"); b.add_argument("--stocks", required=True); b.add_argument("--raw", required=True)
     b.add_argument("--out", default=DEFAULT_OUT); b.add_argument("--ttm-min-cov", type=float, default=80.0)
     b.add_argument("--cross-checks", default=None, help="JSON file with published-figure comparisons to embed")
@@ -698,7 +703,8 @@ def main():
     v.add_argument("--out", default=DEFAULT_OUT); v.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     if args.cmd == "pull":
-        pull(args.stocks, args.raw, args.threads)
+        pull(args.stocks, args.raw, args.threads, tuple(args.sections.split(",")),
+             args.only.split(",") if args.only else None)
     elif args.cmd == "valuation":
         valuation(args.stocks, args.raw, args.out, args.dry_run)
     else:
