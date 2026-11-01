@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Narrator agent",
   "as_of": "2026-11-01",
-  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed's 28 Oct hold at 3.75–4.00% entered the dashboard data on 2026-11-01 and is narrated in the Fed scenes; next FOMC 8–9 Dec 2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration. 2026-11-01: Policies tab merged into Financial system; money scenes retargeted to tab banks and the money film appended to the banks film."
+  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed's 28 Oct hold at 3.75–4.00% entered the dashboard data on 2026-11-01 and is narrated in the Fed scenes; next FOMC 8–9 Dec 2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration. 2026-11-01: Policies tab merged into Financial system; money scenes retargeted to tab banks and the money film appended to the banks film. 2026-11-01: NA session close corrected to 21 Nov 2026 (phase 2 20–21 Nov; reserve 23 Nov)."
  },
  "NARRATION": {
   "films": {
@@ -858,15 +858,15 @@
        "vi": "CHÍNH TRỊ · ĐANG DIỄN RA",
        "en": "POLITICS · UNDER WAY NOW"
       },
-      "vi": "Ngay lúc này, Quốc hội đang họp kỳ thứ hai của nhiệm kỳ mới, đến ngày 20 tháng Mười Một. Dashboard theo dõi 15 dự thảo; 12 trong số đó được trình kỳ họp này, gồm Luật Đất đai, Luật Nhà ở và Luật Kinh doanh bất động sản sửa đổi.",
-      "en": "Right now the National Assembly is in the second session of its new term, which runs to November 20. The dashboard tracks 15 drafts; 12 of them go before this session, including amendments to the Land Law, the Housing Law and the Real Estate Business Law.",
+      "vi": "Ngay lúc này, Quốc hội đang họp kỳ thứ hai của nhiệm kỳ mới, đến ngày 21 tháng Mười Một. Dashboard theo dõi 15 dự thảo; 12 trong số đó được trình kỳ họp này, gồm Luật Đất đai, Luật Nhà ở và Luật Kinh doanh bất động sản sửa đổi.",
+      "en": "Right now the National Assembly is in the second session of its new term, which runs to November 21. The dashboard tracks 15 drafts; 12 of them go before this session, including amendments to the Land Law, the Housing Law and the Real Estate Business Law.",
       "big": true,
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "đến 20/11/2026",
-         "en": "to Nov 20, 2026"
+         "vi": "đến 21/11/2026",
+         "en": "to Nov 21, 2026"
         },
         "l": {
          "vi": "kỳ họp thứ hai, Quốc hội khóa 16",
@@ -894,7 +894,7 @@
         }
        }
       ],
-      "src": "story_map party pg-st-pipe headline (17/10–20/11/2026); rendered pg-st-watch (Land, Housing, Real Estate Business laws)"
+      "src": "story_map party pg-st-pipe headline (17/10–21/11/2026); rendered pg-st-watch (Land, Housing, Real Estate Business laws)"
      },
      {
       "tab": "banks",
@@ -1720,14 +1720,14 @@
        "vi": "ĐIỀU CẦN THEO DÕI · QUỐC HỘI",
        "en": "WHAT TO WATCH · THE ASSEMBLY"
       },
-      "vi": "Điều cần theo dõi. Trước hết, kỳ họp Quốc hội đang diễn ra đến ngày 20 tháng Mười Một, với ba luật sửa đổi về đất đai, nhà ở và kinh doanh bất động sản. Rồi tháng Mười Hai, mốc kế tiếp của nghị định hướng dẫn Luật Dầu khí.",
-      "en": "What to watch. First, the National Assembly session now under way, to November 20, with amendments to three laws on land, housing and real-estate business. Then in December, the next milestone for the decree implementing the Oil and Gas Law.",
+      "vi": "Điều cần theo dõi. Trước hết, kỳ họp Quốc hội đang diễn ra đến ngày 21 tháng Mười Một, với ba luật sửa đổi về đất đai, nhà ở và kinh doanh bất động sản. Rồi tháng Mười Hai, mốc kế tiếp của nghị định hướng dẫn Luật Dầu khí.",
+      "en": "What to watch. First, the National Assembly session now under way, to November 21, with amendments to three laws on land, housing and real-estate business. Then in December, the next milestone for the decree implementing the Oil and Gas Law.",
       "big": true,
       "figs": [
        {
         "v": {
-         "vi": "đến 20/11/2026",
-         "en": "to Nov 20, 2026"
+         "vi": "đến 21/11/2026",
+         "en": "to Nov 21, 2026"
         },
         "l": {
          "vi": "kỳ họp Quốc hội đang diễn ra",
@@ -1735,7 +1735,7 @@
         }
        }
       ],
-      "src": "rendered pg-st-watch (17/10–20/11/2026 session; Oil and Gas Law decree 2026-12)"
+      "src": "rendered pg-st-watch (17/10–21/11/2026 session; Oil and Gas Law decree 2026-12)"
      },
      {
       "tab": "banks",
@@ -3301,8 +3301,8 @@
        "vi": "CHÍNH TRỊ · ĐANG DIỄN RA",
        "en": "POLITICS · UNDER WAY NOW"
       },
-      "vi": "Ngay lúc này, Quốc hội đang họp. Kỳ họp thứ hai của Quốc hội khóa 16 kéo dài đến ngày 20 tháng Mười Một năm 2026; 12 trong 15 dự thảo dashboard theo dõi được trình kỳ họp này. Mỗi thanh nối mốc gần nhất của dự thảo với thời điểm dự kiến thông qua.",
-      "en": "Right now the National Assembly is sitting. The second session of the 16th National Assembly runs to November 20, 2026; 12 of the 15 drafts the dashboard tracks go before it. Each bar joins a draft's latest milestone to its expected passage.",
+      "vi": "Ngay lúc này, Quốc hội đang họp. Kỳ họp thứ hai của Quốc hội khóa 16 kéo dài đến ngày 21 tháng Mười Một năm 2026; 12 trong 15 dự thảo dashboard theo dõi được trình kỳ họp này. Mỗi thanh nối mốc gần nhất của dự thảo với thời điểm dự kiến thông qua.",
+      "en": "Right now the National Assembly is sitting. The second session of the 16th National Assembly runs to November 21, 2026; 12 of the 15 drafts the dashboard tracks go before it. Each bar joins a draft's latest milestone to its expected passage.",
       "big": true,
       "play": false,
       "figs": [
@@ -3312,14 +3312,14 @@
          "en": "2nd session · 16th Assembly"
         },
         "l": {
-         "vi": "Quốc hội, 17/10–20/11/2026",
-         "en": "National Assembly, Oct 17–Nov 20, 2026"
+         "vi": "Quốc hội, 17/10–21/11/2026",
+         "en": "National Assembly, Oct 17–Nov 21, 2026"
         }
        },
        {
         "v": {
-         "vi": "đến 20/11/2026",
-         "en": "to Nov 20, 2026"
+         "vi": "đến 21/11/2026",
+         "en": "to Nov 21, 2026"
         },
         "l": {
          "vi": "bế mạc dự kiến",
@@ -3888,14 +3888,14 @@
        "vi": "CHÍNH TRỊ · ĐIỀU CẦN THEO DÕI",
        "en": "POLITICS · WHAT TO WATCH"
       },
-      "vi": "Cần theo dõi: kỳ họp Quốc hội đang diễn ra đến ngày 20 tháng Mười Một, với Luật Đất đai, Luật Nhà ở và Luật Kinh doanh bất động sản sửa đổi. Và tháng Mười Hai năm 2026, mốc kế tiếp của nghị định hướng dẫn Luật Dầu khí.",
-      "en": "To watch: the National Assembly session under way to November 20, with amendments to the Land Law, the Housing Law and the Real Estate Business Law. And in December 2026, the next milestone for the decree implementing the Oil and Gas Law.",
+      "vi": "Cần theo dõi: kỳ họp Quốc hội đang diễn ra đến ngày 21 tháng Mười Một, với Luật Đất đai, Luật Nhà ở và Luật Kinh doanh bất động sản sửa đổi. Và tháng Mười Hai năm 2026, mốc kế tiếp của nghị định hướng dẫn Luật Dầu khí.",
+      "en": "To watch: the National Assembly session under way to November 21, with amendments to the Land Law, the Housing Law and the Real Estate Business Law. And in December 2026, the next milestone for the decree implementing the Oil and Gas Law.",
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "đến 20/11/2026",
-         "en": "to Nov 20, 2026"
+         "vi": "đến 21/11/2026",
+         "en": "to Nov 21, 2026"
         },
         "l": {
          "vi": "kỳ họp đang diễn ra",
@@ -5143,8 +5143,8 @@
        "vi": "CHÍNH SÁCH · ĐIỀU CẦN THEO DÕI",
        "en": "POLICY · WHAT TO WATCH"
       },
-      "vi": "Cần theo dõi: ngày 1 tháng Mười Một, Bộ Tài chính công bố đợt số liệu kế tiếp; kỳ họp Quốc hội đang diễn ra đến ngày 20 tháng Mười Một; ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi mới có hiệu lực; và ngày 31 tháng Mười Hai, mức giảm thuế giá trị gia tăng hết hạn.",
-      "en": "To watch: on November 1, the Finance Ministry's next data release; the National Assembly session under way to November 20; on December 1, the new loan-to-deposit cap takes effect; and on December 31, the VAT cut expires.",
+      "vi": "Cần theo dõi: ngày 1 tháng Mười Một, Bộ Tài chính công bố đợt số liệu kế tiếp; kỳ họp Quốc hội đang diễn ra đến ngày 21 tháng Mười Một; ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi mới có hiệu lực; và ngày 31 tháng Mười Hai, mức giảm thuế giá trị gia tăng hết hạn.",
+      "en": "To watch: on November 1, the Finance Ministry's next data release; the National Assembly session under way to November 21; on December 1, the new loan-to-deposit cap takes effect; and on December 31, the VAT cut expires.",
       "big": true,
       "play": false,
       "figs": [
@@ -5160,8 +5160,8 @@
        },
        {
         "v": {
-         "vi": "đến 20/11/2026",
-         "en": "to Nov 20, 2026"
+         "vi": "đến 21/11/2026",
+         "en": "to Nov 21, 2026"
         },
         "l": {
          "vi": "kỳ họp Quốc hội",
