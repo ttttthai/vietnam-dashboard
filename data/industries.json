@@ -1,0 +1,1230 @@
+{
+ "_meta": {
+  "owner": "Investing agent",
+  "as_of": "2026-10-30",
+  "built": "2026-11-01",
+  "builder": "built in the cloud sandbox from Vietcap trading endpoints directly (vnstock not installed there); rebuild on the Mac with tools/build/industries_vnstock.py",
+  "sources": [
+   {
+    "name": "Vietcap price/symbols/getAll (listing, icbCode2 — the classification vnstock Listing(VCI) uses)",
+    "url": "https://trading.vietcap.com.vn/api/price/symbols/getAll"
+   },
+   {
+    "name": "Vietcap price/symbols/getList (price board: close, listed shares, foreign room)",
+    "url": "https://trading.vietcap.com.vn/api/price/symbols/getList"
+   },
+   {
+    "name": "Vietcap chart/OHLCChart/gap-chart (adjusted daily closes; vnstock Quote(VCI).history)",
+    "url": "https://trading.vietcap.com.vn/api/chart/OHLCChart/gap-chart"
+   },
+   {
+    "name": "Vietcap market-watch/AllocatedICB/getAllocated (Vietcap ICB sector aggregates; cross-check)",
+    "url": "https://trading.vietcap.com.vn/api/market-watch/AllocatedICB/getAllocated"
+   },
+   {
+    "name": "CafeF — Techcombank 50% stock dividend record date",
+    "url": "https://cafef.vn/techcombank-chot-ngay-chia-co-tuc-ty-le-50-188261020112625617.chn"
+   },
+   {
+    "name": "CafeF — PNJ explains five limit-down sessions",
+    "url": "https://cafef.vn/pnj-neu-ly-do-khien-co-phieu-giam-san-5-phien-lien-tiep-188261003210906538.chn"
+   }
+  ],
+  "method": "ICB level 2 (Vietcap icbCode2, 19 industries) for every type=STOCK symbol on HOSE, HNX and UPCoM (1,518 stocks; 0 without a code). Prices of 2026-10-30 (last session before as-of). Field methods in IND_ICB.basis.fields.",
+  "unavailable_here": [
+   "Vietcap GraphQL (data-mt/graphql ListIcbCode / CompaniesListingInfo) returned {} — ICB names are Vietcap's level-2 labels as used elsewhere in the dashboard (invest.py ICB_NAMES), not re-read from ListIcbCode",
+   "iq.vietcap.com.vn (fundamentals) — proxy 403",
+   "SSI, TCBS (upstream block), VNDirect finfo, Vietstock, CafeF, HOSE/HNX sites — not reachable from the sandbox"
+  ],
+  "cross_checks": {
+   "vnindex_2026_10_30": {
+    "chart": 1741.62,
+    "data/finance.json FINSYS.market_6m": 1741.62,
+    "match": true
+   },
+   "vnindex_ytd_pct": {
+    "value": -2.4,
+    "method": "1741.62 ÷ 1784.49 (2025-12-31 close, Vietcap chart) − 1"
+   },
+   "market_cap_weighted_ytd_pct": {
+    "value": 0.36,
+    "note": "all constituents with a 2025-12-31 close (98.1% of cap); differs from VN-Index (HOSE only, index methodology)"
+   },
+   "exchange_caps_vs_vci_icb": {
+    "HOSE": [
+     8263280,
+     8425267
+    ],
+    "HNX": [
+     443401,
+     443401
+    ],
+    "UPCoM": [
+     1281825,
+     1281825
+    ],
+    "note": "[this file, Vietcap AllocatedICB ONE_DAY] bn VND; HOSE gap = banks (TCB pending shares and others) + Industrial Goods + Real Estate"
+   }
+  },
+  "disclaimer": "Thông tin mang tính mô tả, không phải khuyến nghị đầu tư. / Descriptive information only, not investment advice."
+ },
+ "IND_ICB": {
+  "as_of": "2026-10-30",
+  "level": 2,
+  "exchanges": [
+   "HOSE",
+   "HNX",
+   "UPCoM"
+  ],
+  "return_bases": {
+   "ytd": "2025-12-31",
+   "1m": "2026-09-30"
+  },
+  "basis": {
+   "classification": "ICB level 2 as served by Vietcap (vnstock Listing(source='VCI'))",
+   "weighting": "cap-weighted for every aggregate; no medians",
+   "units": "bn VND; returns and shares in %",
+   "fields": {
+    "n_listed": "Count of type=STOCK symbols on HSX/HNX/UPCOM with this icbCode2 in Vietcap price/symbols/getAll (delisted excluded; suspended/restricted included).",
+    "mcap_bn_vnd": "Σ close × listed shares from Vietcap price/symbols/getList (match price on 2026-10-30; reference price when no trade), bn VND. Understated where a stock is ex-rights with new shares not yet listed (e.g. TCB, 50% stock dividend, ex-date 2026-10-29).",
+    "mcap_share_pct": "mcap_bn_vnd ÷ market.mcap_bn_vnd (all 1,518 stocks), %.",
+    "mcap_bn_vnd_vci": "Cross-check: Vietcap's own ICB aggregate (market-watch/AllocatedICB/getAllocated, ONE_DAY, totalMarketCap + totalPriceChange, summed over HOSE+HNX+UPCOM groups). Higher than mcap_bn_vnd for Banks (+138.7 tn) and Industrial Goods (+12.1 tn): Vietcap appears to count shares not yet on the board.",
+    "ret_1m_pct": "Cap-weighted from constituents: Σ(listed shares × close 2026-10-30) ÷ Σ(listed shares × adjusted close on the last session on/before 2026-09-30) − 1; adjusted daily closes from Vietcap chart/OHLCChart/gap-chart; current share counts used for weights; stocks without a base close (new listings) excluded — see ret_coverage_pct (share of industry cap included).",
+    "ret_ytd_pct": "As ret_1m_pct with base = last session of 2025 (2025-12-31).",
+    "ret_1m_pct_vci / ret_ytd_pct_vci": "Cross-check: Vietcap's ICB change % (AllocatedICB, group ALL, timeFrames ONE_MONTH / YTD; cap-weighted Σ price change ÷ Σ base cap). Vietcap does not document the ONE_MONTH base date; its ICB figures are within ~3 pp of ret_* for every industry.",
+    "foreign_own_pct": "≈ derived, not an ownership disclosure: Σ (totalRoom − currentRoom) × price ÷ Σ cap over constituents with foreign-room data on the Vietcap board (2026-10-30). Room data can lag corporate actions. Null when room data cover < 50% of industry cap (foreign_coverage_pct).",
+    "top": "3 largest constituents by mcap_bn_vnd; ret_ytd_pct per stock = adjusted close 2026-10-30 ÷ 2025-12-31 − 1 (null for 2026 listings).",
+    "top1_share_pct": "Largest constituent's share of the industry's mcap_bn_vnd, %.",
+    "pe, pb, div_yield_pct, roe_pct": "null in this build: company fundamentals come from Vietcap iq.vietcap.com.vn (vnstock Finance source VCI), which is blocked from the cloud sandbox; no sourced per-ICB valuation was found in reachable pages. tools/build/industries_vnstock.py fills them on the Mac: P/E = Σcap ÷ Σ(cap/PE), P/B = Σcap ÷ Σ(cap/PB), ROE = aggregate earnings ÷ aggregate book, dividend yield cap-weighted, over the largest 25 stocks per industry (coverage written).",
+    "rev_yoy_pct, npat_yoy_pct, growth_quarter": "null in this build (same reason). Q3-2026 reports were still arriving (press counted 537 companies by 26 Oct 2026); sector tallies in the press use broker groupings, not ICB, and are mostly forecasts. The Mac builder aggregates Σ latest quarter ÷ Σ same quarter a year earlier over stocks reporting both (quarter = latest one reported by ≥ 50% of sample cap).",
+    "note_vi / note_en": "Descriptive one-liners written by the Investing agent from this file's figures (note_src = URL when a press/disclosure fact is used). Not advice."
+   }
+  },
+  "industries": [
+   {
+    "icb": "8600",
+    "name_vi": "Bất động sản",
+    "name_en": "Real Estate",
+    "n_listed": 127,
+    "n_by_exchange": {
+     "HOSE": 58,
+     "HNX": 21,
+     "UPCoM": 48
+    },
+    "mcap_bn_vnd": 2947220,
+    "mcap_share_pct": 29.51,
+    "mcap_bn_vnd_vci": 2955856,
+    "ret_1m_pct": 1.13,
+    "ret_ytd_pct": 17.91,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 100.0
+    },
+    "ret_1m_pct_vci": 3.45,
+    "ret_ytd_pct_vci": 14.65,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 4.1,
+    "foreign_coverage_pct": 98.6,
+    "top1_share_pct": 63.5,
+    "top": [
+     {
+      "ticker": "VIC",
+      "name": "VinGroup",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 1870687,
+      "ret_ytd_pct": 42.1
+     },
+     {
+      "ticker": "VHM",
+      "name": "Vinhomes",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 517534,
+      "ret_ytd_pct": 5.52
+     },
+     {
+      "ticker": "KSF",
+      "name": "Tập đoàn Sunshine",
+      "exchange": "HNX",
+      "mcap_bn_vnd": 63705,
+      "ret_ytd_pct": 6.47
+     }
+    ],
+    "note_vi": "VIC chiếm ~63% vốn hóa ngành; VIC +42,1% từ đầu năm so với VHM +5,5% — mức +17,9% của ngành chủ yếu đến từ VIC.",
+    "note_en": "VIC is ~63% of the industry's cap; VIC +42.1% YTD vs VHM +5.5% — the industry's +17.9% YTD comes mostly from VIC.",
+    "note_src": null
+   },
+   {
+    "icb": "8300",
+    "name_vi": "Ngân hàng",
+    "name_en": "Banks",
+    "n_listed": 28,
+    "n_by_exchange": {
+     "HOSE": 22,
+     "HNX": 2,
+     "UPCoM": 4
+    },
+    "mcap_bn_vnd": 2473615,
+    "mcap_share_pct": 24.76,
+    "mcap_bn_vnd_vci": 2612307,
+    "ret_1m_pct": -3.2,
+    "ret_ytd_pct": -3.33,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 99.7
+    },
+    "ret_1m_pct_vci": -2.27,
+    "ret_ytd_pct_vci": -2.53,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 16.8,
+    "foreign_coverage_pct": 100.0,
+    "top1_share_pct": 19.0,
+    "top": [
+     {
+      "ticker": "VCB",
+      "name": "Vietcombank",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 470425,
+      "ret_ytd_pct": -1.27
+     },
+     {
+      "ticker": "BID",
+      "name": "BIDV",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 259793,
+      "ret_ytd_pct": -7.2
+     },
+     {
+      "ticker": "CTG",
+      "name": "VietinBank",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 235338,
+      "ret_ytd_pct": -13.94
+     }
+    ],
+    "note_vi": "28 ngân hàng niêm yết; 3 NHTM Nhà nước (VCB, BID, CTG) chiếm ~39% vốn hóa ngành. TCB giao dịch không hưởng quyền cổ tức cổ phiếu 50% ngày 29/10/2026, cổ phiếu mới chưa niêm yết nên vốn hóa theo bảng giá thấp hơn thực tế.",
+    "note_en": "28 listed banks; the three state-owned banks (VCB, BID, CTG) are ~39% of the industry's cap. TCB went ex-rights for a 50% stock dividend on 29 Oct 2026; the new shares are not yet listed, so board-based cap is understated.",
+    "note_src": "https://cafef.vn/techcombank-chot-ngay-chia-co-tuc-ty-le-50-188261020112625617.chn"
+   },
+   {
+    "icb": "3500",
+    "name_vi": "Thực phẩm và đồ uống",
+    "name_en": "Food & Beverage",
+    "n_listed": 142,
+    "n_by_exchange": {
+     "HOSE": 34,
+     "HNX": 18,
+     "UPCoM": 90
+    },
+    "mcap_bn_vnd": 707262,
+    "mcap_share_pct": 7.08,
+    "mcap_bn_vnd_vci": 707589,
+    "ret_1m_pct": -1.5,
+    "ret_ytd_pct": -11.34,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 98.7
+    },
+    "ret_1m_pct_vci": -1.94,
+    "ret_ytd_pct_vci": -10.59,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 24.6,
+    "foreign_coverage_pct": 93.9,
+    "top1_share_pct": 25.0,
+    "top": [
+     {
+      "ticker": "MCH",
+      "name": "Hàng Tiêu Dùng MaSan",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 176500,
+      "ret_ytd_pct": -24.16
+     },
+     {
+      "ticker": "VNM",
+      "name": "VINAMILK",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 118918,
+      "ret_ytd_pct": -3.98
+     },
+     {
+      "ticker": "MSN",
+      "name": "Tập đoàn Masan",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 102226,
+      "ret_ytd_pct": -9.09
+     }
+    ],
+    "note_vi": "Ngành phân tán (142 mã); MCH, VNM, MSN chiếm ~56% vốn hóa; MCH −24,2% từ đầu năm là yếu tố kéo ngành nhiều nhất.",
+    "note_en": "Fragmented (142 stocks); MCH, VNM and MSN are ~56% of cap; MCH −24.2% YTD is the largest drag on the industry.",
+    "note_src": null
+   },
+   {
+    "icb": "2700",
+    "name_vi": "Hàng & Dịch vụ công nghiệp",
+    "name_en": "Industrial Goods & Services",
+    "n_listed": 248,
+    "n_by_exchange": {
+     "HOSE": 41,
+     "HNX": 58,
+     "UPCoM": 149
+    },
+    "mcap_bn_vnd": 531079,
+    "mcap_share_pct": 5.32,
+    "mcap_bn_vnd_vci": 543189,
+    "ret_1m_pct": -3.52,
+    "ret_ytd_pct": -10.77,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 99.6
+    },
+    "ret_1m_pct_vci": -2.8,
+    "ret_ytd_pct_vci": -8.74,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 7.3,
+    "foreign_coverage_pct": 67.1,
+    "top1_share_pct": 26.8,
+    "top": [
+     {
+      "ticker": "ACV",
+      "name": "Cảng Hàng không VN",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 142218,
+      "ret_ytd_pct": -18.81
+     },
+     {
+      "ticker": "MVN",
+      "name": "TCT Hàng hải Việt Nam",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 75397,
+      "ret_ytd_pct": 35.93
+     },
+     {
+      "ticker": "VEA",
+      "name": "Máy động lực và Máy NN",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 49564,
+      "ret_ytd_pct": 9.06
+     }
+    ],
+    "note_vi": "Gồm cảng hàng không, hàng hải, logistics, máy móc (248 mã, nhiều mã UPCoM); ACV −18,8% từ đầu năm trong khi MVN +35,9%.",
+    "note_en": "Airports, shipping, logistics and machinery (248 stocks, many on UPCoM); ACV −18.8% YTD while MVN +35.9%.",
+    "note_src": null
+   },
+   {
+    "icb": "8700",
+    "name_vi": "Dịch vụ tài chính",
+    "name_en": "Financial Services",
+    "n_listed": 49,
+    "n_by_exchange": {
+     "HOSE": 22,
+     "HNX": 12,
+     "UPCoM": 15
+    },
+    "mcap_bn_vnd": 525059,
+    "mcap_share_pct": 5.26,
+    "mcap_bn_vnd_vci": 525384,
+    "ret_1m_pct": -5.18,
+    "ret_ytd_pct": -17.84,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 93.4
+    },
+    "ret_1m_pct_vci": -4.59,
+    "ret_ytd_pct_vci": -14.92,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 12.8,
+    "foreign_coverage_pct": 100.0,
+    "top1_share_pct": 17.4,
+    "top": [
+     {
+      "ticker": "TCX",
+      "name": "Chứng khoán TCBS",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 91557,
+      "ret_ytd_pct": -14.87
+     },
+     {
+      "ticker": "VCK",
+      "name": "Chứng Khoán VPS",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 65743,
+      "ret_ytd_pct": -13.77
+     },
+     {
+      "ticker": "SSI",
+      "name": "Chứng khoán SSI",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 57964,
+      "ret_ytd_pct": -20.18
+     }
+    ],
+    "note_vi": "Chủ yếu là công ty chứng khoán; cả ba mã lớn nhất (TCX, VCK, SSI) giảm 14–20% từ đầu năm, theo diễn biến thanh khoản và chỉ số.",
+    "note_en": "Mostly securities brokers; the three largest (TCX, VCK, SSI) are down 14–20% YTD, tracking market turnover and index levels.",
+    "note_src": null
+   },
+   {
+    "icb": "7500",
+    "name_vi": "Điện, nước & xăng dầu khí đốt",
+    "name_en": "Utilities",
+    "n_listed": 141,
+    "n_by_exchange": {
+     "HOSE": 38,
+     "HNX": 18,
+     "UPCoM": 85
+    },
+    "mcap_bn_vnd": 466564,
+    "mcap_share_pct": 4.67,
+    "mcap_bn_vnd_vci": 467932,
+    "ret_1m_pct": -2.88,
+    "ret_ytd_pct": 1.72,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 99.8
+    },
+    "ret_1m_pct_vci": -2.8,
+    "ret_ytd_pct_vci": -0.33,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 7.2,
+    "foreign_coverage_pct": 81.2,
+    "top1_share_pct": 40.3,
+    "top": [
+     {
+      "ticker": "GAS",
+      "name": "PV Gas",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 188210,
+      "ret_ytd_pct": 10.86
+     },
+     {
+      "ticker": "POW",
+      "name": "Điện lực Dầu khí Việt Nam",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 37428,
+      "ret_ytd_pct": -3.94
+     },
+     {
+      "ticker": "REE",
+      "name": "Cơ Điện Lạnh REE",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 28302,
+      "ret_ytd_pct": -13.03
+     }
+    ],
+    "note_vi": "GAS chiếm ~40% vốn hóa ngành và +10,9% từ đầu năm; nhóm điện (POW, REE) giảm.",
+    "note_en": "GAS is ~40% of the industry's cap and +10.9% YTD; power names (POW, REE) are down.",
+    "note_src": null
+   },
+   {
+    "icb": "1700",
+    "name_vi": "Tài nguyên cơ bản",
+    "name_en": "Basic Resources",
+    "n_listed": 101,
+    "n_by_exchange": {
+     "HOSE": 25,
+     "HNX": 27,
+     "UPCoM": 49
+    },
+    "mcap_bn_vnd": 359891,
+    "mcap_share_pct": 3.6,
+    "mcap_bn_vnd_vci": 360193,
+    "ret_1m_pct": 5.7,
+    "ret_ytd_pct": 9.5,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 97.5
+    },
+    "ret_1m_pct_vci": 4.81,
+    "ret_ytd_pct_vci": 10.34,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 16.3,
+    "foreign_coverage_pct": 81.2,
+    "top1_share_pct": 49.3,
+    "top": [
+     {
+      "ticker": "HPG",
+      "name": "Hòa Phát",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 177302,
+      "ret_ytd_pct": -10.9
+     },
+     {
+      "ticker": "MSR",
+      "name": "Masan High-Tech Materials",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 69701,
+      "ret_ytd_pct": 161.87
+     },
+     {
+      "ticker": "KSV",
+      "name": "Khoáng sản TKV",
+      "exchange": "HNX",
+      "mcap_bn_vnd": 32850,
+      "ret_ytd_pct": 75.18
+     }
+    ],
+    "note_vi": "HPG chiếm ~49% vốn hóa nhưng −10,9% từ đầu năm; mức +9,5% của ngành đến từ nhóm khoáng sản (MSR +161,9%, KSV +75,2%).",
+    "note_en": "HPG is ~49% of cap but −10.9% YTD; the industry's +9.5% comes from miners (MSR +161.9%, KSV +75.2%).",
+    "note_src": null
+   },
+   {
+    "icb": "5700",
+    "name_vi": "Du lịch và Giải trí",
+    "name_en": "Travel & Leisure",
+    "n_listed": 46,
+    "n_by_exchange": {
+     "HOSE": 10,
+     "HNX": 5,
+     "UPCoM": 31
+    },
+    "mcap_bn_vnd": 342355,
+    "mcap_share_pct": 3.43,
+    "mcap_bn_vnd_vci": 342355,
+    "ret_1m_pct": 5.93,
+    "ret_ytd_pct": -12.11,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 100.0
+    },
+    "ret_1m_pct_vci": 6.76,
+    "ret_ytd_pct_vci": -14.2,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 6.7,
+    "foreign_coverage_pct": 97.9,
+    "top1_share_pct": 47.2,
+    "top": [
+     {
+      "ticker": "VPL",
+      "name": "Vinpearl",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 161576,
+      "ret_ytd_pct": -4.35
+     },
+     {
+      "ticker": "VJC",
+      "name": "Vietjet Air",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 101213,
+      "ret_ytd_pct": -18.14
+     },
+     {
+      "ticker": "HVN",
+      "name": "Vietnam Airlines",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 64564,
+      "ret_ytd_pct": -16.67
+     }
+    ],
+    "note_vi": "VPL, VJC, HVN chiếm phần lớn vốn hóa; hai hãng hàng không giảm 17–18% từ đầu năm, ngành tăng 5,9% trong 1 tháng.",
+    "note_en": "VPL, VJC and HVN dominate; the two airlines are down 17–18% YTD; the industry is +5.9% over one month.",
+    "note_src": null
+   },
+   {
+    "icb": "6500",
+    "name_vi": "Viễn thông",
+    "name_en": "Telecommunications",
+    "n_listed": 8,
+    "n_by_exchange": {
+     "HOSE": 0,
+     "HNX": 1,
+     "UPCoM": 7
+    },
+    "mcap_bn_vnd": 271761,
+    "mcap_share_pct": 2.72,
+    "mcap_bn_vnd_vci": 271761,
+    "ret_1m_pct": -6.23,
+    "ret_ytd_pct": 6.44,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 100.0
+    },
+    "ret_1m_pct_vci": -6.57,
+    "ret_ytd_pct_vci": 6.11,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": null,
+    "foreign_coverage_pct": 0.2,
+    "top1_share_pct": 84.6,
+    "top": [
+     {
+      "ticker": "VGI",
+      "name": "Đầu tư Quốc tế Viettel",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 229808,
+      "ret_ytd_pct": 10.95
+     },
+     {
+      "ticker": "FOX",
+      "name": "FPT Telecom",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 40927,
+      "ret_ytd_pct": -12.76
+     },
+     {
+      "ticker": "TTN",
+      "name": "Công nghệ và Truyền thông VN",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 411,
+      "ret_ytd_pct": -29.37
+     }
+    ],
+    "note_vi": "Chỉ 8 mã; VGI (Viettel Global) chiếm ~85% vốn hóa nên diễn biến ngành gần như là của VGI.",
+    "note_en": "Only 8 stocks; VGI (Viettel Global) is ~85% of cap, so the industry largely moves with VGI.",
+    "note_src": null
+   },
+   {
+    "icb": "2300",
+    "name_vi": "Xây dựng và Vật liệu",
+    "name_en": "Construction & Materials",
+    "n_listed": 298,
+    "n_by_exchange": {
+     "HOSE": 56,
+     "HNX": 67,
+     "UPCoM": 175
+    },
+    "mcap_bn_vnd": 264491,
+    "mcap_share_pct": 2.65,
+    "mcap_bn_vnd_vci": 264565,
+    "ret_1m_pct": -0.44,
+    "ret_ytd_pct": -10.94,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 90.8
+    },
+    "ret_1m_pct_vci": 0.24,
+    "ret_ytd_pct_vci": -10.73,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 13.1,
+    "foreign_coverage_pct": 75.9,
+    "top1_share_pct": 9.1,
+    "top": [
+     {
+      "ticker": "GEL",
+      "name": "Hạ tầng GELEX",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 24119,
+      "ret_ytd_pct": null
+     },
+     {
+      "ticker": "VGC",
+      "name": "Tổng Công ty Viglacera",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 18920,
+      "ret_ytd_pct": 7.19
+     },
+     {
+      "ticker": "CC1",
+      "name": "TCT Xây dựng số 1",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 16945,
+      "ret_ytd_pct": 15.16
+     }
+    ],
+    "note_vi": "Ngành nhiều mã nhất (298) và phân tán (mã lớn nhất GEL ~9% vốn hóa); gắn với giải ngân đầu tư công và xây dựng hạ tầng.",
+    "note_en": "The most stocks of any industry (298) and fragmented (largest, GEL, ~9% of cap); linked to public-investment disbursement and infrastructure building.",
+    "note_src": null
+   },
+   {
+    "icb": "5300",
+    "name_vi": "Bán lẻ",
+    "name_en": "Retail",
+    "n_listed": 27,
+    "n_by_exchange": {
+     "HOSE": 13,
+     "HNX": 2,
+     "UPCoM": 12
+    },
+    "mcap_bn_vnd": 263703,
+    "mcap_share_pct": 2.64,
+    "mcap_bn_vnd_vci": 263558,
+    "ret_1m_pct": 0.27,
+    "ret_ytd_pct": -6.16,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 63.7
+    },
+    "ret_1m_pct_vci": 0.46,
+    "ret_ytd_pct_vci": -5.93,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 30.2,
+    "foreign_coverage_pct": 94.5,
+    "top1_share_pct": 41.4,
+    "top": [
+     {
+      "ticker": "MWG",
+      "name": "Thế giới di động",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 109301,
+      "ret_ytd_pct": -13.85
+     },
+     {
+      "ticker": "DMX",
+      "name": "Đầu tư Điện Máy Xanh",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 95840,
+      "ret_ytd_pct": null
+     },
+     {
+      "ticker": "FRT",
+      "name": "Bán lẻ FPT",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 26590,
+      "ret_ytd_pct": 4.44
+     }
+    ],
+    "note_vi": "MWG và DMX (niêm yết 2026, chưa có lợi suất từ đầu năm) chiếm ~78% vốn hóa; MWG −13,9% từ đầu năm.",
+    "note_en": "MWG and DMX (listed in 2026, no YTD return) are ~78% of cap; MWG −13.9% YTD.",
+    "note_src": null
+   },
+   {
+    "icb": "0500",
+    "name_vi": "Dầu khí",
+    "name_en": "Oil & Gas",
+    "n_listed": 12,
+    "n_by_exchange": {
+     "HOSE": 3,
+     "HNX": 3,
+     "UPCoM": 6
+    },
+    "mcap_bn_vnd": 239184,
+    "mcap_share_pct": 2.39,
+    "mcap_bn_vnd_vci": 239177,
+    "ret_1m_pct": -9.15,
+    "ret_ytd_pct": 34.9,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 100.0
+    },
+    "ret_1m_pct_vci": -9.65,
+    "ret_ytd_pct_vci": 32.36,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 5.5,
+    "foreign_coverage_pct": 96.8,
+    "top1_share_pct": 57.8,
+    "top": [
+     {
+      "ticker": "BSR",
+      "name": "Lọc Hoá dầu Việt Nam",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 138201,
+      "ret_ytd_pct": 73.37
+     },
+     {
+      "ticker": "PLX",
+      "name": "Petrolimex",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 43992,
+      "ret_ytd_pct": -0.23
+     },
+     {
+      "ticker": "PVS",
+      "name": "DVKT Dầu khí PTSC",
+      "exchange": "HNX",
+      "mcap_bn_vnd": 18718,
+      "ret_ytd_pct": 6.71
+     }
+    ],
+    "note_vi": "BSR chiếm ~58% vốn hóa và +73,4% từ đầu năm, tạo ra phần lớn mức +34,9% của ngành; ngành −9,2% trong 1 tháng.",
+    "note_en": "BSR is ~58% of cap and +73.4% YTD, producing most of the industry's +34.9%; the industry is −9.2% over one month.",
+    "note_src": null
+   },
+   {
+    "icb": "1300",
+    "name_vi": "Hóa chất",
+    "name_en": "Chemicals",
+    "n_listed": 69,
+    "n_by_exchange": {
+     "HOSE": 25,
+     "HNX": 13,
+     "UPCoM": 31
+    },
+    "mcap_bn_vnd": 224065,
+    "mcap_share_pct": 2.24,
+    "mcap_bn_vnd_vci": 224018,
+    "ret_1m_pct": -5.09,
+    "ret_ytd_pct": 4.66,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 99.7
+    },
+    "ret_1m_pct_vci": -4.31,
+    "ret_ytd_pct_vci": 5.04,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": null,
+    "foreign_coverage_pct": 31.8,
+    "top1_share_pct": 55.8,
+    "top": [
+     {
+      "ticker": "GVR",
+      "name": "Tập đoàn CN Cao su VN",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 125000,
+      "ret_ytd_pct": 19.27
+     },
+     {
+      "ticker": "DCM",
+      "name": "Đạm Cà Mau",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 17629,
+      "ret_ytd_pct": 7.72
+     },
+     {
+      "ticker": "DPM",
+      "name": "Tổng Công ty Phân bón và Hóa chất Dầu khí",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 13872,
+      "ret_ytd_pct": -2.08
+     }
+    ],
+    "note_vi": "GVR (cao su) chiếm ~56% vốn hóa, +19,3% từ đầu năm; phân bón (DCM, DPM) là nhóm lớn tiếp theo.",
+    "note_en": "GVR (rubber) is ~56% of cap, +19.3% YTD; fertiliser makers (DCM, DPM) are the next largest.",
+    "note_src": null
+   },
+   {
+    "icb": "9500",
+    "name_vi": "Công nghệ Thông tin",
+    "name_en": "Technology",
+    "n_listed": 27,
+    "n_by_exchange": {
+     "HOSE": 8,
+     "HNX": 8,
+     "UPCoM": 11
+    },
+    "mcap_bn_vnd": 112608,
+    "mcap_share_pct": 1.13,
+    "mcap_bn_vnd_vci": 112606,
+    "ret_1m_pct": -15.53,
+    "ret_ytd_pct": -38.47,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 100.0
+    },
+    "ret_1m_pct_vci": -15.09,
+    "ret_ytd_pct_vci": -37.86,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 23.8,
+    "foreign_coverage_pct": 96.7,
+    "top1_share_pct": 88.3,
+    "top": [
+     {
+      "ticker": "FPT",
+      "name": "FPT Corp",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 99378,
+      "ret_ytd_pct": -38.65
+     },
+     {
+      "ticker": "CMG",
+      "name": "Tập đoàn Công nghệ CMC",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 4310,
+      "ret_ytd_pct": -42.84
+     },
+     {
+      "ticker": "SAM",
+      "name": "SAM Holdings",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 2477,
+      "ret_ytd_pct": -18.51
+     }
+    ],
+    "note_vi": "FPT chiếm ~88% vốn hóa ngành; FPT −38,7% từ đầu năm và −16,4% trong 1 tháng.",
+    "note_en": "FPT is ~88% of the industry's cap; FPT −38.7% YTD and −16.4% over one month.",
+    "note_src": null
+   },
+   {
+    "icb": "8500",
+    "name_vi": "Bảo hiểm",
+    "name_en": "Insurance",
+    "n_listed": 13,
+    "n_by_exchange": {
+     "HOSE": 5,
+     "HNX": 4,
+     "UPCoM": 4
+    },
+    "mcap_bn_vnd": 91488,
+    "mcap_share_pct": 0.92,
+    "mcap_bn_vnd_vci": 91488,
+    "ret_1m_pct": -6.1,
+    "ret_ytd_pct": 1.21,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 100.0
+    },
+    "ret_1m_pct_vci": -5.98,
+    "ret_ytd_pct_vci": 0.87,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 32.1,
+    "foreign_coverage_pct": 100.0,
+    "top1_share_pct": 56.0,
+    "top": [
+     {
+      "ticker": "BVH",
+      "name": "Tập đoàn Bảo Việt",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 51220,
+      "ret_ytd_pct": 21.48
+     },
+     {
+      "ticker": "PVI",
+      "name": "PVI Holdings",
+      "exchange": "HNX",
+      "mcap_bn_vnd": 15795,
+      "ret_ytd_pct": -25.17
+     },
+     {
+      "ticker": "BIC",
+      "name": "Bảo hiểm BIDV",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 3758,
+      "ret_ytd_pct": -13.64
+     }
+    ],
+    "note_vi": "13 mã; BVH chiếm ~56% vốn hóa và +21,5% từ đầu năm, trong khi PVI −25,2%.",
+    "note_en": "13 stocks; BVH is ~56% of cap and +21.5% YTD, while PVI is −25.2%.",
+    "note_src": null
+   },
+   {
+    "icb": "4500",
+    "name_vi": "Y tế",
+    "name_en": "Health Care",
+    "n_listed": 61,
+    "n_by_exchange": {
+     "HOSE": 14,
+     "HNX": 12,
+     "UPCoM": 35
+    },
+    "mcap_bn_vnd": 60979,
+    "mcap_share_pct": 0.61,
+    "mcap_bn_vnd_vci": 61286,
+    "ret_1m_pct": -0.15,
+    "ret_ytd_pct": -12.07,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 99.5
+    },
+    "ret_1m_pct_vci": -1.53,
+    "ret_ytd_pct_vci": -11.34,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 46.5,
+    "foreign_coverage_pct": 51.1,
+    "top1_share_pct": 18.6,
+    "top": [
+     {
+      "ticker": "DHG",
+      "name": "Dược Hậu Giang",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 11362,
+      "ret_ytd_pct": -5.73
+     },
+     {
+      "ticker": "IMP",
+      "name": "Dược phẩm Imexpharm",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 5515,
+      "ret_ytd_pct": -30.8
+     },
+     {
+      "ticker": "DHT",
+      "name": "Dược phẩm Hà Tây",
+      "exchange": "HNX",
+      "mcap_bn_vnd": 4982,
+      "ret_ytd_pct": -21.43
+     }
+    ],
+    "note_vi": "Ngành phân tán (61 mã, mã lớn nhất DHG ~19% vốn hóa); IMP −30,8% từ đầu năm.",
+    "note_en": "Fragmented (61 stocks; largest, DHG, ~19% of cap); IMP −30.8% YTD.",
+    "note_src": null
+   },
+   {
+    "icb": "3700",
+    "name_vi": "Hàng cá nhân & Gia dụng",
+    "name_en": "Personal & Household Goods",
+    "n_listed": 72,
+    "n_by_exchange": {
+     "HOSE": 20,
+     "HNX": 11,
+     "UPCoM": 41
+    },
+    "mcap_bn_vnd": 52951,
+    "mcap_share_pct": 0.53,
+    "mcap_bn_vnd_vci": 52877,
+    "ret_1m_pct": -8.2,
+    "ret_ytd_pct": -34.57,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 100.0
+    },
+    "ret_1m_pct_vci": -6.98,
+    "ret_ytd_pct_vci": -34.16,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 14.1,
+    "foreign_coverage_pct": 79.4,
+    "top1_share_pct": 15.0,
+    "top": [
+     {
+      "ticker": "PNJ",
+      "name": "Vàng Phú Nhuận",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 7934,
+      "ret_ytd_pct": -75.8
+     },
+     {
+      "ticker": "VGT",
+      "name": "VINATEX",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 5650,
+      "ret_ytd_pct": -2.1
+     },
+     {
+      "ticker": "TLG",
+      "name": "Tập đoàn Thiên Long",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 5068,
+      "ret_ytd_pct": 13.16
+     }
+    ],
+    "note_vi": "PNJ −75,8% từ đầu năm sau nhiều phiên giảm sàn (tháng 7 và 28/9–2/10/2026; công ty nêu siết margin và khoản dự phòng hơn 7.000 tỷ đồng).",
+    "note_en": "PNJ −75.8% YTD after repeated limit-down sessions (July and 28 Sep–2 Oct 2026; the company cited margin tightening and a provision of over VND 7 tn).",
+    "note_src": "https://cafef.vn/pnj-neu-ly-do-khien-co-phieu-giam-san-5-phien-lien-tiep-188261003210906538.chn"
+   },
+   {
+    "icb": "3300",
+    "name_vi": "Ô tô và phụ tùng",
+    "name_en": "Automobiles & Parts",
+    "n_listed": 18,
+    "n_by_exchange": {
+     "HOSE": 10,
+     "HNX": 2,
+     "UPCoM": 6
+    },
+    "mcap_bn_vnd": 31085,
+    "mcap_share_pct": 0.31,
+    "mcap_bn_vnd_vci": 31080,
+    "ret_1m_pct": -3.31,
+    "ret_ytd_pct": -14.89,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 100.0
+    },
+    "ret_1m_pct_vci": -2.49,
+    "ret_ytd_pct_vci": -13.82,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 1.9,
+    "foreign_coverage_pct": 90.4,
+    "top1_share_pct": 42.6,
+    "top": [
+     {
+      "ticker": "HUT",
+      "name": "Tasco- CTCP",
+      "exchange": "HNX",
+      "mcap_bn_vnd": 13247,
+      "ret_ytd_pct": -21.52
+     },
+     {
+      "ticker": "HHS",
+      "name": "Đầu tư DV Hoàng Huy",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 4082,
+      "ret_ytd_pct": -24.4
+     },
+     {
+      "ticker": "VVS",
+      "name": "Đầu tư Phát triển Máy Việt Nam",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 3194,
+      "ret_ytd_pct": 87.4
+     }
+    ],
+    "note_vi": "18 mã; HUT (Tasco) chiếm ~43% vốn hóa, −21,5% từ đầu năm.",
+    "note_en": "18 stocks; HUT (Tasco) is ~43% of cap, −21.5% YTD.",
+    "note_src": null
+   },
+   {
+    "icb": "5500",
+    "name_vi": "Truyền thông",
+    "name_en": "Media",
+    "n_listed": 31,
+    "n_by_exchange": {
+     "HOSE": 3,
+     "HNX": 15,
+     "UPCoM": 13
+    },
+    "mcap_bn_vnd": 23145,
+    "mcap_share_pct": 0.23,
+    "mcap_bn_vnd_vci": 23269,
+    "ret_1m_pct": -4.21,
+    "ret_ytd_pct": 19.51,
+    "ret_coverage_pct": {
+     "1m": 100.0,
+     "ytd": 99.7
+    },
+    "ret_1m_pct_vci": -1.39,
+    "ret_ytd_pct_vci": 19.03,
+    "pe": null,
+    "pb": null,
+    "div_yield_pct": null,
+    "roe_pct": null,
+    "rev_yoy_pct": null,
+    "npat_yoy_pct": null,
+    "growth_quarter": null,
+    "foreign_own_pct": 41.2,
+    "foreign_coverage_pct": 84.2,
+    "top1_share_pct": 70.1,
+    "top": [
+     {
+      "ticker": "VNZ",
+      "name": "Tập đoàn VNG",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 16218,
+      "ret_ytd_pct": 46.03
+     },
+     {
+      "ticker": "YEG",
+      "name": "Tập đoàn Yeah1",
+      "exchange": "HOSE",
+      "mcap_bn_vnd": 1564,
+      "ret_ytd_pct": -33.71
+     },
+     {
+      "ticker": "FOC",
+      "name": "FPT Online",
+      "exchange": "UPCoM",
+      "mcap_bn_vnd": 1089,
+      "ret_ytd_pct": 7.33
+     }
+    ],
+    "note_vi": "VNZ (VNG, UPCoM) chiếm ~70% vốn hóa và +46,0% từ đầu năm, tạo ra mức +19,5% của ngành.",
+    "note_en": "VNZ (VNG, UPCoM) is ~70% of cap and +46.0% YTD, producing the industry's +19.5%.",
+    "note_src": null
+   }
+  ],
+  "market": {
+   "n_listed": 1518,
+   "mcap_bn_vnd": 9988506,
+   "by_exchange": {
+    "HOSE": {
+     "n_listed": 407,
+     "mcap_bn_vnd": 8263280
+    },
+    "HNX": {
+     "n_listed": 299,
+     "mcap_bn_vnd": 443401
+    },
+    "UPCoM": {
+     "n_listed": 812,
+     "mcap_bn_vnd": 1281825
+    }
+   },
+   "ret_1m_pct": -1.69,
+   "ret_ytd_pct": 0.36,
+   "vnindex": 1741.62,
+   "vnindex_ytd_pct": -2.4
+  }
+ }
+}

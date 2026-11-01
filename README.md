@@ -132,6 +132,7 @@ Each tab's data lives in one JSON file owned by one agent; top-level keys are th
 | `strategy_directives.json` | Strategy | `/api/strategy` |
 | `data/simulation.json` | Finance | `SIM` (Mô phỏng tab) |
 | `data/geopolitics.json` | Geopolitics | `GEOPOL` (Địa chính trị tab) |
+| `data/industries.json` | Investing | `IND_ICB` (ICB industry cards, Đầu tư · Thị trường; rebuilt with vnstock by `tools/build/industries_vnstock.py`) |
 | `data/narration.json` | Narrator | `NARRATION` (film scripts) |
 | `data/research/*` | Research | inventory, release calendar, source log, plans — ops files, served by `/api/freshness`, not embedded |
 | `data/banks_vnstock.json` | server (vnstock) | `/api/banks`, `/api/banks/universe`, `/api/banks/bs_history` (built by `tools/build/banks_vnstock.py`) |
