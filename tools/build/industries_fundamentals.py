@@ -707,6 +707,11 @@ def valuation_agg(members, mcap, cv, fin):
                eps_growth_n=len(es), eps_growth_coverage_pct=covp(es))
     if es and ea <= 0:
         out["eps_growth_null_reason"] = "year-earlier aggregate TTM earnings ≤ 0"
+    # ROA (all groups, financials included): Σ TTM parent profit ÷ Σ average total assets
+    ra = [s for s in pe_s if R[s].get("ta_end")]
+    ta_avg = sum((R[s]["ta_end"] + R[s]["ta_ago"]) / 2 if R[s].get("ta_ago") else R[s]["ta_end"] for s in ra)
+    out.update(roa_pct=round(100.0 * sum(R[s]["np"] for s in ra) / ta_avg, 2) if ra and ta_avg > 0 else None,
+               roa_n=len(ra), roa_coverage_pct=covp(ra), roa_latest_assets_only_n=sum(1 for s in ra if not R[s].get("ta_ago")))
     # balance-sheet / coverage ratios (non-financial groups only)
     if fin:
         ls = [s for s in pb_s if R[s].get("liab") is not None]
@@ -863,6 +868,12 @@ def valuation(stocks_path, raw_dir, out_path, dry_run, dump_companies=None):
         "×: Σ TTM revenue ÷ Σ average total assets (bsa53, mean of the TTM-end quarter and four quarters earlier; "
         "latest only where the earlier one is missing — at_latest_assets_only_n), rev_yoy sample (at_n, "
         "at_coverage_pct). Null for ICB 8300, 8500, 8700.")
+    f["roa_pct"] = (
+        "%, ≈: Σ TTM parent-attributable profit ÷ Σ average total assets (bsa53, mean of the TTM-end quarter and four "
+        "quarters earlier; latest only where the earlier one is missing — roa_latest_assets_only_n), P/E sample with "
+        "assets (roa_n, roa_coverage_pct). Includes banks, insurers and brokers (for banks ROA is the usual measure; "
+        "their balance sheets are 10× leveraged so ROA is far below other industries). Parent profit over total "
+        "(incl. minorities') assets understates ROA slightly where minorities are large.")
     f["valuation caveats"] = (
         "(1) Double counting: a listed parent consolidating a listed subsidiary (VIC–VHM/VRE/VPL, MWG–DMX, GVR–PHR/"
         "DPR, GAS–PGD …) puts the subsidiary's profit, book, debt and dividends in both companies; cap is counted "
