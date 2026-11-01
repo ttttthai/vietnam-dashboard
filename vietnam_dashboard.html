@@ -1080,6 +1080,16 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .gb-pin { stroke: #fff; stroke-width: 1.2; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); }
   .gb-it { transition: opacity .6s; } .gb-dim { opacity: .1; } .gb-off { display: none; } .gb-hot .gb-piece, .gb-hot .gb-cp { stroke-width: 4; } .gb-flow.gb-hot { opacity: 1; }
   .gb-tok { animation: pgOrgIn .5s ease both; animation-delay: var(--d); }
+  .gb-board:focus-visible { outline: 3px solid #2a78d6; outline-offset: 2px; }
+  .gb-mini { position: absolute; left: 8px; bottom: 8px; width: min(150px, 34%); height: auto; aspect-ratio: 2 / 1; border: 1px solid #c8a96a; border-radius: 6px; background: #d9e8ec; box-shadow: 0 2px 8px rgba(0,0,0,.2); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .gb-mini.on { opacity: .95; pointer-events: auto; } .gb-mini-sea { fill: #d9e8ec; } .gb-mini-land { fill: #c9bd9e; } .gb-mini-v { fill: rgba(227,73,72,.15); stroke: #e34948; stroke-width: 6; vector-effect: non-scaling-stroke; }
+  .gb-xr .gb-mini { background: #08131c; border-color: #1e4a5c; } .gb-xr .gb-mini-sea { fill: #08131c; } .gb-xr .gb-mini-land { fill: rgba(150,215,240,.35); }
+  .gb-hint { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: rgba(22,24,29,.82); color: #fff; font: 600 13px var(--font-ui); padding: 10px 16px; border-radius: 8px; pointer-events: none; opacity: 0; transition: opacity .25s; text-align: center; max-width: 80%; } .gb-hint.on { opacity: 1; }
+  .gb-wrap.gb-fs { position: fixed; inset: 0; z-index: 2000; background: #faf8f3; padding: calc(10px + env(safe-area-inset-top, 0px)) 10px calc(10px + env(safe-area-inset-bottom, 0px)); grid-template-columns: minmax(0, 1fr) 340px; align-items: stretch; margin: 0; }
+  .gb-wrap.gb-fs .gb-board { height: 100%; } .gb-wrap.gb-fs .gb-side { max-height: none; overflow: auto; }
+  :fullscreen.gb-wrap { padding: 10px; }
+  @media (max-width: 900px) { .gb-wrap.gb-fs { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; } .gb-wrap.gb-fs .gb-side { max-height: 32vh; min-height: 0; } }
+  html.gb-fs-lock, html.gb-fs-lock body { overflow: hidden; }
   .gb-zoom { position: absolute; right: 8px; top: 8px; display: grid; gap: 4px; } .gb-zoom button { width: 30px; height: 30px; border-radius: 6px; border: 1px solid #c8a96a; background: #fffaf0; font: 700 15px var(--font-ui); cursor: pointer; }
   .gb-side { background: #fffaf0; border: 1px solid #e6dcc4; border-radius: 10px; padding: 12px 14px; position: relative; min-height: 220px; max-height: 560px; overflow: auto; }
   .gb-side h3 { font: 700 18px/1.25 var(--font-head); margin: 6px 0; } .gb-side p { font: 400 13px/1.5 var(--font-ui); color: #3d4250; margin: 6px 0; }
@@ -7886,7 +7896,7 @@ const GB_ICON = { oil: '🛢️', gas: '🔥', lng: '❄️', wheat: '🌾', ric
 const GB_KIND = { energy: ['Năng lượng', 'Energy', '#b45309'], food: ['Lương thực, nông sản', 'Food & farm', '#15803d'], metal: ['Khoáng sản, kim loại', 'Minerals & metals', '#6b7280'], manufactured: ['Hàng công nghiệp', 'Manufactured goods', '#1d4ed8'], tech: ['Công nghệ', 'Technology', '#7c3aed'], arms: ['Vũ khí', 'Arms', '#9f1239'] };
 const GB_LAYERS = [['commodities', 'Hàng hoá', 'Goods'], ['flows', 'Dòng chảy thương mại', 'Trade flows'], ['chokepoints', 'Điểm nghẽn', 'Chokepoints'], ['tech', 'Công nghệ', 'Tech'], ['events', 'Sự kiện', 'Events']];
 const GB_CP = { open: ['#15803d', 'Thông suốt', 'Open'], tense: ['#d97706', 'Căng thẳng', 'Tense'], disrupted: ['#b42318', 'Gián đoạn', 'Disrupted'] };
-let GB = { xray: false, min: 'all', on: new Set(['commodities', 'flows', 'chokepoints', 'tech', 'events']), kinds: new Set(Object.keys(GB_KIND)), sel: null, step: -1, play: false, zoom: null, k: 1, timer: 0 };
+let GB = { fs: false, xray: false, min: 'all', on: new Set(['commodities', 'flows', 'chokepoints', 'tech', 'events']), kinds: new Set(Object.keys(GB_KIND)), sel: null, step: -1, play: false, zoom: null, k: 1, timer: 0 };
 const gbB = () => (GEOPOL && GEOPOL.board) || null;
 const gbT = (o, f) => o ? stT(o[f + '_vi'], o[f + '_en']) || '' : '';
 const gbNum = (v, u) => v == null ? '' : `${stN(v, Math.abs(v) < 10 ? 1 : 0)}${u ? ' ' + u : ''}`;
@@ -7905,13 +7915,13 @@ function renderGeoStory() {
       <div class="gb-chips gb-kinds" role="group" aria-label="${ciE(stT('Loại hàng', 'Kinds of goods'))}">${Object.entries(GB_KIND).map(([k, v]) => `<button type="button" data-gb-kind="${k}" aria-pressed="${GB.kinds.has(k)}" style="--c:${v[2]}"><i></i>${stT(v[0], v[1])}</button>`).join('')}</div>
     </div>
     ${(B && B.reserves) ? `<div class="gb-chips gb-mins" role="group" aria-label="${ciE(stT('Khoáng sản', 'Minerals'))}" ${GB.xray ? '' : 'hidden'}><button type="button" data-gb-min="all" aria-pressed="${GB.min === 'all'}">${stT('Tất cả', 'All')}</button>${(B.reserves.minerals || []).map(m => `<button type="button" data-gb-min="${m.id}" aria-pressed="${GB.min === m.id}" style="--c:${m.color}"><i></i>${m.icon || ''} ${ciE(stT(m.name_vi, m.name_en))}</button>`).join('')}</div>` : ''}
-    <div class="gb-wrap"><div class="gb-board" id="gb-board"><svg id="gb-svg" role="img" aria-label="${ciE(stT('Bản đồ thế giới: hàng hoá, dòng chảy thương mại, điểm nghẽn, công nghệ và sự kiện', 'World map: goods, trade flows, chokepoints, technology and events'))}"></svg>
-        <div class="gb-scan" aria-hidden="true"></div><div class="gb-zoom"><button type="button" data-gb-z="in" aria-label="${ciE(stT('Phóng to', 'Zoom in'))}">+</button><button type="button" data-gb-z="out" aria-label="${ciE(stT('Thu nhỏ', 'Zoom out'))}">−</button><button type="button" data-gb-z="reset" aria-label="${ciE(stT('Toàn cầu', 'Whole world'))}">⌂</button></div></div>
+    <div class="gb-wrap"><div class="gb-board" id="gb-board" tabindex="0" aria-label="${ciE(stT('Bàn cờ: phím + − để phóng, mũi tên để di chuyển, 0 về toàn cầu, F toàn màn hình', 'Board: + − to zoom, arrows to pan, 0 for the whole world, F for full screen'))}"><svg id="gb-svg" role="img" aria-label="${ciE(stT('Bản đồ thế giới: hàng hoá, dòng chảy thương mại, điểm nghẽn, công nghệ và sự kiện', 'World map: goods, trade flows, chokepoints, technology and events'))}"></svg>
+        <div class="gb-scan" aria-hidden="true"></div><svg class="gb-mini" aria-hidden="true"></svg><div class="gb-hint" aria-hidden="true"></div><div class="gb-zoom"><button type="button" data-gb-fs aria-label="${ciE(stT('Toàn màn hình', 'Full screen'))}" title="${ciE(stT('Toàn màn hình (F)', 'Full screen (F)'))}">⛶</button><button type="button" data-gb-z="vn" aria-label="${ciE(stT('Phóng tới Việt Nam', 'Zoom to Vietnam'))}" title="${ciE(stT('Việt Nam', 'Vietnam'))}">★</button><button type="button" data-gb-z="in" aria-label="${ciE(stT('Phóng to', 'Zoom in'))}">+</button><button type="button" data-gb-z="out" aria-label="${ciE(stT('Thu nhỏ', 'Zoom out'))}">−</button><button type="button" data-gb-z="reset" aria-label="${ciE(stT('Toàn cầu', 'Whole world'))}">⌂</button></div></div>
       <aside class="gb-side" id="gb-side" aria-live="polite"></aside></div>
     <div class="gb-story">
       <div class="gb-story-c"><button type="button" data-gb-s="prev" aria-label="${ciE(stT('Bước trước', 'Previous step'))}">◀</button><button type="button" data-gb-s="play" class="gb-play">${stT('▶ Kể chuyện: vì sao', '▶ Tell the story: why')}</button><button type="button" data-gb-s="next" aria-label="${ciE(stT('Bước sau', 'Next step'))}">▶</button>
         <span class="gb-prog" aria-hidden="true"><i></i></span><div class="gb-dots">${S.map((s, i) => `<button type="button" data-gb-step="${i}" title="${ciE(gbT(s, 'title'))}" aria-label="${i + 1}. ${ciE(gbT(s, 'title'))}"></button>`).join('')}</div></div></div>
-    <p class="st-tick gb-legend">${stT('Kéo để di chuyển, cuộn hoặc chụm để phóng to. Bấm vào một quân cờ, dòng chảy hay điểm nghẽn để xem vì sao. Các chấm là hàng hoá đang di chuyển: càng nhiều, càng dày là dòng chảy càng lớn. Tuyến đỏ nét đứt bị gián đoạn: một nửa số hàng dừng lại ở điểm nghẽn, phần còn lại đi chậm qua; xám chấm: bị hạn chế. Vòng sóng lan quanh điểm nghẽn: đang căng thẳng hoặc gián đoạn.', 'Drag to pan, scroll or pinch to zoom. Click a piece, a flow or a chokepoint to see why. The dots are cargo on the move: more and thicker means a bigger flow. Red dashed routes are disrupted: half the cargo stops at the chokepoint, the rest crawls through; grey dotted: restricted. Rings spreading from a chokepoint: tense or disrupted.')}</p>
+    <p class="st-tick gb-legend">${stT('Kéo để di chuyển; Ctrl + cuộn, chụm hoặc nháy đúp để phóng to (Shift + nháy đúp để thu nhỏ); ⛶ toàn màn hình, ★ về Việt Nam. Bấm vào một quân cờ, dòng chảy hay điểm nghẽn để xem vì sao. Các chấm là hàng hoá đang di chuyển: càng nhiều, càng dày là dòng chảy càng lớn. Tuyến đỏ nét đứt bị gián đoạn: một nửa số hàng dừng lại ở điểm nghẽn, phần còn lại đi chậm qua; xám chấm: bị hạn chế. Vòng sóng lan quanh điểm nghẽn: đang căng thẳng hoặc gián đoạn.', 'Drag to pan; Ctrl + scroll, pinch or double-click to zoom (Shift + double-click to zoom out); ⛶ full screen, ★ Vietnam. Click a piece, a flow or a chokepoint to see why. The dots are cargo on the move: more and thicker means a bigger flow. Red dashed routes are disrupted: half the cargo stops at the chokepoint, the rest crawls through; grey dotted: restricted. Rings spreading from a chokepoint: tense or disrupted.')}</p>
     <details class="st-meta gb-read"><summary>${stT(`Đọc toàn bộ câu chuyện (${S.length} bước) và danh sách trên bàn cờ`, `Read the whole story (${S.length} steps) and everything on the board`)}</summary>
       <ol class="st-watch">${S.map(s => `<li><b>${ciE(gbT(s, 'title'))}</b><p>${ciE(gbT(s, 'text'))}</p>${s.vn_vi ? `<p><i>${stT('Với Việt Nam: ', 'For Vietnam: ')}</i>${ciE(gbT(s, 'vn'))}</p>` : ''}</li>`).join('')}</ol>
       ${W.length ? `<div class="st-sub">${stT('Điều cần theo dõi', 'What to watch')}</div><ol class="st-watch">${W.map(w => `<li><time>${polDS(w.date)}</time><b>${ciE(stT(w.vi, w.en))}</b>${w.why_vi ? `<p>${ciE(stT(w.why_vi, w.why_en))}</p>` : ''}</li>`).join('')}</ol>` : ''}
@@ -7943,6 +7953,25 @@ function gbTick(now) {
 }
 function gbRun() { if (matchMedia('(prefers-reduced-motion: reduce)').matches) { GBP.flows.forEach(F => F.dots.forEach(d => { d.style.display = 'none'; })); return; } if (!GBP.raf && GBP.vis) { GBP.t0 = GBP.t0 || performance.now(); GBP.raf = requestAnimationFrame(gbTick); } }
 // labels in screen space with greedy collision avoidance (only for the pieces in focus, or everything when zoomed in)
+function gbMini(T) { const m = document.querySelector('#gb-board .gb-mini'); if (!m || !GB.W) return; const on = T.k > 1.25; m.classList.toggle('on', on); if (!on) return;
+  const a = T.invert([0, 0]), b = T.invert([GB.W, GB.H]); d3.select(m).select('.gb-mini-v').attr('x', a[0]).attr('y', a[1]).attr('width', b[0] - a[0]).attr('height', b[1] - a[1]); }
+function gbFs(on) {
+  const wrap = document.querySelector('.gb-wrap'); if (!wrap) return; on = on == null ? !GB.fs : on;
+  const apply = v => { GB.fs = v; wrap.classList.toggle('gb-fs', v); document.documentElement.classList.toggle('gb-fs-lock', v); const b = document.querySelector('[data-gb-fs]'); if (b) { b.textContent = v ? '✕' : '⛶'; b.setAttribute('aria-label', v ? stT('Thoát toàn màn hình', 'Exit full screen') : stT('Toàn màn hình', 'Full screen')); } requestAnimationFrame(() => requestAnimationFrame(() => { gbDraw(); gbSide(); const bd = document.getElementById('gb-board'); if (bd) bd.focus({ preventScroll: true }); })); };
+  if (on) { apply(true); if (wrap.requestFullscreen && !document.fullscreenElement) wrap.requestFullscreen().catch(() => {}); }
+  else { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); apply(false); }
+}
+document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && GB.fs) gbFs(false); });
+document.addEventListener('keydown', e => {
+  const bd = document.getElementById('gb-board'); if (!bd || !GB.svg) return; const inB = bd.contains(document.activeElement) || GB.fs;
+  if (e.key === 'Escape' && GB.fs && !document.fullscreenElement) { gbFs(false); return; }
+  if (!inB || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select/i.test((e.target || {}).tagName || '')) return;
+  const z = GB.zoom, s = GB.svg, step = 80;
+  if (e.key === '+' || e.key === '=') s.transition('cam').duration(300).call(z.scaleBy, 1.5); else if (e.key === '-' || e.key === '_') s.transition('cam').duration(300).call(z.scaleBy, 1 / 1.5);
+  else if (e.key === '0') s.transition('cam').duration(700).call(z.transform, d3.zoomIdentity); else if (e.key === 'f' || e.key === 'F') gbFs();
+  else if (/^Arrow/.test(e.key)) s.transition('cam').duration(250).call(z.translateBy, e.key === 'ArrowLeft' ? step / GB.k : e.key === 'ArrowRight' ? -step / GB.k : 0, e.key === 'ArrowUp' ? step / GB.k : e.key === 'ArrowDown' ? -step / GB.k : 0);
+  else return; e.preventDefault();
+});
 function gbOreSync() { const svg = GB.svg; if (!svg || !GB.xray) return; const T = d3.zoomTransform(svg.node()), P0 = 5.2;
   svg.selectAll('.gb-ore').each(function () { const x = T.apply([+this.dataset.x, +this.dataset.y])[0] / GB.W; this.style.setProperty('--sd', (-(1 - (x + .12) / 1.24) * P0).toFixed(2) + 's'); }); }
 function gbLabels() {
@@ -7962,7 +7991,7 @@ function gbLabels() {
 function gbDraw() {
   const box = document.getElementById('gb-board'), svgEl = document.getElementById('gb-svg'); if (!box || !svgEl) return;
   if (typeof d3 === 'undefined' || typeof topojson === 'undefined' || typeof GEO_WORLD === 'undefined') { box.innerHTML = `<p class="st-tick" style="padding:20px">${stT('Không tải được thư viện bản đồ.', 'The map library could not load.')}</p>`; return; }
-  const B = gbB() || {}, W = Math.max(320, box.clientWidth || 900), H = Math.round(W * (W < 600 ? .92 : .52));
+  const B = gbB() || {}, W = Math.max(320, box.clientWidth || 900), H = GB.fs ? Math.max(300, box.clientHeight - 12) : Math.round(W * (W < 600 ? .92 : .52));
   const svg = d3.select(svgEl).attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('height', H); svg.selectAll('*').remove();
   const proj = d3.geoNaturalEarth1().fitExtent([[4, 4], [W - 4, H - 4]], { type: 'Sphere' }), path = d3.geoPath(proj), P = ll => proj(ll);
   const defs = svg.append('defs');
@@ -8024,13 +8053,19 @@ function gbDraw() {
     });
   }
   svg.append('g').attr('class', 'gb-labs');
-  const zoom = d3.zoom().scaleExtent([1, 8]).translateExtent([[0, 0], [W, H]]).on('start', () => svg.select('.gb-labs').classed('gb-hide', true))
-    .on('zoom', ev => { const k = ev.transform.k; GB.k = k; g.attr('transform', ev.transform); g.selectAll('.gb-tok').attr('transform', function () { return `translate(${this.dataset.x},${this.dataset.y}) scale(${1 / Math.sqrt(k)})`; }); svg.classed('gb-k2', k >= 2.2); })
+  const hint = box.querySelector('.gb-hint'); let hintT = 0;
+  const zoom = d3.zoom().scaleExtent([1, 14]).translateExtent([[0, 0], [W, H]])
+    .filter(ev => { if (ev.type === 'wheel' && !GB.fs && !ev.ctrlKey && !ev.metaKey) { if (hint) { hint.textContent = stT('Giữ Ctrl (⌘) + cuộn để phóng to, hoặc bấm ⛶ toàn màn hình', 'Hold Ctrl (⌘) + scroll to zoom, or press ⛶ for full screen'); hint.classList.add('on'); clearTimeout(hintT); hintT = setTimeout(() => hint.classList.remove('on'), 1400); } return false; } return (!ev.ctrlKey || ev.type === 'wheel') && !ev.button; })
+    .on('start', () => svg.select('.gb-labs').classed('gb-hide', true))
+    .on('zoom', ev => { const k = ev.transform.k; GB.k = k; gbMini(ev.transform); g.attr('transform', ev.transform); g.selectAll('.gb-tok').attr('transform', function () { return `translate(${this.dataset.x},${this.dataset.y}) scale(${1 / Math.pow(k, .82)})`; }); svg.classed('gb-k2', k >= 2.2); })
     .on('end', () => { gbLabels(); gbOreSync(); svg.select('.gb-labs').classed('gb-hide', false); });
-  svg.call(zoom).on('dblclick.zoom', null); GB.zoom = zoom; GB.svg = svg; GB.P = P; GB.W = W; GB.H = H;
+  svg.call(zoom).on('dblclick.zoom', null).on('dblclick', ev => { const p = d3.pointer(ev); svg.transition('cam').duration(650).ease(d3.easeCubicOut).call(zoom.scaleBy, ev.shiftKey ? 1 / 2.2 : 2.2, p); }); GB.zoom = zoom; GB.svg = svg; GB.P = P; GB.W = W; GB.H = H;
   if (!GBP.io && 'IntersectionObserver' in window) { GBP.io = new IntersectionObserver(es => es.forEach(e => { GBP.vis = e.isIntersecting; if (GBP.vis) gbRun(); })); }
   if (GBP.io) { GBP.io.disconnect(); GBP.io.observe(box); }
-  gbApply(false); gbLabels(); gbRun();
+  const sb = path.bounds({ type: 'Sphere' }), mini = d3.select(box.querySelector('.gb-mini')).attr('viewBox', `${sb[0][0]} ${sb[0][1]} ${sb[1][0] - sb[0][0]} ${sb[1][1] - sb[0][1]}`); mini.selectAll('*').remove();
+  mini.append('path').attr('d', path({ type: 'Sphere' })).attr('class', 'gb-mini-sea'); mini.append('path').attr('d', path({ type: 'FeatureCollection', features: countries })).attr('class', 'gb-mini-land');
+  mini.append('rect').attr('class', 'gb-mini-v'); mini.on('click', ev => { const [x, y] = d3.pointer(ev), k = GB.k || 1; svg.transition('cam').duration(700).ease(d3.easeCubicInOut).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-x, -y)); });
+  gbApply(false); gbLabels(); gbRun(); gbMini(d3.zoomTransform(svg.node()));
   stRW(box, () => { gbDraw(); });
 }
 function gbApply(animate = true) {
@@ -8103,7 +8138,8 @@ document.addEventListener('click', e => {
   t = q('[data-gb-kind]'); if (t) { const k = t.dataset.gbKind; GB.kinds.has(k) ? GB.kinds.delete(k) : GB.kinds.add(k); t.setAttribute('aria-pressed', GB.kinds.has(k)); gbApply(false); return; }
   t = q('[data-gb-s]'); if (t) { const a = t.dataset.gbS; if (a === 'play') gbPlay(!GB.play); else { gbPlay(false); gbGo(GB.step + (a === 'next' ? 1 : -1) + (GB.step < 0 && a === 'next' ? 0 : 0), false); } return; }
   t = q('[data-gb-step]'); if (t) { gbPlay(false); gbGo(+t.dataset.gbStep, false); return; }
-  t = q('[data-gb-z]'); if (t && GB.svg) { const a = t.dataset.gbZ; if (a === 'reset') { GB.step = -1; GB.sel = null; gbPlay(false); gbApply(false); gbSide(); GB.svg.transition('cam').duration(1200).ease(d3.easeCubicInOut).call(GB.zoom.transform, d3.zoomIdentity); } else GB.svg.transition().duration(350).call(GB.zoom.scaleBy, a === 'in' ? 1.6 : 1 / 1.6); return; }
+  t = q('[data-gb-fs]'); if (t) { gbFs(); return; }
+  t = q('[data-gb-z]'); if (t && GB.svg) { const a = t.dataset.gbZ; if (a === 'vn') { const p = GB.P([106, 16]); GB.svg.transition('cam').duration(1400).ease(d3.easeCubicInOut).call(GB.zoom.transform, d3.zoomIdentity.translate(GB.W / 2, GB.H / 2).scale(GB.W < 600 ? 4 : 5).translate(-p[0], -p[1])); return; } if (a === 'reset') { GB.step = -1; GB.sel = null; gbPlay(false); gbApply(false); gbSide(); GB.svg.transition('cam').duration(1200).ease(d3.easeCubicInOut).call(GB.zoom.transform, d3.zoomIdentity); } else GB.svg.transition().duration(350).call(GB.zoom.scaleBy, a === 'in' ? 1.6 : 1 / 1.6); return; }
   t = q('[data-gb-player]'); if (t) { const id = t.dataset.gbPlayer, S = (gbB() || {}).story || [], i = S.findIndex(s => (s.show || []).some(x => x === 'events:' + id) || (s.ids || []).some(x => x.startsWith(id + '_'))); gbPlay(false); if (i >= 0) gbGo(i, false); return; }
   if (q('[data-gb-close]')) { GB.sel = null; gbApply(false); gbSide(); }
 });
