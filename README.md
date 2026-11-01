@@ -130,6 +130,9 @@ Each tab's data lives in one JSON file owned by one agent; top-level keys are th
 | `data/finance.json` | Finance | `FINSYS` (also `/api/rates`, `/api/banks` loans, `/api/banks/bs_history` via `listed_banks_latest`) |
 | `data/invest_macro.json` | Economy | `MACRO` for the Đầu tư tab, read by `invest.py` at call time (in-file fallback) |
 | `strategy_directives.json` | Strategy | `/api/strategy` |
+| `data/simulation.json` | Finance | `SIM` (Mô phỏng tab) |
+| `data/geopolitics.json` | Geopolitics | `GEOPOL` (Địa chính trị tab) |
+| `data/narration.json` | Narrator | `NARRATION` (film scripts) |
 | `data/research/*` | Research | inventory, release calendar, source log, plans — ops files, served by `/api/freshness`, not embedded |
 | `data/banks_vnstock.json` | server (vnstock) | `/api/banks`, `/api/banks/universe`, `/api/banks/bs_history` (built by `tools/build/banks_vnstock.py`) |
 | `data/auto/*` | server | World Bank / IMF / FRED snapshots for agents to review; agents decide what to copy into their files |
@@ -150,10 +153,13 @@ python3 tools/build/embed_data.py --check --strict   # fail if a file's _meta.as
 
 Agent definitions live in `.claude/agents/`:
 
-- **Strategy** (`strategy.md`) — Đảng & Chính phủ tab: directives, drafts, news → `strategy_directives.json`
+- **Strategy** (`strategy.md`) — Chính trị (Politics) tab: directives, drafts, news, decision paths, org chart, leaders → `strategy_directives.json`
 - **Economy** (`economy.md`) — Kinh tế tab: GDP, BoP, budget, CPI → `data/economy.json`, `data/invest_macro.json`
 - **Society** (`society.md`) — Xã hội tab: population, provinces, GRDP, world ranks, religion → `data/society.json`
 - **Policy** (`policy.md`) — Chính sách tab: monetary/fiscal instrument registry → `data/policy.json`
-- **Finance** (`finance.md`) — Hệ thống tài chính tab: money, credit, banks, rates → `data/finance.json`
+- **Finance** (`finance.md`) — Hệ thống tài chính tab: money, credit, banks, rates, weekly markets; Mô phỏng (Simulation) model → `data/finance.json`, `data/simulation.json`
+- **Investing** (`investing.md`) — Đầu tư tab: macro context and descriptive notes on the focus list (never investment advice) → `data/invest_macro.json`
+- **Geopolitics** (`geopolitics.md`) — Địa chính trị tab: the US, China, the Middle East and Russia — what is happening, why, and what it means for Vietnam's interests, with Vietnam's options; reads Ground News (in the user's Chrome when run locally with `claude --chrome`) and official sources → `data/geopolitics.json`
 - **Research** (`research.md`) — update planning, release calendar, consistency checks → `data/research/`
 - **Ed** (`ed.md`) — chief editor: story layer, design and the published page (no data ownership)
+- **Narrator** (`narrator.md`) — writes the narrated films (per tab and the cross-tab big picture), with a figure card for every spoken number; full rewrite after every FOMC meeting → `data/narration.json`

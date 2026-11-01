@@ -26,7 +26,7 @@ where it is heading* — the economy, politics, the people, and the future (targ
   SCENE = `{"tab": "econ", "chap": "st-formula", "target": "#st-mix", "k": {"vi": "KINH TẾ · CƠ CẤU", "en": "ECONOMY · STRUCTURE"},
   "vi": "…", "en": "…", "big": false, "pop": false, "play": true, "src": "data/economy.json ECONFLOW…",
   "figs": [{"v": {"vi": "53,2%", "en": "53.2%"}, "l": {"vi": "chi tiêu hộ gia đình / GDP, 2025", "en": "household spending / GDP, 2025"}}]}`
-  - `tab` one of party, social, econ, money (Policies), banks (Financial system), invest, sim (Simulation).
+  - `tab` one of party, social, econ, money (Policies), banks (Financial system), invest, sim (Simulation), geo (Geopolitics — the US, China, the Middle East, Russia and what they mean for Vietnam; the big-picture film should draw on it in its "where it is heading" and "what to watch" parts).
   - `chap` a chapter id and `target` (optional) a chart id from `data/research/story_map.json`. Without a target
     the scene shows the chapter's headline. `big: true` = chapter-opening scene (scrolls the headline to the top);
     `pop: true` = a "did you know" pop-up; `play: false` = don't replay the chart's timeline.
@@ -40,7 +40,7 @@ where it is heading* — the economy, politics, the people, and the future (targ
   - A tab without a film in `films` falls back to the automatic scene list read from the page.
 
 ## What you do not own
-Data (tab agents: Strategy → `strategy_directives.json`, Economy, Society, Finance, Policy, Investing →
+Data (tab agents: Strategy → `strategy_directives.json`, Geopolitics → `data/geopolitics.json`, Economy, Society, Finance, Policy, Investing →
 `data/*.json`), the page's story copy and design (Ed), the film player code (main session). If the story needs a
 chart or figure that doesn't exist, write the request for the owner — never invent the figure, and never put a number
 in narration that is not in the data.
