@@ -16,6 +16,8 @@ Usage (pure stdlib):
     # 2) build the block and write it into data/industries.json (only IND_ICB.fundamentals is replaced/added)
     python3 tools/build/industries_fundamentals.py build --stocks STOCKS.json --raw RAW_DIR [--dry-run]
           [--out data/industries.json] [--ttm-min-cov 80]
+    # 3) valuation: card pe / pb / roe_pct and market pe / pb (only those card/market keys + basis text change)
+    python3 tools/build/industries_fundamentals.py valuation --stocks STOCKS.json --raw RAW_DIR [--dry-run]
 
 STOCKS.json: list of {"sym", "icb" (ICB level-2 code, as IND_ICB.industries), "mcap" (bn VND, today's cap — the
 same price-board snapshot as IND_ICB.industries), "name"} — the 1,518 listed stocks used for IND_ICB.
@@ -539,6 +541,149 @@ def build(stocks_path, raw_dir, out_path, ttm_min_cov, dry_run, cross_checks_pat
     return block
 
 
+# ------------------------------------------------------------------------------------------------------ valuation
+VAL_MIN_END = (2026, 2)   # oldest acceptable latest quarter for TTM earnings / book value
+
+
+def company_ttm_latest(panel, min_end=VAL_MIN_END):
+    """Company's own latest four consecutive reported quarters (parent profit). Returns (np_vnd, end) or None.
+    The window ends at the latest quarter with a profit figure; if that window has a gap the previous end is tried,
+    as long as the end is not older than min_end."""
+    qs = sorted((k for k, v in panel["quarterly"].items() if v["np"] is not None), reverse=True)
+    for end in qs[:2]:
+        if end < min_end:
+            break
+        rows = [panel["quarterly"].get(_qminus(end, i)) for i in range(4)]
+        if all(r is not None and r["np"] is not None for r in rows):
+            return sum(r["np"] for r in rows), end
+    return None
+
+
+def company_book_latest(panel, min_end=VAL_MIN_END):
+    """Parent shareholders' equity at the latest quarter-end with a balance sheet (not older than min_end)."""
+    qs = sorted((k for k, v in panel["quarterly"].items() if v["eq"] is not None), reverse=True)
+    if qs and qs[0] >= min_end:
+        return panel["quarterly"][qs[0]]["eq"], qs[0]
+    return None
+
+
+def valuation_agg(members, mcap, ttm, book):
+    cap = sum(mcap[s] for s in members)
+    pe_s = [s for s in members if s in ttm and mcap[s] > 0]
+    pb_s = [s for s in members if s in book and book[s][0] > 0 and mcap[s] > 0]
+    both = [s for s in pe_s if s in set(pb_s)]
+    e = sum(ttm[s][0] for s in pe_s) / BN
+    b = sum(book[s][0] for s in pb_s) / BN
+    c_pe, c_pb = sum(mcap[s] for s in pe_s), sum(mcap[s] for s in pb_s)
+    e_both, b_both = sum(ttm[s][0] for s in both) / BN, sum(book[s][0] for s in both) / BN
+    ends = collections.Counter(f"Q{ttm[s][1][1]}/{ttm[s][1][0]}" for s in pe_s)
+    return {
+        "pe": round(c_pe / e, 1) if pe_s and e > 0 else None,
+        "pe_n": len(pe_s),
+        "pe_coverage_pct": round(100.0 * c_pe / cap, 1) if cap else None,
+        "pe_loss_makers_n": sum(1 for s in pe_s if ttm[s][0] < 0),
+        "pe_earnings_ttm_bn_vnd": _r(e) if pe_s else None,
+        "pe_ttm_end_quarters": dict(sorted(ends.items(), reverse=True)),
+        "pb": round(c_pb / b, 2) if pb_s and b > 0 else None,
+        "pb_n": len(pb_s),
+        "pb_coverage_pct": round(100.0 * c_pb / cap, 1) if cap else None,
+        "pb_book_bn_vnd": _r(b) if pb_s else None,
+        "pb_neg_equity_excluded_n": sum(1 for s in members if s in book and book[s][0] <= 0),
+        "roe_pct": round(100.0 * e_both / b_both, 1) if both and b_both > 0 else None,
+        "roe_n": len(both),
+        "_pe_null_reason": ("aggregate TTM earnings ≤ 0" if pe_s and e <= 0 else
+                            "no company with four quarters ending Q2/2026 or later" if not pe_s else None),
+    }
+
+
+def valuation(stocks_path, raw_dir, out_path, dry_run):
+    """Fill IND_ICB.industries[].pe/pb/roe_pct (+ pe_*/pb_*/roe_n keys), IND_ICB.market.pe/pb and basis text.
+    Caps = the stocks file's mcap (same snapshot as the cards' mcap_bn_vnd). Nothing else in the file changes."""
+    stocks = json.load(open(stocks_path, encoding="utf-8"))
+    data = json.load(open(out_path, encoding="utf-8"))
+    ind = data["IND_ICB"]
+    mcap = {r["sym"]: float(r.get("mcap") or 0) for r in stocks}
+    board = {r["sym"]: {"HSX": "HOSE", "HOSE": "HOSE", "HNX": "HNX"}.get(r.get("board"), "UPCoM") for r in stocks}
+    by_icb = collections.defaultdict(list)
+    for r in stocks:
+        by_icb[r["icb"]].append(r["sym"])
+    ttm, book = {}, {}
+    for r in stocks:
+        p = company_panel(raw_dir, r["sym"])
+        if p is None:
+            continue
+        t, b = company_ttm_latest(p), company_book_latest(p)
+        if t:
+            ttm[r["sym"]] = t
+        if b:
+            book[r["sym"]] = b
+    # consistency with the cards
+    for card in ind["industries"]:
+        tot = sum(mcap[s] for s in by_icb.get(card["icb"], []))
+        if abs(tot - card["mcap_bn_vnd"]) > 1:
+            sys.exit(f"cap mismatch for {card['icb']}: stocks {tot:.0f} vs card {card['mcap_bn_vnd']}")
+    res = {}
+    card_keys = ("pe", "pe_n", "pe_coverage_pct", "pe_loss_makers_n", "pb", "pb_n", "pb_coverage_pct", "roe_pct")
+    for card in ind["industries"]:
+        a = valuation_agg(by_icb.get(card["icb"], []), mcap, ttm, book)
+        res[card["icb"]] = a
+        for k in card_keys:
+            card[k] = a[k]
+        card["pe_null_reason"] = a["_pe_null_reason"]
+        if card["pe_null_reason"] is None:
+            del card["pe_null_reason"]
+    m = valuation_agg(list(mcap), mcap, ttm, book)
+    res["market"] = m
+    mk = ind["market"]
+    for k in card_keys:
+        mk[k] = m[k]
+    for ex, blk in mk.get("by_exchange", {}).items():
+        a = valuation_agg([s for s in mcap if board[s] == ex], mcap, ttm, book)
+        res[ex] = a
+        for k in ("pe", "pe_coverage_pct", "pb", "pb_coverage_pct"):
+            blk[k] = a[k]
+    as_of = ind.get("as_of") or "2026-10-30"
+    f = ind["basis"]["fields"]
+    f.pop("pe, pb, div_yield_pct, roe_pct", None)
+    f["pe"] = (
+        "≈ derived, aggregate (cap-weighted harmonic) P/E = Σ market cap ÷ Σ trailing-four-quarter profit after tax "
+        "attributable to parent shareholders. Caps = mcap_bn_vnd (close × listed shares, " + as_of + "). Earnings = "
+        "each company's own latest four consecutive reported quarters ending Q3/2026 or Q2/2026 (older → excluded), "
+        "Vietcap IQ quarterly statements (isa22; PAT isa20 where isa22 is missing), consolidated where the company "
+        "has subsidiaries. Loss-makers are INCLUDED in the denominator (pe_loss_makers_n); pe is null when the "
+        "aggregate earnings are ≤ 0 (pe_null_reason). pe_n = companies included; pe_coverage_pct = their share of "
+        "the industry cap. Not the exchange's or a broker's index P/E (those use free-float/index weights and their "
+        "own EPS) — see caveats.")
+    f["pb"] = (
+        "≈ derived, aggregate P/B = Σ market cap ÷ Σ parent shareholders' equity (bsa78 less minority interests "
+        "where included) at each company's latest reported quarter-end (Q3/2026 or Q2/2026; older → excluded); "
+        "companies with equity ≤ 0 excluded. pb_n / pb_coverage_pct as for pe. Banks: book = parent equity.")
+    f["roe_pct"] = (
+        "≈ derived: Σ TTM parent profit ÷ Σ latest parent equity over companies in both the pe and pb samples "
+        "(period-end equity, not average; ends may differ by one quarter between companies). Not a reported ROE.")
+    f["div_yield_pct"] = "null: no sourced per-company dividend series in this build (not estimated)."
+    f["pe_* / pb_* keys"] = (
+        "pe_n, pe_coverage_pct, pe_loss_makers_n, pb_n, pb_coverage_pct: sample size and share of industry cap. "
+        "market.by_exchange.{HOSE,HNX,UPCoM}.pe/pb: same method by exchange (all listed stocks, not an index).")
+    f["valuation caveats"] = (
+        "(1) Double counting: a listed parent consolidating a listed subsidiary (VIC–VHM/VRE/VPL, MWG–DMX, GVR–PHR/"
+        "DPR, GAS–PGD …) puts the subsidiary's profit and book in both companies; because cap is counted twice too, "
+        "the ratios are affected roughly proportionally rather than biased one way, but the subsidiary's weight is "
+        "overstated. (2) TTM timing: ~92% of market cap uses Q4/2025–Q3/2026; the rest Q3/2025–Q2/2026. (3) One-off "
+        "gains in the window (e.g. large divestment or revaluation gains) lower P/E; quarterly reports are "
+        "unaudited and may be revised. (4) Caps use listed shares; ex-rights shares not yet listed (e.g. TCB, ex-date "
+        "2026-10-29) understate cap. (5) Full listed universe incl. UPCoM, total (not free-float) cap — differs from "
+        "VN-Index P/E. Descriptive only, not investment advice.")
+    if dry_run:
+        print(json.dumps(res, ensure_ascii=False, indent=1))
+        return res
+    with open(out_path, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, ensure_ascii=False, indent=1)
+        fh.write("\n")
+    print("wrote", out_path, "pe/pb/roe_pct on", len(ind["industries"]), "cards + market")
+    return res
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -548,9 +693,14 @@ def main():
     b.add_argument("--out", default=DEFAULT_OUT); b.add_argument("--ttm-min-cov", type=float, default=80.0)
     b.add_argument("--cross-checks", default=None, help="JSON file with published-figure comparisons to embed")
     b.add_argument("--dry-run", action="store_true")
+    v = sub.add_parser("valuation", help="fill card pe/pb/roe_pct and market pe/pb from the raw statements")
+    v.add_argument("--stocks", required=True); v.add_argument("--raw", required=True)
+    v.add_argument("--out", default=DEFAULT_OUT); v.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     if args.cmd == "pull":
         pull(args.stocks, args.raw, args.threads)
+    elif args.cmd == "valuation":
+        valuation(args.stocks, args.raw, args.out, args.dry_run)
     else:
         build(args.stocks, args.raw, args.out, args.ttm_min_cov, args.dry_run, args.cross_checks)
 
