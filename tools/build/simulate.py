@@ -1771,9 +1771,9 @@ def model2_block(Pn):
         lever("usdvnd_12m", "external", "Tỷ giá trung tâm, thay đổi 12 tháng", "USD/VND central rate, 12-month change", "%", "monthly", at(Pn, "usdvnd_12m", "2026-09"), "2026-09",
               "SBV central rate (finance.json)", "per finance.json usdvnd_monthly", flat(at(Pn, "usdvnd_12m", "2026-09")), -3, 10, 0.25, None, cal["usdvnd_12m"]["coef"], cal["usdvnd_12m"]["neutral"], 1,
               "Calibrated. Central rate 25,627 at end-Sep-2026; record 25,643 on 6/10/2026 (finance.json sbv.constraints).", (flat(0.0), flat(5.0)), "latest held"),
-        lever("fed_change", "external", "Fed thay đổi lãi suất trong tháng", "Fed rate change in the month", "pp", "event", 0.0, "2026-09 (+0.25 on 16/9)",
+        lever("fed_change", "external", "Fed thay đổi lãi suất trong tháng", "Fed rate change in the month", "pp", "event", 0.0, "2026-10 (hold on 28/10; +0.25 on 16/9)",
               "FOMC (panel)", "https://www.federalreserve.gov/monetarypolicy/openmarket.htm", flat(0.0), -0.5, 0.5, 0.25, None, cal["fed_change"]["coef"], 0.0, 0,
-              "Calibrated level shift. FOMC 27-28 Oct and 8-9 Dec 2026.", (flat(0.0), [0.25, 0, 0.25, 0, 0, 0]), "no change"),
+              "Calibrated level shift. FOMC 28 Oct 2026: hold (10-2, two votes for +0.25). Next: 8-9 Dec 2026.", (flat(0.0), [0.25, 0, 0.25, 0, 0, 0]), "no change"),
         lever("policy_rate_change", "policy", "NHNN thay đổi lãi suất điều hành", "SBV policy-rate change", "pp", "event", 0.0, "2026-09",
               "SBV (panel refi_rate)", "data/policy.json", flat(0.0), -1.0, 1.0, 0.25, None, c["pol"], 0.0, 0,
               "Estimated pass-through to the VCB 12-month rate in the month of the change.", ([0, 0, 0, -0.5, 0, 0], [0, 0, 0.5, 0, 0, 0]), "no change"),
@@ -1813,9 +1813,9 @@ def model2_block(Pn):
         "real_estate_credit_boom": ({"re_credit": add(B_["re_credit"], 60), "re_price_momentum": lin(B_["re_price_momentum"][0], 40)},
                                     "Tín dụng bất động sản tăng thêm 60 nghìn tỷ/tháng so với cơ sở (khoảng 150 nghìn tỷ/tháng, như quý II/2026 của riêng tín dụng kinh doanh BĐS cộng cho vay mua nhà); giá căn hộ tăng tốc lên 40%/năm.",
                                     "Real-estate credit VND 60 tn a month above baseline (~150 tn a month); apartment-price momentum accelerates to 40% y/y."),
-        "external_tightening": ({"fed_change": [0.25, 0, 0.25, 0, 0, 0], "usdvnd_12m": lin(B_["usdvnd_12m"][0], 4.5), "sbv_fx_sales": [1.5, 1.5, 1.5, 0, 0, 0], "omo_net_injection": flat(-30.0)},
-                                "Fed tăng 0,25 điểm % trong 10 và 12/2026; VND mất giá 4,5%/năm; NHNN bán 1,5 tỷ USD/tháng trong quý IV và hút ròng 30 nghìn tỷ/tháng qua OMO.",
-                                "Fed hikes 0.25 pp in Oct and Dec 2026; the dong's 12-month depreciation reaches 4.5%; SBV sells USD 1.5 bn a month in Q4 and drains a net VND 30 tn a month via OMO."),
+        "external_tightening": ({"fed_change": [0, 0, 0.25, 0, 0, 0], "usdvnd_12m": lin(B_["usdvnd_12m"][0], 4.5), "sbv_fx_sales": [1.5, 1.5, 1.5, 0, 0, 0], "omo_net_injection": flat(-30.0)},
+                                "Fed giữ nguyên 28/10/2026 rồi tăng 0,25 điểm % trong 12/2026; VND mất giá 4,5%/năm; NHNN bán 1,5 tỷ USD/tháng trong quý IV và hút ròng 30 nghìn tỷ/tháng qua OMO.",
+                                "Fed holds on 28 Oct 2026, then hikes 0.25 pp in Dec 2026; the dong's 12-month depreciation reaches 4.5%; SBV sells USD 1.5 bn a month in Q4 and drains a net VND 30 tn a month via OMO."),
     }
     scenarios = {}
     for k, (sett, avi, aen) in scen_def.items():

@@ -10570,7 +10570,7 @@
      "unit": "pp",
      "frequency": "event",
      "latest_value": 0.0,
-     "latest_period": "2026-09 (+0.25 on 16/9)",
+     "latest_period": "2026-10 (hold on 28/10; +0.25 on 16/9)",
      "source": "FOMC (panel)",
      "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm",
      "baseline_path": [
@@ -10589,7 +10589,7 @@
      "rate_coef": 0.1,
      "neutral": 0.0,
      "lag": 0,
-     "note": "Calibrated level shift. FOMC 27-28 Oct and 8-9 Dec 2026.",
+     "note": "Calibrated level shift. FOMC 28 Oct 2026: hold (10-2, two votes for +0.25). Next: 8-9 Dec 2026.",
      "tornado": {
       "low": [
        0.0,
@@ -13582,11 +13582,11 @@
      "change_h6_vs_base": 0.1718
     },
     "external_tightening": {
-     "assumptions_vi": "Fed tăng 0,25 điểm % trong 10 và 12/2026; VND mất giá 4,5%/năm; NHNN bán 1,5 tỷ USD/tháng trong quý IV và hút ròng 30 nghìn tỷ/tháng qua OMO.",
-     "assumptions_en": "Fed hikes 0.25 pp in Oct and Dec 2026; the dong's 12-month depreciation reaches 4.5%; SBV sells USD 1.5 bn a month in Q4 and drains a net VND 30 tn a month via OMO.",
+     "assumptions_vi": "Fed giữ nguyên 28/10/2026 rồi tăng 0,25 điểm % trong 12/2026; VND mất giá 4,5%/năm; NHNN bán 1,5 tỷ USD/tháng trong quý IV và hút ròng 30 nghìn tỷ/tháng qua OMO.",
+     "assumptions_en": "Fed holds on 28 Oct 2026, then hikes 0.25 pp in Dec 2026; the dong's 12-month depreciation reaches 4.5%; SBV sells USD 1.5 bn a month in Q4 and drains a net VND 30 tn a month via OMO.",
      "lever_paths": {
       "fed_change": [
-       0.25,
+       0.0,
        0.0,
        0.25,
        0.0,
@@ -13619,14 +13619,14 @@
       ]
      },
      "path": [
-      6.0973,
-      6.3013,
-      6.5631,
-      6.8342,
-      7.1011,
-      7.3887
+      6.0723,
+      6.2763,
+      6.5381,
+      6.8092,
+      7.0761,
+      7.3637
      ],
-     "change_h6_vs_base": 0.3045
+     "change_h6_vs_base": 0.2795
     }
    },
    "sensitivity": [

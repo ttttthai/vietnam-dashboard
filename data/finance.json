@@ -2,7 +2,8 @@
  "_meta": {
   "owner": "Finance agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-11-01"
+  "as_of": "2026-11-01",
+  "fed_oct_2026": "FINSYS.why.series.fed_funds_upper 2026-10 = 4.0 is the range in force at month-end Oct-2026: the FOMC held on 28 Oct 2026 and there was no further meeting or intermeeting action before 31 Oct, so the value is final. Applied 2026-11-01 (user approval). Next FOMC: 8-9 Dec 2026. usdvnd_monthly still ends 2026-09 (fed_funds_upper has its own months array)."
  },
  "FINSYS": {
   "asof": "2026-10-08",
@@ -3141,16 +3142,16 @@
      "title_vi": "Áp lực tỷ giá & chênh lệch lãi suất USD–VND (Fed tăng lãi suất)",
      "title_en": "Exchange-rate pressure & USD–VND rate differential (Fed hiking)",
      "direction": "limits_cut",
-     "explain_vi": "Hạ lãi suất VND sẽ thu hẹp chênh lệch với USD và đẩy tỷ giá lên; VND mất giá ~3,2% năm 2025, giá bán USD chạm trần biên độ ±5% trong T3 và T7/2026, dự trữ chỉ ~1,85 tháng nhập khẩu nên NHNN giữ lãi suất liên ngân hàng cao và bán kỳ hạn. Fed đảo chiều tăng lên 3,75–4% (16/9/2026) càng hạn chế dư địa nới lỏng, dù tỷ giá thị trường đã dịu từ T8/2026.",
-     "explain_en": "Cutting VND rates would narrow the USD differential and lift USD/VND; the dong lost ~3.2% in 2025, bank USD quotes hit the ±5% band ceiling in Mar and Jul-2026, and reserves cover only ~1.85 months of imports, so the SBV kept interbank rates high and sold forwards. The Fed's hike to 3.75–4% (16-Sep-2026) further limits easing room, even though market FX pressure eased from Aug-2026.",
+     "explain_vi": "Hạ lãi suất VND sẽ thu hẹp chênh lệch với USD và đẩy tỷ giá lên; VND mất giá ~3,2% năm 2025, giá bán USD chạm trần biên độ ±5% trong T3 và T7/2026, dự trữ chỉ ~1,85 tháng nhập khẩu nên NHNN giữ lãi suất liên ngân hàng cao và bán kỳ hạn. Fed đảo chiều tăng lên 3,75–4% (16/9/2026) và giữ nguyên ngày 28/10/2026 với 2 phiếu muốn tăng tiếp, càng hạn chế dư địa nới lỏng, dù tỷ giá thị trường đã dịu từ T8/2026.",
+     "explain_en": "Cutting VND rates would narrow the USD differential and lift USD/VND; the dong lost ~3.2% in 2025, bank USD quotes hit the ±5% band ceiling in Mar and Jul-2026, and reserves cover only ~1.85 months of imports, so the SBV kept interbank rates high and sold forwards. The Fed's hike to 3.75–4% (16-Sep-2026), held on 28-Oct-2026 with two votes for a further hike, further limits easing room, even though market FX pressure eased from Aug-2026.",
      "metrics": [
       {
-       "name": "Fed funds target (sau 16/9/2026)",
+       "name": "Fed funds target (giữ nguyên 28/10/2026)",
        "value": "3.75–4.00",
        "unit": "%",
-       "date": "2026-09-16",
-       "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-       "note": "lần tăng đầu tiên kể từ 2023; trước đó giữ 3.50–3.75% suốt 5 kỳ họp đầu 2026"
+       "date": "2026-10-28",
+       "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+       "note": "Tăng lên 3.75–4.00% ngày 16/9/2026 (lần tăng đầu tiên kể từ 2023); giữ nguyên 28/10/2026, biểu quyết 10–2 (Cook, Hammack muốn tăng 0,25 điểm %). Kỳ họp tới 8–9/12/2026."
       },
       {
        "name": "Tỷ giá trung tâm 2025",
@@ -3553,14 +3554,14 @@
    "summary_vi": [
     "Nguyên nhân gốc: tín dụng tăng nhanh hơn huy động (2025: ~19% vs ~14%; 28/9/2026: 10,89% vs 9,78% theo TCTK; NHNN: tín dụng 30/9 +11,59%), LDR đơn giản toàn ngành lên ~114% (Q2/2026) → ngân hàng đua lãi suất huy động (12T nhóm tư nhân 5,82% → ~8,4–8,6%).",
     "Chi phí vốn tăng vọt: COF 4,79% Q2/2026 (+105 bps svck), CASA giảm còn ~20,9%, chi phí lãi H1/2026 +49%, phải phát hành GTCG/trái phiếu lãi 8–10% → lãi vay T8/2026 8,4–10,7%, cao hơn cuối 2025 ~1,8 điểm %.",
-    "Thanh khoản và tỷ giá trói tay NHNN: liên ngân hàng qua đêm từng 17% (3/2/2026), OMO nâng lên 4,5% (12/2025), NHNN hút ròng để giữ tỷ giá (bán kỳ hạn 26.850), dự trữ ~2 tháng nhập khẩu; Fed tăng lên 3,75–4% (16/9/2026).",
+    "Thanh khoản và tỷ giá trói tay NHNN: liên ngân hàng qua đêm từng 17% (3/2/2026), OMO nâng lên 4,5% (12/2025), NHNN hút ròng để giữ tỷ giá (bán kỳ hạn 26.850), dự trữ ~2 tháng nhập khẩu; Fed tăng lên 3,75–4% (16/9/2026) và giữ nguyên ngày 28/10/2026.",
     "Lạm phát ~5% (CPI T9/2026 +5,08%) giữ lãi suất thực dương ~3,5 điểm %; nợ xấu 3,31% và trích lập cao ở NH tư nhân giữ phần bù rủi ro.",
     "Chỉ đạo hành chính (CV 2342, 3972, 4190, 7125; SME −1 điểm %) và nới LDR/KBNN, trần 40% chỉ giảm nhẹ áp lực; VNDirect dời kỳ vọng hạ lãi suất sang đầu 2027."
    ],
    "summary_en": [
     "Root cause: credit outgrowing deposits (2025 ~19% vs ~14%; 28-Sep-2026 10.89% vs 9.78% per GSO; SBV: credit +11.59% at 30-Sep), simple sector LDR ~114% (Q2-26) → a deposit-rate race (private banks' 12M rate 5.82% → ~8.4–8.6%).",
     "Cost of funds surged: COF 4.79% in Q2-26 (+105 bps YoY), CASA down to ~20.9%, H1-26 interest expense +49%, paper issued at 8–10% → Aug-2026 lending rates 8.4–10.7%, ~1.8pp above end-2025.",
-    "Liquidity and FX tie the SBV's hands: overnight interbank hit 17% (3-Feb-2026), OMO raised to 4.5% (Dec-2025), SBV drained VND to defend the dong (180-day forwards at 26,850), reserves ~2 months of imports; Fed hiked to 3.75–4% (16-Sep-2026).",
+    "Liquidity and FX tie the SBV's hands: overnight interbank hit 17% (3-Feb-2026), OMO raised to 4.5% (Dec-2025), SBV drained VND to defend the dong (180-day forwards at 26,850), reserves ~2 months of imports; Fed hiked to 3.75–4% (16-Sep-2026) and held on 28-Oct-2026.",
     "~5% inflation (Sep-2026 CPI +5.08%) keeps real deposit rates ~3.5pp positive; 3.31% NPLs and heavy private-bank provisioning keep risk premia wide.",
     "Moral suasion (letters 2342, 3972, 4190, 7125; SME −1pp) and LDR/Treasury/40%-cap relaxations only soften pressure; VNDirect now sees meaningful easing only from early 2027."
    ],
@@ -4111,7 +4112,7 @@
       "central": "SBV central rate (ty gia trung tam) VND/USD as reported in Vietnamese daily FX articles on/near last business day of month. 2026-04 value from congthuong article published 04:40 on 29/4/2026 (likely the 28/4 fixing). 2026-08 from doanhnghiephoinhap 07:00 31/8/2026 ('unchanged'). 2025-01 uses 24/1/2025 (last session before Tet; markets closed 25/1-2/2/2025). 2024-11 from 29/11/2024.",
       "vcb_sell": "Vietcombank USD selling rate (VND), morning quote in the cited article.",
       "free_sell": "Free/black-market USD selling rate (VND) as reported; extra series, nulls where article did not report it.",
-      "fed_upper": "Upper bound of FOMC target range in force at month-end; URL/date = Fed press release of the decision that set it. Holds verified directly: 2026-01-28, 2026-07-29 press releases; other 2025/2026 holds (2025: Jan 29, Mar 19, May 7, Jun 18, Jul 30; 2026: Mar 18, Apr 29, Jun 17) per secondary sources/meeting calendar, range unchanged.",
+      "fed_upper": "Upper bound of FOMC target range in force at month-end; URL/date = Fed press release of the decision that set it. Holds verified directly: 2026-01-28, 2026-07-29 press releases; 2026-10-28 hold (3.75–4.00%, vote 10–2; Cook and Hammack dissented for +25 bp; IORB 3.90%) verified via federalreserve.gov search excerpts (site unreachable from sandbox) - Oct-2026 value is final (no further FOMC action in Oct; next meeting 8–9 Dec 2026); other 2025/2026 holds (2025: Jan 29, Mar 19, May 7, Jun 18, Jul 30; 2026: Mar 18, Apr 29, Jun 17) per secondary sources/meeting calendar, range unchanged.",
       "dxy": "USD-Index as quoted in the same Vietnamese morning article (typically reflects the prior US session close, so approx. month-end). Alt for 2026-07: vov.vn 31/7/2026 quotes 100.20. True 30/9/2026 close: 101.46 per thanhnien 1/10/2026 article.",
       "band": "SBV spot band +/-5% around central rate since 17/10/2022 (Decision 1747/QD-NHNN)."
      },
@@ -4142,7 +4143,8 @@
       "2026-06",
       "2026-07",
       "2026-08",
-      "2026-09"
+      "2026-09",
+      "2026-10"
      ],
      "values": [
       5.0,
@@ -4168,6 +4170,7 @@
       3.75,
       3.75,
       3.75,
+      4.0,
       4.0
      ],
      "src": [
@@ -4194,7 +4197,8 @@
       "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
       "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
       "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
-      "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+      "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+      "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm"
      ]
     },
     "dxy_month_end": {
@@ -10089,8 +10093,8 @@
       "key": "fx_pressure",
       "title_vi": "Áp lực tỷ giá và chênh lệch lãi suất với USD",
       "title_en": "Exchange-rate pressure and the USD rate gap",
-      "text_vi": "Tỷ giá trung tâm tăng từ 25.121 đồng/USD (31/12/2025) lên mức kỷ lục 25.643 đồng (6/10/2026), tức VND mất giá khoảng 2,04% (tính toán), trong khi Fed nâng biên độ lãi suất lên 3,75-4,00% ngày 16/9/2026, chỉ thấp hơn lãi suất OMO/tái cấp vốn 4,5% của NHNN 0,5 điểm %. Hạ lãi suất điều hành sẽ xoá hoặc đảo ngược khoảng chênh này, khuyến khích chuyển sang nắm giữ USD và dòng vốn ra, làm VND yếu đi và đẩy giá hàng nhập khẩu lên (lạm phát nhập khẩu).",
-      "text_en": "The SBV central rate rose from 25,121 VND/USD (31 Dec 2025) to a record 25,643 (6 Oct 2026), a VND depreciation of about 2.04% (derived), while the Fed raised its target range to 3.75-4.00% on 16 Sep 2026, only 0.5 points below the SBV's 4.5% OMO/refinancing rate. Cutting policy rates would erase or invert that gap, encouraging dollarisation and capital outflows that weaken the dong and raise import prices (imported inflation).",
+      "text_vi": "Tỷ giá trung tâm tăng từ 25.121 đồng/USD (31/12/2025) lên mức kỷ lục 25.643 đồng (6/10/2026), tức VND mất giá khoảng 2,04% (tính toán), trong khi Fed nâng biên độ lãi suất lên 3,75-4,00% ngày 16/9/2026 và giữ nguyên ngày 28/10/2026, chỉ thấp hơn lãi suất OMO/tái cấp vốn 4,5% của NHNN 0,5 điểm %. Hạ lãi suất điều hành sẽ xoá hoặc đảo ngược khoảng chênh này, khuyến khích chuyển sang nắm giữ USD và dòng vốn ra, làm VND yếu đi và đẩy giá hàng nhập khẩu lên (lạm phát nhập khẩu).",
+      "text_en": "The SBV central rate rose from 25,121 VND/USD (31 Dec 2025) to a record 25,643 (6 Oct 2026), a VND depreciation of about 2.04% (derived), while the Fed raised its target range to 3.75-4.00% on 16 Sep 2026 and held it on 28 Oct 2026, only 0.5 points below the SBV's 4.5% OMO/refinancing rate. Cutting policy rates would erase or invert that gap, encouraging dollarisation and capital outflows that weaken the dong and raise import prices (imported inflation).",
       "metric": {
        "value": 2.04,
        "unit": "%",
@@ -10124,6 +10128,10 @@
        {
         "name": "Federal Reserve press release 16/9/2026",
         "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+       },
+       {
+        "name": "Federal Reserve press release 28/10/2026 (hold at 3.75-4.00%)",
+        "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm"
        },
        {
         "name": "Vietstock - OMO 4,5% tuần 28/9-2/10/2026",
@@ -10723,7 +10731,13 @@
    "alternatives": "see FINSYS.alternatives.series.*.source / points / observations (added 2026-10-06)",
    "corporate_bond_issuance_2026": "VBMA (from HNX/SSC disclosures) via press. Monthly figures are 'as disclosed by the month-end report date'; VBMA's cumulative totals are revised upward as late disclosures arrive, so monthly values do NOT sum to the cumulative (Jan-Jun months known = 127.4k vs 7M cumulative 289.9k). Conflict, not reconciled: 5M 127,351 + Jun 43,876 = 171,227 vs 7M 289,911 (implies July ~119k or large late additions). Other providers differ: H1-2026 ~273,500 (+1.8% y/y) and 7M ~322,300 (+2.7% y/y) per non-VBMA tallies (https://vneconomy.vn/trai-phieu-dao-han-giam-nhe-trong-thang-7-uoc-khoang-17700-ty-dong.htm, search excerpt) - not mixed.",
    "sbv_annual_report_revision_2026_10_08": "Added annual money aggregates (IMF currency outside banks & M2 memo, ADB M0/M1), monthly derived cash in circulation + methodology flags, annual SBV on-balance NPL, commercial-bank NPL, gross NPL points, charter capital, payments, financial_inclusion, institutions, npl_resolution, sbv_annual_report. All verified via WebSearch excerpts on 2026-10-08 (primary sites blocked).",
-   "timelines_2026_10_09": "FINSYS.timelines added 2026-10-09 for the animation/timeline request (user-approved data collection). Sources per point inside each block; all via search-engine excerpts because sbv.gov.vn, worldbank.org, imf.org, mbs.com.vn and press sites were blocked from the sandbox. Points whose URL is the most likely result rather than a confirmed page carry url_note. No interpolation; nulls are gaps."
+   "timelines_2026_10_09": "FINSYS.timelines added 2026-10-09 for the animation/timeline request (user-approved data collection). Sources per point inside each block; all via search-engine excerpts because sbv.gov.vn, worldbank.org, imf.org, mbs.com.vn and press sites were blocked from the sandbox. Points whose URL is the most likely result rather than a confirmed page carry url_note. No interpolation; nulls are gaps.",
+   "fomc_2026_10_28": {
+    "statement": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+    "implementation_note": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a1.htm",
+    "press_conference": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
+    "note": "FOMC 27-28 Oct 2026: target range held at 3.75-4.00% (vote 10-2; Cook and Hammack preferred +25 bp); IORB 3.90%, standing repo 4.00%, ON RRP 3.75%. Verified via search excerpts 2026-10-29 (federalreserve.gov unreachable from sandbox); corroborated by CNBC, Fortune, Fox Business. Applied 2026-11-01 with user approval (proposal data/research/proposals/fomc_2026-10-28.md)."
+   }
   },
   "other_services_breakdown": {
    "as_of": "2026-10-06",
@@ -11089,8 +11103,8 @@
       {
        "title_vi": "Thanh khoản và tỷ giá ràng buộc NHNN",
        "title_en": "Liquidity and FX constrain the SBV",
-       "text_vi": "Lãi suất qua đêm từng lên 17% (3/2/2026) và dao động 0,5-7% cuối 9/2026; NHNN vừa bơm qua OMO/hoán đổi (tối đa 2 tỷ USD ngày 21/9/2026) vừa phải giữ VND không quá rẻ khi Fed nâng lãi suất lên 3,75-4% (16/9/2026).",
-       "text_en": "Overnight interbank hit 17% (3 Feb 2026) and swung between 0.5% and 7% in late Sep 2026; the SBV injects via OMO/swaps (up to 2 bn USD on 21 Sep 2026) yet must keep VND from becoming too cheap as the Fed raised rates to 3.75-4% (16 Sep 2026).",
+       "text_vi": "Lãi suất qua đêm từng lên 17% (3/2/2026) và dao động 0,5-7% cuối 9/2026; NHNN vừa bơm qua OMO/hoán đổi (tối đa 2 tỷ USD ngày 21/9/2026) vừa phải giữ VND không quá rẻ khi Fed nâng lãi suất lên 3,75-4% (16/9/2026) và giữ nguyên ngày 28/10/2026.",
+       "text_en": "Overnight interbank hit 17% (3 Feb 2026) and swung between 0.5% and 7% in late Sep 2026; the SBV injects via OMO/swaps (up to 2 bn USD on 21 Sep 2026) yet must keep VND from becoming too cheap as the Fed raised rates to 3.75-4% (16 Sep 2026) and held them on 28 Oct 2026.",
        "weight": "main",
        "sources": [
         {
@@ -11100,6 +11114,10 @@
         {
          "name": "Federal Reserve 16/9/2026",
          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+        },
+        {
+         "name": "Federal Reserve 28/10/2026",
+         "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm"
         }
        ]
       },
