@@ -103,7 +103,9 @@
     "pe, pb, div_yield_pct, roe_pct": "null in this build: company fundamentals come from Vietcap iq.vietcap.com.vn (vnstock Finance source VCI), which is blocked from the cloud sandbox; no sourced per-ICB valuation was found in reachable pages. tools/build/industries_vnstock.py fills them on the Mac: P/E = Σcap ÷ Σ(cap/PE), P/B = Σcap ÷ Σ(cap/PB), ROE = aggregate earnings ÷ aggregate book, dividend yield cap-weighted, over the largest 25 stocks per industry (coverage written).",
     "rev_yoy_pct, npat_yoy_pct, growth_quarter": "null in this build (same reason). Q3-2026 reports were still arriving (press counted 537 companies by 26 Oct 2026); sector tallies in the press use broker groupings, not ICB, and are mostly forecasts. The Mac builder aggregates Σ latest quarter ÷ Σ same quarter a year earlier over stocks reporting both (quarter = latest one reported by ≥ 50% of sample cap).",
     "note_vi / note_en": "Descriptive one-liners written by the Investing agent from this file's figures (note_src = URL when a press/disclosure fact is used). Not advice."
-   }
+   },
+   "method_vi": " Lợi suất 1 tháng/từ đầu năm áp dụng cùng bộ lọc dữ liệu như phần lịch sử (bỏ chuỗi giá lỗi của nguồn, ví dụ DNN).",
+   "method_en": " 1M/YTD returns use the same data screen as the history block (feed-artefact price series dropped, e.g. DNN)."
   },
   "industries": [
    {
@@ -120,7 +122,7 @@
     "mcap_share_pct": 29.51,
     "mcap_bn_vnd_vci": 2955856,
     "ret_1m_pct": 1.13,
-    "ret_ytd_pct": 17.91,
+    "ret_ytd_pct": 17.92,
     "ret_coverage_pct": {
      "1m": 100.0,
      "ytd": 100.0
@@ -294,10 +296,10 @@
     "mcap_share_pct": 5.32,
     "mcap_bn_vnd_vci": 543189,
     "ret_1m_pct": -3.52,
-    "ret_ytd_pct": -10.77,
+    "ret_ytd_pct": -10.76,
     "ret_coverage_pct": {
      "1m": 100.0,
-     "ytd": 99.6
+     "ytd": 99.5
     },
     "ret_1m_pct_vci": -2.8,
     "ret_ytd_pct_vci": -8.74,
@@ -409,11 +411,11 @@
     "mcap_bn_vnd": 466564,
     "mcap_share_pct": 4.67,
     "mcap_bn_vnd_vci": 467932,
-    "ret_1m_pct": -2.88,
-    "ret_ytd_pct": 1.72,
+    "ret_1m_pct": -3.16,
+    "ret_ytd_pct": 1.23,
     "ret_coverage_pct": {
-     "1m": 100.0,
-     "ytd": 99.8
+     "1m": 99.5,
+     "ytd": 99.2
     },
     "ret_1m_pct_vci": -2.8,
     "ret_ytd_pct_vci": -0.33,
@@ -468,10 +470,10 @@
     "mcap_share_pct": 3.6,
     "mcap_bn_vnd_vci": 360193,
     "ret_1m_pct": 5.7,
-    "ret_ytd_pct": 9.5,
+    "ret_ytd_pct": 9.47,
     "ret_coverage_pct": {
      "1m": 100.0,
-     "ytd": 97.5
+     "ytd": 97.3
     },
     "ret_1m_pct_vci": 4.81,
     "ret_ytd_pct_vci": 10.34,
@@ -641,11 +643,11 @@
     "mcap_bn_vnd": 264491,
     "mcap_share_pct": 2.65,
     "mcap_bn_vnd_vci": 264565,
-    "ret_1m_pct": -0.44,
-    "ret_ytd_pct": -10.94,
+    "ret_1m_pct": -0.43,
+    "ret_ytd_pct": -10.93,
     "ret_coverage_pct": {
-     "1m": 100.0,
-     "ytd": 90.8
+     "1m": 99.9,
+     "ytd": 90.7
     },
     "ret_1m_pct_vci": 0.24,
     "ret_ytd_pct_vci": -10.73,
@@ -1048,7 +1050,7 @@
     "mcap_share_pct": 0.53,
     "mcap_bn_vnd_vci": 52877,
     "ret_1m_pct": -8.2,
-    "ret_ytd_pct": -34.57,
+    "ret_ytd_pct": -34.58,
     "ret_coverage_pct": {
      "1m": 100.0,
      "ytd": 100.0
@@ -1226,8 +1228,8 @@
      "mcap_bn_vnd": 1281825
     }
    },
-   "ret_1m_pct": -1.69,
-   "ret_ytd_pct": 0.36,
+   "ret_1m_pct": -1.7,
+   "ret_ytd_pct": 0.33,
    "vnindex": 1741.62,
    "vnindex_ytd_pct": -2.4
   },
