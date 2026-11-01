@@ -4164,7 +4164,1437 @@
      "vn_vi": "Lựa chọn nhất quán với đường lối độc lập, tự chủ, đa phương hóa, đa dạng hóa: (1) ký hiệp định với Mỹ, siết xuất xứ; (2) đa dạng nguồn dầu (Mỹ, Tây Phi, dự trữ chiến lược với Nga) và đẩy nhanh LNG, điện hạt nhân; (3) nâng nội địa hóa, thu hút chuỗi chip, dữ liệu; (4) bảo vệ chủ quyền bằng luật pháp quốc tế; (5) mở thêm thị trường (FTA với EFTA ký 18/10/2026). Mốc theo dõi: bầu cử Mỹ 3/11, hạn đất hiếm 10/11, APEC Thâm Quyến, FOMC tháng 12, hết hạn đình chiến Mỹ – Trung 10/1/2027.",
      "vn_en": "Options consistent with independence, self-reliance, multilateralisation and diversification: (1) sign the US deal and tighten origin rules; (2) diversify oil (US, West Africa, a strategic reserve with Russia) and speed up LNG and nuclear power; (3) raise local content and draw chip and data-centre investment; (4) defend sovereignty through international law; (5) open more markets (the EFTA FTA signed on 18 Oct 2026). Dates to watch: US elections 3 Nov, the rare-earth deadline 10 Nov, APEC Shenzhen, the December FOMC, and the US–China truce expiry on 10 Jan 2027."
     }
-   ]
+   ],
+   "reserves": {
+    "as_of": "2026-11-01",
+    "source": {
+     "name": "USGS Mineral Commodity Summaries 2026 (Appendix C: reserves); oil/gas: OPEC Annual Statistical Bulletin 2025",
+     "url": "https://pubs.usgs.gov/publication/mcs2026"
+    },
+    "basis_vi": "\"Trữ lượng\" theo định nghĩa USGS là phần tài nguyên đã xác định có thể khai thác kinh tế tại thời điểm đánh giá (không phải toàn bộ khoáng sản trong lòng đất); số liệu thay đổi khi giá, công nghệ và báo cáo của doanh nghiệp/chính phủ thay đổi. Đơn vị: hàm lượng kim loại/oxit (đất hiếm: triệu tấn REO; lithium, coban, niken, đồng: triệu tấn kim loại; vonfram: nghìn tấn W), quặng (bauxite: tỷ tấn; quặng sắt: tỷ tấn quặng thô; graphit: triệu tấn). Năm: MCS 2026 (ước tính 2025); coban và vonfram dùng MCS 2025 (cuối 2024) vì chưa xác nhận được bảng 2026. Dầu, khí: trữ lượng xác minh cuối 2024 (OPEC ASB 2025), tỷ thùng và nghìn tỷ m³. Tổng thế giới của đất hiếm, niken, vonfram được USGS ghi là \"hơn\" (>); tỷ trọng tính trên con số đó. Trang pubs.usgs.gov và opec.org không truy cập được từ phiên này nên số liệu lấy từ trích đoạn công cụ tìm kiếm và nguồn thứ cấp dẫn lại USGS/OPEC; mỗi điểm ghi rõ nguồn. Chỉ mang tính mô tả, không phải khuyến nghị đầu tư.",
+    "basis_en": "\"Reserves\" in the USGS sense are the part of identified resources that is economically extractable at the time of assessment (not all the mineral in the ground); figures move with prices, technology and company/government reporting. Units: contained metal/oxide (rare earths: Mt REO; lithium, cobalt, nickel, copper: Mt metal; tungsten: kt W) or ore (bauxite: bn t; iron ore: bn t crude ore; graphite: Mt). Year: MCS 2026 (2025 estimates); cobalt and tungsten use MCS 2025 (end-2024) because the 2026 tables could not be confirmed. Oil and gas: proven reserves at end-2024 (OPEC ASB 2025), bn barrels and trillion cubic metres. USGS gives the rare-earth, nickel and tungsten world totals as \"more than\" (>); shares use that figure. pubs.usgs.gov and opec.org were not reachable from this session, so figures come from search-engine excerpts and secondary reproductions of USGS/OPEC tables; each point names its source. Descriptive only, not investment advice.",
+    "minerals": [
+     {
+      "id": "rare_earths",
+      "name_vi": "Đất hiếm",
+      "name_en": "Rare earths",
+      "unit": "Mt REO",
+      "icon": "🧲",
+      "color": "#c026d3",
+      "world_total": 75,
+      "why_vi": "Trung Quốc kiểm soát cả trữ lượng lẫn khâu tinh luyện, nam châm; lệnh hạn chế xuất khẩu 2025 biến đất hiếm thành đòn bẩy chính của Bắc Kinh với Mỹ.",
+      "why_en": "China dominates reserves as well as refining and magnets; its 2025 export controls made rare earths Beijing's main lever over Washington.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, rare earths (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf"
+      }
+     },
+     {
+      "id": "lithium",
+      "name_vi": "Lithium",
+      "name_en": "Lithium",
+      "unit": "Mt Li",
+      "icon": "🔋",
+      "color": "#22c55e",
+      "world_total": 37,
+      "why_vi": "Kim loại cốt lõi của pin xe điện và lưu trữ điện; trữ lượng nằm ở Nam Mỹ và Australia nhưng tinh luyện tập trung ở Trung Quốc.",
+      "why_en": "The core metal of EV and grid batteries; reserves sit in South America and Australia but refining is concentrated in China.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, lithium (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-lithium.pdf"
+      }
+     },
+     {
+      "id": "cobalt",
+      "name_vi": "Coban",
+      "name_en": "Cobalt",
+      "unit": "Mt Co",
+      "icon": "🔵",
+      "color": "#2563eb",
+      "world_total": 11,
+      "why_vi": "CHDC Congo nắm hơn nửa trữ lượng và khoảng 3/4 sản lượng, phần lớn do doanh nghiệp Trung Quốc vận hành; Kinshasa dùng hạn ngạch xuất khẩu để đẩy giá.",
+      "why_en": "DR Congo holds over half of reserves and about three-quarters of output, mostly run by Chinese firms; Kinshasa uses export quotas to lift prices.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, cobalt (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-cobalt.pdf"
+      }
+     },
+     {
+      "id": "nickel",
+      "name_vi": "Niken",
+      "name_en": "Nickel",
+      "unit": "Mt Ni",
+      "icon": "⚙️",
+      "color": "#14b8a6",
+      "world_total": 140,
+      "why_vi": "Indonesia cấm xuất quặng thô để buộc đầu tư luyện kim trong nước (chủ yếu vốn Trung Quốc) — mô hình 'hạ nguồn hoá' mà Việt Nam đang cân nhắc cho đất hiếm, bauxite.",
+      "why_en": "Indonesia banned raw-ore exports to force domestic smelting (mostly Chinese capital) — the 'downstreaming' model Vietnam is weighing for rare earths and bauxite.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, nickel (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-nickel.pdf"
+      }
+     },
+     {
+      "id": "copper",
+      "name_vi": "Đồng",
+      "name_en": "Copper",
+      "unit": "Mt Cu",
+      "icon": "🟠",
+      "color": "#ea580c",
+      "world_total": 980,
+      "why_vi": "Điện khí hoá, lưới điện và trung tâm dữ liệu AI đẩy nhu cầu đồng; Mỹ áp thuế Mục 232 với đồng năm 2025 và đưa đồng vào danh sách khoáng sản thiết yếu.",
+      "why_en": "Electrification, grids and AI data centres drive copper demand; the US imposed Section 232 copper tariffs in 2025 and added copper to its critical-minerals list.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, copper (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+      }
+     },
+     {
+      "id": "graphite",
+      "name_vi": "Graphit (tự nhiên)",
+      "name_en": "Graphite (natural)",
+      "unit": "Mt",
+      "icon": "✏️",
+      "color": "#64748b",
+      "world_total": 310,
+      "why_vi": "Vật liệu cực âm của pin lithium-ion; Trung Quốc chiếm gần 80% sản lượng và đã siết xuất khẩu graphit từ cuối 2023.",
+      "why_en": "The anode material of lithium-ion batteries; China mines close to 80% of supply and has restricted graphite exports since late 2023.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, graphite (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-graphite.pdf"
+      }
+     },
+     {
+      "id": "bauxite",
+      "name_vi": "Bauxite",
+      "name_en": "Bauxite",
+      "unit": "bn t",
+      "icon": "🧱",
+      "color": "#b45309",
+      "world_total": 29,
+      "why_vi": "Nguyên liệu nhôm; Guinea là nguồn cung chính cho các nhà máy alumin Trung Quốc, còn Việt Nam có trữ lượng thứ ba thế giới ở Tây Nguyên.",
+      "why_en": "The ore for aluminium; Guinea feeds China's alumina refineries, while Vietnam holds the world's third-largest reserves in the Central Highlands.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, bauxite alumina (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-bauxite-alumina.pdf"
+      }
+     },
+     {
+      "id": "tungsten",
+      "name_vi": "Vonfram",
+      "name_en": "Tungsten",
+      "unit": "kt W",
+      "icon": "🔩",
+      "color": "#78716c",
+      "world_total": 4600,
+      "why_vi": "Kim loại quốc phòng (đầu đạn xuyên giáp, dụng cụ cắt); Trung Quốc chiếm khoảng 80% sản lượng và đưa vonfram vào danh mục kiểm soát xuất khẩu tháng 2/2025, nên Núi Pháo của Việt Nam thành nguồn ngoài Trung Quốc đáng kể.",
+      "why_en": "A defence metal (armour-piercing rounds, cutting tools); China mines about 80% and put tungsten under export control in Feb 2025, making Vietnam's Nui Phao a notable non-Chinese source.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, tungsten (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-tungsten.pdf"
+      }
+     },
+     {
+      "id": "iron_ore",
+      "name_vi": "Quặng sắt",
+      "name_en": "Iron ore",
+      "unit": "bn t crude ore",
+      "icon": "⛰️",
+      "color": "#991b1b",
+      "world_total": 200,
+      "why_vi": "Đầu vào của thép; Trung Quốc nhập khoảng 70% quặng sắt đường biển thế giới, chủ yếu từ Australia và Brazil, và dùng mỏ Simandou (Guinea) để giảm phụ thuộc Australia.",
+      "why_en": "The input for steel; China buys about 70% of seaborne iron ore, mostly from Australia and Brazil, and is using Guinea's Simandou to cut reliance on Australia.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, iron ore (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-iron-ore.pdf"
+      }
+     },
+     {
+      "id": "oil",
+      "name_vi": "Dầu thô (trữ lượng xác minh)",
+      "name_en": "Crude oil (proven reserves)",
+      "unit": "bn bbl",
+      "icon": "🛢️",
+      "color": "#111827",
+      "world_total": 1567,
+      "why_vi": "Gần một nửa trữ lượng dầu thế giới nằm quanh vùng Vịnh, sau eo Hormuz — nơi chiến sự Iran 2026 quyết định giá dầu và chi phí nhập khẩu của Việt Nam.",
+      "why_en": "Almost half of world oil reserves lie around the Gulf behind Hormuz, where the 2026 Iran war sets oil prices and Vietnam's import bill.",
+      "src": {
+       "name": "OPEC Annual Statistical Bulletin 2025 (end-2024 data)",
+       "url": "https://www.opec.org/assets/assetdb/asb-2025.pdf"
+      }
+     },
+     {
+      "id": "gas",
+      "name_vi": "Khí tự nhiên (trữ lượng xác minh)",
+      "name_en": "Natural gas (proven reserves)",
+      "unit": "tcm",
+      "icon": "🔥",
+      "color": "#0ea5e9",
+      "world_total": 208.9,
+      "why_vi": "Nga, Iran, Qatar nắm khoảng một nửa trữ lượng khí thế giới; LNG Qatar và khí Nga là hai trục địa chính trị của thị trường năng lượng mà Việt Nam đang bắt đầu nhập LNG.",
+      "why_en": "Russia, Iran and Qatar hold about half of world gas reserves; Qatari LNG and Russian gas are two geopolitical axes of the energy market Vietnam is now entering as an LNG importer.",
+      "src": {
+       "name": "OPEC ASB 2025 world total (via S&P Global Commodity Insights)",
+       "url": "https://www.spglobal.com/commodity-insights/en/news-research/latest-news/crude-oil/070225-opec-nudges-up-global-oil-reserves-estimate-despite-capex-fears"
+      }
+     }
+    ],
+    "deposits": [
+     {
+      "mineral": "rare_earths",
+      "iso3": "CHN",
+      "country_vi": "Trung Quốc",
+      "country_en": "China",
+      "lon": 109.97,
+      "lat": 41.78,
+      "value": 44.0,
+      "share_world_pct": 58.7,
+      "year": 2025,
+      "site_vi": "Bayan Obo (Nội Mông)",
+      "site_en": "Bayan Obo (Inner Mongolia)",
+      "note_vi": "Mỏ đất hiếm lớn nhất thế giới; Trung Quốc còn chi phối tinh luyện và nam châm.",
+      "note_en": "World's largest rare-earth mine; China also dominates refining and magnets.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, rare earths (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf"
+      }
+     },
+     {
+      "mineral": "rare_earths",
+      "iso3": "BRA",
+      "country_vi": "Brazil",
+      "country_en": "Brazil",
+      "lon": -46.94,
+      "lat": -19.59,
+      "value": 11.0,
+      "share_world_pct": 14.7,
+      "year": 2025,
+      "site_vi": "Araxá (Minas Gerais)",
+      "site_en": "Araxá (Minas Gerais)",
+      "note_vi": "USGS hạ từ 21 xuống 11 triệu tấn trong bản sửa MCS 2026 (theo nguồn thứ cấp).",
+      "note_en": "Cut from 21 Mt to 11 Mt in a revised MCS 2026 version (per secondary sources).",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, rare earths (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf"
+      }
+     },
+     {
+      "mineral": "rare_earths",
+      "iso3": "AUS",
+      "country_vi": "Australia",
+      "country_en": "Australia",
+      "lon": 122.55,
+      "lat": -28.86,
+      "value": 6.3,
+      "share_world_pct": 8.4,
+      "year": 2025,
+      "site_vi": "Mount Weld (Tây Australia)",
+      "site_en": "Mount Weld (Western Australia)",
+      "note_vi": "Trong đó khoảng 3,3 triệu tấn đạt chuẩn JORC.",
+      "note_en": "Of which about 3.3 Mt is JORC-compliant.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, rare earths (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf"
+      }
+     },
+     {
+      "mineral": "rare_earths",
+      "iso3": "RUS",
+      "country_vi": "Nga",
+      "country_en": "Russia",
+      "lon": 34.74,
+      "lat": 67.88,
+      "value": 3.8,
+      "share_world_pct": 5.1,
+      "year": 2025,
+      "site_vi": "Lovozero (bán đảo Kola)",
+      "site_en": "Lovozero (Kola Peninsula)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, rare earths (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf"
+      }
+     },
+     {
+      "mineral": "rare_earths",
+      "iso3": "VNM",
+      "country_vi": "Việt Nam",
+      "country_en": "Vietnam",
+      "lon": 103.45,
+      "lat": 22.38,
+      "value": 3.5,
+      "share_world_pct": 4.7,
+      "year": 2025,
+      "site_vi": "Đông Pao (Lai Châu)",
+      "site_en": "Dong Pao (Lai Chau)",
+      "note_vi": "USGS đã hạ từ 22 triệu xuống 3,5 triệu tấn; sản lượng chỉ vài trăm tấn/năm.",
+      "note_en": "USGS cut the estimate from 22 Mt to 3.5 Mt; output is only a few hundred tonnes a year.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, rare earths (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf"
+      }
+     },
+     {
+      "mineral": "rare_earths",
+      "iso3": "USA",
+      "country_vi": "Mỹ",
+      "country_en": "United States",
+      "lon": -115.53,
+      "lat": 35.48,
+      "value": 1.9,
+      "share_world_pct": 2.5,
+      "year": 2025,
+      "site_vi": "Mountain Pass (California)",
+      "site_en": "Mountain Pass (California)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, rare earths (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf"
+      }
+     },
+     {
+      "mineral": "rare_earths",
+      "iso3": "GRL",
+      "country_vi": "Greenland (Đan Mạch)",
+      "country_en": "Greenland (Denmark)",
+      "lon": -45.9,
+      "lat": 60.97,
+      "value": 1.5,
+      "share_world_pct": 2.0,
+      "year": 2025,
+      "site_vi": "Kvanefjeld / Tanbreez (Nam Greenland)",
+      "site_en": "Kvanefjeld / Tanbreez (South Greenland)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, rare earths (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf"
+      }
+     },
+     {
+      "mineral": "lithium",
+      "iso3": "CHL",
+      "country_vi": "Chile",
+      "country_en": "Chile",
+      "lon": -68.25,
+      "lat": -23.5,
+      "value": 9.2,
+      "share_world_pct": 24.9,
+      "year": 2025,
+      "site_vi": "Salar de Atacama",
+      "site_en": "Salar de Atacama",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, lithium (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-lithium.pdf"
+      }
+     },
+     {
+      "mineral": "lithium",
+      "iso3": "AUS",
+      "country_vi": "Australia",
+      "country_en": "Australia",
+      "lon": 116.06,
+      "lat": -33.86,
+      "value": 8.4,
+      "share_world_pct": 22.7,
+      "year": 2025,
+      "site_vi": "Greenbushes (Tây Australia)",
+      "site_en": "Greenbushes (Western Australia)",
+      "note_vi": "Trong đó 5,1 triệu tấn đạt chuẩn JORC.",
+      "note_en": "Of which 5.1 Mt is JORC-compliant.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, lithium (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-lithium.pdf"
+      }
+     },
+     {
+      "mineral": "lithium",
+      "iso3": "CHN",
+      "country_vi": "Trung Quốc",
+      "country_en": "China",
+      "lon": 94.9,
+      "lat": 36.8,
+      "value": 4.6,
+      "share_world_pct": 12.4,
+      "year": 2025,
+      "site_vi": "Hồ muối Qaidam (Thanh Hải)",
+      "site_en": "Qaidam salt lakes (Qinghai)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, lithium (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-lithium.pdf"
+      }
+     },
+     {
+      "mineral": "lithium",
+      "iso3": "ARG",
+      "country_vi": "Argentina",
+      "country_en": "Argentina",
+      "lon": -67.1,
+      "lat": -25.4,
+      "value": 4.4,
+      "share_world_pct": 11.9,
+      "year": 2025,
+      "site_vi": "Salar del Hombre Muerto",
+      "site_en": "Salar del Hombre Muerto",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, lithium (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-lithium.pdf"
+      }
+     },
+     {
+      "mineral": "lithium",
+      "iso3": "USA",
+      "country_vi": "Mỹ",
+      "country_en": "United States",
+      "lon": -118.0,
+      "lat": 41.7,
+      "value": 4.4,
+      "share_world_pct": 11.9,
+      "year": 2025,
+      "site_vi": "Thacker Pass (Nevada)",
+      "site_en": "Thacker Pass (Nevada)",
+      "note_vi": "Được nâng mạnh (MCS 2025: 1,8 triệu tấn) theo báo cáo doanh nghiệp.",
+      "note_en": "Sharply revised up (MCS 2025: 1.8 Mt) on company reports.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, lithium (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-lithium.pdf"
+      }
+     },
+     {
+      "mineral": "lithium",
+      "iso3": "CAN",
+      "country_vi": "Canada",
+      "country_en": "Canada",
+      "lon": -77.5,
+      "lat": 52.2,
+      "value": 1.6,
+      "share_world_pct": 4.3,
+      "year": 2025,
+      "site_vi": "Vùng James Bay (Québec)",
+      "site_en": "James Bay (Quebec)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, lithium (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-lithium.pdf"
+      }
+     },
+     {
+      "mineral": "lithium",
+      "iso3": "BRA",
+      "country_vi": "Brazil",
+      "country_en": "Brazil",
+      "lon": -42.0,
+      "lat": -16.8,
+      "value": 0.54,
+      "share_world_pct": 1.5,
+      "year": 2025,
+      "site_vi": "Thung lũng Jequitinhonha (Minas Gerais)",
+      "site_en": "Jequitinhonha Valley (Minas Gerais)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, lithium (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-lithium.pdf"
+      }
+     },
+     {
+      "mineral": "lithium",
+      "iso3": "ZWE",
+      "country_vi": "Zimbabwe",
+      "country_en": "Zimbabwe",
+      "lon": 31.35,
+      "lat": -17.78,
+      "value": 0.5,
+      "share_world_pct": 1.4,
+      "year": 2025,
+      "site_vi": "Arcadia / Bikita",
+      "site_en": "Arcadia / Bikita",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, lithium (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-lithium.pdf"
+      }
+     },
+     {
+      "mineral": "cobalt",
+      "iso3": "COD",
+      "country_vi": "CHDC Congo",
+      "country_en": "DR Congo",
+      "lon": 25.47,
+      "lat": -10.72,
+      "value": 6.0,
+      "share_world_pct": 54.5,
+      "year": 2024,
+      "site_vi": "Vành đai đồng Katanga (Kolwezi)",
+      "site_en": "Katanga Copperbelt (Kolwezi)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, cobalt (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-cobalt.pdf"
+      }
+     },
+     {
+      "mineral": "cobalt",
+      "iso3": "AUS",
+      "country_vi": "Australia",
+      "country_en": "Australia",
+      "lon": 121.9,
+      "lat": -28.77,
+      "value": 1.7,
+      "share_world_pct": 15.5,
+      "year": 2024,
+      "site_vi": "Murrin Murrin (Tây Australia)",
+      "site_en": "Murrin Murrin (Western Australia)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, cobalt (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-cobalt.pdf"
+      }
+     },
+     {
+      "mineral": "cobalt",
+      "iso3": "IDN",
+      "country_vi": "Indonesia",
+      "country_en": "Indonesia",
+      "lon": 122.17,
+      "lat": -2.82,
+      "value": 0.64,
+      "share_world_pct": 5.8,
+      "year": 2024,
+      "site_vi": "Morowali (Sulawesi)",
+      "site_en": "Morowali (Sulawesi)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, cobalt (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-cobalt.pdf"
+      }
+     },
+     {
+      "mineral": "cobalt",
+      "iso3": "CUB",
+      "country_vi": "Cuba",
+      "country_en": "Cuba",
+      "lon": -74.94,
+      "lat": 20.65,
+      "value": 0.5,
+      "share_world_pct": 4.5,
+      "year": 2024,
+      "site_vi": "Moa (Holguín)",
+      "site_en": "Moa (Holguín)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, cobalt (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-cobalt.pdf"
+      }
+     },
+     {
+      "mineral": "cobalt",
+      "iso3": "PHL",
+      "country_vi": "Philippines",
+      "country_en": "Philippines",
+      "lon": 117.42,
+      "lat": 8.55,
+      "value": 0.26,
+      "share_world_pct": 2.4,
+      "year": 2024,
+      "site_vi": "Rio Tuba (Palawan)",
+      "site_en": "Rio Tuba (Palawan)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, cobalt (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-cobalt.pdf"
+      }
+     },
+     {
+      "mineral": "cobalt",
+      "iso3": "RUS",
+      "country_vi": "Nga",
+      "country_en": "Russia",
+      "lon": 88.2,
+      "lat": 69.35,
+      "value": 0.25,
+      "share_world_pct": 2.3,
+      "year": 2024,
+      "site_vi": "Norilsk",
+      "site_en": "Norilsk",
+      "note_vi": "Một số nguồn dẫn MCS 2026 ghi 0,8 triệu tấn — chưa kiểm chứng.",
+      "note_en": "Some sources citing MCS 2026 give 0.8 Mt — unverified.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, cobalt (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-cobalt.pdf"
+      }
+     },
+     {
+      "mineral": "cobalt",
+      "iso3": "CAN",
+      "country_vi": "Canada",
+      "country_en": "Canada",
+      "lon": -81.0,
+      "lat": 46.5,
+      "value": 0.22,
+      "share_world_pct": 2.0,
+      "year": 2024,
+      "site_vi": "Sudbury (Ontario)",
+      "site_en": "Sudbury (Ontario)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, cobalt (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-cobalt.pdf"
+      }
+     },
+     {
+      "mineral": "nickel",
+      "iso3": "IDN",
+      "country_vi": "Indonesia",
+      "country_en": "Indonesia",
+      "lon": 122.17,
+      "lat": -2.82,
+      "value": 62.0,
+      "share_world_pct": 44.3,
+      "year": 2025,
+      "site_vi": "Morowali / Weda Bay (Sulawesi, Halmahera)",
+      "site_en": "Morowali / Weda Bay (Sulawesi, Halmahera)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, nickel (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-nickel.pdf"
+      }
+     },
+     {
+      "mineral": "nickel",
+      "iso3": "AUS",
+      "country_vi": "Australia",
+      "country_en": "Australia",
+      "lon": 121.67,
+      "lat": -31.2,
+      "value": 25.0,
+      "share_world_pct": 17.9,
+      "year": 2025,
+      "site_vi": "Kambalda (Tây Australia)",
+      "site_en": "Kambalda (Western Australia)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, nickel (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-nickel.pdf"
+      }
+     },
+     {
+      "mineral": "nickel",
+      "iso3": "BRA",
+      "country_vi": "Brazil",
+      "country_en": "Brazil",
+      "lon": -51.1,
+      "lat": -6.75,
+      "value": 16.0,
+      "share_world_pct": 11.4,
+      "year": 2025,
+      "site_vi": "Onça Puma (Pará)",
+      "site_en": "Onça Puma (Pará)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, nickel (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-nickel.pdf"
+      }
+     },
+     {
+      "mineral": "nickel",
+      "iso3": "RUS",
+      "country_vi": "Nga",
+      "country_en": "Russia",
+      "lon": 88.2,
+      "lat": 69.35,
+      "value": 8.3,
+      "share_world_pct": 5.9,
+      "year": 2025,
+      "site_vi": "Norilsk",
+      "site_en": "Norilsk",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, nickel (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-nickel.pdf"
+      }
+     },
+     {
+      "mineral": "nickel",
+      "iso3": "NCL",
+      "country_vi": "New Caledonia (Pháp)",
+      "country_en": "New Caledonia (France)",
+      "lon": 167.0,
+      "lat": -22.3,
+      "value": 7.1,
+      "share_world_pct": 5.1,
+      "year": 2025,
+      "site_vi": "Goro / Massif du Sud",
+      "site_en": "Goro / Massif du Sud",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, nickel (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-nickel.pdf"
+      }
+     },
+     {
+      "mineral": "nickel",
+      "iso3": "PHL",
+      "country_vi": "Philippines",
+      "country_en": "Philippines",
+      "lon": 125.5,
+      "lat": 9.6,
+      "value": 4.8,
+      "share_world_pct": 3.4,
+      "year": 2025,
+      "site_vi": "Surigao (Mindanao)",
+      "site_en": "Surigao (Mindanao)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, nickel (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-nickel.pdf"
+      }
+     },
+     {
+      "mineral": "nickel",
+      "iso3": "CHN",
+      "country_vi": "Trung Quốc",
+      "country_en": "China",
+      "lon": 102.2,
+      "lat": 38.5,
+      "value": 4.4,
+      "share_world_pct": 3.1,
+      "year": 2025,
+      "site_vi": "Kim Xuyên (Cam Túc)",
+      "site_en": "Jinchuan (Gansu)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, nickel (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-nickel.pdf"
+      }
+     },
+     {
+      "mineral": "copper",
+      "iso3": "CHL",
+      "country_vi": "Chile",
+      "country_en": "Chile",
+      "lon": -69.07,
+      "lat": -24.27,
+      "value": 180.0,
+      "share_world_pct": 18.4,
+      "year": 2025,
+      "site_vi": "Escondida (Atacama)",
+      "site_en": "Escondida (Atacama)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, copper (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+      }
+     },
+     {
+      "mineral": "copper",
+      "iso3": "AUS",
+      "country_vi": "Australia",
+      "country_en": "Australia",
+      "lon": 136.88,
+      "lat": -30.44,
+      "value": 100.0,
+      "share_world_pct": 10.2,
+      "year": 2025,
+      "site_vi": "Olympic Dam (Nam Australia)",
+      "site_en": "Olympic Dam (South Australia)",
+      "note_vi": "Chỉ khoảng 27 triệu tấn đạt chuẩn JORC.",
+      "note_en": "Only about 27 Mt is JORC-compliant.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, copper (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+      }
+     },
+     {
+      "mineral": "copper",
+      "iso3": "PER",
+      "country_vi": "Peru",
+      "country_en": "Peru",
+      "lon": -77.05,
+      "lat": -9.54,
+      "value": 85.0,
+      "share_world_pct": 8.7,
+      "year": 2025,
+      "site_vi": "Antamina (Áncash)",
+      "site_en": "Antamina (Áncash)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, copper (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+      }
+     },
+     {
+      "mineral": "copper",
+      "iso3": "COD",
+      "country_vi": "CHDC Congo",
+      "country_en": "DR Congo",
+      "lon": 25.7,
+      "lat": -10.8,
+      "value": 80.0,
+      "share_world_pct": 8.2,
+      "year": 2025,
+      "site_vi": "Kamoa-Kakula / Kolwezi (Katanga)",
+      "site_en": "Kamoa-Kakula / Kolwezi (Katanga)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, copper (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+      }
+     },
+     {
+      "mineral": "copper",
+      "iso3": "RUS",
+      "country_vi": "Nga",
+      "country_en": "Russia",
+      "lon": 118.5,
+      "lat": 56.5,
+      "value": 80.0,
+      "share_world_pct": 8.2,
+      "year": 2025,
+      "site_vi": "Udokan (Zabaykalsky)",
+      "site_en": "Udokan (Zabaykalsky)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, copper (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+      }
+     },
+     {
+      "mineral": "copper",
+      "iso3": "MEX",
+      "country_vi": "Mexico",
+      "country_en": "Mexico",
+      "lon": -110.3,
+      "lat": 30.98,
+      "value": 53.0,
+      "share_world_pct": 5.4,
+      "year": 2025,
+      "site_vi": "Cananea (Sonora)",
+      "site_en": "Cananea (Sonora)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, copper (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+      }
+     },
+     {
+      "mineral": "copper",
+      "iso3": "USA",
+      "country_vi": "Mỹ",
+      "country_en": "United States",
+      "lon": -109.36,
+      "lat": 33.08,
+      "value": 47.0,
+      "share_world_pct": 4.8,
+      "year": 2025,
+      "site_vi": "Morenci (Arizona)",
+      "site_en": "Morenci (Arizona)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, copper (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+      }
+     },
+     {
+      "mineral": "copper",
+      "iso3": "CHN",
+      "country_vi": "Trung Quốc",
+      "country_en": "China",
+      "lon": 117.72,
+      "lat": 29.0,
+      "value": 41.0,
+      "share_world_pct": 4.2,
+      "year": 2025,
+      "site_vi": "Đức Hưng (Giang Tây)",
+      "site_en": "Dexing (Jiangxi)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, copper (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-copper.pdf"
+      }
+     },
+     {
+      "mineral": "graphite",
+      "iso3": "CHN",
+      "country_vi": "Trung Quốc",
+      "country_en": "China",
+      "lon": 130.97,
+      "lat": 45.3,
+      "value": 100.0,
+      "share_world_pct": 32.3,
+      "year": 2025,
+      "site_vi": "Kê Tây / La Bắc (Hắc Long Giang)",
+      "site_en": "Jixi / Luobei (Heilongjiang)",
+      "note_vi": "MCS 2025: 81 triệu tấn.",
+      "note_en": "MCS 2025: 81 Mt.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, graphite (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-graphite.pdf"
+      }
+     },
+     {
+      "mineral": "graphite",
+      "iso3": "BRA",
+      "country_vi": "Brazil",
+      "country_en": "Brazil",
+      "lon": -41.3,
+      "lat": -16.0,
+      "value": 74.0,
+      "share_world_pct": 23.9,
+      "year": 2025,
+      "site_vi": "Pedra Azul (Minas Gerais)",
+      "site_en": "Pedra Azul (Minas Gerais)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, graphite (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-graphite.pdf"
+      }
+     },
+     {
+      "mineral": "graphite",
+      "iso3": "MDG",
+      "country_vi": "Madagascar",
+      "country_en": "Madagascar",
+      "lon": 48.9,
+      "lat": -19.0,
+      "value": 27.0,
+      "share_world_pct": 8.7,
+      "year": 2025,
+      "site_vi": "Vành đai graphit miền đông",
+      "site_en": "Eastern graphite belt",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, graphite (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-graphite.pdf"
+      }
+     },
+     {
+      "mineral": "graphite",
+      "iso3": "MOZ",
+      "country_vi": "Mozambique",
+      "country_en": "Mozambique",
+      "lon": 38.6,
+      "lat": -13.3,
+      "value": 25.0,
+      "share_world_pct": 8.1,
+      "year": 2024,
+      "site_vi": "Balama (Cabo Delgado)",
+      "site_en": "Balama (Cabo Delgado)",
+      "note_vi": "Số MCS 2025; chưa xác nhận được bản 2026.",
+      "note_en": "MCS 2025 figure; 2026 value not confirmed.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, graphite (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-graphite.pdf"
+      }
+     },
+     {
+      "mineral": "graphite",
+      "iso3": "TZA",
+      "country_vi": "Tanzania",
+      "country_en": "Tanzania",
+      "lon": 36.3,
+      "lat": -8.6,
+      "value": 18.0,
+      "share_world_pct": 5.8,
+      "year": 2024,
+      "site_vi": "Mahenge (Morogoro)",
+      "site_en": "Mahenge (Morogoro)",
+      "note_vi": "Số MCS 2025; chưa xác nhận được bản 2026.",
+      "note_en": "MCS 2025 figure; 2026 value not confirmed.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, graphite (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-graphite.pdf"
+      }
+     },
+     {
+      "mineral": "graphite",
+      "iso3": "RUS",
+      "country_vi": "Nga",
+      "country_en": "Russia",
+      "lon": 132.0,
+      "lat": 48.5,
+      "value": 14.0,
+      "share_world_pct": 4.5,
+      "year": 2024,
+      "site_vi": "Soyuznoye (Viễn Đông)",
+      "site_en": "Soyuznoye (Far East)",
+      "note_vi": "Số MCS 2025; chưa xác nhận được bản 2026.",
+      "note_en": "MCS 2025 figure; 2026 value not confirmed.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, graphite (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-graphite.pdf"
+      }
+     },
+     {
+      "mineral": "graphite",
+      "iso3": "VNM",
+      "country_vi": "Việt Nam",
+      "country_en": "Vietnam",
+      "lon": 104.6,
+      "lat": 21.9,
+      "value": 9.7,
+      "share_world_pct": 3.1,
+      "year": 2024,
+      "site_vi": "Văn Yên (Yên Bái) – Lào Cai",
+      "site_en": "Van Yen (Yen Bai) – Lao Cai",
+      "note_vi": "Độ tin cậy thấp: chỉ thấy qua nguồn thứ cấp; cần đối chiếu bảng USGS.",
+      "note_en": "Low confidence: seen only via a secondary source; check against the USGS table.",
+      "src": {
+       "name": "World Population Review (citing USGS MCS 2025; Vietnam revised in that edition)",
+       "url": "https://worldpopulationreview.com/country-rankings/graphite-reserves-by-country"
+      }
+     },
+     {
+      "mineral": "bauxite",
+      "iso3": "GIN",
+      "country_vi": "Guinea",
+      "country_en": "Guinea",
+      "lon": -14.3,
+      "lat": 10.94,
+      "value": 7.4,
+      "share_world_pct": 25.5,
+      "year": 2025,
+      "site_vi": "Boké",
+      "site_en": "Boké",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, bauxite alumina (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-bauxite-alumina.pdf"
+      }
+     },
+     {
+      "mineral": "bauxite",
+      "iso3": "AUS",
+      "country_vi": "Australia",
+      "country_en": "Australia",
+      "lon": 141.88,
+      "lat": -12.63,
+      "value": 3.7,
+      "share_world_pct": 12.8,
+      "year": 2025,
+      "site_vi": "Weipa (Queensland)",
+      "site_en": "Weipa (Queensland)",
+      "note_vi": "Chỉ khoảng 1,7 tỷ tấn đạt chuẩn JORC.",
+      "note_en": "Only about 1.7 bn t is JORC-compliant.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, bauxite alumina (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-bauxite-alumina.pdf"
+      }
+     },
+     {
+      "mineral": "bauxite",
+      "iso3": "VNM",
+      "country_vi": "Việt Nam",
+      "country_en": "Vietnam",
+      "lon": 107.68,
+      "lat": 12.0,
+      "value": 3.1,
+      "share_world_pct": 10.7,
+      "year": 2025,
+      "site_vi": "Tây Nguyên (Nhân Cơ – Đắk Nông, Tân Rai – Lâm Đồng)",
+      "site_en": "Central Highlands (Nhan Co – Dak Nong, Tan Rai – Lam Dong)",
+      "note_vi": "Thứ 3 thế giới; Bộ Công Thương ước tài nguyên Tây Nguyên ~5,4 tỷ tấn (khái niệm rộng hơn trữ lượng).",
+      "note_en": "3rd in the world; Vietnam's ministry puts Central Highlands resources at ~5.4 bn t (a broader concept than reserves).",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, bauxite alumina (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-bauxite-alumina.pdf"
+      }
+     },
+     {
+      "mineral": "bauxite",
+      "iso3": "IDN",
+      "country_vi": "Indonesia",
+      "country_en": "Indonesia",
+      "lon": 110.5,
+      "lat": -0.5,
+      "value": 2.9,
+      "share_world_pct": 10.0,
+      "year": 2025,
+      "site_vi": "Tây Kalimantan",
+      "site_en": "West Kalimantan",
+      "note_vi": "Indonesia cấm xuất bauxite thô từ 6/2023.",
+      "note_en": "Indonesia banned raw bauxite exports from June 2023.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, bauxite alumina (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-bauxite-alumina.pdf"
+      }
+     },
+     {
+      "mineral": "bauxite",
+      "iso3": "JAM",
+      "country_vi": "Jamaica",
+      "country_en": "Jamaica",
+      "lon": -77.3,
+      "lat": 18.1,
+      "value": 2.0,
+      "share_world_pct": 6.9,
+      "year": 2025,
+      "site_vi": "Cao nguyên trung tâm Jamaica",
+      "site_en": "Central Jamaica plateau",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, bauxite alumina (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-bauxite-alumina.pdf"
+      }
+     },
+     {
+      "mineral": "bauxite",
+      "iso3": "BRA",
+      "country_vi": "Brazil",
+      "country_en": "Brazil",
+      "lon": -56.4,
+      "lat": -1.48,
+      "value": 1.7,
+      "share_world_pct": 5.9,
+      "year": 2025,
+      "site_vi": "Trombetas / Paragominas (Pará)",
+      "site_en": "Trombetas / Paragominas (Pará)",
+      "note_vi": "Nguồn thứ cấp lệch nhau (1,7 hay 2,7 tỷ tấn).",
+      "note_en": "Secondary sources disagree (1.7 vs 2.7 bn t).",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, bauxite alumina (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-bauxite-alumina.pdf"
+      }
+     },
+     {
+      "mineral": "tungsten",
+      "iso3": "CHN",
+      "country_vi": "Trung Quốc",
+      "country_en": "China",
+      "lon": 114.4,
+      "lat": 25.4,
+      "value": 2400.0,
+      "share_world_pct": 52.2,
+      "year": 2024,
+      "site_vi": "Cám Nam (Giang Tây)",
+      "site_en": "Gannan (Jiangxi)",
+      "note_vi": "Một nguồn dẫn MCS 2026 ghi 2.500 nghìn tấn.",
+      "note_en": "One source citing MCS 2026 gives 2,500 kt.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, tungsten (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-tungsten.pdf"
+      }
+     },
+     {
+      "mineral": "tungsten",
+      "iso3": "RUS",
+      "country_vi": "Nga",
+      "country_en": "Russia",
+      "lon": 135.9,
+      "lat": 46.4,
+      "value": 400.0,
+      "share_world_pct": 8.7,
+      "year": 2024,
+      "site_vi": "Vostok-2 (Primorye)",
+      "site_en": "Vostok-2 (Primorye)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, tungsten (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-tungsten.pdf"
+      }
+     },
+     {
+      "mineral": "tungsten",
+      "iso3": "VNM",
+      "country_vi": "Việt Nam",
+      "country_en": "Vietnam",
+      "lon": 105.7,
+      "lat": 21.64,
+      "value": 140.0,
+      "share_world_pct": 3.0,
+      "year": 2024,
+      "site_vi": "Núi Pháo (Thái Nguyên)",
+      "site_en": "Nui Phao (Thai Nguyen)",
+      "note_vi": "Thứ 3 thế giới trong bảng MCS 2025; MCS 2026 có sửa số của Việt Nam (chưa xem được).",
+      "note_en": "3rd in the MCS 2025 table; MCS 2026 revised Vietnam's figure (not seen).",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, tungsten (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-tungsten.pdf"
+      }
+     },
+     {
+      "mineral": "tungsten",
+      "iso3": "ESP",
+      "country_vi": "Tây Ban Nha",
+      "country_en": "Spain",
+      "lon": -6.67,
+      "lat": 41.07,
+      "value": 66.0,
+      "share_world_pct": 1.4,
+      "year": 2024,
+      "site_vi": "Barruecopardo (Salamanca)",
+      "site_en": "Barruecopardo (Salamanca)",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2025, tungsten (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-tungsten.pdf"
+      }
+     },
+     {
+      "mineral": "iron_ore",
+      "iso3": "AUS",
+      "country_vi": "Australia",
+      "country_en": "Australia",
+      "lon": 118.6,
+      "lat": -22.6,
+      "value": 59.0,
+      "share_world_pct": 29.5,
+      "year": 2025,
+      "site_vi": "Pilbara (Tây Australia)",
+      "site_en": "Pilbara (Western Australia)",
+      "note_vi": "Hàm lượng sắt ~27 tỷ tấn; chuẩn JORC 24 tỷ tấn quặng.",
+      "note_en": "~27 bn t iron content; JORC-compliant 24 bn t ore.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, iron ore (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-iron-ore.pdf"
+      }
+     },
+     {
+      "mineral": "iron_ore",
+      "iso3": "RUS",
+      "country_vi": "Nga",
+      "country_en": "Russia",
+      "lon": 37.6,
+      "lat": 51.3,
+      "value": 35.0,
+      "share_world_pct": 17.5,
+      "year": 2025,
+      "site_vi": "Dị thường từ Kursk (KMA)",
+      "site_en": "Kursk Magnetic Anomaly (KMA)",
+      "note_vi": "Hàm lượng sắt ~14 tỷ tấn.",
+      "note_en": "~14 bn t iron content.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, iron ore (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-iron-ore.pdf"
+      }
+     },
+     {
+      "mineral": "iron_ore",
+      "iso3": "BRA",
+      "country_vi": "Brazil",
+      "country_en": "Brazil",
+      "lon": -50.3,
+      "lat": -6.07,
+      "value": 34.0,
+      "share_world_pct": 17.0,
+      "year": 2025,
+      "site_vi": "Carajás (Pará)",
+      "site_en": "Carajás (Pará)",
+      "note_vi": "Hàm lượng sắt ~15 tỷ tấn.",
+      "note_en": "~15 bn t iron content.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, iron ore (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-iron-ore.pdf"
+      }
+     },
+     {
+      "mineral": "iron_ore",
+      "iso3": "CHN",
+      "country_vi": "Trung Quốc",
+      "country_en": "China",
+      "lon": 123.0,
+      "lat": 41.1,
+      "value": 17.0,
+      "share_world_pct": 8.5,
+      "year": 2025,
+      "site_vi": "An Sơn (Liêu Ninh)",
+      "site_en": "Anshan (Liaoning)",
+      "note_vi": "Quặng nghèo: hàm lượng sắt chỉ ~3 tỷ tấn.",
+      "note_en": "Low-grade: only ~3 bn t iron content.",
+      "src": {
+       "name": "USGS Mineral Commodity Summaries 2026, iron ore (figure from search excerpts of secondary reproductions; USGS PDF not reachable)",
+       "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-iron-ore.pdf"
+      }
+     },
+     {
+      "mineral": "oil",
+      "iso3": "VEN",
+      "country_vi": "Venezuela",
+      "country_en": "Venezuela",
+      "lon": -64.0,
+      "lat": 8.5,
+      "value": 303.7,
+      "share_world_pct": 19.4,
+      "year": 2024,
+      "site_vi": "Vành đai Orinoco",
+      "site_en": "Orinoco Belt",
+      "note_vi": "Chủ yếu dầu siêu nặng; sản lượng thấp xa so với trữ lượng.",
+      "note_en": "Mostly extra-heavy crude; output is far below what reserves suggest.",
+      "src": {
+       "name": "OPEC ASB 2025 (via Visual Capitalist / Worldometer)",
+       "url": "https://www.visualcapitalist.com/all-of-the-worlds-oil-reserves-by-country-in-one-visualization/"
+      }
+     },
+     {
+      "mineral": "oil",
+      "iso3": "SAU",
+      "country_vi": "Ả Rập Xê Út",
+      "country_en": "Saudi Arabia",
+      "lon": 49.3,
+      "lat": 25.4,
+      "value": 267.2,
+      "share_world_pct": 17.1,
+      "year": 2024,
+      "site_vi": "Ghawar",
+      "site_en": "Ghawar",
+      "src": {
+       "name": "OPEC ASB 2025 (via Visual Capitalist / Worldometer)",
+       "url": "https://www.visualcapitalist.com/all-of-the-worlds-oil-reserves-by-country-in-one-visualization/"
+      }
+     },
+     {
+      "mineral": "oil",
+      "iso3": "IRN",
+      "country_vi": "Iran",
+      "country_en": "Iran",
+      "lon": 48.7,
+      "lat": 31.3,
+      "value": 208.6,
+      "share_world_pct": 13.3,
+      "year": 2024,
+      "site_vi": "Khuzestan (Ahvaz)",
+      "site_en": "Khuzestan (Ahvaz)",
+      "src": {
+       "name": "OPEC ASB 2025 (via Visual Capitalist / Worldometer)",
+       "url": "https://www.visualcapitalist.com/all-of-the-worlds-oil-reserves-by-country-in-one-visualization/"
+      }
+     },
+     {
+      "mineral": "oil",
+      "iso3": "IRQ",
+      "country_vi": "Iraq",
+      "country_en": "Iraq",
+      "lon": 47.4,
+      "lat": 30.4,
+      "value": 145.0,
+      "share_world_pct": 9.3,
+      "year": 2024,
+      "site_vi": "Rumaila (Basra)",
+      "site_en": "Rumaila (Basra)",
+      "src": {
+       "name": "OPEC ASB 2025 (via Visual Capitalist / Worldometer)",
+       "url": "https://www.visualcapitalist.com/all-of-the-worlds-oil-reserves-by-country-in-one-visualization/"
+      }
+     },
+     {
+      "mineral": "oil",
+      "iso3": "ARE",
+      "country_vi": "UAE",
+      "country_en": "UAE",
+      "lon": 54.0,
+      "lat": 23.5,
+      "value": 113.0,
+      "share_world_pct": 7.2,
+      "year": 2024,
+      "site_vi": "Abu Dhabi (mỏ trên bờ Bab/Asab)",
+      "site_en": "Abu Dhabi (onshore Bab/Asab)",
+      "note_vi": "OAPEC: tăng lên ~120 tỷ thùng cuối 2025.",
+      "note_en": "OAPEC: rose to ~120 bn bbl at end-2025.",
+      "src": {
+       "name": "OPEC ASB 2025 (via Visual Capitalist / Worldometer)",
+       "url": "https://www.visualcapitalist.com/all-of-the-worlds-oil-reserves-by-country-in-one-visualization/"
+      }
+     },
+     {
+      "mineral": "oil",
+      "iso3": "KWT",
+      "country_vi": "Kuwait",
+      "country_en": "Kuwait",
+      "lon": 47.98,
+      "lat": 28.95,
+      "value": 101.5,
+      "share_world_pct": 6.5,
+      "year": 2024,
+      "site_vi": "Burgan",
+      "site_en": "Burgan",
+      "note_vi": "Nguồn chính cho lọc dầu Nghi Sơn.",
+      "note_en": "Main crude source for Vietnam's Nghi Son refinery.",
+      "src": {
+       "name": "OPEC ASB 2025 (via Visual Capitalist / Worldometer)",
+       "url": "https://www.visualcapitalist.com/all-of-the-worlds-oil-reserves-by-country-in-one-visualization/"
+      }
+     },
+     {
+      "mineral": "oil",
+      "iso3": "RUS",
+      "country_vi": "Nga",
+      "country_en": "Russia",
+      "lon": 76.7,
+      "lat": 61.1,
+      "value": 80.0,
+      "share_world_pct": 5.1,
+      "year": 2024,
+      "site_vi": "Tây Siberia (Samotlor)",
+      "site_en": "West Siberia (Samotlor)",
+      "note_vi": "Ước tính về Nga dao động 80–108 tỷ thùng tuỳ nguồn.",
+      "note_en": "Estimates for Russia range 80–108 bn bbl by source.",
+      "src": {
+       "name": "OPEC ASB 2025 (via Visual Capitalist / Worldometer)",
+       "url": "https://www.visualcapitalist.com/all-of-the-worlds-oil-reserves-by-country-in-one-visualization/"
+      }
+     },
+     {
+      "mineral": "oil",
+      "iso3": "LBY",
+      "country_vi": "Libya",
+      "country_en": "Libya",
+      "lon": 19.0,
+      "lat": 29.0,
+      "value": 48.4,
+      "share_world_pct": 3.1,
+      "year": 2024,
+      "site_vi": "Bồn trũng Sirte",
+      "site_en": "Sirte Basin",
+      "src": {
+       "name": "OPEC ASB 2025 (via Visual Capitalist / Worldometer)",
+       "url": "https://www.visualcapitalist.com/all-of-the-worlds-oil-reserves-by-country-in-one-visualization/"
+      }
+     },
+     {
+      "mineral": "oil",
+      "iso3": "VNM",
+      "country_vi": "Việt Nam",
+      "country_en": "Vietnam",
+      "lon": 107.97,
+      "lat": 9.72,
+      "value": 4.4,
+      "share_world_pct": 0.3,
+      "year": 2024,
+      "site_vi": "Bồn trũng Cửu Long (mỏ Bạch Hổ)",
+      "site_en": "Cuu Long Basin (Bach Ho field)",
+      "note_vi": "Khoảng 0,3% thế giới.",
+      "note_en": "About 0.3% of the world total.",
+      "src": {
+       "name": "OPEC ASB 2025 (via Visual Capitalist / Worldometer)",
+       "url": "https://www.visualcapitalist.com/all-of-the-worlds-oil-reserves-by-country-in-one-visualization/"
+      }
+     },
+     {
+      "mineral": "gas",
+      "iso3": "RUS",
+      "country_vi": "Nga",
+      "country_en": "Russia",
+      "lon": 76.5,
+      "lat": 66.0,
+      "value": 46.8,
+      "share_world_pct": 22.4,
+      "year": 2024,
+      "site_vi": "Urengoy / Yamal (Tây Siberia)",
+      "site_en": "Urengoy / Yamal (West Siberia)",
+      "note_vi": "Nguồn ghi 1.654 nghìn tỷ ft³; quy đổi ≈46,8 nghìn tỷ m³.",
+      "note_en": "Source gives 1,654 Tcf; converted ≈46.8 tcm.",
+      "src": {
+       "name": "EIA Russia Country Analysis Brief 2025 (citing OPEC ASB 2025)",
+       "url": "https://www.eia.gov/international/content/analysis/countries_long/Russia/pdf/Russia%20CAB_2025.pdf"
+      }
+     },
+     {
+      "mineral": "gas",
+      "iso3": "IRN",
+      "country_vi": "Iran",
+      "country_en": "Iran",
+      "lon": 52.0,
+      "lat": 26.6,
+      "value": 34.0,
+      "share_world_pct": 16.3,
+      "year": 2024,
+      "site_vi": "South Pars (vùng Vịnh)",
+      "site_en": "South Pars (Persian Gulf)",
+      "note_vi": "Cùng một mỏ với North Field của Qatar.",
+      "note_en": "The same reservoir as Qatar's North Field.",
+      "src": {
+       "name": "IranOilGas (citing OPEC ASB 2025)",
+       "url": "https://www.iranoilgas.com/news/details.aspx?id=27785&title=Iran%E2%80%99s+gas+reserves+and+production+in+2024%3A+OPEC+Statistics+%28Report%29"
+      }
+     },
+     {
+      "mineral": "gas",
+      "iso3": "QAT",
+      "country_vi": "Qatar",
+      "country_en": "Qatar",
+      "lon": 51.8,
+      "lat": 26.3,
+      "value": 24.7,
+      "share_world_pct": 11.8,
+      "year": 2020,
+      "site_vi": "North Field",
+      "site_en": "North Field",
+      "note_vi": "Cơ sở khác (BP/EIA, không phải OPEC ASB 2025); độ tin cậy trung bình.",
+      "note_en": "Different basis (BP/EIA, not OPEC ASB 2025); medium confidence.",
+      "src": {
+       "name": "Farmonaut (citing BP Statistical Review via EIA)",
+       "url": "https://farmonaut.com/mining/qatar-oil-reserves-gas-reserves-2026-strategic-outlook"
+      }
+     }
+    ]
+   }
   }
  }
 }
