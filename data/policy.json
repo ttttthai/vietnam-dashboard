@@ -2,13 +2,13 @@
  "_meta": {
   "owner": "Policy agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-10-06"
+  "as_of": "2026-11-01"
  },
  "POLICY": {
   "mon": {
-   "as_of": "2026-10-06",
-   "stance_vi": "Lãi suất điều hành giữ nguyên từ 6/2023 (tái cấp vốn 4,5%), lãi suất OMO 4,5% từ 12/2025. Thay vì giảm lãi suất, NHNN nới các giới hạn an toàn: trần LDR 95% từ 1/12/2026 (TT 50/2026), tỷ lệ vốn ngắn hạn cho vay trung dài hạn 40%, tính 50% tiền gửi KBNN vào LDR, và loại trừ một số lĩnh vực khỏi trần tín dụng BĐS (CV 8509/NHNN-CSTT). Lãi suất được kéo xuống chủ yếu bằng chỉ đạo hành chính (TB 428/TB-VPCP) và các gói tín dụng ưu đãi; NHNN cho biết dư địa nới lỏng tiền tệ \"rất hạn chế\". Thanh khoản được điều tiết qua OMO và hoán đổi USD/VND (từ 21/9/2026); tỷ giá trung tâm 25.643 đ/USD ngày 6/10/2026, tăng ~2,1% so với cuối 2025. Tín dụng đến 30/9/2026 tăng 11,59% so với cuối năm, định hướng cả năm ~15%.",
-   "stance_en": "Policy rates unchanged since Jun-2023 (refinancing 4.5%); OMO rate 4.5% since Dec-2025. Instead of cutting rates the SBV is loosening prudential limits: LDR cap 95% from 1 Dec 2026 (Circular 50/2026), 40% short-term funds for medium/long loans, 50% of Treasury deposits counted in LDR, and carve-outs from the real-estate credit cap (letter 8509/NHNN-CSTT). Lending rates are pushed down mainly through administrative guidance (notice 428/TB-VPCP) and subsidised credit programmes; the SBV calls its room for monetary easing \"very limited\". Liquidity is managed via OMO and USD/VND swaps (since 21 Sep 2026); the central rate was VND 25,643/USD on 6 Oct 2026, ~2.1% above end-2025. Credit grew 11.59% year-to-date by 30 Sep 2026 against a ~15% full-year guide.",
+   "as_of": "2026-11-01",
+   "stance_vi": "Lãi suất điều hành giữ nguyên từ 6/2023 (tái cấp vốn 4,5%), lãi suất OMO 4,5% từ 12/2025; NHNN không phát hành tín phiếu trong 2026. Thay vì giảm lãi suất, NHNN nới giới hạn an toàn (trần LDR 95% từ 1/12/2026 theo TT 50/2026; vốn ngắn hạn cho vay trung dài hạn 40%; tính 50% tiền gửi KBNN vào LDR) và loại trừ một số lĩnh vực khỏi trần tín dụng BĐS. Tháng 10/2026 chỉ đạo hành chính được siết: CV 9608 (18/10) và 9736/NHNN-CSTT (21/10) yêu cầu giảm tối thiểu 0,5%/năm lãi suất tiền gửi bình quân kỳ hạn từ 6 tháng và 1,5–2%/năm lãi suất cho vay sản xuất, ưu tiên, gắn với room tín dụng. Tỷ giá trung tâm 25.644 đ/USD ngày 29/10/2026 (+~2,1% so cuối 2025); NĐ 390/2026 hạ ngưỡng thanh toán không tiền mặt khi mua bán vàng xuống 5 triệu đồng/ngày. Tín dụng đến 30/9/2026 tăng 11,59% so cuối năm, định hướng cả năm ~15%.",
+   "stance_en": "Policy rates unchanged since Jun-2023 (refinancing 4.5%); OMO rate 4.5% since Dec-2025; no SBV bills issued in 2026. Instead of cutting rates the SBV loosens prudential limits (LDR cap 95% from 1 Dec 2026 under Circular 50/2026; 40% short-term funds for medium/long loans; 50% of Treasury deposits counted in LDR) and carves sectors out of the real-estate credit cap. In October 2026 administrative guidance tightened: letters 9608 (18 Oct) and 9736/NHNN-CSTT (21 Oct) require average deposit rates on ≥6-month terms to fall by at least 0.5pp and production/priority lending rates by 1.5–2pp, enforced through credit quotas. The central rate was VND 25,644/USD on 29 Oct 2026 (~+2.1% vs end-2025); Decree 390/2026 lowered the cashless-payment threshold for gold trades to VND5m/day. Credit grew 11.59% year-to-date by 30 Sep 2026 against a ~15% full-year guide.",
    "instruments": [
     {
      "id": "refinancing_rate",
@@ -78,7 +78,7 @@
        "2023-04-03",
        "2023-05-25",
        "2023-06-19",
-       "2026-10-05"
+       "2026-10-30"
       ],
       "values": [
        6.0,
@@ -128,7 +128,7 @@
        "2023-01-01",
        "2023-03-15",
        "2023-06-19",
-       "2026-10-05"
+       "2026-10-30"
       ],
       "values": [
        4.5,
@@ -188,7 +188,7 @@
        "2023-03-15",
        "2023-05-25",
        "2023-06-19",
-       "2026-10-05"
+       "2026-10-30"
       ],
       "values": [
        7.0,
@@ -291,6 +291,16 @@
        "note_vi": "Thanh khoản căng: chào OMO 7–91 ngày ở 4,5% và mở lại hoán đổi USD/VND 7 ngày tối đa 2 tỷ USD.",
        "note_en": "Tight liquidity: 7–91d OMO at 4.5% plus reopened 7-day USD/VND swaps up to USD 2bn.",
        "url": "https://congthuong.vn/thanh-khoan-cang-ngan-hang-nha-nuoc-kich-hoat-lai-cac-van-ho-tro-474231.html"
+      },
+      {
+       "date": "2026-10-30",
+       "from": "4,5%",
+       "to": "4,5%",
+       "doc": "Nghiệp vụ thị trường mở – thông báo đấu thầu NHNN (không số hiệu)",
+       "direction": "neutral",
+       "note_vi": "Tuần 12–16/10 bơm ròng ~8.188 tỷ (7–91 ngày, 4,5%); phiên 30/10 bơm ròng 16.068 tỷ, LS qua đêm ~3,7%. Không phát hành tín phiếu.",
+       "note_en": "Week 12–16 Oct net injection ~VND8.2tn (7–91d at 4.5%); 30 Oct net injection VND16.1tn, overnight ~3.7%. No SBV bills issued.",
+       "url": "https://nguoiquansat.vn/phien-30-10-ngan-hang-nha-nuoc-bom-rong-16-068-ty-dong-lai-suat-qua-dem-neo-3-7-325271.html"
       }
      ],
      "series": {
@@ -301,7 +311,7 @@
        "2024-08-07",
        "2024-09-16",
        "2025-12-04",
-       "2026-10-05"
+       "2026-10-30"
       ],
       "values": [
        4.0,
@@ -390,7 +400,7 @@
       "dates": [
        "2023-01-01",
        "2023-04-03",
-       "2026-10-05"
+       "2026-10-30"
       ],
       "values": [
        1.0,
@@ -449,7 +459,7 @@
        "2023-04-03",
        "2023-05-25",
        "2023-06-19",
-       "2026-10-05"
+       "2026-10-30"
       ],
       "values": [
        6.0,
@@ -510,7 +520,7 @@
        "2023-03-15",
        "2023-04-03",
        "2023-06-19",
-       "2026-10-05"
+       "2026-10-30"
       ],
       "values": [
        5.5,
@@ -528,11 +538,11 @@
      "group": "rates",
      "name_vi": "Chỉ đạo hành chính về lãi suất (công văn, họp với NHTM, thanh tra)",
      "name_en": "Moral suasion on rates (letters, bank meetings, inspections)",
-     "current_vi": "Yêu cầu giảm/giữ ổn định mặt bằng lãi suất; thanh tra NH tăng lãi suất 'ngầm'; chỉ tiêu tín dụng 2027 sẽ bị giảm với NH không tuân thủ",
-     "current_en": "Banks told to cut/hold rates; inspections of hidden deposit-rate add-ons; 2027 credit quotas to be cut for non-compliant banks",
+     "current_vi": "CV 9608/NHNN-CSTT (18/10/2026) và 9736/NHNN-CSTT (21/10/2026): giảm tối thiểu 0,5%/năm LS tiền gửi bình quân giao dịch mới kỳ hạn ≥6 tháng (so kỳ 11–20/10/2026), giảm 1,5–2%/năm LS cho vay SXKD, lĩnh vực ưu tiên; không tuân thủ có thể bị cắt room 2026 và giao chỉ tiêu 2027 thấp hơn",
+     "current_en": "Letters 9608/NHNN-CSTT (18 Oct 2026) and 9736/NHNN-CSTT (21 Oct 2026): average rates on new deposits of ≥6 months to fall by at least 0.5pp (vs 11–20 Oct 2026); lending rates for production/priority sectors 1.5–2pp lower; non-compliant banks risk cuts to 2026 quota and lower 2027 quotas",
      "unit": "text",
      "current_value": null,
-     "effective": "2026-08-13",
+     "effective": "2026-10-21",
      "history": [
       {
        "date": "2024-05-31",
@@ -613,6 +623,36 @@
        "note_vi": "Họp với Thủ tướng & NHTM: NH không tuân thủ chỉ đạo giảm LS sẽ bị giao chỉ tiêu tín dụng 2027 thấp hơn; NHNN nói dư địa CSTT hỗ trợ tăng trưởng 'rất hạn chế'.",
        "note_en": "Meeting with PM & banks: non-compliant banks get lower 2027 credit quotas; SBV says room for monetary support is 'very limited'.",
        "url": "https://cafef.vn/ngan-hang-nha-nuoc-neu-dinh-huong-dieu-hanh-lai-suat-ty-gia-tin-dung-va-thi-truong-vang-thoi-gian-toi-188260814081132009.chn"
+      },
+      {
+       "date": "2026-10-18",
+       "from": "gắn room 2027 với tuân thủ giảm LS",
+       "to": "giảm ≥0,5%/năm LS tiền gửi niêm yết kỳ hạn ≥6 tháng; giảm 1,5–2%/năm LS cho vay SXKD, ưu tiên",
+       "doc": "9608/NHNN-CSTT (18/10/2026)",
+       "direction": "easing",
+       "note_vi": "Yêu cầu không chạy đua tăng LS huy động; chế tài với TCTD không tuân thủ chỉ đạo về lãi suất.",
+       "note_en": "No deposit-rate race; sanctions for banks that ignore rate guidance.",
+       "url": "https://baonghean.vn/nhnn-yeu-cau-cac-to-chuc-tin-dung-giam-lai-suat-tien-gui-toi-thieu-05-tu-ky-han-6-thang-10353814.html"
+      },
+      {
+       "date": "2026-10-19",
+       "from": "—",
+       "to": "Thống đốc họp các TCTD: giảm LS thực chất, chia sẻ lợi nhuận",
+       "doc": "Họp NHNN với các TCTD 19/10/2026 (không số hiệu)",
+       "direction": "easing",
+       "note_vi": "Cuộc họp làm cơ sở cho CV 9736/NHNN-CSTT ngày 21/10.",
+       "note_en": "Meeting that led to letter 9736/NHNN-CSTT of 21 Oct.",
+       "url": "https://baochinhphu.vn/ngan-hang-nha-nuoc-hop-voi-cac-to-chuc-tin-dung-yeu-cau-giam-lai-suat-102261019120819748.htm"
+      },
+      {
+       "date": "2026-10-21",
+       "from": "giảm LS niêm yết (CV 9608)",
+       "to": "giảm ≥0,5%/năm LS tiền gửi bình quân giao dịch mới kỳ hạn ≥6 tháng (so kỳ 11–20/10/2026)",
+       "doc": "9736/NHNN-CSTT (21/10/2026)",
+       "direction": "easing",
+       "note_vi": "Chuyển từ LS niêm yết sang LS bình quân thực tế; NHNN theo dõi số liệu các tháng cuối 2026; vi phạm có thể bị cắt room tín dụng.",
+       "note_en": "Target switched from posted to actual average rates on new deposits; non-compliance may cost credit quota.",
+       "url": "https://luatvietnam.vn/tin-van-ban-moi/ngan-hang-phai-giam-toi-thieu-05-nam-lai-suat-tien-gui-binh-quan-ky-han-tu-6-thang-186-114222-article.html"
       }
      ],
      "series": null,
@@ -624,11 +664,11 @@
      "group": "fx",
      "name_vi": "Tỷ giá trung tâm VND/USD",
      "name_en": "Central (reference) VND/USD rate",
-     "current_vi": "25.643 đ/USD (6/10/2026); +~2,1% so với cuối 2025 (25.121); kỷ lục mới liên tiếp từ 28/7/2026",
-     "current_en": "VND 25,643/USD (6 Oct 2026); ~+2.1% vs end-2025 (25,121); successive record highs since 28 Jul 2026",
+     "current_vi": "25.644 đ/USD (29/10/2026); +~2,1% so với cuối 2025 (25.121); đi ngang quanh 25.630–25.644 trong tháng 10/2026",
+     "current_en": "VND 25,644/USD (29 Oct 2026); ~+2.1% vs end-2025 (25,121); flat around 25,630–25,644 through October 2026",
      "unit": "VND",
-     "current_value": 25643,
-     "effective": "2026-10-06",
+     "current_value": 25644,
+     "effective": "2026-10-29",
      "history": [
       {
        "date": "2023-12-29",
@@ -682,7 +722,7 @@
       },
       {
        "date": "2026-08-13",
-       "from": "~25.321 (cuối 7)",
+       "from": "25.320 (31/7)",
        "to": "25.566",
        "doc": "Công bố tỷ giá trung tâm hằng ngày của NHNN (không số hiệu)",
        "direction": "neutral",
@@ -719,6 +759,16 @@
        "note_vi": "Kỷ lục mới; biên độ ±5%: 24.361–26.925 đ/USD.",
        "note_en": "New record; ±5% band 24,361–26,925.",
        "url": "https://doanhnghiepkinhtexanh.vn/ty-gia-usd-hom-nay-6102026-ty-gia-trung-tam-o-muc-25643-dong-a54268.html"
+      },
+      {
+       "date": "2026-10-29",
+       "from": "25.643 (6/10)",
+       "to": "25.644",
+       "doc": "Công bố tỷ giá trung tâm hằng ngày của NHNN (không số hiệu)",
+       "direction": "neutral",
+       "note_vi": "Dao động 25.629–25.644 trong tháng 10 (10/10: 25.629; 20/10: 25.633; 28/10: 25.631); +~2,1% so cuối 2025.",
+       "note_en": "Range 25,629–25,644 in October (10 Oct 25,629; 20 Oct 25,633; 28 Oct 25,631); ~+2.1% vs end-2025.",
+       "url": "https://thoibaonganhang.vn/sang-2910-nhnn-niem-yet-ty-gia-trung-tam-o-muc-25644-dong-189818.html"
       }
      ],
      "series": {
@@ -729,11 +779,16 @@
        "2026-04-06",
        "2026-06-30",
        "2026-07-28",
+       "2026-07-31",
        "2026-08-13",
        "2026-09-15",
        "2026-09-30",
        "2026-10-02",
-       "2026-10-06"
+       "2026-10-06",
+       "2026-10-10",
+       "2026-10-20",
+       "2026-10-28",
+       "2026-10-29"
       ],
       "values": [
        23866,
@@ -742,11 +797,16 @@
        25107,
        25206,
        25306,
+       25320,
        25566,
        25617,
        25627,
        25636,
-       25643
+       25643,
+       25629,
+       25633,
+       25631,
+       25644
       ]
      },
      "why_vi": "Neo kỳ vọng tỷ giá; điều chỉnh dần theo USD-index, cán cân thương mại và chênh lệch lãi suất.",
@@ -830,6 +890,16 @@
        "url": "https://vietstock.vn/2026/03/nhnn-tung-don-can-thiep-ty-gia-phat-tin-hieu-on-dinh-vnd-757-1416142.htm"
       },
       {
+       "date": "2026-05-30",
+       "from": "—",
+       "to": "cam kết công bố mua ngoại tệ ròng (năm, trễ 3 tháng) và dự trữ theo biểu mẫu IMF từ 2027",
+       "doc": "Tuyên bố chung NHNN – Bộ Tài chính Hoa Kỳ (30/5/2026)",
+       "direction": "neutral",
+       "note_vi": "Hai bên tái khẳng định tránh thao túng tỷ giá; can thiệp được coi là công cụ hợp lý cả hai chiều.",
+       "note_en": "Both sides reaffirm no currency manipulation; intervention accepted as a tool against pressure in either direction.",
+       "url": "https://thoibaotaichinhvietnam.vn/viet-nam-va-hoa-ky-ra-tuyen-bo-chung-ve-tien-te-198267.html"
+      },
+      {
        "date": "2026-06-24",
        "from": "mua/bán, hoán đổi",
        "to": "+ quyền chọn ngoại tệ, quyền chọn vàng",
@@ -885,11 +955,11 @@
      "group": "fx",
      "name_vi": "Quản lý thị trường vàng (vàng miếng, nhập khẩu, sàn giao dịch)",
      "name_en": "Gold-market policy (bars, imports, exchange)",
-     "current_vi": "NĐ 232/2025 bỏ độc quyền SX vàng miếng từ 10/10/2025; TT 34/2025 hướng dẫn cấp phép; 11 hồ sơ xin phép (4/2026), NHNN vẫn đang xem xét (8/2026) — chưa thấy giấy phép nào được công bố; sàn vàng: dự thảo NQ thí điểm (chưa vận hành)",
-     "current_en": "Decree 232/2025 ended the gold-bar monopoly from 10 Oct 2025; Circular 34/2025 licensing rules; 11 applications (Apr-2026) still under review (Aug-2026) — no licence found published; gold exchange: pilot resolution drafted, not yet operating",
+     "current_vi": "NĐ 232/2025 bỏ độc quyền SX vàng miếng (10/10/2025); NĐ 390/2026 (16/10/2026): giao dịch vàng từ 5 triệu/ngày phải thanh toán không tiền mặt, bỏ điều kiện KD vàng trang sức; 11 hồ sơ xin SX vàng miếng — chưa thấy giấy phép nào công bố; sàn vàng: dự thảo NQ thí điểm (chưa vận hành)",
+     "current_en": "Decree 232/2025 ended the gold-bar monopoly (10 Oct 2025); Decree 390/2026 (16 Oct 2026): gold trades ≥VND5m/day must be cashless, jewellery licensing scrapped; 11 bar-production applications — no licence found published; gold exchange: pilot resolution drafted, not operating",
      "unit": "text",
      "current_value": null,
-     "effective": "2025-10-10",
+     "effective": "2026-10-16",
      "history": [
       {
        "date": "2024-04-22",
@@ -970,6 +1040,16 @@
        "note_vi": "Định hướng NHNN tại cuộc họp với Thủ tướng.",
        "note_en": "SBV orientation at the PM meeting.",
        "url": "https://cafef.vn/ngan-hang-nha-nuoc-neu-dinh-huong-dieu-hanh-lai-suat-ty-gia-tin-dung-va-thi-truong-vang-thoi-gian-toi-188260814081132009.chn"
+      },
+      {
+       "date": "2026-10-16",
+       "from": "thanh toán không tiền mặt từ 20 triệu/ngày; điều kiện KD vàng trang sức",
+       "to": "từ 5 triệu/ngày; bỏ điều kiện KD vàng trang sức, mỹ nghệ; sửa Điều 14 (XNK vàng nguyên liệu)",
+       "doc": "390/2026/NĐ-CP (16/10/2026)",
+       "direction": "neutral",
+       "note_vi": "Hỗn hợp: siết dòng tiền mặt nhưng bỏ giấy phép con với vàng trang sức. Sửa NĐ 24/2012 (đã sửa bởi NĐ 232/2025).",
+       "note_en": "Mixed: tighter cash rules but jewellery licensing scrapped. Amends Decree 24/2012 (as amended by Decree 232/2025).",
+       "url": "https://vov.vn/kinh-te/tu-1610-mua-ban-vang-tu-5-trieu-dong-phai-thanh-toan-khong-tien-mat-post1342302.vov"
       }
      ],
      "series": null,
@@ -1037,7 +1117,7 @@
      "series": {
       "dates": [
        "2023-01-01",
-       "2026-10-05",
+       "2026-10-30",
        "2026-12-01"
       ],
       "values": [
@@ -1986,9 +2066,138 @@
        "url": "https://thuvienphapluat.vn/van-ban/Doanh-nghiep/Quyet-dinh-1809-QD-TTg-2026-hien-dai-hoa-he-thong-ngan-hang-xu-ly-cac-to-chuc-tin-dung-yeu-kem-726013.aspx"
       }
      ]
+    },
+    {
+     "id": "lending_rules",
+     "group": "credit",
+     "name_vi": "Quy định cho vay của TCTD (Thông tư 39/2016 và sửa đổi)",
+     "name_en": "Lending rules for credit institutions (Circular 39/2016 as amended)",
+     "current_vi": "TT 29/2026/TT-NHNN (30/6/2026, hiệu lực 15/8/2026): khoản vay giá trị nhỏ nâng từ 100 triệu lên 400 triệu (QTDND 200 triệu), thủ tục thẩm định đơn giản; bỏ trần dư nợ 100 triệu với cho vay qua phương tiện điện tử; nợ quá hạn thu gốc trước, lãi sau",
+     "current_en": "Circular 29/2026/TT-NHNN (30 Jun 2026, effective 15 Aug 2026): small-value loan ceiling raised from VND100m to VND400m (people's credit funds VND200m) with simplified appraisal; VND100m cap on electronic lending removed; overdue debt collected principal first",
+     "unit": "VND",
+     "current_value": 400000000,
+     "effective": "2026-08-15",
+     "why_vi": "Mở rộng tín dụng tiêu dùng chính thức, đẩy lùi tín dụng đen.",
+     "why_en": "Widen formal consumer credit and crowd out informal lending.",
+     "history": [
+      {
+       "date": "2026-08-15",
+       "from": "100 triệu",
+       "to": "400 triệu (QTDND 200 triệu); bỏ trần 100 triệu vay điện tử",
+       "doc": "29/2026/TT-NHNN (ký 30/6/2026)",
+       "direction": "easing",
+       "note_vi": "Sửa TT 39/2016; HĐ ký trước 15/8 thực hiện theo nội dung cũ.",
+       "note_en": "Amends Circular 39/2016; contracts signed before 15 Aug unaffected.",
+       "url": "https://www.vietnamplus.vn/khoan-vay-nho-duoc-nang-han-muc-len-400-trieu-dong-tu-ngay-158-post1121855.vnp"
+      }
+     ],
+     "series": {
+      "dates": [
+       "2023-01-01",
+       "2026-08-15"
+      ],
+      "values": [
+       100000000,
+       400000000
+      ],
+      "label_vi": "Trần khoản vay giá trị nhỏ (đồng)",
+      "label_en": "Small-value loan ceiling (VND)"
+     }
+    },
+    {
+     "id": "fx_regulation",
+     "group": "fx",
+     "name_vi": "Quy định quản lý ngoại hối (tài khoản, giao dịch ngoại tệ)",
+     "name_en": "FX management rules (accounts, FX transactions)",
+     "current_vi": "TT 39/2026/TT-NHNN (5/8/2026, hiệu lực 19/9/2026): TCTD nước ngoài (người không cư trú) được dùng tài khoản ngoại tệ, tài khoản VND mở tại NH được phép để thanh toán, chuyển tiền quốc tế cho khách hàng; TT 48/2026/TT-NHNN sửa TT 26/2021 về giao dịch ngoại tệ giữa NHNN và TCTD (thủ tục)",
+     "current_en": "Circular 39/2026/TT-NHNN (5 Aug 2026, effective 19 Sep 2026): foreign credit institutions (non-residents) may use FX and VND accounts at Vietnamese banks for international payments for clients; Circular 48/2026/TT-NHNN amends Circular 26/2021 on SBV–bank FX dealing (procedural)",
+     "unit": "text",
+     "current_value": null,
+     "effective": "2026-09-19",
+     "why_vi": "Mở rộng kênh thanh toán quốc tế qua hệ thống trong nước.",
+     "why_en": "Widen international payment channels through domestic banks.",
+     "notes_vi": "Chưa xác định ngày hiệu lực TT 48/2026 nên chưa ghi thành mốc.",
+     "notes_en": "Effective date of Circular 48/2026 not confirmed, so not recorded as a move.",
+     "history": [
+      {
+       "date": "2026-09-19",
+       "from": "—",
+       "to": "TCTD nước ngoài được thanh toán quốc tế qua tài khoản tại VN",
+       "doc": "39/2026/TT-NHNN (ký 5/8/2026)",
+       "direction": "neutral",
+       "note_vi": "Sửa TT 16/2014 (bổ sung Điều 2a, sửa Điều 9, khoản 2 Điều 11).",
+       "note_en": "Amends Circular 16/2014 (new Art. 2a; Art. 9, 11.2).",
+       "url": "https://lsvn.vn/to-chuc-tin-dung-nuoc-ngoai-duoc-thanh-toan-quoc-te-qua-tai-khoan-o-viet-nam-tu-ngay-19-9-a177318.html"
+      }
+     ]
     }
    ],
    "news": [
+    {
+     "date": "2026-10-30",
+     "title_vi": "Phiên 30/10: NHNN bơm ròng 16.068 tỷ đồng, lãi suất qua đêm 3,7%",
+     "title_en": "30 Oct: SBV injects a net VND16.1tn; overnight rate 3.7%",
+     "url": "https://nguoiquansat.vn/phien-30-10-ngan-hang-nha-nuoc-bom-rong-16-068-ty-dong-lai-suat-qua-dem-neo-3-7-325271.html",
+     "instrument_ids": [
+      "omo_rate"
+     ]
+    },
+    {
+     "date": "2026-10-29",
+     "title_vi": "Sáng 29/10: NHNN niêm yết tỷ giá trung tâm 25.644 đồng",
+     "title_en": "29 Oct: SBV sets the central rate at VND 25,644/USD",
+     "url": "https://thoibaonganhang.vn/sang-2910-nhnn-niem-yet-ty-gia-trung-tam-o-muc-25644-dong-189818.html",
+     "instrument_ids": [
+      "central_rate"
+     ]
+    },
+    {
+     "date": "2026-10-21",
+     "title_vi": "Công văn 9736: ngân hàng phải giảm tối thiểu 0,5%/năm lãi suất tiền gửi bình quân kỳ hạn từ 6 tháng",
+     "title_en": "Letter 9736: banks must cut average ≥6-month deposit rates by at least 0.5pp",
+     "url": "https://luatvietnam.vn/tin-van-ban-moi/ngan-hang-phai-giam-toi-thieu-05-nam-lai-suat-tien-gui-binh-quan-ky-han-tu-6-thang-186-114222-article.html",
+     "instrument_ids": [
+      "moral_suasion",
+      "credit_room_mechanism"
+     ]
+    },
+    {
+     "date": "2026-10-19",
+     "title_vi": "NHNN họp với các tổ chức tín dụng, yêu cầu giảm lãi suất",
+     "title_en": "SBV meets banks and demands lower rates",
+     "url": "https://baochinhphu.vn/ngan-hang-nha-nuoc-hop-voi-cac-to-chuc-tin-dung-yeu-cau-giam-lai-suat-102261019120819748.htm",
+     "instrument_ids": [
+      "moral_suasion"
+     ]
+    },
+    {
+     "date": "2026-10-19",
+     "title_vi": "Tuần 12–16/10: NHNN đảo chiều bơm ròng hơn 8.000 tỷ",
+     "title_en": "Week 12–16 Oct: SBV swings to a net injection of over VND8tn",
+     "url": "https://vietstock.vn/2026/10/tuan-12-1610-nhnn-dao-chieu-bom-rong-hon-8000-ty-757-1503480.htm",
+     "instrument_ids": [
+      "omo_rate"
+     ]
+    },
+    {
+     "date": "2026-10-18",
+     "title_vi": "NHNN yêu cầu giảm tối thiểu 0,5% lãi suất tiền gửi từ kỳ hạn 6 tháng (CV 9608)",
+     "title_en": "SBV orders deposit rates on ≥6-month terms cut by at least 0.5pp (letter 9608)",
+     "url": "https://baonghean.vn/nhnn-yeu-cau-cac-to-chuc-tin-dung-giam-lai-suat-tien-gui-toi-thieu-05-tu-ky-han-6-thang-10353814.html",
+     "instrument_ids": [
+      "moral_suasion",
+      "deposit_cap_1_6m"
+     ]
+    },
+    {
+     "date": "2026-10-16",
+     "title_vi": "Từ 16/10, mua bán vàng từ 5 triệu đồng phải thanh toán không tiền mặt (NĐ 390/2026)",
+     "title_en": "From 16 Oct, gold trades of VND5m+ must be cashless (Decree 390/2026)",
+     "url": "https://vov.vn/kinh-te/tu-1610-mua-ban-vang-tu-5-trieu-dong-phai-thanh-toan-khong-tien-mat-post1342302.vov",
+     "instrument_ids": [
+      "gold_policy"
+     ]
+    },
     {
      "date": "2026-10-06",
      "title_vi": "Tỷ giá trung tâm lên 25.643 đồng/USD",
@@ -2163,70 +2372,13 @@
      "instrument_ids": [
       "central_rate"
      ]
-    },
-    {
-     "date": "2026-08-10",
-     "title_vi": "Ngân hàng Nhà nước chỉ đạo giảm tối thiểu 1% lãi suất cho vay với doanh nghiệp nhỏ và vừa",
-     "title_en": "SBV orders lending rates at least 1pp lower for SMEs",
-     "url": "https://thethaovanhoa.vn/ngan-hang-nha-nuoc-chi-dao-giam-toi-thieu-1-lai-suat-cho-vay-voi-doanh-nghiep-nho-va-vua-2026081016421037.htm",
-     "instrument_ids": [
-      "sme_growth_pkg",
-      "moral_suasion"
-     ]
-    },
-    {
-     "date": "2026-07-31",
-     "title_vi": "Nóng: Ngân hàng Nhà nước nâng tỷ lệ tính tiền gửi Kho bạc Nhà nước vào LDR lên 50%, áp dụng chính thức từ ngày mai (1/8)",
-     "title_en": "SBV raises share of Treasury deposits counted in LDR to 50% from 1 Aug",
-     "url": "https://cafef.vn/nong-ngan-hang-nha-nuoc-nang-ty-le-tinh-tien-gui-kho-bac-nha-nuoc-vao-ldr-len-50-ap-dung-chinh-thuc-tu-ngay-mai-1-8-188260731150341967.chn",
-     "instrument_ids": [
-      "treasury_deposits_ldr",
-      "ldr_cap"
-     ]
-    },
-    {
-     "date": "2026-07-28",
-     "title_vi": "Tỷ giá trung tâm phá kỷ lục sau nửa năm 'lặng sóng'",
-     "title_en": "Central rate breaks record after a calm half-year",
-     "url": "https://vietnamfinance.vn/ty-gia-trung-tam-pha-ky-luc-sau-nua-nam-lang-song-d148217.html",
-     "instrument_ids": [
-      "central_rate",
-      "fx_band"
-     ]
-    },
-    {
-     "date": "2026-07-20",
-     "title_vi": "Sau 3 năm, 145.000 tỷ dành cho nhà ở xã hội giải ngân được bao nhiêu?",
-     "title_en": "Three years on, how much of the VND 145tn social-housing package is disbursed?",
-     "url": "https://vietstock.vn/2026/07/sau-3-nam-145000-ty-danh-cho-nha-o-xa-hoi-giai-ngan-duoc-bao-nhieu-757-1468002.htm",
-     "instrument_ids": [
-      "social_housing_pkg"
-     ]
-    },
-    {
-     "date": "2026-07-17",
-     "title_vi": "Chính thức: Nâng hạn mức trả bảo hiểm tiền gửi tối đa lên 350 triệu đồng",
-     "title_en": "Deposit-insurance payout limit officially raised to VND 350m",
-     "url": "https://cafef.vn/chinh-thuc-nang-han-muc-tra-bao-hiem-tien-gui-toi-da-len-350-trieu-dong-188260717152845123.chn",
-     "instrument_ids": [
-      "deposit_insurance"
-     ]
-    },
-    {
-     "date": "2026-07-03",
-     "title_vi": "NHNN nói về việc loại trừ 18 dự án trọng điểm khỏi room tín dụng",
-     "title_en": "SBV explains excluding 18 key projects from credit quotas",
-     "url": "https://vietstock.vn/2026/07/nhnn-noi-ve-viec-loai-tru-18-du-an-trong-diem-khoi-room-tin-dung-757-1461971.htm",
-     "instrument_ids": [
-      "credit_room_mechanism"
-     ]
     }
    ]
   },
   "fis": {
-   "as_of": "2026-10-06",
-   "stance_vi": "Tài khóa mở rộng có trọng tâm: giảm 2% thuế GTGT đến hết 2026, thuế BVMT xăng dầu 0 đ/l và thuế nhập khẩu xăng dầu 0% kéo dài đến 31/12/2026 (NQ 43/2026/NQ-CP), giảm 30% thuế thu nhập cho DN và cá nhân kinh doanh doanh thu ≤10 tỷ trong 2026–2027 (NQ 43/2026/QH16; nghị định hướng dẫn chưa ban hành). Dự toán 2026 bội chi 4,2% GDP với ~1 triệu tỷ đồng đầu tư công. Thực hiện 9 tháng: thu 86,5% dự toán, bội thu ~313,6 nghìn tỷ, giải ngân đầu tư công 62,9% kế hoạch. Đến 6/10/2026 chưa có văn bản gia hạn giảm thuế GTGT hay giảm thuế xăng dầu sang 2027; dự toán 2027 sẽ trình Kỳ họp thứ 2 QH khóa XVI (17/10–20/11/2026).",
-   "stance_en": "Targeted expansion: the 2pp VAT cut runs to end-2026; fuel environmental tax at VND0/l and 0% fuel import duty are extended to 31 Dec 2026 (Res. 43/2026/NQ-CP); a 30% income-tax cut applies to firms and business individuals with revenue ≤VND10bn in 2026–27 (Res. 43/2026/QH16; implementing decree not yet issued). The 2026 budget plans a 4.2%-of-GDP deficit and ~VND1 quadrillion of public investment. After nine months revenue reached 86.5% of plan, the budget showed a ~VND313.6tn surplus and capex disbursement was 62.9% of plan. As of 6 Oct 2026 no document extends the VAT or fuel-tax relief into 2027; the 2027 budget goes to the 16th NA's second session (17 Oct–20 Nov 2026).",
+   "as_of": "2026-11-01",
+   "stance_vi": "Tài khóa mở rộng có trọng tâm: giảm 2% thuế GTGT đến hết 2026, thuế BVMT xăng dầu 0 đ/l và thuế nhập khẩu xăng dầu 0% đến 31/12/2026 (NQ 43/2026/NQ-CP); thuế TTĐB với xăng về 0% từ 1/11/2026 đến 31/3/2027 (NQ 45/2026/NQ-CP). Giảm 30% thuế TNDN, TNCN kinh doanh cho DN và cá nhân có doanh thu ≤10 tỷ trong 2026–2027 (NQ 43/2026/QH16) đã có nghị định hướng dẫn 398/2026/NĐ-CP từ 29/10/2026. Chính phủ ước 2026 thu vượt 20,8% dự toán và bội chi ~4,1% GDP; đến 22/10 giải ngân đầu tư công 65,9% kế hoạch. Dự toán 2027 trình Quốc hội ngày 17/10 với bội chi ~4,5% GDP (~740.000 tỷ) và chi đầu tư phát triển ~757.200 tỷ, chờ thông qua trước khi kỳ họp bế mạc 20/11/2026. Đến 1/11/2026 chưa có văn bản gia hạn giảm thuế GTGT, giảm 50% phí, lệ phí hay thuế BVMT xăng dầu sang 2027.",
+   "stance_en": "Targeted expansion: the 2pp VAT cut runs to end-2026; fuel environmental tax at VND0/l and 0% fuel import duty run to 31 Dec 2026 (Res. 43/2026/NQ-CP); excise on petrol is 0% from 1 Nov 2026 to 31 Mar 2027 (Res. 45/2026/NQ-CP). The 30% CIT/business-PIT cut for firms and individuals with revenue ≤VND10bn in 2026–27 (Res. 43/2026/QH16) is implemented by Decree 398/2026/NĐ-CP from 29 Oct 2026. The Government estimates 2026 revenue 20.8% above plan and a deficit of ~4.1% of GDP; public-investment disbursement reached 65.9% of plan by 22 Oct. The 2027 budget tabled on 17 Oct proposes a ~4.5%-of-GDP deficit (~VND740tn) and ~VND757.2tn of development spending, pending approval before the session closes on 20 Nov 2026. As of 1 Nov 2026 no document extends the VAT cut, the 50% fee cuts or the fuel environmental-tax relief into 2027.",
    "instruments": [
     {
      "id": "vat_cut_2pct",
@@ -2775,11 +2927,11 @@
      "group": "tax",
      "name_vi": "Thuế GTGT và TTĐB với xăng dầu (gói ứng phó 2026)",
      "name_en": "VAT and excise (SCT) on fuel (2026 emergency package)",
-     "current_vi": "Xăng, dầu, nhiên liệu bay không phải kê khai, nộp thuế GTGT nhưng được khấu trừ đầu vào, đến 31/12/2026 (NQ 43/2026/NQ-CP). Thuế TTĐB với xăng 0% chỉ áp dụng 27/3–30/6/2026; từ 1/7/2026 trở lại thuế suất Luật 66/2025 (xăng khoáng 10%, E5 8%, E10 7%).",
-     "current_en": "Petrol, diesel and jet fuel exempt from VAT declaration/payment but input VAT deductible until 31 Dec 2026 (Gov. Res. 43/2026). 0% excise on petrol applied only 27 Mar–30 Jun 2026; since 1 Jul 2026 back to Law 66/2025 rates (mineral petrol 10%, E5 8%, E10 7%).",
+     "current_vi": "Xăng, dầu, nhiên liệu bay không phải kê khai, nộp thuế GTGT nhưng được khấu trừ đầu vào, đến 31/12/2026 (NQ 43/2026/NQ-CP). Thuế TTĐB với xăng các loại 0% từ 1/11/2026 đến 31/3/2027 (NQ 45/2026/NQ-CP); trước đó 0% trong 27/3–30/6/2026 và theo Luật 66/2025 (10%/8%/7%) trong 1/7–31/10/2026.",
+     "current_en": "Petrol, diesel and jet fuel exempt from VAT declaration/payment but input VAT deductible until 31 Dec 2026 (Gov. Res. 43/2026). Excise on all petrol 0% from 1 Nov 2026 to 31 Mar 2027 (Gov. Res. 45/2026/NQ-CP); earlier 0% 27 Mar–30 Jun 2026 and Law 66/2025 rates (10%/8%/7%) 1 Jul–31 Oct 2026.",
      "unit": "text",
      "current_value": null,
-     "effective": "2026-03-27",
+     "effective": "2026-11-01",
      "expires": "2026-12-31",
      "history": [
       {
@@ -2821,11 +2973,23 @@
        "note_vi": "Kéo dài đến hết năm.",
        "note_en": "Extended to year-end.",
        "url": "https://tuoitre.vn/chinh-phu-dong-y-tiep-tuc-keo-dai-thoi-han-giam-thue-xang-dau-den-het-nam-100260930214224499.htm"
+      },
+      {
+       "date": "2026-11-01",
+       "from": "TTĐB xăng theo Luật 66/2025 (10%/8%/7%)",
+       "to": "TTĐB xăng các loại 0% (1/11/2026–31/3/2027)",
+       "doc": "NQ 45/2026/NQ-CP (31/10/2026)",
+       "direction": "easing",
+       "note_vi": "Ký 31/10, hiệu lực 1/11; thay quy định thuế suất xăng tại NQ 19/2026/QH16 và NQ 43/2026/NQ-CP; có thể rút ngắn/kéo dài. Giá xăng ước giảm ~1.500–1.800 đ/l.",
+       "note_en": "Signed 31 Oct, effective 1 Nov; supersedes petrol-rate provisions of Res. 19/2026/QH16 and 43/2026/NQ-CP; may be shortened or extended. Pump prices est. −VND1,500–1,800/l.",
+       "url": "https://vnexpress.net/thue-tieu-thu-dac-biet-voi-xang-ve-0-tu-ngay-mai-5139239.html"
       }
      ],
      "series": null,
      "why_vi": "Hạ giá nhiên liệu trong bối cảnh gián đoạn nguồn cung qua eo Hormuz.",
-     "why_en": "Lower fuel prices amid Hormuz supply disruption."
+     "why_en": "Lower fuel prices amid Hormuz supply disruption.",
+     "notes_vi": "expires = hạn của phần GTGT (31/12/2026); phần TTĐB 0% hết hạn 31/3/2027.",
+     "notes_en": "expires refers to the VAT part (31 Dec 2026); the 0% excise part ends 31 Mar 2027."
     },
     {
      "id": "fuel_import_duty",
@@ -3008,8 +3172,8 @@
      "group": "stimulus",
      "name_vi": "Giảm 30% thuế TNDN, TNCN kinh doanh cho DN/hộ doanh thu ≤10 tỷ (2026–2027)",
      "name_en": "30% cut in CIT and business PIT for firms/households with revenue ≤VND10bn (2026–27)",
-     "current_vi": "NQ 43/2026/QH16 (24/8/2026): giảm 30% số thuế TNDN và TNCN (từ kinh doanh) phải nộp các kỳ 2026, 2027 cho DN, tổ chức, cá nhân cư trú có doanh thu năm ≤10 tỷ; áp dụng sau khi trừ ưu đãi hiện hành. Nghị định hướng dẫn dự kiến trình tháng 10/2026. Ước giảm thu ~3.191 tỷ (2026), ~3.510 tỷ (2027).",
-     "current_en": "Res. 43/2026/QH16 (24 Aug 2026): 30% cut in CIT and business PIT payable for tax years 2026 and 2027 for firms/resident individuals with annual revenue ≤VND10bn, applied after existing incentives. Implementing decree due Oct 2026. Est. cost ~VND3.19tn (2026), ~VND3.51tn (2027).",
+     "current_vi": "NQ 43/2026/QH16 (24/8/2026): giảm 30% số thuế TNDN và TNCN (từ kinh doanh) phải nộp các kỳ 2026, 2027 cho DN, tổ chức, cá nhân cư trú có doanh thu năm ≤10 tỷ; áp dụng sau khi trừ ưu đãi hiện hành. Hướng dẫn tại NĐ 398/2026/NĐ-CP (hiệu lực 29/10/2026). Ước giảm thu ~3.191 tỷ (2026), ~3.510 tỷ (2027).",
+     "current_en": "Res. 43/2026/QH16 (24 Aug 2026): 30% cut in CIT and business PIT payable for tax years 2026 and 2027 for firms/resident individuals with annual revenue ≤VND10bn, applied after existing incentives. Implemented by Decree 398/2026/NĐ-CP (effective 29 Oct 2026). Est. cost ~VND3.19tn (2026), ~VND3.51tn (2027).",
      "unit": "%",
      "current_value": 30,
      "effective": "2026-08-24",
@@ -3024,6 +3188,16 @@
        "note_vi": "Thông qua tại Kỳ họp không thường lệ thứ nhất QH khóa XVI.",
        "note_en": "Passed at the 16th NA's first extraordinary session.",
        "url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-quyet-so-43-2026-qh16-ve-giam-thue-thu-nhap-ca-nhan-thue-thu-nhap-doanh-nghiep-119260830184758301.htm"
+      },
+      {
+       "date": "2026-10-29",
+       "from": "NQ 43/2026/QH16 chưa có hướng dẫn",
+       "to": "Nghị định hướng dẫn có hiệu lực (kỳ tính thuế 2026, 2027)",
+       "doc": "NĐ 398/2026/NĐ-CP (29/10/2026)",
+       "direction": "easing",
+       "note_vi": "DN tự xác định số giảm khi tạm nộp quý; không áp dụng DN chia, tách nếu tổng doanh thu sau chia tách >10 tỷ.",
+       "note_en": "Firms apply the cut in quarterly prepayments; not available to split-off firms whose combined revenue exceeds VND10bn.",
+       "url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-dinh-398-2026-ND-CP-huong-dan-Nghi-quyet-43-2026-QH16-giam-thue-thu-nhap-ca-nhan-731163.aspx"
       }
      ],
      "series": null,
@@ -3227,10 +3401,10 @@
      "group": "spending",
      "name_vi": "Kế hoạch và giải ngân vốn đầu tư công hằng năm",
      "name_en": "Annual public investment plan and disbursement",
-     "current_vi": "Tỷ lệ giải ngân 9T/2026: 62,9%. Kế hoạch 2026: Thủ tướng giao ~995,4 nghìn tỷ đồng (+10,4% so 2025), mục tiêu giải ngân 100%. Đến 30/9/2026 giải ngân 642.961,6 tỷ = 62,9% kế hoạch (64,8% nếu loại 5% vốn địa phương tiết kiệm cho đường sắt Lào Cai–HN–HP); chi đầu tư phát triển 9 tháng tăng 49,3%.",
-     "current_en": "9M-2026 disbursement rate: 62.9%. 2026 PM-assigned plan ~VND995.4tn (+10.4% y/y), target 100% disbursement. By 30 Sep 2026 disbursed VND642.96tn = 62.9% (64.8% excl. 5% local savings reserved for Lao Cai–Hanoi–Hai Phong rail); 9M development spending +49.3% y/y.",
+     "current_vi": "Đến 22/10/2026 giải ngân 673.970 tỷ = 65,9% kế hoạch Chính phủ, Thủ tướng giao (~1.022.607 tỷ, gồm vốn giao bổ sung; kế hoạch ban đầu ~995,4 nghìn tỷ), mục tiêu 100%. 30/9: 642.961,6 tỷ = 62,9%. Chi ĐTPT 9 tháng tăng 49,3%.",
+     "current_en": "By 22 Oct 2026 disbursed VND673.97tn = 65.9% of the plan assigned by Government/PM (~VND1,022.6tn incl. top-ups; initial ~VND995.4tn), target 100%. 30 Sep: VND642.96tn = 62.9%. 9M development spending +49.3% y/y.",
      "unit": "%",
-     "current_value": 62.9,
+     "current_value": 65.9,
      "effective": "2026-01-01",
      "expires": "2026-12-31",
      "history": [
@@ -3283,6 +3457,16 @@
        "note_vi": "Tăng 12,9 điểm % so cùng kỳ; 27 bộ, 15 địa phương dưới bình quân.",
        "note_en": "+12.9pp y/y; 27 ministries, 15 localities below average.",
        "url": "https://baohaiphong.vn/giai-ngan-dau-tu-cong-dat-gan-643-000-ty-dong-sau-9-thang-554860.html"
+      },
+      {
+       "date": "2026-10-22",
+       "from": "30/9: 62,9% KH",
+       "to": "22/10: 673.970 tỷ = 65,9% KH",
+       "doc": "Báo cáo Bộ Tài chính (tuần đến 22/10/2026)",
+       "direction": "easing",
+       "note_vi": "Kế hoạch Chính phủ, Thủ tướng giao ~1.022.607 tỷ; +13.230,6 tỷ so 15/10 (CV 16767/BTC-ĐTPT: 660.739,5 tỷ = 64,6%).",
+       "note_en": "Plan assigned ~VND1,022.6tn; +VND13.2tn vs 15 Oct (letter 16767/BTC-ĐTPT: VND660.7tn = 64.6%).",
+       "url": "https://thanhtra.com.vn/dau-tu-72A9E3223/giai-ngan-von-dau-tu-cong-vuot-673000-ty-dong-dat-gan-66-ke-hoach-cce9750d0.html"
       }
      ],
      "series": {
@@ -3379,8 +3563,8 @@
      "group": "budget",
      "name_vi": "Mục tiêu bội chi NSNN (dự toán Quốc hội)",
      "name_en": "Budget deficit target (NA-approved)",
-     "current_vi": "2026: bội chi 605.800 tỷ đồng = 4,2% GDP (NSTW 4,0%, NSĐP 0,2%); thu 2.529.467 tỷ; chi 3.159.106 tỷ (NQ 245/2025/QH15). Kế hoạch tài chính 2026–2030: bội chi bình quân ~5% GDP (NQ 26/2026/QH16). Dự toán 2027 sẽ trình kỳ họp thứ hai (khai mạc 17/10/2026).",
-     "current_en": "2026: deficit VND605.8tn = 4.2% GDP (central 4.0%, local 0.2%); revenue VND2,529.5tn; spending VND3,159.1tn (Res. 245/2025/QH15). 2026–30 fiscal plan: average deficit ~5% GDP (Res. 26/2026/QH16). 2027 budget to be tabled at session opening 17 Oct 2026.",
+     "current_vi": "2026: bội chi 605.800 tỷ đồng = 4,2% GDP (NSTW 4,0%, NSĐP 0,2%); thu 2.529.467 tỷ; chi 3.159.106 tỷ (NQ 245/2025/QH15). Kế hoạch tài chính 2026–2030: bội chi bình quân ~5% GDP (NQ 26/2026/QH16). Dự toán 2027 sẽ trình kỳ họp thứ hai (khai mạc 17/10/2026). Dự toán 2027 trình QH (17/10/2026): bội chi ~4,5% GDP (chưa thông qua).",
+     "current_en": "2026: deficit VND605.8tn = 4.2% GDP (central 4.0%, local 0.2%); revenue VND2,529.5tn; spending VND3,159.1tn (Res. 245/2025/QH15). 2026–30 fiscal plan: average deficit ~5% GDP (Res. 26/2026/QH16). 2027 budget to be tabled at session opening 17 Oct 2026. 2027 budget tabled 17 Oct 2026: deficit ~4.5% GDP (not yet passed).",
      "unit": "%",
      "current_value": 4.2,
      "effective": "2026-01-01",
@@ -3459,8 +3643,8 @@
      "group": "budget",
      "name_vi": "Thực hiện NSNN: thu, bội chi thực tế",
      "name_en": "Budget execution: revenue and actual deficit",
-     "current_vi": "9T/2026: thu 2.187,3 nghìn tỷ (86,5% dự toán, +12,1%); chi ~1.873,7 nghìn tỷ (59,3% dự toán), trong đó ĐTPT 657,5 nghìn tỷ (+49,3%); NSNN bội thu ~313,6 nghìn tỷ. Quyết toán: 2023 bội chi 2,83% GDP; 2024 2,8% GDP; 2025 ước ~3,6% GDP (thu ~2,65 triệu tỷ, vượt ~35% dự toán).",
-     "current_en": "9M 2026: revenue VND2,187.3tn (86.5% of plan, +12.1%); spending ~VND1,873.7tn (59.3%), incl. development VND657.5tn (+49.3%); surplus ~VND313.6tn. Final accounts: 2023 deficit 2.83% GDP; 2024 2.8%; 2025 est. ~3.6% (revenue ~VND2.65 quadrillion, ~35% above plan).",
+     "current_vi": "Ước 2026 (17/10): thu vượt 20,8% dự toán (+14% so 2025), bội chi ~598.300 tỷ = 4,1% GDP. 9T/2026: thu 2.187,3 nghìn tỷ (86,5% dự toán), bội thu ~313,6 nghìn tỷ. Quyết toán: 2023 bội chi 2,83% GDP; 2024 2,8% GDP; 2025 ước ~3,6% GDP.",
+     "current_en": "2026 estimate (17 Oct): revenue 20.8% above plan (+14% y/y), deficit ~VND598.3tn = 4.1% GDP. 9M 2026: revenue VND2,187.3tn (86.5% of plan), surplus ~VND313.6tn. Final accounts: 2023 deficit 2.83% GDP; 2024 2.8%; 2025 est. ~3.6%.",
      "unit": "%",
      "current_value": 3.6,
      "effective": "2025-12-31",
@@ -3505,6 +3689,16 @@
        "note_vi": "Thu mạnh, chi thường xuyên chỉ +1,5%; ĐTPT +49,3%.",
        "note_en": "Strong revenue, current spending +1.5%; development +49.3%.",
        "url": "https://nguoiquansat.vn/thu-ngan-sach-9-thang-dat-gan-2-19-trieu-ty-dong-boi-thu-hon-313-000-ty-319972.html"
+      },
+      {
+       "date": "2026-10-17",
+       "from": "9T/2026: bội thu ~313,6 nghìn tỷ",
+       "to": "Ước cả năm 2026: thu vượt 20,8% dự toán (+14%); bội chi ~598.300 tỷ = 4,1% GDP",
+       "doc": "Báo cáo của Chính phủ tại Kỳ họp thứ 2, QH khóa XVI (17/10/2026; chưa xác định số hiệu)",
+       "direction": "neutral",
+       "note_vi": "Bội chi ước thấp hơn dự toán ~7.500 tỷ; cơ quan thẩm tra đề nghị rà soát thu tiền sử dụng đất.",
+       "note_en": "Deficit ~VND7.5tn below plan; NA reviewers asked for a check on land-use revenue estimates.",
+       "url": "https://tapchikinhtetaichinh.vn/thu-ngan-sach-nam-2026-uoc-vuot-20-8-tang-nguon-luc-dau-tu-phat-trien-nam-2027-169833.html"
       }
      ],
      "series": {
@@ -3564,8 +3758,8 @@
      "group": "debt",
      "name_vi": "Phát hành trái phiếu Chính phủ (Kho bạc Nhà nước)",
      "name_en": "Government bond issuance (State Treasury)",
-     "current_vi": "Kế hoạch 2026: 500.000 tỷ đồng qua đấu thầu HNX; đến giữa 9/2026 huy động ~246.700 tỷ (~49%), kỳ hạn 10 năm chiếm chủ yếu; Kho bạc tăng tốc gọi thầu từ tháng 9. Bộ Tài chính đang trao đổi phương án phát hành 0,5–1 tỷ USD trái phiếu quốc tế 10 năm (chưa có quyết định).",
-     "current_en": "2026 plan: VND500tn via HNX auctions; by mid-Sep 2026 ~VND246.7tn raised (~49%), mostly 10-year; Treasury accelerating since September. MoF discussing a USD0.5–1bn 10-year international bond (no decision yet).",
+     "current_vi": "Kế hoạch 2026: 500.000 tỷ đồng qua đấu thầu HNX; đến 14/10/2026 huy động ~327.179 tỷ (65,4%), cuối 9/2026 299.060,5 tỷ; kỳ hạn 5–10 năm chiếm chủ yếu. Phương án 0,5–1 tỷ USD trái phiếu quốc tế 10 năm: chưa có quyết định.",
+     "current_en": "2026 plan: VND500tn via HNX auctions; by 14 Oct 2026 ~VND327.2tn raised (65.4%), VND299.1tn at end-Sep; mostly 5–10-year. USD0.5–1bn 10-year international bond: no decision yet.",
      "unit": "VND",
      "current_value": 500000000000000,
      "effective": "2026-01-01",
@@ -3610,6 +3804,16 @@
        "note_vi": "Tăng tốc phát hành tháng 9.",
        "note_en": "Issuance accelerating in September.",
        "url": "https://znews.vn/kho-bac-nha-nuoc-tang-huy-dong-trai-phieu-chinh-phu-post1683585.html"
+      },
+      {
+       "date": "2026-10-14",
+       "from": "30/9: 299.060,5 tỷ (~60%)",
+       "to": "14/10: ~327.179 tỷ (65,4% KH)",
+       "doc": "Kết quả đấu thầu TPCP – KBNN/HNX (báo cáo tuần VBMA)",
+       "direction": "neutral",
+       "note_vi": "Tháng 9 huy động 70.139 tỷ; phiên 14/10 gọi thầu 18.000 tỷ kỳ hạn 3–30 năm.",
+       "note_en": "September raised VND70.1tn; 14 Oct auction offered VND18tn at 3–30-year tenors.",
+       "url": "https://thitruongtaichinhtiente.vn/kho-bac-nha-nuoc-huy-dong-hon-327-000-ty-dong-trai-phieu-chinh-phu-86459.html"
       }
      ],
      "series": {
@@ -3898,11 +4102,11 @@
      "group": "budget",
      "name_vi": "Dự toán ngân sách nhà nước 2027",
      "name_en": "2027 state budget preparation",
-     "current_vi": "Đang lập: CT 26/CT-TTg (12/6/2026) đặt mục tiêu thu nội địa +13–15%, thu XNK +5–7%; định mức chi thường xuyên 2027 theo NQ 12/2026/UBTVQH16 (hiệu lực 15/8/2026, tăng chi ~24.000 tỷ so với 2026). Dự toán trình Kỳ họp thứ 2 QH khóa XVI (17/10–20/11/2026); chưa công bố số liệu bội chi.",
-     "current_en": "In preparation: Directive 26/CT-TTg (12 Jun 2026) targets domestic revenue +13–15% and trade revenue +5–7%; 2027 recurrent-spending norms set by Res. 12/2026/UBTVQH16 (effective 15 Aug 2026, ~VND24tn more than 2026). Budget goes to the 16th NA's second session (17 Oct–20 Nov 2026); deficit figures not yet published.",
+     "current_vi": "Chính phủ trình QH (17/10/2026): bội chi 2027 ~740.000 tỷ = 4,5% GDP (2026: 4,2%); chi ĐTPT ~757.200 tỷ (+287.200 tỷ so dự toán 2026), chi thường xuyên ~2,06 triệu tỷ (50,6% tổng chi); thu +9,1% so ước 2026. Chờ QH thông qua (Kỳ họp thứ 2 đến 20/11/2026). Căn cứ: CT 26/CT-TTg, định mức chi thường xuyên NQ 12/2026/UBTVQH16.",
+     "current_en": "Submitted to the NA (17 Oct 2026): 2027 deficit ~VND740tn = 4.5% GDP (2026: 4.2%); development spending ~VND757.2tn (+VND287.2tn vs 2026 plan), recurrent ~VND2.06 quadrillion (50.6% of total); revenue +9.1% vs 2026 est. Awaiting NA approval (second session to 20 Nov 2026). Basis: Directive 26/CT-TTg, recurrent norms Res. 12/2026/UBTVQH16.",
      "unit": "text",
      "current_value": null,
-     "effective": "2026-08-15",
+     "effective": "2026-10-17",
      "why_vi": "Xác định quy mô thu, chi, bội chi năm 2027.",
      "why_en": "Sets the size of 2027 revenue, spending and deficit.",
      "history": [
@@ -3925,11 +4129,116 @@
        "note_vi": "Áp dụng cho dự toán 2027 (không cho cả 2027–2030); bộ, ngành TW +~4.000 tỷ (~5,5%), địa phương +~20.000 tỷ (~2%). Nới lỏng vì tăng chi.",
        "note_en": "Applies to the 2027 budget only (not 2027–30); central agencies +~VND4tn (~5.5%), localities +~VND20tn (~2%). Easing because it raises spending.",
        "url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-12-2026-ubtvqh16-nguyen-tac-tieu-chi-phan-bo-ngan-sach-nha-nuoc-2027-443952-d1.html"
+      },
+      {
+       "date": "2026-10-17",
+       "from": "Bội chi dự toán 2026: 4,2% GDP",
+       "to": "Đề xuất 2027: bội chi ~740.000 tỷ = 4,5% GDP; chi ĐTPT ~757.200 tỷ (+287.200 tỷ)",
+       "doc": "Tờ trình của Chính phủ tại Kỳ họp thứ 2, QH khóa XVI (17/10/2026; chưa xác định số hiệu)",
+       "direction": "easing",
+       "note_vi": "Đề xuất, chờ QH biểu quyết (kỳ họp đến 20/11). Thu 2027 +9,1% so ước 2026; chi thường xuyên ~2,06 triệu tỷ (50,6% tổng chi, từ 57,3%); nợ CP cuối 2027 ~33–34% GDP. Mở rộng vì bội chi và chi đầu tư cao hơn.",
+       "note_en": "Proposal pending the NA vote (session ends 20 Nov). Revenue +9.1% vs 2026 est.; recurrent spending ~VND2.06 quadrillion (50.6% of total, from 57.3%); government debt ~33–34% GDP end-2027. Easing: higher deficit and capex.",
+       "url": "https://tapchikinhtetaichinh.vn/thu-ngan-sach-nam-2026-uoc-vuot-20-8-tang-nguon-luc-dau-tu-phat-trien-nam-2027-169833.html"
+      }
+     ]
+    },
+    {
+     "id": "export_duties",
+     "group": "trade",
+     "name_vi": "Thuế xuất khẩu (Biểu thuế theo NĐ 26/2023)",
+     "name_en": "Export duties (schedule under Decree 26/2023)",
+     "current_vi": "NĐ 201/2026/NĐ-CP (8/6/2026, hiệu lực 23/7/2026) sửa thuế suất xuất khẩu một số mặt hàng: fluorite CaF2 >97% giảm 10%→5%, bismut xi măng 0%; một số khoáng sản nhóm 25.29 tăng (vd. CaF2 ≤97% 3%→10%, tràng thạch 5%→10%)",
+     "current_en": "Decree 201/2026/NĐ-CP (8 Jun 2026, effective 23 Jul 2026) revised export duties: fluorite CaF2 >97% cut 10%→5%, bismuth 0%; some heading-25.29 minerals raised (e.g. CaF2 ≤97% 3%→10%, feldspar 5%→10%)",
+     "unit": "text",
+     "current_value": null,
+     "effective": "2026-07-23",
+     "why_vi": "Khuyến khích chế biến sâu, hạn chế xuất khẩu khoáng sản thô.",
+     "why_en": "Encourage deeper processing and curb raw-mineral exports.",
+     "notes_vi": "Chiều thay đổi theo từng mã HS khác nhau giữa các nguồn; cần đối chiếu văn bản gốc.",
+     "notes_en": "Sources differ by HS line; check the official schedule.",
+     "history": [
+      {
+       "date": "2026-07-23",
+       "from": "Biểu thuế XK theo NĐ 26/2023",
+       "to": "sửa thuế suất XK một số khoáng sản, bismut",
+       "doc": "201/2026/NĐ-CP (ký 8/6/2026)",
+       "direction": "neutral",
+       "note_vi": "Hỗn hợp: giảm với một số mặt hàng, tăng với khoáng sản thô.",
+       "note_en": "Mixed: cuts on some lines, increases on raw minerals.",
+       "url": "https://trungtamwto.vn/tin-tuc/33076-tu-ngay-2372026-chinh-thuc-giam-thue-xuat-khau-nhieu-mat-hang-khoang-san"
       }
      ]
     }
    ],
    "news": [
+    {
+     "date": "2026-10-31",
+     "title_vi": "Thuế tiêu thụ đặc biệt với xăng về 0% từ 1/11 đến 31/3/2027 (NQ 45/2026/NQ-CP)",
+     "title_en": "Petrol excise cut to 0% from 1 Nov to 31 Mar 2027 (Res. 45/2026/NQ-CP)",
+     "url": "https://vnexpress.net/thue-tieu-thu-dac-biet-voi-xang-ve-0-tu-ngay-mai-5139239.html",
+     "instrument_ids": [
+      "fuel_vat_sct_2026"
+     ]
+    },
+    {
+     "date": "2026-10-31",
+     "title_vi": "Quốc hội thảo luận về ngân sách và kế hoạch phát triển kinh tế – xã hội 2027",
+     "title_en": "NA debates the 2027 budget and socio-economic plan",
+     "url": "https://congthuong.vn/ngay-31-10-2026-quoc-hoi-thao-luan-ve-ngan-sach-va-ke-hoach-phat-trien-kinh-te-xa-hoi-479287.html",
+     "instrument_ids": [
+      "budget_2027",
+      "budget_deficit_target"
+     ]
+    },
+    {
+     "date": "2026-10-31",
+     "title_vi": "Hướng dẫn chi tiết giảm 30% thuế TNCN, TNDN cho kinh doanh doanh thu ≤10 tỷ (NĐ 398/2026)",
+     "title_en": "Decree 398/2026 details the 30% income-tax cut for revenue ≤VND10bn",
+     "url": "https://cafef.vn/huong-dan-chi-tiet-giam-30-so-thue-tncn-thue-tndn-phai-nop-tu-kinh-doanh-co-doanh-thu-khong-qua-10-ty-dong-188261031091412148.chn",
+     "instrument_ids": [
+      "income_tax_cut_30pct",
+      "household_business_regime"
+     ]
+    },
+    {
+     "date": "2026-10-23",
+     "title_vi": "Giải ngân vốn đầu tư công vượt 673.000 tỷ, đạt gần 66% kế hoạch",
+     "title_en": "Public-investment disbursement tops VND673tn, nearly 66% of plan",
+     "url": "https://thanhtra.com.vn/dau-tu-72A9E3223/giai-ngan-von-dau-tu-cong-vuot-673000-ty-dong-dat-gan-66-ke-hoach-cce9750d0.html",
+     "instrument_ids": [
+      "public_investment_annual"
+     ]
+    },
+    {
+     "date": "2026-10-18",
+     "title_vi": "Thu ngân sách 2026 ước vượt 20,8%; tăng nguồn lực đầu tư phát triển năm 2027",
+     "title_en": "2026 revenue seen 20.8% above plan; more development spending in 2027",
+     "url": "https://tapchikinhtetaichinh.vn/thu-ngan-sach-nam-2026-uoc-vuot-20-8-tang-nguon-luc-dau-tu-phat-trien-nam-2027-169833.html",
+     "instrument_ids": [
+      "budget_outturn",
+      "budget_2027"
+     ]
+    },
+    {
+     "date": "2026-10-18",
+     "title_vi": "Vì sao bội chi và nợ công dự toán 2027 tăng so với năm nay?",
+     "title_en": "Why the 2027 deficit and debt projections rise",
+     "url": "https://danviet.vn/vi-sao-du-toan-boi-chi-ngan-sach-va-ty-le-no-cong-nam-2027-du-kien-tang-so-voi-nam-nay-d1467946.html",
+     "instrument_ids": [
+      "budget_2027",
+      "budget_deficit_target",
+      "public_debt"
+     ]
+    },
+    {
+     "date": "2026-10-15",
+     "title_vi": "Kho bạc Nhà nước huy động hơn 327.000 tỷ đồng trái phiếu Chính phủ",
+     "title_en": "State Treasury has raised over VND327tn of government bonds",
+     "url": "https://thitruongtaichinhtiente.vn/kho-bac-nha-nuoc-huy-dong-hon-327-000-ty-dong-trai-phieu-chinh-phu-86459.html",
+     "instrument_ids": [
+      "gov_bond_issuance"
+     ]
+    },
     {
      "date": "2026-10-03",
      "title_vi": "Thu NSNN 9 tháng đạt 2,18 triệu tỷ đồng (86,5% dự toán), chi đầu tư phát triển tăng 49,3%",
@@ -4099,77 +4408,6 @@
      "url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-quyet-so-43-2026-qh16-ve-giam-thue-thu-nhap-ca-nhan-thue-thu-nhap-doanh-nghiep-119260830184758301.htm",
      "instrument_ids": [
       "income_tax_cut_30pct"
-     ]
-    },
-    {
-     "date": "2026-08-24",
-     "title_vi": "Bế mạc kỳ họp không thường lệ thứ nhất: giảm 30% thuế thu nhập cho cá nhân, DN doanh thu ≤10 tỷ",
-     "title_en": "Extraordinary NA session closes: 30% income-tax cut for firms/individuals with revenue ≤VND10bn",
-     "url": "https://nhandan.vn/be-mac-ky-hop-khong-thuong-le-thu-nhat-quoc-hoi-khoa-xvi-post984060.html",
-     "instrument_ids": [
-      "income_tax_cut_30pct"
-     ]
-    },
-    {
-     "date": "2026-08-03",
-     "title_vi": "Thực hiện chính sách tài khóa mở rộng có trọng tâm, trọng điểm",
-     "title_en": "Government pursues targeted expansionary fiscal policy",
-     "url": "https://baochinhphu.vn/thuc-hien-chinh-sach-tai-khoa-mo-rong-co-trong-tam-trong-diem-102260803191325572.htm",
-     "instrument_ids": [
-      "vat_cut_2pct",
-      "fee_reductions",
-      "tax_deferral",
-      "agri_land_tax_exemption"
-     ]
-    },
-    {
-     "date": "2026-07-16",
-     "title_vi": "Chốt trình Chính phủ phương án tăng lương tối thiểu vùng 7,8% từ 1/1/2027",
-     "title_en": "Wage Council proposes 7.8% minimum-wage rise from 1 Jan 2027",
-     "url": "https://baochinhphu.vn/chot-trinh-chinh-phu-phuong-an-tang-luong-toi-thieu-vung-78-tu-ngay-1-1-2027-102260716121503713.htm",
-     "instrument_ids": [
-      "regional_minimum_wage"
-     ]
-    },
-    {
-     "date": "2026-07-08",
-     "title_vi": "UBTVQH ban hành nguyên tắc, tiêu chí phân bổ dự toán chi thường xuyên NSNN 2027 (NQ 12/2026/UBTVQH16)",
-     "title_en": "NA Standing Committee sets 2027 recurrent-spending allocation norms (Res. 12/2026/UBTVQH16)",
-     "url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-12-2026-ubtvqh16-nguyen-tac-tieu-chi-phan-bo-ngan-sach-nha-nuoc-2027-443952-d1.html",
-     "instrument_ids": [
-      "budget_deficit_target",
-      "budget_2027"
-     ]
-    },
-    {
-     "date": "2026-07-01",
-     "title_vi": "Từ 1/7/2026 tăng lương cơ sở lên 2,53 triệu, lương hưu và trợ cấp BHXH tăng 8%",
-     "title_en": "From 1 Jul 2026 base salary VND2.53m; pensions +8%",
-     "url": "https://luatvietnam.vn/tin-van-ban-moi/tu-hom-nay-01-7-2026-chinh-thuc-tang-luong-co-so-luong-huu-va-tro-cap-bhxh-186-109955-article.html",
-     "instrument_ids": [
-      "base_salary",
-      "pension_adjustment"
-     ]
-    },
-    {
-     "date": "2026-07-01",
-     "title_vi": "Kéo dài ưu đãi thuế với xăng dầu đến 30/9/2026 (NQ 34/2026/NQ-CP)",
-     "title_en": "Fuel tax relief extended to 30 Sep 2026 (Res. 34/2026/NQ-CP)",
-     "url": "https://baochinhphu.vn/keo-dai-thoi-han-ap-dung-uu-dai-thue-voi-mat-hang-xang-dau-den-30-9-2026-102260701163839168.htm",
-     "instrument_ids": [
-      "ept_fuel",
-      "fuel_vat_sct_2026",
-      "fuel_import_duty"
-     ]
-    },
-    {
-     "date": "2026-06-27",
-     "title_vi": "Nghị định 245/2026/NĐ-CP gia hạn nộp thuế GTGT, TNDN, TNCN và tiền thuê đất năm 2026",
-     "title_en": "Decree 245/2026 defers VAT, CIT, PIT and land rent in 2026",
-     "url": "https://luatvietnam.vn/tin-van-ban-moi/chinh-thuc-gia-han-thoi-han-nop-thue-gtgt-thue-tndn-va-tien-thue-dat-186-109870-article.html",
-     "instrument_ids": [
-      "tax_deferral",
-      "land_rent_reduction"
      ]
     }
    ]

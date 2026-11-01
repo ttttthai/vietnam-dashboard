@@ -364,7 +364,14 @@
    },
    "access_tips": "Blocked (proxy log 16:27 403); server falls back to empty indices in this sandbox.",
    "conflicts_seen": [],
-   "last_used": "2026-10-06"
+   "last_used": "2026-11-01",
+   "observations": [
+    {
+     "date": "2026-11-01",
+     "by": "Finance agent",
+     "result": "REACHABLE via curl through HTTPS_PROXY: POST https://trading.vietcap.com.vn/api/chart/OHLCChart/gap-chart with JSON {timeFrame:'ONE_DAY',symbols:['VNINDEX'],to:<epoch>,countBack:160} and Referer/Origin https://trading.vietcap.com.vn returned gzip JSON (t,o,h,l,c,v arrays). Used for FINSYS.market_6m.vnindex; month-end closes match SIM.panel.series.vnindex. The 2026-10-06 'blocked' status is superseded for this date (status may vary by session)."
+    }
+   ]
   },
   {
    "host": "vnexpress.net / tuoitre.vn / thanhnien.vn / dantri.com.vn / vietnamnet.vn / vietnamplus.vn",
@@ -622,6 +629,24 @@
    "pages": [
     "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/"
    ]
+  },
+  {
+   "host": "webgia.com / vbma.org.vn (WebFetch)",
+   "publisher": "webgia (VCB rate archive by date); VBMA weekly money-market PDFs",
+   "what_it_holds": "webgia: daily Vietcombank rate tables at /ty-gia/vietcombank/DD-MM-YYYY.html; VBMA: weekly 'BAO CAO TUAN TTTP' PDFs with SBV central rate and interbank tables",
+   "best_for_agent": "Finance",
+   "reliability": "aggregator (webgia); association report (VBMA)",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": false,
+    "checked": "2026-11-01",
+    "detail": "WebFetch: getaddrinfo ENOTFOUND (outside allowed domains)"
+   },
+   "access_tips": "Use WebSearch excerpts; the SBV weekly interbank-average PDFs (sbv.gov.vn/documents/... 'DD-DD.M.2026.pdf') and Thoi bao Tai chinh weekly column 'Thi truong tien te tuan ...' are the best excerpt sources for weekly central rate and ON.",
+   "conflicts_seen": [
+    "VBMA 28/8/2026 central 25,611 vs TBTC 25,610"
+   ],
+   "last_used": "2026-11-01"
   }
  ]
 }

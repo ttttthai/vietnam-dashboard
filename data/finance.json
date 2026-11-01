@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Finance agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-10-14"
+  "as_of": "2026-11-01"
  },
  "FINSYS": {
   "asof": "2026-10-08",
@@ -15380,6 +15380,725 @@
     "verification": "search-excerpt; URL is the result the excerpt was attached to, page itself not opened",
     "gaps": "Monthly Oct-2024..Jun-2026 is mostly missing (only 2024-12, 2025-06, 2025-09, 2025-10, 2025-12 found). MBS monthly money-market PDFs (mbs.com.vn) would fill it but are blocked from the sandbox."
    }
+  },
+  "market_6m": {
+   "asof": "2026-10-30",
+   "built": "2026-11-01",
+   "freq": "weekly (Mon-Fri week, labelled by its Friday; value = last trading day/quote of the week)",
+   "weeks": [
+    "2026-05-01",
+    "2026-05-08",
+    "2026-05-15",
+    "2026-05-22",
+    "2026-05-29",
+    "2026-06-05",
+    "2026-06-12",
+    "2026-06-19",
+    "2026-06-26",
+    "2026-07-03",
+    "2026-07-10",
+    "2026-07-17",
+    "2026-07-24",
+    "2026-07-31",
+    "2026-08-07",
+    "2026-08-14",
+    "2026-08-21",
+    "2026-08-28",
+    "2026-09-04",
+    "2026-09-11",
+    "2026-09-18",
+    "2026-09-25",
+    "2026-10-02",
+    "2026-10-09",
+    "2026-10-16",
+    "2026-10-23",
+    "2026-10-30"
+   ],
+   "vnindex": [
+    1854.1,
+    1915.37,
+    1921.6,
+    1877.13,
+    1863.49,
+    1838.9,
+    1791.65,
+    1824.53,
+    1871.91,
+    1862.08,
+    1828.34,
+    1787.45,
+    1686.11,
+    1735.78,
+    1768.06,
+    1729.08,
+    1768.12,
+    1832.12,
+    1853.08,
+    1795.21,
+    1815.66,
+    1785.11,
+    1737.71,
+    1735.09,
+    1705.91,
+    1774.15,
+    1741.62
+   ],
+   "vnindex_dates": [
+    "2026-04-29",
+    "2026-05-08",
+    "2026-05-15",
+    "2026-05-22",
+    "2026-05-29",
+    "2026-06-05",
+    "2026-06-12",
+    "2026-06-19",
+    "2026-06-26",
+    "2026-07-03",
+    "2026-07-10",
+    "2026-07-17",
+    "2026-07-24",
+    "2026-07-31",
+    "2026-08-07",
+    "2026-08-14",
+    "2026-08-21",
+    "2026-08-28",
+    "2026-09-04",
+    "2026-09-11",
+    "2026-09-18",
+    "2026-09-25",
+    "2026-10-02",
+    "2026-10-09",
+    "2026-10-16",
+    "2026-10-23",
+    "2026-10-30"
+   ],
+   "usdvnd_central": [
+    25113,
+    25112,
+    25131,
+    25134,
+    25139,
+    25147,
+    25155,
+    25181,
+    25195,
+    25203,
+    25214,
+    25254,
+    25283,
+    25338,
+    25463,
+    25561,
+    25600,
+    25610,
+    25605,
+    25596,
+    25637,
+    25641,
+    25636,
+    25629,
+    25637,
+    25627,
+    25637
+   ],
+   "usdvnd_central_dates": [
+    "2026-04-29",
+    "2026-05-08",
+    "2026-05-15",
+    "2026-05-22",
+    "2026-05-29",
+    "2026-06-05",
+    "2026-06-12",
+    "2026-06-19",
+    "2026-06-26",
+    "2026-07-03",
+    "2026-07-10",
+    "2026-07-17",
+    "2026-07-24",
+    "2026-07-31",
+    "2026-08-07",
+    "2026-08-14",
+    "2026-08-21",
+    "2026-08-28",
+    "2026-09-04",
+    "2026-09-11",
+    "2026-09-18",
+    "2026-09-25",
+    "2026-10-02",
+    "2026-10-09",
+    "2026-10-16",
+    "2026-10-23",
+    "2026-10-30"
+   ],
+   "usdvnd_bank": [
+    26368,
+    null,
+    26387,
+    26390,
+    26395,
+    null,
+    26412,
+    null,
+    26456,
+    null,
+    null,
+    null,
+    null,
+    26470,
+    null,
+    null,
+    null,
+    26260,
+    26285,
+    null,
+    null,
+    26170,
+    26170,
+    null,
+    null,
+    26020,
+    25990
+   ],
+   "usdvnd_bank_dates": [
+    "2026-05-03",
+    null,
+    "2026-05-16",
+    "2026-05-22",
+    "2026-05-29",
+    null,
+    "2026-06-12",
+    null,
+    "2026-06-26",
+    null,
+    null,
+    null,
+    null,
+    "2026-07-31",
+    null,
+    null,
+    null,
+    "2026-08-29",
+    "2026-09-04",
+    null,
+    null,
+    "2026-09-25",
+    "2026-10-04",
+    null,
+    null,
+    "2026-10-24",
+    "2026-10-31"
+   ],
+   "interbank_on": [
+    6.27,
+    null,
+    6.05,
+    6.0,
+    6.97,
+    5.3,
+    3.5,
+    4.0,
+    3.2,
+    null,
+    4.68,
+    3.9,
+    null,
+    6.0,
+    5.97,
+    4.38,
+    3.01,
+    7.07,
+    null,
+    3.3,
+    4.5,
+    0.87,
+    4.29,
+    0.99,
+    null,
+    3.95,
+    3.74
+   ],
+   "interbank_on_dates": [
+    "2026-04-29",
+    null,
+    "2026-05-14",
+    "2026-05-22",
+    "2026-05-29",
+    "2026-06-04",
+    "2026-06-12",
+    "2026-06-18",
+    "2026-06-25",
+    null,
+    null,
+    "2026-07-17",
+    null,
+    "2026-07-31",
+    "2026-08-07",
+    "2026-08-13",
+    null,
+    "2026-08-28",
+    null,
+    "2026-09-11",
+    "2026-09-18",
+    "2026-09-25",
+    "2026-10-01",
+    "2026-10-08",
+    null,
+    null,
+    "2026-10-29"
+   ],
+   "units": {
+    "vnindex": "points",
+    "usdvnd_central": "VND per USD",
+    "usdvnd_bank": "VND per USD (selling)",
+    "interbank_on": "%/yr"
+   },
+   "obs": {
+    "usdvnd_central": [
+     {
+      "week": "2026-05-01",
+      "url": "https://vietbao.vn/ty-gia-usd-hom-nay-352026-cho-den-quay-dau-giam-590656.html",
+      "method": "rate in force over the 30/4-1/5 holiday, quoted 3/5"
+     },
+     {
+      "week": "2026-05-08",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-4-85-ty-gia-usd-tu-do-mat-moc-26500-dong-bom-tien-manh-khi-lai-suat-qua-dem-vuot-7-196989.html",
+      "method": "stated"
+     },
+     {
+      "week": "2026-05-15",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-11-155-ty-gia-trung-tam-cham-dinh-4-thang-lai-suat-lien-ngan-hang-neo-vung-cao-6-7-197450.html",
+      "method": "stated; VBMA weekly report same"
+     },
+     {
+      "week": "2026-05-22",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-18-225-bom-rong-8000-ty-dong-lai-suat-lien-ngan-hang-du-bao-duy-tri-vung-can-bang-6-197795.html",
+      "method": "stated; VBMA same"
+     },
+     {
+      "week": "2026-05-29",
+      "url": "https://vietbao.vn/ty-gia-usd-hom-nay-2952026-usd-mat-gia-manh-593556.html",
+      "method": "stated (same as FINSYS.why.series.usdvnd_monthly 2026-05)"
+     },
+     {
+      "week": "2026-06-05",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-1-56-lai-suat-lien-ngan-hang-ap-sat-11-phan-ung-nhanh-roi-xoay-truc-hut-rong-26000-ty-dong-198651.html",
+      "method": "stated (+9 in week)"
+     },
+     {
+      "week": "2026-06-12",
+      "url": "https://nguoiquansat.vn/tuan-8-12-6-nhnn-hut-rong-hon-25-700-ty-dong-lai-suat-qua-dem-ha-nhiet-xuong-3-5-297867.html",
+      "method": "stated (+8 in week)"
+     },
+     {
+      "week": "2026-06-19",
+      "url": "https://vbma.org.vn/storage/reports/June2026/15062026-19062026 BAO CAO TUAN TTTP2.pdf",
+      "method": "derived_from_stated_change: VBMA +26 vs 25,155; cross-check TBTC 22-26/6 '+14 to 25,195' gives the same 25,181"
+     },
+     {
+      "week": "2026-06-26",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-22-266-dao-chieu-bom-rong-gan-4000-ty-dong-qua-omo-ty-gia-trung-tam-tang-7-tuan-199760.html",
+      "method": "stated; VOV 26/6 same"
+     },
+     {
+      "week": "2026-07-03",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-296-37-ty-gia-trung-tam-leo-doc-tuan-thu-8-lai-suat-qua-dem-vuot-12-200143.html",
+      "method": "stated (+8 in week)"
+     },
+     {
+      "week": "2026-07-10",
+      "url": "https://thoibaotaichinhvietnam.vn/dien-bien-thi-truong-tien-te-tuan-6-10-7-hut-rong-manh-31-000-ty-dong-ty-gia-giu-nhip-tang-8-tuan-200533.html",
+      "method": "stated level; article also says '+8 in week', which would imply 25,211 - conflict of 3 VND, level kept"
+     },
+     {
+      "week": "2026-07-17",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-13-17-7-hut-rong-gan-20-000-ty-dong-ty-gia-trung-tam-ap-sat-dinh-lich-su-200865.html",
+      "method": "stated (+40 in week)"
+     },
+     {
+      "week": "2026-07-24",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-20-24-7-ty-gia-trung-tam-sat-dinh-lich-su-ngan-hang-nha-nuoc-hut-rong-gan-330-000-ty-dong-201212.html",
+      "method": "stated (+29 in week)"
+     },
+     {
+      "week": "2026-07-31",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-27-31-7-nang-ty-le-tien-gui-kho-bac-len-50-giai-toa-thanh-khoan-lai-suat-qua-dem-lao-doc-201581.html",
+      "method": "stated; same as usdvnd_monthly 2026-07"
+     },
+     {
+      "week": "2026-08-07",
+      "url": "https://vietbao.vn/ty-gia-usd-hom-nay-88-gia-ban-usd-ha-xuong-con-26468-dongusd-602128.html",
+      "method": "stated ('cap nhat chieu toi thu Sau 7/8'); consistent with TBTC 10-14/8 (25,561, +98 in week)"
+     },
+     {
+      "week": "2026-08-14",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-10-14-8-lai-suat-qua-dem-ve-quanh-4-kenh-hoan-doi-tung-giai-khat-thanh-khoan-143-000-ty-dong-202360.html",
+      "method": "stated"
+     },
+     {
+      "week": "2026-08-21",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-17-21-8-lai-suat-qua-dem-lui-ve-3-khi-thanh-khoan-de-tho-ty-gia-usd-van-lech-pha-202726.html",
+      "method": "stated (morning 21/8 fixing)"
+     },
+     {
+      "week": "2026-08-28",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-24-28-8-usd-bien-dong-hep-lai-suat-qua-dem-roi-ve-1-sau-nhip-bom-manh-thanh-khoan-203040.html",
+      "method": "stated; VBMA table shows 25,611 - 1 VND conflict"
+     },
+     {
+      "week": "2026-09-04",
+      "url": "https://doanhnghiephoinhap.vn/ty-gia-usd-hom-nay-592026-dong-usd-the-gioi-tang-147994.html",
+      "method": "stated in Saturday 5/9 article (Friday fixing, -10); consistent with 11/9 = 25,596 '-9 in week'"
+     },
+     {
+      "week": "2026-09-11",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-7-11-9-usd-ha-sau-hut-rong-manh-33-000-ty-dong-nhung-lai-suat-qua-dem-van-duoi-2-203710.html",
+      "method": "stated; Nguoi Quan Sat same"
+     },
+     {
+      "week": "2026-09-18",
+      "url": "https://nguoiquansat.vn/tuan-qua-14-18-9-nhnn-hut-rong-hon-62-500-ty-dong-lai-suat-qua-dem-ve-muc-4-5-317485.html",
+      "method": "stated (+41 in week)"
+     },
+     {
+      "week": "2026-09-25",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-28-9-2-10-lai-suat-troi-sut-manh-giua-nhip-hut-rong-hon-53-000-ty-dong-ty-gia-van-em-204783.html",
+      "method": "stated in search excerpt ('sang 25/9 tang 6 dong len 25.641')"
+     },
+     {
+      "week": "2026-10-02",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-5-9-10-lai-suat-qua-dem-xuong-duoi-1-vnd-thuoc-nhom-hiem-hoi-tang-gia-truoc-usd-205168.html",
+      "method": "derived_from_stated_change: 9/10 = 25,629 '-7 vs previous week-end'; TBTC 28/9-2/10 '-5 in week' from 25,641 gives the same 25,636"
+     },
+     {
+      "week": "2026-10-09",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-5-9-10-lai-suat-qua-dem-xuong-duoi-1-vnd-thuoc-nhom-hiem-hoi-tang-gia-truoc-usd-205168.html",
+      "method": "stated"
+     },
+     {
+      "week": "2026-10-16",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-12-16-10-bom-rong-tro-lai-sau-dot-hut-manh-90-000-ty-dong-usd-tu-do-rot-gia-205517.html",
+      "method": "stated (+8 in week)"
+     },
+     {
+      "week": "2026-10-23",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-19-23-10-bom-von-qua-kenh-omo-nho-giot-ty-gia-usd-ngan-hang-ha-nhiet-205870.html",
+      "method": "stated (-10 in week); VOV 26/10 same"
+     },
+     {
+      "week": "2026-10-30",
+      "url": "https://vov.vn/thi-truong/ty-gia-usd-hom-nay-3110-ty-gia-trung-tam-o-muc-25637-dongusd-post1346036.vov",
+      "method": "stated in Saturday 31/10 article (Friday fixing); 29/10 was 25,644"
+     }
+    ],
+    "usdvnd_bank": [
+     {
+      "week": "2026-05-01",
+      "url": "https://vietbao.vn/ty-gia-usd-hom-nay-352026-cho-den-quay-dau-giam-590656.html",
+      "method": "holiday week; quote in 3/5 article (same as usdvnd_monthly 30/4)"
+     },
+     {
+      "week": "2026-05-08",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-05-15",
+      "url": "https://vietbao.vn/ty-gia-usd-hom-nay-1652026-dong-loat-bat-tang-592163.html",
+      "method": "Saturday article = Friday close"
+     },
+     {
+      "week": "2026-05-22",
+      "url": "https://vov.vn/thi-truong/ty-gia-usd-hom-nay-255-gia-usd-ban-ra-tang-len-moc-26392-dongusd-post1294460.vov",
+      "method": "VOV quote for 22/5 (25/5 article gives 26,392)"
+     },
+     {
+      "week": "2026-05-29",
+      "url": "https://vietbao.vn/ty-gia-usd-hom-nay-2952026-usd-mat-gia-manh-593556.html",
+      "method": "same as usdvnd_monthly 2026-05"
+     },
+     {
+      "week": "2026-06-05",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-06-12",
+      "url": "https://nguoiquansat.vn/tuan-8-12-6-nhnn-hut-rong-hon-25-700-ty-dong-lai-suat-qua-dem-ha-nhiet-xuong-3-5-297867.html",
+      "method": "weekly wrap"
+     },
+     {
+      "week": "2026-06-19",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-06-26",
+      "url": "https://vov.vn/thi-truong/ty-gia-usd-hom-nay-266-gia-usd-ban-ra-tam-dung-tai-26456-dongusd-post1309670.vov",
+      "method": "VOV daily title"
+     },
+     {
+      "week": "2026-07-03",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-07-10",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-07-17",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-07-24",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-07-31",
+      "url": "http://vov.vn/thi-truong/ty-gia-usd-hom-nay-317-ty-gia-trung-tam-tang-len-25338-dongusd-post1319875.vov",
+      "method": "same as usdvnd_monthly 2026-07"
+     },
+     {
+      "week": "2026-08-07",
+      "url": null,
+      "method": "null: vietbao 8/8 gives 26,410 in text but 26,468 in title - inconsistent, left null"
+     },
+     {
+      "week": "2026-08-14",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-08-21",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-08-28",
+      "url": "https://thanhnien.vn/gia-usd-hom-nay-2982026-ngan-hang-giam-manh-230-dong-usd-trong-thang-185260829082601335.htm",
+      "method": "same quote as usdvnd_monthly 2026-08 (29/8, Saturday = Friday close)"
+     },
+     {
+      "week": "2026-09-04",
+      "url": "https://vietbao.vn/ty-gia-usd-hom-nay-59-gia-ban-usd-giam-con-26327-dongusd-605971.html",
+      "method": "Saturday 5/9 article body (Friday close, 'unchanged'); Bao Van Hoa morning 4/9 quote 26,270; title figure 26,327 is not VCB"
+     },
+     {
+      "week": "2026-09-11",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-09-18",
+      "url": null,
+      "method": null
+     },
+     {
+      "week": "2026-09-25",
+      "url": "https://webgia.com/ty-gia/vietcombank/26-09-2026.html",
+      "method": "aggregator table for 26/9 updated 25/9 (search excerpt)"
+     },
+     {
+      "week": "2026-10-02",
+      "url": "https://baovanhoa.vn/kinh-te/ti-gia-usd-hom-nay-510-vietcombank-ban-ra-26170-dongusd-271539.html",
+      "method": "VCB list updated 23:00 4/10 (weekend; no change since Friday is assumed by the source's framing)"
+     },
+     {
+      "week": "2026-10-09",
+      "url": null,
+      "method": "null: 26,100 (baomoi 9/10, bank not stated) vs 26,160 on 8/10 and 'down 70' - unresolved, left null"
+     },
+     {
+      "week": "2026-10-16",
+      "url": null,
+      "method": "null: only a Thursday 15/10 quote (26,080) found"
+     },
+     {
+      "week": "2026-10-23",
+      "url": "https://thanhnien.vn/gia-usd-hom-nay-1112026-ngan-hang-ban-ra-duoi-26000-dong-185261031203849977.htm",
+      "method": "derived_from_stated_change: 1/11 article 25,990 '-30 vs previous weekend'; VCB on morning 26/10 quoted 26,030 elsewhere"
+     },
+     {
+      "week": "2026-10-30",
+      "url": "https://vov.vn/thi-truong/ty-gia-usd-hom-nay-3110-gia-ban-usd-o-quanh-muc-25990-dongusd-post1346036.vov",
+      "method": "Saturday 31/10 quote; Thanh Nien 1/11 same; Bao Van Hoa 30/10 morning 26,020"
+     }
+    ],
+    "interbank_on": [
+     {
+      "week": "2026-05-01",
+      "url": "https://static1.vietstock.vn/edocs/20740/BCtraiphieu5_2026.pdf",
+      "method": "last session before 30/4-1/5 holiday; Vietcap/Bloomberg month-end 6.27% (Vietcap May-2026 bond/money-market report; MBS 6.3%) - source family differs from SBV-published values"
+     },
+     {
+      "week": "2026-05-08",
+      "url": null,
+      "method": "null: Only 'above 7%' (TBTC headline) - no session value found"
+     },
+     {
+      "week": "2026-05-15",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-11-155-ty-gia-trung-tam-cham-dinh-4-thang-lai-suat-lien-ngan-hang-neo-vung-cao-6-7-197450.html",
+      "method": "latest session in weekly wrap; SBV weekly average 11-15/5 = 5.82% (https://sbv.gov.vn/documents/20117/10326579/11-15.5.2026.pdf.pdf/bfe00850-b7f6-367a-3450-942c566e5579)"
+     },
+     {
+      "week": "2026-05-22",
+      "url": "https://vbma.org.vn/storage/reports/June2026/18052026-22052026 BAO CAO TUAN TTTP.pdf",
+      "method": "VBMA table (SBV data); TBTC: 5.6% on 21/5"
+     },
+     {
+      "week": "2026-05-29",
+      "url": "https://static1.vietstock.vn/edocs/20740/BCtraiphieu5_2026.pdf",
+      "method": "Friday month-end: SBV 6.97% as cited from the VBMA May-2026 report (VBMA URL not stored; see interbank_on_monthly note); the linked Vietcap report gives 7.03% (Vietcap/Bloomberg)"
+     },
+     {
+      "week": "2026-06-05",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-1-56-lai-suat-lien-ngan-hang-ap-sat-11-phan-ung-nhanh-roi-xoay-truc-hut-rong-26000-ty-dong-198651.html",
+      "method": "latest session in wrap; peak 10.66% on 1/6"
+     },
+     {
+      "week": "2026-06-12",
+      "url": "https://nguoiquansat.vn/tuan-8-12-6-nhnn-hut-rong-hon-25-700-ty-dong-lai-suat-qua-dem-ha-nhiet-xuong-3-5-297867.html",
+      "method": "stated; spike to 9.35% early in week"
+     },
+     {
+      "week": "2026-06-19",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-15-196-keo-dai-chuoi-hut-rong-hon-100000-ty-dong-usd-dong-loat-di-len-199371.html",
+      "method": "latest session in wrap"
+     },
+     {
+      "week": "2026-06-26",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-22-266-dao-chieu-bom-rong-gan-4000-ty-dong-qua-omo-ty-gia-trung-tam-tang-7-tuan-199760.html",
+      "method": "latest session in wrap; 6.2% on 22/6"
+     },
+     {
+      "week": "2026-07-03",
+      "url": null,
+      "method": "null: Peak 12.49% intra-week; end-of-week value not found (SBV month-end 30/6 = 7.25%)"
+     },
+     {
+      "week": "2026-07-10",
+      "url": "https://thoibaotaichinhvietnam.vn/dien-bien-thi-truong-tien-te-tuan-6-10-7-hut-rong-manh-31-000-ty-dong-ty-gia-giu-nhip-tang-8-tuan-200533.html",
+      "method": "end-of-week level in wrap, session date not stated"
+     },
+     {
+      "week": "2026-07-17",
+      "url": "https://nguoiquansat.vn/tuan-13-17-7-nhnn-tiep-tuc-hut-rong-5-phien-lien-tiep-21-300-ty-dong-lai-suat-qua-dem-ha-nhiet-305065.html",
+      "method": "stated; conflict: TBTC/Stockbiz give 4.16% (likely 16/7)"
+     },
+     {
+      "week": "2026-07-24",
+      "url": null,
+      "method": "null: SBV weekly-average table exists (sbv.gov.vn 20-24.7.2026.pdf) but no value in excerpts"
+     },
+     {
+      "week": "2026-07-31",
+      "url": "https://nguoiquansat.vn/tuan-27-31-7-nhnn-quay-dau-bom-rong-hon-12-000-ty-dong-lai-suat-qua-dem-ve-muc-gan-0-308020.html",
+      "method": "stated (+3.5pp); Vietcap/Bloomberg month-end 6.50%; 0.5-0.75% on 30/7"
+     },
+     {
+      "week": "2026-08-07",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-10-14-8-lai-suat-qua-dem-ve-quanh-4-kenh-hoan-doi-tung-giai-khat-thanh-khoan-143-000-ty-dong-202360.html",
+      "method": "derived_from_stated_change: 13/8 = 4.38% '-1.59pp vs previous week-end'"
+     },
+     {
+      "week": "2026-08-14",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-10-14-8-lai-suat-qua-dem-ve-quanh-4-kenh-hoan-doi-tung-giai-khat-thanh-khoan-143-000-ty-dong-202360.html",
+      "method": "latest session in wrap; 6.09% on 10/8"
+     },
+     {
+      "week": "2026-08-21",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-17-21-8-lai-suat-qua-dem-lui-ve-3-khi-thanh-khoan-de-tho-ty-gia-usd-van-lech-pha-202726.html",
+      "method": "end-of-week level in wrap, session date not stated"
+     },
+     {
+      "week": "2026-08-28",
+      "url": "https://static1.vietstock.vn/edocs/22150/BCtraiphieu8_2026.pdf",
+      "method": "Friday month-end 7.07% per Vietcap/Bloomberg (Vietcap Aug-2026 report; MBS 7%) - source family differs; TBTC weekly wrap quotes 1.19% for 27/8, i.e. a month-end spike"
+     },
+     {
+      "week": "2026-09-04",
+      "url": null,
+      "method": "null: Only VBMA weekly average ~5.32% (different definition, not used)"
+     },
+     {
+      "week": "2026-09-11",
+      "url": "https://nguoiquansat.vn/tuan-7-9-11-9-nhnn-quay-dau-hut-rong-gan-33-000-ty-lai-suat-qua-dem-hang-ve-vung-1-316045.html",
+      "method": "stated; conflict: TBTC headline 'below 2%'"
+     },
+     {
+      "week": "2026-09-18",
+      "url": "https://nguoiquansat.vn/tuan-qua-14-18-9-nhnn-hut-rong-hon-62-500-ty-dong-lai-suat-qua-dem-ve-muc-4-5-317485.html",
+      "method": "stated (5.16% at start of week)"
+     },
+     {
+      "week": "2026-09-25",
+      "url": "https://nguoiquansat.vn/lai-suat-qua-dem-xuong-gan-0-319241.html",
+      "method": "stated; 7.0% on 21-23/9 (FINSYS monthly note)"
+     },
+     {
+      "week": "2026-10-02",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-28-9-2-10-lai-suat-troi-sut-manh-giua-nhip-hut-rong-hon-53-000-ty-dong-ty-gia-van-em-204783.html",
+      "method": "latest session in wrap; 0.48% (28/9) -> 6.95% (30/9)"
+     },
+     {
+      "week": "2026-10-09",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-5-9-10-lai-suat-qua-dem-xuong-duoi-1-vnd-thuoc-nhom-hiem-hoi-tang-gia-truoc-usd-205168.html",
+      "method": "latest session in wrap; 0.72% on 7/10"
+     },
+     {
+      "week": "2026-10-16",
+      "url": null,
+      "method": "null: Wrap says short tenors cooled; no number found"
+     },
+     {
+      "week": "2026-10-23",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-26-30-10-dao-chieu-bom-rong-hon-28-000-ty-dong-usd-bien-dong-trai-chieu-sau-tuan-hop-lai-suat-206193.html",
+      "method": "previous-week close implied by 29/10 = 3.74% '-0.21pp'; also reported as week level 3.95% (-0.2pp) - session date not stated"
+     },
+     {
+      "week": "2026-10-30",
+      "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-26-30-10-dao-chieu-bom-rong-hon-28-000-ty-dong-usd-bien-dong-trai-chieu-sau-tuan-hop-lai-suat-206193.html",
+      "method": "latest session; another report gives 4.10% for 28/10; spike near 5% intra-week"
+     }
+    ]
+   },
+   "src": {
+    "vnindex": {
+     "name": "HOSE VN-Index close (Vietcap trading chart API, daily OHLC)",
+     "url": "https://trading.vietcap.com.vn/api/chart/OHLCChart/gap-chart",
+     "method": "POST {timeFrame: ONE_DAY, symbols: [VNINDEX]} pulled 2026-11-01; close of the last trading day of each week (week of 1/5: 29/4, before the 30/4-1/5 holiday). Same feed as SIM.panel.series.vnindex (vnstock VCI source); month-end closes match it exactly (May 1863.49, Jun 1860.01, Jul 1735.78, Aug 1832.12, Sep 1768.62)."
+    },
+    "usdvnd_central": {
+     "name": "SBV central rate (ty gia trung tam)",
+     "url": "https://thoibaotaichinhvietnam.vn/ (weekly column 'Thi truong tien te tuan ...'); per-week URLs in obs",
+     "method": "Friday fixing as stated in weekly money-market wraps (Thoi bao Tai chinh, Nguoi Quan Sat, VBMA) or Saturday FX articles (which repeat Friday's fixing). Two weeks (19/6, 2/10) are derived from a stated weekly change and cross-checked by a second stated change; flagged in obs."
+    },
+    "usdvnd_bank": {
+     "name": "Vietcombank USD selling rate",
+     "url": "per-week URLs in obs (vietbao, VOV, Bao Van Hoa, Thanh Nien, Nguoi Quan Sat)",
+     "method": "End-of-week (Friday close or weekend) VCB selling quote reported in press; nulls where no Friday/weekend quote was found. Morning vs evening quotes can differ by 10-30 VND."
+    },
+    "interbank_on": {
+     "name": "VND interbank overnight rate (SBV-published average of the session)",
+     "url": "per-week URLs in obs",
+     "method": "Last session value quoted for the week. SBV publishes each session's rate the next business day, so weekly wraps often quote Thursday; the session date is stored in interbank_on_dates (null when the article does not say). Two month-end Fridays (29/5, 28/8) and 29/4 use SBV/VBMA or Vietcap/Bloomberg values from FINSYS.why.series.interbank_on_monthly notes. Not a weekly average; SBV weekly averages (sbv.gov.vn 'Dien bien lai suat') are a different measure and are only quoted in notes."
+    },
+    "deposit_12m": {
+     "name": "omitted",
+     "method": "No consistent weekly or biweekly 12-month deposit-rate series was found (MBS averages are monthly and differ in bank group; posted rates are quoted irregularly). See FINSYS.why.series.deposit12m_private_banks_mbs."
+    }
+   },
+   "crosscheck": {
+    "vnindex_vs_simulation": "Month-end closes from this feed equal SIM.panel.series.vnindex for 2026-05..2026-09 (same Vietcap source).",
+    "central_vs_usdvnd_monthly": "Weekly values equal the monthly series where the month ends on a Friday or the quote is the same day: 29/5 25,139; 31/7 25,338; 28/8 25,610 (=31/8 monthly). Mid-week month-ends differ by design: 30/6 monthly 25,206 vs Friday 26/6 25,195 and 3/7 25,203; 30/9 monthly 25,627 vs Fridays 25/9 25,641 and 2/10 25,636.",
+    "vcb_vs_usdvnd_monthly": "Same quotes on 29/5 (26,395), 31/7 (26,470), 29/8 (26,260). Monthly 30/9 = 26,160 sits between Fridays 25/9 (26,170) and 2/10 (26,170).",
+    "on_vs_interbank_on_monthly": "Monthly values are mostly Vietcap monthly averages (May 6.21, Jun 5.0, Jul 3.95, Aug 4.37) or month-end points (Sep 7.0 on 30/9). Weekly single-session points swing far more (0.87% on 25/9, 7.07% on 28/8) because ON spikes at month/quarter ends and collapses after SBV/Treasury injections; they should not be averaged into the monthly series."
+   },
+   "note_vi": "Chuỗi tuần (thứ Sáu hoặc phiên cuối tuần), 1/5–30/10/2026. VN-Index: giá đóng cửa HOSE (dữ liệu Vietcap). Tỷ giá trung tâm: NHNN công bố, theo các bài tổng hợp thị trường tiền tệ tuần. Vietcombank: giá bán USD cuối tuần theo báo chí (thiếu nhiều tuần). Lãi suất qua đêm: mức NHNN công bố của phiên gần nhất trong tuần (thường là thứ Năm do công bố trễ 1 ngày) — biến động rất mạnh quanh cuối tháng, không phải bình quân tuần. Ô trống = không tìm được nguồn; không nội suy.",
+   "note_en": "Weekly (Friday or last session of the week), 1 May-30 Oct 2026. VN-Index: HOSE close (Vietcap feed). Central rate: SBV fixing as reported in weekly money-market wraps. Vietcombank: end-of-week USD selling quote from press (many gaps). Overnight interbank: SBV-published rate of the latest session quoted for the week (often Thursday, as SBV publishes with a one-day lag) - very volatile around month-ends; not a weekly average. Nulls = no source found; no interpolation."
   }
  }
 }
