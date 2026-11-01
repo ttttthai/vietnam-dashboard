@@ -5556,11 +5556,33 @@ function mvVoiceUI() { const u = document.getElementById('st-mv'); if (!u) retur
   const cur = mvVoice(); sel.innerHTML = V.map(v => `<option value="${ciE(v.name)}"${cur && v.name === cur.name ? ' selected' : ''}>${mvFem(v) ? '♀ ' : ''}${ciE(v.name.replace(/^(Microsoft|Google|Apple)\s+/, '').replace(/\s*[-–(].*$/, '').slice(0, 24))}</option>`).join(''); }
 if ('speechSynthesis' in window) try { speechSynthesis.addEventListener('voiceschanged', mvVoiceUI); } catch (e) {}
 // speak one scene sentence by sentence (Chrome stops long utterances after ~15 s); resolves when done or cancelled
+// ── voice (anthropic-skills:voice techniques): one sentence per utterance, controlled pauses (0.35 s between
+// sentences, a short beat before each scene), and text written for the voice — numbers, ranges and symbols are
+// rewritten the way a person says them; the caption on screen keeps the display text.
+const MV_DIG_VI = ['không', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'], MV_DIG_EN = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+function mvSpoken(t, en) {
+  const dig = en ? MV_DIG_EN : MV_DIG_VI;
+  t = String(t).replace(/≈\s*/g, en ? 'about ' : 'khoảng ').replace(/≥\s*/g, en ? 'at least ' : 'từ ').replace(/>\s*(?=\d)/g, en ? 'more than ' : 'hơn ').replace(/[“”"]/g, '');
+  if (en) {
+    t = t.replace(/(\d)\s*[–-]\s*(\d)/g, '$1 to $2').replace(/(\d),(\d{3})\b/g, '$1$2')
+      .replace(/(\d+)\.(\d+)/g, (m, a, b) => a + ' point ' + b.split('').map(d => dig[+d]).join(' '))
+      .replace(/%/g, ' percent').replace(/\bbn\b/g, 'billion').replace(/\bpp\b/g, 'percentage points').replace(/\bUSD\b/g, 'dollars').replace(/\bVND\b/g, 'dong')
+      .replace(/\bQ([1-4])\b/g, 'quarter $1').replace(/×/g, ' times ');
+  } else {
+    t = t.replace(/(\d)\s*[–-]\s*(\d)/g, '$1 đến $2').replace(/(\d)\.(\d{3})\b/g, '$1$2').replace(/(\d)\.(\d{3})\b/g, '$1$2')
+      .replace(/(\d+),(\d+)/g, (m, a, b) => a + ' phẩy ' + b.split('').map(d => dig[+d]).join(' '))
+      .replace(/%/g, ' phần trăm').replace(/\bUSD\b/g, 'đô la').replace(/\bđ\b/g, 'đồng').replace(/\bQ([1-4])\b/g, 'quý $1').replace(/×/g, ' lần ')
+      .replace(/\bGDP\b/g, 'GDP').replace(/\bFDI\b/g, 'F D I').replace(/\bCPI\b/g, 'C P I').replace(/\bIMF\b/g, 'I M F').replace(/\bWB\b/g, 'Ngân hàng Thế giới');
+  }
+  return t.replace(/\s{2,}/g, ' ').trim();
+}
 function mvSpeak(text, tok, onPart) { return new Promise(r => { try {
-  const parts = text.split(/(?<=[.!?;:…])\s+/).reduce((a, x) => { if (a.length && (a[a.length - 1] + ' ' + x).length < 180) a[a.length - 1] += ' ' + x; else a.push(x); return a; }, []).map(x => x.trim()).filter(Boolean);
-  const v = mvVoice(), L = APP_LANG === 'en' ? 'en-US' : 'vi-VN'; let i = 0;
-  const next = () => { if (tok !== MV.tok || i >= parts.length) return r(); if (onPart) onPart(parts[i]); const ut = new SpeechSynthesisUtterance(parts[i++]); ut.lang = v ? v.lang : L; ut.voice = v; ut.rate = Math.min(1.4, .95 * MV.speed); ut.pitch = v && !mvFem(v) ? 1.15 : 1.02; ut.onend = next; ut.onerror = () => r(); speechSynthesis.speak(ut); };
-  next(); } catch (e) { r(); } }); }
+  const parts = text.split(/(?<=[.!?;…])\s+/).map(x => x.trim()).filter(Boolean);   // one sentence at a time keeps each sentence's own rise and fall
+  const v = mvVoice(), L = APP_LANG === 'en' ? 'en-US' : 'vi-VN', en = APP_LANG === 'en', gap = 350 / (MV.speed || 1); let i = 0;
+  const next = () => { if (tok !== MV.tok || i >= parts.length) return r(); const disp = parts[i++]; if (onPart) onPart(disp);
+    const ut = new SpeechSynthesisUtterance(mvSpoken(disp, en)); ut.lang = v ? v.lang : L; ut.voice = v; ut.rate = Math.min(1.4, (en ? .95 : .92) * MV.speed); ut.pitch = v && !mvFem(v) ? 1.15 : 1.02;
+    ut.onend = () => setTimeout(next, gap); ut.onerror = () => r(); speechSynthesis.speak(ut); };
+  setTimeout(next, 250 / (MV.speed || 1)); } catch (e) { r(); } }); }
 function mvScenes(root) {
   const S = root._stSub; if (!S) return [];
   const out = [], txt = e => (e ? [...e.childNodes].map(n => n.textContent).join(' ') : '').replace(/\s+/g, ' ').replace(/ ([.,;:])/g, '$1').trim();

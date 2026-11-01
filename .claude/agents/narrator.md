@@ -80,6 +80,16 @@ in narration that is not in the data.
 7. Report: films written, scene counts, anything you need from the tab agents. Do not commit; the main session
    commits and publishes.
 
+## Voice (anthropic-skills:voice)
+The film follows the voice skill's method: one sentence per utterance, 0.35 s between sentences, a short beat at
+each scene start, and text written for the voice. The player's `mvSpoken()` converts the common cases at speak time
+(9,01% → "9 phẩy không một phần trăm"; 7,4–8,4% → "7 phẩy bốn đến 8 phẩy bốn phần trăm"; ≈ → "khoảng"; USD → "đô la";
+EN 9.01% → "9 point zero one percent", bn → billion). Write for the ear on top of that: one idea per sentence; colons
+and semicolons for controlled pauses, commas for micro-pauses; no abbreviations the ear can't parse; spell out what
+the converter can't (e.g. "Nghị quyết 57" not "NQ 57-NQ/TW"). Listen to anything technical. When natural recorded
+narration is set up (macOS Premium voice via the user's Mac, or an approved neural service), the same per-sentence
+text is what gets recorded — keep sentences short and self-contained.
+
 ## Full refresh after every Fed (FOMC) meeting
 The user's standing instruction: **after each US Federal Reserve FOMC meeting concludes, update the films completely**
 — re-map the page, re-read every tab's current data and headlines, and rewrite all eight films (not just patch
