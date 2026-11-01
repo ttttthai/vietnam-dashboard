@@ -544,7 +544,19 @@ def build(stocks_path, raw_dir, out_path, ttm_min_cov, dry_run, cross_checks_pat
 
 
 # ------------------------------------------------------------------------------------------------------ valuation
-VAL_MIN_END = (2026, 2)   # oldest acceptable latest quarter for TTM earnings / book value
+VAL_MIN_END = (2026, 2)        # oldest acceptable latest quarter for every TTM window / balance sheet used below
+FIN_ICB = {"8300", "8500", "8700"}   # Banks, Insurance, Financial Services: no D/E, current ratio, cover, turnover
+PAR_VND = 10000                # Vietnamese par value per share; shares ≈ paid-in capital (bsa80) ÷ par
+
+
+def _qrows(raw_dir, sym, sec):
+    d = _load(raw_dir, sym, sec)
+    return _latest_rows(d.get("quarters")) if d else {}
+
+
+def _reported(row):
+    return bool(row) and any(isinstance(v, (int, float)) and v != 0
+                             for k, v in row.items() if k[:2] in ("cf", "is", "bs"))
 
 
 def company_ttm_latest(panel, min_end=VAL_MIN_END):
@@ -569,120 +581,304 @@ def company_book_latest(panel, min_end=VAL_MIN_END):
     return None
 
 
-def valuation_agg(members, mcap, ttm, book):
-    cap = sum(mcap[s] for s in members)
-    pe_s = [s for s in members if s in ttm and mcap[s] > 0]
-    pb_s = [s for s in members if s in book and book[s][0] > 0 and mcap[s] > 0]
-    both = [s for s in pe_s if s in set(pb_s)]
-    e = sum(ttm[s][0] for s in pe_s) / BN
-    b = sum(book[s][0] for s in pb_s) / BN
-    c_pe, c_pb = sum(mcap[s] for s in pe_s), sum(mcap[s] for s in pb_s)
-    e_both, b_both = sum(ttm[s][0] for s in both) / BN, sum(book[s][0] for s in both) / BN
-    ends = collections.Counter(f"Q{ttm[s][1][1]}/{ttm[s][1][0]}" for s in pe_s)
-    return {
-        "pe": round(c_pe / e, 1) if pe_s and e > 0 else None,
-        "pe_n": len(pe_s),
-        "pe_coverage_pct": round(100.0 * c_pe / cap, 1) if cap else None,
-        "pe_loss_makers_n": sum(1 for s in pe_s if ttm[s][0] < 0),
-        "pe_earnings_ttm_bn_vnd": _r(e) if pe_s else None,
-        "pe_ttm_end_quarters": dict(sorted(ends.items(), reverse=True)),
-        "pb": round(c_pb / b, 2) if pb_s and b > 0 else None,
-        "pb_n": len(pb_s),
-        "pb_coverage_pct": round(100.0 * c_pb / cap, 1) if cap else None,
-        "pb_book_bn_vnd": _r(b) if pb_s else None,
-        "pb_neg_equity_excluded_n": sum(1 for s in members if s in book and book[s][0] <= 0),
-        "roe_pct": round(100.0 * e_both / b_both, 1) if both and b_both > 0 else None,
-        "roe_n": len(both),
-        "_pe_null_reason": ("aggregate TTM earnings ≤ 0" if pe_s and e <= 0 else
-                            "no company with four quarters ending Q2/2026 or later" if not pe_s else None),
-    }
+def _sum4(rows, key, absval=False):
+    vals = [r.get(key) if r else None for r in rows]
+    if any(v is None for v in vals):
+        return None
+    return sum(vals)
 
 
-def valuation(stocks_path, raw_dir, out_path, dry_run):
-    """Fill IND_ICB.industries[].pe/pb/roe_pct (+ pe_*/pb_*/roe_n keys), IND_ICB.market.pe/pb and basis text.
-    Caps = the stocks file's mcap (same snapshot as the cards' mcap_bn_vnd). Nothing else in the file changes."""
+def company_val(raw_dir, sym, min_end=VAL_MIN_END):
+    """Per-company inputs for the card ratios (VND). Keys present only when the data exist."""
+    panel = company_panel(raw_dir, sym)
+    if panel is None:
+        return None
+    Q = panel["quarterly"]
+    isq, bsq, cfq = (_qrows(raw_dir, sym, s) for s in ("INCOME_STATEMENT", "BALANCE_SHEET", "CASH_FLOW"))
+    rec = {"tpl": panel["tpl"]}
+    t = company_ttm_latest(panel, min_end)
+    if t:
+        rec["np"], rec["end"] = t
+        end = t[1]
+        cur = [_qminus(end, i) for i in range(4)]
+        ago = [_qminus(end, 4 + i) for i in range(4)]
+        if all(Q.get(k) and Q[k]["np"] is not None for k in ago):
+            rec["np_ago"] = sum(Q[k]["np"] for k in ago)
+        if all(Q[k]["rev"] is not None for k in cur):
+            rec["rev"] = sum(Q[k]["rev"] for k in cur)
+            if "np_ago" in rec and all(Q[k]["rev"] is not None for k in ago):
+                rec["rev_ago"] = sum(Q[k]["rev"] for k in ago)
+        pbt = _sum4([isq.get(k) for k in cur], "isa16")
+        if pbt is not None:
+            ie = [isq[k].get("isa8") for k in cur]
+            rec["pbt"], rec["int_exp"] = pbt, abs(sum(v or 0 for v in ie))   # isa8 is booked negative
+        ta_end, ta_ago = Q[end]["ta"], (Q.get(ago[0]) or {}).get("ta")
+        if ta_end is not None:
+            rec["ta_end"], rec["ta_ago"] = ta_end, ta_ago
+        sh_end = (bsq.get(end) or {}).get("bsa80")
+        sh_ago = (bsq.get(ago[0]) or {}).get("bsa80")
+        if sh_end and sh_ago and sh_end > 0 and sh_ago > 0:
+            rec["sh_end"], rec["sh_ago"] = sh_end / PAR_VND, sh_ago / PAR_VND
+    b = company_book_latest(panel, min_end)
+    if b:
+        rec["eq"], rec["bq"] = b
+        br = bsq.get(b[1]) or {}
+        rec["liab"] = br.get("bsa54")
+        parts = [br.get(k) for k in ("bsa56", "bsa71", "bsa173")]
+        rec["debt"] = sum(v or 0 for v in parts) if any(v is not None for v in parts) else None
+        rec["ca"], rec["cl"] = br.get("bsa1"), br.get("bsa55")
+    # dividends paid (cash-flow statement, own latest four reported quarters)
+    cq = sorted((k for k, r in cfq.items() if k[1] in (1, 2, 3, 4) and _reported(r)), reverse=True)
+    for end in cq[:2]:
+        if end < min_end:
+            break
+        rows = [cfq.get(_qminus(end, i)) for i in range(4)]
+        if all(_reported(r) for r in rows):
+            rec["div"] = -sum((r.get("cfa32") or 0) for r in rows)   # payments booked negative
+            rec["div_end"] = end
+            break
+    return rec
+
+
+def _ratio(a, b, nd):
+    return round(a / b, nd) if b and b > 0 else None
+
+
+def _ql(q):
+    return f"Q{q[1]}/{q[0]}"
+
+
+def valuation_agg(members, mcap, cv, fin):
+    """Aggregate ratios over `members` (syms). cv[sym] = company_val record. fin: financial-industry group."""
+    cap = sum(mcap[s] for s in members) or None
+    R = {s: cv[s] for s in members if s in cv and mcap[s] > 0}
+    covp = lambda ss: round(100.0 * sum(mcap[s] for s in ss) / cap, 1) if cap else None
+    out = {}
+    # P/E
+    pe_s = [s for s, r in R.items() if "np" in r]
+    e = sum(R[s]["np"] for s in pe_s) / BN
+    out.update(pe=round(sum(mcap[s] for s in pe_s) / e, 1) if pe_s and e > 0 else None, pe_n=len(pe_s),
+               pe_coverage_pct=covp(pe_s), pe_loss_makers_n=sum(1 for s in pe_s if R[s]["np"] < 0))
+    if pe_s and e <= 0:
+        out["pe_null_reason"] = "aggregate TTM parent profit ≤ 0 (%s bn VND)" % _r(e)
+    # P/B
+    pb_s = [s for s, r in R.items() if r.get("eq") is not None and r["eq"] > 0]
+    bk = sum(R[s]["eq"] for s in pb_s) / BN
+    out.update(pb=_ratio(sum(mcap[s] for s in pb_s), bk, 2), pb_n=len(pb_s), pb_coverage_pct=covp(pb_s))
+    both = [s for s in pb_s if "np" in R[s]]
+    eb = sum(R[s]["eq"] for s in both)
+    out["roe_pct"] = round(100.0 * sum(R[s]["np"] for s in both) / eb, 1) if both and eb > 0 else None
+    out["roe_n"] = len(both)
+    # dividend yield
+    dv = [s for s, r in R.items() if "div" in r]
+    dcap = sum(mcap[s] for s in dv)
+    out.update(div_yield_pct=round(100.0 * sum(R[s]["div"] for s in dv) / BN / dcap, 2) if dcap else None,
+               div_n=len(dv), div_payers_n=sum(1 for s in dv if R[s]["div"] > 0), div_coverage_pct=covp(dv))
+    # growth sample: revenue and profit in both windows
+    g = [s for s, r in R.items() if "rev_ago" in r]
+    rv, rva = sum(R[s]["rev"] for s in g), sum(R[s]["rev_ago"] for s in g)
+    nn, nna = sum(R[s]["np"] for s in g), sum(R[s]["np_ago"] for s in g)
+    out.update(rev_yoy_pct=_growth(rv, rva) if g else None, npat_yoy_pct=_growth(nn, nna) if g else None,
+               rev_yoy_n=len(g), rev_yoy_coverage_pct=covp(g))
+    if g and nna <= 0:
+        out["npat_yoy_null_reason"] = "year-earlier aggregate TTM profit ≤ 0"
+    mix = collections.Counter()
+    for s in g:
+        mix[_ql(R[s]["end"])] += mcap[s]
+    if not mix:
+        out["growth_quarter"] = None
+    elif len(mix) == 1:
+        q = next(iter(mix))
+        out["growth_quarter"] = f"TTM {q} vs TTM {q[:3]}{int(q[3:]) - 1}"
+    else:
+        tot = sum(mix.values())
+        sh = lambda c: "<1" if 100.0 * c / tot < 0.5 else f"{100.0 * c / tot:.0f}"
+        out["growth_quarter"] = "mixed: " + ", ".join(
+            f"TTM {q} ({sh(c)}% of sample cap)" for q, c in sorted(mix.items(), key=lambda x: -x[1])
+        ) + " — each vs its own year-earlier TTM"
+    out["net_margin_pct"] = round(100.0 * nn / rv, 1) if g and rv > 0 else None
+    out["net_margin_n"] = len(g)
+    # EPS growth: same companies, both TTM windows, share counts at both window ends
+    es = [s for s, r in R.items() if "np_ago" in r and "sh_end" in r]
+    en, ea = sum(R[s]["np"] for s in es), sum(R[s]["np_ago"] for s in es)
+    ea_ps = sum(R[s]["np_ago"] * R[s]["sh_end"] / R[s]["sh_ago"] for s in es)
+    out.update(eps_growth_pct=_growth(en, ea) if es else None,
+               eps_growth_per_share_pct=_growth(en, ea_ps) if es else None,
+               eps_growth_n=len(es), eps_growth_coverage_pct=covp(es))
+    if es and ea <= 0:
+        out["eps_growth_null_reason"] = "year-earlier aggregate TTM earnings ≤ 0"
+    # balance-sheet / coverage ratios (non-financial groups only)
+    if fin:
+        ls = [s for s in pb_s if R[s].get("liab") is not None]
+        out.update(debt_to_equity=None, liab_to_equity=_ratio(sum(R[s]["liab"] for s in ls),
+                                                               sum(R[s]["eq"] for s in ls), 2),
+                   de_n=len(ls), de_coverage_pct=covp(ls), current_ratio=None, cr_n=0, cr_coverage_pct=None,
+                   interest_coverage=None, ic_n=0, ic_coverage_pct=None, ic_no_debt_n=None,
+                   asset_turnover=None, at_n=0, at_coverage_pct=None)
+        return out
+    ds = [s for s in pb_s if R[s].get("debt") is not None]
+    out.update(debt_to_equity=_ratio(sum(R[s]["debt"] for s in ds), sum(R[s]["eq"] for s in ds), 2),
+               de_n=len(ds), de_coverage_pct=covp(ds))
+    cs = [s for s in pb_s if R[s].get("ca") and R[s].get("cl")]
+    out.update(current_ratio=_ratio(sum(R[s]["ca"] for s in cs), sum(R[s]["cl"] for s in cs), 2),
+               cr_n=len(cs), cr_coverage_pct=covp(cs))
+    ic_all = [s for s in g if "pbt" in R[s]]
+    ics = [s for s in ic_all if R[s]["int_exp"] > 0]
+    ebit = sum(R[s]["pbt"] + R[s]["int_exp"] for s in ics)
+    out.update(interest_coverage=_ratio(ebit, sum(R[s]["int_exp"] for s in ics), 1), ic_n=len(ics),
+               ic_coverage_pct=covp(ics), ic_no_debt_n=len(ic_all) - len(ics))
+    if ics and ebit <= 0:
+        out["ic_negative_ebit"] = True
+    ats = [s for s in g if R[s].get("ta_end")]
+    avg = sum((R[s]["ta_end"] + R[s]["ta_ago"]) / 2 if R[s].get("ta_ago") else R[s]["ta_end"] for s in ats)
+    out.update(asset_turnover=_ratio(sum(R[s]["rev"] for s in ats), avg, 2), at_n=len(ats),
+               at_coverage_pct=covp(ats), at_latest_assets_only_n=sum(1 for s in ats if not R[s].get("ta_ago")))
+    return out
+
+
+CARD_NULLABLE = ("pe_null_reason", "npat_yoy_null_reason", "eps_growth_null_reason", "ic_negative_ebit",
+                 "liab_to_equity")
+
+
+def valuation(stocks_path, raw_dir, out_path, dry_run, dump_companies=None):
+    """Fill IND_ICB.industries[] valuation / growth / balance-sheet ratio keys, the same keys in IND_ICB.market
+    (balance-sheet ratios ex-financials) and pe/pb by exchange, plus the basis text. Caps = the stocks file's mcap
+    (same snapshot as the cards' mcap_bn_vnd). Nothing else in the file changes."""
     stocks = json.load(open(stocks_path, encoding="utf-8"))
     data = json.load(open(out_path, encoding="utf-8"))
     ind = data["IND_ICB"]
     mcap = {r["sym"]: float(r.get("mcap") or 0) for r in stocks}
+    icb_of = {r["sym"]: r["icb"] for r in stocks}
     board = {r["sym"]: {"HSX": "HOSE", "HOSE": "HOSE", "HNX": "HNX"}.get(r.get("board"), "UPCoM") for r in stocks}
     by_icb = collections.defaultdict(list)
     for r in stocks:
         by_icb[r["icb"]].append(r["sym"])
-    ttm, book = {}, {}
-    for r in stocks:
-        p = company_panel(raw_dir, r["sym"])
-        if p is None:
-            continue
-        t, b = company_ttm_latest(p), company_book_latest(p)
-        if t:
-            ttm[r["sym"]] = t
-        if b:
-            book[r["sym"]] = b
-    # consistency with the cards
     for card in ind["industries"]:
         tot = sum(mcap[s] for s in by_icb.get(card["icb"], []))
         if abs(tot - card["mcap_bn_vnd"]) > 1:
             sys.exit(f"cap mismatch for {card['icb']}: stocks {tot:.0f} vs card {card['mcap_bn_vnd']}")
+    cv = {}
+    for r in stocks:
+        c = company_val(raw_dir, r["sym"])
+        if c:
+            cv[r["sym"]] = c
+    if dump_companies:
+        with open(dump_companies, "w", encoding="utf-8") as fh:
+            json.dump({s: {k: (list(v) if isinstance(v, tuple) else v) for k, v in c.items()} for s, c in cv.items()},
+                      fh)
     res = {}
-    card_keys = ("pe", "pe_n", "pe_coverage_pct", "pe_loss_makers_n", "pb", "pb_n", "pb_coverage_pct", "roe_pct")
     for card in ind["industries"]:
-        a = valuation_agg(by_icb.get(card["icb"], []), mcap, ttm, book)
+        a = valuation_agg(by_icb.get(card["icb"], []), mcap, cv, card["icb"] in FIN_ICB)
         res[card["icb"]] = a
-        for k in card_keys:
-            card[k] = a[k]
-        card["pe_null_reason"] = a["_pe_null_reason"]
-        if card["pe_null_reason"] is None:
-            del card["pe_null_reason"]
-    m = valuation_agg(list(mcap), mcap, ttm, book)
+        for k in CARD_NULLABLE:
+            card.pop(k, None)
+        card.update(a)
+    allsyms = list(mcap)
+    m = valuation_agg(allsyms, mcap, cv, False)
+    nonfin = [s for s in allsyms if icb_of[s] not in FIN_ICB]
+    mn = valuation_agg(nonfin, mcap, cv, False)
+    for k in ("debt_to_equity", "de_n", "de_coverage_pct", "current_ratio", "cr_n", "cr_coverage_pct",
+              "interest_coverage", "ic_n", "ic_coverage_pct", "ic_no_debt_n", "asset_turnover", "at_n",
+              "at_coverage_pct", "at_latest_assets_only_n"):
+        m[k] = mn.get(k)
+    m["ratios_ex_financials_note"] = ("debt_to_equity, current_ratio, interest_coverage, asset_turnover: market "
+                                      "value excludes ICB 8300/8500/8700 (coverage % of that non-financial cap)")
     res["market"] = m
     mk = ind["market"]
-    for k in card_keys:
-        mk[k] = m[k]
+    for k in CARD_NULLABLE:
+        mk.pop(k, None)
+    mk.update(m)
     for ex, blk in mk.get("by_exchange", {}).items():
-        a = valuation_agg([s for s in mcap if board[s] == ex], mcap, ttm, book)
+        a = valuation_agg([s for s in allsyms if board[s] == ex], mcap, cv, True)
         res[ex] = a
-        for k in ("pe", "pe_coverage_pct", "pb", "pb_coverage_pct"):
+        for k in ("pe", "pe_coverage_pct", "pb", "pb_coverage_pct", "div_yield_pct"):
             blk[k] = a[k]
     as_of = ind.get("as_of") or "2026-10-30"
     f = ind["basis"]["fields"]
     f.pop("pe, pb, div_yield_pct, roe_pct", None)
-    f["pe"] = (
-        "≈ derived, aggregate (cap-weighted harmonic) P/E = Σ market cap ÷ Σ trailing-four-quarter profit after tax "
-        "attributable to parent shareholders. Caps = mcap_bn_vnd (close × listed shares, " + as_of + "). Earnings = "
-        "each company's own latest four consecutive reported quarters ending Q3/2026 or Q2/2026 (older → excluded), "
-        "Vietcap IQ quarterly statements (isa22; PAT isa20 where isa22 is missing), consolidated where the company "
-        "has subsidiaries. Loss-makers are INCLUDED in the denominator (pe_loss_makers_n); pe is null when the "
-        "aggregate earnings are ≤ 0 (pe_null_reason). pe_n = companies included; pe_coverage_pct = their share of "
-        "the industry cap. Not the exchange's or a broker's index P/E (those use free-float/index weights and their "
-        "own EPS) — see caveats.")
-    f["pb"] = (
-        "≈ derived, aggregate P/B = Σ market cap ÷ Σ parent shareholders' equity (bsa78 less minority interests "
-        "where included) at each company's latest reported quarter-end (Q3/2026 or Q2/2026; older → excluded); "
-        "companies with equity ≤ 0 excluded. pb_n / pb_coverage_pct as for pe. Banks: book = parent equity.")
-    f["roe_pct"] = (
-        "≈ derived: Σ TTM parent profit ÷ Σ latest parent equity over companies in both the pe and pb samples "
-        "(period-end equity, not average; ends may differ by one quarter between companies). Not a reported ROE.")
-    f["div_yield_pct"] = "null: no sourced per-company dividend series in this build (not estimated)."
-    f["pe_* / pb_* keys"] = (
-        "pe_n, pe_coverage_pct, pe_loss_makers_n, pb_n, pb_coverage_pct: sample size and share of industry cap. "
-        "market.by_exchange.{HOSE,HNX,UPCoM}.pe/pb: same method by exchange (all listed stocks, not an index).")
+    f.pop("rev_yoy_pct, npat_yoy_pct, growth_quarter", None)
+    rec = ("each company's own latest four consecutive reported quarters ending Q3/2026 or Q2/2026 (older → "
+           "excluded)")
+    f["sample and recency (valuation, growth and ratio keys)"] = (
+        "All keys below are ≈ derived aggregates (Σ over companies ÷ Σ over the same companies; no medians), computed "
+        "by tools/build/industries_fundamentals.py valuation from Vietcap IQ quarterly statements (consolidated "
+        "where the company has subsidiaries; as served by trading.vietcap.com.vn/api/iq-insight-service). TTM = "
+        + rec + "; year-earlier TTM = the four quarters ending one year before that company's end. Balance-sheet "
+        "items at each company's latest reported quarter-end (Q3/2026 or Q2/2026). Caps = mcap_bn_vnd (close × "
+        "listed shares, " + as_of + "). *_n = companies included; *_coverage_pct = their share of the industry "
+        "cap. Not the exchange's or a broker's figures (those use index/free-float weights and their own EPS).")
+    f["pe"] = ("Σ market cap ÷ Σ TTM profit after tax attributable to parent shareholders (isa22; isa20 where "
+               "isa22 is missing). Loss-makers INCLUDED (pe_loss_makers_n); null when the aggregate TTM profit "
+               "≤ 0 (pe_null_reason). Keys pe_n, pe_coverage_pct, pe_loss_makers_n.")
+    f["pb"] = ("Σ market cap ÷ Σ parent shareholders' equity (bsa78 less minority interests bsa210 where bsa78 "
+               "includes them) at the latest quarter-end; companies with equity ≤ 0 excluded. Banks: book = parent "
+               "equity. Keys pb_n, pb_coverage_pct.")
+    f["roe_pct"] = ("Σ TTM parent profit ÷ Σ latest parent equity over companies in both the pe and pb samples "
+                    "(roe_n); period-end equity, not average. Not a reported ROE.")
+    f["div_yield_pct"] = (
+        "Σ cash dividends paid in the TTM ÷ Σ market cap of the same companies, %. Dividends = cash-flow statement "
+        "line 'Cổ tức, lợi nhuận đã trả cho chủ sở hữu' (Vietcap cfa32, financing activities), " + rec + " of "
+        "cash-flow statements (quarters are discrete in the source; a reported quarter with the line blank counts "
+        "as 0). Stock dividends and bonus shares are not cash and are not in this line. In consolidated statements "
+        "this line also includes dividends paid by subsidiaries to minority (non-controlling) shareholders — it "
+        "cannot be separated in the source, so the yield is overstated for groups with large minority stakes; "
+        "not adjusted. Cash paid ≠ declared: timing follows payment dates. div_n, div_payers_n, div_coverage_pct.")
+    f["rev_yoy_pct, npat_yoy_pct, growth_quarter"] = (
+        "Like-for-like TTM vs year-earlier TTM over companies with revenue and parent profit in all eight quarters "
+        "(rev_yoy_n, rev_yoy_coverage_pct); revenue definitions as IND_ICB.fundamentals (net sales; banks total "
+        "operating income; securities firms net operating revenue; insurers net insurance revenue). npat_yoy_pct "
+        "null when the year-earlier aggregate profit ≤ 0. growth_quarter names the TTM end; a mixed sample is "
+        "labelled 'mixed: TTM Q3/2026 (x% of sample cap), TTM Q2/2026 (y%) — each vs its own year-earlier TTM'. "
+        "Differs from fundamentals.*_yoy_pct (TTM column), which uses one common window ending Q3/2026 and also "
+        "requires total assets.")
+    f["net_margin_pct"] = ("Σ TTM parent profit ÷ Σ TTM revenue over the rev_yoy sample (net_margin_n). Banks' "
+                           "denominator is total operating income, brokers' net operating revenue, insurers' net "
+                           "insurance revenue — not comparable with non-financial industries.")
+    f["eps_growth_pct"] = (
+        "Σ_i shares_now_i × TTM EPS_now_i ÷ Σ_i shares_now_i × TTM EPS_yearago_i − 1, with year-ago EPS restated to "
+        "today's share count (so issuance/splits do not show as growth) — this reduces exactly to like-for-like TTM "
+        "parent-profit growth over companies with both windows and share counts (eps_growth_n, "
+        "eps_growth_coverage_pct). Vietcap's reported EPS (isa23) is not used: it is blank/0 for many companies and "
+        "not split-adjusted. eps_growth_per_share_pct (supplementary) does NOT restate: shares = paid-in capital "
+        "bsa80 ÷ VND 10,000 par at each window end, so any increase in shares (cash issues, stock dividends, "
+        "conversions) counts as dilution; treasury shares not deducted.")
+    f["debt_to_equity"] = (
+        "×, non-financial industries: Σ interest-bearing debt ÷ Σ parent equity at the latest quarter-end, pb "
+        "sample (de_n, de_coverage_pct). Debt = short-term borrowings & finance leases bsa56 + long-term "
+        "borrowings & finance leases bsa71 + convertible bonds bsa173 (straight bonds issued are within bsa56/"
+        "bsa71 in the VAS layout). Denominator is parent equity, so groups with large minority interests show a "
+        "higher D/E than Vietcap's debtPerEquity (which divides by total equity incl. minorities, bsa78). "
+        "Null for ICB 8300 Banks, 8500 Insurance, 8700 Financial Services (deposits/"
+        "interbank/repo funding are operating liabilities); for those liab_to_equity = Σ total liabilities "
+        "bsa54 ÷ Σ parent equity is given instead. Market value excludes those three industries.")
+    f["current_ratio"] = ("×: Σ current assets bsa1 ÷ Σ current liabilities bsa55 at the latest quarter-end, pb "
+                          "sample with both lines (cr_n, cr_coverage_pct). Null for ICB 8300, 8500, 8700 (the "
+                          "bank/insurer/broker VAS formats do not split current/non-current, or not comparably).")
+    f["interest_coverage"] = (
+        "×: Σ TTM EBIT ÷ Σ TTM interest expense over companies in the rev_yoy sample that report interest expense "
+        "> 0 (ic_n, ic_coverage_pct); ic_no_debt_n = companies with zero/blank interest expense (excluded). EBIT = "
+        "profit before tax isa16 + interest expense isa8 ('Chi phí lãi vay', within financial expenses). Shown even "
+        "if negative, with ic_negative_ebit = true. Null for ICB 8300, 8500, 8700.")
+    f["asset_turnover"] = (
+        "×: Σ TTM revenue ÷ Σ average total assets (bsa53, mean of the TTM-end quarter and four quarters earlier; "
+        "latest only where the earlier one is missing — at_latest_assets_only_n), rev_yoy sample (at_n, "
+        "at_coverage_pct). Null for ICB 8300, 8500, 8700.")
     f["valuation caveats"] = (
         "(1) Double counting: a listed parent consolidating a listed subsidiary (VIC–VHM/VRE/VPL, MWG–DMX, GVR–PHR/"
-        "DPR, GAS–PGD …) puts the subsidiary's profit and book in both companies; because cap is counted twice too, "
-        "the ratios are affected roughly proportionally rather than biased one way, but the subsidiary's weight is "
-        "overstated. (2) TTM timing: ~92% of market cap uses Q4/2025–Q3/2026; the rest Q3/2025–Q2/2026. (3) One-off "
-        "gains in the window (e.g. large divestment or revaluation gains) lower P/E; quarterly reports are "
-        "unaudited and may be revised. (4) Caps use listed shares; ex-rights shares not yet listed (e.g. TCB, ex-date "
-        "2026-10-29) understate cap. (5) Full listed universe incl. UPCoM, total (not free-float) cap — differs from "
-        "VN-Index P/E. Descriptive only, not investment advice.")
+        "DPR, GAS–PGD …) puts the subsidiary's profit, book, debt and dividends in both companies; cap is counted "
+        "twice too, so ratios move roughly proportionally rather than in one direction, but the subsidiary's weight "
+        "is overstated. (2) TTM timing: most cap uses Q4/2025–Q3/2026, the rest Q3/2025–Q2/2026 (see growth_quarter). "
+        "(3) One-off gains (divestments, revaluations) in the window lower P/E and raise growth; quarterly reports "
+        "are unaudited and may be revised. (4) Caps use listed shares; ex-rights shares not yet listed (e.g. TCB, "
+        "ex-date 2026-10-29) understate cap. (5) Full listed universe incl. UPCoM and total (not free-float) cap — "
+        "differs from VN-Index P/E. (6) Survivorship: today's constituents. Descriptive only, not investment advice.")
     if dry_run:
         print(json.dumps(res, ensure_ascii=False, indent=1))
         return res
     with open(out_path, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, indent=1)
         fh.write("\n")
-    print("wrote", out_path, "pe/pb/roe_pct on", len(ind["industries"]), "cards + market")
+    print("wrote", out_path, "valuation keys on", len(ind["industries"]), "cards + market")
     return res
 
 
@@ -701,12 +897,13 @@ def main():
     v = sub.add_parser("valuation", help="fill card pe/pb/roe_pct and market pe/pb from the raw statements")
     v.add_argument("--stocks", required=True); v.add_argument("--raw", required=True)
     v.add_argument("--out", default=DEFAULT_OUT); v.add_argument("--dry-run", action="store_true")
+    v.add_argument("--dump-companies", default=None, help="write per-company inputs (JSON) for spot checks")
     args = ap.parse_args()
     if args.cmd == "pull":
         pull(args.stocks, args.raw, args.threads, tuple(args.sections.split(",")),
              args.only.split(",") if args.only else None)
     elif args.cmd == "valuation":
-        valuation(args.stocks, args.raw, args.out, args.dry_run)
+        valuation(args.stocks, args.raw, args.out, args.dry_run, args.dump_companies)
     else:
         build(args.stocks, args.raw, args.out, args.ttm_min_cov, args.dry_run, args.cross_checks)
 
