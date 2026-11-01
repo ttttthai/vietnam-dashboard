@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Narrator agent",
   "as_of": "2026-10-29",
-  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed decision of 28 Oct is not yet in the dashboard data, so Fed figures are narrated as the data shows them, dated 16/9/2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration."
+  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed decision of 28 Oct is not yet in the dashboard data, so Fed figures are narrated as the data shows them, dated 16/9/2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration. 2026-11-01: Policies tab merged into Financial system; money scenes retargeted to tab banks and the money film appended to the banks film."
  },
  "NARRATION": {
   "films": {
@@ -897,7 +897,7 @@
       "src": "story_map party pg-st-pipe headline (17/10–20/11/2026); rendered pg-st-watch (Land, Housing, Real Estate Business laws)"
      },
      {
-      "tab": "money",
+      "tab": "banks",
       "chap": "pol-st-hero",
       "target": "#pol-st-rates",
       "k": {
@@ -942,7 +942,7 @@
       "src": "story_map money pol-st-hero dek"
      },
      {
-      "tab": "money",
+      "tab": "banks",
       "chap": "pol-st-moves",
       "target": "#pol-st-div",
       "k": {
@@ -3907,463 +3907,6 @@
      }
     ]
    },
-   "money": {
-    "title": {
-     "vi": "Chính sách: các nút vặn tiền tệ và tài khóa",
-     "en": "Policies: the monetary and fiscal dials"
-    },
-    "scenes": [
-     {
-      "tab": "money",
-      "chap": "pol-st-hero",
-      "target": "#pol-st-rates",
-      "k": {
-       "vi": "CHÍNH SÁCH · 40 THÁNG",
-       "en": "POLICY · 40 MONTHS"
-      },
-      "vi": "Bốn mươi tháng. Đó là thời gian lãi suất tái cấp vốn của Ngân hàng Nhà nước đứng yên ở 4,5%, kể từ ngày 19 tháng Sáu năm 2023. Nhưng đứng yên không có nghĩa là không làm gì.",
-      "en": "Forty months. That is how long the State Bank's refinancing rate has stood still at 4.5%, since June 19, 2023. But standing still is not the same as doing nothing.",
-      "big": true,
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "40 tháng",
-         "en": "40 months"
-        },
-        "l": {
-         "vi": "lãi suất tái cấp vốn không đổi",
-         "en": "refinancing rate unchanged"
-        }
-       },
-       {
-        "v": {
-         "vi": "4,5%",
-         "en": "4.5%"
-        },
-        "l": {
-         "vi": "lãi suất tái cấp vốn",
-         "en": "refinancing rate"
-        }
-       },
-       {
-        "v": {
-         "vi": "19/6/2023",
-         "en": "Jun 19, 2023"
-        },
-        "l": {
-         "vi": "lần điều chỉnh gần nhất",
-         "en": "last change"
-        }
-       }
-      ],
-      "src": "story_map money pol-st-hero dek"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-hero",
-      "target": "#pol-st-rates",
-      "k": {
-       "vi": "CHÍNH SÁCH · BỐN BƯỚC XUỐNG",
-       "en": "POLICY · FOUR STEPS DOWN"
-      },
-      "vi": "Hãy xem đường lãi suất bước xuống trong năm 2023: từ 6% đầu năm, xuống 5,5% tháng Tư, 5% tháng Năm, rồi 4,5% tháng Sáu. Từ đó nó nằm yên.",
-      "en": "Watch the rate step down through 2023: from 6% at the start of the year to 5.5% in April, 5% in May, then 4.5% in June. Since then it has not moved.",
-      "figs": [
-       {
-        "v": {
-         "vi": "6% → 5,5% → 5% → 4,5%",
-         "en": "6% → 5.5% → 5% → 4.5%"
-        },
-        "l": {
-         "vi": "lãi suất tái cấp vốn, năm 2023",
-         "en": "refinancing rate, 2023"
-        }
-       }
-      ],
-      "src": "data/policy.json refinancing rate history (rendered pol-st-rates)"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-hero",
-      "target": "#pol-st-rates",
-      "k": {
-       "vi": "CHÍNH SÁCH · CÁC CÔNG CỤ KHÁC",
-       "en": "POLICY · THE OTHER TOOLS"
-      },
-      "vi": "Trong cùng thời gian, Ngân hàng Nhà nước điều chỉnh các giới hạn an toàn, gói tín dụng ưu đãi và chỉ đạo lãi suất; Chính phủ giảm thuế, phí và tăng đầu tư công.",
-      "en": "Over the same period the State Bank adjusted prudential limits, subsidised credit and rate guidance; the Government cut taxes and fees and raised public investment.",
-      "play": false,
-      "figs": [],
-      "src": "story_map money pol-st-hero dek"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-moves",
-      "target": "#pol-st-div",
-      "k": {
-       "vi": "CHÍNH SÁCH · NỚI HAY THẮT",
-       "en": "POLICY · EASE OR TIGHTEN"
-      },
-      "vi": "Mỗi cột là số lần điều chỉnh trong một quý: phía trên là nới lỏng, phía dưới là thắt chặt. Từ 2015 có 122 lần nới và 29 lần thắt. Mỗi lần được đếm như nhau, bất kể lớn nhỏ.",
-      "en": "Each column counts policy moves in one quarter: easing above, tightening below. Since 2015 there have been 122 easing moves and 29 tightening moves. Every move counts the same, whatever its size.",
-      "big": true,
-      "figs": [
-       {
-        "v": {
-         "vi": "122",
-         "en": "122"
-        },
-        "l": {
-         "vi": "lần nới lỏng từ 2015",
-         "en": "easing moves since 2015"
-        }
-       },
-       {
-        "v": {
-         "vi": "29",
-         "en": "29"
-        },
-        "l": {
-         "vi": "lần thắt chặt từ 2015",
-         "en": "tightening moves since 2015"
-        }
-       }
-      ],
-      "src": "story_map money pol-st-moves headline and note"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-moves",
-      "target": "#pol-st-div",
-      "k": {
-       "vi": "CHÍNH SÁCH · NĂM 2026",
-       "en": "POLICY · 2026"
-      },
-      "vi": "Hãy xem các cột phía trên cao dần trong năm 2026. Riêng quý hai năm 2026 có 16 lần nới lỏng. Giai đoạn 2023 đến 2026, tài khóa nới 63 lần, tiền tệ 57 lần.",
-      "en": "Watch the columns above the line grow through 2026. The second quarter of 2026 alone had 16 easing moves. Over 2023 to 2026, fiscal policy eased 63 times and monetary policy 57.",
-      "figs": [
-       {
-        "v": {
-         "vi": "16",
-         "en": "16"
-        },
-        "l": {
-         "vi": "lần nới lỏng, quý 2/2026",
-         "en": "easing moves, Q2 2026"
-        }
-       },
-       {
-        "v": {
-         "vi": "63",
-         "en": "63"
-        },
-        "l": {
-         "vi": "lần nới tài khóa, 2023–2026",
-         "en": "fiscal easing, 2023–26"
-        }
-       },
-       {
-        "v": {
-         "vi": "57",
-         "en": "57"
-        },
-        "l": {
-         "vi": "lần nới tiền tệ, 2023–2026",
-         "en": "monetary easing, 2023–26"
-        }
-       }
-      ],
-      "src": "data/policy.json moves by quarter; story_map pol-st-moves note"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-moves",
-      "target": "#pol-st-grp",
-      "k": {
-       "vi": "CHÍNH SÁCH · THEO CÔNG CỤ",
-       "en": "POLICY · BY INSTRUMENT"
-      },
-      "vi": "Theo nhóm công cụ, thuế nới nhiều nhất: 28 lần nới, 6 lần thắt. Lãi suất điều hành và trần lãi suất: 24 lần nới. Giới hạn an toàn ngân hàng thì hai chiều: 10 lần nới, 6 lần thắt.",
-      "en": "By instrument, taxes eased the most: 28 easing moves, 6 tightening. Policy rates and rate caps: 24 easing moves. Bank prudential limits went both ways: 10 easing, 6 tightening.",
-      "figs": [
-       {
-        "v": {
-         "vi": "28 · 6",
-         "en": "28 · 6"
-        },
-        "l": {
-         "vi": "thuế: nới · thắt",
-         "en": "taxes: easing · tightening"
-        }
-       },
-       {
-        "v": {
-         "vi": "24",
-         "en": "24"
-        },
-        "l": {
-         "vi": "lãi suất điều hành, trần lãi suất: nới",
-         "en": "policy rates, caps: easing"
-        }
-       },
-       {
-        "v": {
-         "vi": "10 · 6",
-         "en": "10 · 6"
-        },
-        "l": {
-         "vi": "giới hạn an toàn: nới · thắt",
-         "en": "prudential limits: easing · tightening"
-        }
-       }
-      ],
-      "src": "data/policy.json moves by instrument group (rendered pol-st-grp)"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-explore",
-      "k": {
-       "vi": "CHÍNH SÁCH · CÁC NÚT VẶN",
-       "en": "POLICY · THE DIALS"
-      },
-      "vi": "Mỗi biểu đồ nhỏ là một nút vặn chính sách. Có 28 công cụ, và 26 trong số đó đã đổi mức ít nhất một lần. Kéo thanh thời gian để đọc mọi nút vặn tiền tệ và tài khóa trong cùng một ngày.",
-      "en": "Each small chart is one policy dial. There are 28 instruments, and 26 of them have changed setting at least once. Drag the timeline to read every monetary and fiscal dial on the same day.",
-      "big": true,
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "28",
-         "en": "28"
-        },
-        "l": {
-         "vi": "công cụ chính sách",
-         "en": "policy instruments"
-        }
-       },
-       {
-        "v": {
-         "vi": "26",
-         "en": "26"
-        },
-        "l": {
-         "vi": "đã đổi mức ít nhất một lần",
-         "en": "changed at least once"
-        }
-       }
-      ],
-      "src": "story_map pol-st-explore headline; data/policy.json instruments"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-explore",
-      "k": {
-       "vi": "CHÍNH SÁCH · TÀI KHÓA",
-       "en": "POLICY · FISCAL"
-      },
-      "vi": "Phía tài khóa: thuế giá trị gia tăng giảm từ 10% xuống 8%. Mục tiêu bội chi Quốc hội phê duyệt là 4,2% GDP; thực hiện năm 2025 khoảng 3,6%. Mức phát hành trái phiếu Chính phủ là 500 nghìn tỷ đồng.",
-      "en": "On the fiscal side: VAT cut from 10% to 8%. The deficit target approved by the National Assembly is 4.2% of GDP; the 2025 outturn was about 3.6%. Government bond issuance stands at 500 trillion dong.",
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "10% → 8%",
-         "en": "10% → 8%"
-        },
-        "l": {
-         "vi": "thuế giá trị gia tăng",
-         "en": "VAT rate"
-        }
-       },
-       {
-        "v": {
-         "vi": "4,2% GDP",
-         "en": "4.2% of GDP"
-        },
-        "l": {
-         "vi": "mục tiêu bội chi 2026",
-         "en": "2026 deficit target"
-        }
-       },
-       {
-        "v": {
-         "vi": "≈ 3,6%",
-         "en": "≈ 3.6%"
-        },
-        "l": {
-         "vi": "bội chi thực hiện 2025",
-         "en": "2025 deficit outturn"
-        }
-       },
-       {
-        "v": {
-         "vi": "500 nghìn tỷ đồng",
-         "en": "500 trillion dong"
-        },
-        "l": {
-         "vi": "phát hành trái phiếu Chính phủ",
-         "en": "government bond issuance"
-        }
-       }
-      ],
-      "src": "data/policy.json instruments (VAT, deficit, G-bonds)"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-explore",
-      "k": {
-       "vi": "CHÍNH SÁCH · TÚI TIỀN NGƯỜI DÂN",
-       "en": "POLICY · PEOPLE'S POCKETS"
-      },
-      "vi": "Những nút vặn chạm tới túi tiền người dân: lương cơ sở khu vực công 2,53 triệu đồng, từ 1,49 triệu năm 2019. Giảm trừ gia cảnh thuế thu nhập cá nhân 15,5 triệu đồng. Hạn mức bảo hiểm tiền gửi 350 triệu đồng.",
-      "en": "Dials that reach people's pockets: the public-sector base salary is 2.53 million dong, up from 1.49 million in 2019. The personal income tax family deduction is 15.5 million. The deposit-insurance limit is 350 million dong.",
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "2,53 triệu đồng",
-         "en": "2.53 million dong"
-        },
-        "l": {
-         "vi": "lương cơ sở",
-         "en": "base salary"
-        }
-       },
-       {
-        "v": {
-         "vi": "1,49 triệu",
-         "en": "1.49 million"
-        },
-        "l": {
-         "vi": "lương cơ sở, 2019",
-         "en": "base salary, 2019"
-        }
-       },
-       {
-        "v": {
-         "vi": "15,5 triệu đồng",
-         "en": "15.5 million dong"
-        },
-        "l": {
-         "vi": "giảm trừ gia cảnh",
-         "en": "family deduction"
-        }
-       },
-       {
-        "v": {
-         "vi": "350 triệu đồng",
-         "en": "350 million dong"
-        },
-        "l": {
-         "vi": "hạn mức bảo hiểm tiền gửi",
-         "en": "deposit-insurance limit"
-        }
-       }
-      ],
-      "src": "data/policy.json instruments (base salary, PIT deduction, deposit insurance)"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-explore",
-      "k": {
-       "vi": "CHÍNH SÁCH · TIỀN TỆ",
-       "en": "POLICY · MONETARY"
-      },
-      "vi": "Phía tiền tệ: lãi suất thị trường mở 4,5%, trần lãi suất tiền gửi kỳ hạn 1 đến dưới 6 tháng 4,75%, và tỷ giá trung tâm 25.643 đồng một đô la.",
-      "en": "On the monetary side: the open-market rate is 4.5%, the deposit-rate cap for 1 to under 6 months is 4.75%, and the central rate is 25,643 dong to the dollar.",
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "4,5%",
-         "en": "4.5%"
-        },
-        "l": {
-         "vi": "lãi suất thị trường mở",
-         "en": "open-market rate"
-        }
-       },
-       {
-        "v": {
-         "vi": "1–6 tháng · 4,75%",
-         "en": "1–6 months · 4.75%"
-        },
-        "l": {
-         "vi": "trần lãi suất tiền gửi",
-         "en": "deposit-rate cap"
-        }
-       },
-       {
-        "v": {
-         "vi": "25.643",
-         "en": "25,643"
-        },
-        "l": {
-         "vi": "tỷ giá trung tâm, đồng/USD",
-         "en": "central rate, dong per dollar"
-        }
-       }
-      ],
-      "src": "data/policy.json instruments (OMO, deposit cap, central rate 6/10/2026)"
-     },
-     {
-      "tab": "money",
-      "chap": "pol-st-hero",
-      "k": {
-       "vi": "CHÍNH SÁCH · ĐIỀU CẦN THEO DÕI",
-       "en": "POLICY · WHAT TO WATCH"
-      },
-      "vi": "Cần theo dõi: ngày 1 tháng Mười Một, Bộ Tài chính công bố đợt số liệu kế tiếp; kỳ họp Quốc hội đang diễn ra đến ngày 20 tháng Mười Một; ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi mới có hiệu lực; và ngày 31 tháng Mười Hai, mức giảm thuế giá trị gia tăng hết hạn.",
-      "en": "To watch: on November 1, the Finance Ministry's next data release; the National Assembly session under way to November 20; on December 1, the new loan-to-deposit cap takes effect; and on December 31, the VAT cut expires.",
-      "big": true,
-      "play": false,
-      "figs": [
-       {
-        "v": {
-         "vi": "1/11/2026",
-         "en": "Nov 1, 2026"
-        },
-        "l": {
-         "vi": "số liệu kế tiếp của Bộ Tài chính",
-         "en": "next Finance Ministry release"
-        }
-       },
-       {
-        "v": {
-         "vi": "đến 20/11/2026",
-         "en": "to Nov 20, 2026"
-        },
-        "l": {
-         "vi": "kỳ họp Quốc hội",
-         "en": "National Assembly session"
-        }
-       },
-       {
-        "v": {
-         "vi": "1/12/2026",
-         "en": "Dec 1, 2026"
-        },
-        "l": {
-         "vi": "trần cho vay / tiền gửi mới",
-         "en": "new loan-to-deposit cap"
-        }
-       },
-       {
-        "v": {
-         "vi": "31/12/2026",
-         "en": "Dec 31, 2026"
-        },
-        "l": {
-         "vi": "giảm thuế GTGT hết hạn",
-         "en": "VAT cut expires"
-        }
-       }
-      ],
-      "src": "rendered money tab footer (next release 01/11/2026, MoF); pg-st-watch; fs-st-watch; st-watch"
-     }
-    ]
-   },
    "banks": {
     "title": {
      "vi": "Hệ thống tài chính: tiền, tín dụng và lãi suất",
@@ -5178,6 +4721,455 @@
        }
       ],
       "src": "rendered fs-st-watch (50/2026/TT-NHNN; credit 11.59% to Sep, 3.41 left); data/simulation.json Fed lever note (FOMC 8–9 Dec 2026)"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-hero",
+      "target": "#pol-st-rates",
+      "k": {
+       "vi": "CHÍNH SÁCH · 40 THÁNG",
+       "en": "POLICY · 40 MONTHS"
+      },
+      "vi": "Bốn mươi tháng. Đó là thời gian lãi suất tái cấp vốn của Ngân hàng Nhà nước đứng yên ở 4,5%, kể từ ngày 19 tháng Sáu năm 2023. Nhưng đứng yên không có nghĩa là không làm gì.",
+      "en": "Forty months. That is how long the State Bank's refinancing rate has stood still at 4.5%, since June 19, 2023. But standing still is not the same as doing nothing.",
+      "big": true,
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "40 tháng",
+         "en": "40 months"
+        },
+        "l": {
+         "vi": "lãi suất tái cấp vốn không đổi",
+         "en": "refinancing rate unchanged"
+        }
+       },
+       {
+        "v": {
+         "vi": "4,5%",
+         "en": "4.5%"
+        },
+        "l": {
+         "vi": "lãi suất tái cấp vốn",
+         "en": "refinancing rate"
+        }
+       },
+       {
+        "v": {
+         "vi": "19/6/2023",
+         "en": "Jun 19, 2023"
+        },
+        "l": {
+         "vi": "lần điều chỉnh gần nhất",
+         "en": "last change"
+        }
+       }
+      ],
+      "src": "story_map money pol-st-hero dek"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-hero",
+      "target": "#pol-st-rates",
+      "k": {
+       "vi": "CHÍNH SÁCH · BỐN BƯỚC XUỐNG",
+       "en": "POLICY · FOUR STEPS DOWN"
+      },
+      "vi": "Hãy xem đường lãi suất bước xuống trong năm 2023: từ 6% đầu năm, xuống 5,5% tháng Tư, 5% tháng Năm, rồi 4,5% tháng Sáu. Từ đó nó nằm yên.",
+      "en": "Watch the rate step down through 2023: from 6% at the start of the year to 5.5% in April, 5% in May, then 4.5% in June. Since then it has not moved.",
+      "figs": [
+       {
+        "v": {
+         "vi": "6% → 5,5% → 5% → 4,5%",
+         "en": "6% → 5.5% → 5% → 4.5%"
+        },
+        "l": {
+         "vi": "lãi suất tái cấp vốn, năm 2023",
+         "en": "refinancing rate, 2023"
+        }
+       }
+      ],
+      "src": "data/policy.json refinancing rate history (rendered pol-st-rates)"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-hero",
+      "target": "#pol-st-rates",
+      "k": {
+       "vi": "CHÍNH SÁCH · CÁC CÔNG CỤ KHÁC",
+       "en": "POLICY · THE OTHER TOOLS"
+      },
+      "vi": "Trong cùng thời gian, Ngân hàng Nhà nước điều chỉnh các giới hạn an toàn, gói tín dụng ưu đãi và chỉ đạo lãi suất; Chính phủ giảm thuế, phí và tăng đầu tư công.",
+      "en": "Over the same period the State Bank adjusted prudential limits, subsidised credit and rate guidance; the Government cut taxes and fees and raised public investment.",
+      "play": false,
+      "figs": [],
+      "src": "story_map money pol-st-hero dek"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-moves",
+      "target": "#pol-st-div",
+      "k": {
+       "vi": "CHÍNH SÁCH · NỚI HAY THẮT",
+       "en": "POLICY · EASE OR TIGHTEN"
+      },
+      "vi": "Mỗi cột là số lần điều chỉnh trong một quý: phía trên là nới lỏng, phía dưới là thắt chặt. Từ 2015 có 122 lần nới và 29 lần thắt. Mỗi lần được đếm như nhau, bất kể lớn nhỏ.",
+      "en": "Each column counts policy moves in one quarter: easing above, tightening below. Since 2015 there have been 122 easing moves and 29 tightening moves. Every move counts the same, whatever its size.",
+      "big": true,
+      "figs": [
+       {
+        "v": {
+         "vi": "122",
+         "en": "122"
+        },
+        "l": {
+         "vi": "lần nới lỏng từ 2015",
+         "en": "easing moves since 2015"
+        }
+       },
+       {
+        "v": {
+         "vi": "29",
+         "en": "29"
+        },
+        "l": {
+         "vi": "lần thắt chặt từ 2015",
+         "en": "tightening moves since 2015"
+        }
+       }
+      ],
+      "src": "story_map money pol-st-moves headline and note"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-moves",
+      "target": "#pol-st-div",
+      "k": {
+       "vi": "CHÍNH SÁCH · NĂM 2026",
+       "en": "POLICY · 2026"
+      },
+      "vi": "Hãy xem các cột phía trên cao dần trong năm 2026. Riêng quý hai năm 2026 có 16 lần nới lỏng. Giai đoạn 2023 đến 2026, tài khóa nới 63 lần, tiền tệ 57 lần.",
+      "en": "Watch the columns above the line grow through 2026. The second quarter of 2026 alone had 16 easing moves. Over 2023 to 2026, fiscal policy eased 63 times and monetary policy 57.",
+      "figs": [
+       {
+        "v": {
+         "vi": "16",
+         "en": "16"
+        },
+        "l": {
+         "vi": "lần nới lỏng, quý 2/2026",
+         "en": "easing moves, Q2 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "63",
+         "en": "63"
+        },
+        "l": {
+         "vi": "lần nới tài khóa, 2023–2026",
+         "en": "fiscal easing, 2023–26"
+        }
+       },
+       {
+        "v": {
+         "vi": "57",
+         "en": "57"
+        },
+        "l": {
+         "vi": "lần nới tiền tệ, 2023–2026",
+         "en": "monetary easing, 2023–26"
+        }
+       }
+      ],
+      "src": "data/policy.json moves by quarter; story_map pol-st-moves note"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-moves",
+      "target": "#pol-st-grp",
+      "k": {
+       "vi": "CHÍNH SÁCH · THEO CÔNG CỤ",
+       "en": "POLICY · BY INSTRUMENT"
+      },
+      "vi": "Theo nhóm công cụ, thuế nới nhiều nhất: 28 lần nới, 6 lần thắt. Lãi suất điều hành và trần lãi suất: 24 lần nới. Giới hạn an toàn ngân hàng thì hai chiều: 10 lần nới, 6 lần thắt.",
+      "en": "By instrument, taxes eased the most: 28 easing moves, 6 tightening. Policy rates and rate caps: 24 easing moves. Bank prudential limits went both ways: 10 easing, 6 tightening.",
+      "figs": [
+       {
+        "v": {
+         "vi": "28 · 6",
+         "en": "28 · 6"
+        },
+        "l": {
+         "vi": "thuế: nới · thắt",
+         "en": "taxes: easing · tightening"
+        }
+       },
+       {
+        "v": {
+         "vi": "24",
+         "en": "24"
+        },
+        "l": {
+         "vi": "lãi suất điều hành, trần lãi suất: nới",
+         "en": "policy rates, caps: easing"
+        }
+       },
+       {
+        "v": {
+         "vi": "10 · 6",
+         "en": "10 · 6"
+        },
+        "l": {
+         "vi": "giới hạn an toàn: nới · thắt",
+         "en": "prudential limits: easing · tightening"
+        }
+       }
+      ],
+      "src": "data/policy.json moves by instrument group (rendered pol-st-grp)"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-explore",
+      "k": {
+       "vi": "CHÍNH SÁCH · CÁC NÚT VẶN",
+       "en": "POLICY · THE DIALS"
+      },
+      "vi": "Mỗi biểu đồ nhỏ là một nút vặn chính sách. Có 28 công cụ, và 26 trong số đó đã đổi mức ít nhất một lần. Kéo thanh thời gian để đọc mọi nút vặn tiền tệ và tài khóa trong cùng một ngày.",
+      "en": "Each small chart is one policy dial. There are 28 instruments, and 26 of them have changed setting at least once. Drag the timeline to read every monetary and fiscal dial on the same day.",
+      "big": true,
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "28",
+         "en": "28"
+        },
+        "l": {
+         "vi": "công cụ chính sách",
+         "en": "policy instruments"
+        }
+       },
+       {
+        "v": {
+         "vi": "26",
+         "en": "26"
+        },
+        "l": {
+         "vi": "đã đổi mức ít nhất một lần",
+         "en": "changed at least once"
+        }
+       }
+      ],
+      "src": "story_map pol-st-explore headline; data/policy.json instruments"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-explore",
+      "k": {
+       "vi": "CHÍNH SÁCH · TÀI KHÓA",
+       "en": "POLICY · FISCAL"
+      },
+      "vi": "Phía tài khóa: thuế giá trị gia tăng giảm từ 10% xuống 8%. Mục tiêu bội chi Quốc hội phê duyệt là 4,2% GDP; thực hiện năm 2025 khoảng 3,6%. Mức phát hành trái phiếu Chính phủ là 500 nghìn tỷ đồng.",
+      "en": "On the fiscal side: VAT cut from 10% to 8%. The deficit target approved by the National Assembly is 4.2% of GDP; the 2025 outturn was about 3.6%. Government bond issuance stands at 500 trillion dong.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "10% → 8%",
+         "en": "10% → 8%"
+        },
+        "l": {
+         "vi": "thuế giá trị gia tăng",
+         "en": "VAT rate"
+        }
+       },
+       {
+        "v": {
+         "vi": "4,2% GDP",
+         "en": "4.2% of GDP"
+        },
+        "l": {
+         "vi": "mục tiêu bội chi 2026",
+         "en": "2026 deficit target"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈ 3,6%",
+         "en": "≈ 3.6%"
+        },
+        "l": {
+         "vi": "bội chi thực hiện 2025",
+         "en": "2025 deficit outturn"
+        }
+       },
+       {
+        "v": {
+         "vi": "500 nghìn tỷ đồng",
+         "en": "500 trillion dong"
+        },
+        "l": {
+         "vi": "phát hành trái phiếu Chính phủ",
+         "en": "government bond issuance"
+        }
+       }
+      ],
+      "src": "data/policy.json instruments (VAT, deficit, G-bonds)"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-explore",
+      "k": {
+       "vi": "CHÍNH SÁCH · TÚI TIỀN NGƯỜI DÂN",
+       "en": "POLICY · PEOPLE'S POCKETS"
+      },
+      "vi": "Những nút vặn chạm tới túi tiền người dân: lương cơ sở khu vực công 2,53 triệu đồng, từ 1,49 triệu năm 2019. Giảm trừ gia cảnh thuế thu nhập cá nhân 15,5 triệu đồng. Hạn mức bảo hiểm tiền gửi 350 triệu đồng.",
+      "en": "Dials that reach people's pockets: the public-sector base salary is 2.53 million dong, up from 1.49 million in 2019. The personal income tax family deduction is 15.5 million. The deposit-insurance limit is 350 million dong.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "2,53 triệu đồng",
+         "en": "2.53 million dong"
+        },
+        "l": {
+         "vi": "lương cơ sở",
+         "en": "base salary"
+        }
+       },
+       {
+        "v": {
+         "vi": "1,49 triệu",
+         "en": "1.49 million"
+        },
+        "l": {
+         "vi": "lương cơ sở, 2019",
+         "en": "base salary, 2019"
+        }
+       },
+       {
+        "v": {
+         "vi": "15,5 triệu đồng",
+         "en": "15.5 million dong"
+        },
+        "l": {
+         "vi": "giảm trừ gia cảnh",
+         "en": "family deduction"
+        }
+       },
+       {
+        "v": {
+         "vi": "350 triệu đồng",
+         "en": "350 million dong"
+        },
+        "l": {
+         "vi": "hạn mức bảo hiểm tiền gửi",
+         "en": "deposit-insurance limit"
+        }
+       }
+      ],
+      "src": "data/policy.json instruments (base salary, PIT deduction, deposit insurance)"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-explore",
+      "k": {
+       "vi": "CHÍNH SÁCH · TIỀN TỆ",
+       "en": "POLICY · MONETARY"
+      },
+      "vi": "Phía tiền tệ: lãi suất thị trường mở 4,5%, trần lãi suất tiền gửi kỳ hạn 1 đến dưới 6 tháng 4,75%, và tỷ giá trung tâm 25.643 đồng một đô la.",
+      "en": "On the monetary side: the open-market rate is 4.5%, the deposit-rate cap for 1 to under 6 months is 4.75%, and the central rate is 25,643 dong to the dollar.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "4,5%",
+         "en": "4.5%"
+        },
+        "l": {
+         "vi": "lãi suất thị trường mở",
+         "en": "open-market rate"
+        }
+       },
+       {
+        "v": {
+         "vi": "1–6 tháng · 4,75%",
+         "en": "1–6 months · 4.75%"
+        },
+        "l": {
+         "vi": "trần lãi suất tiền gửi",
+         "en": "deposit-rate cap"
+        }
+       },
+       {
+        "v": {
+         "vi": "25.643",
+         "en": "25,643"
+        },
+        "l": {
+         "vi": "tỷ giá trung tâm, đồng/USD",
+         "en": "central rate, dong per dollar"
+        }
+       }
+      ],
+      "src": "data/policy.json instruments (OMO, deposit cap, central rate 6/10/2026)"
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-hero",
+      "k": {
+       "vi": "CHÍNH SÁCH · ĐIỀU CẦN THEO DÕI",
+       "en": "POLICY · WHAT TO WATCH"
+      },
+      "vi": "Cần theo dõi: ngày 1 tháng Mười Một, Bộ Tài chính công bố đợt số liệu kế tiếp; kỳ họp Quốc hội đang diễn ra đến ngày 20 tháng Mười Một; ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi mới có hiệu lực; và ngày 31 tháng Mười Hai, mức giảm thuế giá trị gia tăng hết hạn.",
+      "en": "To watch: on November 1, the Finance Ministry's next data release; the National Assembly session under way to November 20; on December 1, the new loan-to-deposit cap takes effect; and on December 31, the VAT cut expires.",
+      "big": true,
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "1/11/2026",
+         "en": "Nov 1, 2026"
+        },
+        "l": {
+         "vi": "số liệu kế tiếp của Bộ Tài chính",
+         "en": "next Finance Ministry release"
+        }
+       },
+       {
+        "v": {
+         "vi": "đến 20/11/2026",
+         "en": "to Nov 20, 2026"
+        },
+        "l": {
+         "vi": "kỳ họp Quốc hội",
+         "en": "National Assembly session"
+        }
+       },
+       {
+        "v": {
+         "vi": "1/12/2026",
+         "en": "Dec 1, 2026"
+        },
+        "l": {
+         "vi": "trần cho vay / tiền gửi mới",
+         "en": "new loan-to-deposit cap"
+        }
+       },
+       {
+        "v": {
+         "vi": "31/12/2026",
+         "en": "Dec 31, 2026"
+        },
+        "l": {
+         "vi": "giảm thuế GTGT hết hạn",
+         "en": "VAT cut expires"
+        }
+       }
+      ],
+      "src": "rendered money tab footer (next release 01/11/2026, MoF); pg-st-watch; fs-st-watch; st-watch"
      }
     ]
    },

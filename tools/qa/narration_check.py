@@ -12,7 +12,7 @@ without a figure card in the scene's "figs" list is an error)
 import json, os, re, sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-TABS = {'party', 'social', 'econ', 'money', 'banks', 'invest', 'sim', 'geo'}
+TABS = {'party', 'social', 'econ', 'banks', 'invest', 'sim', 'geo'}
 FILMS = TABS | {'overview'}
 
 

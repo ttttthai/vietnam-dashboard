@@ -156,7 +156,7 @@ Agent definitions live in `.claude/agents/`:
 - **Strategy** (`strategy.md`) — Chính trị (Politics) tab: directives, drafts, news, decision paths, org chart, leaders → `strategy_directives.json`
 - **Economy** (`economy.md`) — Kinh tế tab: GDP, BoP, budget, CPI → `data/economy.json`, `data/invest_macro.json`
 - **Society** (`society.md`) — Xã hội tab: population, provinces, GRDP, world ranks, religion → `data/society.json`
-- **Policy** (`policy.md`) — Chính sách tab: monetary/fiscal instrument registry → `data/policy.json`
+- **Policy** (`policy.md`) — Chính sách chapters (sub-tab 3 of the Hệ thống tài chính tab since 2026-11-01): monetary/fiscal instrument registry → `data/policy.json`
 - **Finance** (`finance.md`) — Hệ thống tài chính tab: money, credit, banks, rates, weekly markets; Mô phỏng (Simulation) model → `data/finance.json`, `data/simulation.json`
 - **Investing** (`investing.md`) — Đầu tư tab: macro context and descriptive notes on the focus list (never investment advice) → `data/invest_macro.json`
 - **Geopolitics** (`geopolitics.md`) — Địa chính trị tab: the US, China, the Middle East and Russia — what is happening, why, and what it means for Vietnam's interests, with Vietnam's options; reads Ground News (in the user's Chrome when run locally with `claude --chrome`) and official sources → `data/geopolitics.json`

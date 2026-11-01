@@ -13,7 +13,7 @@ import argparse, json, os, sys, time, urllib.request
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
-TABS = ['party', 'social', 'econ', 'money', 'banks', 'invest', 'sim', 'geo']
+TABS = ['party', 'social', 'econ', 'banks', 'invest', 'sim', 'geo']
 
 JS = r"""
 (() => {
