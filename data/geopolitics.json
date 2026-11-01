@@ -1,2 +1,1442 @@
-{"_meta": {"owner": "Geopolitics agent", "as_of": "2026-11-01", "note": "Seed; the Geopolitics agent fills it. Top-level keys are page constants; run tools/build/embed_data.py geopolitics after editing."},
- "GEOPOL": {"as_of": "2026-11-01", "headline": {"vi": "Đang cập nhật", "en": "Being updated"}, "actors": [], "events": [], "options": [], "watch": []}}
+{
+ "_meta": {
+  "owner": "Geopolitics agent",
+  "as_of": "2026-11-01",
+  "sources_note": "First full briefing, 2026-11-01. Ground News (ground.news) was not reachable from this cloud session (network policy) and the user's Chrome was not connected, so ground_news is null on every event; Ground News coverage counts, bias split and blindspots will be added when ground.news is reachable (allowed domain, or a session with Claude in Chrome). Direct page fetches were also blocked for most hosts (e.g. bernama.com, roic.ai), so facts come from search-engine excerpts of the cited pages, cross-checked across outlets from several countries: US/Western (CNBC, CNN, Washington Post, NBC, NPR, Bloomberg, Axios, AMTI/CSIS, CFR, Carnegie), Middle East (Al Jazeera, The National, Times of Israel, Iran International), Chinese (Xinhua, Chinese embassy), Russian/Russia-focused (Moscow Times, The Insider, AKM, TASS where cited) and Vietnamese (MOFA, Báo Chính phủ, VNA/VietnamPlus, VnExpress, Tuổi Trẻ, VnEconomy, VOV, Nhân Dân). Vietnam exposure figures use the dashboard's own data where it exists (economy.json: 9M-2026 trade, tourism by market, CPI). Where sources conflicted (e.g. Houthi casualty counts, Section 122 rate, Russia–Vietnam trade value) the more conservative or official figure is used. 'Why' and impact are the agent's assessments. Not investment advice."
+ },
+ "GEOPOL": {
+  "as_of": "2026-11-01",
+  "headline": {
+   "vi": "Dầu đắt vì chiến sự Iran và thuế Mục 301 của Mỹ là hai sức ép lớn nhất lên Việt Nam; Hà Nội tranh thủ khoảng lặng Mỹ – Trung để chốt hiệp định với Mỹ, đa dạng nguồn dầu và giữ vững lập trường ở Hoàng Sa.",
+   "en": "Iran-war oil prices and US Section 301 tariffs are the two biggest pressures on Vietnam; Hanoi is using the US–China lull to close its US trade deal, diversify oil supply and hold its ground on the Paracels."
+  },
+  "actors": [
+   {
+    "id": "us",
+    "name_vi": "Hoa Kỳ",
+    "name_en": "United States",
+    "posture_vi": "Vừa siết vừa mời: hàng Việt Nam chịu thuế Mục 301 (lao động cưỡng bức) 12,5% từ 24/7/2026, đang bị điều tra Mục 301 về sở hữu trí tuệ (hạn kết luận 29/11), nhưng Washington nói hiệp định thương mại đối ứng đã “rất gần” và hợp tác quốc phòng tiếp tục mở rộng. Fed dưới thời Chủ tịch Warsh đã tăng lãi suất lên 3,75–4% vì lạm phát năng lượng.",
+    "posture_en": "Squeeze and invite: Vietnamese goods pay a 12.5% Section 301 (forced-labour) tariff since 24 Jul 2026 and face a Section 301 IP probe (determination due 29 Nov), yet Washington calls the reciprocal trade deal \"very close\" and defence ties keep widening. The Fed under Chair Warsh has raised rates to 3.75–4% on energy-driven inflation.",
+    "drivers_vi": [
+     "Thâm hụt thương mại với Việt Nam là mục tiêu chính trị: Việt Nam xuất siêu sang Mỹ 122,6 tỷ USD trong 9 tháng 2026 (+23,8%).",
+     "Sau khi Tòa án Tối cao bác thuế IEEPA (20/2/2026), Nhà Trắng chuyển sang công cụ Mục 122 rồi Mục 301 — thuế theo từng nước, dùng làm đòn bẩy đàm phán.",
+     "Lo ngại hàng Trung Quốc “đội lốt” đi qua Việt Nam (chuyển tải) và chuỗi cung ứng phụ thuộc đầu vào Trung Quốc.",
+     "Bầu cử giữa kỳ 3/11: giá xăng dầu cao khiến chính quyền ưu tiên hạ giá nhiên liệu (nới trừng phạt dầu diesel Nga) và tỏ ra cứng rắn về thương mại.",
+     "Chiến lược Ấn Độ Dương – Thái Bình Dương: cần Việt Nam làm đối tác cân bằng Trung Quốc ở Biển Đông."
+    ],
+    "drivers_en": [
+     "The deficit with Vietnam is a political target: Vietnam's surplus with the US was USD 122.6 bn in 9M-2026 (+23.8%).",
+     "After the Supreme Court struck down IEEPA tariffs (20 Feb 2026), the White House moved to Section 122 then Section 301 — country-specific tariffs used as negotiating leverage.",
+     "Concern about Chinese goods transshipped through Vietnam and supply chains built on Chinese inputs.",
+     "3 Nov midterms: high fuel prices push the administration to cut fuel costs (easing Russian diesel sanctions) and to look tough on trade.",
+     "Indo-Pacific strategy: Vietnam matters as a partner that balances China in the South China Sea."
+    ],
+    "vn_ties": [
+     {
+      "k": "trade",
+      "label_vi": "Xuất khẩu sang Mỹ, 9 tháng 2026",
+      "label_en": "Exports to the US, 9M-2026",
+      "value": 140.0,
+      "unit": "tỷ USD",
+      "year": 2026,
+      "src": {
+       "name": "Tạp chí Thuế – Hải quan (số liệu Hải quan), 24/10/2026",
+       "url": "https://thuehaiquan.tapchikinhtetaichinh.vn/thuong-mai-viet-nam-hoa-ky-co-the-dat-200-ty-usd-trong-nam-2026-170488.html"
+      }
+     },
+     {
+      "k": "trade",
+      "label_vi": "Xuất siêu sang Mỹ, 9 tháng 2026",
+      "label_en": "Trade surplus with the US, 9M-2026",
+      "value": 122.62,
+      "unit": "tỷ USD",
+      "year": 2026,
+      "src": {
+       "name": "NSO via Fibre2Fashion, 10/2026",
+       "url": "https://www.fibre2fashion.com/news/trade-news/vietnam-posts-1-27-bn-trade-surplus-in-september-2026-314008-newsdetails.htm"
+      }
+     },
+     {
+      "k": "trade",
+      "label_vi": "Thuế Mục 301 (lao động cưỡng bức) với hàng Việt Nam",
+      "label_en": "Section 301 forced-labour tariff on Vietnam",
+      "value": 12.5,
+      "unit": "%",
+      "year": 2026,
+      "src": {
+       "name": "Vietnam.vn / USTR, 7/2026",
+       "url": "https://www.vietnam.vn/en/my-cong-bo-muc-thue-theo-dieu-tra-muc-301-viet-nam-chiu-thue-bo-sung-12-5"
+      }
+     },
+     {
+      "k": "trade",
+      "label_vi": "Xuất khẩu sang Mỹ, cả năm 2025",
+      "label_en": "Exports to the US, full-year 2025",
+      "value": 153.2,
+      "unit": "tỷ USD",
+      "year": 2025,
+      "src": {
+       "name": "The Diplomat (số liệu Chính phủ), 1/2026",
+       "url": "https://thediplomat.com/2026/01/vietnams-economy-grew-by-more-than-8-percent-in-2025-government-says/"
+      }
+     }
+    ],
+    "temperature": 0,
+    "temp_note_vi": "Đánh giá: trung tính. Ngoại giao, quốc phòng ấm lên (Paparo thăm Hà Nội, thỏa thuận khắc phục hậu quả chiến tranh), nhưng thuế 12,5% và điều tra sở hữu trí tuệ vẫn treo; hiệp định chưa ký. Độ tin cậy: trung bình.",
+    "temp_note_en": "Assessment: neutral. Diplomacy and defence are warming (Paparo in Hanoi, war-legacy agreements), but the 12.5% tariff and IP probe still hang over trade and the deal is unsigned. Confidence: medium."
+   },
+   {
+    "id": "cn",
+    "name_vi": "Trung Quốc",
+    "name_en": "China",
+    "posture_vi": "Hai mặt song song: giao lưu cấp cao dày (Chủ tịch Quốc hội Trần Thanh Mẫn thăm Bắc Kinh 11–15/10; đường sắt Lào Cai–Hà Nội–Hải Phòng vay vốn Trung Quốc) trong khi hoàn tất bồi đắp đảo Linh Côn (Antelope) ở Hoàng Sa — có thể thành đảo nhân tạo lớn nhất Biển Đông. Xuất khẩu Trung Quốc sang ASEAN tăng 52% trong tháng 9.",
+    "posture_en": "Two tracks at once: dense high-level contact (NA Chairman Tran Thanh Man in Beijing 11–15 Oct; the Chinese-financed Lao Cai–Hanoi–Hai Phong railway) while finishing reclamation at Antelope Reef in the Paracels — possibly the largest artificial island in the South China Sea. Chinese exports to ASEAN rose 52% in September.",
+    "drivers_vi": [
+     "Củng cố kiểm soát thực tế ở Hoàng Sa và Biển Đông khi Mỹ bị cuốn vào chiến sự Iran (nhiều phân tích nhận định “cửa sổ cơ hội”).",
+     "Dư thừa công suất và tiêu dùng trong nước yếu: Trung Quốc xuất siêu 938 tỷ USD trong 9 tháng, đẩy hàng sang ASEAN khi thị trường Mỹ, EU bị rào.",
+     "Giữ Việt Nam không nghiêng hẳn về Mỹ: dùng kết nối đường sắt, vốn, du lịch và quan hệ hai Đảng.",
+     "Ổn định quan hệ với Mỹ để giữ thỏa thuận ngừng chiến thương mại (gia hạn tới 10/1/2027) và chuẩn bị APEC Thâm Quyến.",
+     "Đài Loan: răn đe sau diễn văn Quốc khánh của ông Lại Thanh Đức, tập trận bắn đạn thật ở bốn vùng biển."
+    ],
+    "drivers_en": [
+     "Lock in facts on the ground in the Paracels and South China Sea while the US is absorbed by the Iran war (many analysts call it a \"window\").",
+     "Overcapacity and weak home demand: a USD 938 bn surplus in 9M, with goods pushed to ASEAN as US and EU markets close.",
+     "Keep Vietnam from tilting to the US: rail links, finance, tourism and party-to-party ties.",
+     "Stabilise ties with the US to keep the trade truce (extended to 10 Jan 2027) and host APEC in Shenzhen.",
+     "Taiwan: deterrence after Lai Ching-te's National Day speech, with live-fire drills in four seas."
+    ],
+    "vn_ties": [
+     {
+      "k": "trade",
+      "label_vi": "Nhập khẩu từ Trung Quốc, 9 tháng 2026",
+      "label_en": "Imports from China, 9M-2026",
+      "value": 187.34,
+      "unit": "tỷ USD",
+      "year": 2026,
+      "src": {
+       "name": "NSO via VietnamPlus, 10/2026",
+       "url": "https://en.vietnamplus.vn/vietnam-posts-trade-surplus-after-nine-months-of-deficit-post353028.vnp"
+      }
+     },
+     {
+      "k": "trade",
+      "label_vi": "Nhập siêu từ Trung Quốc, 9 tháng 2026 (+43%)",
+      "label_en": "Trade deficit with China, 9M-2026 (+43%)",
+      "value": 121.48,
+      "unit": "tỷ USD",
+      "year": 2026,
+      "src": {
+       "name": "NSO via VietnamPlus, 10/2026",
+       "url": "https://en.vietnamplus.vn/vietnam-posts-trade-surplus-after-nine-months-of-deficit-post353028.vnp"
+      }
+     },
+     {
+      "k": "people",
+      "label_vi": "Khách Trung Quốc, 9 tháng 2026 (22,4% tổng)",
+      "label_en": "Chinese visitors, 9M-2026 (22.4% of total)",
+      "value": 3.9,
+      "unit": "triệu",
+      "year": 2026,
+      "src": {
+       "name": "NSO báo cáo 9 tháng 2026 (dữ liệu dashboard)",
+       "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+      }
+     },
+     {
+      "k": "fdi",
+      "label_vi": "Đường sắt Lào Cai–Hà Nội–Hải Phòng (vốn vay TQ một phần)",
+      "label_en": "Lao Cai–Hanoi–Hai Phong railway (partly Chinese loans)",
+      "value": 8.4,
+      "unit": "tỷ USD",
+      "year": 2026,
+      "src": {
+       "name": "The Vietnamese Magazine, 4/2026",
+       "url": "https://thevietnamese.org/2026/04/viet-nam-and-china-push-8-4-billion-standard-gauge-railway-expansion/"
+      }
+     }
+    ],
+    "temperature": -1,
+    "temp_note_vi": "Đánh giá: hơi căng. Quan hệ chính trị vẫn ổn định, nhưng việc hoàn tất bồi đắp Linh Côn và làn sóng hàng nhập (nhập siêu +43%) đi ngược lợi ích Việt Nam. Độ tin cậy: trung bình.",
+    "temp_note_en": "Assessment: somewhat strained. Political ties stay steady, but finished reclamation at Antelope Reef and the import surge (deficit +43%) cut against Vietnam's interests. Confidence: medium."
+   },
+   {
+    "id": "me",
+    "name_vi": "Trung Đông",
+    "name_en": "Middle East",
+    "posture_vi": "Chiến tranh Mỹ–Israel với Iran (từ 28/2/2026) chưa kết thúc: eo Hormuz chỉ thông một phần, Mỹ phong tỏa cảng Iran, Houthi tấn công sân bay và cơ sở dầu của Ả Rập Xê-út suốt tháng 10. Brent chốt 117,64 USD/thùng ngày 30/10 (+13,6% trong tháng). Israel bầu cử bế tắc.",
+    "posture_en": "The US–Israel war with Iran (since 28 Feb 2026) is not over: Hormuz is only partly open, the US blockades Iranian ports, and the Houthis struck Saudi airports and oil sites through October. Brent settled at USD 117.64 on 30 Oct (+13.6% in the month). Israel's election is deadlocked.",
+    "drivers_vi": [
+     "Iran dùng eo Hormuz làm đòn bẩy: đòi Mỹ dỡ phong tỏa, gỡ trừng phạt dầu, ngừng bắn mọi mặt trận trước khi mở eo biển.",
+     "Mỹ không chấp nhận thỏa thuận nếu chưa giải quyết hồ sơ hạt nhân; chính trị bầu cử ở cả Mỹ và Israel khiến khó nhượng bộ.",
+     "Houthi mở rộng chiến sự sang Ả Rập Xê-út để gây sức ép lên Riyadh và vùng Vịnh.",
+     "OPEC+ không bù được nguồn cung vì xuất khẩu qua Hormuz và dầu Nga bị hạn chế — nhóm bảy nước giữ nguyên sản lượng tháng 10 và 11.",
+     "Ả Rập Xê-út, Pakistan, Thổ Nhĩ Kỳ tìm đường giảm leo thang trực tiếp với Tehran (26/10)."
+    ],
+    "drivers_en": [
+     "Iran uses Hormuz as leverage: it wants the US blockade lifted, oil sanctions removed and a ceasefire on all fronts before reopening.",
+     "Washington rejects any deal that skips the nuclear file; election politics in both the US and Israel make concessions hard.",
+     "The Houthis have widened the war to Saudi Arabia to pressure Riyadh and the Gulf.",
+     "OPEC+ cannot offset the loss because Hormuz exports and Russian oil are constrained — the core seven held output flat for October and November.",
+     "Saudi Arabia, Pakistan and Turkey are seeking de-escalation directly with Tehran (26 Oct)."
+    ],
+    "vn_ties": [
+     {
+      "k": "energy",
+      "label_vi": "Kuwait trong nhập khẩu dầu thô (khoảng)",
+      "label_en": "Kuwait's share of crude imports (approx.)",
+      "value": 80,
+      "unit": "%",
+      "year": 2025,
+      "src": {
+       "name": "Nation Thailand (Hải quan VN), 2026",
+       "url": "https://www.nationthailand.com/news/asean/40064069"
+      }
+     },
+     {
+      "k": "energy",
+      "label_vi": "Nhập khẩu dầu thô 2025 (14,1 triệu tấn)",
+      "label_en": "Crude imports 2025 (14.1 mn tonnes)",
+      "value": 7.7,
+      "unit": "tỷ USD",
+      "year": 2025,
+      "src": {
+       "name": "Nation Thailand (Hải quan VN), 2026",
+       "url": "https://www.nationthailand.com/news/asean/40064069"
+      }
+     },
+     {
+      "k": "people",
+      "label_vi": "Lao động Việt Nam ở Trung Đông (ước, chủ yếu Ả Rập Xê-út, UAE)",
+      "label_en": "Vietnamese workers in the Middle East (est., mostly Saudi Arabia, UAE)",
+      "value": 10000,
+      "unit": "",
+      "year": 2026,
+      "src": {
+       "name": "VnExpress International, 3/2026",
+       "url": "https://e.vnexpress.net/news/news/vietnam-suspends-deployment-of-workers-to-middle-east-amid-escalating-conflict-5045992.html"
+      }
+     },
+     {
+      "k": "security",
+      "label_vi": "Tàu của doanh nghiệp Việt Nam đang hoạt động ở Trung Đông",
+      "label_en": "Vietnamese-owned vessels operating in the Middle East",
+      "value": 19,
+      "unit": "",
+      "year": 2026,
+      "src": {
+       "name": "Viet Nam News, 4/2026",
+       "url": "https://vietnamnews.vn/society/1778372/viet-nam-seeks-priority-passage-for-vessels-through-strait-of-hormuz.html"
+      }
+     }
+    ],
+    "temperature": -2,
+    "temp_note_vi": "Đánh giá: bất lợi rõ. Giá dầu và diesel cao đẩy lạm phát (CPI bình quân 9 tháng 4,52%), chi phí vận tải và an toàn lao động, tàu Việt Nam. Độ tin cậy: cao.",
+    "temp_note_en": "Assessment: clearly harmful. High crude and diesel prices push inflation (9M average CPI 4.52%), freight costs and the safety of Vietnamese workers and ships. Confidence: high."
+   },
+   {
+    "id": "ru",
+    "name_vi": "Nga",
+    "name_en": "Russia",
+    "posture_vi": "Moskva đẩy mạnh “đột phá năng lượng” với Việt Nam: hiệp định điện hạt nhân Ninh Thuận 1 (3/2026), khung kho dự trữ dầu chiến lược (9/9/2026), khách Nga tăng vọt. Đồng thời Nga và Mỹ hòa dịu: Mỹ tạm gỡ trừng phạt diesel Nga đến 4/2027, đàm phán ba bên về Ukraine dự kiến tháng 11 tại UAE.",
+    "posture_en": "Moscow is pushing an \"energy breakthrough\" with Vietnam: the Ninh Thuan 1 nuclear agreement (Mar 2026), a framework for a strategic oil reserve (9 Sep 2026), and a surge of Russian tourists. Meanwhile Russia–US ties are thawing: the US suspended sanctions on Russian diesel until Apr 2027, and trilateral Ukraine talks are planned for November in the UAE.",
+    "drivers_vi": [
+     "Tìm thị trường châu Á cho dầu, khí, hạt nhân và vũ khí khi phương Tây trừng phạt; Việt Nam là đối tác truyền thống.",
+     "Giữ chỗ đứng ở Biển Đông và Đông Nam Á, không để phụ thuộc hoàn toàn vào Trung Quốc.",
+     "Tận dụng cuộc khủng hoảng dầu Trung Đông để bán năng lượng giá cao và cải thiện quan hệ với Washington.",
+     "Đàm phán Ukraine: Nga giữ yêu cầu cứng (lãnh thổ, không NATO) nhưng muốn nới trừng phạt (quỹ đầu tư quốc gia)."
+    ],
+    "drivers_en": [
+     "Find Asian buyers for oil, gas, nuclear and arms under Western sanctions; Vietnam is a traditional partner.",
+     "Keep a foothold in the South China Sea and Southeast Asia, and avoid total dependence on China.",
+     "Use the Middle East oil shock to sell energy at high prices and improve ties with Washington.",
+     "Ukraine talks: Russia holds hard demands (territory, no NATO) but seeks sanctions relief (its sovereign wealth fund)."
+    ],
+    "vn_ties": [
+     {
+      "k": "trade",
+      "label_vi": "Thương mại hai chiều Việt–Nga 2025 (+4%)",
+      "label_en": "Vietnam–Russia two-way trade 2025 (+4%)",
+      "value": 4.77,
+      "unit": "tỷ USD",
+      "year": 2025,
+      "src": {
+       "name": "Hải quan VN via Báo Công Thương",
+       "url": "https://ven.congthuong.vn/vietnam-russia-expanding-opportunities-for-bilateral-trade-cooperation-59382.html"
+      }
+     },
+     {
+      "k": "people",
+      "label_vi": "Khách Nga, 9 tháng 2026 (+160,6%)",
+      "label_en": "Russian visitors, 9M-2026 (+160.6%)",
+      "value": 1.1,
+      "unit": "triệu",
+      "year": 2026,
+      "src": {
+       "name": "NSO báo cáo 9 tháng 2026 (dữ liệu dashboard)",
+       "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+      }
+     },
+     {
+      "k": "energy",
+      "label_vi": "Công suất Ninh Thuận 1 (2 tổ máy VVER-1200, Rosatom)",
+      "label_en": "Ninh Thuan 1 capacity (2 × VVER-1200, Rosatom)",
+      "value": 2400,
+      "unit": "MW",
+      "year": 2026,
+      "src": {
+       "name": "World Nuclear News, 3/2026",
+       "url": "https://www.world-nuclear-news.org/articles/vietnam-russia-intergovernmental-agreement-on-new-nuclear"
+      }
+     }
+    ],
+    "temperature": 1,
+    "temp_note_vi": "Đánh giá: ấm lên. Năng lượng, hạt nhân, du lịch tăng; rủi ro trừng phạt thứ cấp từ Mỹ giảm khi Mỹ–Nga hòa dịu, nhưng EU, Anh vẫn giữ trừng phạt. Độ tin cậy: trung bình.",
+    "temp_note_en": "Assessment: warming. Energy, nuclear and tourism are growing; US secondary-sanction risk is lower as Washington and Moscow thaw, but EU and UK sanctions remain. Confidence: medium."
+   }
+  ],
+  "events": [
+   {
+    "id": "us-s301-fl",
+    "date": "2026-07-24",
+    "actor": "us",
+    "title_vi": "Mỹ áp thuế Mục 301 “lao động cưỡng bức” 12,5% với hàng Việt Nam",
+    "title_en": "US puts a 12.5% Section 301 \"forced-labour\" tariff on Vietnamese goods",
+    "what_vi": "Thuế toàn cầu 10% theo Mục 122 hết hạn ngày 24/7/2026 và được thay bằng thuế Mục 301 với 60 nền kinh tế: 10% cho nước đã cam kết cấm nhập hàng lao động cưỡng bức, 12,5% cho số còn lại, trong đó có Việt Nam (có danh mục miễn trừ). Việt Nam ban hành Nghị định 292/2026/NĐ-CP (22/7) cấm nhập khẩu hàng lao động cưỡng bức và đề nghị Mỹ xem xét lại.",
+    "what_en": "The 10% global Section 122 tariff expired on 24 Jul 2026 and was replaced by Section 301 tariffs on 60 economies: 10% for those committed to banning forced-labour imports, 12.5% for the rest, including Vietnam (with exemptions). Vietnam issued Decree 292/2026/ND-CP (22 Jul) banning forced-labour imports and asked the US to reconsider.",
+    "why_vi": "Đánh giá: sau khi Tòa án Tối cao bác thuế IEEPA, Mục 301 là công cụ bền hơn (không có trần, không tự hết hạn) để giữ đòn bẩy với từng nước trong đàm phán.",
+    "why_en": "Assessment: after the Supreme Court struck down IEEPA tariffs, Section 301 is a more durable tool (no rate ceiling, no automatic expiry) to keep leverage over each partner in negotiations.",
+    "vn_vi": "Tác động trực tiếp tới thị trường xuất khẩu lớn nhất (140 tỷ USD trong 9 tháng). Chênh 2,5 điểm so với nhóm 10% là bất lợi cạnh tranh; hiệp định đối ứng là đường để hạ xuống.",
+    "vn_en": "Directly hits the largest export market (USD 140 bn in 9M). The 2.5-point gap to the 10% tier is a competitive handicap; the reciprocal agreement is the route down.",
+    "channels": [
+     "trade"
+    ],
+    "impact": -2,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Vietnam.vn",
+      "url": "https://www.vietnam.vn/en/my-cong-bo-muc-thue-theo-dieu-tra-muc-301-viet-nam-chiu-thue-bo-sung-12-5"
+     },
+     {
+      "name": "RVIA",
+      "url": "https://www.rvia.org/news-insights/section-122-tariffs-replaced-new-section-301-forced-labor-tariffs"
+     },
+     {
+      "name": "The Europe Today",
+      "url": "https://theeuropetoday.com/2026/07/26/vietnam-reaffirms-ban-on-forced-labour-urges-us-to-reconsider-section-301-tariff-decision/"
+     }
+    ]
+   },
+   {
+    "id": "us-paparo",
+    "date": "2026-08-05",
+    "actor": "us",
+    "title_vi": "Tư lệnh Bộ Tư lệnh Thái Bình Dương Mỹ thăm Hà Nội",
+    "title_en": "US Pacific Command chief visits Hanoi",
+    "what_vi": "Đô đốc Samuel Paparo gặp Tổng Tham mưu trưởng Nguyễn Tân Cương và Tổng Bí thư, Chủ tịch nước Tô Lâm; bàn an ninh biển, cứu trợ nhân đạo, gìn giữ hòa bình, khắc phục hậu quả chiến tranh. Ông Tô Lâm nhắc lời mời Tổng thống Mỹ thăm Việt Nam và dự APEC 2027.",
+    "what_en": "Adm. Samuel Paparo met Chief of the General Staff Nguyen Tan Cuong and General Secretary and President To Lam; talks covered maritime security, disaster relief, peacekeeping and war legacies. To Lam renewed his invitation for the US President to visit and attend APEC 2027.",
+    "why_vi": "Đánh giá: Mỹ muốn duy trì hiện diện an ninh ở Đông Nam Á dù lực lượng bị kéo về Trung Đông; Việt Nam mở rộng từng bước trong khuôn khổ “bốn không”.",
+    "why_en": "Assessment: the US wants to keep a security presence in Southeast Asia while forces are pulled to the Middle East; Vietnam widens ties step by step within its \"four no's\".",
+    "vn_vi": "Thêm kênh nâng cao năng lực thực thi trên biển và cân bằng trước sức ép ở Biển Đông, không tạo liên minh.",
+    "vn_en": "Adds a channel for maritime capacity and balance against South China Sea pressure, without an alliance.",
+    "channels": [
+     "security",
+     "diplomacy"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "US Pacific Command",
+      "url": "https://www.pacom.mil/Media/News/News-Articles/Article/4566012/us-pacific-command-leader-visits-vietnam-to-strengthen-defense-partnership/"
+     },
+     {
+      "name": "Báo Chính phủ",
+      "url": "https://en.baochinhphu.vn/top-leader-hosts-reception-for-admiral-samuel-paparo-111260806091732253.htm"
+     }
+    ]
+   },
+   {
+    "id": "me-hormuz-aug",
+    "date": "2026-08-12",
+    "actor": "me",
+    "title_vi": "Các vụ tấn công làm tiêu tan hy vọng mở lại eo Hormuz",
+    "title_en": "Attacks dent hopes of reopening the Strait of Hormuz",
+    "what_vi": "Giá dầu tăng sau các vụ tấn công mới quanh eo Hormuz; trước đó Iran nêu thêm điều kiện cho việc mở eo biển. Bản ghi nhớ Mỹ–Iran ngày 17/6 từng kéo giá về mức trước chiến tranh nhưng không giữ được.",
+    "what_en": "Oil rose after new attacks around Hormuz, following fresh Iranian conditions for reopening. The 17 June US–Iran memorandum briefly pulled prices back to pre-war levels but did not hold.",
+    "why_vi": "Đánh giá: Iran coi Hormuz là đòn bẩy duy nhất đủ mạnh; mỗi lần đàm phán chững lại, rủi ro trên biển tăng.",
+    "why_en": "Assessment: Hormuz is Iran's only strong lever; each stall in talks raises the risk at sea.",
+    "vn_vi": "Kéo dài bất định về nguồn dầu thô Kuwait cho Nghi Sơn và giá nhiên liệu trong nước.",
+    "vn_en": "Prolongs uncertainty over Kuwaiti crude for Nghi Son and domestic fuel prices.",
+    "channels": [
+     "energy",
+     "shipping"
+    ],
+    "impact": -1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/economy/2026/8/12/oil-prices-rise-as-attacks-dent-hopes-for-strait-of-hormuz-reopening"
+     },
+     {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/economy/2026/8/10/oil-prices-climb-as-iranian-demands-cloud-outlook-for-strait-of-hormuz"
+     }
+    ]
+   },
+   {
+    "id": "cn-antelope",
+    "date": "2026-08-14",
+    "actor": "cn",
+    "title_vi": "AMTI: Trung Quốc hoàn tất bồi đắp đá Linh Côn (Antelope), Hoàng Sa",
+    "title_en": "AMTI: China completes reclamation at Antelope Reef, Paracels",
+    "what_vi": "Sáng kiến Minh bạch Hàng hải châu Á (AMTI/CSIS) cho biết ngày 14/8 Trung Quốc đã hoàn tất bồi đắp ở Linh Côn và đang xây hạ tầng; tháng 3 diện tích đã khoảng 1.490 mẫu Anh (≈6 km²), ngang đá Vành Khăn, đủ cho đường băng khoảng 9.000 feet.",
+    "what_en": "CSIS's Asia Maritime Transparency Initiative reported on 14 Aug that China had finished reclamation at Antelope Reef and was building infrastructure; by March it already covered about 1,490 acres (≈6 km²), similar to Mischief Reef, enough for a ~9,000-ft runway.",
+    "why_vi": "Đánh giá: Bắc Kinh tận dụng lúc Mỹ tập trung vào Iran để củng cố Hoàng Sa thành căn cứ cho hải cảnh và dân quân biển; đây là khu vực Việt Nam không kiểm soát nên chi phí phản ứng thấp với Trung Quốc.",
+    "why_en": "Assessment: Beijing is using US focus on Iran to turn the Paracels into a base for coast guard and maritime militia; Vietnam does not hold the area, so the cost to China is low.",
+    "vn_vi": "Bất lợi cho chủ quyền và ngư dân miền Trung: khả năng giám sát, chặn bắt tàu cá Việt Nam quanh Hoàng Sa tăng.",
+    "vn_en": "Harmful for sovereignty and central-coast fishers: China's ability to watch and intercept Vietnamese boats around the Paracels grows.",
+    "channels": [
+     "security"
+    ],
+    "impact": -2,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "AMTI/CSIS",
+      "url": "https://amti.csis.org/antelope-reef-could-now-be-the-largest-island-in-the-south-china-sea/"
+     },
+     {
+      "name": "The Diplomat",
+      "url": "https://thediplomat.com/2026/08/vietnam-demands-immediate-cessation-to-construction-activities-in-paracel-islands"
+     }
+    ]
+   },
+   {
+    "id": "cn-ambassador",
+    "date": "2026-08-20",
+    "actor": "cn",
+    "title_vi": "Hà Nội khẳng định quan hệ với Trung Quốc là “ưu tiên hàng đầu”",
+    "title_en": "Hanoi calls ties with China a \"top priority\"",
+    "what_vi": "Phó Thủ tướng Phạm Thị Thanh Trà tiếp Đại sứ Trung Quốc Hà Vĩ, nêu cuộc điện đàm giữa Thủ tướng Lê Minh Hưng và Thủ tướng Lý Cường là một trong các trao đổi cấp cao gần đây; khẳng định tăng cường quan hệ với Trung Quốc là ưu tiên hàng đầu.",
+    "what_en": "Deputy PM Pham Thi Thanh Tra received Chinese Ambassador He Wei, citing a recent phone call between PM Le Minh Hung and Premier Li Qiang, and said strengthening ties with China is a top foreign-policy priority.",
+    "why_vi": "Đánh giá: Việt Nam tách vấn đề biển khỏi quan hệ tổng thể, giữ kênh chính trị thông suốt để quản lý bất đồng.",
+    "why_en": "Assessment: Vietnam separates the maritime dispute from the overall relationship and keeps political channels open to manage differences.",
+    "vn_vi": "Giữ ổn định cho thương mại, du lịch, nông sản xuất khẩu và dự án đường sắt.",
+    "vn_en": "Keeps trade, tourism, farm exports and the rail project steady.",
+    "channels": [
+     "diplomacy"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Bộ Ngoại giao (MOFA)",
+      "url": "https://web.mofa.gov.vn/en/web/ministry-of-foreign-affairs/detail/chi-tiet/tightening-ties-with-china-remains-top-priority-in-vietnam-s-foreign-policy-deputy-pm-61662-179.html"
+     }
+    ]
+   },
+   {
+    "id": "cn-paracel-protest",
+    "date": "2026-08-28",
+    "actor": "cn",
+    "title_vi": "Việt Nam phản đối, yêu cầu Trung Quốc chấm dứt bồi đắp ở Hoàng Sa",
+    "title_en": "Vietnam protests, demands China halt reclamation in the Paracels",
+    "what_vi": "Người phát ngôn Bộ Ngoại giao Phạm Thu Hằng: Việt Nam kiên quyết phản đối, đã giao thiệp nghiêm khắc về việc bồi đắp, xây dựng tại Linh Côn và đảo Quang Hòa (Yagong) thuộc Hoàng Sa; yêu cầu chấm dứt ngay và không tái diễn; khẳng định có đủ căn cứ lịch sử, pháp lý về chủ quyền.",
+    "what_en": "MOFA spokesperson Pham Thu Hang said Vietnam firmly opposes, and has lodged a serious representation over, reclamation and construction at Antelope Reef and Yagong Island in the Paracels, demanded an immediate halt, and restated its historical and legal basis for sovereignty.",
+    "why_vi": "Đánh giá: phản ứng theo cách “lặng lẽ nhưng không im lặng” — giữ hồ sơ pháp lý theo UNCLOS 1982 mà không làm leo thang.",
+    "why_en": "Assessment: \"quietly, not silently\" — keeping the legal record under UNCLOS 1982 without escalating.",
+    "vn_vi": "Bảo vệ lập trường pháp lý; không thay đổi thực địa nhưng cần thiết cho đàm phán COC và dư luận quốc tế.",
+    "vn_en": "Protects the legal position; it does not change facts at sea but matters for the Code of Conduct talks and international opinion.",
+    "channels": [
+     "security",
+     "diplomacy"
+    ],
+    "impact": -1,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "VnExpress International",
+      "url": "https://e.vnexpress.net/news/news/vietnam-opposes-illegal-reclamation-in-paracels-demands-immediate-halt-5114746.html"
+     },
+     {
+      "name": "Nhân Dân",
+      "url": "https://en.nhandan.vn/viet-nam-resolutely-opposes-lodges-serious-diplomatic-representation-over-illegal-reclamation-construction-activities-in-hoang-sa-post166033.html"
+     },
+     {
+      "name": "VOV",
+      "url": "https://english.vov.vn/en/politics/vietnam-firmly-opposes-illegal-construction-in-hoang-sa-post1328339.vov"
+     }
+    ]
+   },
+   {
+    "id": "me-tanker-strikes",
+    "date": "2026-09-07",
+    "actor": "me",
+    "title_vi": "Mỹ và Iran tấn công tàu chở dầu ở Hormuz, Brent lên ~97 USD",
+    "title_en": "US and Iran hit tankers around Hormuz; Brent near USD 97",
+    "what_vi": "Mỹ đánh ba tàu chở dầu Iran; Vệ binh Cách mạng Iran nói đã đánh ba tàu chở dầu và ba tàu liên quan Mỹ. Brent quanh 97 USD/thùng, tăng 9% trong 5 ngày và 19% trong một tháng.",
+    "what_en": "The US struck three Iranian tankers; Iran's IRGC said it hit three tankers and three US-linked vessels. Brent hovered near USD 97, up 9% in five days and 19% in a month.",
+    "why_vi": "Đánh giá: hai bên leo thang trên biển để tạo thế trước đàm phán; thị trường định giá rủi ro gián đoạn kéo dài.",
+    "why_en": "Assessment: both sides escalate at sea to gain leverage before talks; markets price a long disruption.",
+    "vn_vi": "Đẩy chi phí nhập khẩu dầu, cước vận tải và kỳ vọng lạm phát; sức ép lên tỷ giá và quỹ bình ổn giá xăng dầu.",
+    "vn_en": "Raises crude import costs, freight and inflation expectations; pressures the dong and the fuel stabilisation fund.",
+    "channels": [
+     "energy",
+     "shipping",
+     "finance"
+    ],
+    "impact": -2,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/economy/2026/9/7/oil-prices-surge-as-us-iran-strikes-intensify-in-strait-of-hormuz"
+     }
+    ]
+   },
+   {
+    "id": "ru-oil-reserve",
+    "date": "2026-09-09",
+    "actor": "ru",
+    "title_vi": "Tổng Bí thư Tô Lâm thăm Nga: khung thỏa thuận kho dự trữ dầu chiến lược",
+    "title_en": "To Lam in Moscow: framework deal on a strategic oil reserve",
+    "what_vi": "Nga và Việt Nam ký khung thỏa thuận xây kho dự trữ dầu chiến lược tại Việt Nam; Zarubezhneft và Petrovietnam ký khung về kho dự trữ và các dự án dầu khí trên thềm lục địa. Tuyên bố chung gọi năng lượng là “đột phá chiến lược”, đẩy nhanh khả năng cung cấp dầu, LNG Nga; hai bên cũng thỏa thuận tăng hợp tác quốc phòng, kỹ thuật quân sự.",
+    "what_en": "Russia and Vietnam signed a framework to build a strategic oil reserve in Vietnam; Zarubezhneft and Petrovietnam signed a framework on the reserve and on oil and gas projects on the continental shelf. The joint statement calls energy a \"strategic breakthrough\" and speeds up possible Russian oil and LNG supply; the sides also agreed more defence and military-technical cooperation.",
+    "why_vi": "Đánh giá: Nga cần khách hàng châu Á và chỗ đứng ở Đông Nam Á; Việt Nam cần nguồn dầu thay thế Kuwait sau cú sốc Hormuz.",
+    "why_en": "Assessment: Russia needs Asian buyers and a foothold in Southeast Asia; Vietnam needs an alternative to Kuwaiti crude after the Hormuz shock.",
+    "vn_vi": "Có lợi cho an ninh năng lượng nếu thành dự án thực; rủi ro: thanh toán, trừng phạt của EU/Anh, và cảm nhận của Mỹ.",
+    "vn_en": "Good for energy security if it becomes a real project; risks: payments, EU/UK sanctions and US perceptions.",
+    "channels": [
+     "energy",
+     "security",
+     "diplomacy"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "The Moscow Times",
+      "url": "https://www.themoscowtimes.com/2026/09/09/russia-and-vietnam-sign-strategic-oil-reserve-deal-a93668"
+     },
+     {
+      "name": "The Insider",
+      "url": "https://theins.press/en/news/297017"
+     },
+     {
+      "name": "Kyiv Post",
+      "url": "https://www.kyivpost.com/post/84147"
+     }
+    ]
+   },
+   {
+    "id": "us-fed-hike",
+    "date": "2026-09-16",
+    "actor": "us",
+    "title_vi": "Fed tăng lãi suất lần đầu từ 2023, lên 3,75–4%",
+    "title_en": "Fed hikes for the first time since 2023, to 3.75–4%",
+    "what_vi": "FOMC dưới thời Chủ tịch Kevin Warsh nâng lãi suất 0,25 điểm lên 3,75–4,00% ngày 16/9/2026 để kiềm chế lạm phát dai dẳng, chủ yếu từ giá năng lượng; Tổng thống Trump tiếp tục đòi hạ lãi suất.",
+    "what_en": "The FOMC under Chair Kevin Warsh raised rates 25 bp to 3.75–4.00% on 16 Sep 2026 to contain persistent, largely energy-driven inflation; President Trump again demanded lower rates.",
+    "why_vi": "Đánh giá: Fed ưu tiên uy tín chống lạm phát hơn sức ép chính trị trước bầu cử.",
+    "why_en": "Assessment: the Fed is putting inflation credibility ahead of pre-election political pressure.",
+    "vn_vi": "USD mạnh hơn, chênh lệch lãi suất bất lợi cho VND; NHNN có ít dư địa nới lỏng, áp lực lên dòng vốn gián tiếp.",
+    "vn_en": "A stronger dollar and a wider rate gap weigh on the dong; the SBV has less room to ease, and portfolio flows come under pressure.",
+    "channels": [
+     "finance"
+    ],
+    "impact": -1,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Nation Thailand (Bloomberg)",
+      "url": "https://www.nationthailand.com/news/world/40071121"
+     },
+     {
+      "name": "MUFG Research",
+      "url": "https://www.mufgresearch.com/rates/september-2026-fomc-recap/"
+     }
+    ]
+   },
+   {
+    "id": "us-greer-tolam",
+    "date": "2026-09-21",
+    "actor": "us",
+    "title_vi": "USTR Greer: hiệp định thương mại Việt–Mỹ “rất gần” kết quả cuối",
+    "title_en": "USTR Greer: US–Vietnam trade deal \"very close\" to a final outcome",
+    "what_vi": "Tại New York, Đại diện Thương mại Jamieson Greer gặp Tổng Bí thư, Chủ tịch nước Tô Lâm, nói hai đoàn đàm phán đã tiến bộ đáng kể, “rất gần kết quả cuối”; hai bên ủng hộ sớm ký hiệp định thương mại đối ứng. Vấn đề còn lại: thuế, tiếp cận thị trường, quy tắc xuất xứ, chống chuyển tải.",
+    "what_en": "In New York, USTR Jamieson Greer met General Secretary and President To Lam and said negotiators were \"very close to a final outcome\"; both backed early signing of the reciprocal trade agreement. Open issues: tariffs, market access, rules of origin and transshipment.",
+    "why_vi": "Đánh giá: Washington cần “thắng lợi thương mại” trước bầu cử giữa kỳ; Hà Nội muốn khóa mức thuế thấp và danh mục 0% trước khi Mỹ ra quyết định Mục 301 sở hữu trí tuệ.",
+    "why_en": "Assessment: Washington wants a trade win before the midterms; Hanoi wants to lock in lower tariffs and 0% lines before the Section 301 IP decision.",
+    "vn_vi": "Nếu ký: có thể hạ thuế và giảm bất định cho xuất khẩu, FDI; cái giá là mở cửa thị trường và siết xuất xứ với đầu vào Trung Quốc.",
+    "vn_en": "If signed: lower tariffs and less uncertainty for exports and FDI; the price is market opening and tighter origin rules on Chinese inputs.",
+    "channels": [
+     "trade",
+     "fdi"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "The Investor",
+      "url": "https://theinvestor.vn/vietnam-us-trade-deal-very-close-to-final-outcome-d20067.html"
+     },
+     {
+      "name": "VnExpress International",
+      "url": "https://e.vnexpress.net/news/business/economy/vietnam-us-close-to-reaching-reciprocal-trade-agreement-5123167.html"
+     },
+     {
+      "name": "The Diplomat",
+      "url": "https://thediplomat.com/2026/09/reciprocal-trade-deal-with-the-us-close-to-completion-vietnamese-media-reports/"
+     }
+    ]
+   },
+   {
+    "id": "us-war-legacy",
+    "date": "2026-09-23",
+    "actor": "us",
+    "title_vi": "Mỹ ký thêm hỗ trợ tẩy độc dioxin Biên Hòa và người khuyết tật",
+    "title_en": "US signs more aid for Bien Hoa dioxin cleanup and people with disabilities",
+    "what_vi": "Đại sứ Mỹ Jennifer Wicks và Thứ trưởng Quốc phòng Nguyễn Trường Thắng ký hai thỏa thuận bổ sung nguồn lực cho xử lý dioxin tại sân bay Biên Hòa và dịch vụ cho người khuyết tật.",
+    "what_en": "US Ambassador Jennifer Wicks and Deputy Defence Minister Nguyen Truong Thang signed two agreements adding resources for dioxin cleanup at Bien Hoa air base and services for people with disabilities.",
+    "why_vi": "Đánh giá: khắc phục hậu quả chiến tranh là nền tảng tin cậy mà cả hai bên dùng để giữ quan hệ ổn định bất chấp căng thẳng thương mại.",
+    "why_en": "Assessment: war-legacy work is the trust base both sides use to keep ties steady despite trade friction.",
+    "vn_vi": "Lợi ích nhân đạo, môi trường trực tiếp; củng cố kênh quốc phòng song phương.",
+    "vn_en": "Direct humanitarian and environmental benefit; strengthens the defence channel.",
+    "channels": [
+     "diplomacy",
+     "security"
+    ],
+    "impact": 1,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "US Embassy Vietnam",
+      "url": "https://vn.usembassy.gov/united-states-and-vietnam-sign-agreements-to-continue-overcoming-the-legacies-of-war/"
+     },
+     {
+      "name": "VOV",
+      "url": "https://english.vov.vn/en/politics/diplomacy/us-vietnam-discuss-deeper-defence-and-maritime-security-cooperation-post1335056.vov"
+     }
+    ]
+   },
+   {
+    "id": "us-cn-truce",
+    "date": "2026-09-23",
+    "actor": "us",
+    "title_vi": "Mỹ–Trung gia hạn ngừng chiến thương mại tới 10/1/2027",
+    "title_en": "US–China trade truce extended to 10 Jan 2027",
+    "what_vi": "Bộ trưởng Tài chính Scott Bessent: thỏa thuận Busan được kéo dài từ 10/11/2026 tới 10/1/2027. Trung Quốc đang mua đủ 25 triệu tấn đậu tương nhưng thiếu cam kết 17 tỷ USD nông sản khác; giao đất hiếm vẫn chậm.",
+    "what_en": "Treasury Secretary Scott Bessent said the Busan arrangement now runs to 10 Jan 2027 instead of 10 Nov 2026. China is meeting its 25 mn t soybean pledge but falling short on USD 17 bn of other farm goods; rare-earth deliveries lag.",
+    "why_vi": "Đánh giá: cả hai cần ổn định — Mỹ vì giá cả và bầu cử, Trung Quốc vì xuất khẩu — nhưng chỉ gia hạn ngắn để giữ đòn bẩy.",
+    "why_en": "Assessment: both need calm — the US for prices and elections, China for exports — but the short extension keeps leverage alive.",
+    "vn_vi": "Giảm rủi ro chiến tranh thương mại lan sang chuỗi cung ứng Việt Nam trước Tết; nhưng hạn 10/1 là điểm rủi ro mới.",
+    "vn_en": "Lowers the risk of a trade war spilling into Vietnam's supply chains before Tet, but 10 Jan is a new cliff.",
+    "channels": [
+     "trade",
+     "tech"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "S&P Global",
+      "url": "https://www.spglobal.com/energy/en/news-research/latest-news/agriculture/092426-us-says-trade-truce-with-china-extended-till-jan-10-2027-ahead-of-trump-xi-meet"
+     },
+     {
+      "name": "ICIS",
+      "url": "https://www.icis.com/explore/resources/news/2026/09/24/11234650/us-china-agree-to-extend-trade-truce-by-two-months-to-10-january-bessent/"
+     }
+    ]
+   },
+   {
+    "id": "cn-xi-washington",
+    "date": "2026-09-24",
+    "actor": "cn",
+    "title_vi": "Tập Cận Bình thăm cấp nhà nước Mỹ, ít kết quả cụ thể",
+    "title_en": "Xi's state visit to Washington yields few deliverables",
+    "what_vi": "Ông Tập thăm Mỹ 23–25/9; hội đàm tại Nhà Trắng ngày 24/9. Tân Hoa xã: hai bên dự định dự APEC (Thâm Quyến, tháng 11) và G20 (Mỹ, tháng 12) và ủng hộ nhau đăng cai. Không có thêm thỏa thuận lớn được công bố.",
+    "what_en": "Xi visited the US 23–25 Sep, with White House talks on 24 Sep. Xinhua: both intend to attend APEC (Shenzhen, November) and the G20 (US, December) and will support each other's hosting. No further major agreements were announced.",
+    "why_vi": "Đánh giá: hai cường quốc quản lý cạnh tranh, tránh đổ vỡ trước APEC; các vấn đề cốt lõi (công nghệ, Đài Loan, đất hiếm) chưa giải quyết.",
+    "why_en": "Assessment: the two powers are managing rivalry and avoiding a rupture before APEC; core issues (tech, Taiwan, rare earths) are unresolved.",
+    "vn_vi": "Môi trường Mỹ–Trung ổn định có lợi cho Việt Nam; nhưng một “thỏa thuận lớn” Mỹ–Trung có thể làm giảm động lực dịch chuyển chuỗi cung ứng sang Việt Nam.",
+    "vn_en": "A stable US–China setting helps Vietnam; but a US–China \"grand bargain\" could weaken the push to move supply chains to Vietnam.",
+    "channels": [
+     "diplomacy",
+     "trade"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Xinhua",
+      "url": "https://english.news.cn/20260926/224233b250314676b5b519799796e6ec/c.html"
+     },
+     {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/09/28/trump-xi-summit-tangible-outcomes-us-china-truce.html"
+     },
+     {
+      "name": "CFR",
+      "url": "https://www.cfr.org/articles/xi-jinping-visits-the-white-house"
+     }
+    ]
+   },
+   {
+    "id": "me-iran-7day",
+    "date": "2026-09-25",
+    "actor": "me",
+    "title_vi": "Iran đưa lộ trình 7 ngày mở Hormuz; ông Trump bác",
+    "title_en": "Iran offers a seven-day plan to reopen Hormuz; Trump rejects it",
+    "what_vi": "Ngoại trưởng Abbas Araghchi đề xuất mở eo Hormuz và nối lại đàm phán hạt nhân trong 7 ngày nếu Mỹ chấp nhận điều kiện: dỡ phong tỏa hải quân (từ 13/4), gỡ trừng phạt dầu, ngừng bắn mọi mặt trận. Ông Trump bác, phía Mỹ nói không có thỏa thuận nếu chưa giải quyết hồ sơ hạt nhân.",
+    "what_en": "FM Abbas Araghchi offered to reopen Hormuz and resume nuclear talks within seven days if the US lifts its naval blockade (in place since 13 Apr), removes oil sanctions and agrees a ceasefire on all fronts. Trump rejected it; US officials said no deal without the nuclear issue.",
+    "why_vi": "Đánh giá: hai bên đều thử giới hạn đối phương; khoảng cách về hạt nhân lớn nên khó có đột phá nhanh.",
+    "why_en": "Assessment: both test the other's limits; the nuclear gap is wide, so a quick breakthrough is unlikely.",
+    "vn_vi": "Kéo dài thời kỳ giá dầu cao và bất định về nguồn cung cho Việt Nam.",
+    "vn_en": "Extends the period of high oil prices and supply uncertainty for Vietnam.",
+    "channels": [
+     "energy"
+    ],
+    "impact": -1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/9/25/iran-pitches-seven-day-roadmap-to-end-conflict-with-us"
+     },
+     {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/09/25/us-iran-trump-hormuz-.html"
+     },
+     {
+      "name": "CBS News",
+      "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-talks-strait-of-hormuz/"
+     }
+    ]
+   },
+   {
+    "id": "me-hormuz-recover",
+    "date": "2026-09-30",
+    "actor": "me",
+    "title_vi": "Dầu thô qua Hormuz về mức trước chiến tranh; Kuwait phục hồi sản lượng",
+    "title_en": "Crude flows through Hormuz back to pre-war levels; Kuwait output recovers",
+    "what_vi": "Theo Kpler, dầu thô qua Hormuz đạt bình quân 7 ngày 13,5 triệu thùng/ngày (ngang trước chiến tranh) nhờ hộ tống của Mỹ và tàu trung chuyển; sản phẩm lọc dầu vẫn bị hạn chế. Đầu tháng 10 Kuwait khôi phục sản lượng khoảng 2 triệu thùng/ngày (≈75% trước chiến tranh).",
+    "what_en": "Kpler data put crude through Hormuz at a 7-day average of 13.5 mb/d, matching pre-war levels, helped by US escorts and shuttle tankers; refined products remain constrained. In early October Kuwait restored output to about 2 mb/d (≈75% of pre-war).",
+    "why_vi": "Đánh giá: hộ tống quân sự và tàu trung chuyển khôi phục dòng dầu thô, nhưng rủi ro tấn công và giá sản phẩm (diesel) vẫn cao.",
+    "why_en": "Assessment: military escorts and shuttles restored crude flows, but attack risk and product (diesel) prices remain high.",
+    "vn_vi": "Tích cực cho nguồn dầu thô Kuwait của Nghi Sơn; nhưng giá xăng, diesel thế giới vẫn cao hơn nhiều so với dầu thô.",
+    "vn_en": "Positive for Nghi Son's Kuwaiti crude; but world gasoline and diesel prices remain far above crude.",
+    "channels": [
+     "energy",
+     "shipping"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/09/30/iran-war-strait-hormuz-gulf-oil-fuel.html"
+     },
+     {
+      "name": "World Oil",
+      "url": "https://www.worldoil.com/news/2026/10/5/kuwait-restores-oil-production-to-2-mmbpd-as-hormuz-traffic-increases/"
+     },
+     {
+      "name": "VietNamNet",
+      "url": "https://vietnamnet.vn/en/vietnam-fuel-prices-surge-adding-pressure-to-inflation-2558811.html"
+     }
+    ]
+   },
+   {
+    "id": "us-trade-9m",
+    "date": "2026-10-03",
+    "actor": "us",
+    "title_vi": "9 tháng 2026: xuất siêu sang Mỹ 122,6 tỷ USD, nhập siêu từ Trung Quốc 121,5 tỷ USD",
+    "title_en": "9M-2026: USD 122.6 bn surplus with the US, USD 121.5 bn deficit with China",
+    "what_vi": "Cục Thống kê: xuất siêu sang Mỹ 122,62 tỷ USD (+23,8%); nhập khẩu từ Trung Quốc 187,34 tỷ USD, nhập siêu 121,48 tỷ USD (+43%). Tổng kim ngạch 888 tỷ USD; nhập siêu chung 19,42 tỷ USD.",
+    "what_en": "NSO: surplus with the US USD 122.62 bn (+23.8%); imports from China USD 187.34 bn, deficit USD 121.48 bn (+43%). Total trade USD 888 bn; overall deficit USD 19.42 bn.",
+    "why_vi": "Đánh giá: mô hình “nhập đầu vào từ Trung Quốc, xuất thành phẩm sang Mỹ” càng rõ — đúng điều Washington lo ngại về chuyển tải.",
+    "why_en": "Assessment: the \"Chinese inputs in, finished goods to the US\" pattern is sharper — exactly Washington's transshipment worry.",
+    "vn_vi": "Thặng dư lớn là thành tựu nhưng cũng là mục tiêu chính sách thuế của Mỹ; cần chứng minh giá trị gia tăng nội địa.",
+    "vn_en": "The surplus is a success but also a target for US tariff policy; Vietnam needs to show domestic value added.",
+    "channels": [
+     "trade",
+     "fdi"
+    ],
+    "impact": -1,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Fibre2Fashion",
+      "url": "https://www.fibre2fashion.com/news/trade-news/vietnam-posts-1-27-bn-trade-surplus-in-september-2026-314008-newsdetails.htm"
+     },
+     {
+      "name": "VietnamPlus",
+      "url": "https://en.vietnamplus.vn/vietnam-posts-trade-surplus-after-nine-months-of-deficit-post353028.vnp"
+     },
+     {
+      "name": "VnEconomy",
+      "url": "https://en.vneconomy.vn/9-month-trade-tops-888-bln-as-trade-surplus-returns-in-sept.htm"
+     }
+    ]
+   },
+   {
+    "id": "ru-tourism",
+    "date": "2026-10-03",
+    "actor": "ru",
+    "title_vi": "Khách Nga 9 tháng tăng 160,6%, thị trường châu Âu lớn nhất",
+    "title_en": "Russian arrivals up 160.6% in 9M, Vietnam's largest European market",
+    "what_vi": "Báo cáo 9 tháng của Cục Thống kê: khoảng 1,1 triệu lượt khách Nga (+160,6%), đứng thứ 3 sau Trung Quốc và Hàn Quốc. Aeroflot bay thẳng Moskva–Nha Trang từ 22/3/2026 và dự kiến Moskva–Phú Quốc từ 15/10/2026.",
+    "what_en": "NSO 9M report: about 1.1 mn Russian visits (+160.6%), third after China and Korea. Aeroflot has flown Moscow–Nha Trang since 22 Mar 2026 and planned Moscow–Phu Quoc from 15 Oct 2026.",
+    "why_vi": "Đánh giá: người Nga bị hạn chế đi châu Âu tìm điểm đến thân thiện, miễn thị thực; đường bay thẳng mở rộng.",
+    "why_en": "Assessment: Russians shut out of Europe seek friendly, visa-free destinations; direct flights are expanding.",
+    "vn_vi": "Nguồn thu du lịch tăng cho Khánh Hòa, Phú Quốc; rủi ro thanh toán (thẻ, chuyển tiền) vẫn là điểm nghẽn.",
+    "vn_en": "More tourism revenue for Khanh Hoa and Phu Quoc; payments (cards, transfers) remain a bottleneck.",
+    "channels": [
+     "people",
+     "finance"
+    ],
+    "impact": 1,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "NSO 9M-2026",
+      "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+     },
+     {
+      "name": "VietnamPlus",
+      "url": "https://www.vietnamplus.vn/du-lich-viet-don-177-trieu-khach-sau-9-thang-thi-truong-nao-dang-tang-toc-post1139852.vnp"
+     },
+     {
+      "name": "AKM (Aeroflot)",
+      "url": "https://www.akm.ru/eng/news/aeroflot-launches-direct-scheduled-flights-on-moscow-nha-trang-route/"
+     }
+    ]
+   },
+   {
+    "id": "me-opec-nov",
+    "date": "2026-10-04",
+    "actor": "me",
+    "title_vi": "OPEC+ giữ nguyên sản lượng tháng 11",
+    "title_en": "OPEC+ holds November output flat",
+    "what_vi": "Bảy nước OPEC+ (Ả Rập Xê-út, Iraq, Kuwait, Oman, Algeria, Nga, Kazakhstan) giữ hạn mức tháng 11 như tháng 9, kéo dài việc tạm dừng tăng từ tháng 10; sản lượng thực tế vẫn dưới hạn mức do gián đoạn ở Hormuz và hạn chế với dầu Nga. Nhóm hẹn họp lại ngày 1/11.",
+    "what_en": "The seven OPEC+ members (Saudi Arabia, Iraq, Kuwait, Oman, Algeria, Russia, Kazakhstan) kept November targets at September levels, extending the pause begun in October; actual output stays below quota because of Hormuz disruption and limits on Russian oil. They meet again on 1 Nov.",
+    "why_vi": "Đánh giá: tăng hạn mức không có ý nghĩa khi dầu không ra được biển; nhóm giữ linh hoạt và bảo vệ giá.",
+    "why_en": "Assessment: raising quotas is pointless when barrels cannot reach the sea; the group keeps flexibility and supports prices.",
+    "vn_vi": "Không có thêm nguồn cung để hạ giá dầu trong ngắn hạn.",
+    "vn_en": "No extra supply to bring oil prices down in the near term.",
+    "channels": [
+     "energy"
+    ],
+    "impact": -1,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/10/04/opec-agrees-to-keep-november-oil-output-targets-steady.html"
+     },
+     {
+      "name": "Xinhua",
+      "url": "http://www.news.cn/english/20261004/2f1ee4e11278420e84c065daa853b2af/c.html"
+     },
+     {
+      "name": "The National",
+      "url": "https://www.thenationalnews.com/business/energy/2026/10/04/opec-keeps-oil-output-targets-unchanged-for-november/"
+     }
+    ]
+   },
+   {
+    "id": "ru-diesel",
+    "date": "2026-10-09",
+    "actor": "ru",
+    "title_vi": "Mỹ tạm gỡ trừng phạt diesel Nga đến tháng 4/2027",
+    "title_en": "US suspends sanctions on Russian diesel until April 2027",
+    "what_vi": "Sau điện đàm Trump–Putin, OFAC ban hành Giấy phép chung 135 cho phép giao dịch diesel xuất xứ Nga đến 7/4/2027; Nga phải dỡ lệnh cấm xuất khẩu diesel của mình. Ông Trump nói Nga sẽ cung cấp trên 300.000 tấn ngay, 500.000 tấn trong tháng 11, rồi 1 triệu tấn. Trừng phạt của EU, Anh vẫn giữ.",
+    "what_en": "After a Trump–Putin call, OFAC issued General License 135 authorising Russian-origin diesel transactions until 7 Apr 2027, conditional on Russia lifting its own diesel export ban. Trump said Russia would supply 300,000+ t at once, 500,000 t in November, then 1 mn t. EU and UK sanctions stay.",
+    "why_vi": "Đánh giá: Nhà Trắng muốn hạ giá nhiên liệu trước bầu cử và giữ Nga ở bàn đàm phán Ukraine; châu Âu phản đối.",
+    "why_en": "Assessment: the White House wants lower fuel prices before the election and to keep Russia at the Ukraine table; Europe objects.",
+    "vn_vi": "Thêm nguồn diesel toàn cầu giúp hạ nhiệt giá diesel (đang rất cao); rủi ro trừng phạt khi giao dịch năng lượng với Nga giảm phần nào.",
+    "vn_en": "More global diesel supply eases the very high diesel price; the sanctions risk of energy dealings with Russia falls somewhat.",
+    "channels": [
+     "energy",
+     "finance"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/10/09/trump-putin-russian-diesel-us-global-markets.html"
+     },
+     {
+      "name": "NPR",
+      "url": "https://www.npr.org/2026/10/10/nx-s1-5996938/u-s-and-russia-tout-diesel-deal-to-ease-sanctions-and-reopen-fuel-flows"
+     },
+     {
+      "name": "Carnegie",
+      "url": "https://carnegieendowment.org/russia-eurasia/politika/2026/10/russia-usa-diesel-agreement"
+     }
+    ]
+   },
+   {
+    "id": "me-houthi-saudi",
+    "date": "2026-10-10",
+    "actor": "me",
+    "title_vi": "Houthi tấn công sân bay Riyadh, mở rộng chiến dịch vào Ả Rập Xê-út",
+    "title_en": "Houthis strike Riyadh airport, widening their campaign into Saudi Arabia",
+    "what_vi": "Tên lửa, UAV của Houthi đánh sân bay King Khalid (Riyadh) ngày 10/10, ít nhất 12 người chết; chiến dịch từ đầu tháng 10 nhằm vào sân bay Riyadh, Abha, Dammam và cơ sở Aramco. Hội đồng Bảo an LHQ lên án ngày 15/10.",
+    "what_en": "Houthi missiles and drones hit King Khalid airport (Riyadh) on 10 Oct, killing at least 12; the campaign since early October targeted Riyadh, Abha and Dammam airports and Aramco sites. The UN Security Council condemned it on 15 Oct.",
+    "why_vi": "Đánh giá: phe thân Iran gây sức ép lên Riyadh để Ả Rập Xê-út kiềm chế Mỹ và tách khỏi chiến dịch chống Iran.",
+    "why_en": "Assessment: Iran-aligned forces pressure Riyadh to restrain the US and stay out of the campaign against Iran.",
+    "vn_vi": "Khoảng 6.000 lao động Việt Nam ở Ả Rập Xê-út chịu rủi ro an toàn; nguy cơ với cơ sở dầu đẩy giá năng lượng.",
+    "vn_en": "About 6,000 Vietnamese workers in Saudi Arabia face safety risks; threats to oil sites push energy prices up.",
+    "channels": [
+     "people",
+     "energy"
+    ],
+    "impact": -2,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Washington Post",
+      "url": "https://www.washingtonpost.com/world/2026/10/10/saudi-arabia-faces-new-level-peril-houthi-attacks-amid-wider-iran-war/"
+     },
+     {
+      "name": "CNN",
+      "url": "https://www.cnn.com/2026/10/08/middleeast/riyadh-airport-houthis-explosion-intl"
+     },
+     {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/10/13/houthis-threaten-saudi-arabias-aramco-facilities-and-airports"
+     }
+    ]
+   },
+   {
+    "id": "cn-na-visit",
+    "date": "2026-10-11",
+    "actor": "cn",
+    "title_vi": "Chủ tịch Quốc hội Trần Thanh Mẫn thăm Trung Quốc",
+    "title_en": "NA Chairman Tran Thanh Man visits China",
+    "what_vi": "Chuyến thăm 11–15/10 theo lời mời của ông Triệu Lạc Tế, đồng chủ trì phiên họp thứ hai Ủy ban hợp tác giữa hai cơ quan lập pháp; gặp Chủ tịch Chính hiệp Vương Hộ Ninh (11/10) và Thủ tướng Lý Cường (12/10). Ông Lý đề xuất hợp tác ứng dụng AI trong sản xuất, nông nghiệp thông minh, đào tạo nhân lực.",
+    "what_en": "The 11–15 Oct visit, at Zhao Leji's invitation, co-chaired the second session of the inter-parliamentary cooperation committee; he met CPPCC Chairman Wang Huning (11 Oct) and Premier Li Qiang (12 Oct). Li proposed cooperation on AI in manufacturing, smart farming and training.",
+    "why_vi": "Đánh giá: Bắc Kinh giữ quan hệ ấm ở mọi kênh Đảng – Nhà nước – Quốc hội, cân bằng với các bước tiến của Việt Nam với Mỹ và Nga.",
+    "why_en": "Assessment: Beijing keeps ties warm across party, state and parliament channels, balancing Vietnam's moves with the US and Russia.",
+    "vn_vi": "Giữ kênh đối thoại cấp cao để quản lý bất đồng biển và mở cửa nông sản, du lịch (Năm hợp tác du lịch 2026–2027).",
+    "vn_en": "Keeps a high-level channel to manage the sea dispute and open markets for farm goods and tourism (Tourism Cooperation Year 2026–27).",
+    "channels": [
+     "diplomacy",
+     "tech"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "VietnamPlus",
+      "url": "https://en.vietnamplus.vn/na-president-meets-with-chinese-premier-in-beijing-post353514.vnp"
+     },
+     {
+      "name": "Đại sứ quán TQ (Wang Huning)",
+      "url": "https://us.china-embassy.gov.cn/eng/zgyw/202610/t20261012_12038354.htm"
+     },
+     {
+      "name": "Viet Nam News",
+      "url": "https://vietnamnews.vn/politics-laws/1801720/national-assembly-president-departs-for-official-visit-to-china.html"
+     }
+    ]
+   },
+   {
+    "id": "cn-pla-drills",
+    "date": "2026-10-12",
+    "actor": "cn",
+    "title_vi": "Trung Quốc tập trận bắn đạn thật ở bốn vùng biển, có Biển Đông",
+    "title_en": "China holds live-fire drills in four seas, including the South China Sea",
+    "what_vi": "Sau diễn văn Quốc khánh của lãnh đạo Đài Loan Lại Thanh Đức, Trung Quốc thông báo tập trận bắn đạn thật 12–20/10 ở Bột Hải, Hoàng Hải, Hoa Đông và Biển Đông; nhóm tàu sân bay Liêu Ninh tập ở Tây Thái Bình Dương rồi hướng về Biển Đông. Đài Loan theo dõi khả năng tập trận lớn quanh đảo vào cao điểm tháng 11–12.",
+    "what_en": "After Taiwan leader Lai Ching-te's National Day speech, China announced live-fire drills on 12–20 Oct in the Bohai, Yellow, East China and South China seas; the Liaoning carrier group drilled in the western Pacific and then headed for the South China Sea. Taiwan watches for large drills around the island in the Nov–Dec peak season.",
+    "why_vi": "Đánh giá: răn đe Đài Loan nhưng tránh tập trận bao vây trực tiếp để không phá không khí trước APEC.",
+    "why_en": "Assessment: deterrence aimed at Taiwan while avoiding an encirclement drill that would spoil the mood before APEC.",
+    "vn_vi": "Rủi ro cho hàng hải, đánh bắt ở Biển Đông; một cuộc khủng hoảng Đài Loan sẽ là cú sốc lớn nhất với chuỗi cung ứng điện tử của Việt Nam.",
+    "vn_en": "Risk to shipping and fishing in the South China Sea; a Taiwan crisis would be the largest shock to Vietnam's electronics supply chain.",
+    "channels": [
+     "security",
+     "shipping",
+     "tech"
+    ],
+    "impact": -1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Hong Kong Free Press",
+      "url": "https://hongkongfp.com/2026/10/12/taiwan-preparing-for-the-worst-as-china-begins-live-fire-drills/"
+     },
+     {
+      "name": "USNI News",
+      "url": "https://news.usni.org/2026/10/14/chinese-carrier-strike-group-drills-in-the-philippine-sea"
+     },
+     {
+      "name": "Focus Taiwan",
+      "url": "https://focustaiwan.tw/politics/202610150010"
+     }
+    ]
+   },
+   {
+    "id": "cn-exports-sep",
+    "date": "2026-10-14",
+    "actor": "cn",
+    "title_vi": "Xuất khẩu Trung Quốc tháng 9 tăng 36%, sang ASEAN tăng 52%",
+    "title_en": "China's September exports up 36%, to ASEAN up 52%",
+    "what_vi": "Hải quan Trung Quốc: xuất khẩu tháng 9 tăng 36,3% lên 447,2 tỷ USD; thặng dư 133,5 tỷ USD (cao nhất 20 tháng); 9 tháng thặng dư 938,1 tỷ USD. Xuất khẩu sang ASEAN — thị trường lớn nhất — tăng 52,3% trong tháng 9, 28,7% trong 9 tháng; dẫn dắt bởi chip, linh kiện cho AI và hạ tầng điện.",
+    "what_en": "China customs: September exports rose 36.3% to USD 447.2 bn; surplus USD 133.5 bn (20-month high); 9M surplus USD 938.1 bn. Exports to ASEAN, the largest market, rose 52.3% in September and 28.7% in 9M, led by chips and components for AI and power grids.",
+    "why_vi": "Đánh giá: dư thừa công suất và nhu cầu nội địa yếu đẩy hàng sang Đông Nam Á; một phần là đầu vào cho chuỗi xuất khẩu sang Mỹ.",
+    "why_en": "Assessment: overcapacity and weak home demand push goods into Southeast Asia; part of it is input for export chains to the US.",
+    "vn_vi": "Cạnh tranh trực tiếp với sản xuất trong nước, nhập siêu lớn và rủi ro bị Mỹ quy kết chuyển tải.",
+    "vn_en": "Direct competition for domestic producers, a large deficit and the risk of US transshipment findings.",
+    "channels": [
+     "trade",
+     "fdi"
+    ],
+    "impact": -1,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/10/14/chinas-exports-likely-grew-by-double-digits-in-september.html"
+     },
+     {
+      "name": "ICIS",
+      "url": "https://www.icis.com/explore/resources/news/2026/10/15/11237244/insight-china-sept-exports-surge-36-as-trade-surplus-nears-1-trillion/"
+     },
+     {
+      "name": "Anadolu",
+      "url": "https://www.aa.com.tr/en/economy/china-records-highest-trade-surplus-in-nearly-2-years/4088865"
+     }
+    ]
+   },
+   {
+    "id": "us-final-text",
+    "date": "2026-10-14",
+    "actor": "us",
+    "title_vi": "Việt Nam gửi văn bản cuối của hiệp định thương mại đối ứng cho Mỹ",
+    "title_en": "Vietnam sends the final text of the reciprocal trade agreement to the US",
+    "what_vi": "Phó Thủ tướng Phạm Gia Túc: hai bên đã thống nhất nội dung hiệp định thương mại đối ứng, Việt Nam đã gửi văn bản cuối cho Mỹ và đề nghị sớm ký. Chưa có ngày ký.",
+    "what_en": "Deputy PM Pham Gia Tuc said both sides had agreed the content of the reciprocal trade agreement and Vietnam had sent the final text to the US, urging early signing. No signing date has been set.",
+    "why_vi": "Đánh giá: Hà Nội đẩy nhanh để khóa kết quả trước bầu cử Mỹ và trước hạn Mục 301 sở hữu trí tuệ (29/11); phía Mỹ có thể chờ thời điểm chính trị (ASEAN, APEC).",
+    "why_en": "Assessment: Hanoi is pushing to lock in results before the US election and the 29 Nov IP deadline; Washington may wait for a political moment (ASEAN, APEC).",
+    "vn_vi": "Nếu ký sớm: giảm bất định thuế cho xuất khẩu và FDI; nếu kéo dài: rủi ro chồng thêm biện pháp Mục 301.",
+    "vn_en": "If signed soon: less tariff uncertainty for exports and FDI; if delayed: risk of more Section 301 measures stacking up.",
+    "channels": [
+     "trade"
+    ],
+    "impact": 1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "TNGlobal",
+      "url": "https://technode.global/2026/10/14/vietnam-urges-swift-us-trade-deal-final-text-already-sent-to-washington/"
+     },
+     {
+      "name": "Fibre2Fashion",
+      "url": "https://www.fibre2fashion.com/news/textile-news/vietnam-us-close-to-finalising-reciprocal-trade-agreement-314125-newsdetails.htm"
+     }
+    ]
+   },
+   {
+    "id": "multi-efta",
+    "date": "2026-10-18",
+    "actor": "multi",
+    "title_vi": "Việt Nam ký FTA với EFTA (Thụy Sĩ, Na Uy, Iceland, Liechtenstein)",
+    "title_en": "Vietnam signs an FTA with EFTA (Switzerland, Norway, Iceland, Liechtenstein)",
+    "what_vi": "Bộ trưởng Công Thương Lê Mạnh Hùng ký hiệp định tại Hà Nội ngày 18/10/2026 trước sự chứng kiến của Tổng Bí thư, Chủ tịch nước Tô Lâm, sau 14 năm đàm phán. Việt Nam giảm dần thuế với phần lớn hàng công nghiệp, thủy sản của EFTA trong 11 năm; thương mại hai bên khoảng 2 tỷ USD/năm. Cần phê chuẩn trước khi có hiệu lực.",
+    "what_en": "Industry and Trade Minister Le Manh Hung signed the agreement in Hanoi on 18 Oct 2026, witnessed by General Secretary and President To Lam, after 14 years of talks. Vietnam phases out tariffs on most EFTA industrial and seafood goods over 11 years; trade is about USD 2 bn a year. Ratification is needed before entry into force.",
+    "why_vi": "Đánh giá: đa dạng hóa thị trường để giảm phụ thuộc Mỹ – Trung là ưu tiên; châu Âu ngoài EU cũng muốn tiếp cận Đông Nam Á.",
+    "why_en": "Assessment: diversifying markets away from US–China dependence is a priority; non-EU Europe also wants access to Southeast Asia.",
+    "vn_vi": "Quy mô nhỏ nhưng mở thêm thị trường giàu và vốn đầu tư (Thụy Sĩ, Na Uy); tín hiệu “đa phương hóa” giữa lúc căng thẳng thương mại.",
+    "vn_en": "Small in size but opens rich markets and investors (Switzerland, Norway); a diversification signal amid trade tensions.",
+    "channels": [
+     "trade",
+     "diplomacy"
+    ],
+    "impact": 1,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "EFTA",
+      "url": "https://www.efta.int/media-resources/news/efta-and-viet-nam-sign-free-trade-agreement"
+     },
+     {
+      "name": "Viet Nam News",
+      "url": "https://vietnamnews.vn/politics-laws/1802253/viet-nam-efta-sign-free-trade-agreement-after-14-years-of-negotiations.html"
+     },
+     {
+      "name": "Swissinfo",
+      "url": "https://www.swissinfo.ch/eng/trade-policy/efta-and-vietnam-sign-a-free-trade-agreement/91688223"
+     }
+    ]
+   },
+   {
+    "id": "ru-ukraine-talks",
+    "date": "2026-10-23",
+    "actor": "ru",
+    "title_vi": "Nga, Ukraine xác nhận đàm phán ba bên với Mỹ tại UAE trong tháng 11",
+    "title_en": "Russia and Ukraine confirm trilateral talks with the US in the UAE in November",
+    "what_vi": "Sau khi đặc phái viên Witkoff gặp ông Zelensky rồi sang Nga (21/10), Moskva và Kyiv xác nhận đàm phán ba bên Nga – Mỹ – Ukraine dự kiến tháng 11 tại UAE; ông Putin nói sẵn sàng nối lại sau giữa tháng 11. Hai bên vẫn tấn công tầm xa lẫn nhau; Nga giữ yêu cầu về lãnh thổ và không NATO.",
+    "what_en": "After envoy Witkoff met Zelensky and then travelled to Russia (21 Oct), Moscow and Kyiv confirmed trilateral Russia–US–Ukraine talks planned for November in the UAE; Putin said he was ready to resume after mid-November. Long-range strikes continue; Russia keeps its territorial and no-NATO demands.",
+    "why_vi": "Đánh giá: Washington muốn một thỏa thuận để giảm áp lực năng lượng và tập trung vào Iran, Trung Quốc; Nga tận dụng để đòi nới trừng phạt.",
+    "why_en": "Assessment: Washington wants a deal to ease energy pressure and focus on Iran and China; Russia uses it to seek sanctions relief.",
+    "vn_vi": "Một lệnh ngừng bắn sẽ giảm giá năng lượng và rủi ro trừng phạt với hợp tác Việt – Nga; khả năng đột phá thấp.",
+    "vn_en": "A ceasefire would lower energy prices and the sanctions risk of Vietnam–Russia projects; a breakthrough is unlikely.",
+    "channels": [
+     "energy",
+     "diplomacy"
+    ],
+    "impact": 1,
+    "confidence": "low",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/10/23/russia-ukraine-talks-planned-for-november-in-uae-kremlin"
+     },
+     {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/10/21/witkoff-in-russia-for-putin-meeting-after-positive-talks-with-zelenskyy"
+     },
+     {
+      "name": "Axios",
+      "url": "https://www.axios.com/2026/10/20/putin-witkoff-russia-ukraine-war"
+     }
+    ]
+   },
+   {
+    "id": "me-tehran-talks",
+    "date": "2026-10-26",
+    "actor": "me",
+    "title_vi": "Ả Rập Xê-út, Pakistan, Thổ Nhĩ Kỳ hội đàm với Iran tại Tehran",
+    "title_en": "Saudi, Pakistani and Turkish security chiefs hold talks in Tehran",
+    "what_vi": "Bộ trưởng Quốc phòng Ả Rập Xê-út Khalid bin Salman, Tổng tư lệnh lục quân Pakistan Asim Munir và Giám đốc tình báo Thổ Nhĩ Kỳ Ibrahim Kalin gặp Tổng thống Pezeshkian và ông Mohsen Rezaei; mục tiêu giảm căng thẳng, xây “mạng lưới không xâm lược” khu vực. Không có thỏa thuận cụ thể; Iran nói chưa đàm phán với Mỹ khi yêu cầu chưa được đáp ứng.",
+    "what_en": "Saudi Defence Minister Khalid bin Salman, Pakistan's army chief Asim Munir and Turkish intelligence chief Ibrahim Kalin met President Pezeshkian and Mohsen Rezaei to reduce tension and build a regional non-aggression network. No concrete agreement; Iran said it will not negotiate with the US until its demands are met.",
+    "why_vi": "Đánh giá: vùng Vịnh tự tìm lối thoát vì chịu thiệt trực tiếp (Houthi tấn công, xuất khẩu dầu bị nghẽn), không chờ Washington.",
+    "why_en": "Assessment: the Gulf states are seeking their own exit because they bear direct costs (Houthi attacks, choked exports), not waiting for Washington.",
+    "vn_vi": "Nếu thành công, giảm rủi ro cho lao động Việt Nam và nguồn dầu vùng Vịnh; hiện chưa có kết quả.",
+    "vn_en": "If it works, risk falls for Vietnamese workers and Gulf oil supply; no result yet.",
+    "channels": [
+     "diplomacy",
+     "energy",
+     "people"
+    ],
+    "impact": 1,
+    "confidence": "low",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Bloomberg",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-26/top-saudi-turkish-officials-travel-to-iran-to-quell-war-tension"
+     },
+     {
+      "name": "Times of Israel",
+      "url": "https://www.timesofisrael.com/saudi-defense-pact-states-hold-talks-in-iran-as-yemens-houthis-launch-more-attacks/"
+     },
+     {
+      "name": "Iran International",
+      "url": "https://www.iranintl.com/en/202610260367"
+     }
+    ]
+   },
+   {
+    "id": "us-fed-hold",
+    "date": "2026-10-28",
+    "actor": "us",
+    "title_vi": "Fed giữ lãi suất 3,75–4%, hai phiếu muốn tăng tiếp",
+    "title_en": "Fed holds at 3.75–4%, with two votes for another hike",
+    "what_vi": "FOMC giữ nguyên 3,75–4% với tỷ lệ 10–2; Thống đốc Lisa Cook và Chủ tịch Fed Cleveland Beth Hammack muốn tăng 0,25 điểm. Sau quyết định, CME FedWatch định giá 82,6% khả năng tăng lãi suất tháng 12.",
+    "what_en": "The FOMC held at 3.75–4% by 10–2; Governor Lisa Cook and Cleveland Fed President Beth Hammack wanted a 25 bp hike. Afterwards CME FedWatch priced an 82.6% chance of a December hike.",
+    "why_vi": "Đánh giá: lạm phát năng lượng giữ Fed ở thế thắt chặt; Fed tránh hành động ngay trước bầu cử.",
+    "why_en": "Assessment: energy inflation keeps the Fed tight; it avoided acting right before the election.",
+    "vn_vi": "USD mạnh kéo dài, hạn chế dư địa giảm lãi suất của NHNN và tăng chi phí vay nợ USD.",
+    "vn_en": "A lasting strong dollar limits SBV easing room and raises USD borrowing costs.",
+    "channels": [
+     "finance"
+    ],
+    "impact": -1,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/10/28/fed-interest-rate-decision-october-2026.html"
+     },
+     {
+      "name": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/economy/policy/live/fed-meeting-live-updates-interest-rates-held-steady-in-split-vote-warsh-says-politics-played-no-role-ahead-of-midterm-elections-191946928.html"
+     }
+    ]
+   },
+   {
+    "id": "ru-swf",
+    "date": "2026-10-29",
+    "actor": "ru",
+    "title_vi": "Điện Kremlin: Nga–Mỹ bàn gỡ trừng phạt quỹ đầu tư quốc gia Nga",
+    "title_en": "Kremlin: Russia and US discussing sanctions relief for Russia's sovereign wealth fund",
+    "what_vi": "Trợ lý Điện Kremlin cho biết hai bên đang thảo luận khả năng Mỹ gỡ trừng phạt với quỹ đầu tư quốc gia của Nga, sau thỏa thuận diesel.",
+    "what_en": "A Kremlin aide said the two sides are discussing a possible lifting of US sanctions on Russia's sovereign wealth fund, following the diesel deal.",
+    "why_vi": "Đánh giá: Moskva dùng tiến trình hòa bình để bóc tách dần trừng phạt của Mỹ; chưa có quyết định.",
+    "why_en": "Assessment: Moscow uses the peace process to peel away US sanctions step by step; nothing decided.",
+    "vn_vi": "Nếu thành hiện thực, kênh thanh toán, đầu tư Việt – Nga dễ hơn; chưa đủ căn cứ để thay đổi đánh giá rủi ro.",
+    "vn_en": "If it happens, Vietnam–Russia payments and investment get easier; not yet enough to change the risk assessment.",
+    "channels": [
+     "finance"
+    ],
+    "impact": 0,
+    "confidence": "low",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "CNN",
+      "url": "https://www.cnn.com/2026/10/29/europe/russia-us-sanctions-investment-fund-intl-hnk"
+     }
+    ]
+   },
+   {
+    "id": "me-israel-election",
+    "date": "2026-10-29",
+    "actor": "me",
+    "title_vi": "Bầu cử Israel bế tắc: khối Netanyahu 53 ghế, không đủ đa số",
+    "title_en": "Israel's election deadlocks: Netanyahu bloc 53 seats, short of a majority",
+    "what_vi": "Kết quả kiểm phiếu: khối của ông Netanyahu 53/120 ghế, phe đối lập do Gadi Eisenkot dẫn đầu 48, các đảng Ả Rập 19; không bên nào đạt 61. Likud cáo buộc bầu cử bị “đánh cắp”, Ủy ban Bầu cử bác bỏ.",
+    "what_en": "Final count: Netanyahu's bloc 53 of 120 seats, the opposition led by Gadi Eisenkot 48, Arab parties 19; no side reached 61. Likud claimed the election was \"stolen\"; the Central Elections Committee rejected that.",
+    "why_vi": "Đánh giá: bất định chính trị ở Israel làm khó mọi quyết định ngừng bắn hay leo thang; có thể dẫn tới bầu cử lại.",
+    "why_en": "Assessment: political uncertainty in Israel complicates any decision on a ceasefire or escalation; a repeat election is possible.",
+    "vn_vi": "Kéo dài bất định về chiến sự và giá dầu.",
+    "vn_en": "Prolongs uncertainty over the war and oil prices.",
+    "channels": [
+     "diplomacy",
+     "energy"
+    ],
+    "impact": -1,
+    "confidence": "medium",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/10/29/israel-election-result-shows-no-overall-majority-as-vote-count-complete"
+     },
+     {
+      "name": "NBC News",
+      "url": "https://www.nbcnews.com/world/israel/israels-final-election-results-show-neither-netanyahu-nor-rival-can-immedi-rcna606290"
+     },
+     {
+      "name": "PBS",
+      "url": "https://www.pbs.org/newshour/world/netanyahus-party-claims-israeli-election-stolen-as-results-show-him-losing-majority"
+     }
+    ]
+   },
+   {
+    "id": "me-brent-118",
+    "date": "2026-10-30",
+    "actor": "me",
+    "title_vi": "Brent lên 117,64 USD, cao nhất 6 tháng; Việt Nam tăng giá xăng dầu rồi giảm thuế",
+    "title_en": "Brent at USD 117.64, a six-month high; Vietnam raises fuel prices, then cuts tax",
+    "what_vi": "Brent kỳ hạn tháng 12 chốt 117,64 USD/thùng ngày 30/10 (+13,6% trong tháng 10) khi Houthi tuyên bố sáu cuộc tấn công vào sân bay, cơ sở dầu Ả Rập Xê-út (Ras Tanura, Abqaiq...). Trong nước: kỳ điều hành 29/10 tăng giá, diesel 0,05S lên 30.246 đồng/lít; từ 1/11 thuế tiêu thụ đặc biệt với xăng về 0% đến hết 3/2027, giá xăng giảm tới 1.804 đồng/lít.",
+    "what_en": "December Brent settled at USD 117.64 on 30 Oct (+13.6% in October) as the Houthis claimed six attacks on Saudi airports and oil sites (Ras Tanura, Abqaiq…). At home: the 29 Oct adjustment raised prices, diesel 0.05S to VND 30,246/l; from 1 Nov the special consumption tax on gasoline is 0% until end-March 2027, cutting gasoline prices by up to VND 1,804/l.",
+    "why_vi": "Đánh giá: thị trường định giá rủi ro leo thang trước bầu cử Mỹ (3/11) và sau bầu cử Israel; tấn công vào cơ sở dầu Ả Rập Xê-út là rủi ro nguồn cung mới.",
+    "why_en": "Assessment: markets price escalation risk around the US (3 Nov) and Israeli elections; attacks on Saudi oil sites are a new supply risk.",
+    "vn_vi": "Lạm phát, chi phí vận tải và ngân sách chịu sức ép (giảm thuế làm hụt thu); nhóm thu nhập thấp, xe công nghệ, nông dân chịu tác động lớn nhất.",
+    "vn_en": "Inflation, freight and the budget (lost tax revenue) are under pressure; low-income households, ride-hailing drivers and farmers are hit hardest.",
+    "channels": [
+     "energy",
+     "finance",
+     "shipping"
+    ],
+    "impact": -2,
+    "confidence": "high",
+    "ground_news": null,
+    "sources": [
+     {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/10/30/oil-rises-on-supply-concerns-as-houthis-attack-saudi-arabia.html"
+     },
+     {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/10/30/houthi-forces-claim-six-attacks-on-saudi-airports-oil-facilities"
+     },
+     {
+      "name": "Tuổi Trẻ",
+      "url": "https://tuoitre.vn/dong-loat-tang-gia-tat-ca-cac-mat-hang-xang-dau-100261029094613522.htm"
+     },
+     {
+      "name": "VietnamPlus",
+      "url": "https://www.vietnamplus.vn/thue-tieu-thu-dac-biet-ve-0-gia-xang-dong-loat-giam-toi-1804-dong-moi-lit-post1145423.vnp"
+     }
+    ]
+   }
+  ],
+  "options": [
+   {
+    "theatre": "us",
+    "vi": "Ký sớm hiệp định thương mại đối ứng, kèm cam kết cấm hàng lao động cưỡng bức và chống chuyển tải đủ mạnh để chuyển sang nhóm thuế 10% và khóa danh mục 0%.",
+    "en": "Sign the reciprocal trade agreement early, with forced-labour and anti-transshipment commitments strong enough to move to the 10% tier and lock in 0% lines.",
+    "tradeoff_vi": "Phải mở cửa thêm cho nông sản, hàng công nghiệp Mỹ và siết quy tắc xuất xứ — doanh nghiệp FDI dùng nhiều đầu vào Trung Quốc chịu chi phí, Bắc Kinh có thể phản ứng.",
+    "tradeoff_en": "Requires more opening to US farm and industrial goods and stricter origin rules — FDI firms reliant on Chinese inputs bear costs, and Beijing may react."
+   },
+   {
+    "theatre": "us",
+    "vi": "Trả lời điều tra Mục 301 về sở hữu trí tuệ trước 29/11 bằng kết quả thực thi cụ thể (luật SHTT mới 12/2025, xử lý hàng giả, vi phạm bản quyền số).",
+    "en": "Answer the Section 301 IP probe before 29 Nov with concrete enforcement results (the new IP law of Dec 2025, action on counterfeits and digital piracy).",
+    "tradeoff_vi": "Chi phí thực thi và phản ứng của người bán nhỏ; nhưng rẻ hơn nhiều so với một tầng thuế mới.",
+    "tradeoff_en": "Enforcement costs and pushback from small sellers; far cheaper than a new tariff layer."
+   },
+   {
+    "theatre": "us",
+    "vi": "Ưu tiên ổn định tỷ giá khi Fed thắt chặt: điều hành linh hoạt, dùng dự trữ ngoại hối có chọn lọc, hạn chế vay nợ USD ngắn hạn.",
+    "en": "Prioritise FX stability while the Fed tightens: flexible management, selective use of reserves, and limits on short-term USD borrowing.",
+    "tradeoff_vi": "Ít dư địa hạ lãi suất hỗ trợ tăng trưởng và tín dụng.",
+    "tradeoff_en": "Less room to cut rates in support of growth and credit."
+   },
+   {
+    "theatre": "cn",
+    "vi": "Ở Biển Đông, “lặng lẽ nhưng không im lặng”: giao thiệp ngoại giao, bảo vệ hồ sơ pháp lý theo UNCLOS 1982, thúc đẩy COC thực chất tại Hội nghị ASEAN ở Manila, tăng năng lực thực thi pháp luật trên biển và bảo vệ ngư dân.",
+    "en": "In the South China Sea, \"quietly, not silently\": diplomatic protests, keep the legal record under UNCLOS 1982, press for a substantive Code of Conduct at the Manila ASEAN summit, and build maritime law-enforcement capacity and protection for fishers.",
+    "tradeoff_vi": "Không thay đổi được thực địa ở Hoàng Sa; leo thang mạnh hơn có thể kéo theo trả đũa kinh tế (nông sản qua cửa khẩu, du lịch).",
+    "tradeoff_en": "Cannot change facts in the Paracels; stronger escalation risks economic retaliation (farm exports at the border, tourism)."
+   },
+   {
+    "theatre": "cn",
+    "vi": "Quản lý làn sóng hàng Trung Quốc: phòng vệ thương mại có chọn lọc, kiểm tra xuất xứ chặt để bảo vệ quyền tiếp cận thị trường Mỹ, đồng thời thu hút đầu tư Trung Quốc có giá trị gia tăng thật.",
+    "en": "Manage the Chinese import wave: selective trade remedies, strict origin checks to protect access to the US, while attracting Chinese investment with genuine local value added.",
+    "tradeoff_vi": "Tăng chi phí đầu vào cho nhà sản xuất; Bắc Kinh có thể phản ứng; cân bằng giữa hai đối tác thương mại lớn nhất.",
+    "tradeoff_en": "Raises input costs for manufacturers; Beijing may react; a balance between the two largest trade partners."
+   },
+   {
+    "theatre": "cn",
+    "vi": "Đường sắt Lào Cai–Hà Nội–Hải Phòng: đàm phán điều kiện vay (lãi suất, đồng tiền NDT, chuyển giao công nghệ), giữ quyền chủ động vận hành và đa dạng nhà thầu.",
+    "en": "Lao Cai–Hanoi–Hai Phong railway: negotiate loan terms (rate, RMB currency, technology transfer), keep operational control and diversify contractors.",
+    "tradeoff_vi": "Điều kiện chặt có thể làm chậm dự án; vay nhiều làm tăng phụ thuộc tài chính.",
+    "tradeoff_en": "Tough terms may slow the project; heavy borrowing deepens financial dependence."
+   },
+   {
+    "theatre": "me",
+    "vi": "An ninh năng lượng: đa dạng nguồn dầu thô ngoài Kuwait (Mỹ, Tây Phi, Nga), đẩy nhanh kho dự trữ chiến lược, dùng quỹ bình ổn và giảm thuế có thời hạn để giảm sốc giá.",
+    "en": "Energy security: diversify crude beyond Kuwait (US, West Africa, Russia), speed up strategic reserves, and use the stabilisation fund and temporary tax cuts to cushion price shocks.",
+    "tradeoff_vi": "Nhà máy Nghi Sơn thiết kế cho dầu Kuwait — đổi nguồn tốn chi phí kỹ thuật; giảm thuế làm hụt ngân sách; mua dầu Nga vướng trừng phạt EU/Anh và cảm nhận của Mỹ.",
+    "tradeoff_en": "Nghi Son is configured for Kuwaiti crude, so switching costs money; tax cuts dent the budget; Russian crude carries EU/UK sanctions and US-perception risk."
+   },
+   {
+    "theatre": "me",
+    "vi": "Bảo vệ người lao động và tàu Việt Nam: duy trì tạm dừng đưa lao động mới sang vùng Vịnh, sẵn sàng phương án sơ tán, phối hợp với Iran và các nước Vịnh về đi lại an toàn qua Hormuz.",
+    "en": "Protect Vietnamese workers and ships: keep the pause on new deployments to the Gulf, keep evacuation plans ready, and coordinate with Iran and Gulf states on safe passage through Hormuz.",
+    "tradeoff_vi": "Mất việc làm, kiều hối; quan hệ với Iran cần giữ cân bằng trước Mỹ.",
+    "tradeoff_en": "Lost jobs and remittances; ties with Iran need balancing against the US."
+   },
+   {
+    "theatre": "ru",
+    "vi": "Phát triển hợp tác năng lượng, hạt nhân, du lịch với Nga nhưng “rào chắn” rủi ro trừng phạt: kênh thanh toán minh bạch, tuân thủ, và tiếp tục đa dạng nguồn vũ khí.",
+    "en": "Grow energy, nuclear and tourism cooperation with Russia but ring-fence sanctions risk: transparent payment channels, compliance, and continued diversification of arms sources.",
+    "tradeoff_vi": "Hợp tác bị giới hạn bởi thanh toán và trừng phạt EU/Anh; quá gần Moskva có thể làm phức tạp đàm phán với Mỹ, EU.",
+    "tradeoff_en": "Cooperation is capped by payments and EU/UK sanctions; getting too close to Moscow could complicate talks with the US and EU."
+   },
+   {
+    "theatre": "multi",
+    "vi": "Đa phương hóa: sớm phê chuẩn FTA với EFTA, tận dụng EVFTA, CPTPP, RCEP; dùng vai trò chủ nhà APEC 2027 và tiếng nói ASEAN để giảm phụ thuộc vào cạnh tranh Mỹ – Trung.",
+    "en": "Multilateralise: ratify the EFTA FTA quickly, use EVFTA, CPTPP and RCEP; use the APEC 2027 host role and ASEAN's voice to reduce exposure to US–China rivalry.",
+    "tradeoff_vi": "Các thị trường thay thế nhỏ hơn Mỹ, Trung Quốc; đòi hỏi cải cách thể chế, tiêu chuẩn cao hơn.",
+    "tradeoff_en": "Alternative markets are smaller than the US and China; they demand institutional reform and higher standards."
+   }
+  ],
+  "watch": [
+   {
+    "date": "2026-11-03",
+    "vi": "Bầu cử giữa kỳ Mỹ",
+    "en": "US midterm elections",
+    "why_vi": "Kết quả định hướng chính sách thuế quan, trừng phạt Nga, chiến sự Iran và sức ép lên Fed.",
+    "why_en": "The result shapes tariff policy, Russia sanctions, the Iran war and pressure on the Fed."
+   },
+   {
+    "date": "2026-11-15",
+    "vi": "Đàm phán ba bên Nga – Mỹ – Ukraine tại UAE (từ giữa tháng 11, chưa ấn định ngày)",
+    "en": "Russia–US–Ukraine talks in the UAE (from mid-November, date not fixed)",
+    "why_vi": "Ngừng bắn sẽ giảm giá năng lượng và rủi ro trừng phạt với hợp tác Việt – Nga.",
+    "why_en": "A ceasefire would ease energy prices and the sanctions risk of Vietnam–Russia cooperation."
+   },
+   {
+    "date": "2026-11-16",
+    "vi": "Hội nghị Cấp cao ASEAN 49 và các hội nghị liên quan, Manila (16–18/11)",
+    "en": "49th ASEAN Summit and related summits, Manila (16–18 Nov)",
+    "why_vi": "Mục tiêu hoàn tất Bộ quy tắc ứng xử ở Biển Đông (COC); ông Trump được cho là sẽ dự (chưa xác nhận chính thức).",
+    "why_en": "Target date for a South China Sea Code of Conduct; Trump reportedly attends (not officially confirmed)."
+   },
+   {
+    "date": "2026-11-18",
+    "vi": "Hội nghị các nhà lãnh đạo APEC, Thâm Quyến (18–19/11)",
+    "en": "APEC Economic Leaders' Meeting, Shenzhen (18–19 Nov)",
+    "why_vi": "Gặp Trump – Tập lần thứ ba trong năm; Việt Nam là chủ nhà APEC 2027.",
+    "why_en": "Third Trump–Xi meeting of the year; Vietnam hosts APEC in 2027."
+   },
+   {
+    "date": "2026-11-29",
+    "vi": "Hạn USTR kết luận điều tra Mục 301 về sở hữu trí tuệ của Việt Nam",
+    "en": "USTR deadline for its Section 301 IP determination on Vietnam",
+    "why_vi": "Có thể dẫn tới thuế hoặc biện pháp thương mại mới, chồng lên thuế 12,5%.",
+    "why_en": "Could lead to new tariffs or trade measures on top of the 12.5% tariff."
+   },
+   {
+    "date": "2026-12-08",
+    "vi": "Họp FOMC (8–9/12), có dự báo kinh tế",
+    "en": "FOMC meeting (8–9 Dec), with projections",
+    "why_vi": "Thị trường định giá ~83% khả năng tăng lãi suất — sức ép lên VND và dư địa của NHNN.",
+    "why_en": "Markets price ~83% odds of a hike — pressure on the dong and SBV room."
+   },
+   {
+    "date": "2026-12-14",
+    "vi": "Hội nghị thượng đỉnh G20, Miami (14–15/12)",
+    "en": "G20 summit, Miami (14–15 Dec)",
+    "why_vi": "Cuộc gặp Trump – Tập cuối năm trước khi hết hạn ngừng chiến thương mại.",
+    "why_en": "Year-end Trump–Xi meeting before the trade truce expires."
+   },
+   {
+    "date": "2027-01-10",
+    "vi": "Hết hạn ngừng chiến thương mại Mỹ – Trung (thỏa thuận Busan)",
+    "en": "US–China trade truce (Busan arrangement) expires",
+    "why_vi": "Nếu không gia hạn: nguy cơ thuế và kiểm soát đất hiếm quay lại, xáo trộn chuỗi cung ứng qua Việt Nam.",
+    "why_en": "Without renewal: tariffs and rare-earth controls could return, disrupting supply chains through Vietnam."
+   },
+   {
+    "date": "2027-03-31",
+    "vi": "Hết thời hạn thuế tiêu thụ đặc biệt 0% với xăng",
+    "en": "End of the 0% special consumption tax on gasoline",
+    "why_vi": "Nếu giá dầu vẫn cao, cần quyết định gia hạn hay chấp nhận giá xăng tăng.",
+    "why_en": "If oil stays high, a choice between extending it or accepting higher pump prices."
+   },
+   {
+    "date": "2027-04-07",
+    "vi": "Hết hạn Giấy phép chung 135 của OFAC (diesel Nga)",
+    "en": "OFAC General License 135 (Russian diesel) expires",
+    "why_vi": "Ảnh hưởng nguồn cung diesel toàn cầu và giá diesel trong nước.",
+    "why_en": "Affects global diesel supply and domestic diesel prices."
+   }
+  ]
+ }
+}
