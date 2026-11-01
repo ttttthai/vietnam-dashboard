@@ -1047,6 +1047,24 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .gb-dot { pointer-events: none; }
   .gb-rip { fill: none; stroke-width: 2; animation: gbRip 2.2s ease-out infinite; transform-box: fill-box; transform-origin: center; pointer-events: none; }
   @keyframes gbRip { from { transform: scale(.7); opacity: .9; } to { transform: scale(2.8); opacity: 0; } }
+  .gb-xbtn { font: 700 12px var(--font-ui); padding: 5px 13px; border-radius: 14px; border: 1px solid #0b1622; background: #fff; color: #0b1622; cursor: pointer; } .gb-xbtn[aria-pressed="true"] { background: #0b1622; color: #9fe7ff; box-shadow: 0 0 0 3px rgba(43,179,217,.25); }
+  .gb-mins { margin: 0 0 8px; } .gb-mins button[aria-pressed="false"] { opacity: .75; text-decoration: none; } .gb-mins button[aria-pressed="true"] { background: #0b1622; color: #dff6ff; border-color: #0b1622; }
+  .gb-rank div { grid-template-columns: minmax(70px, 110px) 1fr 40px; } .gb-xr ~ .gb-side, .gb-wrap:has(.gb-xr) .gb-side { background: #0f1c26; border-color: #1e4a5c; color: #dff6ff; } .gb-wrap:has(.gb-xr) .gb-side h3, .gb-wrap:has(.gb-xr) .gb-side p, .gb-wrap:has(.gb-xr) .gb-side b, .gb-wrap:has(.gb-xr) .gb-side span { color: #dff6ff; } .gb-wrap:has(.gb-xr) .gb-side a { color: #9fe7ff; } .gb-wrap:has(.gb-xr) .gb-rank div.vn span, .gb-wrap:has(.gb-xr) .gb-xlist .vn { color: #ff8a80; } .gb-mins i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); display: inline-block; box-shadow: 0 0 6px var(--c); }
+  .gb-ore .gb-ore-ring { fill: none; stroke-width: .8; stroke-dasharray: 2 3; opacity: .55; vector-effect: non-scaling-stroke; } .gb-ore .gb-ore-core { fill: #fff; }
+  .gb-ore .gb-ore-body { animation: gbOre 5.2s linear infinite; animation-delay: var(--sd, 0s); mix-blend-mode: screen; }
+  @keyframes gbOre { 0%, 100% { opacity: .62; } 3% { opacity: 1; } 12% { opacity: .75; } }
+  .gb-ore-vn .gb-ore-core { fill: #ffd54f; } .gb-ore-vn .gb-ore-ring { stroke: #ff8a80 !important; opacity: .9; stroke-dasharray: none; }
+  .gb-board.gb-xr { background: #08131c; border-color: #10202c; box-shadow: inset 0 0 0 2px #1e4a5c, 0 10px 30px rgba(8,19,28,.45); }
+  .gb-xray .gb-sea-p { fill: #08131c; stroke: #1e4a5c; } .gb-xray .gb-grat { stroke: rgba(120,200,230,.14); }
+  .gb-xray .gb-land { fill: rgba(150,215,240,.07); stroke: rgba(170,230,255,.55); } .gb-xray .gb-land:hover { fill: rgba(150,215,240,.14); }
+  .gb-xray .gb-vn { fill: rgba(255,120,110,.16); stroke: #ff8a80; } .gb-xray .gb-vnstar { fill: #ffd54f; }
+  .gb-land, .gb-sea-p { transition: fill .9s, stroke .9s; }
+  .gb-xray .gb-tag { fill: #dff6ff; stroke: #08131c; }
+  .gb-scan { position: absolute; inset: 0 auto 0 -20%; width: 20%; pointer-events: none; display: none; background: linear-gradient(90deg, transparent, rgba(110,220,255,.0) 30%, rgba(150,235,255,.28) 50%, rgba(110,220,255,.0) 70%, transparent); mix-blend-mode: screen; }
+  .gb-xr .gb-scan { display: block; animation: gbScan 5.2s linear infinite; } @keyframes gbScan { from { left: -20%; } to { left: 110%; } }
+  .gb-xr::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.45)); }
+  .gb-xr .gb-zoom button { background: #10202c; color: #9fe7ff; border-color: #1e4a5c; }
+  .gb-rank div.vn span, .gb-xlist .vn { color: #b42318; font-weight: 700; } .gb-xlist { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 4px; } .gb-xlist button { all: unset; cursor: pointer; font: 400 12.5px/1.4 var(--font-ui); border-left: 3px solid var(--c); padding-left: 7px; display: block; } .gb-xlist button:hover b { text-decoration: underline; }
   .gb-tag { font: 600 11px var(--font-ui); text-anchor: middle; dominant-baseline: central; fill: #16181d; paint-order: stroke; stroke: #fffaf0; stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; animation: gbTagIn .35s ease both; } .gb-tag.hot { font-weight: 700; font-size: 12px; }
   @keyframes gbTagIn { from { opacity: 0; } } .gb-labs.gb-hide { opacity: 0; } .gb-labs { transition: opacity .2s; }
   .gb-pop > * { animation: gbPop .7s cubic-bezier(.3,1.6,.5,1) both; animation-delay: var(--pd, 0ms); transform-box: fill-box; transform-origin: center; }
@@ -1072,7 +1090,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .gb-story { margin-top: 10px; } .gb-story-c { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; } .gb-story-c > button { border: 1px solid #16181d; background: #fff; border-radius: 16px; padding: 5px 12px; font: 600 12.5px var(--font-ui); cursor: pointer; } .gb-story-c .gb-play { background: #e34948; border-color: #e34948; color: #fff; }
   .gb-dots { display: flex; gap: 5px; flex-wrap: wrap; } .gb-dots button { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #16181d; background: #fff; padding: 0; cursor: pointer; } .gb-dots button.on { background: #e34948; border-color: #e34948; }
   .gb-legend { margin-top: 6px; } .gb-tbl { overflow-x: auto; max-height: 420px; }
-  @media (prefers-reduced-motion: reduce) { .gb-flow, .gb-cp-disrupted .gb-cp, .gb-tok, .gb-rip, .gb-pop > *, .gb-tag { animation: none; } .gb-rip { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .gb-xr .gb-scan { display: none; } .gb-ore .gb-ore-body { animation: none; opacity: .85; } .gb-flow, .gb-cp-disrupted .gb-cp, .gb-tok, .gb-rip, .gb-pop > *, .gb-tag { animation: none; } .gb-rip { display: none; } }
   .pg-dir-theme { font-style: italic; }
   .pg-dir-sign { font: 400 12px/1.35 var(--font-ui); color: #3d4250; background: #fffaf0; border: 1px solid #e6dcc4; border-radius: 6px; padding: 4px 8px; height: 100%; box-sizing: border-box; overflow: hidden; } .pg-dir-sign b { color: #e34948; font-size: 13px; }
   .pg-dir-t { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px; margin: 6px 0 14px; }
@@ -7868,11 +7886,11 @@ const GB_ICON = { oil: '🛢️', gas: '🔥', lng: '❄️', wheat: '🌾', ric
 const GB_KIND = { energy: ['Năng lượng', 'Energy', '#b45309'], food: ['Lương thực, nông sản', 'Food & farm', '#15803d'], metal: ['Khoáng sản, kim loại', 'Minerals & metals', '#6b7280'], manufactured: ['Hàng công nghiệp', 'Manufactured goods', '#1d4ed8'], tech: ['Công nghệ', 'Technology', '#7c3aed'], arms: ['Vũ khí', 'Arms', '#9f1239'] };
 const GB_LAYERS = [['commodities', 'Hàng hoá', 'Goods'], ['flows', 'Dòng chảy thương mại', 'Trade flows'], ['chokepoints', 'Điểm nghẽn', 'Chokepoints'], ['tech', 'Công nghệ', 'Tech'], ['events', 'Sự kiện', 'Events']];
 const GB_CP = { open: ['#15803d', 'Thông suốt', 'Open'], tense: ['#d97706', 'Căng thẳng', 'Tense'], disrupted: ['#b42318', 'Gián đoạn', 'Disrupted'] };
-let GB = { on: new Set(['commodities', 'flows', 'chokepoints', 'tech', 'events']), kinds: new Set(Object.keys(GB_KIND)), sel: null, step: -1, play: false, zoom: null, k: 1, timer: 0 };
+let GB = { xray: false, min: 'all', on: new Set(['commodities', 'flows', 'chokepoints', 'tech', 'events']), kinds: new Set(Object.keys(GB_KIND)), sel: null, step: -1, play: false, zoom: null, k: 1, timer: 0 };
 const gbB = () => (GEOPOL && GEOPOL.board) || null;
 const gbT = (o, f) => o ? stT(o[f + '_vi'], o[f + '_en']) || '' : '';
 const gbNum = (v, u) => v == null ? '' : `${stN(v, Math.abs(v) < 10 ? 1 : 0)}${u ? ' ' + u : ''}`;
-function gbAll() { const B = gbB() || {}; return [...(B.commodities || []).map(x => ({ ...x, _t: 'commodities' })), ...(B.flows || []).map(x => ({ ...x, _t: 'flows' })), ...(B.chokepoints || []).map(x => ({ ...x, _t: 'chokepoints' })), ...(B.tech || []).map(x => ({ ...x, _t: 'tech' })), ...(GEOPOL.events || []).filter(e => e.lon != null).map(x => ({ ...x, _t: 'events' }))]; }
+function gbAll() { const B = gbB() || {}; return [...(B.commodities || []).map(x => ({ ...x, _t: 'commodities' })), ...(B.flows || []).map(x => ({ ...x, _t: 'flows' })), ...(B.chokepoints || []).map(x => ({ ...x, _t: 'chokepoints' })), ...(B.tech || []).map(x => ({ ...x, _t: 'tech' })), ...(GEOPOL.events || []).filter(e => e.lon != null).map(x => ({ ...x, _t: 'events' })), ...((B.reserves || {}).deposits || []).map(x => ({ ...x, id: x.mineral + '_' + x.iso3, _t: 'reserves' }))]; }
 function renderGeoStory() {
   const root = document.getElementById('geo-story'); if (!root) return; const G = GEOPOL, B = gbB(), A = G.actors || [];
   const today = pgToday().toISOString().slice(0, 10), W = (G.watch || []).filter(w => w.date >= today).sort((a, b) => a.date < b.date ? -1 : 1);
@@ -7883,10 +7901,12 @@ function renderGeoStory() {
     <div class="gb-players">${A.map(a => { const g = GEO_A[a.id] || GEO_A.multi; return `<button type="button" class="gb-player" data-gb-player="${a.id}" style="--c:${g[2]}"><b>${ciE(stT(a.name_vi, a.name_en))}</b>${temp(a.temperature || 0)}<span>${ciE(stT(a.temp_note_vi, a.temp_note_en).split('.')[0] || '')}</span></button>`; }).join('')}</div>
     <div class="gb-bar">
       <div class="gb-chips" role="group" aria-label="${ciE(stT('Lớp bản đồ', 'Map layers'))}">${GB_LAYERS.map(([k, vi, en]) => `<button type="button" data-gb-layer="${k}" aria-pressed="${GB.on.has(k)}">${stT(vi, en)}</button>`).join('')}</div>
+      ${(B && B.reserves) ? `<button type="button" class="gb-xbtn" data-gb-xray aria-pressed="${GB.xray}">🩻 ${stT('X-quang: trữ lượng khoáng sản', 'X-ray: mineral reserves')}</button>` : ''}
       <div class="gb-chips gb-kinds" role="group" aria-label="${ciE(stT('Loại hàng', 'Kinds of goods'))}">${Object.entries(GB_KIND).map(([k, v]) => `<button type="button" data-gb-kind="${k}" aria-pressed="${GB.kinds.has(k)}" style="--c:${v[2]}"><i></i>${stT(v[0], v[1])}</button>`).join('')}</div>
     </div>
+    ${(B && B.reserves) ? `<div class="gb-chips gb-mins" role="group" aria-label="${ciE(stT('Khoáng sản', 'Minerals'))}" ${GB.xray ? '' : 'hidden'}><button type="button" data-gb-min="all" aria-pressed="${GB.min === 'all'}">${stT('Tất cả', 'All')}</button>${(B.reserves.minerals || []).map(m => `<button type="button" data-gb-min="${m.id}" aria-pressed="${GB.min === m.id}" style="--c:${m.color}"><i></i>${m.icon || ''} ${ciE(stT(m.name_vi, m.name_en))}</button>`).join('')}</div>` : ''}
     <div class="gb-wrap"><div class="gb-board" id="gb-board"><svg id="gb-svg" role="img" aria-label="${ciE(stT('Bản đồ thế giới: hàng hoá, dòng chảy thương mại, điểm nghẽn, công nghệ và sự kiện', 'World map: goods, trade flows, chokepoints, technology and events'))}"></svg>
-        <div class="gb-zoom"><button type="button" data-gb-z="in" aria-label="${ciE(stT('Phóng to', 'Zoom in'))}">+</button><button type="button" data-gb-z="out" aria-label="${ciE(stT('Thu nhỏ', 'Zoom out'))}">−</button><button type="button" data-gb-z="reset" aria-label="${ciE(stT('Toàn cầu', 'Whole world'))}">⌂</button></div></div>
+        <div class="gb-scan" aria-hidden="true"></div><div class="gb-zoom"><button type="button" data-gb-z="in" aria-label="${ciE(stT('Phóng to', 'Zoom in'))}">+</button><button type="button" data-gb-z="out" aria-label="${ciE(stT('Thu nhỏ', 'Zoom out'))}">−</button><button type="button" data-gb-z="reset" aria-label="${ciE(stT('Toàn cầu', 'Whole world'))}">⌂</button></div></div>
       <aside class="gb-side" id="gb-side" aria-live="polite"></aside></div>
     <div class="gb-story">
       <div class="gb-story-c"><button type="button" data-gb-s="prev" aria-label="${ciE(stT('Bước trước', 'Previous step'))}">◀</button><button type="button" data-gb-s="play" class="gb-play">${stT('▶ Kể chuyện: vì sao', '▶ Tell the story: why')}</button><button type="button" data-gb-s="next" aria-label="${ciE(stT('Bước sau', 'Next step'))}">▶</button>
@@ -7923,6 +7943,8 @@ function gbTick(now) {
 }
 function gbRun() { if (matchMedia('(prefers-reduced-motion: reduce)').matches) { GBP.flows.forEach(F => F.dots.forEach(d => { d.style.display = 'none'; })); return; } if (!GBP.raf && GBP.vis) { GBP.t0 = GBP.t0 || performance.now(); GBP.raf = requestAnimationFrame(gbTick); } }
 // labels in screen space with greedy collision avoidance (only for the pieces in focus, or everything when zoomed in)
+function gbOreSync() { const svg = GB.svg; if (!svg || !GB.xray) return; const T = d3.zoomTransform(svg.node()), P0 = 5.2;
+  svg.selectAll('.gb-ore').each(function () { const x = T.apply([+this.dataset.x, +this.dataset.y])[0] / GB.W; this.style.setProperty('--sd', (-(1 - (x + .12) / 1.24) * P0).toFixed(2) + 's'); }); }
 function gbLabels() {
   const svg = GB.svg; if (!svg) return; const lay = svg.select('.gb-labs'); lay.selectAll('*').remove();
   const T = d3.zoomTransform(svg.node()), W = GB.W, H = GB.H, placed = [], boxes = [];
@@ -7948,8 +7970,8 @@ function gbDraw() {
   Object.entries(GB_KIND).forEach(([k, v]) => defs.append('marker').attr('id', 'gb-ar-' + k).attr('viewBox', '0 0 10 10').attr('refX', 8).attr('refY', 5).attr('markerWidth', 4).attr('markerHeight', 4).attr('orient', 'auto').append('path').attr('d', 'M0,0 L10,5 L0,10 z').attr('fill', v[2]));
   defs.append('marker').attr('id', 'gb-ar-bad').attr('viewBox', '0 0 10 10').attr('refX', 8).attr('refY', 5).attr('markerWidth', 4).attr('markerHeight', 4).attr('orient', 'auto').append('path').attr('d', 'M0,0 L10,5 L0,10 z').attr('fill', '#b42318');
   const g = svg.append('g').attr('class', 'gb-z');
-  g.append('path').attr('d', path({ type: 'Sphere' })).attr('fill', 'url(#gb-sea)').attr('stroke', '#9fb9c1').attr('stroke-width', 1.2);
-  g.append('path').attr('d', path(d3.geoGraticule10())).attr('fill', 'none').attr('stroke', '#c3d7dc').attr('stroke-width', .5).attr('vector-effect', 'non-scaling-stroke');
+  g.append('path').attr('class', 'gb-sea-p').attr('d', path({ type: 'Sphere' })).attr('fill', 'url(#gb-sea)').attr('stroke', '#9fb9c1').attr('stroke-width', 1.2);
+  g.append('path').attr('class', 'gb-grat').attr('d', path(d3.geoGraticule10())).attr('fill', 'none').attr('stroke', '#c3d7dc').attr('stroke-width', .5).attr('vector-effect', 'non-scaling-stroke');
   const countries = topojson.feature(GEO_WORLD, GEO_WORLD.objects.countries).features;
   g.append('g').selectAll('path').data(countries).join('path').attr('d', path).attr('class', d => 'gb-land' + (d.id === '704' ? ' gb-vn' : '')).attr('vector-effect', 'non-scaling-stroke');
   // Vietnam star
@@ -7984,10 +8006,27 @@ function gbDraw() {
   tok('tech', B.tech || [], (t, x) => { t.append('rect').attr('x', -11).attr('y', -11).attr('width', 22).attr('height', 22).attr('rx', 5).attr('class', 'gb-piece gb-tech' + (x.control === 'export_control' ? ' ctl' : '')); t.append('text').attr('class', 'gb-emo').text(GB_ICON[x.icon] || '💡'); t.append('text').attr('class', 'gb-lab').attr('y', 23).text(gbT(x, 'label')); t.append('title').text(gbT(x, 'label')); });
   tok('events', (GEOPOL.events || []).filter(e => e.lon != null), (t, x) => { t.append('path').attr('d', 'M0,0 C-7,-9 -7,-17 0,-17 C7,-17 7,-9 0,0 z').attr('class', 'gb-pin').attr('fill', geoImpC(x.impact || 0)); t.append('circle').attr('cy', -11.5).attr('r', 2.6).attr('fill', '#fff'); t.append('title').text(`${polDS(x.date)} · ${gbT(x, 'title')}`); });
   // zoom & pan
+  // x-ray: mineral reserves as glowing ore bodies beneath the surface (GEOPOL.board.reserves, Geopolitics agent)
+  const RS = B.reserves; if (RS && (RS.deposits || []).length) {
+    const MI = Object.fromEntries((RS.minerals || []).map(m => [m.id, m])), maxM = {};
+    defs.append('filter').attr('id', 'gb-blur').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%').append('feGaussianBlur').attr('stdDeviation', 2.4);
+    (RS.minerals || []).forEach(m => { const rg = defs.append('radialGradient').attr('id', 'gb-ore-' + m.id); [['0%', '#ffffff', .95], ['30%', m.color, .9], ['70%', m.color, .35], ['100%', m.color, 0]].forEach(([o, c, a]) => rg.append('stop').attr('offset', o).attr('stop-color', c).attr('stop-opacity', a)); });
+    RS.deposits.forEach(d => { maxM[d.mineral] = Math.max(maxM[d.mineral] || 0, d.value || 0); });
+    const gr = g.append('g').attr('class', 'gb-L gb-L-reserves');
+    RS.deposits.slice().sort((a, b) => (b.value / (maxM[b.mineral] || 1)) - (a.value / (maxM[a.mineral] || 1))).forEach((d, i) => {
+      const p = P([d.lon, d.lat]), m = MI[d.mineral]; if (!p || !m) return; const r = 6 + 20 * Math.sqrt((d.value || 0) / (maxM[d.mineral] || 1)), id = d.mineral + '_' + d.iso3;
+      const t = gr.append('g').attr('class', 'gb-tok gb-it gb-ore' + (d.iso3 === 'VNM' ? ' gb-ore-vn' : '')).attr('data-gb', 'reserves:' + id).attr('data-min', d.mineral).attr('data-x', p[0]).attr('data-y', p[1]).attr('transform', `translate(${p[0]},${p[1]})`).style('--d', (i * 18) + 'ms');
+      [1.9, 1.45].forEach(f => t.append('ellipse').attr('class', 'gb-ore-ring').attr('rx', r * f).attr('ry', r * f * .62).attr('stroke', m.color));
+      t.append('ellipse').attr('class', 'gb-ore-body').attr('rx', r).attr('ry', r * .66).attr('fill', `url(#gb-ore-${m.id})`).attr('filter', 'url(#gb-blur)');
+      t.append('circle').attr('class', 'gb-ore-core').attr('r', 1.8);
+      t.append('text').attr('class', 'gb-lab').text(`${m.icon || ''} ${stT(d.country_vi, d.country_en)} · ${gbNum(d.value, m.unit)}`);
+      t.append('title').text(`${stT(m.name_vi, m.name_en)} · ${stT(d.country_vi, d.country_en)}${d.site_en ? ' · ' + stT(d.site_vi, d.site_en) : ''}: ${gbNum(d.value, m.unit)}${d.share_world_pct != null ? ` (${stN(d.share_world_pct, 1)}% ${stT('thế giới', 'of world')})` : ''}`);
+    });
+  }
   svg.append('g').attr('class', 'gb-labs');
   const zoom = d3.zoom().scaleExtent([1, 8]).translateExtent([[0, 0], [W, H]]).on('start', () => svg.select('.gb-labs').classed('gb-hide', true))
     .on('zoom', ev => { const k = ev.transform.k; GB.k = k; g.attr('transform', ev.transform); g.selectAll('.gb-tok').attr('transform', function () { return `translate(${this.dataset.x},${this.dataset.y}) scale(${1 / Math.sqrt(k)})`; }); svg.classed('gb-k2', k >= 2.2); })
-    .on('end', () => { gbLabels(); svg.select('.gb-labs').classed('gb-hide', false); });
+    .on('end', () => { gbLabels(); gbOreSync(); svg.select('.gb-labs').classed('gb-hide', false); });
   svg.call(zoom).on('dblclick.zoom', null); GB.zoom = zoom; GB.svg = svg; GB.P = P; GB.W = W; GB.H = H;
   if (!GBP.io && 'IntersectionObserver' in window) { GBP.io = new IntersectionObserver(es => es.forEach(e => { GBP.vis = e.isIntersecting; if (GBP.vis) gbRun(); })); }
   if (GBP.io) { GBP.io.disconnect(); GBP.io.observe(box); }
@@ -7996,28 +8035,31 @@ function gbDraw() {
 }
 function gbApply(animate = true) {
   const svg = GB.svg; if (!svg) return; const B = gbB() || {}, S = (B.story || [])[GB.step], calm = !animate || matchMedia('(prefers-reduced-motion: reduce)').matches;
-  svg.selectAll('.gb-L').style('display', function () { const k = [...this.classList].find(c => c.startsWith('gb-L-')).slice(5); return GB.on.has(k) ? null : 'none'; });
+  svg.selectAll('.gb-L').style('display', function () { const k = [...this.classList].find(c => c.startsWith('gb-L-')).slice(5); return GB.xray ? (k === 'reserves' ? null : 'none') : (k !== 'reserves' && GB.on.has(k) ? null : 'none'); });
+  const bd = document.getElementById('gb-board'); if (bd) bd.classList.toggle('gb-xr', GB.xray); svg.classed('gb-xray', GB.xray);
   svg.selectAll('.gb-it').classed('gb-off', function () { const k = this.dataset.kind; return !!k && GB_KIND[k] && !GB.kinds.has(k); });
   const ids = S ? new Set(S.ids || []) : null, isHot = n => GB.sel === n.dataset.gb || (!!ids && ids.has(n.dataset.gb.split(':')[1]));
   svg.selectAll('.gb-it').classed('gb-dim', function () { if (GB.sel) return this.dataset.gb !== GB.sel; if (!ids || !ids.size) return false; return !ids.has(this.dataset.gb.split(':')[1]); }).classed('gb-hot', function () { return isHot(this); });
-  GBP.flows.forEach(F => { const c = F.el.classList; F.show = GB.on.has('flows') && !c.contains('gb-off') && !c.contains('gb-dim'); F.hot = c.contains('gb-hot'); });
+  svg.selectAll('.gb-ore').classed('gb-dim', function () { return GB.sel ? this.dataset.gb !== GB.sel : GB.min !== 'all' && this.dataset.min !== GB.min; }).classed('gb-hot', function () { return GB.sel === this.dataset.gb || (GB.min !== 'all' && this.dataset.min === GB.min); });
+  GBP.flows.forEach(F => { const c = F.el.classList; F.show = !GB.xray && GB.on.has('flows') && !c.contains('gb-off') && !c.contains('gb-dim'); F.hot = c.contains('gb-hot'); });
   document.querySelectorAll('[data-gb-step]').forEach(b => b.classList.toggle('on', +b.dataset.gbStep === GB.step));
   // camera: fit everything the step points at (pieces, and the routes' end points and chokepoints), glide there
   let T = null;
-  if (S && GB.zoom) { const xs = [], ys = [], add = p => { if (p) { xs.push(p[0]); ys.push(p[1]); } };
-    svg.selectAll('.gb-tok.gb-hot').each(function () { add([+this.dataset.x, +this.dataset.y]); });
+  const xf = GB.xray && GB.min !== 'all' && !GB.sel;
+  if ((S || xf) && GB.zoom) { const xs = [], ys = [], add = p => { if (p) { xs.push(p[0]); ys.push(p[1]); } };
+    svg.selectAll(xf ? '.gb-ore.gb-hot' : '.gb-tok.gb-hot').each(function () { add([+this.dataset.x, +this.dataset.y]); });
     GBP.flows.filter(F => F.hot).forEach(F => { add(F.pts[0]); add(F.pts[F.pts.length - 1]); });
-    if (S.focus) add(GB.P([S.focus.lon, S.focus.lat]));
+    if (S && S.focus) add(GB.P([S.focus.lon, S.focus.lat]));
     if (xs.length) { const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys), pad = GB.W < 600 ? 30 : 60;
-      const k = Math.max(1, Math.min(6, (S.focus && S.focus.zoom) || 6, (GB.W - 2 * pad) / Math.max(40, x1 - x0), (GB.H - 2 * pad) / Math.max(40, y1 - y0)));
+      const k = Math.max(1, Math.min(xf ? 4 : 6, (S && S.focus && S.focus.zoom) || 6, (GB.W - 2 * pad) / Math.max(40, x1 - x0), (GB.H - 2 * pad) / Math.max(40, y1 - y0)));
       T = d3.zoomIdentity.translate(GB.W / 2, GB.H / 2).scale(k).translate(-(x0 + x1) / 2, -(y0 + y1) / 2); } }
-  const after = () => { gbLabels(); if (calm || !S) return;
+  const after = () => { gbLabels(); gbOreSync(); if (calm || !S) return;
     // routes of the step draw themselves in, then its pieces pop
     GBP.flows.filter(F => F.hot).forEach((F, i) => { const el = F.el, len = el.getTotalLength ? el.getTotalLength() : 0; if (!len) return;
       d3.select(el).interrupt().attr('stroke-dasharray', `${len} ${len}`).attr('stroke-dashoffset', len).transition().delay(i * 140).duration(1100).ease(d3.easeCubicOut).attr('stroke-dashoffset', 0).on('end', function () { d3.select(this).attr('stroke-dasharray', null).attr('stroke-dashoffset', null); }); });
     svg.selectAll('.gb-tok.gb-hot').classed('gb-pop', false).each(function (d, i) { const n = this; n.style.setProperty('--pd', (300 + i * 70) + 'ms'); requestAnimationFrame(() => n.classList.add('gb-pop')); }); };
   if (T) { if (calm) { svg.call(GB.zoom.transform, T); after(); } else svg.transition('cam').duration(1700).ease(d3.easeCubicInOut).call(GB.zoom.transform, T).on('end', after); }
-  else gbLabels();
+  else { gbLabels(); gbOreSync(); }
 }
 function gbSide() {
   const el = document.getElementById('gb-side'); if (!el) return; const B = gbB() || {}, S = B.story || [];
@@ -8028,15 +8070,23 @@ function gbSide() {
     else if (t === 'flows') h = `<div class="gb-k" style="--c:${x.status === 'disrupted' ? '#b42318' : (GB_KIND[x.kind] || GB_KIND.manufactured)[2]}">→ ${stT(...(GB_KIND[x.kind] || GB_KIND.manufactured).slice(0, 2))}${x.status && x.status !== 'normal' ? ' · ' + ciE(({ disrupted: stT('gián đoạn', 'disrupted'), restricted: stT('bị hạn chế', 'restricted'), growing: stT('đang tăng', 'growing'), shrinking: stT('đang giảm', 'shrinking') })[x.status] || x.status) : ''}</div><h3>${ciE(gbT(x, 'good'))}</h3><p class="gb-where">${ciE(x.from)} → ${ciE(x.to)}${(x.via || []).length ? ` · ${stT('qua', 'via')} ${x.via.map(v => ciE(gbT((B.chokepoints || []).find(c => c.id === v), 'name') || v)).join(', ')}` : ''}</p><div class="gb-num">${ciE(gbNum(x.value, x.unit))}<span>${x.year || ''}</span></div><p><b>${stT('Vì sao', 'Why')}</b> ${ciE(gbT(x, 'why'))}</p>${src(x.src)}`;
     else if (t === 'chokepoints') { const s = GB_CP[x.status] || GB_CP.open; h = `<div class="gb-k" style="--c:${s[0]}">⚓ ${stT(s[1], s[2])}</div><h3>${ciE(gbT(x, 'name'))}</h3><p class="gb-where">${ciE(gbT(x, 'share'))}</p><p><b>${stT('Vì sao', 'Why')}</b> ${ciE(gbT(x, 'why'))}</p>${src(x.src)}`; }
     else if (t === 'tech') h = `<div class="gb-k" style="--c:#7c3aed">${GB_ICON[x.icon] || '💡'} ${stT('Công nghệ', 'Technology')}${x.control === 'export_control' ? ' · ' + stT('bị kiểm soát xuất khẩu', 'export-controlled') : ''}</div><h3>${ciE(gbT(x, 'label'))}</h3>${x.date ? `<p class="gb-where">${polDS(x.date)}</p>` : ''}<p><b>${stT('Vì sao', 'Why')}</b> ${ciE(gbT(x, 'why'))}</p>${src(x.src)}`;
+    else if (t === 'reserves') { const m = (((B.reserves || {}).minerals) || []).find(z => z.id === x.mineral) || {}; h = `<div class="gb-k" style="--c:${m.color}">🩻 ${m.icon || ''} ${ciE(stT(m.name_vi, m.name_en))} · ${stT('trữ lượng', 'reserves')}</div><h3>${ciE(stT(x.country_vi, x.country_en))}</h3>${x.site_en ? `<p class="gb-where">${ciE(stT(x.site_vi, x.site_en))}</p>` : ''}<div class="gb-num">${ciE(gbNum(x.value, m.unit))}<span>${x.year || ''}${x.share_world_pct != null ? ` · ${stN(x.share_world_pct, 1)}% ${stT('thế giới', 'of world')}` : ''}</span></div>${x.note_en ? `<p>${ciE(stT(x.note_vi, x.note_en))}</p>` : ''}${m.why_en ? `<p><b>${stT('Vì sao quan trọng', 'Why it matters')}</b> ${ciE(stT(m.why_vi, m.why_en))}</p>` : ''}${src(x.src || m.src)}`; }
     else if (t === 'events') { const g = GEO_A[x.actor] || GEO_A.multi; h = `<div class="gb-k" style="--c:${geoImpC(x.impact || 0)}">📍 ${polDS(x.date)} · ${ciE(stT(g[0], g[1]))} · ${geoImpL(x.impact || 0)}</div><h3>${ciE(gbT(x, 'title'))}</h3><p>${ciE(gbT(x, 'what'))}</p><p><b>${stT('Vì sao', 'Why')}</b> ${ciE(gbT(x, 'why'))}</p><p><b>${stT('Với Việt Nam', 'For Vietnam')}</b> ${ciE(gbT(x, 'vn'))}</p><p class="st-tick">${(x.sources || []).map(s => `<a href="${ciE(s.url)}" target="_blank" rel="noopener">${ciE(s.name)}</a>`).join(' · ')}</p>`; }
     el.innerHTML = `<button type="button" class="gb-x" data-gb-close aria-label="${ciE(stT('Đóng', 'Close'))}">✕</button>${h}`; return; } }
+  if (GB.xray && B.reserves) { const R = B.reserves, M = R.minerals || [], D = R.deposits || [];
+    if (GB.min !== 'all') { const m = M.find(z => z.id === GB.min) || {}, L = D.filter(d => d.mineral === GB.min).sort((a, b) => b.value - a.value), mx = Math.max(...L.map(d => d.value), 1);
+      el.innerHTML = `<div class="gb-k" style="--c:${m.color}">🩻 ${stT('Trữ lượng', 'Reserves')} · ${ciE(m.unit || '')}</div><h3>${m.icon || ''} ${ciE(stT(m.name_vi, m.name_en))}</h3>${m.why_en ? `<p>${ciE(stT(m.why_vi, m.why_en))}</p>` : ''}
+        <div class="fd-share gb-rank">${L.map(d => `<div class="${d.iso3 === 'VNM' ? 'vn' : ''}"><span>${ciE(stT(d.country_vi, d.country_en))}</span><i style="width:${(d.value / mx * 100).toFixed(1)}%;background:${m.color}"></i><b>${d.share_world_pct != null ? stN(d.share_world_pct, 0) + '%' : gbNum(d.value)}</b></div>`).join('')}</div>
+        ${m.world_total != null ? `<p class="st-tick">${stT('Thế giới', 'World')}: ${ciE(gbNum(m.world_total, m.unit))}</p>` : ''}${src(m.src || R.source)}`; return; }
+    el.innerHTML = `<div class="gb-k" style="--c:#2bb3d9">🩻 ${stT('Chế độ X-quang', 'X-ray mode')}</div><h3>${stT('Của cải nằm dưới mặt đất', 'The wealth beneath the surface')}</h3><p>${ciE(stT(R.basis_vi, R.basis_en) || '')}</p>
+      <ol class="gb-xlist">${M.map(m => { const L = D.filter(d => d.mineral === m.id).sort((a, b) => b.value - a.value), top = L[0], vn = L.find(d => d.iso3 === 'VNM'), rk = vn ? L.indexOf(vn) + 1 : 0; return `<li><button type="button" data-gb-min="${m.id}" style="--c:${m.color}">${m.icon || ''} <b>${ciE(stT(m.name_vi, m.name_en))}</b> — ${top ? `${ciE(stT(top.country_vi, top.country_en))}${top.share_world_pct != null ? ' ' + stN(top.share_world_pct, 0) + '%' : ''}` : ''}${vn ? ` · <span class="vn">${stT('Việt Nam', 'Vietnam')} #${rk}</span>` : ''}</button></li>`; }).join('')}</ol>${src(R.source)}`; return; }
   const s = S[GB.step];
   if (s) { el.innerHTML = `<div class="gb-k" style="--c:#16181d">${stT('Bước', 'Step')} ${GB.step + 1}/${S.length}</div><h3>${ciE(gbT(s, 'title'))}</h3><p>${ciE(gbT(s, 'text'))}</p>${s.vn_vi ? `<p class="gb-vnp"><b>${stT('Với Việt Nam', 'For Vietnam')}</b> ${ciE(gbT(s, 'vn'))}</p>` : ''}`; return; }
   el.innerHTML = `<div class="gb-k" style="--c:#16181d">${stT('Cách chơi', 'How to read the board')}</div><h3>${stT('Thế giới trên một bàn cờ', 'The world on one board')}</h3><p>${stT('Mỗi quân cờ là một mặt hàng lớn tại nơi nó được sản xuất; mũi tên là dòng chảy thương mại chính; hình thoi ⚓ là điểm nghẽn hàng hải; ô vuông là bước tiến công nghệ; ghim là sự kiện gần đây. Bấm “Kể chuyện” để đi qua từng bước và hiểu vì sao.', 'Each piece is a major product where it is made; arrows are the main trade flows; ⚓ diamonds are shipping chokepoints; squares are technology advances; pins are recent events. Press "Tell the story" to walk through it step by step and see why.')}</p>
     <div class="gb-leg">${Object.entries(GB_KIND).map(([k, v]) => `<span><i style="border-color:${v[2]}"></i>${stT(v[0], v[1])}</span>`).join('')}<span><i style="background:#b42318;border-color:#b42318"></i>${stT('Gián đoạn', 'Disrupted')}</span></div>`;
 }
 function gbGo(i, auto) {
-  const S = (gbB() || {}).story || []; if (!S.length) return; GB.step = (i + S.length) % S.length; GB.sel = null;
+  const S = (gbB() || {}).story || []; if (!S.length) return; GB.step = (i + S.length) % S.length; GB.sel = null; if (GB.xray) { GB.xray = false; const xb = document.querySelector('[data-gb-xray]'); if (xb) xb.setAttribute('aria-pressed', false); const mc = document.querySelector('.gb-mins'); if (mc) mc.hidden = true; }
   const s = S[GB.step]; if (s && s.show) { const L = new Set(s.show.map(x => x.split(':')[0])); if (L.size) GB.on = new Set([...L, 'flows', 'commodities'].filter(x => GB_LAYERS.some(l => l[0] === x))); document.querySelectorAll('[data-gb-layer]').forEach(b => b.setAttribute('aria-pressed', GB.on.has(b.dataset.gbLayer))); }
   gbApply(true); gbSide(); const sd = document.getElementById('gb-side'); if (sd) { sd.classList.remove('gb-in'); void sd.offsetWidth; sd.classList.add('gb-in'); }
   clearTimeout(GB.timer); const ms = Math.max(9000, gbT(s, 'text').length * 70) * (window.__stSlow || 1), pb = document.querySelector('.gb-prog i'); if (pb) { pb.style.animation = 'none'; void pb.offsetWidth; pb.style.animation = GB.play && auto !== false ? `gbProg ${ms}ms linear forwards` : 'none'; }
@@ -8046,6 +8096,9 @@ function gbPlay(on) { GB.play = on; const b = document.querySelector('[data-gb-s
 document.addEventListener('click', e => {
   const q = s => e.target.closest && e.target.closest(s);
   let t = q('[data-gb]'); if (t && q('#gb-svg')) { GB.sel = GB.sel === t.dataset.gb ? null : t.dataset.gb; gbApply(false); gbSide(); return; }
+  t = q('[data-gb-xray]'); if (t) { GB.xray = !GB.xray; GB.sel = null; GB.min = 'all'; gbPlay(false); GB.step = -1; t.setAttribute('aria-pressed', GB.xray); const mc = document.querySelector('.gb-mins'); if (mc) mc.hidden = !GB.xray; document.querySelectorAll('[data-gb-min]').forEach(b => b.setAttribute('aria-pressed', b.dataset.gbMin === 'all'));
+    gbApply(false); gbSide(); if (GB.svg) GB.svg.transition('cam').duration(1200).ease(d3.easeCubicInOut).call(GB.zoom.transform, d3.zoomIdentity); if (GB.xray) GB.svg.selectAll('.gb-ore').classed('gb-pop', false).each(function () { const n = this; n.style.setProperty('--pd', Math.round(+n.dataset.x / GB.W * 900) + 'ms'); requestAnimationFrame(() => n.classList.add('gb-pop')); }); return; }
+  t = q('[data-gb-min]'); if (t) { GB.min = t.dataset.gbMin; GB.sel = null; document.querySelectorAll('[data-gb-min]').forEach(b => b.setAttribute('aria-pressed', b === t)); if (GB.min === 'all' && GB.svg) GB.svg.transition('cam').duration(1200).ease(d3.easeCubicInOut).call(GB.zoom.transform, d3.zoomIdentity); gbApply(true); gbSide(); return; }
   t = q('[data-gb-layer]'); if (t) { const k = t.dataset.gbLayer; GB.on.has(k) ? GB.on.delete(k) : GB.on.add(k); t.setAttribute('aria-pressed', GB.on.has(k)); gbApply(false); return; }
   t = q('[data-gb-kind]'); if (t) { const k = t.dataset.gbKind; GB.kinds.has(k) ? GB.kinds.delete(k) : GB.kinds.add(k); t.setAttribute('aria-pressed', GB.kinds.has(k)); gbApply(false); return; }
   t = q('[data-gb-s]'); if (t) { const a = t.dataset.gbS; if (a === 'play') gbPlay(!GB.play); else { gbPlay(false); gbGo(GB.step + (a === 'next' ? 1 : -1) + (GB.step < 0 && a === 'next' ? 0 : 0), false); } return; }
