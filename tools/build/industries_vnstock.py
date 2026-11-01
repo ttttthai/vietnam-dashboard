@@ -30,11 +30,17 @@ same schema from vnstock and additionally fills the fundamentals (P/E, P/B, ROE,
 * Values are only ever copied or aggregated from responses — null when not returned, never estimated.
 * Descriptive notes (note_vi / note_en / note_src) are carried over from the existing file by ICB code: they are
   written by the Investing agent, not generated. Descriptive only — no recommendations.
+* History (--history-from YEAR, default 2018; 0 skips): IND_ICB.history = year-end cap-weighted industry price
+  indices over today's constituents (rebased 100 at end-YEAR, chain-linked yearly with weights = adjusted close ×
+  current listed shares at the start of each year), calendar-year returns (last year = YTD), approximate year-end caps,
+  constituents with data, VN-Index year-end closes, plus 24 month-ends rebased 100 at the first month. Pure function
+  history_block(); method text in HISTORY_BASIS. Needs ~2,000 daily bars per stock (Quote.history start date).
 * Every call: retries with backoff via vnstock_layer.call; responses cached under /tmp/vnstock_ind_cache (24 h).
 """
 from __future__ import annotations
 
 import argparse
+import bisect
 import calendar
 import json
 import os
@@ -196,22 +202,180 @@ def close_on_or_before(h: dict, day: str) -> float | None:
     return best
 
 
-def returns(syms: list[str], as_of: str, refresh: bool) -> tuple[dict, dict]:
+def returns(syms: list[str], as_of: str, refresh: bool, bars: int = 320) -> tuple[dict, dict, dict]:
+    """→ (per-symbol 1M/YTD closes, bases, raw daily histories {sym: {t, c}} for the history block)."""
     d = date.fromisoformat(as_of)
     ytd_base = date(d.year - 1, 12, 31).isoformat()
     y, m = (d.year, d.month - 1) if d.month > 1 else (d.year - 1, 12)
     m1_base = date(y, m, min(d.day, calendar.monthrange(y, m)[1])).isoformat()   # same day one month earlier
-    out = {}
+    out, raw = {}, {}
     for i, s in enumerate(syms):
-        h = cached(f"hist_{s}", lambda: V.history(s, 320, **RETRY), refresh)
+        h = cached(f"hist{bars}_{s}", lambda: V.history(s, bars, **RETRY), refresh)
         if not h or not h.get("c"):
             continue
+        raw[s] = {"t": h["t"], "c": h["c"]}
         c0 = close_on_or_before(h, as_of)
         out[s] = {"c": c0, "ytd": close_on_or_before(h, ytd_base), "m1": close_on_or_before(h, m1_base),
                   "last5": h["c"][-6:]}
         if i % 100 == 0:
             print(f"  history {i}/{len(syms)}", flush=True)
-    return out, {"ytd_base": ytd_base, "m1_base": m1_base}
+    return out, {"ytd_base": ytd_base, "m1_base": m1_base}, raw
+
+
+# ─── history block (year-end and month-end industry indices) ──────
+HISTORY_BASIS = {
+    "vi": ("Chỉ số giá ngành tự tính, gia quyền vốn hóa, theo các mã niêm yết HIỆN NAY (HOSE/HNX/UPCoM, phân ngành ICB "
+           "cấp 2 của Vietcap). Giá: giá đóng cửa điều chỉnh hằng ngày của Vietcap (chart gap-chart; cùng nguồn vnstock "
+           "Quote VCI) tại phiên cuối mỗi năm (năm {last} = phiên {as_of}, tức từ đầu năm đến nay). Lợi suất năm Y = "
+           "Σ(số CP niêm yết hiện tại × giá ĐC cuối Y) ÷ Σ(số CP hiện tại × giá ĐC cuối Y−1) − 1, chỉ gồm mã có giá ở cả hai "
+           "thời điểm; tức là gia quyền theo vốn hóa đầu năm ước tính (giá ĐC × số CP hiện tại), tái cân bằng mỗi năm. "
+           "Chỉ số = 100 tại cuối {first} (hoặc năm đầu tiên có dữ liệu), nối chuỗi các lợi suất năm. Mã chưa có giá thì "
+           "bỏ qua; không nội suy. Chỉ là chỉ số giá (không cộng cổ tức tiền mặt trừ khi Vietcap đã điều chỉnh giá cho cổ "
+           "tức tiền). Thiên lệch sống sót: chỉ gồm mã còn niêm yết hôm nay — mã đã hủy niêm yết/bị đình chỉ hẳn không có "
+           "trong chuỗi, nên các năm đầu chỉ phản ánh những công ty tồn tại đến nay. Vốn hóa cuối năm (mcap_bn_vnd) chỉ "
+           "là XẤP XỈ = giá ĐC × số CP hiện tại: giá ĐC đã chia cho cổ tức cổ phiếu/thưởng nên phần này gần đúng, nhưng "
+           "phát hành thêm (chào bán, riêng lẻ, ESOP, sáp nhập) làm phóng đại vốn hóa quá khứ, và mã nay không còn niêm "
+           "yết bị thiếu — không dùng như vốn hóa thị trường chính thức. n_with_data = số mã có giá tại cuối năm đó; "
+           "cap_coverage_pct = tỷ trọng vốn hóa hôm nay của các mã đó."),
+    "en": ("Self-computed cap-weighted industry price indices over TODAY's listed constituents (HOSE/HNX/UPCoM, Vietcap "
+           "ICB level 2). Prices: Vietcap adjusted daily closes (chart gap-chart; the same feed as vnstock Quote VCI) on "
+           "the last session of each year ({last} = session of {as_of}, i.e. year-to-date). Return in year Y = Σ(current "
+           "listed shares × adj. close end-Y) ÷ Σ(current listed shares × adj. close end-(Y−1)) − 1 over stocks with "
+           "both closes, i.e. weights = estimated year-start market cap (adj. close × current shares), rebalanced "
+           "yearly. Index = 100 at end-{first} (or the first year with data), chain-linked from the yearly returns. Stocks "
+           "without a price are skipped; nothing is interpolated. Price index (no reinvested cash dividends unless "
+           "Vietcap's adjustment already strips them from past prices). Survivorship bias: only stocks listed today — "
+           "delisted names are absent, so early years show only the companies that survived to today. Year-end market "
+           "cap (mcap_bn_vnd) is APPROXIMATE = adj. close × current shares: adjusted prices already divide out stock "
+           "dividends/bonus shares, but new issuance since (rights, private placements, ESOP, mergers) inflates past "
+           "caps and delisted stocks are missing — not an official market capitalisation. n_with_data = constituents "
+           "with a price at that year-end; cap_coverage_pct = their share of today's industry market cap."),
+}
+
+
+def _cob(t: list[str], c: list, day: str):
+    """Last close on/before day (t ascending ISO dates); None when no bar on/before day."""
+    i = bisect.bisect_right(t, day) - 1
+    return c[i] if i >= 0 and c[i] else None
+
+
+FLIP_JUMP, FLIP_REVERT, FLIP_MAX = 1.5, 5, 3
+
+
+def _flip_windows(t: list[str], c: list) -> list[tuple[str, str]]:
+    """Feed artefacts: a daily move beyond ×1.5 / ÷1.5 that returns to within 1 % of the pre-jump close within
+    FLIP_REVERT sessions (seen on a few illiquid UPCoM series, e.g. DNN oscillating between two levels).
+    → [(first bad date, first good date again)]."""
+    out = []
+    for i in range(1, len(c) - 1):
+        a, b = c[i - 1], c[i]
+        if not a or not b or 1 / FLIP_JUMP <= b / a <= FLIP_JUMP:
+            continue
+        for k in range(i + 1, min(i + 1 + FLIP_REVERT, len(c))):
+            if c[k] and abs(c[k] / a - 1) < 0.01:
+                out.append((t[i], t[k]))
+                break
+    return out
+
+
+def history_block(stocks: list[dict], hist: dict, as_of: str, first_year: int = 2018, n_months: int = 24,
+                  index_hist: dict | None = None) -> dict:
+    """Pure function (no network). stocks: [{sym, icb, mcap (bn VND, today), ls (listed shares today)}];
+    hist: {sym: {t: [ISO dates ascending], c: [adjusted closes]}}; index_hist: {"VNINDEX": {t, c}}.
+    Data screen (skip, never repair): series with ≥ FLIP_MAX flips are dropped; a single checkpoint close that falls
+    inside a flip window is treated as missing for that checkpoint."""
+    d = date.fromisoformat(as_of)
+    years = list(range(first_year, d.year + 1))
+    yend = [f"{y}-12-31" for y in years[:-1]] + [as_of]
+    k0 = d.year * 12 + d.month - 1 - (n_months - 1)                 # n_months ending at as_of's month
+    months, (y, m) = [], (k0 // 12, k0 % 12 + 1)
+    for _ in range(n_months):
+        months.append(f"{y}-{m:02d}")
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+    mend = [f"{x}-{calendar.monthrange(int(x[:4]), int(x[5:]))[1]:02d}" for x in months]
+    mend[-1] = min(mend[-1], as_of)
+    mem_all, dropped_series, dropped_closes = [], [], []
+    for s in stocks:
+        h = hist.get(s["sym"])
+        if not s.get("mcap") or not s.get("ls") or not h or not h.get("t"):
+            mem_all.append({**s, "mcap": s.get("mcap") or 0, "y": [None] * len(yend), "m": [None] * len(mend)})
+            continue
+        t = [str(x)[:10] for x in h["t"]]
+        fw = _flip_windows(t, h["c"])
+        if len(fw) >= FLIP_MAX:
+            dropped_series.append({"ticker": s["sym"], "icb": s["icb"], "flips": len(fw),
+                                   "mcap_bn_vnd": round(s["mcap"])})
+            mem_all.append({**s, "y": [None] * len(yend), "m": [None] * len(mend)})
+            continue
+
+        def get(day, t=t, c=h["c"], fw=fw, sym=s["sym"]):
+            i = bisect.bisect_right(t, day) - 1           # bar actually used for this checkpoint
+            if i < 0 or not c[i]:
+                return None
+            if any(a <= t[i] < b for a, b in fw):
+                rec = {"ticker": sym, "checkpoint": day, "bar": t[i]}
+                if rec not in dropped_closes:
+                    dropped_closes.append(rec)
+                return None
+            return c[i]
+        mem_all.append({**s, "y": [get(x) for x in yend], "m": [get(x) for x in mend]})
+
+    def series(mem, key, nper, full=True):
+        cap_now = sum(r["mcap"] or 0 for r in mem)
+        idx, ret, mc, n, cov = [], [], [], [], []
+        for k in range(nper):
+            have = [r for r in mem if r[key][k]]
+            n.append(len(have))
+            cov.append(round(100 * sum(r["mcap"] for r in have) / cap_now, 1) if cap_now else None)
+            mc.append(round(sum(r[key][k] * r["ls"] for r in have) / 1e9) if have else None)
+            if not idx or idx[-1] is None:
+                ret.append(None)
+                idx.append(100.0 if have else None)
+                continue
+            pair = [r for r in have if r[key][k - 1]]
+            base = sum(r[key][k - 1] * r["ls"] for r in pair)
+            if not base:
+                ret.append(None)
+                idx.append(None)
+                continue
+            rr = sum(r[key][k] * r["ls"] for r in pair) / base - 1
+            ret.append(round(100 * rr, 2))
+            idx.append(idx[-1] * (1 + rr))
+        idx = [None if v is None else round(v, 2) for v in idx]
+        if not full:
+            return idx
+        return {"index": idx, "ret_pct": ret, "mcap_bn_vnd": mc, "n_with_data": n, "cap_coverage_pct": cov,
+                "low_coverage_years": [years[k] for k, v in enumerate(cov) if v is not None and v < 60]}
+
+    codes = sorted({r["icb"] for r in mem_all})
+    by_icb = {c: series([r for r in mem_all if r["icb"] == c], "y", len(years)) for c in codes}
+    market = series(mem_all, "y", len(years))
+    vh = (index_hist or {}).get("VNINDEX")
+    vt = [str(x)[:10] for x in vh["t"]] if vh else []
+    market["vnindex"] = [_cob(vt, vh["c"], x) for x in yend] if vh else [None] * len(yend)
+    vv = market["vnindex"]
+    market["vnindex_ret_pct"] = [None] + [round(100 * (b / a - 1), 2) if a and b else None for a, b in zip(vv, vv[1:])]
+    dd = f"{as_of[8:10]}/{as_of[5:7]}"
+    return {
+        "years": years, "year_end_dates": yend, "ytd_year": years[-1],
+        "labels_vi": [str(y) for y in years[:-1]] + [f"{years[-1]} (đến {dd})"],
+        "labels_en": [str(y) for y in years[:-1]] + [f"{years[-1]} YTD"],
+        "source": "Vietcap chart/OHLCChart/gap-chart adjusted daily closes (vnstock Quote(source='VCI').history); "
+                  "current listed shares and ICB codes as in IND_ICB.industries. vnindex = VN-Index close at each "
+                  "year-end (same feed); vnindex_ret_pct ≈ derived from those closes.",
+        "basis_vi": HISTORY_BASIS["vi"].format(
+            first=first_year, last=years[-1], as_of=as_of),
+        "basis_en": HISTORY_BASIS["en"].format(first=first_year, last=years[-1], as_of=as_of),
+        "by_icb": by_icb, "market": market,
+        "data_screen": {"rule": f"daily move beyond ×{FLIP_JUMP} or ÷{FLIP_JUMP} that reverts to within 1% of the "
+                                f"prior close within {FLIP_REVERT} sessions = feed artefact; ≥{FLIP_MAX} such flips → "
+                                "series dropped; otherwise a year-/month-end close inside a flip is treated as missing",
+                        "series_dropped": dropped_series, "closes_dropped": dropped_closes},
+        "monthly": {"months": months, "month_end_dates": mend, "base": f"100 = {months[0]} month-end",
+                    "by_icb": {c: series([r for r in mem_all if r["icb"] == c], "m", len(months), False) for c in codes},
+                    "market": series(mem_all, "m", len(months), False),
+                    "vnindex": [_cob(vt, vh["c"], x) for x in mend] if vh else [None] * len(mend)},
+    }
 
 
 # ─── fundamentals ──────────────────────────────────────────────────
@@ -301,6 +465,8 @@ def main() -> None:
     ap.add_argument("--no-finance", action="store_true")
     ap.add_argument("--as-of", help="price date (default: latest board trading date)")
     ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--history-from", type=int, default=2018,
+                    help="first year-end of IND_ICB.history (index = 100 there); 0 = skip the history block")
     a = ap.parse_args()
 
     st = V.status()
@@ -314,7 +480,10 @@ def main() -> None:
     bd = board(mod, syms, a.refresh)
     dates = sorted({v["date"] for v in bd.values() if v.get("date")})
     as_of = a.as_of or (str(dates[-1])[:10] if dates else date.today().isoformat())
-    rets, bases = returns(syms, as_of, a.refresh)
+    bars = 320
+    if a.history_from:                               # sessions from the first year-end to today, + margin
+        bars = max(320, int((date.today() - date(a.history_from, 12, 31)).days * 0.70) + 120)
+    rets, bases, raw = returns(syms, as_of, a.refresh, bars)
 
     for s in stocks:
         b, r = bd.get(s["sym"], {}), rets.get(s["sym"], {})
@@ -377,6 +546,20 @@ def main() -> None:
         i.update({k: o.get(k) for k in ("note_vi", "note_en", "note_src")})
     inds.sort(key=lambda i: -(i["mcap_bn_vnd"] or 0))
 
+    hist = None
+    if a.history_from:
+        vni = cached(f"hist{bars}_VNINDEX", lambda: V.history("VNINDEX", bars, **RETRY), a.refresh)
+        hist = history_block(stocks, raw, as_of, a.history_from,
+                             index_hist={"VNINDEX": vni} if vni and vni.get("c") else None)
+        early = [s["sym"] for s in stocks if s["sym"] in raw and raw[s["sym"]]["t"]
+                 and str(raw[s["sym"]]["t"][0])[:10] > f"{a.history_from}-12-31" and (s["mcap"] or 0) > 50_000]
+        if early:
+            print(f"  note: large caps whose history starts after end-{a.history_from} (new listings, or the source "
+                  f"returned fewer bars): {early[:15]}")
+        hm = hist["market"]
+        print(f"\nhistory {hist['years'][0]}–{hist['years'][-1]} (last = YTD {as_of}) · market index {hm['index']}")
+        print(f"  cap coverage % {hm['cap_coverage_pct']} · VN-Index {hm['vnindex']}")
+
     print(f"\nas_of {as_of} · market {mkt:,.0f} bn VND · finance {'VCI' if usable else 'not reachable/skipped'}")
     print(f"{'icb':<6}{'industry':<32}{'n':>5}{'mcap bn':>12}{'share%':>8}{'1m%':>8}{'ytd%':>8}{'P/E':>7}{'P/B':>6}")
     for i in inds:
@@ -401,6 +584,8 @@ def main() -> None:
     ind_doc.update({"as_of": as_of, "exchanges": ["HOSE", "HNX", "UPCoM"], "industries": inds,
                     "market": {"n_listed": len(stocks), "mcap_bn_vnd": round(mkt)},
                     "return_bases": {"ytd": bases["ytd_base"], "1m": bases["m1_base"]}})
+    if hist is not None:
+        ind_doc["history"] = hist
     doc.update({"_meta": meta, "IND_ICB": ind_doc})
     Path(a.out).write_text(json.dumps(doc, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"\nwrote {a.out}")
