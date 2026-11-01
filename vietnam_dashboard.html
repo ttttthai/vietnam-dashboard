@@ -267,7 +267,6 @@ if (window.APP_LANG === 'en') window.I18N_START();
   @media (max-width: 560px) { .iv-check { grid-template-columns: 18px 1fr; } .iv-check .v { grid-column: 2; } }
   @media (max-width: 720px) {
     #header { flex-wrap: wrap; gap: 6px 8px; padding: 6px 10px; }
-    #hdr-last-update .lu-label { display: none; }
   }
   /* ── Layout: single bottom-panel holds all tabs including the new "Xã hội" ── */
   #main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
@@ -1512,6 +1511,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
   #hdr-update-btn, #bk-log-btn { background: var(--text) !important; color: #fff !important; border: 1px solid var(--text) !important; border-radius: 3px !important; font-weight: 600 !important; }
   #bk-log-btn { background: var(--bg2) !important; color: var(--text) !important; }
   #hdr-update-btn:hover:not(:disabled) { background: #1e293b !important; }
+  .hdr-upd { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }   /* the Update button and the time of the last update sit together */
+  .hdr-upd .hbadge { font-variant-numeric: tabular-nums; }
   /* Tabs: editorial section nav */
   #tabs-bottom { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 12px; gap: 4px; }
   @media (max-width: 900px) { #tabs-bottom { overflow-x: auto; scrollbar-width: thin; -webkit-overflow-scrolling: touch; } }   /* phone: all seven tabs reachable */
@@ -1567,9 +1568,8 @@ if (window.APP_LANG === 'en') window.I18N_START();
     <span id="fx-live-badge" class="live-badge" style="margin-left:auto"></span>
     <span id="bond-live-badge" class="live-badge" style="margin-left:4px"></span>
     <span class="ag-wrap" id="ag-wrap"><button type="button" id="ag-btn" aria-expanded="false" aria-controls="ag-pop">Agents</button><div id="ag-pop" role="dialog" aria-label="Agents" hidden></div></span>
-    <span id="hdr-last-update" class="hbadge" title="Lần cập nhật dữ liệu gần nhất">—</span>
     <span class="lang-seg" role="group" aria-label="Ngôn ngữ / Language"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></span>
-    <button id="hdr-update-btn" title="Tải lại dữ liệu mới nhất từ máy chủ">↻ Cập nhật</button>
+    <span class="hdr-upd"><button id="hdr-update-btn" title="Tải lại dữ liệu mới nhất từ máy chủ">↻ Cập nhật</button><span id="hdr-last-update" class="hbadge" title="Lần cập nhật dữ liệu gần nhất">—</span></span>
   </div>
   <div id="main">
     <!-- BOTTOM PANEL now holds all tabs (Xã hội, Kinh tế, Tương quan, Ngân hàng) -->
@@ -3255,8 +3255,8 @@ function setLastUpdate(iso) {
   if (!el) return;
   if (!iso) { el.textContent = '—'; return; }
   const dt = new Date(iso);
-  const txt = dt.toLocaleString(APP_LOC, {hour:'2-digit', minute:'2-digit', day:'2-digit', month:'2-digit', year:'numeric', hour12:false});
-  el.innerHTML = `<span class="lu-label">Cập nhật: </span>${txt}`;
+  const txt = APP_LANG === 'en' ? dt.toLocaleString('en-GB', {day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:false}) : dt.toLocaleString(APP_LOC, {hour:'2-digit', minute:'2-digit', day:'2-digit', month:'2-digit', year:'numeric', hour12:false});   // EN spells the month so 01/11 is never read as 11 Jan
+  el.innerHTML = `<span class="lu-label">${APP_LANG === 'en' ? 'Last updated' : 'Cập nhật lần cuối'}: </span>${txt}`;
   el.title = 'Lần cập nhật dữ liệu gần nhất: ' + dt.toLocaleString(APP_LOC, {hour12:false});
 }
 
