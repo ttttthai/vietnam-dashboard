@@ -25,7 +25,8 @@ OWNERS = {   # file → constants it owns (and the agent that maintains it)
     'policy': (['POLICY'], 'Policy'),
     'finance': (['FINSYS'], 'Finance'),
     'simulation': (['SIM'], 'Finance'),   # Simulation tab: monthly panel, story beats, scenario model (tools/build/simulate.py)
-    'narration': (['NARRATION'], 'Narrator'),   # film scripts: per-tab films + the cross-tab overview film (movie mode)
+    'narration': (['NARRATION'], 'Narrator'),
+    'geopolitics': (['GEOPOL'], 'Geopolitics'),   # Geopolitics tab: actors, events (what / why / impact on Vietnam), options, watch list   # film scripts: per-tab films + the cross-tab overview film (movie mode)
     'flourish': (['FLOURISH_VIZ'], 'Main session'),   # Flourish chart registry (story slots read it)
 }
 
