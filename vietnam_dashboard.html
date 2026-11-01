@@ -1063,6 +1063,29 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .gb-dots { display: flex; gap: 5px; flex-wrap: wrap; } .gb-dots button { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #16181d; background: #fff; padding: 0; cursor: pointer; } .gb-dots button.on { background: #e34948; border-color: #e34948; }
   .gb-legend { margin-top: 6px; } .gb-tbl { overflow-x: auto; max-height: 420px; }
   @media (prefers-reduced-motion: reduce) { .gb-flow, .gb-cp-disrupted .gb-cp, .gb-tok { animation: none; } }
+  .pg-dir-theme { font-style: italic; }
+  .pg-dir-sign { font: 400 12px/1.35 var(--font-ui); color: #3d4250; background: #fffaf0; border: 1px solid #e6dcc4; border-radius: 6px; padding: 4px 8px; height: 100%; box-sizing: border-box; overflow: hidden; } .pg-dir-sign b { color: #e34948; font-size: 13px; }
+  .pg-dir-t { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px; margin: 6px 0 14px; }
+  .pg-dir-tile { background: #fff; border: 1px solid #e6e3db; border-top: 3px solid #e34948; border-radius: 8px; padding: 9px 11px; display: grid; gap: 3px; animation: pgOrgIn .45s ease both; animation-delay: var(--d); min-width: 0; }
+  .pg-dir-tile b { font: 700 19px/1.15 var(--font-head); } .pg-dir-tile span { font: 400 12.5px/1.35 var(--font-ui); color: #3d4250; } .pg-dir-tile em { font: 400 11px var(--font-ui); font-style: normal; color: #8a8f99; }
+  .pg-dir-b { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 6px 0 14px; }
+  .pg-dir-bc { display: grid; grid-template-columns: 28px 1fr; gap: 10px; background: #fff; border: 1px solid #e6e3db; border-radius: 8px; padding: 10px 12px; min-width: 0; }
+  .pg-dir-bc > i { width: 28px; height: 28px; border-radius: 50%; background: #16181d; color: #fff; display: grid; place-items: center; font: 700 13px var(--font-ui); font-style: normal; }
+  .pg-dir-bc b { font: 600 14px var(--font-ui); } .pg-dir-bc p { margin: 4px 0 0; font: 400 13px/1.45 var(--font-ui); color: #3d4250; }
+  .pg-dir-p { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; margin: 8px 0 14px; }
+  .pg-dir-pc { background: #fff; border: 1px solid #e6e3db; border-left: 4px solid #eda100; border-radius: 8px; padding: 10px 13px; animation: pgOrgIn .45s ease both; animation-delay: var(--d); min-width: 0; }
+  .pg-dir-pc header { display: flex; justify-content: space-between; gap: 8px; font: 600 12px var(--font-ui); } .pg-dir-pc time { color: #8a8f99; font-weight: 400; }
+  .pg-dir-pc h4 { font: 700 15px/1.3 var(--font-head); margin: 5px 0; } .pg-dir-pc p, .pg-dir-pc li { font: 400 12.5px/1.45 var(--font-ui); color: #3d4250; } .pg-dir-pc ul { margin: 4px 0; padding-left: 18px; }
+  .pg-dir-prog { border-top: 1px solid #eeebe3; padding-top: 5px; } .pg-dir-laws { display: flex; flex-wrap: wrap; gap: 4px; } .pg-dir-laws span { font: 500 10.5px var(--font-ui); background: #f2efe7; border-radius: 9px; padding: 1px 7px; }
+  .pg-dir-s { display: grid; gap: 8px; margin: 6px 0 14px; } .pg-dir-sr { background: #fff; border: 1px solid #e6e3db; border-radius: 8px; padding: 8px 12px; } .pg-dir-sr > b { font: 600 13.5px var(--font-ui); }
+  .pg-dir-ft { display: grid; grid-template-columns: 1fr 24px 1fr; gap: 6px; align-items: start; margin-top: 4px; font: 400 12.5px/1.45 var(--font-ui); color: #3d4250; } .pg-dir-ft span:first-child { color: #8a8f99; } .pg-dir-ft i { font-style: normal; text-align: center; color: #e34948; font-weight: 700; }
+  @media (max-width: 560px) { .pg-dir-ft { grid-template-columns: 1fr; } .pg-dir-ft i { transform: rotate(90deg); } }
+  .pg-ld-head { display: flex; gap: 16px; align-items: flex-start; } .pg-ld-head h3 { font: 700 28px var(--font-head); margin: 2px 0 6px; } .pg-ld-head p { font: 400 13.5px/1.5 var(--font-ui); color: #3d4250; max-width: 72ch; }
+  .pg-ld-titles { display: flex; flex-wrap: wrap; gap: 6px; } .pg-ld-titles span { font: 600 12px var(--font-ui); background: #16181d; color: #fff; border-radius: 12px; padding: 3px 10px; } .pg-ld-titles em { font-style: normal; font-weight: 400; opacity: .75; }
+  .pg-ld-career { list-style: none; margin: 4px 0 14px; padding: 0 0 0 14px; border-left: 2px solid #e6e3db; } .pg-ld-career li { position: relative; padding: 3px 0 3px 10px; font: 400 12.5px/1.45 var(--font-ui); } .pg-ld-career li::before { content: ''; position: absolute; left: -20px; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: #e34948; border: 2px solid #fff; } .pg-ld-career time { display: inline-block; min-width: 92px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pg-ld-q { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin: 6px 0 14px; } .pg-ld-q blockquote { margin: 0; background: #fffaf0; border-left: 4px solid #e34948; border-radius: 6px; padding: 10px 13px; } .pg-ld-q p { margin: 0; font: italic 400 15px/1.45 var(--font-head); } .pg-ld-q footer { margin-top: 6px; font: 400 11.5px var(--font-ui); color: #8a8f99; }
+  .pg-ld-where { font: 600 11px var(--font-ui); color: #5b6170; margin-right: 6px; }
+  @media (max-width: 560px) { .pg-ld-head { flex-direction: column; } }
   .st-mv-tm { font: 600 12px var(--font-ui); color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .st-mv-c { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; font: 400 12px var(--font-ui); color: #c9ccd2; }
   .st-mv-c button { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; min-width: 32px; height: 30px; cursor: pointer; font-size: 13px; } .st-mv-c button:hover { background: rgba(255,255,255,.25); }
@@ -5501,8 +5524,9 @@ function stBulbs(root) {
 // at most 4 sub-tabs per tab (user rule): related chapters are wrapped into one sub-tab section before the bar is built;
 // inner chapters keep their ids, charts, boxes and reveal animation. A group whose id ends in -explore owns the panel tail.
 const ST_GROUPS = [
-  ['pg-g-goals', '1 · Mục tiêu & ưu tiên', '1 · Goals & priorities', ['pg-st-gap', 'pg-st-pil']],
-  ['pg-g-docs', '2 · Bộ máy & quyết định', '2 · Structure & decisions', ['pg-st-machine', 'pg-st-dec', 'pg-st-wave', 'pg-st-chain', 'pg-st-pipe', 'pg-st-watch']],
+  ['pg-g-dir', '1 · Định hướng của Đảng', '1 · Party direction', ['pg-st-dir', 'pg-st-leader']],
+  ['pg-g-goals', '2 · Mục tiêu & ưu tiên', '2 · Goals & priorities', ['pg-st-gap', 'pg-st-pil']],
+  ['pg-g-docs', '3 · Bộ máy & quyết định', '3 · Structure & decisions', ['pg-st-machine', 'pg-st-dec', 'pg-st-wave', 'pg-st-chain', 'pg-st-pipe', 'pg-st-watch']],
   ['soc-g-people', '1 · Dân số', '1 · Population', ['soc-st-tfr', 'soc-st-age']],
   ['soc-g-place', '2 · Vùng miền & thế giới', '2 · Regions & the world', ['soc-st-rich', 'soc-st-rank', 'soc-st-rel']],
   ['st-g-growth', '1 · Tăng trưởng & dòng tiền', '1 · Growth & money flows', ['st-formula', 'st-bop', 'st-inv']],
@@ -12542,6 +12566,7 @@ function renderPartyStory() {
       <p class="st-dek">${stT(`Mục tiêu Đại hội XIV cho 2026–2030. Bình quân 2021–2025 là <b>${stN(avg5, 1)}%</b>; chín tháng đầu 2026 đạt <b>${stN(g9, 2)}%</b>. Đích đến: thu nhập trung bình cao vào 2030, nước phát triển thu nhập cao vào 2045.`, `The 14th Congress target for 2026–2030. 2021–2025 averaged <b>${stN(avg5, 1)}%</b>; the first nine months of 2026 reached <b>${stN(g9, 2)}%</b>. The goal: upper-middle income by 2030, a developed high-income country by 2045.`)}</p>
     </div><div id="pg-st-growth" class="st-viz"></div></div></section>`;
   const inv = gaps.find(r => /toàn xã hội|social investment/i.test(r.n)), rev = gaps.find(r => /Thu ngân|revenue/i.test(r.n));
+  h += pgDirChap() + pgLeaderChap();   // sub-tab 1 · Party direction (Strategy agent · party_direction)
   h += stChap('pg-st-gap', stT('Chương 1 · Mục tiêu và hiện tại', 'Chapter 1 · Targets vs today'),
     inv && rev ? stT(`Đầu tư toàn xã hội còn thiếu ${stN(inv.gap, 1)} điểm % GDP; thu ngân sách đã vượt mục tiêu ${stN(-rev.gap, 1)} điểm`, `Total investment is ${stN(inv.gap, 1)} points of GDP short; budget revenue is ${stN(-rev.gap, 1)} points above target`) : stT('Mục tiêu 2030 và số liệu 2025', '2030 targets and 2025 data'),
     stT(`Nghị quyết Đại hội XIV có ${nT} chỉ tiêu chủ yếu đến 2030; ${gaps.length} chỉ tiêu dưới đây có số liệu 2025 để so sánh.`, `The 14th Congress resolution has ${nT} main targets for 2030; the ${gaps.length} below have 2025 data to compare.`),
@@ -12592,6 +12617,7 @@ function renderPartyStory() {
   h += stChap('pg-st-map', stT('Tự khám phá', 'Explore'), stT('Bản đồ đầy đủ: mọi văn bản, mọi liên kết', 'The full map: every document, every link'),
     stT('Lọc theo trụ cột, kéo thanh thời gian, rê chuột vào một văn bản để thấy chuỗi triển khai, bấm để đọc chi tiết.', 'Filter by pillar, drag the timeline, hover a document to see its chain, click to read the details.'), '');
   root.innerHTML = h;
+  [pgDirRoad, pgLeaderDraw].forEach(f => { try { f(); } catch (e) { console.warn('party direction', e); } });
   pgStGrowth(avg5, g9); pgStDumb(gaps); pgStTargets(); pgStBars(M); pgStMult(); pgStWaveCtl(M); pgStPillars(); pgStFlow(hops); pgStRows(); pgStDrafts(); pgStOrg(); pgStOrgEvo(); pgStLeaders(); pgStHow(); pgStHowVote(); pgStHowEvo();
   stFinish(root);
 }
@@ -12937,6 +12963,88 @@ document.addEventListener('click', e => {
   const v = e.target.closest && e.target.closest('[data-pg-orgv]'); if (v) { pgOrgView = v.dataset.pgOrgv; pgStOrg(); return; }
   const x = e.target.closest && e.target.closest('[data-pg-orgx]'); if (x) { const G = pgGov(), all = []; (function w(n) { all.push(n.id); (n.children || []).forEach(w); })(G.org); pgOrgOpen = x.dataset.pgOrgx === 'all' ? new Set(all) : new Set(['dang', 'nha_nuoc', 'dia_phuong', 'mttq']); pgStOrg(); }
 });
+// ── Politics · Party Direction (sub-tab 1, after Overview; Strategy agent · strategy_directives.json → party_direction)
+// The Congress line in one place: the 2030/2045 vision on a road, the headline targets, the strategic breakthroughs,
+// the landmark "pillar" resolutions with their targets and progress, what changed from the previous Congress, and
+// the next milestones. Neutral: what the documents say and what has been implemented; targets are not outcomes.
+function pgDirChap() {
+  const D = PG && PG.data && PG.data.party_direction; if (!D) return '';
+  const C = D.congress || {}, T = D.targets || [], B = D.breakthroughs || [], P = (D.pillars || []).slice().sort((a, b) => (a.date || '') < (b.date || '') ? -1 : 1), S = D.shifts || [];
+  const today = pgToday().toISOString().slice(0, 10), N = (D.next || []).filter(n => n.date >= today).sort((a, b) => a.date < b.date ? -1 : 1);
+  const lk = (u, t) => u ? `<a href="${ciE(u)}" target="_blank" rel="noopener">${ciE(t)}</a>` : ciE(t);
+  return stChap('pg-st-dir', stT('Định hướng của Đảng', 'Party direction'),
+    stT(`${C.name_vi || 'Đại hội'}: mốc ${(D.vision || []).map(v => v.year).join(', ')}; ${P.length} nghị quyết chiến lược dẫn đường`, `${C.name_en || 'The Congress'}: milestones ${(D.vision || []).map(v => v.year).join(', ')}; ${P.length} strategic resolutions lead the way`),
+    `${C.theme_vi ? `<span class="pg-dir-theme">“${ciE(stT(C.theme_vi, C.theme_en))}”</span> ` : ''}${stT('Các mục tiêu là mục tiêu phấn đấu, không phải kết quả; phần tiến độ ghi rõ những gì đã được thực hiện, có nguồn.', 'Targets are aims, not outcomes; the progress notes record what has been implemented, with sources.')}`,
+    `<div id="pg-st-road" class="st-viz" data-noanim></div>
+     ${T.length ? `<div class="st-sub">${stT('Các chỉ tiêu chính', 'Headline targets')}</div><div class="pg-dir-t">${T.map((t, i) => `<div class="pg-dir-tile" style="--d:${i * 50}ms" ${stKey(stT(t.vi, t.en), `${t.value || ''} · ${t.period || ''}`)}><b>${ciE(t.value || '')}</b><span>${ciE(stT(t.vi, t.en))}</span><em>${ciE(t.period || '')}${t.doc ? ' · ' : ''}${t.doc ? lk(t.url, t.doc) : ''}</em></div>`).join('')}</div>` : ''}
+     ${B.length ? `<div class="st-sub">${stT('Các đột phá chiến lược', 'Strategic breakthroughs')}</div><div class="pg-dir-b">${B.map((b, i) => `<div class="pg-dir-bc"><i>${i + 1}</i><div><b>${ciE(stT(b.vi, b.en))}</b>${b.detail_vi ? `<p>${ciE(stT(b.detail_vi, b.detail_en))}</p>` : ''}</div></div>`).join('')}</div>` : ''}
+     ${P.length ? `<div class="st-sub">${stT('Các nghị quyết trụ cột', 'The landmark resolutions')}</div><div id="pg-st-pillt" class="st-viz" data-noanim></div><div class="pg-dir-p">${P.map((p, i) => `<article class="pg-dir-pc" id="pgdir-${ciE(p.id || i)}" style="--d:${i * 60}ms"><header><span class="pg-dir-doc">${lk(p.url, p.doc || '')}</span><time>${p.date ? polDS(p.date) : ''}</time></header><h4>${ciE(stT(p.title_vi, p.title_en))}</h4><p>${ciE(stT(p.aim_vi, p.aim_en) || '')}</p>
+        ${(stT(p.targets_vi, p.targets_en) || []).length ? `<ul>${stT(p.targets_vi, p.targets_en).map(x => `<li>${ciE(x)}</li>`).join('')}</ul>` : ''}
+        ${p.progress_vi ? `<p class="pg-dir-prog"><b>${stT('Tiến độ', 'Progress')}</b> ${ciE(stT(p.progress_vi, p.progress_en))}</p>` : ''}
+        ${(p.laws || []).length ? `<div class="pg-dir-laws">${p.laws.map(l => `<span>${ciE(l)}</span>`).join('')}</div>` : ''}</article>`).join('')}</div>` : ''}
+     ${S.length ? `<div class="st-sub">${stT('Điều gì đã thay đổi so với nhiệm kỳ trước', 'What changed from the previous term')}</div><div class="pg-dir-s">${S.map(s => `<div class="pg-dir-sr"><b>${ciE(stT(s.vi, s.en))}</b><div class="pg-dir-ft"><span>${ciE(stT(s.from_vi, s.from_en) || '')}</span><i aria-hidden="true">→</i><span>${ciE(stT(s.to_vi, s.to_en) || '')}</span></div></div>`).join('')}</div>` : ''}
+     ${N.length ? `<div class="st-sub">${stT('Mốc tiếp theo', 'Next milestones')}</div><ol class="st-watch">${N.map(n => `<li><time>${polDS(n.date)}</time><b>${ciE(stT(n.vi, n.en))}</b>${n.url ? `<p>${lk(n.url, stT('nguồn', 'source'))}</p>` : ''}</li>`).join('')}</ol>` : ''}
+     ${stSrc(stT(`Nguồn: văn kiện ${C.name_vi || 'Đại hội'}, nghị quyết của Bộ Chính trị, Ban Chấp hành Trung ương và Quốc hội, cổng thông tin Chính phủ (mỗi mục có đường dẫn). Cập nhật ${D.as_of ? polDS(D.as_of) : ''}.`, `Sources: ${C.name_en || 'Congress'} documents, Politburo, Central Committee and National Assembly resolutions, the Government portal (each item links its source). As of ${D.as_of ? polDS(D.as_of) : ''}.`))}`);
+}
+// the road: today → 2030 → 2045, vision milestones as signposts, the pillar resolutions as stones laid since 2024
+function pgDirRoad() {
+  const el = document.getElementById('pg-st-road'), D = PG && PG.data && PG.data.party_direction; if (!el || !D) return;
+  const V = (D.vision || []).slice().sort((a, b) => a.year - b.year), W = stCW(el, 1000), narrow = W < 640, RH = narrow ? 48 : 66, top0 = 8, w = narrow ? W - 40 : Math.min(330, (W - 40) / 2.2);
+  const y0 = 2024, yEnd = 2046, far = V.some(v => v.year > yEnd), xEnd = W - (far ? 70 : 24), sx = stLin(y0, yEnd, 24, xEnd), now = pgToday().getFullYear() + pgToday().getMonth() / 12, X = y => y > yEnd ? W - 30 : sx(y);
+  const ends = [], rowOf = V.map(v => { const l = Math.max(4, Math.min(W - w - 4, X(v.year) - 10)); let r = 0; while (ends[r] != null && ends[r] > l - 6) r++; ends[r] = l + w; return [r, l]; }), rows = Math.max(1, ends.length), yr = top0 + rows * RH + 26, H = yr + 40;   // each signpost on the first row where it fits
+  let s = `<path d="M${sx(y0)},${yr} L${xEnd},${yr}" stroke="#d9d4c7" stroke-width="16" stroke-linecap="round"/><path d="M${sx(y0)},${yr} L${xEnd},${yr}" stroke="#fff" stroke-width="2" stroke-dasharray="10,10"/>`;
+  if (far) s += `<text x="${xEnd + 14}" y="${yr + 6}" text-anchor="middle" style="font:700 16px var(--font-ui);fill:#8a8f99">⋯</text><circle cx="${W - 30}" cy="${yr}" r="8" fill="#d9d4c7"/>`;
+  s += `<path class="st-draw" d="M${sx(y0)},${yr} L${sx(now)},${yr}" stroke="#16181d" stroke-width="16" stroke-linecap="round" opacity=".85"/><circle cx="${sx(now)}" cy="${yr}" r="9" fill="#e34948" stroke="#fff" stroke-width="2.5"/><text class="st-lab st-b" x="${sx(now)}" y="${yr - 16}" text-anchor="middle">${stT('Hôm nay', 'Today')}</text>`;
+  [2030, 2035, 2040, 2045].forEach(y => { s += `<text class="st-tick" x="${sx(y)}" y="${yr + 30}" text-anchor="middle">${y}</text>`; });
+  (D.pillars || []).filter(p => p.date).forEach(p => { const t = +p.date.slice(0, 4) + (+p.date.slice(5, 7) - 1) / 12; s += `<circle cx="${sx(t)}" cy="${yr}" r="4.5" fill="#eda100" stroke="#16181d" stroke-width="1" ${stKey(p.doc || '', stT(p.title_vi, p.title_en))}/>`; });
+  V.forEach((v, i) => { const x = X(v.year), [r, left] = rowOf[i], top = top0 + r * RH;
+    s += `<line x1="${x}" x2="${x}" y1="${top + 18}" y2="${yr - 9}" stroke="#16181d" stroke-width="1.5"/><rect x="${x - 6}" y="${yr - 9}" width="12" height="18" fill="#e34948"/>`;
+    s += `<foreignObject x="${left}" y="${top}" width="${w}" height="${RH - 4}"><div xmlns="http://www.w3.org/1999/xhtml" class="pg-dir-sign"><b>${v.year}</b> ${ciE(stT(v.vi, v.en))}</div></foreignObject>`; });
+  el.innerHTML = stSvg(W, H, s, stT('Lộ trình đến 2030, 2045 và xa hơn', 'The road to 2030, 2045 and beyond'));
+  stRW(el, pgDirRoad);
+}
+// ── the leader tracker: Tô Lâm (titles, career, the agenda he champions, documents he signed, his activity log,
+// quotes and upcoming schedule) — kept current by the Strategy agent on every refresh
+let pgLdK = 'all';
+const PG_LDK = { visit_abroad: ['✈️', 'Công du', 'Visits abroad'], foreign_guest: ['🤝', 'Tiếp khách quốc tế', 'Foreign guests'], speech: ['🎙️', 'Phát biểu', 'Speeches'], article: ['📝', 'Bài viết', 'Articles'], meeting: ['🏛️', 'Họp, hội nghị', 'Meetings'], inspection: ['📍', 'Làm việc địa phương', 'Field visits'], ceremony: ['🎖️', 'Nghi lễ', 'Ceremonies'] };
+function pgLeaderHtml() {
+  const D = PG && PG.data && PG.data.party_direction, L = D && D.leader; if (!L) return '';
+  const lk = (u, t) => u ? `<a href="${ciE(u)}" target="_blank" rel="noopener">${ciE(t)}</a>` : ciE(t), today = pgToday().toISOString().slice(0, 10);
+  const por = typeof pgPortrait === 'function' ? pgPortrait(L.name) : null, A = (L.activities || []), up = (L.upcoming || []).filter(u => u.date >= today);
+  const kinds = Object.keys(PG_LDK).filter(k => A.some(a => a.kind === k));
+  return `<div class="pg-ld-wrap" id="pg-st-leader">
+    <div class="pg-ld-head">${typeof pgFace === 'function' ? pgFace(L.name, '#e34948', 84, por) : ''}<div><div class="st-kicker">${stT('Theo dõi lãnh đạo', 'Leader tracker')} · ${stT('cập nhật', 'as of')} ${L.as_of ? polDS(L.as_of) : ''}</div><h3>${ciE(L.name)}</h3>
+      <div class="pg-ld-titles">${(L.titles || []).map(t => `<span>${ciE(stT(t.vi, t.en))}${t.since ? ` <em>${stT('từ', 'since')} ${polDS(t.since)}</em>` : ''}</span>`).join('')}</div>
+      <p>${ciE(stT(L.profile_vi, L.profile_en) || '')}</p></div></div>
+    ${(L.career || []).length ? `<div class="st-sub">${stT('Quá trình công tác', 'Career')}</div><ol class="pg-ld-career">${L.career.map(c => `<li><time>${ciE(String(c.from || ''))}${c.to ? '–' + ciE(String(c.to)) : c.to === null ? stT('–nay', '–now') : ''}</time><span>${ciE(stT(c.vi, c.en))}</span></li>`).join('')}</ol>` : ''}
+    ${(L.priorities || []).length ? `<div class="st-sub">${stT('Chương trình nghị sự ông thúc đẩy', 'The agenda he champions')}</div><div class="pg-dir-b">${L.priorities.map((p, i) => `<div class="pg-dir-bc"><i>${i + 1}</i><div><b>${ciE(stT(p.vi, p.en))}</b>${p.evidence_vi ? `<p>${ciE(stT(p.evidence_vi, p.evidence_en))} ${p.url ? lk(p.url, stT('nguồn', 'source')) : ''}</p>` : ''}</div></div>`).join('')}</div>` : ''}
+    ${(L.quotes || []).length ? `<div class="st-sub">${stT('Phát ngôn đáng chú ý', 'Notable quotes')}</div><div class="pg-ld-q">${L.quotes.map(q => `<blockquote><p>“${ciE(stT(q.vi, q.en))}”</p><footer>${q.date ? polDS(q.date) : ''}${q.context_vi ? ' · ' + ciE(stT(q.context_vi, q.context_en)) : ''}${APP_LANG === 'en' ? ' · translation' : ''} ${q.url ? lk(q.url, stT('nguồn', 'source')) : ''}</footer></blockquote>`).join('')}</div>` : ''}
+    ${A.length ? `<div class="st-sub">${stT(`Hoạt động gần đây (${A.length})`, `Recent activity (${A.length})`)}</div><div id="pg-st-ldtl" class="st-viz" data-noanim></div>
+      <div class="pol-six-f" role="group">${[['all', '', stT('Tất cả', 'All')], ...kinds.map(k => [k, PG_LDK[k][0], stT(PG_LDK[k][1], PG_LDK[k][2])])].map(([k, ic, l]) => `<button type="button" data-pg-ldk="${k}" aria-pressed="${k === pgLdK}">${ic ? ic + ' ' : ''}${l}</button>`).join('')}</div>
+      <ol class="pol-six-l" id="pg-ld-list"></ol>` : ''}
+    ${(L.signed || []).length ? `<div class="st-sub">${stT('Văn bản ông ký ban hành', 'Documents he signed')}</div><ol class="pol-six-l">${L.signed.slice().sort((a, b) => a.date < b.date ? 1 : -1).map(s => `<li><time>${polDS(s.date)}</time><span class="pol-six-side mon">${lk(s.url, s.doc || '')}</span><b>${ciE(stT(s.title_vi, s.title_en))}</b></li>`).join('')}</ol>` : ''}
+    ${up.length ? `<div class="st-sub">${stT('Lịch sắp tới', 'Coming up')}</div><ol class="st-watch">${up.map(u => `<li><time>${polDS(u.date)}</time><b>${ciE(stT(u.vi, u.en))}</b>${u.url ? `<p>${lk(u.url, stT('nguồn', 'source'))}</p>` : ''}</li>`).join('')}</ol>` : ''}
+  </div>`;
+}
+function pgLeaderDraw() {
+  const D = PG && PG.data && PG.data.party_direction, L = D && D.leader; if (!L) return; const A = (L.activities || []).slice().sort((a, b) => a.date < b.date ? 1 : -1);
+  const list = document.getElementById('pg-ld-list'); if (list) list.innerHTML = A.filter(a => pgLdK === 'all' || a.kind === pgLdK).map(a => { const k = PG_LDK[a.kind] || ['•', a.kind, a.kind]; return `<li><time>${polDS(a.date)}</time><span class="pol-six-side fis">${k[0]} ${ciE(stT(k[1], k[2]))}</span>${a.where_vi ? `<span class="pg-ld-where">${ciE(stT(a.where_vi, a.where_en))}</span>` : ''}<b>${ciE(stT(a.vi, a.en))}</b>${a.url ? ` <span class="st-tick"><a href="${ciE(a.url)}" target="_blank" rel="noopener">${stT('nguồn', 'source')}</a></span>` : ''}</li>`; }).join('');
+  const el = document.getElementById('pg-st-ldtl'); if (!el || !A.length) return;
+  const W = stCW(el, 1000), H = 64, d0 = A[A.length - 1].date, d1 = pgToday().toISOString().slice(0, 10), t0 = +pgDate(d0) - 2 * 864e5, t1 = +pgDate(d1) + 2 * 864e5, sx = t => 12 + (t - t0) / (t1 - t0) * (W - 24);
+  let s = `<line class="st-base" x1="12" x2="${W - 12}" y1="34" y2="34"/>`;
+  for (let d = new Date(pgDate(d0)); +d <= t1; d.setMonth(d.getMonth() + 1, 1)) { const x = sx(+d); if (x > 12) s += `<line class="st-grid" x1="${x}" x2="${x}" y1="10" y2="40"/><text class="st-tick" x="${x + 3}" y="58">${stT('T', '')}${d.getMonth() + 1}/${d.getFullYear()}</text>`; }
+  A.forEach((a, i) => { const k = PG_LDK[a.kind] || ['•']; s += `<text x="${sx(+pgDate(a.date))}" y="${a.kind === 'visit_abroad' || a.kind === 'foreign_guest' ? 22 : 38}" text-anchor="middle" style="font-size:14px;cursor:default;${pgLdK !== 'all' && a.kind !== pgLdK ? 'opacity:.18' : ''}" ${stKey(polDS(a.date), stT(a.vi, a.en))}>${k[0]}</text>`; });
+  el.innerHTML = stSvg(W, H, s, stT('Dòng thời gian hoạt động', 'Activity timeline')); stRW(el, pgLeaderDraw);
+}
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-pg-ldk]'); if (!b) return; pgLdK = b.dataset.pgLdk; document.querySelectorAll('[data-pg-ldk]').forEach(x => x.setAttribute('aria-pressed', x === b)); pgLeaderDraw(); });
+
+function pgLeaderChap() {
+  const L = PG && PG.data && PG.data.party_direction && PG.data.party_direction.leader; if (!L) return '';
+  return stChap('pg-st-leader', stT('Định hướng của Đảng · Người đứng đầu', 'Party direction · The leader'),
+    stT(`${L.name}: ${(L.titles || []).length} cương vị, ${(L.activities || []).length} hoạt động gần đây được theo dõi`, `${L.name}: ${(L.titles || []).length} posts, ${(L.activities || []).length} recent activities tracked`),
+    stT('Hồ sơ, chương trình nghị sự, văn bản ký ban hành, hoạt động và phát ngôn — cập nhật mỗi lần làm mới dữ liệu, có ngày và nguồn. Trung lập: ghi lại sự kiện, không bình luận.', 'Profile, agenda, documents signed, activities and statements — updated on every data refresh, dated and sourced. Neutral: a record of events, not commentary.'),
+    pgLeaderHtml());
+}
 function pgStFlow(hops) {
   const el = document.getElementById('pg-st-flow'), keep = hops.filter(h => h.n >= 5);
   const P = { party: [110, 150], assembly: [500, 70], government: [500, 230], ministry: [890, 70], local: [890, 230] }, BW = 150, BH = 46;

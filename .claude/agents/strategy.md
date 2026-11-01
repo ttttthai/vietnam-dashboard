@@ -166,3 +166,13 @@ Never update automatically. When you find newer data, a correction or a change y
 3. Apply only what was approved, then validate and report. Scheduled or routine runs are **check-only**: they report
    what is due and what they would change, and never edit, commit or push.
 A task the user asked for directly (e.g. "fix X") counts as approval for that task only.
+
+## Party direction and the leader tracker (user request, 2026-11-01)
+The Politics tab's sub-tab "1 · Định hướng của Đảng / Party direction" reads `party_direction` (Congress line,
+vision, targets, breakthroughs, pillar resolutions with progress, shifts, next milestones) and
+`party_direction.leader`, a running tracker of **Tô Lâm** (General Secretary and State President). The user asked
+that this sub-tab "research and keep track of" him. On every refresh: add new dated, sourced `activities` (trips,
+foreign guests, speeches, articles, meetings, field visits), newly `signed` documents (set `signer_verified` only
+when a source names the signer), and notable `quotes` (mark exact quote vs reported speech; English is a
+translation); move past `upcoming` items into `activities` if they happened, otherwise drop them; recheck `titles`;
+bump `leader.as_of` and `party_direction.as_of`. Factual and neutral — no praise or criticism.
