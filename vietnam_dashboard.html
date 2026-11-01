@@ -7650,7 +7650,7 @@ const IND_ICB = {"as_of": "2026-10-30", "level": 2, "exchanges": ["HOSE", "HNX",
 // (P/E, P/B), profitability and growth (ROE, latest-quarter revenue and profit growth), foreign ownership and the
 // three largest stocks. Sortable; descriptive only — not a recommendation.
 let indSort = 'mcap';
-const IND_SORTS = [['mcap', 'Vốn hoá', 'Market cap'], ['ret_ytd_pct', 'Từ đầu năm', 'Year to date'], ['ret_1m_pct', '1 tháng', '1 month'], ['pe', 'P/E', 'P/E'], ['roe_pct', 'ROE', 'ROE'], ['npat_yoy_pct', 'Tăng LN', 'Profit growth']];
+const IND_SORTS = [['mcap', 'Vốn hoá', 'Market cap'], ['ret_ytd_pct', 'Từ đầu năm', 'Year to date'], ['ret_1m_pct', '1 tháng', '1 month'], ['pe', 'P/E', 'P/E'], ['pb', 'P/B', 'P/B'], ['roe_pct', 'ROE', 'ROE'], ['npat_yoy_pct', 'Tăng LN', 'Profit growth']];
 function indChap() {
   const I = typeof IND_ICB !== 'undefined' ? IND_ICB : null; if (!I || !(I.industries || []).length) return '';
   const L = I.industries, up = L.filter(x => (x.ret_ytd_pct ?? 0) > 0).length, best = L.filter(x => x.ret_ytd_pct != null).sort((a, b) => b.ret_ytd_pct - a.ret_ytd_pct)[0];
