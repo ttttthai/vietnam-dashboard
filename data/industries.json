@@ -106,14 +106,15 @@
     "pb": "Σ market cap ÷ Σ parent shareholders' equity (bsa78 less minority interests bsa210 where bsa78 includes them) at the latest quarter-end; companies with equity ≤ 0 excluded. Banks: book = parent equity. Keys pb_n, pb_coverage_pct.",
     "roe_pct": "Σ TTM parent profit ÷ Σ latest parent equity over companies in both the pe and pb samples (roe_n); period-end equity, not average. Not a reported ROE.",
     "div_yield_pct": "Σ cash dividends paid in the TTM ÷ Σ market cap of the same companies, %. Dividends = cash-flow statement line 'Cổ tức, lợi nhuận đã trả cho chủ sở hữu' (Vietcap cfa32, financing activities), each company's own latest four consecutive reported quarters ending Q3/2026 or Q2/2026 (older → excluded) of cash-flow statements (quarters are discrete in the source; a reported quarter with the line blank counts as 0). Stock dividends and bonus shares are not cash and are not in this line. In consolidated statements this line also includes dividends paid by subsidiaries to minority (non-controlling) shareholders — it cannot be separated in the source, so the yield is overstated for groups with large minority stakes; not adjusted. Cash paid ≠ declared: timing follows payment dates. div_n, div_payers_n, div_coverage_pct.",
-    "rev_yoy_pct, npat_yoy_pct, growth_quarter": "Like-for-like TTM vs year-earlier TTM over companies with revenue and parent profit in all eight quarters (rev_yoy_n, rev_yoy_coverage_pct); revenue definitions as IND_ICB.fundamentals (net sales; banks total operating income; securities firms net operating revenue; insurers net insurance revenue). npat_yoy_pct null when the year-earlier aggregate profit ≤ 0. growth_quarter names the TTM end; a mixed sample is labelled 'mixed: TTM Q3/2026 (x% of sample cap), TTM Q2/2026 (y%) — each vs its own year-earlier TTM'. Differs from fundamentals.*_yoy_pct (TTM column), which uses one common window ending Q3/2026 and also requires total assets.",
     "net_margin_pct": "Σ TTM parent profit ÷ Σ TTM revenue over the rev_yoy sample (net_margin_n). Banks' denominator is total operating income, brokers' net operating revenue, insurers' net insurance revenue — not comparable with non-financial industries.",
     "eps_growth_pct": "Σ_i shares_now_i × TTM EPS_now_i ÷ Σ_i shares_now_i × TTM EPS_yearago_i − 1, with year-ago EPS restated to today's share count (so issuance/splits do not show as growth) — this reduces exactly to like-for-like TTM parent-profit growth over companies with both windows and share counts (eps_growth_n, eps_growth_coverage_pct). Vietcap's reported EPS (isa23) is not used: it is blank/0 for many companies and not split-adjusted. eps_growth_per_share_pct (supplementary) does NOT restate: shares = paid-in capital bsa80 ÷ VND 10,000 par at each window end, so any increase in shares (cash issues, stock dividends, conversions) counts as dilution; treasury shares not deducted.",
     "debt_to_equity": "×, non-financial industries: Σ interest-bearing debt ÷ Σ parent equity at the latest quarter-end, pb sample (de_n, de_coverage_pct). Debt = short-term borrowings & finance leases bsa56 + long-term borrowings & finance leases bsa71 + convertible bonds bsa173 (straight bonds issued are within bsa56/bsa71 in the VAS layout). Denominator is parent equity, so groups with large minority interests show a higher D/E than Vietcap's debtPerEquity (which divides by total equity incl. minorities, bsa78). Null for ICB 8300 Banks, 8500 Insurance, 8700 Financial Services (deposits/interbank/repo funding are operating liabilities); for those liab_to_equity = Σ total liabilities bsa54 ÷ Σ parent equity is given instead. Market value excludes those three industries.",
     "current_ratio": "×: Σ current assets bsa1 ÷ Σ current liabilities bsa55 at the latest quarter-end, pb sample with both lines (cr_n, cr_coverage_pct). Null for ICB 8300, 8500, 8700 (the bank/insurer/broker VAS formats do not split current/non-current, or not comparably).",
     "interest_coverage": "×: Σ TTM EBIT ÷ Σ TTM interest expense over companies in the rev_yoy sample that report interest expense > 0 (ic_n, ic_coverage_pct); ic_no_debt_n = companies with zero/blank interest expense (excluded). EBIT = profit before tax isa16 + interest expense isa8 ('Chi phí lãi vay', within financial expenses). Shown even if negative, with ic_negative_ebit = true. Null for ICB 8300, 8500, 8700.",
     "asset_turnover": "×: Σ TTM revenue ÷ Σ average total assets (bsa53, mean of the TTM-end quarter and four quarters earlier; latest only where the earlier one is missing — at_latest_assets_only_n), rev_yoy sample (at_n, at_coverage_pct). Null for ICB 8300, 8500, 8700.",
-    "valuation caveats": "(1) Double counting: a listed parent consolidating a listed subsidiary (VIC–VHM/VRE/VPL, MWG–DMX, GVR–PHR/DPR, GAS–PGD …) puts the subsidiary's profit, book, debt and dividends in both companies; cap is counted twice too, so ratios move roughly proportionally rather than in one direction, but the subsidiary's weight is overstated. (2) TTM timing: most cap uses Q4/2025–Q3/2026, the rest Q3/2025–Q2/2026 (see growth_quarter). (3) One-off gains (divestments, revaluations) in the window lower P/E and raise growth; quarterly reports are unaudited and may be revised. (4) Caps use listed shares; ex-rights shares not yet listed (e.g. TCB, ex-date 2026-10-29) understate cap. (5) Full listed universe incl. UPCoM and total (not free-float) cap — differs from VN-Index P/E. (6) Survivorship: today's constituents. Descriptive only, not investment advice."
+    "valuation caveats": "(1) Double counting: a listed parent consolidating a listed subsidiary (VIC–VHM/VRE/VPL, MWG–DMX, GVR–PHR/DPR, GAS–PGD …) puts the subsidiary's profit, book, debt and dividends in both companies; cap is counted twice too, so ratios move roughly proportionally rather than in one direction, but the subsidiary's weight is overstated. (2) TTM timing: most cap uses Q4/2025–Q3/2026, the rest Q3/2025–Q2/2026 (see growth_quarter). (3) One-off gains (divestments, revaluations) in the window lower P/E and raise growth; quarterly reports are unaudited and may be revised. (4) Caps use listed shares; ex-rights shares not yet listed (e.g. TCB, ex-date 2026-10-29) understate cap. (5) Full listed universe incl. UPCoM and total (not free-float) cap — differs from VN-Index P/E. (6) Survivorship: today's constituents. Descriptive only, not investment advice.",
+    "rev_yoy_pct, npat_yoy_pct, growth_quarter": "Like-for-like TTM vs year-earlier TTM over companies with revenue and parent profit in all eight quarters (rev_yoy_n, rev_yoy_coverage_pct); revenue definitions as IND_ICB.fundamentals (net sales; banks total operating income; securities firms net operating revenue; insurers net insurance revenue). npat_yoy_pct null when the year-earlier aggregate profit ≤ 0. growth_quarter names the TTM end; a mixed sample is labelled 'mixed: TTM Q3/2026 (x% of sample cap), TTM Q2/2026 (y%) — each vs its own year-earlier TTM'. Differs from fundamentals.*_yoy_pct (TTM column), which uses one common window ending Q3/2026 and also requires total assets.",
+    "roa_pct": "%, ≈: Σ TTM parent-attributable profit ÷ Σ average total assets (bsa53, mean of the TTM-end quarter and four quarters earlier; latest only where the earlier one is missing — roa_latest_assets_only_n), P/E sample with assets (roa_n, roa_coverage_pct). Includes banks, insurers and brokers (for banks ROA is the usual measure; their balance sheets are 10× leveraged so ROA is far below other industries). Parent profit over total (incl. minorities') assets understates ROA slightly where minorities are large."
    },
    "method_vi": " Lợi suất 1 tháng/từ đầu năm áp dụng cùng bộ lọc dữ liệu như phần lịch sử (bỏ chuỗi giá lỗi của nguồn, ví dụ DNN).",
    "method_en": " 1M/YTD returns use the same data screen as the history block (feed-artefact price series dropped, e.g. DNN)."
@@ -206,7 +207,11 @@
     "asset_turnover": 0.28,
     "at_n": 107,
     "at_coverage_pct": 99.8,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 5.33,
+    "roa_n": 108,
+    "roa_coverage_pct": 99.9,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "8300",
@@ -283,7 +288,6 @@
     "eps_growth_n": 28,
     "eps_growth_coverage_pct": 100.0,
     "debt_to_equity": null,
-    "liab_to_equity": 10.98,
     "de_n": 28,
     "de_coverage_pct": 100.0,
     "current_ratio": null,
@@ -295,7 +299,12 @@
     "ic_no_debt_n": null,
     "asset_turnover": null,
     "at_n": 0,
-    "at_coverage_pct": null
+    "at_coverage_pct": null,
+    "roa_pct": 1.48,
+    "roa_n": 28,
+    "roa_coverage_pct": 100.0,
+    "roa_latest_assets_only_n": 0,
+    "liab_to_equity": 10.98
    },
    {
     "icb": "3500",
@@ -384,7 +393,11 @@
     "asset_turnover": 0.91,
     "at_n": 105,
     "at_coverage_pct": 98.0,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 8.52,
+    "roa_n": 107,
+    "roa_coverage_pct": 99.3,
+    "roa_latest_assets_only_n": 1
    },
    {
     "icb": "2700",
@@ -473,7 +486,11 @@
     "asset_turnover": 0.71,
     "at_n": 150,
     "at_coverage_pct": 98.0,
-    "at_latest_assets_only_n": 1
+    "at_latest_assets_only_n": 1,
+    "roa_pct": 8.46,
+    "roa_n": 153,
+    "roa_coverage_pct": 98.4,
+    "roa_latest_assets_only_n": 3
    },
    {
     "icb": "8700",
@@ -550,7 +567,6 @@
     "eps_growth_n": 45,
     "eps_growth_coverage_pct": 96.2,
     "debt_to_equity": null,
-    "liab_to_equity": 1.43,
     "de_n": 48,
     "de_coverage_pct": 100.0,
     "current_ratio": null,
@@ -562,7 +578,12 @@
     "ic_no_debt_n": null,
     "asset_turnover": null,
     "at_n": 0,
-    "at_coverage_pct": null
+    "at_coverage_pct": null,
+    "roa_pct": 4.13,
+    "roa_n": 47,
+    "roa_coverage_pct": 100.0,
+    "roa_latest_assets_only_n": 1,
+    "liab_to_equity": 1.43
    },
    {
     "icb": "7500",
@@ -651,7 +672,11 @@
     "asset_turnover": 0.99,
     "at_n": 114,
     "at_coverage_pct": 98.6,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 9.46,
+    "roa_n": 115,
+    "roa_coverage_pct": 98.6,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "1700",
@@ -740,7 +765,11 @@
     "asset_turnover": 1.16,
     "at_n": 75,
     "at_coverage_pct": 96.7,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 8.13,
+    "roa_n": 77,
+    "roa_coverage_pct": 96.8,
+    "roa_latest_assets_only_n": 1
    },
    {
     "icb": "5700",
@@ -829,7 +858,11 @@
     "asset_turnover": 0.81,
     "at_n": 29,
     "at_coverage_pct": 99.5,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 3.18,
+    "roa_n": 29,
+    "roa_coverage_pct": 99.5,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "6500",
@@ -918,7 +951,11 @@
     "asset_turnover": 0.65,
     "at_n": 5,
     "at_coverage_pct": 99.9,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 13.24,
+    "roa_n": 5,
+    "roa_coverage_pct": 99.9,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "2300",
@@ -1007,7 +1044,11 @@
     "asset_turnover": 0.53,
     "at_n": 203,
     "at_coverage_pct": 88.1,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 2.92,
+    "roa_n": 205,
+    "roa_coverage_pct": 97.3,
+    "roa_latest_assets_only_n": 1
    },
    {
     "icb": "5300",
@@ -1096,7 +1137,11 @@
     "asset_turnover": 2.19,
     "at_n": 21,
     "at_coverage_pct": 63.1,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 9.68,
+    "roa_n": 21,
+    "roa_coverage_pct": 63.1,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "0500",
@@ -1185,7 +1230,11 @@
     "asset_turnover": 2.87,
     "at_n": 11,
     "at_coverage_pct": 99.9,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 11.1,
+    "roa_n": 11,
+    "roa_coverage_pct": 99.9,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "1300",
@@ -1274,7 +1323,11 @@
     "asset_turnover": 0.84,
     "at_n": 54,
     "at_coverage_pct": 99.2,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 9.33,
+    "roa_n": 55,
+    "roa_coverage_pct": 99.3,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "9500",
@@ -1363,7 +1416,11 @@
     "asset_turnover": 0.79,
     "at_n": 19,
     "at_coverage_pct": 99.5,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 9.71,
+    "roa_n": 19,
+    "roa_coverage_pct": 99.5,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "8500",
@@ -1440,7 +1497,6 @@
     "eps_growth_n": 13,
     "eps_growth_coverage_pct": 100.0,
     "debt_to_equity": null,
-    "liab_to_equity": 6.33,
     "de_n": 13,
     "de_coverage_pct": 100.0,
     "current_ratio": null,
@@ -1452,7 +1508,12 @@
     "ic_no_debt_n": null,
     "asset_turnover": null,
     "at_n": 0,
-    "at_coverage_pct": null
+    "at_coverage_pct": null,
+    "roa_pct": 1.76,
+    "roa_n": 13,
+    "roa_coverage_pct": 100.0,
+    "roa_latest_assets_only_n": 0,
+    "liab_to_equity": 6.33
    },
    {
     "icb": "4500",
@@ -1541,7 +1602,11 @@
     "asset_turnover": 0.72,
     "at_n": 41,
     "at_coverage_pct": 94.4,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 5.77,
+    "roa_n": 41,
+    "roa_coverage_pct": 94.4,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "3700",
@@ -1630,7 +1695,11 @@
     "asset_turnover": 1.24,
     "at_n": 53,
     "at_coverage_pct": 94.9,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 6.3,
+    "roa_n": 54,
+    "roa_coverage_pct": 95.0,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "3300",
@@ -1719,7 +1788,11 @@
     "asset_turnover": 1.1,
     "at_n": 14,
     "at_coverage_pct": 98.2,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 2.0,
+    "roa_n": 15,
+    "roa_coverage_pct": 99.8,
+    "roa_latest_assets_only_n": 0
    },
    {
     "icb": "5500",
@@ -1808,7 +1881,11 @@
     "asset_turnover": 1.09,
     "at_n": 22,
     "at_coverage_pct": 96.5,
-    "at_latest_assets_only_n": 0
+    "at_latest_assets_only_n": 0,
+    "roa_pct": 4.52,
+    "roa_n": 22,
+    "roa_coverage_pct": 96.5,
+    "roa_latest_assets_only_n": 0
    }
   ],
   "market": {
@@ -1885,7 +1962,11 @@
    "at_n": 1023,
    "at_coverage_pct": 97.3,
    "at_latest_assets_only_n": 1,
-   "ratios_ex_financials_note": "debt_to_equity, current_ratio, interest_coverage, asset_turnover: market value excludes ICB 8300/8500/8700 (coverage % of that non-financial cap)"
+   "ratios_ex_financials_note": "debt_to_equity, current_ratio, interest_coverage, asset_turnover: market value excludes ICB 8300/8500/8700 (coverage % of that non-financial cap)",
+   "roa_pct": 2.87,
+   "roa_n": 1125,
+   "roa_coverage_pct": 98.5,
+   "roa_latest_assets_only_n": 7
   },
   "history": {
    "years": [
