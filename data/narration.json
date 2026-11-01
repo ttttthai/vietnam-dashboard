@@ -1,8 +1,8 @@
 {
  "_meta": {
   "owner": "Narrator agent",
-  "as_of": "2026-10-29",
-  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed decision of 28 Oct is not yet in the dashboard data, so Fed figures are narrated as the data shows them, dated 16/9/2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration. 2026-11-01: Policies tab merged into Financial system; money scenes retargeted to tab banks and the money film appended to the banks film."
+  "as_of": "2026-11-01",
+  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed's 28 Oct hold at 3.75–4.00% entered the dashboard data on 2026-11-01 and is narrated in the Fed scenes; next FOMC 8–9 Dec 2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration. 2026-11-01: Policies tab merged into Financial system; money scenes retargeted to tab banks and the money film appended to the banks film."
  },
  "NARRATION": {
   "films": {
@@ -1109,8 +1109,8 @@
        "vi": "TÀI CHÍNH · BA LỰC CẢN",
        "en": "FINANCE · THREE BRAKES"
       },
-      "vi": "Ba lực cản việc hạ lãi suất cùng lúc: lạm phát 5,08% tháng Chín; tín dụng tăng 16,69% so với cùng kỳ; và Fed, ngày 16 tháng Chín năm 2026, nâng lãi suất lên 3,75 đến 4%, lần tăng đầu tiên từ 2023, chỉ còn thấp hơn lãi suất thị trường mở 0,50 điểm.",
-      "en": "Three forces block a cut at once: inflation of 5.08% in September; credit up 16.69% year on year; and the Fed, which on September 16, 2026 raised its rate to 3.75 to 4%, its first hike since 2023, leaving it just 0.50 points below the State Bank's open-market rate.",
+      "vi": "Ba lực cản việc hạ lãi suất cùng lúc: lạm phát 5,08% tháng Chín; tín dụng tăng 16,69% so với cùng kỳ; và Fed, nâng lãi suất lên 3,75 đến 4% ngày 16 tháng Chín năm 2026, rồi giữ nguyên ngày 28 tháng Mười, chỉ thấp hơn lãi suất thị trường mở 0,50 điểm.",
+      "en": "Three forces block a cut at once: inflation of 5.08% in September; credit up 16.69% year on year; and the Fed, which raised its rate to 3.75 to 4% on September 16, 2026, then held it on October 28, just 0.50 points below the State Bank's open-market rate.",
       "play": false,
       "figs": [
        {
@@ -1129,8 +1129,8 @@
          "en": "+16.69%"
         },
         "l": {
-         "vi": "tín dụng so cùng kỳ",
-         "en": "credit, year on year"
+         "vi": "tín dụng so cùng kỳ, 9/2026",
+         "en": "credit, year on year, Sep 2026"
         }
        },
        {
@@ -1149,8 +1149,18 @@
          "en": "3.75–4%"
         },
         "l": {
-         "vi": "biên độ lãi suất Fed sau 16/9",
-         "en": "Fed target range after Sep 16"
+         "vi": "biên độ lãi suất Fed, từ 16/9/2026",
+         "en": "Fed target range since Sep 16, 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "28/10/2026",
+         "en": "Oct 28, 2026"
+        },
+        "l": {
+         "vi": "Fed giữ nguyên lãi suất",
+         "en": "Fed holds its rate"
         }
        },
        {
@@ -1159,12 +1169,12 @@
          "en": "0.50 points"
         },
         "l": {
-         "vi": "lãi suất thị trường mở trừ trần lãi suất Fed",
-         "en": "open-market rate minus Fed upper bound"
+         "vi": "thị trường mở trừ trần Fed, 10/2026",
+         "en": "open-market rate minus Fed upper bound, Oct 2026"
         }
        }
       ],
-      "src": "story_map banks fs-st-rates note (CPI 5.08%, OMO–Fed +0.50, credit +16.69%); data/finance.json drivers fx_fed (Fed 3.75–4.00%, 16/9/2026, first hike since 2023). Fed data as of 16/9/2026; the 28/10 decision is not in the data."
+      "src": "story_map banks fs-st-rates note (CPI 5.08%, OMO–Fed +0.50, credit +16.69%); data/finance.json FINSYS fed_funds_upper (2026-10 = 4.0) and drivers fx_fed (hike to 3.75–4.00% 16/9/2026; held 28/10/2026)."
      },
      {
       "tab": "banks",
@@ -1769,7 +1779,7 @@
         }
        }
       ],
-      "src": "rendered fs-st-watch (50/2026/TT-NHNN, LDR 85% → 95%, Basel III, effective 1/12/2026); data/simulation.json Fed lever note (FOMC 8–9 Dec 2026)"
+      "src": "rendered fs-st-watch (50/2026/TT-NHNN, LDR 85% → 95%, Basel III, effective 1/12/2026); data/simulation.json Fed lever note (held 28/10/2026; next FOMC 8–9 Dec 2026); data/finance.json fx_fed (next meeting 8–9 Dec 2026)"
      },
      {
       "tab": "econ",
@@ -4376,8 +4386,8 @@
        "vi": "TÀI CHÍNH · BA LỰC CẢN",
        "en": "FINANCE · THREE BRAKES"
       },
-      "vi": "Ba lực cản việc hạ lãi suất cùng lúc: lạm phát 5,08% tháng Chín; tín dụng tăng 16,69% so với cùng kỳ; và Fed, ngày 16 tháng Chín năm 2026, nâng lãi suất lên 3,75 đến 4%, chỉ còn thấp hơn lãi suất thị trường mở 0,50 điểm. Đây là cơ chế, không phải dự báo.",
-      "en": "Three forces block a cut at once: inflation of 5.08% in September; credit up 16.69% year on year; and the Fed, which on September 16, 2026 raised its rate to 3.75 to 4%, just 0.50 points below the open-market rate. This is a mechanism, not a forecast.",
+      "vi": "Ba lực cản việc hạ lãi suất cùng lúc: lạm phát 5,08% tháng Chín; tín dụng tăng 16,69% so với cùng kỳ; và Fed, nâng lên 3,75 đến 4% ngày 16 tháng Chín năm 2026, giữ nguyên ngày 28 tháng Mười, chỉ thấp hơn lãi suất thị trường mở 0,50 điểm. Đây là cơ chế, không phải dự báo.",
+      "en": "Three forces block a cut at once: inflation of 5.08% in September; credit up 16.69% year on year; and the Fed, raised to 3.75 to 4% on September 16, 2026 and held on October 28, just 0.50 points below the open-market rate. This is a mechanism, not a forecast.",
       "play": false,
       "figs": [
        {
@@ -4396,8 +4406,8 @@
          "en": "+16.69%"
         },
         "l": {
-         "vi": "tín dụng so cùng kỳ",
-         "en": "credit, year on year"
+         "vi": "tín dụng so cùng kỳ, 9/2026",
+         "en": "credit, year on year, Sep 2026"
         }
        },
        {
@@ -4416,8 +4426,18 @@
          "en": "3.75–4%"
         },
         "l": {
-         "vi": "biên độ lãi suất Fed sau 16/9",
-         "en": "Fed target range after Sep 16"
+         "vi": "biên độ lãi suất Fed, từ 16/9/2026",
+         "en": "Fed target range since Sep 16, 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "28/10/2026",
+         "en": "Oct 28, 2026"
+        },
+        "l": {
+         "vi": "Fed giữ nguyên lãi suất",
+         "en": "Fed holds its rate"
         }
        },
        {
@@ -4426,12 +4446,12 @@
          "en": "0.50 points"
         },
         "l": {
-         "vi": "thị trường mở trừ trần lãi suất Fed",
-         "en": "open-market rate minus Fed upper bound"
+         "vi": "thị trường mở trừ trần Fed, 10/2026",
+         "en": "open-market rate minus Fed upper bound, Oct 2026"
         }
        }
       ],
-      "src": "story_map banks fs-st-rates note; data/finance.json drivers fx_fed (Fed 3.75–4.00%, 16/9/2026). Fed data as of 16/9/2026; the 28/10 decision is not in the data."
+      "src": "story_map banks fs-st-rates note; data/finance.json FINSYS fed_funds_upper (2026-10 = 4.0) and drivers fx_fed (16/9/2026 hike; 28/10/2026 hold)."
      },
      {
       "tab": "banks",
@@ -4720,7 +4740,7 @@
         }
        }
       ],
-      "src": "rendered fs-st-watch (50/2026/TT-NHNN; credit 11.59% to Sep, 3.41 left); data/simulation.json Fed lever note (FOMC 8–9 Dec 2026)"
+      "src": "rendered fs-st-watch (50/2026/TT-NHNN; credit 11.59% to Sep, 3.41 left); data/simulation.json Fed lever note (held 28/10/2026; next FOMC 8–9 Dec 2026); data/finance.json fx_fed (next meeting 8–9 Dec 2026)"
      },
      {
       "tab": "banks",
@@ -5862,8 +5882,8 @@
        "vi": "MÔ PHỎNG · CÒN FED?",
        "en": "SIMULATION · AND THE FED?"
       },
-      "vi": "Còn Fed? Ngày 16 tháng Chín năm 2026, Fed nâng lãi suất thêm 0,25 điểm. Dù vậy, trần lãi suất Fed vẫn thấp hơn lãi suất tái cấp vốn 0,50 điểm, nên đây chưa phải lực đẩy chính. Áp lực chủ yếu đến từ trong nước.",
-      "en": "And the Fed? On September 16, 2026, the Fed raised its rate by 0.25 points. Even so, its upper bound remains 0.50 points below the refinancing rate, so it is not the main push. The pressure is mainly domestic.",
+      "vi": "Còn Fed? Ngày 16 tháng Chín năm 2026, Fed nâng lãi suất thêm 0,25 điểm, rồi giữ nguyên ngày 28 tháng Mười, với tỷ lệ phiếu 10–2. Trần lãi suất Fed vẫn thấp hơn lãi suất tái cấp vốn 0,50 điểm, nên đây chưa phải lực đẩy chính. Áp lực chủ yếu đến từ trong nước.",
+      "en": "And the Fed? On September 16, 2026, it raised its rate by 0.25 points, then held on October 28, by a vote of 10–2. Its upper bound remains 0.50 points below the refinancing rate, so it is not the main push. The pressure is mainly domestic.",
       "play": false,
       "figs": [
        {
@@ -5882,8 +5902,28 @@
          "en": "+0.25 points"
         },
         "l": {
-         "vi": "mức tăng của Fed",
-         "en": "size of the Fed hike"
+         "vi": "mức tăng của Fed, 16/9/2026",
+         "en": "size of the Fed hike, Sep 16, 2026"
+        }
+       },
+       {
+        "v": {
+         "vi": "28/10/2026",
+         "en": "Oct 28, 2026"
+        },
+        "l": {
+         "vi": "Fed giữ nguyên lãi suất",
+         "en": "Fed holds its rate"
+        }
+       },
+       {
+        "v": {
+         "vi": "10–2",
+         "en": "10–2"
+        },
+        "l": {
+         "vi": "phiếu bầu giữ nguyên, 28/10/2026",
+         "en": "vote to hold, Oct 28, 2026"
         }
        },
        {
@@ -5892,12 +5932,12 @@
          "en": "−0.50 points"
         },
         "l": {
-         "vi": "trần lãi suất Fed trừ tái cấp vốn",
-         "en": "Fed upper bound minus refinancing rate"
+         "vi": "trần Fed trừ tái cấp vốn, 10/2026",
+         "en": "Fed upper bound minus refinancing rate, Oct 2026"
         }
        }
       ],
-      "src": "data/simulation.json Fed lever (latest_period \"2026-09 (+0.25 on 16/9)\"); rendered sim-st-story forces. Fed data as of 16/9/2026; the 28/10 decision is not in the data."
+      "src": "data/simulation.json Fed lever (latest_period \"2026-10 (hold on 28/10; +0.25 on 16/9)\", note: hold 10-2); data/finance.json fed_upper note (vote 10–2); rendered sim-st-story forces."
      },
      {
       "tab": "sim",
@@ -5907,8 +5947,8 @@
        "vi": "MÔ PHỎNG · SÁU THÁNG TỚI",
        "en": "SIMULATION · THE NEXT SIX MONTHS"
       },
-      "vi": "Mô hình của dashboard cho 7,08% vào tháng Ba năm 2027 nếu các đòn bẩy giữ đường cơ sở; 5 kịch bản trải từ 6,67% đến 7,39%. Bạn có thể kéo 21 đòn bẩy và xem kết quả tính lại.",
-      "en": "The dashboard model gives 7.08% by March 2027 on baseline levers; 5 scenarios span 6.67% to 7.39%. You can move 21 levers and watch it recompute.",
+      "vi": "Mô hình của dashboard cho 7,08% vào tháng Ba năm 2027 nếu các đòn bẩy giữ đường cơ sở. 5 kịch bản trải từ 6,67% đến 7,36%; cao nhất là kịch bản thắt chặt bên ngoài: Fed giữ nguyên ngày 28 tháng Mười, rồi tăng 0,25 điểm trong tháng Mười Hai. Bạn có thể kéo 21 đòn bẩy và xem kết quả tính lại.",
+      "en": "The dashboard model gives 7.08% by March 2027 on baseline levers. Its 5 scenarios span 6.67% to 7.36%; the highest, external tightening, assumes the Fed holds on October 28, then adds 0.25 points in December. You can move 21 levers and watch it recompute.",
       "big": true,
       "play": false,
       "figs": [
@@ -5934,12 +5974,32 @@
        },
        {
         "v": {
-         "vi": "6,67–7,39%",
-         "en": "6.67–7.39%"
+         "vi": "6,67–7,36%",
+         "en": "6.67–7.36%"
         },
         "l": {
-         "vi": "khoảng các kịch bản",
-         "en": "scenario range"
+         "vi": "khoảng các kịch bản, 3/2027",
+         "en": "scenario range, Mar 2027"
+        }
+       },
+       {
+        "v": {
+         "vi": "28/10/2026",
+         "en": "Oct 28, 2026"
+        },
+        "l": {
+         "vi": "Fed giữ nguyên (giả định kịch bản)",
+         "en": "Fed hold (scenario assumption)"
+        }
+       },
+       {
+        "v": {
+         "vi": "+0,25 điểm",
+         "en": "+0.25 points"
+        },
+        "l": {
+         "vi": "Fed tăng 12/2026 (giả định kịch bản)",
+         "en": "Fed hike, Dec 2026 (scenario assumption)"
         }
        },
        {
@@ -5953,7 +6013,7 @@
         }
        }
       ],
-      "src": "story_map sim sim-st-proj headline and dek"
+      "src": "story_map sim sim-st-proj headline and dek (7.08%, 6.67–7.36%, 21 levers); data/simulation.json projection2.scenarios.external_tightening (path Mar-2027 7.3637; assumptions: Fed holds 28/10/2026, +0.25 in Dec 2026)."
      },
      {
       "tab": "sim",
@@ -6126,7 +6186,7 @@
         }
        }
       ],
-      "src": "story_map sim-st-src headline; rendered fs-st-watch (1/12/2026); data/simulation.json Fed lever note (FOMC 8–9 Dec 2026)"
+      "src": "story_map sim-st-src headline; rendered fs-st-watch (1/12/2026); data/simulation.json Fed lever note (held 28/10/2026; next FOMC 8–9 Dec 2026); data/finance.json fx_fed (next meeting 8–9 Dec 2026)"
      }
     ]
    }

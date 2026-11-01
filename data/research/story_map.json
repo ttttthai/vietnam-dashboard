@@ -30,8 +30,48 @@
   },
   {
    "subtab": 1,
+   "subtab_id": "pg-g-dir",
+   "label": "1 · Định hướng của Đảng",
+   "chapters": [
+    {
+     "chap": "pg-st-dir",
+     "kicker": "Định hướng của Đảng",
+     "headline": "Đại hội đại biểu toàn quốc lần thứ XIV của Đảng: mốc 2030, 2035, 2045, 2130; 11 nghị quyết chiến lược dẫn đường",
+     "dek": "“Dưới lá cờ vẻ vang của Đảng, chung sức, đồng lòng thực hiện thắng lợi các mục tiêu phát triển đất nước đến năm 2030; tự chủ chiến lược, tự cường, tự tin, tiến mạnh trong kỷ nguyên vươn mình của dân tộc vì hòa bình, độc lập, dân chủ, giàu mạnh, phồn vinh, văn minh, hạnh phúc, vững bước đi lên chủ nghĩa xã hội” Các mục tiêu là mục tiêu phấn đấu, không phải kết quả; phần tiến độ ghi rõ những gì đã đ",
+     "notes": [],
+     "charts": [
+      {
+       "target": "#pg-st-road",
+       "caption": "Lộ trình đến 2030, 2045 và xa hơn",
+       "timeline": false
+      },
+      {
+       "target": "#pg-st-pillt",
+       "caption": "Các nghị quyết trụ cột",
+       "timeline": false
+      }
+     ]
+    },
+    {
+     "chap": "pg-st-leader",
+     "kicker": "Định hướng của Đảng · Người đứng đầu",
+     "headline": "Tô Lâm: 4 cương vị, 15 hoạt động gần đây được theo dõi",
+     "dek": "Hồ sơ, chương trình nghị sự, văn bản ký ban hành, hoạt động và phát ngôn — cập nhật mỗi lần làm mới dữ liệu, có ngày và nguồn. Trung lập: ghi lại sự kiện, không bình luận.",
+     "notes": [],
+     "charts": [
+      {
+       "target": "#pg-st-ldtl",
+       "caption": "Hoạt động gần đây (15)",
+       "timeline": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "subtab": 2,
    "subtab_id": "pg-g-goals",
-   "label": "1 · Mục tiêu & ưu tiên",
+   "label": "2 · Mục tiêu & ưu tiên",
    "chapters": [
     {
      "chap": "pg-st-gap",
@@ -66,9 +106,9 @@
    ]
   },
   {
-   "subtab": 2,
+   "subtab": 3,
    "subtab_id": "pg-g-docs",
-   "label": "2 · Bộ máy & quyết định",
+   "label": "3 · Bộ máy & quyết định",
    "chapters": [
     {
      "chap": "pg-st-machine",
@@ -168,7 +208,7 @@
    ]
   },
   {
-   "subtab": 3,
+   "subtab": 4,
    "subtab_id": "pg-st-map",
    "label": "Tự khám phá",
    "chapters": [
@@ -980,6 +1020,20 @@
      "charts": []
     },
     {
+     "chap": "iv-st-ind",
+     "kicker": "Thị trường · Ngành (phân loại ICB)",
+     "headline": "19 ngành: 8 ngành tăng từ đầu năm, mạnh nhất là Dầu khí (+34,9%)",
+     "dek": "Phân loại ngành ICB cấp 2 như vnstock (nguồn Vietcap). Mỗi thẻ: quy mô, biến động giá, định giá, khả năng sinh lời và tăng trưởng, sở hữu nước ngoài và ba mã lớn nhất. Số liệu ngày 30/10/2026. Chỉ mô tả, không phải khuyến nghị đầu tư.",
+     "notes": [],
+     "charts": [
+      {
+       "target": "#iv-st-indg",
+       "caption": "Thẻ từng ngành",
+       "timeline": false
+      }
+     ]
+    },
+    {
      "chap": "iv-st-cal",
      "kicker": "Thị trường · Lịch sự kiện",
      "headline": "Các mốc đã được công bố trong dữ liệu nghiên cứu",
@@ -1076,7 +1130,7 @@
     {
      "chap": "sim-st-proj",
      "kicker": "Chương 2 · Dự phóng 6 tháng",
-     "headline": "Mô hình dashboard: 7,08% vào T3/2027 nếu các đòn bẩy giữ đường cơ sở; 5 kịch bản cho 6,67–7,39%",
+     "headline": "Mô hình dashboard: 7,08% vào T3/2027 nếu các đòn bẩy giữ đường cơ sở; 5 kịch bản cho 6,67–7,36%",
      "dek": "Mô hình cấu trúc của dashboard, không phải dự báo. Chọn một kịch bản hoặc kéo 21 đòn bẩy — dòng ngoại tệ, ngân sách, NHNN, tín dụng, kênh thay thế — lãi suất, đóng góp từng nhóm và áp lực vốn tính lại ngay trên trình duyệt.",
      "notes": [
       "Đường cơ sở tăng +1,18 điểm % đến T3/2027; +0,77 trong đó là áp lực vốn đã tích lũy đến T9/2026 (P = 7,50 so với mức trung tính 4,24).Chạy lại trong mẫu, mô hình đã cao hơn lãi suất niêm yết +0,35 điểm % vào T9/2026 (6,25% so với 5,9%): Big4 giữ lãi suất theo chỉ đạo; đường dự phóng thừa hưởng độ lệ",
@@ -1162,105 +1216,5 @@
    ]
   }
  ],
- "geo": [
-  {
-   "subtab": 0,
-   "subtab_id": "geo-st-hero",
-   "label": "Tổng quan",
-   "chapters": [
-    {
-     "chap": "geo-st-hero",
-     "kicker": "Địa chính trị · cập nhật 1/11/2026",
-     "headline": "Dầu đắt vì chiến sự Iran và thuế Mục 301 của Mỹ là hai sức ép lớn nhất lên Việt Nam; Hà Nội tranh thủ khoảng lặng Mỹ – Trung để chốt hiệp định với Mỹ, đa dạng nguồn dầu và giữ vững lập trường ở Hoàng Sa.",
-     "dek": "Bốn trung tâm quyền lực tác động mạnh nhất tới Việt Nam: điều họ đang làm, vì sao, và Việt Nam được – mất gì. Dữ kiện có ngày và nguồn; phần “vì sao” và tác động là đánh giá của tác tử, kèm mức độ tin cậy.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#geo-st-actors",
-       "caption": "",
-       "timeline": false
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "subtab": 1,
-   "subtab_id": "geo-st-events",
-   "label": "1 · Chuyện gì đang xảy ra",
-   "chapters": [
-    {
-     "chap": "geo-st-events",
-     "kicker": "Chương 1 · Chuyện gì đang xảy ra",
-     "headline": "31 diễn biến đáng chú ý trong ba tháng qua",
-     "dek": "Mỗi chấm là một diễn biến, theo từng trung tâm quyền lực; màu là tác động đối với Việt Nam (xanh: có lợi, đỏ: bất lợi, xám: trung tính). Bấm một chấm để xem dữ kiện, vì sao, và ý nghĩa cho Việt Nam.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#geo-st-tl",
-       "caption": "Dòng thời gian địa chính trị",
-       "timeline": false
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "subtab": 2,
-   "subtab_id": "geo-st-why",
-   "label": "2 · Vì sao",
-   "chapters": [
-    {
-     "chap": "geo-st-why",
-     "kicker": "Chương 2 · Vì sao",
-     "headline": "Động cơ phía sau: lợi ích, chính trị nội bộ, sức ép kinh tế, cam kết đồng minh",
-     "dek": "Đánh giá của tác tử Địa chính trị, đọc tin từ nhiều phía. Khi giới phân tích bất đồng, các cách giải thích được nêu song song.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#geo-st-why-g",
-       "caption": "",
-       "timeline": false
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "subtab": 3,
-   "subtab_id": "geo-st-vn",
-   "label": "3 · Lợi ích của Việt Nam",
-   "chapters": [
-    {
-     "chap": "geo-st-vn",
-     "kicker": "Chương 3 · Lợi ích của Việt Nam",
-     "headline": "Việt Nam chịu tác động qua kênh nào, và có những lựa chọn gì",
-     "dek": "Mỗi ô cộng tác động của các diễn biến theo trung tâm quyền lực và kênh (số trong ô: số diễn biến). Lựa chọn được nêu kèm đánh đổi, theo đường lối độc lập, tự chủ, đa phương hoá, đa dạng hoá và luật pháp quốc tế.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#geo-st-mx",
-       "caption": "",
-       "timeline": false
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "subtab": 4,
-   "subtab_id": "geo-st-watch",
-   "label": "Điều cần theo dõi",
-   "chapters": [
-    {
-     "chap": "geo-st-watch",
-     "kicker": "Tiếp theo · Điều cần theo dõi",
-     "headline": "10 mốc sắp tới",
-     "dek": "",
-     "notes": [],
-     "charts": []
-    }
-   ]
-  }
- ]
+ "geo": null
 }

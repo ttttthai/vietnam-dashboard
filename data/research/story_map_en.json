@@ -30,8 +30,48 @@
   },
   {
    "subtab": 1,
+   "subtab_id": "pg-g-dir",
+   "label": "1 · Party direction",
+   "chapters": [
+    {
+     "chap": "pg-st-dir",
+     "kicker": "Party direction",
+     "headline": "14th National Congress of the Communist Party of Vietnam: milestones 2030, 2035, 2045, 2130; 11 strategic resolutions lead the way",
+     "dek": "“Under the Party's glorious flag, joining forces to achieve the national development goals to 2030; strategic autonomy, self-reliance, confidence and strong advance in the nation's era of rising, for peace, independence, democracy, prosperity, civilisation and happiness, steadily advancing toward socialism (translation)” Targets are aims, not outcomes; the progress notes record what has been imple",
+     "notes": [],
+     "charts": [
+      {
+       "target": "#pg-st-road",
+       "caption": "The road to 2030, 2045 and beyond",
+       "timeline": false
+      },
+      {
+       "target": "#pg-st-pillt",
+       "caption": "The landmark resolutions",
+       "timeline": false
+      }
+     ]
+    },
+    {
+     "chap": "pg-st-leader",
+     "kicker": "Party direction · The leader",
+     "headline": "Tô Lâm: 4 posts, 15 recent activities tracked",
+     "dek": "Profile, agenda, documents signed, activities and statements — updated on every data refresh, dated and sourced. Neutral: a record of events, not commentary.",
+     "notes": [],
+     "charts": [
+      {
+       "target": "#pg-st-ldtl",
+       "caption": "Recent activity (15)",
+       "timeline": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "subtab": 2,
    "subtab_id": "pg-g-goals",
-   "label": "1 · Goals & priorities",
+   "label": "2 · Goals & priorities",
    "chapters": [
     {
      "chap": "pg-st-gap",
@@ -66,9 +106,9 @@
    ]
   },
   {
-   "subtab": 2,
+   "subtab": 3,
    "subtab_id": "pg-g-docs",
-   "label": "2 · Structure & decisions",
+   "label": "3 · Structure & decisions",
    "chapters": [
     {
      "chap": "pg-st-machine",
@@ -168,7 +208,7 @@
    ]
   },
   {
-   "subtab": 3,
+   "subtab": 4,
    "subtab_id": "pg-st-map",
    "label": "Explore",
    "chapters": [
@@ -980,6 +1020,20 @@
      "charts": []
     },
     {
+     "chap": "iv-st-ind",
+     "kicker": "Market · Industries (ICB classification)",
+     "headline": "19 industries: 8 up year to date, led by Oil & Gas (+34.9%)",
+     "dek": "ICB level-2 industries as vnstock classifies them (Vietcap data). Each card: size, price performance, valuation, profitability and growth, foreign ownership and the three largest stocks. Data as of 30 Oct 2026. Descriptive only, not investment advice.",
+     "notes": [],
+     "charts": [
+      {
+       "target": "#iv-st-indg",
+       "caption": "Industry cards",
+       "timeline": false
+      }
+     ]
+    },
+    {
      "chap": "iv-st-cal",
      "kicker": "Market · Event calendar",
      "headline": "Dated events in the research data",
@@ -1076,7 +1130,7 @@
     {
      "chap": "sim-st-proj",
      "kicker": "Chapter 2 · The 6-month projection",
-     "headline": "Dashboard model: 7.08% by Mar 2027 on baseline levers; 5 scenarios span 6.67–7.39%",
+     "headline": "Dashboard model: 7.08% by Mar 2027 on baseline levers; 5 scenarios span 6.67–7.36%",
      "dek": "A structural dashboard model, not a forecast. Pick a scenario or move 21 levers — FX inflows, the budget, the SBV, credit, substitutes — and the rate, each group's contribution and the funding pressure recompute in the browser.",
      "notes": [
       "The base path rises +1.18 pp by Mar 2027; +0.77 of it is funding pressure already built up by Sep 2026 (P = 7.50 against a neutral 4.24).Replayed in sample, the model already sat +0.35 pp above the posted rate in Sep 2026 (6.25% vs 5.9%): the Big-4 held rates under guidance; the projection inherits ",
@@ -1162,105 +1216,5 @@
    ]
   }
  ],
- "geo": [
-  {
-   "subtab": 0,
-   "subtab_id": "geo-st-hero",
-   "label": "Overview",
-   "chapters": [
-    {
-     "chap": "geo-st-hero",
-     "kicker": "Geopolitics · as of 1 Nov 2026",
-     "headline": "Iran-war oil prices and US Section 301 tariffs are the two biggest pressures on Vietnam; Hanoi is using the US–China lull to close its US trade deal, diversify oil supply and hold its ground on the Paracels.",
-     "dek": "The four power centres that weigh most on Vietnam: what they are doing, why, and what Vietnam gains or loses. Facts are dated and sourced; the \"why\" and the impact are the agent's assessments, with a confidence level.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#geo-st-actors",
-       "caption": "",
-       "timeline": false
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "subtab": 1,
-   "subtab_id": "geo-st-events",
-   "label": "1 · What is happening",
-   "chapters": [
-    {
-     "chap": "geo-st-events",
-     "kicker": "Chapter 1 · What is happening",
-     "headline": "31 developments that matter, over the last three months",
-     "dek": "Each dot is one development, by power centre; colour is the impact on Vietnam (blue: beneficial, red: harmful, grey: neutral). Click a dot for the facts, the why, and what it means for Vietnam.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#geo-st-tl",
-       "caption": "Geopolitical timeline",
-       "timeline": false
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "subtab": 2,
-   "subtab_id": "geo-st-why",
-   "label": "2 · Why",
-   "chapters": [
-    {
-     "chap": "geo-st-why",
-     "kicker": "Chapter 2 · Why",
-     "headline": "The drivers behind it: interests, domestic politics, economic pressure, alliance commitments",
-     "dek": "The Geopolitics agent's assessment, reading coverage from all sides. Where analysts disagree, the competing explanations are given side by side.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#geo-st-why-g",
-       "caption": "",
-       "timeline": false
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "subtab": 3,
-   "subtab_id": "geo-st-vn",
-   "label": "3 · Vietnam's interest",
-   "chapters": [
-    {
-     "chap": "geo-st-vn",
-     "kicker": "Chapter 3 · Vietnam's interest",
-     "headline": "Through which channels Vietnam is affected, and what its options are",
-     "dek": "Each cell adds up the impact of developments by power centre and channel (the number is the count). Options come with their trade-offs, within Vietnam's line of independence, self-reliance, multilateralisation, diversification and international law.",
-     "notes": [],
-     "charts": [
-      {
-       "target": "#geo-st-mx",
-       "caption": "",
-       "timeline": false
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "subtab": 4,
-   "subtab_id": "geo-st-watch",
-   "label": "What to watch",
-   "chapters": [
-    {
-     "chap": "geo-st-watch",
-     "kicker": "Next · What to watch",
-     "headline": "10 coming markers",
-     "dek": "",
-     "notes": [],
-     "charts": []
-    }
-   ]
-  }
- ]
+ "geo": null
 }
