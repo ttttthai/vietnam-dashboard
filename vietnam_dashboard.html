@@ -1041,16 +1041,26 @@ if (window.APP_LANG === 'en') window.I18N_START();
   #gb-svg { display: block; touch-action: none; cursor: grab; } #gb-svg:active { cursor: grabbing; }
   .gb-land { fill: #efe6cf; stroke: #fffaf0; stroke-width: .6; } .gb-land:hover { fill: #e7dbbb; } .gb-vn { fill: #f6c9c6; stroke: #b42318; stroke-width: 1.4; }
   .gb-vnstar { fill: #e3b505; font-size: 9px; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
-  .gb-flow { fill: none; stroke-linecap: round; opacity: .8; stroke-dasharray: 2 6; animation: gbFlow var(--dur, 4s) linear infinite; cursor: pointer; } .gb-flow:hover { opacity: 1; }
-  .gb-flow.bad { stroke-dasharray: 8 5; } .gb-flow.res { stroke-dasharray: 1 5; opacity: .6; }
-  @keyframes gbFlow { to { stroke-dashoffset: -32; } }
+  .gb-flow { fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: .38; pointer-events: none; transition: opacity .6s; } .gb-flow.gb-hot { opacity: .85; }
+  .gb-flow.bad { stroke-dasharray: 6 4; } .gb-flow.res { stroke-dasharray: 1.5 4; opacity: .5; }
+  .gb-hit { fill: none; stroke: transparent; stroke-width: 12; cursor: pointer; } .gb-hit:hover + .gb-flow, .gb-hit:hover { stroke: rgba(22,24,29,.06); }
+  .gb-dot { pointer-events: none; }
+  .gb-rip { fill: none; stroke-width: 2; animation: gbRip 2.2s ease-out infinite; transform-box: fill-box; transform-origin: center; pointer-events: none; }
+  @keyframes gbRip { from { transform: scale(.7); opacity: .9; } to { transform: scale(2.8); opacity: 0; } }
+  .gb-tag { font: 600 11px var(--font-ui); text-anchor: middle; dominant-baseline: central; fill: #16181d; paint-order: stroke; stroke: #fffaf0; stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; animation: gbTagIn .35s ease both; } .gb-tag.hot { font-weight: 700; font-size: 12px; }
+  @keyframes gbTagIn { from { opacity: 0; } } .gb-labs.gb-hide { opacity: 0; } .gb-labs { transition: opacity .2s; }
+  .gb-pop > * { animation: gbPop .7s cubic-bezier(.3,1.6,.5,1) both; animation-delay: var(--pd, 0ms); transform-box: fill-box; transform-origin: center; }
+  @keyframes gbPop { 0% { transform: scale(1); } 35% { transform: scale(1.55); } 100% { transform: scale(1); } }
+  .gb-side.gb-in > * { animation: gbSideIn .5s ease both; } @keyframes gbSideIn { from { opacity: 0; transform: translateY(6px); } }
+  .gb-prog { width: 90px; height: 3px; background: #e6e3db; border-radius: 2px; overflow: hidden; } .gb-prog i { display: block; height: 100%; width: 0; background: #e34948; }
+  @keyframes gbProg { to { width: 100%; } }
   .gb-tok { cursor: pointer; } .gb-tok .gb-piece { fill: #fffdf6; stroke-width: 2.5; filter: drop-shadow(0 1.5px 1px rgba(0,0,0,.3)); } .gb-tech { stroke: #7c3aed; } .gb-tech.ctl { stroke: #b42318; stroke-dasharray: 3 2; }
   .gb-emo { font-size: 13px; text-anchor: middle; dominant-baseline: central; pointer-events: none; } .gb-emo-s { font-size: 10px; }
-  .gb-lab { font: 600 9px var(--font-ui); text-anchor: middle; fill: #16181d; paint-order: stroke; stroke: #fffaf0; stroke-width: 3px; display: none; pointer-events: none; } .gb-k2 .gb-lab, .gb-hot .gb-lab, .gb-tok:hover .gb-lab { display: block; } .gb-dim .gb-lab { display: none !important; }
+  .gb-lab { display: none; }
   .gb-cp { stroke: #fff; stroke-width: 2; } .gb-cp-disrupted .gb-cp { animation: gbPulse 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
   @keyframes gbPulse { 50% { opacity: .55; } }
   .gb-pin { stroke: #fff; stroke-width: 1.2; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); }
-  .gb-dim { opacity: .14; } .gb-off { display: none; } .gb-hot .gb-piece, .gb-hot .gb-cp { stroke-width: 4; } .gb-flow.gb-hot { opacity: 1; }
+  .gb-it { transition: opacity .6s; } .gb-dim { opacity: .1; } .gb-off { display: none; } .gb-hot .gb-piece, .gb-hot .gb-cp { stroke-width: 4; } .gb-flow.gb-hot { opacity: 1; }
   .gb-tok { animation: pgOrgIn .5s ease both; animation-delay: var(--d); }
   .gb-zoom { position: absolute; right: 8px; top: 8px; display: grid; gap: 4px; } .gb-zoom button { width: 30px; height: 30px; border-radius: 6px; border: 1px solid #c8a96a; background: #fffaf0; font: 700 15px var(--font-ui); cursor: pointer; }
   .gb-side { background: #fffaf0; border: 1px solid #e6dcc4; border-radius: 10px; padding: 12px 14px; position: relative; min-height: 220px; max-height: 560px; overflow: auto; }
@@ -1062,7 +1072,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .gb-story { margin-top: 10px; } .gb-story-c { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; } .gb-story-c > button { border: 1px solid #16181d; background: #fff; border-radius: 16px; padding: 5px 12px; font: 600 12.5px var(--font-ui); cursor: pointer; } .gb-story-c .gb-play { background: #e34948; border-color: #e34948; color: #fff; }
   .gb-dots { display: flex; gap: 5px; flex-wrap: wrap; } .gb-dots button { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #16181d; background: #fff; padding: 0; cursor: pointer; } .gb-dots button.on { background: #e34948; border-color: #e34948; }
   .gb-legend { margin-top: 6px; } .gb-tbl { overflow-x: auto; max-height: 420px; }
-  @media (prefers-reduced-motion: reduce) { .gb-flow, .gb-cp-disrupted .gb-cp, .gb-tok { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .gb-flow, .gb-cp-disrupted .gb-cp, .gb-tok, .gb-rip, .gb-pop > *, .gb-tag { animation: none; } .gb-rip { display: none; } }
   .pg-dir-theme { font-style: italic; }
   .pg-dir-sign { font: 400 12px/1.35 var(--font-ui); color: #3d4250; background: #fffaf0; border: 1px solid #e6dcc4; border-radius: 6px; padding: 4px 8px; height: 100%; box-sizing: border-box; overflow: hidden; } .pg-dir-sign b { color: #e34948; font-size: 13px; }
   .pg-dir-t { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px; margin: 6px 0 14px; }
@@ -7880,8 +7890,8 @@ function renderGeoStory() {
       <aside class="gb-side" id="gb-side" aria-live="polite"></aside></div>
     <div class="gb-story">
       <div class="gb-story-c"><button type="button" data-gb-s="prev" aria-label="${ciE(stT('Bước trước', 'Previous step'))}">◀</button><button type="button" data-gb-s="play" class="gb-play">${stT('▶ Kể chuyện: vì sao', '▶ Tell the story: why')}</button><button type="button" data-gb-s="next" aria-label="${ciE(stT('Bước sau', 'Next step'))}">▶</button>
-        <div class="gb-dots">${S.map((s, i) => `<button type="button" data-gb-step="${i}" title="${ciE(gbT(s, 'title'))}" aria-label="${i + 1}. ${ciE(gbT(s, 'title'))}"></button>`).join('')}</div></div></div>
-    <p class="st-tick gb-legend">${stT('Kéo để di chuyển, cuộn hoặc chụm để phóng to. Bấm vào một quân cờ, dòng chảy hay điểm nghẽn để xem vì sao. Độ dày dòng chảy theo giá trị; đỏ nét đứt: bị gián đoạn; xám chấm: bị hạn chế.', 'Drag to pan, scroll or pinch to zoom. Click a piece, a flow or a chokepoint to see why. Flow width follows value; red dashed: disrupted; grey dotted: restricted.')}</p>
+        <span class="gb-prog" aria-hidden="true"><i></i></span><div class="gb-dots">${S.map((s, i) => `<button type="button" data-gb-step="${i}" title="${ciE(gbT(s, 'title'))}" aria-label="${i + 1}. ${ciE(gbT(s, 'title'))}"></button>`).join('')}</div></div></div>
+    <p class="st-tick gb-legend">${stT('Kéo để di chuyển, cuộn hoặc chụm để phóng to. Bấm vào một quân cờ, dòng chảy hay điểm nghẽn để xem vì sao. Các chấm là hàng hoá đang di chuyển: càng nhiều, càng dày là dòng chảy càng lớn. Tuyến đỏ nét đứt bị gián đoạn: một nửa số hàng dừng lại ở điểm nghẽn, phần còn lại đi chậm qua; xám chấm: bị hạn chế. Vòng sóng lan quanh điểm nghẽn: đang căng thẳng hoặc gián đoạn.', 'Drag to pan, scroll or pinch to zoom. Click a piece, a flow or a chokepoint to see why. The dots are cargo on the move: more and thicker means a bigger flow. Red dashed routes are disrupted: half the cargo stops at the chokepoint, the rest crawls through; grey dotted: restricted. Rings spreading from a chokepoint: tense or disrupted.')}</p>
     <details class="st-meta gb-read"><summary>${stT(`Đọc toàn bộ câu chuyện (${S.length} bước) và danh sách trên bàn cờ`, `Read the whole story (${S.length} steps) and everything on the board`)}</summary>
       <ol class="st-watch">${S.map(s => `<li><b>${ciE(gbT(s, 'title'))}</b><p>${ciE(gbT(s, 'text'))}</p>${s.vn_vi ? `<p><i>${stT('Với Việt Nam: ', 'For Vietnam: ')}</i>${ciE(gbT(s, 'vn'))}</p>` : ''}</li>`).join('')}</ol>
       ${W.length ? `<div class="st-sub">${stT('Điều cần theo dõi', 'What to watch')}</div><ol class="st-watch">${W.map(w => `<li><time>${polDS(w.date)}</time><b>${ciE(stT(w.vi, w.en))}</b>${w.why_vi ? `<p>${ciE(stT(w.why_vi, w.why_en))}</p>` : ''}</li>`).join('')}</ol>` : ''}
@@ -7896,10 +7906,41 @@ function gbTable() {
     ${(B.commodities || []).map(c => r(`${GB_ICON[c.icon] || '•'} ${ciE(gbT(c, 'label'))}`, ciE(gbT(c, 'where')), ciE(gbNum(c.value, c.unit)) + (c.year ? ` (${c.year})` : ''), c.src ? ecLink(c.src.url, c.src.name) : '')).join('')}
     ${(B.flows || []).map(f => r(`→ ${ciE(gbT(f, 'good'))}`, `${ciE(f.from)} → ${ciE(f.to)}`, ciE(gbNum(f.value, f.unit)) + (f.year ? ` (${f.year})` : ''), f.src ? ecLink(f.src.url, f.src.name) : '')).join('')}</tbody></table>`;
 }
+// ── board motion: cargo particles ride each visible route (rAF; paused off-screen and for reduced motion)
+const GBP = { flows: [], raf: 0, t0: 0, vis: true, io: null };
+function gbAt(F, s) { const c = F.cum; let lo = 0, hi = c.length - 1; while (lo < hi - 1) { const m = (lo + hi) >> 1; if (c[m] <= s) lo = m; else hi = m; }
+  if (F.brk.has(hi) && c[hi] === c[lo]) return null; const a = F.pts[lo], b = F.pts[hi], u = (s - c[lo]) / ((c[hi] - c[lo]) || 1); return [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u]; }
+function gbTick(now) {
+  GBP.raf = 0; if (!GBP.vis || !GBP.flows.length) return;
+  const k = GB.k || 1, sp = 34 / Math.sqrt(k), r0 = 2.6 / k, t = (now - GBP.t0) / 1000;
+  GBP.flows.forEach(F => { const on = F.show && F.L > 0;
+    F.dots.forEach((d, i) => { if (!on) { if (d.style.display !== 'none') d.style.display = 'none'; return; }
+      const blk = F.bad && i % 2 === 0, span = blk ? F.stop : F.L, cyc = span / sp * (F.res ? 2.2 : F.bad && !blk ? 2.2 : 1), u = ((t / cyc) + i / F.n + F.ph) % 1, s = u * span, p = gbAt(F, s);
+      if (!p) { d.style.display = 'none'; return; } d.style.display = '';
+      const fade = blk ? Math.min(1, u / .06, (1 - u) / .3) : Math.min(1, u / .06, (1 - u) / .06);
+      d.setAttribute('cx', p[0].toFixed(1)); d.setAttribute('cy', p[1].toFixed(1)); d.setAttribute('r', (r0 * (F.hot ? 1.35 : 1) * (.85 + F.w / 12)).toFixed(2)); d.style.opacity = (F.hot ? 1 : .85) * fade; }); });
+  GBP.raf = requestAnimationFrame(gbTick);
+}
+function gbRun() { if (matchMedia('(prefers-reduced-motion: reduce)').matches) { GBP.flows.forEach(F => F.dots.forEach(d => { d.style.display = 'none'; })); return; } if (!GBP.raf && GBP.vis) { GBP.t0 = GBP.t0 || performance.now(); GBP.raf = requestAnimationFrame(gbTick); } }
+// labels in screen space with greedy collision avoidance (only for the pieces in focus, or everything when zoomed in)
+function gbLabels() {
+  const svg = GB.svg; if (!svg) return; const lay = svg.select('.gb-labs'); lay.selectAll('*').remove();
+  const T = d3.zoomTransform(svg.node()), W = GB.W, H = GB.H, placed = [], boxes = [];
+  const toks = svg.selectAll('.gb-tok').nodes().filter(n => !n.classList.contains('gb-off') && !n.classList.contains('gb-dim') && n.closest('.gb-L').style.display !== 'none');
+  toks.forEach(n => { const p = T.apply([+n.dataset.x, +n.dataset.y]); boxes.push([p[0] - 11, p[1] - 11, p[0] + 11, p[1] + 11]); });
+  const want = toks.filter(n => n.classList.contains('gb-hot') || GB.k >= 2.4).slice(0, 40);
+  const hit = (b) => b[0] < 2 || b[2] > W - 2 || b[1] < 2 || b[3] > H - 2 || placed.some(q => !(b[2] < q[0] || b[0] > q[2] || b[3] < q[1] || b[1] > q[3])) || boxes.some(q => !(b[2] < q[0] + 1 || b[0] > q[2] - 1 || b[3] < q[1] + 1 || b[1] > q[3] - 1));
+  want.sort((a, b) => (b.classList.contains('gb-hot') - a.classList.contains('gb-hot'))).forEach(n => {
+    const lab = (n.querySelector('.gb-lab') || {}).textContent; if (!lab) return; const p = T.apply([+n.dataset.x, +n.dataset.y]), w = lab.length * 5.6 + 8, h = 15;
+    const cand = [[0, 20], [0, -20], [w / 2 + 15, 0], [-w / 2 - 15, 0], [w / 2 + 10, 16], [-w / 2 - 10, -16]];
+    for (const [dx, dy] of cand) { const cx = p[0] + dx, cy = p[1] + dy, b = [cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2]; if (hit(b)) continue; placed.push(b);
+      lay.append('text').attr('class', 'gb-tag' + (n.classList.contains('gb-hot') ? ' hot' : '')).attr('x', cx).attr('y', cy).text(lab); return; }
+  });
+}
 function gbDraw() {
   const box = document.getElementById('gb-board'), svgEl = document.getElementById('gb-svg'); if (!box || !svgEl) return;
   if (typeof d3 === 'undefined' || typeof topojson === 'undefined' || typeof GEO_WORLD === 'undefined') { box.innerHTML = `<p class="st-tick" style="padding:20px">${stT('Không tải được thư viện bản đồ.', 'The map library could not load.')}</p>`; return; }
-  const B = gbB() || {}, W = Math.max(320, box.clientWidth || 900), H = Math.round(W * (W < 600 ? .66 : .52));
+  const B = gbB() || {}, W = Math.max(320, box.clientWidth || 900), H = Math.round(W * (W < 600 ? .92 : .52));
   const svg = d3.select(svgEl).attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('height', H); svg.selectAll('*').remove();
   const proj = d3.geoNaturalEarth1().fitExtent([[4, 4], [W - 4, H - 4]], { type: 'Sphere' }), path = d3.geoPath(proj), P = ll => proj(ll);
   const defs = svg.append('defs');
@@ -7913,33 +7954,70 @@ function gbDraw() {
   g.append('g').selectAll('path').data(countries).join('path').attr('d', path).attr('class', d => 'gb-land' + (d.id === '704' ? ' gb-vn' : '')).attr('vector-effect', 'non-scaling-stroke');
   // Vietnam star
   const vn = P([105.8, 21.0]); if (vn) g.append('text').attr('class', 'gb-vnstar').attr('x', vn[0]).attr('y', vn[1]).text('★');
-  // flows
+  // flows: routes through their chokepoints (via) as great-circle segments, sampled so cargo particles can ride them
   const FL = (B.flows || []).filter(f => f.from_ll && f.to_ll), maxBy = {}; FL.forEach(f => { maxBy[f.unit] = Math.max(maxBy[f.unit] || 0, f.value || 0); });
-  const gf = g.append('g').attr('class', 'gb-L gb-L-flows');
-  FL.forEach((f, i) => { const a = P(f.from_ll), b = P(f.to_ll); if (!a || !b) return; const dx = b[0] - a[0], dy = b[1] - a[1], d = Math.hypot(dx, dy), nx = -dy / d, ny = dx / d, bend = Math.min(.32, 70 / d + .12) * d * (i % 2 ? 1 : -1) * (dx < 0 ? -1 : 1), c = [(a[0] + b[0]) / 2 + nx * bend, (a[1] + b[1]) / 2 + ny * bend];
-    const w = 1.4 + 5.5 * Math.sqrt((f.value || 0) / (maxBy[f.unit] || 1)), bad = f.status === 'disrupted', res = f.status === 'restricted', col = bad ? '#b42318' : res ? '#8a8f99' : (GB_KIND[f.kind] || GB_KIND.manufactured)[2];
-    gf.append('path').attr('class', 'gb-flow gb-it' + (bad ? ' bad' : res ? ' res' : '')).attr('data-gb', 'flows:' + f.id).attr('data-kind', f.kind).attr('d', `M${a[0]},${a[1]} Q${c[0]},${c[1]} ${b[0]},${b[1]}`).attr('stroke', col).attr('stroke-width', w).attr('vector-effect', 'non-scaling-stroke').attr('marker-end', `url(#gb-ar-${bad ? 'bad' : (GB_KIND[f.kind] ? f.kind : 'manufactured')})`).style('--dur', (6 - Math.min(4, w * .5)) + 's')
-      .append('title').text(`${gbT(f, 'good')}: ${f.from} → ${f.to} · ${gbNum(f.value, f.unit)}${f.year ? ' (' + f.year + ')' : ''}`); });
+  const CPL = Object.fromEntries((B.chokepoints || []).map(c => [c.id, c])), gf = g.append('g').attr('class', 'gb-L gb-L-flows'), gp = g.append('g').attr('class', 'gb-L gb-L-flows gb-pts');
+  const line = d3.line().curve(d3.curveCatmullRom.alpha(.5));
+  GBP.flows = [];
+  FL.forEach(f => {
+    const way = [f.from_ll, ...(f.via || []).map(v => CPL[v] && [CPL[v].lon, CPL[v].lat]).filter(Boolean), f.to_ll], runs = [[]], marks = [];
+    way.slice(1).forEach((b, j) => { const a = way[j], it = d3.geoInterpolate(a, b), n = Math.max(6, Math.ceil(d3.geoDistance(a, b) * 36));
+      for (let k = j ? 1 : 0; k <= n; k++) { const p = P(it(k / n)); if (!p) continue; const r = runs[runs.length - 1], q = r[r.length - 1]; if (q && Math.abs(p[0] - q[0]) > W / 2) runs.push([p]); else r.push(p); }
+      marks.push(runs.reduce((s, r) => s + r.length, 0) - 1); });
+    const pts = [], cum = [], brk = []; let L = 0;
+    runs.forEach((r, ri) => r.forEach((p, k) => { if (pts.length) { const q = pts[pts.length - 1]; if (k === 0) brk.push(pts.length); else L += Math.hypot(p[0] - q[0], p[1] - q[1]); } pts.push(p); cum.push(L); }));
+    const w = 1.2 + 3.6 * Math.sqrt((f.value || 0) / (maxBy[f.unit] || 1)), bad = f.status === 'disrupted', res = f.status === 'restricted', col = bad ? '#b42318' : res ? '#8a8f99' : (GB_KIND[f.kind] || GB_KIND.manufactured)[2];
+    const d = runs.filter(r => r.length > 1).map(r => line(r)).join(' ');
+    const el = gf.append('path').attr('class', 'gb-flow gb-it' + (bad ? ' bad' : res ? ' res' : '')).attr('data-gb', 'flows:' + f.id).attr('data-kind', f.kind).attr('d', d).attr('stroke', col).attr('stroke-width', w).attr('vector-effect', 'non-scaling-stroke');
+    el.append('title').text(`${gbT(f, 'good')}: ${f.from} → ${f.to} · ${gbNum(f.value, f.unit)}${f.year ? ' (' + f.year + ')' : ''}`);
+    gf.append('path').attr('class', 'gb-hit').attr('data-gb', 'flows:' + f.id).attr('d', d).attr('vector-effect', 'non-scaling-stroke');
+    // a disrupted route stalls at its first disrupted (or tense) chokepoint
+    let stop = L; if (bad) { const vi = (f.via || []).findIndex(v => CPL[v] && CPL[v].status === 'disrupted'), vj = vi >= 0 ? vi : (f.via || []).findIndex(v => CPL[v] && CPL[v].status === 'tense'); stop = vj >= 0 && marks[vj] != null ? cum[Math.min(marks[vj], cum.length - 1)] : L * .55; }
+    const n = res ? 1 : (bad ? 4 : 2) + Math.round(4 * Math.sqrt((f.value || 0) / (maxBy[f.unit] || 1))), dots = [];
+    for (let i = 0; i < n; i++) dots.push(gp.append('circle').attr('class', 'gb-dot').attr('r', 2).attr('fill', col).attr('stroke', '#fffdf6').attr('stroke-width', .6).attr('vector-effect', 'non-scaling-stroke').attr('data-flow', 'flows:' + f.id).node());
+    GBP.flows.push({ id: 'flows:' + f.id, el: el.node(), pts, cum, brk: new Set(brk), L, stop, bad, res, n, dots, w, show: true, hot: false, ph: Math.random() });
+  });
   // tokens (counter-scaled on zoom)
   const tok = (layer, list, fn) => { const gl = g.append('g').attr('class', 'gb-L gb-L-' + layer); list.forEach((x, i) => { const p = P([x.lon, x.lat]); if (!p) return; const t = gl.append('g').attr('class', 'gb-tok gb-it').attr('data-gb', layer + ':' + x.id).attr('data-kind', x.kind || '').attr('data-x', p[0]).attr('data-y', p[1]).attr('transform', `translate(${p[0]},${p[1]})`).style('--d', (i * 25) + 'ms'); fn(t, x); }); };
   tok('commodities', B.commodities || [], (t, x) => { const c = (GB_KIND[x.kind] || GB_KIND.manufactured)[2]; t.append('circle').attr('r', 12).attr('class', 'gb-piece').attr('stroke', c); t.append('text').attr('class', 'gb-emo').text(GB_ICON[x.icon] || '•'); t.append('text').attr('class', 'gb-lab').attr('y', 22).text(gbT(x, 'label')); t.append('title').text(`${gbT(x, 'label')} · ${gbT(x, 'where')} · ${gbNum(x.value, x.unit)}`); });
-  tok('chokepoints', B.chokepoints || [], (t, x) => { const s = GB_CP[x.status] || GB_CP.open; t.classed('gb-cp-' + (x.status || 'open'), true); t.append('rect').attr('x', -9).attr('y', -9).attr('width', 18).attr('height', 18).attr('transform', 'rotate(45)').attr('class', 'gb-cp').attr('fill', s[0]); t.append('text').attr('class', 'gb-emo gb-emo-s').text('⚓'); t.append('text').attr('class', 'gb-lab').attr('y', -15).text(gbT(x, 'name')); t.append('title').text(`${gbT(x, 'name')} · ${stT(s[1], s[2])}`); });
+  tok('chokepoints', B.chokepoints || [], (t, x) => { const s = GB_CP[x.status] || GB_CP.open; t.classed('gb-cp-' + (x.status || 'open'), true); if (x.status === 'disrupted' || x.status === 'tense') [0, 1].forEach(j => t.append('circle').attr('class', 'gb-rip').attr('r', 11).attr('stroke', s[0]).style('animation-delay', (j * 1.1) + 's')); t.append('rect').attr('x', -9).attr('y', -9).attr('width', 18).attr('height', 18).attr('transform', 'rotate(45)').attr('class', 'gb-cp').attr('fill', s[0]); t.append('text').attr('class', 'gb-emo gb-emo-s').text('⚓'); t.append('text').attr('class', 'gb-lab').attr('y', -15).text(gbT(x, 'name')); t.append('title').text(`${gbT(x, 'name')} · ${stT(s[1], s[2])}`); });
   tok('tech', B.tech || [], (t, x) => { t.append('rect').attr('x', -11).attr('y', -11).attr('width', 22).attr('height', 22).attr('rx', 5).attr('class', 'gb-piece gb-tech' + (x.control === 'export_control' ? ' ctl' : '')); t.append('text').attr('class', 'gb-emo').text(GB_ICON[x.icon] || '💡'); t.append('text').attr('class', 'gb-lab').attr('y', 23).text(gbT(x, 'label')); t.append('title').text(gbT(x, 'label')); });
   tok('events', (GEOPOL.events || []).filter(e => e.lon != null), (t, x) => { t.append('path').attr('d', 'M0,0 C-7,-9 -7,-17 0,-17 C7,-17 7,-9 0,0 z').attr('class', 'gb-pin').attr('fill', geoImpC(x.impact || 0)); t.append('circle').attr('cy', -11.5).attr('r', 2.6).attr('fill', '#fff'); t.append('title').text(`${polDS(x.date)} · ${gbT(x, 'title')}`); });
   // zoom & pan
-  const zoom = d3.zoom().scaleExtent([1, 8]).translateExtent([[0, 0], [W, H]]).on('zoom', ev => { const k = ev.transform.k; GB.k = k; g.attr('transform', ev.transform); g.selectAll('.gb-tok').attr('transform', function () { return `translate(${this.dataset.x},${this.dataset.y}) scale(${1 / Math.sqrt(k)})`; }); svg.classed('gb-k2', k >= 2.2); });
+  svg.append('g').attr('class', 'gb-labs');
+  const zoom = d3.zoom().scaleExtent([1, 8]).translateExtent([[0, 0], [W, H]]).on('start', () => svg.select('.gb-labs').classed('gb-hide', true))
+    .on('zoom', ev => { const k = ev.transform.k; GB.k = k; g.attr('transform', ev.transform); g.selectAll('.gb-tok').attr('transform', function () { return `translate(${this.dataset.x},${this.dataset.y}) scale(${1 / Math.sqrt(k)})`; }); svg.classed('gb-k2', k >= 2.2); })
+    .on('end', () => { gbLabels(); svg.select('.gb-labs').classed('gb-hide', false); });
   svg.call(zoom).on('dblclick.zoom', null); GB.zoom = zoom; GB.svg = svg; GB.P = P; GB.W = W; GB.H = H;
-  gbApply(false);
+  if (!GBP.io && 'IntersectionObserver' in window) { GBP.io = new IntersectionObserver(es => es.forEach(e => { GBP.vis = e.isIntersecting; if (GBP.vis) gbRun(); })); }
+  if (GBP.io) { GBP.io.disconnect(); GBP.io.observe(box); }
+  gbApply(false); gbLabels(); gbRun();
   stRW(box, () => { gbDraw(); });
 }
 function gbApply(animate = true) {
-  const svg = GB.svg; if (!svg) return; const B = gbB() || {}, S = (B.story || [])[GB.step];
+  const svg = GB.svg; if (!svg) return; const B = gbB() || {}, S = (B.story || [])[GB.step], calm = !animate || matchMedia('(prefers-reduced-motion: reduce)').matches;
   svg.selectAll('.gb-L').style('display', function () { const k = [...this.classList].find(c => c.startsWith('gb-L-')).slice(5); return GB.on.has(k) ? null : 'none'; });
   svg.selectAll('.gb-it').classed('gb-off', function () { const k = this.dataset.kind; return !!k && GB_KIND[k] && !GB.kinds.has(k); });
-  const ids = S ? new Set(S.ids || []) : null;
-  svg.selectAll('.gb-it').classed('gb-dim', function () { if (GB.sel) return this.dataset.gb !== GB.sel; if (!ids || !ids.size) return false; return !ids.has(this.dataset.gb.split(':')[1]); }).classed('gb-hot', function () { return GB.sel === this.dataset.gb || (!!ids && ids.has(this.dataset.gb.split(':')[1])); });
+  const ids = S ? new Set(S.ids || []) : null, isHot = n => GB.sel === n.dataset.gb || (!!ids && ids.has(n.dataset.gb.split(':')[1]));
+  svg.selectAll('.gb-it').classed('gb-dim', function () { if (GB.sel) return this.dataset.gb !== GB.sel; if (!ids || !ids.size) return false; return !ids.has(this.dataset.gb.split(':')[1]); }).classed('gb-hot', function () { return isHot(this); });
+  GBP.flows.forEach(F => { const c = F.el.classList; F.show = GB.on.has('flows') && !c.contains('gb-off') && !c.contains('gb-dim'); F.hot = c.contains('gb-hot'); });
   document.querySelectorAll('[data-gb-step]').forEach(b => b.classList.toggle('on', +b.dataset.gbStep === GB.step));
-  if (S && S.focus && GB.zoom) { const p = GB.P([S.focus.lon, S.focus.lat]), z = Math.max(1, Math.min(8, S.focus.zoom || 1)); if (p) { const t = d3.zoomIdentity.translate(GB.W / 2, GB.H / 2).scale(z).translate(-p[0], -p[1]); (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches ? svg.transition().duration(1400) : svg).call(GB.zoom.transform, t); } }
+  // camera: fit everything the step points at (pieces, and the routes' end points and chokepoints), glide there
+  let T = null;
+  if (S && GB.zoom) { const xs = [], ys = [], add = p => { if (p) { xs.push(p[0]); ys.push(p[1]); } };
+    svg.selectAll('.gb-tok.gb-hot').each(function () { add([+this.dataset.x, +this.dataset.y]); });
+    GBP.flows.filter(F => F.hot).forEach(F => { add(F.pts[0]); add(F.pts[F.pts.length - 1]); });
+    if (S.focus) add(GB.P([S.focus.lon, S.focus.lat]));
+    if (xs.length) { const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys), pad = GB.W < 600 ? 30 : 60;
+      const k = Math.max(1, Math.min(6, (S.focus && S.focus.zoom) || 6, (GB.W - 2 * pad) / Math.max(40, x1 - x0), (GB.H - 2 * pad) / Math.max(40, y1 - y0)));
+      T = d3.zoomIdentity.translate(GB.W / 2, GB.H / 2).scale(k).translate(-(x0 + x1) / 2, -(y0 + y1) / 2); } }
+  const after = () => { gbLabels(); if (calm || !S) return;
+    // routes of the step draw themselves in, then its pieces pop
+    GBP.flows.filter(F => F.hot).forEach((F, i) => { const el = F.el, len = el.getTotalLength ? el.getTotalLength() : 0; if (!len) return;
+      d3.select(el).interrupt().attr('stroke-dasharray', `${len} ${len}`).attr('stroke-dashoffset', len).transition().delay(i * 140).duration(1100).ease(d3.easeCubicOut).attr('stroke-dashoffset', 0).on('end', function () { d3.select(this).attr('stroke-dasharray', null).attr('stroke-dashoffset', null); }); });
+    svg.selectAll('.gb-tok.gb-hot').classed('gb-pop', false).each(function (d, i) { const n = this; n.style.setProperty('--pd', (300 + i * 70) + 'ms'); requestAnimationFrame(() => n.classList.add('gb-pop')); }); };
+  if (T) { if (calm) { svg.call(GB.zoom.transform, T); after(); } else svg.transition('cam').duration(1700).ease(d3.easeCubicInOut).call(GB.zoom.transform, T).on('end', after); }
+  else gbLabels();
 }
 function gbSide() {
   const el = document.getElementById('gb-side'); if (!el) return; const B = gbB() || {}, S = B.story || [];
@@ -7960,10 +8038,11 @@ function gbSide() {
 function gbGo(i, auto) {
   const S = (gbB() || {}).story || []; if (!S.length) return; GB.step = (i + S.length) % S.length; GB.sel = null;
   const s = S[GB.step]; if (s && s.show) { const L = new Set(s.show.map(x => x.split(':')[0])); if (L.size) GB.on = new Set([...L, 'flows', 'commodities'].filter(x => GB_LAYERS.some(l => l[0] === x))); document.querySelectorAll('[data-gb-layer]').forEach(b => b.setAttribute('aria-pressed', GB.on.has(b.dataset.gbLayer))); }
-  gbApply(true); gbSide();
-  clearTimeout(GB.timer); if (GB.play && auto !== false) GB.timer = setTimeout(() => { if (GB.play) { if (GB.step === S.length - 1) gbPlay(false); else gbGo(GB.step + 1); } }, Math.max(9000, gbT(s, 'text').length * 70) * (window.__stSlow || 1));
+  gbApply(true); gbSide(); const sd = document.getElementById('gb-side'); if (sd) { sd.classList.remove('gb-in'); void sd.offsetWidth; sd.classList.add('gb-in'); }
+  clearTimeout(GB.timer); const ms = Math.max(9000, gbT(s, 'text').length * 70) * (window.__stSlow || 1), pb = document.querySelector('.gb-prog i'); if (pb) { pb.style.animation = 'none'; void pb.offsetWidth; pb.style.animation = GB.play && auto !== false ? `gbProg ${ms}ms linear forwards` : 'none'; }
+  if (GB.play && auto !== false) GB.timer = setTimeout(() => { if (GB.play) { if (GB.step === S.length - 1) gbPlay(false); else gbGo(GB.step + 1); } }, ms);
 }
-function gbPlay(on) { GB.play = on; const b = document.querySelector('[data-gb-s="play"]'); if (b) b.textContent = on ? stT('⏸ Tạm dừng', '⏸ Pause') : stT('▶ Kể chuyện: vì sao', '▶ Tell the story: why'); if (on) gbGo(GB.step < 0 ? 0 : GB.step); else clearTimeout(GB.timer); }
+function gbPlay(on) { GB.play = on; const b = document.querySelector('[data-gb-s="play"]'); if (b) b.textContent = on ? stT('⏸ Tạm dừng', '⏸ Pause') : stT('▶ Kể chuyện: vì sao', '▶ Tell the story: why'); if (on) gbGo(GB.step < 0 ? 0 : GB.step); else { clearTimeout(GB.timer); const pb = document.querySelector('.gb-prog i'); if (pb) pb.style.animation = 'none'; } }
 document.addEventListener('click', e => {
   const q = s => e.target.closest && e.target.closest(s);
   let t = q('[data-gb]'); if (t && q('#gb-svg')) { GB.sel = GB.sel === t.dataset.gb ? null : t.dataset.gb; gbApply(false); gbSide(); return; }
@@ -7971,7 +8050,7 @@ document.addEventListener('click', e => {
   t = q('[data-gb-kind]'); if (t) { const k = t.dataset.gbKind; GB.kinds.has(k) ? GB.kinds.delete(k) : GB.kinds.add(k); t.setAttribute('aria-pressed', GB.kinds.has(k)); gbApply(false); return; }
   t = q('[data-gb-s]'); if (t) { const a = t.dataset.gbS; if (a === 'play') gbPlay(!GB.play); else { gbPlay(false); gbGo(GB.step + (a === 'next' ? 1 : -1) + (GB.step < 0 && a === 'next' ? 0 : 0), false); } return; }
   t = q('[data-gb-step]'); if (t) { gbPlay(false); gbGo(+t.dataset.gbStep, false); return; }
-  t = q('[data-gb-z]'); if (t && GB.svg) { const a = t.dataset.gbZ; if (a === 'reset') { GB.step = -1; GB.sel = null; gbPlay(false); GB.svg.transition().duration(700).call(GB.zoom.transform, d3.zoomIdentity); gbApply(false); gbSide(); } else GB.svg.transition().duration(350).call(GB.zoom.scaleBy, a === 'in' ? 1.6 : 1 / 1.6); return; }
+  t = q('[data-gb-z]'); if (t && GB.svg) { const a = t.dataset.gbZ; if (a === 'reset') { GB.step = -1; GB.sel = null; gbPlay(false); gbApply(false); gbSide(); GB.svg.transition('cam').duration(1200).ease(d3.easeCubicInOut).call(GB.zoom.transform, d3.zoomIdentity); } else GB.svg.transition().duration(350).call(GB.zoom.scaleBy, a === 'in' ? 1.6 : 1 / 1.6); return; }
   t = q('[data-gb-player]'); if (t) { const id = t.dataset.gbPlayer, S = (gbB() || {}).story || [], i = S.findIndex(s => (s.show || []).some(x => x === 'events:' + id) || (s.ids || []).some(x => x.startsWith(id + '_'))); gbPlay(false); if (i >= 0) gbGo(i, false); return; }
   if (q('[data-gb-close]')) { GB.sel = null; gbApply(false); gbSide(); }
 });
