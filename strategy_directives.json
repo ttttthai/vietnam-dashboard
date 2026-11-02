@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-06",
+  "as_of": "2026-10-26",
   "updated_by": "Strategy agent (scheduled)",
   "vision": {
     "summary_vi": "Nghị quyết Đại hội XIV (01/2026) xác định mục tiêu đến năm 2030 Việt Nam trở thành nước đang phát triển có công nghiệp hiện đại, thu nhập trung bình cao, và hiện thực hoá tầm nhìn đến năm 2045 trở thành nước phát triển, thu nhập cao, vững bước đi lên chủ nghĩa xã hội trong kỷ nguyên vươn mình của dân tộc. Giai đoạn 2026–2030 đặt chỉ tiêu tăng trưởng GDP bình quân từ 10%/năm trở lên, GDP bình quân đầu người khoảng 8.500 USD, kinh tế số khoảng 30% GDP, công nghiệp chế biến, chế tạo khoảng 28% GDP và đóng góp của TFP vào tăng trưởng trên 55%. Khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số là động lực chính; kinh tế nhà nước giữ vai trò chủ đạo, kinh tế tư nhân là một động lực quan trọng nhất (NQ 68 đặt mục tiêu đóng góp 55–58% GDP vào 2030). Ba đột phá chiến lược về thể chế, nguồn nhân lực và kết cấu hạ tầng đi cùng tinh gọn bộ máy với chính quyền địa phương 2 cấp, hội nhập quốc tế sâu rộng, bảo đảm an ninh năng lượng, chuyển đổi xanh và phát triển con người; các nghị quyết chiến lược của Bộ Chính trị (57, 59, 66, 68, 70, 71, 72, 79, 80) và NQ 19-NQ/TW (7/2026) về đổi mới mô hình phát triển cụ thể hoá tầm nhìn này.",
@@ -2780,7 +2780,7 @@
       "kind": "Luật",
       "issuer": "Quốc hội",
       "level": "assembly",
-      "date": "2026-09-28",
+      "date": "2026-10-26",
       "effective_date": null,
       "effective_note": "Dự thảo, chưa được thông qua",
       "end_date": null,
@@ -2816,6 +2816,10 @@
           {
             "date": "2026-09-28",
             "event": "Hội nghị đại biểu Quốc hội hoạt động chuyên trách góp ý"
+          },
+          {
+            "date": "2026-10-26",
+            "event": "Bộ trưởng Bộ Công an trình bày tờ trình, Uỷ ban QP-AN-ĐN trình bày báo cáo thẩm tra; Quốc hội thảo luận ở tổ"
           }
         ]
       }
@@ -2952,7 +2956,7 @@
       "kind": "Nghị quyết",
       "issuer": "Quốc hội",
       "level": "assembly",
-      "date": "2026-09-17",
+      "date": "2026-10-17",
       "effective_date": null,
       "effective_note": "Dự thảo, chưa được thông qua",
       "end_date": null,
@@ -2967,6 +2971,10 @@
         },
         {
           "text": "CPI bình quân tăng khoảng 4,5–5% (dự thảo)",
+          "year": 2027
+        },
+        {
+          "text": "Tăng trưởng GDP từ 10% trở lên; CPI bình quân khoảng 4,5% (Trung ương 4 khoá XIV thống nhất)",
           "year": 2027
         }
       ],
@@ -2993,6 +3001,18 @@
           {
             "date": "2026-09-17",
             "event": "Bộ Tài chính đã trình Chính phủ dự thảo Kế hoạch 2027 (mục tiêu tăng trưởng từ 10%)"
+          },
+          {
+            "date": "2026-10-08",
+            "event": "Hội nghị Trung ương 4 khoá XIV thống nhất mục tiêu 2027: tăng trưởng GDP từ 10% trở lên, CPI bình quân khoảng 4,5%; giao Đảng uỷ Chính phủ, Đảng uỷ Quốc hội hoàn thiện trình Quốc hội"
+          },
+          {
+            "date": "2026-10-15",
+            "event": "Kết luận 106-KL/TW: Trung ương tán thành dự kiến kế hoạch KT-XH, dự toán NSNN 2027"
+          },
+          {
+            "date": "2026-10-17",
+            "event": "Thủ tướng Lê Minh Hưng trình bày Báo cáo KT-XH tại phiên khai mạc Kỳ họp thứ 2; 18/10 Quốc hội thảo luận ở tổ"
           }
         ]
       }
@@ -4472,6 +4492,328 @@
         "Hỗ trợ DN tư nhân tiếp cận đất đai, mặt bằng (quỹ đất KCN, CCN, trụ sở công dôi dư), chuyển đổi số, đổi mới công nghệ, nhân lực, chuỗi giá trị"
       ],
       "key_points_note": "chưa đối chiếu toàn văn; tên văn bản theo mô tả của báo chí"
+    },
+    {
+      "id": "KL51-TW-2026",
+      "ref": "51-KL/TW",
+      "kind": "Kết luận",
+      "issuer": "Bộ Chính trị",
+      "level": "party",
+      "date": "2026-06-17",
+      "effective_date": "2026-06-17",
+      "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",
+      "end_date": null,
+      "stage": "in_force",
+      "title": "Kết luận của Bộ Chính trị về đẩy mạnh công tác sở hữu trí tuệ phục vụ phát triển kinh tế - xã hội trong tình hình mới",
+      "pillar": "khcn",
+      "summary": "Chuyển từ quản lý hành chính sang xây dựng hệ sinh thái sở hữu trí tuệ, coi SHTT là cấu phần của chiến lược phát triển quốc gia, KH&CN và công nghiệp. Do Thường trực Ban Bí thư Trần Cẩm Tú ký thay mặt Bộ Chính trị.",
+      "targets": [],
+      "status": "Đang thực hiện",
+      "url": "https://daibieunhandan.vn/ket-luan-so-51-kl-tw-cua-bo-chinh-tri-ve-day-manh-cong-tac-so-huu-tri-tue-phuc-vu-phat-trien-kinh-te-xa-hoi-trong-tinh-hinh-moi-10421014.html",
+      "source": "Báo Đại biểu Nhân dân (daibieunhandan.vn)",
+      "key_points": [
+        "Đưa SHTT thành cấu phần của chiến lược phát triển quốc gia, chiến lược KH&CN, công nghiệp và nhân lực chất lượng cao",
+        "Xây dựng văn hoá tôn trọng sáng tạo; xử lý nghiêm vi phạm (sao chép, đạo văn, phần mềm trái phép)",
+        "Rà soát, sửa đổi pháp luật SHTT theo chuẩn quốc tế, xử lý vấn đề mới: AI, dữ liệu, tài sản số, công nghệ sinh học, bán dẫn",
+        "Phát triển thị trường quyền SHTT, định giá, dùng tài sản trí tuệ để huy động vốn; xây dựng Chương trình quốc gia phát triển SHTT",
+        "Tăng nguồn lực cho cơ quan SHTT, toà chuyên trách; Ban Chính sách, chiến lược TW theo dõi, báo cáo Bộ Chính trị 6 tháng/lần"
+      ]
+    },
+    {
+      "id": "NQ26-TW-2026",
+      "ref": "26-NQ/TW",
+      "kind": "Nghị quyết",
+      "issuer": "Bộ Chính trị",
+      "level": "party",
+      "date": "2026-08-22",
+      "effective_date": "2026-08-22",
+      "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",
+      "end_date": null,
+      "stage": "in_force",
+      "title": "Về phát triển du lịch Việt Nam trở thành ngành kinh tế mũi nhọn trong kỷ nguyên mới",
+      "pillar": "kinhte-vimo",
+      "summary": "Kế thừa gần 10 năm thực hiện Nghị quyết 08-NQ/TW (2017); chuyển mô hình du lịch từ số lượng sang chất lượng, giá trị gia tăng cao, thông minh, xanh, sáng tạo, giàu bản sắc. Tổng Bí thư, Chủ tịch nước Tô Lâm ký.",
+      "targets": [
+        {
+          "text": "Du lịch đóng góp trực tiếp 14–15% GDP",
+          "year": 2045
+        },
+        {
+          "text": "Thuộc nhóm 30 quốc gia có năng lực cạnh tranh du lịch hàng đầu thế giới",
+          "year": 2045
+        },
+        {
+          "text": "Đón 70 triệu lượt khách du lịch quốc tế",
+          "year": 2045
+        }
+      ],
+      "status": "Đang thực hiện",
+      "url": "https://baoquocte.vn/nghi-quyet-so-26-nq-tw-phat-trien-du-lich-viet-nam-tro-thanh-nganh-kinh-te-mui-nhon-trong-ky-nguyen-moi-443209.html",
+      "source": "Báo Thế giới & Việt Nam (TTXVN)",
+      "key_points": [
+        "Chuyển mô hình tăng trưởng và quản trị du lịch từ \"số lượng\" sang \"chất lượng\", nâng giá trị gia tăng",
+        "Phát triển du lịch chất lượng cao, thông minh, xanh, sáng tạo, giàu bản sắc, có sức cạnh tranh khu vực và quốc tế",
+        "Hoàn thiện khung pháp lý cho mô hình mới: kinh tế chia sẻ, kinh tế đêm, du lịch thông minh, du lịch xanh",
+        "Gắn du lịch với công nghiệp văn hoá; tháo gỡ điểm nghẽn hạ tầng, kết nối giao thông đa phương thức, hạ tầng số"
+      ],
+      "key_points_note": "chưa đối chiếu toàn văn"
+    },
+    {
+      "id": "NQ27-TW-2026",
+      "ref": "27-NQ/TW",
+      "kind": "Nghị quyết",
+      "issuer": "Bộ Chính trị",
+      "level": "party",
+      "date": "2026-08-28",
+      "effective_date": "2026-08-28",
+      "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",
+      "end_date": null,
+      "stage": "in_force",
+      "title": "Về phát triển các vùng và tổ chức không gian phát triển quốc gia trong giai đoạn mới",
+      "pillar": "kinhte-vimo",
+      "summary": "Coi phát triển vùng là phương thức tổ chức tăng trưởng quốc gia, tổ chức lại không gian phát triển đa tầng, đa cực, liên kết; thay thế 6 nghị quyết vùng khoá XIII (11, 13, 23, 24, 26, 30-NQ/TW).",
+      "targets": [
+        {
+          "text": "Các vùng phát triển và vận hành theo phương thức kinh tế số, xanh, dữ liệu, tuần hoàn; hạ tầng đồng bộ, thông minh; Việt Nam là nước phát triển, thu nhập cao",
+          "year": 2045
+        }
+      ],
+      "status": "Đang thực hiện",
+      "url": "https://tapchicongthuong.vn/nghi-quyet-cua-bo-chinh-tri-ve-phat-trien-cac-vung-va-to-chuc-khong-gian-phat-trien-quoc-gia-trong-giai-doan-moi-546294.htm",
+      "source": "Tạp chí Công Thương (toàn văn)",
+      "key_points": [
+        "Tổ chức không gian phát triển đa tầng, đa cực; kết nối đất liền, biển, vùng trời, ngầm, không gian số; hành lang kinh tế giữa các cực tăng trưởng",
+        "Đột phá là cơ chế điều phối vùng: đổi mới Hội đồng điều phối vùng, phân cấp, phân quyền gắn trách nhiệm với kết quả",
+        "Đầu tư hạ tầng giao thông, số, xanh hiện đại; phát triển hệ thống đô thị quanh các cực tăng trưởng vùng",
+        "Đặt mục tiêu cụ thể đến 2030 cho 6 vùng kinh tế - xã hội; khoa học, công nghệ, chuyển đổi số là động lực chính",
+        "Thay thế các NQ 11, 13, 23, 24, 26, 30-NQ/TW khoá XIII về 6 vùng; có hiệu lực từ ngày ký"
+      ]
+    },
+    {
+      "id": "NQ263-CP-2026",
+      "ref": "263/NQ-CP",
+      "kind": "Nghị quyết",
+      "issuer": "Chính phủ",
+      "level": "government",
+      "date": "2026-09-07",
+      "effective_date": "2026-09-07",
+      "effective_note": "hiệu lực từ ngày ký",
+      "end_date": null,
+      "stage": "in_force",
+      "title": "Ban hành Chương trình hành động của Chính phủ thực hiện Nghị quyết số 26-NQ/TW ngày 22/8/2026 của Bộ Chính trị về phát triển du lịch Việt Nam trở thành ngành kinh tế mũi nhọn trong kỷ nguyên mới",
+      "pillar": "kinhte-vimo",
+      "summary": "Cụ thể hoá Nghị quyết 26-NQ/TW; phát triển du lịch theo chiều sâu, gắn chuyển đổi số, chuyển đổi xanh. Phó Thủ tướng Phạm Thị Thanh Trà ký.",
+      "targets": [
+        {
+          "text": "Đón 45–50 triệu lượt khách quốc tế và 160 triệu lượt khách nội địa",
+          "year": 2030
+        },
+        {
+          "text": "Tổng thu từ khách du lịch 80–90 tỷ USD; du lịch đóng góp trực tiếp 10–12% GDP",
+          "year": 2030
+        },
+        {
+          "text": "Trên 1,5 triệu buồng lưu trú; khoảng 2,3 triệu việc làm trực tiếp",
+          "year": 2030
+        }
+      ],
+      "status": "Đang thực hiện",
+      "url": "https://baolaocai.vn/chinh-phu-ban-hanh-chuong-trinh-hanh-dong-thuc-hien-nghi-quyet-26-nqtw-cua-bo-chinh-tri-post909012.html",
+      "source": "Báo Lào Cai (theo Cổng TTĐT Chính phủ)",
+      "key_points": [
+        "Trọng tâm hoàn thiện thể chế, chính sách tạo môi trường thuận lợi cho du lịch phát triển",
+        "Hình thành 3 cực tăng trưởng du lịch, 10 trung tâm du lịch trọng điểm, 20 khu du lịch quốc gia được công nhận đến 2030",
+        "Giao bộ, ngành, địa phương xây dựng chương trình cụ thể, trong đó có Chương trình xúc tiến du lịch quốc gia 2026–2035",
+        "Bộ VHTTDL ban hành kế hoạch hành động riêng; Cục Du lịch Quốc gia Việt Nam làm đầu mối theo dõi, đánh giá"
+      ],
+      "key_points_note": "chưa đối chiếu toàn văn"
+    },
+    {
+      "id": "NQ282-CP-2026",
+      "ref": "282/NQ-CP",
+      "kind": "Nghị quyết",
+      "issuer": "Chính phủ",
+      "level": "government",
+      "date": "2026-09-22",
+      "effective_date": null,
+      "effective_note": "chưa xác minh điều khoản hiệu lực (thường có hiệu lực từ ngày ký)",
+      "end_date": null,
+      "stage": "in_force",
+      "title": "Ban hành Kế hoạch hành động của Chính phủ thực hiện Kết luận số 51-KL/TW ngày 17/6/2026 của Bộ Chính trị về đẩy mạnh công tác sở hữu trí tuệ phục vụ phát triển kinh tế - xã hội trong tình hình mới",
+      "pillar": "khcn",
+      "summary": "Kế hoạch hành động cụ thể hoá Kết luận 51-KL/TW về sở hữu trí tuệ. Phó Thủ tướng Hồ Quốc Dũng ký. (Khác với Nghị quyết 282/NQ-CP năm 2025 về NQ 72-NQ/TW.)",
+      "targets": [],
+      "status": "Đang thực hiện",
+      "url": "https://vcci.com.vn/tin-tuc/chinh-phu-day-manh-cong-tac-so-huu-tri-tue-phuc-vu-phat-trien-kinh-te-xa-hoi",
+      "source": "VCCI; Cổng TTĐT Chính phủ",
+      "key_points": [
+        "Cụ thể hoá quan điểm, nhiệm vụ của Kết luận 51-KL/TW thành nhiệm vụ của các bộ, ngành, địa phương",
+        "Hướng tới hoàn thiện pháp luật SHTT, phát triển thị trường và thương mại hoá tài sản trí tuệ"
+      ],
+      "key_points_note": "chưa đối chiếu toàn văn"
+    },
+    {
+      "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",
+      "end_date": null,
+      "stage": "in_force",
+      "status": "Đang thực hiện",
+      "targets": [],
+      "id": "NQ28-TW-2026",
+      "ref": "28-NQ/TW",
+      "kind": "Nghị quyết",
+      "issuer": "Ban Chấp hành Trung ương Đảng",
+      "level": "party",
+      "date": "2026-10-08",
+      "title": "Nghị quyết Hội nghị lần thứ tư Ban Chấp hành Trung ương Đảng khoá XIV",
+      "pillar": "bomay",
+      "summary": "Nghị quyết Hội nghị Trung ương 4 khoá XIV (họp 5–8/10/2026), do Tổng Bí thư, Chủ tịch nước Tô Lâm ký; thông qua 3 nghị quyết về xây dựng Đảng, phương thức lãnh đạo, công tác cán bộ cùng các quy định, kết luận.",
+      "url": "https://vov.vn/chinh-tri/toan-van-nghi-quyet-so-28-nqtw-hoi-nghi-trung-uong-4-khoa-xiv-post1340404.vov",
+      "source": "VOV (toàn văn)",
+      "key_points": [
+        "Thông qua nghị quyết về tăng cường xây dựng, chỉnh đốn Đảng và hệ thống chính trị trong sạch, vững mạnh toàn diện",
+        "Thông qua nghị quyết đổi mới phương thức lãnh đạo, cầm quyền của Đảng và nghị quyết về đội ngũ cán bộ, công tác cán bộ",
+        "Thông qua quy định về kiểm tra, giám sát, kỷ luật đảng và quy định về đảng viên tham gia hoạt động đầu tư, kinh doanh",
+        "Thông qua kết luận về thu hút, trọng dụng nhân tài; về KT-XH, ngân sách 2026 và kế hoạch 2027; đề cương sửa đổi Điều lệ Đảng",
+        "Giao Bộ Chính trị, Ban Bí thư hoàn thiện, ban hành và tổ chức thực hiện các văn bản"
+      ],
+      "effective_date": "2026-10-08"
+    },
+    {
+      "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",
+      "end_date": null,
+      "stage": "in_force",
+      "status": "Đang thực hiện",
+      "targets": [
+        {
+          "text": "Tăng trưởng GDP từ 10% trở lên",
+          "year": 2027
+        },
+        {
+          "text": "Tốc độ tăng CPI bình quân khoảng 4,5%",
+          "year": 2027
+        },
+        {
+          "text": "Thu ngân sách nhà nước tăng khoảng 9,1% so với thực hiện năm 2026",
+          "year": 2027
+        },
+        {
+          "text": "Hoàn thành trên 176 nghìn căn nhà ở xã hội, nhà ở cho thuê, nhà ở công nhân",
+          "year": 2027
+        }
+      ],
+      "id": "KL106-TW-2026",
+      "ref": "106-KL/TW",
+      "kind": "Kết luận",
+      "issuer": "Ban Chấp hành Trung ương Đảng",
+      "level": "party",
+      "date": "2026-10-15",
+      "title": "Kết luận Hội nghị Trung ương 4 khoá XIV về tình hình kinh tế - xã hội, ngân sách nhà nước năm 2026 và kế hoạch năm 2027",
+      "pillar": "kinhte-vimo",
+      "summary": "Trung ương tán thành báo cáo kết quả thực hiện kế hoạch KT-XH, ngân sách 2026 và dự kiến kế hoạch, dự toán 2027; đặt mục tiêu tăng trưởng GDP năm 2027 từ 10% trở lên.",
+      "url": "https://www.vietnamplus.vn/ket-luan-106-kltw-khoi-thong-nguon-luc-tao-da-tang-truong-hai-con-so-post1142399.vnp",
+      "source": "VietnamPlus (TTXVN)",
+      "key_points": [
+        "Ưu tiên tăng trưởng từ 10% trở lên gắn với giữ ổn định vĩ mô, kiểm soát lạm phát, bảo đảm các cân đối lớn",
+        "Tiết kiệm 5% vốn đầu tư công và 10% chi thường xuyên (trừ lương) để bố trí cho dự án trọng điểm, an sinh xã hội",
+        "Hoàn thiện văn bản pháp luật đúng hạn, cắt giảm thủ tục, điều kiện kinh doanh; vận hành hiệu quả chính quyền 2 cấp",
+        "Cơ cấu lại nền kinh tế: phát triển kinh tế tư nhân, đổi mới DNNN, thu hút FDI có chọn lọc gắn chuyển giao công nghệ",
+        "Đẩy nhanh hạ tầng chiến lược: cao tốc Bắc–Nam, sân bay Long Thành, Gia Bình, đường sắt Lào Cai–Hà Nội–Hải Phòng, ĐSTĐC"
+      ],
+      "key_points_note": "chỉ tiêu chi tiết nằm ở Phụ lục, chưa đối chiếu",
+      "effective_date": "2026-10-15"
+    },
+    {
+      "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",
+      "end_date": null,
+      "stage": "in_force",
+      "status": "Đang thực hiện",
+      "targets": [
+        {
+          "text": "Thu hút, trọng dụng khoảng 1.000 nhân tài quốc gia gắn với nhiệm vụ, chương trình, dự án cụ thể (khoa học cơ bản, AI, bán dẫn, lượng tử…)",
+          "year": 2030
+        },
+        {
+          "text": "Thuộc nhóm 3 nước dẫn đầu Đông Nam Á về chỉ số năng lực cạnh tranh nhân tài toàn cầu",
+          "year": 2030
+        },
+        {
+          "text": "Thuộc nhóm 20 nước hàng đầu thế giới về chỉ số năng lực cạnh tranh nhân tài toàn cầu",
+          "year": 2045
+        },
+        {
+          "text": "Ngân sách nhà nước cho công tác nhân tài khoảng 0,1% GDP/năm (trong tổng nguồn lực KHCN, ĐMST, CĐS)",
+          "year": null
+        }
+      ],
+      "id": "KL105-TW-2026",
+      "ref": "105-KL/TW",
+      "kind": "Kết luận",
+      "issuer": "Ban Chấp hành Trung ương Đảng",
+      "level": "party",
+      "date": "2026-10-15",
+      "title": "Kết luận Hội nghị Trung ương 4 khoá XIV về thu hút và trọng dụng nhân tài trong các ngành, lĩnh vực mũi nhọn phục vụ đất nước phát triển nhanh, bền vững",
+      "pillar": "khcn",
+      "summary": "Xác định đầu tư cho nhân tài là đầu tư chiến lược, dài hạn; chỉ ra 5 điểm nghẽn và đề ra các giải pháp đột phá thu hút, trọng dụng nhân tài trong nước và quốc tế.",
+      "url": "https://www.vietnamplus.vn/ket-luan-so-105-kltw-ve-thu-hut-va-trong-dung-nhan-tai-trong-cac-nganh-linh-vuc-mui-nhon-phuc-vu-dat-nuoc-phat-trien-nhanh-ben-vung-post1142395.vnp",
+      "source": "VietnamPlus (TTXVN)",
+      "key_points": [
+        "Do Tổng Bí thư, Chủ tịch nước Tô Lâm ký thay mặt Ban Chấp hành Trung ương",
+        "Hoàn thiện thể chế, cơ chế đặc biệt và khung tiêu chí nhân tài quốc gia linh hoạt",
+        "Đánh giá nhân tài theo kết quả, sản phẩm thay vì bằng cấp, chức danh; giao quyền thực chất, chấp nhận rủi ro có kiểm soát",
+        "Phát hiện sớm học sinh năng khiếu, mô hình chuyên gia đầu ngành kèm cặp nhân tài trẻ",
+        "Kết nối trí thức người Việt ở nước ngoài; xây dựng cơ sở dữ liệu và nền tảng số quốc gia về nhân tài"
+      ],
+      "effective_date": "2026-10-15"
+    },
+    {
+      "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",
+      "end_date": null,
+      "stage": "in_force",
+      "status": "Đang thực hiện",
+      "targets": [],
+      "id": "CT15-TW-2026",
+      "ref": "15-CT/TW",
+      "kind": "Chỉ thị",
+      "issuer": "Bộ Chính trị",
+      "level": "party",
+      "date": "2026-10-15",
+      "title": "Chỉ thị của Bộ Chính trị về bảo đảm an ninh môi trường trong thời kỳ phát triển mới",
+      "pillar": "nangluong",
+      "summary": "Xác định bảo đảm an ninh môi trường là nhiệm vụ lâu dài, thường xuyên của cả hệ thống chính trị; lực lượng Công an nhân dân giữ vai trò nòng cốt tham mưu, tổ chức thực hiện. Đồng chí Trần Cẩm Tú ký.",
+      "url": "https://www.vietnamplus.vn/chi-thi-cua-bo-chinh-tri-ve-bao-dam-an-ninh-moi-truong-trong-thoi-ky-moi-post1143110.vnp",
+      "source": "VietnamPlus (TTXVN)",
+      "key_points": [
+        "Cấp uỷ, chính quyền tích hợp nhiệm vụ an ninh môi trường vào nghị quyết, chương trình công tác hằng năm, nhiệm kỳ",
+        "Hoàn thiện pháp luật, cơ chế phối hợp liên ngành; lồng ghép đánh giá rủi ro vào chiến lược, quy hoạch, dự án lớn",
+        "Kiểm soát nguồn ô nhiễm, sự cố rủi ro cao; xây dựng tiêu chí phân loại rủi ro, cảnh báo sớm, diễn tập ứng phó",
+        "Ứng dụng khoa học, dữ liệu, cảnh báo số, bản đồ rủi ro; Công an nhân dân nòng cốt đấu tranh tội phạm môi trường",
+        "Hợp tác quốc tế, cảnh báo xuyên biên giới; Đảng uỷ Chính phủ xây dựng chương trình hành động thực hiện"
+      ],
+      "effective_date": "2026-10-15"
+    },
+    {
+      "effective_note": "hiệu lực từ ngày ký (văn bản của Đảng)",
+      "end_date": null,
+      "stage": "in_force",
+      "status": "Đang thực hiện",
+      "targets": [],
+      "id": "KL107-TW-2026",
+      "ref": "107-KL/TW",
+      "kind": "Kết luận",
+      "issuer": "Bộ Chính trị",
+      "level": "party",
+      "date": "2026-10-17",
+      "title": "Kết luận của Bộ Chính trị về hoàn thiện hệ thống vị trí việc làm trong hệ thống chính trị gắn với xây dựng đội ngũ cán bộ và quản lý biên chế",
+      "pillar": "bomay",
+      "summary": "Kết luận về hoàn thiện hệ thống vị trí việc làm trong toàn hệ thống chính trị gắn với quản lý biên chế; đồng chí Trần Cẩm Tú ký.",
+      "url": "https://tulieuvankien.dangcongsan.vn/he-thong-van-ban/van-ban-cua-dang/ket-luan-so-107-kl-tw-ngay-17-10-2026-cua-bo-chinh-tri-ve-hoan-thien-he-thong-vi-tri-viec-lam-trong-he-thong-chinh-tri-g.html",
+      "source": "Tư liệu văn kiện Đảng (dangcongsan.vn)",
+      "key_points": [
+        "Hoàn thiện hệ thống vị trí việc làm trong toàn hệ thống chính trị, làm căn cứ xây dựng đội ngũ cán bộ và quản lý biên chế",
+        "Ban Tổ chức Trung ương đã ban hành Hướng dẫn 07-HD/BTCTW (19/10/2026) về rà soát vị trí việc làm, xây dựng đề án biên chế"
+      ],
+      "key_points_note": "chưa đối chiếu toàn văn",
+      "effective_date": "2026-10-17"
     }
   ],
   "relations": [
@@ -5188,9 +5530,154 @@
       "type": "implements",
       "note": "Cụ thể hoá NQ 68-NQ/TW trên địa bàn tỉnh",
       "url": "https://baoquangninh.vn/quang-ninh-dua-nghi-quyet-so-68-nqtw-vao-cuoc-song-khoi-thong-suc-manh-kinh-te-tu-nhan-bai-3-dong-luc-quan-trong-cho-su-tang-truong-post3421670.html"
+    },
+    {
+      "from": "NQ263-CP-2026",
+      "to": "NQ26-TW-2026",
+      "type": "implements",
+      "note": "Chương trình hành động của Chính phủ thực hiện NQ 26-NQ/TW",
+      "url": "https://baolaocai.vn/chinh-phu-ban-hanh-chuong-trinh-hanh-dong-thuc-hien-nghi-quyet-26-nqtw-cua-bo-chinh-tri-post909012.html"
+    },
+    {
+      "from": "NQ282-CP-2026",
+      "to": "KL51-TW-2026",
+      "type": "implements",
+      "note": "Kế hoạch hành động của Chính phủ thực hiện KL 51-KL/TW",
+      "url": "https://vcci.com.vn/tin-tuc/chinh-phu-day-manh-cong-tac-so-huu-tri-tue-phuc-vu-phat-trien-kinh-te-xa-hoi"
+    },
+    {
+      "from": "KL106-TW-2026",
+      "to": "NQ28-TW-2026",
+      "type": "related",
+      "note": "Kết luận về KT-XH, ngân sách 2026 và kế hoạch 2027 được thông qua tại Hội nghị Trung ương 4 (NQ 28-NQ/TW)",
+      "url": "https://vov.vn/chinh-tri/toan-van-nghi-quyet-so-28-nqtw-hoi-nghi-trung-uong-4-khoa-xiv-post1340404.vov"
+    },
+    {
+      "from": "KL105-TW-2026",
+      "to": "NQ28-TW-2026",
+      "type": "related",
+      "note": "Kết luận về thu hút, trọng dụng nhân tài được thông qua tại Hội nghị Trung ương 4 (NQ 28-NQ/TW)",
+      "url": "https://vov.vn/chinh-tri/toan-van-nghi-quyet-so-28-nqtw-hoi-nghi-trung-uong-4-khoa-xiv-post1340404.vov"
+    },
+    {
+      "from": "DT-NQ-KTXH-2027",
+      "to": "KL106-TW-2026",
+      "type": "related",
+      "note": "Trung ương tán thành dự kiến Kế hoạch KT-XH và dự toán NSNN 2027 do Chính phủ trình",
+      "url": "https://www.vietnamplus.vn/ket-luan-106-kltw-khoi-thong-nguon-luc-tao-da-tang-truong-hai-con-so-post1142399.vnp"
+    },
+    {
+      "from": "KL106-TW-2026",
+      "to": "KL18-TW-2026",
+      "type": "related",
+      "note": "Năm 2027 là năm thứ hai thực hiện Nghị quyết Đại hội XIV và Kết luận 18-KL/TW",
+      "url": "https://daibieunhandan.vn/tang-toc-tang-truong-siet-chat-ky-luat-thuc-thi-10434200.html"
     }
   ],
   "news": [
+    {
+      "date": "2026-10-26",
+      "title": "Quốc hội nghe tờ trình và thảo luận ở tổ dự án Luật An ninh dữ liệu cùng nhiều luật liên quan đến an ninh quốc gia",
+      "url": "https://www.vietnamplus.vn/ngay-2610-quoc-hoi-lam-viec-voi-nhieu-luat-lien-quan-den-an-ninh-quoc-gia-post1144174.vnp",
+      "ids": [
+        "DT-LUAT-ANDL-2026"
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "title": "Chỉ thị 15-CT/TW của Bộ Chính trị về bảo đảm an ninh môi trường trong thời kỳ mới",
+      "url": "https://www.vietnamplus.vn/chi-thi-cua-bo-chinh-tri-ve-bao-dam-an-ninh-moi-truong-trong-thoi-ky-moi-post1143110.vnp",
+      "ids": [
+        "CT15-TW-2026"
+      ]
+    },
+    {
+      "date": "2026-10-18",
+      "title": "Quốc hội thảo luận ở tổ về kế hoạch phát triển KT-XH, ngân sách nhà nước và đầu tư công năm 2026–2027",
+      "url": "https://www.vietnamplus.vn/quoc-hoi-ngay-1810-thao-luan-ve-phat-trien-kinh-te-xa-hoi-va-ngan-sach-nha-nuoc-post1142586.vnp",
+      "ids": [
+        "DT-NQ-KTXH-2027"
+      ]
+    },
+    {
+      "date": "2026-10-17",
+      "title": "Toàn văn Báo cáo kinh tế - xã hội do Thủ tướng Lê Minh Hưng trình bày tại phiên khai mạc Kỳ họp thứ 2, Quốc hội khoá XVI",
+      "url": "https://tapchicongthuong.vn/toan-van-bao-cao-kinh-te-xa-hoi-do-thu-tuong-le-minh-hung-trinh-bay-tai-ky-hop-thu-2--quoc-hoi-khoa-xvi-558685.htm",
+      "ids": [
+        "DT-NQ-KTXH-2027",
+        "KL106-TW-2026"
+      ]
+    },
+    {
+      "date": "2026-10-17",
+      "title": "Bộ Chính trị ban hành Kết luận 107-KL/TW về hoàn thiện hệ thống vị trí việc làm gắn với quản lý biên chế",
+      "url": "https://tulieuvankien.dangcongsan.vn/he-thong-van-ban/van-ban-cua-dang/ket-luan-so-107-kl-tw-ngay-17-10-2026-cua-bo-chinh-tri-ve-hoan-thien-he-thong-vi-tri-viec-lam-trong-he-thong-chinh-tri-g.html",
+      "ids": [
+        "KL107-TW-2026"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Kết luận 106-KL/TW: Khơi thông nguồn lực, tạo đà tăng trưởng hai con số (GDP 2027 từ 10% trở lên, CPI khoảng 4,5%)",
+      "url": "https://www.vietnamplus.vn/ket-luan-106-kltw-khoi-thong-nguon-luc-tao-da-tang-truong-hai-con-so-post1142399.vnp",
+      "ids": [
+        "KL106-TW-2026",
+        "DT-NQ-KTXH-2027"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Kết luận 105-KL/TW về thu hút, trọng dụng nhân tài: khoảng 1.000 nhân tài quốc gia đến 2030",
+      "url": "https://www.vietnamplus.vn/ket-luan-so-105-kltw-ve-thu-hut-va-trong-dung-nhan-tai-trong-cac-nganh-linh-vuc-mui-nhon-phuc-vu-dat-nuoc-phat-trien-nhanh-ben-vung-post1142395.vnp",
+      "ids": [
+        "KL105-TW-2026"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Hội nghị toàn quốc quán triệt, triển khai Nghị quyết Trung ương 4 khoá XIV",
+      "url": "https://vov.vn/chinh-tri/hoi-nghi-toan-quoc-quan-triet-trien-khai-nghi-quyet-trung-uong-4-khoa-xiv-post1341566.vov",
+      "ids": [
+        "NQ28-TW-2026",
+        "KL105-TW-2026",
+        "KL106-TW-2026"
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "title": "Toàn văn Nghị quyết số 28-NQ/TW Hội nghị Trung ương 4 khoá XIV",
+      "url": "https://vov.vn/chinh-tri/toan-van-nghi-quyet-so-28-nqtw-hoi-nghi-trung-uong-4-khoa-xiv-post1340404.vov",
+      "ids": [
+        "NQ28-TW-2026"
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "title": "Bế mạc Hội nghị Trung ương 4 khoá XIV: thông qua Nghị quyết Hội nghị và các nghị quyết, quy định, đề án thuộc thẩm quyền",
+      "url": "https://www.vietnamplus.vn/thong-cao-bao-chi-ve-ngay-lam-viec-thu-tu-va-be-mac-hoi-nghi-trung-uong-4-post1140782.vnp",
+      "ids": [
+        "DH-XIV",
+        "NQ28-TW-2026"
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "title": "Trung ương thống nhất mục tiêu năm 2027 tăng trưởng GDP từ 10% trở lên, CPI bình quân khoảng 4,5%",
+      "url": "https://tienphong.vn/trung-uong-thong-nhat-muc-tieu-nam-2027-tang-truong-tu-10-tro-len-post1883518.tpo",
+      "ids": [
+        "DT-NQ-KTXH-2027",
+        "DH-XIV"
+      ]
+    },
+    {
+      "date": "2026-10-07",
+      "title": "Nghị quyết 312/NQ-CP phiên họp Chính phủ tháng 9/2026: kiên định mục tiêu tăng trưởng 2 con số (GDP 9 tháng +9,01%, CPI bình quân +4,52%)",
+      "url": "https://www.vietnamplus.vn/nghi-quyet-phien-hop-chinh-phu-thuong-ky-thang-9-va-hoi-nghi-truc-tuyen-chinh-phu-voi-dia-phuong-post1140622.vnp",
+      "ids": [
+        "NQ01-CP-2026",
+        "NQ244-QH15"
+      ]
+    },
     {
       "date": "2026-10-05",
       "title": "Khai mạc Hội nghị lần thứ tư Ban Chấp hành Trung ương Đảng khóa XIV: xem xét công tác xây dựng Đảng, phương thức lãnh đạo, công tác cán bộ và phát triển đất nước",
@@ -5259,119 +5746,6 @@
       "ids": [
         "DT-LUAT-YTE-2026",
         "NQ72-TW"
-      ]
-    },
-    {
-      "date": "2026-09-30",
-      "title": "Bổ sung nhiều nhiệm vụ vào Chương trình hành động của Chính phủ thực hiện Nghị quyết 80 về phát triển văn hóa (NQ 299/NQ-CP ngày 29/9/2026)",
-      "url": "https://baochinhphu.vn/bo-sung-nhieu-nhiem-vu-vao-chuong-trinh-hanh-dong-cua-chinh-phu-thuc-hien-nghi-quyet-80-ve-phat-trien-van-hoa-1022609301203001.htm",
-      "ids": [
-        "NQ30-CP-2026",
-        "NQ80-TW"
-      ]
-    },
-    {
-      "date": "2026-09-30",
-      "title": "Kỳ họp thứ Hai, Quốc hội khóa XVI khai mạc ngày 17/10/2026, dự kiến xem xét 45 dự án luật, nghị quyết",
-      "url": "https://luatvietnam.vn/tin-van-ban-moi/ky-hop-thu-hai-quoc-hoi-khoa-xvi-khai-mac-ngay-17-10-2026-du-kien-xem-xet-45-du-an-luat-nghi-quyet-186-113044-article.html",
-      "ids": [
-        "DT-LUAT-DATDAI-2026",
-        "DT-LUAT-NHAO-2026",
-        "DT-LUAT-KDBDS-2026",
-        "DT-LUAT-NSNN-2026",
-        "DT-LUAT-DAUTU-2026"
-      ]
-    },
-    {
-      "date": "2026-09-29",
-      "title": "Chính phủ thống nhất nội dung dự án Luật Văn bản quy phạm pháp luật",
-      "url": "https://vtv.vn/chinh-phu-thong-nhat-noi-dung-du-an-luat-van-ban-quy-pham-phap-luat-100260929205039996.htm",
-      "ids": [
-        "DT-LUAT-VBQPPL-2026",
-        "NQ66-TW"
-      ]
-    },
-    {
-      "date": "2026-09-28",
-      "title": "Thủ tướng Lê Minh Hưng chủ trì phiên họp Ban Chỉ đạo 57 Trung ương",
-      "url": "https://baotintuc.vn/thu-tuong-le-minh-hung-chu-tri-phien-hop-ban-chi-dao-57-trung-uong-post1389504.html",
-      "ids": [
-        "NQ57-TW"
-      ]
-    },
-    {
-      "date": "2026-09-22",
-      "title": "Tăng tốc hoàn thành khám sức khỏe toàn dân (hơn 40% người dân đã được khám miễn phí đến cuối tháng 8)",
-      "url": "https://nhandan.vn/tang-toc-hoan-thanh-kham-suc-khoe-toan-dan-post990147.html",
-      "ids": [
-        "NQ72-TW",
-        "NQ261-QH15",
-        "NQ282-CP-2025"
-      ]
-    },
-    {
-      "date": "2026-09-22",
-      "title": "Kế hoạch hành động thực hiện Nghị quyết số 10-NQ/TW về phát triển kinh tế có vốn đầu tư nước ngoài (Nghị quyết 280/NQ-CP)",
-      "url": "https://baochinhphu.vn/ke-hoach-hanh-dong-thuc-hien-nghi-quyet-so-10-nq-tw-ve-phat-trien-kinh-te-co-von-dau-tu-nuoc-ngoai-102260922173730006.htm",
-      "ids": [
-        "NQ280-CP-2026",
-        "NQ10-TW-2026"
-      ]
-    },
-    {
-      "date": "2026-09-21",
-      "title": "Họp Ủy ban Thường vụ Quốc hội: Đề xuất áp dụng giá bán lẻ điện theo khung giờ (dự án Luật Điện lực sửa đổi)",
-      "url": "https://www.vietnamplus.vn/hop-uy-ban-thuong-vu-quoc-hoi-de-xuat-ap-dung-gia-ban-le-dien-theo-khung-gio-post1137450.vnp",
-      "ids": [
-        "DT-LUAT-DIENLUC-2026",
-        "NQ70-TW"
-      ]
-    },
-    {
-      "date": "2026-09-17",
-      "title": "Kịch bản nào cho tăng trưởng kinh tế năm 2027?",
-      "url": "https://baodautu.vn/kich-ban-nao-cho-tang-truong-kinh-te-nam-2027-d701976.html",
-      "ids": [
-        "DT-NQ-KTXH-2027",
-        "CT26-TTg-2026"
-      ]
-    },
-    {
-      "date": "2026-09-09",
-      "title": "Thủ tướng: Thể chế hóa đầy đủ chủ trương của Đảng khi sửa đổi Luật Đất đai và các luật có liên quan",
-      "url": "https://voh.com.vn/chinh-tri/thu-tuong-the-che-hoa-day-du-chu-truong-cua-dang-khi-sua-doi-luat-dat-dai-va-cac-luat-co-lien-quan-667578.html",
-      "ids": [
-        "DT-LUAT-DATDAI-2026",
-        "DT-LUAT-NHAO-2026",
-        "DT-LUAT-KDBDS-2026",
-        "NQ21-TW-2026"
-      ]
-    },
-    {
-      "date": "2026-09-01",
-      "title": "Nghị quyết 79: Kỳ vọng chuyển biến rõ nét trong khu vực doanh nghiệp Nhà nước",
-      "url": "https://www.vietnamplus.vn/nghi-quyet-79-ky-vong-chuyen-bien-ro-net-trong-khu-vuc-doanh-nghiep-nha-nuoc-post1133700.vnp",
-      "ids": [
-        "NQ79-TW",
-        "NQ29-CP-2026"
-      ]
-    },
-    {
-      "date": "2026-08-19",
-      "title": "Đề xuất một số quy định mới về đầu tư (dự thảo Luật sửa đổi Luật Đầu tư)",
-      "url": "https://baochinhphu.vn/de-xuat-mot-so-quy-dinh-moi-ve-dau-tu-102260819165154435.htm",
-      "ids": [
-        "DT-LUAT-DAUTU-2026",
-        "KL18-TW-2026"
-      ]
-    },
-    {
-      "date": "2026-08-11",
-      "title": "Trong tháng 10/2026, các bộ hoàn thành việc sắp xếp tổ chức bộ máy gắn với phân cấp, phân quyền",
-      "url": "https://baochinhphu.vn/trong-thang-10-2026-cac-bo-hoan-thanh-viec-sap-xep-to-chuc-bo-may-gan-voi-phan-cap-phan-quyen-102260811165348618.htm",
-      "ids": [
-        "NQ221-CP-2026",
-        "KL76-TW-2026"
       ]
     }
   ]
