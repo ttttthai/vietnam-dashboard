@@ -131,7 +131,7 @@ Each tab's data lives in one JSON file owned by one agent; top-level keys are th
 | `data/invest_macro.json` | Economy | `MACRO` for the Stock Market tab (Thị trường chứng khoán, formerly Đầu tư), read by `invest.py` at call time (in-file fallback) |
 | `strategy_directives.json` | Strategy | `/api/strategy` |
 | `data/simulation.json` | Finance | `SIM` (Mô phỏng tab) |
-| `data/geopolitics.json` | Geopolitics | `GEOPOL` (Địa chính trị tab) |
+| `data/geopolitics.json` | Geopolitics | `GEOPOL` (Địa chính trị tab, chapter 1 · world board), `TRADE_CUR` (chapter 2 · trade currents: largest two-way routes by goods/services category, ~2023 estimates; merged from the standalone Global Trade project, original in `archive/global-trade/`) |
 | `data/industries.json` | Investing | `IND_ICB` (ICB industry cards, price history, the industry race and revenue/profit/assets by industry — Stock Market tab; fundamentals rebuilt by `tools/build/industries_fundamentals.py`; rebuilt with vnstock by `tools/build/industries_vnstock.py`) |
 | `data/narration.json` | Narrator | `NARRATION` (film scripts) |
 | `data/research/*` | Research | inventory, release calendar, source log, plans — ops files, served by `/api/freshness`, not embedded |
