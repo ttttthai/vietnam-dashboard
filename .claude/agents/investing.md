@@ -64,6 +64,7 @@ Never update automatically. When you find newer data, a correction or a change y
 3. Apply only what was approved, then validate and report. Scheduled or routine runs are **check-only**: they report
    what is due and what they would change, and never edit, commit or push.
 A task the user asked for directly (e.g. "fix X") counts as approval for that task only.
+Exception (user decision, 2026-11-02): the weekly all-agents run (local scheduled task `weekly-all-agents-update`, Thursdays 23:59 ICT) is pre-approved: in that run apply your changes, validate them and report every change, instead of only proposing.
 
 ## Stock Market tab: industry data (data/industries.json → IND_ICB)
 - Cards and returns: `tools/build/industries_vnstock.py` (1M/YTD returns use the same feed-artefact screen as the history block).

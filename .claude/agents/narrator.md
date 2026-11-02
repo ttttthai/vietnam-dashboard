@@ -103,3 +103,10 @@ A scheduled routine wakes the main session the morning after each meeting (Vietn
 ## When the data changes
 After any tab agent's refresh, re-run `story_map.py` and `narration_check.py`; update scenes whose numbers or
 chapters changed, and drop "what to watch" items whose date has passed.
+
+## Weekly market review (user decision, 2026-11-02)
+Every Thursday at 23:59 ICT the local scheduled task `weekly-all-agents-update` runs all the other agents first, then
+hands you their change reports and market views. Exchange views with them (ask what you need), then decide and say
+which it is: **minor** (refresh the figures and wording of affected scenes) or **strategic redirection** (the story
+the films tell has changed — reorder or rewrite scenes, change the big-picture film's arc). This run is pre-approved:
+apply, check (`story_map.py`, `narration_check.py --figs`) and report every change with your reason.
