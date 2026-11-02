@@ -1125,7 +1125,7 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .pg-ld-where { font: 600 11px var(--font-ui); color: #5b6170; margin-right: 6px; }
   @media (max-width: 560px) { .pg-ld-head { flex-direction: column; } }
   .ind-sort { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0 10px; } .ind-sort button { font: 600 12px var(--font-ui); padding: 4px 11px; border-radius: 14px; border: 1px solid #d8d5cc; background: #fff; cursor: pointer; } .ind-sort button[aria-pressed="true"] { background: #16181d; color: #fff; border-color: #16181d; }
-  .ind-heat td.cur, .ind-heat th.cur { outline: 2px solid #16181d; outline-offset: -1px; } .ind-heat th.cur { color: #16181d; }
+  .ind-heat td.cur, .ind-heat th.cur { outline: 2px solid #16181d; outline-offset: -1px; } .ind-heat.ind-heat-q { border-spacing: 1px; font-size: 10.5px; table-layout: fixed; } .ind-heat.ind-heat-q td { min-width: 0; padding: 5px 0; overflow: hidden; } .ind-heat.ind-heat-q th.yr { border-bottom: 1px solid #d8d4c9; } .ind-heat.ind-heat-q thead th { padding: 1px 0; overflow: hidden; } .ind-heat.ind-heat-q col.lw { width: var(--lw); } .ind-heat th.cur { color: #16181d; }
   .fd-race { position: relative; max-width: 760px; } .fd-rr { position: absolute; left: 0; right: 0; top: 0; height: 19px; transition: transform .7s cubic-bezier(.4,0,.2,1), opacity .4s; font: 500 12px var(--font-ui); }
   .fd-rr span { position: absolute; left: 0; top: 2px; text-align: right; padding-right: 6px; box-sizing: border-box; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .fd-rr i { position: absolute; top: 4px; height: 12px; border-radius: 3px; transition: width .7s cubic-bezier(.4,0,.2,1); } .fd-rr b { position: absolute; top: 2px; font-weight: 600; font-variant-numeric: tabular-nums; transition: left .7s cubic-bezier(.4,0,.2,1); }
   .ind-bars { position: relative; margin-top: 6px; } .ind-br { all: unset; box-sizing: border-box; position: absolute; left: 0; right: 0; top: 0; height: 24px; cursor: pointer; transition: transform .8s cubic-bezier(.4,0,.2,1); border-radius: 4px; }
@@ -7745,13 +7745,30 @@ function indFundChap() {
      <details class="st-note"><summary>${stT('Cách tính và lưu ý về dữ liệu', 'Method and data caveats')}</summary><p>${ciE(stT(F.basis_vi, F.basis_en) || '')}</p><ul>${(stT(F.caveats_vi, F.caveats_en) || []).map(c => `<li>${ciE(c)}</li>`).join('')}</ul><p>${ciE(F.disclaimer || '')}</p></details>
      ${stSrc(`${stT('Nguồn', 'Source')}: ${ciE(stT(F.source && F.source.vi || F.source || 'Vietcap IQ', F.source && F.source.en || F.source || 'Vietcap IQ'))}`)}`);
 }
-// mini column chart of one series over the periods; TTM drawn as an outline (not a fiscal year)
-function fdCols(v, F, W, Hh, big) {
-  const P = F.periods, n = P.length, ok = v.filter(x => x != null); if (!ok.length) return '';
-  const lo = Math.min(0, ...ok), hi = Math.max(0, ...ok) || 1, pb = big ? 22 : 14, pt = big ? 18 : 4, sx = k => 2 + k * (W - 4) / n, bw = (W - 4) / n * .72, sy = x => pt + (hi - x) / ((hi - lo) || 1) * (Hh - pt - pb), c = fdCol();
-  return `<svg viewBox="0 0 ${W} ${Hh}" width="100%" role="img" aria-label="${ciE(stT('Biểu đồ cột theo năm', 'Columns by year'))}"><line x1="0" x2="${W}" y1="${sy(0)}" y2="${sy(0)}" stroke="#c9c6bd"/>
-    ${v.map((x, k) => x == null ? '' : `<rect x="${sx(k).toFixed(1)}" y="${Math.min(sy(x), sy(0)).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1, Math.abs(sy(x) - sy(0))).toFixed(1)}" rx="2" fill="${P[k] === 'TTM' ? 'none' : x < 0 ? ST.red : c}" stroke="${P[k] === 'TTM' ? (x < 0 ? ST.red : c) : 'none'}" stroke-width="1.5" stroke-dasharray="${P[k] === 'TTM' ? '3,2' : ''}"><title>${ciE(fdLab(F, k) + ': ' + fdFmt(x))}</title></rect>`).join('')}
-    ${big ? v.map((x, k) => x == null ? '' : `<text x="${(sx(k) + bw / 2).toFixed(1)}" y="${(x < 0 ? sy(x) + 12 : sy(x) - 4).toFixed(1)}" text-anchor="middle" font-size="10.5" fill="${ST.ink2}">${fdPct() ? stN(x, 1) : stN(x / 1e3, 0)}</text><text x="${(sx(k) + bw / 2).toFixed(1)}" y="${Hh - 5}" text-anchor="middle" font-size="10.5" fill="${ST.ink3}">${P[k] === 'TTM' ? 'TTM' : "'" + P[k].slice(2)}</text>`).join('') : ''}</svg>`;
+// the periods the revenue/profit/assets columns run through: quarters (IND_ICB.quarterly) when the measure has them, otherwise
+// fiscal years + TTM (IND_ICB.fundamentals). n periods; lab(k) for tooltips and the timeline, axis(k) for the x labels;
+// ser(icb) / mkt the series; cur = the latest period with data
+function fdPer(F, key) {
+  const Q = indQ(), L = Q ? indQLast(key) : -1;
+  if (L > 0) { const n = L + 1, B = c => Q.by_icb[c] || {};
+    return { q: true, n, cur: L, lab: k => indQLab(Q, k), axis: k => /-Q1$/.test(Q.quarters[k]) ? "'" + Q.quarters[k].slice(2, 4) : '', ttm: () => false,
+      ser: c => (B(c)[key] || []).slice(0, n), mkt: ((Q.market || {})[key] || []).slice(0, n), nRep: c => (B(c).n_fund || [])[L], low: c => B(c).low_coverage_quarters_fund || [],
+      // the latest quarter while filings are still coming in: fewer companies than the quarter before
+      part: (() => { const f = (Q.market || {}).n_fund || [], a = f[L], b = f[L - 1]; return a != null && b && a < .9 * b ? [a, b] : null; })() }; }
+  const P = F.periods, fy = P.indexOf(String(F.latest_fy));
+  return { q: false, n: P.length, cur: fy, lab: k => fdLab(F, k), axis: k => P[k] === 'TTM' ? 'TTM' : "'" + P[k].slice(2), ttm: k => P[k] === 'TTM',
+    ser: c => (F.by_icb[c] || {})[key] || [], mkt: F.market[key] || [], nRep: c => ((F.by_icb[c] || {}).n_with_data || [])[fy], low: c => (F.by_icb[c] || {}).low_coverage_years || [] };
+}
+// mini column chart of one series over the periods; TTM drawn as an outline (not a fiscal year). Quarterly: x labels at each
+// year's Q1 and a value label on the latest column only (32 columns leave no room for more)
+function fdCols(v, D, W, Hh, big) {
+  const n = D.n, ok = v.filter(x => x != null); if (!ok.length) return '';
+  const lo = Math.min(0, ...ok), hi = Math.max(0, ...ok) || 1, pb = big ? 22 : 14, pt = big ? 18 : 4, sx = k => 2 + k * (W - 4) / n, bw = (W - 4) / n * (D.q ? .8 : .72), sy = x => pt + (hi - x) / ((hi - lo) || 1) * (Hh - pt - pb), c = fdCol();
+  const lastK = v.reduce((a, x, k) => x != null ? k : a, -1), valK = k => !D.q || k === lastK;
+  return `<svg viewBox="0 0 ${W} ${Hh}" width="100%" role="img" aria-label="${ciE(D.q ? stT('Biểu đồ cột theo quý', 'Columns by quarter') : stT('Biểu đồ cột theo năm', 'Columns by year'))}"><line x1="0" x2="${W}" y1="${sy(0)}" y2="${sy(0)}" stroke="#c9c6bd"/>
+    ${v.map((x, k) => x == null ? '' : `<rect x="${sx(k).toFixed(1)}" y="${Math.min(sy(x), sy(0)).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1, Math.abs(sy(x) - sy(0))).toFixed(1)}" rx="${D.q ? 1 : 2}" fill="${D.ttm(k) ? 'none' : x < 0 ? ST.red : c}" stroke="${D.ttm(k) ? (x < 0 ? ST.red : c) : 'none'}" stroke-width="1.5" stroke-dasharray="${D.ttm(k) ? '3,2' : ''}"><title>${ciE(D.lab(k) + ': ' + fdFmt(x))}</title></rect>`).join('')}
+    ${big ? v.map((x, k) => (x == null || !valK(k) ? '' : `<text x="${(sx(k) + bw / 2).toFixed(1)}" y="${(x < 0 ? sy(x) + 12 : sy(x) - 4).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="${D.q ? 700 : 400}" fill="${ST.ink2}">${fdPct() ? stN(x, 1) : stN(x / 1e3, 0)}</text>`)
+      + (D.axis(k) ? `<text x="${(sx(k) + (D.q ? 0 : bw / 2)).toFixed(1)}" y="${Hh - 5}" text-anchor="${D.q ? 'start' : 'middle'}" font-size="10.5" fill="${ST.ink3}">${D.axis(k)}</text>` : '')).join('') : ''}</svg>`;
 }
 function fdShare() {
   const el = document.getElementById('iv-st-fshare'), F = indFund(); if (!el || !F) return; const Q = indQ(), qL = Q ? indQLast('net_profit_bn_vnd') : -1, ids = Object.keys(F.by_icb);
@@ -7764,24 +7781,29 @@ function fdShare() {
   const pos = new Map(R.map((r, k) => [r.c, k]));
   el.querySelectorAll('.fd-rr').forEach(n => { const k = pos.get(n.dataset.c), r = R[k]; if (r == null) { n.style.opacity = 0; return; } n.style.opacity = 1; n.style.transform = `translateY(${k * RH}px)`;
     const bar = n.querySelector('i'), w = Math.abs(r.p) / mx * (x1 - x0); bar.style.left = x0 + 'px'; bar.style.width = Math.max(2, w) + 'px'; bar.style.background = r.p < 0 ? ST.red : ST.aqua; const b = n.querySelector('b'); b.textContent = `${stN(r.p, 1)}%`; b.style.left = (x0 + Math.max(2, w) + 6) + 'px'; });
-  stYears(el, 'IV-FSHARE-' + (qL > 0 ? 'q' : 'y'), per.labels, per.last, fdShare, { from: Math.max(0, per.last - 11), ms: 800 });
+  stYears(el, 'IV-FSHARE-' + (qL > 0 ? 'q' : 'y'), per.labels, per.last, fdShare, { from: qL > 0 ? indQFirst('net_profit_bn_vnd') : 0, ms: 800 });
   stRW(el, () => { el._rows = null; fdShare(); });
 }
 function indFund2() {
-  const F = indFund(); if (!F) return; const P = F.periods, fy = P.indexOf(String(F.latest_fy)), key = fdKey(), lbl = (FD_MET.find(x => x[0] === fdMet) || [])[stT(1, 2)] || '';
-  const nmI = c => { const x = F.by_icb[c]; return x ? stT(x.name_vi, x.name_en) : c; };
+  const F = indFund(); if (!F) return; const key = fdKey(), D = fdPer(F, key), fy = D.cur, lbl = (FD_MET.find(x => x[0] === fdMet) || [])[stT(1, 2)] || '';
+  const nmI = c => { const x = F.by_icb[c]; return x ? stT(x.name_vi, x.name_en) : c; }, labs = Array.from({ length: D.n }, (_, k) => D.lab(k)), ms = D.q ? 450 : 700;
   const mk = document.getElementById('iv-st-fmkt'), mh = document.getElementById('iv-st-fmkt-h');
-  if (mk) { mh.textContent = stT(`Toàn thị trường · ${lbl}${fdPct() ? '' : ', nghìn tỷ đồng'}`, `Whole market · ${lbl}${fdPct() ? '' : ', VND trillion'}`); const MW = Math.min(stCW(mk, 700), 700); mk.innerHTML = fdCols(F.market[key] || [], F, MW, 170, true) + `<p class="st-tick">${stT('Cột viền đứt: 12 tháng gần nhất (chưa đủ báo cáo quý 3 cho mọi công ty).', 'Dashed column: the latest twelve months (not every company has reported Q3 yet).')}</p>`;
-    const n = F.periods.length, cxs = F.periods.map((_, k) => 2 + k * (MW - 4) / n + (MW - 4) / n * .36); stAnim(mk, { host: mk._anHost && mk._anHost.isConnected ? mk._anHost : null, id: 'IV-FMKT-' + fdMet, labels: F.periods.map((p, k) => fdLab(F, k)), xs: cxs, last: n - 1, from: 0, ms: 700 }); }
+  if (mk) { mh.textContent = stT(`Toàn thị trường · ${lbl}${D.q ? ' theo quý' : ''}${fdPct() ? '' : ', nghìn tỷ đồng'}`, `Whole market · ${lbl}${D.q ? ' by quarter' : ''}${fdPct() ? '' : ', VND trillion'}`); const MW = Math.min(stCW(mk, 700), 700);
+    mk.innerHTML = fdCols(D.mkt, D, MW, 170, true) + `<p class="st-tick">${D.q ? stT(`Mỗi cột một quý, ${labs[0]}–${labs[fy]}${fdPct() ? '' : '; doanh thu, lợi nhuận là số trong quý (không cộng dồn 12 tháng), tổng tài sản tại cuối quý'}. ${labs[fy]} là quý gần nhất đã có báo cáo${D.part ? `; mới ${stN(D.part[0], 0)}/${stN(D.part[1], 0)} công ty nộp, nên số quý này (và % so cùng kỳ ở từng ngành) chưa đầy đủ` : ''}.`, `One column per quarter, ${labs[0]}–${labs[fy]}${fdPct() ? '' : '; revenue and profit are for the quarter (not a twelve-month total), total assets at the quarter end'}. ${labs[fy]} is the latest quarter with reports${D.part ? `; only ${stN(D.part[0], 0)} of ${stN(D.part[1], 0)} companies have filed, so this quarter (and each industry's year-on-year %) is incomplete` : ''}.`)
+      : stT('Cột viền đứt: 12 tháng gần nhất (chưa đủ báo cáo quý 3 cho mọi công ty).', 'Dashed column: the latest twelve months (not every company has reported Q3 yet).')}</p>`;
+    const cxs = labs.map((_, k) => 2 + k * (MW - 4) / D.n + (MW - 4) / D.n * .36); stAnim(mk, { host: mk._anHost && mk._anHost.isConnected ? mk._anHost : null, id: 'IV-FMKT-' + fdMet + (D.q ? '-q' : ''), labels: labs, xs: cxs, last: D.n - 1, from: 0, ms }); }
   fdShare();
   const g = document.getElementById('iv-st-fgrid'), gh = document.getElementById('iv-st-fgrid-h'); if (!g) return;
-  gh.textContent = stT(`Từng ngành · ${lbl}, ${P[0]}–${F.latest_fy} và 12 tháng gần nhất (xếp theo năm ${F.latest_fy})`, `Each industry · ${lbl}, ${P[0]}–${F.latest_fy} and the latest twelve months (sorted by ${F.latest_fy})`);
-  const L = Object.entries(F.by_icb).sort((a, b) => ((b[1][key] || [])[fy] ?? -1e12) - ((a[1][key] || [])[fy] ?? -1e12)), yk = fdMet === 'rev' ? 'revenue_yoy_pct' : fdMet === 'np' ? 'net_profit_yoy_pct' : null;
-  g.innerHTML = L.map(([c, d], j) => { const v = d[key] || [], x = v[fy], yy = yk ? (d[yk] || [])[fy] : null, low = (d.low_coverage_years || []).length;
+  gh.textContent = D.q ? stT(`Từng ngành · ${lbl} theo quý, ${labs[0]}–${labs[fy]} (xếp theo ${labs[fy]}; % so với cùng quý năm trước)`, `Each industry · ${lbl} by quarter, ${labs[0]}–${labs[fy]} (sorted by ${labs[fy]}; % vs the same quarter a year earlier)`)
+    : stT(`Từng ngành · ${lbl}, ${F.periods[0]}–${F.latest_fy} và 12 tháng gần nhất (xếp theo năm ${F.latest_fy})`, `Each industry · ${lbl}, ${F.periods[0]}–${F.latest_fy} and the latest twelve months (sorted by ${F.latest_fy})`);
+  const L = Object.keys(F.by_icb).map(c => [c, F.by_icb[c], D.ser(c)]).sort((a, b) => (b[2][fy] ?? -1e12) - (a[2][fy] ?? -1e12)), yk = fdMet === 'rev' ? 'revenue_yoy_pct' : fdMet === 'np' ? 'net_profit_yoy_pct' : null;
+  // quarterly change: against the same quarter a year earlier, only when that base is positive (a loss base gives no meaningful %)
+  const yoy = (c, d, v) => !yk ? null : !D.q ? (d[yk] || [])[fy] : v[fy] != null && v[fy - 4] > 0 ? 100 * (v[fy] / v[fy - 4] - 1) : null;
+  g.innerHTML = L.map(([c, d, v], j) => { const x = v[fy], yy = yoy(c, d, v), lw = D.low(c), low = lw.length;
     const top = fdMet === 'np' ? (d.top_profit_2025 || []).slice(0, 3).map(t => `${ciE(t.ticker)} ${stN(t.share_of_industry_pct, 0)}%`).join(' · ') : '';
     return `<article class="fd-card" style="--d:${(j * 0.03).toFixed(2)}s"><header><b>${ciE(nmI(c))}</b><span>${fdFmt(x)}${yy != null ? ` <em class="${yy >= 0 ? 'up' : 'dn'}">${yy > 0 ? '+' : ''}${stN(yy, 0)}%</em>` : ''}</span></header>
-      ${fdCols(v, F, 240, 64, false)}<footer>${top ? `${stT('Đóng góp lớn nhất', 'Largest contributors')}: ${top}` : `${stT('Số công ty có báo cáo', 'Companies reporting')}: ${(d.n_with_data || [])[fy] ?? '—'}/${d.n_listed}`}${low ? ` · <span title="${ciE((d.low_coverage_years || []).join(', '))}">${stT('độ phủ thấp ở', 'low coverage in')} ${(d.low_coverage_years || []).join(', ')}</span>` : ''}</footer></article>`; }).join('');
-  { const n = F.periods.length, cxs = F.periods.map((_, k) => 2 + k * 236 / n + 236 / n * .36); stAnim(g, { host: g._anHost && g._anHost.isConnected ? g._anHost : null, id: 'IV-FGRID-' + fdMet, labels: F.periods.map((p, k) => fdLab(F, k)), xs: cxs, last: n - 1, from: 0, ms: 700, all: true }); }
+      ${fdCols(v, D, 240, 64, false)}<footer>${top ? `${stT('Đóng góp lớn nhất', 'Largest contributors')}: ${top}` : `${stT('Số công ty có báo cáo', 'Companies reporting')}: ${D.nRep(c) ?? '—'}/${d.n_listed}`}${low ? ` · <span title="${ciE(lw.join(', '))}">${stT('độ phủ thấp ở', 'low coverage in')} ${D.q ? `${low} ${stT('quý', low > 1 ? 'quarters' : 'quarter')}` : lw.join(', ')}</span>` : ''}</footer></article>`; }).join('');
+  { const cxs = labs.map((_, k) => 2 + k * 236 / D.n + 236 / D.n * .36); stAnim(g, { host: g._anHost && g._anHost.isConnected ? g._anHost : null, id: 'IV-FGRID-' + fdMet + (D.q ? '-q' : ''), labels: labs, xs: cxs, last: D.n - 1, from: 0, ms, all: true }); }
   stRW(g, indFund2);
 }
 document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-fd-met]'); if (!b) return; fdMet = b.dataset.fdMet; document.querySelectorAll('[data-fd-met]').forEach(x => x.setAttribute('aria-pressed', x === b)); indFund2(); });
@@ -7832,7 +7854,7 @@ function indCards() {
   if (mk != null) { ref.style.display = ''; ref.style.left = sx(mk) + 'px'; ref.querySelector('span').textContent = `${stT('Toàn thị trường', 'Whole market')} ${indFmt(f, mk)}`; } else ref.style.display = 'none';
   const nt = el.querySelector('#iv-st-indd'); if (nt) nt.textContent = stT(D[5], D[6]) + (na.length ? ' ' + stT(`${na.length} ngành không áp dụng hoặc chưa có số liệu (cuối bảng).`, `${na.length} industries not applicable or without data (at the bottom).`) : '') + ' ' + stT('Bấm vào một thanh để xem mọi chỉ số của ngành đó.', 'Tap a bar to see all of that industry\'s figures.');
   indDet();
-  if (tl) stYears(el, 'IV-BARS-' + key, Q.quarters.slice(0, qL + 1).map((q, i) => indQLab(Q, i)), qL, indCards, { from: Math.max(0, qL - 11), ms: 800, val: k => { const v = ((Q.market || {})[key] || [])[k]; return v != null && f !== 'cap' ? `${stT('Thị trường', 'Market')} ${indFmt(f, v)}` : ''; } });
+  if (tl) stYears(el, 'IV-BARS-' + key, Q.quarters.slice(0, qL + 1).map((q, i) => indQLab(Q, i)), qL, indCards, { from: indQFirst(key), ms: 800, val: k => { const v = ((Q.market || {})[key] || [])[k]; return v != null && f !== 'cap' ? `${stT('Thị trường', 'Market')} ${indFmt(f, v)}` : ''; } });
   else { const h = el._anHost; if (h && h.parentNode) { h.remove(); el._anHost = null; } }
   stRW(el, () => { el._bars = null; indCards(); });
 }
@@ -7856,6 +7878,8 @@ document.addEventListener('click', e => { const q = s => e.target.closest && e.t
 // quarterly series (Investing agent · IND_ICB.quarterly): every Stock Market chart can step through them
 function indQ() { const I = typeof IND_ICB !== 'undefined' ? IND_ICB : null, Q = I && I.quarterly; return Q && Q.by_icb && (Q.quarters || []).length > 1 ? Q : null; }
 function indQLast(key) { const Q = indQ(); if (!Q) return -1; let L = -1; Object.values(Q.by_icb).forEach(d => (d[key] || []).forEach((v, i) => { if (v != null && i > L) L = i; })); return L; }
+// first quarter where any industry has the measure: replays start there, so ▶ runs the whole quarterly history
+function indQFirst(key) { const Q = indQ(); if (!Q) return 0; let F = Infinity; Object.values(Q.by_icb).forEach(d => { const k = (d[key] || []).findIndex(v => v != null); if (k >= 0 && k < F) F = k; }); return F === Infinity ? 0 : F; }
 const indQLab = (Q, i) => stT((Q.labels_vi || [])[i], (Q.labels_en || [])[i]) || Q.quarters[i];
 // FLIP helper: animate rows from where they were to where they are now
 function stFlip(rows, mutate) { const r0 = new Map(rows.map(n => [n, n.getBoundingClientRect().top])); mutate(); rows.forEach(n => { const d = r0.get(n) - n.getBoundingClientRect().top; if (!d) return; n.style.transition = 'none'; n.style.transform = `translateY(${d}px)`; requestAnimationFrame(() => { n.style.transition = 'transform .7s cubic-bezier(.4,0,.2,1)'; n.style.transform = ''; }); }); }
@@ -7918,12 +7942,39 @@ function indYears() {
   if (mk != null && kind !== 'lvl') { ref.style.display = ''; ref.style.left = sx(mk) + 'px'; ref.querySelector('span').textContent = `${stT('Toàn thị trường', 'Whole market')} ${fmt(mk)}`; } else ref.style.display = 'none';
   const nt = document.getElementById('iv-st-indyr-note');
   if (nt) nt.textContent = [S.note, stT('Hàng nhạt: năm có độ phủ dưới 60%. Rê chuột lên một hàng để xem giá trị và độ phủ.', 'Faded rows: coverage under 60%. Hover a row for its value and coverage.')].filter(Boolean).join(' ');
-  stYears(el, 'IV-IND-' + indMetric, L, last, indYears, { from: 0, ms: indMetric === 'mon' ? 700 : 1400, val: k => S.mkt[k] != null ? `${stT('Thị trường', 'Market')} ${fmt(S.mkt[k])}` : '' });
+  stYears(el, 'IV-IND-' + indMetric, L, last, indYears, { from: Math.max(0, L.findIndex((_, k) => S.icbs.some(c => S.val(c, k) != null))), ms: indMetric === 'mon' ? 700 : 1400, val: k => S.mkt[k] != null ? `${stT('Thị trường', 'Market')} ${fmt(S.mkt[k])}` : '' });
   stRW(el, () => { el._race = null; indYears(); });
 }
 // overview heatmap: return in each year by industry (rows sorted by the latest year), diverging blue/red
+// quarterly return grid (IND_ICB.quarterly): one column per quarter grouped under its year; ▶ steps quarter by quarter and
+// re-ranks the industries by that quarter's return. Cells too narrow for a number keep the colour and the value in the tooltip.
+function indHeatQ(el, Q, qL) {
+  const I = IND_ICB, ks = []; for (let k = indQFirst('ret_pct'); k <= qL; k++) ks.push(k);
+  const W = stCW(el, 1000), narrow = W < 560, LW = narrow ? 96 : 190, cw = (W - LW - 8) / ks.length, txtOn = cw >= 30, B = c => Q.by_icb[c] || {};
+  const nm = icb => { const x = I.industries.find(z => String(z.icb) === String(icb)); return x ? stT(x.name_vi, x.name_en) : icb; };
+  const last = ks[ks.length - 1], rows = Object.keys(Q.by_icb).sort((a, b) => ((B(b).ret_pct || [])[last] ?? -1e9) - ((B(a).ret_pct || [])[last] ?? -1e9));
+  const col = v => { if (v == null) return 'transparent'; const t = Math.min(1, Math.abs(v) / 30); const [r, g, b] = v >= 0 ? [42, 120, 214] : [227, 73, 72]; return `rgba(${r},${g},${b},${(0.12 + 0.78 * t).toFixed(2)})`; };
+  const txt = v => v == null ? '' : `${v > 0 ? '+' : ''}${stN(v, 0)}`, ql = k => indQLab(Q, k) + (Q.quarters[k] === Q.qtd_quarter ? stT(' (đến 30/10)', ' (to 30 Oct)') : '');
+  const cell = (v, low, t, k) => `<td data-k="${k}" style="background:${col(v)};${Math.abs(v ?? 0) > 19 ? 'color:#fff;' : ''}${low ? 'opacity:.5;' : ''}" title="${ciE(t)}">${txtOn ? txt(v) : ''}</td>`;
+  const yrs = []; ks.forEach(k => { const y = Q.quarters[k].slice(0, 4), g = yrs[yrs.length - 1]; if (g && g.y === y) g.n++; else yrs.push({ y, n: 1 }); });
+  el.innerHTML = `<div class="ind-heat-wrap"><table class="ind-heat ind-heat-q" style="--lw:${LW}px"><colgroup><col class="lw">${ks.map(() => '<col>').join('')}</colgroup><thead><tr><th></th>${yrs.map(g => `<th colspan="${g.n}" class="yr">${g.n > 1 || !narrow ? (narrow ? "'" + g.y.slice(2) : g.y) : ''}</th>`).join('')}</tr>
+    <tr><th></th>${ks.map(k => `<th data-k="${k}">${Q.quarters[k].slice(-1)}</th>`).join('')}</tr></thead><tbody>
+    <tr class="mkt"><th>${stT('Toàn thị trường', 'Whole market')}</th>${ks.map(k => cell((Q.market.ret_pct || [])[k], false, `${stT('Toàn thị trường', 'Whole market')} ${ql(k)}: ${txt((Q.market.ret_pct || [])[k])}%`, k)).join('')}</tr>
+    ${rows.map(c => `<tr data-c="${c}"><th>${ciE(nm(c))}</th>${ks.map(k => { const v = (B(c).ret_pct || [])[k]; return cell(v, (B(c).low_coverage_quarters_price || []).includes(Q.quarters[k]), `${nm(c)} ${ql(k)}: ${v == null ? '—' : txt(v) + '%'}`, k); }).join('')}</tr>`).join('')}</tbody></table></div>
+    <p class="st-tick">${stT(`Lợi suất giá trong từng quý, %, gia quyền vốn hoá; hàng đầu là năm, hàng dưới là quý 1–4. ${ql(last)}. Ô nhạt: quý có độ phủ thấp.${txtOn ? '' : ' Di chuột hoặc chạm vào ô để xem số.'}`,
+      `Price return in each quarter, %, cap-weighted; top row the year, second row quarters 1–4. ${ql(last)}. Faded cells: low coverage.${txtOn ? '' : ' Hover or tap a cell for the number.'}`)}</p>`;
+  const tb = el.querySelector('tbody');
+  const step = () => { const j = el._yi == null ? ks.length - 1 : el._yi, k = ks[j], rs = [...tb.querySelectorAll('tr:not(.mkt)')];
+    stFlip(rs, () => { rs.sort((a, b) => ((B(b.dataset.c).ret_pct || [])[k] ?? -1e9) - ((B(a.dataset.c).ret_pct || [])[k] ?? -1e9)).forEach(r => tb.appendChild(r)); });
+    el.querySelectorAll('.ind-heat [data-k]').forEach(c => c.classList.toggle('cur', +c.dataset.k === k)); };
+  el._heatStep = step; stYears(el, 'IV-HEAT-Q', ks.map(k => ql(k)), ks.length - 1, () => el._heatStep && el._heatStep(), { from: 0, ms: 900, val: j => { const v = (Q.market.ret_pct || [])[ks[j]]; return v != null ? `${stT('Thị trường', 'Market')} ${txt(v)}%` : ''; } });
+  step();
+  stRW(el, indHeat);
+}
 function indHeat() {
   const el = document.getElementById('iv-st-heat'), H = indHist(); if (!el || !H) return;
+  const Q = indQ(), qL = Q ? indQLast('ret_pct') : -1;
+  if (qL > 0) return indHeatQ(el, Q, qL);
   const I = IND_ICB, Y = H.years, ks = Y.map((_, k) => k).filter(k => k > 0), W = stCW(el, 1000), narrow = W < 560, LW = narrow ? 96 : 190;
   const nm = icb => { const x = I.industries.find(z => String(z.icb) === String(icb)); return x ? stT(x.name_vi, x.name_en) : icb; };
   const last = Y.length - 1, rows = Object.keys(H.by_icb).sort((a, b) => ((H.by_icb[b].ret_pct || [])[last] ?? -1e9) - ((H.by_icb[a].ret_pct || [])[last] ?? -1e9));
@@ -7945,20 +7996,25 @@ function indHeat() {
 }
 // overview line: the whole market (all three exchanges, today's constituents) vs VN-Index, monthly, both rebased to 100
 function indMkt() {
-  const el = document.getElementById('iv-st-mline'), H = indHist(), M = H && H.monthly; if (!el || !M) return;
-  const W = stCW(el, 520), Hh = 220, p = { l: 34, r: 104, t: 12, b: 26 }, n = M.months.length, vb = M.vnindex[0], a = M.market, b = M.vnindex.map(v => 100 * v / vb);
+  const el = document.getElementById('iv-st-mline'), H = indHist(), M = H && H.monthly, Q = indQ(), QM = Q && Q.market; if (!el || !(M || QM)) return;
+  // quarterly (IND_ICB.quarterly, Q4/2018 →) when both series are there, so the replay runs the whole history; else the 24 months
+  const S = QM && (QM.index || []).length > 1 && (QM.vnindex || []).length === (QM.index || []).length
+    ? { q: true, a: QM.index, v: QM.vnindex, lab: k => indQLab(Q, k), tick: k => /-Q1$/.test(Q.quarters[k]) ? (stCW(el, 520) < 560 ? "'" + Q.quarters[k].slice(2, 4) : Q.quarters[k].slice(0, 4)) : null }
+    : { q: false, a: M.market, v: M.vnindex, lab: k => `${+M.months[k].slice(5)}/${M.months[k].slice(0, 4)}`, tick: k => /-(01|07)$/.test(M.months[k]) ? `${+M.months[k].slice(5)}/${M.months[k].slice(2, 4)}` : null };
+  const W = stCW(el, 520), Hh = 220, p = { l: 34, r: 104, t: 12, b: 26 }, n = S.a.length, vb = S.v[0], a = S.a, b = S.v.map(v => 100 * v / vb);
   const all = a.concat(b), lo = Math.floor(Math.min(...all) / 10) * 10, hi = Math.ceil(Math.max(...all) / 10) * 10, sx = k => p.l + k / (n - 1) * (W - p.l - p.r), sy = v => p.t + (hi - v) / (hi - lo) * (Hh - p.t - p.b);
   const path = s => s.map((v, k) => (k ? 'L' : 'M') + sx(k).toFixed(1) + ',' + sy(v).toFixed(1)).join(' ');
   const ticks = []; for (let v = lo; v <= hi; v += (hi - lo) > 60 ? 20 : 10) ticks.push(v);
-  const xt = M.months.map((m, k) => [m, k]).filter(([m]) => /-(01|07)$/.test(m));
-  el.innerHTML = `<svg viewBox="0 0 ${W} ${Hh}" width="100%" role="img" aria-label="${ciE(stT('Toàn thị trường và VN-Index theo tháng', 'Whole market and VN-Index by month'))}">
+  const xt = a.map((_, k) => [S.tick(k), k]).filter(([t]) => t);
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${Hh}" width="100%" role="img" aria-label="${ciE(S.q ? stT('Toàn thị trường và VN-Index theo quý', 'Whole market and VN-Index by quarter') : stT('Toàn thị trường và VN-Index theo tháng', 'Whole market and VN-Index by month'))}">
     ${ticks.map(v => `<line x1="${p.l}" x2="${W - p.r}" y1="${sy(v)}" y2="${sy(v)}" stroke="${v === 100 ? '#b9b5aa' : ST.zero}"/><text x="${p.l - 6}" y="${sy(v) + 4}" text-anchor="end" font-size="11" fill="${ST.ink3}">${v}</text>`).join('')}
-    ${xt.map(([m, k]) => `<text x="${sx(k)}" y="${Hh - 6}" text-anchor="middle" font-size="11" fill="${ST.ink3}">${+m.slice(5)}/${m.slice(2, 4)}</text>`).join('')}
+    ${xt.map(([m, k]) => `<text x="${sx(k)}" y="${Hh - 6}" text-anchor="middle" font-size="11" fill="${ST.ink3}">${m}</text>`).join('')}
     <path class="st-draw" d="${path(b)}" fill="none" stroke="${ST.ink3}" stroke-width="2"/><path class="st-draw" d="${path(a)}" fill="none" stroke="${ST.blue}" stroke-width="2.5"/>
     ${(() => { let ya = sy(a[n - 1]), yb = sy(b[n - 1]); if (Math.abs(ya - yb) < 15) { const m = (ya + yb) / 2, s = ya >= yb ? 1 : -1; ya = m + 7.5 * s; yb = m - 7.5 * s; }
       return `<text x="${sx(n - 1) + 6}" y="${ya + 4}" font-size="11.5" font-weight="700" fill="${ST.blue}">${stT('Thị trường', 'Market')} ${stN(a[n - 1], 0)}</text><text x="${sx(n - 1) + 6}" y="${yb + 4}" font-size="11.5" fill="${ST.ink2}">VN-Index ${stN(b[n - 1], 0)}</text>`; })()}</svg>
-    <p class="st-tick">${stT(`Cả hai = 100 vào cuối tháng ${+M.months[0].slice(5)}/${M.months[0].slice(0, 4)}. "Thị trường" = mọi mã trên HOSE, HNX, UPCoM, gia quyền vốn hoá.`, `Both = 100 at the end of ${M.months[0]}. "Market" = every stock on HOSE, HNX and UPCoM, cap-weighted.`)}</p>`;
-  const xs = M.months.map((_, k) => sx(k)); stAnim(el, { host: el._anHost && el._anHost.isConnected ? el._anHost : null, id: 'IV-MLINE', labels: M.months.map(m => `${+m.slice(5)}/${m.slice(0, 4)}`), xs, last: n - 1, from: 0, ms: 450 });
+    <p class="st-tick">${S.q ? stT(`Theo quý; cả hai = 100 vào cuối ${S.lab(0)}, điểm cuối là ${S.lab(n - 1)}. "Thị trường" = mọi mã trên HOSE, HNX, UPCoM, gia quyền vốn hoá.`, `Quarterly; both = 100 at the end of ${S.lab(0)}, last point ${S.lab(n - 1)}. "Market" = every stock on HOSE, HNX and UPCoM, cap-weighted.`)
+      : stT(`Cả hai = 100 vào cuối tháng ${+M.months[0].slice(5)}/${M.months[0].slice(0, 4)}. "Thị trường" = mọi mã trên HOSE, HNX, UPCoM, gia quyền vốn hoá.`, `Both = 100 at the end of ${M.months[0]}. "Market" = every stock on HOSE, HNX and UPCoM, cap-weighted.`)}</p>`;
+  const xs = a.map((_, k) => sx(k)); stAnim(el, { host: el._anHost && el._anHost.isConnected ? el._anHost : null, id: 'IV-MLINE' + (S.q ? '-q' : ''), labels: a.map((_, k) => S.lab(k)), xs, last: n - 1, from: 0, ms: S.q ? 500 : 450 });
   stRW(el, indMkt);
 }
 function indSpark(icb) {
@@ -10251,10 +10307,10 @@ async function renderInvStory() {
   let h = `<section class="st-chap st-hero" id="iv-st-hero"><div class="st-kicker">${stT('Thị trường chứng khoán · theo ngành — chỉ mô tả, không phải khuyến nghị', 'The stock market · by industry — descriptive, not a recommendation')}</div>
     <div class="st-hero-grid"><div>
       <div class="st-big">${IM.mcap_bn_vnd ? stN(IM.mcap_bn_vnd / 1e3, 0) : '—'}<span>${stT(' nghìn tỷ đồng vốn hoá', ' trillion VND market cap')}</span></div>
-      <p class="st-dek">${IC ? stT(`${stN(IM.n_listed, 0)} mã trên HOSE, HNX và UPCoM, chia thành ${IL.length} ngành. Từ đầu năm đến ${polDS(IC.as_of)}: toàn thị trường <b>${sg(IM.ret_ytd_pct)}</b>, VN-Index <b>${sg(IM.vnindex_ytd_pct)}</b>; ${ups} ngành tăng, ${IL.length - ups} ngành giảm. Bảng màu bên dưới cho thấy từng ngành đã đi thế nào qua mỗi năm kể từ 2019.`,
-        `${stN(IM.n_listed, 0)} stocks on HOSE, HNX and UPCoM in ${IL.length} industries. Year to date (${polDS(IC.as_of)}): the whole market <b>${sg(IM.ret_ytd_pct)}</b>, VN-Index <b>${sg(IM.vnindex_ytd_pct)}</b>; ${ups} industries up, ${IL.length - ups} down. The grid below shows how each industry did in every year since 2019.`) : ''}</p>
+      <p class="st-dek">${IC ? stT(`${stN(IM.n_listed, 0)} mã trên HOSE, HNX và UPCoM, chia thành ${IL.length} ngành. Từ đầu năm đến ${polDS(IC.as_of)}: toàn thị trường <b>${sg(IM.ret_ytd_pct)}</b>, VN-Index <b>${sg(IM.vnindex_ytd_pct)}</b>; ${ups} ngành tăng, ${IL.length - ups} ngành giảm. Bảng màu bên dưới cho thấy từng ngành đã đi thế nào qua từng quý kể từ 2019.`,
+        `${stN(IM.n_listed, 0)} stocks on HOSE, HNX and UPCoM in ${IL.length} industries. Year to date (${polDS(IC.as_of)}): the whole market <b>${sg(IM.ret_ytd_pct)}</b>, VN-Index <b>${sg(IM.vnindex_ytd_pct)}</b>; ${ups} industries up, ${IL.length - ups} down. The grid below shows how each industry did in every quarter since 2019.`) : ''}</p>
     </div><div>${stLegend([{ n: stT('Toàn thị trường', 'Whole market'), c: ST.blue }, { n: 'VN-Index', c: ST.ink3 }])}<div id="iv-st-mline" class="st-viz"></div></div></div>
-    ${HH ? `<div class="st-sub">${stT('Lợi suất từng năm theo ngành', 'Each industry, year by year')}</div><div id="iv-st-heat" class="st-viz" data-noanim></div>` : ''}</section>`;
+    ${HH ? `<div class="st-sub">${indQ() ? stT('Lợi suất từng quý theo ngành', 'Each industry, quarter by quarter') : stT('Lợi suất từng năm theo ngành', 'Each industry, year by year')}</div><div id="iv-st-heat" class="st-viz" data-noanim></div>` : ''}</section>`;
   h += indChap() + indRaceChap() + indFundChap();
   h += stChap('iv-st-macro', stT('Bối cảnh · Vĩ mô', 'Context · The macro backdrop'),
     q4 ? stT(`GDP 9 tháng tăng ${stN(g9, 2)}%; quý 4 cần khoảng ${stN(q4, 1)}% để cả năm đạt 10%`, `GDP grew ${stN(g9, 2)}% in nine months; Q4 needs about ${stN(q4, 1)}% for a 10% year`) : stT('Bối cảnh vĩ mô', 'The macro backdrop'),
