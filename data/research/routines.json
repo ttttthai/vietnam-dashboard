@@ -95,6 +95,12 @@
    "job": "ed-watch-dates",
    "id": "trig_01DXnSqAYEAr8MXgKkp8qSnp",
    "rule": "1st 16:44"
+  },
+  {
+   "job": "weekly-all-agents-update (local scheduled task on the Mac, not a cloud routine)",
+   "id": "local:weekly-all-agents-update",
+   "rule": "Thu 23:59",
+   "note": "All agents except Narrator update (pre-approved to apply), Research cross-checks, Ed updates the story, then the Narrator reviews (MINOR or STRATEGIC REDIRECTION); log in data/research/weekly_log/; merged into main and pushed. Added 2026-11-02."
   }
  ],
  "server": [

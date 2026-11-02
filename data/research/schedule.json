@@ -362,6 +362,20 @@
    "runner": "econ-annual",
    "web_cost": "low",
    "status": "PROPOSED"
+  },
+  {
+   "id": "weekly-all-agents-update",
+   "owner_agent": "main session (all agents, then Narrator)",
+   "series_ids": [
+    "all"
+   ],
+   "rule": "every Thursday 23:59",
+   "cron_ict": "59 23 * * 4",
+   "window_days": 0,
+   "priority": "P1",
+   "reason": "User decision 2026-11-02: one weekly sweep of every tab, then the Narrator updates the films; pre-approved to apply, commit, merge into main and push; change log in data/research/weekly_log/.",
+   "runner": "local scheduled task (Claude app on the Mac)",
+   "web_cost": "high"
   }
  ],
  "priority_watch_note": "2026-10-06: user standing task — FDI registered vs disbursed, remittances, tourism get special focus. Coverage: monthly via econ-monthly-nso (4th); HCMC remittances via priority-remit-hcmc (25th of quarter-start months); BoP via priority-bop-quarterly; news via research-weekly-audit. All routines are PAUSED (routines.json) until the repo is attached; these are proposals for the main session."
