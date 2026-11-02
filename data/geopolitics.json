@@ -3,7 +3,8 @@
   "owner": "Geopolitics agent",
   "as_of": "2026-11-01",
   "sources_note": "First full briefing, 2026-11-01. Ground News (ground.news) was not reachable from this cloud session (network policy) and the user's Chrome was not connected, so ground_news is null on every event; Ground News coverage counts, bias split and blindspots will be added when ground.news is reachable (allowed domain, or a session with Claude in Chrome). Direct page fetches were also blocked for most hosts (e.g. bernama.com, roic.ai), so facts come from search-engine excerpts of the cited pages, cross-checked across outlets from several countries: US/Western (CNBC, CNN, Washington Post, NBC, NPR, Bloomberg, Axios, AMTI/CSIS, CFR, Carnegie), Middle East (Al Jazeera, The National, Times of Israel, Iran International), Chinese (Xinhua, Chinese embassy), Russian/Russia-focused (Moscow Times, The Insider, AKM, TASS where cited) and Vietnamese (MOFA, Báo Chính phủ, VNA/VietnamPlus, VnExpress, Tuổi Trẻ, VnEconomy, VOV, Nhân Dân). Vietnam exposure figures use the dashboard's own data where it exists (economy.json: 9M-2026 trade, tourism by market, CPI). Where sources conflicted (e.g. Houthi casualty counts, Section 122 rate, Russia–Vietnam trade value) the more conservative or official figure is used. 'Why' and impact are the agent's assessments. Not investment advice.",
-  "board_note": "GEOPOL.board (world gameboard) added 2026-11-01: commodity tokens, trade flows, chokepoints, tech milestones and a 10-step 'why' story; every event now has lon/lat. Ivory is deliberately excluded (international commercial trade banned under CITES since 1989); Africa is represented by cobalt, copper, cocoa, coffee, gold, bauxite, iron ore, oil, platinum and phosphate. Direct fetches of eia.gov and pubs.usgs.gov were blocked in this session, so EIA/USGS figures come from search-engine excerpts of those pages or reputable outlets quoting them. Where sources disagreed the conservative/official figure is used and the alternative noted in the text (e.g. Russian wheat 44 vs 41.5 Mt; China car exports CAAM 7.1 M vs CPCA 8.3 M). share_world is null where no sourced share exists; a few shares are derived from sourced tonnages and say so."
+  "board_note": "GEOPOL.board (world gameboard) added 2026-11-01: commodity tokens, trade flows, chokepoints, tech milestones and a 10-step 'why' story; every event now has lon/lat. Ivory is deliberately excluded (international commercial trade banned under CITES since 1989); Africa is represented by cobalt, copper, cocoa, coffee, gold, bauxite, iron ore, oil, platinum and phosphate. Direct fetches of eia.gov and pubs.usgs.gov were blocked in this session, so EIA/USGS figures come from search-engine excerpts of those pages or reputable outlets quoting them. Where sources disagreed the conservative/official figure is used and the alternative noted in the text (e.g. Russian wheat 44 vs 41.5 Mt; China car exports CAAM 7.1 M vs CPCA 8.3 M). share_world is null where no sourced share exists; a few shares are derived from sourced tonnages and say so.",
+  "notes_trade": "TRADE_CUR (Trade currents chapter, merged from the standalone Global Trade project on 2026-11-02): rounded ~2023 estimates, flows are [A, B, A→B, B→A] in bn USD a year."
  },
  "GEOPOL": {
   "as_of": "2026-11-01",
@@ -5596,5 +5597,1213 @@
     ]
    }
   }
+ },
+ "TRADE_CUR": {
+  "year": 2023,
+  "unit": "bn USD a year",
+  "totals": {
+   "goods": 24000,
+   "services": 7900
+  },
+  "note_vi": [
+   "Hàng hoá được gộp từ 97 chương của Hệ thống hài hoà (HS) thành 10 nhóm, chiếm khoảng 80% xuất khẩu hàng hoá thế giới. Dịch vụ dùng các mục chính của phân loại EBOPS 2010 (IMF/OECD); 6 nhóm được vẽ chiếm khoảng 90% xuất khẩu dịch vụ. Với du lịch, \"bên bán\" là nước điểm đến: khách Anh tiêu tiền ở Tây Ban Nha được tính là EU xuất khẩu sang Anh.",
+   "Số liệu là ước tính làm tròn của thương mại hằng năm quanh năm 2023, dựa trên UN Comtrade, WTO và OECD-WTO BaTIS. EU được tính là một nền kinh tế (không gồm thương mại nội khối). Dải hẹp hơn 1 mm được vẽ bằng 1 mm để mũi tên vẫn nhìn thấy. Cần kiểm tra lại cơ sở dữ liệu gốc trước khi trích dẫn một con số."
+  ],
+  "note_en": [
+   "Goods are grouped from the 97 chapters of the Harmonized System (HS) into 10 groups covering roughly 80% of world merchandise exports. Services use the main headings of the IMF/OECD EBOPS 2010 classification; the 6 shown cover about 90% of services exports. For tourism, the \"seller\" is the destination country: a British visitor in Spain counts as an EU export to the UK.",
+   "Values are rounded estimates of annual trade around 2023, based on UN Comtrade, WTO and OECD-WTO BaTIS figures. The EU is treated as one economy (intra-EU trade excluded). Bands under 1 mm are drawn at 1 mm so their arrows stay visible. Check the source databases before quoting a number."
+  ],
+  "sources": [
+   {
+    "name": "UN Comtrade",
+    "url": "https://comtradeplus.un.org/"
+   },
+   {
+    "name": "WTO Stats",
+    "url": "https://stats.wto.org/"
+   },
+   {
+    "name": "OECD-WTO BaTIS",
+    "url": "https://www.oecd.org/en/data/datasets/oecd-wto-balanced-trade-in-services-database-batis.html"
+   }
+  ],
+  "places": {
+   "US": {
+    "vi": "Mỹ",
+    "en": "United States",
+    "ll": [
+     -98.0,
+     39.0
+    ]
+   },
+   "CA": {
+    "vi": "Canada",
+    "en": "Canada",
+    "ll": [
+     -106.0,
+     56.0
+    ]
+   },
+   "MX": {
+    "vi": "Mexico",
+    "en": "Mexico",
+    "ll": [
+     -102.0,
+     23.6
+    ]
+   },
+   "BR": {
+    "vi": "Brazil",
+    "en": "Brazil",
+    "ll": [
+     -51.0,
+     -10.0
+    ]
+   },
+   "AR": {
+    "vi": "Argentina",
+    "en": "Argentina",
+    "ll": [
+     -64.0,
+     -34.0
+    ]
+   },
+   "CL": {
+    "vi": "Chile",
+    "en": "Chile",
+    "ll": [
+     -71.0,
+     -30.0
+    ]
+   },
+   "PE": {
+    "vi": "Peru",
+    "en": "Peru",
+    "ll": [
+     -75.0,
+     -9.5
+    ]
+   },
+   "EU": {
+    "vi": "Liên minh châu Âu",
+    "en": "European Union",
+    "ll": [
+     10.0,
+     50.0
+    ]
+   },
+   "UK": {
+    "vi": "Anh",
+    "en": "United Kingdom",
+    "ll": [
+     -2.0,
+     53.5
+    ]
+   },
+   "CH": {
+    "vi": "Thụy Sĩ",
+    "en": "Switzerland",
+    "ll": [
+     8.2,
+     46.6
+    ]
+   },
+   "NO": {
+    "vi": "Na Uy",
+    "en": "Norway",
+    "ll": [
+     9.0,
+     61.0
+    ]
+   },
+   "RU": {
+    "vi": "Nga",
+    "en": "Russia",
+    "ll": [
+     45.0,
+     56.0
+    ]
+   },
+   "TR": {
+    "vi": "Thổ Nhĩ Kỳ",
+    "en": "Türkiye",
+    "ll": [
+     35.0,
+     39.0
+    ]
+   },
+   "SA": {
+    "vi": "Ả Rập Xê Út",
+    "en": "Saudi Arabia",
+    "ll": [
+     45.0,
+     24.0
+    ]
+   },
+   "AE": {
+    "vi": "UAE",
+    "en": "UAE",
+    "ll": [
+     54.5,
+     24.0
+    ]
+   },
+   "QA": {
+    "vi": "Qatar",
+    "en": "Qatar",
+    "ll": [
+     51.2,
+     25.3
+    ]
+   },
+   "IQ": {
+    "vi": "Iraq",
+    "en": "Iraq",
+    "ll": [
+     44.0,
+     33.0
+    ]
+   },
+   "UA": {
+    "vi": "Ukraine",
+    "en": "Ukraine",
+    "ll": [
+     31.0,
+     49.0
+    ]
+   },
+   "IL": {
+    "vi": "Israel",
+    "en": "Israel",
+    "ll": [
+     35.0,
+     31.5
+    ]
+   },
+   "CN": {
+    "vi": "Trung Quốc",
+    "en": "China",
+    "ll": [
+     104.0,
+     35.0
+    ]
+   },
+   "HK": {
+    "vi": "Hồng Kông",
+    "en": "Hong Kong",
+    "ll": [
+     114.2,
+     22.3
+    ]
+   },
+   "TW": {
+    "vi": "Đài Loan",
+    "en": "Taiwan",
+    "ll": [
+     121.0,
+     23.7
+    ]
+   },
+   "JP": {
+    "vi": "Nhật Bản",
+    "en": "Japan",
+    "ll": [
+     138.0,
+     36.0
+    ]
+   },
+   "KR": {
+    "vi": "Hàn Quốc",
+    "en": "South Korea",
+    "ll": [
+     128.0,
+     36.0
+    ]
+   },
+   "IN": {
+    "vi": "Ấn Độ",
+    "en": "India",
+    "ll": [
+     79.0,
+     22.0
+    ]
+   },
+   "BD": {
+    "vi": "Bangladesh",
+    "en": "Bangladesh",
+    "ll": [
+     90.0,
+     24.0
+    ]
+   },
+   "VN": {
+    "vi": "Việt Nam",
+    "en": "Vietnam",
+    "ll": [
+     106.0,
+     16.0
+    ]
+   },
+   "TH": {
+    "vi": "Thái Lan",
+    "en": "Thailand",
+    "ll": [
+     101.0,
+     15.0
+    ]
+   },
+   "MY": {
+    "vi": "Malaysia",
+    "en": "Malaysia",
+    "ll": [
+     102.0,
+     4.0
+    ]
+   },
+   "SG": {
+    "vi": "Singapore",
+    "en": "Singapore",
+    "ll": [
+     103.8,
+     1.35
+    ]
+   },
+   "ID": {
+    "vi": "Indonesia",
+    "en": "Indonesia",
+    "ll": [
+     113.0,
+     -2.0
+    ]
+   },
+   "PH": {
+    "vi": "Philippines",
+    "en": "Philippines",
+    "ll": [
+     122.0,
+     12.0
+    ]
+   },
+   "AU": {
+    "vi": "Úc",
+    "en": "Australia",
+    "ll": [
+     134.0,
+     -25.0
+    ]
+   },
+   "ZA": {
+    "vi": "Nam Phi",
+    "en": "South Africa",
+    "ll": [
+     24.0,
+     -29.0
+    ]
+   },
+   "CD": {
+    "vi": "CHDC Congo",
+    "en": "DR Congo",
+    "ll": [
+     23.0,
+     -3.0
+    ]
+   }
+  },
+  "cats": [
+   {
+    "id": "fuel",
+    "kind": "goods",
+    "name_vi": "Năng lượng & nhiên liệu",
+    "name_en": "Energy & fuels",
+    "code": "HS 27",
+    "total": 2900,
+    "desc_vi": "Dầu thô, sản phẩm lọc dầu, khí đốt (đường ống và LNG) và than. Dòng chảy chủ yếu một chiều: nước sản xuất bán, nước nhập khẩu mua.",
+    "desc_en": "Crude oil, refined products, natural gas (pipeline and LNG) and coal. Flows are strongly one-way: producers sell, importers buy.",
+    "flows": [
+     [
+      "RU",
+      "CN",
+      130,
+      2
+     ],
+     [
+      "CA",
+      "US",
+      125,
+      30
+     ],
+     [
+      "NO",
+      "EU",
+      110,
+      5
+     ],
+     [
+      "US",
+      "EU",
+      85,
+      5
+     ],
+     [
+      "SA",
+      "CN",
+      55,
+      1
+     ],
+     [
+      "RU",
+      "IN",
+      55,
+      0.5
+     ],
+     [
+      "AU",
+      "JP",
+      45,
+      1
+     ],
+     [
+      "US",
+      "MX",
+      35,
+      8
+     ],
+     [
+      "SA",
+      "JP",
+      30,
+      0.5
+     ],
+     [
+      "SA",
+      "KR",
+      30,
+      1
+     ],
+     [
+      "IQ",
+      "IN",
+      30,
+      0.2
+     ],
+     [
+      "AE",
+      "JP",
+      25,
+      0.5
+     ],
+     [
+      "QA",
+      "KR",
+      15,
+      0.1
+     ]
+    ]
+   },
+   {
+    "id": "elec",
+    "kind": "goods",
+    "name_vi": "Điện tử & chip",
+    "name_en": "Electronics & chips",
+    "code": "HS 85",
+    "total": 3300,
+    "desc_vi": "Chất bán dẫn, điện thoại, thiết bị viễn thông, pin và thiết bị điện. Chip đi qua biên giới các nước châu Á nhiều lần trước khi lắp ráp hoàn chỉnh, nên nhiều tuyến chạy cả hai chiều.",
+    "desc_en": "Semiconductors, phones, telecom gear, batteries and electrical equipment. Chips cross Asian borders several times before final assembly, so many routes run both ways.",
+    "flows": [
+     [
+      "CN",
+      "HK",
+      190,
+      120
+     ],
+     [
+      "CN",
+      "EU",
+      160,
+      45
+     ],
+     [
+      "CN",
+      "US",
+      150,
+      20
+     ],
+     [
+      "TW",
+      "CN",
+      130,
+      45
+     ],
+     [
+      "MX",
+      "US",
+      90,
+      60
+     ],
+     [
+      "KR",
+      "CN",
+      70,
+      45
+     ],
+     [
+      "CN",
+      "VN",
+      60,
+      35
+     ],
+     [
+      "VN",
+      "US",
+      55,
+      3
+     ],
+     [
+      "MY",
+      "SG",
+      35,
+      30
+     ],
+     [
+      "JP",
+      "CN",
+      35,
+      40
+     ]
+    ]
+   },
+   {
+    "id": "mach",
+    "kind": "goods",
+    "name_vi": "Máy móc & máy tính",
+    "name_en": "Machinery & computers",
+    "code": "HS 84",
+    "total": 2700,
+    "desc_vi": "Máy tính và máy chủ, động cơ, máy bơm, máy móc công nghiệp và xây dựng.",
+    "desc_en": "Computers and servers, engines, pumps, industrial and construction machinery.",
+    "flows": [
+     [
+      "CN",
+      "EU",
+      140,
+      55
+     ],
+     [
+      "CN",
+      "US",
+      120,
+      30
+     ],
+     [
+      "MX",
+      "US",
+      110,
+      55
+     ],
+     [
+      "EU",
+      "US",
+      110,
+      55
+     ],
+     [
+      "TW",
+      "US",
+      70,
+      5
+     ],
+     [
+      "EU",
+      "UK",
+      45,
+      15
+     ],
+     [
+      "JP",
+      "US",
+      35,
+      15
+     ]
+    ]
+   },
+   {
+    "id": "veh",
+    "kind": "goods",
+    "name_vi": "Xe cộ & phụ tùng",
+    "name_en": "Vehicles & parts",
+    "code": "HS 87",
+    "total": 1800,
+    "desc_vi": "Ô tô, xe tải, xe điện và phụ tùng. Mạng lưới sản xuất ở Bắc Mỹ và châu Âu chuyển linh kiện qua lại trước khi bán xe hoàn chỉnh.",
+    "desc_en": "Cars, trucks, EVs and auto parts. North American and European production networks ship parts back and forth before the finished vehicle is sold.",
+    "flows": [
+     [
+      "MX",
+      "US",
+      115,
+      30
+     ],
+     [
+      "EU",
+      "US",
+      70,
+      15
+     ],
+     [
+      "JP",
+      "US",
+      55,
+      2
+     ],
+     [
+      "EU",
+      "UK",
+      55,
+      10
+     ],
+     [
+      "CA",
+      "US",
+      50,
+      35
+     ],
+     [
+      "KR",
+      "US",
+      40,
+      1
+     ],
+     [
+      "CN",
+      "RU",
+      25,
+      0.5
+     ],
+     [
+      "CN",
+      "EU",
+      25,
+      20
+     ]
+    ]
+   },
+   {
+    "id": "pharma",
+    "kind": "goods",
+    "name_vi": "Dược phẩm",
+    "name_en": "Pharmaceuticals",
+    "code": "HS 30",
+    "total": 850,
+    "desc_vi": "Thuốc, vắc-xin và sinh phẩm. Giá trị cao trên mỗi kg, với Ireland, Đức và Thụy Sĩ ở trung tâm.",
+    "desc_en": "Medicines, vaccines and biologics. High value per kilo, with Ireland, Germany and Switzerland at the centre.",
+    "flows": [
+     [
+      "EU",
+      "US",
+      120,
+      40
+     ],
+     [
+      "CH",
+      "EU",
+      50,
+      30
+     ],
+     [
+      "CH",
+      "US",
+      45,
+      10
+     ],
+     [
+      "EU",
+      "UK",
+      25,
+      15
+     ],
+     [
+      "EU",
+      "CN",
+      20,
+      3
+     ],
+     [
+      "EU",
+      "JP",
+      15,
+      2
+     ],
+     [
+      "IN",
+      "US",
+      10,
+      1
+     ]
+    ]
+   },
+   {
+    "id": "agri",
+    "kind": "goods",
+    "name_vi": "Lương thực & nông sản",
+    "name_en": "Food & agriculture",
+    "code": "HS 01–24",
+    "total": 2100,
+    "desc_vi": "Ngũ cốc, đậu tương, thịt, trái cây, dầu thực vật, đồ uống và thực phẩm chế biến.",
+    "desc_en": "Grains, soybeans, meat, fruit, vegetable oils, beverages and processed food.",
+    "flows": [
+     [
+      "BR",
+      "CN",
+      60,
+      2
+     ],
+     [
+      "EU",
+      "UK",
+      50,
+      20
+     ],
+     [
+      "MX",
+      "US",
+      45,
+      30
+     ],
+     [
+      "CA",
+      "US",
+      40,
+      30
+     ],
+     [
+      "US",
+      "CN",
+      30,
+      8
+     ],
+     [
+      "AU",
+      "CN",
+      15,
+      1
+     ],
+     [
+      "UA",
+      "EU",
+      15,
+      1
+     ],
+     [
+      "ID",
+      "IN",
+      10,
+      0.5
+     ]
+    ]
+   },
+   {
+    "id": "metal",
+    "kind": "goods",
+    "name_vi": "Kim loại & quặng",
+    "name_en": "Metals & ores",
+    "code": "HS 26, 72–76",
+    "total": 1600,
+    "desc_vi": "Quặng sắt, đồng, coban, thép và nhôm. Phần lớn khai thác ở Nam bán cầu và luyện ở Trung Quốc.",
+    "desc_en": "Iron ore, copper, cobalt, steel and aluminium. Mostly mined in the Southern Hemisphere and smelted in China.",
+    "flows": [
+     [
+      "AU",
+      "CN",
+      85,
+      2
+     ],
+     [
+      "CL",
+      "CN",
+      30,
+      1
+     ],
+     [
+      "CA",
+      "US",
+      30,
+      15
+     ],
+     [
+      "BR",
+      "CN",
+      25,
+      0.5
+     ],
+     [
+      "CN",
+      "EU",
+      20,
+      8
+     ],
+     [
+      "PE",
+      "CN",
+      15,
+      0.3
+     ],
+     [
+      "CD",
+      "CN",
+      15,
+      0.5
+     ],
+     [
+      "ZA",
+      "CN",
+      10,
+      1
+     ]
+    ]
+   },
+   {
+    "id": "chem",
+    "kind": "goods",
+    "name_vi": "Hoá chất & nhựa",
+    "name_en": "Chemicals & plastics",
+    "code": "HS 28–29, 39",
+    "total": 1600,
+    "desc_vi": "Hoá chất hữu cơ và vô cơ, nguyên liệu phân bón và nhựa nguyên sinh.",
+    "desc_en": "Organic and inorganic chemicals, fertiliser feedstocks and plastics in primary form.",
+    "flows": [
+     [
+      "EU",
+      "US",
+      60,
+      40
+     ],
+     [
+      "US",
+      "MX",
+      30,
+      5
+     ],
+     [
+      "CN",
+      "US",
+      30,
+      15
+     ],
+     [
+      "KR",
+      "CN",
+      30,
+      15
+     ],
+     [
+      "CN",
+      "IN",
+      25,
+      1
+     ],
+     [
+      "SA",
+      "CN",
+      20,
+      1
+     ]
+    ]
+   },
+   {
+    "id": "text",
+    "kind": "goods",
+    "name_vi": "Dệt may",
+    "name_en": "Textiles & apparel",
+    "code": "HS 50–63",
+    "total": 850,
+    "desc_vi": "Sợi, vải và quần áo. Sản xuất cần nhiều lao động ở châu Á, bán cho người tiêu dùng phương Tây.",
+    "desc_en": "Yarn, fabric and clothing. Labour-intensive production in Asia sold to Western consumers.",
+    "flows": [
+     [
+      "CN",
+      "EU",
+      45,
+      3
+     ],
+     [
+      "CN",
+      "US",
+      40,
+      1
+     ],
+     [
+      "BD",
+      "EU",
+      25,
+      0.3
+     ],
+     [
+      "VN",
+      "US",
+      20,
+      1
+     ],
+     [
+      "TR",
+      "EU",
+      15,
+      5
+     ],
+     [
+      "CN",
+      "JP",
+      15,
+      0.5
+     ],
+     [
+      "IN",
+      "US",
+      10,
+      0.5
+     ]
+    ]
+   },
+   {
+    "id": "gold",
+    "kind": "goods",
+    "name_vi": "Vàng & đá quý",
+    "name_en": "Gold & precious stones",
+    "code": "HS 71",
+    "total": 1100,
+    "desc_vi": "Vàng thỏi, kim cương và trang sức. Thụy Sĩ tinh luyện vàng thỏi rồi chuyển đi, nên các tuyến của nước này thường chạy cả hai chiều.",
+    "desc_en": "Gold bullion, diamonds and jewellery. Switzerland refines gold bars and sends them on, so its routes often run both ways.",
+    "flows": [
+     [
+      "UK",
+      "CH",
+      50,
+      25
+     ],
+     [
+      "CH",
+      "IN",
+      35,
+      2
+     ],
+     [
+      "CH",
+      "CN",
+      25,
+      3
+     ],
+     [
+      "AE",
+      "CH",
+      20,
+      10
+     ],
+     [
+      "US",
+      "CH",
+      20,
+      15
+     ],
+     [
+      "CH",
+      "HK",
+      15,
+      10
+     ],
+     [
+      "IN",
+      "US",
+      15,
+      5
+     ]
+    ]
+   },
+   {
+    "id": "bus",
+    "kind": "services",
+    "name_vi": "Dịch vụ kinh doanh & chuyên môn",
+    "name_en": "Business & professional",
+    "code": "EBOPS SJ",
+    "total": 2000,
+    "desc_vi": "Tư vấn, pháp lý, kế toán, R&D, kỹ thuật, quảng cáo và gia công văn phòng.",
+    "desc_en": "Consulting, legal, accounting, R&D, engineering, advertising and outsourced back-office work.",
+    "flows": [
+     [
+      "US",
+      "EU",
+      120,
+      110
+     ],
+     [
+      "UK",
+      "EU",
+      60,
+      35
+     ],
+     [
+      "UK",
+      "US",
+      40,
+      30
+     ],
+     [
+      "IN",
+      "US",
+      30,
+      8
+     ],
+     [
+      "EU",
+      "CH",
+      30,
+      20
+     ],
+     [
+      "PH",
+      "US",
+      15,
+      1
+     ]
+    ]
+   },
+   {
+    "id": "travel",
+    "kind": "services",
+    "name_vi": "Du lịch",
+    "name_en": "Travel & tourism",
+    "code": "EBOPS SD",
+    "total": 1450,
+    "desc_vi": "Chi tiêu của du khách cho khách sạn, ăn uống và đi lại tại chỗ. Bên bán là điểm đến: mũi tên chạy từ điểm đến về nước của du khách.",
+    "desc_en": "Spending by visitors abroad on hotels, food and local transport. The seller is the destination: arrows run from the destination to the visitors' home country.",
+    "flows": [
+     [
+      "EU",
+      "UK",
+      50,
+      12
+     ],
+     [
+      "EU",
+      "US",
+      30,
+      25
+     ],
+     [
+      "MX",
+      "US",
+      25,
+      12
+     ],
+     [
+      "US",
+      "CA",
+      20,
+      18
+     ],
+     [
+      "TH",
+      "CN",
+      15,
+      2
+     ],
+     [
+      "JP",
+      "CN",
+      15,
+      3
+     ],
+     [
+      "US",
+      "UK",
+      15,
+      12
+     ],
+     [
+      "AE",
+      "IN",
+      10,
+      2
+     ]
+    ]
+   },
+   {
+    "id": "trans",
+    "kind": "services",
+    "name_vi": "Vận tải & logistics",
+    "name_en": "Transport & shipping",
+    "code": "EBOPS SC",
+    "total": 1450,
+    "desc_vi": "Cước đường biển, hàng không, vé hành khách và dịch vụ cảng. Các hãng tàu châu Âu chiếm thị phần lớn.",
+    "desc_en": "Sea freight, air cargo, passenger fares and port services. European shipping lines carry a large share.",
+    "flows": [
+     [
+      "EU",
+      "US",
+      45,
+      30
+     ],
+     [
+      "EU",
+      "CN",
+      25,
+      15
+     ],
+     [
+      "SG",
+      "CN",
+      20,
+      8
+     ],
+     [
+      "CN",
+      "US",
+      15,
+      10
+     ],
+     [
+      "JP",
+      "US",
+      10,
+      8
+     ]
+    ]
+   },
+   {
+    "id": "ict",
+    "kind": "services",
+    "name_vi": "Phần mềm, CNTT & viễn thông",
+    "name_en": "Software, IT & telecom",
+    "code": "EBOPS SI",
+    "total": 1000,
+    "desc_vi": "Phát triển phần mềm, điện toán đám mây và dữ liệu, gia công CNTT và viễn thông.",
+    "desc_en": "Software development, cloud and data services, IT outsourcing and telecom.",
+    "flows": [
+     [
+      "IN",
+      "US",
+      75,
+      5
+     ],
+     [
+      "EU",
+      "US",
+      50,
+      25
+     ],
+     [
+      "IN",
+      "EU",
+      25,
+      8
+     ],
+     [
+      "IN",
+      "UK",
+      15,
+      2
+     ],
+     [
+      "IL",
+      "US",
+      15,
+      3
+     ],
+     [
+      "CN",
+      "US",
+      10,
+      3
+     ]
+    ]
+   },
+   {
+    "id": "fin",
+    "kind": "services",
+    "name_vi": "Tài chính & bảo hiểm",
+    "name_en": "Finance & insurance",
+    "code": "EBOPS SF–SG",
+    "total": 850,
+    "desc_vi": "Phí ngân hàng, quản lý tài sản, giao dịch và bảo hiểm. London và New York dẫn đầu.",
+    "desc_en": "Banking fees, asset management, trading and insurance. London and New York lead.",
+    "flows": [
+     [
+      "UK",
+      "EU",
+      55,
+      20
+     ],
+     [
+      "UK",
+      "US",
+      50,
+      25
+     ],
+     [
+      "US",
+      "EU",
+      50,
+      30
+     ],
+     [
+      "CH",
+      "EU",
+      15,
+      8
+     ],
+     [
+      "HK",
+      "CN",
+      15,
+      5
+     ],
+     [
+      "SG",
+      "CN",
+      10,
+      3
+     ]
+    ]
+   },
+   {
+    "id": "ip",
+    "kind": "services",
+    "name_vi": "Sở hữu trí tuệ",
+    "name_en": "Intellectual property",
+    "code": "EBOPS SH",
+    "total": 450,
+    "desc_vi": "Tiền bản quyền và phí cấp phép cho sáng chế, phần mềm, thương hiệu, phim và nhạc.",
+    "desc_en": "Royalties and licence fees for patents, software, brands, film and music.",
+    "flows": [
+     [
+      "US",
+      "EU",
+      60,
+      40
+     ],
+     [
+      "EU",
+      "CN",
+      15,
+      1
+     ],
+     [
+      "JP",
+      "US",
+      15,
+      10
+     ],
+     [
+      "US",
+      "CN",
+      10,
+      1
+     ],
+     [
+      "CH",
+      "US",
+      10,
+      8
+     ]
+    ]
+   }
+  ]
  }
 }

@@ -54,7 +54,11 @@ Secondary when they bear on Vietnam: ASEAN, Japan, Korea, India, EU, Australia, 
   Brookings, Carnegie, Chatham House, IISS.
 
 ## What you own
-`data/geopolitics.json` → page constant `GEOPOL` (embed: `python3 tools/build/embed_data.py geopolitics`).
+`data/geopolitics.json` → page constants `GEOPOL` and `TRADE_CUR` (embed: `python3 tools/build/embed_data.py geopolitics`).
+`TRADE_CUR` feeds chapter 2 of the tab, "Dòng chảy thương mại / Trade currents" (`tcChapter` in the page): `places` {code: {vi, en, ll:[lon, lat]}},
+`cats` [{id, kind goods|services, name_vi/en, code (HS/EBOPS), total (bn USD exported a year), desc_vi/en, flows: [[A, B, A→B, B→A] bn USD a year]}],
+`totals` (world goods/services exports), `year`, `note_vi/en`, `sources`. Values are rounded estimates; when you refresh them keep the
+EU as one economy, keep each category's flows to its largest routes, and give a new category id a colour in `TC_COL` (ask Ed).
 ```json
 {"_meta": {"owner": "Geopolitics agent", "as_of": "YYYY-MM-DD", "sources_note": "..."},
  "GEOPOL": {

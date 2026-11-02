@@ -26,7 +26,7 @@ OWNERS = {   # file → constants it owns (and the agent that maintains it)
     'finance': (['FINSYS'], 'Finance'),
     'simulation': (['SIM'], 'Finance'),   # Simulation tab: monthly panel, story beats, scenario model (tools/build/simulate.py)
     'narration': (['NARRATION'], 'Narrator'),
-    'geopolitics': (['GEOPOL'], 'Geopolitics'),
+    'geopolitics': (['GEOPOL', 'TRADE_CUR'], 'Geopolitics'),
     'industries': (['IND_ICB'], 'Investing'),   # ICB industry cards on the Investing · Market sub-tab (tools/build/industries_vnstock.py rebuilds it with vnstock)   # Geopolitics tab: actors, events (what / why / impact on Vietnam), options, watch list   # film scripts: per-tab films + the cross-tab overview film (movie mode)
     'flourish': (['FLOURISH_VIZ'], 'Main session'),   # Flourish chart registry (story slots read it)
 }
