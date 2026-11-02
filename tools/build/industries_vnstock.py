@@ -278,6 +278,39 @@ def _flip_windows(t: list[str], c: list) -> list[tuple[str, str]]:
     return out
 
 
+def screened_closes(stocks: list[dict], hist: dict, checkpoints: dict[str, list[str]]):
+    """Adjusted close on/before each checkpoint date, after the data screen (shared by history_block and the
+    quarterly block). checkpoints: {key: [ISO dates]} → each member gets member[key] = [close or None].
+    Series with ≥ FLIP_MAX flips are dropped; a checkpoint close inside a flip window is treated as missing.
+    → (members, dropped_series, dropped_closes)."""
+    mem_all, dropped_series, dropped_closes = [], [], []
+    for s in stocks:
+        h = hist.get(s["sym"])
+        if not s.get("mcap") or not s.get("ls") or not h or not h.get("t"):
+            mem_all.append({**s, "mcap": s.get("mcap") or 0, **{k: [None] * len(v) for k, v in checkpoints.items()}})
+            continue
+        t = [str(x)[:10] for x in h["t"]]
+        fw = _flip_windows(t, h["c"])
+        if len(fw) >= FLIP_MAX:
+            dropped_series.append({"ticker": s["sym"], "icb": s["icb"], "flips": len(fw),
+                                   "mcap_bn_vnd": round(s["mcap"])})
+            mem_all.append({**s, **{k: [None] * len(v) for k, v in checkpoints.items()}})
+            continue
+
+        def get(day, t=t, c=h["c"], fw=fw, sym=s["sym"]):
+            i = bisect.bisect_right(t, day) - 1           # bar actually used for this checkpoint
+            if i < 0 or not c[i]:
+                return None
+            if any(a <= t[i] < b for a, b in fw):
+                rec = {"ticker": sym, "checkpoint": day, "bar": t[i]}
+                if rec not in dropped_closes:
+                    dropped_closes.append(rec)
+                return None
+            return c[i]
+        mem_all.append({**s, **{k: [get(x) for x in v] for k, v in checkpoints.items()}})
+    return mem_all, dropped_series, dropped_closes
+
+
 def history_block(stocks: list[dict], hist: dict, as_of: str, first_year: int = 2018, n_months: int = 24,
                   index_hist: dict | None = None) -> dict:
     """Pure function (no network). stocks: [{sym, icb, mcap (bn VND, today), ls (listed shares today)}];
@@ -294,31 +327,7 @@ def history_block(stocks: list[dict], hist: dict, as_of: str, first_year: int = 
         y, m = (y + 1, 1) if m == 12 else (y, m + 1)
     mend = [f"{x}-{calendar.monthrange(int(x[:4]), int(x[5:]))[1]:02d}" for x in months]
     mend[-1] = min(mend[-1], as_of)
-    mem_all, dropped_series, dropped_closes = [], [], []
-    for s in stocks:
-        h = hist.get(s["sym"])
-        if not s.get("mcap") or not s.get("ls") or not h or not h.get("t"):
-            mem_all.append({**s, "mcap": s.get("mcap") or 0, "y": [None] * len(yend), "m": [None] * len(mend)})
-            continue
-        t = [str(x)[:10] for x in h["t"]]
-        fw = _flip_windows(t, h["c"])
-        if len(fw) >= FLIP_MAX:
-            dropped_series.append({"ticker": s["sym"], "icb": s["icb"], "flips": len(fw),
-                                   "mcap_bn_vnd": round(s["mcap"])})
-            mem_all.append({**s, "y": [None] * len(yend), "m": [None] * len(mend)})
-            continue
-
-        def get(day, t=t, c=h["c"], fw=fw, sym=s["sym"]):
-            i = bisect.bisect_right(t, day) - 1           # bar actually used for this checkpoint
-            if i < 0 or not c[i]:
-                return None
-            if any(a <= t[i] < b for a, b in fw):
-                rec = {"ticker": sym, "checkpoint": day, "bar": t[i]}
-                if rec not in dropped_closes:
-                    dropped_closes.append(rec)
-                return None
-            return c[i]
-        mem_all.append({**s, "y": [get(x) for x in yend], "m": [get(x) for x in mend]})
+    mem_all, dropped_series, dropped_closes = screened_closes(stocks, hist, {"y": yend, "m": mend})
 
     def series(mem, key, nper, full=True):
         cap_now = sum(r["mcap"] or 0 for r in mem)

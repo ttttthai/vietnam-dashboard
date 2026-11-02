@@ -42,6 +42,7 @@ Method (also written into the block as basis_vi / basis_en):
 from __future__ import annotations
 
 import argparse
+import calendar
 import collections
 import concurrent.futures as cf
 import gzip
@@ -559,10 +560,13 @@ def _reported(row):
                              for k, v in row.items() if k[:2] in ("cf", "is", "bs"))
 
 
-def company_ttm_latest(panel, min_end=VAL_MIN_END):
+def company_ttm_latest(panel, min_end=VAL_MIN_END, at=None):
     """Company's own latest four consecutive reported quarters (parent profit). Returns (np_vnd, end) or None.
     The window ends at the latest quarter with a profit figure; if that window has a gap the previous end is tried,
-    as long as the end is not older than min_end."""
+    as long as the end is not older than min_end. at=(y, q): the window must end exactly at that quarter."""
+    if at is not None:
+        rows = [panel["quarterly"].get(_qminus(at, i)) for i in range(4)]
+        return (sum(r["np"] for r in rows), at) if all(r is not None and r["np"] is not None for r in rows) else None
     qs = sorted((k for k, v in panel["quarterly"].items() if v["np"] is not None), reverse=True)
     for end in qs[:2]:
         if end < min_end:
@@ -573,8 +577,12 @@ def company_ttm_latest(panel, min_end=VAL_MIN_END):
     return None
 
 
-def company_book_latest(panel, min_end=VAL_MIN_END):
-    """Parent shareholders' equity at the latest quarter-end with a balance sheet (not older than min_end)."""
+def company_book_latest(panel, min_end=VAL_MIN_END, at=None):
+    """Parent shareholders' equity at the latest quarter-end with a balance sheet (not older than min_end).
+    at=(y, q): at exactly that quarter-end."""
+    if at is not None:
+        r = panel["quarterly"].get(at)
+        return (r["eq"], at) if r is not None and r["eq"] is not None else None
     qs = sorted((k for k, v in panel["quarterly"].items() if v["eq"] is not None), reverse=True)
     if qs and qs[0] >= min_end:
         return panel["quarterly"][qs[0]]["eq"], qs[0]
@@ -588,15 +596,25 @@ def _sum4(rows, key, absval=False):
     return sum(vals)
 
 
-def company_val(raw_dir, sym, min_end=VAL_MIN_END):
-    """Per-company inputs for the card ratios (VND). Keys present only when the data exist."""
+def company_inputs(raw_dir, sym):
+    """Load once: (panel, quarterly IS rows, BS rows, CF rows) — or None without statements."""
     panel = company_panel(raw_dir, sym)
     if panel is None:
         return None
+    return (panel,) + tuple(_qrows(raw_dir, sym, s) for s in ("INCOME_STATEMENT", "BALANCE_SHEET", "CASH_FLOW"))
+
+
+def company_val(raw_dir, sym, min_end=VAL_MIN_END, at=None, inputs=None):
+    """Per-company inputs for the card ratios (VND). Keys present only when the data exist.
+    at=(y, q): every window/balance sheet is taken at exactly that quarter (used by `quarterly`); default = each
+    company's own latest window not older than min_end (used by `valuation`). inputs: preloaded company_inputs()."""
+    inputs = inputs or company_inputs(raw_dir, sym)
+    if inputs is None:
+        return None
+    panel, isq, bsq, cfq = inputs
     Q = panel["quarterly"]
-    isq, bsq, cfq = (_qrows(raw_dir, sym, s) for s in ("INCOME_STATEMENT", "BALANCE_SHEET", "CASH_FLOW"))
     rec = {"tpl": panel["tpl"]}
-    t = company_ttm_latest(panel, min_end)
+    t = company_ttm_latest(panel, min_end, at)
     if t:
         rec["np"], rec["end"] = t
         end = t[1]
@@ -619,7 +637,7 @@ def company_val(raw_dir, sym, min_end=VAL_MIN_END):
         sh_ago = (bsq.get(ago[0]) or {}).get("bsa80")
         if sh_end and sh_ago and sh_end > 0 and sh_ago > 0:
             rec["sh_end"], rec["sh_ago"] = sh_end / PAR_VND, sh_ago / PAR_VND
-    b = company_book_latest(panel, min_end)
+    b = company_book_latest(panel, min_end, at)
     if b:
         rec["eq"], rec["bq"] = b
         br = bsq.get(b[1]) or {}
@@ -629,7 +647,7 @@ def company_val(raw_dir, sym, min_end=VAL_MIN_END):
         rec["ca"], rec["cl"] = br.get("bsa1"), br.get("bsa55")
     # dividends paid (cash-flow statement, own latest four reported quarters)
     cq = sorted((k for k, r in cfq.items() if k[1] in (1, 2, 3, 4) and _reported(r)), reverse=True)
-    for end in cq[:2]:
+    for end in ([at] if at is not None else cq[:2]):
         if end < min_end:
             break
         rows = [cfq.get(_qminus(end, i)) for i in range(4)]
@@ -893,6 +911,411 @@ def valuation(stocks_path, raw_dir, out_path, dry_run, dump_companies=None):
     return res
 
 
+# ------------------------------------------------------------------------------------------------------ quarterly
+Q_FIRST = (2018, 4)                       # first quarter-end of IND_ICB.quarterly (index = 100 there)
+Q_RATIOS = {                              # quarterly ratio key → valuation_agg coverage key(s) for the 60 % rule
+    "pe": ("pe_coverage_pct",), "pb": ("pb_coverage_pct",), "roe_pct": ("pe_coverage_pct", "pb_coverage_pct"),
+    "roa_pct": ("roa_coverage_pct",), "net_margin_pct": ("rev_yoy_coverage_pct",),
+    "debt_to_equity": ("de_coverage_pct",), "liab_to_equity": ("de_coverage_pct",),
+    "current_ratio": ("cr_coverage_pct",), "interest_coverage": ("ic_coverage_pct",),
+    "asset_turnover": ("at_coverage_pct",), "eps_growth_pct": ("eps_growth_coverage_pct",),
+    "rev_yoy_pct": ("rev_yoy_coverage_pct",), "div_yield_pct": ("div_coverage_pct",)}
+BS_EX_FIN = ("debt_to_equity", "current_ratio", "interest_coverage", "asset_turnover")
+
+
+def _iso_day(x):
+    s = str(x)
+    if s.isdigit():                       # Vietcap gap-chart epoch seconds (UTC midnight of the session)
+        from datetime import datetime, timezone
+        return datetime.fromtimestamp(int(s), timezone.utc).date().isoformat()
+    return s[:10]
+
+
+def _month_before(day):
+    y, m, d = int(day[:4]), int(day[5:7]), int(day[8:10])
+    y, m = (y, m - 1) if m > 1 else (y - 1, 12)
+    return f"{y}-{m:02d}-{min(d, calendar.monthrange(y, m)[1]):02d}"
+
+
+def _cw_ret(mem, key_now, key_base, k, cap_all):
+    """Cap-weighted price change Σ ls×c_now ÷ Σ ls×c_base − 1 over members with both closes (as the cards'
+    ret_ytd_pct / ret_1m_pct). → (pct or None, coverage % of today's cap)."""
+    pair = [r for r in mem if r[key_now][k] and r[key_base][k]]
+    base = sum(r[key_base][k] * r["ls"] for r in pair)
+    cov = round(100.0 * sum(r["mcap"] for r in pair) / cap_all, 1) if cap_all else None
+    if not base:
+        return None, cov
+    return round(100.0 * (sum(r[key_now][k] * r["ls"] for r in pair) / base - 1), 2), cov
+
+
+def quarterly(stocks_path, raw_dir, hist_path, out_path, as_of, min_cov, dry_run):
+    """IND_ICB.quarterly: quarter-end price indices (history_block's screen and chain-linking, rebalanced
+    quarterly), discrete-quarter revenue / parent profit / total assets, and the card ratios (valuation_agg) at each
+    quarter-end with quarter-end caps and each company's trailing four quarters ending that quarter."""
+    sys.path.insert(0, os.path.join(ROOT, "tools", "build"))
+    import industries_vnstock as IV       # screened_closes / data screen shared with history_block
+    stocks = json.load(open(stocks_path, encoding="utf-8"))
+    data = json.load(open(out_path, encoding="utf-8"))
+    ind = data["IND_ICB"]
+    icbs = [x["icb"] for x in ind["industries"]]
+    meta = {x["icb"]: x for x in ind["industries"]}
+    mcap_today = {r["sym"]: float(r.get("mcap") or 0) for r in stocks}
+    by_icb = collections.defaultdict(list)
+    for r in stocks:
+        by_icb[r["icb"]].append(r["sym"])
+    allsyms = [r["sym"] for r in stocks]
+    nonfin = [r["sym"] for r in stocks if r["icb"] not in FIN_ICB]
+
+    # ---- axis
+    ad = date.fromisoformat(as_of)
+    last_q = (ad.year, (ad.month - 1) // 3 + 1)
+    qs, k = [], Q_FIRST
+    while k <= last_q:
+        qs.append(k)
+        k = _qminus(k, -1)
+    qend = []
+    for (y, q) in qs:
+        m = 3 * q
+        qend.append(min(f"{y}-{m:02d}-{calendar.monthrange(y, m)[1]:02d}", as_of))
+    qtd = qend[-1] < f"{last_q[0]}-{3 * last_q[1]:02d}-{calendar.monthrange(last_q[0], 3 * last_q[1])[1]:02d}"
+    dd = f"{as_of[8:10]}/{as_of[5:7]}"
+    keys = [f"{y}-Q{q}" for y, q in qs]
+    lab_vi = [f"Q{q}/{y}" for y, q in qs]
+    lab_en = [f"Q{q} {y}" for y, q in qs]
+    if qtd:
+        lab_vi[-1] += f" (đến {dd})"
+        lab_en[-1] += " QTD"
+
+    # ---- prices (same data screen as history_block)
+    hist = {s: {"t": [_iso_day(x) for x in h["t"]], "c": h["c"]}
+            for s, h in json.load(open(hist_path, encoding="utf-8")).items() if isinstance(h, dict) and h.get("t")}
+    px_in = [{"sym": r["sym"], "icb": r["icb"], "mcap": r.get("mcap"), "ls": r.get("ls")} for r in stocks]
+    ybase = [f"{y - 1}-12-31" for y, _ in qs]
+    m1 = [_month_before(d) for d in qend]
+    mem, dropped_series, dropped_closes = IV.screened_closes(px_in, hist, {"q": qend, "py": ybase, "m1": m1})
+    memo = {r["sym"]: r for r in mem}
+    nq = len(qs)
+    # quarter-end cap per stock (bn VND) = screened adj close × today's listed shares
+    mcap_q = [{r["sym"]: (r["q"][i] * r["ls"] / BN if r["q"][i] and r.get("ls") else 0.0) for r in mem}
+              for i in range(nq)]
+
+    # ---- statements
+    inputs, tpl_count = {}, collections.Counter()
+    for r in stocks:
+        c = company_inputs(raw_dir, r["sym"])
+        if c:
+            inputs[r["sym"]] = c
+            tpl_count[c[0]["tpl"]] += 1
+    panels = {s: c[0] for s, c in inputs.items()}
+    tot_today = sum(mcap_today.values())
+    qrec = [{s: p["quarterly"].get(q) for s, p in panels.items()} for q in qs]
+    mkt_fcov = [round(100.0 * sum(mcap_today[s] for s, r in qrec[i].items() if _ok(r)) / tot_today, 1)
+                for i in range(nq)]
+    fund_ok = [c >= min_cov for c in mkt_fcov]
+    fl = max((i for i in range(nq) if fund_ok[i]), default=None)
+    if fl is None:
+        sys.exit(f"no quarter reaches {min_cov}% statement coverage: {mkt_fcov}")
+    fund_null_q = [keys[i] for i in range(fl + 1) if not fund_ok[i]]
+    in_fund = [i <= fl and fund_ok[i] for i in range(nq)]
+
+    # per-company valuation inputs at each quarter-end (exact window ending that quarter)
+    cv = [{s: company_val(raw_dir, s, (0, 0), qs[i], inputs[s]) for s in inputs} if in_fund[i] else None
+          for i in range(nq)]
+
+    def group(members, fin, bs_members=None):
+        cap_all = sum(mcap_today[s] for s in members)
+        mm = [memo[s] for s in members]
+        out = {k2: [] for k2 in ("index", "ret_pct", "mcap_bn_vnd", "n_price", "price_coverage_pct",
+                                 "ret_ytd_pct", "ret_1m_pct", "revenue_bn_vnd", "net_profit_bn_vnd",
+                                 "total_assets_bn_vnd", "n_fund", "fund_coverage_pct", *Q_RATIOS)}
+        rcov = {k2: [] for k2 in Q_RATIOS}
+        nulled = collections.defaultdict(list)
+        for i in range(nq):
+            have = [r for r in mm if r["q"][i]]
+            out["n_price"].append(len(have))
+            out["price_coverage_pct"].append(round(100.0 * sum(r["mcap"] for r in have) / cap_all, 1)
+                                             if cap_all else None)
+            out["mcap_bn_vnd"].append(_r(sum(r["q"][i] * r["ls"] for r in have) / BN) if have else None)
+            idx = out["index"]
+            if not idx or idx[-1] is None:                       # history_block chain-linking, per quarter
+                out["ret_pct"].append(None)
+                idx.append(100.0 if have else None)
+            else:
+                pair = [r for r in have if r["q"][i - 1]]
+                base = sum(r["q"][i - 1] * r["ls"] for r in pair)
+                if not base:
+                    out["ret_pct"].append(None); idx.append(None)
+                else:
+                    rr = sum(r["q"][i] * r["ls"] for r in pair) / base - 1
+                    out["ret_pct"].append(round(100 * rr, 2)); idx.append(idx[-1] * (1 + rr))
+            for key, bkey in (("ret_ytd_pct", "py"), ("ret_1m_pct", "m1")):
+                v, c = _cw_ret(mm, "q", bkey, i, cap_all)
+                if (v is not None and (c is None or c < LOW_COV)) or (c is not None and 0 < c < LOW_COV):
+                    nulled[key].append(keys[i]); v = None
+                out[key].append(v)
+            # discrete-quarter statement sums
+            if in_fund[i]:
+                ok = {s: qrec[i].get(s) for s in members if _ok(qrec[i].get(s))}
+                out["revenue_bn_vnd"].append(_r(sum(r["rev"] for r in ok.values()) / BN) if ok else None)
+                out["net_profit_bn_vnd"].append(_r(sum(r["np"] for r in ok.values()) / BN) if ok else None)
+                out["total_assets_bn_vnd"].append(_r(sum(r["ta"] for r in ok.values()) / BN) if ok else None)
+                out["n_fund"].append(len(ok))
+                out["fund_coverage_pct"].append(round(100.0 * sum(mcap_today[s] for s in ok) / cap_all, 1)
+                                                if cap_all else None)
+                a = valuation_agg(members, mcap_q[i], cv[i], fin)
+                # coverage as % of TODAY's industry cap: same samples, weights = today's cap of priced members
+                masked = {s: (mcap_today[s] if mcap_q[i].get(s) else 0.0) for s in members}
+                a2 = valuation_agg(members, masked, cv[i], fin)
+                scale = sum(masked.values()) / cap_all if cap_all else 0
+                if bs_members is not None:                       # market: balance-sheet ratios ex-financials
+                    b = valuation_agg(bs_members, mcap_q[i], cv[i], False)
+                    mb = {s: (mcap_today[s] if mcap_q[i].get(s) else 0.0) for s in bs_members}
+                    b2 = valuation_agg(bs_members, mb, cv[i], False)
+                    cap_nf = sum(mcap_today[s] for s in bs_members)
+                    sc_nf = sum(mb.values()) / cap_nf if cap_nf else 0
+                for key, ckeys in Q_RATIOS.items():
+                    src, src2, sc = a, a2, scale
+                    if bs_members is not None and key in BS_EX_FIN:
+                        src, src2, sc = b, b2, sc_nf
+                    v = src.get(key)
+                    cs = [src2.get(ck) for ck in ckeys]
+                    c = None if any(x is None for x in cs) else round(min(cs) * sc, 1)
+                    rcov[key].append(c)
+                    if (v is not None and (c is None or c < LOW_COV)) or (c is not None and 0 < c < LOW_COV):
+                        nulled[key].append(keys[i]); v = None     # thin sample (listed even if v was null anyway)
+                    out[key].append(v)
+            else:
+                for k2 in ("revenue_bn_vnd", "net_profit_bn_vnd", "total_assets_bn_vnd", "n_fund",
+                           "fund_coverage_pct", *Q_RATIOS):
+                    out[k2].append(None)
+                for k2 in Q_RATIOS:
+                    rcov[k2].append(None)
+        out["index"] = [None if v is None else round(v, 2) for v in out["index"]]
+        out["ratio_coverage_pct"] = rcov
+        out["nulled_low_coverage"] = dict(nulled)
+        pl = [keys[i] for i, c in enumerate(out["price_coverage_pct"]) if c is not None and c < LOW_COV]
+        fl_ = [keys[i] for i, c in enumerate(out["fund_coverage_pct"]) if c is not None and c < LOW_COV]
+        out["low_coverage_quarters"] = [x for x in keys if x in pl or x in fl_]
+        out["low_coverage_quarters_price"], out["low_coverage_quarters_fund"] = pl, fl_
+        return out
+
+    blk_ind = {}
+    for icb in icbs:
+        g = group(by_icb.get(icb, []), icb in FIN_ICB)
+        if icb in FIN_ICB:
+            for k2 in BS_EX_FIN:
+                g[k2] = [None] * nq
+        else:
+            g["liab_to_equity"] = [None] * nq
+        blk_ind[icb] = {"name_vi": meta[icb]["name_vi"], "name_en": meta[icb]["name_en"], **g}
+    market = group(allsyms, False, bs_members=nonfin)
+    market["liab_to_equity"] = [None] * nq
+    for icb in icbs:
+        blk_ind[icb]["mcap_share_pct"] = [round(100.0 * a / b, 2) if a is not None and b else None
+                                          for a, b in zip(blk_ind[icb]["mcap_bn_vnd"], market["mcap_bn_vnd"])]
+    market["mcap_share_pct"] = [100.0 if v else None for v in market["mcap_bn_vnd"]]
+    vh = hist.get("VNINDEX")
+    market["vnindex"] = [IV._cob(vh["t"], vh["c"], d) for d in qend] if vh else [None] * nq
+    vv = market["vnindex"]
+    market["vnindex_ret_pct"] = [None] + [round(100 * (b / a - 1), 2) if a and b else None for a, b in zip(vv, vv[1:])]
+    market["statement_coverage_pct"] = mkt_fcov
+
+    # ---- sanity checks
+    checks = {}
+    fu = ind.get("fundamentals") or {}
+    if fu:
+        yrs = [p for p in fu["periods"] if p.isdigit()]
+        rows = {}
+        for y in yrs:
+            ii = [keys.index(f"{y}-Q{q}") for q in (1, 2, 3, 4) if f"{y}-Q{q}" in keys]
+            if len(ii) < 4:
+                continue
+            sq = [market["net_profit_bn_vnd"][i] for i in ii]
+            fy = fu["market"]["net_profit_bn_vnd"][fu["periods"].index(y)]
+            if None in sq or fy is None:
+                continue
+            rows[y] = {"sum_4_quarters_bn_vnd": sum(sq), "fundamentals_fy_bn_vnd": fy,
+                       "gap_pct": round(100.0 * (sum(sq) / fy - 1), 2)}
+        # same company set (all 4 quarters + FY present), to separate the sample effect from restatements
+        for y in list(rows):
+            yi = int(y)
+            same = [s for s, p in panels.items() if _ok(p["annual"].get(yi))
+                    and all(_ok(p["quarterly"].get((yi, q))) for q in (1, 2, 3, 4))]
+            a_ = sum(panels[s]["annual"][yi]["np"] for s in same) / BN
+            q_ = sum(panels[s]["quarterly"][(yi, q)]["np"] for s in same for q in (1, 2, 3, 4)) / BN
+            rows[y]["same_companies_n"] = len(same)
+            rows[y]["same_companies_gap_pct"] = round(100.0 * (q_ / a_ - 1), 2) if a_ else None
+        checks["profit_sum_of_quarters_vs_fundamentals_fy_market"] = rows
+    hi = ind.get("history") or {}
+    if hi:
+        cmp_ = {}
+        for j, y in enumerate(hi["years"]):
+            kq = f"{y}-Q4"
+            if kq in keys:
+                cmp_[str(y)] = {"quarterly_q4_index": market["index"][keys.index(kq)],
+                                "history_year_end_index": hi["market"]["index"][j]}
+        checks["market_index_q4_vs_history_year_end"] = cmp_
+        cmp_i = {}
+        for icb in icbs:
+            hq = hi["by_icb"].get(icb, {}).get("index") or []
+            dif = [abs(blk_ind[icb]["index"][keys.index(f"{y}-Q4")] / hq[j] - 1) * 100
+                   for j, y in enumerate(hi["years"]) if f"{y}-Q4" in keys and hq[j]
+                   and blk_ind[icb]["index"][keys.index(f"{y}-Q4")]]
+            cmp_i[icb] = round(max(dif), 1) if dif else None
+        checks["industry_q4_index_max_abs_gap_vs_history_pct"] = cmp_i
+    checks["market_vs_vnindex_quarter_returns"] = {
+        keys[i]: [market["ret_pct"][i], market["vnindex_ret_pct"][i]] for i in range(1, nq)}
+    li = fl
+    card_cmp = {}
+    for key in ("pe", "pb", "roe_pct", "roa_pct", "net_margin_pct", "debt_to_equity", "current_ratio",
+                "interest_coverage", "asset_turnover", "eps_growth_pct", "rev_yoy_pct", "div_yield_pct"):
+        card_cmp[key] = {"market": [market[key][li], ind["market"].get(key)],
+                         "by_icb": {icb: [blk_ind[icb][key][li], meta[icb].get(key)] for icb in icbs}}
+    card_cmp["ret_ytd_pct"] = {"market": [market["ret_ytd_pct"][-1], ind["market"].get("ret_ytd_pct")],
+                               "by_icb": {icb: [blk_ind[icb]["ret_ytd_pct"][-1], meta[icb].get("ret_ytd_pct")]
+                                          for icb in icbs}}
+    card_cmp["mcap_share_pct"] = {"by_icb": {icb: [blk_ind[icb]["mcap_share_pct"][-1], meta[icb].get("mcap_share_pct")]
+                                             for icb in icbs}}
+    checks["latest_vs_cards"] = {"quarter": keys[li], "pair": "[quarterly value at " + keys[li] + ", card value]",
+                                 "values": card_cmp}
+
+    fq = keys[fl]
+    fql = lab_vi[fl]
+    block = {
+        "as_of": as_of, "built": date.today().isoformat(),
+        "quarters": keys, "labels_vi": lab_vi, "labels_en": lab_en, "quarter_end_dates": qend,
+        "qtd_quarter": keys[-1] if qtd else None,
+        "fund_last_quarter": fq, "fund_min_coverage_rule_pct": min_cov,
+        "fund_market_coverage_pct": dict(zip(keys, mkt_fcov)),
+        "fund_quarters_nulled_below_rule": fund_null_q,
+        "fund_quarters_after_last": keys[fl + 1:],
+        "ratio_null_rule_pct": LOW_COV,
+        "units": "bn VND; returns, margins, growth, yields in %; ratios ×; coverage = % of today's industry cap",
+        "by_icb": blk_ind, "market": market,
+        "fields": {
+            "index / ret_pct": "Cap-weighted price index, 100 at end-Q4/2018, chain-linked quarterly: return in "
+                               "quarter Q = Σ(current listed shares × adj. close end-Q) ÷ Σ(current listed shares × "
+                               "adj. close end-(Q−1)) − 1 over stocks with both closes (as IND_ICB.history, but "
+                               "rebalanced every quarter instead of every year). ret_pct null in the first quarter.",
+            "mcap_bn_vnd": "≈ Σ adj. close at quarter end × today's listed shares (approximate, as history).",
+            "mcap_share_pct": "≈ industry mcap_bn_vnd ÷ market mcap_bn_vnd at the same quarter end.",
+            "ret_ytd_pct": "Cap-weighted price change from the previous year-end to the quarter end (as the cards' "
+                           "ret_ytd_pct); null for 2018 (no end-2017 prices in the pull).",
+            "ret_1m_pct": "Cap-weighted price change over the month to the quarter end (same day one month "
+                          "earlier), as the cards' ret_1m_pct.",
+            "price_coverage_pct / n_price": "Stocks with a screened close at the quarter end; their share of "
+                                            "today's industry cap.",
+            "revenue_bn_vnd / net_profit_bn_vnd": "Σ over the quarter itself (discrete quarter, not TTM), "
+                                                  "definitions as IND_ICB.fundamentals (template-specific revenue; "
+                                                  "profit after tax attributable to parent shareholders, PAT "
+                                                  "fallback).",
+            "total_assets_bn_vnd": "Σ total assets at the quarter end (bsa53).",
+            "n_fund / fund_coverage_pct": "Companies with revenue, parent profit and total assets for that "
+                                          "quarter (all three sums use this set); share of today's industry cap.",
+            "pe, pb, roe_pct, roa_pct, net_margin_pct, debt_to_equity, liab_to_equity, current_ratio, "
+            "interest_coverage, asset_turnover, eps_growth_pct, rev_yoy_pct, div_yield_pct":
+                "Same definitions as the card valuation step (industries_fundamentals.py valuation_agg), evaluated at "
+                "each quarter end: caps = quarter-end adj. close × today's listed shares; TTM = each company's four "
+                "quarters ending exactly at that quarter (no fallback to an earlier window); balance sheet at that "
+                "quarter end; year-earlier TTM = the four quarters before. Market debt_to_equity, current_ratio, "
+                "interest_coverage, asset_turnover exclude ICB 8300/8500/8700; for those industries debt_to_equity "
+                "etc. are null and liab_to_equity is given. net_margin_pct, interest_coverage and asset_turnover use "
+                "the rev_yoy sample (eight quarters needed), so they start at Q4/2019. Run to fund_last_quarter only.",
+            "ratio_coverage_pct": "Per ratio: share of today's industry cap in that ratio's sample (roe = the smaller "
+                                  "of the pe and pb samples).",
+            "nulled_low_coverage": "Quarters where a ratio or ret_ytd_pct/ret_1m_pct was computed but its sample "
+                                   "covered < 60% of today's industry cap, so it is set to null.",
+            "low_coverage_quarters": "Quarters where price or statement coverage < 60% of today's industry cap "
+                                     "(detail in low_coverage_quarters_price / _fund); values are kept, flagged.",
+            "market.vnindex / vnindex_ret_pct": "VN-Index close on/before each quarter end (same Vietcap feed); "
+                                                "quarterly change ≈ derived from those closes.",
+        },
+        "source": "Prices: Vietcap chart/OHLCChart/gap-chart adjusted daily closes (vnstock Quote VCI feed), data "
+                  "screen and listed shares as IND_ICB.history. Statements: Vietcap IQ financial statements "
+                  "(INCOME_STATEMENT, BALANCE_SHEET, CASH_FLOW quarters) via trading.vietcap.com.vn/api/"
+                  "iq-insight-service, as IND_ICB.fundamentals. Built by tools/build/industries_fundamentals.py "
+                  "quarterly.",
+        "source_url": "https://trading.vietcap.com.vn/api/iq-insight-service/v1/company/{SYM}/financial-statement?section=INCOME_STATEMENT",
+        "basis_vi": (
+            "Theo quý, từ Q4/2018 đến " + lab_vi[-1] + ", các mã niêm yết HÔM NAY (HOSE/HNX/UPCoM, ICB cấp 2 hiện "
+            "nay). Chỉ số giá ngành gia quyền vốn hóa = 100 tại cuối Q4/2018, nối chuỗi theo quý (giá đóng cửa điều "
+            "chỉnh của Vietcap × số CP niêm yết hiện tại, cùng bộ lọc dữ liệu với IND_ICB.history), tái cân bằng mỗi "
+            "quý. Vốn hóa cuối quý chỉ XẤP XỈ: giá điều chỉnh × số cổ phiếu HIỆN NAY (cùng cách tính với "
+            "IND_ICB.history) — phát hành thêm sau đó làm phóng đại vốn hóa quá khứ. Doanh thu và lợi nhuận là số "
+            "của RIÊNG quý đó (không phải 12 tháng), lợi nhuận thuộc cổ đông công ty mẹ; tổng tài sản tại cuối quý. "
+            "P/E, P/B, ROE, ROA, biên lợi nhuận, nợ vay/VCSH, thanh toán hiện hành, khả năng trả lãi, vòng quay tài "
+            "sản, tăng EPS, tăng doanh thu, tỷ suất cổ tức: cùng định nghĩa với thẻ ngành nhưng tính tại từng cuối "
+            "quý, với vốn hóa cuối quý và 4 quý gần nhất kết thúc tại quý đó của từng công ty (≈, số tổng hợp). Số "
+            "liệu báo cáo tài chính chỉ đến " + fql + " (quý mới nhất có ≥ " + f"{min_cov:.0f}" + "% vốn hóa đã "
+            "báo cáo); quý sau đó để trống. Tỷ số có mẫu dưới 60% vốn hóa ngành hiện nay thì để trống "
+            "(nulled_low_coverage). Chỉ mang tính mô tả."),
+        "basis_en": (
+            "Quarterly, Q4 2018 to " + lab_en[-1] + ", over stocks listed TODAY (HOSE/HNX/UPCoM, today's ICB level "
+            "2). Cap-weighted industry price index = 100 at end-Q4 2018, chain-linked quarterly (Vietcap adjusted "
+            "closes × current listed shares, same data screen as IND_ICB.history), rebalanced every quarter. "
+            "Quarter-end caps are APPROXIMATE: adjusted close × TODAY's share count (the same approximation as "
+            "IND_ICB.history) — later issuance inflates past caps. Revenue and profit are for that quarter ALONE "
+            "(not TTM), profit attributable to parent shareholders; total assets at the quarter end. P/E, P/B, ROE, "
+            "ROA, net margin, debt/equity, current ratio, interest cover, asset turnover, EPS growth, revenue "
+            "growth, dividend yield: the card definitions evaluated at each quarter end, with quarter-end caps and "
+            "each company's four quarters ending that quarter (≈, aggregates). Statement data run to " + fq.replace(
+                "-", " ") + " (latest quarter with ≥ " + f"{min_cov:.0f}" + "% of cap reported); later quarters are "
+            "null. Ratios whose sample covers < 60% of today's industry cap are null (nulled_low_coverage). "
+            "Descriptive only."),
+        "caveats_vi": [
+            "Thiên lệch sống sót: chỉ gồm mã còn niêm yết ngày " + f"{as_of[8:10]}/{as_of[5:7]}/{as_of[:4]}" +
+            "; các quý đầu thiếu mã đã hủy niêm yết; mã niêm yết muộn chỉ vào chuỗi từ quý có giá/báo cáo.",
+            "Phân ngành theo mã ICB hiện nay, áp cho mọi quý.",
+            "Vốn hóa cuối quý = giá điều chỉnh × số CP hiện nay: xấp xỉ, phóng đại vốn hóa quá khứ của công ty phát "
+            "hành thêm; P/E, P/B, tỷ suất cổ tức quá khứ chịu cùng sai lệch.",
+            "Đếm hai lần khi công ty mẹ và công ty con cùng niêm yết (VIC–VHM/VRE/VPL, MWG–DMX, GVR–PHR/DPR, "
+            "GAS–PGD…): doanh thu, lợi nhuận, tài sản, vốn hóa của công ty con nằm ở cả hai.",
+            "Doanh thu toàn thị trường cộng nhiều định nghĩa (doanh thu thuần, thu nhập hoạt động ngân hàng, doanh "
+            "thu CTCK/bảo hiểm) — chỉ là tổng mô tả.",
+            "Số quý chưa kiểm toán, có thể được điều chỉnh; tổng 4 quý có thể khác số năm đã kiểm toán "
+            "(xem sanity_checks). Doanh thu/lợi nhuận quý có tính mùa vụ.",
+            "Thay đổi phạm vi hợp nhất làm gãy chuỗi (ví dụ FPT không còn hợp nhất toàn bộ FPT Telecom từ 2026).",
+            "Quý có độ phủ dưới 60% vốn hóa hiện nay của ngành: liệt kê ở low_coverage_quarters (giá trị giữ "
+            "nguyên); tỷ số dưới 60% thì để trống (nulled_low_coverage).",
+            lab_vi[-1] + " chưa trọn quý." if qtd else "",
+        ],
+        "caveats_en": [
+            "Survivorship: only stocks listed on " + as_of + "; early quarters miss delisted names; late listings "
+            "enter from their first priced/reported quarter.",
+            "Today's ICB classification is applied to every quarter.",
+            "Quarter-end cap = adjusted close × today's share count: approximate, inflating past caps of companies "
+            "that issued shares since; past P/E, P/B and dividend yield carry the same bias.",
+            "Double counting where a listed parent consolidates a listed subsidiary (VIC–VHM/VRE/VPL, MWG–DMX, "
+            "GVR–PHR/DPR, GAS–PGD …): the subsidiary's revenue, profit, assets and cap appear in both.",
+            "Market revenue adds different definitions (net sales, bank operating income, broker/insurer top lines) "
+            "— a descriptive total only.",
+            "Quarterly reports are unaudited and can be revised; four quarters can differ from the audited year "
+            "(see sanity_checks). Quarterly revenue and profit are seasonal.",
+            "Changes in consolidation scope break series (e.g. FPT no longer fully consolidates FPT Telecom from "
+            "2026).",
+            "Quarters covering < 60% of the industry's current cap are listed in low_coverage_quarters (values "
+            "kept); ratios below 60% are null (nulled_low_coverage).",
+            lab_en[-1] + " is not a complete quarter." if qtd else "",
+        ],
+        "data_screen": {"rule": "as IND_ICB.history.data_screen", "series_dropped": dropped_series,
+                        "closes_dropped": dropped_closes},
+        "built_from": {"stocks": len(stocks), "with_statements": len(inputs), "templates": dict(tpl_count),
+                       "with_price_history": sum(1 for s in allsyms if s in hist)},
+        "sanity_checks": checks,
+        "disclaimer": DISCLAIMER,
+    }
+    block["caveats_vi"] = [c for c in block["caveats_vi"] if c]
+    block["caveats_en"] = [c for c in block["caveats_en"] if c]
+    if dry_run:
+        return block
+    ind["quarterly"] = block
+    with open(out_path, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, ensure_ascii=False, indent=1)
+        fh.write("\n")
+    print("wrote", out_path, "IND_ICB.quarterly;", nq, "quarters, statements to", fq)
+    return block
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -909,10 +1332,26 @@ def main():
     v.add_argument("--stocks", required=True); v.add_argument("--raw", required=True)
     v.add_argument("--out", default=DEFAULT_OUT); v.add_argument("--dry-run", action="store_true")
     v.add_argument("--dump-companies", default=None, help="write per-company inputs (JSON) for spot checks")
+    q = sub.add_parser("quarterly", help="IND_ICB.quarterly: quarter-end price indices, quarterly statements and "
+                                         "card ratios at each quarter end")
+    q.add_argument("--stocks", required=True); q.add_argument("--raw", required=True)
+    q.add_argument("--hist", required=True, help="daily adjusted closes {SYM: {t: [epoch s | ISO], c: [...]}}, "
+                                                 "incl. VNINDEX (the IND_ICB.history pull)")
+    q.add_argument("--as-of", required=True, help="last price date (YYYY-MM-DD), as IND_ICB.as_of")
+    q.add_argument("--min-cov", type=float, default=80.0,
+                   help="statement quarters need >= this %% of today's market cap reported")
+    q.add_argument("--out", default=DEFAULT_OUT); q.add_argument("--dry-run", help="write the block to this JSON "
+                                                                                   "file instead of --out")
     args = ap.parse_args()
     if args.cmd == "pull":
         pull(args.stocks, args.raw, args.threads, tuple(args.sections.split(",")),
              args.only.split(",") if args.only else None)
+    elif args.cmd == "quarterly":
+        blk = quarterly(args.stocks, args.raw, args.hist, args.out, args.as_of, args.min_cov, bool(args.dry_run))
+        if args.dry_run:
+            with open(args.dry_run, "w", encoding="utf-8") as fh:
+                json.dump(blk, fh, ensure_ascii=False, indent=1)
+            print("dry run: block written to", args.dry_run)
     elif args.cmd == "valuation":
         valuation(args.stocks, args.raw, args.out, args.dry_run, args.dump_companies)
     else:
