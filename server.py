@@ -32,7 +32,8 @@ import re
 import threading
 import time
 from collections import deque
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from typing import Any
 
@@ -1866,6 +1867,50 @@ def api_freshness(tab: str | None = None, status: str | None = None):
     except Exception:
         pass
     return JSONResponse(freshness.report(DATA_DIR / "research", server_last_refresh=srv, tab=tab, status=status))
+
+
+# ─── Update log: minor (daily data refresh) and major (weekly agents run) ──
+WEEKLY_LOG_DIR = DATA_DIR / "research" / "weekly_log"
+WEEKLY_SCHEDULE = "Thứ Năm hàng tuần · 23:59 Asia/Ho_Chi_Minh"
+
+
+@app.get("/api/update-log")
+def api_update_log():
+    """Latest minor update (the server's daily snapshot refresh) and the weekly all-agents run, read from
+    data/research/weekly_log/index.json (written by the scheduled task weekly-all-agents-update). The weekly
+    entries carry the Narrator's decision: MINOR or STRATEGIC (redirection)."""
+    next_daily = None
+    try:
+        job = scheduler.get_job("daily-midnight")
+        if job and job.next_run_time:
+            next_daily = job.next_run_time.isoformat()
+    except Exception:
+        pass
+    last_snap = next((l for l in REFRESH_LOG if l.get("source") == "snapshot" and l.get("status") != "started"), None)
+    entries = []
+    try:
+        entries = json.loads((WEEKLY_LOG_DIR / "index.json").read_text(encoding="utf-8")).get("runs") or []
+    except Exception:
+        pass
+    entries = sorted(entries, key=lambda e: e.get("date") or "", reverse=True)
+    latest = entries[0] if entries else None
+    md = None
+    if latest and latest.get("file"):
+        p = (WEEKLY_LOG_DIR / Path(latest["file"]).name)
+        if p.is_file():
+            md = p.read_text(encoding="utf-8")[:60000]
+    today = datetime.now(ZoneInfo(VN_TZ))
+    nxt = (today + timedelta(days=(3 - today.weekday()) % 7)).replace(hour=23, minute=59, second=0, microsecond=0)
+    if nxt <= today:
+        nxt += timedelta(days=7)
+    return JSONResponse({
+        "minor": {"updated_at": SNAPSHOT.get("updated_at"), "errors": SNAPSHOT.get("errors") or [],
+                  "last_event": last_snap, "next_run": next_daily, "schedule": "Hàng ngày · 00:00 Asia/Ho_Chi_Minh"},
+        "weekly": {"latest": latest, "latest_md": md, "runs": entries[:12], "next_run": nxt.isoformat(),
+                   "schedule": WEEKLY_SCHEDULE,
+                   "last_minor": next((e for e in entries if (e.get("decision") or "").upper() == "MINOR"), None),
+                   "last_major": next((e for e in entries if (e.get("decision") or "").upper().startswith("STRATEGIC")), None)},
+    })
 
 
 # ─── Public macro APIs → data/auto (P-3/P-4) ───────────────────────

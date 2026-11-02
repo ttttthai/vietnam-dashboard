@@ -583,6 +583,17 @@ if (window.APP_LANG === 'en') window.I18N_START();
   /* Log modal */
   .log-meta { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 11px; }
   .log-meta b { color: var(--accent); }
+  .ul-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 6px; }
+  .ul-card { background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--accent2); border-radius: 6px; padding: 8px 10px; font-size: 11.5px; line-height: 1.4; }
+  .ul-card.ul-major { border-top-color: var(--accent3, #c0392b); }
+  .ul-card p { margin: 4px 0 0; color: var(--text2); font-size: 11px; }
+  .ul-k { font-size: 10px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: var(--text2); margin-bottom: 4px; }
+  .ul-ok { color: var(--accent2); font-weight: 700; font-size: 10.5px; } .ul-warn { color: #b7791f; font-weight: 700; font-size: 10.5px; }
+  .ul-none { color: var(--text2); font-style: italic; } .ul-next { margin-top: 4px; font-size: 10.5px; color: var(--text2); }
+  .ul-foot { font-size: 11px; color: var(--text2); margin-bottom: 10px; }
+  .ul-md { margin: 0 0 12px; font-size: 11px; } .ul-md summary { cursor: pointer; color: var(--accent); }
+  .ul-md pre { white-space: pre-wrap; max-height: 320px; overflow: auto; background: var(--bg3); padding: 8px 10px; border-radius: 6px; font-size: 11px; }
+  @media (max-width: 720px) { .ul-grid { grid-template-columns: 1fr; } }
   .log-list { display: flex; flex-direction: column; gap: 3px; }
   .log-row { display: grid; grid-template-columns: 130px 70px 88px auto 60px; gap: 8px; align-items: center; padding: 6px 10px; background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--border); border-radius: 4px; font-size: 11px; font-variant-numeric: tabular-nums; }
   .log-row .l-ts { color: var(--text2); font-size: 10px; }
@@ -3672,6 +3683,29 @@ async function loadBanks() {
   bshLoad();
 }
 
+// Log modal header: the last minor update (the server's daily data refresh) and the weekly all-agents run, split
+// by the Narrator's decision (MINOR / STRATEGIC redirection). Fed by GET /api/update-log; empty when it is absent.
+async function updLogCards(fmtTs) {
+  let u;
+  try { const r = await fetch('/api/update-log', { cache: 'no-store' }); if (!r.ok) return ''; u = await r.json(); } catch (e) { return ''; }
+  const T = (vi, en) => stT(vi, en), M = u.minor || {}, W = u.weekly || {};
+  const when = ts => ts ? fmtTs(ts) : '—';
+  const run = e => e ? `<b>${ciE(e.date || '')}</b>${e.n_changes != null ? ` · ${e.n_changes} ${T('thay đổi', 'changes')}` : ''}${e.headline ? `<p>${ciE(stT(e.headline_vi || e.headline, e.headline))}</p>` : ''}`
+                     : `<span class="ul-none">${T('Chưa có', 'None yet')}</span>`;
+  const errN = (M.errors || []).length;
+  const L = W.latest;
+  const md = W.latest_md ? `<details class="ul-md"><summary>${T('Xem nhật ký đầy đủ', 'Read the full log')} · ${ciE(L.date || '')}</summary><pre>${ciE(W.latest_md)}</pre></details>` : '';
+  return `<div class="ul-grid">
+    <div class="ul-card"><div class="ul-k">${T('Cập nhật nhỏ · dữ liệu thị trường', 'Minor update · market data')}</div>
+      <b>${when(M.updated_at)}</b> ${errN ? `<span class="ul-warn">${errN} ${T('lỗi', 'errors')}</span>` : `<span class="ul-ok">OK</span>`}
+      <p>${T('Máy chủ tự lấy lại chỉ số, lãi suất, tỷ giá, ngân hàng mỗi đêm (nút ↻ chạy ngay).', 'The server re-pulls indices, rates, FX and banks every night (↻ runs it now).')}</p>
+      <div class="ul-next">${T('Lần tới', 'Next')}: ${when(M.next_run)}</div></div>
+    <div class="ul-card"><div class="ul-k">${T('Cập nhật tuần · nhỏ (các agent)', 'Weekly agents run · minor')}</div>${run(W.last_minor)}</div>
+    <div class="ul-card ul-major"><div class="ul-k">${T('Cập nhật lớn · đổi hướng chiến lược', 'Major update · strategic redirection')}</div>${run(W.last_major)}</div>
+  </div>
+  <div class="ul-foot">${T('Agent chạy', 'Agents run')}: ${L ? `${T('lần gần nhất', 'last')} <b>${ciE(L.date || '')}</b> (${ciE(L.decision || '—')}) · ` : ''}${T('lần tới', 'next')} <b>${when(W.next_run)}</b> · ${T('Thứ Năm 23:59', 'Thursdays 23:59')}</div>${md}`;
+}
+
 async function openLogModal() {
   const overlay = document.getElementById('bk-modal-overlay');
   const title   = document.getElementById('bkm-title');
@@ -3687,7 +3721,8 @@ async function openLogModal() {
     const TRIG_LBL = {auto:'TỰ ĐỘNG', manual:'THỦ CÔNG', startup:'KHỞI ĐỘNG'};
     const fmtTs = ts => new Date(ts).toLocaleString(APP_LOC, {hour12:false});
     const nextRun = d.next_run ? new Date(d.next_run).toLocaleString(APP_LOC, {hour12:false}) : '—';
-    let html = `<div class="log-meta">
+    let html = await updLogCards(fmtTs);
+    html += `<div class="log-meta">
       <span>📅 Lịch tự động: <b>${d.schedule || '—'}</b></span>
       <span>⏭ Lần chạy tới: <b>${nextRun}</b></span>
       <span>Tổng số sự kiện: <b>${d.count}</b></span>
