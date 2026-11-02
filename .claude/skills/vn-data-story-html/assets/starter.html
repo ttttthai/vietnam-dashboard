@@ -1,0 +1,508 @@
+<title>Vietnam Story Starter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+/* Extracted from vietnam_dashboard.html (story layer CSS). Light editorial theme. */
+  :root {
+    color-scheme: light;
+    --bg: #f5f6f8;          /* page */
+    --bg2: #ffffff;         /* card / surface */
+    --bg3: #f1f3f6;         /* muted surface: tiles, headers */
+    --border: #e1e5eb;
+    --rule: #0f172a;        /* editorial heavy rule */
+    --accent: #0b5394;      /* deep report blue */
+    --accent2: #1a7f37;     /* positive */
+    --accent3: #b45309;     /* warning */
+    --accent4: #b42318;     /* negative */
+    --violet: #4a3aa7;
+    --text: #0f172a;
+    --text2: #475569;
+    --text3: #64748b;
+    --tab-active: #0b5394;
+    --shadow: 0 1px 2px rgba(15,23,42,0.06), 0 4px 16px rgba(15,23,42,0.06);
+    --font-ui: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-head: 'Newsreader', Georgia, 'Times New Roman', serif;
+    --r1: #e34948; --r2: #eb6834; --r3: #eda100;
+    --r4: #008300; --r5: #2a78d6; --r6: #4a3aa7;
+  }
+  .st-root { grid-column: 1 / -1; max-width: 1120px; width: 100%; margin: 0 auto; padding: 8px 4px 24px; }
+  .st-chap { padding: 40px 0 34px; border-top: 1px solid #dedbd2; opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .st-chap.in { opacity: 1; transform: none; }
+  .st-hero { border-top: none; padding-top: 18px; }
+  .st-kicker { font: 600 11.5px/1 var(--font-ui); letter-spacing: .12em; text-transform: uppercase; color: #c2362f; margin-bottom: 10px; }
+  .st-h { font: 700 clamp(22px, 2.6vw, 32px)/1.18 var(--font-head); color: #16181d; margin: 0 0 10px; max-width: 30ch; text-wrap: balance; }
+  .st-dek { font: 400 15px/1.55 var(--font-ui); color: #5b6170; margin: 0 0 18px; max-width: 68ch; }
+  .st-dek b { color: #16181d; }
+  .st-big { font: 700 clamp(46px, 7vw, 88px)/1 var(--font-head); color: #16181d; letter-spacing: -.02em; margin-bottom: 14px; }
+  .st-big span { font-size: .28em; font-weight: 600; letter-spacing: 0; color: #5b6170; margin-left: 6px; }
+  .st-hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: end; }
+  @media (max-width: 900px) { .st-hero-grid { grid-template-columns: 1fr; } }
+  .st-viz { width: 100%; margin: 6px 0 4px; }
+  .st-viz svg { display: block; overflow: visible; }
+  .st-sub { font: 600 13px var(--font-ui); color: #16181d; margin: 26px 0 6px; padding-top: 10px; border-top: 1px dotted #dedbd2; }
+  .st-src { font: 400 11px/1.45 var(--font-ui); color: #8a8f99; margin-top: 14px; max-width: 90ch; }
+  .st-tick { font: 400 11px var(--font-ui); fill: #8a8f99; }
+  .st-lab { font: 500 12px var(--font-ui); fill: #16181d; }
+  .st-lab.st-b { font-weight: 700; }
+  .st-val { font: 600 12px var(--font-ui); fill: #5b6170; font-variant-numeric: tabular-nums; }
+  .st-grid { stroke: #ebe8e0; stroke-width: 1; }
+  .st-eq-sym { font: 700 26px var(--font-head); fill: #fff; }
+  .st-eq-val { font: 600 13px var(--font-ui); fill: #fff; opacity: .92; }
+  .st-ann path { stroke: #16181d; stroke-width: .8; fill: none; }
+  .st-ann circle { fill: #16181d; }
+  .st-ann text { font: italic 500 12.5px var(--font-head); fill: #16181d; }
+  .st-ctrl { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 10px; }
+  .st-ctrl button { font: 500 12px var(--font-ui); border: 1px solid #dedbd2; background: #fff; color: #5b6170; border-radius: 999px; padding: 5px 11px; cursor: pointer; min-height: 30px; }
+  .st-ctrl button:hover { border-color: #16181d; color: #16181d; }
+  .st-ctrl button.on { background: #16181d; border-color: #16181d; color: #fff; }
+  .st-ctrl .st-play { width: 34px; padding: 0; }
+  .st-mult { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .st-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+  @media (max-width: 900px) { .st-mult { grid-template-columns: repeat(2, 1fr); } .st-facts { grid-template-columns: 1fr; } }
+  .st-mini-h { font: 600 12px var(--font-ui); color: #5b6170; }
+  .st-mini-v { font: 700 26px/1.15 var(--font-head); color: #16181d; margin: 2px 0 4px; font-variant-numeric: tabular-nums; }
+  .st-fact { border-left: 3px solid #16181d; padding-left: 12px; }
+  .st-fact-s { font: 400 11.5px var(--font-ui); color: #8a8f99; margin-top: 4px; }
+  .st-waffles { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+  @media (max-width: 900px) { .st-waffles { grid-template-columns: 1fr; } }
+  .st-waf-h { font: 700 18px var(--font-head); color: #16181d; margin-bottom: 10px; }
+  .st-waf-h span { font: 400 12px var(--font-ui); color: #8a8f99; }
+  .st-waf-row { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+  .st-leg { list-style: none; margin: 0; padding: 0; font: 400 12px/1.35 var(--font-ui); color: #5b6170; flex: 1; min-width: 180px; }
+  .st-leg li { display: flex; gap: 7px; align-items: baseline; margin-bottom: 7px; }
+  .st-leg i { width: 10px; height: 10px; border-radius: 2px; flex: none; transform: translateY(1px); }
+  .st-leg b { color: #16181d; font: 700 14px var(--font-head); min-width: 22px; }
+  /* budget drill-down panel (Economy ch. 3) */
+  .st-dd-hint { font: 400 12px var(--font-ui); color: #6b7080; margin: 10px 0 0; }
+  .st-dd-basis { font: 400 12.5px/1.5 var(--font-ui); color: #16181d; margin: 12px 0 0; max-width: 84ch; border-left: 3px solid #8a8f99; padding: 2px 0 2px 10px; }
+  .st-leg .st-dd-lb { all: unset; box-sizing: border-box; display: flex; gap: 7px; align-items: baseline; cursor: pointer; border-radius: 4px; padding: 3px 4px; margin: -3px -4px; min-height: 24px; color: #5b6170; }
+  .st-leg .st-dd-lb:hover span, .st-leg .st-dd-lb.on span { color: #16181d; text-decoration: underline; text-underline-offset: 2px; }
+  .st-leg .st-dd-lb:focus-visible { outline: 2px solid #16181d; outline-offset: 1px; }
+  .st-leg .st-dd-lb em { font-style: normal; font-weight: 700; color: #16181d; margin-left: 2px; }
+  .st-leg .st-dd-lb.on em { transform: rotate(90deg); display: inline-block; }
+  .st-dd { margin: 14px 0 6px; padding: 14px 16px 12px; background: #fff; border: 1px solid #dedbd2; border-radius: 8px; max-width: 860px; }
+  .st-dd-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+  .st-dd-top .st-ctrl { margin: 0; }
+  .st-dd-x { flex: none; width: 32px; height: 32px; border: 1px solid #dedbd2; background: #fff; border-radius: 999px; cursor: pointer; color: #16181d; font: 600 13px var(--font-ui); }
+  .st-dd-x:hover, .st-dd-x:focus-visible { border-color: #16181d; }
+  .st-dd-h { font: 700 18px/1.3 var(--font-head); color: #16181d; margin: 12px 0 6px; } .st-dd-h:focus, .st-dd-h:focus-visible { outline: none !important; box-shadow: none !important; }
+  .st-dd-yr { font: 600 14px var(--font-ui); color: #5b6170; margin-left: 4px; }
+  .st-badge { display: inline-block; font: 600 11px/1.5 var(--font-ui); color: #16181d; border: 1px solid #16181d; border-radius: 999px; padding: 0 8px; margin-left: 8px; vertical-align: 2px; white-space: nowrap; }
+  .st-badge-estimate, .st-badge-plan, .st-badge-part { border-style: dashed; border-color: #5b6170; color: #5b6170; }
+  .st-dd-none { font: 400 13.5px/1.5 var(--font-ui); color: #16181d; background: #f3f1ea; border-left: 3px solid #8a8f99; padding: 9px 12px; margin: 8px 0 4px; max-width: 76ch; }
+  .st-dd-alt, .st-dd-x2 { font: 400 12.5px/1.5 var(--font-ui); color: #5b6170; margin: 10px 0 0; max-width: 80ch; }
+  .st-dd-altb { font: 600 12px var(--font-ui); border: 1px dashed #5b6170; background: #fff; color: #16181d; border-radius: 999px; padding: 3px 10px; cursor: pointer; min-height: 28px; margin-left: 4px; }
+  .st-dd-altb:hover, .st-dd-altb[aria-pressed="true"] { border-style: solid; border-color: #16181d; }
+  .st-dd-sl { font-weight: 400; }
+  .st-dd-na { fill: #5b6170; } .st-dd-nav { font-style: italic; fill: #16181d; }
+  .st-dd-u { font-weight: 400; color: #8a8f99; }
+  .st-dd-rec { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 6px; }
+  @media (max-width: 720px) { .st-dd-rec { grid-template-columns: 1fr; } .st-dd { padding: 12px 10px; } }
+  .st-dd-cell { cursor: pointer; }
+  .st-cell, .st-band { cursor: pointer; transition: opacity .15s; }
+  .st-band:hover { opacity: .6 !important; }
+  .st-cell:hover { stroke: #16181d; stroke-width: 1.5; }
+  /* reveal animations: run once the chapter scrolls into view */
+  .st-chap .st-grow { transform-box: fill-box; transform-origin: bottom; transform: scaleY(0); }
+  .st-chap .st-grow-x { transform-box: fill-box; transform-origin: left; transform: scaleX(0); }
+  .st-chap .st-cell, .st-chap .st-band, .st-chap .st-fade { opacity: 0; }
+  .st-chap .st-draw { stroke-dasharray: 3000; stroke-dashoffset: 3000; }
+  .st-chap.in .st-grow, .st-chap.in .st-grow-x { transform: none; transition: transform .7s cubic-bezier(.2,.7,.2,1) var(--d, 0ms); }
+  .st-chap.in .st-cell { opacity: 1; transition: opacity .35s ease var(--d, 0ms); }
+  .st-chap.in .st-band { opacity: .32; transition: opacity .5s ease var(--d, 0ms); }
+  .st-chap.in .st-fade { opacity: var(--o, .85); transition: opacity .8s ease var(--d, 0ms); }
+  .st-chap.in .st-draw { stroke-dashoffset: 0; transition: stroke-dashoffset 1.6s ease; }
+  .st-chap.in .st-draw[stroke-dasharray="5,4"], .st-chap.in .st-draw[stroke-dasharray="6,4"] { stroke-dasharray: 6,4; }
+  @media (prefers-reduced-motion: reduce) { .st-chap, .st-chap * { transition: none !important; } }
+  /* dataviz system: sans figures (proportional), recessive hairline grid, ink text, legend above, note below, table twin */
+  .st-big, .st-mini-v { font-family: var(--font-ui) !important; font-variant-numeric: normal; letter-spacing: -.01em; }
+  .st-big { font-weight: 700; } .st-mini-v { font-weight: 650; font-size: 24px; }
+  .st-grid { stroke: #e1e0d9; stroke-width: 1; }
+  .st-base { stroke: #c3c2b7; stroke-width: 1; }
+  .st-tick { font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .st-src { font-size: 12px; }
+  .st-ann path { stroke: #5b6170; stroke-width: .8; } .st-ann circle { fill: #16181d; }
+  .st-ann text { font: 600 12.5px var(--font-ui); fill: #16181d; }
+  .st-ann-sup text { font: 400 11.5px var(--font-ui); fill: #6b7080; } .st-ann-sup circle { fill: #8a8f99; }
+  .st-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 6px 0 8px; font: 500 12px var(--font-ui); color: #16181d; }
+  .st-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .st-legend i { display: inline-block; flex: none; }
+  .st-legend .k-rect { width: 10px; height: 10px; border-radius: 2px; background: var(--c); }
+  .st-legend .k-line { width: 16px; height: 2px; border-radius: 1px; background: var(--c); }
+  .st-legend .k-dash { width: 16px; height: 0; border-top: 2px dashed var(--c); }
+  .st-legend .k-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+  .st-legend .k-ring { width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--c); background: #fff; }
+  .st-legend .k-diamond { width: 9px; height: 9px; background: var(--c); transform: rotate(45deg); }
+  .st-note { font: 400 14px/1.55 var(--font-ui); color: #16181d; margin: 12px 0 0; max-width: 72ch; }
+  .st-note span { display: block; color: #5b6170; }
+  .st-pt { cursor: pointer; } .st-pt:hover circle:last-child, .st-pt:focus circle:last-child { stroke: #16181d; }
+  .st-bar { cursor: pointer; transition: opacity .15s; } .st-bar:hover { opacity: .78; }
+  .st-xh-line { stroke: #16181d; stroke-width: 1; pointer-events: none; }
+  /* chapter 3 · scrollytelling: steps scroll past a pinned chart; phone / reduced motion = static stack (chart in each step) */
+  .fs-sc { display: grid; grid-template-columns: minmax(250px, .78fr) 1.22fr; gap: 32px; align-items: start; margin: 8px 0 6px; }
+  .fs-sc-step { min-height: 62vh; padding: 14px 0 14px 16px; border-left: 3px solid #e1e0d9; transition: border-color .3s ease; }
+  .fs-sc-step:last-child { min-height: 46vh; } .fs-sc-step.on { border-left-color: #16181d; }
+  .fs-sc-n { font: 600 11.5px var(--font-ui); letter-spacing: .08em; color: #c2362f; margin-bottom: 6px; }
+  .fs-sc-h { font: 650 18px/1.3 var(--font-ui); color: #16181d; margin: 0 0 8px; text-wrap: balance; }
+  .fs-sc-big { font: 700 30px/1.1 var(--font-ui); color: #16181d; margin: 4px 0 8px; letter-spacing: -.01em; } .fs-sc-big span { display: block; font: 400 12px var(--font-ui); color: #5b6170; letter-spacing: 0; margin-top: 3px; }
+  .fs-sc-step p { font: 400 14px/1.55 var(--font-ui); color: #16181d; margin: 0 0 8px; max-width: 60ch; } .fs-sc-step p.fs-sc-c { color: #5b6170; font-size: 13px; }
+  .fs-sc-fig { position: sticky; top: var(--fs-sc-top, 60px); background: #fff; padding-bottom: 6px; }
+  .fs-sc-nav { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 0 0 6px; }
+  .fs-sc-nav button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid #dedbd2; background: #fff; color: #5b6170; font: 600 12.5px var(--font-ui); cursor: pointer; }
+  .fs-sc-nav button:hover { border-color: #16181d; color: #16181d; } .fs-sc-nav button.on { background: #16181d; border-color: #16181d; color: #fff; }
+  .fs-sc-cap { font: 500 12px/1.3 var(--font-ui); color: #5b6170; margin-left: 6px; flex: 1 1 160px; }
+  .fs-sc-svg { display: grid; } .fs-sc-st { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .45s ease, visibility 0s linear .45s; }
+  .fs-sc-st.on { opacity: 1; visibility: visible; transition: opacity .45s ease; } .fs-sc-st svg { display: block; overflow: visible; }
+  .fs-sc-inl { display: none; margin-top: 8px; } .fs-sc-inl svg { display: block; overflow: visible; }
+  @media (max-width: 860px), (prefers-reduced-motion: reduce) {
+    .fs-sc { grid-template-columns: 1fr; gap: 0; } .fs-sc-fig { display: none; } .fs-sc-inl { display: block; }
+    .fs-sc-step, .fs-sc-step:last-child { min-height: 0; padding: 16px 0 18px 12px; border-left-color: #16181d; } .fs-sc-st { transition: none; } }
+  /* chapter 7 · money-supply levers */
+  .fs-lv { width: 100%; margin: 6px 0 0; } .fs-lv svg { display: block; overflow: visible; }
+  .fs-lv-g { font: 400 12px var(--font-ui); color: #5b6170; margin: 0 0 10px; } .fs-lv-g b { color: #16181d; font-weight: 600; }
+  .fs-lv-cn { font: 650 13px var(--font-ui); fill: #16181d; } .fs-lv-cs { font: 400 11px var(--font-ui); fill: #5b6170; } .fs-lv-cv { font: 500 12px var(--font-ui); fill: #16181d; }
+  .fs-lv-gn { font: 650 13px var(--font-ui); fill: #16181d; } .fs-lv-gw { font: 400 11px var(--font-ui); fill: #5b6170; }
+  .fs-lv-nn { font: 600 12.5px var(--font-ui); fill: #16181d; } .fs-lv-nv { font: 400 11.5px var(--font-ui); fill: #5b6170; } .fs-lv-gl { font: 600 13px var(--font-ui); fill: #5b6170; }
+  .fs-lv-n { cursor: pointer; outline: none; } .fs-lv-n:hover rect, .fs-lv-n:focus-visible rect { stroke: #16181d; }
+  .fs-lv svg .fs-lv-n, .fs-lv svg .fs-lv-box, .fs-lv svg .fs-lv-con { transition: opacity .15s ease; }
+  .fs-lv svg.lv-hl .fs-lv-n:not(.on), .fs-lv svg.lv-hl .fs-lv-box:not(.on), .fs-lv svg.lv-hl .fs-lv-con:not(.on) { opacity: .28; }
+  .fs-lv svg.lv-hl .fs-lv-n.on rect { stroke: #16181d; stroke-width: 2; } .fs-lv svg.lv-hl .fs-lv-box.on rect { stroke-width: 2; } .fs-lv svg.lv-hl .fs-lv-con.on { stroke: #16181d; stroke-width: 2; }
+  .fs-lv-det:not(:empty) { margin: 12px 0 0; padding: 10px 14px; border: 1px solid #16181d; border-radius: 6px; background: #fff; font: 400 13px/1.5 var(--font-ui); color: #16181d; max-width: 80ch; }
+  .fs-lv-det p { margin: 6px 0; } .fs-lv-det ul { margin: 0; padding-left: 18px; color: #5b6170; } .fs-lv-det a { color: #16181d; }
+  .fs-lv-dh { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+  .fs-lv-x { border: 0; background: transparent; font: 400 20px/1 var(--font-ui); color: #5b6170; cursor: pointer; min-width: 28px; min-height: 28px; }
+  .fs-lv-go { margin: 14px 0 0; }
+  .fs-lv-t-h { font: 400 12.5px/1.45 var(--font-ui); color: #5b6170; margin: 10px 0 2px; max-width: 80ch; }
+  #fs-lv-t output { font-size: 14px; min-width: 0; flex: 1 1 260px; } #fs-lv-t .fs-lv-tc { font-weight: 400; color: #5b6170; } #fs-lv-t .fs-lv-tc b { font-weight: 400; }
+  @media (prefers-reduced-motion: reduce) { .fs-lv svg * { transition: none !important; } }
+  /* chapter sub-tabs: sticky pill bar under the main tabs; one chapter panel at a time; prev/next at the bottom */
+  .st-subbar { grid-column: 1 / -1; position: sticky; top: var(--st-sub-top, 0px); z-index: 6; width: 100%; max-width: 1120px; margin: 0 auto; min-width: 0; box-sizing: border-box; background: #fff; border-bottom: 1px solid #dedbd2; padding: 6px 4px; }
+  .st-subtabs { position: relative; display: flex; flex-wrap: wrap; gap: 4px; }
+  @media (max-width: 720px) { .st-subtabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; -webkit-overflow-scrolling: touch; } }
+  .st-subtab { flex: none; min-height: 32px; padding: 5px 12px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: #5b6170; font: 500 13px var(--font-ui); white-space: nowrap; cursor: pointer; }
+  .st-subtab:hover { color: #16181d; border-color: #dedbd2; }
+  .st-subtab[aria-selected=true] { background: #16181d; color: #fff; border-color: #16181d; }
+  .st-chap[hidden], .st-tail[hidden] { display: none !important; }
+  .st-chap[role=tabpanel]:focus { outline: none; }
+  .st-root > .st-chap[role=tabpanel] { border-top: none; }
+  .st-pn { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 30px auto 0; padding-top: 14px; border-top: 1px solid #dedbd2; width: 100%; max-width: 1120px; box-sizing: border-box; }
+  .panel > .st-pn { padding-left: 4px; padding-right: 4px; margin-bottom: 18px; }
+  .st-pn-b { min-height: 32px; padding: 6px 12px; border: 1px solid #dedbd2; border-radius: 6px; background: #fff; color: #5b6170; font: 400 13px var(--font-ui); cursor: pointer; text-align: left; max-width: 100%; }
+  .st-pn-b b { color: #16181d; font-weight: 600; } .st-pn-b:hover { border-color: #16181d; }
+  .st-pn-nx { margin-left: auto; text-align: right; }
+  @media (max-width: 720px) { .st-subtab { font-size: 12.5px; padding: 5px 10px; } .st-pn-b { flex: 1 1 100%; } .st-pn-nx { text-align: right; } }
+  /* Flourish slot: quiet card after the chapter's native chart; reserved height, no motion */
+  .st-fl.st-fl-host { margin: 10px 0 4px; }
+  .soc-rel-bars { display: grid; gap: 6px; max-width: 460px; }
+  .soc-rel-r { display: grid; grid-template-columns: minmax(90px, 38%) 1fr 48px; gap: 8px; align-items: center; font: 400 12.5px var(--font-ui); color: #16181d; }
+  .soc-rel-r .b { height: 14px; background: #efede7; border-radius: 0 4px 4px 0; overflow: hidden; }
+  .soc-rel-r .b i { display: block; height: 100%; border-radius: 0 4px 4px 0; }
+  .soc-rel-r .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .st-bopl-k { font: 700 13px var(--font-ui); color: #16181d; margin: 2px 0 6px; }
+  .st-bopl { margin: 0 0 12px; }
+  .st-bopl-h { font: 600 11px var(--font-ui); letter-spacing: .06em; color: #5b6170; margin: 6px 0 4px; }
+  .st-bopl-r { display: grid; grid-template-columns: minmax(0, 46%) 1fr 40px; gap: 6px; align-items: center; font: 400 12px/1.25 var(--font-ui); color: #16181d; margin: 3px 0; }
+  .st-bopl-r .b { height: 12px; } .st-bopl-r .b i { display: block; height: 100%; border-radius: 0 3px 3px 0; opacity: .85; }
+  .st-bopl-r .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  @media (max-width: 600px) {
+    .st-mult:not(.st-rw) svg .st-tick, .st-mult:not(.st-rw) svg .st-val { font-size: 14px; }   /* .st-rw minis already draw at their real width */
+    .st-mult:not(.st-rw) svg .st-lab { font-size: 14.5px; }
+    #pg-st-mult { grid-template-columns: repeat(2, 1fr) !important; }
+    #iv-st-cards { grid-template-columns: 1fr !important; }
+  }
+  .st-chain { list-style: none; margin: 4px 0 6px; padding: 0; display: grid; gap: 4px; }
+  .st-chain li { border: 1px solid #c9ccd2; border-radius: 6px; background: #faf8f3; padding: 8px 10px; font: 600 13.5px/1.35 var(--font-ui); color: #16181d; }
+  .st-chain li span { display: block; font: 400 12.5px/1.4 var(--font-ui); color: #5b6170; margin-top: 2px; }
+  .st-chain li.st-chain-arr { border: 0; background: none; padding: 0 0 0 14px; font: italic 500 12.5px var(--font-ui); color: #5b6170; }
+  .st-chain li.st-chain-side { border-style: dashed; }
+  .st-hops { display: grid; gap: 6px; margin: 4px 0 6px; }
+  .st-hop { display: grid; grid-template-columns: minmax(0, 1fr) 96px; gap: 2px 8px; align-items: center; font: 400 13px var(--font-ui); color: #16181d; }
+  .st-hop .b { grid-column: 1 / -1; height: 8px; background: #efede7; border-radius: 0 3px 3px 0; overflow: hidden; } .st-hop .b i { display: block; height: 100%; background: #16181d; opacity: .7; }
+  .st-hop .v { text-align: right; font-variant-numeric: tabular-nums; color: #5b6170; font-size: 12.5px; }
+  .st-heat-lg { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font: 500 11px var(--font-ui); color: #5b6170; margin: 4px 0 8px; font-variant-numeric: tabular-nums; }
+  .st-heat-lt { font-weight: 600; color: #16181d; margin-right: 2px; }
+  .st-heat-sw { display: inline-flex; align-items: center; gap: 3px; }
+  .st-heat-sw i { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
+  .st-fl { margin: 22px 0 0; padding: 12px 14px; border: 1px solid #e1e0d9; border-radius: 6px; background: #fff; max-width: 100%; box-sizing: border-box; }
+  .st-fl-k { font: 600 11.5px var(--font-ui); letter-spacing: .02em; color: #5b6170; text-transform: uppercase; }
+  .st-fl-lang { text-transform: none; font-weight: 400; letter-spacing: 0; }
+  .st-fl-t { font: 600 14px/1.4 var(--font-ui); color: #16181d; margin: 3px 0 8px; }
+  .st-fl-box { position: relative; width: 100%; background: #faf8f3; border-radius: 4px; overflow: hidden; }
+  .st-fl-box iframe { display: block; width: 100%; height: 100%; border: 0; visibility: hidden; }
+  .st-fl-ready iframe { visibility: visible; } .st-fl-ready .st-fl-ld { display: none; }
+  .st-fl-ld { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; font: 400 12.5px var(--font-ui); color: #8a8f99; }
+  .st-fl-a { display: inline-block; font: 500 12.5px var(--font-ui); color: #16181d; text-decoration: underline; text-underline-offset: 2px; margin-top: 8px; padding: 3px 0; }
+  .st-fl-a:hover { color: #2a78d6; }
+  .st-fl-off .st-fl-t { margin-bottom: 0; } .st-fl-off .st-fl-a { margin-top: 4px; }
+  .st-fl-draft { border-style: dashed; background: transparent; }
+  .st-fl-draft .st-fl-a { color: #5b6170; }
+  .st-tbl { margin: 8px 0 0; font: 400 12px var(--font-ui); color: #5b6170; }
+  .st-tbl > summary { cursor: pointer; color: #5b6170; font-weight: 500; padding: 2px 0; width: max-content; }
+  .st-tbl > summary:hover { color: #16181d; }
+  .st-tbl-w { max-height: 320px; overflow: auto; margin-top: 6px; border-top: 1px solid #e1e0d9; }
+  .st-tbl table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  .st-tbl th, .st-tbl td { text-align: left; padding: 4px 10px 4px 0; border-bottom: 1px solid #efede7; font-weight: 400; color: #16181d; }
+  .st-tbl thead th { font-weight: 600; color: #5b6170; position: sticky; top: 0; background: #faf8f3; }
+  .st-eqn { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; margin: 4px 0 6px; }
+  .st-eqo { align-self: center; font: 600 22px var(--font-ui); color: #5b6170; }
+  .st-eqt { flex: 1 1 130px; min-width: 120px; background: #fff; border: 1px solid #e1e0d9; border-top: 3px solid var(--c, #16181d); border-radius: 4px; padding: 10px 12px 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
+  .st-eqt:hover { border-color: #16181d; border-top-color: var(--c, #16181d); }
+  .st-eqt-gdp { flex: 1.3 1 160px; background: #16181d; border-color: #16181d; color: #fff; }
+  .st-eqt-gdp .st-eqt-n, .st-eqt-gdp .st-eqt-p { color: #c9ccd2; } .st-eqt-gdp .st-eqt-sym, .st-eqt-gdp .st-eqt-v { color: #fff; }
+  .st-eqt-s { flex: .6 1 96px; min-width: 96px; }
+  .st-eqt-sym { font: 700 24px/1.1 var(--font-ui); color: #16181d; }
+  .st-eqt-n { font: 400 12px/1.35 var(--font-ui); color: #5b6170; min-height: 2.7em; }
+  .st-eqt-v { font: 650 15px var(--font-ui); color: #16181d; }
+  .st-eqt-p { font: 500 12px var(--font-ui); color: #5b6170; font-variant-numeric: tabular-nums; }
+  .st-eqt-bar { height: 4px; background: #efede7; border-radius: 2px; margin-top: 6px; overflow: hidden; } .st-eqt-bar i { display: block; height: 100%; background: var(--c); border-radius: 2px; }
+  .st-eqt-sub { font: 400 11.5px var(--font-ui); color: #8a8f99; margin-top: 2px; }
+  @media (max-width: 700px) { .st-eqo { font-size: 18px; } .st-eqt { flex-basis: 40%; } }
+  .st-watch { counter-reset: w; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 6px 0 0; padding: 0; list-style: none; }
+  @media (max-width: 900px) { .st-watch { grid-template-columns: 1fr; } }
+  .st-watch li { border-top: 2px solid #16181d; padding-top: 10px; font: 400 13.5px/1.5 var(--font-ui); color: #5b6170; }
+  .st-watch li b { display: block; font: 650 15px/1.35 var(--font-ui); color: #16181d; margin-bottom: 4px; }
+  .st-watch li time { display: block; font: 600 12px var(--font-ui); color: #c2362f; letter-spacing: .04em; margin-bottom: 4px; }
+  .st-fig { margin: 8px 0 0; } .st-fig svg { display: block; width: 100%; height: auto; color: #16181d; }
+  .st-fig figcaption { font: 400 13px/1.5 var(--font-ui); color: #5b6170; margin-top: 6px; max-width: 80ch; }
+  /* signature moments: count-up hero numbers, linked highlight across charts, time scrubber, map, drill-down */
+  .st-big.st-counting { font-variant-numeric: tabular-nums; }
+  .st-root [data-lk] { transition: opacity .15s ease; }
+  .st-root.lk-hl [data-lk]:not(.lk-on) { opacity: .18 !important; }
+  .st-root.lk-hl path.lk-on[stroke-width="2"] { stroke-width: 3.5; }
+  .st-root.lk-hl .st-eqt.lk-on { border-color: #16181d; }
+
+/* Tooltip (#dot-tip) — from the page */
+  #dot-tip .dt-v { font: 650 15px var(--font-ui); color: var(--text); } #dot-tip .dt-l { color: var(--text2); font-size: 12px; margin-top: 1px; }
+  #dot-tip .dt-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); margin-top: 3px; } #dot-tip .dt-row b { color: var(--text); font-weight: 650; }
+  #dot-tip .dt-key { width: 12px; height: 2px; border-radius: 1px; flex: none; }
+  #dot-tip { position: fixed; z-index: 10000; display: none; max-width: 340px; background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 4px; box-shadow: 0 8px 24px rgba(15,23,42,.16); padding: 8px 10px; font-size: 12px; line-height: 1.45; color: var(--text); pointer-events: none; }
+  #dot-tip .dt-h { font-size: 11.5px; color: var(--text2); margin-bottom: 3px; } #dot-tip .dt-h b { color: var(--text); } #dot-tip .dt-st { color: var(--accent); font-weight: 600; }
+  #dot-tip .dt-t { font-weight: 600; margin-bottom: 3px; } #dot-tip .dt-s { color: var(--text2); }
+
+/* page frame (starter only) */
+html, body { background: #faf8f3; color: #16181d; font-family: var(--font-ui); margin: 0; -webkit-font-smoothing: antialiased; }
+body { padding-inline: 16px; padding-block: 0 40px; }
+.st-root { padding-inline: 0; }
+.st-lang { display: flex; justify-content: flex-end; gap: 6px; max-width: 1120px; margin: 12px auto 0; }
+.st-lang button { font: 600 12px var(--font-ui); border: 1px solid #c9ccd2; background: #fff; color: #5b6170; border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+.st-lang button[aria-pressed="true"] { background: #16181d; color: #fff; border-color: #16181d; }
+.st-chap { opacity: 1; transform: none; }
+</style>
+
+<div class="st-lang" role="group" aria-label="Language">
+  <button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button>
+</div>
+<div id="st-root" class="st-root"></div>
+
+<script>
+// language: ?lang=en or the toggle; numbers follow the language
+let APP_LANG = (new URLSearchParams(location.search).get('lang') === 'en') ? 'en' : 'vi';
+let APP_LOC = APP_LANG === 'en' ? 'en-US' : 'vi-VN';
+// Extracted from vietnam_dashboard.html: story core helpers (stT … stTables). Depends on APP_LANG/APP_LOC, dotTipShow/dotTipMove/dotTipHide, ciE (HTML escape).
+const stT = (vi, en) => (typeof APP_LANG !== 'undefined' && APP_LANG === 'en') ? en : vi;
+const stN = (v, d = 1) => v == null || !isFinite(v) ? '—' : v.toLocaleString(APP_LOC, { minimumFractionDigits: d, maximumFractionDigits: d });
+const stLin = (d0, d1, r0, r1) => v => r0 + (v - d0) / ((d1 - d0) || 1) * (r1 - r0);
+const stTip = (e, html) => dotTipShow(e, html);
+let stBopYear = null, stBopTimer = null, stBudYear = null, stBopGross = false, stDD = null, stDDYear = null, stDDTax = false, stDDAlt = false;   // stDD* = budget drill-down panel state
+
+// scroll reveal: chapters fade/slide in; marks with .st-grow scale from baseline, .st-draw lines draw on
+function stObserve(root) {
+  const els = root.querySelectorAll('.st-chap');
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(x => x.classList.add('in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); const big = en.target.querySelector('.st-big'); if (big) stCountUp(big); io.unobserve(en.target); } }), { threshold: 0.12 });
+  els.forEach(x => io.observe(x));
+}
+// hero count-up: once, on reveal, the big number counts from 0 to its rendered value in step with the hero chart's bar sweep
+// (≈1.1s), then the original text is put back exactly. Reduced motion or no observer: the static number is all there is.
+function stCountUp(el, ms = 1100) {
+  if (el._stCU || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const tn = [...el.childNodes].find(n => n.nodeType === 3 && /\d/.test(n.textContent)); if (!tn) return;
+  const txt = tn.textContent, m = txt.match(/\d[\d.,]*/); if (!m) return;
+  const dec = (APP_LOC || '').startsWith('en') ? '.' : ',', grp = dec === '.' ? ',' : '.', raw = m[0].replace(/[.,]$/, '');
+  const v = parseFloat(raw.split(grp).join('').replace(dec, '.')), d = (raw.split(dec)[1] || '').length; if (!isFinite(v) || v === 0) return;
+  el._stCU = 1; el.classList.add('st-counting');
+  const pre = txt.slice(0, m.index), post = txt.slice(m.index + raw.length), t0 = performance.now();
+  const step = now => { const k = Math.max(0, Math.min(1, (now - t0) / ms)), e = 1 - Math.pow(1 - k, 3);
+    if (k < 1) { tn.textContent = pre + (v * e).toLocaleString(APP_LOC, { minimumFractionDigits: d, maximumFractionDigits: d }) + post; requestAnimationFrame(step); }
+    else { tn.textContent = txt; el.classList.remove('st-counting'); } };
+  requestAnimationFrame(step);
+}
+const stChap = (id, kicker, title, dek, body) => `<section class="st-chap" id="${id}"><div class="st-kicker">${kicker}</div><h2 class="st-h">${title}</h2>${dek ? `<p class="st-dek">${dek}</p>` : ''}${body}</section>`;
+const stSrc = t => `<div class="st-src">${t}</div>`;
+
+const stSvg = (W, H, inner, label) => `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ciE(label || '')}">${inner}</svg>`;
+// width-aware drawing (chart audit Top-10 #4): a chart measures its container (stCW), draws in real pixels so 11–12px
+// labels stay 11–12px on a phone, and registers its draw function (stRW); one resize listener redraws the charts whose
+// width changed (sub-tab switches dispatch a resize too) and rebuilds the table twins of their story root.
+const stCW = (el, max = 1000, min = 300) => { const w = Math.round((el && (el.clientWidth || (el.parentNode && el.parentNode.clientWidth))) || max); if (el) el._w = w; return Math.max(min, Math.min(max, w)); };
+const stRW = (el, fn) => { if (el) { el._rd = fn; el.classList.add('st-rw'); } };
+let stRWT = null;
+window.addEventListener('resize', () => { clearTimeout(stRWT); stRWT = setTimeout(() => { const roots = new Set();
+  document.querySelectorAll('.st-rw').forEach(el => { if (!el.isConnected || !el._rd || !el.clientWidth || Math.abs(el.clientWidth - (el._w || 0)) <= 16) return;
+    try { el._rd(); } catch (e) { console.warn('redraw', e); } const r = el.closest('.st-root'); if (r) roots.add(r); });
+  roots.forEach(r => { try { stTables(r); } catch (e) {} }); }, 160); });
+// annotation: primary (ink, bold) locates the headline's evidence; supporting (muted, smaller) is context only
+const stAnn = (x, y, tx, ty, text, anchor = 'start', tier = 'pri') => `<g class="st-ann st-ann-${tier}">${Math.hypot(tx - x, ty - y) > 6 ? `<path d="M${x},${y} L${tx},${ty}"/>` : ''}<circle cx="${x}" cy="${y}" r="2.5"/><text x="${tx + (anchor === 'end' ? -4 : anchor === 'middle' ? 0 : 4)}" y="${ty + 4}" text-anchor="${anchor}">${text}</text></g>`;
+function stAxisY(sy, ticks, x0, x1, fmt) { return ticks.map(t => `<line class="st-grid" x1="${x0}" x2="${x1}" y1="${sy(t)}" y2="${sy(t)}"/><text class="st-tick" x="${x0 - 6}" y="${sy(t) + 4}" text-anchor="end">${fmt(t)}</text>`).join(''); }
+const stNice = (lo, hi, n = 4) => { const span = hi - lo || 1, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0))), step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= step0) || step0; const a = Math.floor(lo / step) * step, out = []; for (let v = a; v <= hi + 1e-9; v += step) out.push(+v.toFixed(10)); return out; };
+// ── STORY core: mark, legend, hover, crosshair, table-view helpers (dataviz skill: thin marks, 4px rounded data-end,
+// 2px surface gap/ring, >=24px hit targets, legend for 2+ series, value-first tooltip, table twin for every chart) ──
+const ST_SURF = '#faf8f3', ST_MUTE = '#c9ccd2', ST_BAR = 24;
+// rounded rectangle with per-corner radius; only the data-end corners are rounded, the baseline stays square
+function stRR(x, y, w, h, r, c) { w = Math.max(0, w); h = Math.max(0, h); r = Math.min(r, w / 2, h / 2); const [tl, tr, br, bl] = c.map(k => k ? r : 0);
+  return `M${x + tl},${y} H${x + w - tr} ${tr ? `Q${x + w},${y} ${x + w},${y + tr}` : ''} V${y + h - br} ${br ? `Q${x + w},${y + h} ${x + w - br},${y + h}` : ''} H${x + bl} ${bl ? `Q${x},${y + h} ${x},${y + h - bl}` : ''} V${y + tl} ${tl ? `Q${x},${y} ${x + tl},${y}` : ''} Z`; }
+const stKey = (label, value) => `data-st-k="${encodeURIComponent(String(label) + '|' + String(value))}"`;
+// vertical bar centred in its slot, width capped at 24px, grows from yBase to yVal; round=false for an interior stacked segment
+function stBarV(cx, slot, yVal, yBase, fill, key, o = {}) { const w = Math.min(ST_BAR, Math.max(2, slot - 4)), up = yVal <= yBase, y = Math.min(yVal, yBase), h = Math.abs(yBase - yVal);
+  const r = o.round === false ? 0 : 4, d = stRR(cx - w / 2, y, w, h, r, up ? [1, 1, 0, 0] : [0, 0, 1, 1]);
+  return `<path class="st-bar ${o.cls ?? 'st-grow'}" style="--d:${o.d || 0}ms;${up ? '' : 'transform-origin:top;'}${o.style || ''}" d="${d}" fill="${fill}"${o.op != null ? ` opacity="${o.op}"` : ''} ${key ? stKey(...key) : ''} ${o.attr || ''}/>`; }
+// horizontal bar, thickness capped at 24px, grows from xBase to xVal
+function stBarH(cy, slot, xVal, xBase, fill, key, o = {}) { const h = Math.min(ST_BAR, Math.max(2, slot - 4)), right = xVal >= xBase, x = Math.min(xVal, xBase), w = Math.abs(xVal - xBase);
+  const r = o.round === false ? 0 : 4, d = stRR(x, cy - h / 2, w, h, r, right ? [0, 1, 1, 0] : [1, 0, 0, 1]);
+  return `<path class="st-bar ${o.cls ?? 'st-grow-x'}" style="--d:${o.d || 0}ms;${right ? '' : 'transform-origin:right;'}${o.style || ''}" d="${d}" fill="${fill}"${o.op != null ? ` opacity="${o.op}"` : ''} ${key ? stKey(...key) : ''} ${o.attr || ''}/>`; }
+// stacked column: segs = [{v, c, key}] bottom→top (or right for horizontal); 2px surface gap between segments, only the outer end rounded
+function stStackV(cx, slot, sy, segs, o = {}) { let base = 0, s = ''; const vis = segs.filter(g => g.v > 0), last = vis[vis.length - 1];
+  vis.forEach((g, i) => { const y0 = sy(base), y1 = sy(base + g.v), u = y1 <= y0 ? 1 : -1; s += stBarV(cx, slot, y1 + (g === last ? 0 : u), y0 - (i ? u : 0), g.c, g.key, { round: g === last, d: (o.d || 0) + i * 40, attr: g.attr }); base += g.v; }); return s; }   // works up (sy decreasing) or down
+function stStackH(cy, slot, sx, segs, o = {}) { let base = 0, s = ''; const vis = segs.filter(g => g.v > 0), last = vis[vis.length - 1];
+  vis.forEach((g, i) => { const x0 = sx(base), x1 = sx(base + g.v), gap = i ? 1 : 0; s += stBarH(cy, slot, x1 - (g === last ? 0 : 1), x0 + gap, g.c, g.key, { round: g === last, d: (o.d || 0) + i * 40, attr: g.attr }); base += g.v; }); return s; }
+// dot / marker: r >= 4, 2px surface ring, invisible 24px hit area that carries the tooltip
+function stDot(cx, cy, r, fill, key, o = {}) { r = Math.max(4, r);
+  return `<g class="st-pt ${o.cls ?? 'st-cell'}" style="--d:${o.d || 0}ms" ${key ? stKey(...key) : ''} ${o.attr || ''}><circle cx="${cx}" cy="${cy}" r="${Math.max(12, r + 2)}" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="${r}" fill="${o.hollow ? ST_SURF : fill}" stroke="${o.hollow ? fill : ST_SURF}" stroke-width="2"${o.dash ? ' stroke-dasharray="3,2"' : ''}/></g>`; }
+// 2px line through points [[x,y],…]; nulls break the line (a gap stays a gap)
+function stLine(pts, c, o = {}) { let d = '', pen = false; pts.forEach(p => { if (!p || p[1] == null || !isFinite(p[1])) { pen = false; return; } d += `${pen ? 'L' : 'M'}${p[0].toFixed(1)},${p[1].toFixed(1)} `; pen = true; });
+  return `<path class="${o.cls ?? 'st-draw'}" d="${d}" fill="none" stroke="${c}" stroke-width="${o.w || 2}" stroke-linejoin="round" stroke-linecap="round"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}${o.op != null ? ` opacity="${o.op}"` : ''} ${o.attr || ''}/>`; }
+// legend (always above the chart, same place on every chart): items [{n, c, k:'rect'|'line'|'dash'|'dot'|'ring'}]
+const stLegend = items => `<div class="st-legend">${items.map(i => `<span><i class="k-${i.k || 'rect'}" style="--c:${i.c}"></i>${i.n}</span>`).join('')}</div>`;
+// explainer note under a chart: line 1 = the finding with its anchor, line 2 = one caveat / contrast / consequence
+const stNote = (lead, follow) => `<p class="st-note">${lead}${follow ? `<span>${follow}</span>` : ''}</p>`;
+// tooltip: value leads, label follows; built with textContent (labels are data)
+function stTipKV(e, label, value, rows) {
+  let tip = document.getElementById('dot-tip'); if (!tip) { tip = document.createElement('div'); tip.id = 'dot-tip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip); }
+  tip.textContent = ''; const add = (cls, txt, c) => { const d = document.createElement('div'); d.className = cls; if (c) { const k = document.createElement('i'); k.className = 'dt-key'; k.style.background = c; d.appendChild(k); } d.appendChild(document.createTextNode(txt)); tip.appendChild(d); return d; };
+  if (rows) { add('dt-l', label); rows.forEach(r => { const d = add('dt-row', '', r.c); const b = document.createElement('b'); b.textContent = r.v; d.appendChild(b); d.appendChild(document.createTextNode(' ' + r.n)); }); }
+  else { add('dt-v', value); add('dt-l', label); }
+  tip.style.display = 'block'; dotTipMove(e);
+}
+// crosshair for line charts: a hairline snaps to the nearest x and one tooltip lists every series at that x
+// cfg = {xs:[px], labels:[…], top, bottom, series:[{n, c, v:[…], f}]}; uses d3.pointer/bisectCenter when d3 is loaded
+function stCross(el, cfg) {
+  const svg = el.querySelector('svg'); if (!svg) return; el._stRows = { head: [''].concat(cfg.series.map(s => s.n)), rows: cfg.labels.map((l, i) => [l].concat(cfg.series.map(s => s.v[i] == null ? '—' : s.f(s.v[i])))) };
+  const NS = 'http://www.w3.org/2000/svg', g = document.createElementNS(NS, 'g'), ln = document.createElementNS(NS, 'line'), hit = document.createElementNS(NS, 'rect');
+  const x0 = Math.min(...cfg.xs), x1 = Math.max(...cfg.xs);
+  ln.setAttribute('y1', cfg.top); ln.setAttribute('y2', cfg.bottom); ln.setAttribute('class', 'st-xh-line'); ln.style.display = 'none';
+  hit.setAttribute('x', x0 - 12); hit.setAttribute('y', cfg.top); hit.setAttribute('width', x1 - x0 + 24); hit.setAttribute('height', cfg.bottom - cfg.top); hit.setAttribute('fill', 'transparent'); hit.style.cursor = 'crosshair';
+  g.appendChild(ln); g.appendChild(hit); svg.appendChild(g);
+  const order = cfg.xs.map((x, i) => [x, i]).sort((a, b) => a[0] - b[0]), xsS = order.map(o => o[0]);
+  const near = mx => { const k = window.d3 && d3.bisectCenter ? d3.bisectCenter(xsS, mx) : xsS.reduce((b, x, j) => Math.abs(x - mx) < Math.abs(xsS[b] - mx) ? j : b, 0); return order[Math.max(0, Math.min(order.length - 1, k))][1]; };
+  const move = ev => { const mx = window.d3 && d3.pointer ? d3.pointer(ev, svg)[0] : (() => { const p = svg.createSVGPoint(); p.x = ev.clientX; p.y = ev.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()).x; })();
+    const i = near(mx); ln.setAttribute('x1', cfg.xs[i]); ln.setAttribute('x2', cfg.xs[i]); ln.style.display = '';
+    stTipKV(ev, String(cfg.labels[i]), '', cfg.series.filter(s => s.v[i] != null).map(s => ({ n: s.n, c: s.c, v: s.f(s.v[i]) }))); };
+  hit.addEventListener('pointermove', move); hit.addEventListener('pointerenter', move);
+  hit.addEventListener('pointerleave', () => { ln.style.display = 'none'; dotTipHide(); });
+}
+// table view: every chart gets a collapsed data table built from its marks (or its crosshair rows) - the WCAG twin
+function stTables(root) {
+  root.querySelectorAll('.st-viz, .st-mult, .st-waffles').forEach(el => {
+    if (el.closest('.st-mult') && el !== el.closest('.st-mult')) return;
+    const nx = el.nextElementSibling; if (nx && nx.classList.contains('st-tbl')) nx.remove();
+    let head, rows = [];
+    if (el._stRows) ({ head, rows } = el._stRows);
+    else { const seen = new Set(); el.querySelectorAll('[data-st-k]').forEach(m => { const k = m.dataset.stK; if (seen.has(k)) return; seen.add(k); const p = decodeURIComponent(k).split('|'); rows.push([p[0], p.slice(1).join(' · ')]); }); head = [stT('Mục', 'Item'), stT('Giá trị', 'Value')]; }
+    if (!rows.length) return;
+    const det = document.createElement('details'); det.className = 'st-tbl'; const sm = document.createElement('summary'); sm.textContent = `${stT('Bảng số liệu', 'Data table')} · ${rows.length} ${stT('dòng', 'rows')}`; det.appendChild(sm);
+    const w = document.createElement('div'); w.className = 'st-tbl-w'; const t = document.createElement('table'), tr0 = document.createElement('tr');
+    head.forEach(h => { const th = document.createElement('th'); th.textContent = h; tr0.appendChild(th); }); const th0 = document.createElement('thead'); th0.appendChild(tr0); t.appendChild(th0);
+    const tb = document.createElement('tbody'); rows.forEach(r => { const tr = document.createElement('tr'); r.forEach((c, j) => { const td = document.createElement(j ? 'td' : 'th'); td.textContent = c; tr.appendChild(td); }); tb.appendChild(tr); }); t.appendChild(tb);
+    w.appendChild(t); det.appendChild(w); el.after(det);
+  });
+}
+
+// Tooltip + escape helpers the core depends on (from the page)
+function dotTipShow(e, html) {
+  let tip = document.getElementById('dot-tip');
+  if (!tip) { tip = document.createElement('div'); tip.id = 'dot-tip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip); }
+  tip.innerHTML = html; tip.style.display = 'block'; dotTipMove(e);
+}
+function dotTipMove(e) {
+  const tip = document.getElementById('dot-tip'); if (!tip || tip.style.display !== 'block') return;
+  const w = tip.offsetWidth, h = tip.offsetHeight, x = e.clientX + 14 + w > innerWidth ? e.clientX - w - 14 : e.clientX + 14, y = e.clientY + 14 + h > innerHeight ? e.clientY - h - 14 : e.clientY + 14;
+  tip.style.left = Math.max(6, x) + 'px'; tip.style.top = Math.max(6, y) + 'px';
+}
+function dotTipHide() { const tip = document.getElementById('dot-tip'); if (tip) tip.style.display = 'none'; }
+const ciE = s => String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+
+
+// ── DATA: replace with your own; every series carries unit, period, source ──
+const DATA = {
+  years: [2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  gdp_growth: [7.36, 2.87, 2.56, 8.12, 5.05, 7.09, 8.02],                  // %, NSO
+  source_growth: 'NSO (GSO) — tăng trưởng GDP thực tế / real GDP growth',
+  revenue_2024: [['Ngoài quốc doanh', 'Private sector', 391.9], ['Thu về nhà, đất', 'Land & housing', 293.9],
+                 ['Doanh nghiệp FDI', 'FDI firms', 260.9], ['Thuế TNCN', 'Personal income tax', 186.4],
+                 ['DN nhà nước', 'State-owned firms', 180.2]],                  // tn VND, MoF final accounts 2024
+};
+
+// ── CHAPTERS ──
+function renderStory() {
+  const root = document.getElementById('st-root'), D = DATA, n = D.years.length, last = D.gdp_growth[n - 1];
+  let h = '';
+  // hero: finding headline + big number + one chart
+  h += `<section class="st-chap st-hero" id="hero"><div class="st-kicker">${stT('Tổng quan', 'Overview')}</div>
+    <h2 class="st-h">${stT(`GDP tăng ${stN(last, 2)}% năm ${D.years[n - 1]}, nhanh nhất từ ${D.years[3]}`, `GDP grew ${stN(last, 2)}% in ${D.years[n - 1]}, the fastest since ${D.years[3]}`)}</h2>
+    <div class="st-hero-grid"><div><div class="st-big">${stN(last, 2)}<span>%</span></div>
+    <p class="st-dek">${stT('Tăng trưởng GDP thực tế, so với năm trước.', 'Real GDP growth, year on year.')}</p></div>
+    <div class="st-viz" id="v-growth"></div></div>
+    ${stSrc(D.source_growth)}</section>`;
+  // chapter: ranked bars
+  const R = D.revenue_2024.slice().sort((a, b) => b[2] - a[2]);
+  h += stChap('ch1', stT('Chương 1 · Ngân sách', 'Chapter 1 · Budget'),
+    stT(`Khu vực ngoài quốc doanh nộp nhiều nhất: ${stN(R[0][2], 1)} nghìn tỷ đồng`, `The private sector paid the most: ${stN(R[0][2], 1)} tn VND`),
+    stT('Thu nội địa 2024 theo nguồn, nghìn tỷ đồng (năm số liệu: quyết toán).', 'Domestic revenue 2024 by source, tn VND (final accounts).'),
+    `<div class="st-viz" id="v-rev"></div>${stNote(stT('Khu vực tư nhân vượt thu từ đất.', 'Private firms out-paid land revenue.'), stT('Năm 2024; số quyết toán.', '2024; final accounts.'))}${stSrc('Bộ Tài chính / Ministry of Finance')}`);
+  root.innerHTML = h;
+  drawGrowth(document.getElementById('v-growth'));
+  drawRanked(document.getElementById('v-rev'), R);
+  stTables(root); stObserve(root);
+}
+
+// line chart with a crosshair; width-aware (redraws on resize)
+function drawGrowth(el) {
+  const draw = () => {
+    const W = stCW(el, 620), H = 240, m = { l: 34, r: 40, t: 14, b: 26 }, D = DATA, n = D.years.length;
+    const hi = Math.max(...D.gdp_growth), ticks = stNice(0, hi), top = Math.max(hi, ticks[ticks.length - 1]);   // axis always covers the data
+    const dec = ticks.some(t => t % 1) ? 1 : 0, sx = stLin(0, n - 1, m.l, W - m.r), sy = stLin(0, top, H - m.b, m.t);
+    let s = stAxisY(sy, ticks, m.l, W - m.r, t => stN(t, dec));
+    s += D.years.map((y, i) => `<text class="st-tick" x="${sx(i)}" y="${H - 6}" text-anchor="middle">${y}</text>`).join('');
+    s += stLine(D.gdp_growth.map((v, i) => [sx(i), sy(v)]), '#2a78d6');
+    s += stDot(sx(n - 1), sy(D.gdp_growth[n - 1]), 4, '#2a78d6', [D.years[n - 1], stN(D.gdp_growth[n - 1], 2) + '%']);
+    s += stAnn(sx(n - 1), sy(D.gdp_growth[n - 1]), sx(n - 1) - 8, sy(D.gdp_growth[n - 1]) - 10, stN(D.gdp_growth[n - 1], 2) + '%', 'end');
+    el.innerHTML = stLegend([{ n: stT('Tăng trưởng GDP, %', 'GDP growth, %'), c: '#2a78d6', k: 'line' }]) + stSvg(W, H, s, stT('Tăng trưởng GDP', 'GDP growth'));
+    stCross(el, { xs: D.years.map((_, i) => sx(i)), labels: D.years, top: m.t, bottom: H - m.b,
+      series: [{ n: stT('Tăng trưởng GDP', 'GDP growth'), c: '#2a78d6', v: D.gdp_growth, f: v => stN(v, 2) + '%' }] });
+  };
+  draw(); stRW(el, draw);
+}
+
+// ranked horizontal bars: one highlighted, rest muted, values at the bar end
+function drawRanked(el, R) {
+  const draw = () => {
+    const W = stCW(el, 760), row = 34, m = { l: 150, r: 70, t: 6 }, H = m.t + R.length * row;
+    const sx = stLin(0, R[0][2], m.l, W - m.r);
+    let s = R.map((r, i) => { const cy = m.t + i * row + row / 2, name = stT(r[0], r[1]);
+      return `<text class="st-tick" x="${m.l - 8}" y="${cy + 4}" text-anchor="end" style="fill:#16181d">${name}</text>`
+        + stBarH(cy, row, sx(r[2]), sx(0), i === 0 ? '#2a78d6' : ST_MUTE, [name, stN(r[2], 1)], { d: i * 60 })
+        + `<text class="st-tick" x="${sx(r[2]) + 6}" y="${cy + 4}">${stN(r[2], 1)}</text>`; }).join('');
+    el.innerHTML = stSvg(W, H, s, stT('Thu nội địa theo nguồn', 'Domestic revenue by source'));
+    el.querySelectorAll('[data-st-k]').forEach(b => b.addEventListener('pointermove', e => { const [l, v] = decodeURIComponent(b.dataset.stK).split('|'); stTipKV(e, l, v + stT(' nghìn tỷ', ' tn VND')); }));
+    el.querySelectorAll('[data-st-k]').forEach(b => b.addEventListener('pointerleave', dotTipHide));
+  };
+  draw(); stRW(el, draw);
+}
+
+document.querySelectorAll('.st-lang button').forEach(b => {
+  b.setAttribute('aria-pressed', String(b.dataset.lang === APP_LANG));
+  b.addEventListener('click', () => { APP_LANG = b.dataset.lang; APP_LOC = APP_LANG === 'en' ? 'en-US' : 'vi-VN';
+    document.querySelectorAll('.st-lang button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.lang === APP_LANG))); renderStory(); });
+});
+renderStory();
+</script>

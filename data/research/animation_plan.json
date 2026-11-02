@@ -1,0 +1,5270 @@
+{
+ "as_of": "2026-10-07",
+ "built_by": "Research (phase 1 planning; no data file or page edited)",
+ "request": "Animate all charts where possible: at least the last 8 periods (Q, H or A) and projections to end-2030.",
+ "inputs": [
+  "data/research/freshness_audit.json (142 charts)",
+  "data/research/inventory.json",
+  "data/research/source_log.json",
+  "data/*.json",
+  "strategy_directives.json",
+  "vietnam_dashboard.html (render*Story, read-only)",
+  "server.py (bank histories)"
+ ],
+ "definitions": {
+  "kind": "time_series | cross_section | distribution | diagram/table | model",
+  "animation": "timeline (marks animate through periods) | step through years (cross-section redrawn per period) | model scrub (projection model) | none",
+  "ge8_periods": "true when ≥8 periods of the frequency used are held now; \"n/a\" for KPI/diagram/model",
+  "category": "ready_now = animatable with ≥8 periods held; needs_history = animatable but <8 periods held; no_animation = diagram/table/KPI or structurally <8",
+  "projection_status": "exists_to_2030 | partial (some years, targets only or average bands) | to_add (credible source exists, not yet in data) | model_only (dashboard model/scenario only) | none_history_only | n/a",
+  "effort": "S ≤ half a day, data held, mostly Ed wiring; M = owner agent collects ≤ ~10 points or adds projection rows + wiring; L = multi-period cross-section or methodology work",
+  "priority": "1 (do first) … 5 (leave)"
+ },
+ "counts": {
+  "total": 142,
+  "by_category": {
+   "ready_now": 89,
+   "no_animation": 27,
+   "needs_history": 26
+  },
+  "by_projection_status": {
+   "exists_to_2030": 9,
+   "n/a": 36,
+   "partial": 27,
+   "none_history_only": 54,
+   "to_add": 7,
+   "model_only": 9
+  },
+  "needs_projection_work_animatable": 34,
+  "existing_animation": 23,
+  "by_tab": {
+   "econ": {
+    "ready_now": 26,
+    "proj_exists_to_2030": 4,
+    "no_animation": 3,
+    "proj_n/a": 3,
+    "proj_partial": 13,
+    "needs_projection_work": 18,
+    "proj_none_history_only": 6,
+    "proj_to_add": 5,
+    "needs_history": 3,
+    "proj_model_only": 1
+   },
+   "social": {
+    "ready_now": 3,
+    "proj_exists_to_2030": 3,
+    "no_animation": 2,
+    "proj_n/a": 2,
+    "needs_history": 7,
+    "proj_none_history_only": 5,
+    "proj_partial": 1,
+    "needs_projection_work": 2,
+    "proj_to_add": 1
+   },
+   "money": {
+    "ready_now": 10,
+    "proj_none_history_only": 4,
+    "proj_n/a": 6,
+    "no_animation": 3,
+    "proj_partial": 4,
+    "needs_projection_work": 4,
+    "proj_model_only": 1,
+    "needs_history": 2
+   },
+   "banks": {
+    "ready_now": 23,
+    "proj_model_only": 4,
+    "no_animation": 9,
+    "proj_n/a": 10,
+    "proj_none_history_only": 20,
+    "needs_history": 5,
+    "proj_partial": 2,
+    "needs_projection_work": 2,
+    "proj_exists_to_2030": 1
+   },
+   "invest": {
+    "needs_history": 2,
+    "proj_partial": 1,
+    "needs_projection_work": 1,
+    "proj_none_history_only": 3,
+    "no_animation": 5,
+    "proj_n/a": 5,
+    "ready_now": 2
+   },
+   "sim": {
+    "ready_now": 19,
+    "proj_model_only": 3,
+    "proj_none_history_only": 16,
+    "proj_to_add": 1,
+    "needs_projection_work": 6,
+    "proj_partial": 5,
+    "needs_history": 6,
+    "no_animation": 2,
+    "proj_n/a": 2
+   },
+   "party": {
+    "ready_now": 6,
+    "proj_exists_to_2030": 1,
+    "needs_history": 1,
+    "proj_partial": 1,
+    "needs_projection_work": 1,
+    "no_animation": 3,
+    "proj_n/a": 8
+   }
+  }
+ },
+ "projection_sources": {
+  "weo": "IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database",
+  "wb": "World Bank EAP Update / Viet Nam Economic Update (horizon 2–3 years only)",
+  "adb": "ADB Asian Development Outlook (horizon 2 years only)",
+  "nq25": "NQ 25/2026/QH16 five-year plan 2026–2030 (economy.json ECONFLOW.projections.targets)",
+  "nq26qh": "NQ 26/2026/QH16 five-year finance plan 2026–2030 (deficit avg ~5% GDP, revenue ~18% GDP, public-debt ceiling 60%) — economy.json targets",
+  "nq27": "NQ 27/2026/QH16 medium-term public investment 2026–2030 (economy.json targets)",
+  "nq10": "NQ 10-NQ/TW (08/06/2026) FDI 2026–2030 totals (economy.json targets fdi_disbursed_total / fdi_registered_total)",
+  "nq26tw": "NQ 26-NQ/TW (22/08/2026) tourism — 45–50 million international visitors (strategy_directives.json NQ26-TW-2026; Economy to confirm target year and copy into economy.json with URL)",
+  "nq68": "NQ 68-NQ/TW (04/05/2025) private sector — 2 million active enterprises by 2030 (strategy_directives.json NQ68-TW)",
+  "qd493": "QĐ 493/QĐ-TTg (19/04/2022) import-export strategy — export growth 6–7%/yr (economy.json targets) — a growth target, not a level forecast",
+  "qd1679": "QĐ 1679/QĐ-TTg (22/11/2019) Population Strategy to 2030 — replacement fertility TFR 2.1 (other numeric targets to verify) — https://hoatieu.vn/phap-luat/quyet-dinh-1679-qd-ttg-2019-189004",
+  "nq06": "NQ 06-NQ/TW (24/01/2022) urbanisation >50% by 2030 (economy.json targets)",
+  "wpp": "UN WPP 2024 medium variant (society.json POP_SERIES.un / age_sex; annual values available from WPP files)",
+  "gso_proj": "NSO population projection 2019–2069 (society.json POP_SERIES.gso)",
+  "fin_scen": "finance.json FINSYS.projections — dashboard scenario (assumption: credit 15%/yr, deposits 11.11%/yr), labelled scenario, not a forecast",
+  "sim": "simulation.json SIM.projection / projection2 — dashboard model, 6 months (to 2027-03)",
+  "cpi_model": "page CPI_FC_SCEN/TEMPLATE — dashboard monthly model to Dec-2027",
+  "sep": "FOMC Summary of Economic Projections median fed funds (FRED FEDTARMD; https://fred.stlouisfed.org/series/FEDTARMD) — years ahead + longer run",
+  "steo": "US EIA Short-Term Energy Outlook Brent path (~2 years ahead; https://www.eia.gov/outlooks/steo/) — host not yet in source_log",
+  "cmo": "World Bank Commodity Markets Outlook (Apr/Oct; ~2 years ahead; https://www.worldbank.org/en/research/commodity-markets)",
+  "qd986": "QĐ 986/QĐ-TTg (08/08/2018) banking strategy to 2025, orientation 2030 — finance.json targets npl_2030 3% (other numeric targets unverified)",
+  "artiv": "IMF Article IV 2025 (CR 25/283) staff projections 2025–2026 only (finance.json sbv.balance_sheet.projections; mid-2025 vintage)"
+ },
+ "history_sources": {
+  "nso_q": {
+   "name": "NSO quarterly/monthly socio-economic report",
+   "url": "https://www.nso.gov.vn",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+  },
+  "pxweb": {
+   "name": "NSO PxWeb tables",
+   "url": "https://pxweb.nso.gov.vn",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+  },
+  "sbv_bop": {
+   "name": "SBV quarterly balance of payments table (Cán cân thanh toán quốc tế); IMF BOP SDMX as cross-check",
+   "url": "https://sbv.gov.vn ; https://api.imf.org",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+  },
+  "sbv_stat": {
+   "name": "SBV \"Thống kê một số chỉ tiêu cơ bản\" + press-conference statements",
+   "url": "https://sbv.gov.vn",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; SBV-affiliated press (thoibaonganhang.vn, thitruongtaichinhtiente.vn) carries the figures"
+  },
+  "mof": {
+   "name": "MoF monthly budget execution / public-investment disbursement / public-debt bulletins",
+   "url": "https://mof.gov.vn",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; thoibaotaichinhvietnam.vn mirrors"
+  },
+  "fia": {
+   "name": "Foreign Investment Agency (MoF) monthly/annual FDI report (registered by component, disbursed)",
+   "url": "https://fia.mof.gov.vn",
+   "reach": "not probed yet (source_log); press mirrors vietnamplus.vn, baodautu.vn"
+  },
+  "imf_fsi": {
+   "name": "IMF FSI (FSIC) / IFS SDMX",
+   "url": "https://api.imf.org/external/sdmx/2.1/",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+  },
+  "wdi": {
+   "name": "World Bank WDI API",
+   "url": "https://api.worldbank.org/v2/",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+  },
+  "wpp": {
+   "name": "UN World Population Prospects 2024 (single-year, medium/low/high)",
+   "url": "https://population.un.org/wpp/",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors (wpp2024 R package used before)"
+  },
+  "broker": {
+   "name": "Broker bank-sector quarterly reports (Yuanta, VDSC, MBS, Vietcap via vietstock edocs) and VIS Rating",
+   "url": "https://static1.vietstock.vn ; cafef.vn ; vietnambiz.vn",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+  },
+  "hnx": {
+   "name": "HNX G-bond yields / VBMA monthly reports",
+   "url": "https://hnx.vn ; https://vbma.org.vn",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+  },
+  "vnat": {
+   "name": "NSO monthly arrivals by market; VNAT republication",
+   "url": "https://www.nso.gov.vn ; https://vietnamtourism.gov.vn",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors (vietnamtourism.gov.vn not probed)"
+  },
+  "region2": {
+   "name": "SBV Region 2 (HCMC) quarterly remittances; SBV national totals in speeches",
+   "url": "thanhnien.vn / vneconomy.vn / tuoitre.vn (press)",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+  },
+  "bankfs": {
+   "name": "Bank financial statements (annual + quarterly), bank IR sites / vietstock edocs; vnstock Finance (server)",
+   "url": "bank IR sites; static1.vietstock.vn",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; vnstock Finance returned no data on 2026-10-06 (banks_vnstock.json _meta)"
+  },
+  "prov": {
+   "name": "NSO provincial yearbooks / PxWeb provincial tables (63 old provinces; re-aggregate to the 34 merged provinces)",
+   "url": "https://pxweb.nso.gov.vn ; *.nso.gov.vn provincial offices",
+   "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+  }
+ },
+ "items": [
+  {
+   "id": "E01",
+   "tab": "econ",
+   "chapter": "st-hero",
+   "chart": "stGrowth (growth 2011–25 + 9M bar + forecasts + target)",
+   "audit_status": "waiting",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A (Q for 2026)",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025 (+Q1–Q3 2026, 9M-2026)",
+    "count": 16,
+    "series": "ECON_OFFICIAL.gdp_growth"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "ECONFLOW.projections.series gdp_growth_pct_imf (Apr-26, 2026–2030 full), _wb (to 2028), _adb/_amro (to 2027), _target (10%/yr 2026–2030)",
+   "projection_proposed": "IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database replaces Apr-26 vintage and adds 2031",
+   "projection_status": "exists_to_2030",
+   "effort": "S",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 1,
+   "notes": "Ready end-to-end. Animate 2018–2025 actuals, then 2026 (9M actual dot), then forecasts fan to 2030 with target line.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E02",
+   "tab": "econ",
+   "chapter": "st-hero",
+   "chart": "Hero KPI (GDP level, 9M growth)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2025",
+    "last": "9M-2026",
+    "count": 1,
+    "series": "ECONFLOW.gdp.GDP; 9M growth"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Economy"
+   ],
+   "priority": 5,
+   "notes": "single-figure KPI/tiles; the underlying series animates in its own chart (E01).",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E03",
+   "tab": "econ",
+   "chapter": "st-formula",
+   "chart": "stEquation (C+I+G+X−M blocks)",
+   "audit_status": "structural",
+   "audit_owner": "Economy",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "ECONFLOW.gdp.{C,I,G,X,M}"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None for expenditure components. Only NQ 27/2026/QH16 total-investment ~40% GDP average (target) and IMF WEO investment % GDP (NID_NGDP) could annotate I.",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": "Redraw blocks per year 2018–2025; show the 2030 investment-share target as an annotation only, no projected C/G/X/M.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E04",
+   "tab": "econ",
+   "chapter": "st-formula",
+   "chart": "stGiants (X, M vs GDP)",
+   "audit_status": "structural",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "ECONFLOW.gdp.X/M (WDI)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "QĐ 493/QĐ-TTg (19/04/2022) import-export strategy — export growth 6–7%/yr (economy.json targets) — a growth target, not a level forecast; IMF WEO export/import volume growth (TX_RPCH/TM_RPCH) — volumes, not USD levels. Any level path would be a derived target path and must be labelled so.",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": "economy.json projections.gaps already records \"no published level forecast for exports\".",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E05",
+   "tab": "econ",
+   "chapter": "st-formula",
+   "chart": "stMix (% of GDP 2015–25)",
+   "audit_status": "structural",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "ECONFLOW.gdp.pct_gdp"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "Investment share only: NQ 27/2026/QH16 medium-term public investment 2026–2030 (economy.json targets) (40% GDP average); IMF WEO NID_NGDP. Consumption/net exports: none — history only.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E06",
+   "tab": "econ",
+   "chapter": "st-bop",
+   "chart": "stSankey + net/gross + year replay",
+   "audit_status": "structural",
+   "audit_owner": "Economy",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": "year replay (▶) already in stBopControls/stSankey",
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "ECONFLOW.bop.s"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None for flows. IMF WEO current account % GDP (BCA_NGDPD) could be a single marker; economy.json gaps notes contradictory IMF CA excerpts — verify on WEO database first.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E07",
+   "tab": "econ",
+   "chapter": "st-bop",
+   "chart": "stBopMult (4 flows 2015–25)",
+   "audit_status": "structural",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "ECONFLOW.bop.s (CA, FDI, remittances, travel)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "FDI: NQ 10-NQ/TW (08/06/2026) FDI 2026–2030 totals (economy.json targets fdi_disbursed_total / fdi_registered_total) (5-year totals → annual band = total/5, labelled derived); CA: IMF WEO BCA_NGDPD (verify); remittances: none beyond World Bank KNOMAD 1-year projection.",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E08",
+   "tab": "econ",
+   "chapter": "st-bop",
+   "chart": "stBopFacts (tourism, remittances, labour sparklines)",
+   "audit_status": "waiting",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A (M/Q available for arrivals; Q for HCMC remittances)",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025 (+9M-2026)",
+    "count": 11,
+    "series": "ECONFLOW.tour.intl_arrivals/travel_receipts; remit.hcmc_busd; labour.workers_sent"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Remittances national SBV total held only for 2021, 2023, 2024 (3 of 11) — World Bank KNOMAD 2015–2023 + projection 2024–2025 used instead; outbound departures only 9M-2026 (1 period) — needs 2018–2025.",
+   "history_sources": [
+    {
+     "name": "SBV Region 2 (HCMC) quarterly remittances; SBV national totals in speeches",
+     "url": "thanhnien.vn / vneconomy.vn / tuoitre.vn (press)",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    },
+    {
+     "name": "NSO monthly arrivals by market; VNAT republication",
+     "url": "https://www.nso.gov.vn ; https://vietnamtourism.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors (vietnamtourism.gov.vn not probed)"
+    }
+   ],
+   "projection_existing": "remit.national_wb_projection_busd (World Bank, 2024–2025 only)",
+   "projection_proposed": "Tourism: NQ 26-NQ/TW (22/08/2026) tourism — 45–50 million international visitors (strategy_directives.json NQ26-TW-2026; Economy to confirm target year and copy into economy.json with URL). Remittances: none credible to 2030 — history only (KNOMAD projects ~1 year ahead). Labour export: annual DOLAB plan only — history only.",
+   "projection_status": "to_add",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 1,
+   "notes": "Priority watch #2 and #3. Keep the three remittance definitions separate on the animation (SBV national, KNOMAD/BoP, HCMC) — never splice.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E09",
+   "tab": "econ",
+   "chapter": "st-bop",
+   "chart": "ecBopQ (latest-quarter BoP tiles)",
+   "audit_status": "waiting",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "Q",
+   "periods_held": {
+    "first": "Q4-2025",
+    "last": "Q1-2026",
+    "count": 2,
+    "series": "ECONFLOW.bop.quarterly"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Q4-2023 … Q3-2025 (8 quarters) and Q2-2026 (published? check SBV)",
+   "history_sources": [
+    {
+     "name": "SBV quarterly balance of payments table (Cán cân thanh toán quốc tế); IMF BOP SDMX as cross-check",
+     "url": "https://sbv.gov.vn ; https://api.imf.org",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None (no quarterly BoP projection) — history only.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Economy"
+   ],
+   "priority": 1,
+   "notes": "Feeds priority watch (secondary income = remittance proxy; travel services = tourism receipts).",
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E10",
+   "tab": "econ",
+   "chapter": "st-budget",
+   "chart": "stWaffles (revenue/spending by year)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2018",
+    "last": "2026 (plan/estimate)",
+    "count": 9,
+    "series": "ECONFLOW.budget revenue/expenditure"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "NQ 26/2026/QH16 five-year finance plan 2026–2030 (deficit avg ~5% GDP, revenue ~18% GDP, public-debt ceiling 60%) — economy.json targets gives 5-year totals (revenue 16.4m bn, spending 21.2m bn) — not per year; show as a 2026–2030 total annotation, do not split into years.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E11",
+   "tab": "econ",
+   "chapter": "st-budget",
+   "chart": "stBudLine (revenue, spending, deficit, land-use fees)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2018",
+    "last": "2026",
+    "count": 9,
+    "series": "ECONFLOW.budget"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "NQ 26/2026/QH16 five-year finance plan 2026–2030 (deficit avg ~5% GDP, revenue ~18% GDP, public-debt ceiling 60%) — economy.json targets; IMF WEO general-government revenue/expenditure/net lending % GDP (GGR/GGX/GGXCNL) — general government ≠ state budget (definition trap, label).",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E12",
+   "tab": "econ",
+   "chapter": "st-budget",
+   "chart": "ecDef (deficit by basis + target)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2018",
+    "last": "2026",
+    "count": 9,
+    "series": "ECONFLOW.budget.deficit_pct_gdp"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "projections.series.budget_deficit_pct_gdp_target (2026 = 4.2 only)",
+   "projection_proposed": "Add 2027–2030 as the NQ 26/2026/QH16 average-target band (~5%, labelled average target, not a yearly value); IMF WEO GGXCNL_NGDP as institution line.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Economy"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E13",
+   "tab": "econ",
+   "chapter": "st-budget",
+   "chart": "ecDebt (public-debt plan bullet)",
+   "audit_status": "structural",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "projections.series.public_debt_pct_gdp_plan (all null); no public-debt history held"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Public debt % GDP 2018–2025 (MoF public-debt bulletins); 2026 plan 36–37% held only as text",
+   "history_sources": [
+    {
+     "name": "MoF monthly budget execution / public-investment disbursement / public-debt bulletins",
+     "url": "https://mof.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; thoibaotaichinhvietnam.vn mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "NQ 26/2026/QH16 five-year finance plan 2026–2030 (deficit avg ~5% GDP, revenue ~18% GDP, public-debt ceiling 60%) — economy.json targets ceiling 60% + 2026 borrowing plan; IMF WEO GGXWDG_NGDP to 2031.",
+   "projection_status": "to_add",
+   "effort": "M",
+   "owner_agents": [
+    "Economy"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E14",
+   "tab": "econ",
+   "chapter": "st-inv",
+   "chart": "stInvArea (investment by owner + 9M point)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025 (+9M-2026 growth)",
+    "count": 11,
+    "series": "ECONFLOW.inv"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "NQ 27/2026/QH16 medium-term public investment 2026–2030 (economy.json targets) (total investment ~40% GDP average; public share 20–22%; 5-year public plan 8.22m bn) — targets, annotate as bands.",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E15",
+   "tab": "econ",
+   "chapter": "st-inv",
+   "chart": "ecFdi (FDI disbursed columns + 9M + target band)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A (M YTD available)",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025 (+9M-2026)",
+    "count": 16,
+    "series": "ECON_OFFICIAL.fdi_dis_musd"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "projections.series.fdi_disbursed_busd_target (all null)",
+   "projection_proposed": "NQ 10-NQ/TW (08/06/2026) FDI 2026–2030 totals (economy.json targets fdi_disbursed_total / fdi_registered_total): disbursed 150–200 bn USD over 2026–2030 → show as cumulative-target band (or /5 = 30–40 bn/yr, labelled derived).",
+   "projection_status": "to_add",
+   "effort": "S",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 1,
+   "notes": "Priority watch #1. Optional monthly YTD 2026 frames from NSO monthly reports.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E16",
+   "tab": "econ",
+   "chapter": "st-inv",
+   "chart": "ecFdiReg (registered by component + disbursed, derived ratio)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "9M-2026",
+    "last": "9M-2026",
+    "count": 1,
+    "series": "ytd_2026.fdi_reg_components_9M (+ derived ratio comparators FY2023–FY2025)"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Registered by component (new / adjusted / capital contributions & share purchases) and disbursed for FY2018–FY2025 (8 years); keep vintage (first-release vs revised) noted",
+   "history_sources": [
+    {
+     "name": "Foreign Investment Agency (MoF) monthly/annual FDI report (registered by component, disbursed)",
+     "url": "https://fia.mof.gov.vn",
+     "reach": "not probed yet (source_log); press mirrors vietnamplus.vn, baodautu.vn"
+    },
+    {
+     "name": "NSO quarterly/monthly socio-economic report",
+     "url": "https://www.nso.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "NQ 10-NQ/TW (08/06/2026) FDI 2026–2030 totals (economy.json targets fdi_disbursed_total / fdi_registered_total): registered 200–300 bn USD 2026–2030 (5-year total); ratio — none (derived only).",
+   "projection_status": "to_add",
+   "effort": "M",
+   "owner_agents": [
+    "Economy"
+   ],
+   "priority": 1,
+   "notes": "Priority watch #1: disbursed/registered ratio and gap; FIA vs NSO revisions differ — log conflicts, do not average.",
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E17",
+   "tab": "econ",
+   "chapter": "st-cpi",
+   "chart": "stHeat (CPI groups × 24 months)",
+   "audit_status": "current",
+   "audit_owner": "Economy (CPI_BASKET is an unowned page constant — Ed)",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "T10/24",
+    "last": "T9/26",
+    "count": 24,
+    "series": "CPI_DETAIL"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None by CPI group — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Ed",
+    "Economy"
+   ],
+   "priority": 3,
+   "notes": "CPI_BASKET is an unowned page constant (weights) — propose moving it to economy.json.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E18",
+   "tab": "econ",
+   "chapter": "st-cpi",
+   "chart": "stFan (CPI + dashboard projection to Dec-2027)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "model",
+   "animation": "model scrub",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "T10/24",
+    "last": "T9/26",
+    "count": 24,
+    "series": "CPI_YOY_24"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "page CPI_FC_SCEN/TEMPLATE — dashboard monthly model to Dec-2027",
+   "projection_proposed": "2028–2030: annual-average markers from IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database (and World Bank 2028); do not extend the monthly model past Dec-2027.",
+   "projection_status": "model_only",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": "CPI_FC_* model constants live in the page (unowned). Move to economy.json so the Economy agent owns the model inputs?",
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E19",
+   "tab": "econ",
+   "chapter": "st-cpi",
+   "chart": "ecCpiY (annual CPI + institution forecasts + target)",
+   "audit_status": "waiting",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 16,
+    "series": "ECON_OFFICIAL.cpi_avg"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "cpi_pct_imf (2026–27), _wb (to 2028), _adb/_amro (to 2027), _target (2026 = 4.5)",
+   "projection_proposed": "IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database fills 2028–2030; finance.json targets cpi_avg_2026_2030 4.5 as band.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Economy"
+   ],
+   "priority": 1,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E20",
+   "tab": "econ",
+   "chapter": "st-2030",
+   "chart": "ecPcChart (GDP per person + IMF path + 8,500 target)",
+   "audit_status": "waiting",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 16,
+    "series": "ECON_OFFICIAL.gdppc_usd"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "gdp_per_capita_usd_imf 2026–2030 (Apr-26) + target 8,500 (2030)",
+   "projection_proposed": "IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database",
+   "projection_status": "exists_to_2030",
+   "effort": "S",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 1,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E21",
+   "tab": "econ",
+   "chapter": "st-2030",
+   "chart": "ecUsdChart (GDP USD + IMF path)",
+   "audit_status": "waiting",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "ECONFLOW.gdp.GDP / fx"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "gdp_usd_bn_imf 2026–2030 (Apr-26)",
+   "projection_proposed": "IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database",
+   "projection_status": "exists_to_2030",
+   "effort": "S",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 1,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E22",
+   "tab": "econ",
+   "chapter": "st-2030",
+   "chart": "ecNow (KPI tiles vs targets)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "YTD",
+   "periods_held": {
+    "first": "9M-2026",
+    "last": "9M-2026",
+    "count": 1,
+    "series": "ECON_OFFICIAL.ytd_2026"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Economy"
+   ],
+   "priority": 5,
+   "notes": "single-figure KPI/tiles; the underlying series animates in its own chart.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E23",
+   "tab": "econ",
+   "chapter": "st-watch",
+   "chart": "What to watch (VAT expiry, 2026 deficit, BoP)",
+   "audit_status": "current",
+   "audit_owner": "Ed / Economy",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "event",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "watch list"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Ed",
+    "Economy"
+   ],
+   "priority": 5,
+   "notes": "Text list of dated events — nothing to animate.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E24",
+   "tab": "econ",
+   "chapter": "appendix",
+   "chart": "ecb-gdppc (growth card, year slider ≤2025)",
+   "audit_status": "structural",
+   "audit_owner": "Economy (data) / Ed (display)",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "year slider (≤2025)",
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 16,
+    "series": "ECON_OFFICIAL.gdp_growth/gdppc_usd"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "as E01/E20",
+   "projection_proposed": "Extend slider to 2030 using held IMF + target series, forecast years visibly marked.",
+   "projection_status": "exists_to_2030",
+   "effort": "S",
+   "owner_agents": [
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E25",
+   "tab": "econ",
+   "chapter": "appendix",
+   "chart": "ecb-income-card",
+   "audit_status": "structural",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A (biennial survey years)",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 12,
+    "series": "ECON_OFFICIAL.income_month_k (12 of 16 years)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None credible — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E26",
+   "tab": "econ",
+   "chapter": "appendix",
+   "chart": "ecb-cpi-card (annual CPI bars)",
+   "audit_status": "structural",
+   "audit_owner": "Economy / Ed",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 16,
+    "series": "ECON_OFFICIAL.cpi_avg"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "as E19",
+   "projection_proposed": "as E19",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E27",
+   "tab": "econ",
+   "chapter": "appendix",
+   "chart": "ecb-fdi (FDI registered, province drill-down) + KPI tiles",
+   "audit_status": "structural",
+   "audit_owner": "Economy / Ed",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 16,
+    "series": "ECON_OFFICIAL.fdi_reg/dis_musd (national); province drill = PROVS model"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Province drill-down uses PROVS.econ modelled values (2010 bases × growth), not published data — official provincial FDI registered/disbursed by year 2018–2025 needed on the 34-province basis",
+   "history_sources": [
+    {
+     "name": "Foreign Investment Agency (MoF) monthly/annual FDI report (registered by component, disbursed)",
+     "url": "https://fia.mof.gov.vn",
+     "reach": "not probed yet (source_log); press mirrors vietnamplus.vn, baodautu.vn"
+    },
+    {
+     "name": "NSO provincial yearbooks / PxWeb provincial tables (63 old provinces; re-aggregate to the 34 merged provinces)",
+     "url": "https://pxweb.nso.gov.vn ; *.nso.gov.vn provincial offices",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "National: NQ 10-NQ/TW (08/06/2026) FDI 2026–2030 totals (economy.json targets fdi_disbursed_total / fdi_registered_total). Provinces: none — history only.",
+   "projection_status": "to_add",
+   "effort": "L",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": "Animating the province drill-down would animate modelled numbers. Remove the province animation until official provincial FDI history is collected, or label it \"model\"?",
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E28",
+   "tab": "econ",
+   "chapter": "appendix",
+   "chart": "ecb-trade (exports/imports) + KPI",
+   "audit_status": "structural",
+   "audit_owner": "Economy / Ed",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A (M available)",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 16,
+    "series": "ECON_OFFICIAL.export_busd/import_busd"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "QĐ 493/QĐ-TTg (19/04/2022) import-export strategy — export growth 6–7%/yr (economy.json targets) — a growth target, not a level forecast (growth band applied to 2025 base, labelled target path) — no institutional level forecast.",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E29",
+   "tab": "econ",
+   "chapter": "appendix",
+   "chart": "ecb-labour (enterprises, unemployment, PCI, IIP)",
+   "audit_status": "broken",
+   "audit_owner": "Economy + Ed",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 16,
+    "series": "ent_active, unemp, iip_growth (16); pci_median (15, to 2024)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "IIP: NQ 25/2026/QH16 11–12%/yr average (target band); enterprises: NQ 68-NQ/TW (04/05/2025) private sector — 2 million active enterprises by 2030 (strategy_directives.json NQ68-TW); unemployment/PCI: none — history only.",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": "Chart is BROKEN in the audit — fix before animating.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E30",
+   "tab": "econ",
+   "chapter": "appendix",
+   "chart": "drawGdpChart (#gdp-sectors, slider 2000–2025)",
+   "audit_status": "structural",
+   "audit_owner": "Ed (unowned) / Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "year slider 2000–2025",
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010 (2000 for 4 sectors)",
+    "last": "2025",
+    "count": 16,
+    "series": "GDP_SUB_OFFICIAL (official); GDP_SECTORS (page constant)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "Manufacturing ~28% GDP 2030 and digital economy ~30% GDP (NQ 25/2026/QH16 five-year plan 2026–2030 (economy.json ECONFLOW.projections.targets)) as end markers only; no sector projections.",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": "GDP_SECTORS (unowned page constant) carries 46 values per sector (2000–2045); 2026–2045 have no source and are trimmed at runtime (GDP_LAST_YEAR). Propose deleting the unsourced tail and moving the constant into economy.json.",
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "E31",
+   "tab": "econ",
+   "chapter": "appendix",
+   "chart": "Flourish bar-chart race 30476438 (16 activities 2010–25)",
+   "audit_status": "structural",
+   "audit_owner": "Main session",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "Flourish bar-chart race",
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 16,
+    "series": "data/flourish/gdp_by_activity_race.csv"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None by activity — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Main session"
+   ],
+   "priority": 5,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "E32",
+   "tab": "econ",
+   "chapter": "appendix",
+   "chart": "CPI explorer tiles + basket table (renderCpiAt, kpi-cpi-*)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "addTimeline('cpi')",
+   "frequency": "M",
+   "periods_held": {
+    "first": "T10/24",
+    "last": "T9/26",
+    "count": 24,
+    "series": "CPI_LATEST/CPI_DETAIL"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Economy",
+    "Ed"
+   ],
+   "priority": 5,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S01",
+   "tab": "social",
+   "chapter": "soc-st-hero",
+   "chart": "socStPop (population 2000–25 + NSO/UN projections)",
+   "audit_status": "structural",
+   "audit_owner": "Society",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A (proj. 5-yearly)",
+   "periods_held": {
+    "first": "2000",
+    "last": "2025",
+    "count": 26,
+    "series": "POP_SERIES.actual"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "POP_SERIES.gso (NSO 2025–2050) and POP_SERIES.un (UN WPP 2024) at 5-year points",
+   "projection_proposed": "Annual 2026–2030 values from UN WPP 2024 medium variant (society.json POP_SERIES.un / age_sex; annual values available from WPP files) (same edition, so no interpolation needed).",
+   "projection_status": "exists_to_2030",
+   "effort": "S",
+   "owner_agents": [
+    "Society",
+    "Ed"
+   ],
+   "priority": 1,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S02",
+   "tab": "social",
+   "chapter": "soc-st-hero",
+   "chart": "Hero dek (growth %/yr, rank)",
+   "audit_status": "stale",
+   "audit_owner": "Society / Ed",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2024",
+    "last": "2025",
+    "count": 1,
+    "series": "POP_SERIES.nat; WORLD_RANK.pop"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Society"
+   ],
+   "priority": 5,
+   "notes": "single-figure KPI/tiles; the underlying series animates in its own chart (S01).",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S03",
+   "tab": "social",
+   "chapter": "soc-st-tfr",
+   "chart": "socStStrip (TFR by province, 2.1 line)",
+   "audit_status": "stale",
+   "audit_owner": "Society",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2024",
+    "last": "2024",
+    "count": 1,
+    "series": "SOC_PROV_DATA[*].tfr (+PROV_PREV older ref)"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Provincial TFR 2017–2023 (and 2025) on the 34-province basis",
+   "history_sources": [
+    {
+     "name": "NSO provincial yearbooks / PxWeb provincial tables (63 old provinces; re-aggregate to the 34 merged provinces)",
+     "url": "https://pxweb.nso.gov.vn ; *.nso.gov.vn provincial offices",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "Provinces: none. National TFR: QĐ 1679/QĐ-TTg (22/11/2019) Population Strategy to 2030 — replacement fertility TFR 2.1 (other numeric targets to verify) — https://hoatieu.vn/phap-luat/quyet-dinh-1679-qd-ttg-2019-189004 and UN WPP TFR path (reference line only).",
+   "projection_status": "none_history_only",
+   "effort": "L",
+   "owner_agents": [
+    "Society"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": "TFR cannot be summed when re-aggregating 63 old provinces into 34: needs births/women-weighted recomputation or keep old-province dots. Which basis?",
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S04",
+   "tab": "social",
+   "chapter": "soc-st-tfr",
+   "chart": "socStMult (urban, life expectancy, sex ratio, density)",
+   "audit_status": "stale",
+   "audit_owner": "Society",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2024",
+    "last": "2024",
+    "count": 1,
+    "series": "SOC_PROV_DATA (urban, life exp, sex ratio, density); POP_SERIES.nat 2024"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Provincial urban %, life expectancy, sex ratio, density 2017–2023 + 2025; national series for the ticks 2017–2025 (only 2024 and 2025 held)",
+   "history_sources": [
+    {
+     "name": "NSO provincial yearbooks / PxWeb provincial tables (63 old provinces; re-aggregate to the 34 merged provinces)",
+     "url": "https://pxweb.nso.gov.vn ; *.nso.gov.vn provincial offices",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    },
+    {
+     "name": "NSO PxWeb tables",
+     "url": "https://pxweb.nso.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "National ticks: NQ 06-NQ/TW (24/01/2022) urbanisation >50% by 2030 (economy.json targets); QĐ 1679/QĐ-TTg (22/11/2019) Population Strategy to 2030 — replacement fertility TFR 2.1 (other numeric targets to verify) — https://hoatieu.vn/phap-luat/quyet-dinh-1679-qd-ttg-2019-189004; UN WPP life expectancy. Provinces: none.",
+   "projection_status": "partial",
+   "effort": "L",
+   "owner_agents": [
+    "Society"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": true
+  },
+  {
+   "id": "S05",
+   "tab": "social",
+   "chapter": "soc-st-age",
+   "chart": "socStAge (age–sex 2025 vs 2050)",
+   "audit_status": "structural",
+   "audit_owner": "Society",
+   "kind": "distribution",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "5-yearly (+2019, 2023)",
+   "periods_held": {
+    "first": "2000",
+    "last": "2050",
+    "count": 13,
+    "series": "POP_SERIES.age_sex (UN WPP 2024)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "UN WPP 2024 medium variant (society.json POP_SERIES.un / age_sex; annual values available from WPP files)",
+   "projection_proposed": null,
+   "projection_status": "exists_to_2030",
+   "effort": "S",
+   "owner_agents": [
+    "Society",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": "2025 vs 2050 comparison can animate through the 13 held years; for an annual run 2018–2030 add single years from WPP.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S06",
+   "tab": "social",
+   "chapter": "soc-st-rich",
+   "chart": "socStMap (GRDP / TFR toggle)",
+   "audit_status": "stale",
+   "audit_owner": "Society",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2020",
+    "last": "2025",
+    "count": 3,
+    "series": "SOC_GRDP grdp_pc 2020, 2024, 2025; TFR 2024"
+   },
+   "ge8_periods": false,
+   "missing_periods": "GRDP and GRDP per person 2018, 2019, 2021, 2022, 2023 on the 34-province basis (levels are additive; per-person needs population)",
+   "history_sources": [
+    {
+     "name": "NSO provincial yearbooks / PxWeb provincial tables (63 old provinces; re-aggregate to the 34 merged provinces)",
+     "url": "https://pxweb.nso.gov.vn ; *.nso.gov.vn provincial offices",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "Provincial 2030 GRDP-growth/per-person targets in the 34 provincial Party-congress resolutions (2025–2030) — official but uneven; optional. Otherwise none.",
+   "projection_status": "none_history_only",
+   "effort": "L",
+   "owner_agents": [
+    "Society"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S07",
+   "tab": "social",
+   "chapter": "soc-st-rich",
+   "chart": "socStGrdp (34 provinces GRDP per person) + 9M growth note",
+   "audit_status": "stale",
+   "audit_owner": "Society",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2020",
+    "last": "2025",
+    "count": 3,
+    "series": "SOC_GRDP.grdp_pc_mvnd"
+   },
+   "ge8_periods": false,
+   "missing_periods": "as S06",
+   "history_sources": [
+    {
+     "name": "NSO provincial yearbooks / PxWeb provincial tables (63 old provinces; re-aggregate to the 34 merged provinces)",
+     "url": "https://pxweb.nso.gov.vn ; *.nso.gov.vn provincial offices",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "as S06",
+   "projection_status": "none_history_only",
+   "effort": "L",
+   "owner_agents": [
+    "Society",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S08",
+   "tab": "social",
+   "chapter": "soc-st-rich",
+   "chart": "Flourish scatter 30475882 (GRDP pc × TFR, 2020→2025 slider)",
+   "audit_status": "stale",
+   "audit_owner": "Main session",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": "Flourish slider 2020→2025",
+   "frequency": "A",
+   "periods_held": {
+    "first": "2020",
+    "last": "2025",
+    "count": 3,
+    "series": "data/flourish/provinces_scatter.csv (34 × 3 years)"
+   },
+   "ge8_periods": false,
+   "missing_periods": "as S06 (2018, 2019, 2021–2023)",
+   "history_sources": [
+    {
+     "name": "NSO provincial yearbooks / PxWeb provincial tables (63 old provinces; re-aggregate to the 34 merged provinces)",
+     "url": "https://pxweb.nso.gov.vn ; *.nso.gov.vn provincial offices",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None — history only.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Society",
+    "Main session"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S09",
+   "tab": "social",
+   "chapter": "soc-st-rank",
+   "chart": "socStRanks (world rank strip)",
+   "audit_status": "current",
+   "audit_owner": "Society",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "prev (2018/2020)",
+    "last": "now (2023/2025)",
+    "count": 2,
+    "series": "WORLD_RANK now/prev"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Rank per year 2018–2025 for each indicator (needs all countries per year)",
+   "history_sources": [
+    {
+     "name": "World Bank WDI API",
+     "url": "https://api.worldbank.org/v2/",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "Derivable from cross-country projections: GDP USD / per capita / PPP / growth ranks from IMF WEO (all countries, to 2031); population rank from UN WPP. Other ranks: none.",
+   "projection_status": "to_add",
+   "effort": "L",
+   "owner_agents": [
+    "Society"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": true
+  },
+  {
+   "id": "S10",
+   "tab": "social",
+   "chapter": "soc-st-rel",
+   "chart": "socStWaffle (religion)",
+   "audit_status": "structural",
+   "audit_owner": "Society",
+   "kind": "distribution",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "census",
+   "periods_held": {
+    "first": "2009",
+    "last": "2023",
+    "count": 3,
+    "series": "RELIGION c09, c19, btg 2023"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Society"
+   ],
+   "priority": 5,
+   "notes": "Religion is counted only in censuses (1999, 2009, 2019) and a 2023 BTG figure; 8 periods are impossible. Optional 3-step toggle; no projection.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S11",
+   "tab": "social",
+   "chapter": "explore",
+   "chart": "renderDemoPyramid (#demo-svg, ▶ 2000–2050)",
+   "audit_status": "structural",
+   "audit_owner": "Society",
+   "kind": "distribution",
+   "animation": "step through years",
+   "existing_animation": "▶ 2000–2050 pyramid replay",
+   "frequency": "5-yearly",
+   "periods_held": {
+    "first": "2000",
+    "last": "2050",
+    "count": 13,
+    "series": "POP_SERIES.age_sex"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "UN WPP 2024 medium variant (society.json POP_SERIES.un / age_sex; annual values available from WPP files)",
+   "projection_proposed": null,
+   "projection_status": "exists_to_2030",
+   "effort": "S",
+   "owner_agents": [
+    "Society"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "S12",
+   "tab": "social",
+   "chapter": "explore",
+   "chart": "drawMap selector + renderSocSummary tiles",
+   "audit_status": "stale",
+   "audit_owner": "Society",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2024/2025",
+    "last": "2025",
+    "count": 1,
+    "series": "SOC_PROV_DATA, SOC_GRDP, nat_latest"
+   },
+   "ge8_periods": false,
+   "missing_periods": "as S03/S04/S06",
+   "history_sources": [
+    {
+     "name": "NSO provincial yearbooks / PxWeb provincial tables (63 old provinces; re-aggregate to the 34 merged provinces)",
+     "url": "https://pxweb.nso.gov.vn ; *.nso.gov.vn provincial offices",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None at province level.",
+   "projection_status": "none_history_only",
+   "effort": "L",
+   "owner_agents": [
+    "Society",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P01",
+   "tab": "money",
+   "chapter": "pol-st-hero",
+   "chart": "polStRates (policy-rate steps)",
+   "audit_status": "current",
+   "audit_owner": "Policy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M (step series)",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-09",
+    "count": 69,
+    "series": "policy instrument histories (refi/rediscount/OMO); SIM.panel *_rate"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None — SBV publishes no rate path; history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Policy",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P02",
+   "tab": "money",
+   "chapter": "pol-st-moves",
+   "chart": "polStDiv (easing/tightening per quarter)",
+   "audit_status": "current",
+   "audit_owner": "Policy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "Q",
+   "periods_held": {
+    "first": "2023-Q1",
+    "last": "2026-Q4",
+    "count": 15,
+    "series": "instrument histories → moves per quarter"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "n/a — counts of decisions; no projection.",
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P03",
+   "tab": "money",
+   "chapter": "pol-st-moves",
+   "chart": "polStGroups",
+   "audit_status": "current",
+   "audit_owner": "Policy",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "Q",
+   "periods_held": {
+    "first": "2023-Q1",
+    "last": "2026-Q4",
+    "count": 15,
+    "series": "instrument histories by group"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "n/a",
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": "Step through quarters, not years.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P04",
+   "tab": "money",
+   "chapter": "pol-st-cliff",
+   "chart": "polStExpiry (+ cards)",
+   "audit_status": "current",
+   "audit_owner": "Policy",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "event",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "instruments[].expires"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Policy"
+   ],
+   "priority": 5,
+   "notes": "Calendar of future expiry dates — already a time layout; animating adds nothing.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P05",
+   "tab": "money",
+   "chapter": "pol-st-steps",
+   "chart": "polStMult (8 dials, scrubber)",
+   "audit_status": "current",
+   "audit_owner": "Policy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "stTimeCtl scrubber",
+   "frequency": "M",
+   "periods_held": {
+    "first": "2023",
+    "last": "2026-10",
+    "count": null,
+    "series": "POL_MULT (8 instrument step series)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "Scheduled/legislated values only (e.g. VAT-cut expiry 31/12/2026, LDR cap 01/12/2026, credit target 2026 15%, deficit average target 2026–2030) — not forecasts.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Policy",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "P06",
+   "tab": "money",
+   "chapter": "pol-st-watch",
+   "chart": "What to watch (future-dated moves)",
+   "audit_status": "current",
+   "audit_owner": "Policy",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "event",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "future-dated history"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Policy"
+   ],
+   "priority": 5,
+   "notes": "Watch list text.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P07",
+   "tab": "money",
+   "chapter": "explore",
+   "chart": "Stance, polTimeline (#pol-tl), instrument tables, news",
+   "audit_status": "current",
+   "audit_owner": "Policy",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "event",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "POLICY.mon/fis tables, news"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Policy"
+   ],
+   "priority": 5,
+   "notes": "Tables and event timeline; polTimeline is already chronological.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P08",
+   "tab": "money",
+   "chapter": "appendix",
+   "chart": "ecb-lsr (deposit / OMO / refinancing lines) + kpi-lsr-*",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "addTimeline('lsr')",
+   "frequency": "M",
+   "periods_held": {
+    "first": "T10/24",
+    "last": "T9/26",
+    "count": 24,
+    "series": "OMO/refi (policy) + deposit VCB (SIM 43 months); private-bank 12m deposit (MBS) only 3 points; SBV avg lending 4 points"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Private-bank 12m deposit (MBS monthly) Oct-2024 … Jun-2026 and SBV average lending rate monthly — 21+ months each",
+   "history_sources": [
+    {
+     "name": "Broker bank-sector quarterly reports (Yuanta, VDSC, MBS, Vietcap via vietstock edocs) and VIS Rating",
+     "url": "https://static1.vietstock.vn ; cafef.vn ; vietnambiz.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    },
+    {
+     "name": "SBV \"Thống kê một số chỉ tiêu cơ bản\" + press-conference statements",
+     "url": "https://sbv.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; SBV-affiliated press (thoibaonganhang.vn, thitruongtaichinhtiente.vn) carries the figures"
+    }
+   ],
+   "projection_existing": "simulation.json SIM.projection / projection2 — dashboard model, 6 months (to 2027-03) for dep12_vcb",
+   "projection_proposed": "None to 2030 — history only beyond the 6-month model.",
+   "projection_status": "model_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P09",
+   "tab": "money",
+   "chapter": "appendix",
+   "chart": "ecb-macro (M2 growth + CPI, annual) + FX/CPI/reserves KPI",
+   "audit_status": "structural",
+   "audit_owner": "Finance / Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "FINSYS.annual m2_growth; ECON_OFFICIAL cpi_avg"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "IMF Article IV 2025 (CR 25/283) staff projections 2025–2026 only (finance.json sbv.balance_sheet.projections; mid-2025 vintage); CPI as E19",
+   "projection_proposed": "CPI: IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database. M2: none credible beyond 2026 — history only.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Economy"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "P10",
+   "tab": "money",
+   "chapter": "appendix",
+   "chart": "ecb-credit-money (credit YTD vs M2 YTD)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "addTimeline (monetary cards)",
+   "frequency": "M",
+   "periods_held": {
+    "first": "T11/24",
+    "last": "T9/26",
+    "count": 23,
+    "series": "FINSYS.monthly credit_ytd (23), m2_ytd (18)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "Credit: SBV 2026 target 15% as end-2026 marker only; none to 2030.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "P11",
+   "tab": "money",
+   "chapter": "appendix",
+   "chart": "ecb-vnibor (overnight vs OMO)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "addTimeline",
+   "frequency": "M",
+   "periods_held": {
+    "first": "2024-10",
+    "last": "2026-09",
+    "count": 24,
+    "series": "why.series.interbank_on_monthly"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P12",
+   "tab": "money",
+   "chapter": "appendix",
+   "chart": "ecb-money-supply (M2, deposits levels)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "addTimeline",
+   "frequency": "M",
+   "periods_held": {
+    "first": "T12/24",
+    "last": "T7/26",
+    "count": 20,
+    "series": "FINSYS.monthly m2_level/deposits_level"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None credible (IMF Art. IV 2026 M2 level, mid-2025 vintage, only).",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P13",
+   "tab": "money",
+   "chapter": "appendix",
+   "chart": "ecb-fx-detail (reserves excl. gold) + kpi-fxr",
+   "audit_status": "stale",
+   "audit_owner": "Ed (wiring) / Economy+Finance (one definition)",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A (M in Finance)",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025",
+    "count": 16,
+    "series": "ECON_OFFICIAL.fx_reserves_busd; Finance monthly 2014-01…2026-07 (151)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "IMF Article IV 2025 (CR 25/283) staff projections 2025–2026 only (finance.json sbv.balance_sheet.projections; mid-2025 vintage)",
+   "projection_proposed": "None to 2030 — history only.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Finance",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": "One reserves definition (incl./excl. gold, IMF IL vs SBV statements) must be chosen before animating — audit status is stale for this reason.",
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P14",
+   "tab": "money",
+   "chapter": "appendix",
+   "chart": "ecb-fis-budget (% of plan, even pace)",
+   "audit_status": "current",
+   "audit_owner": "Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "addTimeline (single label)",
+   "frequency": "M YTD",
+   "periods_held": {
+    "first": "9M-2026",
+    "last": "9M-2026",
+    "count": 1,
+    "series": "ECONFLOW.budget.exec_9M2026"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Monthly YTD execution Jan–Aug 2026 and the same months of 2025 (for pace comparison)",
+   "history_sources": [
+    {
+     "name": "MoF monthly budget execution / public-investment disbursement / public-debt bulletins",
+     "url": "https://mof.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; thoibaotaichinhvietnam.vn mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "n/a — % of annual plan (plan = 100% by year-end).",
+   "projection_status": "n/a",
+   "effort": "M",
+   "owner_agents": [
+    "Economy"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "P15",
+   "tab": "money",
+   "chapter": "appendix",
+   "chart": "ecb-fis-pubinv (% of plan by year)",
+   "audit_status": "current",
+   "audit_owner": "Policy / Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A + M YTD",
+   "periods_held": {
+    "first": "2024",
+    "last": "9M-2026",
+    "count": 5,
+    "series": "POLICY.fis public_investment_annual history; invest_macro public_invest"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Year-end disbursement % of plan 2018–2023",
+   "history_sources": [
+    {
+     "name": "MoF monthly budget execution / public-investment disbursement / public-debt bulletins",
+     "url": "https://mof.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; thoibaotaichinhvietnam.vn mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "NQ 27/2026/QH16 medium-term public investment 2026–2030 (economy.json targets) (5-year plan total) as annotation.",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Policy",
+    "Economy"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": true
+  },
+  {
+   "id": "F01",
+   "tab": "banks",
+   "chapter": "fs-st-hero",
+   "chart": "fsStGap (credit vs deposit growth + projections)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "FINSYS.annual credit/deposit growth"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "finance.json FINSYS.projections — dashboard scenario (assumption: credit 15%/yr, deposits 11.11%/yr), labelled scenario, not a forecast",
+   "projection_proposed": "Only credible point: SBV 2026 credit target 15%. Keep scenario clearly labelled or drop beyond 2026.",
+   "projection_status": "model_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 1,
+   "notes": null,
+   "needs_user_decision": "Finance projections 2026–2030 are assumptions (flat 15% / 11.11%). Show them as a \"scenario\" to 2030, or stop the line at the 2026 official target?",
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F02",
+   "tab": "banks",
+   "chapter": "fs-st-hero",
+   "chart": "Hero KPI credit/GDP 146%",
+   "audit_status": "structural",
+   "audit_owner": "Finance",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2025",
+    "last": "2025",
+    "count": 1,
+    "series": "ratios.credit_to_gdp_pct"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "single-figure KPI/tiles; the underlying series animates in its own chart (F04).",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F03",
+   "tab": "banks",
+   "chapter": "fs-st-hero",
+   "chart": "fsAltBlock (deposit alternatives 2010–25 + 2026 YTD)",
+   "audit_status": "stale",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025 (+2026 YTD)",
+    "count": 16,
+    "series": "FINSYS.alternatives"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None — projecting asset returns would be investment advice; history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F04",
+   "tab": "banks",
+   "chapter": "fs-st-depth",
+   "chart": "fsStDepth (private credit/GDP, M2/GDP + press 146%)",
+   "audit_status": "structural",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2022",
+    "count": 8,
+    "series": "annual.private_credit_to_gdp_pct_wb, m2_to_gdp_pct_wb (2023–2025 null); press 146% (2025)"
+   },
+   "ge8_periods": true,
+   "missing_periods": "WB private credit/GDP and M2/GDP 2023–2025 (WDI lag) — or SBV/NSO-based credit/GDP 2018–2025 on one definition",
+   "history_sources": [
+    {
+     "name": "World Bank WDI API",
+     "url": "https://api.worldbank.org/v2/",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    },
+    {
+     "name": "SBV \"Thống kê một số chỉ tiêu cơ bản\" + press-conference statements",
+     "url": "https://sbv.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; SBV-affiliated press (thoibaonganhang.vn, thitruongtaichinhtiente.vn) carries the figures"
+    }
+   ],
+   "projection_existing": "finance.json FINSYS.projections — dashboard scenario (assumption: credit 15%/yr, deposits 11.11%/yr), labelled scenario, not a forecast credit_to_gdp_pct 2026–2030",
+   "projection_proposed": "No official numeric credit/GDP target (finance.json targets credit_to_gdp_2030 = null) — scenario only.",
+   "projection_status": "model_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F05",
+   "tab": "banks",
+   "chapter": "fs-st-depth",
+   "chart": "fsStMMult (4 monthly minis)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "T11/24",
+    "last": "T9/26",
+    "count": 23,
+    "series": "m2_ytd 18, deposits_ytd 16, credit_ytd 23, credit_yoy 10"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None — history only (credit target end-2026 marker).",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F06",
+   "tab": "banks",
+   "chapter": "fs-st-flow",
+   "chart": "fsStWaffle (credit by sector)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2025-01",
+    "last": "2026-07",
+    "count": 19,
+    "series": "FINSYS.sectors"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": "Step through months/quarter-ends.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F07",
+   "tab": "banks",
+   "chapter": "fs-st-flow",
+   "chart": "fs-st-sgrow (2025 FY vs 2026 YTD by sector)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2025-01",
+    "last": "2026-07",
+    "count": 19,
+    "series": "sectors.growth_ytd"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F08",
+   "tab": "banks",
+   "chapter": "fs-st-flow",
+   "chart": "fsStLB (listed banks vs SBV total)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "Q",
+   "periods_held": {
+    "first": "Q2-2026",
+    "last": "Q2-2026",
+    "count": 1,
+    "series": "listed_banks_by_sector"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Q3-2024 … Q1-2026 sector loan notes for the 17 banks (7 quarters)",
+   "history_sources": [
+    {
+     "name": "Bank financial statements (annual + quarterly), bank IR sites / vietstock edocs; vnstock Finance (server)",
+     "url": "bank IR sites; static1.vietstock.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; vnstock Finance returned no data on 2026-10-06 (banks_vnstock.json _meta)"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "L",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F09",
+   "tab": "banks",
+   "chapter": "fs-st-flow",
+   "chart": "fsStOSChart (inside \"other services\")",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "cross_section",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2026-07",
+    "last": "2026-07",
+    "count": 1,
+    "series": "other_services_breakdown"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "Composition assembled from press excerpts for one month; the SBV does not publish it as a series, so no animation.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F10",
+   "tab": "banks",
+   "chapter": "fs-st-flow",
+   "chart": "fsStFacts (flow facts)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "FINSYS.flows"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "Fact list.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F11",
+   "tab": "banks",
+   "chapter": "fs-st-why",
+   "chart": "fsStMech (mechanism diagram with data)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "why.series; CPI"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "Mechanism diagram.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F12",
+   "tab": "banks",
+   "chapter": "fs-st-why",
+   "chart": "fsStCf (counterfactual)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "model",
+   "animation": "model scrub",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": null,
+    "series": "FINSYS counterfactual"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "dashboard counterfactual model",
+   "projection_proposed": null,
+   "projection_status": "model_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F13",
+   "tab": "banks",
+   "chapter": "fs-st-why",
+   "chart": "fsStWMult (cost of funds, NIM, CASA, LDR)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "Q",
+   "periods_held": {
+    "first": "2024-Q4",
+    "last": "2026-Q2",
+    "count": 6,
+    "series": "why.series cof 5, nim 6, casa 5, ldr 4"
+   },
+   "ge8_periods": false,
+   "missing_periods": "COF Q3-2024…Q1-2025; NIM quarterly Q3-2024…Q2-2025; CASA Q3-2024, Q1-2025, Q3-2025; LDR Q3-2024…Q1-2025, Q3-2025 (mixed providers — keep provider per point)",
+   "history_sources": [
+    {
+     "name": "Broker bank-sector quarterly reports (Yuanta, VDSC, MBS, Vietcap via vietstock edocs) and VIS Rating",
+     "url": "https://static1.vietstock.vn ; cafef.vn ; vietnambiz.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None (broker forecasts are not credible institutional projections) — history only.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F14",
+   "tab": "banks",
+   "chapter": "fs-st-why",
+   "chart": "fsStDrivers (10 ranked causes)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "why.drivers"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "Ranked list.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F15",
+   "tab": "banks",
+   "chapter": "fs-st-safe",
+   "chart": "fsStNpl (NPL, 2 definitions)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A (Q for SBV)",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "npl_imf_fsi_pct (11); npl_onbalance_sbv_pct (7)"
+   },
+   "ge8_periods": true,
+   "missing_periods": "SBV on-balance NPL quarterly 2023-Q3…2024-Q4 to reach 8 quarters",
+   "history_sources": [
+    {
+     "name": "SBV \"Thống kê một số chỉ tiêu cơ bản\" + press-conference statements",
+     "url": "https://sbv.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; SBV-affiliated press (thoibaonganhang.vn, thitruongtaichinhtiente.vn) carries the figures"
+    }
+   ],
+   "projection_existing": "FINSYS.projections.series.npl_pct (2030 = 3.0, official target)",
+   "projection_proposed": "QĐ 986/QĐ-TTg (08/08/2018) banking strategy to 2025, orientation 2030 — finance.json targets npl_2030 3% (other numeric targets unverified)",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "F16",
+   "tab": "banks",
+   "chapter": "fs-st-safe",
+   "chart": "fsStSMult (IMF FSI minis)",
+   "audit_status": "structural",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "ratios.*_imf_fsi_pct"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None (CAR/ROE targets in QĐ 986 unverified) — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F17",
+   "tab": "banks",
+   "chapter": "fs-st-sbv",
+   "chart": "fsStRes (year-end reserves incl. gold)",
+   "audit_status": "structural",
+   "audit_owner": "Finance / Ed",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2014",
+    "last": "2025",
+    "count": 12,
+    "series": "sbv.balance_sheet.series.fx_reserves_busd"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "IMF Article IV 2025 (CR 25/283) staff projections 2025–2026 only (finance.json sbv.balance_sheet.projections; mid-2025 vintage)",
+   "projection_proposed": "None to 2030 — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F18",
+   "tab": "banks",
+   "chapter": "fs-st-pipe",
+   "chart": "fsPipe (plumbing diagram facts)",
+   "audit_status": "stale",
+   "audit_owner": "Finance",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "sbv.plumbing.facts"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "Plumbing diagram.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F19",
+   "tab": "banks",
+   "chapter": "fs-st-levers",
+   "chart": "fsLvDraw (who controls money supply)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "diagram/table",
+   "animation": "timeline",
+   "existing_animation": "fsLv time scrubber (board as of month)",
+   "frequency": "M",
+   "periods_held": {
+    "first": "2023-01",
+    "last": "2026-10",
+    "count": 46,
+    "series": "sbv.plumbing; monthly"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "n/a",
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "Diagram that already replays by month — keep.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F20",
+   "tab": "banks",
+   "chapter": "fs-st-2030",
+   "chart": "Projection multiples vs targets",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "model",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "FINSYS.annual + projections"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "finance.json FINSYS.projections — dashboard scenario (assumption: credit 15%/yr, deposits 11.11%/yr), labelled scenario, not a forecast; IMF Apr-26 real GDP/CPI; WB Oct-26",
+   "projection_proposed": "IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database to refresh GDP/CPI rows.",
+   "projection_status": "exists_to_2030",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 1,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F21",
+   "tab": "banks",
+   "chapter": "fs-st-watch",
+   "chart": "What to watch",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "event",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "watch list"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "Watch list text.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F22",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-levels (M2, deposits, credit levels)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "T12/24",
+    "last": "T9/26",
+    "count": 22,
+    "series": "FINSYS.monthly levels"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F23",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-fx (indexed USD/VND, DXY)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2024-10",
+    "last": "2026-09",
+    "count": 24,
+    "series": "usdvnd_monthly, dxy_month_end"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None credible (no official FX path; IMF WEO does not publish VND forecasts) — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F24",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-liq (LDR, short-term funds for MLT loans)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "H (irregular)",
+   "periods_held": {
+    "first": "2016-12",
+    "last": "2026-06",
+    "count": 14,
+    "series": "ldr_sbv_tt22_pct (14), short_term_funds_for_mlt_loans_pct (16)"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Regular semi-annual points: 2023-06, 2024-06, 2024-12, 2025-06 (interpolating is not allowed — collect)",
+   "history_sources": [
+    {
+     "name": "SBV \"Thống kê một số chỉ tiêu cơ bản\" + press-conference statements",
+     "url": "https://sbv.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; SBV-affiliated press (thoibaonganhang.vn, thitruongtaichinhtiente.vn) carries the figures"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None (regulatory caps are limits, not projections).",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F25",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-car",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2026-03",
+    "count": 11,
+    "series": "car_imf_fsi_pct (11), car_basel2 (13 irregular)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F26",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-sbv (SBV balance sheet)",
+   "audit_status": "structural",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2014",
+    "last": "2024",
+    "count": 11,
+    "series": "sbv.balance_sheet (nfa, currency, net claims govt); 8 sub-series empty"
+   },
+   "ge8_periods": true,
+   "missing_periods": "2025 actuals; empty series (claims_govt, claims_banks, reserve_money, bank_reserves, govt_deposits, sbv_bills…)",
+   "history_sources": [
+    {
+     "name": "IMF FSI (FSIC) / IFS SDMX",
+     "url": "https://api.imf.org/external/sdmx/2.1/",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": "IMF Article IV 2025 (CR 25/283) staff projections 2025–2026 only (finance.json sbv.balance_sheet.projections; mid-2025 vintage)",
+   "projection_proposed": "None to 2030.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F27",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-gap (credit–deposit gap)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "T1/25",
+    "last": "T7/26",
+    "count": 16,
+    "series": "monthly credit_ytd − deposits_ytd"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F28",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-rates (deposit, OMO, O/N, CPI, real rate)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2024-10",
+    "last": "2026-09",
+    "count": 24,
+    "series": "why.series rates; CPI; VCB deposit (SIM)"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Private-bank 12m deposit monthly (only 3 points)",
+   "history_sources": [
+    {
+     "name": "Broker bank-sector quarterly reports (Yuanta, VDSC, MBS, Vietcap via vietstock edocs) and VIS Rating",
+     "url": "https://static1.vietstock.vn ; cafef.vn ; vietnambiz.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": "simulation.json SIM.projection / projection2 — dashboard model, 6 months (to 2027-03)",
+   "projection_proposed": "None beyond Mar-2027.",
+   "projection_status": "model_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F29",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-npl (3 definitions)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A + Q",
+   "periods_held": {
+    "first": "2015",
+    "last": "2026-06",
+    "count": 11,
+    "series": "IMF FSI (11); SBV on-balance (7); incl. VAMC (3)"
+   },
+   "ge8_periods": true,
+   "missing_periods": "SBV on-balance quarterly 2023-Q3…2024-Q4; broad NPL (incl. VAMC/potential) 2023–2025 semi-annual",
+   "history_sources": [
+    {
+     "name": "SBV \"Thống kê một số chỉ tiêu cơ bản\" + press-conference statements",
+     "url": "https://sbv.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; SBV-affiliated press (thoibaonganhang.vn, thitruongtaichinhtiente.vn) carries the figures"
+    }
+   ],
+   "projection_existing": "npl_pct 2030 = 3.0 (official target)",
+   "projection_proposed": null,
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "F30",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-roe (ROE/ROA)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2015",
+    "last": "2025",
+    "count": 11,
+    "series": "roe/roa IMF FSI (11) + SBV (13)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F31",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-omo (SBV operations)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M (from daily)",
+   "periods_held": {
+    "first": "2024-08",
+    "last": "2026-10",
+    "count": 27,
+    "series": "sbv.operations (449 events)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F32",
+   "tab": "banks",
+   "chapter": "explore",
+   "chart": "fs-ch-res (monthly reserves)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2014-01",
+    "last": "2026-07",
+    "count": 151,
+    "series": "monthly_supplement.fx_reserves_*"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None — history only.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": "Same reserves-definition decision as P13.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F33",
+   "tab": "banks",
+   "chapter": "appendix",
+   "chart": "#bk-table league table (28 banks)",
+   "audit_status": "stale",
+   "audit_owner": "Finance + main session (server)",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "FY2024",
+    "last": "FY2024",
+    "count": 1,
+    "series": "/api/banks"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Main session",
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "League table; a table is not animated. Reported bank history is a prerequisite for F35.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F34",
+   "tab": "banks",
+   "chapter": "appendix",
+   "chart": "#bk-alert-strip",
+   "audit_status": "stale",
+   "audit_owner": "main session (server)",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "FY2024",
+    "last": "FY2024",
+    "count": 1,
+    "series": "derived alerts"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Main session"
+   ],
+   "priority": 5,
+   "notes": "Alert strip.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F35",
+   "tab": "banks",
+   "chapter": "appendix",
+   "chart": "#bk-indicators (10 sparklines)",
+   "audit_status": "stale",
+   "audit_owner": "main session (server)",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "FY2024",
+    "last": "FY2024",
+    "count": 1,
+    "series": "/api/banks history (reported FY2024 only; FY2019–FY2023 synthetic, excluded)"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Reported FY2018–FY2023 and FY2025 per bank (10 indicators × 28 banks)",
+   "history_sources": [
+    {
+     "name": "Bank financial statements (annual + quarterly), bank IR sites / vietstock edocs; vnstock Finance (server)",
+     "url": "bank IR sites; static1.vietstock.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; vnstock Finance returned no data on 2026-10-06 (banks_vnstock.json _meta)"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None (bank-level forecasts would be investment-advice-like).",
+   "projection_status": "none_history_only",
+   "effort": "L",
+   "owner_agents": [
+    "Finance",
+    "Main session"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F36",
+   "tab": "banks",
+   "chapter": "appendix",
+   "chart": "#bk-bs-assets/leq, #bk-is-list (+ donuts, modal)",
+   "audit_status": "stale",
+   "audit_owner": "main session (server)",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "addTimeline('bkIS') over synthetic periods",
+   "frequency": "A/Q",
+   "periods_held": {
+    "first": "FY2024",
+    "last": "FY2024 (quarters to Q1/2026 are synthetic)",
+    "count": 1,
+    "series": "/api/banks/statements"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Reported annual statements FY2018–FY2025 and 8 reported quarters per bank",
+   "history_sources": [
+    {
+     "name": "Bank financial statements (annual + quarterly), bank IR sites / vietstock edocs; vnstock Finance (server)",
+     "url": "bank IR sites; static1.vietstock.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; vnstock Finance returned no data on 2026-10-06 (banks_vnstock.json _meta)"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "L",
+   "owner_agents": [
+    "Main session",
+    "Finance"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": "The existing timeline animates SYNTHETIC periods (FY2024 × fixed scale factors). Remove/disable it until reported statements exist?",
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "F37",
+   "tab": "banks",
+   "chapter": "appendix",
+   "chart": "#bk-lend-*/#bk-fund-* (breakdown 100% bars)",
+   "audit_status": "stale",
+   "audit_owner": "main session (server) / Finance",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": "addTimeline('bkBD') over synthetic periods",
+   "frequency": "A",
+   "periods_held": {
+    "first": "FY2024",
+    "last": "FY2024",
+    "count": 1,
+    "series": "/api/banks/breakdown"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Reported loan/funding breakdowns FY2018–FY2025",
+   "history_sources": [
+    {
+     "name": "Bank financial statements (annual + quarterly), bank IR sites / vietstock edocs; vnstock Finance (server)",
+     "url": "bank IR sites; static1.vietstock.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; vnstock Finance returned no data on 2026-10-06 (banks_vnstock.json _meta)"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "L",
+   "owner_agents": [
+    "Main session",
+    "Finance"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": "Same as F36 — synthetic periods are animated today.",
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "I01",
+   "tab": "invest",
+   "chapter": "iv-st-hero",
+   "chart": "ivStGdp (Q1–Q3 2026 + Q4 needed)",
+   "audit_status": "current",
+   "audit_owner": "Investing / Economy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "Q",
+   "periods_held": {
+    "first": "Q1-2026",
+    "last": "Q3-2026",
+    "count": 3,
+    "series": "MACRO.gdp q1–q3; economy quarterly_2026_GDP_yoy"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Quarterly GDP growth y/y Q1-2024 … Q4-2025 (8 quarters)",
+   "history_sources": [
+    {
+     "name": "NSO quarterly/monthly socio-economic report",
+     "url": "https://www.nso.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": "q4_required_est (dashboard arithmetic)",
+   "projection_proposed": "Annual IMF/WB/ADB rows from economy.json (no quarterly institutional path).",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Investing"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": true
+  },
+  {
+   "id": "I02",
+   "tab": "invest",
+   "chapter": "iv-st-macro",
+   "chart": "ivStDemand (9M demand components)",
+   "audit_status": "current",
+   "audit_owner": "Investing",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A / 9M",
+   "periods_held": {
+    "first": "9M-2026",
+    "last": "9M-2026",
+    "count": 1,
+    "series": "_macro.financials (demand components, real growth)"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Real growth of consumption, GCF, exports, imports for 2018–2025 (and 9M of 2024–2025)",
+   "history_sources": [
+    {
+     "name": "NSO quarterly/monthly socio-economic report",
+     "url": "https://www.nso.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    },
+    {
+     "name": "NSO PxWeb tables",
+     "url": "https://pxweb.nso.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None by component.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Economy",
+    "Investing"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "I03",
+   "tab": "invest",
+   "chapter": "iv-st-macro",
+   "chart": "ivStReason (macro support/risks)",
+   "audit_status": "current",
+   "audit_owner": "Investing",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "_macro.reasoning"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Investing"
+   ],
+   "priority": 5,
+   "notes": "Text.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "I04",
+   "tab": "invest",
+   "chapter": "iv-st-market",
+   "chart": "ivStVni (forecasts + end-Sep close)",
+   "audit_status": "current",
+   "audit_owner": "Investing",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M (D available)",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-09",
+    "count": 69,
+    "series": "SIM.panel.vnindex; _market.forecasts"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None — broker year-end targets are not credible projections to 2030 and would read as investment advice.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Investing",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "I05",
+   "tab": "invest",
+   "chapter": "iv-st-market",
+   "chart": "ivStReason (market)",
+   "audit_status": "current",
+   "audit_owner": "Investing",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "_market.reasoning"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Investing"
+   ],
+   "priority": 5,
+   "notes": "Text.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "I06",
+   "tab": "invest",
+   "chapter": "iv-st-stocks",
+   "chart": "ivStCards (POW, PVT, GAS, GEE targets)",
+   "audit_status": "waiting",
+   "audit_owner": "Investing",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "stock cards"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Investing"
+   ],
+   "priority": 5,
+   "notes": "Stock target cards — no animation (no investment advice).",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "I07",
+   "tab": "invest",
+   "chapter": "iv-st-cal",
+   "chart": "Event calendar",
+   "audit_status": "current",
+   "audit_owner": "Investing",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "event",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "event calendar"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Investing"
+   ],
+   "priority": 5,
+   "notes": "Calendar.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "I08",
+   "tab": "invest",
+   "chapter": "explore",
+   "chart": "#iv-macro (ivRenderMacro)",
+   "audit_status": "current",
+   "audit_owner": "Economy (file owner)",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "Q/M",
+   "periods_held": {
+    "first": "2026",
+    "last": "2026",
+    "count": 1,
+    "series": "invest_macro.json MACRO"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Economy"
+   ],
+   "priority": 5,
+   "notes": "single-figure KPI/tiles; the underlying series animates in its own chart (E01/E15/I01).",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "I09",
+   "tab": "invest",
+   "chapter": "explore",
+   "chart": "#iv-market, #iv-screen, compare, price/RSI charts",
+   "audit_status": "current",
+   "audit_owner": "server",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "D",
+   "periods_held": {
+    "first": "daily",
+    "last": "2026-10",
+    "count": null,
+    "series": "/api/invest/* (vnstock live)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Main session"
+   ],
+   "priority": 5,
+   "notes": "Server-fed daily series; animation optional, keep the automatic refresh.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M01",
+   "tab": "sim",
+   "chapter": "sim-st-hero",
+   "chart": "Hero (12-month deposit rate path + drivers)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "model",
+   "animation": "model scrub",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-09",
+    "count": 43,
+    "series": "SIM.panel dep12_vcb (43); dep12_private_mbs (3)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "simulation.json SIM.projection / projection2 — dashboard model, 6 months (to 2027-03)",
+   "projection_proposed": "Do not extend to 2030 — the model is a 6-month tool; beyond Mar-2027 history only.",
+   "projection_status": "model_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M02",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: policy rates (refi, rediscount, O/N, OMO)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-09",
+    "count": 69,
+    "series": "refi/rediscount/O/N (69), OMO (33)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M03",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: 10-year government bond yield",
+   "audit_status": "stale",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-12",
+    "last": "2026-09",
+    "count": 12,
+    "series": "gov_bond_10y (12, irregular)"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Monthly 10y yield Oct-2024 … Jan-2026 except Dec-2024/Dec-2025 (only 6 of the last 12 months held)",
+   "history_sources": [
+    {
+     "name": "HNX G-bond yields / VBMA monthly reports",
+     "url": "https://hnx.vn ; https://vbma.org.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M04",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: Fed funds upper, Fed − refi",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-09",
+    "count": 69,
+    "series": "fed_funds_upper"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "FOMC Summary of Economic Projections median fed funds (FRED FEDTARMD; https://fred.stlouisfed.org/series/FEDTARMD) — years ahead + longer run; 2029–2030 = longer-run median (label as such).",
+   "projection_status": "to_add",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "M05",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: interbank O/N",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2024-10",
+    "last": "2026-09",
+    "count": 24,
+    "series": "interbank_on"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M06",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: credit YTD / YoY",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2024-11",
+    "last": "2026-09",
+    "count": 23,
+    "series": "credit_ytd 23, credit_yoy 12"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "2026 target marker only.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "M07",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: deposit YTD / YoY; credit–deposit gap",
+   "audit_status": "stale",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2025-01",
+    "last": "2026-07",
+    "count": 16,
+    "series": "deposit_ytd 16, deposit_yoy 8, gap_yoy 8"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Aug/Sep-2026 (stale in audit)",
+   "history_sources": [
+    {
+     "name": "SBV \"Thống kê một số chỉ tiêu cơ bản\" + press-conference statements",
+     "url": "https://sbv.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; SBV-affiliated press (thoibaonganhang.vn, thitruongtaichinhtiente.vn) carries the figures"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M08",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: LDR (SBV, simple listed), LDR cap",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M (irregular)",
+   "periods_held": {
+    "first": "2021-12",
+    "last": "2026-06",
+    "count": 12,
+    "series": "ldr_sbv (12); ldr_cap (69)"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M09",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: M2 YoY / YTD, cash/M2",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2024-12",
+    "last": "2026-07",
+    "count": 18,
+    "series": "m2_ytd 18, m2_yoy 8, cash_to_m2 19"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M10",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: VN-Index, VN-Index 12m",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-09",
+    "count": 69,
+    "series": "vnindex"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None (investment advice).",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M11",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: world gold (USD, 12m, m/m)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-09",
+    "count": 69,
+    "series": "gold_world_*"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "World Bank Commodity Markets Outlook (Apr/Oct; ~2 years ahead; https://www.worldbank.org/en/research/commodity-markets) (to ~2027–28); none to 2030.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "M12",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: SJC gold sell (monthly)",
+   "audit_status": "stale",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-12",
+    "last": "2026-09",
+    "count": 13,
+    "series": "sjc_gold_sell (13; monthly only from 2026-01, Jun-2026 missing)"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Monthly SJC sell price Oct-2024 … Nov-2025 and Jun-2026",
+   "history_sources": [
+    {
+     "name": "SJC price history / press \"giá vàng SJC\"",
+     "url": "sjc.com.vn (not in source_log) ; vnexpress.net, cafef.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M13",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: margin lending",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "Q",
+   "periods_held": {
+    "first": "2022-03",
+    "last": "2026-06",
+    "count": 10,
+    "series": "margin_lending (quarter-ends, gaps)"
+   },
+   "ge8_periods": true,
+   "missing_periods": "2024-09, 2025-03 quarter-ends",
+   "history_sources": [
+    {
+     "name": "Broker bank-sector quarterly reports (Yuanta, VDSC, MBS, Vietcap via vietstock edocs) and VIS Rating",
+     "url": "https://static1.vietstock.vn ; cafef.vn ; vietnambiz.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M14",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: new securities accounts",
+   "audit_status": "stale",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-08",
+    "count": 21,
+    "series": "new_stock_accounts (2025-09 missing)"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Sep-2025; Sep-2026 (stale)",
+   "history_sources": [
+    {
+     "name": "VSDC monthly account statistics",
+     "url": "vsd.vn (not in source_log) ; cafef.vn, vietstock.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M15",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: real estate (Hanoi primary price)",
+   "audit_status": "stale",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "Q/A",
+   "periods_held": {
+    "first": "2022-Q4",
+    "last": "2026-Q2",
+    "count": 5,
+    "series": "real_estate.hanoi_primary_apartment_price (Q4 only + 2026-Q2)"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Quarterly Hanoi primary price 2024-Q3 … 2026-Q1 (Savills/CBRE quarterly briefings)",
+   "history_sources": [
+    {
+     "name": "Savills / CBRE Hanoi quarterly market briefings via press",
+     "url": "savills.com.vn, cbre.vn (not in source_log) ; cafef.vn, vnexpress.net",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M16",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: corporate bonds (issuance, outstanding)",
+   "audit_status": "stale",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A + M 2026",
+   "periods_held": {
+    "first": "2022",
+    "last": "2026-08",
+    "count": 9,
+    "series": "corporate_bonds issuance (1 annual) + 2026 monthly (8) + outstanding (4)"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Annual issuance 2018–2021, 2023–2025; outstanding year-ends 2018–2025",
+   "history_sources": [
+    {
+     "name": "HNX G-bond yields / VBMA monthly reports",
+     "url": "https://hnx.vn ; https://vbma.org.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M17",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: public investment",
+   "audit_status": "current",
+   "audit_owner": "Finance (copied from Economy/Policy)",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2024",
+    "last": "9M-2026",
+    "count": 3,
+    "series": "public_investment observations"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Annual disbursement 2018–2023 (value and % of plan)",
+   "history_sources": [
+    {
+     "name": "MoF monthly budget execution / public-investment disbursement / public-debt bulletins",
+     "url": "https://mof.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; thoibaotaichinhvietnam.vn mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "NQ 27/2026/QH16 medium-term public investment 2026–2030 (economy.json targets) (5-year total; annotate, do not split).",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Finance",
+    "Economy",
+    "Policy"
+   ],
+   "priority": 3,
+   "notes": "Same history as P15 — collect once (Economy/Policy), Finance copies.",
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": true
+  },
+  {
+   "id": "M18",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: Treasury deposits; monthly budget balance",
+   "audit_status": "stale",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2026-09",
+    "last": "2026-09",
+    "count": 1,
+    "series": "treasury_deposits (0), budget_balance_monthly (1)"
+   },
+   "ge8_periods": false,
+   "missing_periods": "Monthly budget balance Oct-2024 … Aug-2026; Treasury deposits at SBV/banks (IMF IFS claims on central govt / SBV)",
+   "history_sources": [
+    {
+     "name": "MoF monthly budget execution / public-investment disbursement / public-debt bulletins",
+     "url": "https://mof.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; thoibaotaichinhvietnam.vn mirrors"
+    },
+    {
+     "name": "IMF FSI (FSIC) / IFS SDMX",
+     "url": "https://api.imf.org/external/sdmx/2.1/",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "L",
+   "owner_agents": [
+    "Finance",
+    "Economy"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M19",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: CPI, core CPI, real deposit rate",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-04",
+    "last": "2026-09",
+    "count": 51,
+    "series": "cpi_yoy 51, real_dep_rate 36, core_cpi_yoy 1"
+   },
+   "ge8_periods": true,
+   "missing_periods": "Core CPI y/y Oct-2024 … Aug-2026 (NSO monthly report carries it)",
+   "history_sources": [
+    {
+     "name": "NSO quarterly/monthly socio-economic report",
+     "url": "https://www.nso.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "CPI annual: IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database; core: none.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Economy"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "M20",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: USD/VND, DXY",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-12",
+    "last": "2026-09",
+    "count": 27,
+    "series": "usdvnd_central 27, usdvnd_12m 15, dxy 24"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "None credible.",
+   "projection_status": "none_history_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M21",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: Brent",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-08",
+    "count": 68,
+    "series": "brent"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "US EIA Short-Term Energy Outlook Brent path (~2 years ahead; https://www.eia.gov/outlooks/steo/) — host not yet in source_log; World Bank Commodity Markets Outlook (Apr/Oct; ~2 years ahead; https://www.worldbank.org/en/research/commodity-markets); none to 2030.",
+   "projection_status": "partial",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 4,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": true
+  },
+  {
+   "id": "M22",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: cost of funds, NIM, CASA (listed)",
+   "audit_status": "waiting",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "Q",
+   "periods_held": {
+    "first": "2024-Q4",
+    "last": "2026-Q2",
+    "count": 6,
+    "series": "cof 5, nim 6, casa 5"
+   },
+   "ge8_periods": false,
+   "missing_periods": "as F13",
+   "history_sources": [
+    {
+     "name": "Broker bank-sector quarterly reports (Yuanta, VDSC, MBS, Vietcap via vietstock edocs) and VIS Rating",
+     "url": "https://static1.vietstock.vn ; cafef.vn ; vietnambiz.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M23",
+   "tab": "sim",
+   "chapter": "sim-st-story",
+   "chart": "Panel: SBV new-loan average rate",
+   "audit_status": "structural",
+   "audit_owner": "Finance",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "M",
+   "periods_held": {
+    "first": "2024-12",
+    "last": "2026-08",
+    "count": 4,
+    "series": "avg_lending_rate_sbv (4); panel lending_new_avg_sbv (0)"
+   },
+   "ge8_periods": false,
+   "missing_periods": "SBV average new-loan rate monthly Oct-2024 … Sep-2026 (SBV statements at press briefings)",
+   "history_sources": [
+    {
+     "name": "SBV \"Thống kê một số chỉ tiêu cơ bản\" + press-conference statements",
+     "url": "https://sbv.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors; SBV-affiliated press (thoibaonganhang.vn, thitruongtaichinhtiente.vn) carries the figures"
+    }
+   ],
+   "projection_existing": null,
+   "projection_proposed": "None.",
+   "projection_status": "none_history_only",
+   "effort": "M",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 3,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M24",
+   "tab": "sim",
+   "chapter": "sim-st-proj",
+   "chart": "Projection fan + scenarios (6 months to Mar-2027)",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "model",
+   "animation": "model scrub",
+   "existing_animation": "projection fan + scenario controls",
+   "frequency": "M",
+   "periods_held": {
+    "first": "2021-01",
+    "last": "2026-09",
+    "count": 43,
+    "series": "dep12_vcb + SIM.projection/projection2"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "simulation.json SIM.projection / projection2 — dashboard model, 6 months (to 2027-03)",
+   "projection_proposed": null,
+   "projection_status": "model_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance",
+    "Ed"
+   ],
+   "priority": 3,
+   "notes": "Horizon intentionally 6 months; do not stretch to 2030.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M25",
+   "tab": "sim",
+   "chapter": "sim-st-proj",
+   "chart": "Sliders",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "model",
+   "animation": "model scrub",
+   "existing_animation": "sliders",
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": null,
+    "series": "SIM.sliders"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "simulation.json SIM.projection / projection2 — dashboard model, 6 months (to 2027-03)",
+   "projection_proposed": null,
+   "projection_status": "model_only",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M26",
+   "tab": "sim",
+   "chapter": "sim-st-model",
+   "chart": "Model card, coefficients, backtest",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": "in-sample backtest replay exists",
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": null,
+    "series": "SIM.model/backtest"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "Coefficient table; the backtest replay already animates.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "M27",
+   "tab": "sim",
+   "chapter": "sim-st-src",
+   "chart": "Indicators / coverage table",
+   "audit_status": "current",
+   "audit_owner": "Finance",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": null,
+    "series": "SIM.indicators_added, gaps"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Finance"
+   ],
+   "priority": 5,
+   "notes": "Coverage table.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "G01",
+   "tab": "party",
+   "chapter": "pg-st-hero",
+   "chart": "pgStGrowth (growth + 9M + required 2027–30 average)",
+   "audit_status": "current",
+   "audit_owner": "Strategy (texts) / Economy (data)",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2010",
+    "last": "2025 (+9M-2026)",
+    "count": 16,
+    "series": "ECON_OFFICIAL.gdp_growth"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": "economy.json projections (IMF/WB/ADB/AMRO/target)",
+   "projection_proposed": "IMF WEO October 2026 database (due 2026-10-13; horizon to 2031) — https://www.imf.org/en/Publications/WEO/weo-database",
+   "projection_status": "exists_to_2030",
+   "effort": "S",
+   "owner_agents": [
+    "Strategy",
+    "Ed"
+   ],
+   "priority": 1,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "G02",
+   "tab": "party",
+   "chapter": "pg-st-gap",
+   "chart": "pgStDumb (2025 → 2030 targets)",
+   "audit_status": "structural",
+   "audit_owner": "Strategy",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "A",
+   "periods_held": {
+    "first": "2025",
+    "last": "2030 (targets)",
+    "count": 1,
+    "series": "strategy_directives.vision targets vs 2025 actuals"
+   },
+   "ge8_periods": false,
+   "missing_periods": "2018–2024 actuals per target indicator (GDP pc, manufacturing share — held in GDP_SUB_OFFICIAL, urbanisation, digital economy share, TFP contribution, private-sector share…)",
+   "history_sources": [
+    {
+     "name": "NSO PxWeb tables",
+     "url": "https://pxweb.nso.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    },
+    {
+     "name": "NSO quarterly/monthly socio-economic report",
+     "url": "https://www.nso.gov.vn",
+     "reach": "blocked from sandbox (curl/WebFetch); use search-engine excerpts + press mirrors"
+    }
+   ],
+   "projection_existing": "economy.json targets (2030)",
+   "projection_proposed": "GDP per capita path from IMF WEO; others: target end-point only (no interpolation between 2025 and 2030).",
+   "projection_status": "partial",
+   "effort": "M",
+   "owner_agents": [
+    "Strategy",
+    "Economy",
+    "Society"
+   ],
+   "priority": 2,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "needs_history",
+   "needs_projection_work": true
+  },
+  {
+   "id": "G03",
+   "tab": "party",
+   "chapter": "pg-st-gap",
+   "chart": "pgStTargets cards",
+   "audit_status": "structural",
+   "audit_owner": "Strategy",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "vision targets"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Strategy"
+   ],
+   "priority": 5,
+   "notes": "Target cards (text).",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "G04",
+   "tab": "party",
+   "chapter": "pg-st-wave",
+   "chart": "pgStBars + replay (documents per month by level)",
+   "audit_status": "current",
+   "audit_owner": "Strategy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "replay (stTimeCtl)",
+   "frequency": "M",
+   "periods_held": {
+    "first": "2024-07",
+    "last": "2026-10",
+    "count": 28,
+    "series": "directives by month"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "n/a — document counts.",
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Strategy"
+   ],
+   "priority": 5,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "G05",
+   "tab": "party",
+   "chapter": "pg-st-wave",
+   "chart": "pgStMult (per-level quarterly)",
+   "audit_status": "current",
+   "audit_owner": "Strategy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "part of ch2 replay",
+   "frequency": "Q",
+   "periods_held": {
+    "first": "2024-Q3",
+    "last": "2026-Q4",
+    "count": 10,
+    "series": "directives by level/quarter"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Strategy"
+   ],
+   "priority": 5,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "G06",
+   "tab": "party",
+   "chapter": "pg-st-pil",
+   "chart": "pgStPillars",
+   "audit_status": "current",
+   "audit_owner": "Strategy",
+   "kind": "cross_section",
+   "animation": "step through years",
+   "existing_animation": null,
+   "frequency": "Q",
+   "periods_held": {
+    "first": "2024-Q3",
+    "last": "2026-Q4",
+    "count": 10,
+    "series": "directives × pillars"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": "n/a",
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Strategy",
+    "Ed"
+   ],
+   "priority": 4,
+   "notes": "Step through quarters.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "G07",
+   "tab": "party",
+   "chapter": "pg-st-chain",
+   "chart": "pgStFlow (mechanism, median lags)",
+   "audit_status": "current",
+   "audit_owner": "Strategy",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "—",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "relations/lags"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Strategy"
+   ],
+   "priority": 5,
+   "notes": "Mechanism diagram.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "G08",
+   "tab": "party",
+   "chapter": "pg-st-chain",
+   "chart": "pgStRows + replay",
+   "audit_status": "current",
+   "audit_owner": "Strategy",
+   "kind": "time_series",
+   "animation": "timeline",
+   "existing_animation": "replay (stTimeCtl)",
+   "frequency": "event",
+   "periods_held": {
+    "first": "2024-07",
+    "last": "2026-10",
+    "count": null,
+    "series": "directive rows"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Strategy"
+   ],
+   "priority": 5,
+   "notes": null,
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  },
+  {
+   "id": "G09",
+   "tab": "party",
+   "chapter": "pg-st-pipe",
+   "chart": "pgStDrafts (expected adoption, session band, today line)",
+   "audit_status": "current",
+   "audit_owner": "Strategy",
+   "kind": "diagram/table",
+   "animation": "none",
+   "existing_animation": null,
+   "frequency": "event",
+   "periods_held": {
+    "first": null,
+    "last": null,
+    "count": 0,
+    "series": "drafts with expected adoption"
+   },
+   "ge8_periods": "n/a",
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Strategy"
+   ],
+   "priority": 5,
+   "notes": "Gantt of future dates.",
+   "needs_user_decision": null,
+   "category": "no_animation",
+   "needs_projection_work": false
+  },
+  {
+   "id": "G10",
+   "tab": "party",
+   "chapter": "explore",
+   "chart": "pgGraph + pgNews",
+   "audit_status": "current",
+   "audit_owner": "Strategy",
+   "kind": "diagram/table",
+   "animation": "timeline",
+   "existing_animation": "addTimeline('pg')",
+   "frequency": "event",
+   "periods_held": {
+    "first": "2024-07",
+    "last": "2026-10",
+    "count": null,
+    "series": "directive graph"
+   },
+   "ge8_periods": true,
+   "missing_periods": null,
+   "history_sources": [],
+   "projection_existing": null,
+   "projection_proposed": null,
+   "projection_status": "n/a",
+   "effort": "S",
+   "owner_agents": [
+    "Strategy"
+   ],
+   "priority": 5,
+   "notes": "Network graph already replays by date.",
+   "needs_user_decision": null,
+   "category": "ready_now",
+   "needs_projection_work": false
+  }
+ ]
+}

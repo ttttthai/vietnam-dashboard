@@ -1,0 +1,100 @@
+<title>Vietnam Story Starter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+/*@@STORY_CSS@@*/
+/* page frame (starter only) */
+html, body { background: #faf8f3; color: #16181d; font-family: var(--font-ui); margin: 0; -webkit-font-smoothing: antialiased; }
+body { padding-inline: 16px; padding-block: 0 40px; }
+.st-root { padding-inline: 0; }
+.st-lang { display: flex; justify-content: flex-end; gap: 6px; max-width: 1120px; margin: 12px auto 0; }
+.st-lang button { font: 600 12px var(--font-ui); border: 1px solid #c9ccd2; background: #fff; color: #5b6170; border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+.st-lang button[aria-pressed="true"] { background: #16181d; color: #fff; border-color: #16181d; }
+.st-chap { opacity: 1; transform: none; }
+</style>
+
+<div class="st-lang" role="group" aria-label="Language">
+  <button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button>
+</div>
+<div id="st-root" class="st-root"></div>
+
+<script>
+// language: ?lang=en or the toggle; numbers follow the language
+let APP_LANG = (new URLSearchParams(location.search).get('lang') === 'en') ? 'en' : 'vi';
+let APP_LOC = APP_LANG === 'en' ? 'en-US' : 'vi-VN';
+/*@@STORY_JS@@*/
+
+// ── DATA: replace with your own; every series carries unit, period, source ──
+const DATA = {
+  years: [2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  gdp_growth: [7.36, 2.87, 2.56, 8.12, 5.05, 7.09, 8.02],                  // %, NSO
+  source_growth: 'NSO (GSO) — tăng trưởng GDP thực tế / real GDP growth',
+  revenue_2024: [['Ngoài quốc doanh', 'Private sector', 391.9], ['Thu về nhà, đất', 'Land & housing', 293.9],
+                 ['Doanh nghiệp FDI', 'FDI firms', 260.9], ['Thuế TNCN', 'Personal income tax', 186.4],
+                 ['DN nhà nước', 'State-owned firms', 180.2]],                  // tn VND, MoF final accounts 2024
+};
+
+// ── CHAPTERS ──
+function renderStory() {
+  const root = document.getElementById('st-root'), D = DATA, n = D.years.length, last = D.gdp_growth[n - 1];
+  let h = '';
+  // hero: finding headline + big number + one chart
+  h += `<section class="st-chap st-hero" id="hero"><div class="st-kicker">${stT('Tổng quan', 'Overview')}</div>
+    <h2 class="st-h">${stT(`GDP tăng ${stN(last, 2)}% năm ${D.years[n - 1]}, nhanh nhất từ ${D.years[3]}`, `GDP grew ${stN(last, 2)}% in ${D.years[n - 1]}, the fastest since ${D.years[3]}`)}</h2>
+    <div class="st-hero-grid"><div><div class="st-big">${stN(last, 2)}<span>%</span></div>
+    <p class="st-dek">${stT('Tăng trưởng GDP thực tế, so với năm trước.', 'Real GDP growth, year on year.')}</p></div>
+    <div class="st-viz" id="v-growth"></div></div>
+    ${stSrc(D.source_growth)}</section>`;
+  // chapter: ranked bars
+  const R = D.revenue_2024.slice().sort((a, b) => b[2] - a[2]);
+  h += stChap('ch1', stT('Chương 1 · Ngân sách', 'Chapter 1 · Budget'),
+    stT(`Khu vực ngoài quốc doanh nộp nhiều nhất: ${stN(R[0][2], 1)} nghìn tỷ đồng`, `The private sector paid the most: ${stN(R[0][2], 1)} tn VND`),
+    stT('Thu nội địa 2024 theo nguồn, nghìn tỷ đồng (năm số liệu: quyết toán).', 'Domestic revenue 2024 by source, tn VND (final accounts).'),
+    `<div class="st-viz" id="v-rev"></div>${stNote(stT('Khu vực tư nhân vượt thu từ đất.', 'Private firms out-paid land revenue.'), stT('Năm 2024; số quyết toán.', '2024; final accounts.'))}${stSrc('Bộ Tài chính / Ministry of Finance')}`);
+  root.innerHTML = h;
+  drawGrowth(document.getElementById('v-growth'));
+  drawRanked(document.getElementById('v-rev'), R);
+  stTables(root); stObserve(root);
+}
+
+// line chart with a crosshair; width-aware (redraws on resize)
+function drawGrowth(el) {
+  const draw = () => {
+    const W = stCW(el, 620), H = 240, m = { l: 34, r: 40, t: 14, b: 26 }, D = DATA, n = D.years.length;
+    const hi = Math.max(...D.gdp_growth), ticks = stNice(0, hi), top = Math.max(hi, ticks[ticks.length - 1]);   // axis always covers the data
+    const dec = ticks.some(t => t % 1) ? 1 : 0, sx = stLin(0, n - 1, m.l, W - m.r), sy = stLin(0, top, H - m.b, m.t);
+    let s = stAxisY(sy, ticks, m.l, W - m.r, t => stN(t, dec));
+    s += D.years.map((y, i) => `<text class="st-tick" x="${sx(i)}" y="${H - 6}" text-anchor="middle">${y}</text>`).join('');
+    s += stLine(D.gdp_growth.map((v, i) => [sx(i), sy(v)]), '#2a78d6');
+    s += stDot(sx(n - 1), sy(D.gdp_growth[n - 1]), 4, '#2a78d6', [D.years[n - 1], stN(D.gdp_growth[n - 1], 2) + '%']);
+    s += stAnn(sx(n - 1), sy(D.gdp_growth[n - 1]), sx(n - 1) - 8, sy(D.gdp_growth[n - 1]) - 10, stN(D.gdp_growth[n - 1], 2) + '%', 'end');
+    el.innerHTML = stLegend([{ n: stT('Tăng trưởng GDP, %', 'GDP growth, %'), c: '#2a78d6', k: 'line' }]) + stSvg(W, H, s, stT('Tăng trưởng GDP', 'GDP growth'));
+    stCross(el, { xs: D.years.map((_, i) => sx(i)), labels: D.years, top: m.t, bottom: H - m.b,
+      series: [{ n: stT('Tăng trưởng GDP', 'GDP growth'), c: '#2a78d6', v: D.gdp_growth, f: v => stN(v, 2) + '%' }] });
+  };
+  draw(); stRW(el, draw);
+}
+
+// ranked horizontal bars: one highlighted, rest muted, values at the bar end
+function drawRanked(el, R) {
+  const draw = () => {
+    const W = stCW(el, 760), row = 34, m = { l: 150, r: 70, t: 6 }, H = m.t + R.length * row;
+    const sx = stLin(0, R[0][2], m.l, W - m.r);
+    let s = R.map((r, i) => { const cy = m.t + i * row + row / 2, name = stT(r[0], r[1]);
+      return `<text class="st-tick" x="${m.l - 8}" y="${cy + 4}" text-anchor="end" style="fill:#16181d">${name}</text>`
+        + stBarH(cy, row, sx(r[2]), sx(0), i === 0 ? '#2a78d6' : ST_MUTE, [name, stN(r[2], 1)], { d: i * 60 })
+        + `<text class="st-tick" x="${sx(r[2]) + 6}" y="${cy + 4}">${stN(r[2], 1)}</text>`; }).join('');
+    el.innerHTML = stSvg(W, H, s, stT('Thu nội địa theo nguồn', 'Domestic revenue by source'));
+    el.querySelectorAll('[data-st-k]').forEach(b => b.addEventListener('pointermove', e => { const [l, v] = decodeURIComponent(b.dataset.stK).split('|'); stTipKV(e, l, v + stT(' nghìn tỷ', ' tn VND')); }));
+    el.querySelectorAll('[data-st-k]').forEach(b => b.addEventListener('pointerleave', dotTipHide));
+  };
+  draw(); stRW(el, draw);
+}
+
+document.querySelectorAll('.st-lang button').forEach(b => {
+  b.setAttribute('aria-pressed', String(b.dataset.lang === APP_LANG));
+  b.addEventListener('click', () => { APP_LANG = b.dataset.lang; APP_LOC = APP_LANG === 'en' ? 'en-US' : 'vi-VN';
+    document.querySelectorAll('.st-lang button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.lang === APP_LANG))); renderStory(); });
+});
+renderStory();
+</script>

@@ -1,0 +1,1120 @@
+{
+ "_meta": {
+  "owner": "server (vnstock)",
+  "as_of": "2026-10-06",
+  "fetched_at": "2026-10-06T19:11:55+00:00",
+  "source": "vnstock_data 3.3.1 via VCI (Listing, Trading.price_board, Quote); Finance: no source reachable",
+  "builder": "tools/build/banks_vnstock.py",
+  "note": "Universe = VCI listing, ICB 8300 (Banks), STOCK, not delisted. Fundamentals are copied from vnstock Finance responses only (null when not returned, never estimated); units bn VND, ratios %. Basis (consolidated/parent) is not labelled by vnstock. Agribank is unlisted. No fundamentals in this build: every Finance host was unreachable from the build machine — re-run where they are reachable (see coverage.sources).",
+  "coverage": {
+   "banks": 28,
+   "with_fundamentals": 0,
+   "with_market": 28,
+   "annual_years": [
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "quarters": [
+    "2024-Q3",
+    "2024-Q4",
+    "2025-Q1",
+    "2025-Q2",
+    "2025-Q3",
+    "2025-Q4",
+    "2026-Q1",
+    "2026-Q2"
+   ],
+   "sources": {
+    "VCI": {
+     "host": "iq.vietcap.com.vn",
+     "reachable": false,
+     "detail": "ProxyError: HTTPSConnectionPool(host='iq.vietcap.com.vn', port=443): Max retries exceeded with url: / (Caused by"
+    },
+    "MAS": {
+     "host": "masboard.masvn.com",
+     "reachable": false,
+     "detail": "ProxyError: HTTPSConnectionPool(host='masboard.masvn.com', port=443): Max retries exceeded with url: / (Caused b"
+    },
+    "KBS": {
+     "host": "kbbuddywts.kbsec.com.vn",
+     "reachable": false,
+     "detail": "ProxyError: HTTPSConnectionPool(host='kbbuddywts.kbsec.com.vn', port=443): Max retries exceeded with url: / (Cau"
+    },
+    "MBK": {
+     "host": "data.maybanktrade.com.vn",
+     "reachable": false,
+     "detail": "ProxyError: HTTPSConnectionPool(host='data.maybanktrade.com.vn', port=443): Max retries exceeded with url: / (Ca"
+    }
+   },
+   "excluded": [
+    {
+     "ticker": "BIC",
+     "name": "Bảo hiểm BIDV",
+     "organ_name": "Tổng Công ty Cổ phần Bảo hiểm Ngân hàng Đầu tư và Phát triển Việt Nam",
+     "exchange": "HOSE",
+     "icb_code2": "8500",
+     "reason": "not a commercial bank (name/ICB)"
+    },
+    {
+     "ticker": "ABI",
+     "name": "BH NH Nông Nghiệp",
+     "organ_name": "Công ty Cổ phần Bảo hiểm Ngân hàng Nông Nghiệp",
+     "exchange": "UPCoM",
+     "icb_code2": "8500",
+     "reason": "not a commercial bank (name/ICB)"
+    }
+   ],
+   "delisted_or_suspended": [
+    {
+     "ticker": "NVB",
+     "trading_status": "TRADING_OTHER_VIOLATIONS_ACTIVATED"
+    }
+   ],
+   "per_bank": {
+    "ABB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "ACB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "BAB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "BID": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "BVB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "CTG": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "EIB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "HDB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "KLB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "LPB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "MBB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "MSB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "NAB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "NVB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "OCB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "PCB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "PGB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "SGB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "SHB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "SSB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "STB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "TCB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "TPB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "VAB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "VBB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "VCB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "VIB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    },
+    "VPB": {
+     "annual": [],
+     "quarterly": [],
+     "fields": [],
+     "market": true
+    }
+   }
+  }
+ },
+ "banks": [
+  {
+   "ticker": "ABB",
+   "name": "Ngân hàng An Bình",
+   "organ_name": "Ngân hàng Thương mại Cổ phần An Bình",
+   "exchange": "UPCoM",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 17700.0,
+    "date": "2026-10-06",
+    "listed_shares": 1606783948,
+    "market_cap_bn": 28440.1,
+    "charter_capital_bn_derived": 16067.8,
+    "exchange_board": "UPCOM",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "ACB",
+   "name": "ACB",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Á Châu",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 20600.0,
+    "date": "2026-10-06",
+    "listed_shares": 5804421957,
+    "market_cap_bn": 119571.1,
+    "charter_capital_bn_derived": 58044.2,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "BAB",
+   "name": "Ngân hàng Bắc Á",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Bắc Á",
+   "exchange": "HNX",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 10800.0,
+    "date": "2026-10-06",
+    "listed_shares": 1152550716,
+    "market_cap_bn": 12447.5,
+    "charter_capital_bn_derived": 11525.5,
+    "exchange_board": "HNX",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "BID",
+   "name": "BIDV",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam",
+   "exchange": "HOSE",
+   "state_owned": true,
+   "type": "SOCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 34600.0,
+    "date": "2026-10-06",
+    "listed_shares": 7778229473,
+    "market_cap_bn": 269126.7,
+    "charter_capital_bn_derived": 77782.3,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "BVB",
+   "name": "Ngân hàng Bản Việt - BVBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Bản Việt",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 10850.0,
+    "date": "2026-10-06",
+    "listed_shares": 640820000,
+    "market_cap_bn": 6952.9,
+    "charter_capital_bn_derived": 6408.2,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "CTG",
+   "name": "VietinBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Công thương Việt Nam",
+   "exchange": "HOSE",
+   "state_owned": true,
+   "type": "SOCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 29800.0,
+    "date": "2026-10-06",
+    "listed_shares": 7766944637,
+    "market_cap_bn": 231455.0,
+    "charter_capital_bn_derived": 77669.4,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "EIB",
+   "name": "Eximbank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Xuất nhập khẩu Việt Nam",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 16400.0,
+    "date": "2026-10-06",
+    "listed_shares": 1868810607,
+    "market_cap_bn": 30648.5,
+    "charter_capital_bn_derived": 18688.1,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "HDB",
+   "name": "HDBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Phát Triển Thành phố Hồ Chí Minh",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 28050.0,
+    "date": "2026-10-06",
+    "listed_shares": 5005276323,
+    "market_cap_bn": 140398.0,
+    "charter_capital_bn_derived": 50052.8,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "KLB",
+   "name": "KienlongBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Kiên Long",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 11200.0,
+    "date": "2026-10-06",
+    "listed_shares": 752788337,
+    "market_cap_bn": 8431.2,
+    "charter_capital_bn_derived": 7527.9,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "LPB",
+   "name": "LPBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Lộc Phát Việt Nam",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 43900.0,
+    "date": "2026-10-06",
+    "listed_shares": 2987282100,
+    "market_cap_bn": 131141.7,
+    "charter_capital_bn_derived": 29872.8,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "MBB",
+   "name": "MBBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Quân đội",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 19200.0,
+    "date": "2026-10-06",
+    "listed_shares": 9263249895,
+    "market_cap_bn": 177854.4,
+    "charter_capital_bn_derived": 92632.5,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "MSB",
+   "name": "MSB Bank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Hàng Hải Việt Nam",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 14400.0,
+    "date": "2026-10-06",
+    "listed_shares": 3120000000,
+    "market_cap_bn": 44928.0,
+    "charter_capital_bn_derived": 31200.0,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "NAB",
+   "name": "Ngân hàng Nam Á",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Nam Á",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 12900.0,
+    "date": "2026-10-06",
+    "listed_shares": 2058822282,
+    "market_cap_bn": 26558.8,
+    "charter_capital_bn_derived": 20588.2,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "NVB",
+   "name": "Ngân hàng Quốc Dân",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Quốc Dân",
+   "exchange": "HNX",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_OTHER_VIOLATIONS_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 16500.0,
+    "date": "2026-10-06",
+    "listed_shares": 2924632751,
+    "market_cap_bn": 48256.4,
+    "charter_capital_bn_derived": 29246.3,
+    "exchange_board": "HNX",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "OCB",
+   "name": "Ngân hàng Phương Đông",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Phương Đông",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 9990.0,
+    "date": "2026-10-06",
+    "listed_shares": 3062510126,
+    "market_cap_bn": 30594.5,
+    "charter_capital_bn_derived": 30625.1,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "PCB",
+   "name": "PVcomBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Đại chúng Việt Nam",
+   "exchange": "UPCoM",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 8300.0,
+    "date": "2026-10-06",
+    "listed_shares": 899272806,
+    "market_cap_bn": 7464.0,
+    "charter_capital_bn_derived": 8992.7,
+    "exchange_board": "UPCOM",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "PGB",
+   "name": "PG Bank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Thịnh vượng và Phát triển",
+   "exchange": "UPCoM",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 9700.0,
+    "date": "2026-10-06",
+    "listed_shares": 732702236,
+    "market_cap_bn": 7107.2,
+    "charter_capital_bn_derived": 7327.0,
+    "exchange_board": "UPCOM",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "SGB",
+   "name": "Sài Gòn Công thương",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Sài Gòn Công thương",
+   "exchange": "UPCoM",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 13000.0,
+    "date": "2026-10-06",
+    "listed_shares": 360819732,
+    "market_cap_bn": 4690.7,
+    "charter_capital_bn_derived": 3608.2,
+    "exchange_board": "UPCOM",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "SHB",
+   "name": "SHB",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Sài Gòn – Hà Nội",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 10950.0,
+    "date": "2026-10-06",
+    "listed_shares": 4594200024,
+    "market_cap_bn": 50306.5,
+    "charter_capital_bn_derived": 45942.0,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "SSB",
+   "name": "SeABank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Đông Nam Á",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 16800.0,
+    "date": "2026-10-06",
+    "listed_shares": 3428800000,
+    "market_cap_bn": 57603.8,
+    "charter_capital_bn_derived": 34288.0,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "STB",
+   "name": "NH Sài Gòn Tài Lộc (SACOMBANK)",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Sài Gòn Tài Lộc",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 67700.0,
+    "date": "2026-10-06",
+    "listed_shares": 1885215716,
+    "market_cap_bn": 127629.1,
+    "charter_capital_bn_derived": 18852.2,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "TCB",
+   "name": "Techcombank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Kỹ thương Việt Nam",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 32450.0,
+    "date": "2026-10-06",
+    "listed_shares": 7086240414,
+    "market_cap_bn": 229948.5,
+    "charter_capital_bn_derived": 70862.4,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "TPB",
+   "name": "TPBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Tiên Phong",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 11800.0,
+    "date": "2026-10-06",
+    "listed_shares": 2774046873,
+    "market_cap_bn": 32733.8,
+    "charter_capital_bn_derived": 27740.5,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "VAB",
+   "name": "Ngân hàng Việt Á",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Việt Á",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 9030.0,
+    "date": "2026-10-06",
+    "listed_shares": 902075041,
+    "market_cap_bn": 8145.7,
+    "charter_capital_bn_derived": 9020.8,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "VBB",
+   "name": "VietBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Việt Nam Thương Tín",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 13300.0,
+    "date": "2026-10-06",
+    "listed_shares": 1184586604,
+    "market_cap_bn": 15755.0,
+    "charter_capital_bn_derived": 11845.9,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "VCB",
+   "name": "Vietcombank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Ngoại thương Việt Nam",
+   "exchange": "HOSE",
+   "state_owned": true,
+   "type": "SOCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 57300.0,
+    "date": "2026-10-06",
+    "listed_shares": 8355675094,
+    "market_cap_bn": 478780.2,
+    "charter_capital_bn_derived": 83556.8,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "VIB",
+   "name": "VIBBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Quốc tế Việt Nam",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 13500.0,
+    "date": "2026-10-06",
+    "listed_shares": 3404005710,
+    "market_cap_bn": 45954.1,
+    "charter_capital_bn_derived": 34040.1,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  },
+  {
+   "ticker": "VPB",
+   "name": "VPBank",
+   "organ_name": "Ngân hàng Thương mại Cổ phần Việt Nam Thịnh Vượng",
+   "exchange": "HOSE",
+   "state_owned": false,
+   "type": "JSCB",
+   "listing_status": {
+    "trading_status": "TRADING_ACTIVATED",
+    "is_delisted": false
+   },
+   "annual": {},
+   "quarterly": {},
+   "market": {
+    "close": 23200.0,
+    "date": "2026-10-06",
+    "listed_shares": 7933923601,
+    "market_cap_bn": 184067.0,
+    "charter_capital_bn_derived": 79339.2,
+    "exchange_board": "HOSE",
+    "source": "vnstock_data Trading(VCI).price_board",
+    "note": "market_cap_bn = close × listed shares; charter capital derived as listed shares × 10,000 VND par"
+   },
+   "fetch": {
+    "errors": {
+     "all": [
+      "no reachable finance source"
+     ]
+    }
+   }
+  }
+ ]
+}

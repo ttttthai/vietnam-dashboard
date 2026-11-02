@@ -1,7 +1,6 @@
 fastapi>=0.110
 uvicorn[standard]>=0.27
 apscheduler>=3.10
-# vnstock is optional — heavy deps (pandas, seaborn, matplotlib) may exceed
-# Render free-tier build limits. Server falls back to static data if absent.
-# Uncomment to enable live VN-Index/HNX-Index + bank prices:
-# vnstock>=3.0
+# vnstock (sponsor library vnstock_data) is optional and must NEVER be installed from public PyPI
+# (quarantined 2026-09-24; dependency-confusion squatter present). See README "vnstock (optional)".
+# Without it the server uses the direct Vietcap endpoints.
