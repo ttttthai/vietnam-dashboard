@@ -10,7 +10,7 @@ Run (sponsor venv, never with public-PyPI vnstock):
 * Universe: Listing(source='VCI').symbols_by_exchange(), ICB code 8300 (Banks), type STOCK, not DELISTED.
 * Market: Trading(source='VCI').price_board → close, trading date, listed shares, trading status.
 * Fundamentals: Finance(source, symbol, period) balance_sheet / income_statement / ratio, annual 2019–2025 and the
-  last 8 quarters up to Q2-2026; sources tried in order VCI → MAS → KBS → MBK, each pre-flighted (a source whose
+  last 8 quarters up to Q3-2026; sources tried in order VCI → MAS → KBS → MBK, each pre-flighted (a source whose
   host is unreachable is skipped and recorded in _meta.coverage.sources). Values are only ever copied from the
   responses — null when a field/period is not returned, never estimated.
 * Full balance sheet: every period entry also carries `bs: {item_key: bn VND}` — the source's balance-sheet rows
@@ -42,7 +42,7 @@ CACHE_TTL = 24 * 3600
 OUT = ROOT / "data" / "banks_vnstock.json"
 RETRY = {"tries": 5, "base_wait": 2.0, "max_wait": 20.0}
 YEARS = [str(y) for y in range(2019, 2026)]
-QUARTERS = ["2024-Q3", "2024-Q4", "2025-Q1", "2025-Q2", "2025-Q3", "2025-Q4", "2026-Q1", "2026-Q2"]
+QUARTERS = ["2024-Q4", "2025-Q1", "2025-Q2", "2025-Q3", "2025-Q4", "2026-Q1", "2026-Q2", "2026-Q3"]
 SOURCES = ["VCI", "MAS", "KBS", "MBK"]
 REPORTS = ["balance_sheet", "income_statement", "ratio"]
 STATE_OWNED = {"VCB", "BID", "CTG"}            # Agribank (the 4th SOCB) is not listed
@@ -97,12 +97,12 @@ _TCTD = r"(cac_)?(tctd|to_chuc_tin_dung|ctd)_khac"
 _DERIV = r"^(cac_)?cong_cu_tai_chinh_phai_sinh"
 BS_TEMPLATE: list[tuple] = [
     ("cash", "asset", "Tiền mặt, vàng bạc, đá quý", "Cash, gold and gemstones", None, False,
-     [r"^tien_mat(_|$)", r"^cash(_and_(precious_metals|gold|gemstones|cash_equivalents).*)?$", r"^cash_"], r"tuong_duong"),
+     [r"^tien_mat(_|$)", r"^tien_va_cac_khoan_tuong_duong_tien$", r"^cash(_and_(precious_metals|gold|gemstones|cash_equivalents).*)?$", r"^cash_"], None),
     ("sbv_deposits", "asset", "Tiền gửi tại NHNN", "Balances with the SBV", None, False,
      [r"^tien_gui_tai_(ngan_hang_nha_nuoc|nhnn)", r"^(balances?|deposits?)_(with|at)_(the_)?(sbv|state_bank)"], None),
     ("interbank_assets", "asset", "Tiền gửi và cho vay các TCTD khác", "Placements with and loans to other credit institutions",
      None, False,
-     [rf"^tien_gui_va_cho_vay_{_TCTD}",
+     [rf"^tien_gui_va_cho_vay_{_TCTD}", rf"^tien_gui_tai_{_TCTD}_va_cho_vay_{_TCTD}",
       r"^(placements?|deposits?)_(with|at)_(and_loans?_to_)?other_(credit_institutions?|banks?)",
       r"^(due_from|loans?_to)_other_(credit_institutions?|banks?)"], r"du_phong|provision"),
     ("trading_securities", "asset", "Chứng khoán kinh doanh", "Trading securities", None, False,
@@ -174,7 +174,7 @@ BS_TEMPLATE: list[tuple] = [
     ("fx_revaluation", "equity", "Chênh lệch tỷ giá hối đoái", "Foreign exchange differences", None, False,
      [r"^chenh_lech_ty_gia", r"^(foreign_(currency|exchange)|fx)_(translation_)?(differences?|revaluation|reserves?)"], None),
     ("retained_earnings", "equity", "Lợi nhuận chưa phân phối", "Retained earnings", None, False,
-     [r"^loi_nhuan_chua_phan_phoi", r"^(retained_(earnings|profits?)|undistributed_(earnings|profits?)|accumulated_(profits?|losses))"],
+     [r"^loi_nhuan_chua_phan_phoi", r"^loi_nhuan_sau_thue_chua_phan_phoi", r"^(retained_(earnings|profits?)|undistributed_(earnings|profits?)|accumulated_(profits?|losses))"],
      None),
     ("minority_interest", "equity", "Lợi ích của cổ đông thiểu số", "Minority interest", None, False,
      [r"^loi_ich_(cua_)?(co_dong_)?(thieu_so|khong_kiem_soat)", r"^(minority_interests?|non_controlling_interests?)$",
@@ -358,6 +358,9 @@ def extract_bs(rows, kind: str):
     for pk, lst in per_rows.items():
         out: dict[str, float] = {}
         ta = next((r["i"] for r in lst if _match("total_assets", r["names"])), None)
+        if ta == 0:                           # VCI lists total assets first: the asset rows end at total liabilities
+            tl = next((r["i"] for r in lst if _match("total_liabilities", r["names"])), None)
+            ta = tl - 1 if tl else None
         for r in lst:
             r["side"] = None if ta is None else ("asset" if r["i"] <= ta else "liab_eq")
             r["claimed"] = False
@@ -495,7 +498,14 @@ def build_periods(raw: dict, keep: list[str], fetched_at: str, kind: str) -> dic
         if not p or not (any(v is not None for f, v in p.items() if f not in ("_src", "_bs")) or p.get("_bs")):
             continue
         bs = p.get("_bs") or {}
-        res[pk] = {**{f: p.get(f) for f in FIELDS}, "bs": {k: bs[k] for k in BS_KEYS if bs.get(k) is not None},
+        vals = {f: p.get(f) for f in FIELDS}
+        if (p.get("_bs") or {}).get("customer_loans_gross") is not None:   # VCI's parent line is net of provisions
+            vals["customer_loans"] = p["_bs"]["customer_loans_gross"]
+        if not vals.get("car"):               # VCI returns car = 0 where it has no figure (quarters): not reported
+            vals["car"] = None
+        if vals.get("llr_coverage") is not None:   # reserves are signed negative in the source
+            vals["llr_coverage"] = abs(vals["llr_coverage"])
+        res[pk] = {**vals, "bs": {k: bs[k] for k in BS_KEYS if bs.get(k) is not None},
                    "period": pk, "period_type": kind,
                    "source": "vnstock_data " + "/".join(sorted(p.get("_src", []))),
                    "basis": None, "basis_note": "vnstock does not label consolidated vs parent-only",

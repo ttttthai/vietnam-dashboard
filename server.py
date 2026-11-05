@@ -1527,7 +1527,8 @@ def api_banks(period: str = "year", include_synthetic: bool = False):
         "periods": grid,
         "reported_only": not include_synthetic,
         "synthetic_periods_removed": removed,
-        "fundamentals_basis": (f"vnstock_data reported periods for {len(vn_backed)} banks; " if vn_backed else "")
+        "fundamentals_basis": f"vnstock_data reported periods for all {len(vn_backed)} banks" if len(vn_backed) == len(rows)
+                              else (f"vnstock_data reported periods for {len(vn_backed)} banks; " if vn_backed else "")
                               + f"{BANK_FUNDAMENTALS_BASIS} for the rest of the curated 17"
                               + ("; no fundamentals for the other listed banks" if universe else ""),
         "quarterly_reported": any((r.get("source") or "").startswith("vnstock") and r["period_label"]
@@ -1574,7 +1575,7 @@ def api_banks_universe():
 
 
 # ─── Per-item balance-sheet history (8 quarters) for the Appendix mini charts ──
-BS_HISTORY_QUARTERS = ["2024-Q3", "2024-Q4", "2025-Q1", "2025-Q2", "2025-Q3", "2025-Q4", "2026-Q1", "2026-Q2"]
+BS_HISTORY_QUARTERS = ["2024-Q4", "2025-Q1", "2025-Q2", "2025-Q3", "2025-Q4", "2026-Q1", "2026-Q2", "2026-Q3"]
 FINANCE_LATEST_MAP = {"total_assets": "total_assets", "customer_loans": "customer_loans_gross",
                       "customer_deposits": "customer_deposits", "equity": "equity_total"}
 _BS_TEMPLATE_CACHE: list[dict] = []
@@ -1698,9 +1699,69 @@ def api_banks_bs_history():
     return JSONResponse(_bs_history(_data_json("banks_vnstock"), _data_json("finance"), _bs_template()))
 
 
+REPORTED_MIN_BANKS = 20   # a period needs this many banks before the system card shows it
+
+
+def _reported_statements(period: str) -> dict | None:
+    """Income statement summed over the listed banks' reported figures (data/banks_vnstock.json). The lines the
+    statements do not break out (non-interest income, costs and provisions, tax) are differences of reported totals.
+    None when the file has no period with enough banks; the caller then keeps the FY2024 model."""
+    kind = "quarterly" if period == "quarter" else "annual"
+    keys = ("net_interest_income", "total_operating_income", "pre_tax_profit", "net_profit")
+    banks = [b.get(kind) or {} for b in (_data_json("banks_vnstock").get("banks") or []) if isinstance(b, dict)]
+    rows: dict[str, dict] = {}
+    for b in banks:
+        for pk, p in b.items():
+            if isinstance(p, dict) and all(_is_num(p.get(k)) for k in keys):
+                r = rows.setdefault(pk, {**{k: 0.0 for k in keys}, "assets": 0.0, "equity": 0.0, "loans": 0.0, "deposits": 0.0, "n": 0})
+                for k in keys:
+                    r[k] += p[k]
+                for k, f in (("assets", "total_assets"), ("equity", "equity"), ("loans", "customer_loans"), ("deposits", "customer_deposits")):
+                    r[k] += p.get(f) if _is_num(p.get(f)) else 0
+                r["n"] += 1
+    pks = sorted((k for k, r in rows.items() if r["n"] >= REPORTED_MIN_BANKS), key=lambda k: _period_sort(_period_label(k)))
+    if not pks:
+        return None
+    nii = [rows[k]["net_interest_income"] for k in pks]
+    toi = [rows[k]["total_operating_income"] for k in pks]
+    pbt = [rows[k]["pre_tax_profit"] for k in pks]
+    npat = [rows[k]["net_profit"] for k in pks]
+    diff = lambda a, b: [x - y for x, y in zip(a, b)]
+
+    def line(key, vi, en, hist, section, level=1, subtotal=False):
+        h = [round(v) for v in hist]
+        return {"key": key, "name": vi, "name_en": en, "value": h[-1], "history": h, "section": section, "level": level,
+                "subtotal": subtotal, "breakdown": None}
+
+    last = rows[pks[-1]]
+    return {
+        "periods": [_period_label(k) for k in pks], "bank_counts": [rows[k]["n"] for k in pks],
+        "income_statement": [
+            line("nii", "Thu nhập lãi thuần (NII)", "Net interest income (NII)", nii, "revenue", 0, True),
+            line("non_int", "Thu nhập ngoài lãi", "Non-interest income", diff(toi, nii), "revenue"),
+            line("toi", "Tổng thu nhập hoạt động (TOI)", "Total operating income (TOI)", toi, "revenue", 0, True),
+            line("costs", "Chi phí hoạt động và dự phòng", "Operating costs and provisions", diff(pbt, toi), "cost"),
+            line("pbt", "Lợi nhuận trước thuế (PBT)", "Profit before tax (PBT)", pbt, "profit", 0, True),
+            line("tax", "Thuế và khoản khác", "Tax and other items", diff(npat, pbt), "cost"),
+            line("npat", "Lợi nhuận sau thuế (NPAT)", "Net profit (NPAT)", npat, "profit", 0, True),
+        ],
+        "totals": {"assets": round(last["assets"]), "equity": round(last["equity"]), "loans": round(last["loans"]),
+                   "deposits": round(last["deposits"]), "nii": round(nii[-1]), "toi": round(toi[-1]),
+                   "npat": round(npat[-1]), "bank_count": last["n"]},
+    }
+
+
 @app.get("/api/banks/statements")
 def api_banks_statements(period: str = "year"):
     """System-aggregate Balance Sheet + Income Statement. period=year|quarter"""
+    rep = _reported_statements("quarter" if period == "quarter" else "year")
+    if rep:
+        return JSONResponse({
+            "period": period, **rep, "balance_sheet": {"assets": [], "liab_equity": []},
+            "as_of": f"{rep['periods'][-1]} · tổng {rep['totals']['bank_count']} NHTM niêm yết (số báo cáo)",
+            "synthetic_history": False,
+            "history_note": "Sum of the listed banks' reported figures (data/banks_vnstock.json); basis not labelled by the source.",
+        })
     s = _STATEMENTS_CACHE.get(period) or _STATEMENTS_CACHE["year"]
     latest_period = s["periods"][-1]
     return JSONResponse({
