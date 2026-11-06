@@ -1,4 +1,27 @@
 {
- "_note": "One entry per weekly all-agents run (scheduled task weekly-all-agents-update, Thursdays 23:59 ICT), newest last. Read by GET /api/update-log for the Log window. decision: MINOR | STRATEGIC (the Narrator's call).",
- "runs": []
+  "_note": "One entry per weekly all-agents run (scheduled task weekly-all-agents-update, Thursdays 23:59 ICT), newest last. Read by GET /api/update-log for the Log window. decision: MINOR | STRATEGIC (the Narrator's call).",
+  "runs": [
+    {
+      "date": "2026-11-06",
+      "decision": "STRATEGIC",
+      "headline": "Growth is unchanged at 9.01% for nine months, but rates turned lower by directive rather than policy, the external balance weakened, and US trade replaced oil as the main outside risk.",
+      "headline_vi": "Tăng trưởng 9 tháng vẫn ở 9,01%, nhưng lãi suất giảm theo chỉ đạo chứ không theo chính sách, cân đối bên ngoài yếu đi, và thương mại với Mỹ thay dầu thành rủi ro bên ngoài chính.",
+      "n_changes": 233,
+      "by_tab": {
+        "Strategy": 21,
+        "Economy": 25,
+        "Society": 9,
+        "Policy": 16,
+        "Finance": 15,
+        "Investing": 13,
+        "Geopolitics": 12,
+        "Research": 27,
+        "Ed": 12,
+        "Narrator": 83
+      },
+      "file": "2026-11-06.md",
+      "pushed": true,
+      "commit": null
+    }
+  ]
 }

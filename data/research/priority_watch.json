@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-06",
+ "as_of": "2026-11-06",
  "built_by": "Research agent",
  "standing_task": "User: pay special focus (create a priority list) to FDI disbursement vs registered news, remittances, tourism. Kept every run; items ranked.",
  "verification_legend": {
@@ -23,54 +23,46 @@
     "data/invest_macro.json MACRO (no FDI key today)"
    ],
    "latest_held": {
-    "period": "Jan-Sep 2026",
+    "period": "Jan-Oct 2026",
     "value": {
-     "registered_musd": 50360.0,
-     "registered_yoy_pct": 76.4,
-     "disbursed_musd": 21070.0,
-     "disbursed_yoy_pct": 12.1
+     "registered_musd": 54850.0,
+     "registered_yoy_pct": 74.0,
+     "disbursed_musd": 24080.0,
+     "disbursed_yoy_pct": 13.1
     },
     "annual_last": {
      "period": "2025",
      "registered_musd": 38418.1,
      "disbursed_musd": 27620.0
-    }
+    },
+    "path": "ECON_OFFICIAL.ytd_latest (ytd_2026 stays Jan-Sep)"
    },
    "latest_published": {
-    "period": "Jan-Sep 2026 (to 30/09/2026)",
+    "period": "Jan-Oct 2026 (to 31/10/2026)",
     "value": {
-     "registered_busd": 50.36,
-     "registered_yoy_pct": 76.4,
+     "registered_busd": 54.85,
+     "registered_yoy_pct": 74.0,
      "components": {
       "new": {
-       "busd": 29.24,
-       "projects": 3108,
-       "note": "x2.4 capital, +6.2% projects yoy"
+       "busd": 30.73,
+       "projects": 3478
       },
       "adjusted": {
-       "busd": 14.15,
-       "projects_times": 948,
-       "yoy_pct": 25.1
+       "busd": 16.13,
+       "times": 1079,
+       "yoy_pct": 33.2
       },
       "capital_contribution_share_purchase": {
-       "busd": 6.97,
-       "yoy_pct": 44.0
+       "busd": 7.99,
+       "count": 2616,
+       "yoy_pct": 49.6
       }
      },
-     "disbursed_busd": 21.07,
-     "disbursed_yoy_pct": 12.1,
-     "top_investor_new": "Singapore 9.26 bn (31.7% of new)",
-     "top_sector_new": "manufacturing 13.38 bn (45.8% of new)"
+     "disbursed_busd": 24.08,
+     "disbursed_yoy_pct": 13.1
     },
-    "source": "NSO 9M report / Foreign Investment Agency (Cục Đầu tư nước ngoài, MoF), released 03/10/2026",
-    "url": "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-    "alt_urls": [
-     "https://www.vietnamplus.vn/9-thang-nam-2026-von-dau-tu-nuoc-ngoai-dang-ky-vao-viet-nam-tang-764-post1140075.vnp",
-     "https://en.vietnamplus.vn/fdi-disbursement-hits-five-year-high-in-nine-months-post353062.vnp",
-     "https://dtinews.dantri.com.vn/vietnam-today/foreign-investment-in-vietnam-surpasses-usd-50-billion-20261003221500961.htm"
-    ],
-    "verified": "excerpt",
-    "check": "components sum 29.24+14.15+6.97 = 50.36 (consistent)"
+    "source": "NSO October report, read directly by Economy and re-read by Research 2026-11-06",
+    "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/"
    },
    "previous_published": {
     "period": "Jan-Aug 2026",
@@ -114,9 +106,9 @@
     "bop_fdi_in_to_nso_disbursed_pct": "79-81% every year 2015-2025 (e.g. 2025: 21.99 / 27.62 = 79.6%) — so BoP FDI inflow is not an independent check of disbursement (consistent with SBV estimating BoP FDI from realised capital net of domestically funded parts; method not confirmed this run).",
     "target_check": "NQ 10-NQ/TW: disbursed 30-40 bn/yr; 9M-2026 21.07 bn. 2025 Q4 alone added 27.62 - 9M-2025 (~18.80 implied) ≈ 8.8 bn, so a similar Q4 would leave 2026 near ~30 bn — derived arithmetic only, not a forecast."
    },
-   "gap_status": "current (values) / due (components and ratio not held)",
+   "gap_status": "Held equals published (Jan-Oct). Economy and Investing agree with the NSO text; no NSO vs FIA vs press conflict this month.",
    "release_rhythm": "Monthly, cumulative YTD. NSO socio-economic report on the 3rd of the following month (Decree 13/2026); FIA (now under MoF) publishes the same figures the same day or a day either side. Observed: 9M on 03/10/2026; FY2025 in early Jan-2026. Disbursed is an estimate (ước) revised the next month.",
-   "next_expected": "2026-11-03 (Jan-Oct); 2026-12-03 (Jan-Nov); 2027-01-03 (FY2026)",
+   "next_expected": "2026-12-03",
    "best_sources": [
     {
      "host": "www.nso.gov.vn",
@@ -159,6 +151,10 @@
     {
      "what": "BoP FDI inflow vs NSO disbursed",
      "assessment": "Definitional (see traps); page copy must not call BoP FDI 'disbursement'."
+    },
+    {
+     "date": "2026-11-06",
+     "item": "none open for 10M; MACRO.fdi.economy_sync resolved and its URL moved to the NSO report"
     }
    ],
    "news_watch": [
@@ -191,7 +187,31 @@
      "url": "https://www.vietnamplus.vn/dau-tu-cua-viet-nam-ra-nuoc-ngoai-trong-9-thang-dat-277-ty-usd-post1140063.vnp",
      "verified": "unverified"
     }
-   ]
+   ],
+   "previous_held_2026_10": {
+    "period": "Jan-Sep 2026",
+    "value": {
+     "registered_musd": 50360.0,
+     "registered_yoy_pct": 76.4,
+     "disbursed_musd": 21070.0,
+     "disbursed_yoy_pct": 12.1
+    },
+    "annual_last": {
+     "period": "2025",
+     "registered_musd": 38418.1,
+     "disbursed_musd": 27620.0
+    }
+   },
+   "derived_2026_11_06": {
+    "label": "derived by Research, not published",
+    "disbursed_to_registered_pct": 43.9,
+    "same_period_2025_implied_pct": 67.5,
+    "gap_busd": 30.77,
+    "oct_only_registered_busd": 4.49,
+    "oct_only_disbursed_busd": 3.01,
+    "needed_nov_dec_for_30bn_low_end_busd": 5.92,
+    "note": "Oct-only is 10M less 9M and mixes any revision. The ratio rose from 41.8% at 9M because October registration was small, not because disbursement sped up."
+   }
   },
   {
    "rank": 2,
@@ -320,7 +340,13 @@
      "url": "https://vietnamnet.vn/bo-truong-ngoai-giao-kieu-hoi-dat-muc-ky-luc-hon-16-ty-usd-2478212.html",
      "verified": "excerpt"
     }
-   ]
+   ],
+   "status_2026_11_06": {
+    "national_sbv": "null, nothing new",
+    "hcmc": "latest still H1-2026 (4.037 bn); 9M-2026 overdue, not found by Economy",
+    "bop_q2_2026": "BoP Q2 now held (current account -11.1 bn) but secondary income is null because the source article omits it and the SBV table is 403",
+    "next": "each weekly run; 2027-01-20..25 for FY2026"
+   }
   },
   {
    "rank": 3,
@@ -408,7 +434,7 @@
     }
    ],
    "release_rhythm": "Monthly with the NSO report on the 3rd (Decree 13/2026; observed 03/07 and 03/10/2026, the latter a Saturday; NSO tourism news item for 8M published in Sep-2026). VNAT republishes the NSO figures and adds market detail; annual revenue at the VNAT year-end conference (late Dec/Jan).",
-   "next_expected": "2026-11-03 (Jan-Oct); 2026-12-03; 2027-01-03 (FY2026)",
+   "next_expected": "2026-12-03",
    "best_sources": [
     {
      "host": "www.nso.gov.vn",
@@ -457,33 +483,42 @@
      "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/khach-quoc-te-den-viet-nam-8-thang-dat-gan-16-trieu-luot-nguoi-huong-toi-muc-tieu-25-trieu-khach-nam-2026/",
      "verified": "excerpt"
     }
-   ]
+   ],
+   "status_2026_11_06": {
+    "held": "Jan-Oct 19,535.4k (+13.8%); Oct 1,854.7k (+7.0% yoy, +4.9% mom); by market in ECONFLOW.tour.by_market_10M2026",
+    "published": "same, NSO 03/11",
+    "progress_to_25m_target_pct_derived": 78.1,
+    "needed_nov_dec_k_derived": 5465,
+    "run_rate_note": "derived: two months at October's pace give about 3.7 m, so the 25 m target needs a much stronger year-end",
+    "receipts_outbound": "no 10M figure published",
+    "next": "2026-12-03"
+   }
   }
  ],
  "summary_table": [
   {
    "rank": 1,
    "key": "fdi_registered_vs_disbursed",
-   "held": "9M-2026 reg 50.36 / dis 21.07 bn",
-   "published": "same (03/10)",
-   "status": "current; components + ratio missing",
-   "next": "2026-11-03"
+   "held": "10M-2026 reg 54.85 / dis 24.08 bn",
+   "published": "same (03/11, NSO read)",
+   "status": "current; components held; ratio 43.9% derived",
+   "next": "2026-12-03"
   },
   {
    "rank": 2,
    "key": "remittances",
    "held": "national 2025/2026 null; HCMC H1-2026 4.037",
-   "published": "national only 'over 16 bn' (speech); HCMC H1",
-   "status": "HCMC 9M due ~20-25/10; BoP Q2 overdue",
-   "next": "2026-10-20..25"
+   "published": "national only \"over 16 bn\" (speech); HCMC H1",
+   "status": "HCMC 9M overdue; BoP Q2 held without secondary income",
+   "next": "weekly run; FY 2027-01-20..25"
   },
   {
    "rank": 3,
    "key": "tourism",
-   "held": "9M 17.68 m",
-   "published": "same (03/10)",
-   "status": "current; markets not held",
-   "next": "2026-11-03"
+   "held": "10M 19.54 m; markets held",
+   "published": "same (03/11)",
+   "status": "current; receipts and outbound not published",
+   "next": "2026-12-03"
   }
  ]
 }

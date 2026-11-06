@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-06",
+ "as_of": "2026-11-06",
  "built_by": "Research agent",
  "status": "PROPOSED — no routine has been created; the main session asks the user before creating any.",
  "cron_note": "cron_ict fields are minute hour day month weekday in Asia/Ho_Chi_Minh (use CRON_TZ=Asia/Ho_Chi_Minh). Minutes are off the hour to avoid :00 congestion.",
@@ -124,7 +124,7 @@
    "cron_ict": "40 9 20 * *",
    "window_days": 5,
    "priority": "P2",
-   "reason": "M2/deposits and sector tables lag ~2 months; checking on the 20th catches both the SBV tables and the mid-month bond/money-market reports in one run.",
+   "reason": "M2/deposits and sector tables lag ~2 months; checking on the 20th catches both the SBV tables and the mid-month bond/money-market reports in one run. Evidence 2026-11-06: tables now land about 5-7 weeks after month-end, so the 20th of each month is about right.",
    "runner": "agent run",
    "web_cost": "medium"
   },
@@ -141,7 +141,7 @@
    "cron_ict": "40 9 1 2,5,8,11 *; 40 9 15 3,6,9,12 *",
    "window_days": 7,
    "priority": "P2",
-   "reason": "Bank FS and SBV prudential tables are quarterly with known lags.",
+   "reason": "Bank FS and SBV prudential tables are quarterly with known lags. Evidence 2026-11-06: SBV basic-indicator rows are monthly with about a 5-week lag; the weekly run can pick them up, the mid-Mar/Jun/Sep/Dec slot is only needed for NPL and ROA/ROE.",
    "runner": "agent run",
    "web_cost": "medium (PDFs needed)"
   },
@@ -186,7 +186,7 @@
     "str.drafts",
     "str.news"
    ],
-   "rule": "weekly Monday; twice weekly (Mon, Thu) during NA session 17/10–20/11/2026; re-derive stages on 1st of each month (effective dates passing)",
+   "rule": "weekly Monday; twice weekly (Mon, Thu) during NA session 17/10–21/11/2026; re-derive stages on 1st of each month (effective dates passing)",
    "cron_ict": "55 8 * * 1",
    "window_days": 7,
    "priority": "P1",
@@ -216,11 +216,11 @@
    "series_ids": [
     "soc.grdp"
    ],
-   "rule": "after nso_grdp: 30th of Mar/Jun/Sep/Dec (+ provincial 3rd-of-month briefings)",
+   "rule": "after nso_grdp: 30th of Mar/Jun/Sep/Nov (Decree 13/2026: Q4 estimate 29 Nov, next 2026-11-30 because the 29th is a Sunday) + provincial 3rd-of-month briefings",
    "cron_ict": "10 10 30 3,6,9,12 *",
    "window_days": 5,
    "priority": "P2",
-   "reason": "Provincial GRDP now comes on the 29th of the quarter’s last month (Decree 13/2026).",
+   "reason": "Provincial GRDP now comes on the 29th of the quarter’s last month (Decree 13/2026). Corrected 2026-11-06: December replaced by November after reading the decree text.",
    "runner": "agent run",
    "web_cost": "medium"
   },
@@ -311,7 +311,7 @@
    "cron_ict": "30 9 25 1,4,7,10 *",
    "window_days": 5,
    "priority": "P1 (priority watch #2)",
-   "reason": "HCMC releases ~3-4 weeks after quarter end (observed 22/07/2026, 23/01/2026); the national total has no regular release, so checking it monthly wastes searches — piggy-back one national query on this run.",
+   "reason": "HCMC releases ~3-4 weeks after quarter end (observed 22/07/2026, 23/01/2026); the national total has no regular release, so checking it monthly wastes searches — piggy-back one national query on this run. 2026-11-06: 9M-2026 still not found; keep checking in each weekly run until it appears.",
    "runner": "agent run",
    "web_cost": "low (1-2 searches)",
    "status": "PROPOSED"
@@ -327,7 +327,7 @@
    "cron_ict": "35 9 20 1,4,7,10 *",
    "window_days": 10,
    "priority": "P2",
-   "reason": "SBV quarterly BoP is irregular (low-confidence rule); secondary income and BoP FDI are priority-watch inputs. Can share the run with fin-monthly-tables (20th).",
+   "reason": "SBV quarterly BoP is irregular (low-confidence rule); secondary income and BoP FDI are priority-watch inputs. Can share the run with fin-monthly-tables (20th). 2026-11-06: Q2 appeared about 4 months after quarter-end; next check 2027-01-20, then monthly.",
    "runner": "agent run (merge with fin-monthly-tables day)",
    "web_cost": "low",
    "status": "PROPOSED"

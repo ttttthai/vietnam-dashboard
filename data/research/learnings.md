@@ -193,3 +193,37 @@ Both keep their structure and ownership rules.
 ### Files written
 - New: `data/research/qc_34_provinces.md` (16 findings + C1 data gaps). `source_log.json`: 2 hosts added, 2 observations appended.
   No page, data or agent-definition file edited.
+
+## 2026-11-06 — weekly pre-approved run (cross-tab consistency after the seven tab agents)
+
+### Learned
+1. **Access has changed.** From this environment curl and WebFetch reach NSO, pxweb, World Bank, MoF, HNX and most press. The 2026-10-06 "everything blocked" finding was about the cloud sandbox. sbv.gov.vn and imf.org are intermittent, and agents saw opposite results the same day. Agent files said "blocked"; corrected.
+2. **"Theo Bộ Tài chính" does not fix a number.** Two articles with that attribution gave 2,438.9 and 2,448.5 tn for the same 10M revenue. Compare with the NSO text and the Government briefing before picking a lead.
+3. **NSO never says "giải ngân" for 783.9 tn.** The term is "vốn đầu tư thực hiện từ nguồn NSNN". An agent paraphrase turned it into disbursement. Read the term as well as the number.
+4. **A denominator can move without notice.** The plan base fell 66,739.6 bn between 22/10 and 31/10 with no explanation in any source read. Rates only compare within one base.
+5. **Press may state an SBV number in its own voice.** VnExpress's 11.94% sentence is not a quote, so "Deputy Governor said" was too strong.
+6. **Cut-offs drift.** October's statement stopped at 26/10, not month-end. The calendar rule was widened.
+7. **SBV tables are faster than recorded.** August tables by 15/10 and ratios to 30/09 by 06/11: about 5-7 weeks, not 2-3 months.
+8. **Decree 13/2026:** the Q4 GRDP estimate is 29 November. On 2026-10-06 I doubted the correct date and guessed December. Read the text. Society caught it.
+9. **Stale "pending" notes last.** Finance's `oct2026_reported` waited on a confirmation that Economy's API read already gave, and the file stayed on the April vintage for three weeks. Vintage alignment needs one owner on one day.
+10. **Second-pass checks found what the brief did not list:** swap size (W9), Policy debt note (W17), +16.6 vs +16.69 (W6), -21 vs -22 (W8), wrong URL (W1), the 20/11 session date (W18). Keep the second pass.
+11. **Agent self-reports can be wrong about the data.** "Credit slowed" was in Finance's market view only; the cumulative figure rose. Check the wording in the data before correcting it.
+12. **My own process slip.** I put `embed_data.py --check` in a validation call although the brief forbids running that script; the call was denied by the auto-mode classifier before anything ran. Not retried. Validate with `python3 -m json.tool` only.
+
+### Rules revised (evidence in release_calendar.json)
+`nso_grdp` (29 Nov), `sbv_credit_total` (cut-off can precede month-end), `sbv_credit_sector` and `sbv_money_tables` (5-7 weeks), `sbv_prudential` (monthly rows, about 5 weeks), `wb_wdi` (off-cycle update seen), `na_sessions` (closes 21/11). New: `nso_population_projection`.
+
+### Files written
+- Data fixes under the weekly brief, narrow and each logged: `data/policy.json`, `data/finance.json`, `data/economy.json`, `data/invest_macro.json`.
+- Research: `inventory.json` (34 families refreshed, 2 Geopolitics families added), `release_calendar.json`, `source_log.json` (hosts updated, 4 added, `probes` list started), `schedule.json`, `priority_watch.json`, `consistency_report.md`, `update_plan.md` (old plan kept below the new one), `learnings.md`.
+- Agent definitions: listed next.
+
+### Agent-definition edits
+- `economy.md`: access line rewritten; rulings on revenue lead and public-investment concepts; warning not to import `embed_data.py`; stale 2025-budget pitfall replaced (closed).
+- `finance.md`: SBV table lags updated; T6/26 shift warning removed (closed by Finance); cut-off and speaker rule; DataMapper same-day recompute of the scenarios; public-investment concept rule; access line rewritten.
+- `policy.md`: session close 21/11 with phases; revenue lead; public-investment concepts; access line rewritten.
+- `investing.md`: mirror source is `ytd_latest`; public-investment concept rule.
+- `society.md`: GRDP dates per the decree text (29 Nov for Q4); access line rewritten.
+
+### Next run should
+Check 12.27 vs 11.94 against the SBV table; HNX October bonds; the 955,867.4 bn base; what NSO really publishes on 29-30/11.

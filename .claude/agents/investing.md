@@ -28,10 +28,13 @@ rates). The macro block must **agree with those owners' files** — take values 
 
 ## Sourcing notes for priority series (maintained by Research — see `data/research/priority_watch.json`)
 - FDI is a user priority series (registered vs disbursed). If the macro block carries FDI (proposed additive key
-  `MACRO.fdi`), copy Economy's `ECON_OFFICIAL.ytd_2026` values and URL exactly — registered total and its components
+  `MACRO.fdi`), copy Economy's `ECON_OFFICIAL.ytd_latest` values and URL exactly (`ytd_2026` stays on the last
+  quarter) — registered total and its components
   (new / adjusted / capital contribution & share purchase), disbursed, yoy, period — and label any
   disbursed/registered ratio as derived (≈). Registered includes M&A share purchases, so do not describe it as new
   capacity; disbursed is an estimate revised the following month. Release: NSO/FIA on the 3rd of the following month.
+- Public investment: `public_invest.latest` is the MoF disbursement series, the headline. NSO state-budget capital and
+  budget development spending are other concepts. Rates compare only on one plan base (ruling 2026-11-06).
 - Remittances and tourism, if cited in research notes, come from Economy's `ECONFLOW.remit` / `ECONFLOW.tour` with the
   definition named (SBV kiều hối vs BoP secondary income; arrivals vs receipts).
 

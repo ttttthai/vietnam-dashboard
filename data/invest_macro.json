@@ -1,19 +1,19 @@
 {
  "_meta": {
-  "owner": "Economy agent",
-  "as_of": "2026-10-07",
-  "note": "Drop-in replacement for the MACRO dict hard-coded in invest.py (same keys and structure; extra keys are additive). Values re-checked 2026-10-06 against the latest releases (NSO 9M/Q3-2026 report and Sep-2026 CPI of 03/10/2026; MoF public-investment disbursement to 30/09/2026). All via search-engine excerpts: nso.gov.vn, mof.gov.vn and press pages are blocked from the sandbox. Changes vs invest.py: public_invest.plan_bn 991,931.6 -> 1,022,607 (the 62.9% headline rate is of the full plan; 991,931.6 is the plan excluding the 5% local reserve for the Lao Cai-Hanoi-Hai Phong railway, on which the rate is 64.8%, now in plan_ex_rail_bn / pct_ex_rail); gdp.q4_required_est 12.5 -> 12.6 (same formula, rounded correctly). Refreshed by Economy after each NSO monthly release (next: 03/11/2026). 2026-10-07: added MACRO.gdp.history_quarterly (Q1-2024…Q3-2026, additive key) for the I01 animation."
+  "owner": "Investing agent",
+  "as_of": "2026-11-06",
+  "note": "Drop-in replacement for the MACRO dict hard-coded in invest.py (same keys and structure; extra keys are additive). Values re-checked 2026-10-06 against the latest releases (NSO 9M/Q3-2026 report and Sep-2026 CPI of 03/10/2026; MoF public-investment disbursement to 30/09/2026). All via search-engine excerpts: nso.gov.vn, mof.gov.vn and press pages are blocked from the sandbox. Changes vs invest.py: public_invest.plan_bn 991,931.6 -> 1,022,607 (the 62.9% headline rate is of the full plan; 991,931.6 is the plan excluding the 5% local reserve for the Lao Cai-Hanoi-Hai Phong railway, on which the rate is 64.8%, now in plan_ex_rail_bn / pct_ex_rail); gdp.q4_required_est 12.5 -> 12.6 (same formula, rounded correctly). Refreshed by Economy after each NSO monthly release (next: 03/11/2026). 2026-10-07: added MACRO.gdp.history_quarterly (Q1-2024…Q3-2026, additive key) for the I01 animation. 2026-11-06 (weekly run, Investing agent): additive keys only. No GDP release since 03/10, so MACRO.gdp is unchanged. Existing cpi and public_invest fields deliberately stay at their September/30-09 values because the page labels them 'T9' / '9T' and they are not comparable with the new plan base; newer data is in cpi.latest and public_invest.latest. New MACRO.fdi, MACRO.focus, MACRO.events are served through /api/invest/context under macro.* with no code change. 2026-11-06 (Research): MACRO.fdi re-pointed to the NSO report and economy_sync resolved; public_invest.latest gained the yoy comparison and the NSO concept note."
  },
  "MACRO": {
-  "as_of": "2026-10-06",
+  "as_of": "2026-11-06",
   "gdp": {
    "q1": 8.15,
    "q2": 8.81,
    "q3": 9.95,
    "ytd9m": 9.01,
    "target": 10.0,
-   "q4_required_est": 12.6,
-   "q4_required_method": "Approximation, not an official figure: Q4 assumed ≈ 28% of annual real GDP, so required Q4 ≈ (10 − 9.01 × 0.72) / 0.28 = 12.55%. For comparison, the World Bank's 7.4% for 2026 (EAP Update, 06/10/2026) implies Q4 ≈ 3.3% on the same approximation.",
+   "q4_required_est": 12.5,
+   "q4_required_method": "Approximation, not an official figure: Q4 assumed ≈ 28% of annual real GDP, so required Q4 ≈ (10 − 9.01 × 0.72) / 0.28 = 12.546%. For comparison, the World Bank's 7.4% for 2026 (EAP Update, 06/10/2026) implies Q4 ≈ 3.3% on the same approximation.",
    "period": "Q1–Q3 2026 and 9M-2026 vs same period 2025, constant prices; NSO estimate released 03/10/2026. Target: NQ 244/2025/QH15 (≥10%).",
    "source": "Cục Thống kê (NSO), công bố 03/10/2026",
    "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
@@ -89,7 +89,61 @@
    "source": "Bộ Tài chính, lũy kế đến 30/09/2026",
    "url": "https://baochinhphu.vn/giai-ngan-von-dau-tu-cong-9-thang-nam-2026-mot-so-bo-nganh-dia-phuong-con-cham-102261003011740764.htm",
    "alt_url": "https://baohaiphong.vn/giai-ngan-dau-tu-cong-dat-gan-643-000-ty-dong-sau-9-thang-554860.html",
-   "verified": "search-engine excerpt, 2026-10-06"
+   "verified": "search-engine excerpt, 2026-10-06",
+   "latest": {
+    "as_of_date": "2026-10-31",
+    "disbursed_bn": 708567.4,
+    "plan_bn": 955867.4,
+    "pct": 74.1,
+    "central_bn": 182047.2,
+    "local_bn": 526520.2,
+    "pct_on_full_plan_est": 69.3,
+    "pct_on_full_plan_est_method": "≈ derived, not published: 708,567.4 / 1,022,607 (plan_bn used for the 62.9% at 30/09) = 69.3%. Shown only for continuity with the 30/09 and weekly October rates.",
+    "weekly_path": [
+     {
+      "date": "2026-10-08",
+      "disbursed_bn": 652125.4,
+      "pct": 63.8,
+      "plan_bn": 1022607,
+      "url": "https://thoibaotaichinhvietnam.vn/infographics-giai-ngan-von-dau-tu-cong-ca-nuoc-dat-652-125-4-ty-dong-205460.html"
+     },
+     {
+      "date": "2026-10-15",
+      "disbursed_bn": 660739.5,
+      "pct": 64.6,
+      "plan_bn": 1022607,
+      "url": "https://thitruongtaichinhtiente.vn/giai-ngan-von-dau-tu-cong-dat-gan-661-nghin-ty-dong-bang-64-6-ke-hoach-86467.html"
+     },
+     {
+      "date": "2026-10-22",
+      "disbursed_bn": 673970.1,
+      "pct": 65.9,
+      "plan_bn": 1022607,
+      "pct_ex_rail": 67.9,
+      "url": "https://thanhtra.com.vn/dau-tu-72A9E3223/giai-ngan-von-dau-tu-cong-vuot-673000-ty-dong-dat-gan-66-ke-hoach-cce9750d0.html"
+     }
+    ],
+    "pct_yoy_pts": 19.7,
+    "budget_dev_spend_10m_bn": 735000,
+    "budget_dev_spend_10m_pct_estimate": 65.6,
+    "budget_dev_spend_note": "'gần 735 nghìn tỷ', estimate, 65.6% of the annual budget estimate; budget-execution concept, not the disbursement series above. Tạp chí Kinh tế - Tài chính, 01/11/2026.",
+    "budget_dev_spend_url": "https://tapchikinhtetaichinh.vn/dieu-hanh-ngan-sach-chu-dong-ho-tro-san-xuat-kinh-doanh-bao-dam-nguon-luc-phat-trien-171247.html",
+    "conflict": "Plan base changed: the 74.1% at 31/10 is stated on 955,867.4 bn, while the MoF series to 22/10 used 1,022,607 bn. The 66,739.6 bn difference is not explained in the source seen. Rates on the two bases are not comparable, so 74.1% is not an 8-point rise on 65.9%.",
+    "period": "cumulative to 31/10/2026",
+    "source": "Bộ Tài chính, as reported by Thời báo Tài chính Việt Nam, 06/11/2026",
+    "url": "https://thoibaotaichinhvietnam.vn/infographics-giai-ngan-von-dau-tu-cong-ca-nuoc-dat-708-567-4-ty-dong-206473.html",
+    "verified": "article text read 2026-11-06; central + local = total and 708,567.4 / 955,867.4 = 74.1% checked. MoF original not seen; central/local plan split and yoy not given (null).",
+    "disbursed_yoy_bn": 217500,
+    "pct_yoy_url": "https://bnews.vn/hop-bao-chinh-phu-thuong-ky-tap-trung-cac-giai-phap-cu-the-kha-thi-de-hoan-thanh-muc-tieu-nam-2026/443063.html",
+    "pct_yoy_note": "Government briefing 04/11/2026: 217.5 thousand bn and 19.7 above the same period; read as percentage points (Policy tab; 74.1 − 19.7 ≈ 54.4% a year earlier). Base effects apply.",
+    "other_concepts": {
+     "nso_state_budget_capital_bn": 783906.85,
+     "nso_pct_of_year_plan": 69.05,
+     "nso_yoy_pct": 19.81,
+     "nso_url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+     "note": "NSO realised investment from state-budget capital, not disbursement. The 69.05 here and the derived 69.3 on the old base are unrelated despite looking alike. Headline for disbursement is the MoF series above."
+    }
+   }
   },
   "cpi": {
    "yoy_sep": 5.08,
@@ -101,7 +155,259 @@
    "source": "Cục Thống kê (NSO), CPI tháng 9/2026",
    "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/",
    "alt_url": "https://markettimes.vn/cpi-thang-9-2026-tang-0-62-chu-yeu-do-gia-xang-dau-va-hoc-phi-132253.html",
-   "verified": "search-engine excerpt, 2026-10-06; same values as data/economy.json CPI_YOY_24 (last) and ECON_OFFICIAL.ytd_2026"
-  }
+   "verified": "search-engine excerpt, 2026-10-06; same values as data/economy.json CPI_YOY_24 (last) and ECON_OFFICIAL.ytd_2026",
+   "latest": {
+    "month": "2026-10",
+    "mom": 0.2,
+    "yoy": 5.09,
+    "vs_dec": 4.41,
+    "avg_ytd": 4.57,
+    "core_mom": -0.05,
+    "core_yoy": 4.04,
+    "core_avg_ytd": 4.24,
+    "transport_mom": 2.66,
+    "gasoline_mom": 6.86,
+    "food_catering_mom": -0.24,
+    "gold_index_mom": -2.85,
+    "usd_index_mom": -0.26,
+    "period": "Oct-2026 vs Sep-2026 (mom), vs Dec-2025 (vs_dec), vs Oct-2025 (yoy); Jan–Oct 2026 average vs same period 2025 (avg_ytd, core_avg_ytd); published 03/11/2026 (document dated 28/10/2026)",
+    "source": "Cục Thống kê (NSO), Tổng quan thị trường giá cả tháng 10 và 10 tháng năm 2026",
+    "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/11/chi-so-gia-tieu-dung-chi-so-gia-vang-va-chi-so-gia-do-la-my-thang-muoi-va-muoi-thang-nam-2026/",
+    "pdf_url": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf",
+    "verified": "NSO PDF read directly 2026-11-06 (page 1 summary, section III core inflation, sections 12–13 gold and USD)"
+   }
+  },
+  "fdi": {
+   "period": "Jan–Oct 2026 (registered to 31/10/2026)",
+   "released": "2026-11-03",
+   "unit": "million USD",
+   "registered_musd": 54850.0,
+   "registered_yoy_pct": 74.0,
+   "new_projects_musd": 30730.0,
+   "new_projects_count": 3478,
+   "new_projects_note": "+4.7% projects yoy, capital x2.2 yoy",
+   "adjusted_musd": 16130.0,
+   "adjusted_times": 1079,
+   "adjusted_yoy_pct": 33.2,
+   "capital_contribution_share_purchase_musd": 7990.0,
+   "capital_contribution_share_purchase_count": 2616,
+   "capital_contribution_share_purchase_yoy_pct": 49.6,
+   "sum_check": "30,730 + 16,130 + 7,990 = 54,850 (exact)",
+   "disbursed_musd": 24080.0,
+   "disbursed_yoy_pct": 13.1,
+   "disbursed_to_registered_pct": 43.9,
+   "disbursed_to_registered_label": "≈ derived, not published: 24,080 / 54,850. Not a disbursement rate: registration is lumpy and disbursement follows construction over years.",
+   "definition": "Registered includes capital contribution and share purchase (M&A of existing firms), so it is not all new capacity. Disbursed is an estimate, revised the following month.",
+   "source": "NSO October-2026 report",
+   "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+   "alt_url": "https://thitruongtaichinhtiente.vn/von-fdi-thuc-hien-dat-24-08-ty-usd-cao-nhat-5-nam-86780.html",
+   "verified": "primary: NSO report read 2026-11-06 (Research); components sum exactly.",
+   "economy_sync": "Resolved 2026-11-06 (Research): all values match data/economy.json ECON_OFFICIAL.ytd_latest (Jan–Oct 2026) and the NSO report."
+  },
+  "focus": {
+   "as_of": "2026-11-06",
+   "disclaimer": "Thông tin mang tính mô tả, không phải khuyến nghị đầu tư. / Descriptive information only, not investment advice.",
+   "basis": "Q3-2026 and 9M-2026 unaudited figures as reported by the press from company statements; primary HOSE filings were not opened and the Vietcap statement cross-check was not available this run. bn VND.",
+   "POW": {
+    "name": "PV Power",
+    "basis": "consolidated",
+    "q3_2026": {
+     "revenue": 16772,
+     "revenue_yoy_pct": 113.5,
+     "pbt": 2414,
+     "pbt_yoy_pct": 138.6,
+     "pat": 2073,
+     "pat_yoy_pct": 118.6,
+     "pat_parent": 1860,
+     "pat_parent_yoy_note": "x2.3"
+    },
+    "m9_2026": {
+     "revenue": 49406,
+     "revenue_yoy_pct": 94.5,
+     "gross_profit": 8701,
+     "pbt": 7744,
+     "pbt_yoy_pct": 232.0,
+     "pat": 6899,
+     "pat_yoy_pct": 216.2,
+     "pat_parent": 6434,
+     "pat_parent_yoy_pct": 246.5
+    },
+    "plan_2026": {
+     "revenue": 49887,
+     "pat": 1124,
+     "url": "https://mekongasean.vn/chi-sau-6-thang-pv-power-vuot-chi-tieu-loi-nhuan-ca-nam-2026-57934.html"
+    },
+    "supporting": [
+     "Higher dispatch: Nhơn Trạch 2 output +53.2%, Vũng Áng 1 +20.6%, Cà Mau 1&2 +3.9%; Nhơn Trạch 3&4 in commercial operation, with Qc payments for undispatched output of about 1,463 bn in 9M (Báo Đầu tư citing SHS Research, 02/11/2026)."
+    ],
+    "contrary": [
+     "Consolidated interest expense rose from 411 bn to 1,569 bn (+281.8%).",
+     "Parent-only Q3 profit includes a provision reversal of about 325 bn tied to Cà Mau O&M receivables; SHS estimates Q3 parent core profit at about 1,580 bn."
+    ],
+    "conflicts": [
+     "9M revenue 49,406 bn (consolidated statements, Báo Đầu tư 03/11) vs 46,161 bn (company estimate for the whole corporation, 15/10); different basis/vintage.",
+     "H1 as reported earlier (PAT 5,008; parent about 3,519, Vietnam Finance) does not add to 9M less Q3 (≈ 4,826 and ≈ 4,574, derived). Filing needed to explain any restatement."
+    ],
+    "url": "https://baodautu.vn/pv-power-9-thang-loi-nhuan-sau-thue-tang-hon-3-lan-d736366.html",
+    "alt_url": "https://doanhnhan.baophapluat.vn/pv-power-pow-vuot-26-ke-hoach-doanh-thu-sau-9-thang-san-luong-dien-tang-hon-40.md"
+   },
+   "PVT": {
+    "name": "PVTrans",
+    "basis": "consolidated",
+    "q3_2026": {
+     "revenue": 5610,
+     "revenue_yoy_pct": 27,
+     "gross_profit": 794,
+     "gross_margin_pct": 14.15,
+     "gross_margin_prior_pct": 13.22,
+     "pbt": 613,
+     "pbt_yoy_pct": 41,
+     "pat": 489,
+     "pat_yoy_pct": 40,
+     "net_profit_press": 375,
+     "net_profit_press_yoy_pct": 42,
+     "net_profit_press_note": "'lãi ròng', basis not stated in the article (Fili)"
+    },
+    "m9_2026": {
+     "revenue": 15525,
+     "revenue_yoy_pct": 34,
+     "pat": 1582,
+     "pat_yoy_pct": 61
+    },
+    "plan_2026": {
+     "revenue": 16500,
+     "pat": 1200,
+     "revenue_pct": 94,
+     "pat_pct": 132
+    },
+    "balance_sheet_2026_09_30": {
+     "total_assets": 23681,
+     "cash_and_htm_short_term": 6345,
+     "total_debt": 6964,
+     "equity": 12863
+    },
+    "supporting": [
+     "The company attributes growth to new vessels invested in 2025–2026 and better fleet efficiency; Fili adds tanker freight rates lifted by the Hormuz disruption."
+    ],
+    "contrary": [
+     "Q3 PAT 489 bn is below the Q2-2026 record of 678 bn recorded in the research note (≈ -28% qoq, derived).",
+     "Share price fell to the floor on 29/10/2026 (-1,550 VND/share, -6.78%, 19.7m shares) the day the results were reported in the press; the article gives no cause.",
+     "A 03/11/2026 article (Doanh nghiệp Hội nhập) describes pressure from ship repairs and higher fuel costs, and expects room to improve in Q4 as large vessels return: https://doanhnghiephoinhap.vn/doanh-nghiep-doanh-nhan&by-date=2026-10-30T10-48"
+    ],
+    "conflicts": [
+     "9M PAT 1,582 bn (+61%, Market Times) vs 1,581 bn (+60.61%, Báo Xây dựng); rounding."
+    ],
+    "url": "https://markettimes.vn/loi-nhuan-quy-3-2026-tang-40-co-phieu-pvtrans-van-giam-san-von-hoa-mat-hon-800-ty-dong-133606.html",
+    "alt_url": "https://fili.vn/2026/10/loi-nhuan-rong-pvtrans-tang-hon-40-trong-quy-3-vuot-ke-hoach-sau-9-thang-737-1508335.htm"
+   },
+   "GAS": {
+    "name": "PV GAS",
+    "basis": "consolidated",
+    "q3_2026": {
+     "revenue": 39708,
+     "revenue_yoy_pct": 11.26,
+     "gross_profit": 6219,
+     "gross_profit_yoy_pct": 51.6,
+     "gross_margin_pct": 15.66,
+     "gross_margin_prior_pct": 11.49,
+     "pat": 4569,
+     "pat_yoy_pct": 74.86,
+     "brent_usd": 97,
+     "brent_prior_usd": 69,
+     "dry_gas_lng_volume_yoy_pct": 24
+    },
+    "m9_2026": {
+     "revenue": 120977,
+     "revenue_yoy_pct": 32.29,
+     "pat": 13595,
+     "pat_yoy_pct": 33.49
+    },
+    "plan_2026": {
+     "revenue": 142000,
+     "pat": 9019,
+     "revenue_pct": 85,
+     "pat_pct": 151
+    },
+    "supporting": [
+     "The company cites Brent averaging 97 USD/barrel vs 69 a year earlier and dry gas + LNG volume +24%."
+    ],
+    "contrary": [
+     "The result is tied to the oil price, which is the risk already recorded in the research note."
+    ],
+    "conflicts": [
+     "H1 PAT about 9,016 bn + Q3 4,569 bn = 13,585 bn vs 9M 13,595 bn (10 bn gap).",
+     "9M revenue is about 85% of a 142,000 bn plan (Mekong ASEAN) but 113% of the management plan quoted at the 12/10 Party conference; different plans."
+    ],
+    "url": "https://mekongasean.vn/khi-kho-va-lng-dan-dat-da-tang-truong-doanh-thu-cua-pv-gas-trong-quy-3-61334.html",
+    "alt_url": "https://mekongasean.vn/dang-bo-pv-gas-kien-toan-nhan-su-cap-uy-trien-khai-nhiem-vu-3-thang-cuoi-nam-60686.html"
+   },
+   "GEE": {
+    "name": "GELEX Electric",
+    "basis": "consolidated",
+    "q3_2026": {
+     "revenue": 9672,
+     "revenue_yoy_pct": 50,
+     "pbt": 1013,
+     "pbt_prior": 2202,
+     "pbt_yoy_pct_est": -54.0,
+     "pbt_yoy_method": "≈ derived, not published: 1,013 / 2,202 − 1. The 9M-2025 base included about 1,473 bn of divestment income; the source does not say how much fell in Q3-2025, so this is not like-for-like."
+    },
+    "m9_2026": {
+     "revenue": 26293,
+     "revenue_yoy_pct": 44.2,
+     "pbt": 2718,
+     "pbt_yoy_pct": -23,
+     "core_pbt": 2717,
+     "core_pbt_yoy_pct": 32
+    },
+    "plan_2026": {
+     "revenue": 27242,
+     "pbt": 2705,
+     "revenue_pct": 96.5,
+     "pbt_pct": 100.5
+    },
+    "supporting": [
+     "Core electrical-equipment pre-tax profit +32%; the company cites infrastructure, industrial and FDI project demand."
+    ],
+    "contrary": [
+     "Consolidated 9M pre-tax profit -23% because the prior year included about 1,473 bn of divestment income."
+    ],
+    "conflicts": [
+     "CafeF (29/10) says shareholders approved renaming to GELEX Industries, with no date; no vote result or effective date was found in filings or other press."
+    ],
+    "url": "https://cafef.vn/gelex-electric-vuot-ke-hoach-nam-loi-nhuan-cot-loi-tang-32-18826102907344609.chn",
+    "alt_url": "https://doanhnhan.baophapluat.vn/dien-luc-gelex-gee-bao-lai-quy-3-dot-bien-hoan-thanh-101-ke-hoach-loi-nhuan-nam-87435.html"
+   }
+  },
+  "events": [
+   {
+    "date": "2026-10-29",
+    "symbol": "PVT",
+    "event": "Q3-2026 results reported; share price closed at the floor (-6.78%)",
+    "status": "past",
+    "url": "https://markettimes.vn/loi-nhuan-quy-3-2026-tang-40-co-phieu-pvtrans-van-giam-san-von-hoa-mat-hon-800-ty-dong-133606.html"
+   },
+   {
+    "date": "2026-11-20",
+    "symbol": "GAS",
+    "event": "Expected payment of the 2025 cash dividend: 25% (2,500 VND/share), about 6,032.4 bn; record date 23/09/2026, ex-date 22/09/2026",
+    "status": "expected",
+    "url": "https://mekongasean.vn/pv-gas-chot-ngay-tra-co-tuc-pvn-du-kien-nhan-gan-5800-ty-dong-59622.html"
+   },
+   {
+    "date": "2026-12-03",
+    "symbol": null,
+    "event": "NSO November report and CPI; FDI Jan–Nov",
+    "status": "expected",
+    "url": "https://baochinhphu.vn/chinh-phu-thay-doi-lich-pho-bien-mot-so-thong-tin-thong-ke-quan-trong-102260114171529601.htm"
+   },
+   {
+    "date": "2027-01-03",
+    "symbol": null,
+    "event": "NSO Q4 and full-year 2026 report: first full-year GDP estimate against the ≥10% target",
+    "status": "expected",
+    "url": "https://baochinhphu.vn/chinh-phu-thay-doi-lich-pho-bien-mot-so-thong-tin-thong-ke-quan-trong-102260114171529601.htm"
+   }
+  ]
  }
 }

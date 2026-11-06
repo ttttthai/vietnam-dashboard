@@ -440,6 +440,7 @@ def analyze(symbol: str, horizon: int = 63, target_pct: float = 0.0, detail: boo
     # ── 4/5. Macro themes (qualitative, sector-linked) ──
     M = macro()
     pi = M["public_invest"]
+    pil = pi.get("latest") or pi   # newest cumulative figure and the plan base it is stated on
     theme_public = icb in PUBLIC_INVEST_ICB
     theme_growth = icb in GROWTH_ICB
 
@@ -470,7 +471,7 @@ def analyze(symbol: str, horizon: int = 63, target_pct: float = 0.0, detail: boo
          "evidence": ev_season},
         {"key": "public", "label": "Đầu tư công sắp giải ngân",
          "state": "pass" if theme_public else "fail",
-         "value": (f"Ngành hưởng lợi trực tiếp · còn ~{(pi['plan_bn']-pi['disbursed_bn'])/1000:,.0f} nghìn tỷ cần giải ngân trong Q4"
+         "value": (f"Ngành hưởng lợi trực tiếp · còn ~{(pil['plan_bn']-pil['disbursed_bn'])/1000:,.0f} nghìn tỷ cần giải ngân đến cuối năm (kế hoạch {pil['plan_bn']/1000:,.0f} nghìn tỷ)"
                    if theme_public else "Ngành không hưởng lợi trực tiếp từ giải ngân đầu tư công"),
          "evidence": None},
         {"key": "growth", "label": "Tăng trưởng còn dư địa",

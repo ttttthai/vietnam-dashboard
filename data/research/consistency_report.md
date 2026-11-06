@@ -1,5 +1,39 @@
 # Cross-tab consistency report
 
+## Run 2026-11-06 (weekly pre-approved run)
+
+Files read after all seven tab agents finished, with the page already embedded. Primary checks: NSO October report docx (read directly), Decree 13/2026 text, IMF DataMapper API. Status: **pass**, **fixed** (corrected in the owner's file this run), **differs** (real conflict, both kept), **decision** (user's call). Older tables below are kept as history.
+
+| # | Check | Tabs and values | Status | Ruling and action |
+|---|---|---|---|---|
+| W1 | Public investment 10M | MoF disbursement 708,567.4 bn = 74.1% of 955,867.4 bn to 31/10 (Economy, Policy, Investing); NSO 783.9 tn = 69.05%, +19.8% (Economy, Finance); budget development spending ~735 tn, 65.6%, +49.7% | **fixed** | Three concepts. NSO calls its figure "vốn đầu tư thực hiện từ nguồn NSNN", not disbursement. **Headline for disbursement: MoF.** Finance driver 8 called the NSO figure "disbursement"; relabelled and the MoF figure added. Economy's URL pointed at the budget infographic (206259), moved to 206473. Yoy also differs by concept: MoF +217.5 tn (19.7 pts), NSO +19.8%, development spending +49.7%. |
+| W2 | Disbursement rate over time | 62.9% (30/9), 65.9% (22/10) on 1,022,607; 74.1% (31/10) on 955,867.4 | **fixed** (label) | Not comparable. On the old base 31/10 is ~69.3% (derived). The October gain is 65.6 tn (derived). The 66,739.6 bn base cut is unexplained in every source read. The 69.3 and NSO's 69.05 look alike and are unrelated. Policy now says so in its current text. |
+| W3 | Budget revenue 10M | NSO 2,438.9 tn, 96.4%, +11.0% (Economy) vs 2,448.5 tn, 96.8%, +11.5% (Policy lead, Nhân Dân citing MoF) | **fixed** | **Lead: 2,438.9.** It is in the NSO report (read), in Thời báo Tài chính citing the MoF (02/11) and at the Government briefing (04/11: 2.44 quadrillion, 96.4%, +11%), and it continues the 9M column (2,187.3 + October 251.5). Policy switched: stance, current text, history; revenue less spending ~330.2 tn. 2,448.5 stays as the alternate. Cause of the gap unknown. |
+| W4 | Credit latest | 11.94% at 26/10 (Finance) vs ~12.27% (Policy) | **differs**, labels **fixed** | Both kept, not averaged, neither is end-October. 11.94 at 26/10, above 20.8 quadrillion, is in VnExpress's own text, not a quote of the Deputy Governor, so Finance's basis note was reworded; it is still single-source. 12.27 is in the Governor's remarks with no date. Policy now carries both; Finance now records the 12.27. The page labels the T10/26 point with its cut-off (`fsCutLab`), so no false month-end appears. |
+| W5 | Finance "credit slowed" | Market view only; not in any data string | pass (data) | Wording for the Narrator: cumulative growth **rose** 11.59 to 11.94. Only the pace was slower: +0.35 pt in 26 days of October vs +1.40 pt in September (derived; month-ends usually run high). Do not write "slowed" without "pace". |
+| W6 | Credit y/y at 30/9 | Policy +16.6 vs Finance +16.69 | **fixed** | 16.69 (VNBA page read). Policy corrected. |
+| W7 | VND deposits vs credit | Policy +12.65 vs +10.2 at 21/10; Finance had no such point | **fixed** | Added to Finance driver 1 as VND-only scope. Confirmed in the bnews briefing report. Not comparable with the system 10.19 / 7.60 at end-August. |
+| W8 | Central rate | 25,615 at 6/11 (both; page read), 25,644 at 29/10, 25,637 at 30/10 month-end (Finance) | pass; one **fixed** | Dates differ, all right. Depreciation 1.93% and +1.97% are the two sides of the same move. Finance note "-21 đồng" was an arithmetic slip, now -22 (25,637 to 25,615). |
+| W9 | SBV swap | Policy: up to USD 2bn, 182 days, spot 24,399, forward 24,704; Finance: "size undisclosed", "from 3/11" | **fixed** | Page read (Vietstock 04/11). Finance driver, summary, operation and flow updated. Announced 3/11, planned 6/11, value 9/11, result unknown. |
+| W10 | Government bonds | 368,422 bn to 30/10 (BVSC, 92%) vs 345.9 tn (MoF, 86.5%, no cut-off) | **differs** | Both on the 400 tn plan (both percentages check). They may be different cut-offs: 345.9 is close to 343,079 at 21/10. That is inference, not confirmed. The ~42 tn "remaining" in the BVSC-based article matches neither. Keep Policy's lead (the dated figure) and await the HNX October total. |
+| W11 | Bond plan 500 to 400 tn | Policy current_value 400 tn | pass with caveat | Two lines support it: the BVSC-based article and the Government briefing (86.5% of 400 tn). No legal document found. Keep 400 with "document not identified". Finance's 59.8% and 52.2% are on the old 500 base: note added, chapter text due a refresh. |
+| W12 | Trade 10M | Exports 499.24, imports 511.31, balance -12.07, US +140.10, China -134.94, US exports 159.40 (Economy, Geopolitics, Investing) | pass | All equal the NSO text. |
+| W13 | FDI 10M | 54.85 (+74.0%), 24.08 (+13.1%), components 30.73 + 16.13 + 7.99 | pass; flag **fixed** | All equal the NSO text. `MACRO.fdi.economy_sync` resolved; Investing's URL moved to the NSO report. |
+| W14 | CPI October | 5.09 y/y, 4.57 avg, 4.41 vs Dec, 0.20 m/m, core 4.04 / 4.24 (Economy, Finance, Policy, Investing) | pass | Equal to NSO. Investing's old `yoy_sep`, `avg9m` stay on purpose, labelled, with `latest` beside them. Page tiles still read the old keys (P-13). |
+| W15 | IMF vintage | Economy and Society WEO Oct-2026; Finance CPI WEO Apr-2026, growth to 2027 only, scenarios Apr-2026 | **fixed** | API read directly: 8.4/7.5/5.9/5.9/5.7 and 4.7/4.9/4.7/4.6/4.2. Finance aligned. Nominal GDP and credit/GDP recomputed by the stated formula (the old values reproduced exactly first): credit/GDP base 2030 178.1 to 168.1. No narrated figure depends on it. |
+| W16 | Public debt 2026 | Plan 36-37% (Economy projections, page sentence) vs Government 33-34% (Oct estimate, Economy addendum) | **decision** | See update_plan.md. Recommendation: keep the plan series as the January plan and show the October estimate beside it. Not changed. |
+| W17 | Debt in Policy budget_2027 note | "government debt ~33-34% end-2027" | **fixed** | The cited article says public debt 33-34% end-2026, 34-35% end-2027 (page read; Dân Việt agrees). |
+| W18 | NA session close | Strategy and Policy 21/11; one Policy VI note 20/11; calendar 20/11 | **fixed** | 21/11. Phase 1 ends 13/11. |
+| W19 | Fuel measures | Excise 0% to 31/3/2027 (Economy, Policy); environment tax and duty to 31/12/2026 | pass | Same dates and resolutions. |
+| W20 | IMF ranks | Society 542.13 / 5,259 / 8.4 vs Economy 542.1 / 5,259 / 8.4 | pass | Same vintage. |
+| W21 | Decree 13/2026 GRDP | Calendar said 29 Dec | **fixed** | Text read: 29 November. |
+
+Closed from the 2026-10-06 tables: A6 and A7 (Finance: no month shift; rows are month-end), A13-A15 (Economy's 2025 budget column now 2,650,100 / 2,401,500 / 3.6), A26 (green credit 828,000 held), A9 and A23 (usd_vnd 2025 = 24,976).
+
+---
+
+## Run 2026-10-06 (first run)
+
 Run: 2026-10-06 (Research, first run). Files read: `data/economy.json` (read while the Economy agent was
 still running, so re-check its rows next run), `data/society.json`, `data/policy.json`, `data/finance.json`,
 `strategy_directives.json`, `invest.py` (MACRO), `server.py`, plus the data constants inside
