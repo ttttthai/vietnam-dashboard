@@ -32,14 +32,17 @@ effective dates, chinhphu.vn / baochinhphu.vn (Nghị quyết, Nghị định, C
 
 ## Release timing & access (maintained by Research — see `data/research/release_calendar.json`)
 - Moves are ad hoc, so a weekly run keeps the news list inside its 3-month window. Event runs: the day after
-  the NA session closes (16th NA, 2nd session 17 Oct – 20 Nov 2026: 2027 budget, possible extension of the
+  the NA session closes (16th NA, 2nd session 17 Oct – 21 Nov 2026, phase 1 to 13 Nov, phase 2 20–21 Nov: 2027 budget, possible extension of the
   VAT 8% / fuel-tax / fuel-duty / fee relief that expires 31 Dec 2026) and mid-December for the expiry cliff;
   1 Dec 2026 effective dates (LDR cap 95% under Circular 50/2026, LCR/NSFR).
 - Numbers quoted in the stance (CPI, credit growth, central rate, budget) change on fixed dates: NSO and MoF on
   the 3rd/first days of the month, SBV credit in the first days of the month, the central rate daily. Keep them
   equal to Economy/Finance values for the same date.
-- Access: sbv.gov.vn, chinhphu.vn, quochoi.vn, vbpl.vn, thuvienphapluat.vn and press are blocked from the
-  sandbox; verify through WebSearch excerpts (shared budget).
+- Budget revenue: lead with the NSO line, as Economy does; press lines "theo Bộ Tài chính" can differ (10M: 2,438.9 vs
+  2,448.5 tn, ruling 2026-11-06). Public investment: "disbursement" is the MoF series; NSO's figure is realised
+  investment from state-budget capital; development spending is a third concept. Rates compare only on one plan base.
+- Access (2026-11-06): press and luatvietnam.vn are readable by WebFetch; sbv.gov.vn list pages work, detail pages
+  often 403. Use WebSearch when a page fails.
 
 ## Rules
 1. **Every move needs its document** (`doc`: số hiệu, e.g. "1123/QĐ-NHNN", "174/2025/QH15") and a URL;

@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Economy agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-10-14",
+  "as_of": "2026-11-06",
   "cpi_model_note": "CPI_BASKET (CPI groups: 2020 basket weights, y/y by month, sub-items) and the CPI projection inputs CPI_FC_SCEN, CPI_FC_TEMPLATE, CPI_FC_VAT_JAN27, CPI_FC_DRIVERS moved here from the page on 2026-10-10 (user decision recorded in data/research/animation_plan.md); the Economy agent owns and refreshes them."
  },
  "ECONFLOW": {
@@ -948,7 +948,8 @@
      "Q2-2025",
      "Q3-2025",
      "Q4-2025",
-     "Q1-2026"
+     "Q1-2026",
+     "Q2-2026"
     ],
     "unit": "bn USD",
     "current_account": [
@@ -961,7 +962,8 @@
      8.723,
      12.459,
      7.654,
-     2.716
+     2.716,
+     -11.1
     ],
     "goods_balance": [
      null,
@@ -973,7 +975,8 @@
      9.911,
      14.617,
      9.135,
-     2.434
+     2.434,
+     -5.5
     ],
     "services_net": [
      null,
@@ -985,7 +988,8 @@
      -3.127,
      null,
      -2.287,
-     -1.674
+     -1.674,
+     -3.6
     ],
     "secondary_income_net": [
      null,
@@ -997,7 +1001,8 @@
      4.302,
      null,
      null,
-     3.187
+     3.187,
+     null
     ],
     "investment_income_net": [
      null,
@@ -1009,7 +1014,8 @@
      -2.363,
      null,
      -2.975,
-     -1.231
+     -1.231,
+     -5.7
     ],
     "financial_account_net": [
      null,
@@ -1021,7 +1027,8 @@
      -4.8,
      null,
      7.076,
-     0.893
+     0.893,
+     1.9
     ],
     "fdi_net": [
      null,
@@ -1033,7 +1040,8 @@
      5.26,
      null,
      null,
-     5.38
+     5.38,
+     5.9
     ],
     "portfolio_net": [
      null,
@@ -1045,7 +1053,8 @@
      null,
      null,
      null,
-     -2.478
+     -2.478,
+     null
     ],
     "overall_balance": [
      null,
@@ -1057,12 +1066,13 @@
      1.49,
      null,
      null,
-     -1.078
+     -1.078,
+     0.081
     ],
-    "source": "SBV quarterly BoP release for Q1-2026, as reported by VnEconomy",
+    "source": "SBV quarterly BoP release for Q1-2026 (as reported by VnEconomy) and Q2-2026 (as reported by Thời báo Tài chính Việt Nam, 04/11/2026)",
     "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm",
-    "verified": "search-engine excerpts (SBV, vneconomy, Viet Nam News; page fetch blocked by egress proxy), 2026-10-07 and 2026-10-09",
-    "note": "Q1-2026 overall balance −1.078 bn ended three consecutive quarterly surpluses. Q4-2025 values are the comparison figures quoted in the same article. Errors & omissions not quoted (not derived). Q2-2026: only a secondary claim found — \"SBV Q2 BoP shows a current-account deficit of US$11.1bn (~8% of GDP)\" (ASEAN Macro Monitor, https://aseanmacromonitor.substack.com/p/state-of-the-buffers-thin-spreads-to-current-accounts); not confirmed by SBV or Vietnamese press, so not stored.",
+    "verified": "search-engine excerpts (SBV, vneconomy, Viet Nam News; page fetch blocked by egress proxy), 2026-10-07 and 2026-10-09; Q2-2026 from the press page read 2026-11-06 (SBV table not reachable: 403).",
+    "note": "Q1-2026 overall balance −1.078 bn ended three consecutive quarterly surpluses. Q4-2025 values are the comparison figures quoted in the same article. Errors & omissions now in errors_omissions (Q1 and Q2-2026 only).",
     "point_sources": {
      "Q1-2024.overall_balance, Q2-2024.overall_balance": {
       "v": "−1.37 (Q1-2024), −6.07 (Q2-2024; H1-2024 −7.44); H1-2024 current account +9.73 (not a quarter, not stored)",
@@ -1113,7 +1123,22 @@
     "conflicts": "(1) Q2-2025 current account: 8.723 (SBV table; vneconomy 8.72, kept) vs 7.438 (Trading Economics/IMF series, probably a later SBV revision). (2) Trading Economics/CEIC show Q2-2024 4.5 and Q3-2024 7.8, which contradicts SBV as reported by vneconomy (Q3-2024 was the only quarter of the six to Q2-2025 above 8.72) — not stored. (3) Q4-2024 CA 8.18 is now pinned to vneconomy (Q2-2025 article: 8.72 = +6.7% on Q4-2024) and stored. (4) Q1–Q4 2025 sum 32.80 vs annual bop.s.current_account 2025 33.135 (vintages differ). (5) One search summary labelled Q4-2025 7.654 the overall balance; the Q1-2026 article's −65% q/q for the CA (2.716 / 7.654) shows it is the current account — kept as current_account.",
     "missing": "Q4-2023 (all lines); Q1–Q3 2024 current account and goods; Q3-2024 overall balance value; secondary income before Q2-2025 and for Q3-2025/Q4-2025; Q3-2025 services, income, financial account, overall balance; travel (not a separate line in SBV's published quarterly table — only 'services'; IMF BOP quarterly travel is unreachable from the sandbox). Q2-2026: SBV's site lists a 'Quý II năm 2026' BoP table, but no search excerpt shows its figures (checked 2026-10-09); not appended, so the tiles still show Q1-2026 as the latest quarter. History only — no quarterly BoP projection exists.",
     "as_of": "2026-10-09",
-    "derived_not_stored": "Q3-2025 overall balance: vneconomy says +14.25% q/q on Q2-2025 (1.49) → ≈1.70, and 'nearly 30×' the Q3-2024 deficit (→ ≈ −0.06); SBV net FX purchases ≈1.7 bn in Q3-2025. These are arithmetic on quoted ratios, not published values — not stored."
+    "derived_not_stored": "Q3-2025 overall balance: vneconomy says +14.25% q/q on Q2-2025 (1.49) → ≈1.70, and 'nearly 30×' the Q3-2024 deficit (→ ≈ −0.06); SBV net FX purchases ≈1.7 bn in Q3-2025. These are arithmetic on quoted ratios, not published values — not stored.",
+    "errors_omissions": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -4.049,
+     9.283
+    ],
+    "url_q2_2026": "https://thoibaotaichinhvietnam.vn/can-can-thanh-toan-quoc-te-bop-tro-lai-thang-du-suc-ep-ty-gia-chua-voi-206261-206261.html",
+    "q2_2026_note": "Q2-2026: errors & omissions +9.283 bn explains the small overall surplus. The article calls it 'mức cao nhất trong chuỗi thống kê' without stating the span; not tested here (this file holds only two points), so do not call it a record. Check: −11.1 + 1.9 + 9.283 = +0.083 vs +0.081 published. Goods, services and primary income imply secondary income near +3.7 (derived, not stored). The same article prints Q1 current account as +2.2, but Yuanta H1 −8.4 equals −11.1 + 2.716, so the held Q1 value 2.716 is kept. All Q2 figures are as reported by that article, which attributes them to the SBV; the SBV table was not seen. A second outlet (ASEAN Macro Monitor) carries −11.1 only; +9.283 and +0.081 are single-source."
    }
   },
   "tour": {
@@ -1293,7 +1318,123 @@
     "check": "3.9/17.68 = 22.1% and 3.0/17.68 = 17.0% vs published 22.4%/17.3% — consistent with rounded volumes",
     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
    },
-   "target_2030": "ECONFLOW.projections.series.intl_arrivals_million_target (NQ 26-NQ/TW, 22/08/2026: 45–50 million international visitors in 2030; end-point only)"
+   "target_2030": "ECONFLOW.projections.series.intl_arrivals_million_target (NQ 26-NQ/TW, 22/08/2026: 45–50 million international visitors in 2030; end-point only)",
+   "ytd_latest": {
+    "period": "Jan–Oct 2026",
+    "intl_arrivals_thousand": 19535.4,
+    "yoy_pct": 13.79,
+    "month": "Oct 2026",
+    "month_thousand": 1854.7,
+    "month_yoy_pct": 7.04,
+    "month_mom_pct": 4.9,
+    "by_mode_thousand": {
+     "air": 16253.1,
+     "land": 3027.1,
+     "sea": 255.2
+    },
+    "by_mode_yoy_pct": {
+     "air": 11.47,
+     "land": 27.08,
+     "sea": 24.61
+    },
+    "note": "Travel receipts and outbound departures are quarterly in NSO data, so the 9M2026 column of this table stays as it is.",
+    "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+    "xlsx": "https://www.nso.gov.vn/wp-content/uploads/2026/11/2.-Bieu-thang-10.2026.xlsx",
+    "verified": "primary: NSO docx/xlsx read directly, 2026-11-06"
+   },
+   "by_market_10M2026": {
+    "period": "Jan–Oct 2026 (Oct columns are the single month)",
+    "unit": "thousand visits (lượt)",
+    "China": {
+     "v_thousand": 4386.0,
+     "yoy_pct": 1.35,
+     "oct_thousand": 432.5,
+     "oct_yoy_pct": -0.19
+    },
+    "Korea": {
+     "v_thousand": 3370.5,
+     "yoy_pct": -6.34,
+     "oct_thousand": 311.5,
+     "oct_yoy_pct": -13.68
+    },
+    "Russia": {
+     "v_thousand": 1254.2,
+     "yoy_pct": 149.99,
+     "oct_thousand": 120.1,
+     "oct_yoy_pct": 80.53
+    },
+    "Taiwan": {
+     "v_thousand": 1073.9,
+     "yoy_pct": 3.94,
+     "oct_thousand": 109.9,
+     "oct_yoy_pct": 2.86
+    },
+    "USA": {
+     "v_thousand": 808.7,
+     "yoy_pct": 18.11,
+     "oct_thousand": 62.5,
+     "oct_yoy_pct": 0.68
+    },
+    "Cambodia": {
+     "v_thousand": 787.1,
+     "yoy_pct": 43.2,
+     "oct_thousand": 98.8,
+     "oct_yoy_pct": 65.21
+    },
+    "Japan": {
+     "v_thousand": 757.5,
+     "yoy_pct": 11.62,
+     "oct_thousand": 83.0,
+     "oct_yoy_pct": 36.45
+    },
+    "India": {
+     "v_thousand": 744.6,
+     "yoy_pct": 29.5,
+     "oct_thousand": 73.6,
+     "oct_yoy_pct": 4.65
+    },
+    "Philippines": {
+     "v_thousand": 579.2,
+     "yoy_pct": 52.36,
+     "oct_thousand": 56.5,
+     "oct_yoy_pct": 30.16
+    },
+    "Malaysia": {
+     "v_thousand": 533.4,
+     "yoy_pct": 17.36,
+     "oct_thousand": 55.0,
+     "oct_yoy_pct": 11.67
+    },
+    "Asia": {
+     "v_thousand": 14610.2,
+     "yoy_pct": 7.29,
+     "oct_thousand": 1439.1,
+     "oct_yoy_pct": 4.57
+    },
+    "Europe": {
+     "v_thousand": 3221.0,
+     "yoy_pct": 51.48,
+     "oct_thousand": 262.2,
+     "oct_yoy_pct": 20.41
+    },
+    "Americas": {
+     "v_thousand": 1041.5,
+     "yoy_pct": 18.1,
+     "oct_thousand": 81.9,
+     "oct_yoy_pct": -0.63
+    },
+    "Oceania": {
+     "v_thousand": 602.7,
+     "yoy_pct": 21.48,
+     "oct_thousand": 64.2,
+     "oct_yoy_pct": 25.46
+    },
+    "source": "NSO October-2026 workbook, sheet 19 (KQT)",
+    "url": "https://www.nso.gov.vn/wp-content/uploads/2026/11/2.-Bieu-thang-10.2026.xlsx",
+    "alt_url": "https://mekongasean.vn/viet-nam-don-195-trieu-khach-quoc-te-khach-chau-au-tang-manh-61421.html",
+    "verified": "primary: NSO docx/xlsx read directly, 2026-11-06",
+    "share_of_year_target_pct_press": 78
+   }
   },
   "remit": {
    "years": [
@@ -4029,7 +4170,8 @@
      "2025 (Jan-2026 vintage) sub-lines of domestic revenue — the January release gives only the domestic total; the April supplementary report (different vintage) is stored as alt_vintage_2025",
      "9M-2026 sub-lines of domestic revenue and the grants / other-spending split — MoF 9M release excerpts give only domestic / oil / import-export and dev / recurrent / interest (gaps 3,500 revenue and 2,700 spending reported)",
      "land & water-surface rent, dividends/SBV surplus and other budget revenue for 2018–2023 and 2026 (only 2024 published in the text available)",
-     "national reserves 2020, 2021; health, social security, defence, etc. for the consolidated budget"
+     "national reserves 2020, 2021; health, social security, defence, etc. for the consolidated budget",
+     "10M-2026 sub-lines of domestic revenue: not published in the October report"
     ],
     "development_investment": {
      "classification": "development-investment spending (expenditure.development_investment) split by the budget level that spent it, as in the MoF final-account explanatory note (\"Chi đầu tư phát triển NSTW / NSĐP\"); both include disbursement from prior-year carry-over. Of-which lines: they sum to the parent when both are present.",
@@ -4272,6 +4414,135 @@
      "other_recurrent": "no consolidated function split beyond education and S&T; health, social security, economic affairs, defence, security, environment, culture, administration stay null with status \"not published\"",
      "development_investment": "new table detail.development_investment, of-which dev_central/dev_local filled for 2023 and 2024 (final accounts, reconcile exactly); 2018–2022, 2025, 2026 not found"
     }
+   },
+   "exec_10M2026": {
+    "period": "Jan–Oct 2026",
+    "basis": "estimate (monthly execution)",
+    "unit": "bn VND",
+    "revenue_total": 2438900,
+    "revenue_pct_of_plan": 96.4,
+    "revenue_yoy_pct": 11.0,
+    "domestic": 2102800,
+    "domestic_pct_of_plan": 95.6,
+    "domestic_yoy_pct": 11.4,
+    "crude_oil": 56300,
+    "crude_oil_pct_of_plan": 131.0,
+    "crude_oil_yoy_pct": 38.3,
+    "import_export": 275800,
+    "import_export_pct_of_plan": 99.2,
+    "import_export_yoy_pct": 3.6,
+    "expenditure_total": 2108700,
+    "expenditure_pct_of_plan": 66.8,
+    "expenditure_yoy_pct": 14.8,
+    "development_investment": 735000,
+    "development_investment_qualifier": "khoảng / gần",
+    "development_investment_pct_of_plan": 65.6,
+    "development_investment_yoy_pct": 49.7,
+    "recurrent": 1280000,
+    "recurrent_pct_of_plan": 70.8,
+    "recurrent_yoy_pct": 2.2,
+    "interest": 90200,
+    "interest_pct_of_plan": 74.5,
+    "interest_yoy_pct": 4.5,
+    "balance": 330200,
+    "balance_note": "revenue − expenditure, cash basis (surplus); not the NA-defined deficit",
+    "month_oct": {
+     "revenue": 251500,
+     "expenditure": 235000,
+     "domestic": 222300,
+     "crude_oil": 6300,
+     "import_export": 22300
+    },
+    "source": "https://www.nso.gov.vn/wp-content/uploads/2026/11/01-Loi-van-T10.2026.docx",
+    "alt_urls": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/ | https://thuongtruong.com.vn/news/thu-ngan-sach-10-thang-dat-gan-97-du-toan-chi-dau-tu-phat-trien-tang-497-171555.html | https://thoibaotaichinhvietnam.vn/infographics-thu-chi-ngan-sach-nha-nuoc-10-thang-nam-2026-206259.html",
+    "verified": "primary: all lines read directly in the NSO October report (docx), 2026-11-06",
+    "alt_vintage_mof_press": {
+     "revenue_total": 2448500,
+     "revenue_pct_of_plan": 96.8,
+     "revenue_yoy_pct": 11.5,
+     "domestic": 2112200,
+     "domestic_pct_of_plan": 96.0,
+     "domestic_yoy_pct": 11.9,
+     "crude_oil": 57500,
+     "crude_oil_pct_of_plan": 133.8,
+     "import_export": 274900,
+     "import_export_pct_of_plan": 98.9,
+     "url": "https://nhandan.vn/thu-ngan-sach-gan-dat-du-toan-tap-trung-thuc-hien-nhiem-vu-chi-cuoi-nam-post999733.html",
+     "published": "2026-11-02",
+     "why_kept_apart": "Press figure (Nhan Dan, citing the MoF), 9.6 tn above the 2,438.9 tn carried by the NSO report, the MoF paper Thoi bao Tai chinh (02/11) and the Government briefing of 04/11 (2.44 quadrillion, 96.4%, +11%). 2,438.9 is the lead on every tab (Research ruling 2026-11-06); it also continues the 9M column. The reason for the gap is not stated. Spending totals agree.",
+     "ruling_urls": [
+      "https://thoibaotaichinhvietnam.vn/infographics-thu-chi-ngan-sach-nha-nuoc-10-thang-nam-2026-206259.html",
+      "https://bnews.vn/hop-bao-chinh-phu-thuong-ky-tap-trung-cac-giai-phap-cu-the-kha-thi-de-hoan-thanh-muc-tieu-nam-2026/443063.html"
+     ]
+    }
+   },
+   "estimate_2026_mof_oct2026": {
+    "period": "FY2026 estimate in the 2027 budget report to the NA (not the plan column, which stays as voted)",
+    "unit": "bn VND",
+    "revenue_total": 3055700,
+    "revenue_vs_plan_pct": 20.8,
+    "revenue_vs_plan_bn": 526300,
+    "revenue_yoy_pct": 14.0,
+    "revenue_pct_gdp": 20.8,
+    "expenditure_total": 3677900,
+    "expenditure_pct_of_plan": 116.4,
+    "expenditure_vs_plan_bn": 518800,
+    "deficit": 598300,
+    "deficit_pct_gdp": 4.1,
+    "deficit_vs_plan_bn": -7500,
+    "url": "https://baodauthau.vn/thu-ngan-sach-nha-nuoc-nam-2026-uoc-dat-30557-nghin-ty-dong-tang-208-so-voi-du-toan-post210859.html",
+    "alt_url": "https://danviet.vn/vi-sao-du-toan-boi-chi-ngan-sach-va-ty-le-no-cong-nam-2027-du-kien-tang-so-voi-nam-nay-d1467946.html",
+    "published": "2026-10-17..24",
+    "verified": "press pages read 2026-11-06; deficit 598.3 tn is consistent with the 605.8 tn plan less 7.5 tn. One outlet prints 598.8 tn and 75,000 bn, which do not reconcile and are not used.",
+    "caveat": "Revenue minus expenditure is −622.2 tn, not −598.3 tn; the reports do not explain the difference. +14% yoy implies a 2025 base near 2,680 tn, above the 2,650.1 tn held (a later 2025 vintage)."
+   },
+   "plan_2027_draft": {
+    "status": "Government proposal to the NA 2nd session; NOT voted as of 2026-11-06. Not added to the years/plan columns until the NA resolution.",
+    "unit": "bn VND",
+    "revenue_total": 3334300,
+    "revenue_pct_gdp": 20.2,
+    "revenue_vs_2026_estimate_pct": 9.1,
+    "domestic": 2949500,
+    "import_export": 531000,
+    "crude_oil": 52000,
+    "grants": 9000,
+    "vat_refund": 207200,
+    "expenditure_total": 4074300,
+    "expenditure_vs_2026_plan_bn": 915200,
+    "development_investment": 1756000,
+    "development_share_pct": 43.0,
+    "recurrent": 2061300,
+    "recurrent_share_pct": 50.6,
+    "reserve_fund": 30000,
+    "central": {
+     "expenditure": 1955700,
+     "development": 757200,
+     "recurrent": 980900
+    },
+    "local": {
+     "expenditure": 2118600,
+     "development": 998800,
+     "recurrent": 1080300
+    },
+    "deficit": 740000,
+    "deficit_pct_gdp": 4.5,
+    "deficit_central": 588800,
+    "deficit_local": 150800,
+    "assumptions": {
+     "gdp_growth_min_pct": 10,
+     "cpi_pct": 4.5,
+     "gdp_per_capita_usd": 6100,
+     "exports_growth_pct": 15,
+     "imports_growth_pct": 12,
+     "total_investment_pct_gdp": "36–38",
+     "oil_usd_bbl": 75,
+     "oil_output_mn_t": 8.5
+    },
+    "check": "2,949.5 + 531 + 52 + 9 − 207.2 = 3,334.3 (exact)",
+    "url": "https://vietstock.vn/2026/10/du-toan-nsnn-nam-2027-tong-thu-hon-33-trieu-ty-dong-tong-chi-hon-4-trieu-ty-dong-758-1506545.htm",
+    "alt_url": "https://bnews.vn/du-toan-chi-ngan-sach-nha-nuoc-nam-2027-tang-hon-915-nghin-ty-dong/441668.html",
+    "published": "2026-10-24",
+    "verified": "press page read 2026-11-06"
    }
   },
   "inv": {
@@ -4360,7 +4631,48 @@
      "verified": "verified via search-engine excerpts (nso.gov.vn page fetch blocked by egress proxy), 2026-10-06"
     }
    },
-   "note": "9M2026 column is January–September 2026 at current prices (not a full year); units bn VND."
+   "note": "9M2026 column is January–September 2026 at current prices (not a full year); units bn VND.",
+   "ytd_latest_state_budget_capital": {
+    "period": "Jan–Oct 2026",
+    "unit": "bn VND",
+    "total": 783906.85,
+    "pct_of_plan": 69.05,
+    "yoy_pct": 19.81,
+    "prior_year_pct_of_plan": 64.3,
+    "prior_year_yoy_pct": 30.7,
+    "central": 112082.37,
+    "central_pct_of_plan": 67.9,
+    "central_yoy_pct": 5.56,
+    "local": 671824.48,
+    "local_pct_of_plan": 69.24,
+    "local_yoy_pct": 22.57,
+    "provincial": 543544.01,
+    "commune": 128280.47,
+    "month_oct": 121637.84,
+    "month_oct_yoy_pct": 23.7,
+    "note": "State-budget capital only. Total social investment by owner is quarterly, so the 9M2026 column stays the latest.",
+    "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+    "xlsx": "https://www.nso.gov.vn/wp-content/uploads/2026/11/2.-Bieu-thang-10.2026.xlsx",
+    "verified": "primary: NSO docx/xlsx read directly, 2026-11-06"
+   },
+   "ytd_latest_public_investment_mof": {
+    "period": "to 31/10/2026",
+    "unit": "bn VND",
+    "disbursed": 708567.4,
+    "plan_pm": 955867.4,
+    "pct_of_pm_plan": 74.1,
+    "central": 182047.2,
+    "local": 526520.2,
+    "source": "MoF via Thời báo Tài chính",
+    "url": "https://thoibaotaichinhvietnam.vn/infographics-giai-ngan-von-dau-tu-cong-ca-nuoc-dat-708-567-4-ty-dong-206473.html",
+    "note": "Headline series for public-investment disbursement on every tab (Research ruling 2026-11-06). Different measure from NSO realised state-budget capital (783.9 tn, 69.05%, +19.8%) and from budget development spending (~735 tn, 65.6%, +49.7%): do not mix them. The plan base fell from 1,022,607 to 955,867.4 bn with no stated reason, so 74.1% is not comparable with 62.9% (30/09) or 65.9% (22/10). One outlet (HTV) gives 75.4% of plan on a different plan base.",
+    "verified": "press page read 2026-11-06",
+    "yoy_higher_bn": 217500,
+    "yoy_higher_pts": 19.7,
+    "yoy_url": "https://bnews.vn/hop-bao-chinh-phu-thuong-ky-tap-trung-cac-giai-phap-cu-the-kha-thi-de-hoan-thanh-muc-tieu-nam-2026/443063.html",
+    "pct_on_earlier_base_derived": 69.3,
+    "pct_on_earlier_base_method": "derived, not published: 708,567.4 / 1,022,607 (the base used up to 22/10)"
+   }
   },
   "debt": {
    "years": [
@@ -4794,17 +5106,35 @@
      }
     },
     "plan_and_ceiling": "2026 plan 36–37% and ceilings/warning levels in ECONFLOW.projections.series.public_debt_pct_gdp_plan (ceilings_2026_2030)",
-    "imf": "IMF WEO general-government gross debt (GGXWDG_NGDP) — pending the 13/10/2026 WEO; a different definition from MoF public debt",
+    "imf": "IMF WEO Oct-2026 general-government gross debt in ECONFLOW.projections.series.imf_general_gov_debt_pct_gdp — a different definition from MoF public debt",
     "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07",
-    "gaps": "government_debt 2016–2017 and national_external_debt 2016–2019: only conflicting vintages found (e.g. government debt 2017 51.7 vs 51.8; external debt 2017–2019 45.2/49.7/49.9 in one excerpt vs 46–47 in another) — kept null. 2025: only the MoF Jan-2026 range estimate (estimate_2025); the MoF bulletin with the 2025 actual (Thông tư 42/2026/TT-BTC templates) not found as of 2026-10-09."
+    "gaps": "government_debt 2016–2017 and national_external_debt 2016–2019: only conflicting vintages found (e.g. government debt 2017 51.7 vs 51.8; external debt 2017–2019 45.2/49.7/49.9 in one excerpt vs 46–47 in another) — kept null. 2025: only the MoF Jan-2026 range estimate (estimate_2025); the MoF bulletin with the 2025 actual (Thông tư 42/2026/TT-BTC templates) not found as of 2026-10-09.",
+    "estimate_2026_2027_oct2026": {
+     "end_2026": {
+      "public_debt_low": 33,
+      "public_debt_high": 34
+     },
+     "end_2027": {
+      "public_debt_low": 34,
+      "public_debt_high": 35,
+      "government_debt_low": 33,
+      "government_debt_high": 34,
+      "national_external_debt_low": 30,
+      "national_external_debt_high": 31
+     },
+     "basis": "Government budget report to the NA, Oct-2026 (estimate / draft plan)",
+     "url": "https://danviet.vn/vi-sao-du-toan-boi-chi-ngan-sach-va-ty-le-no-cong-nam-2027-du-kien-tang-so-voi-nam-nay-d1467946.html",
+     "note": "End-2026 33–34% is below the 36–37% in the Jan-2026 borrowing plan held in projections.series.public_debt_pct_gdp_plan.",
+     "verified": "press pages read 2026-11-06"
+    }
    }
   },
   "projections": {
-   "as_of": "2026-10-14",
+   "as_of": "2026-11-06",
    "note_vi": "Dự báo của các tổ chức (IMF, World Bank, ADB, AMRO) và mục tiêu chính thức cho 2026–2030. Mục tiêu không phải dự báo. Mỗi tổ chức một chuỗi riêng, không lấy trung bình. IMF WEO 10/2026 (13/10/2026): đã cập nhật tăng trưởng 2026–2027 (8,4% / 7,5%, theo báo chí); GDP USD, GDP/người và CPI của bản 10/2026 chưa xác minh được nên vẫn là bản 4/2026 (có ghi nhãn). Không có chuỗi \"scenario\" do dashboard tự tính.",
-   "note_en": "Institutional forecasts (IMF, World Bank, ADB, AMRO) and official targets for 2026–2030. Targets are not forecasts. Each institution is a separate series; nothing is averaged. IMF WEO October 2026 (13/10/2026): growth for 2026–2027 refreshed (8.4% / 7.5%, as reported); its USD GDP, GDP per capita and CPI values could not be verified, so those rows remain April 2026 (labelled). No dashboard-computed \"scenario\" series are included.",
-   "verified": "All values from search-engine excerpts (imf.org, worldbank.org, nso.gov.vn and press pages blocked by the egress proxy), 2026-10-06. IMF 2027–2030 levels were read from a WEO mirror (statisticsoftheworld.com) and are internally consistent (GDP / GDP per capita imply population 103.1→105.6 mn). IMF Oct-2026 refresh: search-excerpt verified 2026-10-14 (imf.org and press blocked from the sandbox; WebFetch of imf.org and statisticsoftheworld.com failed: ENOTFOUND).",
-   "gaps": "current_account_pct_gdp (IMF values in search excerpts were contradictory), exports_busd (no published level forecast or level target; only the 6–7%/yr growth target), IMF general-government balance/debt by year (only a single-year excerpt).",
+   "note_en": "Institutional forecasts (IMF, World Bank, ADB, AMRO) and official targets for 2026–2030. Targets are not forecasts. Each institution is a separate series; nothing is averaged. IMF rows are WEO October 2026 (13/10/2026), read from the IMF DataMapper on 06/11/2026. No dashboard-computed \"scenario\" series are included.",
+   "verified": "All values from search-engine excerpts (imf.org, worldbank.org, nso.gov.vn and press pages blocked by the egress proxy), 2026-10-06. IMF 2027–2030 levels were read from a WEO mirror (statisticsoftheworld.com) and are internally consistent (GDP / GDP per capita imply population 103.1→105.6 mn). IMF Oct-2026 refresh: search-excerpt verified 2026-10-14 (imf.org and press blocked from the sandbox; WebFetch of imf.org and statisticsoftheworld.com failed: ENOTFOUND). IMF rows re-read from the IMF DataMapper API on 2026-11-06 (WEO Oct-2026).",
+   "gaps": "exports_busd (no published level forecast or level target; only the 6–7%/yr growth target).",
    "series": {
     "gdp_growth_pct_target": {
      "years": [
@@ -4845,26 +5175,24 @@
      "base": [
       8.4,
       7.5,
-      null,
-      null,
-      null
+      5.9,
+      5.9,
+      5.7
      ],
      "low": null,
      "high": null,
      "kind": "institution_forecast",
      "unit": "% yoy, real",
      "source": {
-      "name": "IMF World Economic Outlook, October 2026 (as reported)",
-      "url": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
-      "reported_by": "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/",
-      "alt_url": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
-      "alt_url_2": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-1310-188974-188974.html"
+      "name": "IMF World Economic Outlook, October 2026 (DataMapper)",
+      "url": "https://www.imf.org/external/datamapper/NGDP_RPCH@WEO/VNM",
+      "api": "https://www.imf.org/external/datamapper/api/v1/NGDP_RPCH/VNM"
      },
-     "method_vi": "IMF WEO 10/2026 (công bố 13/10/2026): 2026 là 8,4% (+0,9 điểm % so với 7,5% của WEO cập nhật 7/2026), 2027 là 7,5%. Số liệu lấy từ hai nguồn báo chí độc lập (TNGlobal 13/10; Thời báo Ngân hàng 13/10), chưa đối chiếu được với bảng của IMF (imf.org bị chặn). 2028–2030 (và 2031) để trống: chưa tìm thấy số của bản 10/2026 cho các năm này; không ghép số của bản 4/2026 vào. Bản trước (WEO 4/2026): 7,1 / 6,7 / 6,2 / 5,6 / 5,4 (2031: 5,4) — xem previous_vintages.",
-     "method_en": "IMF WEO October 2026 (released 13/10/2026): 2026 8.4% (+0.9 pp vs 7.5% in the July 2026 Update), 2027 7.5%. Taken from two independent press reports (TNGlobal 13/10; Thời báo Ngân hàng 13/10); not yet checked against the IMF table (imf.org blocked). 2028–2030 (and 2031) left null: the October-vintage values for those years were not found; April-vintage values are not spliced in. Previous vintage (WEO April 2026): 7.1 / 6.7 / 6.2 / 5.6 / 5.4 (2031: 5.4) — see previous_vintages.",
+     "method_vi": "IMF WEO 10/2026 (13/10/2026), đọc từ DataMapper ngày 06/11/2026: 8,4 / 7,5 / 5,9 / 5,9 / 5,7 (2031: 5,7). Bản trước (WEO 4/2026): 7,1 / 6,7 / 6,2 / 5,6 / 5,4 — xem previous_vintages.",
+     "method_en": "IMF WEO October 2026 (13/10/2026), read from DataMapper on 06/11/2026: 8.4 / 7.5 / 5.9 / 5.9 / 5.7 (2031: 5.7). Previous vintage (WEO April 2026): 7.1 / 6.7 / 6.2 / 5.6 / 5.4 — see previous_vintages.",
      "pub": "2026-10-13",
      "vintage": "WEO Oct-2026",
-     "verified": "search-excerpt verified 2026-10-14 (imf.org and press blocked from the sandbox; WebFetch of imf.org and statisticsoftheworld.com failed: ENOTFOUND); 8.4/7.5 found in TNGlobal and in two Thời báo Ngân hàng articles; a third report (Báo Lao Động, 14/10) appeared in one search summary but its URL was not found",
+     "verified": "IMF DataMapper API (WEO Oct-2026) read 2026-11-06; the 2026–27 growth values match the press reports of 13/10/2026, which dates the vintage",
      "previous_vintages": [
       {
        "label": "WEO Apr 2026",
@@ -4901,7 +5229,8 @@
        "url": "https://www.imf.org/-/media/files/publications/weo/2026/update/july/english/text.pdf",
        "note": "superseded; the row gdp_growth_pct_imf_jul2026 is kept with kind = superseded_forecast so the charts no longer draw it"
       }
-     ]
+     ],
+     "y2031": 5.7
     },
     "gdp_growth_pct_imf_jul2026": {
      "years": [
@@ -5028,28 +5357,51 @@
       2030
      ],
      "base": [
-      527.3,
-      557.4,
-      594.8,
-      631.1,
-      667.5
+      542.1,
+      587.1,
+      638.3,
+      694.0,
+      750.1
      ],
      "low": null,
      "high": null,
      "kind": "institution_forecast",
      "unit": "bn USD, current prices",
      "source": {
-      "name": "IMF World Economic Outlook, April 2026 (database)",
-      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
-      "retrieved_via": "https://statisticsoftheworld.com/country/vietnam/forecast",
-      "alt_url": "https://vietnamnet.vn/imf-du-bao-viet-nam-dat-quy-mo-kinh-te-668-ty-usd-vao-nam-2030-pre2549997.html"
+      "name": "IMF World Economic Outlook, October 2026 (DataMapper)",
+      "url": "https://www.imf.org/external/datamapper/NGDPD@WEO/VNM",
+      "api": "https://www.imf.org/external/datamapper/api/v1/NGDPD/VNM"
      },
-     "method_vi": "IMF WEO 4/2026, GDP danh nghĩa (USD). 2030 ≈ 668 tỷ USD (hạng 34 thế giới) khớp với báo chí trích IMF. Mục tiêu Chính phủ 2030: 780–800 tỷ USD (phát biểu Thủ tướng 2024, không có số văn bản). Chưa có số bản 10/2026 (chờ đối chiếu, 14/10/2026).",
-     "method_en": "IMF WEO April 2026 nominal GDP (USD). 2030 ≈ 668 bn (34th in the world) matches press reports citing the IMF. Government aspiration 780–800 bn USD by 2030 (PM statement 2024, no document number). October 2026 vintage not yet available to us (pending, 14/10/2026).",
-     "pub": "2026-04-14",
-     "vintage": "WEO Apr-2026",
+     "method_vi": "IMF WEO 10/2026, GDP danh nghĩa (USD). 2030 khoảng 750 tỷ USD (bản 4/2026: 667,5). Mục tiêu Chính phủ 2030: 780–800 tỷ USD.",
+     "method_en": "IMF WEO October 2026, nominal GDP (USD). 2030 about 750 bn USD (April 2026 vintage: 667.5). Government target for 2030: 780–800 bn USD.",
+     "pub": "2026-10-13",
+     "vintage": "WEO Oct-2026",
      "oct2026_status": "pending — the October 2026 WEO values for this series were not found in search excerpts on 2026-10-14 (imf.org, the WEO database and the statisticsoftheworld mirror unreachable). April values kept, labelled April; the October vintage (with 2026 growth raised to 8.4%) will likely differ. Replace when the WEO database can be read.",
-     "apr2026_2031_note": "WEO Apr-2026 2031 value ≈705 bn USD per worldometers.info (secondary, rounded); not added to the arrays because it is approximate, from an aggregator, and from the superseded vintage."
+     "apr2026_2031_note": "WEO Apr-2026 2031 value ≈705 bn USD per worldometers.info (secondary, rounded); not added to the arrays because it is approximate, from an aggregator, and from the superseded vintage.",
+     "previous_vintages": [
+      {
+       "label": "WEO Apr 2026",
+       "pub": "2026-04-14",
+       "years": [
+        2026,
+        2027,
+        2028,
+        2029,
+        2030
+       ],
+       "base": [
+        527.3,
+        557.4,
+        594.8,
+        631.1,
+        667.5
+       ],
+       "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+       "note": "superseded by WEO Oct-2026"
+      }
+     ],
+     "y2031": 806.9,
+     "verified": "IMF DataMapper API (WEO Oct-2026) read 2026-11-06; the 2026–27 growth values match the press reports of 13/10/2026, which dates the vintage"
     },
     "gdp_per_capita_usd_imf": {
      "years": [
@@ -5060,28 +5412,51 @@
       2030
      ],
      "base": [
-      5115,
-      5372,
-      5698,
-      6010,
-      6323
+      5259,
+      5659,
+      6115,
+      6609,
+      7105
      ],
      "low": null,
      "high": null,
      "kind": "institution_forecast",
      "unit": "USD, current prices",
      "source": {
-      "name": "IMF World Economic Outlook, April 2026 (database)",
-      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
-      "retrieved_via": "https://statisticsoftheworld.com/country/vietnam/forecast",
-      "alt_url": "https://vietnamnet.vn/5-nam-va-8-500-usd-2489647.html"
+      "name": "IMF World Economic Outlook, October 2026 (DataMapper)",
+      "url": "https://www.imf.org/external/datamapper/NGDPDPC@WEO/VNM",
+      "api": "https://www.imf.org/external/datamapper/api/v1/NGDPDPC/VNM"
      },
-     "method_vi": "IMF WEO 4/2026. So với mục tiêu 8.500 USD năm 2030 (NQ 25/2026/QH16) chênh khoảng 2.200 USD. Chưa có số bản 10/2026 (chờ đối chiếu, 14/10/2026).",
-     "method_en": "IMF WEO April 2026. About 2,200 USD short of the 8,500 USD 2030 target (NQ 25/2026/QH16). October 2026 vintage not yet available to us (pending, 14/10/2026).",
-     "pub": "2026-04-14",
-     "vintage": "WEO Apr-2026",
+     "method_vi": "IMF WEO 10/2026. So với mục tiêu 8.500 USD năm 2030 (NQ 25/2026/QH16) chênh khoảng 1.400 USD; bản 4/2026 chênh khoảng 2.200 USD.",
+     "method_en": "IMF WEO October 2026. About 1,400 USD short of the 8,500 USD target for 2030 (NQ 25/2026/QH16); the April 2026 vintage was about 2,200 USD short.",
+     "pub": "2026-10-13",
+     "vintage": "WEO Oct-2026",
      "oct2026_status": "pending — the October 2026 WEO values for this series were not found in search excerpts on 2026-10-14 (imf.org, the WEO database and the statisticsoftheworld mirror unreachable). April values kept, labelled April; the October vintage (with 2026 growth raised to 8.4%) will likely differ. Replace when the WEO database can be read.",
-     "apr2026_2031_note": "WEO Apr-2026 2031 value ≈6,652 USD per worldometers.info (secondary, rounded); not added to the arrays because it is approximate, from an aggregator, and from the superseded vintage."
+     "apr2026_2031_note": "WEO Apr-2026 2031 value ≈6,652 USD per worldometers.info (secondary, rounded); not added to the arrays because it is approximate, from an aggregator, and from the superseded vintage.",
+     "previous_vintages": [
+      {
+       "label": "WEO Apr 2026",
+       "pub": "2026-04-14",
+       "years": [
+        2026,
+        2027,
+        2028,
+        2029,
+        2030
+       ],
+       "base": [
+        5115,
+        5372,
+        5698,
+        6010,
+        6323
+       ],
+       "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+       "note": "superseded by WEO Oct-2026"
+      }
+     ],
+     "y2031": 7609,
+     "verified": "IMF DataMapper API (WEO Oct-2026) read 2026-11-06; the 2026–27 growth values match the press reports of 13/10/2026, which dates the vintage"
     },
     "gdp_per_capita_usd_target": {
      "years": [
@@ -5121,7 +5496,12 @@
      },
      "method_vi": "Mục tiêu chính thức: ~8.500 USD năm 2030; năm 2026 khoảng 5.400–5.500 USD (low/high).",
      "method_en": "Official targets: ~8,500 USD in 2030; 2026 about 5,400–5,500 USD (low/high).",
-     "pub": "2026-04-24"
+     "pub": "2026-04-24",
+     "draft_2027": {
+      "value": 6100,
+      "status": "Government proposal; NA vote scheduled 07/11/2026",
+      "url": "https://www.tinnhanhchungkhoan.vn/cuoi-tuan-nay-quoc-hoi-chot-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2027-post400621.html"
+     }
     },
     "cpi_pct_imf": {
      "years": [
@@ -5132,34 +5512,49 @@
       2030
      ],
      "base": [
+      4.7,
       4.9,
+      4.7,
       4.6,
-      null,
-      null,
-      null
+      4.2
      ],
      "low": null,
      "high": null,
      "kind": "institution_forecast",
      "unit": "% yoy, annual average",
      "source": {
-      "name": "IMF WEO April 2026, Statistical Appendix Table A7",
-      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf"
+      "name": "IMF World Economic Outlook, October 2026 (DataMapper)",
+      "url": "https://www.imf.org/external/datamapper/PCPIPCH@WEO/VNM",
+      "api": "https://www.imf.org/external/datamapper/api/v1/PCPIPCH/VNM"
      },
-     "method_vi": "Như CPI_FC_INST — vẫn là bản WEO 4/2026. WEO 10/2026 được báo chí đưa tin CPI 2026 là 4,7% (chỉ một tờ báo; năm 2027 mâu thuẫn 4,9% hay 4,1%) nên chưa thay; xem oct2026_reported. 2028–2030 để trống: không tìm thấy số của bản 10/2026; bản sao thứ cấp ghi 3,3% cho 2027–2030 mâu thuẫn với bảng gốc nên không dùng.",
-     "method_en": "As in CPI_FC_INST — still the April 2026 WEO. The October 2026 WEO is reported with 2026 CPI 4.7% (one outlet only; 2027 given as both 4.9% and 4.1%), so the row is not replaced; see oct2026_reported. 2028–2030 null: no October-vintage values found; a secondary mirror's 3.3% for 2027–2030 conflicts with the IMF table and is not used.",
-     "pub": "2026-04-14",
-     "vintage": "WEO Apr-2026",
-     "oct2026_reported": {
-      "y2026": 4.7,
-      "y2027": null,
-      "y2027_conflict": "the same outlet gives both 4.9% and 4.1% for 2027 (4.1% may be a global/EM aggregate); unresolved",
-      "y2025_actual_cited": 3.3,
-      "source": "Thời báo Ngân hàng, 13/10/2026 (two articles, one outlet)",
-      "url": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
-      "alt_url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-1310-188974-188974.html",
-      "status": "not applied: single outlet and internally inconsistent; no second report or IMF table found (2026-10-14)"
-     }
+     "method_vi": "IMF WEO 10/2026, đọc từ DataMapper ngày 06/11/2026; như CPI_FC_INST. Cuối kỳ (T12 so T12): 5,3 / 4,8 / 4,7 / 4,5 / 4,0.",
+     "method_en": "IMF WEO October 2026, read from DataMapper on 06/11/2026; as in CPI_FC_INST. End of period (Dec on Dec): 5.3 / 4.8 / 4.7 / 4.5 / 4.0.",
+     "pub": "2026-10-13",
+     "vintage": "WEO Oct-2026",
+     "previous_vintages": [
+      {
+       "label": "WEO Apr 2026",
+       "pub": "2026-04-14",
+       "years": [
+        2026,
+        2027,
+        2028,
+        2029,
+        2030
+       ],
+       "base": [
+        4.9,
+        4.6,
+        null,
+        null,
+        null
+       ],
+       "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+       "note": "superseded by WEO Oct-2026"
+      }
+     ],
+     "y2031": 3.8,
+     "verified": "IMF DataMapper API (WEO Oct-2026) read 2026-11-06; the 2026–27 growth values match the press reports of 13/10/2026, which dates the vintage"
     },
     "cpi_pct_wb": {
      "years": [
@@ -5267,7 +5662,12 @@
      },
      "method_vi": "Mục tiêu năm 2026 ~4,5%. Không tìm thấy chỉ tiêu CPI theo năm cho 2027–2030.",
      "method_en": "2026 target ~4.5%. No annual CPI target for 2027–2030 found.",
-     "pub": "2025-11-13"
+     "pub": "2025-11-13",
+     "draft_2027": {
+      "value": 4.5,
+      "status": "Government proposal; NA vote scheduled 07/11/2026, after this run",
+      "url": "https://www.tinnhanhchungkhoan.vn/cuoi-tuan-nay-quoc-hoi-chot-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2027-post400621.html"
+     }
     },
     "budget_deficit_pct_gdp_target": {
      "years": [
@@ -5295,7 +5695,13 @@
      },
      "method_vi": "Năm 2026 = dự toán Quốc hội (4,2% GDP). Kế hoạch tài chính 5 năm chỉ đặt mức bình quân ~5% GDP (TW ~4,4% + ĐP ~0,6%), không chia theo năm — xem targets.",
      "method_en": "2026 = National Assembly budget (4.2% of GDP). The 5-year finance plan sets only an average of ~5% of GDP (central ~4.4% + local ~0.6%), not per year — see targets.",
-     "pub": "2025-11-13"
+     "pub": "2025-11-13",
+     "draft_2027": {
+      "value": 4.5,
+      "bn_vnd": 740000,
+      "status": "Government proposal, not voted as of 2026-11-06; 2026 estimate 4.1%",
+      "url": "https://vietstock.vn/2026/10/du-toan-nsnn-nam-2027-tong-thu-hon-33-trieu-ty-dong-tong-chi-hon-4-trieu-ty-dong-758-1506545.htm"
+     }
     },
     "public_debt_pct_gdp_plan": {
      "years": [
@@ -5647,6 +6053,99 @@
      },
      "pub": "2026-08-22",
      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-07 — date 22/08/2026 and 45–50 m confirmed"
+    },
+    "imf_general_gov_debt_pct_gdp": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      28.3,
+      26.2,
+      25.3,
+      24.6,
+      24.3
+     ],
+     "y2031": 24.5,
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% of GDP",
+     "source": {
+      "name": "IMF World Economic Outlook, October 2026 (DataMapper)",
+      "url": "https://www.imf.org/external/datamapper/GGXWDG_NGDP@WEO/VNM",
+      "api": "https://www.imf.org/external/datamapper/api/v1/GGXWDG_NGDP/VNM"
+     },
+     "method_vi": "Nợ gộp chính phủ chung theo định nghĩa IMF, khác nợ công của Bộ Tài chính. Năm trước: 2024 31,2; 2025 30,5.",
+     "method_en": "General-government gross debt on the IMF definition, not MoF public debt. Past: 2024 31.2; 2025 30.5.",
+     "pub": "2026-10-13",
+     "vintage": "WEO Oct-2026",
+     "verified": "IMF DataMapper API (WEO Oct-2026) read 2026-11-06; the 2026–27 growth values match the press reports of 13/10/2026, which dates the vintage"
+    },
+    "imf_general_gov_net_lending_pct_gdp": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      -0.8,
+      -0.9,
+      -1.5,
+      -1.6,
+      -1.9
+     ],
+     "y2031": -2.1,
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% of GDP",
+     "source": {
+      "name": "IMF World Economic Outlook, October 2026 (DataMapper)",
+      "url": "https://www.imf.org/external/datamapper/GGXCNL_NGDP@WEO/VNM",
+      "api": "https://www.imf.org/external/datamapper/api/v1/GGXCNL_NGDP/VNM"
+     },
+     "method_vi": "Cân đối ròng chính phủ chung theo IMF, không phải bội chi NSNN do Quốc hội quyết định. Năm trước: 2024 −0,9; 2025 0,0.",
+     "method_en": "General-government net lending on the IMF definition, not the National Assembly state-budget deficit. Past: 2024 −0.9; 2025 0.0.",
+     "pub": "2026-10-13",
+     "vintage": "WEO Oct-2026",
+     "verified": "IMF DataMapper API (WEO Oct-2026) read 2026-11-06; the 2026–27 growth values match the press reports of 13/10/2026, which dates the vintage"
+    },
+    "imf_current_account_pct_gdp": {
+     "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+     ],
+     "base": [
+      0.3,
+      3.4,
+      2.7,
+      1.8,
+      1.0
+     ],
+     "y2031": 0.2,
+     "low": null,
+     "high": null,
+     "kind": "institution_forecast",
+     "unit": "% of GDP",
+     "source": {
+      "name": "IMF World Economic Outlook, October 2026 (DataMapper)",
+      "url": "https://www.imf.org/external/datamapper/BCA_NGDPD@WEO/VNM",
+      "api": "https://www.imf.org/external/datamapper/api/v1/BCA_NGDPD/VNM"
+     },
+     "method_vi": "Cán cân vãng lai theo IMF. Năm trước: 2024 6,6; 2025 6,7. Thực tế SBV: Q2/2026 −11,1 tỷ USD.",
+     "method_en": "Current account on IMF projections. Past: 2024 6.6; 2025 6.7. SBV actual: Q2-2026 −11.1 bn USD.",
+     "pub": "2026-10-13",
+     "vintage": "WEO Oct-2026",
+     "verified": "IMF DataMapper API (WEO Oct-2026) read 2026-11-06; the 2026–27 growth values match the press reports of 13/10/2026, which dates the vintage"
     }
    },
    "targets": [
@@ -5865,13 +6364,13 @@
     }
    ],
    "pending_refresh": {
-    "what": "IMF WEO October 2026 (due 13/10/2026): refresh every *_imf series (gdp_growth_pct_imf, gdp_usd_bn_imf, gdp_per_capita_usd_imf, cpi_pct_imf), add 2031, fill cpi_pct_imf 2028–2030, and add IMF general-government gross debt (GGXWDG_NGDP), net lending (GGXCNL_NGDP) and investment (NID_NGDP) as labelled institution lines (general government ≠ state budget).",
-    "status": "partly done 2026-10-14: gdp_growth_pct_imf 2026–2027 refreshed to WEO Oct-2026 (press-verified). Still pending: Oct-2026 values for gdp_growth_pct_imf 2028–2031, gdp_usd_bn_imf, gdp_per_capita_usd_imf, cpi_pct_imf (2026 reported 4.7% by one outlet; 2027 conflicting), 2031 for all rows, and the general-government lines — need the WEO database/statistical appendix (main session fetch or a later search once indexed).",
-    "noted": "2026-10-14",
+    "what": "IMF WEO October 2026 refresh",
+    "status": "done 2026-11-06: growth, USD GDP, GDP per capita, CPI, plus general-government debt, net lending and current-account rows. 2031 stored as y2031 on each row because the years arrays stop at 2030. NID_NGDP (investment) not read.",
+    "noted": "2026-11-06",
     "first_noted": "2026-10-07"
    },
    "why_gap": {
-    "asof": "2026-10-14",
+    "asof": "2026-11-06",
     "verified": "All facts from search-engine excerpts on 2026-10-13 (imf.org, worldbank.org, adb.org, amro-asia.org and press are blocked by the sandbox proxy); quotes are as reported in those excerpts and should be read against the original before publication. IMF row refreshed 2026-10-14 from search excerpts (TNGlobal 13/10; Thời báo Ngân hàng 13/10).",
     "target": {
      "value_min": 10.0,
@@ -5893,7 +6392,7 @@
       "inst": "imf",
       "name": "IMF",
       "pub_date": "2026-10-13",
-      "vintage": "WEO October 2026 (as reported by TNGlobal and Thời báo Ngân hàng; IMF table not seen)",
+      "vintage": "WEO October 2026 (IMF DataMapper, read 2026-11-06)",
       "y2026": 8.4,
       "y2027": 7.5,
       "series_ref": [
@@ -5932,7 +6431,7 @@
         "pub_date": "2026-10-13",
         "y2026": 8.4,
         "y2027": 7.5,
-        "status": "confirmed by two independent press reports (TNGlobal 13/10/2026; Thời báo Ngân hàng 13/10/2026, two articles: \"8,4% năm 2026 … 7,5% năm 2027\", +0.9 pp vs July); IMF WEO table/statistical appendix not seen (imf.org blocked) — search-excerpt verified 2026-10-14; series updated",
+        "status": "confirmed against the IMF DataMapper API, 2026-11-06",
         "url": "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/",
         "alt_url": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
         "alt_url_2": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-1310-188974-188974.html",
@@ -5968,7 +6467,10 @@
       "verified": "search-excerpt verified 2026-10-13; no 2026 Article IV document for Vietnam found",
       "quote_url": "https://www.imf.org/en/publications/cr/issues/2025/10/03/vietnam-2025-article-iv-consultation-press-release-staff-report-and-statement-by-the-570895",
       "url_canonical": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
-      "alt_url_3": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html"
+      "alt_url_3": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
+      "y2028": 5.9,
+      "y2029": 5.9,
+      "y2030": 5.7
      },
      {
       "inst": "wb",
@@ -6229,14 +6731,31 @@
      }
     ],
     "note_vi": "Phần giải thích vì sao dự báo của IMF, WB, ADB, AMRO (7,4–8,4% cho 2026) thấp hơn mục tiêu từ 10%/năm. Trình bày trung lập quan điểm của từng bên; không đánh giá bên nào đúng. Số liệu dự báo lấy từ ECONFLOW.projections.series; IMF là WEO 10/2026 (13/10/2026: 8,4% / 7,5%), xác nhận qua hai nguồn báo chí độc lập, chưa đối chiếu bảng gốc của IMF.",
-    "note_en": "Explains why IMF, World Bank, ADB and AMRO forecasts (7.4–8.4% for 2026) sit below the 10%-plus target. Each side's view is described neutrally; no judgement of who is right. Forecast numbers reuse ECONFLOW.projections.series; IMF is the October 2026 WEO (13/10/2026: 8.4% / 7.5%), confirmed by two independent press reports, not yet checked against the IMF table. Schema: target{} · forecasts[] (inst, pub_date, y2026, y2027, vintages[] for IMF, potential_growth{low,high}|null + text, reasons_vi/en[], quote_en + quote_source (+ quote_url), url = forecast source, alt_url*) · official_basis{drivers_vi/en[], uncertain_*, sources[]} · methodology{} · themes[] (id, label_*, text_*, cited_by[inst], refs[url])."
-   }
+    "note_en": "Explains why IMF, World Bank, ADB and AMRO forecasts (7.4–8.4% for 2026) sit below the 10%-plus target. Each side's view is described neutrally; no judgement of who is right. Forecast numbers reuse ECONFLOW.projections.series; IMF is the October 2026 WEO (13/10/2026: 8.4% / 7.5%), confirmed by two independent press reports, not yet checked against the IMF table. Schema: target{} · forecasts[] (inst, pub_date, y2026, y2027, vintages[] for IMF, potential_growth{low,high}|null + text, reasons_vi/en[], quote_en + quote_source (+ quote_url), url = forecast source, alt_url*) · official_basis{drivers_vi/en[], uncertain_*, sources[]} · methodology{} · themes[] (id, label_*, text_*, cited_by[inst], refs[url]).",
+    "bank_views_note": {
+     "period": "October 2026, after the 9M GDP release",
+     "UOB": {
+      "y2026": 9.2,
+      "y2027": 8.8,
+      "pub": "2026-10-13",
+      "url": "https://nguoiquansat.vn/uob-nang-du-bao-lam-phat-viet-nam-len-gan-5-322172.html"
+     },
+     "Standard Chartered": {
+      "y2026": 9.5,
+      "y2027": 11.0,
+      "y2028": 9.1,
+      "pub": "2026-10-31",
+      "url": "https://baodauthau.vn/standard-chartered-nang-du-bao-lam-phat-cua-viet-nam-nam-2026-tu-44-len-47-post211488.html"
+     },
+     "note": "Commercial banks now sit well above the IMF, World Bank and ADB; kept apart from the institutional rows."
+    }
+   },
+   "note_vi_oct2026_addendum": "Các dòng IMF là WEO 10/2026 (13/10/2026), đọc từ IMF DataMapper ngày 06/11/2026; thay cho các ghi chú cũ về việc chưa đối chiếu được."
   },
   "cpi_model": {
    "_moved_from": "vietnam_dashboard.html constants CPI_FC_SCEN, CPI_FC_TEMPLATE, CPI_FC_VAT_JAN27, CPI_FC_DRIVERS, CPI_MONTHS_24 (copied verbatim 2026-10-07; page not edited)",
    "kind": "dashboard model — not an official or institutional forecast; horizon Dec-2027 (do not extend)",
    "months_24": [
-    "T10/24",
     "T11/24",
     "T12/24",
     "T1/25",
@@ -6259,22 +6778,23 @@
     "T6/26",
     "T7/26",
     "T8/26",
-    "T9/26"
+    "T9/26",
+    "T10/26"
    ],
    "scen": {
     "low": {
      "q4": [
-      0,
-      0.05,
+      0.2,
+      -0.45,
       0.1
      ],
-     "avg27": 3.3,
+     "avg27": 3.4,
      "label": "Thấp"
     },
     "central": {
      "q4": [
       0.2,
-      0.2,
+      -0.3,
       0.25
      ],
      "avg27": 3.9,
@@ -6282,11 +6802,11 @@
     },
     "high": {
      "q4": [
-      0.4,
-      0.4,
+      0.2,
+      -0.1,
       0.45
      ],
-     "avg27": 4.6,
+     "avg27": 4.9,
      "label": "Cao"
     }
    },
@@ -6307,46 +6827,53 @@
    "vat_jan27_pp": 0.3,
    "drivers": [
     {
-     "m": "T10/26",
-     "dir": "up",
-     "t": "Giá xăng dầu điều chỉnh 1/10: E10 +100đ lên 27.180đ/l, E5 +170đ; dầu diesel −780đ. Brent tăng 4,4% lên ~102 USD/thùng (1/10). T9 xăng tăng 9,39% m/m, đóng góp chính vào CPI +0,62%.",
-     "te": "Fuel prices adjusted on 1 Oct: E10 +100 VND to 27,180 VND/l, E5 +170 VND; diesel −780 VND. Brent up 4.4% to ~$102/bbl (1 Oct). In Sep, petrol rose 9.39% m/m and was the main driver of CPI +0.62%.",
-     "u": "https://luatvietnam.vn/tin-van-ban-moi/gia-xang-ngay-01-10-2026-186-113107-article.html"
+     "m": "T11/26",
+     "dir": "down",
+     "t": "Thuế TTĐB với xăng về 0% từ 1/11/2026 đến hết 31/3/2027 (NQ 45/2026/NQ-CP); giá xăng 1/11: E5 RON92 −1.804 đ/l, E10 RON95 −1.575 đ/l. Bộ Tài chính: cùng với giá điện giảm, CPI T11 giảm khoảng 0,5 điểm % so với T10; CPI bình quân 2026 giảm khoảng 0,08 điểm %.",
+     "te": "Excise on petrol at 0% from 1 Nov 2026 to 31 Mar 2027 (Res. 45/2026/NQ-CP); pump prices on 1 Nov: E5 RON92 −1,804 VND/l, E10 RON95 −1,575 VND/l. MoF: with the electricity cut this lowers Nov CPI by about 0.5 pp m/m and the 2026 average by about 0.08 pp.",
+     "u": "https://vietnamplus.vn/bo-tai-chinh-giam-thue-xang-gia-dien-gop-phan-kiem-che-lam-phat-post1146092.vnp"
     },
     {
-     "m": "T10/26",
-     "dir": "flat",
-     "t": "Giá điện chưa điều chỉnh (2.204 đ/kWh từ 10/5/2025); NĐ 278/2026 cho phép điều chỉnh 3 tháng/lần — có khả năng giảm vì EVN lãi lớn; BTC yêu cầu cân nhắc thời điểm.",
-     "te": "Electricity tariff unchanged (2,204 VND/kWh since 10/5/2025); Decree 278/2026 allows adjustments every 3 months — a cut is possible given EVN's large profit; MoF asks to weigh the timing.",
-     "u": "https://tuoitre.vn/lam-phat-gan-cham-tran-gia-dien-co-tinh-giam-de-bot-ap-luc-tieu-dung-cuoi-nam-100260923080556954.htm"
+     "m": "T11/26–T12/26",
+     "dir": "down",
+     "t": "Giá bán lẻ điện bình quân giảm 2% còn 2.159,9 đ/kWh từ 1/11/2026 (QĐ 1305/QĐ-EVN), lần giảm đầu tiên sau gần 20 năm, áp dụng đến hết 3/2027. Chỉ số điện của NSO trễ một tháng, nên một phần tác động có thể rơi vào T12.",
+     "te": "Average retail electricity price cut 2% to 2,159.9 VND/kWh from 1 Nov 2026 (Decision 1305/QĐ-EVN), the first cut in nearly 20 years, through Mar-2027. NSO's electricity index lags one month, so part of the effect may land in December.",
+     "u": "https://www.vietnamplus.vn/evn-dieu-chinh-gia-dien-giam-2-con-21599-dongkwh-tu-ngay-mai-111-post1145418.vnp"
     },
     {
-     "m": "T10/26",
+     "m": "T4/27",
      "dir": "up",
-     "t": "Học phí năm học 2026–27 phần lớn đã phản ánh ở T9 (nhóm giáo dục +1,41% m/m); còn dư địa nhỏ ở T10.",
-     "te": "2026–27 tuition increases were mostly captured in Sep (education +1.41% m/m); small residual in Oct.",
-     "u": "https://markettimes.vn/cpi-thang-9-2026-tang-0-62-chu-yeu-do-gia-xang-dau-va-hoc-phi-132253.html"
+     "t": "Thuế TTĐB xăng và mức giảm giá điện hết hạn 31/3/2027 nếu không gia hạn: rủi ro tăng CPI T4/2027. Mô hình chưa tách bước này vì chưa có ước tính chính thức.",
+     "te": "The petrol-excise and electricity cuts end on 31 Mar 2027 unless extended: upside risk to Apr-2027 CPI. The model does not separate this step because no official estimate exists.",
+     "u": "https://www.vietnamplus.vn/ban-hanh-quy-dinh-ve-thue-tieu-thu-dac-biet-doi-voi-xang-post1145478.vnp"
+    },
+    {
+     "m": "T11/26",
+     "dir": "down",
+     "t": "T10: giá lợn hơi 47–53 nghìn đ/kg (26/10), thịt lợn −2,33% m/m; gạo −0,92% khi nguồn cung dồi dào. Lạm phát cơ bản T10 −0,05% m/m, 4,04% yoy.",
+     "te": "October: live hogs at 47–53k VND/kg (26 Oct), pork −2.33% m/m; rice −0.92% on ample supply. Core inflation −0.05% m/m, 4.04% y/y.",
+     "u": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
     },
     {
      "m": "T11/26",
      "dir": "up",
-     "t": "Giá dịch vụ y tế: chưa có quyết định trong Q4; BTC đề nghị Bộ Y tế lộ trình gắn với mục tiêu kiểm soát lạm phát — rủi ro tăng.",
-     "te": "Healthcare service prices: no Q4 decision yet; MoF asked MoH for a roadmap aligned with the inflation target — upside risk.",
+     "t": "Gas tăng 10,35% m/m từ 1/10 và nhiên liệu vẫn +35,03% yoy trong T10; giá dầu thế giới là biến số chính cho T11–T12.",
+     "te": "Gas rose 10.35% m/m from 1 Oct and fuel was still +35.03% y/y in October; world oil is the main swing factor for Nov–Dec.",
+     "u": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
+    },
+    {
+     "m": "T11/26",
+     "dir": "up",
+     "t": "Giá dịch vụ y tế: một số địa phương đã điều chỉnh (T10 +0,34% m/m); BTC đề nghị Bộ Y tế lộ trình gắn với mục tiêu kiểm soát lạm phát — rủi ro tăng.",
+     "te": "Healthcare service prices: some provinces adjusted in October (+0.34% m/m); MoF asked MoH for a roadmap aligned with the inflation target — upside risk.",
      "u": "https://www.vietnamplus.vn/tap-trung-thuc-hien-tot-viec-kiem-soat-gia-nhung-thang-cuoi-nam-2026-post1134293.vnp"
     },
     {
-     "m": "T10/26",
+     "m": "T11/26",
      "dir": "down",
-     "t": "Giá lợn hơi giảm còn 56–59 nghìn đ/kg cuối T9; giá gạo ổn định khi vào vụ thu đông.",
-     "te": "Live hog prices fell to 56–59k VND/kg in late Sep; rice prices stable as the autumn–winter harvest arrives.",
-     "u": "https://thuonggiaonline.vn/gia-nong-san-hom-nay-299-gia-thit-lon-hoi-giam-tren-dien-rong-ca-phe-di-ngang-post573192.html"
-    },
-    {
-     "m": "T10/26",
-     "dir": "down",
-     "t": "Tỷ giá: chỉ số giá USD T9 −0,69% m/m, −1,34% yoy; dự báo cuối năm ~26.000 (VNDirect) – 26.800 (MBS).",
-     "te": "Exchange rate: USD price index −0.69% m/m, −1.34% y/y in Sep; year-end forecasts ~26,000 (VNDirect) to 26,800 (MBS).",
-     "u": "https://nguoiquansat.vn/vndirect-research-du-bao-dien-bien-ty-gia-lai-suat-cuoi-nam-2026-317361.html"
+     "t": "Tỷ giá: chỉ số giá USD T10 −0,26% m/m, −1,26% yoy, −1,32% so với T12/2025, dù DXY tăng 2,39 điểm.",
+     "te": "Exchange rate: USD price index −0.26% m/m, −1.26% y/y, −1.32% vs Dec-2025, even though DXY rose 2.39 points.",
+     "u": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
     },
     {
      "m": "T12/26",
@@ -6358,32 +6885,33 @@
     {
      "m": "T11/26–T12/26",
      "dir": "down",
-     "t": "Hiệu ứng nền: 2025 tăng T10 +0,20%, T11 +0,45%, T12 +0,19% m/m — nền cao T11 kéo YoY xuống.",
-     "te": "Base effect: 2025 m/m was Oct +0.20%, Nov +0.45%, Dec +0.19% — the high November base pulls y/y down.",
-     "u": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/"
+     "t": "Hiệu ứng nền: 2025 tăng T11 +0,45%, T12 +0,19% m/m — nền cao T11 kéo YoY xuống.",
+     "te": "Base effect: 2025 m/m was Nov +0.45%, Dec +0.19% — the high November base pulls y/y down.",
+     "u": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
     },
     {
      "m": "2027",
      "dir": "down",
-     "t": "Giá dầu: EIA dự báo Brent ~90 USD nửa cuối 2026, ~77 USD Q2/2027, BQ 74 USD năm 2027.",
-     "te": "Oil: EIA expects Brent ~$90 in 2H26, ~$77 in 2Q27 and $74 on average in 2027.",
+     "t": "Giá dầu: EIA dự báo Brent ~90 USD nửa cuối 2026, ~77 USD Q2/2027, BQ 74 USD năm 2027; dự toán NSNN 2027 giả định ~75 USD/thùng.",
+     "te": "Oil: EIA expects Brent ~$90 in 2H26, ~$77 in 2Q27 and $74 on average in 2027; the draft 2027 budget assumes ~$75/bbl.",
      "u": "https://www.eia.gov/outlooks/steo/report/global_oil.php"
     },
     {
      "m": "T1/27",
      "dir": "up",
-     "t": "Chính sách giảm 2% thuế GTGT hết hạn 31/12/2026 (8% → 10%) nếu không gia hạn — OECD đánh giá giữ lạm phát ở mức cao.",
-     "te": "The 2pp VAT cut expires on 31/12/2026 (8% → 10%) unless extended — OECD sees this keeping inflation elevated.",
+     "t": "Giảm 2% thuế GTGT hết hạn 31/12/2026 (8% → 10%) nếu không gia hạn; thuế BVMT xăng dầu 0 đ/l và thuế nhập khẩu xăng dầu 0% cũng đến 31/12/2026 (NQ 43/2026/NQ-CP). Chưa có văn bản gia hạn tính đến 6/11/2026.",
+     "te": "The 2pp VAT cut expires on 31 Dec 2026 (8% → 10%) unless extended; the VND0/l fuel environmental tax and 0% fuel import duty also end on 31 Dec 2026 (Res. 43/2026/NQ-CP). No extension found as of 6 Nov 2026.",
      "u": "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/nam-2027-con-duoc-giam-2-thue-gia-tri-gia-tang-khong-290351-231939.html"
     }
    ],
-   "method": "Q4-2026 m/m from driver-based scenarios (scen.*.q4 for Oct/Nov/Dec); 2027 m/m = template (Jan..Dec) × k, plus vat_jan27_pp in Jan-2027 if the 2pp VAT cut expires; k solved so the 2027 average equals scen.*.avg27 (range of institutional 2027 forecasts in CPI_FC_INST). y/y_t = (1+y/y_t−1)(1+m/m_t)/(1+m/m same month a year earlier) − 1.",
+   "method": "Q4-2026 m/m from driver-based scenarios (scen.*.q4 for Oct/Nov/Dec; months already published use NSO actuals); 2027 m/m = template (Jan..Dec) × k, plus vat_jan27_pp in Jan-2027 if the 2pp VAT cut expires; k solved so the 2027 average equals scen.*.avg27 (range of institutional 2027 forecasts in CPI_FC_INST). y/y_t = (1+y/y_t−1)(1+m/m_t)/(1+m/m same month a year earlier) − 1.",
    "sources": {
     "template": "NSO 2025 monthly CPI m/m (Jan–Feb = average of 2025 and 2026 because of Tết timing), per page comment; NSO release URLs per month in CPI_DETAIL",
-    "scen": "dashboard assumptions (low/central/high); avg27 bounds from CPI_FC_INST 2027 values",
+    "scen": "dashboard assumptions (low/central/high). Refreshed 2026-11-06: Oct = NSO actual 0.20; Nov = previous assumption (0.05 / 0.20 / 0.40) minus the MoF estimate of −0.5 pp from the petrol-excise and electricity cuts; Dec unchanged. avg27 = lowest / median / highest 2027 values in CPI_FC_INST (BIDV 3.4 low bound, median 3.9, IMF 4.9).",
     "vat_jan27_pp": "dashboard assumption (pp added to Jan-2027 m/m); origin of 0.30 not documented in the page",
     "drivers": "each driver carries its own URL (u)"
-   }
+   },
+   "roll_note": "Rolled to T11/24–T10/26 on 2026-11-06. CPI_MONTHS_24 lives in the page (not embedded from this file) and must equal this array; cpi_model.scen.*.q4 stays [Oct, Nov, Dec], Oct now being the actual."
   },
   "cpi_basket": {
    "_moved_from": "vietnam_dashboard.html constant CPI_BASKET (copied verbatim 2026-10-07; page not edited)",
@@ -6393,7 +6921,6 @@
      "w": 33.56,
      "color": "#e34948",
      "yoy": [
-      4.45,
       4.12,
       3.87,
       4.42,
@@ -6416,14 +6943,14 @@
       4.89,
       4.63,
       4.67,
-      4.44
+      4.44,
+      3.58
      ],
      "subs": [
       {
        "name": "Lương thực (gạo, ngũ cốc, mì)",
        "w": 3.67,
        "yoy": [
-        8.23,
         6.13,
         4.58,
         3.11,
@@ -6446,7 +6973,8 @@
         1.07,
         0.73,
         0.68,
-        0.81
+        0.81,
+        0.22
        ]
       },
       {
@@ -6663,7 +7191,6 @@
        "name": "Ăn uống ngoài gia đình",
        "w": 8.61,
        "yoy": [
-        3.81,
         3.87,
         3.95,
         3.98,
@@ -6686,7 +7213,8 @@
         8.28,
         7.99,
         7.78,
-        7.4
+        7.4,
+        6.91
        ]
       }
      ]
@@ -6696,7 +7224,6 @@
      "w": 18.82,
      "color": "#eb6834",
      "yoy": [
-      4.21,
       5.06,
       5.16,
       4.95,
@@ -6719,14 +7246,14 @@
       7.17,
       6.71,
       6.6,
-      6.47
+      6.47,
+      6.5
      ],
      "subs": [
       {
        "name": "Tiền thuê nhà",
        "w": 3.45,
        "yoy": [
-        null,
         null,
         null,
         null,
@@ -6749,7 +7276,8 @@
         5.87,
         5.29,
         5.07,
-        null
+        null,
+        4.88
        ]
       },
       {
@@ -6775,11 +7303,11 @@
         null,
         null,
         null,
-        null,
         8.68,
         9.04,
         9.19,
-        null
+        null,
+        10.05
        ]
       },
       {
@@ -6944,7 +7472,6 @@
         null,
         null,
         null,
-        null,
         8.94,
         10.88,
         10.8,
@@ -6959,14 +7486,14 @@
         4.03,
         3.76,
         1.36,
-        null
+        null,
+        5.06
        ]
       },
       {
        "name": "Nước sinh hoạt",
        "w": 0.85,
        "yoy": [
-        null,
         null,
         null,
         null,
@@ -6989,6 +7516,7 @@
         1.45,
         1.79,
         1.6,
+        null,
         null
        ]
       },
@@ -7012,13 +7540,13 @@
         null,
         null,
         null,
-        null,
         2.97,
         39.35,
         37.15,
         35.23,
         23.69,
         33.49,
+        null,
         null
        ]
       },
@@ -7059,7 +7587,6 @@
      "w": 9.67,
      "color": "#2a78d6",
      "yoy": [
-      -3.25,
       -3.3,
       -0.89,
       -0.36,
@@ -7082,7 +7609,8 @@
       5.29,
       3.66,
       8.02,
-      11.67
+      11.67,
+      15.57
      ],
      "subs": [
       {
@@ -7135,14 +7663,14 @@
         null,
         null,
         null,
-        null,
         21.6,
         21.47,
         25.12,
         8.97,
         5.89,
         15.8,
-        23.96
+        23.96,
+        35.03
        ]
       },
       {
@@ -7212,7 +7740,6 @@
      "w": 6.74,
      "color": "#4a3aa7",
      "yoy": [
-      1.33,
       1.41,
       1.49,
       1.66,
@@ -7235,7 +7762,8 @@
       3.17,
       3.21,
       3.29,
-      3.27
+      3.27,
+      3.24
      ],
      "subs": [
       {
@@ -7395,7 +7923,6 @@
      "w": 6.17,
      "color": "#008300",
      "yoy": [
-      -0.54,
       -0.81,
       -1.08,
       -1,
@@ -7418,14 +7945,14 @@
       3.39,
       3.63,
       3.9,
-      2.93
+      2.93,
+      2.74
      ],
      "subs": [
       {
        "name": "Học phí",
        "w": 4.85,
        "yoy": [
-        -0.77,
         -1.08,
         -1.4,
         -1.3,
@@ -7448,7 +7975,8 @@
         3.63,
         3.93,
         4.3,
-        3.29
+        3.29,
+        3.06
        ]
       },
       {
@@ -7548,7 +8076,6 @@
      "w": 5.7,
      "color": "#1baf7a",
      "yoy": [
-      1.13,
       1.14,
       1.16,
       1.32,
@@ -7571,7 +8098,8 @@
       2.19,
       2.29,
       2.23,
-      2.19
+      2.19,
+      1.94
      ],
      "subs": [
       {
@@ -7731,7 +8259,6 @@
      "w": 5.39,
      "color": "#e87ba4",
      "yoy": [
-      8.28,
       5.28,
       5.32,
       14.14,
@@ -7754,7 +8281,8 @@
       1.2,
       1.24,
       1.25,
-      1.47
+      1.47,
+      1.75
      ],
      "subs": [
       {
@@ -7821,7 +8349,6 @@
        "name": "Dịch vụ khám chữa bệnh",
        "w": 3.09,
        "yoy": [
-        10.58,
         6.55,
         6.6,
         18.45,
@@ -7844,7 +8371,8 @@
         0.74,
         0.76,
         0.77,
-        1.09
+        1.09,
+        1.41
        ]
       }
      ]
@@ -7854,7 +8382,6 @@
      "w": 4.55,
      "color": "#eda100",
      "yoy": [
-      2.09,
       2.2,
       2.31,
       2.48,
@@ -7877,7 +8404,8 @@
       3.32,
       3.65,
       3.59,
-      3.42
+      3.42,
+      2.46
      ],
      "subs": [
       {
@@ -8037,7 +8565,6 @@
      "w": 3.53,
      "color": "#84cc16",
      "yoy": [
-      7.03,
       7,
       6.89,
       7.01,
@@ -8060,7 +8587,8 @@
       4.08,
       5.91,
       5.95,
-      5.82
+      5.82,
+      5.65
      ],
      "subs": [
       {
@@ -8160,7 +8688,6 @@
      "w": 3.14,
      "color": "#64748b",
      "yoy": [
-      -0.37,
       -0.57,
       -0.61,
       -0.69,
@@ -8183,7 +8710,8 @@
       0.13,
       0.38,
       0.5,
-      0.33
+      0.33,
+      0.12
      ],
      "subs": [
       {
@@ -8283,7 +8811,6 @@
      "w": 2.73,
      "color": "#d946ef",
      "yoy": [
-      2.26,
       2.34,
       2.4,
       2.72,
@@ -8306,7 +8833,8 @@
       4.21,
       4.13,
       4.09,
-      4.33
+      4.33,
+      4.4
      ],
      "subs": [
       {
@@ -8402,15 +8930,16 @@
      ]
     }
    ],
-   "months": "yoy arrays align with cpi_model.months_24 (T10/24 … T9/26) and CPI_YOY_24",
+   "months": "yoy arrays align with cpi_model.months_24 (T11/24 … T10/26) and CPI_YOY_24",
    "sources": {
     "group_weights": "GSO/NSO CPI weights, 2020 base period (per page comment); the 11 group weights sum to 100.00",
-    "group_yoy": "NSO 'Biểu 1 – Cả nước' monthly spreadsheets T10/24–T9/26 (per page comment)",
+    "group_yoy": "NSO 'Biểu 1 – Cả nước' monthly spreadsheets T10/24–T10/26 (T10/26 read directly from the NSO workbook, 2026-11-06)",
     "sub_yoy": "NSO figures where NSO publishes them (spreadsheet or 'Tổng quan' PDF text); null where NSO gives no y/y (per page comment)",
     "sub_weights": "origin not documented in the page — not verified; treat as indicative",
     "color": "display colour (page styling, not data)"
    },
-   "caveat": "The page comment 'YoY arrays follow each category's typical trajectory' predates the NSO verification note; Research should confirm that every group y/y equals the NSO sheet before the heat-strip animation ships. If NSO re-based the CPI weights for 2026, the 2020-base weights here are out of date — not checked this run."
+   "caveat": "The page comment 'YoY arrays follow each category's typical trajectory' predates the NSO verification note; Research should confirm that every group y/y equals the NSO sheet before the heat-strip animation ships. If NSO re-based the CPI weights for 2026, the 2020-base weights here are out of date — not checked this run.",
+   "note_nso_group_name": "NSO now names group VIII 'Thông tin và truyền thông' (Information and communication); the key 'Bưu chính, viễn thông' is kept so the page's lookups keep working."
   }
  },
  "ECON_OFFICIAL": {
@@ -8896,7 +9425,8 @@
     },
     "yoy_caution": "FIA yoy rates use the revised base (e.g. 2024 'down ~3%' vs 39.39 bn), so yoy computed from this array for 2023→2024 differs from first-release comparisons."
    },
-   "pci2_median": "VCCI PCI 2.0 national median (34 provinces). New method; a separate series from pci_median (PCI 1.0, 63 provinces, 2010–2024) — draw as a separate marker, never as a continuation."
+   "pci2_median": "VCCI PCI 2.0 national median (34 provinces). New method; a separate series from pci_median (PCI 1.0, 63 provinces, 2010–2024) — draw as a separate marker, never as a continuation.",
+   "ytd_latest": "NSO monthly report, see ytd_latest.url; added 2026-11-06. FDI, trade, CPI and IIP on the page should read ytd_latest; GDP stays on ytd_2026."
   },
   "fdi_reg_components_fy": {
    "years": [
@@ -9043,10 +9573,114 @@
    null,
    null,
    63.9
-  ]
+  ],
+  "ytd_latest": {
+   "note": "Latest monthly cumulative release, month-neutral keys: overwrite each month. ytd_2026 stays the last quarterly snapshot (Jan–Sep) because GDP and quarterly labour are not published monthly.",
+   "period": "Jan–Oct 2026",
+   "n_months": 10,
+   "released": "2026-11-03",
+   "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+   "docx": "https://www.nso.gov.vn/wp-content/uploads/2026/11/01-Loi-van-T10.2026.docx",
+   "xlsx": "https://www.nso.gov.vn/wp-content/uploads/2026/11/2.-Bieu-thang-10.2026.xlsx",
+   "verified": "primary: NSO docx/xlsx read directly, 2026-11-06",
+   "iip_growth": 12.4,
+   "iip_month_yoy": 15.0,
+   "iip_month_mom": 2.3,
+   "fdi_reg_musd": 54850.0,
+   "fdi_reg_yoy_pct": 74.0,
+   "fdi_dis_musd": 24080.0,
+   "fdi_dis_yoy_pct": 13.1,
+   "cpi_avg": 4.57,
+   "core_cpi_avg": 4.24,
+   "budget_rev_bn": 2438900,
+   "budget_rev_pct_plan": 96.4,
+   "budget_rev_yoy_pct": 11.0,
+   "budget_exp_bn": 2108700,
+   "budget_exp_pct_plan": 66.8,
+   "budget_exp_yoy_pct": 14.8,
+   "export_busd": 499.24,
+   "export_yoy_pct": 27.5,
+   "import_busd": 511.31,
+   "import_yoy_pct": 37.4,
+   "trade_total_busd": 1010.55,
+   "trade_total_yoy_pct": 32.3,
+   "trade_balance_busd": -12.07,
+   "trade_balance_prior_year_busd": 19.49,
+   "trade_balance_domestic_busd": -37.83,
+   "trade_balance_fdi_busd": 25.76,
+   "export_month_busd": 64.67,
+   "export_month_yoy_pct": 51.4,
+   "import_month_busd": 57.36,
+   "import_month_yoy_pct": 43.1,
+   "trade_balance_month_busd": 7.31,
+   "trade_balance_prev_month_busd": 1.3,
+   "trade_revision_note": "NSO now gives the September surplus as 1.30 bn (1.27 in the 9M release); 10M less October implies 9M exports ≈434.57 and imports ≈453.95 vs 434.30 / 453.72 first published (derived; ytd_2026 keeps the first release).",
+   "retail_bn": 6618900,
+   "retail_yoy_pct": 13.5,
+   "intl_arrivals_thousand": 19535.4,
+   "intl_arrivals_yoy_pct": 13.8,
+   "state_budget_capital_bn": 783906.85,
+   "state_budget_capital_pct_plan": 69.05,
+   "state_budget_capital_yoy_pct": 19.81,
+   "outward_fdi_busd": 3.41,
+   "outward_fdi_note": "New and adjusted, x3.1 yoy",
+   "fdi_reg_components": {
+    "period": "Jan–Oct 2026 (registered to 31/10/2026)",
+    "unit": "million USD",
+    "new_projects_musd": 30730.0,
+    "new_projects_count": 3478,
+    "new_projects_note": "+4.7% projects yoy, capital x2.2 yoy",
+    "adjusted_musd": 16130.0,
+    "adjusted_times": 1079,
+    "adjusted_yoy_pct": 33.2,
+    "capital_contribution_share_purchase_musd": 7990.0,
+    "capital_contribution_share_purchase_count": 2616,
+    "capital_contribution_share_purchase_yoy_pct": 49.6,
+    "share_purchase_detail": {
+     "charter_capital_increasing_musd": 3280.0,
+     "charter_capital_increasing_count": 828,
+     "buyouts_no_capital_increase_musd": 4710.0,
+     "buyouts_no_capital_increase_count": 1788
+    },
+    "sum_check": "30,730 + 16,130 + 7,990 = 54,850 = fdi_reg_musd (exact)",
+    "top_new_by_partner_busd": {
+     "Singapore": 9.52,
+     "South Korea": 5.81,
+     "Luxembourg": 4.99
+    },
+    "manufacturing_new_busd": 14.61,
+    "manufacturing_new_share_pct": 47.5,
+    "manufacturing_new_plus_adjusted_busd": 24.19,
+    "real_estate_new_plus_adjusted_busd": 7.08,
+    "disbursed_by_sector_busd": {
+     "manufacturing": 19.96,
+     "real_estate": 1.76,
+     "electricity_gas": 0.785
+    },
+    "source": "NSO October-2026 report",
+    "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+    "verified": "primary: NSO docx/xlsx read directly, 2026-11-06",
+    "highest_since": "NSO: registered total is the highest since 2009; disbursed the highest for the same period in five years"
+   },
+   "fdi_dis_to_reg_pct": {
+    "v": 43.9,
+    "label": "DERIVED (not published): 24,080 / 54,850 × 100",
+    "period": "Jan–Oct 2026",
+    "comparators_derived": {
+     "10M2025_implied": 67.5,
+     "9M2026": 41.8,
+     "FY2025": 71.9
+    },
+    "comparator_method": "10M-2025 implied backs out bases from published yoy: 24.08/1.131 = 21.29 and 54.85/1.74 = 31.52",
+    "month_derived_busd": {
+     "registered": 4.49,
+     "disbursed": 3.01,
+     "method": "Jan–Oct minus Jan–Sep cumulative"
+    }
+   }
+  }
  },
  "CPI_YOY_24": [
-  2.89,
   2.77,
   2.94,
   3.63,
@@ -9069,108 +9703,109 @@
   4.69,
   4.45,
   4.89,
-  5.08
+  5.08,
+  5.09
  ],
  "CPI_LATEST": {
-  "month": "T9/26",
-  "mom": 0.62,
-  "ytd": 4.2,
+  "month": "T10/26",
+  "mom": 0.2,
+  "ytd": 4.41,
   "source": {
-   "label": "NSO — Thông cáo báo chí tình hình giá tháng 9/2026 (03/10/2026)",
-   "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/"
+   "label": "NSO — Chỉ số giá tiêu dùng, chỉ số giá vàng và đô la Mỹ tháng Mười và 10 tháng năm 2026 (03/11/2026)",
+   "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/11/chi-so-gia-tieu-dung-chi-so-gia-vang-va-chi-so-gia-do-la-my-thang-muoi-va-muoi-thang-nam-2026/"
   },
   "official_from": "T10/24",
   "groups": [
    {
     "name": "Hàng ăn & Dịch vụ ăn uống",
-    "mom": 0.19,
-    "ytd": 2.09
+    "mom": -0.24,
+    "ytd": 1.84
    },
    {
     "name": "Nhà ở, điện, nước, chất đốt, VLXD",
-    "mom": 0.28,
-    "ytd": 6.5
+    "mom": 0.04,
+    "ytd": 6.55
    },
    {
     "name": "Giao thông",
-    "mom": 3.97,
-    "ytd": 12.61
+    "mom": 2.66,
+    "ytd": 15.6
    },
    {
     "name": "Thiết bị & đồ dùng gia đình",
-    "mom": 0.08,
-    "ytd": 2.73
+    "mom": 0.17,
+    "ytd": 2.91
    },
    {
     "name": "Giáo dục",
-    "mom": 1.41,
-    "ytd": 2.35
+    "mom": 0.31,
+    "ytd": 2.68
    },
    {
     "name": "May mặc, mũ nón, giầy dép",
-    "mom": 0.04,
-    "ytd": 1.68
+    "mom": -0.06,
+    "ytd": 1.61
    },
    {
     "name": "Thuốc & Dịch vụ y tế",
-    "mom": 0.24,
-    "ytd": 1.34
+    "mom": 0.31,
+    "ytd": 1.65
    },
    {
     "name": "Văn hoá, giải trí, du lịch",
-    "mom": -0.28,
-    "ytd": 3.46
+    "mom": -0.87,
+    "ytd": 2.56
    },
    {
     "name": "Hàng hoá & Dịch vụ khác",
-    "mom": 0.1,
-    "ytd": 4.86
+    "mom": 0.27,
+    "ytd": 5.14
    },
    {
     "name": "Bưu chính, viễn thông",
-    "mom": -0.14,
-    "ytd": 0.34
+    "mom": -0.18,
+    "ytd": 0.16
    },
    {
     "name": "Đồ uống & thuốc lá",
-    "mom": 0.35,
-    "ytd": 4.03
+    "mom": 0.19,
+    "ytd": 4.23
    }
   ],
   "subs": {
    "Lương thực (gạo, ngũ cốc, mì)": {
-    "mom": 0.11,
-    "ytd": -0.05,
+    "mom": -0.57,
+    "ytd": -0.62,
     "nso": "Lương thực"
    },
    "Ăn uống ngoài gia đình": {
-    "mom": 0.03,
-    "ytd": 6.12,
+    "mom": 0.11,
+    "ytd": 6.24,
     "nso": "Ăn uống ngoài gia đình"
    },
    "Tiền thuê nhà": {
-    "mom": 0.1,
-    "ytd": null,
+    "mom": -0.22,
+    "ytd": 4.0,
     "nso": "Nhà ở thuê"
    },
    "Sửa chữa & bảo trì nhà ở": {
-    "mom": null,
+    "mom": 0.63,
     "ytd": null,
     "nso": "Dịch vụ sửa chữa nhà ở"
    },
    "Điện sinh hoạt": {
-    "mom": -0.13,
+    "mom": -1.99,
     "ytd": null,
     "nso": "Điện sinh hoạt"
    },
    "Nước sinh hoạt": {
-    "mom": null,
+    "mom": -0.09,
     "ytd": null,
     "nso": "Nước sinh hoạt"
    },
    "Gas & các loại chất đốt khác": {
-    "mom": null,
-    "ytd": null,
+    "mom": 10.35,
+    "ytd": 49.81,
     "nso": "Gas và các loại chất đốt khác"
    },
    "Nhiên liệu (xăng, dầu)": {
@@ -9179,25 +9814,66 @@
     "nso": "Nhiên liệu"
    },
    "Học phí": {
-    "mom": 1.6,
-    "ytd": 2.66,
+    "mom": 0.33,
+    "ytd": 3.01,
     "nso": "Dịch vụ giáo dục"
    },
    "Dịch vụ khám chữa bệnh": {
-    "mom": 0.32,
-    "ytd": 1.05,
+    "mom": 0.34,
+    "ytd": 1.39,
     "nso": "Dịch vụ y tế"
    }
   },
-  "yoy": 5.08,
-  "avg_ytd_yoy": 4.52,
+  "yoy": 5.09,
+  "avg_ytd_yoy": 4.57,
   "q3_avg_yoy": 4.8,
-  "core_mom": 0.11,
-  "core_yoy": 4.45,
-  "core_avg_ytd": 4.26,
-  "released": "2026-10-03",
-  "verified": "headline yoy/mom/vs-Dec and group MoM for food, housing, transport, education, culture, post-telecom: verified via search-engine excerpts (nso.gov.vn page fetch blocked by egress proxy), 2026-10-06. Other group MoM and all group vs-Dec values not independently re-checked; MoM chains reproduce every vs-Dec value in CPI_DETAIL.",
-  "pdf": "https://www.nso.gov.vn/wp-content/uploads/2026/10/2.-Thong-cao-bao-chi-ve-tinh-hinh-gia-thang-9-quy-III-va-9-thang-nam-2026.pdf"
+  "core_mom": -0.05,
+  "core_yoy": 4.04,
+  "core_avg_ytd": 4.24,
+  "released": "2026-11-03",
+  "verified": "primary: NSO workbook (Biểu 1 – Cả nước, Biểu 6) and Tổng quan PDF read directly, 2026-11-06. Group vs-Dec values reproduce the Sep value × Oct m/m chain within rounding.",
+  "pdf": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf",
+  "xlsx": "https://www.nso.gov.vn/wp-content/uploads/2026/11/So-lieu-CPI-chi-so-gia-vang-chi-so-gia-USD-thang-Muoi-va-10-thang-nam-2026.xlsx",
+  "subs_note": "T10/26: petrol +6.86% m/m and diesel +0.75% m/m are published separately (no composite fuel m/m). Electricity m/m reflects September consumption (NSO footnote: one-month lag). 'gas đun' y/y +51.2% is a narrower item than 'Gas và các loại chất đốt khác', so the basket y/y stays null.",
+  "contrib_yoy_pp": {
+   "transport": 1.55,
+   "housing": 1.47,
+   "food_catering": 1.28,
+   "period": "T10/26 y/y, NSO Tổng quan"
+  },
+  "fuel_yoy_2026": {
+   "months": [
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5",
+    "T6",
+    "T7",
+    "T8",
+    "T9",
+    "T10"
+   ],
+   "v": [
+    -9.62,
+    -8.38,
+    21.6,
+    21.47,
+    25.12,
+    8.97,
+    5.89,
+    15.8,
+    23.96,
+    35.03
+   ],
+   "avg_10M": 13.09,
+   "source": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
+  },
+  "gold_mom": -2.85,
+  "gold_yoy": -2.94,
+  "usd_mom": -0.26,
+  "usd_yoy": -1.26,
+  "usd_ytd": -1.32
  },
  "CPI_DETAIL": {
   "T10/24": {
@@ -10399,27 +11075,82 @@
      "ytd": 4.86
     }
    }
+  },
+  "T10/26": {
+   "mom": 0.2,
+   "ytd": 4.41,
+   "groups": {
+    "Hàng ăn & Dịch vụ ăn uống": {
+     "mom": -0.24,
+     "ytd": 1.84
+    },
+    "Đồ uống & thuốc lá": {
+     "mom": 0.19,
+     "ytd": 4.23
+    },
+    "May mặc, mũ nón, giầy dép": {
+     "mom": -0.06,
+     "ytd": 1.61
+    },
+    "Nhà ở, điện, nước, chất đốt, VLXD": {
+     "mom": 0.04,
+     "ytd": 6.55
+    },
+    "Thiết bị & đồ dùng gia đình": {
+     "mom": 0.17,
+     "ytd": 2.91
+    },
+    "Thuốc & Dịch vụ y tế": {
+     "mom": 0.31,
+     "ytd": 1.65
+    },
+    "Giao thông": {
+     "mom": 2.66,
+     "ytd": 15.6
+    },
+    "Bưu chính, viễn thông": {
+     "mom": -0.18,
+     "ytd": 0.16
+    },
+    "Giáo dục": {
+     "mom": 0.31,
+     "ytd": 2.68
+    },
+    "Văn hoá, giải trí, du lịch": {
+     "mom": -0.87,
+     "ytd": 2.56
+    },
+    "Hàng hoá & Dịch vụ khác": {
+     "mom": 0.27,
+     "ytd": 5.14
+    }
+   }
   }
  },
  "CPI_FC_INST": [
   {
-   "inst": "IMF (WEO Apr-2026)",
+   "inst": "IMF (WEO Oct-2026)",
    "type": "intl_org",
-   "pub": "2026-04-14",
-   "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+   "pub": "2026-10-13",
+   "url": "https://www.imf.org/external/datamapper/PCPIPCH@WEO/VNM",
    "2026": [
-    4.9,
+    4.7,
     null,
     null
    ],
    "2027": [
-    4.6,
+    4.9,
     null,
     null
    ],
-   "dec2026": 5.8,
-   "dec2027": 3.8,
-   "vintage_note": "Kept on WEO Apr-2026 (4.9 / 4.6; Dec 5.8 / 3.8). The Oct-2026 WEO (13/10/2026) is reported with 2026 CPI 4.7% by one outlet (Thời báo Ngân hàng, 13/10/2026, https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html), which gives 2027 as both 4.9% and 4.1%; not applied until a second source or the IMF table confirms. Checked 2026-10-14."
+   "dec2026": 5.3,
+   "dec2027": 4.8,
+   "vintage_note": "WEO Oct-2026 read from the IMF DataMapper API 2026-11-06 (PCPIPCH VNM 2026–2031: 4.7 / 4.9 / 4.7 / 4.6 / 4.2 / 3.8; PCPIEPCH Dec-on-Dec: 5.3 / 4.8 / 4.7 / 4.5 / 4.0 / 3.6). This resolves the 2027 conflict noted on 2026-10-14: 4.9% is Vietnam; 4.1% was the world aggregate. Replaces WEO Apr-2026 (4.9 / 4.6; Dec 5.8 / 3.8). Finance FINSYS.projections should use the same vintage.",
+   "2028": [
+    4.7,
+    null,
+    null
+   ]
   },
   {
    "inst": "World Bank",
@@ -10505,18 +11236,24 @@
   {
    "inst": "Standard Chartered",
    "type": "bank",
-   "pub": "2026-07-20",
-   "url": "https://vietnamnews.vn/economy/1785812/standard-chartered-raises-viet-nam-gdp-growth-forecast-for-2026-as-momentum-strengthens.html",
+   "pub": "2026-10-31",
+   "url": "https://baodauthau.vn/standard-chartered-nang-du-bao-lam-phat-cua-viet-nam-nam-2026-tu-44-len-47-post211488.html",
    "2026": [
-    4.4,
+    4.7,
     null,
     null
    ],
    "2027": [
-    3.3,
+    3.9,
     null,
     null
-   ]
+   ],
+   "2028": [
+    3.7,
+    null,
+    null
+   ],
+   "vintage_note": "Press date 31/10/2026 (raised from 4.4 / 3.3; 2028 cut from 5.5). Quarterly path Q4-2026 5.2, Q1-2027 4.6, Q2-2027 3.3. Report title not given; finalised before the 1 Nov petrol-excise and electricity cuts as far as the article shows."
   },
   {
    "inst": "Bloomberg economist survey (median)",
@@ -10675,13 +11412,14 @@
   {
    "inst": "Nguyen Duc Do (economist, ex-Inst. Econ & Finance)",
    "type": "vn_research",
-   "pub": "2026-09-05",
-   "url": "https://www.dnse.com.vn/senses/tin-tuc/cpi-ap-sat-muc-tieu-45-du-dia-cuoi-nam-con-bao-nhieu-35282676",
+   "pub": "2026-11-04",
+   "url": "https://baodauthau.vn/ha-nhiet-lam-phat-tu-chinh-sach-tai-khoa-post211742.html",
    "2026": [
     null,
-    4.5,
-    5.0
-   ]
+    4.6,
+    4.7
+   ],
+   "vintage_note": "Says the 4.5% target needs CPI to fall about 0.15% m/m in each of Nov and Dec."
   },
   {
    "inst": "Ngo Tri Long (economist), base",
@@ -10693,6 +11431,30 @@
     4.4,
     4.7
    ]
+  },
+  {
+   "inst": "UOB Global Economics & Markets Research",
+   "type": "bank",
+   "pub": "2026-10-13",
+   "url": "https://nguoiquansat.vn/uob-nang-du-bao-lam-phat-viet-nam-len-gan-5-322172.html",
+   "2026": [
+    4.7,
+    null,
+    null
+   ],
+   "vintage_note": "Raised from 4.1%; CPI around 5% in Q4-2026. No 2027 CPI in the article."
+  },
+  {
+   "inst": "Government 2027 socio-economic plan (submitted; NA vote 07/11/2026 pending)",
+   "type": "gov",
+   "pub": "2026-10-17",
+   "url": "https://www.tinnhanhchungkhoan.vn/cuoi-tuan-nay-quoc-hoi-chot-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2027-post400621.html",
+   "2027": [
+    4.5,
+    null,
+    null
+   ],
+   "vintage_note": "Proposed target, not yet adopted as of 2026-11-06."
   }
  ],
  "CPI_BASKET": [
@@ -10701,7 +11463,6 @@
    "w": 33.56,
    "color": "#e34948",
    "yoy": [
-    4.45,
     4.12,
     3.87,
     4.42,
@@ -10724,14 +11485,14 @@
     4.89,
     4.63,
     4.67,
-    4.44
+    4.44,
+    3.58
    ],
    "subs": [
     {
      "name": "Lương thực (gạo, ngũ cốc, mì)",
      "w": 3.67,
      "yoy": [
-      8.23,
       6.13,
       4.58,
       3.11,
@@ -10754,7 +11515,8 @@
       1.07,
       0.73,
       0.68,
-      0.81
+      0.81,
+      0.22
      ]
     },
     {
@@ -10971,7 +11733,6 @@
      "name": "Ăn uống ngoài gia đình",
      "w": 8.61,
      "yoy": [
-      3.81,
       3.87,
       3.95,
       3.98,
@@ -10994,7 +11755,8 @@
       8.28,
       7.99,
       7.78,
-      7.4
+      7.4,
+      6.91
      ]
     }
    ]
@@ -11004,7 +11766,6 @@
    "w": 18.82,
    "color": "#eb6834",
    "yoy": [
-    4.21,
     5.06,
     5.16,
     4.95,
@@ -11027,14 +11788,14 @@
     7.17,
     6.71,
     6.6,
-    6.47
+    6.47,
+    6.5
    ],
    "subs": [
     {
      "name": "Tiền thuê nhà",
      "w": 3.45,
      "yoy": [
-      null,
       null,
       null,
       null,
@@ -11057,7 +11818,8 @@
       5.87,
       5.29,
       5.07,
-      null
+      null,
+      4.88
      ]
     },
     {
@@ -11083,11 +11845,11 @@
       null,
       null,
       null,
-      null,
       8.68,
       9.04,
       9.19,
-      null
+      null,
+      10.05
      ]
     },
     {
@@ -11252,7 +12014,6 @@
       null,
       null,
       null,
-      null,
       8.94,
       10.88,
       10.8,
@@ -11267,14 +12028,14 @@
       4.03,
       3.76,
       1.36,
-      null
+      null,
+      5.06
      ]
     },
     {
      "name": "Nước sinh hoạt",
      "w": 0.85,
      "yoy": [
-      null,
       null,
       null,
       null,
@@ -11297,6 +12058,7 @@
       1.45,
       1.79,
       1.6,
+      null,
       null
      ]
     },
@@ -11320,13 +12082,13 @@
       null,
       null,
       null,
-      null,
       2.97,
       39.35,
       37.15,
       35.23,
       23.69,
       33.49,
+      null,
       null
      ]
     },
@@ -11367,7 +12129,6 @@
    "w": 9.67,
    "color": "#2a78d6",
    "yoy": [
-    -3.25,
     -3.3,
     -0.89,
     -0.36,
@@ -11390,7 +12151,8 @@
     5.29,
     3.66,
     8.02,
-    11.67
+    11.67,
+    15.57
    ],
    "subs": [
     {
@@ -11443,14 +12205,14 @@
       null,
       null,
       null,
-      null,
       21.6,
       21.47,
       25.12,
       8.97,
       5.89,
       15.8,
-      23.96
+      23.96,
+      35.03
      ]
     },
     {
@@ -11520,7 +12282,6 @@
    "w": 6.74,
    "color": "#4a3aa7",
    "yoy": [
-    1.33,
     1.41,
     1.49,
     1.66,
@@ -11543,7 +12304,8 @@
     3.17,
     3.21,
     3.29,
-    3.27
+    3.27,
+    3.24
    ],
    "subs": [
     {
@@ -11703,7 +12465,6 @@
    "w": 6.17,
    "color": "#008300",
    "yoy": [
-    -0.54,
     -0.81,
     -1.08,
     -1,
@@ -11726,14 +12487,14 @@
     3.39,
     3.63,
     3.9,
-    2.93
+    2.93,
+    2.74
    ],
    "subs": [
     {
      "name": "Học phí",
      "w": 4.85,
      "yoy": [
-      -0.77,
       -1.08,
       -1.4,
       -1.3,
@@ -11756,7 +12517,8 @@
       3.63,
       3.93,
       4.3,
-      3.29
+      3.29,
+      3.06
      ]
     },
     {
@@ -11856,7 +12618,6 @@
    "w": 5.7,
    "color": "#1baf7a",
    "yoy": [
-    1.13,
     1.14,
     1.16,
     1.32,
@@ -11879,7 +12640,8 @@
     2.19,
     2.29,
     2.23,
-    2.19
+    2.19,
+    1.94
    ],
    "subs": [
     {
@@ -12039,7 +12801,6 @@
    "w": 5.39,
    "color": "#e87ba4",
    "yoy": [
-    8.28,
     5.28,
     5.32,
     14.14,
@@ -12062,7 +12823,8 @@
     1.2,
     1.24,
     1.25,
-    1.47
+    1.47,
+    1.75
    ],
    "subs": [
     {
@@ -12129,7 +12891,6 @@
      "name": "Dịch vụ khám chữa bệnh",
      "w": 3.09,
      "yoy": [
-      10.58,
       6.55,
       6.6,
       18.45,
@@ -12152,7 +12913,8 @@
       0.74,
       0.76,
       0.77,
-      1.09
+      1.09,
+      1.41
      ]
     }
    ]
@@ -12162,7 +12924,6 @@
    "w": 4.55,
    "color": "#eda100",
    "yoy": [
-    2.09,
     2.2,
     2.31,
     2.48,
@@ -12185,7 +12946,8 @@
     3.32,
     3.65,
     3.59,
-    3.42
+    3.42,
+    2.46
    ],
    "subs": [
     {
@@ -12345,7 +13107,6 @@
    "w": 3.53,
    "color": "#84cc16",
    "yoy": [
-    7.03,
     7,
     6.89,
     7.01,
@@ -12368,7 +13129,8 @@
     4.08,
     5.91,
     5.95,
-    5.82
+    5.82,
+    5.65
    ],
    "subs": [
     {
@@ -12468,7 +13230,6 @@
    "w": 3.14,
    "color": "#64748b",
    "yoy": [
-    -0.37,
     -0.57,
     -0.61,
     -0.69,
@@ -12491,7 +13252,8 @@
     0.13,
     0.38,
     0.5,
-    0.33
+    0.33,
+    0.12
    ],
    "subs": [
     {
@@ -12591,7 +13353,6 @@
    "w": 2.73,
    "color": "#d946ef",
    "yoy": [
-    2.26,
     2.34,
     2.4,
     2.72,
@@ -12614,7 +13375,8 @@
     4.21,
     4.13,
     4.09,
-    4.33
+    4.33,
+    4.4
    ],
    "subs": [
     {
@@ -12713,17 +13475,17 @@
  "CPI_FC_SCEN": {
   "low": {
    "q4": [
-    0,
-    0.05,
+    0.2,
+    -0.45,
     0.1
    ],
-   "avg27": 3.3,
+   "avg27": 3.4,
    "label": "Thấp"
   },
   "central": {
    "q4": [
     0.2,
-    0.2,
+    -0.3,
     0.25
    ],
    "avg27": 3.9,
@@ -12731,11 +13493,11 @@
   },
   "high": {
    "q4": [
-    0.4,
-    0.4,
+    0.2,
+    -0.1,
     0.45
    ],
-   "avg27": 4.6,
+   "avg27": 4.9,
    "label": "Cao"
   }
  },
@@ -12756,46 +13518,53 @@
  "CPI_FC_VAT_JAN27": 0.3,
  "CPI_FC_DRIVERS": [
   {
-   "m": "T10/26",
-   "dir": "up",
-   "t": "Giá xăng dầu điều chỉnh 1/10: E10 +100đ lên 27.180đ/l, E5 +170đ; dầu diesel −780đ. Brent tăng 4,4% lên ~102 USD/thùng (1/10). T9 xăng tăng 9,39% m/m, đóng góp chính vào CPI +0,62%.",
-   "te": "Fuel prices adjusted on 1 Oct: E10 +100 VND to 27,180 VND/l, E5 +170 VND; diesel −780 VND. Brent up 4.4% to ~$102/bbl (1 Oct). In Sep, petrol rose 9.39% m/m and was the main driver of CPI +0.62%.",
-   "u": "https://luatvietnam.vn/tin-van-ban-moi/gia-xang-ngay-01-10-2026-186-113107-article.html"
+   "m": "T11/26",
+   "dir": "down",
+   "t": "Thuế TTĐB với xăng về 0% từ 1/11/2026 đến hết 31/3/2027 (NQ 45/2026/NQ-CP); giá xăng 1/11: E5 RON92 −1.804 đ/l, E10 RON95 −1.575 đ/l. Bộ Tài chính: cùng với giá điện giảm, CPI T11 giảm khoảng 0,5 điểm % so với T10; CPI bình quân 2026 giảm khoảng 0,08 điểm %.",
+   "te": "Excise on petrol at 0% from 1 Nov 2026 to 31 Mar 2027 (Res. 45/2026/NQ-CP); pump prices on 1 Nov: E5 RON92 −1,804 VND/l, E10 RON95 −1,575 VND/l. MoF: with the electricity cut this lowers Nov CPI by about 0.5 pp m/m and the 2026 average by about 0.08 pp.",
+   "u": "https://vietnamplus.vn/bo-tai-chinh-giam-thue-xang-gia-dien-gop-phan-kiem-che-lam-phat-post1146092.vnp"
   },
   {
-   "m": "T10/26",
-   "dir": "flat",
-   "t": "Giá điện chưa điều chỉnh (2.204 đ/kWh từ 10/5/2025); NĐ 278/2026 cho phép điều chỉnh 3 tháng/lần — có khả năng giảm vì EVN lãi lớn; BTC yêu cầu cân nhắc thời điểm.",
-   "te": "Electricity tariff unchanged (2,204 VND/kWh since 10/5/2025); Decree 278/2026 allows adjustments every 3 months — a cut is possible given EVN's large profit; MoF asks to weigh the timing.",
-   "u": "https://tuoitre.vn/lam-phat-gan-cham-tran-gia-dien-co-tinh-giam-de-bot-ap-luc-tieu-dung-cuoi-nam-100260923080556954.htm"
+   "m": "T11/26–T12/26",
+   "dir": "down",
+   "t": "Giá bán lẻ điện bình quân giảm 2% còn 2.159,9 đ/kWh từ 1/11/2026 (QĐ 1305/QĐ-EVN), lần giảm đầu tiên sau gần 20 năm, áp dụng đến hết 3/2027. Chỉ số điện của NSO trễ một tháng, nên một phần tác động có thể rơi vào T12.",
+   "te": "Average retail electricity price cut 2% to 2,159.9 VND/kWh from 1 Nov 2026 (Decision 1305/QĐ-EVN), the first cut in nearly 20 years, through Mar-2027. NSO's electricity index lags one month, so part of the effect may land in December.",
+   "u": "https://www.vietnamplus.vn/evn-dieu-chinh-gia-dien-giam-2-con-21599-dongkwh-tu-ngay-mai-111-post1145418.vnp"
   },
   {
-   "m": "T10/26",
+   "m": "T4/27",
    "dir": "up",
-   "t": "Học phí năm học 2026–27 phần lớn đã phản ánh ở T9 (nhóm giáo dục +1,41% m/m); còn dư địa nhỏ ở T10.",
-   "te": "2026–27 tuition increases were mostly captured in Sep (education +1.41% m/m); small residual in Oct.",
-   "u": "https://markettimes.vn/cpi-thang-9-2026-tang-0-62-chu-yeu-do-gia-xang-dau-va-hoc-phi-132253.html"
+   "t": "Thuế TTĐB xăng và mức giảm giá điện hết hạn 31/3/2027 nếu không gia hạn: rủi ro tăng CPI T4/2027. Mô hình chưa tách bước này vì chưa có ước tính chính thức.",
+   "te": "The petrol-excise and electricity cuts end on 31 Mar 2027 unless extended: upside risk to Apr-2027 CPI. The model does not separate this step because no official estimate exists.",
+   "u": "https://www.vietnamplus.vn/ban-hanh-quy-dinh-ve-thue-tieu-thu-dac-biet-doi-voi-xang-post1145478.vnp"
+  },
+  {
+   "m": "T11/26",
+   "dir": "down",
+   "t": "T10: giá lợn hơi 47–53 nghìn đ/kg (26/10), thịt lợn −2,33% m/m; gạo −0,92% khi nguồn cung dồi dào. Lạm phát cơ bản T10 −0,05% m/m, 4,04% yoy.",
+   "te": "October: live hogs at 47–53k VND/kg (26 Oct), pork −2.33% m/m; rice −0.92% on ample supply. Core inflation −0.05% m/m, 4.04% y/y.",
+   "u": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
   },
   {
    "m": "T11/26",
    "dir": "up",
-   "t": "Giá dịch vụ y tế: chưa có quyết định trong Q4; BTC đề nghị Bộ Y tế lộ trình gắn với mục tiêu kiểm soát lạm phát — rủi ro tăng.",
-   "te": "Healthcare service prices: no Q4 decision yet; MoF asked MoH for a roadmap aligned with the inflation target — upside risk.",
+   "t": "Gas tăng 10,35% m/m từ 1/10 và nhiên liệu vẫn +35,03% yoy trong T10; giá dầu thế giới là biến số chính cho T11–T12.",
+   "te": "Gas rose 10.35% m/m from 1 Oct and fuel was still +35.03% y/y in October; world oil is the main swing factor for Nov–Dec.",
+   "u": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
+  },
+  {
+   "m": "T11/26",
+   "dir": "up",
+   "t": "Giá dịch vụ y tế: một số địa phương đã điều chỉnh (T10 +0,34% m/m); BTC đề nghị Bộ Y tế lộ trình gắn với mục tiêu kiểm soát lạm phát — rủi ro tăng.",
+   "te": "Healthcare service prices: some provinces adjusted in October (+0.34% m/m); MoF asked MoH for a roadmap aligned with the inflation target — upside risk.",
    "u": "https://www.vietnamplus.vn/tap-trung-thuc-hien-tot-viec-kiem-soat-gia-nhung-thang-cuoi-nam-2026-post1134293.vnp"
   },
   {
-   "m": "T10/26",
+   "m": "T11/26",
    "dir": "down",
-   "t": "Giá lợn hơi giảm còn 56–59 nghìn đ/kg cuối T9; giá gạo ổn định khi vào vụ thu đông.",
-   "te": "Live hog prices fell to 56–59k VND/kg in late Sep; rice prices stable as the autumn–winter harvest arrives.",
-   "u": "https://thuonggiaonline.vn/gia-nong-san-hom-nay-299-gia-thit-lon-hoi-giam-tren-dien-rong-ca-phe-di-ngang-post573192.html"
-  },
-  {
-   "m": "T10/26",
-   "dir": "down",
-   "t": "Tỷ giá: chỉ số giá USD T9 −0,69% m/m, −1,34% yoy; dự báo cuối năm ~26.000 (VNDirect) – 26.800 (MBS).",
-   "te": "Exchange rate: USD price index −0.69% m/m, −1.34% y/y in Sep; year-end forecasts ~26,000 (VNDirect) to 26,800 (MBS).",
-   "u": "https://nguoiquansat.vn/vndirect-research-du-bao-dien-bien-ty-gia-lai-suat-cuoi-nam-2026-317361.html"
+   "t": "Tỷ giá: chỉ số giá USD T10 −0,26% m/m, −1,26% yoy, −1,32% so với T12/2025, dù DXY tăng 2,39 điểm.",
+   "te": "Exchange rate: USD price index −0.26% m/m, −1.26% y/y, −1.32% vs Dec-2025, even though DXY rose 2.39 points.",
+   "u": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
   },
   {
    "m": "T12/26",
@@ -12807,22 +13576,22 @@
   {
    "m": "T11/26–T12/26",
    "dir": "down",
-   "t": "Hiệu ứng nền: 2025 tăng T10 +0,20%, T11 +0,45%, T12 +0,19% m/m — nền cao T11 kéo YoY xuống.",
-   "te": "Base effect: 2025 m/m was Oct +0.20%, Nov +0.45%, Dec +0.19% — the high November base pulls y/y down.",
-   "u": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/"
+   "t": "Hiệu ứng nền: 2025 tăng T11 +0,45%, T12 +0,19% m/m — nền cao T11 kéo YoY xuống.",
+   "te": "Base effect: 2025 m/m was Nov +0.45%, Dec +0.19% — the high November base pulls y/y down.",
+   "u": "https://www.nso.gov.vn/wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf"
   },
   {
    "m": "2027",
    "dir": "down",
-   "t": "Giá dầu: EIA dự báo Brent ~90 USD nửa cuối 2026, ~77 USD Q2/2027, BQ 74 USD năm 2027.",
-   "te": "Oil: EIA expects Brent ~$90 in 2H26, ~$77 in 2Q27 and $74 on average in 2027.",
+   "t": "Giá dầu: EIA dự báo Brent ~90 USD nửa cuối 2026, ~77 USD Q2/2027, BQ 74 USD năm 2027; dự toán NSNN 2027 giả định ~75 USD/thùng.",
+   "te": "Oil: EIA expects Brent ~$90 in 2H26, ~$77 in 2Q27 and $74 on average in 2027; the draft 2027 budget assumes ~$75/bbl.",
    "u": "https://www.eia.gov/outlooks/steo/report/global_oil.php"
   },
   {
    "m": "T1/27",
    "dir": "up",
-   "t": "Chính sách giảm 2% thuế GTGT hết hạn 31/12/2026 (8% → 10%) nếu không gia hạn — OECD đánh giá giữ lạm phát ở mức cao.",
-   "te": "The 2pp VAT cut expires on 31/12/2026 (8% → 10%) unless extended — OECD sees this keeping inflation elevated.",
+   "t": "Giảm 2% thuế GTGT hết hạn 31/12/2026 (8% → 10%) nếu không gia hạn; thuế BVMT xăng dầu 0 đ/l và thuế nhập khẩu xăng dầu 0% cũng đến 31/12/2026 (NQ 43/2026/NQ-CP). Chưa có văn bản gia hạn tính đến 6/11/2026.",
+   "te": "The 2pp VAT cut expires on 31 Dec 2026 (8% → 10%) unless extended; the VND0/l fuel environmental tax and 0% fuel import duty also end on 31 Dec 2026 (Res. 43/2026/NQ-CP). No extension found as of 6 Nov 2026.",
    "u": "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/nam-2027-con-duoc-giam-2-thue-gia-tri-gia-tang-khong-290351-231939.html"
   }
  ]

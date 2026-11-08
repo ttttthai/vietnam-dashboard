@@ -2,11 +2,12 @@
  "_meta": {
   "owner": "Finance agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-11-01",
-  "fed_oct_2026": "FINSYS.why.series.fed_funds_upper 2026-10 = 4.0 is the range in force at month-end Oct-2026: the FOMC held on 28 Oct 2026 and there was no further meeting or intermeeting action before 31 Oct, so the value is final. Applied 2026-11-01 (user approval). Next FOMC: 8-9 Dec 2026. usdvnd_monthly still ends 2026-09 (fed_funds_upper has its own months array)."
+  "as_of": "2026-11-06",
+  "fed_oct_2026": "FINSYS.why.series.fed_funds_upper 2026-10 = 4.0 is the range in force at month-end Oct-2026: the FOMC held on 28 Oct 2026 and there was no further meeting or intermeeting action before 31 Oct, so the value is final. Applied 2026-11-01 (user approval). Next FOMC: 8-9 Dec 2026. usdvnd_monthly still ends 2026-09 (fed_funds_upper has its own months array).",
+  "weekly_2026_11_06": "Weekly all-agents run (pre-approved). WebFetch reached sbv.gov.vn list pages and the public article API this run, so SBV values marked page-read were read from SBV, not from excerpts. SBV detail pages (CAR, ROA/ROE) returned 403. See FINSYS.sources.weekly_2026_11_06."
  },
  "FINSYS": {
-  "asof": "2026-10-08",
+  "asof": "2026-11-06",
   "annual": {
    "years": [
     2015,
@@ -262,7 +263,8 @@
     "T6/26",
     "T7/26",
     "T8/26",
-    "T9/26"
+    "T9/26",
+    "T10/26"
    ],
    "m2_level": [
     null,
@@ -287,6 +289,7 @@
     19974985.0,
     20414616.0,
     20455644.0,
+    20774696.0,
     null,
     null
    ],
@@ -313,6 +316,7 @@
     2.73,
     4.99,
     5.2,
+    6.84,
     null,
     null
    ],
@@ -339,6 +343,7 @@
     16995128.0,
     17440361.0,
     17461327.0,
+    17771452.0,
     null,
     null
    ],
@@ -365,6 +370,7 @@
     2.9,
     5.6,
     5.72,
+    7.6,
     null,
     null
    ],
@@ -391,6 +397,7 @@
     10826998.0,
     11068825.0,
     11220486.0,
+    11434266.0,
     null,
     null
    ],
@@ -417,6 +424,7 @@
     6168130.0,
     6371536.0,
     6240841.0,
+    6337186.0,
     null,
     null
    ],
@@ -443,8 +451,9 @@
     19703851.0,
     20150411.0,
     20262110.0,
-    20500000,
-    20750000
+    20489434.0,
+    20750000,
+    20800000
    ],
    "credit_ytd": [
     null,
@@ -469,8 +478,9 @@
     5.96,
     8.37,
     8.97,
-    10.24,
-    11.59
+    10.19,
+    11.59,
+    11.94
    ],
    "credit_yoy": [
     null,
@@ -495,8 +505,9 @@
     18.23,
     17.41,
     17.7,
-    null,
-    16.69
+    17.38,
+    16.69,
+    null
    ],
    "cash_to_m2_pct": [
     null,
@@ -521,6 +532,7 @@
     10.46,
     10.11,
     9.98,
+    9.86,
     null,
     null
    ],
@@ -528,6 +540,7 @@
     null,
     "statement",
     "statement",
+    "sbv_table",
     "sbv_table",
     "sbv_table",
     "sbv_table",
@@ -573,8 +586,9 @@
     "2026-05-31",
     "2026-06-30",
     "2026-07-31",
-    "2026-08-28",
-    "2026-09-30"
+    "2026-08-31",
+    "2026-09-30",
+    "2026-10-26"
    ],
    "credit_yoy_basis": [
     null,
@@ -599,8 +613,9 @@
     "computed_from_sbv_table_levels",
     "computed_from_sbv_table_levels",
     "computed_from_sbv_table_levels",
-    null,
-    "statement"
+    "computed_from_sbv_table_levels",
+    "statement",
+    null
    ],
    "deposits_ytd_statement": [
     null,
@@ -626,7 +641,8 @@
     null,
     null,
     8.77,
-    9.78
+    9.78,
+    null
    ],
    "deposits_ytd_statement_cutoff": [
     null,
@@ -652,7 +668,8 @@
     null,
     null,
     "2026-08-22",
-    "2026-09-28"
+    "2026-09-28",
+    null
    ],
    "deposits_ytd_statement_basis": [
     null,
@@ -678,7 +695,8 @@
     null,
     null,
     "vnd_mobilisation_statement",
-    "mobilisation_nso_report"
+    "mobilisation_nso_report",
+    null
    ],
    "cash_in_circulation_derived_bn": [
     null,
@@ -703,6 +721,7 @@
     2089383,
     2063918,
     2041473,
+    2048385,
     null,
     null
    ],
@@ -729,6 +748,7 @@
     "ok",
     "ok",
     "ok",
+    "ok",
     null,
     null
    ],
@@ -745,6 +765,7 @@
     "old",
     "old",
     "old",
+    "new",
     "new",
     "new",
     "new",
@@ -844,6 +865,12 @@
      "v": 77.06,
      "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
      "n": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs"
+    },
+    {
+     "d": "2026-09",
+     "v": 76.07,
+     "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+     "n": "Tỷ lệ dư nợ cho vay so với tổng tiền gửi (Circular 22/2019), whole system excl. VBSP & PCFs; table to 30/09/2026. SOCBs 82.02, JSCBs 77.01."
     }
    ],
    "short_term_funds_for_mlt_loans_pct": [
@@ -942,6 +969,12 @@
      "v": 29.16,
      "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
      "n": "cap 30% (Circular 22/2019; roadmap)"
+    },
+    {
+     "d": "2026-09",
+     "v": 28.25,
+     "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+     "n": "cap 30% (Circular 22/2019; roadmap); table to 30/09/2026. SOCBs 23.69, JSCBs 35.83."
     }
    ],
    "npl_onbalance_sbv_pct": [
@@ -1562,6 +1595,12 @@
      "v": 3.0,
      "u": "https://thitruongtaichinhtiente.vn/tinh-hinh-hoat-dong-nganh-ngan-hang-viet-nam-nam-2025-trien-vong-nam-2026-va-mot-so-kien-nghi-77830.html",
      "n": "27 listed banks, 9M2025, approx."
+    },
+    {
+     "d": "2026-09",
+     "v": 3.02,
+     "u": "https://vantagecore.substack.com/p/cap-nhat-ket-qua-kinh-doanh-nganh",
+     "n": "26 listed banks, 9M2026 (Vantage Capital, analyst blog). Coverage and provider differ from the 27-bank entries above."
     }
    ],
    "credit_to_gdp_pct": [
@@ -1830,6 +1869,12 @@
      "v": 29848110,
      "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
      "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion."
+    },
+    {
+     "d": "2026-09",
+     "v": 30892302,
+     "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+     "n": "Total assets of credit institutions, whole system (SBV 'Thống kê một số chỉ tiêu cơ bản'), VND billion; +10.06% vs end-2025."
     }
    ],
    "npl_onbalance_sbv_annual_pct": [
@@ -1924,6 +1969,36 @@
      "v": 1293701,
      "u": "https://thitruongtaichinhtiente.vn/tong-tai-san-cua-he-thong-to-chuc-tin-dung-vuot-29-28-trieu-ty-dong-84807.html",
      "n": "Charter capital, whole CI system, 31/5/2026, +1.27% vs end-2025 (SBV via press). Earlier year-ends: SBV table not reachable from the sandbox."
+    },
+    {
+     "d": "2026-09",
+     "v": 1372904,
+     "u": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+     "n": "Charter capital, whole CI system, 30/09/2026, +7.47% vs end-2025 (SBV table, page read)."
+    }
+   ],
+   "npl_listed_banks_vantage_pct": [
+    {
+     "d": "2026-Q3",
+     "v": 2.09,
+     "u": "https://vantagecore.substack.com/p/cap-nhat-ket-qua-kinh-doanh-nganh",
+     "n": "26 listed banks, on-balance, from bank statements (Vantage Capital, 2/11/2026): 1.85 at end-2025. SOCBs 1.32, private banks 2.62. Cross-check from data/banks_vnstock.json (quarterly 2026-Q3, as_of 2026-11-05): loan-weighted 2.12 for 28 banks (2.01 in Q2, equal to Yuanta). Narrower than the SBV system ratio; do not merge."
+    }
+   ],
+   "group2_listed_banks_vantage_pct": [
+    {
+     "d": "2026-Q3",
+     "v": 1.59,
+     "u": "https://vantagecore.substack.com/p/cap-nhat-ket-qua-kinh-doanh-nganh",
+     "n": "26 listed banks, +20 bp in Q3 from 1.39 (Vantage Capital). Listed banks only."
+    }
+   ],
+   "coverage_listed_banks_vantage_pct": [
+    {
+     "d": "2026-Q3",
+     "v": 74.2,
+     "u": "https://vantagecore.substack.com/p/cap-nhat-ket-qua-kinh-doanh-nganh",
+     "n": "26 listed banks; SOCBs 124.7, private banks 56.7; the earlier peak is given as both 82.6 and 83.8 in the same article. Provisions +~40% YoY to 48.2tn, 32.8% of pre-provision profit. Different definition from the IMF FSI provisions/NPL series."
     }
    ]
   },
@@ -1947,7 +2022,8 @@
     "2026-04",
     "2026-05",
     "2026-06",
-    "2026-07"
+    "2026-07",
+    "2026-08"
    ],
    "levels": {
     "agriculture_forestry_fisheries": [
@@ -1969,7 +2045,8 @@
      1192086.0,
      1202756.0,
      1225073.0,
-     1232973.0
+     1232973.0,
+     1245854.0
     ],
     "industry_and_construction": [
      3925111.13,
@@ -1990,7 +2067,8 @@
      4628160.0,
      4684982.0,
      4735598.0,
-     4782025.0
+     4782025.0,
+     4878387.0
     ],
     "industry": [
      2719532.34,
@@ -2011,7 +2089,8 @@
      3147160.0,
      3196871.0,
      3240445.0,
-     3255581.0
+     3255581.0,
+     3276604.0
     ],
     "construction": [
      1205578.79,
@@ -2032,7 +2111,8 @@
      1481000.0,
      1488112.0,
      1495153.0,
-     1526444.0
+     1526444.0,
+     1601783.0
     ],
     "trade_transport_telecom": [
      4420523.68,
@@ -2053,7 +2133,8 @@
      4974211.0,
      4987198.0,
      5080910.0,
-     5088322.0
+     5088322.0,
+     5126749.0
     ],
     "trade": [
      4024782.89,
@@ -2074,7 +2155,8 @@
      4461695.0,
      4462902.0,
      4534518.0,
-     4533303.0
+     4533303.0,
+     4567396.0
     ],
     "transport_telecom": [
      395740.79,
@@ -2095,7 +2177,8 @@
      512517.0,
      524296.0,
      546391.0,
-     555019.0
+     555019.0,
+     559352.0
     ],
     "other_services": [
      6333710.33,
@@ -2116,7 +2199,8 @@
      8653063.0,
      8828916.0,
      9108831.0,
-     9158790.0
+     9158790.0,
+     9238445.0
     ],
     "total": [
      15701965.17,
@@ -2137,7 +2221,8 @@
      19447521.0,
      19703851.0,
      20150411.0,
-     20262110.0
+     20262110.0,
+     20489434.0
     ]
    },
    "growth_ytd": {
@@ -2160,7 +2245,8 @@
      5.03,
      5.97,
      7.94,
-     8.63
+     8.63,
+     9.77
     ],
     "industry_and_construction": [
      1.34,
@@ -2181,7 +2267,8 @@
      6.31,
      7.61,
      8.78,
-     9.84
+     9.84,
+     12.05
     ],
     "industry": [
      1.54,
@@ -2202,7 +2289,8 @@
      6.76,
      8.45,
      9.93,
-     10.44
+     10.44,
+     11.15
     ],
     "construction": [
      0.88,
@@ -2223,7 +2311,8 @@
      5.35,
      5.86,
      6.36,
-     8.59
+     8.59,
+     13.95
     ],
     "trade_transport_telecom": [
      0.33,
@@ -2244,7 +2333,8 @@
      1.77,
      2.04,
      3.96,
-     4.11
+     4.11,
+     4.89
     ],
     "trade": [
      0.01,
@@ -2265,7 +2355,8 @@
      1.14,
      1.17,
      2.79,
-     2.76
+     2.76,
+     3.53
     ],
     "transport_telecom": [
      3.7,
@@ -2286,7 +2377,8 @@
      7.66,
      10.14,
      14.78,
-     16.59
+     16.59,
+     17.5
     ],
     "other_services": [
      0.3,
@@ -2307,7 +2399,8 @@
      5.28,
      7.42,
      10.83,
-     11.44
+     11.44,
+     12.41
     ],
     "total": [
      0.55,
@@ -2328,7 +2421,8 @@
      4.59,
      5.96,
      8.37,
-     8.97
+     8.97,
+     10.19
     ]
    },
    "unit": "VND billion (levels); growth = % YTD vs end of previous year (SBV); shares of total computed"
@@ -2431,6 +2525,13 @@
      "unit": "VND billion",
      "u": "https://vietstock.vn/2026/07/du-no-margin-lap-ky-luc-454-ngan-ty-dong-cuoc-dua-co-su-phan-hoa-830-1468883.htm",
      "n": "Vietstock tally incl. advances. Conflict (not averaged): other end-Q2-2026 tallies give ~445,000-446,000 bn incl. advances and ~435,000 bn margin only (https://moneyf.vn/cuoi-quy-ii-du-no-cho-vay-tai-cac-cong-ty-chung-kh-h67ztex2 ; https://vn.investing.com/news/stock-market-news/du-no-margin-lap-ky-luc-435000-ty-dong-trong-quy-ii2026-2668501; search excerpts). Coverage (number of brokers) differs. Q3-2026 figures not yet available (broker Q3 statements due ~20/10/2026)."
+    },
+    {
+     "d": "2026-09",
+     "v": 457500,
+     "unit": "VND billion",
+     "u": "https://doanhnhan.baophapluat.vn/du-no-margin-lap-ky-luc-hon-457-500-ty-dong-khi-thanh-khoan-giam-hon-60-chuyen-gia-canh-bao-rui-ro-giai-chap.md",
+     "n": "FiinTrade, 78 securities companies (~99.6% of industry equity): over 457,500, +11,700 vs end-Q2 and +56,400 (+14.1%) vs end-2025; 14.2% of free-float-adjusted market cap. The article does not say whether advances are included; the implied end-Q2 base (~445,800) matches the ~445-446k tally in the Jun-2026 note, not the 453,800 entry, so do not compare with that entry. Conflict (not averaged): another estimate gives ~455,000 incl. advances (https://doanhnhan.baophapluat.vn/margin-lap-dinh-lich-su-455-000-ty-dong-giua-luc-thanh-khoan-thi-truong-dong-bang.html)."
     }
    ],
    "Credit to securities sector share (bank credit)": [
@@ -2467,6 +2568,13 @@
      "unit": "VND billion",
      "u": "https://markettimes.vn/thi-truong-trai-phieu-doanh-nghiep-thang-8-2026-ngan-hang-tiep-tuc-ap-dao-co-tin-vui-tu-nhom-bat-dong-san-130495.html",
      "n": "End-Aug-2026 market value of corporate bonds in circulation 1,491 thousand bn (private placement 1,299k; public 192k; banks 685k; residential RE 446k; 12-month default rate 0.24%). Search excerpt only (page fetch blocked); excerpts attribute the monthly report to FiinGroup in one result and VIS Rating in another — provider not confirmed. Not strictly comparable with the Jun-2026 figure."
+    },
+    {
+     "d": "2026-09",
+     "v": 1535000,
+     "unit": "VND billion",
+     "u": "https://thoibaotaichinhvietnam.vn/phat-hanh-trai-phieu-doanh-nghiep-tang-gan-10-trong-quy-iii-2026-205245.html",
+     "n": "VIS Rating, end-Q3-2026: 10.9% of nominal GDP; private 1,340k, public 195k; banks 699k, residential real estate 475k. Coupons in Q3: banks 8.8%, real estate 11.5%. Maturities next 12 months 252k (157k a year earlier); Q4-2026 75k. Page read 2026-11-06. Provider differs from the Jun-2026 Vietstock/FiinGroup-type figure; same series family as the Aug-2026 1,491k entry."
     }
    ],
    "State Treasury (KBNN) deposits at banks": [
@@ -2507,12 +2615,24 @@
      "v": 11220486.0,
      "unit": "VND billion",
      "u": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd"
+    },
+    {
+     "d": "2026-08",
+     "v": 11434266.0,
+     "unit": "VND billion",
+     "u": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd"
     }
    ],
    "Deposits of economic organisations (tiền gửi TCKT)": [
     {
      "d": "2026-07",
      "v": 6240841.0,
+     "unit": "VND billion",
+     "u": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd"
+    },
+    {
+     "d": "2026-08",
+     "v": 6337186.0,
      "unit": "VND billion",
      "u": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd"
     }
@@ -2529,6 +2649,12 @@
      "v": 47.96,
      "unit": "%",
      "u": "https://dantri.com.vn/kinh-doanh/tien-gui-cua-nguoi-dan-vao-ngan-hang-lap-ky-luc-hon-7-trieu-ty-dong-20250409162758993.htm"
+    },
+    {
+     "d": "2026-08",
+     "v": 64.34,
+     "unit": "%",
+     "u": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd"
     }
    ],
    "FX-denominated liabilities share (deposit takers)": [
@@ -2581,6 +2707,23 @@
      },
      "unit": "%",
      "u": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
+    },
+    {
+     "d": "2026-08",
+     "v": {
+      "agriculture_forestry_fisheries": 9.77,
+      "industry_and_construction": 12.05,
+      "industry": 11.15,
+      "construction": 13.95,
+      "trade_transport_telecom": 4.89,
+      "trade": 3.53,
+      "transport_telecom": 17.5,
+      "other_services": 12.41,
+      "total": 10.19
+     },
+     "unit": "%",
+     "u": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+     "n": "Latest SBV sector table (Aug-2026, published 6/10/2026). Key name kept for the page; the item date is the period."
     }
    ],
    "Credit to production & business share": [
@@ -2697,6 +2840,20 @@
      "unit": "% YTD",
      "u": "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm",
      "note": "20.75 quadrillion; stated 3/10/2026"
+    },
+    {
+     "d": "2026-08-31",
+     "v": 10.19,
+     "unit": "% YTD",
+     "u": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+     "note": "SBV month-end table (20,489,434 bn), 5 bp below the 10.24% statement to 28/8, so the Aug label agrees with the press date"
+    },
+    {
+     "d": "2026-10-26",
+     "v": 11.94,
+     "unit": "% YTD",
+     "u": "https://vnexpress.net/pho-thong-doc-lai-suat-cho-vay-moi-giam-0-2-0-5-5140740.html",
+     "note": "'hơn 20,8 triệu tỷ đồng' (lower bound); in VnExpress's report of the Government press conference 4/11/2026 (article text, not a direct quote); one direct source. The Governor told the NA ~12.27% on 31/10 with no cut-off (Policy tab), not stored as a point. Neither is an end-October figure"
     }
    ],
    "Corporate bond issuance, 2026 cumulative (VBMA)": [
@@ -2727,6 +2884,13 @@
      "unit": "VND billion, cumulative Jan-Aug 2026 ('gần 349.000')",
      "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-gan-349-000-ty-dong-sau-8-thang.html",
      "n": "private ~296,000, public ~53,000; alt https://vnbusiness.vn/gan-349000-ty-dong-trai-phieu-doanh-nghiep-duoc-phat-hanh-bat-dong-san-tra-lai-toi-13nam.html. Year confirmed by the same excerpt comparing Aug buy-backs with Aug-2025. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-09-30",
+     "v": 428500,
+     "unit": "VND billion, cumulative Jan-Sep 2026 (\"hơn 428.500\")",
+     "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-hon-428-500-ty-dong-sau-9-thang.md",
+     "n": "private nearly 370,600, public nearly 58,000 (VBMA from HNX/SSC). Page read 2026-11-06."
     }
    ],
    "Corporate bond issuance by month, 2026 (VBMA, as disclosed by month-end)": [
@@ -2785,6 +2949,76 @@
      "unit": "VND billion, issued in the month",
      "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-gan-349-000-ty-dong-sau-8-thang.html",
      "n": "to 28/8: 33 issues 'hơn 32.000' (32,029 per the Research audit excerpt); private 25 issues ~25,600, public 8 issues ~6,400. search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)"
+    },
+    {
+     "d": "2026-09",
+     "v": 47100,
+     "unit": "VND billion, issued in the month",
+     "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-hon-428-500-ty-dong-sau-9-thang.md",
+     "n": "to 30/9: 38 issues; private 33 issues 42,200, public 5 issues over 4,900 (sum of the two stated parts; article headline figure \"hơn 47.000\"). September buy-backs over 17,900 (-56% YoY); Q4-2026 maturities over 70,000. Page read 2026-11-06. Conflict: S&I Ratings counts 179,400 for Q3 (-26% q/q) and VIS Rating 172,000 (+9.7% YoY); providers differ, not averaged."
+    }
+   ],
+   "SBV rate-cut directive, Oct-2026: deposit rates (letters 9608, 9736/NHNN-CSTT)": [
+    {
+     "d": "2026-10-21",
+     "v": 0.5,
+     "unit": "%/yr minimum cut",
+     "u": "https://cafef.vn/ngan-hang-nha-nuoc-co-chi-dao-moi-ve-lai-suat-188261021150259725.chn",
+     "n": "Letter 9608 (18/10) and 9736 (21/10): average rate on new deposits of 6 months and longer to fall at least 0.5%/yr in the last months of 2026, against each bank's own 11-20/10 reporting period; sanction: lower credit-growth quota. VnExpress reports the ask as 0.5-1%; the letter-level sources say at least 0.5%."
+    }
+   ],
+   "SBV rate-cut directive, Oct-2026: lending rates (production, business, priority)": [
+    {
+     "d": "2026-10-18",
+     "v": "1.5-2",
+     "unit": "%/yr cut",
+     "u": "https://tapchikinhtetaichinh.vn/lai-suat-ty-gia-hom-nay-lai-tiet-kiem-truoc-ap-luc-giam-usd-on-dinh-169921.html",
+     "n": "Letter 9608/NHNN-CSTT, 18/10/2026; confirmed by the Deputy Governor on 4/11/2026."
+    }
+   ],
+   "New-business rates, change late Oct vs mid-Oct 2026 (SBV): deposits": [
+    {
+     "d": "2026-10-31",
+     "v": -0.4,
+     "unit": "pp",
+     "u": "https://thitruongtaichinhtiente.vn/ngan-hang-giam-lai-suat-ho-tro-nguoi-dan-doanh-nghiep-86799.html",
+     "n": "Deputy Governor Pham Thanh Ha, 4/11/2026. Listed rates: SOCBs and foreign banks -0.5, JSCBs -0.5 to -0.7 (BNEWS: -0.75). Mekong ASEAN gives listed cuts of 1.5-1.7%/yr, which conflicts with the other four reports; not used."
+    }
+   ],
+   "New-business rates, change late Oct vs mid-Oct 2026 (SBV): loans": [
+    {
+     "d": "2026-10-31",
+     "v": "-0.2 to -0.5",
+     "unit": "pp",
+     "u": "https://thitruongtaichinhtiente.vn/ngan-hang-giam-lai-suat-ho-tro-nguoi-dan-doanh-nghiep-86799.html",
+     "n": "Base period: mid-Oct in TTTC and BNEWS; VnExpress says start of the month. Compare with the 1.5-2 asked for priority loans. More than 20 banks announced preferential programmes."
+    }
+   ],
+   "Average rate on new deposits (SBV statement)": [
+    {
+     "d": "2026-09-20",
+     "v": 6.38,
+     "unit": "%/yr",
+     "u": "https://thanhtra.com.vn/tai-chinh-701717FFD/lai-suat-lien-ngan-hang-dao-chieu-ap-luc-von-vay-van-hien-huu-98015f8ce.html",
+     "n": "+1.15pp vs end-2025 (SBV press conference 7/10/2026). A new-business system average, not the MBS 12-month series."
+    }
+   ],
+   "SBV 6-month FX-VND swap with credit institutions": [
+    {
+     "d": "2026-11-03",
+     "v": "announced",
+     "unit": "text",
+     "u": "https://thitruongtaichinhtiente.vn/ngan-hang-giam-lai-suat-ho-tro-nguoi-dan-doanh-nghiep-86799.html",
+     "n": "Announced 3/11/2026 to give banks longer VND funding (also https://bnews.vn/pho-thong-doc-pham-thanh-ha-se-tiep-tuc-trien-khai-cac-bien-phap-de-giam-mat-bang-lai-suat/443069.html). Up to USD 2bn (~VND48,798bn), 182 days, spot 24,399, forward 24,704, planned for 6/11, value 9/11/2026, maturity 10/5/2027 (https://vietstock.vn/2026/11/nhnn-trien-khai-nghiep-vu-hoan-doi-ngoai-te-ky-han-6-thang-757-1511563.htm). Amount actually done not yet reported; no SBV notice read directly."
+    }
+   ],
+   "Preferential credit packages, total": [
+    {
+     "d": "2026-10",
+     "v": 450000,
+     "unit": "VND billion (over)",
+     "u": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-tuan-3-thang-10-2026-24025.htm",
+     "n": "VNBA weekly bulletin, week 3 of Oct-2026: total packages above 450,000 bn, rate cuts up to 3.25%/yr. Reported total, not disbursed."
     }
    ]
   },
@@ -2796,8 +3030,8 @@
      "title_vi": "Tín dụng tăng nhanh hơn huy động → LDR cao, cuộc đua lãi suất huy động",
      "title_en": "Credit outpacing deposits → high LDR and a deposit-rate race",
      "direction": "up_pressure",
-     "explain_vi": "Năm 2025 tín dụng tăng ~19% trong khi huy động chỉ ~14%; sang 2026 khoảng lệch tiếp tục mở rộng, buộc ngân hàng tranh giành tiền gửi bằng lãi suất cao. Khi chi phí đầu vào tăng, lãi suất cho vay không thể giảm.",
-     "explain_en": "Credit grew ~19% in 2025 versus ~14% for deposits, and the gap kept widening in 2026, forcing banks to bid up deposit rates. With input costs rising, lending rates cannot fall.",
+     "explain_vi": "Năm 2025 tín dụng tăng ~19% trong khi huy động chỉ ~14%; sang 2026 tín dụng vẫn nhanh hơn (cuối 8/2026: 10,19% so với 7,60%, cùng kỳ 2025: 11,78% so với 8,33%; 26/10/2026 tín dụng +11,94%), buộc ngân hàng tranh giành tiền gửi bằng lãi suất cao. Khoảng lệch đã thu hẹp trong quý III: ở 28 ngân hàng niêm yết tiền gửi +4,9% so với cho vay +3,3% so quý trước, cho vay/tiền gửi còn ~112% từ ~114%. Đến 21/10, riêng VND: huy động +12,65%, tín dụng +10,2% so cuối 2025 (họp báo Chính phủ 4/11; phạm vi khác số toàn hệ thống). Khi chi phí đầu vào tăng, lãi suất cho vay không thể giảm.",
+     "explain_en": "Credit grew ~19% in 2025 versus ~14% for deposits, and credit stayed ahead in 2026 (end-Aug: 10.19% vs 7.60%, against 11.78% vs 8.33% a year earlier; credit +11.94% at 26-Oct), forcing banks to bid up deposit rates. The gap narrowed in Q3: at the 28 listed banks deposits rose 4.9% q/q against 3.3% for loans, taking loans/deposits to ~112% from ~114%. To 21-Oct, VND only: deposits +12.65%, credit +10.2% vs end-2025 (4-Nov Government briefing; narrower scope than the system figures). With input costs rising, lending rates cannot fall.",
      "metrics": [
       {
        "name": "Tăng trưởng tín dụng 2025 (toàn hệ thống)",
@@ -2899,6 +3133,38 @@
        "unit": "% YTD (+16,69% svck; ~20,75 triệu tỷ)",
        "date": "2026-10-03",
        "url": "https://cafef.vn/pho-thong-doc-pham-thanh-ha-tin-dung-den-30-9-dat-2075-trieu-ty-dong-tang-1159-188261003125449749.chn"
+      },
+      {
+       "name": "Tín dụng đến 26/10/2026",
+       "value": 11.94,
+       "unit": "% YTD",
+       "date": "2026-11-04",
+       "url": "https://vnexpress.net/pho-thong-doc-lai-suat-cho-vay-moi-giam-0-2-0-5-5140740.html",
+       "note": "hơn 20,8 triệu tỷ đồng"
+      },
+      {
+       "name": "Tín dụng vs tiền gửi, bảng NHNN T8/2026",
+       "value": "10.19 vs 7.6",
+       "unit": "% YTD",
+       "date": "2026-10-15",
+       "url": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd",
+       "note": "tiền gửi tính từ số dư TCKT + dân cư so với cuối 2025"
+      },
+      {
+       "name": "Cho vay/tiền gửi 28 NH niêm yết Q3/2026 (tính)",
+       "value": 111.9,
+       "unit": "%",
+       "date": "2026-11-05",
+       "url": "data/banks_vnstock.json (quarterly 2026-Q3, as_of 2026-11-05)",
+       "note": "Q2 113,7; không phải LDR TT22"
+      },
+      {
+       "name": "Đến 21/10/2026, riêng VND: huy động so cuối 2025",
+       "value": 12.65,
+       "unit": "% YTD",
+       "date": "2026-11-04",
+       "url": "https://bnews.vn/hop-bao-chinh-phu-thuong-ky-tap-trung-cac-giai-phap-cu-the-kha-thi-de-hoan-thanh-muc-tieu-nam-2026/443063.html",
+       "note": "Tín dụng VND +10,2%; phạm vi VND, không so trực tiếp với số toàn hệ thống"
       }
      ],
      "quotes": [
@@ -2934,8 +3200,8 @@
      "title_vi": "Chi phí vốn tăng mạnh, CASA giảm, phải phát hành GTCG lãi 8–10%",
      "title_en": "Surging cost of funds, falling CASA, costly 8–10% paper issuance",
      "direction": "up_pressure",
-     "explain_vi": "COF toàn ngành lên 4,79% (Q2/2026, +105 bps svck), cao nhất từ giữa 2023; lãi huy động 12T nhóm NH tư nhân tăng từ 5,82% (12/2025) lên ~8,6% (7/2026). Tiền gửi không kỳ hạn chuyển sang có kỳ hạn và ngân hàng phải phát hành GTCG/trái phiếu lãi 8–10%, nên lãi vay mới phải tăng để giữ NIM.",
-     "explain_en": "Sector COF hit 4.79% in Q2-2026 (+105 bps YoY), the highest since mid-2023; private banks' 12M deposit rate rose from 5.82% (Dec-2025) to ~8.6% (Jul-2026). CASA migrated to term deposits and banks issued paper at 8–10%, so new-loan rates had to rise to protect margins.",
+     "explain_vi": "COF toàn ngành lên 4,79% (Q2/2026, +105 bps svck), cao nhất từ giữa 2023, và 5,28% Q3/2026 (26 NH, Vantage Capital, nguồn khác, +~150 bps svck); lãi huy động 12T nhóm NH tư nhân tăng từ 5,82% (12/2025) lên ~8,6% (7/2026). Tiền gửi không kỳ hạn chuyển sang có kỳ hạn và ngân hàng phải phát hành GTCG/trái phiếu lãi 8–10%, nên lãi vay mới phải tăng để giữ NIM.",
+     "explain_en": "Sector COF hit 4.79% in Q2-2026 (+105 bps YoY), the highest since mid-2023, and 5.28% in Q3-2026 (26 banks, Vantage Capital, a different provider, +~150 bps YoY); private banks' 12M deposit rate rose from 5.82% (Dec-2025) to ~8.6% (Jul-2026). CASA migrated to term deposits and banks issued paper at 8–10%, so new-loan rates had to rise to protect margins.",
      "metrics": [
       {
        "name": "COF toàn ngành Q2/2026 (Yuanta)",
@@ -3009,6 +3275,14 @@
        "unit": "% (-0.1 điểm % svck)",
        "date": "2026-08-25",
        "url": "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
+      },
+      {
+       "name": "COF Q3/2026 (Vantage Capital, 26 NH)",
+       "value": 5.28,
+       "unit": "% (+~150 bps svck)",
+       "date": "2026-11-02",
+       "url": "https://vantagecore.substack.com/p/cap-nhat-ket-qua-kinh-doanh-nganh",
+       "note": "NIM 3,04%; khác nguồn với chuỗi Q2"
       }
      ],
      "quotes": [
@@ -3044,8 +3318,8 @@
      "title_vi": "Thanh khoản căng: lãi suất liên ngân hàng cao/biến động, NHNN không hạ lãi suất điều hành",
      "title_en": "Tight liquidity: high/volatile interbank rates; SBV not cutting policy rates",
      "direction": "up_pressure",
-     "explain_vi": "Lãi suất qua đêm lập kỷ lục 17% (3/2/2026), nhiều phiên >10% trong T3 và ~11% đầu T6; NHNN nâng lãi suất OMO từ 4,0% lên 4,5% (4/12/2025) và hút ròng mạnh trong T3/2026 khi tỷ giá căng. Ngân hàng nhỏ phụ thuộc vốn liên ngân hàng ngắn hạn đắt đỏ, nên giữ lãi vay cao.",
-     "explain_en": "Overnight interbank hit a record 17% (3-Feb-2026), several sessions >10% in March and ~11% in early June; SBV lifted the OMO rate 4.0→4.5% (4-Dec-2025) and drained liquidity in March-2026 under FX stress. Smaller banks relying on costly short interbank funds kept loan rates high.",
+     "explain_vi": "Lãi suất qua đêm lập kỷ lục 17% (3/2/2026), nhiều phiên >10% trong T3 và ~11% đầu T6; NHNN nâng lãi suất OMO từ 4,0% lên 4,5% (4/12/2025) và hút ròng mạnh trong T3/2026 khi tỷ giá căng. Ngân hàng nhỏ phụ thuộc vốn liên ngân hàng ngắn hạn đắt đỏ, nên giữ lãi vay cao. Gần đây qua đêm dịu hơn (3,74% ngày 29/10, 4,50% ngày 5/11/2026), kỳ hạn 1 tháng 5,40%; tuần 26–30/10 NHNN bơm ròng 28.162 tỷ đồng và ngày 3/11 công bố hoán đổi USD/VND kỳ hạn 182 ngày (tối đa 2 tỷ USD, ~48.798 tỷ đồng; dự kiến thực hiện 6/11, chưa có kết quả), trong khi lãi suất OMO giữ 4,5%.",
+     "explain_en": "Overnight interbank hit a record 17% (3-Feb-2026), several sessions >10% in March and ~11% in early June; SBV lifted the OMO rate 4.0→4.5% (4-Dec-2025) and drained liquidity in March-2026 under FX stress. Smaller banks relying on costly short interbank funds kept loan rates high. Overnight has since cooled (3.74% on 29-Oct, 4.50% on 5-Nov-2026) with 1-month at 5.40%; the SBV net-injected VND28.2tn in the week of 26-30 Oct and on 3-Nov announced a 182-day USD/VND swap (up to USD 2bn, ~VND48.8tn; planned for 6-Nov, result not yet reported), while the OMO rate stays at 4.5%.",
      "metrics": [
       {
        "name": "LS qua đêm liên NH đỉnh",
@@ -3113,6 +3387,22 @@
        "date": "2026-07-31",
        "url": "https://vneconomy.vn/tu-18-noi-quy-dinh-tinh-tien-gui-kho-bac-nha-nuoc-ngan-hang-co-them-du-dia-cho-vay.htm",
        "note": "QĐ 1743/QĐ-NHNN, hiệu lực đến 31/7/2028"
+      },
+      {
+       "name": "LS qua đêm 5/11/2026",
+       "value": 4.5,
+       "unit": "%/năm",
+       "date": "2026-11-06",
+       "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html",
+       "note": "1 tuần 5,00%; 1 tháng 5,40%; OMO 4,5%; dư nợ OMO 105.592 tỷ"
+      },
+      {
+       "name": "Hoán đổi ngoại tệ–VND 6 tháng",
+       "value": "tối đa 2 tỷ USD (công bố 3/11/2026)",
+       "unit": "nghiệp vụ mới",
+       "date": "2026-11-04",
+       "url": "https://vietstock.vn/2026/11/nhnn-trien-khai-nghiep-vu-hoan-doi-ngoai-te-ky-han-6-thang-757-1511563.htm",
+       "note": "182 ngày, giao ngay 24.399, kỳ hạn 24.704, ngày giá trị 9/11/2026, đáo hạn 10/5/2027; chưa có kết quả thực hiện"
       }
      ],
      "quotes": [
@@ -3142,8 +3432,8 @@
      "title_vi": "Áp lực tỷ giá & chênh lệch lãi suất USD–VND (Fed tăng lãi suất)",
      "title_en": "Exchange-rate pressure & USD–VND rate differential (Fed hiking)",
      "direction": "limits_cut",
-     "explain_vi": "Hạ lãi suất VND sẽ thu hẹp chênh lệch với USD và đẩy tỷ giá lên; VND mất giá ~3,2% năm 2025, giá bán USD chạm trần biên độ ±5% trong T3 và T7/2026, dự trữ chỉ ~1,85 tháng nhập khẩu nên NHNN giữ lãi suất liên ngân hàng cao và bán kỳ hạn. Fed đảo chiều tăng lên 3,75–4% (16/9/2026) và giữ nguyên ngày 28/10/2026 với 2 phiếu muốn tăng tiếp, càng hạn chế dư địa nới lỏng, dù tỷ giá thị trường đã dịu từ T8/2026.",
-     "explain_en": "Cutting VND rates would narrow the USD differential and lift USD/VND; the dong lost ~3.2% in 2025, bank USD quotes hit the ±5% band ceiling in Mar and Jul-2026, and reserves cover only ~1.85 months of imports, so the SBV kept interbank rates high and sold forwards. The Fed's hike to 3.75–4% (16-Sep-2026), held on 28-Oct-2026 with two votes for a further hike, further limits easing room, even though market FX pressure eased from Aug-2026.",
+     "explain_vi": "Hạ lãi suất VND sẽ thu hẹp chênh lệch với USD và đẩy tỷ giá lên; VND mất giá ~3,2% năm 2025, giá bán USD chạm trần biên độ ±5% trong T3 và T7/2026, dự trữ chỉ ~1,85 tháng nhập khẩu nên NHNN giữ lãi suất liên ngân hàng cao và bán kỳ hạn. Fed đảo chiều tăng lên 3,75–4% (16/9/2026) và giữ nguyên ngày 28/10/2026 với 2 phiếu muốn tăng tiếp, càng hạn chế dư địa nới lỏng, dù tỷ giá thị trường đã dịu từ T8/2026: tuần đến 6/11/2026 giá USD ngân hàng giảm 180 đồng (Vietcombank bán 25.810), tỷ giá trung tâm 25.615; BoE cũng tăng lãi suất lên 4,0% (5/11).",
+     "explain_en": "Cutting VND rates would narrow the USD differential and lift USD/VND; the dong lost ~3.2% in 2025, bank USD quotes hit the ±5% band ceiling in Mar and Jul-2026, and reserves cover only ~1.85 months of imports, so the SBV kept interbank rates high and sold forwards. The Fed's hike to 3.75–4% (16-Sep-2026), held on 28-Oct-2026 with two votes for a further hike, further limits easing room, even though market FX pressure eased from Aug-2026: bank USD quotes fell VND180 in the week to 6-Nov-2026 (Vietcombank sell 25,810), the central rate is 25,615, and the BoE also hiked to 4.0% (5-Nov).",
      "metrics": [
       {
        "name": "Fed funds target (giữ nguyên 28/10/2026)",
@@ -3197,6 +3487,14 @@
        "date": "2026-09-30",
        "url": "https://thanhnien.vn/gia-vang-usd-lai-suat-cung-ha-185260929225520444.htm",
        "note": "áp lực dịu từ T8–9 nhờ FDI 17.25 tỷ USD 8T; nhưng tỷ giá trung tâm +2.0% YTD"
+      },
+      {
+       "name": "Tỷ giá trung tâm 6/11/2026",
+       "value": 25615,
+       "unit": "VND/USD",
+       "date": "2026-11-06",
+       "url": "https://thanhnien.vn/gia-usd-hom-nay-6112026-giam-180-dong-trong-tuan-qua-185261106083421062.htm",
+       "note": "-22 đồng từ cuối T10 (25.637); Vietcombank bán 25.810 (VOV ghi 25.800)"
       }
      ],
      "quotes": [
@@ -3226,8 +3524,8 @@
      "title_vi": "Lạm phát ~5% → lãi suất thực, giới hạn hạ lãi suất huy động",
      "title_en": "~5% inflation → real-rate floor on deposit rates",
      "direction": "limits_cut",
-     "explain_vi": "CPI T9/2026 tăng 5,08% svck, bình quân 9 tháng 4,52% — sát/vượt mục tiêu ~4,5%; NHNN không thể nới lỏng và ngân hàng phải giữ lãi suất huy động dương thực để giữ tiền gửi (vàng, BĐS, chứng khoán cạnh tranh).",
-     "explain_en": "Sep-2026 CPI was +5.08% YoY (9M avg 4.52%), at/above the ~4.5% target; the SBV cannot ease and banks must keep positive real deposit rates to retain savers who can switch to gold, property or stocks.",
+     "explain_vi": "CPI T10/2026 tăng 5,09% svck, bình quân 10 tháng 4,57% (lạm phát cơ bản 4,24%) — vượt mục tiêu ~4,5%; NHNN không thể nới lỏng và ngân hàng phải giữ lãi suất huy động dương thực để giữ tiền gửi (vàng, BĐS, chứng khoán cạnh tranh).",
+     "explain_en": "Oct-2026 CPI was +5.09% YoY (10M avg 4.57%, core 4.24%), above the ~4.5% target; the SBV cannot ease and banks must keep positive real deposit rates to retain savers who can switch to gold, property or stocks.",
      "metrics": [
       {
        "name": "CPI T9/2026 svck",
@@ -3258,6 +3556,14 @@
        "date": "2026-10-05",
        "url": "https://congthuong.vn/casa-giam-dien-rong-ngan-hang-them-ap-luc-chi-phi-von-469327.html",
        "note": "derived: MBS 12M avg end-Jul-2026 minus CPI Sep-2026 YoY"
+      },
+      {
+       "name": "CPI T10/2026 svck",
+       "value": 5.09,
+       "unit": "%",
+       "date": "2026-11-03",
+       "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+       "note": "bình quân 10T 4,57%; lạm phát cơ bản 4,24%"
       }
      ],
      "quotes": [
@@ -3287,8 +3593,8 @@
      "title_vi": "Nợ xấu & chi phí dự phòng → phần bù rủi ro tín dụng",
      "title_en": "NPLs & provisioning → credit-risk premium",
      "direction": "limits_cut",
-     "explain_vi": "Tỷ lệ nợ xấu nội bảng toàn hệ thống 3,31% (6/2026), giá trị tuyệt đối vẫn tăng; nợ xấu BĐS +10,5% so cuối 2025. Ngân hàng tư nhân tăng trích lập mạnh (dự báo +28,8% svck Q3/26), nên phải giữ biên lãi vay để bù rủi ro.",
-     "explain_en": "System on-balance NPL ratio was 3.31% (Jun-2026) with absolute NPLs still rising; real-estate NPLs +10.5% vs end-2025. Private banks are provisioning heavily (MBS: +28.8% YoY in Q3-26), so lending spreads stay wide to price risk.",
+     "explain_vi": "Tỷ lệ nợ xấu nội bảng toàn hệ thống 3,31% (6/2026), giá trị tuyệt đối vẫn tăng; nợ xấu BĐS +10,5% so cuối 2025. Ở ngân hàng niêm yết, Q3/2026 nợ xấu 2,09% (từ 1,85% cuối 2025), nhóm 2 1,59%, bao phủ 74,2%, chi phí dự phòng +~40% svck (Vantage Capital, 26 NH). Ngân hàng tư nhân tăng trích lập mạnh (dự báo +28,8% svck Q3/26), nên phải giữ biên lãi vay để bù rủi ro.",
+     "explain_en": "System on-balance NPL ratio was 3.31% (Jun-2026) with absolute NPLs still rising; real-estate NPLs +10.5% vs end-2025. At listed banks, Q3-2026 NPLs were 2.09% (1.85% at end-2025), group-2 debt 1.59%, coverage 74.2% and provisions up ~40% YoY (Vantage Capital, 26 banks). Private banks are provisioning heavily (MBS: +28.8% YoY in Q3-26), so lending spreads stay wide to price risk.",
      "metrics": [
       {
        "name": "Nợ xấu nội bảng toàn hệ thống cuối 6/2026",
@@ -3326,6 +3632,14 @@
        "unit": "% (+11 bps)",
        "date": "2026-05-27",
        "url": "https://thoibaotaichinhvietnam.vn/vis-rating-lo-ngai-thanh-khoan-that-chat-no-xau-tang-khien-ngan-hang-them-ap-luc-198036.html"
+      },
+      {
+       "name": "Nợ xấu NH niêm yết Q3/2026",
+       "value": 2.09,
+       "unit": "%",
+       "date": "2026-11-02",
+       "url": "https://vantagecore.substack.com/p/cap-nhat-ket-qua-kinh-doanh-nganh",
+       "note": "26 NH; phạm vi hẹp hơn tỷ lệ toàn hệ thống của NHNN"
       }
      ],
      "quotes": [
@@ -3349,8 +3663,8 @@
      "title_vi": "Ràng buộc an toàn: LDR 85%, vốn ngắn hạn cho vay trung dài hạn, CAR/Basel III",
      "title_en": "Prudential limits: 85% LDR, short-for-long funding cap, CAR/Basel III",
      "direction": "limits_cut",
-     "explain_vi": "Trần LDR 85% và trần 30% vốn ngắn hạn cho vay trung dài hạn (đến 30/6/2026) buộc ngân hàng tìm vốn dài hạn đắt hơn; 80% tiền gửi là ngắn hạn trong khi ~50% tín dụng là trung dài hạn. Lộ trình Basel III (TT 14/2025) đòi hỏi tăng vốn, hạn chế giảm lãi suất.",
-     "explain_en": "The 85% LDR cap and 30% short-for-long funding cap (until 30-Jun-2026) push banks to costlier long-term funding; 80% of deposits are short-term while ~50% of credit is medium/long-term. The Basel III roadmap (Circular 14/2025) requires more capital.",
+     "explain_vi": "Trần LDR 85% và trần 30% vốn ngắn hạn cho vay trung dài hạn (đến 30/6/2026) buộc ngân hàng tìm vốn dài hạn đắt hơn; 80% tiền gửi là ngắn hạn trong khi ~50% tín dụng là trung dài hạn. Lộ trình Basel III (TT 14/2025) đòi hỏi tăng vốn, hạn chế giảm lãi suất. TT 50/2026 có hiệu lực 1/12/2026 nâng trần LDR lên 95% theo công thức mới khi ngân hàng chuyển sang LCR/NSFR (chậm nhất 1/10/2028, có thể đăng ký sớm), đạt 100% cả hai được miễn LDR; 30/9/2026 LDR TT22 toàn hệ thống 76,07%, vốn ngắn hạn cho vay trung dài hạn 28,25%.",
+     "explain_en": "The 85% LDR cap and 30% short-for-long funding cap (until 30-Jun-2026) push banks to costlier long-term funding; 80% of deposits are short-term while ~50% of credit is medium/long-term. The Basel III roadmap (Circular 14/2025) requires more capital. Circular 50/2026, effective 1-Dec-2026, lifts the cap to 95% on a new formula once a bank moves to LCR/NSFR (by 1-Oct-2028 at the latest, early opt-in allowed), with an exemption at 100% on both; at 30-Sep-2026 the system LDR under Circular 22 was 76.07% and short-term funds in medium/long loans 28.25%.",
      "metrics": [
       {
        "name": "Trần vốn ngắn hạn cho vay trung dài hạn",
@@ -3390,6 +3704,14 @@
        "date": "2026-10-01",
        "url": "https://vietnambiz.vn/nhnn-nang-tran-ty-le-cho-vay-tren-tien-gui-len-95-cong-bo-hai-chi-tieu-quan-ly-thanh-khoan-lcr-va-nsfr-2026101144912870.htm",
        "note": "loại trừ cho vay liên NH; trừ 100% tiền gửi KKH và 80% có kỳ hạn của KBNN; LCR/NSFR từ 10/2028 — đến 30/11/2026 trần 85% vẫn ràng buộc"
+      },
+      {
+       "name": "LDR TT22 toàn hệ thống 30/9/2026",
+       "value": 76.07,
+       "unit": "%",
+       "date": "2026-10",
+       "url": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+       "note": "77,06 tại 30/6; trần 85%, nâng 95% theo TT 50/2026"
       }
      ],
      "quotes": [
@@ -3413,8 +3735,8 @@
      "title_vi": "Nhu cầu vốn lớn: đầu tư công, dự án hạ tầng, mục tiêu tăng trưởng 2 con số",
      "title_en": "Strong funding demand: public investment, megaprojects, double-digit growth target",
      "direction": "up_pressure",
-     "explain_vi": "Giải ngân đầu tư công 9T/2026 ~643 nghìn tỷ (62,9% kế hoạch 1,02 triệu tỷ), GDP 9T +9,01%, mục tiêu ≥10%; các dự án lớn (APEC 2027, hạ tầng) cần vốn đối ứng từ ngân hàng, giữ cầu tín dụng cao nên ngân hàng không chịu áp lực giảm giá vốn.",
-     "explain_en": "Public-investment disbursement reached ~VND643tn in 9M-2026 (62.9% of the VND1.02 quadrillion plan), 9M GDP +9.01% and a ≥10% target; megaprojects (APEC 2027, infrastructure) need bank co-financing, keeping loan demand strong.",
+     "explain_vi": "Giải ngân vốn đầu tư công đến 31/10/2026 đạt 708.567 tỷ (Bộ Tài chính; 74,1% kế hoạch Thủ tướng giao 955.867 tỷ, mẫu số mới nên không so với 62,9% tại 30/9); vốn đầu tư thực hiện từ nguồn NSNN 10T 783,9 nghìn tỷ (Cục Thống kê, 69,0% KH năm, +19,8% svck, khái niệm khác); GDP 9T +9,01%, mục tiêu ≥10%; các dự án lớn (APEC 2027, hạ tầng) cần vốn đối ứng từ ngân hàng, giữ cầu tín dụng cao nên ngân hàng không chịu áp lực giảm giá vốn.",
+     "explain_en": "Public-investment disbursement reached VND708.6tn by 31-Oct-2026 (MoF; 74.1% of the PM-assigned VND955.9tn plan, a new base, so not comparable with 62.9% at 30-Sep); realised investment from state-budget capital was VND783.9tn in 10M (NSO, 69.0% of the year plan, +19.8% YoY, a different concept); 9M GDP +9.01% and a ≥10% target; megaprojects (APEC 2027, infrastructure) need bank co-financing, keeping loan demand strong.",
      "metrics": [
       {
        "name": "Giải ngân đầu tư công đến 30/9/2026",
@@ -3436,6 +3758,22 @@
        "unit": "% svck (Q3: 9.95%)",
        "date": "2026-10 (đầu tháng)",
        "url": "https://vietnamnet.vn/gdp-9-thang-tang-9-01-cpi-tang-4-52-nen-kinh-te-them-dong-luc-cuoi-nam-2561344.html"
+      },
+      {
+       "name": "Vốn đầu tư thực hiện từ nguồn NSNN 10T/2026 (Cục Thống kê)",
+       "value": 783.9,
+       "unit": "nghìn tỷ đồng",
+       "date": "2026-11-03",
+       "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+       "note": "69,0% kế hoạch năm; +19,8% svck. Khái niệm khác với giải ngân của Bộ Tài chính"
+      },
+      {
+       "name": "Giải ngân đầu tư công đến 31/10/2026 (Bộ Tài chính)",
+       "value": 708567.4,
+       "unit": "tỷ đồng (74.1% KH Thủ tướng giao 955.867,4 tỷ)",
+       "date": "2026-10-31",
+       "url": "https://thoibaotaichinhvietnam.vn/infographics-giai-ngan-von-dau-tu-cong-ca-nuoc-dat-708-567-4-ty-dong-206473.html",
+       "note": "Mẫu số đổi so với 1.022.607 tỷ ở các báo cáo trước; trên mẫu số cũ ~69,3% (tự tính)"
       }
      ],
      "quotes": [
@@ -3453,8 +3791,8 @@
      "title_vi": "Kênh trái phiếu yếu, nền kinh tế phụ thuộc vốn ngân hàng (tín dụng/GDP ~146%)",
      "title_en": "Weak bond market, bank-dominated financing (credit/GDP ~146%)",
      "direction": "up_pressure",
-     "explain_vi": "Tín dụng/GDP ~146% cuối 2025 — cao nhất nhóm thu nhập trung bình thấp; 8T/2026 phát hành TPDN 382,8 nghìn tỷ nhưng 91% là ngân hàng và BĐS (BĐS lãi ~11%), nên doanh nghiệp vẫn dồn về vay ngân hàng, giữ cầu vốn và lãi suất cao.",
-     "explain_en": "Credit/GDP reached ~146% at end-2025, the highest among lower-middle-income peers; 8M-2026 corporate bond issuance of VND382.8tn was 91% banks and real estate (RE coupons ~11%), so firms still rely on bank loans.",
+     "explain_vi": "Tín dụng/GDP ~146% cuối 2025 — cao nhất nhóm thu nhập trung bình thấp; 9T/2026 phát hành TPDN hơn 428,5 nghìn tỷ (VBMA) nhưng quý III 92% là ngân hàng và BĐS (VIS Rating: lãi BĐS 11,5%), dư nợ 1.535 nghìn tỷ, 10,9% GDP, nên doanh nghiệp vẫn dồn về vay ngân hàng, giữ cầu vốn và lãi suất cao.",
+     "explain_en": "Credit/GDP reached ~146% at end-2025, the highest among lower-middle-income peers; 9M-2026 corporate bond issuance exceeded VND428.5tn (VBMA), yet 92% of Q3 was banks and real estate (VIS Rating: RE coupons 11.5%), with VND1,535tn outstanding, 10.9% of GDP, so firms still rely on bank loans.",
      "metrics": [
       {
        "name": "Tín dụng/GDP 2025 (ước)",
@@ -3485,6 +3823,14 @@
        "unit": "%",
        "date": "2026-09-16",
        "url": "https://tapchikinhtetaichinh.vn/ngan-hang-bat-dong-san-chiem-91-luong-trai-phieu-phat-hanh-167100.html"
+      },
+      {
+       "name": "Dư nợ TPDN cuối Q3/2026 (VIS Rating)",
+       "value": 1535,
+       "unit": "nghìn tỷ đồng",
+       "date": "2026-10-12",
+       "url": "https://thoibaotaichinhvietnam.vn/phat-hanh-trai-phieu-doanh-nghiep-tang-gan-10-trong-quy-iii-2026-205245.html",
+       "note": "10,9% GDP; đáo hạn 12 tháng tới 252 nghìn tỷ"
       }
      ],
      "quotes": [
@@ -3502,8 +3848,8 @@
      "title_vi": "Chỉ đạo hành chính của NHNN chỉ tác động hạn chế",
      "title_en": "SBV moral suasion has had limited effect",
      "direction": "limits_cut",
-     "explain_vi": "NHNN liên tục yêu cầu giảm lãi suất (CV 2342 ngày 30/3, 3972 ngày 14/5, 4190 ngày 21/5, 7125/NHNN-TD tháng 8: cho vay SME thấp hơn ≥1 điểm %), nới LDR/KBNN và trần 40%, nhưng lãi suất cho vay bình quân T8/2026 vẫn 8,4–10,7%, cao hơn cuối 2025 ~1,8 điểm % — vì nguyên nhân là chi phí vốn và thanh khoản chứ không phải ý chí ngân hàng.",
-     "explain_en": "The SBV repeatedly instructed banks to cut (letters 2342 on 30-Mar, 3972 on 14-May, 4190 on 21-May, 7125/NHNN-TD in Aug: SME loans ≥1pp below average) and relaxed LDR/Treasury and the 40% cap, yet Aug-2026 average lending rates were still 8.4–10.7%, ~1.8pp above end-2025, because the binding constraint is funding cost and liquidity.",
+     "explain_vi": "NHNN liên tục yêu cầu giảm lãi suất (CV 2342 ngày 30/3, 3972 ngày 14/5, 4190 ngày 21/5, 7125/NHNN-TD tháng 8: cho vay SME thấp hơn ≥1 điểm %), nới LDR/KBNN và trần 40%, nhưng lãi suất cho vay bình quân T8/2026 vẫn 8,4–10,7%, cao hơn cuối 2025 ~1,8 điểm % — vì nguyên nhân là chi phí vốn và thanh khoản chứ không phải ý chí ngân hàng. Tháng 10/2026 chỉ đạo cứng hơn: CV 9608 (18/10) và 9736 (21/10) yêu cầu giảm tối thiểu 0,5%/năm tiền gửi mới từ 6 tháng và giảm 1,5–2%/năm cho vay sản xuất, kinh doanh, kèm chế tài giảm chỉ tiêu tín dụng; lãi suất sau đó đã giảm thực tế (cuối T10: tiền gửi mới −0,4, cho vay mới −0,2–0,5 điểm % so với giữa T10), nhưng mức giảm cho vay vẫn thấp hơn yêu cầu.",
+     "explain_en": "The SBV repeatedly instructed banks to cut (letters 2342 on 30-Mar, 3972 on 14-May, 4190 on 21-May, 7125/NHNN-TD in Aug: SME loans ≥1pp below average) and relaxed LDR/Treasury and the 40% cap, yet Aug-2026 average lending rates were still 8.4–10.7%, ~1.8pp above end-2025, because the binding constraint is funding cost and liquidity. Pressure hardened in Oct-2026: letters 9608 (18-Oct) and 9736 (21-Oct) require at least 0.5%/yr off new deposits of 6 months and longer and 1.5-2%/yr off production and business loans, with lower credit quotas as the sanction. Rates then actually fell (late Oct: new deposits -0.4pp, new loans -0.2 to -0.5pp vs mid-Oct), though lending cuts remain short of the ask.",
      "metrics": [
       {
        "name": "LS cho vay bình quân VND (mới + hiện hữu) T8/2026",
@@ -3533,6 +3879,21 @@
        "unit": "số hiệu",
        "date": "2026-05-23",
        "url": "https://danviet.vn/ngan-hang-nha-nuoc-thong-tin-nong-ve-mat-bang-lai-suat-nam-2026-d1428978.html"
+      },
+      {
+       "name": "Giảm lãi suất tiền gửi mới cuối T10/2026",
+       "value": -0.4,
+       "unit": "điểm % so giữa T10",
+       "date": "2026-11-04",
+       "url": "https://thitruongtaichinhtiente.vn/ngan-hang-giam-lai-suat-ho-tro-nguoi-dan-doanh-nghiep-86799.html"
+      },
+      {
+       "name": "Giảm lãi suất cho vay mới cuối T10/2026",
+       "value": "-0.2 đến -0.5",
+       "unit": "điểm % so giữa T10",
+       "date": "2026-11-04",
+       "url": "https://thitruongtaichinhtiente.vn/ngan-hang-giam-lai-suat-ho-tro-nguoi-dan-doanh-nghiep-86799.html",
+       "note": "yêu cầu 1,5–2%/năm cho sản xuất, kinh doanh, ưu tiên"
       }
      ],
      "quotes": [
@@ -3552,18 +3913,18 @@
     }
    ],
    "summary_vi": [
-    "Nguyên nhân gốc: tín dụng tăng nhanh hơn huy động (2025: ~19% vs ~14%; 28/9/2026: 10,89% vs 9,78% theo TCTK; NHNN: tín dụng 30/9 +11,59%), LDR đơn giản toàn ngành lên ~114% (Q2/2026) → ngân hàng đua lãi suất huy động (12T nhóm tư nhân 5,82% → ~8,4–8,6%).",
-    "Chi phí vốn tăng vọt: COF 4,79% Q2/2026 (+105 bps svck), CASA giảm còn ~20,9%, chi phí lãi H1/2026 +49%, phải phát hành GTCG/trái phiếu lãi 8–10% → lãi vay T8/2026 8,4–10,7%, cao hơn cuối 2025 ~1,8 điểm %.",
-    "Thanh khoản và tỷ giá trói tay NHNN: liên ngân hàng qua đêm từng 17% (3/2/2026), OMO nâng lên 4,5% (12/2025), NHNN hút ròng để giữ tỷ giá (bán kỳ hạn 26.850), dự trữ ~2 tháng nhập khẩu; Fed tăng lên 3,75–4% (16/9/2026) và giữ nguyên ngày 28/10/2026.",
-    "Lạm phát ~5% (CPI T9/2026 +5,08%) giữ lãi suất thực dương ~3,5 điểm %; nợ xấu 3,31% và trích lập cao ở NH tư nhân giữ phần bù rủi ro.",
-    "Chỉ đạo hành chính (CV 2342, 3972, 4190, 7125; SME −1 điểm %) và nới LDR/KBNN, trần 40% chỉ giảm nhẹ áp lực; VNDirect dời kỳ vọng hạ lãi suất sang đầu 2027."
+    "Nguyên nhân gốc: tín dụng tăng nhanh hơn huy động (2025: ~19% vs ~14%; 28/9/2026: 10,89% vs 9,78% theo TCTK; NHNN: tín dụng 30/9 +11,59%, 26/10 +11,94%), LDR đơn giản toàn ngành lên ~114% (Q2/2026), ~112% ở Q3 (28 NH niêm yết, tính từ BCTC) → ngân hàng đua lãi suất huy động (12T nhóm tư nhân 5,82% → ~8,4–8,6%).",
+    "Chi phí vốn tăng vọt: COF 4,79% Q2/2026 (+105 bps svck), 5,28% Q3 (Vantage, nguồn khác), CASA giảm còn ~20,9%, chi phí lãi H1/2026 +49%, phải phát hành GTCG/trái phiếu lãi 8–10% → lãi vay T8/2026 8,4–10,7%, cao hơn cuối 2025 ~1,8 điểm %.",
+    "Thanh khoản và tỷ giá trói tay NHNN: liên ngân hàng qua đêm từng 17% (3/2/2026), OMO nâng lên 4,5% (12/2025), NHNN hút ròng để giữ tỷ giá (bán kỳ hạn 26.850), dự trữ ~2 tháng nhập khẩu; Fed tăng lên 3,75–4% (16/9/2026) và giữ nguyên ngày 28/10/2026; ngày 3/11 NHNN công bố hoán đổi USD/VND 6 tháng (tối đa 2 tỷ USD), tuần đến 6/11 giá USD ngân hàng giảm 180 đồng.",
+    "Lạm phát ~5% (CPI T10/2026 +5,09%) giữ lãi suất thực dương ~3,5 điểm %; nợ xấu 3,31% và trích lập cao ở NH tư nhân giữ phần bù rủi ro.",
+    "Chỉ đạo hành chính trước đây (CV 2342, 3972, 4190, 7125; SME −1 điểm %) và nới LDR/KBNN, trần 40% chỉ giảm nhẹ áp lực. CV 9608 và 9736 (10/2026) cứng hơn, kèm chế tài chỉ tiêu tín dụng: cuối T10 tiền gửi mới −0,4, cho vay mới −0,2–0,5 điểm % so với giữa T10, thấp hơn mức yêu cầu 1,5–2%/năm; VNDirect trước đó dời kỳ vọng hạ lãi suất sang đầu 2027."
    ],
    "summary_en": [
-    "Root cause: credit outgrowing deposits (2025 ~19% vs ~14%; 28-Sep-2026 10.89% vs 9.78% per GSO; SBV: credit +11.59% at 30-Sep), simple sector LDR ~114% (Q2-26) → a deposit-rate race (private banks' 12M rate 5.82% → ~8.4–8.6%).",
-    "Cost of funds surged: COF 4.79% in Q2-26 (+105 bps YoY), CASA down to ~20.9%, H1-26 interest expense +49%, paper issued at 8–10% → Aug-2026 lending rates 8.4–10.7%, ~1.8pp above end-2025.",
-    "Liquidity and FX tie the SBV's hands: overnight interbank hit 17% (3-Feb-2026), OMO raised to 4.5% (Dec-2025), SBV drained VND to defend the dong (180-day forwards at 26,850), reserves ~2 months of imports; Fed hiked to 3.75–4% (16-Sep-2026) and held on 28-Oct-2026.",
-    "~5% inflation (Sep-2026 CPI +5.08%) keeps real deposit rates ~3.5pp positive; 3.31% NPLs and heavy private-bank provisioning keep risk premia wide.",
-    "Moral suasion (letters 2342, 3972, 4190, 7125; SME −1pp) and LDR/Treasury/40%-cap relaxations only soften pressure; VNDirect now sees meaningful easing only from early 2027."
+    "Root cause: credit outgrowing deposits (2025 ~19% vs ~14%; 28-Sep-2026 10.89% vs 9.78% per GSO; SBV: credit +11.59% at 30-Sep, +11.94% at 26-Oct), simple sector LDR ~114% (Q2-26), ~112% in Q3 (28 listed banks, derived from statements) → a deposit-rate race (private banks' 12M rate 5.82% → ~8.4–8.6%).",
+    "Cost of funds surged: COF 4.79% in Q2-26 (+105 bps YoY), 5.28% in Q3 (Vantage, a different provider), CASA down to ~20.9%, H1-26 interest expense +49%, paper issued at 8–10% → Aug-2026 lending rates 8.4–10.7%, ~1.8pp above end-2025.",
+    "Liquidity and FX tie the SBV's hands: overnight interbank hit 17% (3-Feb-2026), OMO raised to 4.5% (Dec-2025), SBV drained VND to defend the dong (180-day forwards at 26,850), reserves ~2 months of imports; Fed hiked to 3.75–4% (16-Sep-2026) and held on 28-Oct-2026; on 3-Nov the SBV announced a 6-month USD/VND swap (up to USD 2bn), and bank USD quotes fell VND180 in the week to 6-Nov.",
+    "~5% inflation (Oct-2026 CPI +5.09%) keeps real deposit rates ~3.5pp positive; 3.31% NPLs and heavy private-bank provisioning keep risk premia wide.",
+    "Earlier moral suasion (letters 2342, 3972, 4190, 7125; SME −1pp) and LDR/Treasury/40%-cap relaxations only softened pressure. Letters 9608 and 9736 (Oct-2026) are harder, with credit quotas as the sanction: by late Oct new deposits were down 0.4pp and new loans 0.2-0.5pp vs mid-Oct, short of the 1.5-2%/yr asked; VNDirect had earlier pushed meaningful easing to early 2027."
    ],
    "series": {
     "cof": {
@@ -3572,14 +3933,16 @@
       "2025-Q3",
       "2025-Q4",
       "2026-Q1",
-      "2026-Q2"
+      "2026-Q2",
+      "2026-Q3"
      ],
      "values": [
       3.74,
       3.9,
       3.88,
       4.2,
-      4.79
+      4.79,
+      5.28
      ],
      "unit": "%",
      "src": [
@@ -3587,9 +3950,10 @@
       "https://vnbusiness.vn/tien-gui-khong-ky-han-giam-nim-ngan-hang-tiep-tuc-chiu-suc-ep.html",
       "https://www.tinnhanhchungkhoan.vn/chi-phi-von-ngan-hang-vao-nhip-tang-moi-post390221.html",
       "https://www.tinnhanhchungkhoan.vn/chi-phi-von-ngan-hang-vao-nhip-tang-moi-post390221.html",
-      "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
+      "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html",
+      "https://vantagecore.substack.com/p/cap-nhat-ket-qua-kinh-doanh-nganh"
      ],
-     "note": "Listed-bank sector COF; mixed providers (Yuanta, VDSC, TNCK/CFA) - methodologies differ slightly; Q2-2025 derived from Yuanta YoY change."
+     "note": "Listed-bank sector COF; mixed providers (Yuanta, VDSC, TNCK/CFA) - methodologies differ slightly; Q2-2025 derived from Yuanta YoY change. 2026-Q3 = Vantage Capital, 26 banks (+~150 bp YoY, implying a Q3-25 base of ~3.78 against the 3.9 stored here), so the Q2 to Q3 step mixes providers."
     },
     "nim": {
      "periods": [
@@ -3598,7 +3962,8 @@
       "2025-Q4",
       "2025-FY",
       "2026-Q1",
-      "2026-Q2"
+      "2026-Q2",
+      "2026-Q3"
      ],
      "values": [
       3.26,
@@ -3606,7 +3971,8 @@
       3.04,
       2.93,
       2.87,
-      3.15
+      3.15,
+      3.04
      ],
      "unit": "%",
      "src": [
@@ -3615,9 +3981,10 @@
       "https://www.dnse.com.vn/senses/tin-tuc/nim-ngan-hang-tiem-can-ay-9-nam-ap-luc-chi-phi-von-chua-ha-nhiet-35195123",
       "https://fili.vn/2026/02/nim-ngan-hang-giam-tren-dien-rong-nam-2026-se-ra-sao-757-1402723.htm",
       "https://nhipcaudautu.vn/tai-chinh/vong-xoay-cua-nim-3365085/",
-      "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
+      "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html",
+      "https://vantagecore.substack.com/p/cap-nhat-ket-qua-kinh-doanh-nganh"
      ],
-     "note": "Listed-bank averages (27-28 banks); FY from VietstockFinance; Q3-25 VDSC; Q4-25 vietnambiz; Q1-26 Nhip Cau Dau Tu (28 banks); Q2-26 Yuanta (27 banks, not strictly comparable). MBS forecasts Q3-26 NIM flat-to-lower at private banks."
+     "note": "Listed-bank averages (27-28 banks); FY from VietstockFinance; Q3-25 VDSC; Q4-25 vietnambiz; Q1-26 Nhip Cau Dau Tu (28 banks); Q2-26 Yuanta (27 banks, not strictly comparable). MBS forecasts Q3-26 NIM flat-to-lower at private banks. 2026-Q3 = Vantage Capital, 26 banks, annualised (-1 bp YoY; SOCBs 2.65, large private 4.04, other private 2.75; 9M 3.02). The 3.15 to 3.04 step mixes providers and is not a measured fall: on one feed (data/banks_vnstock.json, 28 banks, asset-weighted) NIM was 2.99 in both Q2 and Q3."
     },
     "casa": {
      "periods": [
@@ -3649,22 +4016,25 @@
       "2025-Q2",
       "2025-Q4",
       "2026-Q1",
-      "2026-Q2"
+      "2026-Q2",
+      "2026-Q3"
      ],
      "values": [
       108,
       110,
       null,
-      114
+      114,
+      111.9
      ],
      "unit": "% loans/customer deposits",
      "src": [
       "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html",
       "https://fili.vn/2026/02/nim-ngan-hang-giam-tren-dien-rong-nam-2026-se-ra-sao-757-1402723.htm",
       "https://thoibaotaichinhvietnam.vn/chenh-lech-tin-dung-huy-dong-len-14-trieu-ty-dong-ap-luc-ldr-bot-cang-khi-tinh-20-tien-gui-kho-bac-197524.html",
-      "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html"
+      "https://mekongasean.vn/nim-ngan-hang-phuc-hoi-chung-khoan-yuanta-chi-ra-nhom-co-loi-the-ve-chi-phi-von-58898.html",
+      "data/banks_vnstock.json (quarterly 2026-Q3, as_of 2026-11-05)"
      ],
-     "note": "Simple LDR, sector-wide (loans/customer deposits). 2025-Q2 and 2026-Q2: Yuanta; 2025-Q4 '~110%, highest in a decade' (VinaCapital) — providers differ. 2026-Q1 set to null: the only Q1 figure is MBS's 27-listed-bank ratio (100%), stored as a separate MBS 27-listed-bank series. Regulatory LDR, Q2-2026 - two figures, different coverage, not merged: (a) SBV system statistic 'Tỷ lệ dư nợ cho vay so với tổng tiền gửi' (Circular 22 definition, whole system excl. VBSP and PCFs) 77.06% at 30/6/2026 (https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban; ratios.ldr_sbv_tt22_pct) - the official figure and the one the dashboard uses; (b) ~88% = NSI broker estimate of the Circular-22 LDR for its listed-bank sample (https://phapluat.suckhoedoisong.vn/tong-tai-san-he-thong-ngan-hang-dat-226-trieu-ty-dong-nim-chiu-suc-ep-trong-quy-ii2026-283986.html; excerpt not re-found 2026-10-07). The cap (85%, 95% from 1/12/2026 under Circular 50/2026) binds bank by bank, so large listed banks can sit near it while the system aggregate (which includes low-LDR banks and Circular-22 funding items) is ~77%."
+     "note": "Simple LDR, sector-wide (loans/customer deposits). 2025-Q2 and 2026-Q2: Yuanta; 2025-Q4 '~110%, highest in a decade' (VinaCapital) — providers differ. 2026-Q1 set to null: the only Q1 figure is MBS's 27-listed-bank ratio (100%), stored as a separate MBS 27-listed-bank series. Regulatory LDR, Q2-2026 - two figures, different coverage, not merged: (a) SBV system statistic 'Tỷ lệ dư nợ cho vay so với tổng tiền gửi' (Circular 22 definition, whole system excl. VBSP and PCFs) 77.06% at 30/6/2026 (https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban; ratios.ldr_sbv_tt22_pct) - the official figure and the one the dashboard uses; (b) ~88% = NSI broker estimate of the Circular-22 LDR for its listed-bank sample (https://phapluat.suckhoedoisong.vn/tong-tai-san-he-thong-ngan-hang-dat-226-trieu-ty-dong-nim-chiu-suc-ep-trong-quy-ii2026-283986.html; excerpt not re-found 2026-10-07). The cap (85%, 95% from 1/12/2026 under Circular 50/2026) binds bank by bank, so large listed banks can sit near it while the system aggregate (which includes low-LDR banks and Circular-22 funding items) is ~77%. 2026-Q3 is DERIVED: sum of customer loans / sum of customer deposits for the 28 listed banks in data/banks_vnstock.json (16,097,327 / 14,380,740 bn; loans +3.3% q/q, deposits +4.9% q/q). Same formula gives 113.7 for Q2 (Yuanta 114) and 110.5 for Q3-25. No broker sector figure for Q3 found. Not the Circular 22 LDR."
     },
     "credit_vs_deposit_growth": {
      "dates": [
@@ -3676,7 +4046,8 @@
       "2026-08-22",
       "2026-09-03",
       "2026-09-28",
-      "2026-09-30"
+      "2026-09-30",
+      "2026-10-26"
      ],
      "credit": [
       15.08,
@@ -3687,7 +4058,8 @@
       8.38,
       9.98,
       10.89,
-      11.59
+      11.59,
+      11.94
      ],
      "deposit": [
       null,
@@ -3698,6 +4070,7 @@
       8.77,
       8.33,
       9.78,
+      null,
       null
      ],
      "unit": "% YTD",
@@ -3710,9 +4083,10 @@
       "https://vietnamnet.vn/tin-dung-tang-nhanh-hon-huy-dong-lai-suat-ngan-hang-kho-giam-cuoi-nam-2554327.html",
       "https://docnhanh.vn/kinh-te/lai-suat-huy-dong-vuot-9-ap-luc-von-ngan-hang-tang-tintuc1052480",
       "https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm",
-      "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm"
+      "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm",
+      "https://vnexpress.net/pho-thong-doc-lai-suat-cho-vay-moi-giam-0-2-0-5-5140740.html"
      ],
-     "note": "SBV system data as quoted in press. 22-Aug-2026 figures are VND-only (MoF Deputy Minister Tran Quoc Phuong at the 3/9/2026 Government press conference: VND mobilisation +8.77% vs VND credit +8.38%; re-verified 2026-10-06, https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html). The 8.38% equals the 29-Jul total-credit figure only by coincidence: it is a different measure (VND only) and date; total credit was +10.24% at 28/8. 2024 system deposit growth not found (M2 +9.42% to 25-Dec-2024 is not a deposit measure). 28-Sep-2026 = GSO Q3-2026 socio-economic report (credit +10.89%, mobilisation +9.78%; search excerpt only). SBV's own figure for 30-Sep-2026 is credit +11.59% (dashboard monthly credit series, T9/26); SBV did not state a 30-Sep mobilisation figure in the excerpts found. The 3-Sep (9.98%) point is below the SBV 28-Aug figure (10.24%): BVSC/press estimate, cut-offs differ — not reconciled. 2026-10-07: added the SBV 30-Sep-2026 credit point (+11.59%, credit only, deposit null) so the series reaches the cut-off the hero dek quotes; the latest credit-AND-deposit pair is still 28/9 (NSO). 'basis' gives the source type and cut-off for every point.",
+     "note": "SBV system data as quoted in press. 22-Aug-2026 figures are VND-only (MoF Deputy Minister Tran Quoc Phuong at the 3/9/2026 Government press conference: VND mobilisation +8.77% vs VND credit +8.38%; re-verified 2026-10-06, https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html). The 8.38% equals the 29-Jul total-credit figure only by coincidence: it is a different measure (VND only) and date; total credit was +10.24% at 28/8. 2024 system deposit growth not found (M2 +9.42% to 25-Dec-2024 is not a deposit measure). 28-Sep-2026 = GSO Q3-2026 socio-economic report (credit +10.89%, mobilisation +9.78%; search excerpt only). SBV's own figure for 30-Sep-2026 is credit +11.59% (dashboard monthly credit series, T9/26); SBV did not state a 30-Sep mobilisation figure in the excerpts found. The 3-Sep (9.98%) point is below the SBV 28-Aug figure (10.24%): BVSC/press estimate, cut-offs differ — not reconciled. 2026-10-07: added the SBV 30-Sep-2026 credit point (+11.59%, credit only, deposit null) so the series reaches the cut-off the hero dek quotes; the latest credit-AND-deposit pair is still 28/9 (NSO). 'basis' gives the source type and cut-off for every point. 26-Oct-2026: SBV Deputy Governor via VnExpress, level above 20.8 quadrillion; no deposit figure given.",
      "src_alt": [
       null,
       null,
@@ -3722,7 +4096,8 @@
       "https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html",
       null,
       null,
-      "https://cafef.vn/pho-thong-doc-pham-thanh-ha-tin-dung-den-30-9-dat-2075-trieu-ty-dong-tang-1159-188261003125449749.chn"
+      "https://cafef.vn/pho-thong-doc-pham-thanh-ha-tin-dung-den-30-9-dat-2075-trieu-ty-dong-tang-1159-188261003125449749.chn",
+      null
      ],
      "basis": [
       "SBV year-end statement (credit); 2024 system deposit growth not found",
@@ -3733,7 +4108,8 @@
       "VND-only credit and VND mobilisation at 22/8/2026 (MoF Deputy Minister, Government press conference 3/9/2026)",
       "BVSC/press estimate at 3/9/2026 (below SBV's 28/8 total-credit 10.24%; not reconciled)",
       "NSO Q3-2026 socio-economic report, cut-off 28/9/2026 (credit and mobilisation)",
-      "SBV Deputy Governor Pham Thanh Ha, press briefing 3/10/2026, cut-off 30/9/2026: credit only (+11.59% YTD, +16.69% y/y, ~20.75 quadrillion); no mobilisation figure stated"
+      "SBV Deputy Governor Pham Thanh Ha, press briefing 3/10/2026, cut-off 30/9/2026: credit only (+11.59% YTD, +16.69% y/y, ~20.75 quadrillion); no mobilisation figure stated",
+      "VnExpress report of the Government press conference 4/11/2026 (sentence in the article text, not a direct quote of Deputy Governor Pham Thanh Ha), cut-off 26/10/2026: credit only (+11.94% YTD, above 20.8 quadrillion); no mobilisation figure stated"
      ]
     },
     "deposit12m_private_banks_mbs": {
@@ -3758,7 +4134,7 @@
       "https://congthuong.vn/casa-giam-dien-rong-ngan-hang-them-ap-luc-chi-phi-von-469327.html",
       "https://nguoiquansat.vn/fed-tang-lai-suat-chenh-lech-usd-vnd-thu-hep-lai-suat-viet-nam-se-ra-sao-317285.html"
      ],
-     "note": "MBS avg 12M deposit rate; Dec-2025 = private-bank group; Jul-2026 per Cong Thuong citing MBS; Aug-2026 = 'commercial banks ~8.4%, +259 bps YTD' (Nguoi Quan Sat 19-Sep-2026) - groups differ slightly. Sep-2026 MBS average not found as of 2026-10-06 (not appended). Cross-check, different definition (posted rates): end-Sep 2026 posted 12M rates were 6.8% at the Big-4 and 7.8% at the highest posting bank (ACB) — https://vietnamnet.vn/lai-suat-ngan-hang-hom-nay-28-9-2026-ong-lon-tang-lai-suat-len-8-4-nam-2559451.html (search excerpt). The MBS 8.4-8.6% averages exceed these posted rates, so they likely include special/negotiated rates; treat as a different measure."
+     "note": "MBS avg 12M deposit rate; Dec-2025 = private-bank group; Jul-2026 per Cong Thuong citing MBS; Aug-2026 = 'commercial banks ~8.4%, +259 bps YTD' (Nguoi Quan Sat 19-Sep-2026) - groups differ slightly. Sep-2026 MBS average not found as of 2026-10-06 (not appended). Cross-check, different definition (posted rates): end-Sep 2026 posted 12M rates were 6.8% at the Big-4 and 7.8% at the highest posting bank (ACB) — https://vietnamnet.vn/lai-suat-ngan-hang-hom-nay-28-9-2026-ong-lon-tang-lai-suat-len-8-4-nam-2559451.html (search excerpt). The MBS 8.4-8.6% averages exceed these posted rates, so they likely include special/negotiated rates; treat as a different measure. Sep/Oct-2026 MBS averages not found as of 2026-11-06 (not appended). After the October directive, posted 12M rates on 3/11/2026: Big-4 5.4%, highest standard 7.0% (MBV, PGBank, Sacombank, VIB) - https://thuonggiaonline.vn/lai-suat-huy-dong-ngan-hang-nao-cao-nhat-thang-112026-post574066.html - a posted-rate measure, and lower than the 6.8% Big-4 reading noted for end-Sep, which came from a search excerpt and may be a different channel; a search excerpt of 3/11 also says 6.8%. Conflict not resolved."
     },
     "avg_lending_rate_sbv": {
      "dates": [
@@ -3780,7 +4156,7 @@
       "https://phapluat.suckhoedoisong.vn/lai-suat-cho-vay-thang-72026-tai-19-ngan-hang-khong-giam-noi-cao-nhat-len-1134nam-283666.html",
       "https://thanhnien.vn/lai-suat-cho-vay-binh-quan-tien-dong-len-107-nam-185260921142331886.htm"
      ],
-     "note": "2024 figure is SBV average lending rate (~6.65%, Tap chi Ngan hang); 2026 values are SBV-reported ranges. Sep-2026 SBV average lending rate not yet published as of 2026-10-06."
+     "note": "2024 figure is SBV average lending rate (~6.65%, Tap chi Ngan hang); 2026 values are SBV-reported ranges. Sep-2026 SBV average lending rate not yet published as of 2026-10-06. Sep/Oct-2026 averages not published as of 2026-11-06; SBV only stated that new-loan rates fell 0.2-0.5pp between mid and late October (see flows)."
     },
     "usdvnd_monthly": {
      "months": [
@@ -3807,7 +4183,8 @@
       "2026-06",
       "2026-07",
       "2026-08",
-      "2026-09"
+      "2026-09",
+      "2026-10"
      ],
      "central": [
       24243,
@@ -3833,7 +4210,8 @@
       25206,
       25338,
       25610,
-      25627
+      25627,
+      25637
      ],
      "vcb_sell": [
       25455,
@@ -3859,7 +4237,8 @@
       26466,
       26470,
       26260,
-      26160
+      26160,
+      25990
      ],
      "free_sell": [
       25760,
@@ -3885,7 +4264,8 @@
       26640,
       26280,
       null,
-      25980
+      25980,
+      26210
      ],
      "urls": {
       "central": [
@@ -3912,7 +4292,8 @@
        "https://thanhnien.vn/gia-usd-hom-nay-3062026-do-tu-do-quay-dau-giam-185260630084138243.htm",
        "http://vov.vn/thi-truong/ty-gia-usd-hom-nay-317-ty-gia-trung-tam-tang-len-25338-dongusd-post1319875.vov",
        "https://doanhnghiephoinhap.vn/ty-gia-usd-hom-nay-3182026-dong-usd-tang-gan-09-147640.html",
-       "https://thanhnien.vn/gia-usd-hom-nay-3092026-quay-dau-giam-trong-khi-euro-va-yen-nhat-cung-tang-18526093008115231.htm"
+       "https://thanhnien.vn/gia-usd-hom-nay-3092026-quay-dau-giam-trong-khi-euro-va-yen-nhat-cung-tang-18526093008115231.htm",
+       "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-26-30-10-dao-chieu-bom-rong-hon-28-000-ty-dong-usd-bien-dong-trai-chieu-sau-tuan-hop-lai-suat-206193.html"
       ],
       "vcb_sell": [
        "https://thanhnien.vn/gia-usd-hom-nay-31102024-ngan-hang-giam-gia-nhung-van-o-muc-kich-tran-185241031085152817.htm",
@@ -3938,7 +4319,8 @@
        "https://thanhnien.vn/gia-usd-hom-nay-3062026-do-tu-do-quay-dau-giam-185260630084138243.htm",
        "https://thanhnien.vn/gia-usd-hom-nay-3172026-ngan-hang-giam-manh-185260731085753387.htm",
        "https://thanhnien.vn/gia-usd-hom-nay-2982026-ngan-hang-giam-manh-230-dong-usd-trong-thang-185260829082601335.htm",
-       "https://thanhnien.vn/gia-usd-hom-nay-3092026-quay-dau-giam-trong-khi-euro-va-yen-nhat-cung-tang-18526093008115231.htm"
+       "https://thanhnien.vn/gia-usd-hom-nay-3092026-quay-dau-giam-trong-khi-euro-va-yen-nhat-cung-tang-18526093008115231.htm",
+       "https://thanhnien.vn/gia-usd-hom-nay-1112026-ngan-hang-ban-ra-duoi-26000-dong-185261031203849977.htm"
       ],
       "free_sell": [
        "https://thanhnien.vn/gia-usd-hom-nay-31102024-ngan-hang-giam-gia-nhung-van-o-muc-kich-tran-185241031085152817.htm",
@@ -3964,7 +4346,8 @@
        "https://thanhnien.vn/gia-usd-hom-nay-3062026-do-tu-do-quay-dau-giam-185260630084138243.htm",
        "http://vov.vn/thi-truong/ty-gia-usd-hom-nay-317-ty-gia-trung-tam-tang-len-25338-dongusd-post1319875.vov",
        null,
-       "https://thanhnien.vn/gia-usd-hom-nay-3092026-quay-dau-giam-trong-khi-euro-va-yen-nhat-cung-tang-18526093008115231.htm"
+       "https://thanhnien.vn/gia-usd-hom-nay-3092026-quay-dau-giam-trong-khi-euro-va-yen-nhat-cung-tang-18526093008115231.htm",
+       "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-26-30-10-dao-chieu-bom-rong-hon-28-000-ty-dong-usd-bien-dong-trai-chieu-sau-tuan-hop-lai-suat-206193.html"
       ]
      },
      "dates": {
@@ -3992,7 +4375,8 @@
        "2026-06-30",
        "2026-07-31",
        "2026-08-31",
-       "2026-09-30"
+       "2026-09-30",
+       "2026-10-30"
       ],
       "vcb_sell": [
        "2024-10-31",
@@ -4018,7 +4402,8 @@
        "2026-06-30",
        "2026-07-31",
        "2026-08-29",
-       "2026-09-30"
+       "2026-09-30",
+       "2026-10-31"
       ],
       "free_sell": [
        "2024-10-31",
@@ -4044,7 +4429,8 @@
        "2026-06-30",
        "2026-07-31",
        null,
-       "2026-09-30"
+       "2026-09-30",
+       "2026-10-30"
       ]
      },
      "ytd": [
@@ -4089,6 +4475,12 @@
        "text": "Central 25,121 -> 25,627 = +2.0%; VCB sell 26,377 -> 26,160 = -0.8% (computed from series)",
        "date": "2026-09-30",
        "url": null
+      },
+      {
+       "period": "2026 YTD to 6/11 (computed)",
+       "text": "Central 25,121 -> 25,615 = +1.97%; VCB sell 26,377 -> 25,810 = -2.15% (computed from series and the 6/11 quote); bank USD quotes -180 VND in the week",
+       "date": "2026-11-06",
+       "url": "https://thanhnien.vn/gia-usd-hom-nay-6112026-giam-180-dong-trong-tuan-qua-185261106083421062.htm"
       }
      ],
      "reserves": [
@@ -4226,7 +4618,8 @@
       "2026-06",
       "2026-07",
       "2026-08",
-      "2026-09"
+      "2026-09",
+      "2026-10"
      ],
      "values": [
       104.1,
@@ -4252,7 +4645,8 @@
       101.27,
       99.97,
       99.68,
-      101.36
+      101.36,
+      101.96
      ],
      "src": [
       "https://thanhnien.vn/gia-usd-hom-nay-31102024-ngan-hang-giam-gia-nhung-van-o-muc-kich-tran-185241031085152817.htm",
@@ -4278,7 +4672,8 @@
       "https://thanhnien.vn/gia-usd-hom-nay-3062026-do-tu-do-quay-dau-giam-185260630084138243.htm",
       "https://thanhnien.vn/gia-usd-hom-nay-3172026-ngan-hang-giam-manh-185260731085753387.htm",
       "https://thanhnien.vn/gia-usd-hom-nay-2982026-ngan-hang-giam-manh-230-dong-usd-trong-thang-185260829082601335.htm",
-      "https://thanhnien.vn/gia-usd-hom-nay-3092026-quay-dau-giam-trong-khi-euro-va-yen-nhat-cung-tang-18526093008115231.htm"
+      "https://thanhnien.vn/gia-usd-hom-nay-3092026-quay-dau-giam-trong-khi-euro-va-yen-nhat-cung-tang-18526093008115231.htm",
+      "https://thanhnien.vn/gia-usd-hom-nay-1112026-ngan-hang-ban-ra-duoi-26000-dong-185261031203849977.htm"
      ]
     },
     "interbank_on_monthly": {
@@ -4306,7 +4701,8 @@
       "2026-06",
       "2026-07",
       "2026-08",
-      "2026-09"
+      "2026-09",
+      "2026-10"
      ],
      "values": [
       3.4,
@@ -4332,7 +4728,8 @@
       5.0,
       3.95,
       4.37,
-      7.0
+      7.0,
+      3.74
      ],
      "types": [
       "month_end",
@@ -4358,7 +4755,8 @@
       "avg",
       "avg",
       "avg",
-      "month_end"
+      "month_end",
+      "point"
      ],
      "notes": [
       "Vietcap/Bloomberg ON on 31/10/2024 = 3.40% (Vietcap Oct-2024 bond-money report; no monthly average published). Alt: SBV month-end 3.54% (VBMA Oct-2024 report); VnEconomy/Vietcap 'cuối tháng 10' 3.4%. Intra-month: 2.7% on 18/10, 4.3% on 28/10.",
@@ -4384,7 +4782,8 @@
       "Vietcap monthly average 5.0%. Spike to ~11% (10.66%) on 1/6 (SBV), low 2.85% (MBS); month-end 30/6/2026 = 7.25% (quarter-end; up to 20% intraday).",
       "Vietcap monthly average 3.95% (Aug-2026 report; Jul-2026 report: 'gần 4,0%'). From 5.8% early month to 2.2% (28/7, SBV) and 0.5-0.7% on 30/7 (Bloomberg 0.5%; SBV 0.7%); month-end 31/7/2026 = 6.50%.",
       "Vietcap monthly average 4.37%. Month-end 28/8/2026 = 7.07% (MBS 7%); low 1.2% on 27/8 (MBS).",
-      "No monthly average published yet (Vietcap Sep report due ~mid-Oct). SBV-published ON: 7.0% on 21-23/9, 0.2% on 29/9 (lowest since early 2024), 7.0% on 30/9 (month-end)."
+      "No monthly average published yet (Vietcap Sep report due ~mid-Oct). SBV-published ON: 7.0% on 21-23/9, 0.2% on 29/9 (lowest since early 2024), 7.0% on 30/9 (month-end).",
+      "Latest session quoted for the last week, 29/10 (near 5% intra-week; 0.72 on 7/10, ~4.8 on 12/10, 0.99 on 8/10). Very volatile: a point reading, not a month average."
      ],
      "urls": [
       "https://cdn02.wigroup.vn/baocaophantich/19106_Vietcap_2024-11-13.pdf",
@@ -4410,7 +4809,8 @@
       "https://static1.vietstock.vn/edocs/21111/BCtraiphieu_20260713.pdf",
       "https://static1.vietstock.vn/edocs/22150/BCtraiphieu8_2026.pdf",
       "https://static1.vietstock.vn/edocs/22150/BCtraiphieu8_2026.pdf",
-      "https://cafef.vn/lai-suat-lien-ngan-hang-tang-gap-35-lan-chi-sau-mot-dem-nhnn-chuyen-sang-trang-thai-bom-thanh-khoan-188261001102404093.chn"
+      "https://cafef.vn/lai-suat-lien-ngan-hang-tang-gap-35-lan-chi-sau-mot-dem-nhnn-chuyen-sang-trang-thai-bom-thanh-khoan-188261001102404093.chn",
+      "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-26-30-10-dao-chieu-bom-rong-hon-28-000-ty-dong-usd-bien-dong-trai-chieu-sau-tuan-hop-lai-suat-206193.html"
      ],
      "dates": [
       "2024-11-07",
@@ -4436,7 +4836,8 @@
       "2026-07-10",
       "2026-09-14",
       "2026-09-14",
-      "2026-10-01"
+      "2026-10-01",
+      "2026-10-29"
      ],
      "src": "Vietnamese press citing SBV daily interbank data; see urls per month; types: avg / month_end / point",
      "omo_notes": [
@@ -4463,7 +4864,8 @@
       "Net ABSORPTION 86.9k bn VND: OMO 214.0k bn vs 300.9k maturing (Vietcap).",
       "Net ABSORPTION 72.8k bn VND: OMO 105.9k bn vs 178.8k maturing; OMO outstanding down to 172.5k bn (Vietcap).",
       "Net INJECTION 64.7k bn VND: OMO 232.7k bn vs 168.0k maturing (Vietcap). 202.4k bn OMO maturing in Sep flagged.",
-      "Monthly total not found. Late Sep: 6 consecutive sessions of net ABSORPTION totalling ~60k bn VND, then net INJECTION ~10.0k bn on 30/9 (CafeF 01/10/2026). No SBV bills reported."
+      "Monthly total not found. Late Sep: 6 consecutive sessions of net ABSORPTION totalling ~60k bn VND, then net INJECTION ~10.0k bn on 30/9 (CafeF 01/10/2026). No SBV bills reported.",
+      "Monthly total not found. Week 26-30/10 net INJECTION 28,161.7 bn; prior week net absorption ~9,900 bn; OMO outstanding 123,226.6 bn on 30/10 (TBTC weekly wrap)."
      ]
     },
     "ldr_listed27_mbs": {
@@ -5714,7 +6116,8 @@
        "2026-04",
        "2026-05",
        "2026-06",
-       "2026-07"
+       "2026-07",
+       "2026-08"
       ],
       "unit": "trillion VND",
       "m2": [
@@ -5727,7 +6130,8 @@
        19818.5,
        19975.0,
        20414.6,
-       20455.6
+       20455.6,
+       20774.7
       ],
       "cash_to_m2_pct": [
        10.68,
@@ -5739,7 +6143,8 @@
        10.77,
        10.46,
        10.11,
-       9.98
+       9.98,
+       9.86
       ],
       "values": [
        2000.2,
@@ -5751,7 +6156,8 @@
        2134.5,
        2089.4,
        2063.9,
-       2041.5
+       2041.5,
+       2048.4
       ],
       "source": [
        "https://sbv.gov.vn (Dữ liệu thống kê > Tổng phương tiện thanh toán và Tiền gửi của khách hàng tại TCTD; API /o/article/v1.0/articles contentStructureId=10038520)",
@@ -10039,6 +10445,33 @@
      "unit": "bn VND",
      "note": "KBNN deposits at Big4, Q2-2026 financial statements: VCB 186,327; BIDV 185,944; VietinBank 184,240; Agribank 159,119; +45% vs end-2025. CONFLICT with baodautu entry for the same date ('hon 700,000', VCB 185,255): different line items (total vs term), both kept. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy).",
      "url": "https://nguoiquansat.vn/kho-bac-nha-nuoc-dang-gui-hon-715-000-ty-dong-tai-4-ngan-hang-thanh-khoan-sap-duoc-bom-manh-311309.html"
+    },
+    {
+     "date": "2026-10-30",
+     "period": "week",
+     "item": "other",
+     "value": 28161.7,
+     "unit": "bn VND",
+     "note": "Net OMO injection, week 26-30/10/2026, after ~9,900 bn net absorption the week before; outstanding 123,226.6 bn (TBTC weekly wrap, page read 2026-11-06).",
+     "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-26-30-10-dao-chieu-bom-rong-hon-28-000-ty-dong-usd-bien-dong-trai-chieu-sau-tuan-hop-lai-suat-206193.html"
+    },
+    {
+     "date": "2026-11-03",
+     "period": "point",
+     "item": "other",
+     "value": null,
+     "unit": "bn VND",
+     "note": "SBV announced a 182-day USD/VND swap with credit institutions: up to USD 2bn (~VND48,798bn), spot 24,399, forward 24,704, planned for 6/11, value 9/11/2026, maturity 10/5/2027 (Vietstock 4/11, page read 2026-11-06). Value left null: the amount actually done is not yet reported.",
+     "url": "https://vietstock.vn/2026/11/nhnn-trien-khai-nghiep-vu-hoan-doi-ngoai-te-ky-han-6-thang-757-1511563.htm"
+    },
+    {
+     "date": "2026-11-05",
+     "period": "point",
+     "item": "other",
+     "value": -3646.28,
+     "unit": "bn VND",
+     "note": "Net OMO withdrawal on the day: won 5,521.82 bn, maturing 9,168.10 bn; outstanding 105,591.75 bn; rate 4.5% on all tenors (Thoi bao Ngan hang, page read 2026-11-06).",
+     "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html"
     }
    ],
    "notes": [
@@ -10051,15 +10484,15 @@
     "SBV surplus remitted to budget: only 2024 (52.741 trn VND) found SBV-only; other years only as combined MoF line incl. SOE dividends/divestment."
    ],
    "constraints": {
-    "as_of": "2026-10-06",
+    "as_of": "2026-11-06",
     "note": "Why the SBV cannot simply cut policy rates or 'print money'. Each item: two factual sentences, sourced; derived values are labelled. Most pages were verified via search-engine excerpts only (egress proxy blocked direct fetches).",
     "items": [
      {
       "key": "inflation_target",
       "title_vi": "Lạm phát đã ở sát/trên mục tiêu",
       "title_en": "Inflation is already at or above target",
-      "text_vi": "Nghị quyết của Quốc hội về kế hoạch phát triển kinh tế - xã hội năm 2026 đặt mục tiêu CPI bình quân khoảng 4,5%; CPI tháng 9/2026 tăng 5,08% so với cùng kỳ và CPI bình quân 9 tháng tăng 4,52% (Cục Thống kê). Nới lỏng tiền tệ thêm khi lạm phát đã chạm ngưỡng mục tiêu sẽ làm tăng tổng cầu và kỳ vọng lạm phát.",
-      "text_en": "The National Assembly's 2026 socio-economic plan resolution targets average CPI inflation of about 4.5%; CPI rose 5.08% year on year in September 2026 and averaged 4.52% over the first nine months (NSO). Further monetary easing with inflation already at the target ceiling would add to demand and to inflation expectations.",
+      "text_vi": "Nghị quyết của Quốc hội về kế hoạch phát triển kinh tế - xã hội năm 2026 đặt mục tiêu CPI bình quân khoảng 4,5%; CPI tháng 10/2026 tăng 5,09% so với cùng kỳ và CPI bình quân 10 tháng tăng 4,57% (Cục Thống kê). Nới lỏng tiền tệ thêm khi lạm phát đã chạm ngưỡng mục tiêu sẽ làm tăng tổng cầu và kỳ vọng lạm phát.",
+      "text_en": "The National Assembly's 2026 socio-economic plan resolution targets average CPI inflation of about 4.5%; CPI rose 5.09% year on year in October 2026 and averaged 4.57% over the first ten months (NSO). Further monetary easing with inflation already at the target ceiling would add to demand and to inflation expectations.",
       "metric": {
        "value": 4.5,
        "unit": "%",
@@ -10068,11 +10501,11 @@
        "label_en": "2026 average CPI target (NA resolution, 13 Nov 2025)"
       },
       "compare": {
-       "value": 5.08,
+       "value": 5.09,
        "unit": "%",
-       "as_of": "2026-09",
-       "label_vi": "CPI T9/2026 so cùng kỳ (Cục Thống kê)",
-       "label_en": "Sep-2026 CPI, y/y (NSO)"
+       "as_of": "2026-10",
+       "label_vi": "CPI T10/2026 so cùng kỳ (Cục Thống kê)",
+       "label_en": "Oct-2026 CPI, y/y (NSO)"
       },
       "sources": [
        {
@@ -10086,6 +10519,10 @@
        {
         "name": "NSO - Thông cáo báo chí giá tháng 9/2026",
         "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/"
+       },
+       {
+        "name": "NSO - Báo cáo KT-XH tháng Mười và 10 tháng năm 2026",
+        "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/"
        }
       ]
      },
@@ -10093,21 +10530,21 @@
       "key": "fx_pressure",
       "title_vi": "Áp lực tỷ giá và chênh lệch lãi suất với USD",
       "title_en": "Exchange-rate pressure and the USD rate gap",
-      "text_vi": "Tỷ giá trung tâm tăng từ 25.121 đồng/USD (31/12/2025) lên mức kỷ lục 25.643 đồng (6/10/2026), tức VND mất giá khoảng 2,04% (tính toán), trong khi Fed nâng biên độ lãi suất lên 3,75-4,00% ngày 16/9/2026 và giữ nguyên ngày 28/10/2026, chỉ thấp hơn lãi suất OMO/tái cấp vốn 4,5% của NHNN 0,5 điểm %. Hạ lãi suất điều hành sẽ xoá hoặc đảo ngược khoảng chênh này, khuyến khích chuyển sang nắm giữ USD và dòng vốn ra, làm VND yếu đi và đẩy giá hàng nhập khẩu lên (lạm phát nhập khẩu).",
-      "text_en": "The SBV central rate rose from 25,121 VND/USD (31 Dec 2025) to a record 25,643 (6 Oct 2026), a VND depreciation of about 2.04% (derived), while the Fed raised its target range to 3.75-4.00% on 16 Sep 2026 and held it on 28 Oct 2026, only 0.5 points below the SBV's 4.5% OMO/refinancing rate. Cutting policy rates would erase or invert that gap, encouraging dollarisation and capital outflows that weaken the dong and raise import prices (imported inflation).",
+      "text_vi": "Tỷ giá trung tâm tăng từ 25.121 đồng/USD (31/12/2025) lên 25.644 đồng (29/10/2026) rồi hạ về 25.615 đồng (6/11/2026, ngày mới nhất trên tab Chính sách), tức VND mất giá khoảng 1,93% so với cuối 2025 (tính toán), trong khi Fed nâng biên độ lãi suất lên 3,75-4,00% ngày 16/9/2026 và giữ nguyên ngày 28/10/2026, chỉ thấp hơn lãi suất OMO/tái cấp vốn 4,5% của NHNN 0,5 điểm %. Hạ lãi suất điều hành sẽ xoá hoặc đảo ngược khoảng chênh này, khuyến khích chuyển sang nắm giữ USD và dòng vốn ra, làm VND yếu đi và đẩy giá hàng nhập khẩu lên (lạm phát nhập khẩu).",
+      "text_en": "The SBV central rate rose from 25,121 VND/USD (31 Dec 2025) to 25,644 (29 Oct 2026) before easing to 25,615 (6 Nov 2026, the latest date on the Policy tab), a VND depreciation of about 1.93% since end-2025 (derived), while the Fed raised its target range to 3.75-4.00% on 16 Sep 2026 and held it on 28 Oct 2026, only 0.5 points below the SBV's 4.5% OMO/refinancing rate. Cutting policy rates would erase or invert that gap, encouraging dollarisation and capital outflows that weaken the dong and raise import prices (imported inflation).",
       "metric": {
-       "value": 2.04,
+       "value": 1.93,
        "unit": "%",
-       "as_of": "2026-10-06",
-       "label_vi": "VND mất giá so với USD theo tỷ giá trung tâm từ 31/12/2025 (tính toán: 1 − 25.121/25.643)",
-       "label_en": "VND depreciation vs USD, central rate since 31 Dec 2025 (derived: 1 − 25,121/25,643)",
+       "as_of": "2026-11-06",
+       "label_vi": "VND mất giá so với USD theo tỷ giá trung tâm từ 31/12/2025 (tính toán: 1 − 25.121/25.615)",
+       "label_en": "VND depreciation vs USD, central rate since 31 Dec 2025 (derived: 1 − 25,121/25,615)",
        "derived": true,
-       "note": "Equivalently USD +2.08% vs VND. Central-rate date = Policy tab's latest (6/10/2026; 25,636 on 2/10). Interbank USD/VND was reported −1.7% YTD on 29/9/2026 (thanhnien) - a different rate (market vs central), not merged."
+       "note": "Equivalently USD +1.97% vs VND. Central-rate date = Policy tab's latest (6/11/2026, 25,615). Peak in the data: 25,644 on 29/10/2026 (2.04% on the same formula); 25,643 on 6/10 was called a record earlier, so the word was dropped pending a full daily series."
       },
       "compare": {
        "value": 0.5,
        "unit": "pp",
-       "as_of": "2026-10-06",
+       "as_of": "2026-11-05",
        "label_vi": "Lãi suất OMO/tái cấp vốn NHNN 4,5% trừ trần lãi suất Fed 4,0% (tính toán)",
        "label_en": "SBV OMO/refinancing 4.5% minus Fed funds upper bound 4.0% (derived)",
        "derived": true
@@ -10140,6 +10577,10 @@
        {
         "name": "VietnamBiz - NHNN nâng lãi suất OMO lên 4,5% (12/2025)",
         "url": "https://vietnambiz.vn/lan-dau-sau-hon-14-thang-nhnn-nang-lai-suat-omo-len-45nam-20251258115523.htm"
+       },
+       {
+        "name": "Thanh Niên - Giá USD hôm nay 6.11.2026",
+        "url": "https://thanhnien.vn/gia-usd-hom-nay-6112026-giam-180-dong-trong-tuan-qua-185261106083421062.htm"
        }
       ]
      },
@@ -10270,12 +10711,12 @@
       "key": "weak_pass_through",
       "title_vi": "Lãi suất điều hành truyền dẫn yếu tới lãi suất huy động",
       "title_en": "Policy rates pass through weakly to deposit rates",
-      "text_vi": "Lãi suất tái cấp vốn 4,5% và tái chiết khấu 3% giữ nguyên trong năm qua, nhưng lãi suất huy động 12 tháng bình quân nhóm ngân hàng khảo sát lên khoảng 8,4% cuối tháng 8/2026 (+2,59 điểm % từ đầu năm, MBS) vì các ngân hàng cạnh tranh tiền gửi khi tín dụng vượt huy động (LDR giản đơn toàn ngành ~114% quý II/2026, Yuanta) và phải đáp ứng trần LDR (85%, nâng lên 95% theo Thông tư 50/2026 ban hành 30/9/2026). Vốn NHNN qua OMO chỉ kỳ hạn 7-91 ngày và bị giới hạn bởi tài sản cầm cố, nên hạ lãi suất điều hành chủ yếu làm rẻ vốn liên ngân hàng ngắn hạn chứ không thay được tiền gửi dài hạn.",
-      "text_en": "The 4.5% refinancing and 3% rediscount rates have been unchanged for a year, yet the surveyed banks' average 12-month deposit rate rose to about 8.4% at end-Aug 2026 (+2.59 points year to date, MBS) because banks compete for deposits when credit outruns funding (sector simple LDR ~114% in Q2-2026, Yuanta) and must meet the LDR cap (85%, raised to 95% by Circular 50/2026 issued 30 Sep 2026). SBV funding via OMO is only 7-91 days and limited by eligible collateral, so a policy-rate cut mainly cheapens short interbank money rather than replacing long-term deposits.",
+      "text_vi": "Lãi suất tái cấp vốn 4,5% và tái chiết khấu 3% giữ nguyên trong năm qua, nhưng lãi suất huy động 12 tháng bình quân nhóm ngân hàng khảo sát lên khoảng 8,4% cuối tháng 8/2026 (+2,59 điểm % từ đầu năm, MBS) vì các ngân hàng cạnh tranh tiền gửi khi tín dụng vượt huy động (LDR giản đơn toàn ngành ~114% quý II/2026, Yuanta) và phải đáp ứng trần LDR (85%, nâng lên 95% theo Thông tư 50/2026 ban hành 30/9/2026). Vốn NHNN qua OMO chỉ kỳ hạn 7-91 ngày và bị giới hạn bởi tài sản cầm cố, nên hạ lãi suất điều hành chủ yếu làm rẻ vốn liên ngân hàng ngắn hạn chứ không thay được tiền gửi dài hạn. Việc giảm lãi suất cuối tháng 10/2026 đến từ chỉ đạo hành chính (CV 9608, 9736) và hoán đổi 6 tháng từ 3/11, không phải từ giảm lãi suất điều hành: OMO vẫn 4,5%.",
+      "text_en": "The 4.5% refinancing and 3% rediscount rates have been unchanged for a year, yet the surveyed banks' average 12-month deposit rate rose to about 8.4% at end-Aug 2026 (+2.59 points year to date, MBS) because banks compete for deposits when credit outruns funding (sector simple LDR ~114% in Q2-2026, Yuanta) and must meet the LDR cap (85%, raised to 95% by Circular 50/2026 issued 30 Sep 2026). SBV funding via OMO is only 7-91 days and limited by eligible collateral, so a policy-rate cut mainly cheapens short interbank money rather than replacing long-term deposits. The late-October fall in rates came from administrative direction (letters 9608, 9736) and a 6-month swap from 3 Nov, not from a policy-rate cut: OMO is still 4.5%.",
       "metric": {
        "value": 4.5,
        "unit": "%",
-       "as_of": "2026-10-02",
+       "as_of": "2026-11-05",
        "label_vi": "Lãi suất OMO / tái cấp vốn NHNN",
        "label_en": "SBV OMO / refinancing rate"
       },
@@ -10306,6 +10747,10 @@
        {
         "name": "Vietstock - OMO bị giới hạn tài sản cầm cố (6/2026)",
         "url": "https://vietstock.vn/2026/06/tuan-01-0506-nhnn-tro-lai-rut-rong-hon-26300-ty-qua-kenh-omo-757-1451646.htm"
+       },
+       {
+        "name": "Thời báo Ngân hàng - Điểm lại thông tin kinh tế ngày 5/11",
+        "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html"
        }
       ]
      },
@@ -10352,16 +10797,16 @@
     ]
    },
    "plumbing": {
-    "as_of": "2026-10-07",
+    "as_of": "2026-11-06",
     "facts": {
      "currency_in_circulation": {
-      "value": 2041473,
+      "value": 2048385,
       "unit": "bn VND",
-      "as_of": "2026-07",
-      "label_vi": "Tiền mặt lưu thông (tính: 9,98% × M2)",
-      "label_en": "Currency in circulation (derived: 9.98% x M2)",
+      "as_of": "2026-08",
+      "label_vi": "Tiền mặt lưu thông (tính: 9,86% × M2)",
+      "label_en": "Currency in circulation (derived: 9.86% x M2)",
       "url": "https://sbv.gov.vn/vi/tien-mat-luu-thong-tren-tong-phuong-tien-thanh-toan",
-      "note": "DERIVED from SBV cash/M2 9.98% (Jul-2026) x SBV M2 20,455,644 bn (Jul-2026, https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd). SBV publishes only the ratio. IMF 'currency outside banks' (1,631 trn end-2024, IMF monetary survey in the SBV balance sheet) is a different definition."
+      "note": "DERIVED from SBV cash/M2 9.86% (Aug-2026) x SBV M2 20,774,696 bn (Aug-2026, https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd). SBV publishes only the ratio. IMF 'currency outside banks' (1,631 trn end-2024, IMF monetary survey in the SBV balance sheet) is a different definition."
      },
      "gov_bond_issued_2026_ytd": {
       "value": 299100,
@@ -10370,7 +10815,7 @@
       "label_vi": "TPCP KBNN đã phát hành qua HNX từ đầu năm",
       "label_en": "Government bonds issued by the State Treasury via HNX, YTD",
       "url": "https://thitruongtaichinhtiente.vn/thu-ngan-sach-9-thang-dat-86-5-du-toan-tang-12-1-so-voi-cung-ky-86105.html",
-      "note": "299,100 bn to 30/09/2026 = MoF 9M budget-execution release: 'Lũy kế 9 tháng ... phát hành 299,1 nghìn tỷ đồng TPCP, kỳ hạn bình quân 8,84 năm, lãi suất bình quân 4,2%/năm' (59.8% of the 500,000 bn plan, derived). Previous value: 261,108 bn to 16/09/2026 (vnexpress/znews excerpt). Firm month-end: 228,921.3 bn to end-Aug (HNX via VietnamPlus https://www.vietnamplus.vn/hnx-huy-dong-27756-ty-dong-qua-dau-thau-trai-phieu-chinh-phu-thang-tam-post1136568.vnp). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy)."
+      "note": "299,100 bn to 30/09/2026 = MoF 9M budget-execution release: 'Lũy kế 9 tháng ... phát hành 299,1 nghìn tỷ đồng TPCP, kỳ hạn bình quân 8,84 năm, lãi suất bình quân 4,2%/năm' (59.8% of the 500,000 bn plan, derived). Previous value: 261,108 bn to 16/09/2026 (vnexpress/znews excerpt). Firm month-end: 228,921.3 bn to end-Aug (HNX via VietnamPlus https://www.vietnamplus.vn/hnx-huy-dong-27756-ty-dong-qua-dau-thau-trai-phieu-chinh-phu-thang-tam-post1136568.vnp). search-engine excerpt, 2026-10-07 (page fetch blocked by egress proxy). Research 2026-11-06: the 2026 plan has since been reported cut to 400,000 bn (document not identified), so 59.8% is on the old base. Latest cumulative is in Policy gov_bond_issuance (368,422 bn to 30/10 per BVSC; 345.9 tn per the MoF, cut-off not stated); this fact is due a refresh."
      },
      "gov_bond_plan_2026": {
       "value": 500000,
@@ -10474,20 +10919,20 @@
      "omo_rate": {
       "value": 4.5,
       "unit": "%",
-      "as_of": "2026-10-02",
+      "as_of": "2026-11-05",
       "label_vi": "Lãi suất OMO (cầm cố GTCG, 7-91 ngày)",
       "label_en": "OMO rate (collateralised, 7-91 days)",
-      "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm",
-      "note": "Raised 4.0 -> 4.5% from 04/12/2025. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+      "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html",
+      "note": "Raised 4.0 -> 4.5% from 04/12/2025; all OMO tenors offered at 4.5% on 5/11/2026 (page read)."
      },
      "omo_outstanding": {
-      "value": 133342,
+      "value": 105592,
       "unit": "bn VND",
-      "as_of": "2026-10-02",
-      "label_vi": "Dư nợ OMO cuối tuần",
-      "label_en": "OMO outstanding at week end",
-      "url": "https://vietstock.vn/2026/10/tuan-2809-0210-nhnn-dao-chieu-rut-rong-hon-53000-ty-757-1498730.htm",
-      "note": "See operations log; VBMA-consistent basis. Excerpt-only: verified via search-engine excerpt 2026-10-06 (page fetch blocked by egress proxy)."
+      "as_of": "2026-11-05",
+      "label_vi": "Dư nợ OMO",
+      "label_en": "OMO outstanding",
+      "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html",
+      "note": "Session of 5/11/2026: 105,591.75 bn (page read); 123,226.6 bn on 30/10 per the TBTC weekly wrap, on a basis that may differ."
      },
      "fx_reserves_latest": {
       "value": 87.6,
@@ -10713,7 +11158,8 @@
     "credit Sep-2026 (cut-off)": "T9/26 = SBV statement to 30/9/2026 (20.75 quadrillion, +11.59%), stated 3/10/2026; level rounded to 20,750,000; not yet the SBV table.",
     "credit_basis / credit_cutoff / credit_yoy_basis (added 2026-10-07)": "Aligned with months. credit_basis: 'sbv_table' = SBV table 'Dư nợ tín dụng đối với nền kinh tế' month-end row (exact level, cut-off = month-end, https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt); 'statement' = figure stated by SBV/Government at a cut-off date, level rounded (T11/24 press, cut-off not recorded; T12/24 year-end statement 15.08%, level derived; T8/26 cut-off 28/8 'about 20.5 quadrillion', +10.24%; T9/26 cut-off 30/9 'about 20.75 quadrillion', +11.59%). credit_cutoff gives the date. credit_yoy_basis: 'statement' (T6/25, T9/25, T9/26 = SBV-stated) vs 'computed_from_sbv_table_levels' (2026 T1-T7). The credit line therefore has two bases: table months end at T7/26; T8/26-T9/26 are statement points and should be drawn as such (e.g. hollow markers) until the SBV Aug/Sep tables replace them. Values were not changed.",
     "deposits_ytd_statement (T8/26, T9/26; added 2026-10-07)": "Separate from deposits_ytd (SBV money-supply table: customer deposits of residents + economic organisations vs previous year-end), which stays null for Aug-Sep 2026 until the SBV tables appear (~mid-late Oct). Statement-basis points, a broader/different concept, never merged into deposits_ytd: T8/26 = 8.77% at 22/8/2026, VND mobilisation only (MoF Deputy Minister Tran Quoc Phuong, Government press conference 3/9/2026; https://vnexpress.net/huy-dong-von-cua-ngan-hang-tang-nhanh-hon-tin-dung-5116224.html; same date VND credit +8.38%); T9/26 = 9.78% at 28/9/2026, mobilisation of credit institutions (NSO Q3-2026 socio-economic report; https://vietstock.vn/2026/10/tinh-den-289-tin-dung-toan-nen-kinh-te-tang-1089-757-1498652.htm; same date credit +10.89%). Both already held in why.series.credit_vs_deposit_growth; copied here so monthly charts can show them, labelled.",
-    "cash_in_circulation_derived_bn (added 2026-10-08)": "DERIVED (≈) = m2_level x cash_to_m2_pct / 100; not an official SBV level. From T10/25 identical to sbv.balance_sheet.monthly_supplement.currency_in_circulation_derived (trillion). T1/25-T9/25 flagged 'month_mapping_ambiguous' because the SBV cash/M2 rows for 2025 were dated by publication and one press report places the 9.48% trough at end-Sep 2025 (our T5/25). Cross-check: Feb-2026 derived 2,374,605 bn matches press 2,374,600 (https://vietnambiz.vn/nguoi-dan-nam-giu-tien-mat-nhieu-hon-dong-tien-dang-dich-chuyen-ra-sao-20265271235313.htm). m2_methodology: 'old' to T9/25, 'new' from T10/25 (SBV methodology change; levels across the break not comparable)."
+    "cash_in_circulation_derived_bn (added 2026-10-08)": "DERIVED (≈) = m2_level x cash_to_m2_pct / 100; not an official SBV level. From T10/25 identical to sbv.balance_sheet.monthly_supplement.currency_in_circulation_derived (trillion). T1/25-T9/25 flagged 'month_mapping_ambiguous' because the SBV cash/M2 rows for 2025 were dated by publication and one press report places the 9.48% trough at end-Sep 2025 (our T5/25). Cross-check: Feb-2026 derived 2,374,605 bn matches press 2,374,600 (https://vietnambiz.vn/nguoi-dan-nam-giu-tien-mat-nhieu-hon-dong-tien-dang-dich-chuyen-ra-sao-20265271235313.htm). m2_methodology: 'old' to T9/25, 'new' from T10/25 (SBV methodology change; levels across the break not comparable).",
+    "credit Oct-2026 (cut-off)": "T10/26 = point at 26/10/2026 (+11.94%, above 20.8 quadrillion), VnExpress 4/11/2026, not an end-October figure; level is a lower bound. The Governor stated ~12.27% to the NA on 31/10 with no cut-off (https://thitruongtaichinhtiente.vn/thong-doc-pham-duc-an-lam-ro-cac-van-de-dai-bieu-quoc-hoi-quan-tam-ve-linh-vuc-ngan-hang-86717.html): kept apart, not averaged. Label reviewed by Research 2026-11-06."
    },
    "sectors": {
     "levels_and_growth": [
@@ -10721,7 +11167,7 @@
      "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10034332&pageSize=200"
     ],
     "share_of_total_pct": "computed from SBV levels",
-    "note": "SBV page publishes Jan-2025..Jul-2026 only. Re-checked 2026-10-06 by search: Aug/Sep-2026 sector tables not yet published (no press citing them). Sub-sector rows are 'trong đó'.",
+    "note": "SBV page publishes Jan-2025..Aug-2026 (Aug-2026 published 6/10/2026, read 2026-11-06). Sep-2026 table not yet published. Sub-sector rows are 'trong đó'.",
     "period_dates": "sectors.periods are SBV sector-table month-ends (2026: '2026-06' = 30/6, '2026-07' = 31/7), the same table as monthly.credit_level for Jan-2025..Jul-2026; they differ from SBV press-conference cut-offs (26/6, 29/6, 29/7, 28/8, 30/9). Checked 2026-10-06."
    },
    "sbv_constraints_plumbing_analysis": {
@@ -10737,12 +11183,64 @@
     "implementation_note": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a1.htm",
     "press_conference": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
     "note": "FOMC 27-28 Oct 2026: target range held at 3.75-4.00% (vote 10-2; Cook and Hammack preferred +25 bp); IORB 3.90%, standing repo 4.00%, ON RRP 3.75%. Verified via search excerpts 2026-10-29 (federalreserve.gov unreachable from sandbox); corroborated by CNBC, Fortune, Fox Business. Applied 2026-11-01 with user approval (proposal data/research/proposals/fomc_2026-10-28.md)."
+   },
+   "weekly_2026_11_06": {
+    "run": "weekly-all-agents-update, as_of 2026-11-06",
+    "access": "WebFetch reached sbv.gov.vn list pages, the public article API and most press sites this run. SBV detail pages under /w/ and asset_publisher returned 403; the NPL page and the cash page render empty, so cash/M2 came from the article API (contentStructureId=10041267).",
+    "sbv_tables_read": {
+     "m2_deposits_aug_2026": "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10038520&pageSize=100 (published 2026-10-15)",
+     "credit_sector_aug_2026": "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10034332&pageSize=200 (published 2026-10-06)",
+     "cash_to_m2_aug_2026": "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10041267&pageSize=100 (published 2026-10-15)",
+     "prudential_30_09_2026": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban"
+    },
+    "derived": {
+     "deposits_level T8/26": "economic organisations + residents, as in earlier months",
+     "deposits_ytd T8/26": "vs T12/25 level 16,515,887",
+     "credit_yoy T8/26": "vs T8/25 table level",
+     "why.series.ldr 2026-Q3": "data/banks_vnstock.json (quarterly 2026-Q3, as_of 2026-11-05)",
+     "cash_in_circulation T8/26": "9.86% x M2"
+    },
+    "press": [
+     "https://vnexpress.net/pho-thong-doc-lai-suat-cho-vay-moi-giam-0-2-0-5-5140740.html",
+     "https://thitruongtaichinhtiente.vn/ngan-hang-giam-lai-suat-ho-tro-nguoi-dan-doanh-nghiep-86799.html",
+     "https://bnews.vn/pho-thong-doc-pham-thanh-ha-se-tiep-tuc-trien-khai-cac-bien-phap-de-giam-mat-bang-lai-suat/443069.html",
+     "https://dantri.com.vn/kinh-doanh/hon-20-ngan-hang-dong-loat-giam-lai-suat-cho-vay-20261104135357116.htm",
+     "https://cafef.vn/ngan-hang-nha-nuoc-co-chi-dao-moi-ve-lai-suat-188261021150259725.chn",
+     "https://tapchikinhtetaichinh.vn/lai-suat-ty-gia-hom-nay-lai-tiet-kiem-truoc-ap-luc-giam-usd-on-dinh-169921.html",
+     "https://thanhtra.com.vn/tai-chinh-701717FFD/lai-suat-lien-ngan-hang-dao-chieu-ap-luc-von-vay-van-hien-huu-98015f8ce.html",
+     "https://vantagecore.substack.com/p/cap-nhat-ket-qua-kinh-doanh-nganh",
+     "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-hon-428-500-ty-dong-sau-9-thang.md",
+     "https://thoibaotaichinhvietnam.vn/phat-hanh-trai-phieu-doanh-nghiep-tang-gan-10-trong-quy-iii-2026-205245.html",
+     "https://doanhnhan.baophapluat.vn/du-no-margin-lap-ky-luc-hon-457-500-ty-dong-khi-thanh-khoan-giam-hon-60-chuyen-gia-canh-bao-rui-ro-giai-chap.md",
+     "https://doanhnhan.baophapluat.vn/margin-lap-dinh-lich-su-455-000-ty-dong-giua-luc-thanh-khoan-thi-truong-dong-bang.html",
+     "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html",
+     "https://thanhnien.vn/gia-usd-hom-nay-6112026-giam-180-dong-trong-tuan-qua-185261106083421062.htm",
+     "https://vov.vn/thi-truong/ty-gia-usd-hom-nay-611-ty-gia-trung-tam-giam-con-25615-dongusd-post1347630.vov",
+     "https://thanhnien.vn/gia-usd-hom-nay-1112026-ngan-hang-ban-ra-duoi-26000-dong-185261031203849977.htm",
+     "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-26-30-10-dao-chieu-bom-rong-hon-28-000-ty-dong-usd-bien-dong-trai-chieu-sau-tuan-hop-lai-suat-206193.html",
+     "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+     "https://thoibaotaichinhvietnam.vn/ty-le-ldr-tang-theo-cong-thuc-moi-tran-95-van-rong-voi-phan-lon-ngan-hang-204924.html",
+     "https://thitruongtaichinhtiente.vn/ngan-hang-nha-nuoc-dieu-chinh-ldr-len-95-tung-buoc-ap-dung-chuan-basel-iii-85975.html",
+     "https://thuonggiaonline.vn/lai-suat-huy-dong-ngan-hang-nao-cao-nhat-thang-112026-post574066.html",
+     "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-tuan-3-thang-10-2026-24025.htm",
+     "https://thitruongtaichinhtiente.vn/hoat-dong-ngan-hang-tren-dia-ban-tp-ho-chi-minh-hai-thang-cuoi-nam-va-nhiem-vu-ho-tro-tang-truong-kinh-te-hai-chu-so-86819.html"
+    ],
+    "conflicts": [
+     "Listed deposit cuts: 0.5 (SOCB, foreign) and 0.5-0.7 (JSCB) per TTTC, Dan Tri, VnExpress; 0.5-0.75 per BNEWS; 1.5-1.7 per Mekong ASEAN (https://mekongasean.vn/pho-thong-doc-ngan-hang-nha-nuoc-thong-tin-ve-viec-giam-lai-suat-61458.html), not used.",
+     "Late-Oct rate change base: mid-Oct (TTTC, BNEWS) vs start of October (VnExpress).",
+     "Vietcombank USD sell on 6/11: 25,810 (Thanh Nien) vs 25,800 (VOV).",
+     "DXY end-Oct: 101.96 (Thanh Nien 1/11, TBTC) vs 101.83 (VOV 31/10).",
+     "Q3 corporate bond issuance: VIS Rating 172tn (+9.7% YoY), S&I Ratings 179.4tn (-26% q/q).",
+     "End-Q3 margin: 457,500 FiinTrade vs ~455,000 incl. advances (other estimate).",
+     "Big-4 12M posted rate on 3/11: 5.4% (Thuong Gia, Vietbao page) vs 6.8% in a search excerpt."
+    ],
+    "hcmc_context": "HCMC credit at end-Oct-2026 ~5,854tn, +12.4% vs end-2025, +18.2% YoY (preliminary, regional only; not a national figure)."
    }
   },
   "other_services_breakdown": {
-   "as_of": "2026-10-06",
+   "as_of": "2026-11-06",
    "total_key": "sectors.levels.other_services",
-   "total_note": "SBV 'Các hoạt động dịch vụ khác' level for the latest sector period (Jul-2026: 9,158,790 bn VND).",
+   "total_note": "SBV 'Các hoạt động dịch vụ khác' level for the latest sector period (Aug-2026: 9,238,445 bn VND).",
    "classification_note_vi": "NHNN không công bố danh mục chính thức của nhóm 'Các hoạt động dịch vụ khác'. Việc xếp cho vay tiêu dùng, nhà ở tự sử dụng và kinh doanh bất động sản vào nhóm này là suy luận theo ngành kinh tế của bên vay (VSIC), không phải số liệu NHNN công bố.",
    "classification_note_en": "The SBV publishes no official list of what 'other service activities' contains. Placing consumer, own-use housing and real-estate business lending in it is an inference from the borrower's industry (VSIC), not an SBV-published split.",
    "verification_note": "Figures collected 2026-10-06 from the cited articles' search excerpts (direct page fetches were blocked); exact values matched across several outlets. Re-checked 2026-10-06 (search excerpts; pages still blocked): consumer 4.62m at end-Aug-2026 (22.56% of credit, +21.75% YoY) confirmed in tuoitre/stockbiz excerpts; no newer national real-estate (Q3-2026) or consumer figure published yet.",
@@ -10834,9 +11332,9 @@
    ],
    "gaps_vi": "Chưa có số toàn quốc cho tài chính – ngân hàng – bảo hiểm, chứng khoán (tín dụng ngân hàng), lưu trú – ăn uống, giáo dục, y tế; phần này nằm trong 'chưa phân loại'.",
    "gaps_en": "No national figures for finance/insurance, bank credit to securities, hospitality, education or health; they sit in the unclassified remainder.",
-   "total_bn": 9158790.0,
-   "total_as_of": "2026-07",
-   "residual_note": "Unclassified residual = other-services total (Jul-2026, 9,158,790) − real-estate business (Jun-2026, 2,519,000) − consumer credit incl. own-use housing (Aug-2026, 4,620,000) ≈ 2,019,790 bn VND (≈22%). The three inputs are from three different months; nothing is rescaled, so the residual is indicative only. Total real-estate credit and the own-use housing share are stored for cross-checking and are not added (own-use housing sits inside consumer). Not every consumer or real-estate loan is necessarily booked under 'other services' (e.g. industrial-park projects may sit under construction), so the 'known' share is an upper-bound estimate."
+   "total_bn": 9238445.0,
+   "total_as_of": "2026-08",
+   "residual_note": "Unclassified residual = other-services total (Aug-2026, 9,238,445) − real-estate business (Jun-2026, 2,519,000) − consumer credit incl. own-use housing (Aug-2026, 4,620,000) ≈ 2,099,445 bn VND (≈23%). The three inputs are from two different months; nothing is rescaled, so the residual is indicative only. Total real-estate credit and the own-use housing share are stored for cross-checking and are not added (own-use housing sits inside consumer). Not every consumer or real-estate loan is necessarily booked under 'other services' (e.g. industrial-park projects may sit under construction), so the 'known' share is an upper-bound estimate."
   },
   "analysis": {
    "as_of": "2026-10-06",
@@ -11080,8 +11578,8 @@
     "why": {
      "q_vi": "Vì sao lãi suất cho vay không giảm dù NHNN giữ lãi suất điều hành?",
      "q_en": "Why won't lending rates fall even though policy rates are unchanged?",
-     "answer_vi": "Lãi suất điều hành không tăng (tái cấp vốn 4,5% từ 6/2023; OMO lên 4,5% từ 12/2025), nhưng chi phí vốn thực tế của ngân hàng tăng: lãi suất huy động 12 tháng khoảng 8,4% cuối 8/2026 và chi phí vốn toàn ngành 4,79% quý II/2026. Lãi suất cho vay bình quân 8,4-10,7% (8/2026) phản ánh cuộc đua huy động, thanh khoản căng và áp lực tỷ giá, lạm phát hơn là lãi suất điều hành.",
-     "answer_en": "Policy rates have not risen much (refinancing 4.5% since Jun 2023; OMO up to 4.5% in Dec 2025), but banks' actual funding costs have: the 12-month deposit rate was about 8.4% at end-Aug 2026 and sector cost of funds 4.79% in Q2-2026. Average lending rates of 8.4-10.7% (Aug 2026) reflect the deposit race, tight liquidity, and FX and inflation pressure rather than the policy rate.",
+     "answer_vi": "Lãi suất điều hành không tăng (tái cấp vốn 4,5% từ 6/2023; OMO lên 4,5% từ 12/2025), nhưng chi phí vốn thực tế của ngân hàng tăng: lãi suất huy động 12 tháng khoảng 8,4% cuối 8/2026 và chi phí vốn toàn ngành 4,79% quý II/2026. Lãi suất cho vay bình quân 8,4-10,7% (8/2026) phản ánh cuộc đua huy động, thanh khoản căng và áp lực tỷ giá, lạm phát hơn là lãi suất điều hành. Cuối tháng 10/2026 lãi suất bắt đầu giảm theo chỉ đạo của NHNN (CV 9608, 9736): tiền gửi mới −0,4 và cho vay mới −0,2–0,5 điểm % so với giữa tháng, thấp hơn mức yêu cầu 1,5–2%/năm cho sản xuất, kinh doanh; lãi suất điều hành không đổi.",
+     "answer_en": "Policy rates have not risen much (refinancing 4.5% since Jun 2023; OMO up to 4.5% in Dec 2025), but banks' actual funding costs have: the 12-month deposit rate was about 8.4% at end-Aug 2026 and sector cost of funds 4.79% in Q2-2026. Average lending rates of 8.4-10.7% (Aug 2026) reflect the deposit race, tight liquidity, and FX and inflation pressure rather than the policy rate. In late October 2026 rates began to fall under SBV direction (letters 9608, 9736): new deposits -0.4pp and new loans -0.2 to -0.5pp vs mid-month, short of the 1.5-2%/yr asked for production and business loans; policy rates are unchanged.",
      "drivers": [
       {
        "title_vi": "Cuộc đua huy động do tín dụng vượt tiền gửi",
@@ -11429,12 +11927,13 @@
       }
      ]
     }
-   }
+   },
+   "why_updated": "2026-11-06"
   },
   "projections": {
-   "as_of": "2026-10-14",
-   "note_vi": "Ba loại: mục tiêu chính thức, dự báo của tổ chức (ghi rõ kỳ công bố) và kịch bản (do nhóm dữ liệu tính, nêu đầu vào và công thức để tái lập). Kịch bản không phải dự báo. Tăng trưởng GDP thực của IMF theo kỳ WEO 10/2026; CPI của IMF vẫn theo kỳ 4/2026 (số 10/2026 chưa được kiểm chứng). Số liệu IMF lấy qua trích đoạn báo chí (trang IMF/FRED bị chặn), mâu thuẫn được ghi chú. GDP danh nghĩa và tín dụng/GDP (kịch bản) vẫn dựa trên kỳ IMF 4/2026 cho tới khi có đủ chuỗi 10/2026 đến 2030.",
-   "note_en": "Three kinds: official targets, institutional forecasts (with vintage) and scenarios (computed here, with stated inputs and formula so they can be reproduced). Scenarios are not forecasts. IMF real GDP growth is the Oct-2026 WEO; IMF CPI stays on the Apr-2026 WEO (Oct-2026 CPI unverified). IMF values come from press excerpts (IMF/FRED pages blocked) and conflicts are noted. The nominal-GDP and credit-to-GDP scenarios still use the Apr-2026 IMF vintage until the Oct-2026 path to 2030 is available.",
+   "as_of": "2026-11-06",
+   "note_vi": "Ba loại: mục tiêu chính thức, dự báo của tổ chức (ghi rõ kỳ công bố) và kịch bản (do nhóm dữ liệu tính, nêu đầu vào và công thức để tái lập). Kịch bản không phải dự báo. Dự báo IMF theo WEO 10/2026 (tăng GDP thực và CPI đến 2030, đọc từ DataMapper API ngày 06/11/2026, cùng kỳ với tab Kinh tế và Xã hội). GDP danh nghĩa và tín dụng/GDP (kịch bản) tính lại theo kỳ này ngày 06/11/2026.",
+   "note_en": "Three kinds: official targets, institutional forecasts (with vintage) and scenarios (computed here, with stated inputs and formula so they can be reproduced). Scenarios are not forecasts. IMF forecasts are WEO Oct-2026 (real GDP growth and CPI to 2030, read from the DataMapper API on 06/11/2026, same vintage as the Economy and Society tabs). The nominal-GDP and credit-to-GDP scenarios were recomputed on this vintage on 06/11/2026.",
    "series": {
     "credit_growth_pct": {
      "years": [
@@ -11471,8 +11970,8 @@
       "name": "SBV 2026 credit target ~15% (VnEconomy); Fitch 2026 forecast 18% (Bloomberg, 12/11/2025)",
       "url": "https://vneconomy.vn/nam-2026-tin-dung-du-kien-tang-them-279-trieu-ty-dong-giam-183000-ty-so-voi-2025.htm"
      },
-     "method_vi": "Giả định: base giữ 15%/năm (chỉ tiêu 2026 của NHNN) cho 2026-2030; high 18%/năm (dự báo 2026 của Fitch, giữ nguyên); low 12%/năm (trung bình 2018-2023 theo dữ liệu của dashboard là 13,6%, low làm tròn thấp hơn). Không có chỉ tiêu tín dụng chính thức sau 2026. Thực tế 30/9/2026: +16,69% svck.",
-     "method_en": "Assumption: base holds 15%/yr (SBV 2026 target) for 2026-2030; high 18%/yr (Fitch 2026 forecast, held flat); low 12%/yr (the dashboard's data 2018-2023 average is 13.6%; low set below it). No official credit target exists beyond 2026. Actual 30 Sep 2026: +16.69% y/y.",
+     "method_vi": "Giả định: base giữ 15%/năm (chỉ tiêu 2026 của NHNN) cho 2026-2030; high 18%/năm (dự báo 2026 của Fitch, giữ nguyên); low 12%/năm (trung bình 2018-2023 theo dữ liệu của dashboard là 13,6%, low làm tròn thấp hơn). Không có chỉ tiêu tín dụng chính thức sau 2026. Thực tế 30/9/2026: +16,69% svck. Đến 26/10/2026: +11,94% so với cuối 2025.",
+     "method_en": "Assumption: base holds 15%/yr (SBV 2026 target) for 2026-2030; high 18%/yr (Fitch 2026 forecast, held flat); low 12%/yr (the dashboard's data 2018-2023 average is 13.6%; low set below it). No official credit target exists beyond 2026. Actual 30 Sep 2026: +16.69% y/y. To 26 Oct 2026: +11.94% vs end-2025.",
      "fitch_url": "https://www.bloomberg.com/news/articles/2025-11-12/vietnam-s-fast-lending-likely-rollback-of-credit-quotas-are-risky-fitch-says"
     },
     "deposit_growth_pct": {
@@ -11522,29 +12021,44 @@
       2030
      ],
      "base": [
-      12.35,
-      10.71,
-      10.02,
-      9.4,
-      9.18
+      13.49,
+      12.77,
+      10.88,
+      10.77,
+      10.14
      ],
      "low": null,
      "high": null,
      "kind": "scenario",
      "unit": "% y/y",
      "source": {
-      "name": "IMF WEO Apr-2026 real GDP and CPI (via search excerpts/FRED)",
-      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/statsappendix.pdf"
+      "name": "IMF WEO Oct-2026 real GDP and CPI (DataMapper API)",
+      "url": "https://www.imf.org/external/datamapper/api/v1/NGDP_RPCH/VNM",
+      "alt_url": "https://www.imf.org/external/datamapper/api/v1/PCPIPCH/VNM"
      },
-     "method_vi": "IMF chưa có số GDP danh nghĩa bằng VND trong trích đoạn tìm được, nên ước = (1 + tăng GDP thực IMF) × (1 + CPI IMF) − 1, tức dùng CPI làm proxy cho chỉ số giảm phát GDP. GDP thực: 7,1; 6,7; 6,2; 5,6; 5,39. CPI: 4,9; 3,76; 3,6; 3,6; 3,6. Thực tế 9T/2026 tăng thực 9,01% (Cục Thống kê) cao hơn IMF.",
-     "method_en": "No IMF VND nominal GDP was found in excerpts, so = (1 + IMF real GDP growth) x (1 + IMF CPI) − 1, using CPI as a proxy for the GDP deflator. Real GDP: 7.1, 6.7, 6.2, 5.6, 5.39. CPI: 4.9, 3.76, 3.6, 3.6, 3.6. Actual 9M-2026 real growth 9.01% (NSO) is above the IMF path.",
+     "method_vi": "IMF không công bố GDP danh nghĩa bằng VND trên DataMapper, nên ước = (1 + tăng GDP thực IMF) × (1 + CPI IMF) − 1, tức dùng CPI làm proxy cho chỉ số giảm phát GDP. GDP thực: 8,4; 7,5; 5,9; 5,9; 5,7. CPI: 4,7; 4,9; 4,7; 4,6; 4,2 (WEO 10/2026). Thực tế 9T/2026 tăng thực 9,01% (Cục Thống kê) cao hơn IMF.",
+     "method_en": "DataMapper has no IMF VND nominal GDP, so = (1 + IMF real GDP growth) x (1 + IMF CPI) − 1, using CPI as a proxy for the GDP deflator. Real GDP: 8.4, 7.5, 5.9, 5.9, 5.7. CPI: 4.7, 4.9, 4.7, 4.6, 4.2 (WEO Oct-2026). Actual 9M-2026 real growth 9.01% (NSO) is above the IMF path.",
      "imf_usd_nominal_gdp_bn": {
-      "2026": 527.27,
-      "2028": 594.83,
-      "2029": 631.08,
-      "2030": 667.52,
-      "note": "IMF WEO Apr-2026 current-USD GDP (excerpt); 2027 not found. USD growth below VND proxy implies IMF assumes some VND depreciation - not used in calculations."
-     }
+      "2026": 542.13,
+      "2027": 587.13,
+      "2028": 638.29,
+      "2029": 693.98,
+      "2030": 750.05,
+      "note": "IMF WEO Oct-2026 current-USD GDP (DataMapper NGDPD, same as Economy gdp_usd_bn_imf and Society WORLD_RANK.g_gdp). USD growth below the VND proxy implies IMF assumes some VND depreciation; not used in calculations.",
+      "previous_apr2026": {
+       "2026": 527.27,
+       "2028": 594.83,
+       "2029": 631.08,
+       "2030": 667.52
+      }
+     },
+     "superseded_base_apr2026": [
+      12.35,
+      10.71,
+      10.02,
+      9.4,
+      9.18
+     ]
     },
     "credit_to_gdp_pct": {
      "years": [
@@ -11555,25 +12069,25 @@
       2030
      ],
      "base": [
-      148.1,
-      153.9,
-      160.9,
-      169.1,
-      178.1
+      146.7,
+      149.6,
+      155.1,
+      161.0,
+      168.1
      ],
      "low": [
-      144.3,
-      146.0,
-      148.6,
-      152.1,
-      156.1
+      142.8,
+      141.9,
+      143.3,
+      144.9,
+      147.3
      ],
      "high": [
-      152.0,
-      162.0,
-      173.8,
-      187.4,
-      202.6
+      150.5,
+      157.5,
+      167.6,
+      178.5,
+      191.3
      ],
      "kind": "scenario",
      "unit": "% of GDP (total credit / nominal GDP)",
@@ -11582,7 +12096,30 @@
       "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt"
      },
      "method_vi": "Điểm xuất phát 2025 = 18.594.930 / 12.847.571 tỷ đồng = 144.7% (báo chí: ~146%). Mỗi năm: tỷ lệ_t = tỷ lệ_(t−1) × (1 + tín dụng_t) / (1 + GDP danh nghĩa_t), với tín dụng base/low/high = 15/12/18% và GDP danh nghĩa theo đường tăng GDP danh nghĩa ở trên. Đây là phép số học, không phải dự báo.",
-     "method_en": "Start 2025 = 18,594,930 / 12,847,571 bn VND = 144.7% (press: ~146%). Each year: ratio(t) = ratio(t−1) x (1 + credit growth in t) / (1 + nominal GDP growth in t), credit base/low/high = 15/12/18% and nominal GDP from the nominal-GDP-growth path above. Arithmetic, not a forecast."
+     "method_en": "Start 2025 = 18,594,930 / 12,847,571 bn VND = 144.7% (press: ~146%). Each year: ratio(t) = ratio(t−1) x (1 + credit growth in t) / (1 + nominal GDP growth in t), credit base/low/high = 15/12/18% and nominal GDP from the nominal-GDP-growth path above. Arithmetic, not a forecast.",
+     "superseded_apr2026": {
+      "base": [
+       148.1,
+       153.9,
+       160.9,
+       169.1,
+       178.1
+      ],
+      "low": [
+       144.3,
+       146.0,
+       148.6,
+       152.1,
+       156.1
+      ],
+      "high": [
+       152.0,
+       162.0,
+       173.8,
+       187.4,
+       202.6
+      ]
+     }
     },
     "npl_pct": {
      "years": [
@@ -11619,24 +12156,25 @@
       2030
      ],
      "base": [
+      4.7,
       4.9,
+      4.7,
       4.6,
-      null,
-      null,
-      null
+      4.2
      ],
      "low": null,
      "high": null,
      "kind": "institution_forecast",
      "unit": "% (annual average)",
      "source": {
-      "name": "IMF World Economic Outlook, April 2026 (WEO Apr-2026), Statistical Appendix Table A7 — same values as Economy ECONFLOW.projections.series.cpi_pct_imf",
-      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf"
+      "name": "IMF World Economic Outlook, October 2026 (DataMapper API), same values as Economy ECONFLOW.projections.series.cpi_pct_imf",
+      "url": "https://www.imf.org/external/datamapper/api/v1/PCPIPCH/VNM",
+      "verified_on": "2026-11-06"
      },
-     "method_vi": "WEO 4/2026 (Phụ lục thống kê, Bảng A7): 4,9 (2026), 4,6 (2027); 2028–2030 để null như tab Kinh tế (bản sao thứ cấp ghi 3,3% cho 2027–2030, mâu thuẫn với 4,6% nên không dùng). Trước đây tab này ghi 2027 = 3,76 và 2028–2030 = 3,6 theo FRED (VNMPCPIPCPPPT) — mâu thuẫn với 4,6% của bảng IMF; dùng bảng IMF, không lấy trung bình. Kỳ 10/2026 (13/10/2026) CHƯA áp dụng: chỉ một tờ báo (Thời báo Ngân hàng) đưa tin 4,7% (2026) và vừa 4,9% vừa 4,1% (2027) — xem oct2026_reported. Mục tiêu chính thức 2026–2030: CPI bình quân khoảng 4,5% (NQ 25/2026/QH16). Thực tế CPI bình quân 9T/2026: 4,52%.",
-     "method_en": "WEO Apr-2026 (Statistical Appendix Table A7): 4.9 (2026), 4.6 (2027); 2028-2030 null, as on the Economy tab (a secondary mirror shows 3.3% for 2027-2030, conflicting with 4.6, so not used). This tab previously held 2027 = 3.76 and 2028-2030 = 3.6 from FRED (VNMPCPIPCPPPT), which conflicts with the IMF table's 4.6; the IMF table is used, not averaged. The Oct-2026 vintage (13/10/2026) is NOT applied: only one outlet (Thoi bao Ngan hang) reports it, giving 4.7% for 2026 and both 4.9% and 4.1% for 2027 - see oct2026_reported. Official 2026-2030 target: average CPI about 4.5% (Resolution 25/2026/QH16). Actual 9M-2026 average CPI: 4.52%.",
-     "vintage": "IMF WEO April 2026",
-     "pub": "2026-04-14",
+     "method_vi": "WEO 10/2026, đọc từ DataMapper API ngày 06/11/2026: 4,7 / 4,9 / 4,7 / 4,6 / 4,2 (2026–2030; 2031: 3,8), khớp data/auto/imf_datamapper.json và tab Kinh tế. Bản trước WEO 4/2026 giữ ở superseded_values_apr2026. Mục tiêu chính thức 2026–2030: CPI bình quân khoảng 4,5% (NQ 25/2026/QH16). Thực tế CPI bình quân 10T/2026: 4,57%.",
+     "method_en": "WEO Oct-2026, read from the DataMapper API on 06/11/2026: 4.7 / 4.9 / 4.7 / 4.6 / 4.2 (2026-2030; 2031: 3.8), matching data/auto/imf_datamapper.json and the Economy tab. The previous WEO Apr-2026 values are kept in superseded_values_apr2026. Official target 2026-2030: average CPI about 4.5% (Resolution 25/2026/QH16). Actual 10M-2026 average CPI: 4.57%.",
+     "vintage": "IMF WEO October 2026",
+     "pub": "2026-10-13",
      "superseded_values": {
       "years": [
        2026,
@@ -11657,7 +12195,7 @@
       "note": "Replaced 2026-10-14 to match the IMF appendix used by Economy; 2027 3.76 conflicts with Table A7 4.6."
      },
      "oct2026_reported": {
-      "status": "unverified — not in the series",
+      "status": "resolved 2026-11-06: confirmed by the IMF DataMapper API (2026 4.7, 2027 4.9); the 4.1% for 2027 was the outlet's error or a global aggregate",
       "y2026": 4.7,
       "y2027": null,
       "y2027_conflict": "the same outlet gives both 4.9% and 4.1% for 2027; 4.1% equals the WEO Oct-2026 global CPI for 2027 and 4.7% equals the global figure for 2026, so a mix-up with global aggregates cannot be ruled out",
@@ -11665,7 +12203,26 @@
       "source": "Thời báo Ngân hàng, 13/10/2026 (two articles, one outlet)",
       "url": "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
       "alt_url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-1310-188974-188974.html",
-      "pending": "Apply only when confirmed by the IMF table/database or a second independent report."
+      "pending": "none"
+     },
+     "superseded_values_apr2026": {
+      "years": [
+       2026,
+       2027,
+       2028,
+       2029,
+       2030
+      ],
+      "base": [
+       4.9,
+       4.6,
+       null,
+       null,
+       null
+      ],
+      "source": "IMF World Economic Outlook, April 2026 (WEO Apr-2026), Statistical Appendix Table A7 — same values as Economy ECONFLOW.projections.series.cpi_pct_imf",
+      "url": "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
+      "note": "Replaced 2026-11-06 by Research with WEO Oct-2026, matching Economy cpi_pct_imf."
      }
     },
     "real_gdp_growth_pct": {
@@ -11679,25 +12236,22 @@
      "base": [
       8.4,
       7.5,
-      null,
-      null,
-      null
+      5.9,
+      5.9,
+      5.7
      ],
      "low": null,
      "high": null,
      "kind": "institution_forecast",
      "unit": "% y/y",
      "source": {
-      "name": "IMF World Economic Outlook, October 2026 (13/10/2026; via press excerpts — imf.org blocked)",
-      "url": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
-      "verified_via": [
-       "https://thoibaonganhang.vn/vi-sao-imf-nang-manh-du-bao-tang-truong-viet-nam-188953.html",
-       "https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/"
-      ],
-      "verified_on": "2026-10-14"
+      "name": "IMF World Economic Outlook, October 2026 (13/10/2026; DataMapper API), same values as Economy ECONFLOW.projections.series.gdp_growth_pct_imf",
+      "url": "https://www.imf.org/external/datamapper/api/v1/NGDP_RPCH/VNM",
+      "alt_url": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
+      "verified_on": "2026-11-06"
      },
-     "method_vi": "WEO 10/2026 (công bố 13/10/2026): 8,4% (2026), 7,5% (2027). 2028–2030 để null: chưa tìm được bảng phụ lục thống kê/cơ sở dữ liệu WEO 10/2026 qua trích đoạn tìm kiếm (imf.org bị chặn) — không dùng số của kỳ cũ để lấp. Kiểm chứng: hai bài báo độc lập (Thời báo Ngân hàng; TNGlobal 13/10/2026) cùng ghi 8,4%/7,5%. Kỳ trước: WEO 4/2026 = 7,1; 6,7; 6,2; 5,6; 5,39 (2026–2030); WEO cập nhật 7/2026 = 7,5% cho 2026 (theo báo chí, mức nâng 10/2026 là +0,9 điểm % so với 7/2026). Con số 8,2% (8/2026) trên báo chí là của tài liệu IMF khác (không phải WEO), không dùng. Mục tiêu chính thức: bình quân từ 10%/năm 2026–2030. World Bank (EAP 06/10/2026): 7,4% (2026) — chuỗi riêng. Thực tế 9T/2026: 9,01% (Cục Thống kê).",
-     "method_en": "WEO Oct-2026 (released 13/10/2026): 8.4% (2026), 7.5% (2027). 2028-2030 left null: the Oct-2026 statistical appendix/database was not found in search excerpts (imf.org blocked); older-vintage values are not used to fill them. Verified in two independent reports (Thoi bao Ngan hang; TNGlobal, 13/10/2026), both 8.4%/7.5%. Previous: WEO Apr-2026 = 7.1, 6.7, 6.2, 5.6, 5.39 (2026-2030); WEO Update Jul-2026 = 7.5% for 2026 (press: Oct is +0.9 pp vs July). The 8.2% (Aug-2026) in some press is from a different IMF document (not the WEO) and is not used. Official target: average 10%+/yr in 2026-2030. World Bank (EAP 06/10/2026): 7.4% for 2026 - separate series. Actual 9M-2026: 9.01% (NSO).",
+     "method_vi": "WEO 10/2026 (công bố 13/10/2026), đọc từ DataMapper API ngày 06/11/2026: 8,4 / 7,5 / 5,9 / 5,9 / 5,7 (2026–2030; 2031: 5,7). Kỳ trước: WEO 4/2026 = 7,1; 6,7; 6,2; 5,6; 5,39; WEO cập nhật 7/2026 = 7,5% cho 2026. Con số 8,2% (8/2026) trên báo chí là của tài liệu IMF khác (không phải WEO), không dùng. Mục tiêu chính thức: bình quân từ 10%/năm 2026–2030. World Bank (EAP 06/10/2026): 7,4% (2026), chuỗi riêng. Thực tế 9T/2026: 9,01% (Cục Thống kê).",
+     "method_en": "WEO Oct-2026 (released 13/10/2026), read from the DataMapper API on 06/11/2026: 8.4 / 7.5 / 5.9 / 5.9 / 5.7 (2026-2030; 2031: 5.7). Previous: WEO Apr-2026 = 7.1, 6.7, 6.2, 5.6, 5.39; WEO Update Jul-2026 = 7.5% for 2026. The 8.2% (Aug-2026) in some press is from a different IMF document (not the WEO) and is not used. Official target: average 10%+/yr in 2026-2030. World Bank (EAP 06/10/2026): 7.4% for 2026, a separate series. Actual 9M-2026: 9.01% (NSO).",
      "vintage": "IMF WEO October 2026",
      "pub": "2026-10-13",
      "previous_vintage": {
@@ -11918,7 +12472,8 @@
      "url": null,
      "note": "No official credit/GDP target found in QĐ 986, QĐ 1809, QĐ 1413 or NQ 25/2026 excerpts - null."
     }
-   ]
+   ],
+   "actuals_checked": "2026-11-06"
   },
   "listed_banks_by_sector": {
    "as_of": "2026-10-06",
@@ -15400,8 +15955,8 @@
    }
   },
   "market_6m": {
-   "asof": "2026-10-30",
-   "built": "2026-11-01",
+   "asof": "2026-11-06",
+   "built": "2026-11-06",
    "freq": "weekly (Mon-Fri week, labelled by its Friday; value = last trading day/quote of the week)",
    "weeks": [
     "2026-05-01",
@@ -15430,7 +15985,8 @@
     "2026-10-09",
     "2026-10-16",
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
    ],
    "vnindex": [
     1854.1,
@@ -15459,7 +16015,8 @@
     1735.09,
     1705.91,
     1774.15,
-    1741.62
+    1741.62,
+    1740.73
    ],
    "vnindex_dates": [
     "2026-04-29",
@@ -15488,7 +16045,8 @@
     "2026-10-09",
     "2026-10-16",
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-05"
    ],
    "usdvnd_central": [
     25113,
@@ -15517,7 +16075,8 @@
     25629,
     25637,
     25627,
-    25637
+    25637,
+    25615
    ],
    "usdvnd_central_dates": [
     "2026-04-29",
@@ -15546,7 +16105,8 @@
     "2026-10-09",
     "2026-10-16",
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
    ],
    "usdvnd_bank": [
     26368,
@@ -15575,7 +16135,8 @@
     null,
     null,
     26020,
-    25990
+    25990,
+    25810
    ],
    "usdvnd_bank_dates": [
     "2026-05-03",
@@ -15604,7 +16165,8 @@
     null,
     null,
     "2026-10-24",
-    "2026-10-31"
+    "2026-10-31",
+    "2026-11-06"
    ],
    "interbank_on": [
     6.27,
@@ -15633,7 +16195,8 @@
     0.99,
     null,
     3.95,
-    3.74
+    3.74,
+    4.5
    ],
    "interbank_on_dates": [
     "2026-04-29",
@@ -15662,7 +16225,8 @@
     "2026-10-08",
     null,
     null,
-    "2026-10-29"
+    "2026-10-29",
+    "2026-11-05"
    ],
    "units": {
     "vnindex": "points",
@@ -15806,6 +16370,11 @@
       "week": "2026-10-30",
       "url": "https://vov.vn/thi-truong/ty-gia-usd-hom-nay-3110-ty-gia-trung-tam-o-muc-25637-dongusd-post1346036.vov",
       "method": "stated in Saturday 31/10 article (Friday fixing); 29/10 was 25,644"
+     },
+     {
+      "week": "2026-11-06",
+      "url": "https://thanhnien.vn/gia-usd-hom-nay-6112026-giam-180-dong-trong-tuan-qua-185261106083421062.htm",
+      "method": "stated for Friday 6/11 (-8 on the day, -21 since end-Oct); VOV same headline; 25,623 on 5/11"
      }
     ],
     "usdvnd_bank": [
@@ -15943,6 +16512,11 @@
       "week": "2026-10-30",
       "url": "https://vov.vn/thi-truong/ty-gia-usd-hom-nay-3110-gia-ban-usd-o-quanh-muc-25990-dongusd-post1346036.vov",
       "method": "Saturday 31/10 quote; Thanh Nien 1/11 same; Bao Van Hoa 30/10 morning 26,020"
+     },
+     {
+      "week": "2026-11-06",
+      "url": "https://thanhnien.vn/gia-usd-hom-nay-6112026-giam-180-dong-trong-tuan-qua-185261106083421062.htm",
+      "method": "Friday 6/11 morning quote; VOV gives 25,800 the same day (https://vov.vn/thi-truong/ty-gia-usd-hom-nay-611-ty-gia-trung-tam-giam-con-25615-dongusd-post1347630.vov)"
      }
     ],
     "interbank_on": [
@@ -16080,6 +16654,11 @@
       "week": "2026-10-30",
       "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-26-30-10-dao-chieu-bom-rong-hon-28-000-ty-dong-usd-bien-dong-trai-chieu-sau-tuan-hop-lai-suat-206193.html",
       "method": "latest session; another report gives 4.10% for 28/10; spike near 5% intra-week"
+     },
+     {
+      "week": "2026-11-06",
+      "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html",
+      "method": "session of 5/11, stated"
      }
     ]
    },
@@ -16087,7 +16666,7 @@
     "vnindex": {
      "name": "HOSE VN-Index close (Vietcap trading chart API, daily OHLC)",
      "url": "https://trading.vietcap.com.vn/api/chart/OHLCChart/gap-chart",
-     "method": "POST {timeFrame: ONE_DAY, symbols: [VNINDEX]} pulled 2026-11-01; close of the last trading day of each week (week of 1/5: 29/4, before the 30/4-1/5 holiday). Same feed as SIM.panel.series.vnindex (vnstock VCI source); month-end closes match it exactly (May 1863.49, Jun 1860.01, Jul 1735.78, Aug 1832.12, Sep 1768.62)."
+     "method": "POST {timeFrame: ONE_DAY, symbols: [VNINDEX]} pulled 2026-11-01; close of the last trading day of each week (week of 1/5: 29/4, before the 30/4-1/5 holiday). Same feed as SIM.panel.series.vnindex (vnstock VCI source); month-end closes match it exactly (May 1863.49, Jun 1860.01, Jul 1735.78, Aug 1832.12, Sep 1768.62). Week of 6/11: Thursday 5/11 close 1,740.73 from Thoi bao Ngan hang, because the Vietcap feed was not pulled in this run and no full-session 6/11 close was found (midday 6/11 about 1,719). Replace with the Friday close when the feed is next pulled."
     },
     "usdvnd_central": {
      "name": "SBV central rate (ty gia trung tam)",
@@ -16115,8 +16694,8 @@
     "vcb_vs_usdvnd_monthly": "Same quotes on 29/5 (26,395), 31/7 (26,470), 29/8 (26,260). Monthly 30/9 = 26,160 sits between Fridays 25/9 (26,170) and 2/10 (26,170).",
     "on_vs_interbank_on_monthly": "Monthly values are mostly Vietcap monthly averages (May 6.21, Jun 5.0, Jul 3.95, Aug 4.37) or month-end points (Sep 7.0 on 30/9). Weekly single-session points swing far more (0.87% on 25/9, 7.07% on 28/8) because ON spikes at month/quarter ends and collapses after SBV/Treasury injections; they should not be averaged into the monthly series."
    },
-   "note_vi": "Chuỗi tuần (thứ Sáu hoặc phiên cuối tuần), 1/5–30/10/2026. VN-Index: giá đóng cửa HOSE (dữ liệu Vietcap). Tỷ giá trung tâm: NHNN công bố, theo các bài tổng hợp thị trường tiền tệ tuần. Vietcombank: giá bán USD cuối tuần theo báo chí (thiếu nhiều tuần). Lãi suất qua đêm: mức NHNN công bố của phiên gần nhất trong tuần (thường là thứ Năm do công bố trễ 1 ngày) — biến động rất mạnh quanh cuối tháng, không phải bình quân tuần. Ô trống = không tìm được nguồn; không nội suy.",
-   "note_en": "Weekly (Friday or last session of the week), 1 May-30 Oct 2026. VN-Index: HOSE close (Vietcap feed). Central rate: SBV fixing as reported in weekly money-market wraps. Vietcombank: end-of-week USD selling quote from press (many gaps). Overnight interbank: SBV-published rate of the latest session quoted for the week (often Thursday, as SBV publishes with a one-day lag) - very volatile around month-ends; not a weekly average. Nulls = no source found; no interpolation."
+   "note_vi": "Chuỗi tuần (thứ Sáu hoặc phiên cuối tuần), 1/5–6/11/2026. VN-Index: giá đóng cửa HOSE (dữ liệu Vietcap). Tỷ giá trung tâm: NHNN công bố, theo các bài tổng hợp thị trường tiền tệ tuần. Vietcombank: giá bán USD cuối tuần theo báo chí (thiếu nhiều tuần). Lãi suất qua đêm: mức NHNN công bố của phiên gần nhất trong tuần (thường là thứ Năm do công bố trễ 1 ngày) — biến động rất mạnh quanh cuối tháng, không phải bình quân tuần. Ô trống = không tìm được nguồn; không nội suy.",
+   "note_en": "Weekly (Friday or last session of the week), 1 May-6 Nov 2026. VN-Index: HOSE close (Vietcap feed). Central rate: SBV fixing as reported in weekly money-market wraps. Vietcombank: end-of-week USD selling quote from press (many gaps). Overnight interbank: SBV-published rate of the latest session quoted for the week (often Thursday, as SBV publishes with a one-day lag) - very volatile around month-ends; not a weekly average. Nulls = no source found; no interpolation."
   }
  }
 }

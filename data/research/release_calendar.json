@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-07",
+ "as_of": "2026-11-06",
  "built_by": "Research agent",
  "timezone": "Asia/Ho_Chi_Minh",
  "note": "Rules learned from observed releases (evidence) and published calendars. confidence: high = rule documented + observed; medium = observed or documented only; low = inferred, verify next run.",
@@ -10,9 +10,9 @@
    "frequency": "monthly",
    "release_rule": "3rd of the following month (Decree 13/2026/NĐ-CP, effective 10 Apr 2026; was the 6th under Decree 62/2024). Quarterly report (GDP by sector/expenditure, investment, labour) same day for Q1/Q2/Q3/Q4.",
    "next_expected": [
-    "2026-11-03 (Oct report)",
     "2026-12-03 (Nov report)",
-    "2027-01-03 (Q4 + full-year 2026 report)"
+    "2027-01-03 (Q4 + full-year 2026 report)",
+    "2027-02-03 (Jan report)"
    ],
    "feeds": [
     "econ.fdi_registered_disbursed",
@@ -41,11 +41,18 @@
      "observed": "2026-09 (8M tourism news item)",
      "what": "NSO 'Khách quốc tế 8 tháng đạt gần 16 triệu' published in Sep-2026",
      "url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/khach-quoc-te-den-viet-nam-8-thang-dat-gan-16-trieu-luot-nguoi-huong-toi-muc-tieu-25-trieu-khach-nam-2026/"
+    },
+    {
+     "observed": "2026-11-03",
+     "what": "October/10M-2026 report on the 3rd; attachments 01-Loi-van-T10.2026.docx and 2.-Bieu-thang-10.2026.xlsx under /wp-content/uploads/2026/11/, read directly",
+     "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "high",
    "learned": "2026-10-06",
-   "note": "Agent definitions said \"~6th\" — corrected to the 3rd on 2026-10-06. Next (Oct report) 03/11/2026 is a Tuesday. Priority watch: FDI and tourism arrive in this release."
+   "note": "Agent definitions said \"~6th\" — corrected to the 3rd on 2026-10-06. Next (Oct report) 03/11/2026 is a Tuesday. Priority watch: FDI and tourism arrive in this release.",
+   "access_tip_2026_11_06": "URL patterns: report page /bai-top/YYYY/MM/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-<month>-va-<n>-thang-nam-YYYY/ ; text /wp-content/uploads/YYYY/MM/01-Loi-van-T<MM>.YYYY.docx ; tables /wp-content/uploads/YYYY/MM/2.-Bieu-thang-<MM>.YYYY.xlsx (patterns seen once for October 2026, confirm each month)."
   },
   {
    "id": "nso_cpi",
@@ -53,9 +60,9 @@
    "frequency": "monthly",
    "release_rule": "3rd of the following month (press release \"Thông cáo báo chí về tình hình giá\"; group spreadsheet \"Biểu 1 – Cả nước\" same day).",
    "next_expected": [
-    "2026-11-03 (Oct CPI)",
-    "2026-12-03",
-    "2027-01-03"
+    "2026-12-03 (Nov CPI)",
+    "2027-01-03 (Dec CPI)",
+    "2027-02-03"
    ],
    "feeds": [
     "econ.cpi_latest"
@@ -68,19 +75,28 @@
     },
     {
      "rule_source": "https://baochinhphu.vn/chinh-phu-thay-doi-lich-pho-bien-mot-so-thong-tin-thong-ke-quan-trong-102260114171529601.htm"
+    },
+    {
+     "observed": "2026-11-03",
+     "what": "October CPI; PDF and workbook attachments; document dated 28/10 (world gold and DXY averages run to 28/10)",
+     "url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/11/chi-so-gia-tieu-dung-chi-so-gia-vang-va-chi-so-gia-do-la-my-thang-muoi-va-muoi-thang-nam-2026/",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "high",
-   "learned": "2026-10-06"
+   "learned": "2026-10-06",
+   "access_tip_2026_11_06": "Attachment patterns seen for October 2026: /wp-content/uploads/2026/11/CPI-chi-so-gia-vang-va-chi-so-gia-do-la-My-thang-Muoi-va-10-thang-nam-2026.pdf and So-lieu-CPI-chi-so-gia-vang-chi-so-gia-USD-thang-Muoi-va-10-thang-nam-2026.xlsx. Month names are spelled out, so derive the URL from the release page, do not guess."
   },
   {
    "id": "nso_grdp",
    "publisher": "NSO + provincial statistics offices",
    "frequency": "quarterly",
-   "release_rule": "Provincial GRDP on the 29th of the last month of the quarter, i.e. before national GDP (Decree 13/2026; was the 1st of the next month). Provinces also announce their own figures at their 3rd-of-month press briefings.",
+   "release_rule": "Decree 13/2026/NĐ-CP, Art. 2(2): Q1 estimate 29 Mar; Q2/6M + first full-year estimate 29 Jun; Q3/9M estimate + Q2 preliminary 29 Sep; Q4 + second full-year estimate + Q3/9M preliminary 29 NOVEMBER of the reporting year; full-year preliminary 29 Sep of the next year; official 29 Sep two years after. Moves to the next working day only for a listed public holiday. Provinces also announce their own figures at their 3rd-of-month briefings.",
    "next_expected": [
-    "2026-12-29 (Q4 estimate / full-year 2026 first estimate — confirm date in decree text)",
-    "2027-03-29"
+    "2026-11-29 (a Sunday: Q4 + second full-year 2026 estimate, Q3/9M preliminary; check 29-30/11)",
+    "2027-03-29",
+    "2027-06-29",
+    "2027-09-29 (2026 full-year preliminary)"
    ],
    "feeds": [
     "soc.grdp"
@@ -95,11 +111,19 @@
     {
      "observed": "2026-10-03..06",
      "what": "9M-2026 provincial growth as reported by press (SOC_GRDP.growth_9m_src)"
+    },
+    {
+     "observed": "2026-11-06",
+     "what": "Decree 13/2026 text read: Q4 estimate on 29 November of the reporting year",
+     "url": "https://luatvietnam.vn/tai-chinh/nghi-dinh-13-2026-nd-cp-sua-doi-nghi-dinh-62-2024-nd-cp-va-94-2022-nd-cp-ve-luat-thong-ke-423819-d1.html",
+     "reported_by": "Society; verified by Research",
+     "learned": "2026-11-06"
     }
    ],
-   "confidence": "medium",
+   "confidence": "high",
    "learned": "2026-10-06",
-   "note": "A search summary listed 29 Mar / 29 Jun / 29 Sep / 29 Nov; the November item may be a parsing slip for 29 Dec. Read luatvietnam text when reachable: https://luatvietnam.vn/tai-chinh/nghi-dinh-13-2026-nd-cp-sua-doi-nghi-dinh-62-2024-nd-cp-va-94-2022-nd-cp-ve-luat-thong-ke-423819-d1.html"
+   "note": "A search summary listed 29 Mar / 29 Jun / 29 Sep / 29 Nov; the November item may be a parsing slip for 29 Dec. Read luatvietnam text when reachable: https://luatvietnam.vn/tai-chinh/nghi-dinh-13-2026-nd-cp-sua-doi-nghi-dinh-62-2024-nd-cp-va-94-2022-nd-cp-ve-luat-thong-ke-423819-d1.html",
+   "note_2026_11_06": "Corrected from 29 Dec after reading the decree text; the earlier search summary (29 Nov) was right and the note that it might be a slip was wrong. Unverified in practice: 29/11/2026 is the first Q4 date under this rule, and a Q4 estimate one month before quarter-end is unusual, so watch what is actually published. Also: the 2025 preliminary due 29/09/2026 had not appeared on PX PL.V03.02 by 06/11 (last updated 18/08/2026, Society)."
   },
   {
    "id": "nso_annual_gdp",
@@ -120,7 +144,8 @@
     }
    ],
    "confidence": "medium",
-   "learned": "2026-10-06"
+   "learned": "2026-10-06",
+   "note_2026_11_06": "Decree 13/2026 Art. 2(1): national GDP Q4 + second full-year estimate 03 Jan of the next year; full-year preliminary 03 Oct of the next year; official 03 Oct two years after. Holiday roll to next working day. Source: https://luatvietnam.vn/tai-chinh/nghi-dinh-13-2026-nd-cp-sua-doi-nghi-dinh-62-2024-nd-cp-va-94-2022-nd-cp-ve-luat-thong-ke-423819-d1.html"
   },
   {
    "id": "nso_population",
@@ -188,7 +213,7 @@
    "id": "wb_wdi",
    "publisher": "World Bank",
    "frequency": "semiannual",
-   "release_rule": "WDI major update ~1 July (with FY income classifications) and a December update; API api.worldbank.org returns lastupdated.",
+   "release_rule": "WDI major update ~1 July (with FY income classifications) and a December update; API api.worldbank.org returns lastupdated. Revised 2026-11-06: an off-cycle update appeared on 2026-10-08 (area, density), so read lastupdated rather than assuming only July and December.",
    "next_expected": [
     "2026-12 (mid-late Dec)",
     "2027-07-01"
@@ -205,6 +230,12 @@
      "observed": "2026-07-03",
      "what": "FY27 classification: Vietnam upper-middle income",
      "url": "https://fortune.com/2026/07/03/vietnam-philippines-world-bank-upper-middle-income-trap/"
+    },
+    {
+     "observed": "2026-10-08",
+     "what": "WDI update seen by Society: EN.POP.DNST and AG.SRF.TOTL.K2 gained 2024",
+     "url": "https://api.worldbank.org/v2/country/all/indicator/EN.POP.DNST",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "medium",
@@ -250,12 +281,14 @@
    "frequency": "semiannual",
    "release_rule": "World Economic Outlook in April (Spring Meetings) and October (Annual Meetings); database same day; DataMapper API updates the same week.",
    "next_expected": [
-    "2026-10-13 (full report; analytical chapters 5–6 Oct; Annual Meetings Bangkok)",
-    "2027-04 (mid)"
+    "2027-04 (mid)",
+    "2027-10"
    ],
    "feeds": [
     "econ.cpi_forecasts",
-    "fin.projections"
+    "econ.projections",
+    "fin.projections",
+    "soc.world_rank"
    ],
    "evidence": [
     {
@@ -273,6 +306,12 @@
      "what": "IMF WEO Oct-2026 page dated 2026-10-13; full report 13/10 09:00 Bangkok (12/10 22:00 ET); chapters 5–6 Oct",
      "url": "https://www.imf.org/en/publications/weo/issues/2026/10/13/world-economic-outlook-october-2026",
      "learned": "2026-10-07"
+    },
+    {
+     "observed": "2026-10-13",
+     "what": "WEO Oct-2026 live on DataMapper (Vietnam growth 8.4/7.5/5.9/5.9/5.7; CPI 4.7/4.9/4.7/4.6/4.2 to 2030; API read directly 2026-11-06). Society saw last-modified 2026-10-08 on the API, so the data can precede the report date.",
+     "url": "https://www.imf.org/external/datamapper/api/v1/PCPIPCH/VNM",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "high",
@@ -383,10 +422,10 @@
    "id": "sbv_credit_total",
    "publisher": "SBV",
    "frequency": "monthly",
-   "release_rule": "System credit growth YTD stated at SBV/Government briefings in the first days of the next month (cut-off ~last working days of month, e.g. 29/7, 28/8, 30/9). NSO quotes a slightly earlier cut-off (28/9) in its report.",
+   "release_rule": "System credit growth YTD stated at SBV/Government briefings in the first days of the next month (cut-off ~last working days of month, e.g. 29/7, 28/8, 30/9). NSO quotes a slightly earlier cut-off (28/9) in its report. Revised 2026-11-06: the cut-off can be 4-5 days before month-end (26/10), so always store it; no end-October figure may ever be stated before the table.",
    "next_expected": [
-    "2026-11-01..05 (to ~30/10)",
-    "2026-12-01..05"
+    "2026-12-01..05 (Nov statement; the cut-off may be well before month-end)",
+    "2027-01-03..10"
    ],
    "feeds": [
     "fin.monthly_credit",
@@ -407,6 +446,12 @@
      "observed": "2026-10-03",
      "what": "to 30/9: 20.75 tn, +11.59%",
      "url": "https://dantri.com.vn/kinh-doanh/du-no-tin-dung-dat-2075-trieu-ty-dong-sau-9-thang-20261003154505382.htm"
+    },
+    {
+     "observed": "2026-11-04",
+     "what": "October statement cut-off was 26/10 (+11.94%, above 20.8 quadrillion; VnExpress), not month-end. Separately the Governor told the NA ~12.27% on 31/10 with no cut-off.",
+     "url": "https://vnexpress.net/pho-thong-doc-lai-suat-cho-vay-moi-giam-0-2-0-5-5140740.html",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "high",
@@ -416,10 +461,10 @@
    "id": "sbv_credit_sector",
    "publisher": "SBV",
    "frequency": "monthly",
-   "release_rule": "Table \"Dư nợ tín dụng đối với nền kinh tế\" by sector: ~2-month lag (Jul-2026 is latest on 6 Oct).",
+   "release_rule": "Table \"Dư nợ tín dụng đối với nền kinh tế\" by sector: about 5-7 weeks after month-end (Aug-2026 table seen by 15/10), not the earlier ~2 months.",
    "next_expected": [
-    "2026-10 (mid-late: Aug-2026)",
-    "2026-11 (Sep-2026)"
+    "2026-11-10..20 (Sep-2026)",
+    "2026-12-10..20 (Oct-2026)"
    ],
    "feeds": [
     "fin.sectors"
@@ -427,6 +472,12 @@
    "evidence": [
     {
      "observed": "sectors.periods ends 2026-07 on 2026-10-06"
+    },
+    {
+     "observed": "2026-10-06..15",
+     "what": "Aug-2026 credit and money tables published 6/10 and 15/10 (Finance); Sep tables not out by 06/11",
+     "url": "https://sbv.gov.vn/du-no-tin-dung-doi-voi-nen-kt-dttktt",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "medium",
@@ -436,10 +487,10 @@
    "id": "sbv_money_tables",
    "publisher": "SBV",
    "frequency": "monthly",
-   "release_rule": "M2 (\"Tổng phương tiện thanh toán\") and customer deposits tables, cash/M2: ~2-month lag (Jul-2026 latest on 6 Oct).",
+   "release_rule": "M2 (\"Tổng phương tiện thanh toán\"), customer deposits, cash/M2: about 5-7 weeks after month-end (Aug-2026 seen by 15/10).",
    "next_expected": [
-    "2026-10 (Aug-2026)",
-    "2026-11 (Sep-2026)"
+    "2026-11-10..20 (Sep-2026)",
+    "2026-12-10..20 (Oct-2026)"
    ],
    "feeds": [
     "fin.monthly_money",
@@ -448,6 +499,12 @@
    "evidence": [
     {
      "observed": "monthly.m2_level last non-null T7/26 on 2026-10-06"
+    },
+    {
+     "observed": "2026-10-15",
+     "what": "Aug-2026 M2/deposits; cash/M2 via the public article API contentStructureId=10041267 (Finance)",
+     "url": "https://sbv.gov.vn/vi/t%E1%BB%95ng-ph%C6%B0%C6%A1ng-ti%E1%BB%87n-thanh-to%C3%A1n-v%C3%A0-ti%E1%BB%81n-g%E1%BB%ADi-c%E1%BB%A7a-kh%C3%A1ch-h%C3%A0ng-t%E1%BA%A1i-tctd",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "medium",
@@ -457,10 +514,11 @@
    "id": "sbv_prudential",
    "publisher": "SBV",
    "frequency": "quarterly",
-   "release_rule": "Prudential statistics (LDR TT22, short-term funds for medium/long loans, CAR Basel II banks, ROA/ROE, total assets) and on-balance NPL: published ~2–3 months after quarter-end (Q2-2026 available by early Oct).",
+   "release_rule": "\"Thống kê một số chỉ tiêu cơ bản\" (LDR TT22, short-term funds for medium/long loans, total assets, charter capital): monthly rows, about 5 weeks after month-end. CAR is listed for 31/7 and 31/8 but detail pages returned 403. NPL and ROA/ROE stay quarterly and slower (Q1-2026 ROA/ROE listed, NPL Q3 page empty on 06/11).",
    "next_expected": [
-    "2026-12 (Q3-2026)",
-    "2027-03 (Q4-2026)"
+    "2026-12-01..10 (ratios to 31/10; check with the weekly run)",
+    "2027-01-05..15 (ratios to 30/11)",
+    "NPL and ROA/ROE: no fixed date, check monthly"
    ],
    "feeds": [
     "fin.ratios_sbv"
@@ -474,10 +532,17 @@
      "what": "SBV system stats to 31/5/2026 quoted (LDR 78.25%, total assets 29.28 quadrillion); Finance already holds Jun-2026 — lag ~1–2 months",
      "url": "",
      "learned": "2026-10-07"
+    },
+    {
+     "observed": "2026-11-06",
+     "what": "Table to 30/09/2026 readable: LDR 76.07, short-term funds 28.25, total assets 30,892,302 bn, charter capital 1,372,904 bn",
+     "url": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "medium",
-   "learned": "2026-10-06"
+   "learned": "2026-10-06",
+   "note_2026_11_06": "Corrected from \"2026-12 (Q3-2026)\": ratios to 30/09 were already on the page by 06/11, about two months earlier than the calendar said."
   },
   {
    "id": "sbv_central_rate",
@@ -525,8 +590,7 @@
    "frequency": "quarterly/annual",
    "release_rule": "SBV quarterly BoP, irregular; reported in press roughly 2-4 months after quarter end (Q1-2026 found via VnEconomy). IMF BOP carries annual SBV data with ~6-month lag.",
    "next_expected": [
-    "Q2-2026: overdue as of 2026-10-06 — check 2026-10-20",
-    "Q3-2026: ~2026-12/2027-01",
+    "Q3-2026: 2027-01/02 (Q2 took about 4 months)",
     "2026 annual: 2027-H1"
    ],
    "feeds": [
@@ -545,6 +609,12 @@
      "what": "Q2-2026 BoP still not found (searches 07/10 return only Q1-2026: overall −1.078 bn). Now >3 months after quarter end.",
      "url": "https://vneconomy.vn/ty-gia-on-dinh-giua-luc-can-doi-ngoai-te-kem-thuan-loi.htm",
      "learned": "2026-10-07"
+    },
+    {
+     "observed": "2026-11 (early)",
+     "what": "Q2-2026 reported: CA -11.1, overall +0.081, errors and omissions +9.283 bn (press; SBV table 403 from WebFetch)",
+     "url": "https://thoibaotaichinhvietnam.vn/can-can-thanh-toan-quoc-te-bop-tro-lai-thang-du-suc-ep-ty-gia-chua-voi-206261-206261.html",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "low",
@@ -596,7 +666,6 @@
    "frequency": "monthly",
    "release_rule": "Budget execution estimate for the month published around the end of the month / first days of next month (9M-2026 out ~2–3 Oct); public-investment disbursement same rhythm.",
    "next_expected": [
-    "2026-11-01..05 (10M)",
     "2026-12-01..05 (11M)",
     "2027-01-05..10 (year estimate)"
    ],
@@ -616,6 +685,18 @@
      "observed": "2026-10-03",
      "what": "public-investment 9M 62.9%",
      "url": "https://baochinhphu.vn/giai-ngan-von-dau-tu-cong-9-thang-nam-2026-mot-so-bo-nganh-dia-phuong-con-cham-102261003011740764.htm"
+    },
+    {
+     "observed": "2026-11-02",
+     "what": "10M budget: two figures under \"Theo Bộ Tài chính\": 2,438.9 tn (Thời báo Tài chính, NSO, Government briefing 04/11) and 2,448.5 tn (Nhân Dân). Lead is 2,438.9.",
+     "url": "https://thoibaotaichinhvietnam.vn/infographics-thu-chi-ngan-sach-nha-nuoc-10-thang-nam-2026-206259.html",
+     "learned": "2026-11-06"
+    },
+    {
+     "observed": "2026-11-06",
+     "what": "Disbursement to 31/10 published 06/11, later than the budget line; plan base changed to 955,867.4 bn",
+     "url": "https://thoibaotaichinhvietnam.vn/infographics-giai-ngan-von-dau-tu-cong-ca-nuoc-dat-708-567-4-ty-dong-206473.html",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "high",
@@ -647,10 +728,11 @@
    "id": "na_sessions",
    "publisher": "National Assembly",
    "frequency": "semiannual",
-   "release_rule": "Regular sessions: autumn (Oct–Nov) and spring/summer (May–June). 16th NA 2nd session 17 Oct – 20 Nov 2026: 11 tracked drafts, 2027 budget and socio-economic plan, possible VAT/fuel-tax extension.",
+   "release_rule": "Regular sessions: autumn (Oct–Nov) and spring/summer (May–June). 16th NA 2nd session: phase 1 17/10–13/11, phase 2 20–21/11, closes 21/11/2026 (agenda changed 05/11; phase 1 was to 14/11).",
    "next_expected": [
-    "2026-10-17 (opens)",
-    "2026-11-20 (closes)"
+    "2026-11-07 (2027 socio-economic plan vote expected, unconfirmed)",
+    "2026-11-13 (phase 1 ends)",
+    "2026-11-20..21 (phase 2, votes, closes 21/11)"
    ],
    "feeds": [
     "str.directives",
@@ -661,6 +743,12 @@
    "evidence": [
     {
      "observed": "strategy_directives.json drafts[].draft.expected"
+    },
+    {
+     "observed": "2026-11-05",
+     "what": "Agenda vote; phase 1 ends 13/11, close 21/11. The earlier 20/11 close in this calendar was wrong.",
+     "url": "https://thitruongtaichinhtiente.vn/quoc-hoi-bieu-quyet-thong-qua-viec-bo-sung-chuong-trinh-ky-hop-thu-2-quoc-hoi-khoa-xvi-86818.html",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "high",
@@ -686,11 +774,17 @@
      "what": "Sep-2026 10Y auction yields 4.67–4.80% (+0.17 pp vs Aug); Aug-2026 raised 27,756 bn — monthly totals appear in press within ~1 week of month end",
      "url": "https://vnbusiness.vn/thang-9-huy-dong-trai-phieu-chinh-phu-tang-gan-20.html",
      "learned": "2026-10-07"
+    },
+    {
+     "observed": "2026-10-30",
+     "what": "368,422 bn to 30/10 (BVSC, 92% of a 400,000 bn plan); MoF 345.9 tn (86.5%), cut-off not stated; HNX October total not found by 06/11",
+     "url": "https://tapchikinhtetaichinh.vn/thi-truong-trai-phieu-chinh-phu-dat-92-ke-hoach-trai-phieu-doanh-nghiep-chiu-ap-luc-von-171484.html",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "medium",
    "learned": "2026-10-06",
-   "note": "hnx.vn blocked from sandbox; use press/VBMA excerpts."
+   "note": "hnx.vn answered 200 to curl on 2026-11-06; earlier blocked. Press and VBMA remain the fallback."
   },
   {
    "id": "vbma_fiin_bonds",
@@ -818,7 +912,6 @@
    "frequency": "monthly",
    "release_rule": "Cumulative YTD registered (new / adjusted / capital contribution & share purchase) and disbursed; published with the NSO report on the 3rd of the following month (FIA and NSO are both under MoF since 2025) — FIA copy may appear the same day or a day either side.",
    "next_expected": [
-    "2026-11-03 (Jan-Oct)",
     "2026-12-03 (Jan-Nov)",
     "2027-01-03 (FY2026)"
    ],
@@ -843,6 +936,12 @@
      "observed": "2026-01 (early)",
      "what": "FY2025: 38.42 bn / 27.62 bn",
      "url": "https://vietstock.vn/2026/01/von-fdi-thuc-hien-tai-viet-nam-nam-2025-uoc-dat-2762-ty-usd-cao-nhat-trong-5-nam-qua-768-1388009.htm"
+    },
+    {
+     "observed": "2026-11-03",
+     "what": "Jan-Oct: registered 54.85 (+74.0%), disbursed 24.08 (+13.1%), components sum exactly; NSO report read directly",
+     "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "high",
@@ -855,7 +954,7 @@
    "frequency": "quarterly",
    "release_rule": "~3-4 weeks after quarter end via press; full-year forecast ~1 Jan, actual ~3rd week of January.",
    "next_expected": [
-    "2026-10-20..25 (9M-2026)",
+    "overdue as of 2026-11-06: 9M-2026 not found, re-check in each weekly run",
     "2027-01-20..25 (FY2026)"
    ],
    "feeds": [
@@ -882,6 +981,11 @@
      "what": "No 9M-2026 HCMC figure yet; searches return 9M-2023 (5.485 bn) articles with crawl dates in Jul-2026 — page header dates are not article dates",
      "url": "https://thoibaotaichinhvietnam.vn/9-thang-luong-kieu-hoi-ve-tp-ho-chi-minh-dat-5485-ty-usd-161581.html",
      "learned": "2026-10-07"
+    },
+    {
+     "observed": "2026-11-06",
+     "what": "Economy found no 9M-2026 figure; latest is H1. Lag now beyond the 3-4 week rule, so the rule may not hold this quarter.",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "medium",
@@ -911,7 +1015,8 @@
    "frequency": "monthly (arrivals via NSO); annual revenue",
    "release_rule": "Arrivals and market breakdown with the NSO report on the 3rd; VNAT republishes same day/next day. Annual revenue and next-year targets at the year-end review (late Dec / Jan).",
    "next_expected": [
-    "2026-11-03 (Jan-Oct)",
+    "2026-12-03 (Jan-Nov)",
+    "2027-01-03 (FY2026 arrivals)",
     "2027-01 (FY2026 revenue)"
    ],
    "feeds": [
@@ -922,6 +1027,12 @@
      "observed": "2026-10-04",
      "what": "9M-2026 market breakdown in press",
      "url": "https://thanhnien.vn/viet-nam-don-hon-177-trieu-khach-quoc-te-dat-71-muc-tieu-nam-185261004080017905.htm"
+    },
+    {
+     "observed": "2026-11-03",
+     "what": "Jan-Oct 19,535.4k (+13.8%); Oct 1,854.7k; markets in NSO workbook sheet 19",
+     "url": "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "high",
@@ -1020,7 +1131,6 @@
    "frequency": "ad_hoc",
    "release_rule": "8 scheduled FOMC meetings a year; statement on the second day",
    "next_expected": [
-    "2026-10-28",
     "2026-12-09"
    ],
    "feeds": [
@@ -1032,6 +1142,12 @@
      "observed": "2026-09-16",
      "what": "raised target to 3.75–4.00% (12-0)",
      "url": "https://www.securities.io/fomc-raises-federal-funds-target-range-to-3-3-4-to-4-percent/"
+    },
+    {
+     "observed": "2026-10-28",
+     "what": "held at 3.75-4.00%, vote 10-2",
+     "url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
+     "learned": "2026-11-06"
     }
    ],
    "confidence": "high",
@@ -1051,6 +1167,28 @@
    "evidence": [],
    "confidence": "low",
    "learned": "2026-10-07"
+  },
+  {
+   "id": "nso_population_projection",
+   "publisher": "NSO",
+   "frequency": "ad_hoc",
+   "release_rule": "National projection follows a census or intercensal survey: 2019-2069 (2020) replaced by 2024-2074 (Dec 2025).",
+   "next_expected": [
+    "after the 2029 census"
+   ],
+   "feeds": [
+    "soc.projections"
+   ],
+   "confidence": "medium",
+   "learned": "2026-11-06",
+   "evidence": [
+    {
+     "observed": "2025-12",
+     "what": "Medium peak 115.198 m in 2059; figures read in the PDF by Society and Research",
+     "url": "https://www.nso.gov.vn/wp-content/uploads/2025/12/Bao-cao-du-bao-dan-so-vn_final-2.pdf",
+     "learned": "2026-11-06"
+    }
+   ]
   }
  ]
 }

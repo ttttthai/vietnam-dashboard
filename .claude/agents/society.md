@@ -32,15 +32,15 @@ Headlines and notes are computed from your numbers.
 - Government Committee for Religious Affairs (btgcp.gov.vn) for follower counts.
 
 ## Release timing & access (maintained by Research — see `data/research/release_calendar.json`)
-- Provincial GRDP is now published on the **29th of the last month of each quarter** (Decree 13/2026/NĐ-CP),
-  before national GDP on the 3rd; provinces repeat it at their own briefings. Confirm the Q4/annual date
-  (29 Dec) against the decree text.
+- Provincial GRDP dates (Decree 13/2026/NĐ-CP, text read 2026-11-06): 29 Mar, 29 Jun, 29 Sep, and **29 Nov** for the
+  Q4 + second full-year estimate (with Q3/9M preliminary); full-year preliminary 29 Sep of the next year; official
+  29 Sep two years after. Provinces repeat figures at their own briefings. 29/11/2026 is a Sunday and the first Q4
+  date under this rule: record what is really published.
 - Population: the 1 April survey's headline figures (average population, TFR, SRB, e0, preliminary) come
   with the January annual report; full tables mid-year. Census every 10 years (next 1/4/2029).
 - World Bank WDI updates ~1 July and in December; UN WPP 2026 is postponed to 2027. Nothing in this tab
   needs a monthly check.
-- Access: nso.gov.vn, pxweb, api.worldbank.org, population.un.org are blocked from the sandbox; rank
-  recomputation from the WDI API needs a reachable runner (proposed server job). Label world-rank values as
+- Access (2026-11-06): nso.gov.vn, pxweb and api.worldbank.org are reachable; imf.org is intermittent. Label world-rank values as
   World Bank (population 101.6 m, GDP per capita 5,066 USD for 2025) — they differ from NSO (102.3 m; 5,026 USD).
 
 ## Rules

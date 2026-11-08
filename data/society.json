@@ -2,28 +2,29 @@
  "_meta": {
   "owner": "Society agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "qc": "QC/freshness run 2026-10-06; 2026-10-07 added tfr_2025 (6 provinces, excerpt-verified) and null *_2025 vital-rate keys per audit S03/S04; GRDP 9M-2026 for Điện Biên, Quảng Trị, Huế, Gia Lai rechecked - still not published as 9-month figures (null). Data status as of 7 Oct 2026.; 2026-10-09 (animation history, user request): POP_SERIES.age_sex single years 2017-2030, POP_SERIES.un_annual (31 Dec), POP_SERIES.nat_series 2017-2025 + POP_SERIES.targets, SOC_GRDP.*_series 2018-2025, WORLD_RANK.*.history / history_wpp / history_imf / history_wdi; 2026-10-10 (user request): SOC_GRDP 2018-2019 per capita for the 23 merged provinces and 2018-2019/2021-2023 GRDP levels + population for all 34 (old-63 sum, NSO tables via GitHub mirror); WORLD_RANK.*.history_wb (WDI 2017-latest) for 11 demographic/size indicators; 2026-10-14 (scheduled IMF WEO Oct-2026 refresh, approved 'imf: ok' 2026-10-10): WORLD_RANK.g_*.history_imf NOT refreshed - Oct-2026 database unreachable (imf.org blocked, no mirror); April-2026 values/ranks kept, vintage + refresh_status added; g_growth Oct-2026 press figures (8.4/7.5) logged as unverified, not used",
+  "qc": "QC/freshness run 2026-10-06; 2026-10-07 added tfr_2025 (6 provinces, excerpt-verified) and null *_2025 vital-rate keys per audit S03/S04; GRDP 9M-2026 for Điện Biên, Quảng Trị, Huế, Gia Lai rechecked - still not published as 9-month figures (null). Data status as of 7 Oct 2026.; 2026-10-09 (animation history, user request): POP_SERIES.age_sex single years 2017-2030, POP_SERIES.un_annual (31 Dec), POP_SERIES.nat_series 2017-2025 + POP_SERIES.targets, SOC_GRDP.*_series 2018-2025, WORLD_RANK.*.history / history_wpp / history_imf / history_wdi; 2026-10-10 (user request): SOC_GRDP 2018-2019 per capita for the 23 merged provinces and 2018-2019/2021-2023 GRDP levels + population for all 34 (old-63 sum, NSO tables via GitHub mirror); WORLD_RANK.*.history_wb (WDI 2017-latest) for 11 demographic/size indicators; 2026-10-14 (scheduled IMF WEO Oct-2026 refresh, approved 'imf: ok' 2026-10-10): WORLD_RANK.g_*.history_imf NOT refreshed - Oct-2026 database unreachable (imf.org blocked, no mirror); April-2026 values/ranks kept, vintage + refresh_status added; g_growth Oct-2026 press figures (8.4/7.5) logged as unverified, not used; 2026-11-06 (weekly run): nso.gov.vn, pxweb, api.worldbank.org and imf.org readable from this run. SOC_PROV_DATA *_2025 filled for all 34 from the NSO survey book; growth_9m complete for 34; POP_SERIES.gso moved to the NSO 2024-2074 projection (old kept in gso_2019); WORLD_RANK area/density to 2024; history_imf to WEO October 2026; WDI update of 2026-10-08 checked for all 15 indicators, no other Vietnam value or rank changed. PL.V03.01/02 last updated 18/08/2026 with 2024 Sơ bộ and 2025 Ước tính: Decree 13/2026 date for 2025 Sơ bộ (29/9/2026) not reflected in PX, values kept; 2026-11-06 (Narrator request): POP_SERIES.gso.long adds 2055, 2059, 2060, 2065, 2070, 2074 for all three scenarios; age_sex note updated to the NSO 2024-2074 projection",
   "sources": {
    "POP_SERIES.actual": "NSO PX V02.02 average population (2025 = Sơ bộ) https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/V02.02.px/",
    "POP_SERIES.nat": "NSO PX V02.02/V02.08/V02.11/V02.15/V02.24, reference year 2024 (population change survey 1/4/2024)",
-   "POP_SERIES.gso": "PROJECTION. GSO/UNFPA Dự báo dân số Việt Nam 2019-2069 (Nov 2020), Biểu A.1, A.3 https://vietnam.unfpa.org/sites/default/files/pub-pdf/sach_dan_so_va_du_bao_dan_so_a4_vn_2106.pdf",
+   "POP_SERIES.gso": "PROJECTION. NSO/UNFPA Dự báo dân số Việt Nam giai đoạn 2024-2074 (Dec 2025), Biểu A.1, A.2.1 https://www.nso.gov.vn/wp-content/uploads/2025/12/Bao-cao-du-bao-dan-so-vn_final-2.pdf",
    "POP_SERIES.un": "PROJECTION. UN WPP 2024 (LocID 704), 1 July https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz ; next WPP postponed to 2027",
    "SOC_PROV_DATA": "area/pop_nq/merged_from: NQ 202/2025/QH15 https://baochinhphu.vn/nghi-quyet-cua-quoc-hoi-ve-sap-xep-don-vi-hanh-chinh-cap-tinh-102250612191145158.htm (11 non-merged units: NSO 2025 area, NSO 2024 avg pop). pop = NSO 2025p average population; pop_2024 = NSO 2024 average population; urban_pct, sex_ratio (population, not at birth), tfr, cbr, cdr, life_exp = NSO PLV02 back-cast tables for the 34 units, reference 2024. https://pxweb.nso.gov.vn/pxweb/vi/PLV02D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/",
-   "SOC_GRDP": "NSO PX PL.V03.01 (growth, constant prices) and PL.V03.02 (GRDP per capita) https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; 2020-2023 official, 2024 Sơ bộ, 2025 Ước tính; press release https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/ . grdp_bn DERIVED = per capita x avg population; grdp_pc_usd DERIVED at NSO-implied national rate (2020 ~23,210; 2024 ~24,166; 2025 ~24,978 VND/USD). structure_2025 from provincial statistics offices (partial). growth_9m.2026 = NSO 9M-2026 estimates (released 3-6 Oct 2026) as reported by press; per-province URL in growth_9m_src; search-excerpt verified only.",
+   "SOC_GRDP": "NSO PX PL.V03.01 (growth, constant prices) and PL.V03.02 (GRDP per capita) https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; 2020-2023 official, 2024 Sơ bộ, 2025 Ước tính; press release https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-ket-qua-tang-truong-tong-san-pham-tren-dia-ban-grdp-cua-34-tinh-thanh-pho-nam-2025/ . grdp_bn DERIVED = per capita x avg population; grdp_pc_usd DERIVED at NSO-implied national rate (2020 ~23,210; 2024 ~24,166; 2025 ~24,978 VND/USD). structure_2025 from provincial statistics offices (partial). growth_9m.2026 = NSO 9M-2026 estimates (released 3-6 Oct 2026) as reported by press; per-province URL in growth_9m_src; excerpt verified, except Điện Biên, Quảng Trị, Huế, Gia Lai (added 2026-11-06, article page read). NSO's press release confirms the top five and the four lowest, https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/ ; no NSO table of all 34 found.",
    "WORLD_RANK": "World Bank WDI API (demographic: tools/build/rank/world_rank.json; GDP: tools/build/grdp/wb_rank.json, July-2026 WDI). religion_unaffiliated: Pew Research Center Global Religious Landscape 2010-2020.",
    "PROV_PREV": "NSO PLV02 tables, reference 2020 (pop = 2020 average population on 34-unit basis).",
    "RELIGION": "Census 2019 Biểu 3 and Census 2009 religion table (NSO); btg = Ban Tôn giáo Chính phủ figure as reported by danviet.vn (31-12-2023), unchanged in 2025 statements (27.7m followers, 16 religions, 43 organisations).",
    "POP_SERIES.age_sex": "UN WPP 2024 single-age population by sex (31 Dec stocks), Viet Nam, via UN Population Division R package wpp2024 v1.1-3 https://raw.githubusercontent.com/PPgp/wpp2024/main/data/popAge1dt.rda , .../popprojAge1dt.rda ; 2025-2050 = PROJECTION (medium). Added 2026-10-06.",
-   "SOC_PROV_DATA.*_2025": "Reference 2025 (NSO population-change survey 1/4/2025, 34 provinces). Existing unsuffixed keys (tfr, cbr, cdr, life_exp, urban_pct, sex_ratio) stay at reference 2024 (vitals_ref_year). tfr_2025 filled only where a press excerpt quotes the survey value (6 of 34); search-excerpt verified only - the NSO tables could not be fetched (thuvienso.quochoi.vn, nso.gov.vn and the press hosts are blocked from the sandbox). Other *_2025 keys null (provincial values not found). Publications: https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf ; https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf. National TFR 2025 = 1.93 (POP_SERIES.nat_latest).",
+   "SOC_PROV_DATA.*_2025": "Reference 1/4/2025. NSO, Kết quả chủ yếu Điều tra biến động dân số và KHHGĐ 01/4/2025: Phụ lục 5 (urban_pct_2025, sex_ratio_2025), Phụ lục 10 (tfr_2025, cbr_2025), Phụ lục 11 (cdr_2025, life_exp_2025) https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf . Read from the PDF for all 34 on 2026-11-06. Unsuffixed keys (tfr, cbr, cdr, life_exp, urban_pct, sex_ratio) stay at reference 2024 (vitals_ref_year) because the page labels them 2024. Sample-survey values; year-on-year moves in small provinces are noisy. National TFR 2025 = 1.93 (POP_SERIES.nat_latest).",
    "POP_SERIES.un_annual": "PROJECTION from 2024. UN WPP 2024 wpp2024 R package (popAge1dt, popprojAge1dt, popproj1dt), 31 December stocks https://raw.githubusercontent.com/PPgp/wpp2024/main/data/",
    "POP_SERIES.nat_series": "NSO PX-Web V02.02/V02.08/V02.11/V02.15/V02.24 national series 2017-2025 (2025 Sơ bộ), cached 2026-10-04 in tools/build/demo/demo.json; WDI cross-check separate",
    "POP_SERIES.targets": "QĐ 1679/QĐ-TTg (TFR 2.1, e0 75, pop ~104 m, SRB natural balance), NQ 72-NQ/TW (e0 75.5), NQ 148/NQ-CP + NQ 06-NQ/TW (urbanisation >=45% 2025, >50% 2030); search-excerpt verified, see each entry",
    "SOC_GRDP.*_series": "grdp_pc_mvnd_series / growth_series 2020-2025 = NSO PL.V03.02 / PL.V03.01 (34 units, official 2020-2023, 2024 Sơ bộ, 2025 Ước tính) https://pxweb.nso.gov.vn/pxweb/vi/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/PLV03T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; 2018-2019 only for the 11 unmerged provinces = NSO old-basis V03.12 / V03.10 (same values as the 34-unit table for 2020-2025, checked) https://pxweb.nso.gov.vn/pxweb/vi/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/T%c3%a0i%20kho%e1%ba%a3n%20qu%e1%bb%91c%20gia/ ; merged provinces 2018-2019 null (needs old-province average population, NSO V02 provincial table, blocked). grdp_bn_series / pop_avg_thousand_series: only 2020, 2024, 2025 held; 2018-2019, 2021-2023 null (34-unit population PL.V02.02-04 not cached, pxweb blocked). series_basis per year: nso_34 | nso_63_unchanged_boundary | null.",
-   "WORLD_RANK.*.history*": "pop: WDI via datahub GitHub mirror; tfr/life_exp/srb: UN WPP 2024 ranked over the 217 WB economies; g_*: IMF WEO April 2026 (Oct-2026 WEO released 13/10/2026, not yet pulled - imf.org blocked; see history_imf.refresh_status) (+ g_gdp WDI April-2026 mirror 2017-2023). density/urban: gap.",
+   "WORLD_RANK.*.history*": "pop: WDI via datahub GitHub mirror; tfr/life_exp/srb: UN WPP 2024 ranked over the 217 WB economies; g_*: IMF WEO October 2026 (DataMapper API, pulled 2026-11-06; april2026_ref keeps the previous vintage) (+ g_gdp WDI April-2026 mirror 2017-2023). density/urban: gap.",
    "SOC_GRDP.series_old63": "2018-2019 per capita for the 23 merged provinces (series_basis 'old63_sum') and grdp_bn_series / pop_avg_thousand_series 2018, 2019, 2021-2023 for all 34 (level_basis): for each of the 63 old provinces GRDP (bn VND, current prices) = NSO E03.12 GRDP per capita (mill. VND; 2018-2023 official) x NSO E02.03-07 average population (thous.), summed over the old provinces in series_old63_members (merger list = HC_KEY_MAP / NAME_FRAG_MAP in the page); per capita = summed GRDP / summed population. Source tables: NSO PX E03.12 and E02.03-07 (English PX; https://www.nso.gov.vn/en/px-web?pxid=E0312 , pxid=E0203-07), read from the GitHub mirror QuocAnhHo/Vietnam-socioeconomic-statistics (snapshot collected Sept 2026, values checked against source cells by the mirror) https://raw.githubusercontent.com/QuocAnhHo/Vietnam-socioeconomic-statistics/main/data/by_table/E0312.csv ; https://raw.githubusercontent.com/QuocAnhHo/Vietnam-socioeconomic-statistics/main/data/by_table/E0203-07.csv ; E03.12 values equal the NSO Vietnamese PX V03.12 cache (tools/build/grdp/o_V03.12.json, updated 2026-08-15) to 2 dp. Validation: the same method reproduces NSO's own 34-province per capita (PL.V03.02) for 2020-2025 within 0.01 mill. VND for all 34 and the 34-unit average population exactly; the 11 unmerged provinces' 2018-2019 values are identical. Cross-check, sum of 63 old-province GRDP vs NSO GDP (current prices, ECONFLOW.gdp.GDP): 2018 7,028,190 vs 7,009,042 bn (+0.27%); 2019 7,711,469 vs 7,707,200 bn (+0.06%); 2020 8,030,636 vs 8,044,386 bn (-0.17%); 2021 8,521,564 vs 8,487,476 bn (+0.40%); 2022 9,665,253 vs 9,621,372 bn (+0.46%); 2023 10,287,121 vs 10,319,059 bn (-0.31%); 2024 11,394,534 vs 11,510,329 bn (-1.01%); 2025 12,780,572 vs 12,847,571 bn (-0.52%). Growth 2018-2019 for merged provinces left null (needs constant-price levels; not interpolated).",
-   "WORLD_RANK.history_wb": "Demographic/size rank timelines 2017-latest: World Bank WDI via GitHub mirrors (api.worldbank.org is blocked from the sandbox): Open Numbers ddf--open_numbers--world_development_indicators (created 2026-05-06; to 2024, area/density to 2023), datahub population.csv for SP.POP.TOTL (to 2025); 2025 points for urban/age65/dependency = held now (WDI API July 2026). Universe = the 217 WB economies used by now/prev; Puerto Rico and US Virgin Islands (missing from the Open Numbers mirror) placed from UN WPP 2024 / WDI values as described per indicator. All 22 held now/prev ranks reproduced. GDP indicators: history_imf (IMF WEO April 2026, 2017-2030, 2026+ projections) re-verified against tools/build/grdp/imf_*.json - unchanged."
+   "WORLD_RANK.history_wb": "Demographic/size rank timelines 2017-latest: World Bank WDI via GitHub mirrors (api.worldbank.org is blocked from the sandbox): Open Numbers ddf--open_numbers--world_development_indicators (created 2026-05-06; to 2024, area/density to 2023), datahub population.csv for SP.POP.TOTL (to 2025); 2025 points for urban/age65/dependency = held now (WDI API July 2026). Universe = the 217 WB economies used by now/prev; Puerto Rico and US Virgin Islands (missing from the Open Numbers mirror) placed from UN WPP 2024 / WDI values as described per indicator. All 22 held now/prev ranks reproduced. GDP indicators: history_imf (IMF WEO October 2026, 2017-2030, 2026+ projections, from 2026-11-06). Area and density 2024 points from the WDI API (update of 2026-10-08).",
+   "POP_SERIES.gso_2019": "PROJECTION, superseded. GSO/UNFPA Dự báo dân số Việt Nam 2019-2069 (Nov 2020), Biểu A.1, A.3 https://vietnam.unfpa.org/sites/default/files/pub-pdf/sach_dan_so_va_du_bao_dan_so_a4_vn_2106.pdf"
   },
-  "as_of": "2026-10-14"
+  "as_of": "2026-11-06"
  },
  "SOC_PROV_DATA": {
   "Tuyên Quang": {
@@ -42,13 +43,13 @@
    "cdr": 6.86,
    "life_exp": 72.2,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.52,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 15.5,
+   "cdr_2025": 7.5,
+   "life_exp_2025": 72.1,
+   "urban_pct_2025": 19.4,
+   "sex_ratio_2025": 101.4
   },
   "Cao Bằng": {
    "area_km2": 6702,
@@ -63,13 +64,13 @@
    "cdr": 10.83,
    "life_exp": 72.2,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.28,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.6,
+   "cdr_2025": 11.3,
+   "life_exp_2025": 72.2,
+   "urban_pct_2025": 25.2,
+   "sex_ratio_2025": 101.3
   },
   "Lai Châu": {
    "area_km2": 9069,
@@ -84,13 +85,13 @@
    "cdr": 7.55,
    "life_exp": 65.8,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.78,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 21.1,
+   "cdr_2025": 7.5,
+   "life_exp_2025": 69.8,
+   "urban_pct_2025": 17.3,
+   "sex_ratio_2025": 102.7
   },
   "Lào Cai": {
    "area_km2": 13256.92,
@@ -108,13 +109,13 @@
    "cdr": 6.52,
    "life_exp": 71.4,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.88,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 18.8,
+   "cdr_2025": 6.6,
+   "life_exp_2025": 71.5,
+   "urban_pct_2025": 23.5,
+   "sex_ratio_2025": 103.1
   },
   "Thái Nguyên": {
    "area_km2": 8375.21,
@@ -132,13 +133,13 @@
    "cdr": 7.3,
    "life_exp": 73.7,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.24,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.9,
+   "cdr_2025": 7.2,
+   "life_exp_2025": 74.1,
+   "urban_pct_2025": 37.4,
+   "sex_ratio_2025": 95.6
   },
   "Điện Biên": {
    "area_km2": 9548,
@@ -154,12 +155,12 @@
    "life_exp": 69.8,
    "vitals_ref_year": 2024,
    "tfr_2025": 2.91,
-   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://vnexpress.net/muc-sinh-nam-2025-cua-viet-nam-tang-nhe-4995025.html ; https://nld.com.vn/tphcm-la-dia-phuong-co-muc-sinh-thap-nhat-ca-nuoc-voi-ti-suat-151-con-phu-nu-196251217152519275.htm | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 20.4,
+   "cdr_2025": 6.1,
+   "life_exp_2025": 69.8,
+   "urban_pct_2025": 14.5,
+   "sex_ratio_2025": 102.8
   },
   "Lạng Sơn": {
    "area_km2": 8307,
@@ -174,13 +175,13 @@
    "cdr": 9.42,
    "life_exp": 73,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.45,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.1,
+   "cdr_2025": 9.5,
+   "life_exp_2025": 73.0,
+   "urban_pct_2025": 23.7,
+   "sex_ratio_2025": 105.2
   },
   "Sơn La": {
    "area_km2": 14109,
@@ -195,13 +196,13 @@
    "cdr": 4.75,
    "life_exp": 73.4,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.49,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 16.1,
+   "cdr_2025": 6.1,
+   "life_exp_2025": 73.4,
+   "urban_pct_2025": 14.3,
+   "sex_ratio_2025": 103.2
   },
   "Phú Thọ": {
    "area_km2": 9361.38,
@@ -220,13 +221,13 @@
    "cdr": 6.71,
    "life_exp": 74.4,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 1.99,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 11.8,
+   "cdr_2025": 7.2,
+   "life_exp_2025": 74.5,
+   "urban_pct_2025": 25.9,
+   "sex_ratio_2025": 100.1
   },
   "Bắc Ninh": {
    "area_km2": 4718.6,
@@ -244,13 +245,13 @@
    "cdr": 4.68,
    "life_exp": 75,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.21,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 16.7,
+   "cdr_2025": 4.5,
+   "life_exp_2025": 75.1,
+   "urban_pct_2025": 37.8,
+   "sex_ratio_2025": 100.3
   },
   "Quảng Ninh": {
    "area_km2": 6231.27,
@@ -265,13 +266,13 @@
    "cdr": 4.5,
    "life_exp": 74.7,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.32,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 14.6,
+   "cdr_2025": 5.2,
+   "life_exp_2025": 74.8,
+   "urban_pct_2025": 69.0,
+   "sex_ratio_2025": 103.7
   },
   "Hà Nội": {
    "area_km2": 3359.84,
@@ -286,13 +287,13 @@
    "cdr": 4.13,
    "life_exp": 76.6,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 1.87,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.3,
+   "cdr_2025": 4.3,
+   "life_exp_2025": 76.7,
+   "urban_pct_2025": 48.9,
+   "sex_ratio_2025": 98.9
   },
   "Hải Phòng": {
    "area_km2": 3194.72,
@@ -310,13 +311,13 @@
    "cdr": 5.53,
    "life_exp": 75.6,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.28,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.7,
+   "cdr_2025": 6.4,
+   "life_exp_2025": 75.6,
+   "urban_pct_2025": 39.0,
+   "sex_ratio_2025": 99.9
   },
   "Hưng Yên": {
    "area_km2": 2514.81,
@@ -334,13 +335,13 @@
    "cdr": 6.7,
    "life_exp": 75.8,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.32,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 12.7,
+   "cdr_2025": 6.2,
+   "life_exp_2025": 75.9,
+   "urban_pct_2025": 14.1,
+   "sex_ratio_2025": 98.6
   },
   "Ninh Bình": {
    "area_km2": 3942.62,
@@ -359,13 +360,13 @@
    "cdr": 7.97,
    "life_exp": 75.4,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.55,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.0,
+   "cdr_2025": 8.2,
+   "life_exp_2025": 75.3,
+   "urban_pct_2025": 23.0,
+   "sex_ratio_2025": 98.0
   },
   "Thanh Hóa": {
    "area_km2": 11111.16,
@@ -380,13 +381,13 @@
    "cdr": 6.14,
    "life_exp": 74.3,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.26,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.2,
+   "cdr_2025": 6.9,
+   "life_exp_2025": 74.4,
+   "urban_pct_2025": 28.6,
+   "sex_ratio_2025": 99.6
   },
   "Nghệ An": {
    "area_km2": 16486.08,
@@ -401,13 +402,13 @@
    "cdr": 5.78,
    "life_exp": 74.1,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.64,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 18.7,
+   "cdr_2025": 6.2,
+   "life_exp_2025": 74.1,
+   "urban_pct_2025": 15.7,
+   "sex_ratio_2025": 100.5
   },
   "Hà Tĩnh": {
    "area_km2": 5994.31,
@@ -422,13 +423,13 @@
    "cdr": 8.46,
    "life_exp": 73.9,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.36,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.8,
+   "cdr_2025": 8.2,
+   "life_exp_2025": 73.9,
+   "urban_pct_2025": 22.7,
+   "sex_ratio_2025": 99.6
   },
   "Quảng Trị": {
    "area_km2": 12700.0,
@@ -446,13 +447,13 @@
    "cdr": 6.54,
    "life_exp": 72.9,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.39,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 15.4,
+   "cdr_2025": 6.4,
+   "life_exp_2025": 72.9,
+   "urban_pct_2025": 27.3,
+   "sex_ratio_2025": 100.6
   },
   "Huế": {
    "area_km2": 4947.11,
@@ -467,13 +468,13 @@
    "cdr": 5.46,
    "life_exp": 73.7,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.06,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 14.7,
+   "cdr_2025": 6.9,
+   "life_exp_2025": 73.7,
+   "urban_pct_2025": 52.7,
+   "sex_ratio_2025": 98.9
   },
   "Đà Nẵng": {
    "area_km2": 11859.59,
@@ -491,13 +492,13 @@
    "cdr": 6.03,
    "life_exp": 75.5,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.15,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 16.5,
+   "cdr_2025": 5.8,
+   "life_exp_2025": 75.2,
+   "urban_pct_2025": 56.5,
+   "sex_ratio_2025": 98.0
   },
   "Quảng Ngãi": {
    "area_km2": 14832.55,
@@ -515,13 +516,13 @@
    "cdr": 5.82,
    "life_exp": 72,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.23,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 15.0,
+   "cdr_2025": 6.0,
+   "life_exp_2025": 72.1,
+   "urban_pct_2025": 25.5,
+   "sex_ratio_2025": 99.4
   },
   "Gia Lai": {
    "area_km2": 21576.53,
@@ -539,13 +540,13 @@
    "cdr": 6.36,
    "life_exp": 73.7,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.09,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.6,
+   "cdr_2025": 7.2,
+   "life_exp_2025": 73.4,
+   "urban_pct_2025": 35.0,
+   "sex_ratio_2025": 99.8
   },
   "Đắk Lắk": {
    "area_km2": 18096.4,
@@ -563,13 +564,13 @@
    "cdr": 6.25,
    "life_exp": 74,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.5,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 15.9,
+   "cdr_2025": 7.1,
+   "life_exp_2025": 72.7,
+   "urban_pct_2025": 28.1,
+   "sex_ratio_2025": 102.1
   },
   "Khánh Hòa": {
    "area_km2": 8555.86,
@@ -587,13 +588,13 @@
    "cdr": 6.55,
    "life_exp": 74.5,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 1.82,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.3,
+   "cdr_2025": 5.5,
+   "life_exp_2025": 74.6,
+   "urban_pct_2025": 40.1,
+   "sex_ratio_2025": 98.3
   },
   "Lâm Đồng": {
    "area_km2": 24233.07,
@@ -612,13 +613,13 @@
    "cdr": 5.16,
    "life_exp": 72.9,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 2.04,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 14.0,
+   "cdr_2025": 7.2,
+   "life_exp_2025": 73.6,
+   "urban_pct_2025": 34.4,
+   "sex_ratio_2025": 102.6
   },
   "Đồng Nai": {
    "area_km2": 12737.18,
@@ -636,13 +637,13 @@
    "cdr": 3.7,
    "life_exp": 75.8,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 1.74,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.4,
+   "cdr_2025": 4.4,
+   "life_exp_2025": 75.9,
+   "urban_pct_2025": 41.5,
+   "sex_ratio_2025": 101.2
   },
   "Tây Ninh": {
    "area_km2": 8536.44,
@@ -660,13 +661,13 @@
    "cdr": 5.9,
    "life_exp": 76,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 1.73,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 12.4,
+   "cdr_2025": 7.1,
+   "life_exp_2025": 76.1,
+   "urban_pct_2025": 24.4,
+   "sex_ratio_2025": 99.8
   },
   "TP. Hồ Chí Minh": {
    "area_km2": 6772.59,
@@ -686,12 +687,12 @@
    "life_exp": 76.6,
    "vitals_ref_year": 2024,
    "tfr_2025": 1.51,
-   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nld.com.vn/tphcm-la-dia-phuong-co-muc-sinh-thap-nhat-ca-nuoc-voi-ti-suat-151-con-phu-nu-196251217152519275.htm ; https://vnexpress.net/muc-sinh-nam-2025-cua-viet-nam-tang-nhe-4995025.html | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 13.5,
+   "cdr_2025": 3.3,
+   "life_exp_2025": 76.7,
+   "urban_pct_2025": 78.3,
+   "sex_ratio_2025": 96.5
   },
   "Đồng Tháp": {
    "area_km2": 5938.64,
@@ -710,12 +711,12 @@
    "life_exp": 76,
    "vitals_ref_year": 2024,
    "tfr_2025": 1.61,
-   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nhandan.vn/dan-so-va-lao-dong-viec-lam-tiep-tuc-on-dinh-nam-2025-tao-da-cho-2026-post946357.html | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 10.4,
+   "cdr_2025": 9.9,
+   "life_exp_2025": 76.1,
+   "urban_pct_2025": 19.4,
+   "sex_ratio_2025": 99.4
   },
   "An Giang": {
    "area_km2": 9888.91,
@@ -733,13 +734,13 @@
    "cdr": 8.05,
    "life_exp": 74.9,
    "vitals_ref_year": 2024,
-   "tfr_2025": null,
-   "tfr_2025_src": null,
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025": 1.72,
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 10.1,
+   "cdr_2025": 7.2,
+   "life_exp_2025": 74.9,
+   "urban_pct_2025": 33.7,
+   "sex_ratio_2025": 100.1
   },
   "Vĩnh Long": {
    "area_km2": 6296.2,
@@ -759,12 +760,12 @@
    "life_exp": 76,
    "vitals_ref_year": 2024,
    "tfr_2025": 1.7,
-   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nhandan.vn/dan-so-va-lao-dong-viec-lam-tiep-tuc-on-dinh-nam-2025-tao-da-cho-2026-post946357.html | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 10.2,
+   "cdr_2025": 7.1,
+   "life_exp_2025": 75.9,
+   "urban_pct_2025": 18.1,
+   "sex_ratio_2025": 98.4
   },
   "Cần Thơ": {
    "area_km2": 6360.83,
@@ -784,12 +785,12 @@
    "life_exp": 75.9,
    "vitals_ref_year": 2024,
    "tfr_2025": 1.63,
-   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nhandan.vn/dan-so-va-lao-dong-viec-lam-tiep-tuc-on-dinh-nam-2025-tao-da-cho-2026-post946357.html ; https://tuoitre.vn/nld/muc-sinh-nam-2025-tang-nhung-chua-dat-nguong-thay-the-196251204105634814.htm | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 10.7,
+   "cdr_2025": 6.5,
+   "life_exp_2025": 75.9,
+   "urban_pct_2025": 47.7,
+   "sex_ratio_2025": 101.2
   },
   "Cà Mau": {
    "area_km2": 7942.39,
@@ -808,12 +809,12 @@
    "life_exp": 75.8,
    "vitals_ref_year": 2024,
    "tfr_2025": 1.55,
-   "tfr_2025_src": "NSO, Điều tra biến động dân số và KHHGĐ 1/4/2025 (TFR 2025), as reported: https://nhandan.vn/dan-so-va-lao-dong-viec-lam-tiep-tuc-on-dinh-nam-2025-tao-da-cho-2026-post946357.html | publication (not reachable from sandbox): https://thuvienso.quochoi.vn/bitstream/11742/110630/1/Cuc%20thong%20ke.%20Ket%20qua%20chu%20yeu%20dieu%20tra%20bien%20dong%20dan%20so%20va%20ke%20hoach%20hoa%20gia%20dinh%20thoi%20diem%2001.4.2025.pdf",
-   "cbr_2025": null,
-   "cdr_2025": null,
-   "life_exp_2025": null,
-   "urban_pct_2025": null,
-   "sex_ratio_2025": null
+   "tfr_2025_src": "https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf (Phụ lục 5, 10, 11; 1/4/2025)",
+   "cbr_2025": 10.7,
+   "cdr_2025": 5.7,
+   "life_exp_2025": 75.7,
+   "urban_pct_2025": 25.7,
+   "sex_ratio_2025": 102.4
   }
  },
  "POP_SERIES": {
@@ -847,38 +848,79 @@
   },
   "gso": {
    "medium": {
-    "2025": 101.571,
-    "2030": 105.219,
-    "2035": 108.478,
-    "2040": 111.375,
-    "2045": 113.667,
-    "2050": 115.249
+    "2025": 102.079,
+    "2030": 105.36,
+    "2035": 108.219,
+    "2040": 110.783,
+    "2045": 112.913,
+    "2050": 114.357
    },
    "low": {
-    "2025": 101.398,
-    "2030": 104.74,
+    "2025": 102.074,
+    "2030": 105.173,
     "2035": 107.608,
-    "2040": 110.047,
-    "2045": 111.792,
-    "2050": 112.745
+    "2040": 109.514,
+    "2045": 110.782,
+    "2050": 111.212
    },
    "high": {
-    "2025": 101.624,
-    "2030": 105.417,
-    "2035": 108.929,
-    "2040": 112.187,
-    "2045": 114.938,
-    "2050": 117.073
+    "2025": 102.082,
+    "2030": 105.435,
+    "2035": 108.464,
+    "2040": 111.291,
+    "2045": 113.765,
+    "2050": 115.619
    },
    "peak": {
-    "year": 2066,
-    "pop_m": 116.916,
+    "year": 2059,
+    "pop_m": 115.198,
     "variant": "medium"
    },
+   "peak_low": {
+    "year": 2050,
+    "pop_m": 111.212,
+    "variant": "low"
+   },
+   "peak_high": {
+    "year": null,
+    "pop_m": null,
+    "variant": "high",
+    "note": "No peak by 2074: still rising, 118.543 m in 2074"
+   },
    "age_2050": {
-    "0-14": 18.86,
-    "15-64": 62.33,
-    "65+": 18.81
+    "0-14": 17.25,
+    "15-64": 61.66,
+    "65+": 21.09
+   },
+   "vintage": "NSO/UNFPA Dự báo dân số Việt Nam giai đoạn 2024-2074 (Dec 2025), base: Intercensal Population and Housing Survey 2024",
+   "source": "PROJECTION. Biểu A.1 (population by scenario, thousands, divided by 1,000), Biểu 2.1 cross-checked, Biểu A.2.1 (age groups, medium) https://www.nso.gov.vn/wp-content/uploads/2025/12/Bao-cao-du-bao-dan-so-vn_final-2.pdf ; factsheet https://www.nso.gov.vn/wp-content/uploads/2025/12/ENG-Du-bao-DS_final_final.pdf",
+   "note": "2074 TFR assumptions: low 1.45, medium 1.85, high 2.01. Base 2024 = 101.344 m; projected 2025 medium 102.079 m vs NSO average population 102.345 m (preliminary). Replaced the 2019-2069 projection (peak 116.916 m in 2066) on 2026-11-06; that one is kept in gso_2019.",
+   "long": {
+    "medium": {
+     "2055": 115.052,
+     "2059": 115.198,
+     "2060": 115.195,
+     "2065": 115.01,
+     "2070": 114.622,
+     "2074": 114.179
+    },
+    "low": {
+     "2055": 110.753,
+     "2059": 109.856,
+     "2060": 109.574,
+     "2065": 107.87,
+     "2070": 105.785,
+     "2074": 103.892
+    },
+    "high": {
+     "2055": 116.787,
+     "2059": 117.372,
+     "2060": 117.489,
+     "2065": 117.962,
+     "2070": 118.329,
+     "2074": 118.543
+    },
+    "note": "PROJECTION, millions, Biểu A.1 (same table and scenarios as medium/low/high). Continues those series after 2050. Held apart because the hero chart draws every year key of gso.medium/low/high on a fixed 2000-2050 axis and labels the last one as its end point. 2059 is the medium peak year."
    }
   },
   "un": {
@@ -935,8 +977,10 @@
    "cbr": 13.7,
    "cdr": 6.1,
    "growth_pct": 0.99,
-   "note": "NSO, Điều tra biến động dân số 1/4/2025 + dân số trung bình 2025. SRB 110.0 from NSO PX table V02.08; the NSO Jan-2026 press-release excerpt reads 109.0 - unresolved (page not reachable).",
-   "source": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-tinh-hinh-dan-so-lao-dong-viec-lam-quy-iv-va-nam-2025/ ; https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/"
+   "note": "NSO, Điều tra biến động dân số 1/4/2025 + dân số trung bình 2025. SRB 110.0 confirmed by the NSO survey book (Biểu 5.6, Key finding 11) and PX V02.08; the NSO Jan-2026 press release reads 109.0 (page read 2026-11-06) and is the earlier figure. Urban share at 1/4/2025 in the survey = 38.7%; 38.64% here is the average-population basis.",
+   "source": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/thong-cao-bao-chi-ve-tinh-hinh-dan-so-lao-dong-viec-lam-quy-iv-va-nam-2025/ ; https://pxweb.nso.gov.vn/pxweb/vi/D%c3%a2n%20s%e1%bb%91%20v%c3%a0%20lao%20%c4%91%e1%bb%99ng/ ; https://www.nso.gov.vn/wp-content/uploads/2026/08/Sach-ket-qua-chu-yeu-dieu-tra-bien-dong-dan-so-2025.-pdf.pdf",
+   "life_exp_male": 72.3,
+   "life_exp_female": 77.3
   },
   "age_sex": {
    "source": "United Nations, DESA, Population Division, World Population Prospects 2024 (CC BY 3.0 IGO), Viet Nam (LocID 704), single-year-of-age population by sex, as distributed in the UN Population Division's official R data package wpp2024 v1.1-3 (2024-11-26): popAge1dt (estimates 1949-2023) and popprojAge1dt (medium variant 2024-2100).",
@@ -2012,7 +2056,7 @@
     "2045": 95.2,
     "2050": 95.2
    },
-   "note": "One source for every year (UN WPP 2024); no NSO values are mixed in. 5-year bands are plain sums of the official single-age values. Years 2025-2050 are PROJECTIONS (medium variant); 2000-2023 are WPP estimates (modelled by the UN from censuses/surveys, not NSO counts). Totals differ from WPP's 1 July series (e.g. 2025: 101.897 m here at 31 Dec vs 101.599 m at 1 July) and from NSO average population (2025p: 102.345 m). NSO cross-check (broad ages, from NSO press-release excerpts via web search; pages not fetchable): census 1/4/2019 0-14 24.0%, 15-64 68.4%, 65+ 7.6% (WPP 31 Dec 2019: 24.48/68.12/7.40); mid-term census 1/4/2024 23.3/67.4/9.3 (WPP 31 Dec 2023: 23.43/67.74/8.82; 31 Dec 2024 not stored). WPP's sex ratio (~96 males per 100 females) is lower than NSO's (census 2019: 99.1; 1/4/2024: 99.2 from 50,346,030 M / 50,766,626 F) - label the chart 'UN WPP 2024'. POP_SERIES.gso.age_2050 is a different source (GSO 2019-2069 projection: 65+ 18.81% in 2050 vs WPP 20.27%); do not combine. NSO 5-year age-sex tables (census 2019 / DSGK 1/4/2024) were not reachable (nso.gov.vn, gso.gov.vn, vietnam.unfpa.org blocked) - preferred replacement for the estimate years when a runner can reach them. 2026-10-09: single years 2017-2030 added from the same files (popAge1dt to 2023, popprojAge1dt medium from 2024) so the 2018-2030 frames are annual; recomputed bands match the held years exactly (2019, 2020, 2023, 2025, 2030)."
+   "note": "One source for every year (UN WPP 2024); no NSO values are mixed in. 5-year bands are plain sums of the official single-age values. Years 2025-2050 are PROJECTIONS (medium variant); 2000-2023 are WPP estimates (modelled by the UN from censuses/surveys, not NSO counts). Totals differ from WPP's 1 July series (e.g. 2025: 101.897 m here at 31 Dec vs 101.599 m at 1 July) and from NSO average population (2025p: 102.345 m). NSO cross-check (broad ages, from NSO press-release excerpts via web search; pages not fetchable): census 1/4/2019 0-14 24.0%, 15-64 68.4%, 65+ 7.6% (WPP 31 Dec 2019: 24.48/68.12/7.40); mid-term census 1/4/2024 23.3/67.4/9.3 (WPP 31 Dec 2023: 23.43/67.74/8.82; 31 Dec 2024 not stored). WPP's sex ratio (~96 males per 100 females) is lower than NSO's (census 2019: 99.1; 1/4/2024: 99.2 from 50,346,030 M / 50,766,626 F) - label the chart 'UN WPP 2024'. POP_SERIES.gso.age_2050 is a different source (NSO 2024-2074 projection: 65+ 21.09% in 2050 vs WPP 20.27%; the earlier GSO 2019-2069 projection, kept in gso_2019, had 18.81%); do not combine. NSO 5-year age-sex tables (census 2019 / DSGK 1/4/2024) were not reachable (nso.gov.vn, gso.gov.vn, vietnam.unfpa.org blocked) - preferred replacement for the estimate years when a runner can reach them. 2026-10-09: single years 2017-2030 added from the same files (popAge1dt to 2023, popprojAge1dt medium from 2024) so the 2018-2030 frames are annual; recomputed bands match the held years exactly (2019, 2020, 2023, 2025, 2030)."
   },
   "un_annual": {
    "label": "PROJECTION from 2024. UN WPP 2024, Viet Nam, total population at 31 December of each year (= 1 January of the next year), million persons",
@@ -2320,7 +2364,44 @@
     "url": "https://hoatieu.vn/phap-luat/quyet-dinh-1679-qd-ttg-2019-189004",
     "verified": "search excerpt only"
    }
-  ]
+  ],
+  "gso_2019": {
+   "medium": {
+    "2025": 101.571,
+    "2030": 105.219,
+    "2035": 108.478,
+    "2040": 111.375,
+    "2045": 113.667,
+    "2050": 115.249
+   },
+   "low": {
+    "2025": 101.398,
+    "2030": 104.74,
+    "2035": 107.608,
+    "2040": 110.047,
+    "2045": 111.792,
+    "2050": 112.745
+   },
+   "high": {
+    "2025": 101.624,
+    "2030": 105.417,
+    "2035": 108.929,
+    "2040": 112.187,
+    "2045": 114.938,
+    "2050": 117.073
+   },
+   "peak": {
+    "year": 2066,
+    "pop_m": 116.916,
+    "variant": "medium"
+   },
+   "age_2050": {
+    "0-14": 18.86,
+    "15-64": 62.33,
+    "65+": 18.81
+   },
+   "source": "PROJECTION, superseded. GSO/UNFPA Dự báo dân số Việt Nam 2019-2069 (Nov 2020), Biểu A.1, A.3 https://vietnam.unfpa.org/sites/default/files/pub-pdf/sach_dan_so_va_du_bao_dan_so_a4_vn_2106.pdf"
+  }
  },
  "SOC_GRDP": {
   "Tuyên Quang": {
@@ -2869,10 +2950,10 @@
     "tax": 4.22
    },
    "growth_9m": {
-    "2026": null
+    "2026": 9.81
    },
    "growth_9m_src": {
-    "2026": null
+    "2026": "https://www.vietnamplus.vn/dien-bien-tang-toc-quy-4-voi-muc-tieu-tang-truong-gan-14-post1140972.vnp"
    },
    "grdp_pc_mvnd_series": {
     "2018": 30.65,
@@ -4197,10 +4278,10 @@
     "tax": 3.82
    },
    "growth_9m": {
-    "2026": null
+    "2026": 8.42
    },
    "growth_9m_src": {
-    "2026": null
+    "2026": "https://vneconomy.vn/quang-tri-tang-truong-grdp-842-sau-9-thang.htm"
    },
    "grdp_pc_mvnd_series": {
     "2018": 42.11,
@@ -4295,10 +4376,10 @@
    },
    "structure_2025": null,
    "growth_9m": {
-    "2026": null
+    "2026": 8.72
    },
    "growth_9m_src": {
-    "2026": null
+    "2026": "https://huengaynay.vn/kinh-te/khoi-thong-nguon-luc-tang-toc-ve-dich-nam-2026-171413.html"
    },
    "grdp_pc_mvnd_series": {
     "2018": 42.54,
@@ -4603,10 +4684,10 @@
     "tax": 3.93
    },
    "growth_9m": {
-    "2026": null
+    "2026": 8.03
    },
    "growth_9m_src": {
-    "2026": null
+    "2026": "https://thanhtra.com.vn/dau-tu-72A9E3223/gia-lai-tang-toc-quyet-dua-cac-muc-tieu-tang-truong-ve-dich-98015edfb.html"
    },
    "grdp_pc_mvnd_series": {
     "2018": 44.79,
@@ -5933,24 +6014,24 @@
   },
   "area": {
    "now": {
-    "year": 2023,
+    "year": 2024,
     "value": 331338.31,
     "rank": 67,
-    "of": 215,
+    "of": 213,
     "rank_all": 67,
-    "of_all": 215
+    "of_all": 213
    },
    "prev": {
-    "year": 2018,
-    "value": 331240,
+    "year": 2019,
+    "value": 331310,
     "rank": 67,
-    "of": 215,
+    "of": 213,
     "rank_all": 67,
     "of_all": 216
    },
    "label": "Surface area (sq. km)",
    "history_wb": {
-    "source": "World Bank WDI AG.SRF.TOTL.K2 via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023)",
+    "source": "World Bank WDI AG.SRF.TOTL.K2 via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023) ; 2024 point = WDI API (lastupdated 2026-10-08), pulled 2026-11-06",
     "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--ag_srf_totl_k2--by--geo--time.csv",
     "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; both are far smaller than Vietnam (rank unchanged; of + 2). rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
     "years": {
@@ -6009,12 +6090,18 @@
       "status": "WDI data",
       "rank_mirror": 67,
       "of_mirror": 213
+     },
+     "2024": {
+      "value": 331338.31,
+      "rank": 67,
+      "of": 213,
+      "status": "WDI API (updated 2026-10-08)"
      }
     },
     "check": "reproduces held prev 2018 67/216 = held 67/216; now 2023 67/215 = held 67/215"
    },
    "history_wb_land": {
-    "source": "World Bank WDI AG.LND.TOTL.K2 via the Open Numbers GitHub mirror (created 2026-05-06)",
+    "source": "World Bank WDI AG.LND.TOTL.K2 via the Open Numbers GitHub mirror (created 2026-05-06) ; 2024 point = WDI API (lastupdated 2026-10-08), pulled 2026-11-06",
     "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--ag_lnd_totl_k2--by--geo--time.csv",
     "basis": "rank among WB economies with data; Puerto Rico and US Virgin Islands absent from the mirror and smaller than Vietnam (of + 2); 1 = highest",
     "years": {
@@ -6059,32 +6146,39 @@
       "rank": 68,
       "of": 215,
       "status": "WDI data"
+     },
+     "2024": {
+      "value": 313429,
+      "rank": 68,
+      "of": 214,
+      "status": "WDI API (updated 2026-10-08)"
      }
     },
     "check": "matches the held note: land area 313,429 km2, rank 68/215 (2023) and 68/215 (2018)"
-   }
+   },
+   "source": "https://api.worldbank.org/v2/country/all/indicator/AG.SRF.TOTL.K2?format=json&per_page=4000&date=2018:2025 (WDI update of 2026-10-08; rank among the 217 WB economies, aggregates excluded; 1 = highest; of = economies with data in both now and prev years, of_all = with data that year)"
   },
   "density": {
    "now": {
-    "year": 2023,
-    "value": 320.1752,
+    "year": 2024,
+    "value": 322.2028,
     "rank": 37,
-    "of": 215,
+    "of": 214,
     "rank_all": 37,
-    "of_all": 215
+    "of_all": 214
    },
    "prev": {
-    "year": 2018,
-    "value": 307.0466,
+    "year": 2019,
+    "value": 310.0344,
     "rank": 36,
-    "of": 215,
+    "of": 214,
     "rank_all": 37,
     "of_all": 216
    },
    "label": "Population density (people per sq. km of land area)",
    "history_gap": "No yearly ranks: WDI EN.POP.DNST (all countries) not reachable from the sandbox (api.worldbank.org blocked; no mirror found). Needs a runner: tools/build/rank/fetch.py with date=2017:2025. [2026-10-10: resolved - see history_wb (WDI via Open Numbers GitHub mirror).]",
    "history_wb": {
-    "source": "World Bank WDI EN.POP.DNST via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023)",
+    "source": "World Bank WDI EN.POP.DNST via the Open Numbers (Gapminder) GitHub mirror of WDI (datapackage created 2026-05-06; covers to 2024, area/density to 2023) ; 2024 point = WDI API (lastupdated 2026-10-08), pulled 2026-11-06",
     "url": "https://raw.githubusercontent.com/open-numbers/ddf--open_numbers--world_development_indicators/master/datapoints/ddf--datapoints--en_pop_dnst--by--geo--time.csv",
     "basis": "rank among the 217 WB economies (aggregates excluded, tools/build/rank/countries.json) with data that year; 1 = highest; of = economies with data. Puerto Rico and US Virgin Islands are absent from the mirror; Puerto Rico (WDI ~360/km2) is counted above Vietnam every year; US Virgin Islands density = WDI population (datahub mirror) / WDI land area 350 km2 (306.5 in 2017, above Vietnam; below in 2018-2023). rank_mirror/of_mirror = rank among the 215 economies in the mirror.",
     "years": {
@@ -6143,10 +6237,17 @@
       "status": "WDI data",
       "rank_mirror": 36,
       "of_mirror": 213
+     },
+     "2024": {
+      "value": 322.2028,
+      "rank": 37,
+      "of": 214,
+      "status": "WDI API (updated 2026-10-08)"
      }
     },
     "check": "reproduces held prev 2018 37/216 = held 37/216; now 2023 37/215 = held 37/215 (held now/prev 'rank' is over economies with data in both years: 2018 = 36/215; history uses that year's set like rank_all)"
-   }
+   },
+   "source": "https://api.worldbank.org/v2/country/all/indicator/EN.POP.DNST?format=json&per_page=4000&date=2018:2025 (WDI update of 2026-10-08; rank among the 217 WB economies, aggregates excluded; 1 = highest; of = economies with data in both now and prev years, of_all = with data that year)"
   },
   "urban": {
    "now": {
@@ -7208,7 +7309,7 @@
    "label": "GDP (current US$)",
    "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
    "history_imf": {
-    "source": "IMF World Economic Outlook April 2026 (NGDPD), DataMapper API cache tools/build/grdp/imf_NGDPD.json (fetched 2026-10-05)",
+    "source": "IMF World Economic Outlook October 2026 (NGDPD), DataMapper API (indicator source field \"World Economic Outlook (October 2026)\", last-modified 2026-10-08), pulled 2026-11-06",
     "url": "https://www.imf.org/external/datamapper/api/v1/NGDPD",
     "unit": "bn US$",
     "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
@@ -7264,44 +7365,61 @@
      "2025": {
       "value": 494.046,
       "rank": 33,
-      "of": 193,
+      "of": 195,
       "status": "IMF estimate"
      },
      "2026": {
-      "value": 527.266,
-      "rank": 34,
-      "of": 190,
+      "value": 542.13,
+      "rank": 35,
+      "of": 191,
       "status": "IMF projection"
      },
      "2027": {
-      "value": 557.405,
-      "rank": 33,
+      "value": 587.128,
+      "rank": 35,
       "of": 189,
       "status": "IMF projection"
      },
      "2028": {
-      "value": 594.826,
-      "rank": 34,
+      "value": 638.292,
+      "rank": 33,
       "of": 188,
       "status": "IMF projection"
      },
      "2029": {
-      "value": 631.081,
-      "rank": 32,
+      "value": 693.976,
+      "rank": 31,
       "of": 188,
       "status": "IMF projection"
      },
      "2030": {
-      "value": 667.52,
-      "rank": 34,
+      "value": 750.052,
+      "rank": 30,
       "of": 188,
       "status": "IMF projection"
      }
     },
-    "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
+    "check": "Same ranking code reproduces all 14 April-2026 held value/rank/of points from tools/build/grdp/imf_NGDPD.json before the swap",
     "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
-    "vintage": "IMF WEO April 2026",
-    "refresh_status": "2026-10-14: IMF WEO October 2026 released 13/10/2026 ('Resilience Under Strain, Urgent Choices'), but its database could not be read: imf.org (DataMapper API, WEO database) is blocked from the sandbox (CONNECT 403), no GitHub mirror reachable, and search excerpts carry no Oct-2026 cross-country table. Ranks need every country's Oct-2026 value, so they cannot be recomputed from press excerpts. April-2026 values and ranks kept unchanged (still the latest verified vintage). Pending: server-side DataMapper pull of NGDPD (tools/build/grdp/imf_NGDPD.json), then recompute ranks 2017-2031 with the same basis; move the April-2026 vintage into a note."
+    "vintage": "IMF WEO October 2026",
+    "refresh_status": "2026-11-06: refreshed to WEO October 2026 (imf.org reachable from this run). All years recomputed, 2017-2030; 2031 available in the API, not held. tools/build/grdp/imf_NGDPD.json still holds the April-2026 pull.",
+    "april2026_ref": {
+     "2025": {
+      "value": 494.046,
+      "rank": 33,
+      "of": 193
+     },
+     "2026": {
+      "value": 527.266,
+      "rank": 34,
+      "of": 190
+     },
+     "2030": {
+      "value": 667.52,
+      "rank": 34,
+      "of": 188
+     }
+    }
    },
    "history_wdi": {
     "source": "World Bank WDI NY.GDP.MKTP.CD via the datahub.io GitHub mirror (datapackage last_updated 2026-04-08, i.e. the April-2026 WDI vintage; 2024-2025 not in the mirror)",
@@ -7364,44 +7482,44 @@
    "label": "GDP per capita (current US$)",
    "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
    "history_imf": {
-    "source": "IMF World Economic Outlook April 2026 (NGDPDPC), DataMapper API cache tools/build/grdp/imf_NGDPDPC.json (fetched 2026-10-05)",
+    "source": "IMF World Economic Outlook October 2026 (NGDPDPC), DataMapper API (indicator source field \"World Economic Outlook (October 2026)\", last-modified 2026-10-08), pulled 2026-11-06",
     "url": "https://www.imf.org/external/datamapper/api/v1/NGDPDPC",
     "unit": "US$",
     "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
     "years": {
      "2017": {
       "value": 2957.955,
-      "rank": 136,
-      "of": 196,
+      "rank": 134,
+      "of": 195,
       "status": "IMF data"
      },
      "2018": {
       "value": 3216.297,
-      "rank": 137,
-      "of": 196,
+      "rank": 135,
+      "of": 195,
       "status": "IMF data"
      },
      "2019": {
       "value": 3439.028,
-      "rank": 133,
-      "of": 196,
+      "rank": 132,
+      "of": 195,
       "status": "IMF data"
      },
      "2020": {
       "value": 3548.611,
-      "rank": 131,
-      "of": 195,
+      "rank": 129,
+      "of": 194,
       "status": "IMF data"
      },
      "2021": {
       "value": 3756.77,
-      "rank": 130,
-      "of": 195,
+      "rank": 129,
+      "of": 194,
       "status": "IMF data"
      },
      "2022": {
       "value": 4132.552,
-      "rank": 129,
+      "rank": 127,
       "of": 195,
       "status": "IMF data"
      },
@@ -7413,51 +7531,68 @@
      },
      "2024": {
       "value": 4535.521,
-      "rank": 126,
+      "rank": 127,
       "of": 195,
       "status": "IMF data"
      },
      "2025": {
       "value": 4829.379,
-      "rank": 127,
-      "of": 193,
+      "rank": 128,
+      "of": 195,
       "status": "IMF estimate"
      },
      "2026": {
-      "value": 5115.236,
-      "rank": 125,
-      "of": 190,
+      "value": 5259.446,
+      "rank": 122,
+      "of": 191,
       "status": "IMF projection"
      },
      "2027": {
-      "value": 5372.28,
-      "rank": 125,
+      "value": 5658.753,
+      "rank": 123,
       "of": 189,
       "status": "IMF projection"
      },
      "2028": {
-      "value": 5698.382,
-      "rank": 126,
+      "value": 6114.787,
+      "rank": 122,
       "of": 188,
       "status": "IMF projection"
      },
      "2029": {
-      "value": 6010.054,
-      "rank": 127,
+      "value": 6609.035,
+      "rank": 120,
       "of": 188,
       "status": "IMF projection"
      },
      "2030": {
-      "value": 6322.787,
-      "rank": 128,
+      "value": 7104.536,
+      "rank": 119,
       "of": 188,
       "status": "IMF projection"
      }
     },
-    "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
+    "check": "Same ranking code reproduces all 14 April-2026 held value/rank/of points from tools/build/grdp/imf_NGDPDPC.json before the swap",
     "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
-    "vintage": "IMF WEO April 2026",
-    "refresh_status": "2026-10-14: IMF WEO October 2026 released 13/10/2026 ('Resilience Under Strain, Urgent Choices'), but its database could not be read: imf.org (DataMapper API, WEO database) is blocked from the sandbox (CONNECT 403), no GitHub mirror reachable, and search excerpts carry no Oct-2026 cross-country table. Ranks need every country's Oct-2026 value, so they cannot be recomputed from press excerpts. April-2026 values and ranks kept unchanged (still the latest verified vintage). Pending: server-side DataMapper pull of NGDPDPC (tools/build/grdp/imf_NGDPDPC.json), then recompute ranks 2017-2031 with the same basis; move the April-2026 vintage into a note."
+    "vintage": "IMF WEO October 2026",
+    "refresh_status": "2026-11-06: refreshed to WEO October 2026 (imf.org reachable from this run). All years recomputed, 2017-2030; 2031 available in the API, not held. tools/build/grdp/imf_NGDPDPC.json still holds the April-2026 pull.",
+    "april2026_ref": {
+     "2025": {
+      "value": 4829.379,
+      "rank": 127,
+      "of": 193
+     },
+     "2026": {
+      "value": 5115.236,
+      "rank": 125,
+      "of": 190
+     },
+     "2030": {
+      "value": 6322.787,
+      "rank": 128,
+      "of": 188
+     }
+    }
    },
    "history_gap": "WDI yearly ranks not reachable (api.worldbank.org blocked); IMF WEO ranks given in history_imf."
   },
@@ -7477,100 +7612,117 @@
    "label": "GDP per capita, PPP (current international $)",
    "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.PP.CD?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
    "history_imf": {
-    "source": "IMF World Economic Outlook April 2026 (PPPPC), DataMapper API cache tools/build/grdp/imf_PPPPC.json (fetched 2026-10-05)",
+    "source": "IMF World Economic Outlook October 2026 (PPPPC), DataMapper API (indicator source field \"World Economic Outlook (October 2026)\", last-modified 2026-10-08), pulled 2026-11-06",
     "url": "https://www.imf.org/external/datamapper/api/v1/PPPPC",
     "unit": "intl $",
     "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
     "years": {
      "2017": {
       "value": 9317.097,
-      "rank": 123,
-      "of": 196,
+      "rank": 122,
+      "of": 195,
       "status": "IMF data"
      },
      "2018": {
       "value": 10176.123,
-      "rank": 120,
-      "of": 196,
+      "rank": 118,
+      "of": 195,
       "status": "IMF data"
      },
      "2019": {
       "value": 11108.123,
-      "rank": 118,
-      "of": 196,
+      "rank": 117,
+      "of": 195,
       "status": "IMF data"
      },
      "2020": {
       "value": 11668.385,
-      "rank": 112,
-      "of": 195,
+      "rank": 111,
+      "of": 194,
       "status": "IMF data"
      },
      "2021": {
       "value": 12101.363,
-      "rank": 115,
-      "of": 195,
+      "rank": 114,
+      "of": 194,
       "status": "IMF data"
      },
      "2022": {
-      "value": 13933.544,
+      "value": 13937.293,
       "rank": 113,
       "of": 195,
       "status": "IMF data"
      },
      "2023": {
-      "value": 15052.708,
+      "value": 15063.905,
       "rank": 112,
       "of": 195,
       "status": "IMF data"
      },
      "2024": {
-      "value": 16337.37,
+      "value": 16362.109,
       "rank": 109,
       "of": 195,
       "status": "IMF data"
      },
      "2025": {
-      "value": 17970.652,
+      "value": 17962.097,
       "rank": 108,
-      "of": 193,
+      "of": 195,
       "status": "IMF estimate"
      },
      "2026": {
-      "value": 19648.624,
-      "rank": 107,
+      "value": 19974.343,
+      "rank": 106,
       "of": 191,
       "status": "IMF projection"
      },
      "2027": {
-      "value": 21285.389,
-      "rank": 104,
-      "of": 190,
+      "value": 22003.327,
+      "rank": 103,
+      "of": 191,
       "status": "IMF projection"
      },
      "2028": {
-      "value": 22837.619,
-      "rank": 103,
-      "of": 189,
+      "value": 23640.304,
+      "rank": 102,
+      "of": 190,
       "status": "IMF projection"
      },
      "2029": {
-      "value": 24400.617,
-      "rank": 102,
-      "of": 189,
+      "value": 25360.094,
+      "rank": 100,
+      "of": 190,
       "status": "IMF projection"
+     },
+     "2030": {
+      "value": 27157.432,
+      "rank": 99,
+      "of": 190,
+      "status": "IMF projection"
+     }
+    },
+    "check": "Same ranking code reproduces all 14 April-2026 held value/rank/of points from tools/build/grdp/imf_PPPPC.json before the swap",
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
+    "vintage": "IMF WEO October 2026",
+    "refresh_status": "2026-11-06: refreshed to WEO October 2026 (imf.org reachable from this run). All years recomputed, 2017-2030; 2031 available in the API, not held. tools/build/grdp/imf_PPPPC.json still holds the April-2026 pull.",
+    "april2026_ref": {
+     "2025": {
+      "value": 17970.652,
+      "rank": 108,
+      "of": 193
+     },
+     "2026": {
+      "value": 19648.624,
+      "rank": 107,
+      "of": 191
      },
      "2030": {
       "value": 26047.066,
       "rank": 101,
-      "of": 189,
-      "status": "IMF projection"
+      "of": 189
      }
-    },
-    "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
-    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
-    "vintage": "IMF WEO April 2026",
-    "refresh_status": "2026-10-14: IMF WEO October 2026 released 13/10/2026 ('Resilience Under Strain, Urgent Choices'), but its database could not be read: imf.org (DataMapper API, WEO database) is blocked from the sandbox (CONNECT 403), no GitHub mirror reachable, and search excerpts carry no Oct-2026 cross-country table. Ranks need every country's Oct-2026 value, so they cannot be recomputed from press excerpts. April-2026 values and ranks kept unchanged (still the latest verified vintage). Pending: server-side DataMapper pull of PPPPC (tools/build/grdp/imf_PPPPC.json), then recompute ranks 2017-2031 with the same basis; move the April-2026 vintage into a note."
+    }
    },
    "history_gap": "WDI yearly ranks not reachable (api.worldbank.org blocked); IMF WEO ranks given in history_imf."
   },
@@ -7590,20 +7742,20 @@
    "label": "GDP growth (annual %)",
    "source": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.KD.ZG?format=json (WDI July-2026 update; rank among WB economies excluding aggregates; 1 = highest; of = economies with data that year)",
    "history_imf": {
-    "source": "IMF World Economic Outlook April 2026 (NGDP_RPCH), DataMapper API cache tools/build/grdp/imf_NGDP_RPCH.json (fetched 2026-10-05)",
+    "source": "IMF World Economic Outlook October 2026 (NGDP_RPCH), DataMapper API (indicator source field \"World Economic Outlook (October 2026)\", last-modified 2026-10-08), pulled 2026-11-06",
     "url": "https://www.imf.org/external/datamapper/api/v1/NGDP_RPCH",
     "unit": "%",
     "basis": "rank among IMF DataMapper countries (groups excluded); 1 = highest; of = countries with data that year",
     "years": {
      "2017": {
       "value": 6.9,
-      "rank": 19,
+      "rank": 20,
       "of": 196,
       "status": "IMF data"
      },
      "2018": {
       "value": 7.5,
-      "rank": 12,
+      "rank": 13,
       "of": 196,
       "status": "IMF data"
      },
@@ -7615,7 +7767,7 @@
      },
      "2020": {
       "value": 2.9,
-      "rank": 13,
+      "rank": 14,
       "of": 195,
       "status": "IMF data"
      },
@@ -7627,72 +7779,79 @@
      },
      "2022": {
       "value": 8.5,
-      "rank": 24,
+      "rank": 25,
       "of": 195,
       "status": "IMF data"
      },
      "2023": {
       "value": 5.1,
-      "rank": 41,
+      "rank": 44,
       "of": 195,
       "status": "IMF data"
      },
      "2024": {
       "value": 7,
-      "rank": 14,
+      "rank": 15,
       "of": 195,
       "status": "IMF data"
      },
      "2025": {
       "value": 8,
-      "rank": 9,
-      "of": 193,
+      "rank": 13,
+      "of": 195,
       "status": "IMF estimate"
      },
      "2026": {
-      "value": 7.1,
-      "rank": 7,
+      "value": 8.4,
+      "rank": 6,
       "of": 191,
       "status": "IMF projection"
      },
      "2027": {
-      "value": 6.7,
-      "rank": 9,
-      "of": 190,
+      "value": 7.5,
+      "rank": 12,
+      "of": 191,
       "status": "IMF projection"
      },
      "2028": {
-      "value": 6.2,
-      "rank": 12,
-      "of": 189,
+      "value": 5.9,
+      "rank": 21,
+      "of": 190,
       "status": "IMF projection"
      },
      "2029": {
-      "value": 5.6,
-      "rank": 18,
-      "of": 189,
+      "value": 5.9,
+      "rank": 15,
+      "of": 190,
       "status": "IMF projection"
+     },
+     "2030": {
+      "value": 5.7,
+      "rank": 15,
+      "of": 190,
+      "status": "IMF projection"
+     }
+    },
+    "check": "Same ranking code reproduces all 14 April-2026 held value/rank/of points from tools/build/grdp/imf_NGDP_RPCH.json before the swap",
+    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
+    "vintage": "IMF WEO October 2026",
+    "refresh_status": "2026-11-06: refreshed to WEO October 2026 (imf.org reachable from this run). All years recomputed, 2017-2030; 2031 available in the API, not held. tools/build/grdp/imf_NGDP_RPCH.json still holds the April-2026 pull.",
+    "april2026_ref": {
+     "2025": {
+      "value": 8,
+      "rank": 9,
+      "of": 193
+     },
+     "2026": {
+      "value": 7.1,
+      "rank": 7,
+      "of": 191
      },
      "2030": {
       "value": 5.4,
       "rank": 21,
-      "of": 189,
-      "status": "IMF projection"
+      "of": 189
      }
-    },
-    "check": "reproduces tools/build/grdp/imf_rank.json for 2025-2026",
-    "note": "IMF, not World Bank: values and ranks differ from now/prev (WDI). 2026-2030 are projections (draw dashed).",
-    "vintage": "IMF WEO April 2026",
-    "refresh_status": "2026-10-14: IMF WEO October 2026 released 13/10/2026 ('Resilience Under Strain, Urgent Choices'), but its database could not be read: imf.org (DataMapper API, WEO database) is blocked from the sandbox (CONNECT 403), no GitHub mirror reachable, and search excerpts carry no Oct-2026 cross-country table. Ranks need every country's Oct-2026 value, so they cannot be recomputed from press excerpts. April-2026 values and ranks kept unchanged (still the latest verified vintage). Pending: server-side DataMapper pull of NGDP_RPCH (tools/build/grdp/imf_NGDP_RPCH.json), then recompute ranks 2017-2031 with the same basis; move the April-2026 vintage into a note.",
-    "oct2026_reported_unverified": {
-     "status": "NOT USED - secondary reports only, conflicting excerpts; not in years{}",
-     "2026": 8.4,
-     "2027": 7.5,
-     "reported_by": [
-      "TNGlobal 13/10/2026 https://technode.global/2026/10/13/global-economy-can-grow-3-1-in-2026-vietnam-malaysia-can-lead-southeast-asia/",
-      "Lao Dong 14/10/2026 as relayed by Thoi bao Ngan hang (search excerpt; article page not identified)"
-     ],
-     "conflicts": "Other search excerpts on 14/10/2026 found no IMF 8.4% figure; znews/investing.com report 8.2% for 2026 from an earlier IMF statement (Aug-Sep 2026). Hosts blocked (technode.global unresolvable from sandbox); not verified on imf.org. No world rank reported."
     }
    },
    "history_gap": "WDI yearly ranks not reachable (api.worldbank.org blocked); IMF WEO ranks given in history_imf."

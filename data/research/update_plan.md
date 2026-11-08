@@ -1,5 +1,103 @@
 # Update plan
 
+As of 2026-11-06 (Research, weekly pre-approved run). Evidence and rulings: `consistency_report.md` (W#). Dates: `release_calendar.json`. Jobs: `schedule.json` (proposals only; the main session asks the user). The 2026-10-06 plan is kept below for history; its open server and page proposals (P-#) still stand.
+
+Access note: from this environment curl and WebFetch now reach nso.gov.vn, pxweb, api.worldbank.org, mof.gov.vn, hnx.vn and most press. sbv.gov.vn and imf.org are intermittent. See `source_log.json`. Prefer primary documents and mark them "primary".
+
+## Rulings every tab follows from now on
+1. **Public investment:** "disbursement" means the MoF series. NSO's figure is "realised investment from state-budget capital". Budget "development spending" is a third concept. Never compare 74.1% with earlier rates on the 1,022,607 base.
+2. **Budget revenue:** lead with the NSO line (2,438.9 tn for 10M); keep the 2,448.5 tn press line as an alternate. Review if a later release explains the gap.
+3. **Credit:** store every statement with its cut-off and speaker. Do not call any figure end-of-month until the SBV table says so.
+4. **IMF vintage:** Economy, Finance and Society read the same DataMapper pull on the same day.
+
+## Priority watch (user standing task)
+| Rank | Series | Held | Latest published | Status | Next |
+|---|---|---|---|---|---|
+| 1 | FDI registered vs disbursed | 10M 54.85 / 24.08 bn | same, NSO 03/11 (read) | current; ratio 43.9% derived, 67.5% a year ago | 03/12/2026 |
+| 2 | Remittances | HCMC H1 4.037; national null | national only "over 16 bn" (speech) | **HCMC 9M overdue**; BoP Q2 held, secondary income null | each weekly run; FY 20-25/01/2027 |
+| 3 | Tourism | 10M 19.54 m; markets held | same, NSO 03/11 | current; 78.1% of the 25 m target (derived); receipts and outbound not published | 03/12/2026 |
+
+## Waiting for a decision from the user (not changed)
+1. **Public debt sentence (W16).** Page lines ~7026 and ~7226 use `ECONFLOW.projections.series.public_debt_pct_gdp_plan` 36-37% for end-2026, while the Government told the NA in October 33-34% (end-2027 34-35%). Both are real: the first is the January borrowing plan, the second the latest estimate. **Recommendation:** keep the plan series unchanged and labelled "January 2026 plan", add the October estimate beside it, and let the page sentence lead with the estimate. Ceiling unchanged. Ed changes the sentence; Economy adds a key `public_debt_pct_gdp_estimate`.
+2. **`data/industries.json` rebuild.** `/tmp/vnenv` is missing, the STOCKS input was not found, and the Vietcap endpoint failed TLS; a curl was denied by the auto-mode classifier. Not retried. Needs a rebuild on the Mac or a decision. File stays at as_of 30/10.
+3. **`invest_research.json`:** outside any agent's ownership, notes dated 03-04/10, and the POW summary compares price with analyst targets, close to the no-advice rule. Assign an owner.
+
+## Due by agent
+
+### Economy
+1. 03/12 run: NSO November report, CPI, FDI, tourism; roll `ytd_latest`. CPI window: `CPI_MONTHS_24` must roll with the data (page constant, needed a page patch this month; see P-15).
+2. HCMC remittances 9M (overdue); DOLAB 9M/10M; World Bank October CPI row; HSBC.
+3. BoP Q2 secondary income, portfolio, loans: try the SBV table again.
+4. 2025 yearbook reconciliation: `gdp.basis` 2025 still "estimate" though the yearbook is out. Dedicated job.
+5. NA vote on the 2027 plan (07/11, unconfirmed): `draft_2027` notes.
+6. VCCI PCI 2025 median still null.
+
+### Finance
+1. Sep tables (M2, deposits, sectors): 10-20/11. End-Nov statement: 01-05/12.
+2. Credit end-October: only the SBV table can settle 11.94 vs 12.27. Update the T10/26 level then.
+3. Refresh `sbv.plumbing.facts.gov_bond_issued_2026_ytd` and `analysis.chapters.plumbing` (still 299,100 at 30/9 and 52.2% of the 500,000 plan); use the 400,000 base with its caveat, same figures as Policy.
+4. Replace the 5/11 VN-Index close with the 6/11 close in `market_6m`.
+5. Swap result: add the amount done (operations entry value is null on purpose).
+6. Sector NIM and COF: pick one provider or mark the break on the chart; Q2 to Q3 steps mix providers.
+7. `alternatives.ytd` as_of 2026-10-06; `analysis.chapters.why.drivers[2]` still cites September CPI (dated, not wrong).
+8. Q3 profit falls at Sacombank and HDBank: read before anyone repeats them (search summary only).
+
+### Policy
+1. Swap take-up; OMO and overnight entries for 2-6/11.
+2. Identify the document for the 500 to 400 tn plan cut and the 955,867.4 bn plan base.
+3. Votes 20-21/11; VAT, fee and fuel-tax extension before 31/12. Run on 22/11 and 15/12.
+4. HNX October bond total to settle W10.
+
+### Investing
+1. Q3 primary filings for POW, PVT, GAS, GEE (all press so far). POW H1 and GAS conflicts need the filing.
+2. NSO 03/12: refresh `cpi.latest`, `public_invest.latest`, `fdi`.
+
+### Society
+1. Provincial GRDP 29-30/11 (first Q4 date under the decree; see what is really published). 2025 preliminary GRDP due 29/09 not yet seen.
+2. `tools/build/grdp/imf_*.json` still hold the April pull.
+3. WDI December; first 2026 TFR in January.
+
+### Strategy
+1. 07/11 plan vote; 20-21/11 votes; check the budget resolutions' vote date.
+2. `DT-ND-KHCN-2026` expected date passed; `DT-ND-XANGDAU-2026` submission by 10/11.
+
+### Geopolitics
+1. USTR dates (primary notice), Census table direct, US payrolls and China October trade.
+2. 29/11 IP date is carried over, not re-checked.
+
+### Narrator and Ed (from this run)
+1. Society's projection swap leaves 14 lines saying 116.9 m / 2066 in `data/narration.json` and `story_map*.json`; correct is 115.2 m / 2059.
+2. Do not write "credit slowed" (W5), do not compare 74.1% with 62.9% (W2), do not call 783.9 tn disbursement (W1).
+3. Finance chapter 3 "why rates won't fall" needs a qualifier: new-business rates fell in late October by directive.
+
+## Waiting on a release (do not poll before)
+| Release | Expected | Owners |
+|---|---|---|
+| NA vote on the 2027 plan | 07/11/2026 (unconfirmed) | Strategy, Economy |
+| To Lam in Japan; Abu Dhabi talks | 8-11/11; 10-11/11 | Strategy, Geopolitics |
+| SBV Sep tables, Vietcap Oct report | 10-20/11/2026 | Finance |
+| NA session close | 21/11/2026 | Strategy, Policy, Economy |
+| Provincial GRDP Q4 + second full-year estimate | 29/11/2026 (Sunday; check 30/11) | Society |
+| OPEC+; USTR IP date | 29/11/2026 | Geopolitics |
+| LDR cap 95%, LCR/NSFR, Circular 50 | 01/12/2026 | Policy, Finance |
+| NSO November report + CPI; MoF 11M | 03/12/2026; 01-05/12 | Economy, Policy, Investing |
+| FOMC | 08-09/12/2026 | Finance, Geopolitics |
+| ADB Dec supplement, OECD EO, WB IDS, WDI Dec | December 2026 | Economy, Society |
+| NSO full-year 2026 + population | 03/01/2027 | Economy, Society |
+| Listed-bank Q4 FS / FY2026 audited | 20-31/01/2027 / by 31/03/2027 | Finance |
+| FY2025 budget final account | NA spring 2027 | Economy, Policy |
+
+## New proposals for server / page / build (2026-11-06, for the main session to review, not applied)
+- **P-12 `tools/build/embed_data.py` import guard.** The module has no `__main__` guard: Economy imported it for a test and it wrote all data into the page (reverted). Wrap the work in `main()`.
+- **P-13 Investing tiles.** Page tiles ("Đã giải ngân 9T", "CPI T9 YoY", "BQ 9T") and `invest.py` line ~473 read the 30/09 and Sep keys. Switch to `p.latest` and `c.latest`, with the plan base stated. `macro.focus` and `macro.events` need a renderer.
+- **P-14 Society labels.** Page line ~7328 and comment ~12159 still say 2019–2069; lines ~12313-12317 hard-code "2024", so `*_2025` keys are not shown.
+- **P-15 `CPI_MONTHS_24`.** A page constant that must roll with embedded `CPI_YOY_24`; a monthly manual patch is fragile. Move it into `data/economy.json` so the label travels with the data.
+- **P-16 Geopolitics `ground_news`.** The field is filled but no page code reads it.
+
+---
+
+# Previous plan, 2026-10-06 (kept for history; many items since closed, see consistency_report.md)
+
 As of 2026-10-06 (Research, first run; priority-watch pass added the same day). Ordered by priority within each owner. Evidence and the "which is
 right" reasoning are in `consistency_report.md` (refs A#/B#). Release dates come from `release_calendar.json`;
 the proposed recurring jobs are in `schedule.json` (none created — the main session asks the user).

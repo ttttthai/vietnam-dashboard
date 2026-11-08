@@ -35,17 +35,20 @@ margin lending, listed-bank reports via brokers for cost of funds/NIM/CASA, and 
 ## Release timing & access (maintained by Research — see `data/research/release_calendar.json`)
 - Credit growth YTD is stated by SBV/Government in the **first days of each month** with a cut-off date
   (e.g. 29/7, 28/8, 30/9); NSO's report on the 3rd quotes an earlier cut-off (28/9). Store the cut-off date.
-- SBV statistics tables lag ~2 months: M2/deposits and credit by sector for month M appear around M+2 (on
-  6 Oct the latest is July). Prudential tables (LDR, CAR, ROA/ROE, NPL) are quarterly, ~2–3 months after
-  quarter-end. **Check the month label of each SBV table row against press dates**: in 2026 the level stored as
-  T6/26 (20,150,411; +8.37%) equals the figure SBV gave "to 29/7" (+8.38%), while end-June was +7.41%.
+- SBV statistics tables (update 2026-11-06): M2/deposits and credit by sector land about 5–7 weeks after month-end
+  (August by 15 Oct); basic ratios (LDR, short-term funds, assets) have monthly rows at about 5 weeks; NPL and ROA/ROE
+  stay slower. Table rows are month-end. A statement cut-off can precede month-end (26/10 in October): store the
+  cut-off and who stated it, and say so if the press sentence is not a quote.
 - Listed banks: quarterly FS within 20 days of quarter-end (30 days consolidated), so Q3 runs 20–31 Oct;
   loans-by-sector notes only in PDFs. VBMA/FiinGroup bond reports and Vietcap money-market reports arrive
   ~10–20th of the next month; FOMC 2026: 27–28 Oct, 8–9 Dec.
 - Projections: IMF WEO April/October (Oct-2026 on 13 Oct) and World Bank EAP Update (6 Oct 2026: 7.4% for
-  2026) — use the same vintage as Economy's `CPI_FC_INST`.
-- Access: sbv.gov.vn, imf.org/api.imf.org, fred, all press and bank sites are blocked from the sandbox; verify
-  via WebSearch excerpts (shared budget — batch questions). Quote the Policy tab's latest central rate date
+  2026) — use the same vintage as Economy's `CPI_FC_INST`, from the DataMapper API, and recompute
+  `nominal_gdp_growth_pct` and `credit_to_gdp_pct` the same day.
+- Public investment: "disbursement" means the MoF series; NSO's figure is realised investment from state-budget
+  capital; rates compare only on one plan base (ruling 2026-11-06).
+- Access (2026-11-06): press is readable by WebFetch; sbv.gov.vn list pages and the article API work, detail pages
+  often 403; imf.org is intermittent. Quote the Policy tab's latest central rate date
   when a constraint cites the central rate.
 
 ## "Other services" breakdown

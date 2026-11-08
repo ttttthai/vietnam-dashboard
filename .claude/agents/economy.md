@@ -44,9 +44,12 @@ becomes a wrong headline.
   AMRO late Sep. Use the same vintage as Finance's `FINSYS.projections` and say which one in `CPI_FC_INST`.
 - Annual-only series (BoP, remittances, labour export, external debt, `ECON_OFFICIAL` annual arrays) cannot
   change between their release windows — do not spend searches on them in monthly runs.
-- Access: nso.gov.vn, mof.gov.vn, sbv.gov.vn, imf.org, api.worldbank.org and all press are blocked from the
-  sandbox (curl 403, WebFetch EGRESS_BLOCKED). Verify through WebSearch excerpts, cite the canonical page, mark
-  "search-excerpt verified", and batch several facts per query (the search budget is shared by all agents).
+- Access (2026-11-06): nso.gov.vn (docx, xlsx, PDF), api.worldbank.org, mof.gov.vn and most press are reachable;
+  sbv.gov.vn and imf.org are intermittent. Read primary documents where you can and mark them "primary"; otherwise
+  cite the canonical page and mark "search-excerpt verified". Attachment URL patterns are in `release_calendar.json`.
+- Rulings 2026-11-06: budget revenue leads with the NSO line; press lines "theo Bộ Tài chính" can differ. Public
+  investment: "disbursement" is the MoF series; NSO's is realised investment from state-budget capital; rates compare
+  only on one plan base. Do not import `tools/build/embed_data.py` in a test: it has no main guard and rewrites the page.
 - **Priority watch (user standing task; Research tracks it in `data/research/priority_watch.json`)** — give these
   series special care in every run:
   - *FDI registered vs disbursed* (NSO report + Foreign Investment Agency, MoF; both on the 3rd, cumulative YTD).
@@ -64,8 +67,8 @@ becomes a wrong headline.
   - *Tourism*: arrivals monthly with the NSO report; by-market detail (China, Korea, Russia…) via VNAT/press the same
     day — keep periods explicit (press mixes Q3 and 9M growth). Travel receipts (BoP, USD) ≠ VNAT total tourism revenue
     (VND, incl. domestic).
-- Known pitfalls: the 2025 budget column (3,312,600 spending; 3.3% deficit) is untraced and conflicts with MoF
-  Jan-2026 (2,401,500; ~3.6%) held by Policy and `FIS`; the 2026 CPI target is ~4.5% (NA), not 4.0.
+- Known pitfalls: the 2026 CPI target is ~4.5% (NA), not 4.0. The 2025 budget column now follows MoF Jan-2026
+  (2,650,100 revenue; 2,401,500 spending; ~3.6% deficit), the same as Policy.
 
 ## Rules
 1. **Only sourced figures.** Every new value needs a source URL and the period it refers to; record
