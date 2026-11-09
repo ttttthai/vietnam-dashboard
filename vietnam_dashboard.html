@@ -1734,6 +1734,20 @@ if (window.APP_LANG === 'en') window.I18N_START();
   #hdr-update-btn:hover:not(:disabled) { background: #1e293b !important; }
   .hdr-upd { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }   /* the Update button and the time of the last update sit together */
   .hdr-upd .hbadge { font-variant-numeric: tabular-nums; }
+  /* Dashboard tab: grid of key charts, one sentence under each */
+  #panel-dash { overflow-y: auto; }
+  #dash-root { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; max-width: 1400px; width: 100%; margin: 0 auto; }
+  .ds-card { margin: 0; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px 10px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; }
+  .ds-hd { display: flex; flex-direction: column; gap: 2px; }
+  .ds-tab { align-self: flex-start; background: none; border: 0; padding: 0; color: #c0392b; font: 700 10.5px/1.3 var(--font-ui); letter-spacing: .6px; text-transform: uppercase; cursor: pointer; }
+  .ds-tab:hover { text-decoration: underline; }
+  .ds-title { font: 600 14px/1.3 var(--font-ui); color: var(--text); }
+  .ds-chart svg { display: block; }
+  .ds-tick { font: 10px var(--font-ui); fill: #5b6170; }
+  .ds-val { font: 600 10px var(--font-ui); fill: #16181d; }
+  .ds-card rect:hover, .ds-card circle:hover { opacity: .75; }
+  .ds-note { margin: 2px 0 0; font: 13px/1.45 var(--font-ui); color: var(--text2); }
+  @media (max-width: 600px) { #dash-root { grid-template-columns: 1fr; } }
   /* Tabs: editorial section nav */
   #tabs-bottom { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 12px; gap: 4px; }
   @media (max-width: 900px) { #tabs-bottom { overflow-x: auto; scrollbar-width: thin; -webkit-overflow-scrolling: touch; } }   /* phone: all seven tabs reachable */
@@ -1797,8 +1811,9 @@ if (window.APP_LANG === 'en') window.I18N_START();
     <div id="panel-bottom">
       <div class="panel-inner">
         <div class="tab-row" id="tabs-bottom">
+          <button class="tab-btn active" data-tab="dash"   data-panel="bottom">Dashboard</button>
           <button class="tab-btn" data-tab="party"  data-panel="bottom">Chính trị</button>
-          <button class="tab-btn active" data-tab="social" data-panel="bottom">Xã hội</button>
+          <button class="tab-btn" data-tab="social" data-panel="bottom">Xã hội</button>
           <button class="tab-btn" data-tab="econ"   data-panel="bottom">Kinh tế</button>
           <button class="tab-btn" data-tab="banks"  data-panel="bottom">Hệ thống tài chính</button>
           <button class="tab-btn" data-tab="invest" data-panel="bottom">Thị trường chứng khoán</button>
@@ -1807,7 +1822,12 @@ if (window.APP_LANG === 'en') window.I18N_START();
         </div>
 
         <!-- Panel: Xã hội (Map + GDP composition + Demographics/Students) -->
-        <div id="panel-social" class="panel active">
+        <!-- Panel: Dashboard (key charts from every tab, one sentence each) -->
+        <div id="panel-dash" class="panel active">
+          <div id="dash-root"></div>
+        </div><!-- /panel-dash -->
+
+        <div id="panel-social" class="panel">
         <div id="soc-story" class="st-root"></div>
         <div id="soc-explore">
         <!-- Row 1: Map + GDP header -->
@@ -3585,14 +3605,14 @@ async function tryLiveFetch() {
 // ============================================================
 
 // Top tab row (Dân số / Học sinh) — always visible, independent active state
-let activeBottomTab = (/^#(party|social|econ|money|banks|invest|sim)-\d{1,2}$/.exec(location.hash || '') || [])[1] || 'social';   // #<tab>-<chapter> deep link (story sub-tabs)
+let activeBottomTab = (/^#(party|social|econ|money|banks|invest|sim)-\d{1,2}$/.exec(location.hash || '') || [])[1] || 'dash';   // #<tab>-<chapter> deep link (story sub-tabs)
 
 
 function switchBottomTab(tab) {
   activeBottomTab = tab;
   document.querySelectorAll('#tabs-bottom .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   { const tr = document.getElementById('tabs-bottom'), ab = tr && tr.querySelector('.tab-btn.active'); if (ab && tr.scrollWidth > tr.clientWidth) tr.scrollLeft = Math.max(0, ab.offsetLeft - (tr.clientWidth - ab.offsetWidth) / 2); }   // active tab in view on narrow screens
-  ['social','econ','money','cpi','banks','invest','party','sim','geo'].forEach(t => {
+  ['dash','social','econ','money','cpi','banks','invest','party','sim','geo'].forEach(t => {
     const p = document.getElementById(`panel-${t}`);
     if (!p) return;
     p.style.display = '';
@@ -3601,7 +3621,9 @@ function switchBottomTab(tab) {
 
   // Explore / appendix charts (.fs-ch) get the same automatic timeline as the story charts once they are drawn
   setTimeout(() => { try { stAutoAnim(document, '.fs-ch'); } catch (e) { console.warn('auto anim', e); } }, 1200);
-  if (tab === 'social') {
+  if (tab === 'dash') {
+    try { renderDash(); } catch (e) { console.warn('dashboard', e); }   // no measuring needed (viewBox SVGs), so draw at once
+  } else if (tab === 'social') {
     requestAnimationFrame(() => { try { renderSocStory(); } catch (e) { console.warn('soc story', e); } });
     requestAnimationFrame(() => requestAnimationFrame(() => {
       if (typeof drawMap === 'function') drawMap();
@@ -5515,6 +5537,159 @@ function stLine(pts, c, o = {}) { let d = '', pen = false; pts.forEach(p => { if
 const stLegend = items => `<div class="st-legend">${items.map(i => `<span><i class="k-${i.k || 'rect'}" style="--c:${i.c}"></i>${i.n}</span>`).join('')}</div>`;
 // explainer note under a chart: line 1 = the finding with its anchor, line 2 = one caveat / contrast / consequence
 const stNote = (lead, follow) => `<p class="st-note">${lead}${follow ? `<span>${follow}</span>` : ''}</p>`;
+
+// ============================================================
+// DASHBOARD TAB — key charts picked from every other tab, one sentence under each.
+// Reads the same embedded data the tabs use (POP_SERIES, ECON_OFFICIAL, ECONFLOW, CPI_*, FINSYS, POLICY, IND_ICB),
+// so the charts and sentences follow the weekly agents' updates with no extra work.
+// ============================================================
+const DS_W = 360, DS_H = 200, DS_M = { l: 40, r: 12, t: 12, b: 26 };
+const dsEsc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const dsTip = (k, v) => `<title>${dsEsc(k)}: ${dsEsc(v)}</title>`;
+// x labels: first, last, and evenly spaced ones in between that fit
+function dsXLab(labels, sx) { const n = labels.length, step = Math.max(1, Math.ceil(n / 6)); return labels.map((l, i) => (i % step === 0 || i === n - 1) && !(i !== n - 1 && n - 1 - i < step * 0.6) ? `<text class="ds-tick" x="${sx(i)}" y="${DS_H - 8}" text-anchor="middle">${dsEsc(l)}</text>` : '').join(''); }
+function dsFrame(lo, hi, fmt) { const t = stNice(lo, hi, 4); if (t.length > 1) { const st = t[1] - t[0]; while (t[t.length - 1] < hi - 1e-9) t.push(+(t[t.length - 1] + st).toFixed(10)); } const y0 = t[0], y1 = t[t.length - 1], sy = stLin(y0, y1, DS_H - DS_M.b, DS_M.t); return { sy, axis: stAxisY(sy, t, DS_M.l, DS_W - DS_M.r, fmt), y0, y1 }; }
+// series: [{n, c, v:[...], dash, fmt}] on shared labels
+function dsLines(labels, series, o = {}) {
+  const all = series.flatMap(s => s.v).concat(o.ref != null ? [o.ref] : []).filter(v => v != null && isFinite(v));
+  const lo = o.zero ? Math.min(0, ...all) : Math.min(...all), hi = Math.max(...all), pad = (hi - lo) * 0.08 || 1;
+  const fmt = o.fmt || (v => stN(v, 0)), F = dsFrame(o.zero ? lo : lo - pad, hi + pad, fmt);
+  const n = labels.length, sx = i => DS_M.l + 6 + (n < 2 ? 0 : i * (DS_W - DS_M.l - DS_M.r - 12) / (n - 1));
+  let g = F.axis;
+  if (o.ref != null) g += `<line x1="${DS_M.l}" x2="${DS_W - DS_M.r}" y1="${F.sy(o.ref)}" y2="${F.sy(o.ref)}" stroke="${ST.ink3}" stroke-dasharray="4 3"/><text class="ds-tick" x="${DS_W - DS_M.r}" y="${F.sy(o.ref) - 4}" text-anchor="end">${dsEsc(o.refLabel || '')}</text>`;
+  series.forEach(s => {
+    const pts = s.v.map((v, i) => [sx(i), v == null ? null : F.sy(v)]);
+    g += `<path d="${pts.reduce((d, p, i) => p[1] == null ? d : d + (d && pts[i - 1] && pts[i - 1][1] != null ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1), '')}" fill="none" stroke="${s.c}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"${s.dash ? ' stroke-dasharray="5 4"' : ''}/>`;
+    pts.forEach((p, i) => { if (p[1] != null) g += `<circle cx="${p[0]}" cy="${p[1]}" r="${i === pts.length - 1 || s.v[i + 1] == null ? 3.5 : 2}" fill="${s.c}">${dsTip(labels[i] + (series.length > 1 ? ' · ' + s.n : ''), fmt(s.v[i]))}</circle>`; });
+  });
+  return stSvg(DS_W, DS_H, g + dsXLab(labels, sx), o.label);
+}
+// vertical bars; hi = indexes drawn in the accent colour; several series are grouped
+function dsBars(labels, series, o = {}) {
+  const all = series.flatMap(s => s.v).filter(v => v != null && isFinite(v));
+  const fmt = o.fmt || (v => stN(v, 1)), F = dsFrame(Math.min(0, ...all), Math.max(0, ...all) * 1.08, fmt);
+  const n = labels.length, slot = (DS_W - DS_M.l - DS_M.r) / n, k = series.length, bw = Math.max(2, Math.min(18, (slot - 3) / k));
+  const sx = i => DS_M.l + slot * (i + 0.5);
+  let g = F.axis;
+  series.forEach((s, j) => s.v.forEach((v, i) => { if (v == null) return; const x = sx(i) - (k * bw) / 2 + j * bw, y = F.sy(Math.max(0, v)), h = Math.abs(F.sy(v) - F.sy(0));
+    g += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(bw - (k > 1 ? 1 : 0)).toFixed(1)}" height="${Math.max(1, h).toFixed(1)}" rx="2" fill="${(o.hi || []).includes(i) ? (s.hc || ST.orange) : s.c}">${dsTip(labels[i] + (k > 1 ? ' · ' + s.n : ''), fmt(v))}</rect>`; }));
+  return stSvg(DS_W, DS_H, g + dsXLab(labels, sx), o.label);
+}
+// horizontal bars, one row per item
+function dsHBars(items, o = {}) {
+  const fmt = o.fmt || (v => stN(v, 1)), H = Math.max(DS_H, items.length * 22 + 16), L = 150, R = 42, cut = s => s.length > 24 ? s.slice(0, 23).trim() + '…' : s, mx = Math.max(...items.map(i => i.v)) || 1;
+  const g = items.map((it, i) => { const y = 8 + i * 22, w = (DS_W - L - R) * it.v / mx;
+    return `<text class="ds-tick" x="${L - 6}" y="${y + 12}" text-anchor="end">${dsEsc(cut(it.n))}<title>${dsEsc(it.n)}</title></text><rect x="${L}" y="${y + 2}" width="${Math.max(1, w).toFixed(1)}" height="14" rx="2" fill="${it.c || ST.blue}">${dsTip(it.n, fmt(it.v))}</rect><text class="ds-val" x="${L + w + 4}" y="${y + 13}">${fmt(it.v)}</text>`; }).join('');
+  return stSvg(DS_W, H, g, o.label);
+}
+const dsPct = (v, d = 1) => stN(v, d) + '%';
+const dsLast = a => { for (let i = a.length - 1; i >= 0; i--) if (a[i] != null) return i; return -1; };
+// month labels back from 'T10/26'
+function dsMonths(last, n) { const m = /T(\d+)\/(\d+)/.exec(last || ''); if (!m) return Array.from({ length: n }, (_, i) => String(i + 1)); let mo = +m[1], yr = +m[2]; const out = []; for (let i = 0; i < n; i++) { out.unshift(APP_LANG === 'en' ? `${mo}/${String(yr).padStart(2, '0')}` : `T${mo}/${String(yr).padStart(2, '0')}`); if (--mo < 1) { mo = 12; yr--; } } return out; }
+
+function dsCards() {
+  const C = [], O = (typeof ECON_OFFICIAL !== 'undefined' && ECON_OFFICIAL) || {}, yr0 = O.y0 || 2010;
+  const yrs = n => Array.from({ length: n }, (_, i) => String(yr0 + i));
+  const add = (tab, tabName, title, fn) => { try { const r = fn(); if (r) C.push({ tab, tabName, title, svg: r[0], note: r[1], legend: r[2] || '' }); } catch (e) { console.warn('dashboard card', title, e); } };
+  const T = { social: stT('Xã hội', 'Society'), econ: stT('Kinh tế', 'Economy'), banks: stT('Hệ thống tài chính', 'Financial system'), invest: stT('Thị trường chứng khoán', 'Stock market') };
+
+  // ── Society
+  add('social', T.social, stT('Dân số (triệu người) và dự báo', 'Population (million) and projection'), () => {
+    const A = POP_SERIES.actual, M = ((POP_SERIES.gso || {}).medium) || {}, ya = Object.keys(A).map(Number).filter(y => y % 5 === 0 || y === Math.max(...Object.keys(A).map(Number))), yp = Object.keys(M).map(Number);
+    const L = [...new Set([...ya, ...yp])].sort((a, b) => a - b), la = Math.max(...Object.keys(A).map(Number));
+    const act = L.map(y => A[y] ?? null), pro = L.map(y => y >= la ? (y === la ? A[y] : M[y] ?? null) : null), p50 = M[2050];
+    return [dsLines(L.map(String), [{ n: stT('Thực tế', 'Actual'), c: ST.blue, v: act }, { n: stT('Dự báo NSO (trung bình)', 'NSO projection (medium)'), c: ST.blue, v: pro, dash: true }], { fmt: v => stN(v, 1), label: 'population' }),
+      stT(`Dân số đạt ${stN(A[la], 1)} triệu người năm ${la} và theo dự báo trung bình của Cục Thống kê sẽ lên ${stN(p50, 1)} triệu năm 2050.`, `Population reached ${stN(A[la], 1)} million in ${la} and the statistics office's medium projection puts it at ${stN(p50, 1)} million in 2050.`),
+      stLegend([{ n: stT('Thực tế', 'Actual'), c: ST.blue, k: 'line' }, { n: stT('Dự báo', 'Projection'), c: ST.blue, k: 'dash' }])];
+  });
+  add('social', T.social, stT('GDP bình quân đầu người (USD)', 'GDP per person (USD)'), () => {
+    const v = O.gdppc_usd, i = dsLast(v), L = yrs(v.length);
+    return [dsBars(L, [{ n: 'USD', c: ST.aqua, v }], { hi: [i], hc: ST.green, fmt: x => stN(x, 0), label: 'gdp per capita' }),
+      stT(`GDP bình quân đầu người tăng từ ${stN(v[0], 0)} USD năm ${L[0]} lên ${stN(v[i], 0)} USD năm ${L[i]}, gấp ${stN(v[i] / v[0], 1)} lần.`, `GDP per person rose from ${stN(v[0], 0)} USD in ${L[0]} to ${stN(v[i], 0)} USD in ${L[i]}, ${stN(v[i] / v[0], 1)} times as much.`)];
+  });
+
+  // ── Economy
+  add('econ', T.econ, stT('Tăng trưởng GDP (%)', 'GDP growth (%)'), () => {
+    const v = O.gdp_growth.slice(), L = yrs(v.length), y = O.ytd_2026 || {}, g9 = y.gdp_growth_9M;
+    if (g9 != null) { v.push(g9); L.push(stT('9T/26', '9M/26')); }
+    const prevMax = Math.max(...O.gdp_growth.filter(x => x != null)), n = v.length - 1;
+    return [dsBars(L, [{ n: '%', c: ST.blue, v }], { hi: [n], fmt: x => dsPct(x, 2), label: 'gdp growth' }),
+      g9 != null && g9 > prevMax ? stT(`GDP 9 tháng 2026 tăng ${dsPct(g9, 2)}, nhanh hơn mọi năm kể từ ${L[0]}.`, `GDP grew ${dsPct(g9, 2)} in the first nine months of 2026, faster than in any full year since ${L[0]}.`)
+        : stT(`Tăng trưởng GDP gần nhất là ${dsPct(v[n], 2)} (${L[n]}).`, `The latest GDP growth figure is ${dsPct(v[n], 2)} (${L[n]}).`)];
+  });
+  add('econ', T.econ, stT('Lạm phát CPI so cùng kỳ, 24 tháng (%)', 'CPI inflation, year on year, 24 months (%)'), () => {
+    const v = CPI_YOY_24, L = dsMonths(CPI_LATEST.month, v.length), last = v[v.length - 1], first = v[0];
+    return [dsLines(L, [{ n: 'CPI', c: ST.red, v }], { fmt: x => dsPct(x, 2), ref: CPI_LATEST.core_yoy, refLabel: stT('lạm phát cơ bản ', 'core ') + dsPct(CPI_LATEST.core_yoy, 2), label: 'cpi' }),
+      stT(`CPI tháng ${CPI_LATEST.month} tăng ${dsPct(last, 2)} so cùng kỳ, từ ${dsPct(first, 2)} hai năm trước, cao hơn lạm phát cơ bản ${dsPct(CPI_LATEST.core_yoy, 2)} chủ yếu do giá nhiên liệu.`, `CPI rose ${dsPct(last, 2)} year on year in ${(m => m ? new Date(2000 + +m[2], +m[1] - 1, 1).toLocaleString('en-GB', { month: 'long', year: 'numeric' }) : CPI_LATEST.month)(/T(\d+)\/(\d+)/.exec(CPI_LATEST.month || ''))}, up from ${dsPct(first, 2)} two years earlier and above core inflation of ${dsPct(CPI_LATEST.core_yoy, 2)}, mainly because of fuel prices.`)];
+  });
+  add('econ', T.econ, stT('Xuất khẩu và nhập khẩu (tỷ USD)', 'Exports and imports (bn USD)'), () => {
+    const x = O.export_busd, m = O.import_busd, i = dsLast(x), L = yrs(x.length), bal = x[i] - m[i];
+    return [dsLines(L, [{ n: stT('Xuất khẩu', 'Exports'), c: ST.aqua, v: x }, { n: stT('Nhập khẩu', 'Imports'), c: ST.orange, v: m }], { fmt: v => stN(v, 0), label: 'trade' }),
+      stT(`Xuất khẩu năm ${L[i]} đạt ${stN(x[i], 0)} tỷ USD, gấp ${stN(x[i] / x[0], 1)} lần năm ${L[0]}; thặng dư thương mại ${stN(bal, 1)} tỷ USD.`, `Exports reached ${stN(x[i], 0)} bn USD in ${L[i]}, ${stN(x[i] / x[0], 1)} times the ${L[0]} level, with a trade surplus of ${stN(bal, 1)} bn USD.`),
+      stLegend([{ n: stT('Xuất khẩu', 'Exports'), c: ST.aqua, k: 'line' }, { n: stT('Nhập khẩu', 'Imports'), c: ST.orange, k: 'line' }])];
+  });
+  add('econ', T.econ, stT('Vốn FDI đăng ký và giải ngân (tỷ USD)', 'FDI registered and disbursed (bn USD)'), () => {
+    const r = O.fdi_reg_musd.map(v => v == null ? null : v / 1000), d = O.fdi_dis_musd.map(v => v == null ? null : v / 1000), i = dsLast(d), L = yrs(d.length), rec = d[i] >= Math.max(...d.filter(v => v != null));
+    return [dsBars(L, [{ n: stT('Đăng ký', 'Registered'), c: '#9cc3ee', v: r }, { n: stT('Giải ngân', 'Disbursed'), c: ST.blue, v: d }], { fmt: v => stN(v, 1), label: 'fdi' }),
+      stT(`FDI giải ngân năm ${L[i]} đạt ${stN(d[i], 1)} tỷ USD${rec ? `, cao nhất từ ${L[0]}` : ''}, bằng ${stN(d[i] / r[i] * 100, 0)}% vốn đăng ký.`, `Disbursed FDI reached ${stN(d[i], 1)} bn USD in ${L[i]}${rec ? `, the highest since ${L[0]}` : ''}, ${stN(d[i] / r[i] * 100, 0)}% of registered capital.`),
+      stLegend([{ n: stT('Đăng ký', 'Registered'), c: '#9cc3ee' }, { n: stT('Giải ngân', 'Disbursed'), c: ST.blue }])];
+  });
+  add('econ', T.econ, stT('Bội chi ngân sách (% GDP)', 'Budget deficit (% of GDP)'), () => {
+    const B = ECONFLOW.budget, v = B.deficit_pct_gdp, L = B.years.map((y, i) => y + (B.basis[i] === 'plan' ? stT(' (DT)', ' (plan)') : B.basis[i] === 'estimate' ? stT(' (ƯT)', ' (est.)') : '')), n = v.length - 1;
+    const hiIdx = v.map((x, i) => B.basis[i] !== 'final' ? i : -1).filter(i => i >= 0), mxPrev = Math.max(...v.slice(0, n));
+    return [dsBars(B.years.map(String), [{ n: '% GDP', c: ST.violet, v }], { hi: hiIdx, hc: '#a99be0', fmt: x => dsPct(x, 2), label: 'deficit' }),
+      stT(`Dự toán ${B.years[n]} đặt bội chi ${dsPct(v[n], 1)} GDP${v[n] > mxPrev ? `, cao nhất từ ${B.years[0]}` : ''}; cột nhạt là ước tính và dự toán.`, `The ${B.years[n]} budget plan sets the deficit at ${dsPct(v[n], 1)} of GDP${v[n] > mxPrev ? `, the highest since ${B.years[0]}` : ''}; pale bars are estimates and plans.`)];
+  });
+  add('econ', T.econ, stT('Tỷ giá USD/VND bình quân năm', 'USD/VND, annual average'), () => {
+    const v = O.usd_vnd, i = dsLast(v), L = yrs(v.length), dep = (1 - v[0] / v[i]) * 100;
+    return [dsLines(L, [{ n: 'USD/VND', c: ST.yellow, v }], { fmt: x => stN(x, 0), label: 'usd vnd' }),
+      stT(`Tỷ giá bình quân tăng từ ${stN(v[0], 0)} năm ${L[0]} lên ${stN(v[i], 0)} năm ${L[i]}, tức đồng Việt Nam mất ${stN(dep, 0)}% giá trị so với USD.`, `The average rate rose from ${stN(v[0], 0)} in ${L[0]} to ${stN(v[i], 0)} in ${L[i]}, meaning the dong lost ${stN(dep, 0)}% of its value against the dollar.`)];
+  });
+
+  // ── Financial system (Finance + Policy)
+  add('banks', T.banks, stT('Tăng trưởng tín dụng và M2 (%)', 'Credit and M2 growth (%)'), () => {
+    const A = FINSYS.annual, c = A.credit_growth, m = A.m2_growth, i = dsLast(c), L = A.years.map(String);
+    return [dsLines(L, [{ n: stT('Tín dụng', 'Credit'), c: ST.blue, v: c }, { n: 'M2', c: ST.aqua, v: m }], { fmt: x => dsPct(x, 1), label: 'credit m2' }),
+      stT(`Tín dụng tăng ${dsPct(c[i])} năm ${L[i]}, nhanh hơn cung tiền M2 (${dsPct(m[i])}), nên ngân hàng phải cho vay nhiều hơn số vốn huy động thêm.`, `Credit grew ${dsPct(c[i])} in ${L[i]}, faster than M2 money supply (${dsPct(m[i])}), so banks lent out more than the new funds they raised.`),
+      stLegend([{ n: stT('Tín dụng', 'Credit'), c: ST.blue, k: 'line' }, { n: 'M2', c: ST.aqua, k: 'line' }])];
+  });
+  add('banks', T.banks, stT('Tỷ lệ nợ xấu ngân hàng (IMF FSI, %)', 'Bank NPL ratio (IMF FSI, %)'), () => {
+    const R = FINSYS.ratios.npl_imf_fsi_pct.filter(r => r.v != null), v = R.map(r => r.v), L = R.map(r => r.d), n = v.length - 1, mx = Math.max(...v), mi = v.indexOf(mx);
+    return [dsLines(L, [{ n: 'NPL', c: ST.red, v }], { fmt: x => dsPct(x, 2), zero: true, label: 'npl' }),
+      mi < n ? stT(`Nợ xấu giảm còn ${dsPct(v[n], 2)} năm ${L[n]}, từ đỉnh ${dsPct(mx, 2)} năm ${L[mi]}.`, `Bad loans fell to ${dsPct(v[n], 2)} in ${L[n]}, from a peak of ${dsPct(mx, 2)} in ${L[mi]}.`)
+        : stT(`Nợ xấu ở mức ${dsPct(v[n], 2)} năm ${L[n]}, cao nhất trong chuỗi.`, `Bad loans stood at ${dsPct(v[n], 2)} in ${L[n]}, the highest in the series.`)];
+  });
+  add('banks', T.banks, stT('Các bước chính sách năm 2026 theo hướng', 'Policy moves in 2026 by direction'), () => {
+    const P = POLICY, y = '2026', cnt = k => { const o = { easing: 0, tightening: 0, neutral: 0 }; (P[k].instruments || []).forEach(i => (i.history || []).forEach(h => { if ((h.date || '').startsWith(y) && o[h.direction] != null) o[h.direction]++; })); return o; };
+    const mo = cnt('mon'), fi = cnt('fis'), dir = [['easing', stT('Nới lỏng', 'Easing')], ['neutral', stT('Trung tính', 'Neutral')], ['tightening', stT('Thắt chặt', 'Tightening')]];
+    const rr = ((P.mon.instruments || []).find(i => i.id === 'refinancing_rate') || {}).current_value;
+    return [dsBars(dir.map(d => d[1]), [{ n: stT('Tiền tệ', 'Monetary'), c: ST.blue, v: dir.map(d => mo[d[0]]) }, { n: stT('Tài khóa', 'Fiscal'), c: ST.orange, v: dir.map(d => fi[d[0]]) }], { fmt: x => stN(x, 0), label: 'policy moves' }),
+      stT(`Năm ${y} có ${mo.easing + fi.easing} bước nới lỏng và chỉ ${mo.tightening + fi.tightening} bước thắt chặt${rr != null ? `, dù lãi suất tái cấp vốn vẫn giữ ${dsPct(rr)}` : ''}.`, `${y} has seen ${mo.easing + fi.easing} easing moves and only ${mo.tightening + fi.tightening} tightening ones${rr != null ? `, though the refinancing rate is still held at ${dsPct(rr)}` : ''}.`),
+      stLegend([{ n: stT('Tiền tệ', 'Monetary'), c: ST.blue }, { n: stT('Tài khóa', 'Fiscal'), c: ST.orange }])];
+  });
+
+  // ── Stock market
+  add('invest', T.invest, stT('VN-Index theo tuần, 6 tháng', 'VN-Index, weekly, 6 months'), () => {
+    const M = FINSYS.market_6m, v = M.vnindex, W = M.weeks, n = v.length - 1, ch = (v[n] / v[0] - 1) * 100;
+    const L = W.map(d => { const [yy, mm, dd] = d.split('-'); return `${+dd}/${+mm}`; });
+    return [dsLines(L, [{ n: 'VN-Index', c: ST.blue, v }], { fmt: x => stN(x, 0), label: 'vnindex' }),
+      stT(`VN-Index đóng tuần ${L[n]} ở ${stN(v[n], 0)} điểm, ${ch >= 0 ? 'tăng' : 'giảm'} ${stN(Math.abs(ch), 1)}% so với sáu tháng trước.`, `The VN-Index closed the week of ${L[n]} at ${stN(v[n], 0)}, ${ch >= 0 ? 'up' : 'down'} ${stN(Math.abs(ch), 1)}% from six months earlier.`)];
+  });
+  add('invest', T.invest, stT('Tỷ trọng vốn hóa theo ngành (%)', 'Share of market value by industry (%)'), () => {
+    const I = IND_ICB.industries.filter(i => i.mcap_share_pct != null).sort((a, b) => b.mcap_share_pct - a.mcap_share_pct).slice(0, 8);
+    const items = I.map((i, k) => ({ n: stT(i.name_vi, i.name_en), v: i.mcap_share_pct, c: k === 0 ? ST.orange : ST.blue }));
+    return [dsHBars(items, { fmt: x => dsPct(x, 1), label: 'market cap by industry' }),
+      stT(`${I[0].name_vi} chiếm ${dsPct(I[0].mcap_share_pct)} vốn hóa toàn thị trường, lớn nhất trong các ngành.`, `${I[0].name_en} makes up ${dsPct(I[0].mcap_share_pct)} of total market value, the largest of any industry.`)];
+  });
+  return C;
+}
+
+function renderDash() {
+  const root = document.getElementById('dash-root'); if (!root) return;
+  const cards = dsCards();
+  root.innerHTML = cards.map(c => `<figure class="ds-card"><figcaption class="ds-hd"><button type="button" class="ds-tab" data-go="${c.tab}">${dsEsc(c.tabName)} →</button><span class="ds-title">${dsEsc(c.title)}</span></figcaption>${c.legend}<div class="ds-chart">${c.svg}</div><p class="ds-note">${c.note}</p></figure>`).join('');
+  root.querySelectorAll('.ds-tab').forEach(b => b.addEventListener('click', () => { switchBottomTab(b.dataset.go); const s = document.getElementById('panel-' + b.dataset.go); if (s) s.scrollTop = 0; }));
+}
 // tooltip: value leads, label follows; built with textContent (labels are data)
 function stTipKV(e, label, value, rows) {
   let tip = document.getElementById('dot-tip'); if (!tip) { tip = document.createElement('div'); tip.id = 'dot-tip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip); }
