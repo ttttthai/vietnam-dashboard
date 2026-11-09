@@ -17,7 +17,7 @@ Serves (main ones):
   /api/auto             -> World Bank / IMF / FRED snapshots in data/auto/ (POST /api/auto/refresh to re-pull)
 
 Scheduler (APScheduler, Asia/Ho_Chi_Minh):
-  - daily 06:00 — market snapshot + Fed funds (FRED) refresh (also once on startup)
+  - daily 06:00 — market snapshot refresh (also once on startup)
   - monthly, 15th 01:00 — public macro APIs → data/auto/*.json (also on startup if a snapshot is missing/old)
 
 Run:
@@ -2054,9 +2054,8 @@ def api_refresh():
 VN_TZ = "Asia/Ho_Chi_Minh"
 scheduler = BackgroundScheduler(timezone=VN_TZ)
 def daily_refresh() -> None:
-    """06:00 ICT: market snapshot, then the Fed funds target range (FRED) so a decision released at 01:00–02:00 ICT shows the same morning."""
+    """06:00 ICT: market snapshot (indices, FX, bank prices). The Fed rate is not part of it (weekly Finance agent + monthly FRED pull)."""
     refresh_snapshot("auto")
-    run_auto_sources("auto", ["fed_funds"])
 
 
 scheduler.add_job(daily_refresh,

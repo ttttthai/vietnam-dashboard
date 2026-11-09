@@ -5705,7 +5705,7 @@ function dsCards() {
   return C;
 }
 
-// ── Fed funds rate: last 3 decisions + next 3 meetings (FINSYS.fed, Finance agent), live target range from FRED (server pulls it daily at 06:00 ICT)
+// ── Fed funds rate: last 3 decisions + next 3 meetings (FINSYS.fed, Finance agent at the weekly run); FRED target range from the server's monthly pull
 let DS_LIVE = { snap: null, fed: null, t: 0 };
 function dsLiveLoad(done) {
   if (Date.now() - DS_LIVE.t < 5 * 60e3) return;   // at most every 5 minutes
@@ -5766,7 +5766,7 @@ function renderFed() {
 function renderDash() {
   const root = document.getElementById('dash-root'); if (!root) return;
   const cards = dsCards(), up = DS_LIVE.snap && DS_LIVE.snap.updated_at;
-  root.innerHTML = `<p class="ds-upd">${stT('Số liệu thị trường và lãi suất Fed tự cập nhật lúc 06:00 hằng ngày', 'Market data and the Fed rate update automatically at 06:00 every day')}${up ? stT(' · lần gần nhất ', ' · last ') + fedDt(up, 1) : ''}.</p>` + cards.map(c => `<figure class="ds-card"><figcaption class="ds-hd"><button type="button" class="ds-tab" data-go="${c.tab}">${dsEsc(c.tabName)} →</button><span class="ds-title">${dsEsc(c.title)}</span></figcaption>${c.legend}<div class="ds-chart">${c.svg}</div><p class="ds-note">${c.note}</p></figure>`).join('');
+  root.innerHTML = `<p class="ds-upd">${stT('Số liệu thị trường tự cập nhật lúc 06:00 hằng ngày', 'Market data updates automatically at 06:00 every day')}${up ? stT(' · lần gần nhất ', ' · last ') + fedDt(up, 1) : ''}.</p>` + cards.map(c => `<figure class="ds-card"><figcaption class="ds-hd"><button type="button" class="ds-tab" data-go="${c.tab}">${dsEsc(c.tabName)} →</button><span class="ds-title">${dsEsc(c.title)}</span></figcaption>${c.legend}<div class="ds-chart">${c.svg}</div><p class="ds-note">${c.note}</p></figure>`).join('');
   root.querySelectorAll('.ds-tab').forEach(b => b.addEventListener('click', () => { switchBottomTab(b.dataset.go); const s = document.getElementById('panel-' + b.dataset.go); if (s) s.scrollTop = 0; }));
   dsLiveLoad(() => { if (activeBottomTab === 'dash') renderDash(); });
 }
