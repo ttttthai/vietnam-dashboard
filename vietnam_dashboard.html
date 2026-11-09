@@ -5627,6 +5627,18 @@ function dsCards() {
   const add = (tab, tabName, title, fn) => { try { const r = fn(); if (r) C.push({ tab, tabName, title, svg: r[0], note: r[1], legend: r[2] || '' }); } catch (e) { console.warn('dashboard card', title, e); } };
   const T = { social: stT('Xã hội', 'Society'), econ: stT('Kinh tế', 'Economy'), banks: stT('Hệ thống tài chính', 'Financial system'), invest: stT('Thị trường chứng khoán', 'Stock market') };
 
+  // ── Politics (strategy_directives.json via /api/strategy, Strategy agent)
+  const SD = DS_LIVE.strat && DS_LIVE.strat.directives;
+  if (SD && SD.length) add('party', stT('Chính trị', 'Politics'), stT('Văn bản chiến lược theo năm ban hành', 'Strategic documents by year issued'), () => {
+    const done = SD.filter(d => d.stage !== 'draft' && /^\d{4}/.test(d.date || '')), drafts = SD.filter(d => d.stage === 'draft').length;
+    const y1 = new Date().getFullYear(), y0 = y1 - 9, L = [], v = [];
+    for (let y = y0; y <= y1; y++) { L.push(String(y)); v.push(done.filter(d => +d.date.slice(0, 4) === y).length); }
+    const before = done.filter(d => +d.date.slice(0, 4) < y0).length, r2 = v[v.length - 1] + v[v.length - 2];
+    return [dsBars(L, [{ n: stT('Văn bản', 'Documents'), c: ST.red, v }], { hi: [v.length - 1, v.length - 2], hc: ST.orange, fmt: x => stN(x, 0), label: 'directives by year' }),
+      stT(`${r2}/${SD.length} văn bản đang theo dõi được ban hành trong ${y1 - 1}–${y1}; thêm ${drafts} dự thảo đang soạn${before ? `, ${before} văn bản trước ${y0} không hiện trên biểu đồ` : ''}.`,
+        `${r2} of the ${SD.length} documents tracked were issued in ${y1 - 1}–${y1}; ${drafts} more are drafts in preparation${before ? `, and ${before} issued before ${y0} are not shown` : ''}.`)];
+  });
+
   // ── Society
   add('social', T.social, stT('Dân số (triệu người) và dự báo', 'Population (million) and projection'), () => {
     const A = POP_SERIES.actual, M = ((POP_SERIES.gso || {}).medium) || {}, ya = Object.keys(A).map(Number).filter(y => y % 5 === 0 || y === Math.max(...Object.keys(A).map(Number))), yp = Object.keys(M).map(Number);
@@ -5828,17 +5840,49 @@ function dsCards() {
     return [dsHBars(items, { fmt: x => dsPct(x, 1), label: 'market cap by industry' }),
       stT(`${I[0].name_vi} chiếm ${dsPct(I[0].mcap_share_pct)} vốn hóa toàn thị trường, lớn nhất trong các ngành.`, `${I[0].name_en} makes up ${dsPct(I[0].mcap_share_pct)} of total market value, the largest of any industry.`)];
   });
+
+  // ── Simulation (SIM, Finance agent): model path of the 12-month deposit rate with its 80% band
+  if (typeof SIM !== 'undefined' && SIM.projection2 && SIM.panel) add('sim', stT('Mô phỏng', 'Simulation'), stT('Lãi suất tiết kiệm 12 tháng Vietcombank: thực tế và mô hình (%)', 'Vietcombank 12-month deposit rate: actual and model (%)'), () => {
+    const P = SIM.projection2, M = SIM.panel.months, hv = SIM.panel.series.dep12_vcb.values, k0 = M.length - 12;
+    const ml = m => { const [y, mo] = m.split('-'); return APP_LANG === 'en' ? `${+mo}/${y.slice(2)}` : `T${+mo}/${y.slice(2)}`; };
+    const L = M.slice(k0).concat(P.months).map(ml), nh = M.length - k0, act = hv.slice(k0).concat(P.months.map(() => null));
+    const base = M.slice(k0).map((_, i) => i === nh - 1 ? P.start.value : null).concat(P.base), lo = Array(nh).fill(null).concat(P.low), hi = Array(nh).fill(null).concat(P.high);
+    const all = act.concat(lo, hi).filter(x => x != null), F = dsFrame(Math.min(...all) - 0.2, Math.max(...all) + 0.2, x => stN(x, 1) + '%');
+    const n = L.length, sx = i => DS_M.l + 6 + i * (DS_W - DS_M.l - DS_M.r - 12) / (n - 1);
+    const band = P.months.map((_, j) => [sx(nh + j), F.sy(P.high[j])]).concat(P.months.map((_, j) => [sx(nh + j), F.sy(P.low[j])]).reverse());
+    const ln = (v, c, d) => { let s = ''; v.forEach((x, i) => { if (x != null) s += (s && v[i - 1] != null ? 'L' : 'M') + sx(i).toFixed(1) + ',' + F.sy(x).toFixed(1); }); return `<path d="${s}" fill="none" stroke="${c}" stroke-width="2.2"${d ? ' stroke-dasharray="5 4"' : ''}/>`; };
+    let g = F.axis + `<path d="M${band.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L')}Z" fill="${ST.orange}" opacity=".15"/>` + ln(act, ST.blue) + ln(base, ST.orange, 1);
+    act.forEach((x, i) => { if (x != null) g += `<circle cx="${sx(i)}" cy="${F.sy(x)}" r="2" fill="${ST.blue}">${dsTip(L[i], stN(x, 2) + '%')}</circle>`; });
+    P.base.forEach((x, j) => { g += `<circle cx="${sx(nh + j)}" cy="${F.sy(x)}" r="${j === P.base.length - 1 ? 3.5 : 2}" fill="${ST.orange}">${dsTip(L[nh + j] + ' · ' + stT('mô hình', 'model'), stN(x, 2) + '% (' + stN(P.low[j], 2) + '–' + stN(P.high[j], 2) + ')')}</circle>`; });
+    const e = P.base.length - 1;
+    return [stSvg(DS_W, DS_H, g + dsXLab(L, sx), 'deposit rate model'),
+      stT(`Mô hình của dashboard cho thấy lãi suất 12 tháng của Vietcombank có thể lên khoảng ${stN(P.base[e], 1)}% vào ${ml(P.months[e])} (khoảng 80%: ${stN(P.low[e], 1)}–${stN(P.high[e], 1)}%), từ ${stN(P.start.value, 1)}% hiện nay; đây là mô hình minh họa, không phải dự báo chính thức.`,
+        `The dashboard's model puts Vietcombank's 12-month rate near ${stN(P.base[e], 1)}% by ${new Date(P.months[e] + '-01T00:00').toLocaleString('en-GB', { month: 'long', year: 'numeric' })} (80% range ${stN(P.low[e], 1)}–${stN(P.high[e], 1)}%), up from ${stN(P.start.value, 1)}% now; an illustrative model, not an official forecast.`),
+      stLegend([{ n: stT('Thực tế', 'Actual'), c: ST.blue, k: 'line' }, { n: stT('Mô hình (khoảng 80%)', 'Model (80% band)'), c: ST.orange, k: 'dash' }])];
+  });
+
+  // ── Geopolitics (GEOPOL.board.reserves, Geopolitics agent): rare-earth reserves by country, Vietnam highlighted
+  const RV = typeof GEOPOL !== 'undefined' && GEOPOL.board && GEOPOL.board.reserves;
+  if (RV) add('geo', stT('Địa chính trị', 'Geopolitics'), stT('Trữ lượng đất hiếm theo quốc gia (triệu tấn)', 'Rare-earth reserves by country (million tonnes)'), () => {
+    const rows = RV.deposits.filter(d => d.mineral === 'rare_earths' && d.value != null).sort((a, b) => b.value - a.value), vi = rows.findIndex(d => d.iso3 === 'VNM');
+    if (!rows.length) return null;
+    const show = rows.slice(0, 8);
+    return [dsHBars(show.map(d => ({ n: stT(d.country_vi, d.country_en), v: d.value, c: d.iso3 === 'VNM' ? ST.red : d.iso3 === 'CHN' ? ST.ink3 : ST.blue })), { fmt: x => stN(x, 1), label: 'rare earth reserves' }),
+      vi >= 0 ? stT(`Việt Nam đứng thứ ${vi + 1} thế giới về trữ lượng đất hiếm (${stN(rows[vi].value, 1)} triệu tấn, ${stN(rows[vi].share_world_pct, 1)}%), một con bài trong cạnh tranh Mỹ – Trung khi Trung Quốc nắm ${stN(rows[0].share_world_pct, 0)}%.`,
+        `Vietnam ranks ${vi + 1}${['st', 'nd', 'rd'][vi] || 'th'} in the world for rare-earth reserves (${stN(rows[vi].value, 1)} Mt, ${stN(rows[vi].share_world_pct, 1)}%), a card in US–China rivalry while China holds ${stN(rows[0].share_world_pct, 0)}%.`)
+        : stT(`Trung Quốc nắm ${stN(rows[0].share_world_pct, 0)}% trữ lượng đất hiếm thế giới.`, `China holds ${stN(rows[0].share_world_pct, 0)}% of world rare-earth reserves.`)];
+  });
   return C;
 }
 
 // ── Fed funds rate: last 3 decisions + next 3 meetings (FINSYS.fed, Finance agent at the weekly run); FRED target range from the server's monthly pull
-let DS_LIVE = { snap: null, fed: null, bs: null, t: 0 };
+let DS_LIVE = { snap: null, fed: null, bs: null, strat: null, t: 0 };
 function dsLiveLoad(done) {
   if (Date.now() - DS_LIVE.t < 5 * 60e3) return;   // at most every 5 minutes
   DS_LIVE.t = Date.now();
   const j = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
-  Promise.all([j('/api/snapshot'), j('/api/auto?source=fed_funds'), j('/api/banks/bs_history')])
-    .then(([s, a, b]) => { DS_LIVE.snap = s; DS_LIVE.fed = a && a.sources && a.sources.fed_funds && a.sources.fed_funds.snapshot || null; DS_LIVE.bs = b; if (done) done(); });
+  Promise.all([j('/api/snapshot'), j('/api/auto?source=fed_funds'), j('/api/banks/bs_history'), j('/api/strategy')])
+    .then(([s, a, b, st]) => { DS_LIVE.strat = st; DS_LIVE.snap = s; DS_LIVE.fed = a && a.sources && a.sources.fed_funds && a.sources.fed_funds.snapshot || null; DS_LIVE.bs = b; if (done) done(); });
 }
 const fedF = () => (typeof FINSYS !== 'undefined' && FINSYS.fed) || null;
 const fedRng = r => r ? `${stN(r[0], 2)}–${stN(r[1], 2)}%` : '—';
