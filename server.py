@@ -17,7 +17,7 @@ Serves (main ones):
   /api/auto             -> World Bank / IMF / FRED snapshots in data/auto/ (POST /api/auto/refresh to re-pull)
 
 Scheduler (APScheduler, Asia/Ho_Chi_Minh):
-  - daily 06:00 — market snapshot refresh (also once on startup)
+  - daily 06:00 — market snapshot refresh (indices, USD/VND incl. Vietcombank's USD rate, bank prices) (also once on startup)
   - monthly, 15th 01:00 — public macro APIs → data/auto/*.json (also on startup if a snapshot is missing/old)
 
 Run:
@@ -927,6 +927,39 @@ def fetch_bonds() -> dict[str, Any]:
     return {}
 
 
+VCB_XML = "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"
+_VCB_CACHE: dict[str, Any] = {"t": 0.0, "v": None}
+
+
+def _vcb_time(t: str) -> str:
+    """'11/9/2026 11:23:59 PM' (US month/day, Vietnam time) → '2026-11-09T23:23:59'; unchanged if it does not parse."""
+    try:
+        return datetime.strptime(t, "%m/%d/%Y %I:%M:%S %p").isoformat()
+    except ValueError:
+        return t
+
+
+def fetch_vcb_usd() -> dict[str, Any] | None:
+    """Vietcombank's published USD/VND buy (cash), transfer and sell rates from its public XML feed.
+    The feed asks for at most one request every 5 minutes, so results are cached for 5 minutes
+    (the 06:00 job and the Update button share it). A bank's trading rate, not the SBV central rate."""
+    if _VCB_CACHE["v"] and time.time() - _VCB_CACHE["t"] < 300:
+        return _VCB_CACHE["v"]
+    import urllib.request
+    import xml.etree.ElementTree as ET
+    req = urllib.request.Request(VCB_XML, headers={"User-Agent": "VietnamDashboard/1.0"})
+    with urllib.request.urlopen(req, timeout=10) as r:
+        root = ET.fromstring(r.read())
+    num = lambda v: float(v.replace(",", "")) if v and v.strip() not in ("-", "") else None
+    usd = next((e for e in root.iter("Exrate") if (e.get("CurrencyCode") or "").strip() == "USD"), None)
+    if usd is None:
+        return None
+    out = {"buy": num(usd.get("Buy")), "transfer": num(usd.get("Transfer")), "sell": num(usd.get("Sell")),
+           "time": _vcb_time((root.findtext("DateTime") or "").strip()), "source": "Vietcombank", "url": VCB_XML}
+    _VCB_CACHE.update(t=time.time(), v=out)
+    return out
+
+
 def fetch_fx() -> dict[str, Any]:
     """USD/VND — prefer live open API, fallback to static."""
     try:
@@ -1377,10 +1410,17 @@ def refresh_snapshot(trigger: str = "auto") -> None:
     s_t0 = time.time()
     try:
         fx = fetch_fx()
+        try:
+            vcb = fetch_vcb_usd()
+            if vcb:
+                fx["vcb_usd"] = vcb
+        except Exception as e:
+            errors.append(f"vcb: {str(e)[:120]}")
+            log.warning("fx vcb failed: %s", e)
         _log_event(trigger, "fx", "ok" if fx.get("USD_VND") else "empty",
                    duration_ms=int((time.time()-s_t0)*1000),
                    source_api=fx.get("source"),
-                   message=f"USD/VND = {fx.get('USD_VND')} từ {fx.get('source')}" if fx.get("USD_VND") else "Không lấy được tỷ giá")
+                   message=(f"USD/VND = {fx.get('USD_VND')} từ {fx.get('source')}" + (f" · VCB bán {fx['vcb_usd']['sell']}" if fx.get("vcb_usd") else "")) if fx.get("USD_VND") else "Không lấy được tỷ giá")
     except Exception as e:
         errors.append(f"fx: {e}")
         _log_event(trigger, "fx", "error", duration_ms=int((time.time()-s_t0)*1000), message=str(e)[:200])

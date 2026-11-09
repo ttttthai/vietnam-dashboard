@@ -3555,6 +3555,7 @@ async function tryLiveFetch() {
       if (d.fx && d.fx.USD_VND) {
         liveUSDVND = d.fx.USD_VND;
         (document.getElementById('fx-live-badge')||{}).textContent='● LIVE FX ('+d.fx.source+')';
+        { const vb = d.fx.vcb_usd, fb = document.getElementById('fx-live-badge'); if (fb && vb) fb.title = stT(`Vietcombank USD: mua tiền mặt ${stN(vb.buy, 0)} · chuyển khoản ${stN(vb.transfer, 0)} · bán ${stN(vb.sell, 0)} (${fedDt(vb.time, 1)})`, `Vietcombank USD: cash buy ${stN(vb.buy, 0)} · transfer ${stN(vb.transfer, 0)} · sell ${stN(vb.sell, 0)} (${fedDt(vb.time, 1)})`); }
       }
       if (d.rates && d.rates.sbv_policy) {
         liveBondYields = d.rates.sbv_policy;
@@ -5559,7 +5560,7 @@ const stNote = (lead, follow) => `<p class="st-note">${lead}${follow ? `<span>${
 // Reads the same embedded data the tabs use (POP_SERIES, ECON_OFFICIAL, ECONFLOW, CPI_*, FINSYS, POLICY, IND_ICB),
 // so the charts and sentences follow the weekly agents' updates with no extra work.
 // ============================================================
-const DS_W = 360, DS_H = 200, DS_M = { l: 40, r: 12, t: 12, b: 26 };
+const DS_W = 360, DS_H = 200, DS_M = { l: 50, r: 12, t: 12, b: 26 };
 const dsEsc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const dsTip = (k, v) => `<title>${dsEsc(k)}: ${dsEsc(v)}</title>`;
 // x labels: first, last, and evenly spaced ones in between that fit
@@ -5657,9 +5658,10 @@ function dsCards() {
       stT(`Dự toán ${B.years[n]} đặt bội chi ${dsPct(v[n], 1)} GDP${v[n] > mxPrev ? `, cao nhất từ ${B.years[0]}` : ''}; cột nhạt là ước tính và dự toán.`, `The ${B.years[n]} budget plan sets the deficit at ${dsPct(v[n], 1)} of GDP${v[n] > mxPrev ? `, the highest since ${B.years[0]}` : ''}; pale bars are estimates and plans.`)];
   });
   add('econ', T.econ, stT('Tỷ giá USD/VND bình quân năm', 'USD/VND, annual average'), () => {
-    const v = O.usd_vnd, i = dsLast(v), L = yrs(v.length), dep = (1 - v[0] / v[i]) * 100;
+    const v = O.usd_vnd, i = dsLast(v), L = yrs(v.length), dep = (1 - v[0] / v[i]) * 100, vcb = DS_LIVE.snap && DS_LIVE.snap.fx && DS_LIVE.snap.fx.vcb_usd;
     return [dsLines(L, [{ n: 'USD/VND', c: ST.yellow, v }], { fmt: x => stN(x, 0), label: 'usd vnd' }),
-      stT(`Tỷ giá bình quân tăng từ ${stN(v[0], 0)} năm ${L[0]} lên ${stN(v[i], 0)} năm ${L[i]}, tức đồng Việt Nam mất ${stN(dep, 0)}% giá trị so với USD.`, `The average rate rose from ${stN(v[0], 0)} in ${L[0]} to ${stN(v[i], 0)} in ${L[i]}, meaning the dong lost ${stN(dep, 0)}% of its value against the dollar.`)];
+      stT(`Tỷ giá bình quân tăng từ ${stN(v[0], 0)} năm ${L[0]} lên ${stN(v[i], 0)} năm ${L[i]} (đồng Việt Nam mất ${stN(dep, 0)}% giá trị)${vcb && vcb.sell ? `; hôm nay Vietcombank bán USD ở ${stN(vcb.sell, 0)} đồng` : ''}.`,
+        `The average rate rose from ${stN(v[0], 0)} in ${L[0]} to ${stN(v[i], 0)} in ${L[i]} (the dong lost ${stN(dep, 0)}% of its value)${vcb && vcb.sell ? `; today Vietcombank sells dollars at ${stN(vcb.sell, 0)} dong` : ''}.`)];
   });
 
   // ── Financial system (Finance + Policy)
@@ -5687,6 +5689,50 @@ function dsCards() {
   add('banks', T.banks, stT('Lãi suất Fed: thực tế và dự báo (%)', 'Fed funds rate: actual and forecast (%)'), () => [fedChart(), fedSentence(),
     stLegend([{ n: stT('Biên trên thực tế', 'Actual upper bound'), c: ST.blue, k: 'line' }, { n: stT('Thị trường dự báo', 'Market forecast'), c: ST.orange, k: 'dash' }])]);
 
+  // ── Listed banks' balance sheet (/api/banks/bs_history: 28 listed banks, last 8 quarters, bn VND)
+  const BS = DS_LIVE.bs;
+  if (BS && BS.aggregate && BS.periods) {
+    const AV = BS.aggregate.values, CV = BS.aggregate.coverage || {}, P = BS.periods, nb = BS.banks_total, n = P.length - 1;
+    const QL = P.map(p => { const [y, q] = p.split('-'); return `${q}/${y.slice(2)}`; }), ql = QL[n];
+    const full = (k, i) => !CV[k] || CV[k][i] === nb;   // a quarter where every bank reports the item
+    const tn = v => v / 1000;   // bn VND → trillion VND (nghìn tỷ)
+    const bsT = stT('Hệ thống tài chính', 'Financial system'), who = stT(`${nb} ngân hàng niêm yết`, `the ${nb} listed banks`);
+    add('banks', bsT, stT(`Tổng tài sản ${nb} ngân hàng niêm yết (nghìn tỷ đồng)`, `Total assets of ${nb} listed banks (trillion VND)`), () => {
+      const v = AV.total_assets.map(x => x == null ? null : tn(x)), y = n - 4, yoy = y >= 0 && full('total_assets', y) && full('total_assets', n) ? (v[n] / v[y] - 1) * 100 : null;
+      return [dsBars(QL, [{ n: stT('Tổng tài sản', 'Total assets'), c: ST.blue, v }], { hi: [n], fmt: x => stN(x, 0), label: 'bank assets' }),
+        stT(`Tổng tài sản của ${who} đạt ${stN(v[n], 0)} nghìn tỷ đồng quý ${ql}${yoy != null ? `, tăng ${stN(yoy, 1)}% so với cùng kỳ năm trước` : ''}.`, `Total assets of ${who} reached ${stN(v[n], 0)} trillion VND in ${ql}${yoy != null ? `, up ${stN(yoy, 1)}% from a year earlier` : ''}.`)];
+    });
+    const mix = (keys, total) => keys.map(([k, vi, en, c]) => ({ n: stT(vi, en), v: (k.split('+').reduce((s, kk) => s + ((AV[kk] || [])[n] || 0), 0)) / AV[total][n] * 100, c })).sort((a, b) => b.v - a.v);
+    add('banks', bsT, stT(`Cơ cấu tài sản quý ${ql} (% tổng tài sản)`, `Asset mix, ${ql} (% of total assets)`), () => {
+      const it = mix([['customer_loans_net', 'Cho vay khách hàng (ròng)', 'Customer loans (net)', ST.orange], ['interbank_assets', 'Tiền gửi, cho vay TCTD khác', 'Interbank placements', ST.blue], ['investment_securities+trading_securities', 'Chứng khoán', 'Securities', ST.blue], ['sbv_deposits+cash', 'Tiền mặt và tiền gửi NHNN', 'Cash and SBV balances', ST.blue], ['other_assets+fixed_assets+long_term_investments+investment_property+derivatives_asset', 'Tài sản khác', 'Other assets', ST.blue]], 'total_assets');
+      return [dsHBars(it, { fmt: x => dsPct(x, 1), label: 'asset mix' }),
+        stT(`Cho vay khách hàng chiếm ${dsPct(it.find(x => x.c === ST.orange).v)} tổng tài sản, nên chất lượng tín dụng quyết định sức khỏe ngân hàng.`, `Customer loans make up ${dsPct(it.find(x => x.c === ST.orange).v)} of total assets, so loan quality decides the banks' health.`)];
+    });
+    add('banks', bsT, stT(`Nguồn vốn quý ${ql} (% tổng nguồn vốn)`, `Funding mix, ${ql} (% of liabilities and equity)`), () => {
+      const it = mix([['customer_deposits', 'Tiền gửi khách hàng', 'Customer deposits', ST.aqua], ['interbank_liabilities', 'Tiền gửi, vay TCTD khác', 'Interbank borrowing', ST.blue], ['valuable_papers', 'Giấy tờ có giá phát hành', 'Bonds and papers issued', ST.blue], ['equity_total', 'Vốn chủ sở hữu', 'Equity', ST.violet], ['gov_sbv_borrowings', 'Nợ Chính phủ và NHNN', 'Due to Government and SBV', ST.blue], ['other_liabilities+trust_funds+derivatives_liability', 'Nợ khác', 'Other liabilities', ST.blue]], 'total_assets');
+      const dep = it.find(x => x.c === ST.aqua).v, vp = it.find(x => x.n === stT('Giấy tờ có giá phát hành', 'Bonds and papers issued')).v;
+      return [dsHBars(it, { fmt: x => dsPct(x, 1), label: 'funding mix' }),
+        stT(`Tiền gửi khách hàng tài trợ ${dsPct(dep)} tổng tài sản; phần còn lại đến từ vay liên ngân hàng, ${dsPct(vp)} từ trái phiếu và giấy tờ có giá, và vốn chủ.`, `Customer deposits fund ${dsPct(dep)} of total assets; the rest comes from interbank borrowing, ${dsPct(vp)} from bonds and papers issued, and equity.`)];
+    });
+    add('banks', bsT, stT('Cho vay và tiền gửi khách hàng (nghìn tỷ đồng)', 'Customer loans and deposits (trillion VND)'), () => {
+      const l = AV.customer_loans_gross.map(x => x == null ? null : tn(x)), d = AV.customer_deposits.map(x => x == null ? null : tn(x)), ldr = l[n] / d[n] * 100, ldr0 = l[0] / d[0] * 100;
+      return [dsLines(QL, [{ n: stT('Cho vay', 'Loans'), c: ST.orange, v: l }, { n: stT('Tiền gửi', 'Deposits'), c: ST.aqua, v: d }], { fmt: x => stN(x, 0), label: 'loans deposits' }),
+        stT(`Dư nợ cho vay bằng ${stN(ldr, 0)}% tiền gửi khách hàng quý ${ql} (quý ${QL[0]}: ${stN(ldr0, 0)}%), nên các ngân hàng phải dựa thêm vào nguồn vốn khác.`, `Loans equal ${stN(ldr, 0)}% of customer deposits in ${ql} (${QL[0]}: ${stN(ldr0, 0)}%), so banks lean on other funding too.`),
+        stLegend([{ n: stT('Cho vay (gộp)', 'Loans (gross)'), c: ST.orange, k: 'line' }, { n: stT('Tiền gửi', 'Deposits'), c: ST.aqua, k: 'line' }])];
+    });
+    add('banks', bsT, stT('Vốn chủ sở hữu / tổng tài sản (%)', 'Equity to total assets (%)'), () => {
+      const v = AV.equity_total.map((e, i) => e == null || !AV.total_assets[i] ? null : e / AV.total_assets[i] * 100);
+      return [dsLines(QL, [{ n: '%', c: ST.violet, v }], { fmt: x => dsPct(x, 2), label: 'equity ratio' }),
+        stT(`Vốn chủ sở hữu bằng ${dsPct(v[n], 2)} tổng tài sản quý ${ql}, tức mỗi 100 đồng tài sản có khoảng ${stN(v[n], 1)} đồng vốn tự có.`, `Equity equals ${dsPct(v[n], 2)} of total assets in ${ql}: about ${stN(v[n], 1)} dong of own capital for every 100 dong of assets.`)];
+    });
+    add('banks', bsT, stT(`10 ngân hàng lớn nhất theo tổng tài sản, quý ${ql} (nghìn tỷ đồng)`, `10 largest banks by total assets, ${ql} (trillion VND)`), () => {
+      const rows = Object.entries(BS.banks).map(([s, b]) => ({ s, v: ((b.values || {}).total_assets || [])[n] })).filter(r => r.v != null).sort((a, b) => b.v - a.v);
+      const tot = rows.reduce((s, r) => s + r.v, 0), top3 = rows.slice(0, 3).reduce((s, r) => s + r.v, 0) / tot * 100;
+      return [dsHBars(rows.slice(0, 10).map((r, k) => ({ n: r.s, v: tn(r.v), c: k < 3 ? ST.orange : ST.blue })), { fmt: x => stN(x, 0), label: 'largest banks' }),
+        stT(`Ba ngân hàng lớn nhất (${rows.slice(0, 3).map(r => r.s).join(', ')}) nắm ${dsPct(top3, 0)} tổng tài sản của ${who}.`, `The three largest banks (${rows.slice(0, 3).map(r => r.s).join(', ')}) hold ${dsPct(top3, 0)} of the total assets of ${who}.`)];
+    });
+  }
+
   // ── Stock market
   add('invest', T.invest, stT('VN-Index 6 tháng (theo tuần và phiên mới nhất)', 'VN-Index, 6 months (weekly plus latest close)'), () => {
     const M = FINSYS.market_6m, v = M.vnindex.slice(), W = M.weeks.slice(), lv = DS_LIVE.snap && DS_LIVE.snap.indices && DS_LIVE.snap.indices.VNINDEX;
@@ -5706,12 +5752,13 @@ function dsCards() {
 }
 
 // ── Fed funds rate: last 3 decisions + next 3 meetings (FINSYS.fed, Finance agent at the weekly run); FRED target range from the server's monthly pull
-let DS_LIVE = { snap: null, fed: null, t: 0 };
+let DS_LIVE = { snap: null, fed: null, bs: null, t: 0 };
 function dsLiveLoad(done) {
   if (Date.now() - DS_LIVE.t < 5 * 60e3) return;   // at most every 5 minutes
   DS_LIVE.t = Date.now();
-  Promise.all([fetch('/api/snapshot').then(r => r.ok ? r.json() : null).catch(() => null), fetch('/api/auto?source=fed_funds').then(r => r.ok ? r.json() : null).catch(() => null)])
-    .then(([s, a]) => { DS_LIVE.snap = s; DS_LIVE.fed = a && a.sources && a.sources.fed_funds && a.sources.fed_funds.snapshot || null; if (done) done(); });
+  const j = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
+  Promise.all([j('/api/snapshot'), j('/api/auto?source=fed_funds'), j('/api/banks/bs_history')])
+    .then(([s, a, b]) => { DS_LIVE.snap = s; DS_LIVE.fed = a && a.sources && a.sources.fed_funds && a.sources.fed_funds.snapshot || null; DS_LIVE.bs = b; if (done) done(); });
 }
 const fedF = () => (typeof FINSYS !== 'undefined' && FINSYS.fed) || null;
 const fedRng = r => r ? `${stN(r[0], 2)}–${stN(r[1], 2)}%` : '—';
