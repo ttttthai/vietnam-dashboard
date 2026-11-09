@@ -1,0 +1,2302 @@
+{
+ "_meta": {
+  "owner": "Living agent",
+  "as_of": "2026-11-10",
+  "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing."
+ },
+ "LIVING": {
+  "as_of": "2026-11-10",
+  "note_vi": "Giá niêm yết bằng VND. Hàng tiêu dùng đóng gói: giá trên trang bán hàng trực tuyến của LOTTE Mart theo từng cửa hàng (Hà Nội: Tây Hồ/Ba Đình; Đà Nẵng; TP.HCM: Nam Sài Gòn) đọc ngày 10/11/2026 – là giá khách trả hôm đó, có thể là giá khuyến mãi (khi đó ghi 'regular' là giá gốc). Thực phẩm tươi TP.HCM: Bách Hóa XANH. Điện, xăng, học phí: biểu giá toàn quốc. Nước: biểu giá chính thức từng thành phố. Thuê nhà, ăn ngoài, cắt tóc: Numbeo (dữ liệu cộng đồng, chỉ tham khảo, đánh dấu estimate). Giá trị tính từ biểu giá được đánh dấu estimate.",
+  "note_en": "Prices in VND. Packaged goods: LOTTE Mart online shelf prices for a named store in each city (Hanoi: Tay Ho/Ba Dinh; Da Nang; HCMC: Nam Sai Gon), read 10 Nov 2026 – the price a shopper paid that day, which may be a promotion (then 'regular' holds the list price). Fresh food in HCMC: Bach Hoa Xanh. Electricity, fuel, tuition: national tariffs. Water: each city's official tariff. Rent, eating out, haircut: Numbeo (crowd-sourced, reference only, flagged estimate). Values computed from tariffs are flagged estimate.",
+  "cities": [
+   {
+    "id": "hanoi",
+    "name_vi": "Hà Nội",
+    "name_en": "Hanoi"
+   },
+   {
+    "id": "danang",
+    "name_vi": "Đà Nẵng",
+    "name_en": "Da Nang"
+   },
+   {
+    "id": "hcmc",
+    "name_vi": "TP. Hồ Chí Minh",
+    "name_en": "Ho Chi Minh City"
+   }
+  ],
+  "categories": [
+   {
+    "id": "groceries",
+    "name_vi": "Thực phẩm",
+    "name_en": "Groceries"
+   },
+   {
+    "id": "household",
+    "name_vi": "Đồ gia dụng",
+    "name_en": "Household"
+   },
+   {
+    "id": "personal",
+    "name_vi": "Chăm sóc cá nhân",
+    "name_en": "Personal care"
+   },
+   {
+    "id": "clothing",
+    "name_vi": "Quần áo",
+    "name_en": "Clothing"
+   },
+   {
+    "id": "utilities",
+    "name_vi": "Điện, nước, gas, viễn thông",
+    "name_en": "Utilities"
+   },
+   {
+    "id": "transport",
+    "name_vi": "Đi lại",
+    "name_en": "Transport"
+   },
+   {
+    "id": "eating_out",
+    "name_vi": "Ăn ngoài",
+    "name_en": "Eating out"
+   },
+   {
+    "id": "housing",
+    "name_vi": "Nhà ở",
+    "name_en": "Housing"
+   },
+   {
+    "id": "services",
+    "name_vi": "Dịch vụ",
+    "name_en": "Services"
+   }
+  ],
+  "items": [
+   {
+    "id": "rice_regular_5kg",
+    "cat": "groceries",
+    "name_vi": "Gạo thơm thường",
+    "name_en": "Regular fragrant rice",
+    "spec_vi": "Neptune Thượng Hạng Nhãn Vàng, túi 5 kg",
+    "spec_en": "Neptune Premium Gold Label, 5 kg bag",
+    "unit_vi": "túi 5 kg",
+    "unit_en": "5 kg bag",
+    "prices": {
+     "hanoi": {
+      "value": 131900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Ba Đình (Hà Nội) – online, mã cửa hàng bdh",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-bdh/product/gao-deo-thom-thuong-hang-nhan-vang-neptune-tui-5kg-8938516870164-p9390"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "regular": 210500,
+      "promo": true
+     },
+     "danang": {
+      "value": 210000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/gao-deo-thom-thuong-hang-nhan-vang-neptune-tui-5kg-8938516870164-p9390"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 131900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/gao-deo-thom-thuong-hang-nhan-vang-neptune-tui-5kg-8938516870164-p9390"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "regular": 210500,
+      "promo": true
+     }
+    },
+    "note_vi": "Hà Nội và TP.HCM đang khuyến mãi (giá gốc 210.500đ); Đà Nẵng niêm yết 210.000đ.",
+    "note_en": "Hanoi and HCMC show a promotion (list price 210,500); Da Nang lists 210,000."
+   },
+   {
+    "id": "rice_st25_5kg",
+    "cat": "groceries",
+    "name_vi": "Gạo ST25",
+    "name_en": "ST25 rice",
+    "spec_vi": "Neptune ST25 Dẻo Thơm Đặc Sản, túi 5 kg",
+    "spec_en": "Neptune ST25 specialty, 5 kg bag",
+    "unit_vi": "túi 5 kg",
+    "unit_en": "5 kg bag",
+    "prices": {
+     "hanoi": {
+      "value": 165900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/gao-deo-thom-dac-san-st25-neptune-tui-5kg-8938516870713-p9392"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "regular": 228900,
+      "promo": true
+     },
+     "danang": {
+      "value": 249000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/gao-deo-thom-dac-san-st25-neptune-tui-5kg-8938516870713-p9392"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 165900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/gao-deo-thom-dac-san-st25-neptune-tui-5kg-8938516870713-p9392"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "regular": 233000,
+      "promo": true
+     }
+    },
+    "note_vi": "Giá khuyến mãi ở Hà Nội, TP.HCM; giá gốc 228.900–233.000đ.",
+    "note_en": "Promotional price in Hanoi and HCMC; list 228,900–233,000."
+   },
+   {
+    "id": "pork_belly_300g",
+    "cat": "groceries",
+    "name_vi": "Thịt ba rọi heo",
+    "name_en": "Pork belly",
+    "spec_vi": "Ba rọi heo C.P, khay 300 g (149.000đ/kg)",
+    "spec_en": "C.P pork belly, 300 g tray (VND 149,000/kg)",
+    "unit_vi": "khay 300 g",
+    "unit_en": "300 g tray",
+    "prices": {
+     "hanoi": null,
+     "danang": null,
+     "hcmc": {
+      "value": 44700,
+      "date": "2026-11-10",
+      "where": "Bách Hóa XANH online (vị trí mặc định, TP.HCM)",
+      "src": {
+       "name": "Bách Hóa XANH – trang danh mục",
+       "url": "https://www.bachhoaxanh.com/thit-heo"
+      },
+      "estimate": false,
+      "basis": "shelf price (online)",
+      "regular": 46200,
+      "promo": true
+     }
+    },
+    "note_vi": "Chỉ có giá TP.HCM (Bách Hóa XANH). Giá chợ/siêu thị Hà Nội, Đà Nẵng chưa tìm được nguồn có ngày.",
+    "note_en": "HCMC only (Bach Hoa Xanh). No dated source found for Hanoi or Da Nang."
+   },
+   {
+    "id": "chicken_leg_300g",
+    "cat": "groceries",
+    "name_vi": "Đùi gà góc tư",
+    "name_en": "Chicken leg quarters",
+    "spec_vi": "Đùi gà góc tư, khay 300 g",
+    "spec_en": "Chicken leg quarters, 300 g tray",
+    "unit_vi": "khay 300 g",
+    "unit_en": "300 g tray",
+    "prices": {
+     "hanoi": null,
+     "danang": null,
+     "hcmc": {
+      "value": 26488,
+      "date": "2026-11-10",
+      "where": "Bách Hóa XANH online (vị trí mặc định, TP.HCM)",
+      "src": {
+       "name": "Bách Hóa XANH – trang danh mục",
+       "url": "https://www.bachhoaxanh.com/thit-ga"
+      },
+      "estimate": false,
+      "basis": "shelf price (online)",
+      "regular": 28500,
+      "promo": true,
+      "note": "giá theo cân, có thể dao động theo khay"
+     }
+    },
+    "note_vi": "Chỉ có giá TP.HCM.",
+    "note_en": "HCMC only."
+   },
+   {
+    "id": "eggs_10",
+    "cat": "groceries",
+    "name_vi": "Trứng gà",
+    "name_en": "Chicken eggs",
+    "spec_vi": "Trứng gà tươi, hộp 10 quả (không cố định thương hiệu)",
+    "spec_en": "Fresh chicken eggs, box of 10 (brand varies)",
+    "unit_vi": "hộp 10 quả",
+    "unit_en": "box of 10",
+    "prices": {
+     "hanoi": null,
+     "danang": null,
+     "hcmc": {
+      "value": 27000,
+      "date": "2026-11-10",
+      "where": "Bách Hóa XANH online (vị trí mặc định, TP.HCM)",
+      "src": {
+       "name": "Bách Hóa XANH – trang danh mục",
+       "url": "https://www.bachhoaxanh.com/trung"
+      },
+      "estimate": false,
+      "basis": "shelf price (online)",
+      "regular": 28000,
+      "promo": true,
+      "note": "mua từ 2 hộp: 25.000đ/hộp"
+     }
+    },
+    "note_vi": "Chỉ có giá TP.HCM. LOTTE Mart Nam Sài Gòn: trứng Happy Egg hộp 10 quả 35.900đ.",
+    "note_en": "HCMC only. LOTTE Mart Nam Sai Gon: Happy Egg box of 10 at 35,900."
+   },
+   {
+    "id": "bananas_1kg",
+    "cat": "groceries",
+    "name_vi": "Chuối",
+    "name_en": "Bananas",
+    "spec_vi": "Chuối già giống Nam Mỹ, 1 kg",
+    "spec_en": "Cavendish banana, 1 kg",
+    "unit_vi": "kg",
+    "unit_en": "kg",
+    "prices": {
+     "hanoi": null,
+     "danang": null,
+     "hcmc": {
+      "value": 21000,
+      "date": "2026-11-10",
+      "where": "Bách Hóa XANH online (vị trí mặc định, TP.HCM)",
+      "src": {
+       "name": "Bách Hóa XANH – trang danh mục",
+       "url": "https://www.bachhoaxanh.com/trai-cay-tuoi-ngon"
+      },
+      "estimate": false,
+      "basis": "shelf price (online)",
+      "regular": 33200,
+      "promo": true
+     }
+    },
+    "note_vi": "Chỉ có giá TP.HCM; đang khuyến mãi -37%.",
+    "note_en": "HCMC only; on 37% promotion."
+   },
+   {
+    "id": "milk_1l",
+    "cat": "groceries",
+    "name_vi": "Sữa tươi tiệt trùng",
+    "name_en": "UHT fresh milk",
+    "spec_vi": "Vinamilk có đường, hộp 1 lít",
+    "spec_en": "Vinamilk sweetened, 1 litre carton",
+    "unit_vi": "hộp 1 l",
+    "unit_en": "1 l carton",
+    "prices": {
+     "hanoi": {
+      "value": 41500,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Ba Đình (Hà Nội) – online, mã cửa hàng bdh",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-bdh/product/sua-tuoi-tiet-trung-vinamilk-co-duong-hop-1l-8934673573399-p63"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": {
+      "value": 36900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/sua-tuoi-tiet-trung-vinamilk-co-duong-hop-1l-8934673573399-p63"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 41500,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/sua-tuoi-tiet-trung-vinamilk-co-duong-hop-1l-8934673573399-p63"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    }
+   },
+   {
+    "id": "instant_noodles",
+    "cat": "groceries",
+    "name_vi": "Mì gói Hảo Hảo",
+    "name_en": "Hao Hao instant noodles",
+    "spec_vi": "Hảo Hảo tôm chua cay, gói 75 g",
+    "spec_en": "Hao Hao hot & sour shrimp, 75 g pack",
+    "unit_vi": "gói 75 g",
+    "unit_en": "75 g pack",
+    "prices": {
+     "hanoi": {
+      "value": 4500,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/mi-hao-hao-tom-chua-cay-75g-8934563138165-p12589"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": {
+      "value": 4000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/mi-hao-hao-tom-chua-cay-75g-8934563138165-p12589"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 4500,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/mi-hao-hao-tom-chua-cay-75g-8934563138165-p12589"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    },
+    "note_vi": "Thùng 30 gói: Bách Hóa XANH 129.000đ (TP.HCM).",
+    "note_en": "30-pack carton: 129,000 at Bach Hoa Xanh (HCMC)."
+   },
+   {
+    "id": "cooking_oil_1l",
+    "cat": "groceries",
+    "name_vi": "Dầu ăn",
+    "name_en": "Cooking oil",
+    "spec_vi": "Dầu đậu nành Simply, chai 1 lít",
+    "spec_en": "Simply soybean oil, 1 litre bottle",
+    "unit_vi": "chai 1 l",
+    "unit_en": "1 l bottle",
+    "prices": {
+     "hanoi": {
+      "value": 60900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/dau-dau-nanh-simply-chai-1l-8934988020021-p10334"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "regular": 70500,
+      "promo": true
+     },
+     "danang": {
+      "value": 71000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/dau-dau-nanh-simply-chai-1l-8934988020021-p10334"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 60900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/dau-dau-nanh-simply-chai-1l-8934988020021-p10334"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "regular": 68900,
+      "promo": true
+     }
+    }
+   },
+   {
+    "id": "sugar_1kg",
+    "cat": "groceries",
+    "name_vi": "Đường",
+    "name_en": "Sugar",
+    "spec_vi": "Đường tinh luyện Biên Hòa Pure, gói 1 kg",
+    "spec_en": "Bien Hoa Pure refined sugar, 1 kg",
+    "unit_vi": "gói 1 kg",
+    "unit_en": "1 kg pack",
+    "prices": {
+     "hanoi": {
+      "value": 30500,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/duong-bien-hoa-pure-goi-1kg-8935015510454-p9505"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "regular": 34500,
+      "promo": true
+     },
+     "danang": {
+      "value": 31000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/duong-bien-hoa-pure-goi-1kg-8935015510454-p9505"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 30500,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/duong-bien-hoa-pure-goi-1kg-8935015510454-p9505"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "regular": 34500,
+      "promo": true
+     }
+    }
+   },
+   {
+    "id": "fish_sauce_500ml",
+    "cat": "groceries",
+    "name_vi": "Nước mắm",
+    "name_en": "Fish sauce",
+    "spec_vi": "Nam Ngư 3 trong 1, chai 500 ml",
+    "spec_en": "Nam Ngu 3-in-1, 500 ml bottle",
+    "unit_vi": "chai 500 ml",
+    "unit_en": "500 ml bottle",
+    "prices": {
+     "hanoi": {
+      "value": 38500,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/nuoc-mam-nam-ngu-3in1-500ml-8936221048076-p233543"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": {
+      "value": 36500,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/nuoc-mam-nam-ngu-3-trong-1-10-do-dam-chai-500ml-8936136163307-p10448"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "note": "mã hàng khác (10 độ đạm, cùng tên/dung tích)"
+     },
+     "hcmc": {
+      "value": 38500,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/nuoc-mam-nam-ngu-3in1-500ml-8936221048076-p233543"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    }
+   },
+   {
+    "id": "ground_coffee_500g",
+    "cat": "groceries",
+    "name_vi": "Cà phê bột",
+    "name_en": "Ground coffee",
+    "spec_vi": "Trung Nguyên Gourmet Blend, gói 500 g",
+    "spec_en": "Trung Nguyen Gourmet Blend, 500 g",
+    "unit_vi": "gói 500 g",
+    "unit_en": "500 g pack",
+    "prices": {
+     "hanoi": {
+      "value": 159900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/cafe-gourmet-blend-500g-8935024115190-p3792"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": {
+      "value": 110000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/cafe-gourmet-blend-500g-8935024115190-p3792"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 159900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/cafe-gourmet-blend-500g-8935024115190-p3792"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    },
+    "note_vi": "Đà Nẵng niêm yết thấp hơn nhiều (110.000đ), không ghi giá gốc.",
+    "note_en": "Da Nang lists much lower (110,000), no list price shown."
+   },
+   {
+    "id": "toilet_paper_10",
+    "cat": "household",
+    "name_vi": "Giấy vệ sinh",
+    "name_en": "Toilet paper",
+    "spec_vi": "Pulppy Classic 2 lớp, lốc 10 cuộn",
+    "spec_en": "Pulppy Classic 2-ply, 10 rolls",
+    "unit_vi": "lốc 10 cuộn",
+    "unit_en": "10-roll pack",
+    "prices": {
+     "hanoi": {
+      "value": 85100,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/giay-ve-sinh-pulppy-classic-2-lop-loc-10-cuon-8935018801580-p6049"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": {
+      "value": 85100,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/giay-ve-sinh-pulppy-classic-2-lop-loc-10-cuon-8935018801580-p6049"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 85100,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/giay-ve-sinh-pulppy-classic-2-lop-loc-10-cuon-8935018801580-p6049"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    },
+    "note_vi": "Cùng chuỗi, cùng giá ở cả ba thành phố.",
+    "note_en": "Same chain, same price in all three cities."
+   },
+   {
+    "id": "laundry_liquid_3_9kg",
+    "cat": "household",
+    "name_vi": "Nước giặt",
+    "name_en": "Laundry liquid",
+    "spec_vi": "OMO Matic cửa trên, túi 3,9 kg",
+    "spec_en": "OMO Matic top-load, 3.9 kg pouch",
+    "unit_vi": "túi 3,9 kg",
+    "unit_en": "3.9 kg pouch",
+    "prices": {
+     "hanoi": {
+      "value": 172900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/ng-omo-c-tren-khu-mui-tui-3-9kg-8934868195634-p231706"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": null,
+     "hcmc": {
+      "value": 172900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/ng-omo-c-tren-khu-mui-tui-3-9kg-8934868195634-p231706"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    },
+    "note_vi": "Không tìm thấy gói đúng 3 kg; trang Đà Nẵng không hiển thị giá.",
+    "note_en": "No exact 3 kg pack found; Da Nang page showed no price."
+   },
+   {
+    "id": "dish_soap_750g",
+    "cat": "household",
+    "name_vi": "Nước rửa chén",
+    "name_en": "Dish soap",
+    "spec_vi": "Sunlight Chanh 100, chai 750 g",
+    "spec_en": "Sunlight Lemon 100, 750 g bottle",
+    "unit_vi": "chai 750 g",
+    "unit_en": "750 g bottle",
+    "prices": {
+     "hanoi": {
+      "value": 28900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/sunlight-dishwashing-liquid-is-750g-quickly-clean-8934868172437-p53070"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": null,
+     "hcmc": {
+      "value": 28900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/sunlight-dishwashing-liquid-is-750g-quickly-clean-8934868172437-p53070"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    }
+   },
+   {
+    "id": "bin_bags",
+    "cat": "household",
+    "name_vi": "Túi đựng rác",
+    "name_en": "Bin bags",
+    "spec_vi": "Homebag đen size M 55x65 cm, lốc 3 cuộn 1 kg",
+    "spec_en": "Homebag black, size M 55x65 cm, 3 rolls (1 kg)",
+    "unit_vi": "lốc 3 cuộn",
+    "unit_en": "3-roll pack",
+    "prices": {
+     "hanoi": {
+      "value": 55900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/tui-rac-homebag-den-size-m-25l-1kg-3-cuon-8936236550526-p234291"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": null,
+     "hcmc": null
+    },
+    "note_vi": "Chỉ có giá Hà Nội.",
+    "note_en": "Hanoi only."
+   },
+   {
+    "id": "toothpaste",
+    "cat": "personal",
+    "name_vi": "Kem đánh răng",
+    "name_en": "Toothpaste",
+    "spec_vi": "P/S Baking Soda & Hương Thảo, tuýp 180 g",
+    "spec_en": "P/S Baking Soda & Herbal, 180 g",
+    "unit_vi": "tuýp 180 g",
+    "unit_en": "180 g tube",
+    "prices": {
+     "hanoi": null,
+     "danang": {
+      "value": 37000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/kdr-p-s-baking-soda-huong-thao-180g-8934839128135-p44826"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": null
+    },
+    "note_vi": "Chỉ có giá Đà Nẵng.",
+    "note_en": "Da Nang only."
+   },
+   {
+    "id": "shampoo_630g",
+    "cat": "personal",
+    "name_vi": "Dầu gội",
+    "name_en": "Shampoo",
+    "spec_vi": "Clear Bạc Hà Mát Lạnh, túi 630 g",
+    "spec_en": "Clear Cool Menthol, 630 g pouch",
+    "unit_vi": "túi 630 g",
+    "unit_en": "630 g pouch",
+    "prices": {
+     "hanoi": {
+      "value": 135900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/dg-clear-mat-lanh-bac-ha-tui-630g-8934868172505-p59482"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)",
+      "regular": 156900,
+      "promo": true
+     },
+     "danang": null,
+     "hcmc": null
+    },
+    "note_vi": "Chỉ có giá Hà Nội.",
+    "note_en": "Hanoi only."
+   },
+   {
+    "id": "soap_bar_90g",
+    "cat": "personal",
+    "name_vi": "Xà bông cục",
+    "name_en": "Bar soap",
+    "spec_vi": "Lifebuoy Diệt Khuẩn Thiên Nhiên, 90 g",
+    "spec_en": "Lifebuoy natural antibacterial, 90 g",
+    "unit_vi": "cục 90 g",
+    "unit_en": "90 g bar",
+    "prices": {
+     "hanoi": {
+      "value": 14900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/xbc-lfb-k-khuan-tn-90g-8934868145226-p35565"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": {
+      "value": 13300,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/xbc-lfb-k-khuan-tn-90g-8934868145226-p35565"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": null
+    }
+   },
+   {
+    "id": "sanitary_pads_8",
+    "cat": "personal",
+    "name_vi": "Băng vệ sinh",
+    "name_en": "Sanitary pads",
+    "spec_vi": "Diana Siêu Thấm Siêu Mỏng Cánh 23 cm, gói 8 miếng",
+    "spec_en": "Diana super-absorbent ultra-thin with wings, 23 cm, 8 pads",
+    "unit_vi": "gói 8 miếng",
+    "unit_en": "pack of 8",
+    "prices": {
+     "hanoi": {
+      "value": 25900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/bvs-diana-st-smc-23cm-8m-8934755010156-p6124"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": {
+      "value": 22000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/bvs-diana-st-smc-23cm-8m-8934755010156-p6124"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 25900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/bvs-diana-st-smc-23cm-8m-8934755010156-p6124"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    }
+   },
+   {
+    "id": "diapers_l68",
+    "cat": "personal",
+    "name_vi": "Tã quần trẻ em",
+    "name_en": "Baby diaper pants",
+    "spec_vi": "Bobby Ultra Jumbo size L, 68 miếng (9–13 kg)",
+    "spec_en": "Bobby Ultra Jumbo pants size L, 68 pcs (9–13 kg)",
+    "unit_vi": "bịch 68 miếng",
+    "unit_en": "pack of 68",
+    "prices": {
+     "hanoi": {
+      "value": 407900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Tây Hồ (Hà Nội) – online, mã cửa hàng wle",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-wle/product/ta-quan-bobby-ultra-jumbo-l68-68-mieng-9-13kg-8934755051227-p62"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "danang": {
+      "value": 349000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/ta-quan-bobby-ultra-jumbo-l68-68-mieng-9-13kg-8934755051227-p62"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 407900,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/ta-quan-bobby-ultra-jumbo-l68-68-mieng-9-13kg-8934755051227-p62"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    }
+   },
+   {
+    "id": "socks_pair",
+    "cat": "clothing",
+    "name_vi": "Vớ (tất) nam",
+    "name_en": "Men's socks",
+    "spec_vi": "Vớ cổ ngắn Basic Icon (Choice L), màu trắng, 1 đôi",
+    "spec_en": "Basic Icon ankle socks (Choice L), white, 1 pair",
+    "unit_vi": "đôi",
+    "unit_en": "pair",
+    "prices": {
+     "hanoi": null,
+     "danang": {
+      "value": 21000,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Đà Nẵng – online, mã cửa hàng dda (suy ra từ danh sách cửa hàng)",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-dda/product/vo-ngan-nam-choice-l-1013-tsh-mau-trang-8938506226803-p8747"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     },
+     "hcmc": {
+      "value": 20700,
+      "date": "2026-11-10",
+      "where": "LOTTE Mart Nam Sài Gòn (TP.HCM) – online, mã cửa hàng nsg",
+      "src": {
+       "name": "LOTTE Mart Vietnam – trang sản phẩm",
+       "url": "https://www.lottemart.vn/vi-nsg/product/vo-ngan-nam-choice-l-1013-tsh-mau-trang-8938506226803-p8747"
+      },
+      "estimate": false,
+      "basis": "shelf price (online, store-specific)"
+     }
+    }
+   },
+   {
+    "id": "jeans",
+    "cat": "clothing",
+    "name_vi": "Quần jeans",
+    "name_en": "Jeans",
+    "spec_vi": "Levi's 501 hoặc tương đương (Numbeo)",
+    "spec_en": "Levi's 501 or similar (Numbeo)",
+    "unit_vi": "chiếc",
+    "unit_en": "pair",
+    "prices": {
+     "hanoi": {
+      "value": 1170610,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Hanoi"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,130 entries / 88 contributors (12 months)"
+     },
+     "danang": {
+      "value": 1066667,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Da-Nang"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "738 entries / 77 contributors (12 months)"
+     },
+     "hcmc": {
+      "value": 1341718,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,291 entries / 110 contributors (12 months)"
+     }
+    },
+    "note_vi": "Số liệu cộng đồng (crowd-sourced), chỉ để tham khảo.",
+    "note_en": "Crowd-sourced; reference only."
+   },
+   {
+    "id": "electricity_200kwh",
+    "cat": "utilities",
+    "name_vi": "Tiền điện 200 kWh/tháng",
+    "name_en": "Electricity bill, 200 kWh/month",
+    "spec_vi": "Biểu giá sinh hoạt 5 bậc EVN từ 1/11/2026, chưa VAT",
+    "spec_en": "EVN 5-tier household tariff from 1 Nov 2026, excl. VAT",
+    "unit_vi": "tháng",
+    "unit_en": "month",
+    "prices": {
+     "hanoi": {
+      "value": 419000,
+      "date": "2026-11-01",
+      "where": "EVN – biểu giá toàn quốc",
+      "src": {
+       "name": "CafeF/VTV – Biểu giá điện sinh hoạt 5 bậc từ 1/11/2026 (QĐ 2892/QĐ-BCT), 04/11/2026",
+       "url": "https://cafef.vn/ap-bieu-gia-dien-sinh-hoat-5-bac-ho-dung-dien-nao-huong-loi-188261104161400707.chn"
+      },
+      "estimate": true,
+      "basis": "computed from official tariff",
+      "note": "Tính: 100 kWh × 1.901 + 100 kWh × 2.289; chưa gồm VAT"
+     },
+     "danang": {
+      "value": 419000,
+      "date": "2026-11-01",
+      "where": "EVN – biểu giá toàn quốc",
+      "src": {
+       "name": "CafeF/VTV – Biểu giá điện sinh hoạt 5 bậc từ 1/11/2026 (QĐ 2892/QĐ-BCT), 04/11/2026",
+       "url": "https://cafef.vn/ap-bieu-gia-dien-sinh-hoat-5-bac-ho-dung-dien-nao-huong-loi-188261104161400707.chn"
+      },
+      "estimate": true,
+      "basis": "computed from official tariff",
+      "note": "Tính: 100 kWh × 1.901 + 100 kWh × 2.289; chưa gồm VAT"
+     },
+     "hcmc": {
+      "value": 419000,
+      "date": "2026-11-01",
+      "where": "EVN – biểu giá toàn quốc",
+      "src": {
+       "name": "CafeF/VTV – Biểu giá điện sinh hoạt 5 bậc từ 1/11/2026 (QĐ 2892/QĐ-BCT), 04/11/2026",
+       "url": "https://cafef.vn/ap-bieu-gia-dien-sinh-hoat-5-bac-ho-dung-dien-nao-huong-loi-188261104161400707.chn"
+      },
+      "estimate": true,
+      "basis": "computed from official tariff",
+      "note": "Tính: 100 kWh × 1.901 + 100 kWh × 2.289; chưa gồm VAT"
+     }
+    },
+    "note_vi": "Biểu giá điện thống nhất toàn quốc nên ba thành phố như nhau.",
+    "note_en": "National tariff, so identical across cities."
+   },
+   {
+    "id": "water_15m3",
+    "cat": "utilities",
+    "name_vi": "Tiền nước 15 m³/tháng (hộ 4 người)",
+    "name_en": "Water bill, 15 m³/month (4-person household)",
+    "spec_vi": "Theo biểu giá sinh hoạt của từng thành phố",
+    "spec_en": "Per each city's household tariff",
+    "unit_vi": "tháng",
+    "unit_en": "month",
+    "prices": {
+     "hanoi": {
+      "value": 134500,
+      "date": "2024-01-01",
+      "where": "Biểu giá nước Hà Nội (QĐ 3541/QĐ-UBND, bước 2024)",
+      "src": {
+       "name": "VnExpress – Hà Nội tăng giá nước sạch (lộ trình 2023–2024), 10/07/2023; SGGP 10/07/2023 (QĐ 3541/QĐ-UBND)",
+       "url": "https://vnexpress.net/ha-noi-tang-gia-nuoc-sach-4627354.html"
+      },
+      "estimate": true,
+      "basis": "computed from official tariff",
+      "note": "10 m³ × 8.500 + 5 m³ × 9.900; nguồn không nêu đã gồm VAT hay chưa"
+     },
+     "danang": {
+      "value": 72800,
+      "date": "2024-12-31",
+      "where": "Biểu giá nước Đà Nẵng, khu vực đô thị (QĐ 2967/QĐ-UBND)",
+      "src": {
+       "name": "Quyết định 2967/QĐ-UBND ngày 31/12/2024 của UBND TP Đà Nẵng về giá bán lẻ nước sạch sinh hoạt (caselaw.vn)",
+       "url": "https://caselaw.vn/van-ban-phap-luat/581115-quyet-dinh-so-2967-qd-ubnd-ngay-31-12-2024-ve-gia-ban-le-nuoc-sach-sinh-hoat-tren-dia-ban-thanh-pho-da-nang"
+      },
+      "estimate": true,
+      "basis": "computed from official tariff",
+      "note": "10 m³ × 4.550 + 5 m³ × 5.460; đã gồm VAT"
+     },
+     "hcmc": {
+      "value": 100500,
+      "date": "2022-01-01",
+      "where": "Biểu giá nước TP.HCM (định mức 4 m³/người)",
+      "src": {
+       "name": "SGGP – Đơn giá nước sinh hoạt: hộ gia đình tính theo định mức, 27/03/2025",
+       "url": "https://www.sggp.org.vn/don-gia-nuoc-sinh-hoat-ho-gia-dinh-tinh-theo-dinh-muc-post787873.html"
+      },
+      "estimate": true,
+      "basis": "computed from official tariff",
+      "note": "4 người × 4 m³ = 16 m³ trong định mức ⇒ 15 × 6.700; chưa gồm 5% VAT và phí thoát nước"
+     }
+    },
+    "note_vi": "Cơ sở VAT khác nhau giữa các thành phố (xem tariffs.water).",
+    "note_en": "VAT basis differs by city (see tariffs.water)."
+   },
+   {
+    "id": "lpg_12kg",
+    "cat": "utilities",
+    "name_vi": "Gas bình 12 kg",
+    "name_en": "LPG cylinder 12 kg",
+    "spec_vi": "Giá bán lẻ bình 12 kg, công bố tháng 10/2026",
+    "spec_en": "Retail 12 kg cylinder, October 2026 announcement",
+    "unit_vi": "bình 12 kg",
+    "unit_en": "12 kg cylinder",
+    "prices": {
+     "hanoi": {
+      "value": 642004,
+      "date": "2026-10-01",
+      "where": "PV GAS – Hà Nội",
+      "src": {
+       "name": "Thời báo Tài chính Việt Nam – Giá gas bán lẻ tháng 10/2026 tăng mạnh, 01/10/2026",
+       "url": "https://thoibaotaichinhvietnam.vn/gia-gas-ban-le-thang-10-2026-tang-manh-204655.html"
+      },
+      "estimate": false,
+      "basis": "announced retail price",
+      "note": "Petrolimex Hà Nội: 644.122đ"
+     },
+     "danang": {
+      "value": 609000,
+      "date": "2026-10-01",
+      "where": "Đà Nẵng (bài báo không nêu thương hiệu)",
+      "src": {
+       "name": "Thời báo Tài chính Việt Nam – Giá gas bán lẻ tháng 10/2026 tăng mạnh, 01/10/2026",
+       "url": "https://thoibaotaichinhvietnam.vn/gia-gas-ban-le-thang-10-2026-tang-manh-204655.html"
+      },
+      "estimate": false,
+      "basis": "announced retail price"
+     },
+     "hcmc": {
+      "value": 662081,
+      "date": "2026-10-01",
+      "where": "PV GAS – TP.HCM",
+      "src": {
+       "name": "Thời báo Tài chính Việt Nam – Giá gas bán lẻ tháng 10/2026 tăng mạnh, 01/10/2026",
+       "url": "https://thoibaotaichinhvietnam.vn/gia-gas-ban-le-thang-10-2026-tang-manh-204655.html"
+      },
+      "estimate": false,
+      "basis": "announced retail price"
+     }
+    },
+    "note_vi": "Chưa tìm thấy giá công bố ngày 1/11/2026.",
+    "note_en": "No 1 Nov 2026 announcement found yet."
+   },
+   {
+    "id": "internet_300mbps",
+    "cat": "utilities",
+    "name_vi": "Internet cáp quang ~300 Mbps",
+    "name_en": "Home fibre internet ~300 Mbps",
+    "spec_vi": "Gói thấp nhất (300 Mbps) Viettel/VNPT/FPT, khách hàng mới",
+    "spec_en": "Entry 300 Mbps plan (Viettel/VNPT/FPT), new subscribers",
+    "unit_vi": "tháng",
+    "unit_en": "month",
+    "prices": {
+     "hanoi": {
+      "value": 235000,
+      "date": "2026-03-07",
+      "where": "Viettel/VNPT – nội thành Hà Nội",
+      "src": {
+       "name": "Báo Lào Cai – Ba nhà mạng lớn đồng loạt tăng giá cước internet cố định khi lắp đặt mới, 07/03/2026",
+       "url": "https://baolaocai.vn/ba-nha-mang-lon-dong-loat-tang-gia-cuoc-internet-co-dinh-khi-lap-dat-moi-post895224.html"
+      },
+      "estimate": false,
+      "basis": "operator list price (press)",
+      "note": "khoảng 235.000–255.000đ"
+     },
+     "danang": {
+      "value": 195000,
+      "date": "2026-03-07",
+      "where": "Viettel/FPT – khu vực tỉnh (gồm Đà Nẵng)",
+      "src": {
+       "name": "Báo Lào Cai – Ba nhà mạng lớn đồng loạt tăng giá cước internet cố định khi lắp đặt mới, 07/03/2026",
+       "url": "https://baolaocai.vn/ba-nha-mang-lon-dong-loat-tang-gia-cuoc-internet-co-dinh-khi-lap-dat-moi-post895224.html"
+      },
+      "estimate": false,
+      "basis": "operator list price (press)",
+      "note": "VNPT 190.000đ"
+     },
+     "hcmc": {
+      "value": 235000,
+      "date": "2026-03-07",
+      "where": "Viettel/VNPT – nội thành TP.HCM",
+      "src": {
+       "name": "Báo Lào Cai – Ba nhà mạng lớn đồng loạt tăng giá cước internet cố định khi lắp đặt mới, 07/03/2026",
+       "url": "https://baolaocai.vn/ba-nha-mang-lon-dong-loat-tang-gia-cuoc-internet-co-dinh-khi-lap-dat-moi-post895224.html"
+      },
+      "estimate": false,
+      "basis": "operator list price (press)",
+      "note": "khoảng 235.000–255.000đ"
+     }
+    },
+    "note_vi": "Nhà mạng tính giá nội thành Hà Nội, TP.HCM cao hơn các tỉnh.",
+    "note_en": "Operators charge more inside Hanoi and HCMC than in other provinces."
+   },
+   {
+    "id": "mobile_5g_30d",
+    "cat": "utilities",
+    "name_vi": "Gói di động 5G 30 ngày",
+    "name_en": "Mobile 5G plan, 30 days",
+    "spec_vi": "Viettel 5G135N: 6 GB/ngày",
+    "spec_en": "Viettel 5G135N: 6 GB/day",
+    "unit_vi": "30 ngày",
+    "unit_en": "30 days",
+    "prices": {
+     "hanoi": {
+      "value": 135000,
+      "date": "2026-11-10",
+      "where": "Viettel – giá toàn quốc",
+      "src": {
+       "name": "Viettel 5G – trang gói data (5G135N: 135.000đ/30 ngày, 6 GB/ngày; giá đọc qua chỉ mục tìm kiếm vì trang tải bằng JavaScript)",
+       "url": "https://5g.vietteltelecom.vn/vx/5g/goi-data"
+      },
+      "estimate": false,
+      "basis": "operator list price"
+     },
+     "danang": {
+      "value": 135000,
+      "date": "2026-11-10",
+      "where": "Viettel – giá toàn quốc",
+      "src": {
+       "name": "Viettel 5G – trang gói data (5G135N: 135.000đ/30 ngày, 6 GB/ngày; giá đọc qua chỉ mục tìm kiếm vì trang tải bằng JavaScript)",
+       "url": "https://5g.vietteltelecom.vn/vx/5g/goi-data"
+      },
+      "estimate": false,
+      "basis": "operator list price"
+     },
+     "hcmc": {
+      "value": 135000,
+      "date": "2026-11-10",
+      "where": "Viettel – giá toàn quốc",
+      "src": {
+       "name": "Viettel 5G – trang gói data (5G135N: 135.000đ/30 ngày, 6 GB/ngày; giá đọc qua chỉ mục tìm kiếm vì trang tải bằng JavaScript)",
+       "url": "https://5g.vietteltelecom.vn/vx/5g/goi-data"
+      },
+      "estimate": false,
+      "basis": "operator list price"
+     }
+    },
+    "note_vi": "Giá toàn quốc.",
+    "note_en": "National price."
+   },
+   {
+    "id": "petrol_e10_ron95",
+    "cat": "transport",
+    "name_vi": "Xăng E10 RON95-III",
+    "name_en": "Petrol E10 RON95-III",
+    "spec_vi": "Giá bán lẻ Petrolimex vùng 1",
+    "spec_en": "Petrolimex retail, zone 1",
+    "unit_vi": "lít",
+    "unit_en": "litre",
+    "prices": {
+     "hanoi": {
+      "value": 21150,
+      "date": "2026-11-05",
+      "where": "Petrolimex vùng 1",
+      "src": {
+       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
+       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+      },
+      "estimate": false,
+      "basis": "official retail price (zone 1)"
+     },
+     "danang": {
+      "value": 21150,
+      "date": "2026-11-05",
+      "where": "Petrolimex vùng 1",
+      "src": {
+       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
+       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+      },
+      "estimate": false,
+      "basis": "official retail price (zone 1)"
+     },
+     "hcmc": {
+      "value": 21150,
+      "date": "2026-11-05",
+      "where": "Petrolimex vùng 1",
+      "src": {
+       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
+       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+      },
+      "estimate": false,
+      "basis": "official retail price (zone 1)"
+     }
+    },
+    "note_vi": "Ba thành phố thuộc vùng 1, cùng giá. Từ 2026 xăng RON95 bán dưới dạng E10.",
+    "note_en": "All three cities are zone 1, same price. RON95 is now sold as E10."
+   },
+   {
+    "id": "petrol_e5_ron92",
+    "cat": "transport",
+    "name_vi": "Xăng E5 RON92",
+    "name_en": "Petrol E5 RON92",
+    "spec_vi": "Giá bán lẻ Petrolimex vùng 1",
+    "spec_en": "Petrolimex retail, zone 1",
+    "unit_vi": "lít",
+    "unit_en": "litre",
+    "prices": {
+     "hanoi": {
+      "value": 20890,
+      "date": "2026-11-05",
+      "where": "Petrolimex vùng 1",
+      "src": {
+       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
+       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+      },
+      "estimate": false,
+      "basis": "official retail price (zone 1)"
+     },
+     "danang": {
+      "value": 20890,
+      "date": "2026-11-05",
+      "where": "Petrolimex vùng 1",
+      "src": {
+       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
+       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+      },
+      "estimate": false,
+      "basis": "official retail price (zone 1)"
+     },
+     "hcmc": {
+      "value": 20890,
+      "date": "2026-11-05",
+      "where": "Petrolimex vùng 1",
+      "src": {
+       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
+       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+      },
+      "estimate": false,
+      "basis": "official retail price (zone 1)"
+     }
+    }
+   },
+   {
+    "id": "bike_hailing_5km",
+    "cat": "transport",
+    "name_vi": "Xe ôm công nghệ ~5 km",
+    "name_en": "Ride-hailing motorbike ~5 km",
+    "spec_vi": "Be (2 bánh): cước tối thiểu 2 km + 3 km × 4.600đ (mức thấp)",
+    "spec_en": "Be bike: minimum fare (2 km) + 3 km × VND 4,600 (low end)",
+    "unit_vi": "chuyến",
+    "unit_en": "trip",
+    "prices": {
+     "hanoi": {
+      "value": 28272,
+      "date": "2026-05-08",
+      "where": "Be – Hà Nội",
+      "src": {
+       "name": "Vietnam News/Bizhub – Ride-hailing firms raise fees, 08/05/2026 (Be: cước tối thiểu 13.817đ TP.HCM, 14.472đ Hà Nội; 4.600–5.400đ/km cho 2–12 km)",
+       "url": "https://bizhub.vietnamnews.vn/ride-hailing-firms-raise-fees-as-market-shifts-focus-to-profitability-post402899.html"
+      },
+      "estimate": true,
+      "basis": "computed from published fare",
+      "note": "khoảng 28.300–30.700đ (4.600–5.400đ/km); chưa tính phụ phí giờ cao điểm"
+     },
+     "danang": null,
+     "hcmc": {
+      "value": 27617,
+      "date": "2026-05-08",
+      "where": "Be – TP.HCM",
+      "src": {
+       "name": "Vietnam News/Bizhub – Ride-hailing firms raise fees, 08/05/2026 (Be: cước tối thiểu 13.817đ TP.HCM, 14.472đ Hà Nội; 4.600–5.400đ/km cho 2–12 km)",
+       "url": "https://bizhub.vietnamnews.vn/ride-hailing-firms-raise-fees-as-market-shifts-focus-to-profitability-post402899.html"
+      },
+      "estimate": true,
+      "basis": "computed from published fare",
+      "note": "khoảng 27.600–30.000đ (4.600–5.400đ/km); chưa tính phụ phí giờ cao điểm"
+     }
+    },
+    "note_vi": "Chưa có biểu giá Grab/Be công khai cho Đà Nẵng.",
+    "note_en": "No published Grab/Be fare found for Da Nang."
+   },
+   {
+    "id": "bus_single",
+    "cat": "transport",
+    "name_vi": "Vé xe buýt lượt",
+    "name_en": "City bus single ticket",
+    "spec_vi": "Tuyến trợ giá, cự ly dưới 15 km",
+    "spec_en": "Subsidised route, under 15 km",
+    "unit_vi": "lượt",
+    "unit_en": "trip",
+    "prices": {
+     "hanoi": {
+      "value": 8000,
+      "date": "2024-11-01",
+      "where": "Xe buýt trợ giá Hà Nội",
+      "src": {
+       "name": "Hà Nội: giá vé buýt từ 1/11/2024 (dưới 15 km 8.000đ); miễn vé trong Vành đai 1 từ 1/7/2026 đến 30/6/2027 (Nông nghiệp & Môi trường)",
+       "url": "https://nongnghiepmoitruong.vn/nhung-dieu-cau-luu-y-de-duoc-mien-phi-ve-xe-buyt-trong-vanh-dai-1-d819431.html"
+      },
+      "estimate": false,
+      "basis": "official fare",
+      "note": "Miễn vé cho hành trình trong Vành đai 1 từ 1/7/2026 đến 30/6/2027"
+     },
+     "danang": null,
+     "hcmc": {
+      "value": 0,
+      "date": "2026-07-01",
+      "where": "Xe buýt trợ giá TP.HCM (134 tuyến)",
+      "src": {
+       "name": "TP.HCM miễn 100% vé xe buýt trên 134 tuyến từ 1/7/2026 đến 31/12/2026 (Nông nghiệp & Môi trường)",
+       "url": "https://nongnghiepmoitruong.vn/tu-1-7-tphcm-mien-phi-xe-buyt-tren-134-tuyen-d817668.html"
+      },
+      "estimate": false,
+      "basis": "official fare",
+      "note": "Miễn 100% vé 1/7–31/12/2026; giá thường 5.000đ (dưới 15 km)",
+      "regular": 5000
+     }
+    },
+    "note_vi": "Đà Nẵng: chưa tìm được văn bản giá vé hiện hành.",
+    "note_en": "Da Nang: current official fare not found."
+   },
+   {
+    "id": "metro_single",
+    "cat": "transport",
+    "name_vi": "Vé tàu metro lượt (thấp nhất)",
+    "name_en": "Metro single ticket (minimum)",
+    "spec_vi": "Giá tiền mặt thấp nhất",
+    "spec_en": "Lowest cash fare",
+    "unit_vi": "lượt",
+    "unit_en": "trip",
+    "prices": {
+     "hanoi": {
+      "value": 9000,
+      "date": "2025-08-01",
+      "where": "Metro Hà Nội tuyến 2A, 3.1",
+      "src": {
+       "name": "Sài Gòn Tiếp Thị/Tuổi Trẻ – Tăng giá vé 2 tuyến đường sắt đô thị Hà Nội từ 1/8/2025",
+       "url": "https://tuoitre.vn/saigontimes/tang-gia-ve-2-tuyen-duong-sat-do-thi-tai-ha-noi-tu-1-8/"
+      },
+      "estimate": false,
+      "basis": "official fare",
+      "note": "9.000–19.000đ (tiền mặt); vé tháng 280.000đ"
+     },
+     "danang": null,
+     "hcmc": {
+      "value": 7000,
+      "date": "2024-12-22",
+      "where": "Metro số 1 Bến Thành – Suối Tiên",
+      "src": {
+       "name": "VnEconomy – TP.HCM chính thức chốt giá vé tàu metro số 1, 23/11/2024",
+       "url": "https://vneconomy.vn/tp-hcm-chinh-thuc-chot-gia-ve-tau-metro-1.htm"
+      },
+      "estimate": false,
+      "basis": "official fare",
+      "note": "7.000–20.000đ tiền mặt, 6.000–19.000đ không tiền mặt; vé tháng 300.000đ"
+     }
+    },
+    "note_vi": "Đà Nẵng chưa có metro.",
+    "note_en": "Da Nang has no metro."
+   },
+   {
+    "id": "pho_bowl",
+    "cat": "eating_out",
+    "name_vi": "Phở bò (quán bình dân)",
+    "name_en": "Beef phở (ordinary shop)",
+    "spec_vi": "Bát phở bình dân",
+    "spec_en": "Ordinary bowl",
+    "unit_vi": "bát",
+    "unit_en": "bowl",
+    "prices": {
+     "hanoi": {
+      "value": 50000,
+      "date": "2026-03-25",
+      "where": "Quán bình dân Hà Nội (báo chí)",
+      "src": {
+       "name": "VTC News – Bát phở tăng giá lên 50.000 đồng, 25/03/2026",
+       "url": "https://vtcnews.vn/bat-pho-tang-gia-len-50-000-dong-chu-quan-co-lai-lon-hon-thoi-30-000-dong-ar1009023.html"
+      },
+      "estimate": false,
+      "basis": "typical price reported by press",
+      "note": "mặt bằng phổ biến 45.000–50.000đ"
+     },
+     "danang": null,
+     "hcmc": null
+    },
+    "note_vi": "Chưa có khảo sát có ngày cho Đà Nẵng, TP.HCM.",
+    "note_en": "No dated survey for Da Nang or HCMC."
+   },
+   {
+    "id": "meal_inexpensive",
+    "cat": "eating_out",
+    "name_vi": "Bữa ăn ở quán bình dân",
+    "name_en": "Meal, inexpensive restaurant",
+    "spec_vi": "Numbeo (cộng đồng)",
+    "spec_en": "Numbeo (crowd-sourced)",
+    "unit_vi": "suất",
+    "unit_en": "meal",
+    "prices": {
+     "hanoi": {
+      "value": 52500,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Hanoi"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,130 entries / 88 contributors (12 months)"
+     },
+     "danang": {
+      "value": 60000,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Da-Nang"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "738 entries / 77 contributors (12 months)"
+     },
+     "hcmc": {
+      "value": 54356,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,291 entries / 110 contributors (12 months)"
+     }
+    }
+   },
+   {
+    "id": "meal_midrange_two",
+    "cat": "eating_out",
+    "name_vi": "Bữa tối 2 người, nhà hàng tầm trung",
+    "name_en": "Dinner for two, mid-range restaurant",
+    "spec_vi": "3 món, không đồ uống (Numbeo)",
+    "spec_en": "Three courses, no drinks (Numbeo)",
+    "unit_vi": "bữa",
+    "unit_en": "meal",
+    "prices": {
+     "hanoi": {
+      "value": 600000,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Hanoi"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,130 entries / 88 contributors (12 months)"
+     },
+     "danang": {
+      "value": 500000,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Da-Nang"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "738 entries / 77 contributors (12 months)"
+     },
+     "hcmc": {
+      "value": 600000,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,291 entries / 110 contributors (12 months)"
+     }
+    }
+   },
+   {
+    "id": "cappuccino",
+    "cat": "eating_out",
+    "name_vi": "Cappuccino",
+    "name_en": "Cappuccino",
+    "spec_vi": "Cỡ thường (Numbeo)",
+    "spec_en": "Regular size (Numbeo)",
+    "unit_vi": "ly",
+    "unit_en": "cup",
+    "prices": {
+     "hanoi": {
+      "value": 48883,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Hanoi"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,130 entries / 88 contributors (12 months)"
+     },
+     "danang": {
+      "value": 43000,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Da-Nang"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "738 entries / 77 contributors (12 months)"
+     },
+     "hcmc": {
+      "value": 46955,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,291 entries / 110 contributors (12 months)"
+     }
+    }
+   },
+   {
+    "id": "rent_1br_centre",
+    "cat": "housing",
+    "name_vi": "Thuê căn hộ 1 phòng ngủ – trung tâm",
+    "name_en": "1-bedroom apartment rent – city centre",
+    "spec_vi": "Numbeo (cộng đồng)",
+    "spec_en": "Numbeo (crowd-sourced)",
+    "unit_vi": "tháng",
+    "unit_en": "month",
+    "prices": {
+     "hanoi": {
+      "value": 11304737,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Hanoi"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,130 entries / 88 contributors (12 months)"
+     },
+     "danang": {
+      "value": 14259665,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Da-Nang"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "738 entries / 77 contributors (12 months)"
+     },
+     "hcmc": {
+      "value": 15954851,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,291 entries / 110 contributors (12 months)"
+     }
+    }
+   },
+   {
+    "id": "rent_1br_outside",
+    "cat": "housing",
+    "name_vi": "Thuê căn hộ 1 phòng ngủ – ngoài trung tâm",
+    "name_en": "1-bedroom apartment rent – outside centre",
+    "spec_vi": "Numbeo (cộng đồng)",
+    "spec_en": "Numbeo (crowd-sourced)",
+    "unit_vi": "tháng",
+    "unit_en": "month",
+    "prices": {
+     "hanoi": {
+      "value": 7505280,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Hanoi"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,130 entries / 88 contributors (12 months)"
+     },
+     "danang": {
+      "value": 9223236,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Da-Nang"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "738 entries / 77 contributors (12 months)"
+     },
+     "hcmc": {
+      "value": 7736120,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,291 entries / 110 contributors (12 months)"
+     }
+    }
+   },
+   {
+    "id": "haircut_men",
+    "cat": "services",
+    "name_vi": "Cắt tóc nam",
+    "name_en": "Men's haircut",
+    "spec_vi": "Tiệm cắt tóc thông thường (Numbeo)",
+    "spec_en": "Standard barbershop (Numbeo)",
+    "unit_vi": "lần",
+    "unit_en": "visit",
+    "prices": {
+     "hanoi": {
+      "value": 150000,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Hanoi"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,130 entries / 88 contributors (12 months)"
+     },
+     "danang": {
+      "value": 150000,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Da-Nang"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "738 entries / 77 contributors (12 months)"
+     },
+     "hcmc": {
+      "value": 210000,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,291 entries / 110 contributors (12 months)"
+     }
+    }
+   },
+   {
+    "id": "doctor_visit_public",
+    "cat": "services",
+    "name_vi": "Khám bệnh tại bệnh viện công",
+    "name_en": "Doctor visit, public hospital",
+    "spec_vi": "Giá khám BHYT, bệnh viện hạng đặc biệt/hạng I",
+    "spec_en": "Insurance price, special-class/class I hospital",
+    "unit_vi": "lượt",
+    "unit_en": "visit",
+    "prices": {
+     "hanoi": {
+      "value": 42100,
+      "date": "2023-11-17",
+      "where": "Khung giá toàn quốc (Bộ Y tế)",
+      "src": {
+       "name": "Thông tư 22/2023/TT-BYT – giá khám bệnh BHYT bệnh viện hạng đặc biệt, hạng I: 42.100đ (luatvietnam)",
+       "url": "https://luatvietnam.vn/y-te/thong-tu-22-2023-tt-byt-gia-kham-benh-chua-benh-bhyt-benh-vien-cung-hang-277331-d1.html"
+      },
+      "estimate": false,
+      "basis": "official national price",
+      "note": "Cần kiểm tra văn bản điều chỉnh sau 2023"
+     },
+     "danang": {
+      "value": 42100,
+      "date": "2023-11-17",
+      "where": "Khung giá toàn quốc (Bộ Y tế)",
+      "src": {
+       "name": "Thông tư 22/2023/TT-BYT – giá khám bệnh BHYT bệnh viện hạng đặc biệt, hạng I: 42.100đ (luatvietnam)",
+       "url": "https://luatvietnam.vn/y-te/thong-tu-22-2023-tt-byt-gia-kham-benh-chua-benh-bhyt-benh-vien-cung-hang-277331-d1.html"
+      },
+      "estimate": false,
+      "basis": "official national price",
+      "note": "Cần kiểm tra văn bản điều chỉnh sau 2023"
+     },
+     "hcmc": {
+      "value": 42100,
+      "date": "2023-11-17",
+      "where": "Khung giá toàn quốc (Bộ Y tế)",
+      "src": {
+       "name": "Thông tư 22/2023/TT-BYT – giá khám bệnh BHYT bệnh viện hạng đặc biệt, hạng I: 42.100đ (luatvietnam)",
+       "url": "https://luatvietnam.vn/y-te/thong-tu-22-2023-tt-byt-gia-kham-benh-chua-benh-bhyt-benh-vien-cung-hang-277331-d1.html"
+      },
+      "estimate": false,
+      "basis": "official national price",
+      "note": "Cần kiểm tra văn bản điều chỉnh sau 2023"
+     }
+    },
+    "note_vi": "Giá toàn quốc theo hạng bệnh viện; người có BHYT được quỹ chi trả theo mức hưởng.",
+    "note_en": "National price by hospital class; insured patients are covered per their benefit level."
+   },
+   {
+    "id": "preschool_public_tuition",
+    "cat": "services",
+    "name_vi": "Học phí mầm non công lập",
+    "name_en": "Public preschool tuition",
+    "spec_vi": "Học phí (chưa gồm tiền ăn, dịch vụ)",
+    "spec_en": "Tuition only (excl. meals and services)",
+    "unit_vi": "tháng",
+    "unit_en": "month",
+    "prices": {
+     "hanoi": {
+      "value": 0,
+      "date": "2025-06-26",
+      "where": "Chính sách toàn quốc",
+      "src": {
+       "name": "Nghị quyết 217/2025/QH15 – miễn học phí trẻ mầm non, học sinh phổ thông công lập từ năm học 2025–2026 (luatvietnam)",
+       "url": "https://luatvietnam.vn/thue/nghi-quyet-217-2025-qh15-mien-ho-tro-hoc-phi-cho-tre-mam-non-va-hoc-sinh-pho-thong-404573-d1.html"
+      },
+      "estimate": false,
+      "basis": "national law",
+      "note": "Miễn học phí từ năm học 2025–2026; tiền ăn, bán trú vẫn thu"
+     },
+     "danang": {
+      "value": 0,
+      "date": "2025-06-26",
+      "where": "Chính sách toàn quốc",
+      "src": {
+       "name": "Nghị quyết 217/2025/QH15 – miễn học phí trẻ mầm non, học sinh phổ thông công lập từ năm học 2025–2026 (luatvietnam)",
+       "url": "https://luatvietnam.vn/thue/nghi-quyet-217-2025-qh15-mien-ho-tro-hoc-phi-cho-tre-mam-non-va-hoc-sinh-pho-thong-404573-d1.html"
+      },
+      "estimate": false,
+      "basis": "national law",
+      "note": "Miễn học phí từ năm học 2025–2026; tiền ăn, bán trú vẫn thu"
+     },
+     "hcmc": {
+      "value": 0,
+      "date": "2025-06-26",
+      "where": "Chính sách toàn quốc",
+      "src": {
+       "name": "Nghị quyết 217/2025/QH15 – miễn học phí trẻ mầm non, học sinh phổ thông công lập từ năm học 2025–2026 (luatvietnam)",
+       "url": "https://luatvietnam.vn/thue/nghi-quyet-217-2025-qh15-mien-ho-tro-hoc-phi-cho-tre-mam-non-va-hoc-sinh-pho-thong-404573-d1.html"
+      },
+      "estimate": false,
+      "basis": "national law",
+      "note": "Miễn học phí từ năm học 2025–2026; tiền ăn, bán trú vẫn thu"
+     }
+    }
+   },
+   {
+    "id": "preschool_private",
+    "cat": "services",
+    "name_vi": "Mầm non tư thục cả ngày",
+    "name_en": "Private full-day preschool",
+    "spec_vi": "Numbeo (cộng đồng)",
+    "spec_en": "Numbeo (crowd-sourced)",
+    "unit_vi": "tháng",
+    "unit_en": "month",
+    "prices": {
+     "hanoi": {
+      "value": 22200836,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Hanoi"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,130 entries / 88 contributors (12 months)"
+     },
+     "danang": {
+      "value": 11605407,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Da-Nang"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "738 entries / 77 contributors (12 months)"
+     },
+     "hcmc": {
+      "value": 13723022,
+      "date": "2026-11-06",
+      "where": "Numbeo (crowd-sourced average)",
+      "src": {
+       "name": "Numbeo – Cost of Living (crowd-sourced)",
+       "url": "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+      },
+      "estimate": true,
+      "basis": "crowd-sourced average",
+      "note": "1,291 entries / 110 contributors (12 months)"
+     }
+    }
+   }
+  ],
+  "tariffs": {
+   "electricity": {
+    "unit": "VND/kWh",
+    "tiers": [
+     {
+      "from": 0,
+      "to": 100,
+      "price": 1901
+     },
+     {
+      "from": 100,
+      "to": 200,
+      "price": 2289
+     },
+     {
+      "from": 200,
+      "to": 400,
+      "price": 2894
+     },
+     {
+      "from": 400,
+      "to": 700,
+      "price": 3456
+     },
+     {
+      "from": 700,
+      "to": null,
+      "price": 3844
+     }
+    ],
+    "effective": "2026-11-01",
+    "src": {
+     "name": "CafeF/VTV – Biểu giá điện sinh hoạt 5 bậc từ 1/11/2026 (QĐ 2892/QĐ-BCT), 04/11/2026",
+     "url": "https://cafef.vn/ap-bieu-gia-dien-sinh-hoat-5-bac-ho-dung-dien-nao-huong-loi-188261104161400707.chn"
+    },
+    "sources": [
+     {
+      "name": "CafeF/VTV – Biểu giá điện sinh hoạt 5 bậc từ 1/11/2026 (QĐ 2892/QĐ-BCT), 04/11/2026",
+      "url": "https://cafef.vn/ap-bieu-gia-dien-sinh-hoat-5-bac-ho-dung-dien-nao-huong-loi-188261104161400707.chn"
+     },
+     {
+      "name": "Tiền Phong – Thông tin mới nhất về giá bán lẻ điện sinh hoạt theo 5 bậc, 04/11/2026",
+      "url": "https://tienphong.vn/thong-tin-moi-nhat-ve-gia-ban-le-dien-sinh-hoat-theo-5-bac-post1891328.tpo"
+     },
+     {
+      "name": "SGGP – Chi tiết giá bán lẻ điện áp dụng từ 1-11-2026, 05/11/2026",
+      "url": "https://www.sggp.org.vn/chi-tiet-gia-ban-le-dien-ap-dung-tu-ngay-1-11-2026-post880092.html"
+     }
+    ],
+    "decision": "Quyết định 2892/QĐ-BCT",
+    "note_vi": "Biểu giá bán lẻ điện sinh hoạt 5 bậc (thay 6 bậc theo QĐ 28/2014/QĐ-TTg), giá chưa gồm VAT, áp dụng toàn quốc.",
+    "note_en": "5-tier household retail tariff (replaces the 6-tier schedule), excl. VAT, nationwide."
+   },
+   "water": {
+    "hanoi": {
+     "unit": "VND/m3",
+     "basis": "per household per month",
+     "tiers": [
+      {
+       "from": 0,
+       "to": 10,
+       "price": 8500
+      },
+      {
+       "from": 10,
+       "to": 20,
+       "price": 9900
+      },
+      {
+       "from": 20,
+       "to": 30,
+       "price": 16000
+      },
+      {
+       "from": 30,
+       "to": null,
+       "price": 27000
+      }
+     ],
+     "effective": "2024-01-01",
+     "src": {
+      "name": "VnExpress – Hà Nội tăng giá nước sạch (lộ trình 2023–2024), 10/07/2023; SGGP 10/07/2023 (QĐ 3541/QĐ-UBND)",
+      "url": "https://vnexpress.net/ha-noi-tang-gia-nuoc-sach-4627354.html"
+     },
+     "sources": [
+      {
+       "name": "VnExpress – Hà Nội tăng giá nước sạch (lộ trình 2023–2024), 10/07/2023; SGGP 10/07/2023 (QĐ 3541/QĐ-UBND)",
+       "url": "https://vnexpress.net/ha-noi-tang-gia-nuoc-sach-4627354.html"
+      },
+      {
+       "name": "SGGP – Hà Nội tăng giá nước sạch, cao nhất 27.000 đồng/m³ (QĐ 3541/QĐ-UBND)",
+       "url": "https://www.sggp.org.vn/ha-noi-tang-gia-nuoc-sach-cao-nhat-27000-dongm-doi-voi-ho-dan-post696855.html"
+      }
+     ],
+     "decision": "Quyết định 3541/QĐ-UBND (lộ trình 2023–2024)",
+     "vat": "not stated in source",
+     "note_en": "Poor and policy households stay at 5,973/m3. Latest decision found; no 2026 change found."
+    },
+    "danang": {
+     "unit": "VND/m3",
+     "basis": "per meter per month, urban",
+     "tiers": [
+      {
+       "from": 0,
+       "to": 10,
+       "price": 4550
+      },
+      {
+       "from": 10,
+       "to": 30,
+       "price": 5460
+      },
+      {
+       "from": 30,
+       "to": null,
+       "price": 6810
+      }
+     ],
+     "tiers_rural": [
+      {
+       "from": 0,
+       "to": 10,
+       "price": 3400
+      },
+      {
+       "from": 10,
+       "to": 30,
+       "price": 4100
+      },
+      {
+       "from": 30,
+       "to": null,
+       "price": 5100
+      }
+     ],
+     "effective": "2024-12-31",
+     "src": {
+      "name": "Quyết định 2967/QĐ-UBND ngày 31/12/2024 của UBND TP Đà Nẵng về giá bán lẻ nước sạch sinh hoạt (caselaw.vn)",
+      "url": "https://caselaw.vn/van-ban-phap-luat/581115-quyet-dinh-so-2967-qd-ubnd-ngay-31-12-2024-ve-gia-ban-le-nuoc-sach-sinh-hoat-tren-dia-ban-thanh-pho-da-nang"
+     },
+     "decision": "Quyết định 2967/QĐ-UBND",
+     "vat": "included",
+     "note_en": "Former Quang Nam areas (merged July 2025) still use their own pre-merger tariffs."
+    },
+    "hcmc": {
+     "unit": "VND/m3",
+     "basis": "per person per month (quota by registered residents)",
+     "tiers": [
+      {
+       "from": 0,
+       "to": 4,
+       "price": 6700
+      },
+      {
+       "from": 4,
+       "to": 6,
+       "price": 12900
+      },
+      {
+       "from": 6,
+       "to": null,
+       "price": 14400
+      }
+     ],
+     "effective": "2022-01-01",
+     "src": {
+      "name": "SGGP – Đơn giá nước sinh hoạt: hộ gia đình tính theo định mức, 27/03/2025",
+      "url": "https://www.sggp.org.vn/don-gia-nuoc-sinh-hoat-ho-gia-dinh-tinh-theo-dinh-muc-post787873.html"
+     },
+     "decision": "Quyết định 25/2019/QĐ-UBND (lộ trình 2019–2022)",
+     "vat": "excluded (5%)",
+     "note_en": "Wastewater fee of 30% of the water price is charged on top. Source wording leaves the 6–7 m3 boundary ambiguous; above 6 m3 taken as 14,400."
+    }
+   }
+  },
+  "basket": {
+   "name_vi": "Giỏ chi tiêu tháng của hộ 4 người (minh họa)",
+   "name_en": "Illustrative monthly basket, 4-person household",
+   "lines": [
+    {
+     "item": "rice_regular_5kg",
+     "qty": 3,
+     "note": "15 kg gạo/tháng"
+    },
+    {
+     "item": "cooking_oil_1l",
+     "qty": 2,
+     "note": ""
+    },
+    {
+     "item": "sugar_1kg",
+     "qty": 1,
+     "note": ""
+    },
+    {
+     "item": "fish_sauce_500ml",
+     "qty": 2,
+     "note": ""
+    },
+    {
+     "item": "milk_1l",
+     "qty": 8,
+     "note": ""
+    },
+    {
+     "item": "instant_noodles",
+     "qty": 20,
+     "note": ""
+    },
+    {
+     "item": "ground_coffee_500g",
+     "qty": 1,
+     "note": ""
+    },
+    {
+     "item": "toilet_paper_10",
+     "qty": 2,
+     "note": ""
+    },
+    {
+     "item": "sanitary_pads_8",
+     "qty": 2,
+     "note": ""
+    },
+    {
+     "item": "electricity_200kwh",
+     "qty": 1,
+     "note": "200 kWh"
+    },
+    {
+     "item": "water_15m3",
+     "qty": 1,
+     "note": "15 m³"
+    },
+    {
+     "item": "lpg_12kg",
+     "qty": 1,
+     "note": ""
+    },
+    {
+     "item": "internet_300mbps",
+     "qty": 1,
+     "note": ""
+    },
+    {
+     "item": "mobile_5g_30d",
+     "qty": 2,
+     "note": "2 thuê bao"
+    },
+    {
+     "item": "petrol_e5_ron92",
+     "qty": 20,
+     "note": "20 lít cho 2 xe máy"
+    }
+   ],
+   "totals": {
+    "hanoi": 3547204,
+    "danang": 3559000,
+    "hcmc": 3533281
+   },
+   "note_vi": "Chỉ gồm các mặt hàng có giá ở cả ba thành phố; chưa gồm thịt, cá, rau tươi (thiếu dữ liệu Hà Nội, Đà Nẵng), tiền thuê nhà và ăn ngoài. Điện chưa VAT; nước theo cơ sở VAT của từng thành phố.",
+   "note_en": "Only items priced in all three cities; excludes fresh meat, fish and vegetables (no Hanoi/Da Nang data), rent and eating out. Electricity excl. VAT; water on each city's VAT basis."
+  },
+  "gaps": [
+   "Fresh food (pork, chicken, eggs, fish, rau muống, tomatoes, bananas) for Hanoi and Da Nang: no dated retailer or official price found; LOTTE Mart fresh pages for those stores showed no price. Fish and rau muống missing for all cities.",
+   "Official city market-price bulletins (Sở Tài chính/Sở Công Thương Hà Nội, Đà Nẵng, TP.HCM) for Oct–Nov 2026 not found online.",
+   "Bách Hóa XANH and WinMart pages render prices by JavaScript; only some BHX category pages (default location, taken as HCMC) were readable. WinMart not readable.",
+   "LOTTE Mart store code 'dda' assumed to be Da Nang (only Da Nang store left after matching codes to the store list); confirm.",
+   "Many LOTTE Mart product pages show no price for a given store (laundry, dish soap, bin bags, toothpaste, shampoo, socks in some cities): null.",
+   "LPG: 1 Nov 2026 announcement not found; October 2026 values used.",
+   "Electricity: VAT rate to apply on top of the tariff not verified; basket uses pre-VAT bill.",
+   "Hanoi water tariff: VAT treatment not stated in the source; no 2025–2026 change found. HCMC water: no 2026 decision found (plans of +5%/year 2026–2028 reported but not confirmed).",
+   "Da Nang bus fare, Grab/Be fares for Da Nang, motorbike parking fees (Hanoi Decision 5794/QĐ-UBND, Oct 2026, amounts not read) and HCMC metro status under the free-bus programme: not found.",
+   "Eating out: only Hanoi phở has a dated press figure; bánh mì, cơm tấm, iced milk coffee not sourced; Numbeo used as crowd-sourced reference.",
+   "Basic T-shirt price not sourced; jeans from Numbeo only.",
+   "Doctor visit: 42,100 is the 2023 insurance price for class I hospitals; a later MoH update (possibly 50,600) seen but not verified.",
+   "Mobile plan read via search index of the official Viettel 5G page (page is JavaScript-rendered)."
+  ],
+  "sources": [
+   {
+    "name": "LOTTE Mart Vietnam online – product pages (one per item and store; URLs in each price's src)",
+    "url": "https://www.lottemart.vn/"
+   },
+   {
+    "name": "Viettel 5G – trang gói data (5G135N: 135.000đ/30 ngày, 6 GB/ngày; giá đọc qua chỉ mục tìm kiếm vì trang tải bằng JavaScript)",
+    "url": "https://5g.vietteltelecom.vn/vx/5g/goi-data"
+   },
+   {
+    "name": "Báo Lào Cai – Ba nhà mạng lớn đồng loạt tăng giá cước internet cố định khi lắp đặt mới, 07/03/2026",
+    "url": "https://baolaocai.vn/ba-nha-mang-lon-dong-loat-tang-gia-cuoc-internet-co-dinh-khi-lap-dat-moi-post895224.html"
+   },
+   {
+    "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
+    "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+   },
+   {
+    "name": "Vietnam News/Bizhub – Ride-hailing firms raise fees, 08/05/2026 (Be: cước tối thiểu 13.817đ TP.HCM, 14.472đ Hà Nội; 4.600–5.400đ/km cho 2–12 km)",
+    "url": "https://bizhub.vietnamnews.vn/ride-hailing-firms-raise-fees-as-market-shifts-focus-to-profitability-post402899.html"
+   },
+   {
+    "name": "CafeF/VTV – Biểu giá điện sinh hoạt 5 bậc từ 1/11/2026 (QĐ 2892/QĐ-BCT), 04/11/2026",
+    "url": "https://cafef.vn/ap-bieu-gia-dien-sinh-hoat-5-bac-ho-dung-dien-nao-huong-loi-188261104161400707.chn"
+   },
+   {
+    "name": "Quyết định 2967/QĐ-UBND ngày 31/12/2024 của UBND TP Đà Nẵng về giá bán lẻ nước sạch sinh hoạt (caselaw.vn)",
+    "url": "https://caselaw.vn/van-ban-phap-luat/581115-quyet-dinh-so-2967-qd-ubnd-ngay-31-12-2024-ve-gia-ban-le-nuoc-sach-sinh-hoat-tren-dia-ban-thanh-pho-da-nang"
+   },
+   {
+    "name": "Đại biểu Nhân dân – TP.HCM sắp điều chỉnh giá vé xe buýt, tàu điện (giá hiện hành 5.000–7.000đ), 15/12/2025",
+    "url": "https://daibieunhandan.vn/tp-ho-chi-minh-sap-dieu-chinh-gia-ve-xe-buyt-tau-dien-10400507.html"
+   },
+   {
+    "name": "Nghị quyết 217/2025/QH15 – miễn học phí trẻ mầm non, học sinh phổ thông công lập từ năm học 2025–2026 (luatvietnam)",
+    "url": "https://luatvietnam.vn/thue/nghi-quyet-217-2025-qh15-mien-ho-tro-hoc-phi-cho-tre-mam-non-va-hoc-sinh-pho-thong-404573-d1.html"
+   },
+   {
+    "name": "Thông tư 22/2023/TT-BYT – giá khám bệnh BHYT bệnh viện hạng đặc biệt, hạng I: 42.100đ (luatvietnam)",
+    "url": "https://luatvietnam.vn/y-te/thong-tu-22-2023-tt-byt-gia-kham-benh-chua-benh-bhyt-benh-vien-cung-hang-277331-d1.html"
+   },
+   {
+    "name": "Hà Nội: giá vé buýt từ 1/11/2024 (dưới 15 km 8.000đ); miễn vé trong Vành đai 1 từ 1/7/2026 đến 30/6/2027 (Nông nghiệp & Môi trường)",
+    "url": "https://nongnghiepmoitruong.vn/nhung-dieu-cau-luu-y-de-duoc-mien-phi-ve-xe-buyt-trong-vanh-dai-1-d819431.html"
+   },
+   {
+    "name": "TP.HCM miễn 100% vé xe buýt trên 134 tuyến từ 1/7/2026 đến 31/12/2026 (Nông nghiệp & Môi trường)",
+    "url": "https://nongnghiepmoitruong.vn/tu-1-7-tphcm-mien-phi-xe-buyt-tren-134-tuyen-d817668.html"
+   },
+   {
+    "name": "Thời báo Tài chính Việt Nam – Giá gas bán lẻ tháng 10/2026 tăng mạnh, 01/10/2026",
+    "url": "https://thoibaotaichinhvietnam.vn/gia-gas-ban-le-thang-10-2026-tang-manh-204655.html"
+   },
+   {
+    "name": "Tiền Phong – Thông tin mới nhất về giá bán lẻ điện sinh hoạt theo 5 bậc, 04/11/2026",
+    "url": "https://tienphong.vn/thong-tin-moi-nhat-ve-gia-ban-le-dien-sinh-hoat-theo-5-bac-post1891328.tpo"
+   },
+   {
+    "name": "Sài Gòn Tiếp Thị/Tuổi Trẻ – Tăng giá vé 2 tuyến đường sắt đô thị Hà Nội từ 1/8/2025",
+    "url": "https://tuoitre.vn/saigontimes/tang-gia-ve-2-tuyen-duong-sat-do-thi-tai-ha-noi-tu-1-8/"
+   },
+   {
+    "name": "VnEconomy – TP.HCM chính thức chốt giá vé tàu metro số 1, 23/11/2024",
+    "url": "https://vneconomy.vn/tp-hcm-chinh-thuc-chot-gia-ve-tau-metro-1.htm"
+   },
+   {
+    "name": "VnExpress – Hà Nội tăng giá nước sạch (lộ trình 2023–2024), 10/07/2023; SGGP 10/07/2023 (QĐ 3541/QĐ-UBND)",
+    "url": "https://vnexpress.net/ha-noi-tang-gia-nuoc-sach-4627354.html"
+   },
+   {
+    "name": "VTC News – Bát phở tăng giá lên 50.000 đồng, 25/03/2026",
+    "url": "https://vtcnews.vn/bat-pho-tang-gia-len-50-000-dong-chu-quan-co-lai-lon-hon-thoi-30-000-dong-ar1009023.html"
+   },
+   {
+    "name": "Bách Hóa XANH – trang danh mục",
+    "url": "https://www.bachhoaxanh.com/thit-ga"
+   },
+   {
+    "name": "Bách Hóa XANH – trang danh mục",
+    "url": "https://www.bachhoaxanh.com/thit-heo"
+   },
+   {
+    "name": "Bách Hóa XANH – trang danh mục",
+    "url": "https://www.bachhoaxanh.com/trai-cay-tuoi-ngon"
+   },
+   {
+    "name": "Bách Hóa XANH – trang danh mục",
+    "url": "https://www.bachhoaxanh.com/trung"
+   },
+   {
+    "name": "Numbeo – Cost of Living (crowd-sourced)",
+    "url": "https://www.numbeo.com/cost-of-living/in/Da-Nang"
+   },
+   {
+    "name": "Numbeo – Cost of Living (crowd-sourced)",
+    "url": "https://www.numbeo.com/cost-of-living/in/Hanoi"
+   },
+   {
+    "name": "Numbeo – Cost of Living (crowd-sourced)",
+    "url": "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+   },
+   {
+    "name": "SGGP – Chi tiết giá bán lẻ điện áp dụng từ 1-11-2026, 05/11/2026",
+    "url": "https://www.sggp.org.vn/chi-tiet-gia-ban-le-dien-ap-dung-tu-ngay-1-11-2026-post880092.html"
+   },
+   {
+    "name": "SGGP – Đơn giá nước sinh hoạt: hộ gia đình tính theo định mức, 27/03/2025",
+    "url": "https://www.sggp.org.vn/don-gia-nuoc-sinh-hoat-ho-gia-dinh-tinh-theo-dinh-muc-post787873.html"
+   },
+   {
+    "name": "SGGP – Hà Nội tăng giá nước sạch, cao nhất 27.000 đồng/m³ (QĐ 3541/QĐ-UBND)",
+    "url": "https://www.sggp.org.vn/ha-noi-tang-gia-nuoc-sach-cao-nhat-27000-dongm-doi-voi-ho-dan-post696855.html"
+   }
+  ]
+ }
+}
