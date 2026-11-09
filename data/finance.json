@@ -16696,6 +16696,187 @@
    },
    "note_vi": "Chuỗi tuần (thứ Sáu hoặc phiên cuối tuần), 1/5–6/11/2026. VN-Index: giá đóng cửa HOSE (dữ liệu Vietcap). Tỷ giá trung tâm: NHNN công bố, theo các bài tổng hợp thị trường tiền tệ tuần. Vietcombank: giá bán USD cuối tuần theo báo chí (thiếu nhiều tuần). Lãi suất qua đêm: mức NHNN công bố của phiên gần nhất trong tuần (thường là thứ Năm do công bố trễ 1 ngày) — biến động rất mạnh quanh cuối tháng, không phải bình quân tuần. Ô trống = không tìm được nguồn; không nội suy.",
    "note_en": "Weekly (Friday or last session of the week), 1 May-6 Nov 2026. VN-Index: HOSE close (Vietcap feed). Central rate: SBV fixing as reported in weekly money-market wraps. Vietcombank: end-of-week USD selling quote from press (many gaps). Overnight interbank: SBV-published rate of the latest session quoted for the week (often Thursday, as SBV publishes with a one-day lag) - very volatile around month-ends; not a weekly average. Nulls = no source found; no interpolation."
+  },
+  "fed": {
+   "as_of": "2026-11-09",
+   "unit": "% p.a., federal funds target range",
+   "time_note_vi": "FOMC công bố quyết định lúc 14:00 giờ miền Đông Mỹ ngày họp cuối, tức 01:00 (giờ mùa hè Mỹ) hoặc 02:00 (giờ mùa đông) sáng hôm sau theo giờ Việt Nam.",
+   "time_note_en": "The FOMC releases its decision at 2:00 pm US Eastern time on the last meeting day: 01:00 (US daylight time) or 02:00 (US standard time) the next morning in Vietnam.",
+   "decisions": [
+    {
+     "date": "2026-07-29",
+     "meeting": "28–29/07/2026",
+     "time_us": "14:00 EDT",
+     "time_ict": "2026-07-30T01:00",
+     "action": "hold",
+     "range": [
+      3.5,
+      3.75
+     ],
+     "change_bp": 0,
+     "vote": "9–3",
+     "note_vi": "Giữ nguyên; ba thành viên (Hammack, Kashkari, Logan) muốn tăng 0,25 điểm %.",
+     "note_en": "Held; three members (Hammack, Kashkari, Logan) wanted a 25bp hike.",
+     "url": "https://www.foxbusiness.com/economy/federal-reserve-interest-rate-decision-july-29-2026"
+    },
+    {
+     "date": "2026-09-16",
+     "meeting": "15–16/09/2026",
+     "time_us": "14:00 EDT",
+     "time_ict": "2026-09-17T01:00",
+     "action": "hike",
+     "range": [
+      3.75,
+      4.0
+     ],
+     "change_bp": 25,
+     "vote": "12–0",
+     "note_vi": "Tăng 0,25 điểm % lên 3,75–4,00%, nhất trí.",
+     "note_en": "Raised 25bp to 3.75–4.00%, unanimous.",
+     "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+     "date": "2026-10-28",
+     "meeting": "27–28/10/2026",
+     "time_us": "14:00 EDT",
+     "time_ict": "2026-10-29T01:00",
+     "action": "hold",
+     "range": [
+      3.75,
+      4.0
+     ],
+     "change_bp": 0,
+     "vote": "10–2",
+     "note_vi": "Giữ nguyên; Cook và Hammack muốn tăng 0,25 điểm %.",
+     "note_en": "Held; Cook and Hammack wanted a 25bp hike.",
+     "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm"
+    }
+   ],
+   "upcoming": [
+    {
+     "date": "2026-12-09",
+     "meeting": "08–09/12/2026",
+     "time_us": "14:00 EST",
+     "time_ict": "2026-12-10T02:00",
+     "sep": true,
+     "forecast": {
+      "action": "hike",
+      "prob_pct": 78,
+      "range": [
+       4.0,
+       4.25
+      ],
+      "basis_vi": "CME FedWatch, 08/11/2026 (theo CNBC); Kalshi/Polymarket ≈77%",
+      "basis_en": "CME FedWatch, 08 Nov 2026 (via CNBC); Kalshi/Polymarket ≈77%"
+     },
+     "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+     "date": "2027-01-27",
+     "meeting": "26–27/01/2027",
+     "time_us": "14:00 EST",
+     "time_ict": "2027-01-28T02:00",
+     "sep": false,
+     "forecast": {
+      "action": "hold",
+      "prob_pct": 76,
+      "hike_prob_pct": 24,
+      "range": [
+       4.0,
+       4.25
+      ],
+      "basis_vi": "Định giá OIS (rateprobability.com), 09/11/2026: 24% khả năng tăng tiếp",
+      "basis_en": "OIS pricing (rateprobability.com), 09 Nov 2026: 24% odds of a further hike"
+     },
+     "tentative": true,
+     "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+     "date": "2027-03-17",
+     "meeting": "16–17/03/2027",
+     "time_us": "14:00 EDT",
+     "time_ict": "2027-03-18T01:00",
+     "sep": true,
+     "forecast": {
+      "action": "hold",
+      "prob_pct": 63,
+      "hike_prob_pct": 37,
+      "range": [
+       4.0,
+       4.25
+      ],
+      "basis_vi": "Định giá OIS (rateprobability.com), 09/11/2026: 37% khả năng tăng tiếp",
+      "basis_en": "OIS pricing (rateprobability.com), 09 Nov 2026: 37% odds of a further hike"
+     },
+     "tentative": true,
+     "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    }
+   ],
+   "forecast_note_vi": "Dự báo là xác suất thị trường định giá, không phải quyết định của Fed; các nguồn lệch nhau vài điểm %. Lịch 2027 là dự kiến; Fed cho biết một cuộc họp năm 2027 chỉ bàn chiến lược.",
+   "forecast_note_en": "Forecasts are market-implied probabilities, not Fed decisions; sources differ by a few points. 2027 dates are tentative; the Fed says one 2027 meeting will discuss strategy only.",
+   "path": {
+    "source": "FRED DFEDTARU/DFEDTARL (target range upper bound, effective dates)",
+    "points": [
+     {
+      "date": "2022-12-15",
+      "upper": 4.5
+     },
+     {
+      "date": "2023-02-02",
+      "upper": 4.75
+     },
+     {
+      "date": "2023-03-23",
+      "upper": 5.0
+     },
+     {
+      "date": "2023-05-04",
+      "upper": 5.25
+     },
+     {
+      "date": "2023-07-27",
+      "upper": 5.5
+     },
+     {
+      "date": "2024-09-19",
+      "upper": 5.0
+     },
+     {
+      "date": "2024-11-08",
+      "upper": 4.75
+     },
+     {
+      "date": "2024-12-19",
+      "upper": 4.5
+     },
+     {
+      "date": "2025-09-18",
+      "upper": 4.25
+     },
+     {
+      "date": "2025-10-30",
+      "upper": 4.0
+     },
+     {
+      "date": "2025-12-11",
+      "upper": 3.75
+     },
+     {
+      "date": "2026-09-17",
+      "upper": 4.0
+     }
+    ],
+    "start": {
+     "date": "2022-12-15",
+     "upper": 4.5
+    }
+   },
+   "sources": [
+    "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+    "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+    "https://fred.stlouisfed.org/series/DFEDTARU",
+    "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html"
+   ]
   }
  }
 }
