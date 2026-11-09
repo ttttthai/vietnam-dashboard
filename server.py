@@ -17,7 +17,7 @@ Serves (main ones):
   /api/auto             -> World Bank / IMF / FRED snapshots in data/auto/ (POST /api/auto/refresh to re-pull)
 
 Scheduler (APScheduler, Asia/Ho_Chi_Minh):
-  - daily 00:00 — market snapshot refresh (also once on startup)
+  - daily 06:00 — market snapshot + Fed funds (FRED) refresh (also once on startup)
   - monthly, 15th 01:00 — public macro APIs → data/auto/*.json (also on startup if a snapshot is missing/old)
 
 Run:
@@ -1482,7 +1482,7 @@ def api_logs(limit: int = 100):
         "logs":      list(REFRESH_LOG)[: max(1, min(limit, 400))],
         "count":     len(REFRESH_LOG),
         "next_run":  next_run,
-        "schedule":  "Hàng ngày · 00:00 Asia/Ho_Chi_Minh",
+        "schedule":  "Hàng ngày · 06:00 Asia/Ho_Chi_Minh",
         "schedule_auto": AUTO_SCHEDULE,
     })
 
@@ -1966,7 +1966,7 @@ def api_update_log():
         nxt += timedelta(days=7)
     return JSONResponse({
         "minor": {"updated_at": SNAPSHOT.get("updated_at"), "errors": SNAPSHOT.get("errors") or [],
-                  "last_event": last_snap, "next_run": next_daily, "schedule": "Hàng ngày · 00:00 Asia/Ho_Chi_Minh"},
+                  "last_event": last_snap, "next_run": next_daily, "schedule": "Hàng ngày · 06:00 Asia/Ho_Chi_Minh"},
         "weekly": {"latest": latest, "latest_md": md, "runs": entries[:12], "next_run": nxt.isoformat(),
                    "schedule": WEEKLY_SCHEDULE,
                    "last_minor": next((e for e in entries if (e.get("decision") or "").upper() == "MINOR"), None),
@@ -2049,12 +2049,18 @@ def api_refresh():
     })
 
 
-# Scheduler: daily at 00:00 Asia/Ho_Chi_Minh (midnight VN time)
+# Scheduler: daily at 06:00 Asia/Ho_Chi_Minh (06:00 VN time)
 # CronTrigger defaults to the *system* timezone in APScheduler 3 (UTC on Render), so pass it explicitly.
 VN_TZ = "Asia/Ho_Chi_Minh"
 scheduler = BackgroundScheduler(timezone=VN_TZ)
-scheduler.add_job(lambda: refresh_snapshot("auto"),
-                  CronTrigger(hour=0, minute=0, timezone=VN_TZ),
+def daily_refresh() -> None:
+    """06:00 ICT: market snapshot, then the Fed funds target range (FRED) so a decision released at 01:00–02:00 ICT shows the same morning."""
+    refresh_snapshot("auto")
+    run_auto_sources("auto", ["fed_funds"])
+
+
+scheduler.add_job(daily_refresh,
+                  CronTrigger(hour=6, minute=0, timezone=VN_TZ),
                   id="daily-midnight", replace_existing=True)
 # Monthly: public macro APIs (World Bank WDI, IMF DataMapper, FRED) → data/auto/*.json
 scheduler.add_job(lambda: run_auto_sources("auto"),
@@ -2066,10 +2072,10 @@ scheduler.add_job(lambda: run_auto_sources("auto"),
 def on_startup():
     _load_log_from_disk()
     _log_event("startup", "scheduler", "started",
-               message="Server khởi động · lịch tự cập nhật 00:00 Asia/Ho_Chi_Minh")
+               message="Server khởi động · lịch tự cập nhật 06:00 Asia/Ho_Chi_Minh")
     refresh_snapshot("startup")
     scheduler.start()
-    log.info("Scheduler started: daily auto-refresh at 00:00, macro APIs monthly (15th 01:00) Asia/Ho_Chi_Minh")
+    log.info("Scheduler started: daily auto-refresh at 06:00, macro APIs monthly (15th 01:00) Asia/Ho_Chi_Minh")
     # Back-fill data/auto when a snapshot is missing or > 31 days old (e.g. fresh Render disk); background, non-blocking
     stale = auto_sources.stale_sources()
     if stale and os.environ.get("AUTO_FETCH_ON_STARTUP", "1") != "0":
