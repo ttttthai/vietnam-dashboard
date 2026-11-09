@@ -65,7 +65,7 @@ never scale a figure from another date to fit.
 Shown in the Financial system tab (end of chapter "1 · Money, credit & rates") and on the Dashboard tab.
 - `decisions`: always the LAST THREE FOMC decisions, oldest first: `date` (last meeting day), `meeting`, `time_us` ("14:00 EDT"/"14:00 EST"), `time_ict` (ISO, US 14:00 ET + 11h in EDT or + 12h in EST), `action` hike/hold/cut, `range` [lower, upper], `change_bp`, `vote`, `note_vi`/`note_en`, `url` (the Fed statement).
 - `upcoming`: the NEXT THREE meetings from federalreserve.gov/monetarypolicy/fomccalendars.htm, with `sep` (projections meeting), `tentative` (if not yet confirmed), and `forecast` {action, prob_pct (odds of the most likely outcome), hike_prob_pct/cut_prob_pct when useful, range, basis_vi/basis_en naming the source and date}. Use CME FedWatch first; OIS trackers or Kalshi/Polymarket only as cross-checks, named as such.
-- After each FOMC decision, move the meeting from `upcoming` to `decisions`, drop the oldest decision, and add the next meeting. Update `as_of` and `path.points` (FRED DFEDTARU changes; the server also pulls FRED daily at 06:00 ICT into data/auto/fed_funds.json, and the page flags a new change before you record it).
+- After each FOMC decision, move the meeting from `upcoming` to `decisions`, drop the oldest decision, and add the next meeting. Update `as_of` and `path.points` (FRED DFEDTARU changes; the server also pulls FRED monthly (15th) into data/auto/fed_funds.json, and the page flags a new change before you record it).
 - Then run `python3 tools/build/embed_data.py finance`.
 
 ## Rules
