@@ -124,15 +124,16 @@ Each tab's data lives in one JSON file owned by one agent; top-level keys are th
 
 | File | Owner | Feeds |
 |---|---|---|
-| `data/economy.json` | Economy | `ECONFLOW`, `ECON_OFFICIAL`, `CPI_*` |
+| `data/economy.json` | Economy | `ECONFLOW` (incl. `crops`: top 10 export crop prices), `ECON_OFFICIAL`, `CPI_*` |
 | `data/society.json` | Society | `SOC_PROV_DATA`, `POP_SERIES`, `SOC_GRDP`, `WORLD_RANK`, `PROV_PREV`, `RELIGION` |
 | `data/policy.json` | Policy | `POLICY` (also `/api/rates`) |
-| `data/finance.json` | Finance | `FINSYS` (also `/api/rates`, `/api/banks` loans, `/api/banks/bs_history` via `listed_banks_latest`) |
-| `data/invest_macro.json` | Economy | `MACRO` for the Stock Market tab (Thị trường chứng khoán, formerly Đầu tư), read by `invest.py` at call time (in-file fallback) |
+| `data/finance.json` | Finance | `FINSYS` (incl. `fed`: last 3 FOMC decisions and next 3 meetings; also `/api/rates`, `/api/banks` loans, `/api/banks/bs_history` via `listed_banks_latest`) |
+| `data/invest_macro.json` | Investing | `MACRO` for the Stock Market tab (Thị trường chứng khoán, formerly Đầu tư), read by `invest.py` at call time (in-file fallback) |
 | `strategy_directives.json` | Strategy | `/api/strategy` |
 | `data/simulation.json` | Finance | `SIM` (Mô phỏng tab) |
-| `data/geopolitics.json` | Geopolitics | `GEOPOL` (Địa chính trị tab, chapter 1 · world board), `TRADE_CUR` (chapter 2 · trade currents: largest two-way routes by goods/services category, ~2023 estimates; merged from the standalone Global Trade project, original in `archive/global-trade/`) |
+| `data/geopolitics.json` | Geopolitics | `GEOPOL` (Địa chính trị tab, chapter 1 · world board; `oil_costs`: all-in oil product prices by route), `TRADE_CUR` (chapter 2 · trade currents: largest two-way routes by goods/services category, ~2023 estimates; merged from the standalone Global Trade project, original in `archive/global-trade/`) |
 | `data/industries.json` | Investing | `IND_ICB` (ICB industry cards, price history, the industry race and revenue/profit/assets by industry — Stock Market tab; fundamentals rebuilt by `tools/build/industries_fundamentals.py`; rebuilt with vnstock by `tools/build/industries_vnstock.py`) |
+| `data/living.json` | Living | `LIVING` (Đời sống hằng ngày / Daily Living tab: everyday prices in Hanoi, Da Nang, HCMC; daily 05:00 run) |
 | `data/narration.json` | Narrator | `NARRATION` (film scripts) |
 | `data/research/*` | Research | inventory, release calendar, source log, plans — ops files, served by `/api/freshness`, not embedded |
 | `data/banks_vnstock.json` | server (vnstock) | `/api/banks`, `/api/banks/universe`, `/api/banks/bs_history` (built by `tools/build/banks_vnstock.py`) |
@@ -141,7 +142,7 @@ Each tab's data lives in one JSON file owned by one agent; top-level keys are th
 After editing a tab file, embed it into the page:
 
 ```bash
-python3 tools/build/embed_data.py               # all tab files (economy, society, policy, finance)
+python3 tools/build/embed_data.py               # all tab files
 python3 tools/build/embed_data.py finance       # one file
 python3 tools/build/embed_data.py --check       # show what would change + each file's _meta.as_of
 python3 tools/build/embed_data.py --check --strict   # fail if a file's _meta.as_of is missing
@@ -155,12 +156,21 @@ python3 tools/build/embed_data.py --check --strict   # fail if a file's _meta.as
 Agent definitions live in `.claude/agents/`:
 
 - **Strategy** (`strategy.md`) — Chính trị (Politics) tab: directives, drafts, news, decision paths, org chart, leaders → `strategy_directives.json`
-- **Economy** (`economy.md`) — Kinh tế tab: GDP, BoP, budget, CPI → `data/economy.json`, `data/invest_macro.json`
+- **Economy** (`economy.md`) — Kinh tế tab: GDP, BoP, budget, CPI, top 10 export crop prices → `data/economy.json`
 - **Society** (`society.md`) — Xã hội tab: population, provinces, GRDP, world ranks, religion → `data/society.json`
 - **Policy** (`policy.md`) — Chính sách chapters (sub-tab 3 of the Hệ thống tài chính tab since 2026-11-01): monetary/fiscal instrument registry → `data/policy.json`
-- **Finance** (`finance.md`) — Hệ thống tài chính tab: money, credit, banks, rates, weekly markets; Mô phỏng (Simulation) model → `data/finance.json`, `data/simulation.json`
+- **Finance** (`finance.md`) — Hệ thống tài chính tab: money, credit, banks, rates, weekly markets, Fed rate decisions (FINSYS.fed); Mô phỏng (Simulation) model → `data/finance.json`, `data/simulation.json`
 - **Investing** (`investing.md`) — Stock Market tab (Thị trường chứng khoán): industries (cards, history, race, fundamentals), macro context and descriptive notes on the focus list (never investment advice) → `data/invest_macro.json`
-- **Geopolitics** (`geopolitics.md`) — Địa chính trị tab: the US, China, the Middle East and Russia — what is happening, why, and what it means for Vietnam's interests, with Vietnam's options; reads Ground News (in the user's Chrome when run locally with `claude --chrome`) and official sources → `data/geopolitics.json`
+- **Geopolitics** (`geopolitics.md`) — Địa chính trị tab: the US, China, the Middle East and Russia — what is happening, why, and what it means for Vietnam's interests, with Vietnam's options; reads Ground News (in the user's Chrome when run locally with `claude --chrome`) and official sources; all-in oil product prices by port and route → `data/geopolitics.json`
+- **Living** (`living.md`) — Đời sống hằng ngày (Daily Living) tab: everyday prices (groceries, household, utilities, fuel, transport, eating out, rent, services) in Hanoi, Da Nang and HCMC; runs daily at 05:00 and publishes → `data/living.json`
 - **Research** (`research.md`) — update planning, release calendar, consistency checks → `data/research/`
-- **Ed** (`ed.md`) — chief editor: story layer, design and the published page (no data ownership)
+- **Ed** (`ed.md`) — chief editor: story layer, the Dashboard (Bảng tổng quan) tab's chart cards, design and the published page (no data ownership)
 - **Narrator** (`narrator.md`) — writes the narrated films (per tab and the cross-tab big picture), with a figure card for every spoken number; full rewrite after every FOMC meeting → `data/narration.json`
+
+Agents propose changes and wait for approval, with two pre-approved scheduled runs (local scheduled tasks, run while
+the Claude app is open):
+- `weekly-all-agents-update` — Thursdays 23:59 ICT: every tab agent updates its file, Research cross-checks, Ed
+  refreshes the story layer, the Narrator reviews the market and updates the films; logged in `data/research/weekly_log/`,
+  merged into main and pushed.
+- `daily-living-prices` — every day 05:00 ICT: Living refreshes everyday prices; merged into main and pushed.
+The server's own 06:00 ICT job refreshes the market snapshot (indices, FX incl. the Vietcombank USD rate, bank prices).
