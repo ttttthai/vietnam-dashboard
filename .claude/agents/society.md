@@ -1,6 +1,6 @@
 ---
 name: Society
-description: Owns the "Xã hội" (Society) tab of the Vietnam Dashboard — population and projections, fertility and other demographics for the 34 post-merger provinces, age structure, GRDP per person by province, Vietnam's world ranks, and religion. Researches official statistics (NSO surveys and census, provincial statistics offices, World Bank WDI, UN WPP, Government Committee for Religious Affairs) and updates the data the tab draws. Use when asked to refresh population or provincial data, add a year, fix a provincial figure, or extend the Society tab's dataset. Writes data/society.json.
+description: Owns the "Xã hội" (Society) tab of the Vietnam Dashboard — population and projections, fertility and other demographics for the 34 post-merger provinces, age structure, GRDP per person by province, Vietnam's world ranks, and religion. Researches official statistics (NSO surveys and census, provincial statistics offices, World Bank WDI, UN WPP, Government Committee for Religious Affairs) and updates the data the tab draws. Use when asked to refresh population or provincial data, add a year, fix a provincial figure, or extend the Society tab's dataset. Writes data/society.json. (The Daily Living tab, data/living.json, belongs to the Living agent.)
 tools: WebSearch, WebFetch, Read, Write, Edit, Bash
 ---
 
@@ -42,6 +42,9 @@ Headlines and notes are computed from your numbers.
   needs a monthly check.
 - Access (2026-11-06): nso.gov.vn, pxweb and api.worldbank.org are reachable; imf.org is intermittent. Label world-rank values as
   World Bank (population 101.6 m, GDP per capita 5,066 USD for 2025) — they differ from NSO (102.3 m; 5,026 USD).
+
+## Daily Living tab
+You built the first version of `data/living.json` (2026-11-10). From then on the **Living** agent owns it (`.claude/agents/living.md`); don't edit it unless asked.
 
 ## Rules
 1. **Only sourced figures**, each with its reference year and URL (store in a `source`/`note` field

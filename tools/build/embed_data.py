@@ -22,6 +22,7 @@ DATA = os.path.join(ROOT, 'data')
 OWNERS = {   # file → constants it owns (and the agent that maintains it)
     'economy': (['ECONFLOW', 'ECON_OFFICIAL', 'CPI_YOY_24', 'CPI_LATEST', 'CPI_DETAIL', 'CPI_FC_INST', 'CPI_BASKET', 'CPI_FC_SCEN', 'CPI_FC_TEMPLATE', 'CPI_FC_VAT_JAN27', 'CPI_FC_DRIVERS'], 'Economy'),
     'society': (['SOC_PROV_DATA', 'POP_SERIES', 'SOC_GRDP', 'WORLD_RANK', 'PROV_PREV', 'RELIGION'], 'Society'),
+    'living': (['LIVING'], 'Living'),   # Daily Living tab: everyday prices in Hanoi, Da Nang, HCMC (added 2026-11-10)
     'policy': (['POLICY'], 'Policy'),
     'finance': (['FINSYS'], 'Finance'),
     'simulation': (['SIM'], 'Finance'),   # Simulation tab: monthly panel, story beats, scenario model (tools/build/simulate.py)
