@@ -1748,7 +1748,10 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .ds-card rect:hover, .ds-card circle:hover { opacity: .75; }
   .ds-note { margin: 2px 0 0; font: 13px/1.45 var(--font-ui); color: var(--text2); }
   @media (max-width: 600px) { #dash-root { grid-template-columns: 1fr; } }
-  .ds-upd { grid-column: 1 / -1; margin: 0; font: 12px var(--font-ui); color: var(--text2); }
+  .ds-upd { grid-column: 1 / -1; margin: 0; font: 12px var(--font-ui); color: var(--text2); display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  #ds-upd-btn { font: 600 12px var(--font-ui); color: #fff; background: #c0392b; border: 0; border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+  #ds-upd-btn:hover { background: #a93226; } #ds-upd-btn:disabled { opacity: .7; cursor: default; }
+  #ds-upd-msg { font-weight: 600; color: var(--text); }
   /* Fed card (Financial system tab) */
   .fd-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; box-shadow: var(--shadow); margin: 0 0 16px; }
   .fd-h { margin: 2px 0 10px; font: 600 17px/1.3 var(--font-ui); color: var(--text); }
@@ -1764,6 +1767,20 @@ if (window.APP_LANG === 'en') window.I18N_START();
   .fd-sep, .fd-tent { font-size: 9.5px; font-weight: 700; border-radius: 3px; padding: 0 4px; background: #eef4fb; color: #1d5aa6; }
   .fd-tent { background: #f3f1ec; color: #5b6170; }
   .fd-src { margin: 6px 0 0; font: 11px/1.45 var(--font-ui); color: #6b7280; }
+  /* policy timeline on the Dashboard */
+  .pt { list-style: none; margin: 4px 0 0; padding: 0; }
+  .pt li { display: grid; grid-template-columns: 78px 1fr; gap: 0 14px; position: relative; padding: 0 0 12px; }
+  .pt li::before { content: ''; position: absolute; left: 85px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: #8a8f99; box-sizing: border-box; }
+  .pt li:not(:last-child)::after { content: ''; position: absolute; left: 90px; top: 19px; bottom: 0; width: 2px; background: #dedbd2; }
+  .pt .pt-d { text-align: right; font: 600 11.5px/1.3 var(--font-ui); color: var(--text); padding-right: 8px; }
+  .pt .pt-d span { display: block; font-weight: 600; font-size: 10.5px; }
+  .pt .pt-b { padding-left: 14px; }
+  .pt .pt-b b { display: block; font: 600 12.5px/1.35 var(--font-ui); color: var(--text); }
+  .pt .pt-b p { margin: 2px 0 0; font: 11.5px/1.4 var(--font-ui); color: var(--text2); }
+  .pt-easing::before { background: #1baf7a !important; } .pt-easing .pt-d span { color: #0d7a55; }
+  .pt-tightening::before { background: #e34948 !important; } .pt-tightening .pt-d span { color: #c0392b; }
+  .pt-now::before { background: #16181d !important; box-shadow: 0 0 0 3px #fff, 0 0 0 4px #16181d; }
+  .pt-next::before { background: #fff !important; border: 2px dashed #eb6834; } .pt-next .pt-d span { color: #eb6834; }
   /* Tabs: editorial section nav */
   #tabs-bottom { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 12px; gap: 4px; }
   @media (max-width: 900px) { #tabs-bottom { overflow-x: auto; scrollbar-width: thin; -webkit-overflow-scrolling: touch; } }   /* phone: all seven tabs reachable */
@@ -5677,6 +5694,15 @@ function dsCards() {
       mi < n ? stT(`Nợ xấu giảm còn ${dsPct(v[n], 2)} năm ${L[n]}, từ đỉnh ${dsPct(mx, 2)} năm ${L[mi]}.`, `Bad loans fell to ${dsPct(v[n], 2)} in ${L[n]}, from a peak of ${dsPct(mx, 2)} in ${L[mi]}.`)
         : stT(`Nợ xấu ở mức ${dsPct(v[n], 2)} năm ${L[n]}, cao nhất trong chuỗi.`, `Bad loans stood at ${dsPct(v[n], 2)} in ${L[n]}, the highest in the series.`)];
   });
+  const polCard = (side, title) => add('banks', T.banks, title, () => {
+    const t = polTimeline(side); if (!t) return null;
+    const last = t.last2[t.last2.length - 1], nx = t.next;
+    const nxt = nx ? (nx.kind === 'expiry' ? `${nx.t} (${nx.s.split(' · ').slice(0, 2).map(polShort).join(', ')}${nx.s.split(' · ').length > 2 ? ', …' : ''})` : polShort(nx.t)) : '';
+    return [polTimelineSvg(t), stT(`Bước gần nhất (${fedDt(last.d)}) là ${last.dir === 'easing' ? 'nới lỏng' : 'thắt chặt'}: ${polShort(last.t)}${nx ? `; tiếp theo, ${fedDt(nx.d)}: ${nxt}` : ''}.`,
+      `The latest move (${fedDt(last.d)}) was ${last.dir}: ${polShort(last.t)}${nx ? `; next, on ${fedDt(nx.d)}: ${nxt}` : ''}.`)];
+  });
+  polCard('mon', stT('Chính sách tiền tệ (NHNN): 2 bước gần nhất, hiện tại, sắp tới', 'Monetary policy (SBV): last 2 moves, now, next'));
+  polCard('fis', stT('Chính sách tài khóa (Chính phủ): 2 bước gần nhất, hiện tại, sắp tới', 'Fiscal policy (Government): last 2 moves, now, next'));
   add('banks', T.banks, stT('Các bước chính sách năm 2026 theo hướng', 'Policy moves in 2026 by direction'), () => {
     const P = POLICY, y = '2026', cnt = k => { const o = { easing: 0, tightening: 0, neutral: 0 }; (P[k].instruments || []).forEach(i => (i.history || []).forEach(h => { if ((h.date || '').startsWith(y) && o[h.direction] != null) o[h.direction]++; })); return o; };
     const mo = cnt('mon'), fi = cnt('fis'), dir = [['easing', stT('Nới lỏng', 'Easing')], ['neutral', stT('Trung tính', 'Neutral')], ['tightening', stT('Thắt chặt', 'Tightening')]];
@@ -5730,6 +5756,60 @@ function dsCards() {
       const tot = rows.reduce((s, r) => s + r.v, 0), top3 = rows.slice(0, 3).reduce((s, r) => s + r.v, 0) / tot * 100;
       return [dsHBars(rows.slice(0, 10).map((r, k) => ({ n: r.s, v: tn(r.v), c: k < 3 ? ST.orange : ST.blue })), { fmt: x => stN(x, 0), label: 'largest banks' }),
         stT(`Ba ngân hàng lớn nhất (${rows.slice(0, 3).map(r => r.s).join(', ')}) nắm ${dsPct(top3, 0)} tổng tài sản của ${who}.`, `The three largest banks (${rows.slice(0, 3).map(r => r.s).join(', ')}) hold ${dsPct(top3, 0)} of the total assets of ${who}.`)];
+    });
+    const S = (k, i) => (AV[k] || [])[i], sumK = (ks, i) => ks.reduce((s, k) => s + (S(k, i) || 0), 0);
+    const yoyQ = k => QL.map((_, i) => i >= 4 && S(k, i) && S(k, i - 4) && full(k, i) && full(k, i - 4) ? (S(k, i) / S(k, i - 4) - 1) * 100 : null);
+    add('banks', bsT, stT('Tăng trưởng cho vay và tiền gửi so cùng kỳ (%)', 'Loan and deposit growth, year on year (%)'), () => {
+      const l = yoyQ('customer_loans_gross'), d = yoyQ('customer_deposits'), keep = l.map((x, i) => x != null || d[i] != null), L = QL.filter((_, i) => keep[i]), lv = l.filter((_, i) => keep[i]), dv = d.filter((_, i) => keep[i]), k = lv.length - 1;
+      if (k < 0) return null;
+      return [dsLines(L, [{ n: stT('Cho vay', 'Loans'), c: ST.orange, v: lv }, { n: stT('Tiền gửi', 'Deposits'), c: ST.aqua, v: dv }], { fmt: x => dsPct(x, 1), label: 'loan deposit growth' }),
+        stT(`Quý ${ql} cho vay tăng ${dsPct(lv[k])} còn tiền gửi tăng ${dsPct(dv[k])} so cùng kỳ; khoảng cách ${stN(lv[k] - dv[k], 1)} điểm % phải bù bằng nguồn vốn khác.`, `In ${ql} loans grew ${dsPct(lv[k])} and deposits ${dsPct(dv[k])} year on year; the ${stN(lv[k] - dv[k], 1)}-point gap has to be funded elsewhere.`),
+        stLegend([{ n: stT('Cho vay', 'Loans'), c: ST.orange, k: 'line' }, { n: stT('Tiền gửi', 'Deposits'), c: ST.aqua, k: 'line' }])];
+    });
+    add('banks', bsT, stT('Dự phòng rủi ro / dư nợ cho vay (%)', 'Loan-loss provisions to gross loans (%)'), () => {
+      const v = QL.map((_, i) => S('customer_loans_gross', i) ? Math.abs(S('loan_loss_provisions', i) || 0) / S('customer_loans_gross', i) * 100 : null);
+      return [dsLines(QL, [{ n: '%', c: ST.red, v }], { fmt: x => dsPct(x, 2), label: 'provisions' }),
+        stT(`Quỹ dự phòng bằng ${dsPct(v[n], 2)} dư nợ quý ${ql} (quý ${QL[0]}: ${dsPct(v[0], 2)}); tỷ lệ ${v[n] < v[0] ? 'giảm vì cho vay tăng nhanh hơn dự phòng' : 'tăng, tức đệm rủi ro dày hơn'}.`, `Provisions cover ${dsPct(v[n], 2)} of loans in ${ql} (${QL[0]}: ${dsPct(v[0], 2)}); the ratio ${v[n] < v[0] ? 'fell because loans grew faster than provisions' : 'rose, a thicker cushion'}.`)];
+    });
+    add('banks', bsT, stT('Chứng khoán nắm giữ (nghìn tỷ đồng)', 'Securities held (trillion VND)'), () => {
+      const v = QL.map((_, i) => tn(sumK(['investment_securities', 'trading_securities'], i))), g = (v[n] / v[0] - 1) * 100;
+      return [dsBars(QL, [{ n: stT('Chứng khoán', 'Securities'), c: ST.blue, v }], { hi: [n], fmt: x => stN(x, 0), label: 'securities' }),
+        stT(`Danh mục chứng khoán (chủ yếu trái phiếu Chính phủ) đạt ${stN(v[n], 0)} nghìn tỷ đồng quý ${ql}, ${g >= 0 ? 'tăng' : 'giảm'} ${stN(Math.abs(g), 1)}% so với quý ${QL[0]}.`, `Securities holdings (mostly government bonds) reached ${stN(v[n], 0)} trillion VND in ${ql}, ${g >= 0 ? 'up' : 'down'} ${stN(Math.abs(g), 1)}% from ${QL[0]}.`)];
+    });
+    add('banks', bsT, stT('Giấy tờ có giá ngân hàng phát hành (nghìn tỷ đồng)', 'Bonds and papers issued by banks (trillion VND)'), () => {
+      const v = QL.map((_, i) => S('valuable_papers', i) == null ? null : tn(S('valuable_papers', i))), g = (v[n] / v[0] - 1) * 100;
+      return [dsBars(QL, [{ n: stT('Giấy tờ có giá', 'Papers issued'), c: ST.violet, v }], { hi: [n], hc: '#a99be0', fmt: x => stN(x, 0), label: 'bank bonds' }),
+        stT(`Vốn huy động qua trái phiếu và chứng chỉ tiền gửi đạt ${stN(v[n], 0)} nghìn tỷ đồng quý ${ql}, ${g >= 0 ? 'tăng' : 'giảm'} ${stN(Math.abs(g), 0)}% so với quý ${QL[0]}, nhanh hơn tiền gửi.`.replace(', nhanh hơn tiền gửi', g > (S('customer_deposits', n) / S('customer_deposits', 0) - 1) * 100 ? ', nhanh hơn tiền gửi' : ''),
+          `Funding raised through bonds and certificates of deposit reached ${stN(v[n], 0)} trillion VND in ${ql}, ${g >= 0 ? 'up' : 'down'} ${stN(Math.abs(g), 0)}% from ${QL[0]}${g > (S('customer_deposits', n) / S('customer_deposits', 0) - 1) * 100 ? ', faster than deposits' : ''}.`)];
+    });
+    add('banks', bsT, stT('Liên ngân hàng: cho vay và đi vay (nghìn tỷ đồng)', 'Interbank: lending and borrowing (trillion VND)'), () => {
+      const a = QL.map((_, i) => tn(S('interbank_assets', i) || 0)), l = QL.map((_, i) => tn(S('interbank_liabilities', i) || 0)), net = a[n] - l[n];
+      return [dsLines(QL, [{ n: stT('Cho vay TCTD khác', 'Lent to banks'), c: ST.blue, v: a }, { n: stT('Vay TCTD khác', 'Borrowed from banks'), c: ST.orange, v: l }], { fmt: x => stN(x, 0), label: 'interbank' }),
+        stT(`Quý ${ql} nhóm ngân hàng niêm yết ${net >= 0 ? 'cho vay ròng' : 'đi vay ròng'} ${stN(Math.abs(net), 0)} nghìn tỷ đồng trên thị trường liên ngân hàng.`, `In ${ql} the listed banks were net ${net >= 0 ? 'lenders' : 'borrowers'} of ${stN(Math.abs(net), 0)} trillion VND in the interbank market.`),
+        stLegend([{ n: stT('Cho vay', 'Lent'), c: ST.blue, k: 'line' }, { n: stT('Đi vay', 'Borrowed'), c: ST.orange, k: 'line' }])];
+    });
+    add('banks', bsT, stT('Nợ Chính phủ và NHNN (nghìn tỷ đồng)', 'Due to the Government and the SBV (trillion VND)'), () => {
+      const v = QL.map((_, i) => S('gov_sbv_borrowings', i) == null ? null : tn(S('gov_sbv_borrowings', i))), mx = Math.max(...v.filter(x => x != null)), mi = v.indexOf(mx);
+      return [dsBars(QL, [{ n: 'Gov/SBV', c: ST.yellow, v }], { hi: [n], hc: ST.orange, fmt: x => stN(x, 0), label: 'gov sbv' }),
+        stT(`Khoản vay và tiền gửi từ Kho bạc và NHNN là ${stN(v[n], 0)} nghìn tỷ đồng quý ${ql}${mi === n ? ', cao nhất trong 8 quý' : ` (đỉnh ${stN(mx, 0)} quý ${QL[mi]})`}, cho thấy mức hỗ trợ thanh khoản.`, `Money owed to the Treasury and the SBV was ${stN(v[n], 0)} trillion VND in ${ql}${mi === n ? ', the highest in 8 quarters' : ` (peak ${stN(mx, 0)} in ${QL[mi]})`}, a gauge of liquidity support.`)];
+    });
+    const per = f => Object.entries(BS.banks).map(([s, b]) => ({ s, v: f(b.values || {}) })).filter(r => r.v != null && isFinite(r.v));
+    add('banks', bsT, stT(`Tỷ lệ cho vay / tiền gửi cao nhất, quý ${ql} (%)`, `Highest loan-to-deposit ratios, ${ql} (%)`), () => {
+      const r = per(v => (v.customer_loans_gross || [])[n] && (v.customer_deposits || [])[n] ? v.customer_loans_gross[n] / v.customer_deposits[n] * 100 : null).sort((a, b) => b.v - a.v), over = r.filter(x => x.v > 100).length;
+      return [dsHBars(r.slice(0, 10).map(x => ({ n: x.s, v: x.v, c: x.v > 100 ? ST.orange : ST.blue })), { fmt: x => stN(x, 0) + '%', label: 'ldr by bank' }),
+        stT(`${over}/${r.length} ngân hàng cho vay nhiều hơn số tiền gửi khách hàng; cao nhất là ${r[0].s} với ${stN(r[0].v, 0)}% (chưa phải LDR theo quy định của NHNN).`, `${over} of ${r.length} banks lend more than their customer deposits; ${r[0].s} is highest at ${stN(r[0].v, 0)}% (not the SBV's regulatory LDR).`)];
+    });
+    add('banks', bsT, stT(`Tăng trưởng tổng tài sản nhanh nhất, quý ${ql} so cùng kỳ (%)`, `Fastest asset growth, ${ql} year on year (%)`), () => {
+      if (n < 4) return null;
+      const r = per(v => (v.total_assets || [])[n] && (v.total_assets || [])[n - 4] ? (v.total_assets[n] / v.total_assets[n - 4] - 1) * 100 : null).sort((a, b) => b.v - a.v), med = r.map(x => x.v).sort((a, b) => a - b)[Math.floor(r.length / 2)];
+      return [dsHBars(r.slice(0, 10).map((x, k) => ({ n: x.s, v: x.v, c: k === 0 ? ST.orange : ST.blue })), { fmt: x => dsPct(x, 1), label: 'asset growth by bank' }),
+        stT(`${r[0].s} tăng tài sản nhanh nhất (${dsPct(r[0].v)} so cùng kỳ), trong khi ngân hàng ở giữa nhóm tăng ${dsPct(med)}.`, `${r[0].s} grew its assets fastest (${dsPct(r[0].v)} year on year); the median bank grew ${dsPct(med)}.`)];
+    });
+    add('banks', bsT, stT(`Vốn chủ / tổng tài sản theo ngân hàng, quý ${ql} (%)`, `Equity to assets by bank, ${ql} (%)`), () => {
+      const r = per(v => (v.equity_total || [])[n] && (v.total_assets || [])[n] ? v.equity_total[n] / v.total_assets[n] * 100 : null).sort((a, b) => b.v - a.v), lo = r[r.length - 1];
+      const pick = r.slice(0, 5).concat(r.slice(-5));
+      return [dsHBars(pick.map((x, k) => ({ n: x.s, v: x.v, c: k < 5 ? ST.aqua : ST.red })), { fmt: x => dsPct(x, 1), label: 'equity ratio by bank' }),
+        stT(`Vốn đệm dày nhất ở ${r[0].s} (${dsPct(r[0].v)} tài sản), mỏng nhất ở ${lo.s} (${dsPct(lo.v)}); biểu đồ cho 5 ngân hàng cao nhất và 5 thấp nhất.`, `The thickest capital cushion is at ${r[0].s} (${dsPct(r[0].v)} of assets), the thinnest at ${lo.s} (${dsPct(lo.v)}); the chart shows the top five and bottom five.`)];
     });
   }
 
@@ -5809,13 +5889,56 @@ function renderFed() {
     <p class="ds-note">${fedSentence()}</p><p class="fd-src">${stT(F.time_note_vi, F.time_note_en)} ${stT(F.forecast_note_vi, F.forecast_note_en)} ${stT('Nguồn', 'Sources')}: Federal Reserve, FRED, CME FedWatch, OIS · ${stT('cập nhật', 'as of')} ${fedDt(F.as_of)}${DS_LIVE.fed ? ` · FRED ${fedDt(DS_LIVE.fed.as_of)}` : ''}.</p></section>`;
   dsLiveLoad(renderFed);
 }
+// ── Policy timeline (Dashboard): last 2 moves, the current stance, the next expected change — from POLICY (Policy agent)
+const POL_TRACK = ['public_investment_annual', 'budget_outturn', 'gov_bond_issuance', 'public_debt'];   // progress reports, not policy moves
+function polTimeline(side) {
+  const P = (typeof POLICY !== 'undefined' && POLICY[side]) || null; if (!P) return null;
+  const today = new Date().toISOString().slice(0, 10), ins = (P.instruments || []).filter(i => !POL_TRACK.includes(i.id));
+  const nm = i => stT(i.name_vi, i.name_en), det = (i, h) => APP_LANG === 'en' ? (h.note_en || '') : (h.to || h.note_vi || '');
+  const moves = ins.flatMap(i => (i.history || []).filter(h => /easing|tightening/.test(h.direction || '')).map(h => ({ d: h.date, dir: h.direction, t: nm(i), s: det(i, h) })));
+  const past = moves.filter(m => m.d <= today).sort((a, b) => b.d.localeCompare(a.d));
+  // drop a second step of the same instrument so the two moves are different decisions
+  const last2 = []; past.forEach(m => { if (last2.length < 2 && !last2.some(x => x.t === m.t)) last2.push(m); });
+  const fut = moves.filter(m => m.d > today).map(m => ({ ...m, kind: 'move' }));
+  const exp = {}; ins.forEach(i => { if (i.expires && i.expires > today && i.expires < '2030') (exp[i.expires] = exp[i.expires] || []).push(nm(i)); });
+  Object.entries(exp).forEach(([d, names]) => fut.push({ d, dir: 'tightening', kind: 'expiry', t: stT(`Hết hạn ${names.length} biện pháp`, `${names.length} measure${names.length > 1 ? 's' : ''} expire`), s: names.join(' · ') }));
+  fut.sort((a, b) => a.d.localeCompare(b.d));
+  const stance = (stT(P.stance_vi, P.stance_en) || '').split(/(?<=[.;])\s/)[0].replace(/[;,]$/, '.');
+  return { last2: last2.reverse(), now: { d: today, t: stT('Hiện tại', 'Now'), s: stance }, next: fut[0] || null, asOf: P.as_of };
+}
+function polWrap(s, n, max = 2) { const w = String(s || '').split(/\s+/), out = []; let cur = ''; for (const x of w) { if ((cur + ' ' + x).trim().length > n) { out.push(cur.trim()); cur = x; if (out.length === max) break; } else cur += ' ' + x; } if (out.length < max && cur.trim()) out.push(cur.trim()); if (out.length === max && w.join(' ').length > out.join(' ').length + 1) out[max - 1] = out[max - 1].replace(/.{0,2}$/, '…'); return out; }
+function polTimelineSvg(T) {   // an HTML timeline (readable at card width), not an SVG
+  const rows = [...T.last2.map(m => ({ ...m, k: 'past' })), { ...T.now, k: 'now' }, ...(T.next ? [{ ...T.next, k: 'next' }] : [])];
+  const cls = r => r.k === 'now' ? 'now' : r.k === 'next' ? 'next' : r.dir;
+  const tag = r => r.k === 'next' ? stT('dự kiến', 'expected') : r.k === 'now' ? '' : r.dir === 'easing' ? stT('nới lỏng', 'easing') : stT('thắt chặt', 'tightening');
+  const cut = (s, n) => s && s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…' : (s || '');
+  return `<ol class="pt">${rows.map(r => `<li class="pt-${cls(r)}"><div class="pt-d">${dsEsc(r.k === 'now' ? stT('Hôm nay', 'Today') : fedDt(r.d))}${tag(r) ? `<span>${dsEsc(tag(r))}</span>` : ''}</div><div class="pt-b"><b>${dsEsc(r.t)}</b><p title="${dsEsc(r.s)}">${dsEsc(cut(r.s, 150))}</p></div></li>`).join('')}</ol>`;
+}
+const polShort = t => String(t || '').split(/[:(]/)[0].trim();
 
 function renderDash() {
   const root = document.getElementById('dash-root'); if (!root) return;
   const cards = dsCards(), up = DS_LIVE.snap && DS_LIVE.snap.updated_at;
-  root.innerHTML = `<p class="ds-upd">${stT('Số liệu thị trường tự cập nhật lúc 06:00 hằng ngày', 'Market data updates automatically at 06:00 every day')}${up ? stT(' · lần gần nhất ', ' · last ') + fedDt(up, 1) : ''}.</p>` + cards.map(c => `<figure class="ds-card"><figcaption class="ds-hd"><button type="button" class="ds-tab" data-go="${c.tab}">${dsEsc(c.tabName)} →</button><span class="ds-title">${dsEsc(c.title)}</span></figcaption>${c.legend}<div class="ds-chart">${c.svg}</div><p class="ds-note">${c.note}</p></figure>`).join('');
+  root.innerHTML = `<div class="ds-upd"><button type="button" id="ds-upd-btn" title="${stT('Lấy ngay giá thị trường mới nhất (VN-Index, tỷ giá, Vietcombank, giá cổ phiếu ngân hàng) và vẽ lại Dashboard', 'Fetch the latest market data now (VN-Index, exchange rates, Vietcombank, bank share prices) and redraw the Dashboard')}">↻ ${stT('Cập nhật ngay', 'Update now')}</button><span>${stT('Số liệu thị trường tự cập nhật lúc 06:00 hằng ngày', 'Market data updates automatically at 06:00 every day')}${up ? stT(' · lần gần nhất ', ' · last ') + fedDt(up, 1) : ''}.</span><span id="ds-upd-msg" aria-live="polite"></span></div>` + cards.map(c => `<figure class="ds-card"><figcaption class="ds-hd"><button type="button" class="ds-tab" data-go="${c.tab}">${dsEsc(c.tabName)} →</button><span class="ds-title">${dsEsc(c.title)}</span></figcaption>${c.legend}<div class="ds-chart">${c.svg}</div><p class="ds-note">${c.note}</p></figure>`).join('');
   root.querySelectorAll('.ds-tab').forEach(b => b.addEventListener('click', () => { switchBottomTab(b.dataset.go); const s = document.getElementById('panel-' + b.dataset.go); if (s) s.scrollTop = 0; }));
+  const ub = document.getElementById('ds-upd-btn'); if (ub) ub.addEventListener('click', dsUpdateNow);
   dsLiveLoad(() => { if (activeBottomTab === 'dash') renderDash(); });
+}
+// Dashboard-only instant update: the server re-pulls market data (/api/refresh), then the Dashboard redraws with it
+async function dsUpdateNow() {
+  const b = document.getElementById('ds-upd-btn'), msg = document.getElementById('ds-upd-msg'); if (!b || b.disabled) return;
+  b.disabled = true; b.textContent = '⏳ ' + stT('Đang cập nhật…', 'Updating…'); if (msg) msg.textContent = '';
+  let txt;
+  try {
+    const r = await fetch('/api/refresh', { cache: 'no-store' }); if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json(); if (d.ok === false) throw new Error(d.error || 'refresh failed');
+    if (typeof setLastUpdate === 'function') setLastUpdate(d.updated_at);
+    DS_LIVE.t = 0; await new Promise(res => dsLiveLoad(res));
+    const n = (d.errors || []).length;
+    txt = n ? '⚠️ ' + stT(`Đã cập nhật, ${n} nguồn lỗi`, `Updated, ${n} source(s) failed`) : '✅ ' + stT('Đã cập nhật', 'Updated');
+  } catch (e) { txt = '❌ ' + stT('Không cập nhật được', 'Update failed') + ' (' + (e.message || e) + ')'; }
+  if (activeBottomTab === 'dash') renderDash();
+  const m2 = document.getElementById('ds-upd-msg'); if (m2) m2.textContent = txt;
 }
 // tooltip: value leads, label follows; built with textContent (labels are data)
 function stTipKV(e, label, value, rows) {
