@@ -85,6 +85,13 @@ EU as one economy, keep each category's flows to its largest routes, and give a 
 Rules: every fact dated and sourced; impact −2 (harmful to Vietnam) … +2 (beneficial), with confidence; 15–40
 events covering the last ~3 months (older only when still driving events); "watch" items only in the future.
 
+## Oil products: all-in prices (`GEOPOL.oil_costs`, chapter "Dầu mỏ · giá tới nơi", added 2026-11-09)
+Crude, gasoline, diesel, jet fuel, fuel oil and LPG: exchange benchmark (`products[].benchmark` + `history`), buying and
+selling ports (`ports`), and `routes` that build the all-in landed price from components (benchmark, freight, insurance,
+port and terminal fees, storage, financing, duties/taxes where relevant) with `all_in`, `uplift`, `confidence` and `date`;
+`vn_retail` holds Vietnam's pump prices (MoIT/Petrolimex ceilings). Weekly: refresh benchmarks and retail; monthly or on
+news: freight, insurance and fees. Most freight/insurance figures are estimates — keep `confidence` and `gaps` honest.
+
 ## Workflow
 1. Read the current file and the dashboard's own data that bears on exposure (trade with US/China, oil imports,
    FX, rates, FDI by origin).

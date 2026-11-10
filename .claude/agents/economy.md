@@ -70,6 +70,13 @@ becomes a wrong headline.
 - Known pitfalls: the 2026 CPI target is ~4.5% (NA), not 4.0. The 2025 budget column now follows MoF Jan-2026
   (2,650,100 revenue; 2,401,500 spending; ~3.6% deficit), the same as Policy.
 
+## Export crop prices (`ECONFLOW.crops`, chapter "Thương mại · giá 10 nông sản xuất khẩu hàng đầu", added 2026-11-09)
+The top 10 export crops (rice, coffee, cashew, pepper, rubber, cassava, fruit & veg incl. durian, tea…): `months[]` (YYYY-MM)
+and per item `export_unit_price.values` (VN average export price, USD/t = value ÷ volume from the NSO monthly report /
+Customs) and `benchmark` (World Bank Pink Sheet or industry series, `name`, `unit`, `values` aligned to `months`), plus
+`export_value_2025_busd`, YTD value and notes. Each month after the NSO report (around the 6th): append the new month,
+fill the new values, roll `as_of`; keep `gaps` honest (durian has no price series). The Dashboard's crop y/y card reads it.
+
 ## Rules
 1. **Only sourced figures.** Every new value needs a source URL and the period it refers to; record
    sources in the matching `sources`/`source`/`note` field the structure already has (add one if needed).
