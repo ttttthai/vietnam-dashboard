@@ -2,7 +2,7 @@
  "_meta": {
   "owner": "Economy agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-11-10",
+  "as_of": "2026-11-13",
   "cpi_model_note": "CPI_BASKET (CPI groups: 2020 basket weights, y/y by month, sub-items) and the CPI projection inputs CPI_FC_SCEN, CPI_FC_TEMPLATE, CPI_FC_VAT_JAN27, CPI_FC_DRIVERS moved here from the page on 2026-10-10 (user decision recorded in data/research/animation_plan.md); the Economy agent owns and refreshes them."
  },
  "ECONFLOW": {
@@ -1559,7 +1559,7 @@
      "verified": "search-engine excerpt (page fetch blocked by egress proxy), 2026-10-06"
     }
    },
-   "note": "2025 national SBV kiều hối left null: no SBV national figure found (re-searched 2026-10-07). National statements from MoFA are kept apart in national_statements_2025: 'over 16 bn USD' (Foreign Minister, 01/01/2026, lower bound) and 'ước đạt gần 18 tỷ USD trên cả nước' (baophapluat.vn, attributed in search summaries to Deputy FM Lê Thị Thu Hằng; page not readable, date unconfirmed). These do not conflict: 18 is above the 16 lower bound, and both exceed HCMC 10.34 (SBV Region 2; HCMC is commonly put at ~60% of the national total, which implies ~17 bn, but that is not stored because it would be a derived figure). World Bank 2025 figure: only the June-2024 projection (15.0); no KNOMAD 2025 estimate found. BoP secondary income credit 2025 = 19.766 (all current transfers, a wider definition). No H1-2026 or 9M-2026 national figure published; latest is HCMC H1-2026 4.037 bn (−22.8% yoy, hcmc_H1_2026_busd). A search result quoting \"7.969 bn USD in 9 months\" for HCMC is the 9M-2025 figure, not 2026. national_sbv_busd 2023/2024 (16.0) are cited approx. SBV-system estimates (Jan of following year).",
+   "note": "2025 national SBV kiều hối left null: no SBV national figure found (re-searched 2026-10-07). National statements from MoFA are kept apart in national_statements_2025: 'over 16 bn USD' (Foreign Minister, 01/01/2026, lower bound) and 'ước đạt gần 18 tỷ USD trên cả nước' (baophapluat.vn, attributed in search summaries to Deputy FM Lê Thị Thu Hằng; page not readable, date unconfirmed). These do not conflict: 18 is above the 16 lower bound, and both exceed HCMC 10.34 (SBV Region 2; HCMC is commonly put at ~60% of the national total, which implies ~17 bn, but that is not stored because it would be a derived figure). World Bank 2025 figure: only the June-2024 projection (15.0); no KNOMAD 2025 estimate found. BoP secondary income credit 2025 = 19.766 (all current transfers, a wider definition). No H1-2026 or 9M-2026 national figure published; latest is HCMC 9M-2026 ≈6.87 bn (−13.8% yoy; Q3 2.835 bn, +3.6% yoy, the first yoy rise this year; hcmc_9M_2026_busd), after H1-2026 4.037 bn (−22.8%, hcmc_H1_2026_busd). A search result quoting \"7.969 bn USD in 9 months\" for HCMC is the 9M-2025 figure, not 2026. national_sbv_busd 2023/2024 (16.0) are cited approx. SBV-system estimates (Jan of following year).",
    "hcmc_H1_2026_busd": {
     "v": 4.037,
     "period": "Jan–Jun 2026",
@@ -1672,6 +1672,31 @@
     "rule": "Animate each as its own line with its own label; never splice one into another to fill gaps; HCMC is never added to or substituted for national totals.",
     "projection": "none beyond the World Bank's published years (2024–2025 projection held); no source projects remittances to 2030 — history only.",
     "noted": "2026-10-07"
+   },
+   "hcmc_9M_2026_busd": {
+    "v": 6.87,
+    "qualifier": "gần (just under) 6.87 bn; a search excerpt gives 6,872.5 mn USD, not seen on a readable page",
+    "period": "Jan–Sep 2026",
+    "yoy_pct": -13.8,
+    "definition": "SBV kiều hối channel data for HCMC (SBV Region 2: credit institutions and economic organisations)",
+    "q3_2026_busd": 2.835,
+    "q3_yoy_pct": 3.6,
+    "q3_qoq_pct": 39.5,
+    "q3_by_region_musd": {
+     "Asia": 1677.0,
+     "Asia_share_pct": 59.1,
+     "Americas": 748.5,
+     "Americas_share_pct": 26.4,
+     "Europe": 222.1,
+     "Oceania": 173.2
+    },
+    "outlook": "SBV Region 2: if Q4 reaches 2.6–2.9 bn, full-year 2026 HCMC about 9.5–9.8 bn USD, down 5.1–8% from 10.3 bn in 2025 (outlook raised from 8.6–8.9 bn in July)",
+    "check": "Q1 2.004 + Q2 2.032 + Q3 2.835 = 6.871 ≈ 6.87 (rounding); Q2 2.032 × 1.395 ≈ 2.835",
+    "base_note": "yoy base 9M-2025 ≈ 7.97 bn (implied); whether that base covers merged HCMC for Jan–Jun 2025 is not stated in the article",
+    "released": "2026-10-20",
+    "url": "https://tienphong.vn/bat-ngo-kieu-hoi-chuyen-ve-tphcm-post1886764.tpo",
+    "alt_url": "https://cafef.vn/bat-ngo-kieu-hoi-chuyen-ve-tphcm-188261020071109552.chn",
+    "verified": "press pages read 2026-11-13 (Tiền Phong 20/10/2026, mirrored by CafeF), SBV Region 2 data as reported"
    }
   },
   "labour": {
@@ -4497,7 +4522,7 @@
     "caveat": "Revenue minus expenditure is −622.2 tn, not −598.3 tn; the reports do not explain the difference. +14% yoy implies a 2025 base near 2,680 tn, above the 2,650.1 tn held (a later 2025 vintage)."
    },
    "plan_2027_draft": {
-    "status": "Government proposal to the NA 2nd session; NOT voted as of 2026-11-06. Not added to the years/plan columns until the NA resolution.",
+    "status": "Government proposal to the NA 2nd session (published 24/10/2026). VOTED on 09/11/2026 — the adopted figures are in plan_2027_resolution (totals match this draft to rounding: revenue 3,334,338 vs 3,334,300; deficit 739,597 vs 740,000). The 2027 column is not yet appended to years/basis because the page reads the last column as the 2026 plan and this key as 'not voted' (render change requested 2026-11-13).",
     "unit": "bn VND",
     "revenue_total": 3334300,
     "revenue_pct_gdp": 20.2,
@@ -4543,6 +4568,40 @@
     "alt_url": "https://bnews.vn/du-toan-chi-ngan-sach-nha-nuoc-nam-2027-tang-hon-915-nghin-ty-dong/441668.html",
     "published": "2026-10-24",
     "verified": "press page read 2026-11-06"
+   },
+   "plan_2027_resolution": {
+    "status": "adopted",
+    "voted": "2026-11-09",
+    "votes": "471/471 deputies present (100%)",
+    "unit": "bn VND",
+    "revenue_total": 3334338,
+    "revenue_central": 1775593,
+    "revenue_local": 1558745,
+    "revenue_growth_target_vs_2026_outturn_pct": 9.1,
+    "expenditure_total": 4073935,
+    "expenditure_central": 2364411,
+    "of_which_balancing_transfers_to_local": 408747,
+    "of_which_targeted_transfers_to_local": 311363,
+    "expenditure_local_excl_transfers": 1709524,
+    "development_investment": 1755679,
+    "recurrent_incl_wage_reform": 2061313,
+    "education_training": 554984,
+    "science_tech_innovation_digital": 71911,
+    "budget_reserve_du_phong": 108350,
+    "deficit": 739597,
+    "deficit_pct_gdp": 4.5,
+    "deficit_central": 588818,
+    "deficit_central_pct_gdp": 3.6,
+    "deficit_local": 150779,
+    "deficit_local_pct_gdp": 0.9,
+    "total_borrowing": 1279717,
+    "savings_rules": "5% of public investment held back at allocation for key projects; 10% of recurrent spending (excl. wages/personnel) saved for social security",
+    "check": "3,334,338 − 4,073,935 = −739,597 (exact); 588,818 + 150,779 = 739,597 (exact); 1,775,593 + 1,558,745 = 3,334,338 (exact)",
+    "not_published_yet": "revenue by source, interest, aid, financial reserve fund, principal repayment",
+    "url": "https://daibieunhandan.vn/quoc-hoi-thong-qua-nghi-quyet-ve-du-toan-ngan-sach-nha-nuoc-nam-2027-10442489.html",
+    "alt_url": "https://thoibaotaichinhvietnam.vn/thong-qua-du-toan-ngan-sach-2027-tong-chi-hon-4-trieu-ty-dong-206607.html",
+    "verified": "press pages read 2026-11-13",
+    "column_status": "Not yet appended to budget.years/basis: the chapter-2 'what to watch' card reads plan_2027_draft as 'đề xuất, chưa biểu quyết' and Bu.deficit_pct_gdp[last] as the 2026 plan; append 2027 (basis 'plan': revenue 3,334,338; expenditure 4,073,935; development 1,755,679; recurrent 2,061,313; deficit 739,597; 4.5% GDP; other lines null) once the render reads plan_2027_resolution."
    }
   },
   "inv": {
@@ -5162,7 +5221,8 @@
      },
      "method_vi": "Mục tiêu chính thức: tăng trưởng GDP bình quân \"từ 10%/năm trở lên\" giai đoạn 2026–2030; năm 2026 \"từ 10% trở lên\" (NQ 244/2025/QH15). Giá trị là mức sàn, không phải dự báo.",
      "method_en": "Official target: average GDP growth \"10% a year or more\" over 2026–2030; 2026 \"10% or more\" (NQ 244/2025/QH15). Values are a floor, not a forecast.",
-     "pub": "2026-04-24"
+     "pub": "2026-04-24",
+     "note_2027": "2027 annual target 'từ 10% trở lên' confirmed by the 2027 socio-economic plan resolution voted 07/11/2026 (467 votes in favour, 93.4%, per Tiền Phong); value unchanged (10.0, a floor). Other 2027 targets: industry & construction +12.2%, agriculture +3.8% (strive 4%), urban unemployment <4%, 1.18 mn operating enterprises, health-insurance coverage 96.7%; first province-level growth targets (Hà Nội 11.1%, TP.HCM 10.4%, Hải Phòng 13%). Source: https://tienphong.vn/chot-tang-truong-nam-2027-tu-10-gdp-binh-quan-dau-nguoi-dat-6100-usd-post1892188.tpo"
     },
     "gdp_growth_pct_imf": {
      "years": [
@@ -5468,7 +5528,7 @@
      ],
      "base": [
       null,
-      null,
+      6100,
       null,
       null,
       8500
@@ -5490,12 +5550,13 @@
      "kind": "official_target",
      "unit": "USD, current prices",
      "source": {
-      "name": "NQ 25/2026/QH16 (2030); NQ 244/2025/QH15 (2026: 5,400–5,500)",
+      "name": "NQ 25/2026/QH16 (2030); NQ 244/2025/QH15 (2026: 5,400–5,500); 2027: NQ kế hoạch KT-XH 2027 (07/11/2026: khoảng 6.100 USD)",
       "url": "https://luatvietnam.vn/chinh-sach/nghi-quyet-25-2026-qh16-ke-hoach-phat-trien-kinh-te-xa-hoi-2026-2030-434058-d1.html",
-      "alt_url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm"
+      "alt_url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm",
+      "url_2027": "https://tienphong.vn/chot-tang-truong-nam-2027-tu-10-gdp-binh-quan-dau-nguoi-dat-6100-usd-post1892188.tpo"
      },
-     "method_vi": "Mục tiêu chính thức: ~8.500 USD năm 2030; năm 2026 khoảng 5.400–5.500 USD (low/high).",
-     "method_en": "Official targets: ~8,500 USD in 2030; 2026 about 5,400–5,500 USD (low/high).",
+     "method_vi": "Mục tiêu chính thức: ~8.500 USD năm 2030; năm 2026 khoảng 5.400–5.500 USD (low/high). Năm 2027 khoảng 6.100 USD (NQ kế hoạch KT-XH 2027).",
+     "method_en": "Official targets: ~8,500 USD in 2030; 2026 about 5,400–5,500 USD (low/high). 2027 about 6,100 USD (2027 socio-economic plan resolution).",
      "pub": "2026-04-24",
      "draft_2027": {
       "value": 6100,
@@ -5647,7 +5708,7 @@
      ],
      "base": [
       4.5,
-      null,
+      4.5,
       null,
       null,
       null
@@ -5657,17 +5718,20 @@
      "kind": "official_target",
      "unit": "% yoy, annual average",
      "source": {
-      "name": "Quốc hội — NQ 244/2025/QH15 (kế hoạch KT-XH 2026)",
-      "url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm"
+      "name": "Quốc hội — NQ 244/2025/QH15 (kế hoạch KT-XH 2026); 2027: NQ kế hoạch KT-XH 2027 (Quốc hội thông qua 07/11/2026)",
+      "url": "https://xaydungchinhsach.chinhphu.vn/thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2026-119251113123708302.htm",
+      "url_2027": "https://tienphong.vn/chot-tang-truong-nam-2027-tu-10-gdp-binh-quan-dau-nguoi-dat-6100-usd-post1892188.tpo",
+      "alt_url_2027": "https://daibieunhandan.vn/quoc-hoi-thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2027-10442293.html"
      },
-     "method_vi": "Mục tiêu năm 2026 ~4,5%. Không tìm thấy chỉ tiêu CPI theo năm cho 2027–2030.",
-     "method_en": "2026 target ~4.5%. No annual CPI target for 2027–2030 found.",
+     "method_vi": "Mục tiêu năm 2026 ~4,5%; năm 2027 ~4,5% (NQ kế hoạch KT-XH 2027, thông qua 07/11/2026). Không có chỉ tiêu CPI theo năm cho 2028–2030.",
+     "method_en": "2026 target ~4.5%; 2027 ~4.5% (2027 socio-economic plan resolution, voted 07/11/2026). No annual CPI target for 2028–2030.",
      "pub": "2025-11-13",
      "draft_2027": {
       "value": 4.5,
-      "status": "Government proposal; NA vote scheduled 07/11/2026, after this run",
+      "status": "Adopted by the NA on 07/11/2026 (467 votes in favour, 93.4%) — now in base[2027]",
       "url": "https://www.tinnhanhchungkhoan.vn/cuoi-tuan-nay-quoc-hoi-chot-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2027-post400621.html"
-     }
+     },
+     "verified_2027": "press page read 2026-11-13 (Tiền Phong); resolution number not yet published"
     },
     "budget_deficit_pct_gdp_target": {
      "years": [
@@ -5679,7 +5743,7 @@
      ],
      "base": [
       4.2,
-      null,
+      4.5,
       null,
       null,
       null
@@ -5689,17 +5753,18 @@
      "kind": "official_target",
      "unit": "% of GDP",
      "source": {
-      "name": "NQ dự toán NSNN 2026 (2026: 4.2%); NQ 26/2026/QH16 (bình quân 2026–2030 ~5%)",
+      "name": "NQ dự toán NSNN 2026 (2026: 4.2%); NQ 26/2026/QH16 (bình quân 2026–2030 ~5%); 2027: NQ dự toán NSNN 2027 (09/11/2026, 4.5%)",
       "url": "https://thoibaotaichinhvietnam.vn/quoc-hoi-thong-qua-nghi-quyet-ve-du-toan-ngan-sach-nha-nuoc-nam-2026-186851.html",
-      "alt_url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html"
+      "alt_url": "https://luatvietnam.vn/tai-chinh/nghi-quyet-26-2026-qh16-ve-ke-hoach-tai-chinh-quoc-gia-va-vay-tra-no-cong-2026-2030-434063-d1.html",
+      "url_2027": "https://daibieunhandan.vn/quoc-hoi-thong-qua-nghi-quyet-ve-du-toan-ngan-sach-nha-nuoc-nam-2027-10442489.html"
      },
-     "method_vi": "Năm 2026 = dự toán Quốc hội (4,2% GDP). Kế hoạch tài chính 5 năm chỉ đặt mức bình quân ~5% GDP (TW ~4,4% + ĐP ~0,6%), không chia theo năm — xem targets.",
-     "method_en": "2026 = National Assembly budget (4.2% of GDP). The 5-year finance plan sets only an average of ~5% of GDP (central ~4.4% + local ~0.6%), not per year — see targets.",
+     "method_vi": "Năm 2026 = dự toán Quốc hội (4,2% GDP). Kế hoạch tài chính 5 năm chỉ đặt mức bình quân ~5% GDP (TW ~4,4% + ĐP ~0,6%), không chia theo năm — xem targets. Năm 2027 = dự toán Quốc hội (4,5% GDP; 739.597 tỷ đồng), thông qua 09/11/2026.",
+     "method_en": "2026 = National Assembly budget (4.2% of GDP). The 5-year finance plan sets only an average of ~5% of GDP (central ~4.4% + local ~0.6%), not per year — see targets. 2027 = National Assembly budget (4.5% of GDP; 739,597 bn VND), voted 09/11/2026.",
      "pub": "2025-11-13",
      "draft_2027": {
       "value": 4.5,
       "bn_vnd": 740000,
-      "status": "Government proposal, not voted as of 2026-11-06; 2026 estimate 4.1%",
+      "status": "Adopted 09/11/2026: 739,597 bn = 4.5% GDP — now in base[2027]",
       "url": "https://vietstock.vn/2026/10/du-toan-nsnn-nam-2027-tong-thu-hon-33-trieu-ty-dong-tong-chi-hon-4-trieu-ty-dong-758-1506545.htm"
      }
     },
@@ -12759,16 +12824,17 @@
    "vintage_note": "Raised from 4.1%; CPI around 5% in Q4-2026. No 2027 CPI in the article."
   },
   {
-   "inst": "Government 2027 socio-economic plan (submitted; NA vote 07/11/2026 pending)",
+   "inst": "National Assembly target 2027 (NQ kế hoạch KT-XH 2027)",
    "type": "gov",
-   "pub": "2026-10-17",
-   "url": "https://www.tinnhanhchungkhoan.vn/cuoi-tuan-nay-quoc-hoi-chot-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2027-post400621.html",
+   "pub": "2026-11-07",
+   "url": "https://tienphong.vn/chot-tang-truong-nam-2027-tu-10-gdp-binh-quan-dau-nguoi-dat-6100-usd-post1892188.tpo",
    "2027": [
     4.5,
     null,
     null
    ],
-   "vintage_note": "Proposed target, not yet adopted as of 2026-11-06."
+   "vintage_note": "Adopted by the NA on 07/11/2026 (467 votes, 93.4%): CPI 'khoảng 4,5%'. Government proposal of 17/10/2026 was the same 4.5% (https://www.tinnhanhchungkhoan.vn/cuoi-tuan-nay-quoc-hoi-chot-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2027-post400621.html). Press page read 2026-11-13.",
+   "alt_url": "https://daibieunhandan.vn/quoc-hoi-thong-qua-nghi-quyet-ve-ke-hoach-phat-trien-kinh-te-xa-hoi-nam-2027-10442293.html"
   }
  ],
  "CPI_BASKET": [

@@ -227,3 +227,33 @@ Both keep their structure and ownership rules.
 
 ### Next run should
 Check 12.27 vs 11.94 against the SBV table; HNX October bonds; the 955,867.4 bn base; what NSO really publishes on 29-30/11.
+
+## 2026-11-13 — weekly pre-approved run (cross-tab consistency after the eight tab agents)
+
+### Learned
+1. **A cap and a take-up are two numbers.** Finance stored the swap cap (48,798 bn = USD 2bn × 24,399) and said the result was unreported; Policy had the result ("gần 50 nghìn tỷ", SBV Monetary Policy Dept, CafeF 11/11). SBV publishes operation results in interviews, two days after value date, not as data. New calendar series `sbv_fx_operations`.
+2. **Plan bases move weekly now.** 1,022,607 → 955,867.4 (31/10 monthly) → 964,354.3 (05/11 weekly) bn. The weekly MoF letter reaches the press ~6–7 days after its cut-off. New series `mof_public_investment`; a job proposed so Investing and Policy store the same point in the same run.
+3. **"Overdue" can be my search, not the publisher.** HCMC 9M remittances came out on 20/10, inside the old window; the 06/11 run called it overdue. Rule tightened to ~3 weeks after quarter end, with Tiền Phong/CafeF as the hosts that carry it.
+4. **Market-implied numbers need a timestamp.** FedWatch December odds were ~85/15, 88.8/11.2 and 87.1/12.9 within two days. All real; the date and relay decide. Finance's stored value is the reference.
+5. **Stale copies hide in secondary fields.** Agents refreshed headlines and actors but left older copies in `board.story`, `board.chokepoints`, a constraint text and a future event row. Next run: grep every changed figure's old value across all data files, not just the brief's list.
+6. **Units in notes slip by 1,000.** "5.21 tn" for 5.21 quadrillion was in a note while the data value was right.
+7. **WDI updates off-cycle** (08/10 and 11/11/2026) and its API throttles bursts.
+8. **The vote-count formats differ but agree**: "467/469 present" (Strategy) = "467, 93.4%" of all 500 deputies (Economy).
+
+### Rules revised (evidence in release_calendar.json)
+`wb_wdi` (second off-cycle update; lastupdated is the trigger), `remittances_hcmc` (~3 weeks; next FY 15–25/01/2027), `na_sessions` (07/11 and 09/11 votes; phase 2 20–21/11), `fed_fomc` (odds timestamp rule). New: `mof_public_investment`, `sbv_fx_operations`.
+
+### Files written
+- Data fixes under the weekly brief, narrow and each logged in the run report: `data/policy.json` (public investment 05/11 point, current value and text, fis stance; swap note), `data/finance.json` (swap flow note and operation 450 note; constraint 2 central rate; RE credit share note units), `data/geopolitics.json` (actor 0 Fed odds dated; board.story[8] odds and central rate; chokepoint 0 Brent), `data/invest_macro.json` (event 21/11 text, note, URL).
+- Research: `inventory.json` (17 families refreshed; `liv.prices` and `geo.oil_costs` added), `release_calendar.json`, `source_log.json` (3 hosts updated, 6 added, probe row), `schedule.json` (2 job rules revised, 2 proposed), `priority_watch.json`, `consistency_report.md` (X1–X14), `update_plan.md` (06/11 plan kept below).
+
+### Agent-definition edits
+- `policy.md`: MoF weekly public-investment letter and same-run mirroring with Investing; SBV FX results come via interviews, tell Finance.
+- `finance.md`: FedWatch timestamp rule; SBV result vs cap; RE-credit units.
+- `geopolitics.md`: quote Finance's Fed odds and Policy's central rate with dates; refresh older copies in board/actors.
+- `investing.md`: re-read future events each run; tell Policy when a weekly public-investment point is added.
+- `economy.md`: HCMC remittance timing (9M on 20/10, ~3 weeks).
+- `society.md`: WDI off-cycle updates and API throttling.
+
+### Next run should
+Replace Finance's provisional 13/11 week; check SBV September tables; MoF weekly point (~12/11) in both Investing and Policy; NA phase-2 votes; grep old values (25,615; 98.29; 74.1%; "chưa biểu quyết") across all files including narration.

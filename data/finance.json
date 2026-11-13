@@ -2,12 +2,13 @@
  "_meta": {
   "owner": "Finance agent",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing.",
-  "as_of": "2026-11-06",
+  "as_of": "2026-11-13",
   "fed_oct_2026": "FINSYS.why.series.fed_funds_upper 2026-10 = 4.0 is the range in force at month-end Oct-2026: the FOMC held on 28 Oct 2026 and there was no further meeting or intermeeting action before 31 Oct, so the value is final. Applied 2026-11-01 (user approval). Next FOMC: 8-9 Dec 2026. usdvnd_monthly still ends 2026-09 (fed_funds_upper has its own months array).",
-  "weekly_2026_11_06": "Weekly all-agents run (pre-approved). WebFetch reached sbv.gov.vn list pages and the public article API this run, so SBV values marked page-read were read from SBV, not from excerpts. SBV detail pages (CAR, ROA/ROE) returned 403. See FINSYS.sources.weekly_2026_11_06."
+  "weekly_2026_11_06": "Weekly all-agents run (pre-approved). WebFetch reached sbv.gov.vn list pages and the public article API this run, so SBV values marked page-read were read from SBV, not from excerpts. SBV detail pages (CAR, ROA/ROE) returned 403. See FINSYS.sources.weekly_2026_11_06.",
+  "weekly_2026_11_13": "Weekly all-agents run (pre-approved), run 2026-11-13 00:00 ICT (Thursday-night slot, so week-of-13/11 market values are Thursday 12/11 or earlier). SBV Sep-2026 M2/deposit and credit-by-sector tables not yet in the article API (checked); prudential page still at 30/09; CAR detail pages rejected. See FINSYS.sources.weekly_2026_11_13."
  },
  "FINSYS": {
-  "asof": "2026-11-06",
+  "asof": "2026-11-13",
   "annual": {
    "years": [
     2015,
@@ -2454,6 +2455,13 @@
      "v": 5146000,
      "unit": "VND billion",
      "u": "https://cafebiz.vn/cu-4-dong-ngan-hang-cho-vay-thi-1-dong-chay-vao-bat-dong-san-du-no-vuot-5-trieu-ty-dong-nhieu-nha-bang-tang-manh-trong-nua-dau-nam-176260904091420664.chn"
+    },
+    {
+     "d": "2026-08",
+     "v": 5210000,
+     "unit": "VND billion",
+     "u": "https://thoibaotaichinhvietnam.vn/dong-von-bat-dong-san-tang-vi-sao-du-an-va-nguoi-mua-nha-van-kho-tiep-can-205765.html",
+     "n": "SBV Deputy Governor Nguyen Ngoc Canh at the first meeting of the Central Steering Committee on housing policy and the real-estate market: 'dư nợ tín dụng bất động sản đạt 5,21 triệu tỷ đồng, tăng 9,49% so với cuối năm 2025' to 31/8/2026, 25.39% of total credit (TBTC 23/10/2026, page read 2026-11-13; same figures in Bao Dau thau 13/10: https://baodauthau.vn/ton-kho-bat-dong-san-tang-quy-iii2026-ghi-nhan-khoang-92004-giao-dich-thanh-cong-post209850.html). Total real-estate credit (business + home purchase/own-use); not comparable with the MoC business-only series. Rounded ('5,21 triệu tỷ')."
     }
    ],
    "Real estate credit share of total credit": [
@@ -2462,6 +2470,13 @@
      "v": 25.5,
      "unit": "%",
      "u": "https://nhipsongkinhdoanh.vn/ngan-hang-nha-nuoc--chenh-lech-tin-dung---huy-dong-khoang-2-trieu-ty-dong--thanh-khoan-tiep-tuc-chiu-ap-luc-31824.htm"
+    },
+    {
+     "d": "2026-08",
+     "v": 25.39,
+     "unit": "%",
+     "u": "https://thoibaotaichinhvietnam.vn/dong-von-bat-dong-san-tang-vi-sao-du-an-va-nguoi-mua-nha-van-kho-tiep-can-205765.html",
+     "n": "SBV (Deputy Governor Nguyen Ngoc Canh), 31/8/2026; 5,210 tn (5.21 quadrillion) / ~20,490 tn (20.49 quadrillion) SBV-table credit [units corrected by Research 2026-11-13; was written '5.21 tn / 20.49 tn'] = 25.4% (check, derived)."
     }
    ],
    "Real-estate BUSINESS credit (kinh doanh BĐS, MoC report)": [
@@ -2891,6 +2906,13 @@
      "unit": "VND billion, cumulative Jan-Sep 2026 (\"hơn 428.500\")",
      "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-hon-428-500-ty-dong-sau-9-thang.md",
      "n": "private nearly 370,600, public nearly 58,000 (VBMA from HNX/SSC). Page read 2026-11-06."
+    },
+    {
+     "d": "2026-10-30",
+     "v": 479113,
+     "unit": "VND billion, cumulative Jan-Oct 2026",
+     "u": "https://vietstock.vn/2026/11/vbma-gan-17-ngan-ty-dong-trai-phieu-duoc-mua-lai-truoc-han-trong-thang-10-3118-1513726.htm",
+     "n": "VBMA October-2026 bulletin (from HNX/SSC), via Vietstock/FILI 11/11/2026, page read 2026-11-13: private 419,309, public 59,804 (exact figures also in the search excerpt of https://www.nguoiduatin.vn/dong-von-trai-phieu-doanh-nghiep-vuot-479000-ty-dong-sau-10-thang-204261112100037021.htm). CONFLICT, not reconciled: 9M 428,500 + October 20,131 = 448,631, about 30,500 below 479,113; the gap is in private placements (9M ~370,600 + Oct ~18,300 vs 419,309), i.e. late-disclosed earlier issues added by VBMA. Cumulative and monthly figures therefore do not add up."
     }
    ],
    "Corporate bond issuance by month, 2026 (VBMA, as disclosed by month-end)": [
@@ -2956,6 +2978,13 @@
      "unit": "VND billion, issued in the month",
      "u": "https://doanhnhan.baophapluat.vn/thi-truong-trai-phieu-doanh-nghiep-huy-dong-hon-428-500-ty-dong-sau-9-thang.md",
      "n": "to 30/9: 38 issues; private 33 issues 42,200, public 5 issues over 4,900 (sum of the two stated parts; article headline figure \"hơn 47.000\"). September buy-backs over 17,900 (-56% YoY); Q4-2026 maturities over 70,000. Page read 2026-11-06. Conflict: S&I Ratings counts 179,400 for Q3 (-26% q/q) and VIS Rating 172,000 (+9.7% YoY); providers differ, not averaged."
+    },
+    {
+     "d": "2026-10",
+     "v": 20131,
+     "unit": "VND billion, issued in the month",
+     "u": "https://vietstock.vn/2026/11/vbma-gan-17-ngan-ty-dong-trai-phieu-duoc-mua-lai-truoc-han-trong-thang-10-3118-1513726.htm",
+     "n": "to 30/10: 24 issues 'hơn 20,13 ngàn tỷ'; private 21 issues ~18,300, public 3 issues 1,850. October buy-backs 16,965 (-13% YoY; YTD 264,013 to 6/11 per the Nguoi Dua Tin excerpt); Nov-Dec maturities 44,786; secondary private-bond trading ~175,300 (~8,000/session, +7% m/m); no new late-payment codes. Page read 2026-11-13. CONFLICT (provider differs, not averaged): VIS Rating puts October issuance at about 31,000 (-59% m/m; banks 83%, real estate 6%), https://thoibaotaichinhvietnam.vn/thanh-khoan-trai-phieu-doanh-nghiep-tang-manh-trong-thang-10-206565.html (7/11, page read)."
     }
    ],
    "SBV rate-cut directive, Oct-2026: deposit rates (letters 9608, 9736/NHNN-CSTT)": [
@@ -3010,6 +3039,13 @@
      "unit": "text",
      "u": "https://thitruongtaichinhtiente.vn/ngan-hang-giam-lai-suat-ho-tro-nguoi-dan-doanh-nghiep-86799.html",
      "n": "Announced 3/11/2026 to give banks longer VND funding (also https://bnews.vn/pho-thong-doc-pham-thanh-ha-se-tiep-tuc-trien-khai-cac-bien-phap-de-giam-mat-bang-lai-suat/443069.html). Up to USD 2bn (~VND48,798bn), 182 days, spot 24,399, forward 24,704, planned for 6/11, value 9/11/2026, maturity 10/5/2027 (https://vietstock.vn/2026/11/nhnn-trien-khai-nghiep-vu-hoan-doi-ngoai-te-ky-han-6-thang-757-1511563.htm). Amount actually done not yet reported; no SBV notice read directly."
+    },
+    {
+     "d": "2026-11-06",
+     "v": 48798,
+     "unit": "VND billion, maximum (USD 2bn)",
+     "u": "https://dantri.com.vn/kinh-doanh/ngan-hang-nha-nuoc-mua-ngoai-te-ky-vong-lai-suat-giam-chung-khoan-tang-20261110111759481.htm",
+     "n": "Swap held on 6/11/2026: up to VND48,798bn (USD 2bn), 182 days; FX reserves unchanged by a swap (Dan tri 10/11, page read 2026-11-13; TBTC weekly wrap 6/11 same). Value is the cap. Take-up: the SBV Monetary Policy Dept deputy director (Nguyen Linh Phuong) said 'gần 50 nghìn tỷ đồng' was supplied through this swap on value date 9/11 (CafeF 11/11, page read 2026-11-13: https://cafef.vn/hoan-doi-ngoai-te-da-co-gan-50-nghin-ty-dong-duoc-cung-ung-cho-he-thong-ngan-hang-188261111144738067.chn), i.e. close to the full cap; no exact figure published (Research 2026-11-13, aligned with Policy fx_intervention)."
     }
    ],
    "Preferential credit packages, total": [
@@ -3019,6 +3055,15 @@
      "unit": "VND billion (over)",
      "u": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-tuan-3-thang-10-2026-24025.htm",
      "n": "VNBA weekly bulletin, week 3 of Oct-2026: total packages above 450,000 bn, rate cuts up to 3.25%/yr. Reported total, not disbursed."
+    }
+   ],
+   "SBV spot USD purchases from credit institutions (Mon & Wed, from 11/11/2026)": [
+    {
+     "d": "2026-11-11",
+     "v": 25500,
+     "unit": "VND per USD, SBV purchase price",
+     "u": "https://dantri.com.vn/kinh-doanh/ngan-hang-nha-nuoc-mua-ngoai-te-ky-vong-lai-suat-giam-chung-khoan-tang-20261110111759481.htm",
+     "n": "SBV notice (reported 10/11/2026): spot USD purchases every Monday and Wednesday from 11/11/2026 at 25,500 VND/USD from credit institutions with a long FX position; no volume cap announced; unlike the swap, purchases add to FX reserves and inject VND. Page read 2026-11-13. Amounts bought not yet reported. Also https://thoibaotaichinhvietnam.vn/ngan-hang-nha-nuoc-sap-mua-usd-giao-ngay-gia-25-500-dong-ky-vong-loi-ich-kep-cho-thi-truong-206667.html (not read). ACB's 3-5 bn USD to Tet is a forecast, not stored."
     }
    ]
   },
@@ -10461,7 +10506,7 @@
      "item": "other",
      "value": null,
      "unit": "bn VND",
-     "note": "SBV announced a 182-day USD/VND swap with credit institutions: up to USD 2bn (~VND48,798bn), spot 24,399, forward 24,704, planned for 6/11, value 9/11/2026, maturity 10/5/2027 (Vietstock 4/11, page read 2026-11-06). Value left null: the amount actually done is not yet reported.",
+     "note": "SBV announced a 182-day USD/VND swap with credit institutions: up to USD 2bn (~VND48,798bn), spot 24,399, forward 24,704, planned for 6/11, value 9/11/2026, maturity 10/5/2027 (Vietstock 4/11, page read 2026-11-06). Value left null: the amount actually done is not yet reported. Update 2026-11-13 (Research): SBV (Monetary Policy Dept deputy director, CafeF 11/11) said nearly VND50tn ('gần 50 nghìn tỷ') was supplied on 9/11, close to the cap; value stays null because no exact amount was published (https://cafef.vn/hoan-doi-ngoai-te-da-co-gan-50-nghin-ty-dong-duoc-cung-ung-cho-he-thong-ngan-hang-188261111144738067.chn).",
      "url": "https://vietstock.vn/2026/11/nhnn-trien-khai-nghiep-vu-hoan-doi-ngoai-te-ky-han-6-thang-757-1511563.htm"
     },
     {
@@ -10472,6 +10517,33 @@
      "unit": "bn VND",
      "note": "Net OMO withdrawal on the day: won 5,521.82 bn, maturing 9,168.10 bn; outstanding 105,591.75 bn; rate 4.5% on all tenors (Thoi bao Ngan hang, page read 2026-11-06).",
      "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html"
+    },
+    {
+     "date": "2026-11-06",
+     "period": "week",
+     "item": "other",
+     "value": -4013.22,
+     "unit": "bn VND",
+     "note": "Net OMO withdrawal, week 2-6/11/2026: issued 61,578.84, maturing 65,592.06; 44,976.78 issued on 6/11 alone; rate 4.5% on 7-91 days (TBTC weekly wrap 6/11, page read 2026-11-13).",
+     "url": "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-2-6-11-vay-muon-qua-dem-vuot-1-trieu-ty-dong-van-thanh-khoan-mo-qua-mua-cao-diem-206551.html"
+    },
+    {
+     "date": "2026-11-11",
+     "period": "point",
+     "item": "other",
+     "value": null,
+     "unit": "bn VND",
+     "note": "SBV starts spot USD purchases from credit institutions every Monday and Wednesday at 25,500 VND/USD (announced ~10/11). Volume not reported; value null.",
+     "url": "https://dantri.com.vn/kinh-doanh/ngan-hang-nha-nuoc-mua-ngoai-te-ky-vong-lai-suat-giam-chung-khoan-tang-20261110111759481.htm"
+    },
+    {
+     "date": "2026-11-12",
+     "period": "point",
+     "item": "other",
+     "value": -447,
+     "unit": "bn VND",
+     "note": "Net OMO withdrawal on the day: won 6,325 (7d 823, 14d 4,496, 35d 1,005), maturing 6,772; outstanding 112,131; rate 4.5%; no SBV bills (Nguoi Quan Sat 12/11, page read 2026-11-13).",
+     "url": "https://nguoiquansat.vn/phien-12-11-ngan-hang-nha-nuoc-hut-rong-447-ty-dong-lai-suat-neo-muc-4-3-327840.html"
     }
    ],
    "notes": [
@@ -10484,7 +10556,7 @@
     "SBV surplus remitted to budget: only 2024 (52.741 trn VND) found SBV-only; other years only as combined MoF line incl. SOE dividends/divestment."
    ],
    "constraints": {
-    "as_of": "2026-11-06",
+    "as_of": "2026-11-13",
     "note": "Why the SBV cannot simply cut policy rates or 'print money'. Each item: two factual sentences, sourced; derived values are labelled. Most pages were verified via search-engine excerpts only (egress proxy blocked direct fetches).",
     "items": [
      {
@@ -10530,8 +10602,8 @@
       "key": "fx_pressure",
       "title_vi": "Áp lực tỷ giá và chênh lệch lãi suất với USD",
       "title_en": "Exchange-rate pressure and the USD rate gap",
-      "text_vi": "Tỷ giá trung tâm tăng từ 25.121 đồng/USD (31/12/2025) lên 25.644 đồng (29/10/2026) rồi hạ về 25.615 đồng (6/11/2026, ngày mới nhất trên tab Chính sách), tức VND mất giá khoảng 1,93% so với cuối 2025 (tính toán), trong khi Fed nâng biên độ lãi suất lên 3,75-4,00% ngày 16/9/2026 và giữ nguyên ngày 28/10/2026, chỉ thấp hơn lãi suất OMO/tái cấp vốn 4,5% của NHNN 0,5 điểm %. Hạ lãi suất điều hành sẽ xoá hoặc đảo ngược khoảng chênh này, khuyến khích chuyển sang nắm giữ USD và dòng vốn ra, làm VND yếu đi và đẩy giá hàng nhập khẩu lên (lạm phát nhập khẩu).",
-      "text_en": "The SBV central rate rose from 25,121 VND/USD (31 Dec 2025) to 25,644 (29 Oct 2026) before easing to 25,615 (6 Nov 2026, the latest date on the Policy tab), a VND depreciation of about 1.93% since end-2025 (derived), while the Fed raised its target range to 3.75-4.00% on 16 Sep 2026 and held it on 28 Oct 2026, only 0.5 points below the SBV's 4.5% OMO/refinancing rate. Cutting policy rates would erase or invert that gap, encouraging dollarisation and capital outflows that weaken the dong and raise import prices (imported inflation).",
+      "text_vi": "Tỷ giá trung tâm tăng từ 25.121 đồng/USD (31/12/2025) lên 25.644 đồng (29/10/2026) xuống 25.600 đồng (10/11) rồi 25.623 đồng (12/11/2026, ngày mới nhất trên tab Chính sách), tức VND mất giá khoảng 2,0% so với cuối 2025 (tính toán), trong khi Fed nâng biên độ lãi suất lên 3,75-4,00% ngày 16/9/2026 và giữ nguyên ngày 28/10/2026, chỉ thấp hơn lãi suất OMO/tái cấp vốn 4,5% của NHNN 0,5 điểm %. Hạ lãi suất điều hành sẽ xoá hoặc đảo ngược khoảng chênh này, khuyến khích chuyển sang nắm giữ USD và dòng vốn ra, làm VND yếu đi và đẩy giá hàng nhập khẩu lên (lạm phát nhập khẩu). Cập nhật 13/11/2026: NHNN mua USD giao ngay giá 25.500 đồng vào thứ Hai và thứ Tư hằng tuần từ 11/11 (sau hoán đổi tối đa 2 tỷ USD kỳ hạn 182 ngày ngày 6/11), tức đang tích luỹ dự trữ thay vì bán ra; nhưng sau CPI tháng 10 của Mỹ, CME FedWatch (11/11) không còn tính khả năng Fed giữ nguyên ngày 9/12: 88,8% tăng 0,25 điểm % và 11,2% tăng 0,5 điểm %, nên khoảng chênh với lãi suất OMO 4,5% có thể thu hẹp còn 0,25 điểm % hoặc bằng 0.",
+      "text_en": "The SBV central rate rose from 25,121 VND/USD (31 Dec 2025) to 25,644 (29 Oct 2026) then 25,600 (10 Nov) and 25,623 (12 Nov 2026, the latest date on the Policy tab), a VND depreciation of about 2.0% since end-2025 (derived), while the Fed raised its target range to 3.75-4.00% on 16 Sep 2026 and held it on 28 Oct 2026, only 0.5 points below the SBV's 4.5% OMO/refinancing rate. Cutting policy rates would erase or invert that gap, encouraging dollarisation and capital outflows that weaken the dong and raise import prices (imported inflation). Update 13 Nov 2026: the SBV is buying spot USD at 25,500 every Monday and Wednesday from 11 Nov (after a swap of up to USD 2bn for 182 days on 6 Nov), i.e. it is rebuilding reserves rather than selling; but after the US October CPI, CME FedWatch (11 Nov) no longer prices a December hold: 88.8% for a 25bp hike and 11.2% for 50bp on 9 Dec, so the gap to the 4.5% OMO rate could shrink to 0.25 points or to zero.",
       "metric": {
        "value": 1.93,
        "unit": "%",
@@ -10581,6 +10653,14 @@
        {
         "name": "Thanh Niên - Giá USD hôm nay 6.11.2026",
         "url": "https://thanhnien.vn/gia-usd-hom-nay-6112026-giam-180-dong-trong-tuan-qua-185261106083421062.htm"
+       },
+       {
+        "name": "Dân trí 10/11/2026 - NHNN mua ngoại tệ giao ngay",
+        "url": "https://dantri.com.vn/kinh-doanh/ngan-hang-nha-nuoc-mua-ngoai-te-ky-vong-lai-suat-giam-chung-khoan-tang-20261110111759481.htm"
+       },
+       {
+        "name": "Investing.com via Yahoo Finance 11/11/2026 - CME FedWatch after October CPI",
+        "url": "https://sg.finance.yahoo.com/news/fed-rate-hike-odds-december-035134676.html"
        }
       ]
      },
@@ -10797,7 +10877,7 @@
     ]
    },
    "plumbing": {
-    "as_of": "2026-11-06",
+    "as_of": "2026-11-13",
     "facts": {
      "currency_in_circulation": {
       "value": 2048385,
@@ -10919,20 +10999,20 @@
      "omo_rate": {
       "value": 4.5,
       "unit": "%",
-      "as_of": "2026-11-05",
+      "as_of": "2026-11-12",
       "label_vi": "Lãi suất OMO (cầm cố GTCG, 7-91 ngày)",
       "label_en": "OMO rate (collateralised, 7-91 days)",
-      "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html",
-      "note": "Raised 4.0 -> 4.5% from 04/12/2025; all OMO tenors offered at 4.5% on 5/11/2026 (page read)."
+      "url": "https://nguoiquansat.vn/phien-12-11-ngan-hang-nha-nuoc-hut-rong-447-ty-dong-lai-suat-neo-muc-4-3-327840.html",
+      "note": "Raised 4.0 -> 4.5% from 04/12/2025; OMO offered at 4.5% on 12/11/2026 (7, 14, 35 days; page read)."
      },
      "omo_outstanding": {
-      "value": 105592,
+      "value": 112131,
       "unit": "bn VND",
-      "as_of": "2026-11-05",
+      "as_of": "2026-11-12",
       "label_vi": "Dư nợ OMO",
       "label_en": "OMO outstanding",
-      "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html",
-      "note": "Session of 5/11/2026: 105,591.75 bn (page read); 123,226.6 bn on 30/10 per the TBTC weekly wrap, on a basis that may differ."
+      "url": "https://nguoiquansat.vn/phien-12-11-ngan-hang-nha-nuoc-hut-rong-447-ty-dong-lai-suat-neo-muc-4-3-327840.html",
+      "note": "Session of 12/11/2026: 112,131 bn after a net 447 bn withdrawal (page read 2026-11-13). Previous: 105,591.75 bn on 5/11 (Thoi bao Ngan hang); 112,608 on 11/11 per a search excerpt."
      },
      "fx_reserves_latest": {
       "value": 87.6,
@@ -11235,6 +11315,43 @@
      "Big-4 12M posted rate on 3/11: 5.4% (Thuong Gia, Vietbao page) vs 6.8% in a search excerpt."
     ],
     "hcmc_context": "HCMC credit at end-Oct-2026 ~5,854tn, +12.4% vs end-2025, +18.2% YoY (preliminary, regional only; not a national figure)."
+   },
+   "weekly_2026_11_13": {
+    "run": "weekly-all-agents-update, as_of 2026-11-13 (run at 00:05 ICT Friday)",
+    "checked_no_new": {
+     "sbv_m2_deposits_sep_2026": "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10038520&pageSize=100 (latest Tháng 8 năm 2026, published 15/10)",
+     "sbv_credit_sector_sep_2026": "https://sbv.gov.vn/o/article/v1.0/articles?scopeKey=20117&contentStructureId=10034332&pageSize=200 (latest Tháng 8 năm 2026, published 6/10)",
+     "sbv_prudential": "https://sbv.gov.vn/vi/thong-ke-mot-so-chi-tieu-co-ban (latest 30/09/2026; CAR 31/7 and 31/8 detail pages 'Request Rejected')",
+     "credit_end_oct": "no SBV statement with a 31/10 cut-off found; 11.94% to 26/10 stays",
+     "imf_article_iv_2026": "not published"
+    },
+    "press": [
+     "https://thoibaotaichinhvietnam.vn/dong-von-bat-dong-san-tang-vi-sao-du-an-va-nguoi-mua-nha-van-kho-tiep-can-205765.html",
+     "https://baodauthau.vn/ton-kho-bat-dong-san-tang-quy-iii2026-ghi-nhan-khoang-92004-giao-dich-thanh-cong-post209850.html",
+     "https://vietstock.vn/2026/11/vbma-gan-17-ngan-ty-dong-trai-phieu-duoc-mua-lai-truoc-han-trong-thang-10-3118-1513726.htm",
+     "https://thoibaotaichinhvietnam.vn/thanh-khoan-trai-phieu-doanh-nghiep-tang-manh-trong-thang-10-206565.html",
+     "https://thoibaotaichinhvietnam.vn/thi-truong-tien-te-tuan-2-6-11-vay-muon-qua-dem-vuot-1-trieu-ty-dong-van-thanh-khoan-mo-qua-mua-cao-diem-206551.html",
+     "https://nguoiquansat.vn/phien-12-11-ngan-hang-nha-nuoc-hut-rong-447-ty-dong-lai-suat-neo-muc-4-3-327840.html",
+     "https://thoibaotaichinhvietnam.vn/ty-gia-usd-hom-nay-12-11-usd-bat-tang-dxy-ap-sat-103-diem-khi-fed-co-the-nang-lai-suat-0-5-diem-phan-tram-206790.html",
+     "https://thitruongtaichinhtiente.vn/ngay-10-11-ty-gia-trung-tam-giam-10-dong-86927.html",
+     "https://dantri.com.vn/kinh-doanh/ngan-hang-nha-nuoc-mua-ngoai-te-ky-vong-lai-suat-giam-chung-khoan-tang-20261110111759481.htm",
+     "https://sg.finance.yahoo.com/news/fed-rate-hike-odds-december-035134676.html",
+     "https://thitruongtaichinhtiente.vn/ngan-hang-tang-toc-cho-vay-cac-dong-luc-tang-truong-den-cuoi-nam-86967.html",
+     "https://cafef.vn/ts-can-van-luc-neu-giam-manh-lai-suat-huy-dong-lieu-dong-tien-co-tiep-tuc-chay-vao-he-thong-ngan-hang-hay-khong-trong-khi-nhu-cau-von-va-thanh-khoan-cua-nen-kinh-te-van-rat-lon-188261112163424172.chn"
+    ],
+    "feeds": {
+     "vnindex": "https://trading.vietcap.com.vn/api/chart/OHLCChart/gap-chart (POST, pulled 2026-11-13 00:05 ICT)"
+    },
+    "conflicts": [
+     "Corporate bonds: VBMA 10M 479,113 vs 9M 428,500 + Oct 20,131 = 448,631 (late-disclosed private issues); October VBMA 20,131 vs VIS Rating ~31,000.",
+     "Fed December odds: 88.8/11.2 (Investing.com, 11/11) vs 87.1/12.9 (TBTC 12/11) vs 84.7/15 (immediate post-CPI); 88.8 stored.",
+     "Central rate 11/11: 25,611 (excerpts) - not stored; 12/11: 25,623 (TBTC page) stored.",
+     "Credit 10M 'over 11%' and deposits 'nearly 10%' (TPBank executive, CafeF 12/11) are not official and not stored."
+    ],
+    "not_stored": [
+     "NIM 'about 2.5% now' (Can Van Luc, CafeF 12/11): commentary without definition or period.",
+     "28 listed banks' net interest income 9M 488,473.9 bn (+18.15%), TTTC 11/11: compilation, not added."
+    ]
    }
   },
   "other_services_breakdown": {
@@ -15955,8 +16072,8 @@
    }
   },
   "market_6m": {
-   "asof": "2026-11-06",
-   "built": "2026-11-06",
+   "asof": "2026-11-13",
+   "built": "2026-11-13",
    "freq": "weekly (Mon-Fri week, labelled by its Friday; value = last trading day/quote of the week)",
    "weeks": [
     "2026-05-01",
@@ -15986,7 +16103,8 @@
     "2026-10-16",
     "2026-10-23",
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
    ],
    "vnindex": [
     1854.1,
@@ -16016,7 +16134,8 @@
     1705.91,
     1774.15,
     1741.62,
-    1740.73
+    1725.36,
+    1734.75
    ],
    "vnindex_dates": [
     "2026-04-29",
@@ -16046,7 +16165,8 @@
     "2026-10-16",
     "2026-10-23",
     "2026-10-30",
-    "2026-11-05"
+    "2026-11-06",
+    "2026-11-12"
    ],
    "usdvnd_central": [
     25113,
@@ -16076,7 +16196,8 @@
     25637,
     25627,
     25637,
-    25615
+    25615,
+    25623
    ],
    "usdvnd_central_dates": [
     "2026-04-29",
@@ -16106,7 +16227,8 @@
     "2026-10-16",
     "2026-10-23",
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-12"
    ],
    "usdvnd_bank": [
     26368,
@@ -16136,7 +16258,8 @@
     null,
     26020,
     25990,
-    25810
+    25810,
+    25850
    ],
    "usdvnd_bank_dates": [
     "2026-05-03",
@@ -16166,7 +16289,8 @@
     null,
     "2026-10-24",
     "2026-10-31",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-12"
    ],
    "interbank_on": [
     6.27,
@@ -16196,7 +16320,8 @@
     null,
     3.95,
     3.74,
-    4.5
+    4.5,
+    4.3
    ],
    "interbank_on_dates": [
     "2026-04-29",
@@ -16226,7 +16351,8 @@
     null,
     null,
     "2026-10-29",
-    "2026-11-05"
+    "2026-11-05",
+    "2026-11-11"
    ],
    "units": {
     "vnindex": "points",
@@ -16375,6 +16501,11 @@
       "week": "2026-11-06",
       "url": "https://thanhnien.vn/gia-usd-hom-nay-6112026-giam-180-dong-trong-tuan-qua-185261106083421062.htm",
       "method": "stated for Friday 6/11 (-8 on the day, -21 since end-Oct); VOV same headline; 25,623 on 5/11"
+     },
+     {
+      "week": "2026-11-13",
+      "url": "https://thoibaotaichinhvietnam.vn/ty-gia-usd-hom-nay-12-11-usd-bat-tang-dxy-ap-sat-103-diem-khi-fed-co-the-nang-lai-suat-0-5-diem-phan-tram-206790.html",
+      "method": "PROVISIONAL: Thursday 12/11 fixing (+12 on the day), run made before Friday's fixing; 25,600 on 10/11 (https://thitruongtaichinhtiente.vn/ngay-10-11-ty-gia-trung-tam-giam-10-dong-86927.html), 25,611 on 11/11 per excerpts. Replace with the Friday 13/11 fixing next run."
      }
     ],
     "usdvnd_bank": [
@@ -16517,6 +16648,11 @@
       "week": "2026-11-06",
       "url": "https://thanhnien.vn/gia-usd-hom-nay-6112026-giam-180-dong-trong-tuan-qua-185261106083421062.htm",
       "method": "Friday 6/11 morning quote; VOV gives 25,800 the same day (https://vov.vn/thi-truong/ty-gia-usd-hom-nay-611-ty-gia-trung-tam-giam-con-25615-dongusd-post1347630.vov)"
+     },
+     {
+      "week": "2026-11-13",
+      "url": "https://thoibaotaichinhvietnam.vn/ty-gia-usd-hom-nay-12-11-usd-bat-tang-dxy-ap-sat-103-diem-khi-fed-co-the-nang-lai-suat-0-5-diem-phan-tram-206790.html",
+      "method": "PROVISIONAL: VCB sell on morning 12/11 (+50 on the day; buy 25,540). Replace with the Friday quote next run."
      }
     ],
     "interbank_on": [
@@ -16659,6 +16795,11 @@
       "week": "2026-11-06",
       "url": "https://thoibaonganhang.vn/diem-lai-thong-tin-kinh-te-ngay-511-190254-190254.html",
       "method": "session of 5/11, stated"
+     },
+     {
+      "week": "2026-11-13",
+      "url": "https://nguoiquansat.vn/phien-12-11-ngan-hang-nha-nuoc-hut-rong-447-ty-dong-lai-suat-neo-muc-4-3-327840.html",
+      "method": "session of 11/11, stated (4.4% on 10/11); 1W 4.6, 2W 5.1, 1M 5.4"
      }
     ]
    },
@@ -16666,7 +16807,7 @@
     "vnindex": {
      "name": "HOSE VN-Index close (Vietcap trading chart API, daily OHLC)",
      "url": "https://trading.vietcap.com.vn/api/chart/OHLCChart/gap-chart",
-     "method": "POST {timeFrame: ONE_DAY, symbols: [VNINDEX]} pulled 2026-11-01; close of the last trading day of each week (week of 1/5: 29/4, before the 30/4-1/5 holiday). Same feed as SIM.panel.series.vnindex (vnstock VCI source); month-end closes match it exactly (May 1863.49, Jun 1860.01, Jul 1735.78, Aug 1832.12, Sep 1768.62). Week of 6/11: Thursday 5/11 close 1,740.73 from Thoi bao Ngan hang, because the Vietcap feed was not pulled in this run and no full-session 6/11 close was found (midday 6/11 about 1,719). Replace with the Friday close when the feed is next pulled."
+     "method": "POST {timeFrame: ONE_DAY, symbols: [VNINDEX]} pulled 2026-11-01; close of the last trading day of each week (week of 1/5: 29/4, before the 30/4-1/5 holiday). Same feed as SIM.panel.series.vnindex (vnstock VCI source); month-end closes match it exactly (May 1863.49, Jun 1860.01, Jul 1735.78, Aug 1832.12, Sep 1768.62). Feed pulled again 2026-11-13 00:05 ICT: week of 6/11 corrected 1,740.73 (Thu 5/11, press) -> 1,725.36 (Fri 6/11 close). Week of 13/11 is PROVISIONAL: Thursday 12/11 close 1,734.75 (the run was before Friday's session); replace with the Friday close next run. Daily closes 9-12/11: 1,714.32, 1,743.07, 1,746.90, 1,734.75."
     },
     "usdvnd_central": {
      "name": "SBV central rate (ty gia trung tam)",
@@ -16694,11 +16835,11 @@
     "vcb_vs_usdvnd_monthly": "Same quotes on 29/5 (26,395), 31/7 (26,470), 29/8 (26,260). Monthly 30/9 = 26,160 sits between Fridays 25/9 (26,170) and 2/10 (26,170).",
     "on_vs_interbank_on_monthly": "Monthly values are mostly Vietcap monthly averages (May 6.21, Jun 5.0, Jul 3.95, Aug 4.37) or month-end points (Sep 7.0 on 30/9). Weekly single-session points swing far more (0.87% on 25/9, 7.07% on 28/8) because ON spikes at month/quarter ends and collapses after SBV/Treasury injections; they should not be averaged into the monthly series."
    },
-   "note_vi": "Chuỗi tuần (thứ Sáu hoặc phiên cuối tuần), 1/5–6/11/2026. VN-Index: giá đóng cửa HOSE (dữ liệu Vietcap). Tỷ giá trung tâm: NHNN công bố, theo các bài tổng hợp thị trường tiền tệ tuần. Vietcombank: giá bán USD cuối tuần theo báo chí (thiếu nhiều tuần). Lãi suất qua đêm: mức NHNN công bố của phiên gần nhất trong tuần (thường là thứ Năm do công bố trễ 1 ngày) — biến động rất mạnh quanh cuối tháng, không phải bình quân tuần. Ô trống = không tìm được nguồn; không nội suy.",
-   "note_en": "Weekly (Friday or last session of the week), 1 May-6 Nov 2026. VN-Index: HOSE close (Vietcap feed). Central rate: SBV fixing as reported in weekly money-market wraps. Vietcombank: end-of-week USD selling quote from press (many gaps). Overnight interbank: SBV-published rate of the latest session quoted for the week (often Thursday, as SBV publishes with a one-day lag) - very volatile around month-ends; not a weekly average. Nulls = no source found; no interpolation."
+   "note_vi": "Chuỗi tuần (thứ Sáu hoặc phiên cuối tuần), 1/5–13/11/2026. VN-Index: giá đóng cửa HOSE (dữ liệu Vietcap). Tỷ giá trung tâm: NHNN công bố, theo các bài tổng hợp thị trường tiền tệ tuần. Vietcombank: giá bán USD cuối tuần theo báo chí (thiếu nhiều tuần). Lãi suất qua đêm: mức NHNN công bố của phiên gần nhất trong tuần (thường là thứ Năm do công bố trễ 1 ngày) — biến động rất mạnh quanh cuối tháng, không phải bình quân tuần. Ô trống = không tìm được nguồn; không nội suy. Tuần 13/11 là số tạm (phiên thứ Năm 12/11).",
+   "note_en": "Weekly (Friday or last session of the week), 1 May-13 Nov 2026. VN-Index: HOSE close (Vietcap feed). Central rate: SBV fixing as reported in weekly money-market wraps. Vietcombank: end-of-week USD selling quote from press (many gaps). Overnight interbank: SBV-published rate of the latest session quoted for the week (often Thursday, as SBV publishes with a one-day lag) - very volatile around month-ends; not a weekly average. Nulls = no source found; no interpolation. Week of 13 Nov is provisional (Thursday 12 Nov)."
   },
   "fed": {
-   "as_of": "2026-11-09",
+   "as_of": "2026-11-13",
    "unit": "% p.a., federal funds target range",
    "time_note_vi": "FOMC công bố quyết định lúc 14:00 giờ miền Đông Mỹ ngày họp cuối, tức 01:00 (giờ mùa hè Mỹ) hoặc 02:00 (giờ mùa đông) sáng hôm sau theo giờ Việt Nam.",
    "time_note_en": "The FOMC releases its decision at 2:00 pm US Eastern time on the last meeting day: 01:00 (US daylight time) or 02:00 (US standard time) the next morning in Vietnam.",
@@ -16761,13 +16902,15 @@
      "sep": true,
      "forecast": {
       "action": "hike",
-      "prob_pct": 78,
+      "prob_pct": 88.8,
+      "hike_prob_pct": 100,
+      "hike50_prob_pct": 11.2,
       "range": [
        4.0,
        4.25
       ],
-      "basis_vi": "CME FedWatch, 08/11/2026 (theo CNBC); Kalshi/Polymarket ≈77%",
-      "basis_en": "CME FedWatch, 08 Nov 2026 (via CNBC); Kalshi/Polymarket ≈77%"
+      "basis_vi": "CME FedWatch, 11/11/2026 sau CPI tháng 10 của Mỹ (Investing.com): tăng 0,25 điểm % 88,8%, tăng 0,5 điểm % 11,2%, giữ nguyên ~0%. TBTC 12/11 dẫn 87,1%/12,9%. Trước CPI (08/11): 78%.",
+      "basis_en": "CME FedWatch, 11 Nov 2026 after the US October CPI (Investing.com): 25bp hike 88.8%, 50bp hike 11.2%, hold ~0%. TBTC 12 Nov cites 87.1%/12.9%. Before CPI (8 Nov): 78%."
      },
      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
     },

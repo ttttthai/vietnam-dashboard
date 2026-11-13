@@ -47,6 +47,12 @@ margin lending, listed-bank reports via brokers for cost of funds/NIM/CASA, and 
   `nominal_gdp_growth_pct` and `credit_to_gdp_pct` the same day.
 - Public investment: "disbursement" means the MoF series; NSO's figure is realised investment from state-budget
   capital; rates compare only on one plan base (ruling 2026-11-06).
+- Fed odds and other market-implied numbers (Research, 2026-11-13): CME FedWatch readings move within hours after a
+  US data release (Dec-2026 hike: ~85/15 on 10/11, 88.8/11.2 on 11/11, 87.1/12.9 in a 12/11 relay). Store the
+  reading date and the relay outlet; Geopolitics quotes your stored value with its date.
+- SBV FX operations: when Policy records an SBV-stated result (e.g. swap take-up), update the flow note in the
+  same run; keep the cap as the cap. Units: real-estate credit 5,210,000 bn = 5.21 quadrillion ("5,21 triệu tỷ"),
+  never "5.21tn" in text.
 - Access (2026-11-06): press is readable by WebFetch; sbv.gov.vn list pages and the article API work, detail pages
   often 403; imf.org is intermittent. Quote the Policy tab's latest central rate date
   when a constraint cites the central rate.

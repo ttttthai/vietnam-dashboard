@@ -41,6 +41,12 @@ effective dates, chinhphu.vn / baochinhphu.vn (Nghị quyết, Nghị định, C
 - Budget revenue: lead with the NSO line, as Economy does; press lines "theo Bộ Tài chính" can differ (10M: 2,438.9 vs
   2,448.5 tn, ruling 2026-11-06). Public investment: "disbursement" is the MoF series; NSO's figure is realised
   investment from state-budget capital; development spending is a third concept. Rates compare only on one plan base.
+- Public investment and SBV FX operations (Research, 2026-11-13): MoF sends a weekly quick-report letter
+  (…/BTC-ĐTPT) that reaches the press ~6–7 days after its cut-off; Investing stores it in
+  `MACRO.public_invest.latest_weekly`. Add the same point to `public_investment_annual` with its plan base in the
+  same run (the base moved 1,022,607 → 955,867.4 → 964,354.3 bn in three weeks). SBV publishes FX-operation results
+  only in interviews or weekly wraps (swap take-up "gần 50 nghìn tỷ" came 2 days after value date): cite who said it,
+  and tell Finance, which stores the cap separately.
 - Access (2026-11-06): press and luatvietnam.vn are readable by WebFetch; sbv.gov.vn list pages work, detail pages
   often 403. Use WebSearch when a page fails.
 

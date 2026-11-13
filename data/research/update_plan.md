@@ -1,5 +1,89 @@
 # Update plan
 
+As of 2026-11-13 (Research, weekly pre-approved run). Evidence: `consistency_report.md` (X# this run, W# last run). Dates: `release_calendar.json`. Jobs: `schedule.json` (proposals only; the main session asks the user). The 2026-11-06 plan is kept below for history; its open decisions and P-# proposals still stand unless closed here.
+
+## Priority watch (user standing task)
+| Rank | Series | Held | Latest published | Status | Next |
+|---|---|---|---|---|---|
+| 1 | FDI registered vs disbursed | 10M 54.85 / 24.08 bn | same (NSO 03/11) | current; no large registration/withdrawal in this week's reports | 03/12/2026 |
+| 2 | Remittances | HCMC 9M-2026 ~6.87 bn (−13.8%; Q3 +3.6% y/y); national null | same (Region 2 via Tiền Phong 20/10) | **closed**: HCMC 9M now held (it was on time; last week's "overdue" was a search miss). Base 7.97 vs 7.94 noted (X10). BoP Q3 not out | HCMC FY 15–25/01/2027; BoP Q3 Jan–Feb 2027 |
+| 3 | Tourism | 10M 19.54 m; markets held | same (NSO 03/11) | current; receipts and outbound not published | 03/12/2026 |
+
+## Fixed this run (pre-approved weekly run; see CHANGES in the report)
+X1 swap take-up (Finance notes, Policy note), X3 real-estate credit units (Finance note), X4 public investment 05/11 point (Policy), X5 stale 2027-budget event (Investing), X6 Fed odds labels and stale story facts (Geopolitics), X7 central rate in Finance constraint 2, X8 Brent in Geopolitics chokepoint.
+
+## Flags for the main session, Ed and the Narrator (not Research's files)
+1. **Page `renderEconStory` "what to watch" card (~line 5612)** still says the 2027 budget is "Đề xuất, chưa biểu quyết" and takes `deficit_pct_gdp[last]` as the 2026 plan. Economy proposes: read `ECONFLOW.budget.plan_2027_resolution`, index 2026 with `years.indexOf(2026)` before appending a 2027 column. Proposal only (P-17).
+2. **`data/narration.json`** (Narrator): 2027 budget "not yet voted" in 4 places (overview watch scene, a figure label, two tab watch scenes); central rate 25,615 (6/11) in 4 scenes, now 25,623 (12/11); Fed "~66%" via `board.story[8]` source note, now 88.8/11.2 (11/11); Brent 98.29 (5/11) and diesel 28,690, now 92.76 (11/11) and 26,820 (12/11); public investment 74.1% (31/10) can stay dated or move to 74.37% at 05/11 on the new base (say "new base", do not say "+0.3 pt").
+3. **Units**: real-estate credit is 5.21 quadrillion (5,210 tn), not "5.21tn".
+
+## Due by agent
+
+### Economy
+1. 03/12: NSO November report (CPI, FDI, tourism, investment); MoF 11M. Nothing due before.
+2. 2027 revenue by source (null) when the resolution text is published.
+3. Still open from 06/11: BoP Q2 secondary income; 2025 yearbook reconciliation; VCCI PCI 2025; public-debt sentence (W16, user decision).
+
+### Finance
+1. SBV September tables (M2, deposits, credit by sector): window 10–20/11; check in the 20/11 run.
+2. Week of 13/11 in `market_6m` is provisional (Thursday 12/11): replace with Friday 13/11 values next run.
+3. Swap: if the SBV publishes an exact take-up, store it as a value next to the cap. FX purchase volumes (Mon/Wed).
+4. Vietcap October report (~15/11); Q3 NPL, CAR, ROA/ROE.
+5. `why.drivers[7]` and Policy now differ in date only (31/10 vs 05/11): optional refresh to 05/11 with the base note.
+
+### Policy
+1. Next weekly run: add the MoF weekly point to ~12/11 (letter expected 18–19/11) in the same run as Investing (`policy-invest-public-weekly`).
+2. NA phase 2 votes 20–21/11 (reserve 23/11): Land, Housing, RE Business, State Budget, Investment, Electricity, Tax, Bidding laws; resolution numbers for the 2027 plan and budget.
+3. Year-end cliff: VAT 2% cut extension ("studying", 12/11), fee cuts and fuel environment-tax relief expire 31/12: run 15/12.
+4. Circulars 48/2026 and 53/2026 not added; HNX October bond total (W10).
+
+### Investing
+1. Next weekly MoF point (~12/11); tell Policy in the report.
+2. GEE rename vote result; GAS dividend 20/11; primary HOSE filings for POW/PVT/GAS.
+3. `industries.json` rebuild still blocked (decision 2 of 06/11).
+
+### Society
+1. Provincial GRDP 29/11 (Sunday; check 30/11): Q4 + second FY2026 estimate. 2025 preliminary still not on PX.
+2. WDI: check `lastupdated` in each weekly run (off-cycle 08/10 and 11/11).
+
+### Strategy
+1. 13/11 votes (Metrology, Securities law, 2025 accounts) not found: re-check; phase 2 votes 20–21/11.
+2. Petrol trading decree (replacing ND 83): submission deadline 10/11 passed, no evidence.
+3. Three key_points over 160 characters (NQ18-TW-2017, NQ98-QH15, KH1413-UBND-HCM-2025).
+
+### Geopolitics
+1. Fuel period 19/11 (MOPS averages: MoIT page 404; try Báo Lào Cai's table); routes and vn_retail still on 5/11.
+2. ASEAN–US Manila 15–17/11 (dates differ 15–17 vs 16–18); APEC Shenzhen 18–19/11; OPEC+ 29/11; Iran end-November; FOMC 9/12.
+3. Keep Fed odds equal to Finance's stored value with its date.
+
+### Living
+1. Fuel adjustment Thu 19/11 15:00; LPG December ~1/12; Nov CPI 03/12.
+2. Electricity VAT 8% vs 10% (basket uses pre-VAT 419,000); 2026 water tariffs HCMC/Da Nang; Grab per-km fares.
+
+## Waiting on a release (do not poll before)
+| Release | Expected | Owners |
+|---|---|---|
+| SBV Sep tables; Vietcap Oct report | 10–20/11/2026; ~15/11 | Finance |
+| MoF weekly public investment (to ~12/11) | 18–19/11/2026 | Investing, Policy |
+| Fuel price period | Thursdays (19/11, 26/11) 15:00 | Living, Geopolitics |
+| NA phase 2 votes, session close | 20–21/11/2026 (reserve 23/11) | Strategy, Policy, Economy |
+| GAS dividend record | 20/11/2026 | Investing |
+| Provincial GRDP Q4 + FY2026 second estimate | 29/11/2026 (Sunday; check 30/11) | Society |
+| OPEC+; Iran decision | 29/11/2026; end-November | Geopolitics |
+| LDR cap 95%, Circular 50 | 01/12/2026 | Policy, Finance |
+| NSO November report + CPI; MoF 11M | 03/12/2026; 01–05/12 | Economy, Policy, Investing |
+| FOMC | 08–09/12/2026 | Finance, Geopolitics |
+| ADB Dec supplement, OECD EO, WB IDS, WDI Dec | December 2026 | Economy, Society |
+| HCMC remittances FY2026 | 15–25/01/2027 | Economy |
+
+## New proposals (2026-11-13, for the main session; not applied)
+- **P-17 `renderEconStory` watch card**: see flag 1.
+- **P-18 schedule**: two jobs proposed in `schedule.json` (`policy-invest-public-weekly`, `fx-ops-weekly`) run inside the existing Thursday weekly run; no new routine needed.
+
+---
+
+# Previous plan, 2026-11-06 (kept for history)
+
 As of 2026-11-06 (Research, weekly pre-approved run). Evidence and rulings: `consistency_report.md` (W#). Dates: `release_calendar.json`. Jobs: `schedule.json` (proposals only; the main session asks the user). The 2026-10-06 plan is kept below for history; its open server and page proposals (P-#) still stand.
 
 Access note: from this environment curl and WebFetch now reach nso.gov.vn, pxweb, api.worldbank.org, mof.gov.vn, hnx.vn and most press. sbv.gov.vn and imf.org are intermittent. See `source_log.json`. Prefer primary documents and mark them "primary".

@@ -35,6 +35,10 @@ rates). The macro block must **agree with those owners' files** — take values 
   capacity; disbursed is an estimate revised the following month. Release: NSO/FIA on the 3rd of the following month.
 - Public investment: `public_invest.latest` is the MoF disbursement series, the headline. NSO state-budget capital and
   budget development spending are other concepts. Rates compare only on one plan base (ruling 2026-11-06).
+- Events (Research, 2026-11-13): re-read every future `MACRO.events` row each run against Policy/Strategy; the 21/11
+  NA row still said the 2027 budget "awaits approval" two days after it passed (09/11) and quoted the central-budget
+  757,200 bn as total development spending (state total 1,755,679 bn). When you add a weekly public-investment point,
+  tell Policy in your report so both tabs carry the same point and plan base.
 - Remittances and tourism, if cited in research notes, come from Economy's `ECONFLOW.remit` / `ECONFLOW.tour` with the
   definition named (SBV kiều hối vs BoP secondary income; arrivals vs receipts).
 

@@ -62,8 +62,9 @@ becomes a wrong headline.
   - *Remittances*: three definitions — SBV kiều hối (through credit institutions/economic organisations), BoP secondary
     income credit (all current transfers), World Bank KNOMAD (personal transfers + compensation of employees). Label
     each; do not substitute one for another. National SBV totals are often only speech numbers ("over 16 bn" 2025) —
-    keep `null` and put the statement in the note. HCMC (SBV Region 2) is quarterly, ~3–4 weeks after quarter end
-    (H1-2026 on 22/07/2026); check that its yoy base covers merged HCMC (from 01/07/2025).
+    keep `null` and put the statement in the note. HCMC (SBV Region 2) is quarterly, ~3 weeks after quarter end
+    (H1-2026 on 22/07/2026, 9M-2026 on 20/10/2026 via Tiền Phong/CafeF; Research 2026-11-13: the 9M figure was on time,
+    an earlier run missed it by searching too narrowly); check that its yoy base covers merged HCMC (from 01/07/2025).
   - *Tourism*: arrivals monthly with the NSO report; by-market detail (China, Korea, Russia…) via VNAT/press the same
     day — keep periods explicit (press mixes Q3 and 9M growth). Travel receipts (BoP, USD) ≠ VNAT total tourism revenue
     (VND, incl. domestic).
