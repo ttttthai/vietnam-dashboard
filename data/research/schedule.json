@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-06",
+ "as_of": "2026-11-13",
  "built_by": "Research agent",
  "status": "PROPOSED — no routine has been created; the main session asks the user before creating any.",
  "cron_note": "cron_ict fields are minute hour day month weekday in Asia/Ho_Chi_Minh (use CRON_TZ=Asia/Ho_Chi_Minh). Minutes are off the hour to avoid :00 congestion.",
@@ -230,7 +230,7 @@
    "series_ids": [
     "soc.world_rank"
    ],
-   "rule": "after wb_wdi: 2026-12-20 and 2027-07-05",
+   "rule": "after wb_wdi: check the API lastupdated field in each weekly run (off-cycle updates 08/10 and 11/11/2026), full rank rebuild 2026-12-20 and 2027-07-05",
    "cron_ict": "10 10 20 12 *; 10 10 5 7 *",
    "window_days": 10,
    "priority": "P3",
@@ -307,11 +307,11 @@
    "series_ids": [
     "econ.remittances"
    ],
-   "rule": "after remittances_hcmc: 25th of Jan/Apr/Jul/Oct (next 2026-10-25)",
+   "rule": "after remittances_hcmc: 20–25th of Jan/Apr/Jul/Oct (9M-2026 came 20/10, Q3 end + 20 days); next 2027-01-20 for FY2026",
    "cron_ict": "30 9 25 1,4,7,10 *",
    "window_days": 5,
    "priority": "P1 (priority watch #2)",
-   "reason": "HCMC releases ~3-4 weeks after quarter end (observed 22/07/2026, 23/01/2026); the national total has no regular release, so checking it monthly wastes searches — piggy-back one national query on this run. 2026-11-06: 9M-2026 still not found; keep checking in each weekly run until it appears.",
+   "reason": "HCMC releases ~3-4 weeks after quarter end (observed 22/07/2026, 23/01/2026); the national total has no regular release, so checking it monthly wastes searches — piggy-back one national query on this run. 2026-11-06: 9M-2026 still not found; keep checking in each weekly run until it appears. Revised 2026-11-13: the 9M release was on 20/10, inside the window; the miss was a search problem (use Tiền Phong/CafeF and the 'kiều hối TP.HCM 9 tháng 2026' query).",
    "runner": "agent run",
    "web_cost": "low (1-2 searches)",
    "status": "PROPOSED"
@@ -376,6 +376,29 @@
    "reason": "User decision 2026-11-02: one weekly sweep of every tab, then the Narrator updates the films; pre-approved to apply, commit, merge into main and push; change log in data/research/weekly_log/.",
    "runner": "local scheduled task (Claude app on the Mac)",
    "web_cost": "high"
+  },
+  {
+   "id": "policy-invest-public-weekly",
+   "owner_agent": "Investing (lead) + Policy (mirror)",
+   "series_ids": [
+    "mof_public_investment"
+   ],
+   "rule": "inside the Thursday weekly run: read the latest MoF weekly letter (press ~6–7 days after cut-off); both tabs store the same point with its plan base",
+   "window_days": 2,
+   "priority": "medium",
+   "reason": "Added 2026-11-13: Investing held 05/11 while Policy stopped at 31/10, and the plan base moved twice in two weeks. One point, one base, both tabs."
+  },
+  {
+   "id": "fx-ops-weekly",
+   "owner_agent": "Policy (lead) + Finance (mirror)",
+   "series_ids": [
+    "sbv_fx_operations",
+    "sbv_central_rate"
+   ],
+   "rule": "inside the Thursday weekly run: look for spot-purchase volumes and swap results in the Saturday money-market wraps and SBV interviews",
+   "window_days": 2,
+   "priority": "medium",
+   "reason": "Added 2026-11-13: SBV publishes results only in interviews (swap result 2 days after value date); Policy and Finance had different readings of the same swap."
   }
  ],
  "priority_watch_note": "2026-10-06: user standing task — FDI registered vs disbursed, remittances, tourism get special focus. Coverage: monthly via econ-monthly-nso (4th); HCMC remittances via priority-remit-hcmc (25th of quarter-start months); BoP via priority-bop-quarterly; news via research-weekly-audit. All routines are PAUSED (routines.json) until the repo is attached; these are proposals for the main session."

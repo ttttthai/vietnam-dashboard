@@ -1,8 +1,8 @@
 {
  "_meta": {
   "owner": "Narrator agent",
-  "as_of": "2026-11-06",
-  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed's 28 Oct hold at 3.75–4.00% entered the dashboard data on 2026-11-01 and is narrated in the Fed scenes; next FOMC 8–9 Dec 2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration. 2026-11-01: Policies tab merged into Financial system; money scenes retargeted to tab banks and the money film appended to the banks film. 2026-11-01: NA session close corrected to 21 Nov 2026 (phase 2 20–21 Nov; reserve 23 Nov). 2026-11-01: invest film rewritten for the revamped Stock Market tab (industries first: overview, industries today, the race, revenue/profit/assets; short macro/forecast close); overview scene on #iv-st-gdp moved to chapter iv-st-macro. 2026-11-06 weekly review: strategic redirection of the overview arc (hook kept; second half reworked around the external balance, directed rate cuts, the 2027 price and tariff risks; geo scenes added; sim 7.08% removed from overview); tab films refreshed. geo-st-hero scenes are headline scenes because #gb-board and [data-gb-player] are not in story_map."
+  "as_of": "2026-11-13",
+  "note": "Film scripts for \"Watch as a film\": the cross-tab overview and one film per tab. Full refresh after the FOMC meeting of 27–28 Oct 2026 (the Fed's 28 Oct hold at 3.75–4.00% entered the dashboard data on 2026-11-01 and is narrated in the Fed scenes; next FOMC 8–9 Dec 2026). Every figure is from data/*.json, strategy_directives.json or the page's own rendered text (data/research/story_map*.json); src names the origin. Check with tools/qa/narration_check.py --figs, embed with tools/build/embed_data.py narration. 2026-11-01: Policies tab merged into Financial system; money scenes retargeted to tab banks and the money film appended to the banks film. 2026-11-01: NA session close corrected to 21 Nov 2026 (phase 2 20–21 Nov; reserve 23 Nov). 2026-11-01: invest film rewritten for the revamped Stock Market tab (industries first: overview, industries today, the race, revenue/profit/assets; short macro/forecast close); overview scene on #iv-st-gdp moved to chapter iv-st-macro. 2026-11-06 weekly review: strategic redirection of the overview arc (hook kept; second half reworked around the external balance, directed rate cuts, the 2027 price and tariff risks; geo scenes added; sim 7.08% removed from overview); tab films refreshed. geo-st-hero scenes are headline scenes because #gb-board and [data-gb-player] are not in story_map. 2026-11-13 weekly review: strategic redirection of the money arc (State Bank from defending the dong to buying dollars: ~50 tn via the swap on 9/11, spot purchases at 25,500 Mon/Wed from 11/11; Fed December rise priced at 88.8%) and the 2027 plan and budget moved from proposal to law; stale items fixed (central 25,623, Brent 92.76, diesel 26,820, Section 301 IP deadline 28/02/2027, Japan visit past). story_map.py could not run (no server on 8002); targets checked against the 2026-11-08 story_map."
  },
  "NARRATION": {
   "films": {
@@ -890,43 +890,33 @@
        "vi": "CHÍNH TRỊ · ĐANG DIỄN RA",
        "en": "POLITICS · UNDER WAY NOW"
       },
-      "vi": "Ngay lúc này, Quốc hội đang họp kỳ thứ hai của nhiệm kỳ mới, đến ngày 21 tháng Mười Một. Dashboard theo dõi 20 dự thảo; 17 trong số đó được trình kỳ họp này, gồm Luật Đất đai, Luật Nhà ở và Luật Kinh doanh bất động sản sửa đổi, dự kiến thông qua trong kỳ họp.",
-      "en": "Right now the National Assembly is in the second session of its new term, which runs to November 21. The dashboard tracks 20 drafts; 17 of them go before this session, including amendments to the Land Law, the Housing Law and the Real Estate Business Law, set for adoption this session.",
+      "vi": "Quốc hội đang ở kỳ họp thứ hai của nhiệm kỳ mới. Ngày 7 và 9 tháng Mười Một, Quốc hội đã thông qua kế hoạch kinh tế – xã hội và dự toán ngân sách năm 2027. Vẫn chờ biểu quyết là Luật Đất đai, Luật Nhà ở và Luật Kinh doanh bất động sản sửa đổi, cùng nhiều dự thảo khác.",
+      "en": "The National Assembly is in the second session of its new term. On November 7 and 9 it passed the 2027 socio-economic plan and the 2027 budget. Still awaiting a vote are the amended Land, Housing and Real Estate Business laws, among other drafts.",
       "big": true,
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "đến 21/11/2026",
-         "en": "to Nov 21, 2026"
+         "vi": "7/11/2026",
+         "en": "7 Nov 2026"
         },
         "l": {
-         "vi": "kỳ họp thứ hai, Quốc hội khóa 16",
-         "en": "2nd session, 16th National Assembly"
+         "vi": "thông qua kế hoạch KT-XH 2027",
+         "en": "2027 socio-economic plan passed"
         }
        },
        {
         "v": {
-         "vi": "20 dự thảo",
-         "en": "20 drafts"
+         "vi": "9/11/2026",
+         "en": "9 Nov 2026"
         },
         "l": {
-         "vi": "đang theo dõi",
-         "en": "tracked"
-        }
-       },
-       {
-        "v": {
-         "vi": "17",
-         "en": "17"
-        },
-        "l": {
-         "vi": "dự thảo trình kỳ họp",
-         "en": "drafts before the session"
+         "vi": "thông qua dự toán ngân sách 2027",
+         "en": "2027 budget passed"
         }
        }
       ],
-      "src": "story_map party pg-st-pipe headline (20 drafts, 17 in the session); Strategy 2026-11-06: land, housing, real-estate laws set for adoption this session, no voting day sourced"
+      "src": "strategy_directives.json DT-NQ-KTXH-2027 (adopted 07/11/2026, 467/469) and DT-NQ-DTNSNN-2027 (adopted 09/11/2026); party_direction.next (phase 2 votes incl. Land, Housing). Draft counts (20/17) dropped: story_map could not be rebuilt this week and two drafts became adopted."
      },
      {
       "tab": "banks",
@@ -1134,9 +1124,9 @@
        "vi": "TÀI CHÍNH · ĐỔI CHIỀU",
        "en": "FINANCE · THE TURN"
       },
-      "vi": "Cuối tháng Mười, lãi suất đổi chiều, bằng chỉ đạo chứ không bằng lãi suất điều hành. Tiền gửi mới giảm khoảng 0,4 điểm, cho vay mới giảm 0,2 đến 0,5 điểm so với giữa tháng; yêu cầu với cho vay sản xuất, kinh doanh là 1,5 đến 2 điểm. Hoán đổi đô la 182 ngày là công cụ mới, kết quả chưa công bố.",
-      "en": "In late October rates turned, by directive, not through the policy rate. New deposits fell about 0.4 points and new loans 0.2 to 0.5 points from mid-month; the ask for business loans is 1.5 to 2 points. A 182-day dollar swap is a new tool; its take-up is not yet known.",
-      "src": "data/finance.json flows (rate directive, letters 9608/9736; new-business rates late Oct vs mid-Oct: deposits -0.4, loans -0.2 to -0.5; VnExpress words the loan base as start of month; ask 1.5-2); data/policy.json moral_suasion (46/46 banks), fx_intervention (182-day swap up to USD 2bn, take-up unreported). No post-cut private-bank level exists, so changes only (Finance).",
+      "vi": "Cuối tháng Mười, lãi suất đổi chiều, bằng chỉ đạo chứ không bằng lãi suất điều hành. Tiền gửi mới giảm khoảng 0,4 điểm, cho vay mới giảm 0,2 đến 0,5 điểm so với giữa tháng; yêu cầu với cho vay sản xuất, kinh doanh là 1,5 đến 2 điểm.",
+      "en": "In late October rates turned, by directive, not through the policy rate. New deposits fell about 0.4 points and new loans 0.2 to 0.5 points from mid-month; the ask for business loans is 1.5 to 2 points.",
+      "src": "data/finance.json flows (rate directive, letters 9608/9736; new-business rates late Oct vs mid-Oct: deposits -0.4, loans -0.2 to -0.5; VnExpress words the loan base as start of month; ask 1.5-2); data/policy.json moral_suasion (46/46 banks). No post-cut private-bank level exists, so changes only (Finance). Swap moved to the FX-turn scene (2026-11-13).",
       "figs": [
        {
         "v": {
@@ -1166,16 +1156,6 @@
         "l": {
          "vi": "mức giảm yêu cầu, cho vay sản xuất",
          "en": "cut asked, business loans"
-        }
-       },
-       {
-        "v": {
-         "vi": "182 ngày",
-         "en": "182 days"
-        },
-        "l": {
-         "vi": "hoán đổi USD/VND, công bố 3/11/2026",
-         "en": "USD/VND swap, announced 3 Nov 2026"
         }
        }
       ]
@@ -1258,14 +1238,69 @@
      {
       "tab": "banks",
       "chap": "fs-st-fx",
+      "target": "#fs-st-band",
+      "k": {
+       "vi": "TÀI CHÍNH · ĐỔI HƯỚNG TỶ GIÁ",
+       "en": "FINANCE · THE CURRENCY TURN"
+      },
+      "vi": "Tháng Mười Một, Ngân hàng Nhà nước đổi hướng. Ngày 9 tháng Mười Một, theo Ngân hàng Nhà nước, gần 50 nghìn tỷ đồng đã được cung ứng qua hoán đổi đô la kỳ hạn 182 ngày. Từ ngày 11 tháng Mười Một, Ngân hàng Nhà nước mua đô la giao ngay giá 25.500 đồng, mỗi thứ Hai và thứ Tư. Ngày 12 tháng Mười Một, tỷ giá trung tâm là 25.623 đồng.",
+      "en": "In November the State Bank changed course. On November 9, it says, nearly 50 trillion dong went out through the 182-day dollar swap. Since November 11 it has bought dollars on the spot market at 25,500 dong, every Monday and Wednesday. On November 12 the central rate stood at 25,623.",
+      "big": true,
+      "figs": [
+       {
+        "v": {
+         "vi": "gần 50 nghìn tỷ đồng · 9/11/2026",
+         "en": "nearly 50 tn dong · 9 Nov 2026"
+        },
+        "l": {
+         "vi": "cấp qua hoán đổi, theo Ngân hàng Nhà nước",
+         "en": "supplied via the swap, per the State Bank"
+        }
+       },
+       {
+        "v": {
+         "vi": "182 ngày",
+         "en": "182 days"
+        },
+        "l": {
+         "vi": "kỳ hạn hoán đổi USD/VND",
+         "en": "USD/VND swap tenor"
+        }
+       },
+       {
+        "v": {
+         "vi": "25.500 đồng/USD · từ 11/11/2026",
+         "en": "25,500 dong/USD · from 11 Nov 2026"
+        },
+        "l": {
+         "vi": "mua giao ngay, thứ Hai và thứ Tư",
+         "en": "spot purchases, Mon & Wed"
+        }
+       },
+       {
+        "v": {
+         "vi": "25.623 · 12/11/2026",
+         "en": "25,623 · 12 Nov 2026"
+        },
+        "l": {
+         "vi": "tỷ giá trung tâm",
+         "en": "central rate"
+        }
+       }
+      ],
+      "src": "data/finance.json flows swap note + sbv.operations (SBV Monetary Policy Dept deputy director, CafeF 11/11: 'gần 50 nghìn tỷ' on value date 9/11; stored value is the 48,798 bn cap); data/policy.json fx_intervention 2026-11-11 (spot USD 25,500 Mon/Wed, easing), central_rate 25,623 at 12/11/2026. Band chart #fs-st-band shows the POLICY fx_intervention events (Finance answer 2026-11-13)."
+     },
+     {
+      "tab": "banks",
+      "chap": "fs-st-fx",
       "target": "#fs-st-resm",
       "k": {
        "vi": "TÀI CHÍNH · LÁ CHẮN NGOẠI TỆ",
        "en": "FINANCE · THE CURRENCY SHIELD"
       },
-      "vi": "Lá chắn ngoại tệ mỏng hơn trước. Số dự trữ mới nhất là tháng Bảy năm 2026: 86,1 tỷ USD, thấp hơn 23% so với đỉnh 112,2 tỷ tháng Một năm 2022. Áp lực tỷ giá tạm dịu: tỷ giá trung tâm giảm còn 25.615 đồng một đô la ngày 6 tháng Mười Một.",
-      "en": "The currency shield is thinner than it was. The latest reserves figure is July 2026: 86.1 billion dollars, 23% below the 112.2 billion peak of January 2022. Pressure on the dong has eased for now: the central rate fell to 25,615 to the dollar on November 6.",
-      "big": true,
+      "vi": "Đô la mua vào sẽ cộng vào dự trữ ngoại hối, một lá chắn mỏng hơn trước. Số dự trữ mới nhất là tháng Bảy năm 2026: 86,1 tỷ USD, thấp hơn 23% so với đỉnh 112,2 tỷ tháng Một năm 2022. Lượng đô la đã mua chưa được công bố.",
+      "en": "The dollars bought add to the reserves, a shield thinner than it was. The latest figure is July 2026: 86.1 billion dollars, 23% below the 112.2 billion peak of January 2022. How much has been bought is not yet published.",
+      "big": false,
       "figs": [
        {
         "v": {
@@ -1296,19 +1331,9 @@
          "vi": "đỉnh dự trữ, 1/2022",
          "en": "reserve peak, Jan 2022"
         }
-       },
-       {
-        "v": {
-         "vi": "25.615 · 6/11/2026",
-         "en": "25,615 · 6 Nov 2026"
-        },
-        "l": {
-         "vi": "tỷ giá trung tâm",
-         "en": "central rate"
-        }
        }
       ],
-      "src": "story_map banks fs-st-fx headline (IMF series incl. gold; latest is July, Finance 2026-11-06); data/policy.json central_rate 25,615 at 6/11/2026"
+      "src": "story_map banks fs-st-fx headline (IMF series incl. gold; latest is July; Finance 2026-11-13: no reserves or purchase volume after July); data/finance.json sbv.operations 2026-11-11 value null."
      },
      {
       "tab": "banks",
@@ -1478,14 +1503,89 @@
      },
      {
       "tab": "econ",
+      "chap": "st-watch",
+      "k": {
+       "vi": "TƯƠNG LAI · NĂM 2027",
+       "en": "THE FUTURE · 2027"
+      },
+      "vi": "Năm 2027 đã có kế hoạch được Quốc hội thông qua: tăng trưởng từ 10% trở lên, lạm phát mục tiêu 4,5%. Dự toán ngân sách, thông qua ngày 9 tháng Mười Một với 471 trên 471 đại biểu có mặt tán thành, cho phép bội chi 739,6 nghìn tỷ đồng, bằng 4,5% GDP, so với 4,2% dự toán năm 2026.",
+      "en": "2027 now has a plan passed by the National Assembly: growth of 10% or more, an inflation target of 4.5%. The budget, passed on November 9 by all 471 deputies present, allows a deficit of 739.6 trillion dong, 4.5% of GDP, against 4.2% planned for 2026.",
+      "big": true,
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "≥ 10%",
+         "en": "≥ 10%"
+        },
+        "l": {
+         "vi": "mục tiêu tăng trưởng 2027",
+         "en": "2027 growth target"
+        }
+       },
+       {
+        "v": {
+         "vi": "4,5%",
+         "en": "4.5%"
+        },
+        "l": {
+         "vi": "mục tiêu lạm phát 2027",
+         "en": "2027 inflation target"
+        }
+       },
+       {
+        "v": {
+         "vi": "471/471 · 9/11/2026",
+         "en": "471/471 · 9 Nov 2026"
+        },
+        "l": {
+         "vi": "đại biểu có mặt tán thành dự toán",
+         "en": "deputies present in favour"
+        }
+       },
+       {
+        "v": {
+         "vi": "739,6 nghìn tỷ đồng",
+         "en": "739.6 tn dong"
+        },
+        "l": {
+         "vi": "bội chi 2027",
+         "en": "2027 deficit"
+        }
+       },
+       {
+        "v": {
+         "vi": "4,5% GDP",
+         "en": "4.5% of GDP"
+        },
+        "l": {
+         "vi": "bội chi 2027, đã thông qua",
+         "en": "2027 deficit, passed"
+        }
+       },
+       {
+        "v": {
+         "vi": "4,2%",
+         "en": "4.2%"
+        },
+        "l": {
+         "vi": "bội chi dự toán 2026",
+         "en": "2026 planned deficit"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.budget.plan_2027_resolution (voted 09/11/2026, 471/471 present; deficit 739,597 bn = 4.5% GDP), projections.series 2027 (cpi_pct_target 4.5, growth ≥10%, NA vote 07/11); budget_deficit_target 2026 4.2% (policy.json). Headline scene: Ed's st-watch card now reads plan_2027_resolution."
+     },
+     {
+      "tab": "econ",
       "chap": "st-2030",
       "target": "#ec-pc",
       "k": {
        "vi": "TƯƠNG LAI · THU NHẬP 2030",
        "en": "THE FUTURE · INCOME BY 2030"
       },
-      "vi": "Mục tiêu GDP bình quân đầu người là 8.500 USD năm 2030, từ 5.026 USD năm 2025, tức phải tăng khoảng 11,1% mỗi năm tính bằng USD. Dự báo tháng Mười của IMF nâng lên 7.105 USD, vẫn dưới mục tiêu. Mục tiêu không phải dự báo, và dự báo có thể sai.",
-      "en": "The target is GDP per person of 8,500 dollars in 2030, from 5,026 in 2025: about 11.1% a year in dollar terms. The IMF's October forecast rises to 7,105, still below the target. Targets are not forecasts, and forecasts can be wrong.",
+      "vi": "Mục tiêu GDP bình quân đầu người là 8.500 USD năm 2030, từ 5.026 USD năm 2025, tức phải tăng khoảng 11,1% mỗi năm tính bằng USD; riêng năm 2027 là 6.100 USD. Dự báo tháng Mười của IMF cho 2030 là 7.105 USD, vẫn dưới mục tiêu. Mục tiêu không phải dự báo.",
+      "en": "The target is GDP per person of 8,500 dollars in 2030, from 5,026 in 2025: about 11.1% a year in dollar terms; for 2027 alone, 6,100. The IMF's October forecast for 2030 is 7,105, still below the target. Targets are not forecasts.",
       "big": true,
       "figs": [
        {
@@ -1520,6 +1620,16 @@
        },
        {
         "v": {
+         "vi": "6.100 USD",
+         "en": "6,100 USD"
+        },
+        "l": {
+         "vi": "mục tiêu GDP/người 2027, Quốc hội",
+         "en": "2027 GDP per person target, National Assembly"
+        }
+       },
+       {
+        "v": {
          "vi": "7.105 USD",
          "en": "7,105 USD"
         },
@@ -1529,7 +1639,7 @@
         }
        }
       ],
-      "src": "story_map econ st-2030 headline and note (IMF WEO October 2026 vintage)"
+      "src": "story_map econ st-2030 headline and note (IMF WEO October 2026 vintage) 2027 target 6,100 USD: data/economy.json projections.series gdp_per_capita_usd_target (NA plan vote 07/11/2026), diamond on #ec-pc."
      },
      {
       "tab": "econ",
@@ -1660,10 +1770,10 @@
        "vi": "TƯƠNG LAI · GIÁ DẦU",
        "en": "THE FUTURE · OIL"
       },
-      "vi": "Bên ngoài biên giới, mọi thứ đổi nhanh. Giá dầu Brent lên 117,64 USD ngày 30 tháng Mười, xuống 94,62 USD ngày 4 tháng Mười Một, rồi hồi về 98,29 USD ngày 5 tháng Mười Một. Xăng trong nước rẻ đi, nhưng dầu diesel vẫn 28.690 đồng một lít.",
-      "en": "Beyond the border, things move fast. Brent oil reached 117.64 dollars on October 30, fell to 94.62 on November 4, then came back to 98.29 on November 5. Petrol at home got cheaper, but diesel is still 28,690 dong a litre.",
+      "vi": "Bên ngoài biên giới, giá dầu đã hạ nhiệt. Brent từ 117,64 USD ngày 30 tháng Mười xuống 92,76 USD ngày 11 tháng Mười Một. Ngày 12 tháng Mười Một, giá xăng dầu trong nước giảm lần thứ hai liên tiếp: dầu diesel còn 26.820 đồng, xăng E5 còn 19.390 đồng một lít.",
+      "en": "Beyond the border, oil has cooled. Brent fell from 117.64 dollars on October 30 to 92.76 on November 11. On November 12 fuel prices at home were cut for the second time in a row: diesel to 26,820 dong a litre, E5 petrol to 19,390.",
       "big": true,
-      "src": "data/geopolitics.json events me-brent-plunge, vn-fuel-nov; story_map geo-st-hero headline. Headline scene: Ed's tested targets (#gb-board, [data-gb-player]) are not in story_map, so narration_check rejects them. No causal claim about the US vote.",
+      "src": "data/geopolitics.json oil_costs benchmark (Brent 92.76 settle 11/11, CNBC), me-iran-restraint (117.64 on 30/10), vn-fuel-nov (12/11 cut); data/living.json fuel (Petrolimex 12/11, second consecutive cut).",
       "figs": [
        {
         "v": {
@@ -1677,8 +1787,8 @@
        },
        {
         "v": {
-         "vi": "94,62 USD · 4/11/2026",
-         "en": "94.62 USD · 4 Nov 2026"
+         "vi": "92,76 USD · 11/11/2026",
+         "en": "92.76 USD · 11 Nov 2026"
         },
         "l": {
          "vi": "giá dầu Brent",
@@ -1687,22 +1797,22 @@
        },
        {
         "v": {
-         "vi": "98,29 USD · 5/11/2026",
-         "en": "98.29 USD · 5 Nov 2026"
+         "vi": "diesel 26.820 đồng/lít · 12/11/2026",
+         "en": "diesel 26,820 dong/litre · 12 Nov 2026"
         },
         "l": {
-         "vi": "giá dầu Brent",
-         "en": "Brent oil"
+         "vi": "giá trần vùng 1, giảm lần hai liên tiếp",
+         "en": "zone-1 ceiling, second cut in a row"
         }
        },
        {
         "v": {
-         "vi": "28.690 đồng/lít",
-         "en": "28,690 dong/litre"
+         "vi": "E5 · 19.390 đồng/lít",
+         "en": "E5 · 19,390 dong/litre"
         },
         "l": {
-         "vi": "diesel, 5/11/2026",
-         "en": "diesel, 5 Nov 2026"
+         "vi": "xăng E5, từ 12/11/2026",
+         "en": "E5 petrol, from 12 Nov 2026"
         }
        }
       ]
@@ -1714,9 +1824,9 @@
        "vi": "TƯƠNG LAI · THƯƠNG MẠI VỚI MỸ",
        "en": "THE FUTURE · TRADE WITH AMERICA"
       },
-      "vi": "Trong chín tháng đầu năm 2026, số liệu Mỹ ghi thâm hụt với Việt Nam gần 190 tỷ USD, còn số liệu Việt Nam ghi xuất siêu 122,6 tỷ USD; hai bên đo khác nhau. Hai cuộc điều tra Mục 301 của Mỹ còn mở, và dashboard đánh giá đây là rủi ro hàng đầu của tháng Mười Một.",
-      "en": "For January to September 2026, US data show a deficit with Vietnam of nearly 190 billion dollars; Vietnamese data show a surplus of 122.6 billion. The two sides measure differently. Two US Section 301 probes remain open, and the dashboard assesses them as November's top risk.",
-      "src": "Geopolitics spoken-safe line 2026-11-06; data/geopolitics.json actors.us, us-surplus-record (190 bn is Reuters via FMT, Census table not opened; goods only; not set beside 140.1, which is 10M); \"top risk\" is an assessment, story_map geo-st-hero headline.",
+      "vi": "Chín tháng đầu năm 2026, số liệu Mỹ ghi thâm hụt với Việt Nam gần 190 tỷ USD, còn số liệu Việt Nam ghi xuất siêu 122,6 tỷ USD; hai bên đo khác nhau. Hai cuộc điều tra Mục 301 của Mỹ vẫn mở, nhưng hạn kết luận điều tra sở hữu trí tuệ đã lùi tới ngày 28 tháng Hai năm 2027.",
+      "en": "For January to September 2026, US data show a deficit with Vietnam of nearly 190 billion dollars; Vietnamese data show a surplus of 122.6 billion. The two sides measure differently. Two US Section 301 probes remain open, but the intellectual-property probe's deadline has moved to February 28, 2027.",
+      "src": "data/geopolitics.json actors.us, us-surplus-record (190 bn US data 9M, Reuters via FMT; VN 122.6 bn 9M; like-for-like, 10M VN 140.1 not used), us-ip-extend (USTR moved the IP determination to 28/02/2027). 'November's top risk' dropped: geopolitics no longer names a top risk.",
       "figs": [
        {
         "v": {
@@ -1747,51 +1857,15 @@
          "vi": "hai điều tra của Mỹ còn mở",
          "en": "two open US probes"
         }
-       }
-      ]
-     },
-     {
-      "tab": "geo",
-      "chap": "geo-st-trade",
-      "target": "#tc-grid",
-      "k": {
-       "vi": "TƯƠNG LAI · CẤU TRÚC THƯƠNG MẠI",
-       "en": "THE FUTURE · THE SHAPE OF TRADE"
-      },
-      "vi": "Hãy xem vị trí của Việt Nam trên bản đồ thương mại, theo ước tính quanh năm 2023. Trên các tuyến được vẽ, Việt Nam bán 110 tỷ USD và mua 64 tỷ USD mỗi năm. Tuyến lớn nhất là điện tử và chip với Trung Quốc: bán 35 tỷ, mua 60 tỷ.",
-      "en": "See where Vietnam sits on the map of trade, on estimates from around 2023. On the routes drawn it sells 110 billion dollars and buys 64 billion a year. The largest is electronics and chips with China: it sells 35 billion and buys 60 billion.",
-      "big": true,
-      "play": false,
-      "src": "story_map geo-st-trade note (rounded data around 2023; structure only, not 2026 figures, per Ed).",
-      "figs": [
-       {
-        "v": {
-         "vi": "110 tỷ USD",
-         "en": "110 bn USD"
-        },
-        "l": {
-         "vi": "Việt Nam bán, quanh 2023",
-         "en": "Vietnam sells, around 2023"
-        }
        },
        {
         "v": {
-         "vi": "64 tỷ USD",
-         "en": "64 bn USD"
+         "vi": "28/2/2027",
+         "en": "28 Feb 2027"
         },
         "l": {
-         "vi": "Việt Nam mua, quanh 2023",
-         "en": "Vietnam buys, around 2023"
-        }
-       },
-       {
-        "v": {
-         "vi": "35 tỷ · 60 tỷ",
-         "en": "35 bn · 60 bn"
-        },
-        "l": {
-         "vi": "điện tử, chip với Trung Quốc: bán · mua",
-         "en": "electronics, chips with China: sells · buys"
+         "vi": "hạn mới, điều tra sở hữu trí tuệ",
+         "en": "new deadline, IP probe"
         }
        }
       ]
@@ -1803,39 +1877,39 @@
        "vi": "ĐIỀU CẦN THEO DÕI · THÁNG MƯỜI MỘT",
        "en": "WHAT TO WATCH · NOVEMBER"
       },
-      "vi": "Điều cần theo dõi. Từ ngày 8 đến 11 tháng Mười Một, ông Tô Lâm thăm chính thức Nhật Bản. Kỳ họp Quốc hội bế mạc ngày 21 tháng Mười Một, với ba luật về đất đai, nhà ở và kinh doanh bất động sản. Dự toán 2027 đề xuất bội chi 4,5% GDP, chưa được biểu quyết.",
-      "en": "What to watch. From November 8 to 11, Tô Lâm pays an official visit to Japan. The National Assembly session closes on November 21, with three laws on land, housing and real-estate business. The 2027 budget proposes a deficit of 4.5% of GDP, not yet voted.",
+      "vi": "Điều cần theo dõi. Ngày 20 và 21 tháng Mười Một, dự phòng ngày 23, Quốc hội họp đợt hai và dự kiến biểu quyết các luật về đất đai, nhà ở và kinh doanh bất động sản, cùng nhiều luật khác. Ngày 19 tháng Mười Một, giá xăng dầu được điều chỉnh kỳ tiếp theo.",
+      "en": "What to watch. On November 20 and 21, with the 23rd in reserve, the National Assembly sits for its second phase and is expected to vote on the land, housing and real-estate business laws, among others. On November 19, fuel prices are reset again.",
       "big": true,
-      "src": "strategy_directives.json party_direction.next; rendered pg-st-watch and st-watch (2027 budget proposal). The 7/11 plan-vote date was withdrawn by Strategy and is deliberately not mentioned.",
+      "src": "strategy_directives.json party_direction.next (phase 2 20–21/11, reserve 23/11; Land, Housing among the votes; Strategy 2026-11-13: no per-law vote date, wording 'expected … among others'); data/geopolitics.json watch 19 Nov fuel period; data/living.json next fuel adjustment Thu 19 Nov.",
       "figs": [
        {
         "v": {
-         "vi": "8–11/11/2026",
-         "en": "8–11 Nov 2026"
+         "vi": "20–21/11/2026",
+         "en": "20–21 Nov 2026"
         },
         "l": {
-         "vi": "thăm chính thức Nhật Bản",
-         "en": "official visit to Japan"
+         "vi": "Quốc hội họp đợt hai",
+         "en": "National Assembly, phase two"
         }
        },
        {
         "v": {
-         "vi": "21/11/2026",
-         "en": "21 Nov 2026"
+         "vi": "23/11/2026",
+         "en": "23 Nov 2026"
         },
         "l": {
-         "vi": "bế mạc kỳ họp (dự kiến)",
-         "en": "session closes (expected)"
+         "vi": "ngày dự phòng",
+         "en": "reserve day"
         }
        },
        {
         "v": {
-         "vi": "4,5% GDP",
-         "en": "4.5% of GDP"
+         "vi": "19/11/2026",
+         "en": "19 Nov 2026"
         },
         "l": {
-         "vi": "bội chi đề xuất 2027, chưa biểu quyết",
-         "en": "2027 deficit proposed, not voted"
+         "vi": "kỳ điều chỉnh giá xăng dầu",
+         "en": "next fuel-price reset"
         }
        }
       ]
@@ -1847,29 +1921,29 @@
        "vi": "ĐIỀU CẦN THEO DÕI · THUẾ MỸ",
        "en": "WHAT TO WATCH · US TARIFFS"
       },
-      "vi": "Ngày 29 tháng Mười Một là hạn luật định của điều tra Mục 301 về sở hữu trí tuệ, và Cơ quan Đại diện Thương mại Mỹ có thể gia hạn đến cuối tháng Hai. Điều tra về dư thừa công suất chưa có hạn cụ thể.",
-      "en": "November 29 is the statutory deadline for the Section 301 intellectual-property probe, and the US Trade Representative can extend it to late February. The overcapacity probe has no dated deadline.",
+      "vi": "Bên ngoài, ngày 17 tháng Mười Một là Hội nghị Cấp cao ASEAN – Mỹ ở Manila. Quanh ngày 30 tháng Mười Một là mốc rà soát quyết định của ông Trump về Iran, chưa ấn định ngày, trong khi số tàu bị tấn công quanh eo biển Hormuz ở mức cao kỷ lục.",
+      "en": "Abroad, November 17 brings the ASEAN–US summit in Manila. Around November 30 falls the review marker for President Trump's decision on Iran, with no date set, while attacks on ships around the Strait of Hormuz are at a record.",
       "play": false,
-      "src": "Geopolitics 2026-11-06: opened 29 May, six months, 19 USC 2414(a)(3) allows nine (about 28 Feb 2027); notice itself not read; no determination or extension found as of 6 Nov.",
+      "src": "data/geopolitics.json headline (Trump at the ASEAN–US summit in Manila 17/11), watch 2026-11-30 (Trump's Iran decision, no date set; 30 Nov is a review marker), me region text (record ship attacks around Hormuz, 37 in October). Section 301 IP deadline moved to 28/02/2027 (us-ip-extend), so the 29/11 item is dropped.",
       "figs": [
        {
         "v": {
-         "vi": "29/11/2026",
-         "en": "29 Nov 2026"
+         "vi": "17/11/2026",
+         "en": "17 Nov 2026"
         },
         "l": {
-         "vi": "hạn luật định, điều tra sở hữu trí tuệ",
-         "en": "statutory deadline, IP probe"
+         "vi": "Cấp cao ASEAN – Mỹ, Manila",
+         "en": "ASEAN–US summit, Manila"
         }
        },
        {
         "v": {
-         "vi": "Mục 301",
-         "en": "Section 301"
+         "vi": "30/11/2026",
+         "en": "30 Nov 2026"
         },
         "l": {
-         "vi": "hai điều tra của Mỹ",
-         "en": "two US probes"
+         "vi": "mốc rà soát quyết định về Iran",
+         "en": "review marker, Iran decision"
         }
        }
       ]
@@ -1881,8 +1955,8 @@
        "vi": "ĐIỀU CẦN THEO DÕI · THÁNG MƯỜI HAI",
        "en": "WHAT TO WATCH · DECEMBER"
       },
-      "vi": "Ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi theo cách tính mới có hiệu lực, nâng từ 85% lên 95%. Ngày 3 tháng Mười Hai, Cục Thống kê công bố số liệu tháng Mười Một. Ngày 8 và 9 tháng Mười Hai, Fed họp; theo một nguồn báo chí, thị trường đặt khoảng hai phần ba khả năng tăng lãi suất.",
-      "en": "On December 1, the loan-to-deposit cap under its new formula takes effect, rising from 85% to 95%. On December 3, the statistics office publishes November data. On December 8 and 9, the Fed meets; one press report puts market odds of a rise at about two-thirds.",
+      "vi": "Ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi theo cách tính mới có hiệu lực, nâng từ 85% lên 95%. Ngày 8 và 9 tháng Mười Hai, Fed họp. Sau số liệu giá cả tháng Mười của Mỹ, ngày 11 tháng Mười Một, thị trường đặt 88,8% khả năng Fed tăng 0,25 điểm, và 11,2% khả năng tăng 0,5 điểm.",
+      "en": "On December 1, the loan-to-deposit cap under its new formula takes effect, rising from 85% to 95%. On December 8 and 9, the Fed meets. After US October prices, markets on November 11 put the odds of a 0.25-point rise at 88.8%, and of a 0.5-point rise at 11.2%.",
       "big": true,
       "figs": [
        {
@@ -1907,16 +1981,6 @@
        },
        {
         "v": {
-         "vi": "3/12/2026",
-         "en": "3 Dec 2026"
-        },
-        "l": {
-         "vi": "số liệu tháng 11, Cục Thống kê",
-         "en": "November data, statistics office"
-        }
-       },
-       {
-        "v": {
          "vi": "8–9/12/2026",
          "en": "Dec 8–9, 2026"
         },
@@ -1927,16 +1991,26 @@
        },
        {
         "v": {
-         "vi": "≈ 2/3",
-         "en": "≈ 2/3"
+         "vi": "88,8% · +0,25 điểm · 11/11",
+         "en": "88.8% · +0.25 points · 11 Nov"
         },
         "l": {
-         "vi": "khả năng Fed tăng lãi suất (một nguồn)",
-         "en": "odds of a Fed rise (one outlet)"
+         "vi": "khả năng Fed tăng, CME FedWatch",
+         "en": "odds of a Fed rise, CME FedWatch"
+        }
+       },
+       {
+        "v": {
+         "vi": "11,2% · +0,5 điểm",
+         "en": "11.2% · +0.5 points"
+        },
+        "l": {
+         "vi": "khả năng Fed tăng mạnh hơn, 11/11",
+         "en": "odds of a larger rise, 11 Nov"
         }
        }
       ],
-      "src": "rendered fs-st-watch (50/2026/TT-NHNN); data/invest_macro.json MACRO.events (NSO 03/12); data/finance.json fx_fed (next meeting 8–9 Dec 2026); data/geopolitics.json board.story[8] (CME ~66%, single outlet)"
+      "src": "rendered fs-st-watch (50/2026/TT-NHNN); data/finance.json fed (CME FedWatch 11/11/2026 after US Oct CPI: 88.8% +25bp, 11.2% +50bp; conflicting vintages 87.1/12.9, 84.7/15 noted by Finance), fx_fed (next meeting 8–9 Dec 2026). NSO 3/12 moved out (kept in econ and invest films)."
      },
      {
       "tab": "econ",
@@ -1945,8 +2019,8 @@
        "vi": "ĐIỀU CẦN THEO DÕI · CUỐI NĂM",
        "en": "WHAT TO WATCH · YEAR-END"
       },
-      "vi": "Ngày 31 tháng Mười Hai, mức giảm hai điểm phần trăm thuế giá trị gia tăng hết hạn. Cùng ngày là hạn của mục tiêu tín dụng 15%, còn 3,06 điểm tính từ số ngày 26 tháng Mười. Ngày 31 tháng Ba năm 2027, mức giảm thuế xăng và giá điện cũng hết hạn, nếu không được gia hạn.",
-      "en": "On December 31, the two-point VAT cut expires. The same day closes the 15% credit target, with 3.06 points left as of October 26. On March 31, 2027, the petrol-tax and power-price cuts also end, unless extended.",
+      "vi": "Ngày 31 tháng Mười Hai, mức giảm hai điểm phần trăm thuế giá trị gia tăng hết hạn; đến ngày 12 tháng Mười Một, Bộ Tài chính mới đang nghiên cứu gia hạn. Cùng ngày là hạn của mục tiêu tín dụng 15%, còn 3,06 điểm tính từ số ngày 26 tháng Mười.",
+      "en": "On December 31, the two-point VAT cut expires; as of November 12 the Finance Ministry was only studying an extension. The same day closes the 15% credit target, with 3.06 points left as of October 26.",
       "big": true,
       "figs": [
        {
@@ -1957,6 +2031,16 @@
         "l": {
          "vi": "hết hạn giảm thuế GTGT; chốt tín dụng",
          "en": "VAT cut expires; credit year-end"
+        }
+       },
+       {
+        "v": {
+         "vi": "12/11/2026",
+         "en": "12 Nov 2026"
+        },
+        "l": {
+         "vi": "Bộ Tài chính nghiên cứu gia hạn",
+         "en": "Finance Ministry studying extension"
         }
        },
        {
@@ -1988,19 +2072,9 @@
          "vi": "ngày chốt số tín dụng",
          "en": "credit cut-off date"
         }
-       },
-       {
-        "v": {
-         "vi": "31/3/2027",
-         "en": "31 Mar 2027"
-        },
-        "l": {
-         "vi": "hết giảm thuế xăng, giá điện",
-         "en": "petrol-tax, power-price cuts end"
-        }
        }
       ],
-      "src": "rendered st-watch (VAT 31/12/2026; petrol and power cuts end 31 Mar 2027); rendered fs-st-watch (11.94% at 26/10, 3.06 points left)"
+      "src": "rendered st-watch (VAT 31/12/2026); data/policy.json vat_cut_2pct (MoF studying extension per PM, 12/11, vtv.vn; Policy: nothing on the 20–21/11 agenda); rendered fs-st-watch (11.94% at 26/10, 3.06 points left). 31/3/2027 petrol/power item kept in the econ film."
      },
      {
       "tab": "econ",
@@ -3491,8 +3565,8 @@
        "vi": "KINH TẾ · ĐẾN 2030",
        "en": "ECONOMY · TO 2030"
       },
-      "vi": "Mục tiêu GDP bình quân đầu người 8.500 USD năm 2030, từ 5.026 USD năm 2025, đòi hỏi khoảng 11,1% mỗi năm tính bằng USD. Đường dự báo tháng Mười của IMF khoảng 7,2% mỗi năm, tới 7.105 USD. Mục tiêu không phải dự báo, và dự báo có thể sai.",
-      "en": "A target of 8,500 dollars per person in 2030, from 5,026 in 2025, takes about 11.1% a year in dollar terms. The IMF's October forecast path implies about 7.2% a year, to 7,105. Targets are not forecasts, and forecasts can be wrong.",
+      "vi": "Mục tiêu GDP bình quân đầu người 8.500 USD năm 2030, từ 5.026 USD năm 2025, đòi hỏi khoảng 11,1% mỗi năm tính bằng USD. Hình thoi năm 2027 là mục tiêu Quốc hội vừa giao: 6.100 USD. Đường dự báo tháng Mười của IMF khoảng 7,2% mỗi năm, tới 7.105 USD.",
+      "en": "A target of 8,500 dollars per person in 2030, from 5,026 in 2025, takes about 11.1% a year in dollar terms. The 2027 diamond is the target the National Assembly has just set: 6,100 dollars. The IMF's October forecast path implies about 7.2% a year, to 7,105.",
       "big": true,
       "figs": [
        {
@@ -3527,6 +3601,16 @@
        },
        {
         "v": {
+         "vi": "6.100 USD",
+         "en": "6,100 USD"
+        },
+        "l": {
+         "vi": "mục tiêu GDP/người 2027, Quốc hội",
+         "en": "2027 GDP per person target, National Assembly"
+        }
+       },
+       {
+        "v": {
          "vi": "≈ 7,2%/năm",
          "en": "≈ 7.2%/yr"
         },
@@ -3546,7 +3630,7 @@
         }
        }
       ],
-      "src": "story_map econ st-2030 headline and note (IMF WEO October 2026)"
+      "src": "story_map econ st-2030 headline and note (IMF WEO October 2026) 2027 diamond 6,100: data/economy.json projections.series gdp_per_capita_usd_target (NA vote 07/11/2026). 'Targets are not forecasts' sentence dropped for length."
      },
      {
       "tab": "econ",
@@ -3748,21 +3832,32 @@
       "tab": "econ",
       "chap": "st-watch",
       "k": {
-       "vi": "KINH TẾ · ĐIỀU CẦN THEO DÕI",
-       "en": "ECONOMY · WHAT TO WATCH"
+       "vi": "KINH TẾ · DỰ TOÁN 2027",
+       "en": "ECONOMY · THE 2027 BUDGET"
       },
-      "vi": "Bốn mốc cần theo dõi. Đến ngày 21 tháng Mười Một, dự toán 2027 trình Quốc hội đề xuất bội chi 4,5% GDP, chưa biểu quyết; năm 2026 dự toán 4,2%, Bộ Tài chính ước 4,1%. Ngày 31 tháng Mười Hai, mức giảm hai điểm phần trăm thuế giá trị gia tăng hết hạn.",
-      "en": "Four markers to watch. By November 21, the 2027 budget before the National Assembly proposes a deficit of 4.5% of GDP, not yet voted; for 2026, 4.2% planned, 4.1% estimated by the Finance Ministry. On December 31, the two-point VAT cut expires.",
+      "vi": "Một mốc đã qua: ngày 9 tháng Mười Một, Quốc hội thông qua dự toán 2027, với 471 trên 471 đại biểu có mặt tán thành. Bội chi 739,6 nghìn tỷ đồng, bằng 4,5% GDP, so với 4,2% dự toán 2026. Chi đầu tư phát triển 1.755,7 nghìn tỷ đồng, so với 1.120,2 nghìn tỷ dự toán 2026.",
+      "en": "One marker has passed: on November 9 the National Assembly adopted the 2027 budget, with all 471 deputies present in favour. The deficit is 739.6 trillion dong, 4.5% of GDP, against 4.2% planned for 2026. Development spending is 1,755.7 trillion dong, against 1,120.2 trillion planned for 2026.",
       "big": true,
+      "play": false,
       "figs": [
        {
         "v": {
-         "vi": "21/11/2026",
-         "en": "21 Nov 2026"
+         "vi": "471/471 · 9/11/2026",
+         "en": "471/471 · 9 Nov 2026"
         },
         "l": {
-         "vi": "hạn kỳ họp Quốc hội",
-         "en": "National Assembly session close"
+         "vi": "đại biểu có mặt tán thành",
+         "en": "deputies present in favour"
+        }
+       },
+       {
+        "v": {
+         "vi": "739,6 nghìn tỷ đồng",
+         "en": "739.6 tn dong"
+        },
+        "l": {
+         "vi": "bội chi 2027",
+         "en": "2027 deficit"
         }
        },
        {
@@ -3771,18 +3866,62 @@
          "en": "4.5% of GDP"
         },
         "l": {
-         "vi": "bội chi 2027, đề xuất",
-         "en": "2027 deficit, proposed"
+         "vi": "bội chi 2027, đã thông qua",
+         "en": "2027 deficit, passed"
         }
        },
        {
         "v": {
-         "vi": "4,2% · 4,1%",
-         "en": "4.2% · 4.1%"
+         "vi": "4,2%",
+         "en": "4.2%"
         },
         "l": {
-         "vi": "bội chi 2026: dự toán · ước",
-         "en": "2026 deficit: plan · estimate"
+         "vi": "bội chi dự toán 2026",
+         "en": "2026 planned deficit"
+        }
+       },
+       {
+        "v": {
+         "vi": "1.755,7 nghìn tỷ đồng",
+         "en": "1,755.7 tn dong"
+        },
+        "l": {
+         "vi": "chi đầu tư phát triển, dự toán 2027",
+         "en": "development spending, 2027 plan"
+        }
+       },
+       {
+        "v": {
+         "vi": "1.120,2 nghìn tỷ",
+         "en": "1,120.2 tn"
+        },
+        "l": {
+         "vi": "chi đầu tư phát triển, dự toán 2026",
+         "en": "development spending, 2026 plan"
+        }
+       }
+      ],
+      "src": "data/economy.json ECONFLOW.budget.plan_2027_resolution (09/11/2026, 471/471 present; deficit 739,597; development 1,755,679) and budget.expenditure.development_investment 2026 plan 1,120,227 bn. No percentage change spoken (+56.7% would be computed, not published). Rendered st-watch card (Ed, 2026-11-13) reads the resolution."
+     },
+     {
+      "tab": "econ",
+      "chap": "st-watch",
+      "k": {
+       "vi": "KINH TẾ · ĐIỀU CẦN THEO DÕI",
+       "en": "ECONOMY · WHAT TO WATCH"
+      },
+      "vi": "Các mốc cần theo dõi. Ngày 3 tháng Mười Hai, Cục Thống kê công bố số liệu tháng Mười Một. Ngày 31 tháng Mười Hai, mức giảm hai điểm phần trăm thuế giá trị gia tăng hết hạn; đến ngày 12 tháng Mười Một, Bộ Tài chính mới đang nghiên cứu gia hạn. Năm 2026, bội chi dự toán 4,2%, Bộ Tài chính ước 4,1%.",
+      "en": "Markers to watch. On December 3, the statistics office publishes November data. On December 31, the two-point VAT cut expires; as of November 12 the Finance Ministry was only studying an extension. For 2026, the deficit was planned at 4.2% and is estimated at 4.1% by the Finance Ministry.",
+      "big": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "3/12/2026",
+         "en": "3 Dec 2026"
+        },
+        "l": {
+         "vi": "số liệu tháng 11, Cục Thống kê",
+         "en": "November data, statistics office"
         }
        },
        {
@@ -3794,9 +3933,29 @@
          "vi": "giảm thuế GTGT hết hạn",
          "en": "VAT cut expires"
         }
+       },
+       {
+        "v": {
+         "vi": "12/11/2026",
+         "en": "12 Nov 2026"
+        },
+        "l": {
+         "vi": "Bộ Tài chính nghiên cứu gia hạn",
+         "en": "Finance Ministry studying extension"
+        }
+       },
+       {
+        "v": {
+         "vi": "4,2% · 4,1%",
+         "en": "4.2% · 4.1%"
+        },
+        "l": {
+         "vi": "bội chi 2026: dự toán · ước",
+         "en": "2026 deficit: plan · estimate"
+        }
        }
       ],
-      "src": "rendered st-watch"
+      "src": "rendered st-watch; data/invest_macro.json MACRO.events (NSO 03/12); data/policy.json vat_cut_2pct (studying, 12/11)."
      },
      {
       "tab": "econ",
@@ -3858,53 +4017,63 @@
        "vi": "CHÍNH TRỊ · ĐANG DIỄN RA",
        "en": "POLITICS · UNDER WAY NOW"
       },
-      "vi": "Ngay lúc này, Quốc hội đang họp. Đợt một của kỳ họp thứ hai, Quốc hội khóa 16, kết thúc ngày 13 tháng Mười Một; kỳ họp dự kiến bế mạc ngày 21 tháng Mười Một năm 2026. 17 trong 20 dự thảo dashboard theo dõi được trình kỳ họp này. Mỗi thanh nối mốc gần nhất của dự thảo với thời điểm dự kiến thông qua.",
-      "en": "Right now the National Assembly is sitting. The first phase of the 16th National Assembly's second session ends on November 13; the session is expected to close on November 21, 2026. 17 of the 20 drafts the dashboard tracks go before it. Each bar joins a draft's latest milestone to its expected passage.",
+      "vi": "Ngay lúc này, Quốc hội khóa 16 đang ở kỳ họp thứ hai. Ngày 7 và 9 tháng Mười Một, Quốc hội đã thông qua kế hoạch kinh tế – xã hội và dự toán ngân sách năm 2027. Đợt hai họp ngày 20 và 21 tháng Mười Một, dự phòng ngày 23. Mỗi thanh nối mốc gần nhất của dự thảo với thời điểm dự kiến thông qua.",
+      "en": "Right now the 16th National Assembly is in its second session. On November 7 and 9 it passed the 2027 socio-economic plan and the 2027 budget. Phase two sits on November 20 and 21, with the 23rd in reserve. Each bar joins a draft's latest milestone to its expected passage.",
       "big": true,
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "kỳ họp 2 · khóa 16",
-         "en": "session 2 · 16th"
+         "vi": "Quốc hội khóa 16",
+         "en": "16th National Assembly"
         },
         "l": {
-         "vi": "Quốc hội, 17/10–21/11/2026",
-         "en": "National Assembly, 17 Oct–21 Nov 2026"
+         "vi": "kỳ họp thứ hai",
+         "en": "second session"
         }
        },
        {
         "v": {
-         "vi": "13/11/2026",
-         "en": "13 Nov 2026"
+         "vi": "7/11/2026",
+         "en": "7 Nov 2026"
         },
         "l": {
-         "vi": "kết thúc đợt một",
-         "en": "first phase ends"
+         "vi": "thông qua kế hoạch KT-XH 2027",
+         "en": "2027 socio-economic plan passed"
         }
        },
        {
         "v": {
-         "vi": "21/11/2026",
-         "en": "21 Nov 2026"
+         "vi": "9/11/2026",
+         "en": "9 Nov 2026"
         },
         "l": {
-         "vi": "bế mạc dự kiến",
-         "en": "expected close"
+         "vi": "thông qua dự toán ngân sách 2027",
+         "en": "2027 budget passed"
         }
        },
        {
         "v": {
-         "vi": "17 / 20",
-         "en": "17 of 20"
+         "vi": "20–21/11/2026",
+         "en": "20–21 Nov 2026"
         },
         "l": {
-         "vi": "dự thảo trình kỳ họp / đang theo dõi",
-         "en": "drafts in session / tracked"
+         "vi": "Quốc hội họp đợt hai",
+         "en": "National Assembly, phase two"
+        }
+       },
+       {
+        "v": {
+         "vi": "23/11/2026",
+         "en": "23 Nov 2026"
+        },
+        "l": {
+         "vi": "ngày dự phòng",
+         "en": "reserve day"
         }
        }
       ],
-      "src": "story_map party pg-st-pipe headline and dek; strategy_directives.json party_direction.next (phase 1 ends 13/11)"
+      "src": "strategy_directives.json DT-NQ-KTXH-2027 (adopted 07/11, 467/469), DT-NQ-DTNSNN-2027 (adopted 09/11), party_direction.next (phase 2 20–21/11, reserve 23/11). Phase-1 close on 13/11 not confirmed (Strategy), so not mentioned; draft counts dropped (story_map not rebuilt)."
      },
      {
       "tab": "party",
@@ -4297,14 +4466,14 @@
        "vi": "CHÍNH TRỊ · LÀN SÓNG VĂN BẢN",
        "en": "POLITICS · A WAVE OF DECISIONS"
       },
-      "vi": "Dashboard theo dõi 142 văn bản trọng yếu được chọn, không phải toàn bộ; 136 trong số đó ra đời từ tháng Bảy năm 2024. Tháng nhiều nhất là tháng Mười năm 2026, với 24 văn bản.",
-      "en": "The dashboard tracks 142 selected key documents, not all of them; 136 date from July 2024 on. The busiest month was October 2026, with 24.",
+      "vi": "Dashboard theo dõi 143 văn bản trọng yếu được chọn, không phải toàn bộ; 137 trong số đó ra đời từ tháng Bảy năm 2024. Tháng nhiều nhất là tháng Mười năm 2026, với 21 văn bản.",
+      "en": "The dashboard tracks 143 selected key documents, not all of them; 137 date from July 2024 on. The busiest month was October 2026, with 21.",
       "big": true,
       "figs": [
        {
         "v": {
-         "vi": "142",
-         "en": "142"
+         "vi": "143",
+         "en": "143"
         },
         "l": {
          "vi": "văn bản trọng yếu được theo dõi",
@@ -4313,8 +4482,8 @@
        },
        {
         "v": {
-         "vi": "136",
-         "en": "136"
+         "vi": "137",
+         "en": "137"
         },
         "l": {
          "vi": "từ tháng 7/2024",
@@ -4323,8 +4492,8 @@
        },
        {
         "v": {
-         "vi": "24",
-         "en": "24"
+         "vi": "21",
+         "en": "21"
         },
         "l": {
          "vi": "văn bản, tháng 10/2026",
@@ -4332,7 +4501,7 @@
         }
        }
       ],
-      "src": "story_map pg-st-wave headline and dek"
+      "src": "strategy_directives.json directives counted as the page does (pgStory: D.length; date >= 2024-07-01; month counts by date): 143, 137, Oct 2026 = 21 after two drafts moved to their November adoption dates and KL112 (28/10) was added. story_map not rebuilt this week."
      },
      {
       "tab": "party",
@@ -4342,8 +4511,8 @@
        "vi": "CHÍNH TRỊ · ƯU TIÊN",
        "en": "POLITICS · PRIORITIES"
       },
-      "vi": "Chia theo 9 trụ cột, khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số dẫn đầu với 24 văn bản; mô hình tăng trưởng 21; thể chế, pháp luật và đất đai 18.",
-      "en": "By the 9 pillars, science, technology, innovation and digital transformation lead with 24 documents; the growth model has 21; institutions, law and land 18.",
+      "vi": "Chia theo 9 trụ cột, khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số dẫn đầu với 24 văn bản; mô hình tăng trưởng 22; thể chế, pháp luật và đất đai 18.",
+      "en": "By the 9 pillars, science, technology, innovation and digital transformation lead with 24 documents; the growth model has 22; institutions, law and land 18.",
       "big": true,
       "figs": [
        {
@@ -4368,8 +4537,8 @@
        },
        {
         "v": {
-         "vi": "21",
-         "en": "21"
+         "vi": "22",
+         "en": "22"
         },
         "l": {
          "vi": "mô hình tăng trưởng",
@@ -4387,7 +4556,7 @@
         }
        }
       ],
-      "src": "story_map pg-st-pil headline; strategy_directives.json pillars"
+      "src": "story_map pg-st-pil headline; strategy_directives.json pillars Recounted 2026-11-13 from strategy_directives.json (kinhte-vimo 22 after KL112)."
      },
      {
       "tab": "party",
@@ -4431,22 +4600,52 @@
        "vi": "CHÍNH TRỊ · MỚI NHẤT",
        "en": "POLITICS · LATEST"
       },
-      "vi": "Mới nhất trong dữ liệu: ngày 6 tháng Mười Một năm 2026, tại lễ kỷ niệm Hiến pháp đầu tiên, ông Tô Lâm đề nghị chuẩn bị cơ sở lý luận và thực tiễn để đề xuất sửa đổi tổng thể Hiến pháp. Chưa có mốc thời gian.",
-      "en": "The latest item in the data: on November 6, 2026, at the anniversary of the first Constitution, Tô Lâm asked for the theoretical and practical groundwork to propose a comprehensive amendment of the Constitution. No timeline has been given.",
+      "vi": "Mới nhất trong dữ liệu: từ ngày 9 đến 11 tháng Mười Một, ông Tô Lâm thăm Nhật Bản. Hai bên thông qua Tuyên bố tầm nhìn chung, ký 11 văn kiện, trong đó có khoản vay cho Nhiệt điện Ô Môn 3 và ghi nhớ hợp tác điện hạt nhân, và đặt mục tiêu thương mại hai chiều 80 tỷ USD vào năm 2030.",
+      "en": "The latest in the data: from November 9 to 11, Tô Lâm visited Japan. The two sides adopted a Joint Vision Statement and signed 11 documents, including a loan for the Ô Môn 3 power plant and a nuclear-power memorandum, with a two-way trade target of 80 billion dollars by 2030.",
       "big": true,
       "figs": [
        {
         "v": {
-         "vi": "6/11/2026",
-         "en": "6 Nov 2026"
+         "vi": "9–11/11/2026",
+         "en": "9–11 Nov 2026"
         },
         "l": {
-         "vi": "phát biểu về sửa đổi Hiến pháp",
-         "en": "speech on amending the Constitution"
+         "vi": "thăm Nhật Bản",
+         "en": "visit to Japan"
+        }
+       },
+       {
+        "v": {
+         "vi": "11 văn kiện",
+         "en": "11 documents"
+        },
+        "l": {
+         "vi": "ký trong chuyến thăm",
+         "en": "signed during the visit"
+        }
+       },
+       {
+        "v": {
+         "vi": "Ô Môn 3",
+         "en": "Ô Môn 3"
+        },
+        "l": {
+         "vi": "nhiệt điện, khoản vay JICA",
+         "en": "power plant, JICA loan"
+        }
+       },
+       {
+        "v": {
+         "vi": "80 tỷ USD · 2030",
+         "en": "80 bn USD · 2030"
+        },
+        "l": {
+         "vi": "mục tiêu thương mại Việt – Nhật",
+         "en": "Vietnam–Japan trade target"
         }
        }
       ],
-      "src": "rendered pg-st-watch \"Latest\"; strategy_directives.json news, leader.quotes (reported speech); Strategy: no timeline"
+      "src": "strategy_directives.json governance leader Tô Lâm activities (Japan visit 09–11/11/2026: Joint Vision Statement, 11 documents incl. JICA loan for O Mon 3, nuclear MoU, AI; trade target USD 80bn by 2030). Constitution item of 6/11 no longer the latest."
      },
      {
       "tab": "party",
@@ -4455,32 +4654,42 @@
        "vi": "CHÍNH TRỊ · ĐIỀU CẦN THEO DÕI",
        "en": "POLITICS · WHAT TO WATCH"
       },
-      "vi": "Cần theo dõi: từ ngày 8 đến 11 tháng Mười Một, ông Tô Lâm thăm chính thức Nhật Bản. Kỳ họp Quốc hội bế mạc ngày 21 tháng Mười Một; Luật Đất đai, Luật Nhà ở và Luật Kinh doanh bất động sản sửa đổi dự kiến được thông qua trong kỳ họp.",
-      "en": "To watch: from November 8 to 11, Tô Lâm pays an official visit to Japan. The National Assembly session closes on November 21; amendments to the Land Law, the Housing Law and the Real Estate Business Law are set for adoption this session.",
+      "vi": "Cần theo dõi: Quốc hội họp đợt hai ngày 20 và 21 tháng Mười Một, dự phòng ngày 23, và dự kiến biểu quyết Luật Đất đai, Luật Nhà ở, Luật Kinh doanh bất động sản sửa đổi cùng nhiều luật khác. Ngày 24 tháng Mười Một là Ngày Văn hóa Việt Nam, người lao động được nghỉ hưởng nguyên lương.",
+      "en": "To watch: the National Assembly's second phase sits on November 20 and 21, with the 23rd in reserve, and is expected to vote on the amended Land, Housing and Real Estate Business laws, among others. November 24 is Vietnam Culture Day, a paid day off for workers.",
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "8–11/11/2026",
-         "en": "8–11 Nov 2026"
+         "vi": "20–21/11/2026",
+         "en": "20–21 Nov 2026"
         },
         "l": {
-         "vi": "thăm chính thức Nhật Bản",
-         "en": "official visit to Japan"
+         "vi": "Quốc hội họp đợt hai",
+         "en": "National Assembly, phase two"
         }
        },
        {
         "v": {
-         "vi": "21/11/2026",
-         "en": "21 Nov 2026"
+         "vi": "23/11/2026",
+         "en": "23 Nov 2026"
         },
         "l": {
-         "vi": "bế mạc kỳ họp (dự kiến)",
-         "en": "session closes (expected)"
+         "vi": "ngày dự phòng",
+         "en": "reserve day"
+        }
+       },
+       {
+        "v": {
+         "vi": "24/11/2026",
+         "en": "24 Nov 2026"
+        },
+        "l": {
+         "vi": "Ngày Văn hóa Việt Nam",
+         "en": "Vietnam Culture Day"
         }
        }
       ],
-      "src": "strategy_directives.json party_direction.next; Strategy 2026-11-06: no voting day sourced; the 7/11 plan-vote date withdrawn"
+      "src": "strategy_directives.json party_direction.next (phase 2; 24/11 Culture Day under Res. 80); Strategy 2026-11-13: no per-law vote date, safe wording 'expected … among others'. Japan visit now past."
      },
      {
       "tab": "party",
@@ -4774,8 +4983,8 @@
        "vi": "TÀI CHÍNH · BƠM VÀ HÚT",
        "en": "FINANCE · INJECT AND DRAIN"
       },
-      "vi": "Ngân hàng Nhà nước bơm tiền qua thị trường mở. Dư nợ đạt đỉnh 483 nghìn tỷ đồng ngày 13 tháng Hai năm 2026; đến ngày 25 tháng Chín còn 186,9 nghìn tỷ, và ngày 5 tháng Mười Một còn 105,6 nghìn tỷ. Tín phiếu hút tiền về không từ tháng Bảy năm 2025.",
-      "en": "The State Bank injects money through open-market operations. The balance peaked at 483 trillion dong on February 13, 2026; by September 25 it was 186.9 trillion, and by November 5, 105.6 trillion. Bills draining money have been at zero since July 2025.",
+      "vi": "Ngân hàng Nhà nước bơm tiền qua thị trường mở. Dư nợ đạt đỉnh 483 nghìn tỷ đồng ngày 13 tháng Hai năm 2026; đến ngày 25 tháng Chín còn 186,9 nghìn tỷ, và ngày 12 tháng Mười Một là 112,1 nghìn tỷ. Tín phiếu hút tiền về không từ tháng Bảy năm 2025.",
+      "en": "The State Bank injects money through open-market operations. The balance peaked at 483 trillion dong on February 13, 2026; by September 25 it was 186.9 trillion, and on November 12, 112.1 trillion. Bills draining money have been at zero since July 2025.",
       "big": true,
       "play": false,
       "figs": [
@@ -4801,16 +5010,16 @@
        },
        {
         "v": {
-         "vi": "105,6 nghìn tỷ · 5/11/2026",
-         "en": "105.6 tn · 5 Nov 2026"
+         "vi": "112,1 nghìn tỷ · 12/11/2026",
+         "en": "112.1 tn · 12 Nov 2026"
         },
         "l": {
-         "vi": "dư nợ OMO, 5/11/2026",
-         "en": "OMO balance, 5 Nov 2026"
+         "vi": "dư nợ OMO, 12/11/2026",
+         "en": "OMO balance, 12 Nov 2026"
         }
        }
       ],
-      "src": "story_map banks fs-st-money note (VBMA weekly) and fs-st-sbv note (105.6 at 5/11/2026)"
+      "src": "story_map banks fs-st-money note (VBMA weekly); data/finance.json plumbing omo_outstanding 112,131 bn (12/11/2026; 105,592 at 5/11)."
      },
      {
       "tab": "banks",
@@ -5078,10 +5287,10 @@
        "vi": "TÀI CHÍNH · CÔNG CỤ MỚI",
        "en": "FINANCE · A NEW TOOL"
       },
-      "vi": "Ngân hàng Nhà nước cũng có công cụ mới: lần đầu hoán đổi đô la lấy đồng kỳ hạn 182 ngày, tối đa 2 tỷ USD, công bố ngày 3 tháng Mười Một. Công cụ này cấp tiền đồng dài hơn thị trường mở. Kết quả thực hiện chưa được công bố.",
-      "en": "The State Bank also has a new tool: its first 182-day dollar-dong swap, of up to 2 billion dollars, announced on November 3. It supplies dong for longer than open-market operations. The take-up has not been reported.",
+      "vi": "Ngân hàng Nhà nước cũng có công cụ mới: lần đầu hoán đổi đô la lấy đồng kỳ hạn 182 ngày, tối đa 2 tỷ USD, công bố ngày 3 tháng Mười Một. Công cụ này cấp tiền đồng dài hơn thị trường mở. Ngày 9 tháng Mười Một, theo Ngân hàng Nhà nước, gần 50 nghìn tỷ đồng đã được cung ứng qua kênh này.",
+      "en": "The State Bank also has a new tool: its first 182-day dollar-dong swap, of up to 2 billion dollars, announced on November 3. It supplies dong for longer than open-market operations. On November 9, the State Bank says, nearly 50 trillion dong was supplied this way.",
       "play": false,
-      "src": "data/policy.json fx_intervention; rendered fs-st-watch",
+      "src": "data/policy.json fx_intervention; data/finance.json flows swap note (cap 48,798 bn; SBV deputy director via CafeF 11/11: 'gần 50 nghìn tỷ' on 9/11, quote only, value null).",
       "figs": [
        {
         "v": {
@@ -5111,6 +5320,16 @@
         "l": {
          "vi": "ngày công bố",
          "en": "announced"
+        }
+       },
+       {
+        "v": {
+         "vi": "gần 50 nghìn tỷ đồng · 9/11/2026",
+         "en": "nearly 50 tn dong · 9 Nov 2026"
+        },
+        "l": {
+         "vi": "đã cung ứng, theo Ngân hàng Nhà nước",
+         "en": "supplied, per the State Bank"
         }
        }
       ]
@@ -5243,8 +5462,8 @@
        "vi": "TÀI CHÍNH · TỶ GIÁ",
        "en": "FINANCE · THE EXCHANGE RATE"
       },
-      "vi": "Cuối tháng Mười, giá bán của Vietcombank 25.990 đồng, thấp hơn trần 26.919 khoảng 3,57%. Tỷ giá trung tâm giảm dần từ đầu tháng Mười Một, còn 25.615 đồng một đô la ngày 6 tháng Mười Một.",
-      "en": "At the end of October Vietcombank's selling rate of 25,990 was 3.57% below the 26,919 ceiling. The central rate has eased since early November, to 25,615 dong to the dollar on November 6.",
+      "vi": "Cuối tháng Mười, giá bán của Vietcombank 25.990 đồng, thấp hơn trần 26.919 khoảng 3,57%. Tỷ giá trung tâm giảm về 25.600 đồng ngày 10 tháng Mười Một, rồi lên 25.623 đồng ngày 12 tháng Mười Một.",
+      "en": "At the end of October Vietcombank's selling rate of 25,990 was 3.57% below the 26,919 ceiling. The central rate eased to 25,600 dong on November 10, then stood at 25,623 on November 12.",
       "play": false,
       "figs": [
        {
@@ -5279,8 +5498,18 @@
        },
        {
         "v": {
-         "vi": "25.615 · 6/11/2026",
-         "en": "25,615 · 6 Nov 2026"
+         "vi": "25.600 · 10/11/2026",
+         "en": "25,600 · 10 Nov 2026"
+        },
+        "l": {
+         "vi": "tỷ giá trung tâm",
+         "en": "central rate"
+        }
+       },
+       {
+        "v": {
+         "vi": "25.623 · 12/11/2026",
+         "en": "25,623 · 12 Nov 2026"
         },
         "l": {
          "vi": "tỷ giá trung tâm",
@@ -5288,7 +5517,42 @@
         }
        }
       ],
-      "src": "story_map banks fs-st-fx note (25,990; 26,919; 3.57%); data/policy.json central_rate"
+      "src": "story_map banks fs-st-fx note (25,990; 26,919; 3.57%); data/policy.json central_rate series (25,600 on 10/11, 25,623 on 12/11/2026)."
+     },
+     {
+      "tab": "banks",
+      "chap": "fs-st-fx",
+      "target": "#fs-st-band",
+      "k": {
+       "vi": "TÀI CHÍNH · MUA ĐÔ LA",
+       "en": "FINANCE · BUYING DOLLARS"
+      },
+      "vi": "Từ ngày 11 tháng Mười Một, Ngân hàng Nhà nước mua đô la giao ngay của các ngân hàng ở giá 25.500 đồng, mỗi thứ Hai và thứ Tư: lịch mua đầu tiên được công bố. Khác với hoán đổi, đô la mua vào cộng vào dự trữ và bơm thêm tiền đồng. Khối lượng chưa được công bố.",
+      "en": "Since November 11 the State Bank has bought dollars on the spot market from banks at 25,500 dong, every Monday and Wednesday: its first published schedule. Unlike the swap, the dollars bought add to reserves and put more dong into the system. The volumes have not been published.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "25.500 đồng/USD",
+         "en": "25,500 dong/USD"
+        },
+        "l": {
+         "vi": "giá mua giao ngay của Ngân hàng Nhà nước",
+         "en": "State Bank spot purchase price"
+        }
+       },
+       {
+        "v": {
+         "vi": "11/11/2026",
+         "en": "11 Nov 2026"
+        },
+        "l": {
+         "vi": "bắt đầu, thứ Hai và thứ Tư",
+         "en": "start; Mondays and Wednesdays"
+        }
+       }
+      ],
+      "src": "data/policy.json fx_intervention 2026-11-11 (easing; first fixed schedule); data/finance.json sbv.operations 2026-11-11 (value null) and fx note ('unlike the swap, purchases add to FX reserves and inject VND'). #fs-st-band event list shows the 11/11 purchase (Finance answer)."
      },
      {
       "tab": "banks",
@@ -5422,8 +5686,8 @@
        "vi": "TÀI CHÍNH · ĐIỀU CẦN THEO DÕI",
        "en": "FINANCE · WHAT TO WATCH"
       },
-      "vi": "Sáu mốc cần theo dõi. Ngày 20 tháng Mười Một, thông tư mới về xử lý nợ xấu dự kiến có hiệu lực. Ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi lên 95% từ 85%, theo cách tính mới, cùng chuẩn thanh khoản Basel III. Và trong tháng này, kết quả đợt hoán đổi 182 ngày.",
-      "en": "Six markers to watch. On November 20, a new circular on bad-debt resolution is due to take effect. On December 1, the loan-to-deposit cap rises from 85% to 95% under a new formula, with Basel III liquidity standards. And this month, the take-up of the 182-day swap.",
+      "vi": "Sáu mốc cần theo dõi. Ngày 20 tháng Mười Một, thông tư mới về xử lý nợ xấu dự kiến có hiệu lực. Ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi lên 95% từ 85%, theo cách tính mới, cùng chuẩn thanh khoản Basel III. Và mỗi thứ Hai, thứ Tư, các phiên mua đô la của Ngân hàng Nhà nước.",
+      "en": "Six markers to watch. On November 20, a new circular on bad-debt resolution is due to take effect. On December 1, the loan-to-deposit cap rises from 85% to 95% under a new formula, with Basel III liquidity standards. And every Monday and Wednesday, the State Bank's dollar purchases.",
       "big": true,
       "figs": [
        {
@@ -5458,16 +5722,16 @@
        },
        {
         "v": {
-         "vi": "182 ngày",
-         "en": "182 days"
+         "vi": "thứ Hai, thứ Tư",
+         "en": "Mon, Wed"
         },
         "l": {
-         "vi": "hoán đổi USD/VND",
-         "en": "USD/VND swap"
+         "vi": "phiên mua đô la, khối lượng chưa công bố",
+         "en": "dollar purchases, volumes unpublished"
         }
        }
       ],
-      "src": "rendered fs-st-watch (33/2026/TT-NHNN effective date from a document listing, full text not checked; 50/2026/TT-NHNN)"
+      "src": "rendered fs-st-watch (33/2026/TT-NHNN effective date from a document listing, full text not checked; 50/2026/TT-NHNN); data/policy.json fx_intervention 2026-11-11 (swap take-up item replaced: ~50 tn reported 9/11)."
      },
      {
       "tab": "banks",
@@ -5476,10 +5740,10 @@
        "vi": "TÀI CHÍNH · ĐIỀU CẦN THEO DÕI",
        "en": "FINANCE · WHAT TO WATCH"
       },
-      "vi": "Ngày 8 và 9 tháng Mười Hai, Fed họp kỳ kế tiếp. Ngày 31 tháng Mười Hai, mục tiêu tín dụng 15%, còn 3,06 điểm tính từ số ngày 26 tháng Mười. Và hằng tháng, lãi suất huy động và cho vay mới: mức giảm có tới được 1,5 đến 2 điểm hay không.",
-      "en": "On December 8 and 9, the Fed meets next. On December 31, the 15% credit target, with 3.06 points left as of October 26. And month by month, new deposit and lending rates: whether the cuts reach the 1.5 to 2 points asked.",
+      "vi": "Ngày 8 và 9 tháng Mười Hai, Fed họp; ngày 11 tháng Mười Một, thị trường đặt 88,8% khả năng tăng 0,25 điểm. Ngày 31 tháng Mười Hai, mục tiêu tín dụng 15%, còn 3,06 điểm tính từ số ngày 26 tháng Mười. Và hằng tháng, lãi suất mới: mức giảm có tới được 1,5 đến 2 điểm hay không.",
+      "en": "On December 8 and 9, the Fed meets; on November 11 markets put the odds of a 0.25-point rise at 88.8%. On December 31, the 15% credit target, with 3.06 points left as of October 26. And month by month, new rates: whether the cuts reach the 1.5 to 2 points asked.",
       "play": false,
-      "src": "rendered fs-st-watch; data/finance.json fx_fed (next meeting 8–9 Dec 2026)",
+      "src": "rendered fs-st-watch; data/finance.json fx_fed (next meeting 8–9 Dec 2026); data/finance.json fed (CME FedWatch 11/11/2026: 88.8% +25bp, 11.2% +50bp).",
       "figs": [
        {
         "v": {
@@ -5489,6 +5753,16 @@
         "l": {
          "vi": "kỳ họp kế tiếp của Fed",
          "en": "next Fed meeting"
+        }
+       },
+       {
+        "v": {
+         "vi": "88,8% · +0,25 điểm · 11/11",
+         "en": "88.8% · +0.25 points · 11 Nov"
+        },
+        "l": {
+         "vi": "khả năng Fed tăng, CME FedWatch",
+         "en": "odds of a Fed rise, CME FedWatch"
         }
        },
        {
@@ -5768,12 +6042,47 @@
      {
       "tab": "banks",
       "chap": "pol-st-explore",
+      "target": "#pol-six",
+      "k": {
+       "vi": "CHÍNH SÁCH · HAI BƯỚC NỚI MỚI",
+       "en": "POLICY · TWO NEW EASING MOVES"
+      },
+      "vi": "Hai chấm mới trên dòng thời gian, cùng ngày 11 tháng Mười Một, đều là nới lỏng: Ngân hàng Nhà nước bắt đầu mua đô la giao ngay, và Thủ tướng nâng hạn mức vay thương mại nước ngoài tự vay, tự trả từ khoảng 6,1 tỷ lên 10 tỷ USD một năm.",
+      "en": "Two new dots on the timeline, both on November 11, are easing moves: the State Bank began buying dollars on the spot market, and the Prime Minister raised the cap on self-guaranteed foreign commercial borrowing from about 6.1 to 10 billion dollars a year.",
+      "play": false,
+      "figs": [
+       {
+        "v": {
+         "vi": "11/11/2026",
+         "en": "11 Nov 2026"
+        },
+        "l": {
+         "vi": "hai bước nới lỏng",
+         "en": "two easing moves"
+        }
+       },
+       {
+        "v": {
+         "vi": "≈ 6,1 → 10 tỷ USD/năm",
+         "en": "≈ 6.1 → 10 bn USD/yr"
+        },
+        "l": {
+         "vi": "hạn mức vay nước ngoài tự vay, tự trả",
+         "en": "self-guaranteed foreign borrowing cap"
+        }
+       }
+      ],
+      "src": "data/policy.json fx_intervention 2026-11-11 (easing, blue dot on #pol-six) and external_commercial_borrowing_limit (352/QĐ-TTg ~USD 6.124bn → 2184/QĐ-TTg 11/11/2026 USD 10bn/yr, easing; orange diamond on #pol-six). Policy answer 2026-11-13."
+     },
+     {
+      "tab": "banks",
+      "chap": "pol-st-explore",
       "k": {
        "vi": "CHÍNH SÁCH · TÀI KHÓA",
        "en": "POLICY · FISCAL"
       },
-      "vi": "Phía tài khóa: thuế giá trị gia tăng giảm từ 10% xuống 8%. Mục tiêu bội chi Quốc hội phê duyệt là 4,2% GDP; Bộ Tài chính ước 4,1%; thực hiện năm 2025 khoảng 3,6%. Theo báo chí, kế hoạch phát hành trái phiếu Chính phủ giảm từ 500 xuống 400 nghìn tỷ đồng; chưa thấy văn bản.",
-      "en": "On the fiscal side: VAT cut from 10% to 8%. The deficit target approved by the National Assembly is 4.2% of GDP; the Finance Ministry estimates 4.1%; the 2025 outturn was about 3.6%. Press reports say the government bond plan fell from 500 to 400 trillion dong; no document has been found.",
+      "vi": "Phía tài khóa: thuế giá trị gia tăng giảm từ 10% xuống 8%. Bội chi năm 2026: dự toán 4,2% GDP, Bộ Tài chính ước 4,1%; năm 2027, Quốc hội đã thông qua 4,5%. Theo báo chí, kế hoạch phát hành trái phiếu Chính phủ giảm từ 500 xuống 400 nghìn tỷ đồng; chưa thấy văn bản.",
+      "en": "On the fiscal side: VAT cut from 10% to 8%. The 2026 deficit: 4.2% of GDP planned, 4.1% estimated by the Finance Ministry; for 2027 the National Assembly has passed 4.5%. Press reports say the government bond plan fell from 500 to 400 trillion dong; no document has been found.",
       "play": false,
       "figs": [
        {
@@ -5808,12 +6117,12 @@
        },
        {
         "v": {
-         "vi": "≈ 3,6%",
-         "en": "≈ 3.6%"
+         "vi": "4,5% GDP",
+         "en": "4.5% of GDP"
         },
         "l": {
-         "vi": "bội chi thực hiện 2025",
-         "en": "2025 deficit outturn"
+         "vi": "bội chi 2027, Quốc hội thông qua 9/11",
+         "en": "2027 deficit, passed 9 Nov"
         }
        },
        {
@@ -5827,7 +6136,7 @@
         }
        }
       ],
-      "src": "data/policy.json instruments (VAT, deficit, budget_outturn, gov_bond_issuance: plan cut rests on two press lines, document not identified; Research item 5)"
+      "src": "data/policy.json instruments (VAT, deficit, budget_outturn, gov_bond_issuance: plan cut rests on two press lines, document not identified; Research item 5) 2027: data/policy.json budget_deficit_target 2027-01-01 4.5% (passed 09/11/2026); 2025 outturn 3.6% dropped for length."
      },
      {
       "tab": "banks",
@@ -5890,8 +6199,8 @@
        "vi": "CHÍNH SÁCH · TIỀN TỆ",
        "en": "POLICY · MONETARY"
       },
-      "vi": "Phía tiền tệ: lãi suất thị trường mở 4,5%, trần lãi suất tiền gửi kỳ hạn 1 đến dưới 6 tháng 4,75%, và tỷ giá trung tâm 25.615 đồng một đô la.",
-      "en": "On the monetary side: the open-market rate is 4.5%, the deposit-rate cap for 1 to under 6 months is 4.75%, and the central rate is 25,615 dong to the dollar.",
+      "vi": "Phía tiền tệ: lãi suất thị trường mở 4,5%, trần lãi suất tiền gửi kỳ hạn 1 đến dưới 6 tháng 4,75%, và tỷ giá trung tâm 25.623 đồng một đô la ngày 12 tháng Mười Một.",
+      "en": "On the monetary side: the open-market rate is 4.5%, the deposit-rate cap for 1 to under 6 months is 4.75%, and the central rate was 25,623 dong to the dollar on November 12.",
       "play": false,
       "figs": [
        {
@@ -5916,16 +6225,16 @@
        },
        {
         "v": {
-         "vi": "25.615",
-         "en": "25,615"
+         "vi": "25.623 · 12/11/2026",
+         "en": "25,623 · 12 Nov 2026"
         },
         "l": {
-         "vi": "tỷ giá trung tâm, 6/11/2026",
-         "en": "central rate, 6 Nov 2026"
+         "vi": "tỷ giá trung tâm",
+         "en": "central rate"
         }
        }
       ],
-      "src": "data/policy.json instruments (OMO, deposit cap, central rate 6/11/2026)"
+      "src": "data/policy.json instruments (OMO 4.5% held 9/11, deposit cap, central rate 25,623 at 12/11/2026)"
      },
      {
       "tab": "banks",
@@ -5934,39 +6243,19 @@
        "vi": "CHÍNH SÁCH · ĐIỀU CẦN THEO DÕI",
        "en": "POLICY · WHAT TO WATCH"
       },
-      "vi": "Cần theo dõi: kỳ họp Quốc hội đến ngày 21 tháng Mười Một, với dự toán 2027 đề xuất bội chi 4,5% GDP, chưa biểu quyết; ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi mới có hiệu lực; ngày 31 tháng Mười Hai, mức giảm thuế giá trị gia tăng hết hạn, và đến ngày 6 tháng Mười Một chưa thấy văn bản gia hạn.",
-      "en": "To watch: the National Assembly session to November 21, with a 2027 budget proposing a 4.5% of GDP deficit, not yet voted; on December 1, the new loan-to-deposit cap takes effect; on December 31, the VAT cut expires, and as of November 6 no extension had been found.",
+      "vi": "Cần theo dõi: Quốc hội họp đợt hai ngày 20 và 21 tháng Mười Một; chưa có đề xuất gia hạn mức giảm thuế giá trị gia tăng, vốn hết hạn ngày 31 tháng Mười Hai, và đến ngày 12 tháng Mười Một Bộ Tài chính mới đang nghiên cứu. Ngày 1 tháng Mười Hai, trần cho vay trên tiền gửi mới có hiệu lực.",
+      "en": "To watch: the National Assembly sits again on November 20 and 21; no extension of the VAT cut, which expires on December 31, has been proposed, and as of November 12 the Finance Ministry was only studying one. On December 1, the new loan-to-deposit cap takes effect.",
       "big": true,
       "play": false,
       "figs": [
        {
         "v": {
-         "vi": "đến 21/11/2026",
-         "en": "to 21 Nov 2026"
+         "vi": "20–21/11/2026",
+         "en": "20–21 Nov 2026"
         },
         "l": {
-         "vi": "kỳ họp Quốc hội",
-         "en": "National Assembly session"
-        }
-       },
-       {
-        "v": {
-         "vi": "4,5% GDP",
-         "en": "4.5% of GDP"
-        },
-        "l": {
-         "vi": "bội chi 2027, đề xuất",
-         "en": "2027 deficit, proposed"
-        }
-       },
-       {
-        "v": {
-         "vi": "1/12/2026",
-         "en": "Dec 1, 2026"
-        },
-        "l": {
-         "vi": "trần cho vay / tiền gửi mới",
-         "en": "new loan-to-deposit cap"
+         "vi": "Quốc hội họp đợt hai",
+         "en": "National Assembly, phase two"
         }
        },
        {
@@ -5981,16 +6270,26 @@
        },
        {
         "v": {
-         "vi": "6/11/2026",
-         "en": "6 Nov 2026"
+         "vi": "12/11/2026",
+         "en": "12 Nov 2026"
         },
         "l": {
-         "vi": "chưa thấy văn bản gia hạn",
-         "en": "no extension found"
+         "vi": "Bộ Tài chính nghiên cứu gia hạn",
+         "en": "Finance Ministry studying extension"
+        }
+       },
+       {
+        "v": {
+         "vi": "1/12/2026",
+         "en": "Dec 1, 2026"
+        },
+        "l": {
+         "vi": "trần cho vay / tiền gửi mới",
+         "en": "new loan-to-deposit cap"
         }
        }
       ],
-      "src": "data/policy.json fis stance; rendered st-watch, fs-st-watch"
+      "src": "data/policy.json vat_cut_2pct (studying, 12/11; Policy: no draft, nothing on the 20–21/11 agenda; last extension was an NA resolution), fis.stance; strategy_directives.json party_direction.next (phase 2); rendered fs-st-watch."
      }
     ]
    },

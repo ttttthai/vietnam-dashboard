@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-06",
+ "as_of": "2026-11-13",
  "built_by": "Research agent",
  "standing_task": "User: pay special focus (create a priority list) to FDI disbursement vs registered news, remittances, tourism. Kept every run; items ranked.",
  "verification_legend": {
@@ -211,6 +211,10 @@
     "oct_only_disbursed_busd": 3.01,
     "needed_nov_dec_for_30bn_low_end_busd": 5.92,
     "note": "Oct-only is 10M less 9M and mixes any revision. The ratio rose from 41.8% at 9M because October registration was small, not because disbursement sped up."
+   },
+   "status_2026_11_13": {
+    "status": "no release since 03/11; nothing due before 03/12",
+    "news": "Japan visit (09–11/11): Ô Môn 3 JICA loan, nuclear MoU, AI cooperation (Strategy) — not FDI registrations; no large project registration or withdrawal seen in agent reports this week"
    }
   },
   {
@@ -319,9 +323,19 @@
     {
      "what": "Q2-2026 BoP: secondary claim 'current-account deficit 11.1 bn' (ASEAN Macro Monitor)",
      "assessment": "Unconfirmed; correctly not stored."
+    },
+    {
+     "what": "HCMC 9M y/y −13.8% implies 9M-2025 ≈7.97 bn vs 7.94 bn in 2025 press",
+     "assessment": "Small base difference, possibly the merged-HCMC boundary; recorded in Economy's base_note. Do not recompute the published rate."
     }
    ],
    "news_watch": [
+    {
+     "date": "2026-10-20",
+     "item": "HCMC 9M-2026 remittances ~6.87 bn (−13.8%); Q3 2.835 bn (+3.6% y/y, first y/y rise of 2026); Asia 59.1% of Q3; FY outlook raised to 9.5–9.8 bn",
+     "url": "https://tienphong.vn/bat-ngo-kieu-hoi-chuyen-ve-tphcm-post1886764.tpo",
+     "verified": "page read by Economy 2026-11-13"
+    },
     {
      "date": "2026-07-22",
      "item": "HCMC H1-2026 remittances 4.037 bn, −22.8% yoy; full-year 2026 seen 8.6-8.9 bn (vs 10.34 bn in 2025)",
@@ -346,6 +360,12 @@
     "hcmc": "latest still H1-2026 (4.037 bn); 9M-2026 overdue, not found by Economy",
     "bop_q2_2026": "BoP Q2 now held (current account -11.1 bn) but secondary income is null because the source article omits it and the SBV table is 403",
     "next": "each weekly run; 2027-01-20..25 for FY2026"
+   },
+   "status_2026_11_13": {
+    "national_sbv": "null, nothing new",
+    "hcmc": "9M-2026 now held (ECONFLOW.remit.hcmc_9M_2026_busd ~6.87 bn, −13.8% y/y; Q3 2.835 bn, +3.6% y/y; FY outlook 9.5–9.8 bn). Published 20/10: the 'overdue' status of 06/11 was a search miss.",
+    "bop_q3_2026": "not published; Q2 took ~4 months",
+    "next": "FY2026 HCMC 2027-01-15..25; national statement January"
    }
   },
   {
@@ -492,6 +512,10 @@
     "run_rate_note": "derived: two months at October's pace give about 3.7 m, so the 25 m target needs a much stronger year-end",
     "receipts_outbound": "no 10M figure published",
     "next": "2026-12-03"
+   },
+   "status_2026_11_13": {
+    "status": "no release since 03/11; next 03/12",
+    "news": "NA tourism resolution draft debated 07/11 (Strategy DT-NQ-DULICH-2026); Grab fee cut and HCMC free buses are Living items, not tourism data"
    }
   }
  ],
@@ -507,10 +531,10 @@
   {
    "rank": 2,
    "key": "remittances",
-   "held": "national 2025/2026 null; HCMC H1-2026 4.037",
-   "published": "national only \"over 16 bn\" (speech); HCMC H1",
-   "status": "HCMC 9M overdue; BoP Q2 held without secondary income",
-   "next": "weekly run; FY 2027-01-20..25"
+   "held": "HCMC 9M-2026 6.87 bn; national null",
+   "published": "same (Region 2 via Tiền Phong 20/10)",
+   "status": "current for HCMC; national and BoP Q3 not published",
+   "next": "2027-01-15..25 (HCMC FY)"
   },
   {
    "rank": 3,

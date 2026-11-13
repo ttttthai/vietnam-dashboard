@@ -38,7 +38,9 @@ Headlines and notes are computed from your numbers.
   date under this rule: record what is really published.
 - Population: the 1 April survey's headline figures (average population, TFR, SRB, e0, preliminary) come
   with the January annual report; full tables mid-year. Census every 10 years (next 1/4/2029).
-- World Bank WDI updates ~1 July and in December; UN WPP 2026 is postponed to 2027. Nothing in this tab
+- World Bank WDI updates ~1 July and in December, plus off-cycle updates (seen 8 Oct and 11 Nov 2026): check the
+  API `lastupdated` field in each weekly run. The API throttles bursts: one indicator per call, short pauses, one
+  retry (Research, 2026-11-13). UN WPP 2026 is postponed to 2027. Nothing in this tab
   needs a monthly check.
 - Access (2026-11-06): nso.gov.vn, pxweb and api.worldbank.org are reachable; imf.org is intermittent. Label world-rank values as
   World Bank (population 101.6 m, GDP per capita 5,066 USD for 2025) — they differ from NSO (102.3 m; 5,026 USD).

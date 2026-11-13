@@ -1,11 +1,11 @@
 {
  "_meta": {
   "owner": "Living agent",
-  "as_of": "2026-11-12",
+  "as_of": "2026-11-13",
   "note": "Top-level keys are the page constants this file feeds; run tools/build/embed_data.py after editing."
  },
  "LIVING": {
-  "as_of": "2026-11-12",
+  "as_of": "2026-11-13",
   "note_vi": "Giá niêm yết bằng VND. Hàng tiêu dùng đóng gói: giá trên trang bán hàng trực tuyến của LOTTE Mart theo từng cửa hàng (Hà Nội: Tây Hồ/Ba Đình; Đà Nẵng; TP.HCM: Nam Sài Gòn) đọc ngày 10/11/2026, kiểm tra lại ngày 12/11/2026 (không đổi) – là giá khách trả hôm đó, có thể là giá khuyến mãi (khi đó ghi 'regular' là giá gốc). Thực phẩm tươi TP.HCM: Bách Hóa XANH. Điện, xăng, học phí: biểu giá toàn quốc. Nước: biểu giá chính thức từng thành phố. Thuê nhà, ăn ngoài, cắt tóc: Numbeo (dữ liệu cộng đồng, chỉ tham khảo, đánh dấu estimate). Giá trị tính từ biểu giá được đánh dấu estimate.",
   "note_en": "Prices in VND. Packaged goods: LOTTE Mart online shelf prices for a named store in each city (Hanoi: Tay Ho/Ba Dinh; Da Nang; HCMC: Nam Sai Gon), read 10 Nov 2026, re-checked 12 Nov 2026 (unchanged) – the price a shopper paid that day, which may be a promotion (then 'regular' holds the list price). Fresh food in HCMC: Bach Hoa Xanh. Electricity, fuel, tuition: national tariffs. Water: each city's official tariff. Rent, eating out, haircut: Numbeo (crowd-sourced, reference only, flagged estimate). Values computed from tariffs are flagged estimate.",
   "cities": [
@@ -95,7 +95,7 @@
       "basis": "shelf price (online, store-specific)",
       "regular": 210500,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 210000,
@@ -107,7 +107,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 131900,
@@ -121,7 +121,7 @@
       "basis": "shelf price (online, store-specific)",
       "regular": 210500,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Hà Nội và TP.HCM đang khuyến mãi (giá gốc 210.500đ); Đà Nẵng niêm yết 210.000đ.",
@@ -149,7 +149,7 @@
       "basis": "shelf price (online, store-specific)",
       "regular": 228900,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 249000,
@@ -161,7 +161,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 165900,
@@ -175,7 +175,7 @@
       "basis": "shelf price (online, store-specific)",
       "regular": 233000,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Giá khuyến mãi ở Hà Nội, TP.HCM; giá gốc 228.900–233.000đ.",
@@ -206,7 +206,7 @@
       "regular": 45300,
       "promo": true,
       "note": "Flash Sale -7% (tối đa 10 kg/đơn)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Chỉ có giá TP.HCM (Bách Hóa XANH). Giá chợ/siêu thị Hà Nội, Đà Nẵng chưa tìm được nguồn có ngày.",
@@ -244,7 +244,7 @@
       "regular": 28500,
       "promo": true,
       "note": "giá theo cân, có thể dao động theo khay; 12/11/2026 có thêm suất Flash Sale 21.124đ (không dùng)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Chỉ có giá TP.HCM.",
@@ -275,7 +275,7 @@
       "regular": 28000,
       "promo": true,
       "note": "mua từ 2 hộp: 25.000đ/hộp",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Chỉ có giá TP.HCM. LOTTE Mart Nam Sài Gòn: trứng Happy Egg hộp 10 quả 35.900đ.",
@@ -305,7 +305,7 @@
       "basis": "shelf price (online)",
       "regular": 33200,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Chỉ có giá TP.HCM; đang khuyến mãi -37%.",
@@ -331,7 +331,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 36900,
@@ -343,7 +343,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 41500,
@@ -355,7 +355,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     }
    },
@@ -379,7 +379,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 4000,
@@ -391,7 +391,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 4500,
@@ -431,7 +431,7 @@
       "basis": "shelf price (online, store-specific)",
       "regular": 70500,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 71000,
@@ -443,7 +443,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 60900,
@@ -457,7 +457,7 @@
       "basis": "shelf price (online, store-specific)",
       "regular": 68900,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     }
    },
@@ -483,7 +483,7 @@
       "basis": "shelf price (online, store-specific)",
       "regular": 34500,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 31000,
@@ -495,7 +495,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 30500,
@@ -509,7 +509,7 @@
       "basis": "shelf price (online, store-specific)",
       "regular": 34500,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     }
    },
@@ -533,7 +533,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 36500,
@@ -546,7 +546,7 @@
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
       "note": "mã hàng khác (10 độ đạm, cùng tên/dung tích)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 38500,
@@ -558,7 +558,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     }
    },
@@ -582,7 +582,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 110000,
@@ -594,7 +594,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 159900,
@@ -606,7 +606,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Đà Nẵng niêm yết thấp hơn nhiều (110.000đ), không ghi giá gốc.",
@@ -632,7 +632,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 85100,
@@ -644,7 +644,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 85100,
@@ -656,7 +656,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Cùng chuỗi, cùng giá ở cả ba thành phố.",
@@ -682,7 +682,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": null,
      "hcmc": {
@@ -695,7 +695,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Không tìm thấy gói đúng 3 kg; trang Đà Nẵng không hiển thị giá.",
@@ -721,7 +721,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": null,
      "hcmc": {
@@ -734,7 +734,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     }
    },
@@ -758,7 +758,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": null,
      "hcmc": null
@@ -787,7 +787,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": null
     },
@@ -816,7 +816,7 @@
       "basis": "shelf price (online, store-specific)",
       "regular": 156900,
       "promo": true,
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": null,
      "hcmc": null
@@ -844,7 +844,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 13300,
@@ -856,7 +856,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": null
     }
@@ -881,7 +881,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 22000,
@@ -893,7 +893,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 25900,
@@ -905,7 +905,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     }
    },
@@ -929,7 +929,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 349000,
@@ -941,7 +941,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 407900,
@@ -953,7 +953,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     }
    },
@@ -978,7 +978,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 20700,
@@ -990,7 +990,7 @@
       },
       "estimate": false,
       "basis": "shelf price (online, store-specific)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13"
      }
     }
    },
@@ -1005,8 +1005,8 @@
     "unit_en": "pair",
     "prices": {
      "hanoi": {
-      "value": 1170610,
-      "date": "2026-11-06",
+      "value": 1171431,
+      "date": "2026-11-10",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1014,7 +1014,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,130 entries / 88 contributors (12 months)"
+      "note": "1,131 entries / 87 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 1066667,
@@ -1026,11 +1027,12 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "738 entries / 77 contributors (12 months)"
+      "note": "746 entries / 78 contributors (12 months); Numbeo last update 11/11/2026",
+      "checked": "2026-11-13"
      },
      "hcmc": {
-      "value": 1341718,
-      "date": "2026-11-06",
+      "value": 1342655,
+      "date": "2026-11-10",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1038,11 +1040,24 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,291 entries / 110 contributors (12 months)"
+      "note": "1,297 entries / 110 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      }
     },
     "note_vi": "Số liệu cộng đồng (crowd-sourced), chỉ để tham khảo.",
-    "note_en": "Crowd-sourced; reference only."
+    "note_en": "Crowd-sourced; reference only.",
+    "history": [
+     {
+      "date": "2026-11-06",
+      "city": "hanoi",
+      "value": 1170610
+     },
+     {
+      "date": "2026-11-06",
+      "city": "hcmc",
+      "value": 1341718
+     }
+    ]
    },
    {
     "id": "electricity_200kwh",
@@ -1317,44 +1332,64 @@
     "unit_en": "litre",
     "prices": {
      "hanoi": {
-      "value": 21150,
-      "date": "2026-11-05",
+      "value": 19840,
+      "date": "2026-11-12",
       "where": "Petrolimex vùng 1",
       "src": {
-       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
-       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+       "name": "Báo Lào Cai – Giá xăng dầu đồng loạt giảm mạnh từ 15h hôm nay (12/11), 12/11/2026 15:02 (điều hành liên Bộ Công Thương – Tài chính, hiệu lực 15:00 ngày 12/11/2026); đối chiếu LuatVietnam 12/11/2026 và Báo Văn hóa 12/11/2026 (giá tối đa 19.845 / 19.399 đ/lít)",
+       "url": "https://baolaocai.vn/gia-xang-dau-dong-loat-giam-manh-tu-15h-hom-nay-1211-post914311.html"
       },
       "estimate": false,
       "basis": "official retail price (zone 1)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13",
+      "effective": "2026-11-12 15:00"
      },
      "danang": {
-      "value": 21150,
-      "date": "2026-11-05",
+      "value": 19840,
+      "date": "2026-11-12",
       "where": "Petrolimex vùng 1",
       "src": {
-       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
-       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+       "name": "Báo Lào Cai – Giá xăng dầu đồng loạt giảm mạnh từ 15h hôm nay (12/11), 12/11/2026 15:02 (điều hành liên Bộ Công Thương – Tài chính, hiệu lực 15:00 ngày 12/11/2026); đối chiếu LuatVietnam 12/11/2026 và Báo Văn hóa 12/11/2026 (giá tối đa 19.845 / 19.399 đ/lít)",
+       "url": "https://baolaocai.vn/gia-xang-dau-dong-loat-giam-manh-tu-15h-hom-nay-1211-post914311.html"
       },
       "estimate": false,
       "basis": "official retail price (zone 1)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13",
+      "effective": "2026-11-12 15:00"
      },
      "hcmc": {
-      "value": 21150,
-      "date": "2026-11-05",
+      "value": 19840,
+      "date": "2026-11-12",
       "where": "Petrolimex vùng 1",
       "src": {
-       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
-       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+       "name": "Báo Lào Cai – Giá xăng dầu đồng loạt giảm mạnh từ 15h hôm nay (12/11), 12/11/2026 15:02 (điều hành liên Bộ Công Thương – Tài chính, hiệu lực 15:00 ngày 12/11/2026); đối chiếu LuatVietnam 12/11/2026 và Báo Văn hóa 12/11/2026 (giá tối đa 19.845 / 19.399 đ/lít)",
+       "url": "https://baolaocai.vn/gia-xang-dau-dong-loat-giam-manh-tu-15h-hom-nay-1211-post914311.html"
       },
       "estimate": false,
       "basis": "official retail price (zone 1)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13",
+      "effective": "2026-11-12 15:00"
      }
     },
     "note_vi": "Ba thành phố thuộc vùng 1, cùng giá. Từ 2026 xăng RON95 bán dưới dạng E10.",
-    "note_en": "All three cities are zone 1, same price. RON95 is now sold as E10."
+    "note_en": "All three cities are zone 1, same price. RON95 is now sold as E10.",
+    "history": [
+     {
+      "date": "2026-11-05",
+      "city": "hanoi",
+      "value": 21150
+     },
+     {
+      "date": "2026-11-05",
+      "city": "danang",
+      "value": 21150
+     },
+     {
+      "date": "2026-11-05",
+      "city": "hcmc",
+      "value": 21150
+     }
+    ]
    },
    {
     "id": "petrol_e5_ron92",
@@ -1367,42 +1402,62 @@
     "unit_en": "litre",
     "prices": {
      "hanoi": {
-      "value": 20890,
-      "date": "2026-11-05",
+      "value": 19390,
+      "date": "2026-11-12",
       "where": "Petrolimex vùng 1",
       "src": {
-       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
-       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+       "name": "Báo Lào Cai – Giá xăng dầu đồng loạt giảm mạnh từ 15h hôm nay (12/11), 12/11/2026 15:02 (điều hành liên Bộ Công Thương – Tài chính, hiệu lực 15:00 ngày 12/11/2026); đối chiếu LuatVietnam 12/11/2026 và Báo Văn hóa 12/11/2026 (giá tối đa 19.845 / 19.399 đ/lít)",
+       "url": "https://baolaocai.vn/gia-xang-dau-dong-loat-giam-manh-tu-15h-hom-nay-1211-post914311.html"
       },
       "estimate": false,
       "basis": "official retail price (zone 1)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13",
+      "effective": "2026-11-12 15:00"
      },
      "danang": {
-      "value": 20890,
-      "date": "2026-11-05",
+      "value": 19390,
+      "date": "2026-11-12",
       "where": "Petrolimex vùng 1",
       "src": {
-       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
-       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+       "name": "Báo Lào Cai – Giá xăng dầu đồng loạt giảm mạnh từ 15h hôm nay (12/11), 12/11/2026 15:02 (điều hành liên Bộ Công Thương – Tài chính, hiệu lực 15:00 ngày 12/11/2026); đối chiếu LuatVietnam 12/11/2026 và Báo Văn hóa 12/11/2026 (giá tối đa 19.845 / 19.399 đ/lít)",
+       "url": "https://baolaocai.vn/gia-xang-dau-dong-loat-giam-manh-tu-15h-hom-nay-1211-post914311.html"
       },
       "estimate": false,
       "basis": "official retail price (zone 1)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13",
+      "effective": "2026-11-12 15:00"
      },
      "hcmc": {
-      "value": 20890,
-      "date": "2026-11-05",
+      "value": 19390,
+      "date": "2026-11-12",
       "where": "Petrolimex vùng 1",
       "src": {
-       "name": "Báo Văn hóa – Giá xăng dầu hôm nay 7/11/2026 (bảng Petrolimex hiệu lực 15:00 ngày 5/11/2026)",
-       "url": "https://baovanhoa.vn/gia-xang-dau-hom-nay-7-11-2026-e5-vung-1-o-20-890-dong-lit.html"
+       "name": "Báo Lào Cai – Giá xăng dầu đồng loạt giảm mạnh từ 15h hôm nay (12/11), 12/11/2026 15:02 (điều hành liên Bộ Công Thương – Tài chính, hiệu lực 15:00 ngày 12/11/2026); đối chiếu LuatVietnam 12/11/2026 và Báo Văn hóa 12/11/2026 (giá tối đa 19.845 / 19.399 đ/lít)",
+       "url": "https://baolaocai.vn/gia-xang-dau-dong-loat-giam-manh-tu-15h-hom-nay-1211-post914311.html"
       },
       "estimate": false,
       "basis": "official retail price (zone 1)",
-      "checked": "2026-11-12"
+      "checked": "2026-11-13",
+      "effective": "2026-11-12 15:00"
      }
-    }
+    },
+    "history": [
+     {
+      "date": "2026-11-05",
+      "city": "hanoi",
+      "value": 20890
+     },
+     {
+      "date": "2026-11-05",
+      "city": "danang",
+      "value": 20890
+     },
+     {
+      "date": "2026-11-05",
+      "city": "hcmc",
+      "value": 20890
+     }
+    ]
    },
    {
     "id": "bike_hailing_5km",
@@ -1561,8 +1616,8 @@
     "unit_en": "meal",
     "prices": {
      "hanoi": {
-      "value": 52500,
-      "date": "2026-11-06",
+      "value": 50000,
+      "date": "2026-11-10",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1570,7 +1625,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,130 entries / 88 contributors (12 months)"
+      "note": "1,131 entries / 87 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 60000,
@@ -1582,11 +1638,12 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "738 entries / 77 contributors (12 months)"
+      "note": "746 entries / 78 contributors (12 months); Numbeo last update 11/11/2026",
+      "checked": "2026-11-13"
      },
      "hcmc": {
-      "value": 54356,
-      "date": "2026-11-06",
+      "value": 54768,
+      "date": "2026-11-10",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1594,9 +1651,22 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,291 entries / 110 contributors (12 months)"
+      "note": "1,297 entries / 110 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      }
-    }
+    },
+    "history": [
+     {
+      "date": "2026-11-06",
+      "city": "hanoi",
+      "value": 52500
+     },
+     {
+      "date": "2026-11-06",
+      "city": "hcmc",
+      "value": 54356
+     }
+    ]
    },
    {
     "id": "meal_midrange_two",
@@ -1618,7 +1688,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,130 entries / 88 contributors (12 months)"
+      "note": "1,131 entries / 87 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 500000,
@@ -1630,7 +1701,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "738 entries / 77 contributors (12 months)"
+      "note": "746 entries / 78 contributors (12 months); Numbeo last update 11/11/2026",
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 600000,
@@ -1642,7 +1714,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,291 entries / 110 contributors (12 months)"
+      "note": "1,297 entries / 110 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      }
     }
    },
@@ -1657,8 +1730,8 @@
     "unit_en": "cup",
     "prices": {
      "hanoi": {
-      "value": 48883,
-      "date": "2026-11-06",
+      "value": 48912,
+      "date": "2026-11-10",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1666,7 +1739,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,130 entries / 88 contributors (12 months)"
+      "note": "1,131 entries / 87 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 43000,
@@ -1678,7 +1752,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "738 entries / 77 contributors (12 months)"
+      "note": "746 entries / 78 contributors (12 months); Numbeo last update 11/11/2026",
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 46955,
@@ -1690,9 +1765,17 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,291 entries / 110 contributors (12 months)"
+      "note": "1,297 entries / 110 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      }
-    }
+    },
+    "history": [
+     {
+      "date": "2026-11-06",
+      "city": "hanoi",
+      "value": 48883
+     }
+    ]
    },
    {
     "id": "rent_1br_centre",
@@ -1705,8 +1788,8 @@
     "unit_en": "month",
     "prices": {
      "hanoi": {
-      "value": 11304737,
-      "date": "2026-11-06",
+      "value": 11302137,
+      "date": "2026-11-10",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1714,11 +1797,12 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,130 entries / 88 contributors (12 months)"
+      "note": "1,131 entries / 87 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      },
      "danang": {
-      "value": 14259665,
-      "date": "2026-11-06",
+      "value": 14268682,
+      "date": "2026-11-11",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1726,11 +1810,12 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "738 entries / 77 contributors (12 months)"
+      "note": "746 entries / 78 contributors (12 months); Numbeo last update 11/11/2026",
+      "checked": "2026-11-13"
      },
      "hcmc": {
-      "value": 15954851,
-      "date": "2026-11-06",
+      "value": 15964985,
+      "date": "2026-11-10",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1738,9 +1823,27 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,291 entries / 110 contributors (12 months)"
+      "note": "1,297 entries / 110 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      }
-    }
+    },
+    "history": [
+     {
+      "date": "2026-11-06",
+      "city": "hanoi",
+      "value": 11304737
+     },
+     {
+      "date": "2026-11-06",
+      "city": "danang",
+      "value": 14259665
+     },
+     {
+      "date": "2026-11-06",
+      "city": "hcmc",
+      "value": 15954851
+     }
+    ]
    },
    {
     "id": "rent_1br_outside",
@@ -1753,8 +1856,8 @@
     "unit_en": "month",
     "prices": {
      "hanoi": {
-      "value": 7505280,
-      "date": "2026-11-06",
+      "value": 7503124,
+      "date": "2026-11-10",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1762,11 +1865,12 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,130 entries / 88 contributors (12 months)"
+      "note": "1,131 entries / 87 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      },
      "danang": {
-      "value": 9223236,
-      "date": "2026-11-06",
+      "value": 9225720,
+      "date": "2026-11-11",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1774,11 +1878,12 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "738 entries / 77 contributors (12 months)"
+      "note": "746 entries / 78 contributors (12 months); Numbeo last update 11/11/2026",
+      "checked": "2026-11-13"
      },
      "hcmc": {
-      "value": 7736120,
-      "date": "2026-11-06",
+      "value": 7738771,
+      "date": "2026-11-10",
       "where": "Numbeo (crowd-sourced average)",
       "src": {
        "name": "Numbeo – Cost of Living (crowd-sourced)",
@@ -1786,9 +1891,27 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,291 entries / 110 contributors (12 months)"
+      "note": "1,297 entries / 110 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      }
-    }
+    },
+    "history": [
+     {
+      "date": "2026-11-06",
+      "city": "hanoi",
+      "value": 7505280
+     },
+     {
+      "date": "2026-11-06",
+      "city": "danang",
+      "value": 9223236
+     },
+     {
+      "date": "2026-11-06",
+      "city": "hcmc",
+      "value": 7736120
+     }
+    ]
    },
    {
     "id": "haircut_men",
@@ -1810,7 +1933,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,130 entries / 88 contributors (12 months)"
+      "note": "1,131 entries / 87 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 150000,
@@ -1822,7 +1946,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "738 entries / 77 contributors (12 months)"
+      "note": "746 entries / 78 contributors (12 months); Numbeo last update 11/11/2026",
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 210000,
@@ -1834,7 +1959,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,291 entries / 110 contributors (12 months)"
+      "note": "1,297 entries / 110 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      }
     }
    },
@@ -1956,7 +2082,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,130 entries / 88 contributors (12 months)"
+      "note": "1,131 entries / 87 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      },
      "danang": {
       "value": 11605407,
@@ -1968,7 +2095,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "738 entries / 77 contributors (12 months)"
+      "note": "746 entries / 78 contributors (12 months); Numbeo last update 11/11/2026",
+      "checked": "2026-11-13"
      },
      "hcmc": {
       "value": 13723022,
@@ -1980,7 +2108,8 @@
       },
       "estimate": true,
       "basis": "crowd-sourced average",
-      "note": "1,291 entries / 110 contributors (12 months)"
+      "note": "1,297 entries / 110 contributors (12 months); Numbeo last update 10/11/2026",
+      "checked": "2026-11-13"
      }
     }
    }
@@ -2241,9 +2370,9 @@
     }
    ],
    "totals": {
-    "hanoi": 3561604,
-    "danang": 3559000,
-    "hcmc": 3558281
+    "hanoi": 3531604,
+    "danang": 3529000,
+    "hcmc": 3528281
    },
    "note_vi": "Chỉ gồm các mặt hàng có giá ở cả ba thành phố; chưa gồm thịt, cá, rau tươi (thiếu dữ liệu Hà Nội, Đà Nẵng), tiền thuê nhà và ăn ngoài. Điện chưa VAT; nước theo cơ sở VAT của từng thành phố.",
    "note_en": "Only items priced in all three cities; excludes fresh meat, fish and vegetables (no Hanoi/Da Nang data), rent and eating out. Electricity excl. VAT; water on each city's VAT basis."
@@ -2256,14 +2385,14 @@
    "Many LOTTE Mart product pages show no price for a given store (laundry, dish soap, bin bags, toothpaste, shampoo, socks in some cities): null.",
    "Electricity: VAT rate to apply on top of the tariff not verified; basket uses pre-VAT bill.",
    "Hanoi water tariff: VAT treatment not stated in the source; no 2025–2026 change found. HCMC water: no 2026 decision found (plans of +5%/year 2026–2028 reported but not confirmed).",
-   "Da Nang bus fare, Grab/Be fares for Da Nang, motorbike parking fees (Hanoi Decision 5794/QĐ-UBND, Oct 2026, amounts not read) and HCMC metro status under the free-bus programme: not found.",
+   "Da Nang bus fare, Grab/Be fares for Da Nang, motorbike parking fees (Hanoi Decision 5794/QĐ-UBND, Oct 2026, amounts not read) and HCMC metro status under the free-bus programme: not found. 13/11/2026: press reports Hanoi Decision 5794/QĐ-UBND (15/10/2026) sets 25,000 per day-and-night for bicycles/motorbikes and up to 70,000/60 min for cars; the per-turn motorbike daytime fee was not found. Grab cut its platform fee from 10/11/2026 12:00 (GrabBike 2–6 km: 3,000 → 2,000; ≤2 km: 1,000) until 25/02/2027, but the base per-km fare was not published, so no Grab fare is shown. HCMC free bus fares run to 31/12/2026; no extension into 2027 found.",
    "Eating out: only Hanoi phở has a dated press figure; bánh mì, cơm tấm, iced milk coffee not sourced; Numbeo used as crowd-sourced reference.",
    "Basic T-shirt price not sourced; jeans from Numbeo only.",
-   "Doctor visit: 42,100 is the 2023 insurance price for class I hospitals; a later MoH update (possibly 50,600) seen but not verified.",
+   "Doctor visit: 42,100 is the 2023 insurance price for class I hospitals (Thông tư 22/2023/TT-BYT). A 2026 price list of Bệnh viện Nhi đồng Thành phố (TP.HCM, June 2026) shows 50,600 for an insurance exam, but the legal basis and whether it applies to all class I hospitals were not found (checked 13/11/2026); value kept.",
    "Mobile plan read via search index of the official Viettel 5G page (page is JavaScript-rendered).",
    "LPG: November 2026 PV GAS prices taken from press price tables (Techz 2 Nov, Thuong Truong 12 Nov), not from a PV GAS notice; Da Nang figure has no brand; Petrolimex Hanoi figures in the press are inconsistent between October (644,122) and November (598,752, reported as unchanged).",
    "12 Nov 2026: LOTTE Mart Nam Sai Gon (nsg) page for Hao Hao 75 g is disabled; HCMC price of 10 Nov kept. Several Da Nang (dda) pages now show out of stock but still list a price.",
-   "Fuel: the 12 Nov 2026 adjustment is announced at 15:00, after the 05:00 daily run; prices of 5 Nov still apply at run time."
+   "Fuel: prices are those of the 15:00 12 Nov 2026 adjustment, taken from dated press reports (Bao Lao Cai, LuatVietnam, Bao Van hoa), not read from the Petrolimex zone table itself (its site lists the 12 Nov notice but the table was not readable); VnExpress printed 19,740 for E5 RON92, which does not match the stated cut of 1,500 from 20,890 and was not used."
   ],
   "sources": [
    {
@@ -2389,6 +2518,18 @@
    {
     "name": "Báo Lào Cai – Giá xăng dầu hôm nay 10/11/2026 (bảng 5/11 vẫn áp dụng; kỳ điều hành kế tiếp 15:00 ngày 12/11)",
     "url": "https://baolaocai.vn/gia-xang-dau-hom-nay-1011-dau-the-gioi-lao-doc-gia-xang-co-tiep-tuc-giam-post914077.html"
+   },
+   {
+    "name": "Báo Lào Cai – Giá xăng dầu đồng loạt giảm mạnh từ 15h hôm nay (12/11), 12/11/2026 15:02 (điều hành liên Bộ Công Thương – Tài chính, hiệu lực 15:00 ngày 12/11/2026); đối chiếu LuatVietnam 12/11/2026 và Báo Văn hóa 12/11/2026 (giá tối đa 19.845 / 19.399 đ/lít)",
+    "url": "https://baolaocai.vn/gia-xang-dau-dong-loat-giam-manh-tu-15h-hom-nay-1211-post914311.html"
+   },
+   {
+    "name": "Báo Văn hóa – Giá xăng dầu giảm mạnh, E5 RON92 xuống dưới 19.400 đồng/lít, 12/11/2026 16:08 (giá bán tối đa từ 15:00 ngày 12/11/2026)",
+    "url": "https://baovanhoa.vn/gia-xang-dau-giam-manh-xang-e5-ron92-con-duoi-19-400-dong-lit.html"
+   },
+   {
+    "name": "LuatVietnam – Giá xăng giảm xuống dưới 20.000 đồng/lít từ 15h chiều nay, 12/11/2026",
+    "url": "https://luatvietnam.vn/tin-van-ban-moi/gia-xang-ngay-12-11-2026-186-115596-article.html"
    }
   ],
   "last_checked": "2026-11-12"

@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-06",
+ "as_of": "2026-11-13",
  "built_by": "Research agent",
  "append_only": "Add new hosts and new observations with dates; never delete history — mark superseded entries.",
  "probe": {
@@ -337,11 +337,11 @@
     "checked": "2026-11-06",
     "detail": "curl 200 on the country endpoint"
    },
-   "access_tips": "Blocked. WDI API is ideal for a server job (JSON, lastupdated field).",
+   "access_tips": "Reachable by curl (2026-11-06) and used by Society 2026-11-13. The API throttles bursts: one indicator per call, short pauses, one retry. Read the lastupdated field to detect off-cycle updates (seen 2026-10-08 and 2026-11-11). (Old note 'Blocked' applied to the cloud sandbox, 2026-10-06.)",
    "conflicts_seen": [
     "WB GDP per capita 2025 5,066 USD vs NSO 5,026 USD (different FX and population bases) — both valid, label the source"
    ],
-   "last_used": "2026-11-06",
+   "last_used": "2026-11-13",
    "reachable_history": [
     {
      "curl": false,
@@ -506,14 +506,19 @@
    "best_for_agent": "Finance, Economy (forecasts), Investing",
    "reliability": "press",
    "reachable_from_sandbox": {
-    "curl": false,
-    "webfetch": null,
-    "checked": "2026-10-06",
-    "detail": "curl: CONNECT 403 from egress proxy"
+    "curl": null,
+    "webfetch": true,
+    "checked": "2026-11-13",
+    "detail": "WebFetch read cafef.vn and vietstock.vn pages"
    },
    "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). Broker PDFs on static1.vietstock.vn are the only route to Vietcap money-market averages.",
-   "conflicts_seen": [],
-   "last_used": "2026-10-06"
+   "conflicts_seen": [
+    {
+     "date": "2026-11-13",
+     "what": "CafeF 11/11 quotes the SBV (MPD deputy director) that 'nearly VND 50tn' was supplied via the 6-month swap on 9/11; Dân trí 10/11 gave only the USD 2bn cap (48,798 bn). Not a conflict: the official figure is the take-up, the cap is the ceiling."
+    }
+   ],
+   "last_used": "2026-11-13"
   },
   {
    "host": "thoibaonganhang.vn / tapchinganhang.gov.vn / thitruongtaichinhtiente.vn",
@@ -528,8 +533,13 @@
     "detail": "WebFetch reads article pages"
    },
    "access_tips": "Not fetchable from the sandbox: use WebSearch excerpts (cite the canonical URL, mark \"search-excerpt verified\"). thitruongtaichinhtiente.vn carries the SBV month figures (e.g. 9M 20.75 tn, +16.69% y/y).",
-   "conflicts_seen": [],
-   "last_used": "2026-11-06",
+   "conflicts_seen": [
+    {
+     "date": "2026-11-13",
+     "what": "Daily 'Điểm lại' recap gives the interbank overnight rate for the session of the recap day (9/11: 4.60%), not the previous session; Nguoi Quan Sat gives 4.4% (10/11) and 4.3% (11/11). Dates align; no conflict."
+    }
+   ],
+   "last_used": "2026-11-13",
    "reachable_history": [
     {
      "curl": false,
@@ -843,6 +853,108 @@
    "access_tips": "Useful Reuters mirror when reuters.com is not readable.",
    "conflicts_seen": [],
    "last_used": "2026-11-06"
+  },
+  {
+   "host": "tienphong.vn",
+   "publisher": "Tiền Phong (press)",
+   "what_it_holds": "SBV Region 2 (HCMC) quarterly remittance figures with regional breakdown; NA vote counts",
+   "best_for_agent": "Economy (remittances, priority watch 2), Strategy",
+   "reliability": "press",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": true,
+    "checked": "2026-11-13",
+    "detail": "Economy read the 20/10 article"
+   },
+   "access_tips": "HCMC remittance quarterly stories appear ~20 days after quarter end; CafeF mirrors them. Search 'kiều hối TP.HCM 9 tháng' with the year.",
+   "conflicts_seen": [
+    "HCMC 9M-2026 −13.8% y/y implies a 9M-2025 base ≈7.97 bn, vs 7.94 bn quoted in 2025 press; boundary (merged HCMC) not stated"
+   ],
+   "last_used": "2026-11-13"
+  },
+  {
+   "host": "daibieunhandan.vn",
+   "publisher": "Đại biểu Nhân dân (National Assembly newspaper)",
+   "what_it_holds": "NA session communiqués, vote counts, resolution texts as passed",
+   "best_for_agent": "Strategy, Policy, Economy",
+   "reliability": "official",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": true,
+    "checked": "2026-11-13",
+    "detail": "Strategy and Economy read pages this week (quochoi.vn blocked)"
+   },
+   "access_tips": "Best substitute for quochoi.vn. Vote counts are given as 'x/y đại biểu tham gia biểu quyết tán thành'; percentages in other press are of all deputies (467 = 93.4% of 500).",
+   "conflicts_seen": [],
+   "last_used": "2026-11-13"
+  },
+  {
+   "host": "www.cnbc.com",
+   "publisher": "CNBC",
+   "what_it_holds": "Daily Brent/WTI settles",
+   "best_for_agent": "Geopolitics (oil_costs), Living, Economy (CPI drivers)",
+   "reliability": "press",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": true,
+    "checked": "2026-11-13",
+    "detail": "Geopolitics read settles 9–11/11"
+   },
+   "access_tips": "Use settle, not intraday; store the settle date.",
+   "conflicts_seen": [
+    "Bao Lao Cai 99.37 (6/11 morning) vs 98.29 settle 5/11: different timestamps"
+   ],
+   "last_used": "2026-11-13"
+  },
+  {
+   "host": "www.investing.com / CME FedWatch relays",
+   "publisher": "Investing.com (relays CME FedWatch)",
+   "what_it_holds": "Fed meeting probabilities",
+   "best_for_agent": "Finance (fed.upcoming), Geopolitics",
+   "reliability": "aggregator",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": true,
+    "checked": "2026-11-13",
+    "detail": "Finance cited the 11/11 reading"
+   },
+   "access_tips": "CME's own tool is JS-heavy; relays differ by hour. Record reading date and outlet; Finance's stored value is the reference for other tabs.",
+   "conflicts_seen": [
+    "Dec 2026 odds: 88.8/11.2 (11/11) vs ~85/15 (10/11 immediate, CBS) vs 87.1/12.9 (TBTC 12/11)"
+   ],
+   "last_used": "2026-11-13"
+  },
+  {
+   "host": "www.numbeo.com",
+   "publisher": "Numbeo (crowd-sourced)",
+   "what_it_holds": "City cost-of-living averages (meals, rent, clothing)",
+   "best_for_agent": "Living",
+   "reliability": "aggregator",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": true,
+    "checked": "2026-11-13",
+    "detail": "Living read the three city pages"
+   },
+   "access_tips": "Values move by a few VND every day from FX conversion and new entries; mark estimate:true and do not narrate small changes.",
+   "conflicts_seen": [],
+   "last_used": "2026-11-13"
+  },
+  {
+   "host": "baolaocai.vn",
+   "publisher": "Báo Lào Cai (provincial press)",
+   "what_it_holds": "Fuel price period notices (full ceiling tables), Brent/WTI morning quotes",
+   "best_for_agent": "Living, Geopolitics",
+   "reliability": "press",
+   "reachable_from_sandbox": {
+    "curl": null,
+    "webfetch": true,
+    "checked": "2026-11-13",
+    "detail": "Read for the 12/11 period when the Petrolimex table was unreadable and MoIT 404"
+   },
+   "access_tips": "Good fallback for the full MoIT–MoF ceiling table each Thursday after 15:00.",
+   "conflicts_seen": [],
+   "last_used": "2026-11-13"
   }
  ],
  "probes": [
@@ -851,6 +963,12 @@
    "method": "curl -m 15 -L from the Mac session, plus WebFetch on the pages cited in the run",
    "result": "curl 200: www.nso.gov.vn, pxweb.nso.gov.vn, api.worldbank.org, www.imf.org DataMapper API, www.mof.gov.vn, hnx.vn, www.vietnamplus.vn. curl 403: sbv.gov.vn root. WebFetch worked for press, luatvietnam.vn and the IMF API. The 2026-10-06 \"everything blocked\" finding applied to the cloud sandbox and no longer describes this environment.",
    "agents_differ": "Economy saw curl 403 on imf.org and curl 200 on the sbv.gov.vn homepage; Society saw some Access Denied on imf.org; Research saw the reverse the same day. Treat imf.org and sbv.gov.vn as intermittent."
+  },
+  {
+   "date": "2026-11-13",
+   "method": "WebFetch on pages cited by agents (no curl probe this run)",
+   "result": "WebFetch read cafef.vn, vietstock.vn, thoibaonganhang.vn. Agents report: quochoi.vn and dangcongsan.vn blocked (Strategy); MoIT fuel page 404 and Petrolimex table unreadable (Geopolitics, Living); gelex site certificate error (Investing); SBV statistics pages rejected (Finance); api.worldbank.org throttles bursts (Society).",
+   "agents_differ": null
   }
  ]
 }

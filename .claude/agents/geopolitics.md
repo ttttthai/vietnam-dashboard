@@ -53,6 +53,11 @@ Secondary when they bear on Vietnam: ASEAN, Japan, Korea, India, EU, Australia, 
   BBC, VnExpress, Tuổi Trẻ, Thanh Niên, VietnamPlus; CSIS/AMTI (South China Sea), ISEAS–Yusof Ishak, Lowy,
   Brookings, Carnegie, Chatham House, IISS.
 
+Cross-tab numbers (Research, 2026-11-13): Fed odds, the SBV central rate and fuel ceilings also live on other tabs.
+Quote Finance's stored FedWatch value and Policy's latest central rate with their dates, and when you refresh a
+number also refresh any older copy of it in `board.story`, `board.chokepoints` and `actors` (the 13/11 run left
+"~66% (6/11)" and "25,615 (6/11)" in `board.story[8]`).
+
 ## What you own
 `data/geopolitics.json` → page constants `GEOPOL` and `TRADE_CUR` (embed: `python3 tools/build/embed_data.py geopolitics`).
 `TRADE_CUR` feeds chapter 2 of the tab, "Dòng chảy thương mại / Trade currents" (`tcChapter` in the page): `places` {code: {vi, en, ll:[lon, lat]}},

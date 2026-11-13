@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-06",
+ "as_of": "2026-11-13",
  "built_by": "Research agent",
  "note": "Figure families the site shows. latest_period read from the data files on 2026-10-06 (economy.json read while the Economy agent was running; re-read next run). calendar_id links to release_calendar.json. Priority-watch families carry a 'priority_watch' rank (1 FDI, 2 remittances, 3 tourism) — see priority_watch.json. | 2026-10-07: freshness_2026_10_07 added per family (see freshness_audit.json); new families econ.pci, sim.panel, page.gdp_sectors. Refreshed 2026-11-06 (weekly run): last_checked moved on every family touched this week; freshness_2026_11_06 records status.",
  "families": [
@@ -89,7 +89,7 @@
     "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
    ],
    "calendar_id": "nso_monthly_report",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "priority_watch": 1,
    "note": "FDI 9M-2026 matches NSO/FIA 03/10; registered components (new 29.24 / adjusted 14.15 / GVMCP 6.97) not held.",
@@ -116,7 +116,7 @@
     "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/thong-cao-bao-chi-ve-tinh-hinh-gia-thang-chin-quy-iii-va-9-thang-nam-2026/"
    ],
    "calendar_id": "nso_cpi",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "current",
@@ -135,7 +135,7 @@
    "page_use": "ch.5 projection fan",
    "unit": "% avg CPI",
    "frequency": "ad_hoc (per institution)",
-   "latest_period": "2026-11-04; IMF WEO Oct-2026",
+   "latest_period": "2026-11-07 NA 2027 target 4.5%; IMF WEO Oct-2026",
    "publisher": "IMF, WB, ADB, AMRO, OECD, banks, SBV, MoF",
    "source_urls": [
     "https://www.imf.org/-/media/files/publications/weo/2026/april/english/tablea.pdf",
@@ -143,8 +143,8 @@
     "https://www.adb.org/where-we-work/viet-nam/economy"
    ],
    "calendar_id": "imf_weo",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "note": "IMF entry is WEO Apr-2026; Oct-2026 WEO publishes 2026-10-13.",
    "freshness_2026_10_07": {
     "status": "waiting",
@@ -168,7 +168,7 @@
    "publisher": "SBV (BPM6) via IMF BOP",
    "source_urls": [],
    "calendar_id": "sbv_bop",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "priority_watch": "1 (FDI) and 2 (secondary income)",
    "note": "Q2-2026 SBV BoP not found by 2026-10-06. BoP fdi_in is ~80% of NSO disbursed every year 2015-2025 — not an independent check.",
@@ -197,7 +197,7 @@
     "https://www.vietnamplus.vn/du-lich-viet-don-177-trieu-khach-sau-9-thang-thi-truong-nao-dang-tang-toc-post1139852.vnp"
    ],
    "calendar_id": "nso_monthly_report",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "priority_watch": 3,
    "note": "Priority watch #3. By-market breakdown, 2026 targets (25 m; ~1,125 tn VND) not held. Outbound 9M −21.2% vs Q3 +16.4% to verify.",
@@ -219,7 +219,7 @@
    "page_use": "ch.2 facts",
    "unit": "bn USD",
    "frequency": "annual national; quarterly HCMC (SBV Region 2)",
-   "latest_period": "HCMC H1-2026; national SBV null",
+   "latest_period": "HCMC 9M-2026 (6.87 bn, released 20/10); national SBV null",
    "publisher": "SBV (HCMC branch, national), WB KNOMAD",
    "source_urls": [
     "https://vneconomy.vn/kieu-hoi-ve-tp-ho-chi-minh-hon-4-ty-usd-trong-6-thang-dau-nam-2026.htm",
@@ -227,8 +227,8 @@
     "https://vietnamnet.vn/en/vn-sets-remittance-record-of-over-16-billion-in-2025-says-foreign-minister-2478410.html"
    ],
    "calendar_id": "remittances_hcmc / remittances / sbv_bop / wb_knomad",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "note": "Priority watch #2. National 2025 only a lower bound ('over 16 bn', Foreign Minister). 2023=2024=16.0 untraced. Three definitions: SBV kiều hối, BoP secondary income, KNOMAD.",
    "priority_watch": 2,
    "freshness_2026_10_07": {
@@ -253,7 +253,7 @@
    "publisher": "DOLAB (MoHA)",
    "source_urls": [],
    "calendar_id": "dolab",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "waiting",
@@ -273,12 +273,12 @@
    "page_use": "ch.3 budget waffles + lines",
    "unit": "bn VND; % GDP",
    "frequency": "annual",
-   "latest_period": "2026 plan + Oct estimate; 2027 draft",
+   "latest_period": "2026 plan + Oct estimate; 2027 NA resolution 09/11 (plan_2027_resolution)",
    "publisher": "MoF final accounts / NA resolutions",
    "source_urls": [],
    "calendar_id": "mof_final_accounts",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "note": "2025 column UNTRACED (rev 2,681,500; exp 3,312,600; deficit 3.3% GDP) — conflicts with MoF Jan-2026 execution.",
    "freshness_2026_10_07": {
     "status": "current",
@@ -303,7 +303,7 @@
     "https://vietstock.vn/2026/10/tong-thu-nsnn-9-thang-nam-2026-dat-21873-nghin-ty-dong-bang-865-du-toan-nam-758-1498672.htm"
    ],
    "calendar_id": "mof_budget_monthly",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "current",
@@ -328,7 +328,7 @@
     "https://www.nso.gov.vn/bai-top/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
    ],
    "calendar_id": "nso_monthly_report",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "current",
@@ -414,7 +414,7 @@
    "publisher": "NSO/UNFPA; UN DESA",
    "source_urls": [],
    "calendar_id": "un_wpp",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "structural",
@@ -437,7 +437,7 @@
    "publisher": "NSO PLV02; NQ 202/2025/QH15",
    "source_urls": [],
    "calendar_id": "nso_population",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "stale",
@@ -461,7 +461,7 @@
    "publisher": "NSO PX PL.V03; provincial statistics offices",
    "source_urls": [],
    "calendar_id": "nso_grdp",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "stale",
@@ -485,7 +485,7 @@
    "publisher": "World Bank WDI; Pew",
    "source_urls": [],
    "calendar_id": "wb_wdi",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "current",
@@ -563,12 +563,12 @@
    "page_use": "stance, instrument table",
    "unit": "VND/USD",
    "frequency": "daily",
-   "latest_period": "2026-11-06",
+   "latest_period": "2026-11-12 (25,623)",
    "publisher": "SBV",
    "source_urls": [],
    "calendar_id": "sbv_central_rate",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "P05"
@@ -586,12 +586,12 @@
    "page_use": "ch.1 easing vs tightening, ch.2 expiry cliff, watch",
    "unit": "mixed",
    "frequency": "ad_hoc",
-   "latest_period": "2026-11-06",
+   "latest_period": "2026-11-11 (FX purchases Mon/Wed); credit 26/10",
    "publisher": "SBV, Government",
    "source_urls": [],
    "calendar_id": "sbv_decisions",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "P02–P06"
@@ -609,12 +609,12 @@
    "page_use": "ch.1–3, expiry cliff (VAT, fuel tax 31/12/2026), watch",
    "unit": "mixed",
    "frequency": "ad_hoc",
-   "latest_period": "2026-11-06",
+   "latest_period": "2026-11-11 (2184/QĐ-TTg); 2027 budget passed 09/11",
    "publisher": "NA, Government, MoF",
    "source_urls": [],
    "calendar_id": "na_sessions",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "P02–P04"
@@ -632,12 +632,12 @@
    "page_use": "instrument table",
    "unit": "% of plan disbursed",
    "frequency": "monthly",
-   "latest_period": "2026-10-31",
+   "latest_period": "2026-11-05 weekly (74.37% on 964,354.3 base; added by Research 13/11)",
    "publisher": "MoF",
    "source_urls": [],
    "calendar_id": "mof_budget_monthly",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "P15"
@@ -655,12 +655,12 @@
    "page_use": "explore news, watch",
    "unit": "items",
    "frequency": "daily (rolling 3 months)",
-   "latest_period": "2026-11-06",
+   "latest_period": "2026-11-13",
    "publisher": "SBV, chinhphu, press",
    "source_urls": [],
    "calendar_id": "press_daily",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "P07"
@@ -678,12 +678,12 @@
    "page_use": "explore stance",
    "unit": "text",
    "frequency": "monthly",
-   "latest_period": "2026-11-06",
+   "latest_period": "2026-11-13",
    "publisher": "derived",
    "source_urls": [],
    "calendar_id": "nso_monthly_report",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "note": "Stance quotes CPI, credit and FX numbers — refresh with them.",
    "freshness_2026_10_07": {
     "status": "current",
@@ -726,7 +726,7 @@
    "publisher": "SBV (press release ~1st–5th; table ~2-month lag)",
    "source_urls": [],
    "calendar_id": "sbv_credit_total",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "note": "T8/T9-2026 levels are rounded press figures (20.5 / 20.75 tn); see consistency report on a possible one-month label shift in Jun/Jul-2026.",
    "freshness_2026_10_07": {
@@ -751,7 +751,7 @@
    "publisher": "SBV statistics table",
    "source_urls": [],
    "calendar_id": "sbv_money_tables",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "waiting",
@@ -775,7 +775,7 @@
    "publisher": "SBV \"Dư nợ tín dụng đối với nền kinh tế\"",
    "source_urls": [],
    "calendar_id": "sbv_credit_sector",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "waiting",
@@ -794,12 +794,12 @@
    "page_use": "ch.2 facts, watch",
    "unit": "bn VND; %",
    "frequency": "mixed (monthly–quarterly)",
-   "latest_period": "RE 2026-06; bonds 9M; margin end-Q3",
+   "latest_period": "RE 2026-08 (5,210,000 bn); bonds 10M VBMA; swap 6/11",
    "publisher": "SBV, MoC, FiinGroup/VBMA, Vietstock tallies",
    "source_urls": [],
    "calendar_id": "vbma_fiin_bonds",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "F10",
@@ -822,7 +822,7 @@
    "publisher": "SBV statistics",
    "source_urls": [],
    "calendar_id": "sbv_prudential",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "current",
@@ -865,7 +865,7 @@
    "publisher": "listed-bank FS via brokers",
    "source_urls": [],
    "calendar_id": "bank_fs_quarterly",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "freshness_2026_10_07": {
     "status": "waiting",
@@ -885,12 +885,12 @@
    "page_use": "ch.3 drivers",
    "unit": "%, VND",
    "frequency": "monthly (month-end)",
-   "latest_period": "2026-10 monthly; week to 2026-11-06",
+   "latest_period": "week to 2026-11-13 provisional (Thu 12/11)",
    "publisher": "SBV, Fed, press",
    "source_urls": [],
    "calendar_id": "month_end_markets",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "F23, P11",
@@ -913,7 +913,7 @@
    "publisher": "IMF IL/Art. IV; SBV statements",
    "source_urls": [],
    "calendar_id": "imf_article_iv",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": null,
    "freshness_2026_10_07": {
     "status": "stale",
@@ -930,12 +930,12 @@
    "page_use": "2030 projections",
    "unit": "%",
    "frequency": "ad_hoc",
-   "latest_period": "IMF WEO Oct-2026 inputs (aligned by Research 2026-11-06)",
+   "latest_period": "IMF WEO Oct-2026; Fed odds CME 11/11",
    "publisher": "IMF WEO; official targets",
    "source_urls": [],
    "calendar_id": "imf_weo",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "note": "real_gdp_growth uses WEO Apr-2026 (7.1% 2026); WB EAP 6-Oct-2026 says 7.4%.",
    "freshness_2026_10_07": {
     "status": "waiting",
@@ -959,7 +959,7 @@
    "publisher": "bank interim FS",
    "source_urls": [],
    "calendar_id": "bank_fs_quarterly",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": null,
    "freshness_2026_10_07": {
     "status": "waiting",
@@ -975,12 +975,12 @@
    "page_use": "timeline map, KPI tiles, story chapters",
    "unit": "documents",
    "frequency": "ad_hoc",
-   "latest_period": "2026-11-06 (142 entries)",
+   "latest_period": "2026-11-13 (143 entries)",
    "publisher": "Party, NA, Government, ministries, provinces",
    "source_urls": [],
    "calendar_id": "na_sessions",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "G04–G08, G10"
@@ -998,12 +998,12 @@
    "page_use": "draft pipeline chapter",
    "unit": "documents",
    "frequency": "ad_hoc",
-   "latest_period": "20 drafts; 17 in the session; votes 07/11 and 20–21/11",
+   "latest_period": "18 drafts; plan and budget 2027 adopted 07/11 and 09/11; votes 20–21/11",
    "publisher": "NA, ministries",
    "source_urls": [],
    "calendar_id": "na_sessions",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "G09"
@@ -1021,12 +1021,12 @@
    "page_use": "what to watch",
    "unit": "items",
    "frequency": "daily (rolling 3 months)",
-   "latest_period": "2026-11-06",
+   "latest_period": "2026-11-13",
    "publisher": "press, chinhphu",
    "source_urls": [],
    "calendar_id": "press_daily",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "freshness_2026_10_07": {
     "status": "current",
     "audit_rows": "G10"
@@ -1089,12 +1089,12 @@
    "page_use": "Investing story macro checks",
    "unit": "mixed",
    "frequency": "monthly",
-   "latest_period": "2026-11-06 (Investing owns it)",
+   "latest_period": "public invest weekly 05/11; focus 13/11",
    "publisher": "NSO, MoF",
    "source_urls": [],
    "calendar_id": "nso_monthly_report",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "note": "Hand-maintained in code; cpi.target = 4.0 conflicts with NA target 4.5.",
    "freshness_2026_10_07": {
     "status": "current",
@@ -1226,7 +1226,7 @@
     "https://www.vietnamplus.vn/9-thang-nam-2026-von-dau-tu-nuoc-ngoai-dang-ky-vao-viet-nam-tang-764-post1140075.vnp"
    ],
    "calendar_id": "fia_fdi_monthly",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "priority_watch": 1,
    "note": "Family view across the FDI paths; see data/research/priority_watch.json for the derived disbursed/registered ratio.",
@@ -1251,7 +1251,7 @@
    "publisher": "mirror of Economy ECON_OFFICIAL.ytd_2026",
    "source_urls": [],
    "calendar_id": "fia_fdi_monthly",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "priority_watch": 1,
    "note": "Proposed additive key; must equal Economy's values and cite the same release.",
@@ -1340,7 +1340,7 @@
     "https://www.nso.gov.vn/bai-top/2026/11/bao-cao-tinh-hinh-kinh-te-xa-hoi-thang-muoi-va-10-thang-nam-2026/"
    ],
    "calendar_id": "nso_monthly_report",
-   "last_checked": "2026-11-06",
+   "last_checked": "2026-11-13",
    "last_changed": "2026-11-06",
    "note": "Added 2026-11-06. Vietnamese figures must equal the NSO text; US-data figures stay labelled as US data."
   },
@@ -1353,13 +1353,53 @@
    "page_use": "event map, what to watch",
    "unit": "text",
    "frequency": "weekly",
-   "latest_period": "2026-11-06",
+   "latest_period": "2026-11-13",
    "publisher": "press, Ground News",
    "source_urls": [],
    "calendar_id": "press_daily",
-   "last_checked": "2026-11-06",
-   "last_changed": "2026-11-06",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
    "note": "Added 2026-11-06. Event-driven; no release calendar applies. FOMC and Brent dates come from fed_fomc and eia_brent."
+  },
+  {
+   "id": "liv.prices",
+   "tab": "Đời sống hằng ngày",
+   "owner_agent": "Living",
+   "file": "data/living.json",
+   "json_path": "LIVING.items[].prices.{hanoi,danang,hcmc}",
+   "page_use": "Daily Living tab: price cards and the illustrative monthly basket per city",
+   "unit": "VND per item",
+   "frequency": "daily (fuel per MoIT–MoF period, Thursdays); retail shelves weekly; Numbeo crowd averages continuous; utilities ad hoc",
+   "latest_period": "fuel 2026-11-12; Numbeo 2026-11-10..11; LPG 2026-11-02",
+   "publisher": "Petrolimex / MoIT–MoF (fuel), LOTTE Mart and Bach Hoa Xanh (shelves), Numbeo (crowd estimates, estimate:true), utilities' tariff decisions",
+   "source_urls": [
+    "https://www.numbeo.com/cost-of-living/in/Hanoi",
+    "https://www.numbeo.com/cost-of-living/in/Da-Nang",
+    "https://www.numbeo.com/cost-of-living/in/Ho-Chi-Minh-City"
+   ],
+   "calendar_id": "press_daily",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
+   "note": "Added by Research 2026-11-13 (the Living tab was not in the 2026-11-06 inventory). Fuel ceilings must match Geopolitics vn-fuel events and oil_costs.gaps; checked equal for 12/11 (E5 19,390; E10 19,840)."
+  },
+  {
+   "id": "geo.oil_costs",
+   "tab": "Địa chính trị",
+   "owner_agent": "Geopolitics",
+   "file": "data/geopolitics.json",
+   "json_path": "GEOPOL.oil_costs.{products,routes,vn_retail,gaps}",
+   "page_use": "Oil cost chain: Brent/WTI benchmarks, crude routes to Vietnam, retail price build-up",
+   "unit": "USD/bbl; VND/l",
+   "frequency": "daily benchmarks; MOPS per fuel period (Thursdays)",
+   "latest_period": "Brent/WTI 2026-11-11; routes and vn_retail 2026-11-05 period",
+   "publisher": "ICE via CNBC; MoIT (MOPS averages, 404 this week)",
+   "source_urls": [
+    "https://www.cnbc.com/"
+   ],
+   "calendar_id": "press_daily",
+   "last_checked": "2026-11-13",
+   "last_changed": "2026-11-13",
+   "note": "Added by Research 2026-11-13. Routes still price off the 5/11 Brent snapshot (98.29); flagged in oil_costs.gaps[9]."
   }
  ]
 }

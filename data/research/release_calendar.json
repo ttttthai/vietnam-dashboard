@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-06",
+ "as_of": "2026-11-13",
  "built_by": "Research agent",
  "timezone": "Asia/Ho_Chi_Minh",
  "note": "Rules learned from observed releases (evidence) and published calendars. confidence: high = rule documented + observed; medium = observed or documented only; low = inferred, verify next run.",
@@ -213,7 +213,7 @@
    "id": "wb_wdi",
    "publisher": "World Bank",
    "frequency": "semiannual",
-   "release_rule": "WDI major update ~1 July (with FY income classifications) and a December update; API api.worldbank.org returns lastupdated. Revised 2026-11-06: an off-cycle update appeared on 2026-10-08 (area, density), so read lastupdated rather than assuming only July and December.",
+   "release_rule": "WDI major update ~1 July (with FY income classifications) and a December update; API api.worldbank.org returns lastupdated. Revised 2026-11-06: an off-cycle update appeared on 2026-10-08 (area, density), so read lastupdated rather than assuming only July and December. Revised 2026-11-13: a second off-cycle update on 2026-11-11 (15 indicators Society tracks; no rank moved). Off-cycle updates now seen in Oct and Nov, so the API lastupdated field, not the July/December rule, is the trigger. The API throttles bursts: pace requests (one indicator at a time, short pauses) and retry once.",
    "next_expected": [
     "2026-12 (mid-late Dec)",
     "2027-07-01"
@@ -236,6 +236,12 @@
      "what": "WDI update seen by Society: EN.POP.DNST and AG.SRF.TOTL.K2 gained 2024",
      "url": "https://api.worldbank.org/v2/country/all/indicator/EN.POP.DNST",
      "learned": "2026-11-06"
+    },
+    {
+     "observed": "2026-11-11",
+     "what": "WDI off-cycle update seen by Society via the API lastupdated field; all ranks re-derived and unchanged (pop 16th/217, GDP pc 117th/186, TFR 109th, SRB 4th). API throttled repeated calls in the same run.",
+     "url": "https://api.worldbank.org/v2/country/VNM/indicator/SP.POP.TOTL?format=json",
+     "learned": "2026-11-13"
     }
    ],
    "confidence": "medium",
@@ -730,9 +736,8 @@
    "frequency": "semiannual",
    "release_rule": "Regular sessions: autumn (Oct–Nov) and spring/summer (May–June). 16th NA 2nd session: phase 1 17/10–13/11, phase 2 20–21/11, closes 21/11/2026 (agenda changed 05/11; phase 1 was to 14/11).",
    "next_expected": [
-    "2026-11-07 (2027 socio-economic plan vote expected, unconfirmed)",
-    "2026-11-13 (phase 1 ends)",
-    "2026-11-20..21 (phase 2, votes, closes 21/11)"
+    "2026-11-20..21 (phase 2: Land, Housing, RE Business, State Budget, Investment, Electricity, Tax, Bidding laws; reserve 23/11)",
+    "2027-05 (spring session)"
    ],
    "feeds": [
     "str.directives",
@@ -749,6 +754,19 @@
      "what": "Agenda vote; phase 1 ends 13/11, close 21/11. The earlier 20/11 close in this calendar was wrong.",
      "url": "https://thitruongtaichinhtiente.vn/quoc-hoi-bieu-quyet-thong-qua-viec-bo-sung-chuong-trinh-ky-hop-thu-2-quoc-hoi-khoa-xvi-86818.html",
      "learned": "2026-11-06"
+    },
+    {
+     "observed": "2026-11-07",
+     "what": "2027 socio-economic plan resolution passed (467/469 present; 93.4% of all deputies)",
+     "url": null,
+     "learned": "2026-11-13",
+     "note": "Strategy and Economy cite daibieunhandan.vn and tienphong.vn articles; see strategy_directives.json DT-NQ-KTXH-2027"
+    },
+    {
+     "observed": "2026-11-09",
+     "what": "2027 budget estimate passed 471/471 present; central allocation 469/469 the same afternoon",
+     "url": "https://thoibaotaichinhvietnam.vn/thong-qua-du-toan-ngan-sach-2027-tong-chi-hon-4-trieu-ty-dong-206607.html",
+     "learned": "2026-11-13"
     }
    ],
    "confidence": "high",
@@ -952,10 +970,10 @@
    "id": "remittances_hcmc",
    "publisher": "SBV Region 2 branch (HCMC)",
    "frequency": "quarterly",
-   "release_rule": "~3-4 weeks after quarter end via press; full-year forecast ~1 Jan, actual ~3rd week of January.",
+   "release_rule": "~3 weeks after quarter end via press (9M-2026 published 20/10/2026, Q3 end + 20 days); full-year forecast ~1 Jan, actual ~3rd week of January.",
    "next_expected": [
-    "overdue as of 2026-11-06: 9M-2026 not found, re-check in each weekly run",
-    "2027-01-20..25 (FY2026)"
+    "2027-01-15..25 (FY2026; Region 2 outlook 9.5–9.8 bn)",
+    "2027-04-15..25 (Q1-2027)"
    ],
    "feeds": [
     "econ.remittances"
@@ -986,9 +1004,15 @@
      "observed": "2026-11-06",
      "what": "Economy found no 9M-2026 figure; latest is H1. Lag now beyond the 3-4 week rule, so the rule may not hold this quarter.",
      "learned": "2026-11-06"
+    },
+    {
+     "observed": "2026-10-20",
+     "what": "9M-2026 ~6.87 bn (−13.8% y/y), Q3 2.835 bn (+3.6% y/y); FY outlook raised to 9.5–9.8 bn. It was published on time; the 2026-11-06 'overdue' status was a search miss, not a late release.",
+     "url": "https://tienphong.vn/bat-ngo-kieu-hoi-chuyen-ve-tphcm-post1886764.tpo",
+     "learned": "2026-11-13"
     }
    ],
-   "confidence": "medium",
+   "confidence": "medium-high",
    "learned": "2026-10-06",
    "priority_watch": 2
   },
@@ -1148,6 +1172,11 @@
      "what": "held at 3.75-4.00%, vote 10-2",
      "url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20261028.pdf",
      "learned": "2026-11-06"
+    },
+    {
+     "observed": "2026-11-10..11",
+     "what": "CME FedWatch December odds move within a day after US CPI: ~85/15 (10/11 immediate, Geopolitics via CBS) vs 88.8/11.2 (11/11, Investing.com, Finance) vs 87.1/12.9 (TBTC 12/11). Always store the reading date and relay outlet.",
+     "learned": "2026-11-13"
     }
    ],
    "confidence": "high",
@@ -1189,6 +1218,80 @@
      "learned": "2026-11-06"
     }
    ]
+  },
+  {
+   "id": "mof_public_investment",
+   "publisher": "Ministry of Finance (Dept of Development Investment)",
+   "frequency": "weekly (quick report) + monthly (report to Government)",
+   "release_rule": "Weekly quick-report letter (CV …/BTC-ĐTPT) covers disbursement to the previous Thursday-ish cut-off and reaches the press ~6–7 days after the cut-off (05/11 data: letter 18175 dated 11/11, press 11–12/11). Monthly report to the Government ~3 days after month end (31/10 data: 908/BC-BTC dated 03/11, briefing 04/11). The plan base can change between reports without explanation (1,022,607 → 955,867.4 → 964,354.3 bn in Oct–Nov 2026).",
+   "next_expected": [
+    "2026-11-18..19 (to ~12/11)",
+    "2026-12-02..04 (to 30/11, monthly)"
+   ],
+   "feeds": [
+    "inv.macro_context public_invest.latest_weekly",
+    "pol.public_investment",
+    "econ.investment"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-11-11",
+     "what": "Letter 18175/BTC-ĐTPT: 717,161.3 bn = 74.37% of 964,354.3 bn to 05/11",
+     "url": "https://vietstock.vn/2026/11/den-ngay-511-giai-ngan-von-dau-tu-cong-vuot-74-ke-hoach-5-bo-co-quan-van-duoi-20-768-1514113.htm",
+     "learned": "2026-11-13"
+    },
+    {
+     "observed": "2026-11-03",
+     "what": "908/BC-BTC: 708,567.4 bn = 74.1% of 955,867.4 bn to 31/10",
+     "url": "https://thoibaotaichinhvietnam.vn/infographics-giai-ngan-von-dau-tu-cong-ca-nuoc-dat-708-567-4-ty-dong-206473.html",
+     "learned": "2026-11-13"
+    },
+    {
+     "observed": "2026-10-22",
+     "what": "Weekly: 673,970 bn = 65.9% to 22/10 (letter 16767 for 15/10)",
+     "url": "https://thanhtra.com.vn/dau-tu-72A9E3223/giai-ngan-von-dau-tu-cong-vuot-673000-ty-dong-dat-gan-66-ke-hoach-cce9750d0.html",
+     "learned": "2026-11-13"
+    }
+   ],
+   "confidence": "medium",
+   "learned": "2026-11-13"
+  },
+  {
+   "id": "sbv_fx_operations",
+   "publisher": "State Bank of Vietnam",
+   "frequency": "ad_hoc (spot purchases on a fixed Mon/Wed schedule from 11/11/2026)",
+   "release_rule": "Notices go to banks and reach the press 1–2 days before the operation. Results are not published as data: the 6-month swap result came 2 days after value date in an interview (SBV Monetary Policy Dept, CafeF 11/11). Spot purchase volumes have not been published; check the weekly money-market wraps (Thời báo Tài chính, Thời báo Ngân hàng) on Saturdays.",
+   "next_expected": [
+    "every Mon and Wed (spot purchases at 25,500)",
+    "2027-05-10 (swap maturity)"
+   ],
+   "feeds": [
+    "pol.mon_prudential_credit (fx_intervention)",
+    "fin.flows_re_bonds_margin (swap flow)",
+    "fin.why_market"
+   ],
+   "evidence": [
+    {
+     "observed": "2026-11-03",
+     "what": "182-day swap up to USD 2bn announced (spot 24,399, value 9/11)",
+     "url": "https://vietstock.vn/2026/11/nhnn-trien-khai-nghiep-vu-hoan-doi-ngoai-te-ky-han-6-thang-757-1511563.htm",
+     "learned": "2026-11-13"
+    },
+    {
+     "observed": "2026-11-11",
+     "what": "'Nearly VND 50tn' supplied on 9/11 (SBV MPD deputy director)",
+     "url": "https://cafef.vn/hoan-doi-ngoai-te-da-co-gan-50-nghin-ty-dong-duoc-cung-ung-cho-he-thong-ngan-hang-188261111144738067.chn",
+     "learned": "2026-11-13"
+    },
+    {
+     "observed": "2026-11-10",
+     "what": "Spot USD purchases at 25,500 every Monday and Wednesday from 11/11",
+     "url": "https://vnexpress.net/ngan-hang-nha-nuoc-se-dinh-ky-mua-usd-tu-cac-nha-bang-5142801.html",
+     "learned": "2026-11-13"
+    }
+   ],
+   "confidence": "medium",
+   "learned": "2026-11-13"
   }
  ]
 }

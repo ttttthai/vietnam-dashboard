@@ -1,5 +1,28 @@
 # Cross-tab consistency report
 
+## Run 2026-11-13 (weekly pre-approved run)
+
+Files read after the eight tab agents finished (page not yet re-embedded). Pages read directly this run: CafeF 11/11 (swap result), Vietstock 12/11 (MoF letter 18175), Thời báo Ngân hàng 9/11 recap (overnight rate). Status: **pass**, **fixed** (corrected in the owner's file this run), **differs** (real conflict, both kept), **flag** (another owner's text or code).
+
+| # | Check | Tabs and values | Status | Ruling and action |
+|---|---|---|---|---|
+| X1 | SBV 6-month swap | Policy: "nearly VND 50tn supplied on 9/11"; Finance: 48,798 bn cap, "take-up not reported" | **fixed** | Both right, different things. CafeF 11/11 (read): Deputy Director of the SBV Monetary Policy Dept Nguyễn Linh Phương said "gần 50 nghìn tỷ đồng" was supplied on 9/11. That is the take-up; 48,798 bn = USD 2bn × 24,399 is the cap, so take-up was close to the full cap. Finance flow note and operation 450 now carry the official statement (value stays the cap / null: no exact figure). Policy's note now names the speaker and the cap. |
+| X2 | Interbank overnight | Policy 4.60% (session 9/11); Finance 4.4% (10/11), 4.3% (11/11), 4.50% (5/11) | pass | Thời báo Ngân hàng's 9/11 recap is for the 9/11 session (read). Every value is dated in both files. Falling path 4.6 → 4.4 → 4.3. |
+| X3 | Real-estate credit units | Finance data 5,210,000 bn at 31/8 (correct); flow note "5.21 tn / 20.49 tn" | **fixed** | Text was off by 1,000. Now "5,210 tn (5.21 quadrillion) / ~20,490 tn". Market view's "5.21tn" was in the report only; the data quotes "5,21 triệu tỷ" correctly. Narrator: say 5.21 quadrillion or 5,210 tn. |
+| X4 | Public investment | Investing 717,161.3 / 964,354.3 = 74.37% at 05/11; Policy stopped at 31/10 (708,567.4 / 955,867.4 = 74.1%); Economy and Finance 31/10 | **fixed** | Vietstock 12/11 read: MoF letter 18175/BTC-ĐTPT, 74.37%, plan 964,354.3 (central 314,127.7, local 650,226.6), prior week 691,823.2 = 71.74%. Policy now has a 05/11 history point, `current_value` 74.37 and current/stance text with the base change. Economy and Finance keep the 31/10 monthly report on purpose (monthly series); dated, pass. Third base in three weeks: compare amounts, not rates. |
+| X5 | 2027 budget and plan | Revenue 3,334,338; spending 4,073,935; dev 1,755,679; deficit 739,597 = 4.5%; borrowing 1,279,717; central dev >757 tn (Economy, Policy, Strategy) | pass; Investing **fixed** | Same numbers in all three. Votes: plan 07/11 467/469 present (= 93.4% of all deputies, so Economy's "467, 93.4%" and Strategy's "467/469" agree); budget 09/11 471/471 present (Strategy "100% present" agrees); central allocation 469/469. Investing's 21/11 event still said the budget "awaits approval" with 757,200 as development spending; rewritten (passed 09/11; 757,200 was central). |
+| X6 | Fed December odds | Finance 88.8/11.2 (CME via Investing.com, 11/11); Geopolitics ~85/15 (immediately after CPI, 10/11) | **fixed** (labels) | Both real, different hours. Finance's stored value is the reference. Geopolitics actor text now dates the ~85/15 to 10/11 and adds 88.8/11.2 at 11/11; `board.story[8]` still said ~66% (6/11) and central rate 25,615: updated to the 11/11 odds and 25,623 (12/11). |
+| X7 | Fuel 12/11 and central rate | Living E5 19,390, E10 19,840 (all cities); Geopolitics same + diesel 26,820, kerosene 26,400, mazut 19,740; central 25,623 (12/11) in Policy and Finance `market_6m` | pass; Finance text **fixed** | Fuel equal. Living has no diesel item. Finance constraint 2 still said "25,615 (6/11), latest on the Policy tab, 1.93%": now 25,600 (10/11) then 25,623 (12/11), ~2.0% vs end-2025 (25,623 / 25,121 − 1 = 2.00%, derived), matching Policy's stance. |
+| X8 | Brent | Geopolitics 92.76 (11/11) | pass; Geopolitics text **fixed** | No "Brent ~98" in Economy, Finance or Living data (Economy cites EIA forecasts ~90/77/74). Geopolitics `board.chokepoints[0]` now adds 92.76 (11/11). Its `oil_costs.routes` still price off the 5/11 snapshot (98.29): flagged by Geopolitics in `gaps[9]`, left. Narration still says 98.29 and diesel 28,690 (flag). |
+| X9 | WDI | Society: off-cycle update 11/11, ranks unchanged | **fixed** (calendar) | `wb_wdi` evidence and rule updated; API throttling noted in source_log and society.md. |
+| X10 | HCMC remittances 9M | Economy 6.87 bn, −13.8% y/y | differs (minor) | −13.8% implies 9M-2025 ≈ 7.97 bn; 2025 press gave 7.94 bn. Possibly the merged-HCMC boundary. Both kept; Economy's `base_note` says so. Not recomputed. |
+| X11 | OMO outstanding | Policy ~124.9 tn (9/11); Finance 105,592 (5/11), 112,131 (12/11) | pass | Different dates; path consistent with the net injection on 9/11 and net withdrawals after. |
+| X12 | Credit | 11.94% at 26/10 in Policy and Finance | pass | Unchanged; SBV September tables due 10–20/11. |
+| X13 | "What to watch" vs today | Page `renderEconStory` card (~line 5612); `data/narration.json` (4 places) | **flag** | Both still say the 2027 budget is "proposed, not voted". Narration also: central rate 25,615 (6/11), Fed ~66%, Brent 98.29, diesel 28,690, public investment 74.1% (31/10). Owners: Ed / main session (page), Narrator (film). |
+| X14 | NA session close | Strategy, Policy, Investing 21/11; Economy 20–21/11 | pass | Phase 2 votes 20–21/11, reserve 23/11. |
+
+---
+
 ## Run 2026-11-06 (weekly pre-approved run)
 
 Files read after all seven tab agents finished, with the page already embedded. Primary checks: NSO October report docx (read directly), Decree 13/2026 text, IMF DataMapper API. Status: **pass**, **fixed** (corrected in the owner's file this run), **differs** (real conflict, both kept), **decision** (user's call). Older tables below are kept as history.
